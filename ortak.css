@@ -1,0 +1,323 @@
+:root{
+  --kagit:#eef1f5;
+  --yuzey:#ffffff;
+  --yuzey-2:#e4e9f0;
+  --murekkep:#16202e;
+  --murekkep-2:#48586c;
+  --murekkep-3:#76849a;
+  --izohips:#1d7a8c;
+  --izohips-acik:#e2f0f2;
+  --kehribar:#b06a1f;
+  --kehribar-acik:#f7ecdd;
+  --cizgi:#ccd5e0;
+  --cizgi-ince:#dde3ea;
+  --golge:0 1px 2px rgba(22,32,46,.06), 0 8px 24px -12px rgba(22,32,46,.14);
+  --serif:'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans:'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --kagit:#0d1520;
+    --yuzey:#141e2b;
+    --yuzey-2:#1c2937;
+    --murekkep:#e8eef5;
+    --murekkep-2:#a8b6c7;
+    --murekkep-3:#7b8a9e;
+    --izohips:#4db6c9;
+    --izohips-acik:#13323a;
+    --kehribar:#e0a05c;
+    --kehribar-acik:#2e2318;
+    --cizgi:#2a3a4c;
+    --cizgi-ince:#1f2c3a;
+    --golge:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --kagit:#0d1520;
+  --yuzey:#141e2b;
+  --yuzey-2:#1c2937;
+  --murekkep:#e8eef5;
+  --murekkep-2:#a8b6c7;
+  --murekkep-3:#7b8a9e;
+  --izohips:#4db6c9;
+  --izohips-acik:#13323a;
+  --kehribar:#e0a05c;
+  --kehribar-acik:#2e2318;
+  --cizgi:#2a3a4c;
+  --cizgi-ince:#1f2c3a;
+  --golge:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--kagit);color:var(--murekkep);
+  font-family:var(--sans);
+  /* telefonda 16.5px -> genis ekranda 20px, akiskan */
+  font-size:clamp(16.5px, 0.92rem + 0.42vw, 20px);
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+/* sarmalayici: telefonda dar, masaustunde 960px'e kadar acilir */
+.sar{
+  width:100%;
+  max-width:clamp(720px, 62vw, 960px);
+  margin:0 auto;
+  padding-inline:clamp(18px, 4vw, 40px);
+}
+@media (max-width:860px){
+  .sar{max-width:100%;padding-inline:18px}
+}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;line-height:1.24;margin:0}
+p{margin:0 0 1.1em}
+a{color:var(--izohips);text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--izohips);outline-offset:3px;border-radius:3px}
+img{max-width:100%;display:block}
+
+/* geri donus bandi */
+.geri-bant{border-bottom:1px solid var(--cizgi-ince);background:var(--yuzey)}
+.geri{
+  display:inline-block;padding-block:13px;font-family:var(--mono);
+  font-size:12px;letter-spacing:.06em;text-decoration:none;color:var(--murekkep-2);
+}
+.geri:hover{color:var(--izohips)}
+
+/* sayfa basligi */
+.sayfa-bas{padding-block:42px 8px}
+.etiket{
+  font-family:var(--mono);font-size:clamp(11.5px,.45vw + .5rem,13.5px);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--izohips);margin:0 0 14px;font-weight:600;
+}
+h1{font-size:clamp(2.1rem,3.2vw + 1.2rem,3.5rem);font-weight:600;letter-spacing:-.022em;margin-bottom:14px}
+.girizgah{font-size:clamp(1.06rem,.5vw + .92rem,1.25rem);color:var(--murekkep-2);max-width:64ch}
+.girizgah strong{color:var(--murekkep);font-weight:600}
+
+section{padding-block:clamp(34px,3.4vw,58px);border-top:1px solid var(--cizgi-ince)}
+section:first-of-type{border-top:none}
+.bolum-no{
+  font-family:var(--mono);font-size:clamp(11px,.42vw + .48rem,13px);letter-spacing:.12em;
+  color:var(--murekkep-3);display:block;margin-bottom:10px;
+}
+h2{font-size:clamp(1.5rem,1.9vw + .95rem,2.25rem);font-weight:600;letter-spacing:-.015em;margin-bottom:16px}
+h3{font-size:clamp(1.12rem,.55vw + .95rem,1.32rem);font-weight:600;margin-bottom:9px}
+
+/* baglantilar */
+.baglar{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}
+.bag{
+  font-family:var(--mono);font-size:clamp(12.5px,.55vw + .5rem,14.5px);
+  padding:clamp(8px,.7vw,12px) clamp(14px,1.1vw,20px);border-radius:5px;
+  border:1px solid var(--cizgi);text-decoration:none;color:var(--murekkep);
+  background:var(--yuzey);transition:border-color .15s,color .15s;
+}
+.bag:hover{border-color:var(--izohips);color:var(--izohips)}
+.bag-vurgu{background:var(--izohips);border-color:var(--izohips);color:#fff}
+.bag-vurgu:hover{color:#fff;opacity:.88}
+
+/* not kutusu */
+.not{
+  background:var(--kehribar-acik);border:1px solid var(--kehribar);
+  border-radius:5px;padding:19px 21px;margin:22px 0;
+}
+.not h3{font-size:1.06rem;margin-bottom:8px}
+.not p{font-size:.96rem;color:var(--murekkep-2);margin-bottom:.8em}
+.not p:last-child{margin-bottom:0}
+
+/* sakin kutu */
+.kutu{
+  background:var(--yuzey);border:1px solid var(--cizgi);
+  border-radius:5px;padding:19px 21px;margin:22px 0;
+}
+.kutu h3{font-size:1.06rem;margin-bottom:8px}
+.kutu p:last-child{margin-bottom:0}
+
+/* alinti */
+.alinti{
+  border-left:3px solid var(--izohips);padding:2px 0 2px 20px;margin:26px 0;
+  font-family:var(--serif);font-size:1.1rem;line-height:1.6;
+}
+
+/* zaman cizelgesi */
+.adimlar{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:0}
+.adimlar li{
+  padding:0 0 26px 30px;border-left:2px solid var(--cizgi);position:relative;
+}
+.adimlar li:last-child{border-left-color:transparent;padding-bottom:0}
+.adimlar li::before{
+  content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;
+  border-radius:50%;background:var(--kagit);border:2px solid var(--izohips);
+}
+.adim-bas{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--izohips);display:block;margin-bottom:5px;font-weight:600;
+}
+.adimlar h3{font-size:1.08rem;margin-bottom:6px}
+.adimlar p{font-size:.97rem;color:var(--murekkep-2);margin-bottom:0}
+
+/* tablo */
+.tablo-sar{overflow-x:auto;margin:20px 0;border:1px solid var(--cizgi);border-radius:5px}
+table{border-collapse:collapse;width:100%;background:var(--yuzey);font-size:clamp(.94rem,.35vw + .85rem,1.06rem)}
+th,td{padding:clamp(11px,.85vw,15px) clamp(15px,1.1vw,20px);text-align:left;border-bottom:1px solid var(--cizgi-ince)}
+th{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--murekkep-3);font-weight:400;background:var(--yuzey-2);
+}
+tr:last-child td{border-bottom:none}
+td.sayi{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* galeri */
+.galeri{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:22px 0}
+.galeri figure{margin:0}
+.galeri img{width:100%;border-radius:4px;border:1px solid var(--cizgi)}
+.galeri figcaption{
+  font-size:.86rem;color:var(--murekkep-3);margin-top:7px;line-height:1.45;
+}
+.tam-genis{grid-column:1/-1}
+
+footer{padding-block:30px 40px;font-size:.85rem;color:var(--murekkep-3);border-top:1px solid var(--cizgi-ince)}
+footer p{margin:0 0 .5em}
+
+@media (max-width:560px){
+  body{font-size:16px}
+  .galeri{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* kapak gorseli (alt sayfa basligi altinda) */
+.kapak{margin:22px 0 4px;border:1px solid var(--cizgi);border-radius:6px;overflow:hidden}
+.kapak img{width:100%;display:block}
+
+/* zaman cizelgesi adimlarindaki gorsel */
+.adim-gorsel{margin:14px 0 0;border:1px solid var(--cizgi);border-radius:5px;overflow:hidden;background:var(--yuzey)}
+.adim-gorsel img{width:100%;display:block}
+.adim-gorsel figcaption{
+  font-size:.83rem;color:var(--murekkep-3);padding:9px 13px;
+  border-top:1px solid var(--cizgi-ince);line-height:1.45;
+}
+
+/* kanit kutusu (ana sayfada da kullaniliyor) */
+.kanit{border:1px solid var(--cizgi);border-radius:5px;overflow:hidden;background:var(--yuzey);margin:16px 0}
+.kanit img{width:100%;display:block}
+.kanit figcaption{
+  font-size:.85rem;color:var(--murekkep-3);padding:10px 14px;
+  border-top:1px solid var(--cizgi-ince);line-height:1.45;
+}
+
+/* ---------- mesaj balonu (tum sayfalarda) ---------- */
+.soz{display:flex;gap:clamp(12px,1vw,16px);align-items:flex-start;margin:0 0 20px;max-width:68ch}
+.avatar{
+  width:clamp(36px,2.6vw,46px);height:clamp(36px,2.6vw,46px);
+  border-radius:50%;flex-shrink:0;margin-top:3px;
+  display:grid;place-items:center;object-fit:cover;
+  background:linear-gradient(145deg, var(--pr-vurgu, var(--izohips)),
+             color-mix(in srgb, var(--pr-vurgu, var(--izohips)) 55%, var(--kehribar)));
+  color:#fff;font-family:var(--mono);font-size:clamp(12.5px,.75vw,15px);font-weight:600;
+  border:2px solid var(--yuzey);box-shadow:0 0 0 1px var(--cizgi);
+}
+.balon{
+  background:var(--yuzey);border:1px solid var(--cizgi);
+  border-radius:4px 14px 14px 14px;padding:clamp(13px,1vw,18px) clamp(17px,1.4vw,24px);
+  font-size:clamp(1rem,.45vw + .88rem,1.18rem);line-height:1.68;color:var(--murekkep-2);
+  box-shadow:var(--golge);
+}
+.balon strong{color:var(--murekkep);font-weight:600}
+.balon em{font-style:italic;color:var(--murekkep)}
+.balon p{margin:0 0 .7em}
+.balon p:last-child{margin-bottom:0}
+.balon-kim{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--murekkep-3);display:block;margin-bottom:5px;
+}
+
+/* italik vurgular */
+.bolum-ozet{font-style:italic}
+.adim-gorsel figcaption,.kanit figcaption,.galeri figcaption{font-style:italic}
+
+/* yumusak gecisler */
+.kapak img,.adim-gorsel img,.galeri img{transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.galeri figure:hover img{transform:scale(1.03)}
+.bag{transition:border-color .16s,color .16s,transform .16s}
+.bag:hover{transform:translateY(-1px)}
+@media (prefers-reduced-motion: reduce){
+  .kapak img,.adim-gorsel img,.galeri img,.bag{transition:none}
+}
+
+/* ============================================================
+   HAREKET — kaydirma ve fare etkilesimleri
+   ============================================================ */
+
+/* --- 1) Kaydirirken belirme (IntersectionObserver ile .gorundu) --- */
+.bel{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .72s cubic-bezier(.22,1,.36,1),
+             transform .72s cubic-bezier(.22,1,.36,1);
+  will-change:opacity, transform;
+}
+.bel.gorundu{opacity:1;transform:none}
+/* JS yoksa hicbir sey gizli kalmasin */
+.js-yok .bel{opacity:1;transform:none}
+/* sirali gecikme */
+.bel-1{transition-delay:.06s}
+.bel-2{transition-delay:.12s}
+.bel-3{transition-delay:.18s}
+
+/* --- 2) Sayfa ustunde okuma ilerleme cubugu --- */
+.ilerleme{
+  position:fixed;top:0;left:0;height:3px;width:100%;
+  transform:scaleX(var(--ilerleme,0));transform-origin:0 50%;
+  background:linear-gradient(90deg, var(--izohips), var(--kehribar));
+  z-index:60;pointer-events:none;
+  transition:transform .1s linear;
+}
+
+/* --- 3) Fare takip eden yumusak isik (masaustu) --- */
+.fare-isik{
+  position:fixed;left:0;top:0;width:520px;height:520px;border-radius:50%;
+  transform:translate3d(calc(var(--fx,50vw) - 260px), calc(var(--fy,50vh) - 260px), 0);
+  background:radial-gradient(circle,
+    color-mix(in srgb, var(--izohips) 15%, transparent) 0%,
+    transparent 62%);
+  pointer-events:none;z-index:0;opacity:0;
+  transition:opacity .5s ease;
+  will-change:transform;
+}
+.fare-var .fare-isik{opacity:.7}
+
+/* --- 4) Baglanti ve kart fare tepkileri --- */
+.bag{position:relative;overflow:hidden}
+.bag::after{
+  content:"";position:absolute;inset:0;
+  background:currentColor;opacity:0;transition:opacity .2s;
+}
+.bag:hover::after{opacity:.055}
+.bag:active{transform:translateY(0)}
+
+.kapak img,.adim-gorsel img{transform-origin:center}
+.kapak{overflow:hidden}
+.kapak:hover img{transform:scale(1.025)}
+.adim-gorsel{overflow:hidden}
+.adim-gorsel:hover img{transform:scale(1.03)}
+
+/* zaman cizelgesi noktalari kaydirmada canlansin */
+.adimlar li::before{transition:transform .5s cubic-bezier(.34,1.56,.64,1), background .3s}
+.adimlar li.gorundu::before{transform:scale(1.25);background:var(--pr-vurgu, var(--izohips))}
+
+/* tablo satiri uzerinde gezinme */
+tbody tr{transition:background .18s}
+tbody tr:hover{background:color-mix(in srgb, var(--izohips) 6%, transparent)}
+
+/* --- 5) Yumusak kaydirma --- */
+html{scroll-behavior:smooth}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .bel{opacity:1;transform:none;transition:none}
+  .fare-isik{display:none}
+  .ilerleme{transition:none}
+  .kapak:hover img,.adim-gorsel:hover img{transform:none}
+  .adimlar li.gorundu::before{transform:none}
+}
+/* dokunmatik cihazda fare isigi yok */
+@media (hover:none){
+  .fare-isik{display:none}
+}

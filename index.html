@@ -1,0 +1,811 @@
+<script>document.documentElement.classList.add("js-yok");</script>
+<title>Ömer Faruk Akıncı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&family=Caveat:wght@600&family=Bitter:ital,wght@0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="ortak.css">
+
+<style>
+/* ============ ANA SAYFA ============ */
+
+/* --- ust bant --- */
+.bant{
+  background:var(--murekkep);color:var(--kagit);padding-block:7px;
+  font-family:var(--mono);font-size:clamp(11px,.42vw + .48rem,13px);letter-spacing:.09em;
+  text-transform:uppercase;text-align:center;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .bant{
+    background:var(--yuzey-2);color:var(--murekkep-2);border-bottom:1px solid var(--cizgi);
+  }
+}
+:root[data-theme="dark"] .bant{
+  background:var(--yuzey-2);color:var(--murekkep-2);border-bottom:1px solid var(--cizgi);
+}
+
+/* genis ekranda icerik biraz daha acilsin */
+@media (min-width:1240px){ .sar{max-width:1020px} }
+
+/* --- hero: arkada kendi islerimden yumusak katmanlar --- */
+.hero{padding-block:clamp(52px,5vw,86px) clamp(38px,3.4vw,58px);
+  position:relative;overflow:hidden;isolation:isolate}
+.hero-fon{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.hero-fon img{
+  position:absolute;width:56%;min-width:330px;border-radius:50%;
+  filter:blur(46px) saturate(1.35);opacity:.42;
+  animation:suzul 26s ease-in-out infinite alternate;
+}
+.hero-fon img:nth-child(1){top:-16%;right:-12%;animation-delay:0s}
+.hero-fon img:nth-child(2){bottom:-26%;left:-16%;animation-delay:-9s;opacity:.3}
+.hero-fon img:nth-child(3){top:24%;left:34%;width:38%;min-width:230px;animation-delay:-17s;opacity:.24}
+.hero-perde{
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,
+    color-mix(in srgb, var(--kagit) 58%, transparent) 0%,
+    color-mix(in srgb, var(--kagit) 76%, transparent) 46%,
+    var(--kagit) 100%);
+}
+@keyframes suzul{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(3%,-4%,0) scale(1.14)}
+}
+
+.hero-ic{position:relative}
+.hero h1{
+  font-size:clamp(2.5rem,4.4vw + 1.2rem,4.6rem);font-weight:600;
+  letter-spacing:-.026em;margin-bottom:12px;
+}
+.altbaslik{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.14rem,1.25vw + .95rem,1.72rem);
+  color:var(--murekkep-2);font-weight:400;line-height:1.42;
+  margin:0 0 28px;max-width:34ch;
+}
+
+/* --- mesaj balonu: "ben anlatiyorum" --- */
+.soz{display:flex;gap:clamp(12px,1vw,16px);align-items:flex-start;margin:0 0 18px;max-width:68ch}
+.avatar{
+  width:clamp(36px,2.6vw,46px);height:clamp(36px,2.6vw,46px);
+  border-radius:50%;flex-shrink:0;margin-top:3px;
+  display:grid;place-items:center;object-fit:cover;
+  background:linear-gradient(145deg, var(--izohips), color-mix(in srgb, var(--izohips) 55%, var(--kehribar)));
+  color:#fff;font-family:var(--mono);font-size:clamp(12.5px,.75vw,15px);font-weight:600;letter-spacing:.02em;
+  border:2px solid var(--yuzey);box-shadow:0 0 0 1px var(--cizgi);
+}
+.balon{
+  background:var(--yuzey);border:1px solid var(--cizgi);
+  border-radius:4px 14px 14px 14px;padding:clamp(13px,1vw,18px) clamp(17px,1.4vw,24px);
+  font-size:clamp(1rem,.45vw + .88rem,1.18rem);line-height:1.68;color:var(--murekkep-2);
+  position:relative;box-shadow:var(--golge);
+}
+.balon strong{color:var(--murekkep);font-weight:600}
+.balon em{font-style:italic;color:var(--murekkep)}
+.balon p{margin:0 0 .7em}
+.balon p:last-child{margin-bottom:0}
+.balon-kim{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--murekkep-3);display:block;margin-bottom:5px;
+}
+
+/* --- kunye --- */
+.kunye{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--cizgi);border:1px solid var(--cizgi);
+  border-radius:5px;overflow:hidden;margin-top:26px;
+}
+.kunye div{background:var(--yuzey);padding:clamp(12px,1vw,18px) clamp(14px,1.2vw,20px)}
+.kunye dt{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--murekkep-3);margin:0 0 3px;
+}
+.kunye dd{margin:0;font-size:clamp(.93rem,.35vw + .84rem,1.1rem);font-weight:600;line-height:1.35}
+
+/* --- bir bakista --- */
+.bakis{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.3vw,22px);margin-top:6px}
+.bakis-kart{
+  display:flex;flex-direction:column;text-decoration:none;color:inherit;
+  background:var(--yuzey);border:1px solid var(--cizgi);border-radius:8px;
+  overflow:hidden;transition:transform .28s cubic-bezier(.22,1,.36,1),
+                             box-shadow .28s, border-color .2s;
+}
+.bakis-kart:hover{border-color:var(--izohips);transform:translateY(-4px);box-shadow:var(--golge)}
+.bakis-gorsel{
+  width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--yuzey-2);
+  border-bottom:1px solid var(--cizgi);transition:transform .5s cubic-bezier(.22,1,.36,1);
+}
+.bakis-kart:hover .bakis-gorsel{transform:scale(1.045)}
+.bakis-yazi{padding:clamp(14px,1.2vw,20px) clamp(16px,1.3vw,22px) clamp(17px,1.4vw,23px);display:flex;flex-direction:column;flex:1}
+.bakis-yazi h3{font-size:clamp(1.02rem,.5vw + .9rem,1.24rem);font-weight:600;margin-bottom:6px;line-height:1.3}
+.bakis-yazi p{font-size:clamp(.88rem,.35vw + .8rem,1.02rem);color:var(--murekkep-2);line-height:1.55;margin:0 0 13px;flex:1;font-style:italic}
+.bakis-git{font-family:var(--mono);font-size:clamp(11.5px,.5vw + .45rem,13.5px);color:var(--izohips);font-weight:600}
+
+/* genis ekranda proje basliklari buyusun */
+@media (min-width:900px){ .vitrin{--pr-buyut:1.12} }
+@media (min-width:1240px){ .vitrin{--pr-buyut:1.22} }
+
+/* ============ PROJE VITRINLERI — HER BIRI KENDI DUNYASI ============ */
+.vitrin{
+  border-radius:10px;overflow:hidden;margin-bottom:clamp(30px,2.6vw,46px);position:relative;
+  border:1px solid var(--pr-cizgi, var(--cizgi));
+  background:var(--pr-zemin, var(--yuzey));
+  transition:box-shadow .3s;
+}
+.vitrin:hover{box-shadow:0 2px 6px rgba(0,0,0,.05), 0 20px 46px -26px var(--pr-golge, rgba(0,0,0,.3))}
+.vitrin-fon{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.vitrin-fon img{
+  position:absolute;inset:-22%;width:144%;height:144%;object-fit:cover;
+  filter:blur(52px) saturate(1.5);opacity:var(--pr-fon-opak,.3);
+  animation:suzul 30s ease-in-out infinite alternate;
+}
+.vitrin-ic{position:relative;z-index:1}
+
+.vitrin-kapak{
+  width:100%;aspect-ratio:21/9;object-fit:cover;display:block;
+  background:var(--yuzey-2);border-bottom:1px solid var(--pr-cizgi, var(--cizgi));
+}
+.vitrin-govde{padding:clamp(22px,2vw,34px) clamp(24px,2.2vw,38px) clamp(24px,2.2vw,38px)}
+.vitrin-ust{display:flex;align-items:center;gap:13px;margin-bottom:12px;flex-wrap:wrap}
+.vitrin-ikon{width:clamp(44px,3vw,58px);height:clamp(44px,3vw,58px);border-radius:12px;flex-shrink:0}
+.vitrin-govde h3{
+  font-family:var(--pr-baslik, var(--serif));
+  font-size:calc(var(--pr-baslik-boy, 1.3rem) * var(--pr-buyut, 1));
+  font-weight:var(--pr-baslik-kalin, 600);
+  letter-spacing:var(--pr-baslik-aralik, -.01em);
+  color:var(--pr-vurgu, var(--murekkep));
+  line-height:1.2;margin:0;
+}
+.vitrin-govde p{
+  font-family:var(--pr-govde, var(--sans));
+  font-size:clamp(.99rem,.42vw + .88rem,1.16rem);
+  color:var(--pr-metin, var(--murekkep-2));margin-bottom:.95em;
+}
+.vitrin-govde p:last-of-type{margin-bottom:0}
+.vitrin-govde em{font-style:italic}
+
+.rozet{
+  display:inline-block;font-family:var(--mono);font-size:clamp(10px,.42vw + .4rem,11.5px);letter-spacing:.07em;
+  text-transform:uppercase;padding:4px 10px;border-radius:4px;font-weight:600;
+}
+.rozet-canli{background:var(--izohips-acik);color:var(--izohips)}
+.rozet-bekleme{background:var(--kehribar-acik);color:var(--kehribar)}
+
+/* proje-ici baglanti butonu */
+.pr-bag{
+  font-family:var(--mono);font-size:clamp(12.5px,.55vw + .5rem,14.5px);
+  padding:clamp(9px,.75vw,13px) clamp(15px,1.15vw,21px);border-radius:5px;
+  text-decoration:none;border:1px solid var(--pr-cizgi, var(--cizgi));
+  color:var(--pr-metin, var(--murekkep));background:transparent;
+  transition:border-color .16s,color .16s,background .16s;
+}
+.pr-bag:hover{border-color:var(--pr-vurgu);color:var(--pr-vurgu)}
+.pr-bag-dolu{
+  background:var(--pr-vurgu);border-color:var(--pr-vurgu);color:var(--pr-dolu-yazi,#fff);
+}
+.pr-bag-dolu:hover{color:var(--pr-dolu-yazi,#fff);opacity:.88}
+
+/* serit galeri */
+.serit{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--pr-cizgi, var(--cizgi));border-top:1px solid var(--pr-cizgi, var(--cizgi));
+}
+.serit img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--yuzey-2);display:block;
+  transition:transform .45s cubic-bezier(.22,1,.36,1),filter .3s;
+}
+.serit img:hover{transform:scale(1.06);filter:saturate(1.15)}
+.serit-3{grid-template-columns:repeat(3,1fr)}
+
+/* --- YOLHAVA: atmosfer · canli, renkli, teknik --- */
+.pr-yolhava{
+  --pr-vurgu:#1b8fd6;
+  --pr-cizgi:color-mix(in srgb, #1b8fd6 26%, var(--cizgi));
+  --pr-zemin:color-mix(in srgb, #1b8fd6 5%, var(--yuzey));
+  --pr-golge:rgba(27,143,214,.42);
+  --pr-fon-opak:.34;
+  --pr-baslik:'Space Grotesk', var(--sans);
+  --pr-baslik-boy:1.46rem;
+  --pr-baslik-kalin:700;
+  --pr-baslik-aralik:-.03em;
+}
+/* atmosfer bandi: gokyuzunun renk olcegi */
+.atmosfer-serit{
+  height:5px;
+  background:linear-gradient(90deg,#0b2a54,#1b8fd6 22%,#3fc7d4 44%,#8fe08a 62%,#f2c14e 80%,#e0603c);
+}
+
+/* --- YEMEK: sicak, istah acici --- */
+.pr-yemek{
+  --pr-vurgu:#c4562a;
+  --pr-cizgi:color-mix(in srgb, #c4562a 24%, var(--cizgi));
+  --pr-zemin:color-mix(in srgb, #e8843c 7%, var(--yuzey));
+  --pr-golge:rgba(196,86,42,.4);
+  --pr-fon-opak:.26;
+  --pr-baslik:'Bitter', Georgia, serif;
+  --pr-baslik-boy:1.36rem;
+  --pr-baslik-kalin:600;
+  --pr-govde:'Bitter', Georgia, serif;
+}
+.pr-yemek .vitrin-govde p{font-style:italic;line-height:1.68}
+.yemek-serit{
+  height:5px;
+  background:linear-gradient(90deg,#8c3b1e,#c4562a 30%,#e8843c 58%,#f0b449 82%,#9fb33f);
+}
+/* telefon ekranlari yan yana */
+.telefonlar{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  padding:20px 22px 4px;
+}
+.telefon{
+  width:clamp(186px,14vw,248px);border-radius:18px;overflow:hidden;
+  border:1px solid var(--pr-cizgi);background:#0e1420;
+  box-shadow:0 14px 34px -18px var(--pr-golge);
+  transition:transform .35s cubic-bezier(.22,1,.36,1);
+}
+.telefon:hover{transform:translateY(-5px) rotate(-.6deg)}
+.telefon img{width:100%;display:block}
+
+/* --- NAPLIST: sakin, yerel, dikkat dostu --- */
+.pr-naplist{
+  --pr-vurgu:#4a63c8;
+  --pr-cizgi:color-mix(in srgb, #4a63c8 22%, var(--cizgi));
+  --pr-zemin:color-mix(in srgb, #4a63c8 5%, var(--yuzey));
+  --pr-golge:rgba(74,99,200,.38);
+  --pr-fon-opak:.22;
+  --pr-baslik:var(--sans);
+  --pr-baslik-boy:1.3rem;
+  --pr-baslik-aralik:-.015em;
+}
+
+/* --- HAVAMET: yayin · koyu, sahne --- */
+.pr-havamet{
+  --pr-vurgu:#2f7fa8;
+  --pr-cizgi:color-mix(in srgb, #2f7fa8 26%, var(--cizgi));
+  --pr-zemin:color-mix(in srgb, #14324a 6%, var(--yuzey));
+  --pr-golge:rgba(47,127,168,.42);
+  --pr-fon-opak:.3;
+  --pr-baslik:'Space Grotesk', var(--sans);
+  --pr-baslik-boy:1.34rem;
+  --pr-baslik-kalin:500;
+  --pr-baslik-aralik:.01em;
+}
+
+/* --- RAPOR: belge · ciddi, serif --- */
+.pr-rapor{
+  --pr-vurgu:#6d5a3f;
+  --pr-cizgi:color-mix(in srgb, #6d5a3f 22%, var(--cizgi));
+  --pr-zemin:color-mix(in srgb, #a98c5e 6%, var(--yuzey));
+  --pr-golge:rgba(109,90,63,.32);
+  --pr-baslik:var(--serif);
+  --pr-baslik-boy:1.32rem;
+}
+.pr-rapor .vitrin-govde p:first-of-type{font-style:italic}
+
+/* kanit gorseli */
+.kanit{
+  border:1px solid var(--pr-cizgi, var(--cizgi));border-radius:6px;overflow:hidden;
+  background:var(--yuzey);margin:18px 0 0;
+}
+.kanit img{width:100%;display:block}
+.kanit figcaption{
+  font-size:.85rem;color:var(--murekkep-3);padding:11px 15px;font-style:italic;
+  border-top:1px solid var(--cizgi-ince);line-height:1.45;
+}
+
+.baglar{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+
+.iletisim{background:var(--yuzey);border-top:1px solid var(--cizgi)}
+.iletisim-liste{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:11px}
+.iletisim-liste li{display:flex;gap:13px;align-items:baseline;flex-wrap:wrap}
+.iletisim-liste b{
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--murekkep-3);min-width:clamp(78px,6vw,104px);font-weight:400;
+}
+.iletisim-liste li{font-size:clamp(1rem,.4vw + .9rem,1.14rem)}
+
+@media (max-width:900px){
+  .bakis{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .bakis{grid-template-columns:1fr;gap:12px}
+  .bakis-gorsel{aspect-ratio:16/9}
+  .kunye{grid-template-columns:repeat(2,1fr)}
+  .serit{grid-template-columns:repeat(3,1fr)}
+  .vitrin-kapak{aspect-ratio:16/9}
+  .telefon{width:150px}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-fon img,.vitrin-fon img{animation:none}
+}
+</style>
+
+<div class="bant">Meteoroloji mühendisliği · yazılım · medya üretimi</div>
+
+<header class="hero">
+  <div class="hero-fon" aria-hidden="true">
+    <img src="g/yolhava-5.jpg" alt="">
+    <img src="g/yemek-1.jpg" alt="">
+    <img src="g/havamet-obs.jpg" alt="">
+  </div>
+  <div class="hero-perde" aria-hidden="true"></div>
+
+  <div class="sar hero-ic">
+    <p class="etiket">İTÜ Meteoroloji Mühendisliği · 3. sınıf</p>
+    <h1>Ömer Faruk Akıncı</h1>
+    <p class="altbaslik">Okuduğu bölümü çalışan ürüne çeviren bir öğrenci.</p>
+
+    <div class="soz">
+      <div class="avatar" aria-hidden="true">ÖA</div>
+      <div class="balon">
+        <span class="balon-kim">Ömer Faruk</span>
+        <p>
+          Merhaba. İTÜ Meteoroloji Mühendisliği okuyorum ve öğrendiğimi
+          çalışan ürüne çevirmeye çalışıyorum. <strong>Üç uygulama yazdım</strong>,
+          biri Google Play'de yayında.
+        </p>
+        <p>
+          Bölümümün <strong>iki etkinliğinin</strong> canlı yayınını tek başıma
+          kurdum; öğrenci temsilcisi olarak bölümün durumunu veriyle araştırıp
+          fakülteye bir dosya sundum. <em>Aşağıda hepsinin özeti var — merak
+          ettiğinize tıklayın.</em>
+        </p>
+      </div>
+    </div>
+
+    <dl class="kunye">
+      <div><dt>Üniversite</dt><dd>İTÜ</dd></div>
+      <div><dt>Bölüm</dt><dd>Meteoroloji Müh.</dd></div>
+      <div><dt>Memleket</dt><dd>İzmir / Konak</dd></div>
+      <div><dt>Uygulama</dt><dd>3 adet</dd></div>
+      <div><dt>Canlı yayın</dt><dd>2 etkinlik</dd></div>
+      <div><dt>Bölüm raporu</dt><dd>10+</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="sar">
+    <span class="bolum-no">Bir bakışta</span>
+    <h2>Üç başlık</h2>
+    <p class="bolum-ozet">
+      Hangisini isterseniz oradan derine inebilirsiniz.
+    </p>
+
+    <div class="bakis">
+      <a class="bakis-kart" href="yolhava/">
+        <img class="bakis-gorsel" src="g/yolhava-5.jpg" alt="YolHava siklon ve cephe görünümü">
+        <div class="bakis-yazi">
+          <h3>YolHava</h3>
+          <p>Rota boyunca hava tahmini. 6.4 sürümünde, web'de canlı.</p>
+          <span class="bakis-git">Hikâyesi →</span>
+        </div>
+      </a>
+      <a class="bakis-kart" href="sempozyum/">
+        <img class="bakis-gorsel" src="g/kurulum-2.jpg" alt="Yayın masası kurulumu">
+        <div class="bakis-yazi">
+          <h3>Yayın koordinatörlüğü</h3>
+          <p>Bölümümün iki etkinliğinin canlı yayınını tek başıma kurdum.</p>
+          <span class="bakis-git">Yayının arkası →</span>
+        </div>
+      </a>
+      <a class="bakis-kart" href="#temsilcilik">
+        <img class="bakis-gorsel" src="g/yolhava-2.jpg" alt="Taşınım katmanı görünümü">
+        <div class="bakis-yazi">
+          <h3>Bölüm araştırması</h3>
+          <p>Bölümün durumunu veriyle inceleyip fakülteye sunduğum dosya.</p>
+          <span class="bakis-git">Raporlar →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sar">
+    <span class="bolum-no">01 · Ürettiklerim</span>
+    <h2>Üç uygulama</h2>
+    <p class="bolum-ozet">
+      Üçünü de tek başıma yazdım. Her birinin kendi derdi, kendi dili var —
+      o yüzden burada da her biri kendi görüntüsüyle duruyor.
+    </p>
+
+    <!-- ===== YOLHAVA ===== -->
+    <article class="vitrin pr-yolhava">
+      <div class="vitrin-fon" aria-hidden="true"><img src="g/yolhava-5.jpg" alt=""></div>
+      <div class="vitrin-ic">
+        <div class="atmosfer-serit" aria-hidden="true"></div>
+        <img class="vitrin-kapak" src="g/yolhava-afis.jpg" alt="YolHava tanıtım görseli">
+        <div class="vitrin-govde">
+          <div class="vitrin-ust">
+            <img class="vitrin-ikon" src="g/yolhava-ikon.png" alt="">
+            <h3>YolHava</h3>
+            <span class="rozet rozet-canli">Web'de canlı</span>
+            <span class="rozet rozet-bekleme">Play Store'da değil</span>
+          </div>
+
+          <div class="soz">
+            <div class="avatar" aria-hidden="true">ÖA</div>
+            <div class="balon">
+              <p>
+                Normal hava durumu uygulamaları <em>tek bir noktayı</em> gösterir.
+                Ama yola çıkan biri için doğru soru bu değil.
+              </p>
+              <p>
+                YolHava rotanızı ve kalkış saatinizi alıp <strong>o noktadan
+                geçeceğiniz anda</strong> karşılaşacağınız havayı hesaplıyor —
+                <em>"14:20 civarında Bolu'da kuvvetli yağmura girersin"</em> gibi.
+              </p>
+            </div>
+          </div>
+
+          <p>
+            6.4 sürümüne ulaştı. Android paketi hazır ama mağazaya çıkaramadım;
+            sebebini sayfasında açıkça yazdım.
+          </p>
+
+          <div class="baglar">
+            <a class="pr-bag pr-bag-dolu" href="https://akinci22.github.io/yolhava/">Uygulamayı aç</a>
+            <a class="pr-bag" href="yolhava/">15 sürümün hikâyesi →</a>
+          </div>
+        </div>
+        <div class="serit">
+          <img src="g/yolhava-1.jpg" alt="YolHava açılış ekranı" loading="lazy">
+          <img src="g/yolhava-3.jpg" alt="Harita okuma rehberi" loading="lazy">
+          <img src="g/yolhava-4.jpg" alt="Atmosfer sondası" loading="lazy">
+          <img src="g/yolhava-6.jpg" alt="Akademi bölümü" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== ITU YEMEK ===== -->
+    <article class="vitrin pr-yemek">
+      <div class="vitrin-fon" aria-hidden="true"><img src="g/yemek-1.jpg" alt=""></div>
+      <div class="vitrin-ic">
+        <div class="yemek-serit" aria-hidden="true"></div>
+        <div class="vitrin-govde">
+          <div class="vitrin-ust">
+            <h3>İTÜ Yemek &amp; Kalori</h3>
+            <span class="rozet rozet-canli">Canlı · her gün güncel</span>
+          </div>
+
+          <div class="soz">
+            <div class="avatar" aria-hidden="true">ÖA</div>
+            <div class="balon">
+              <p>
+                Bu uygulamayı <em>kendi derdimden</em> yazdım. Yemekhanede ne
+                çıktığını ve ne kadar kalori aldığımı takip etmek istiyordum;
+                bütçesi sınırlı bir öğrenci için bu bir merak değil,
+                <strong>gerçek bir hesap.</strong>
+              </p>
+              <p>
+                Günün menüsünü çekiyor, her yemeğin kalorisini ve makrolarını
+                gösteriyor. <em>"Ne kadar yedin?"</em> sorusunu baloncuklarla
+                soruyor — porsiyonu tartmaya gerek yok.
+              </p>
+            </div>
+          </div>
+
+          <p>
+            Kalan kaloriye göre öğün önerisi çıkarıyor, su ve adım hedefini
+            takip ediyor. Android sürümünde ek olarak ana ekran bileşeni ve
+            bildirimler var.
+          </p>
+
+          <div class="baglar">
+            <a class="pr-bag pr-bag-dolu" href="https://akinci22.github.io/ituyemek/">Uygulamayı aç</a>
+          </div>
+        </div>
+        <div class="telefonlar">
+          <figure class="telefon" style="margin:0">
+            <img src="g/yemek-1.jpg" alt="İTÜ Yemek uygulamasının günün menüsü ekranı" loading="lazy">
+          </figure>
+          <figure class="telefon" style="margin:0">
+            <img src="g/yemek-2.jpg" alt="İTÜ Yemek uygulamasının ilerleme ekranı" loading="lazy">
+          </figure>
+        </div>
+        <p style="padding:14px 24px 20px;margin:0;font-size:.86rem;font-style:italic;
+                  color:var(--murekkep-3);text-align:center">
+          Solda günün menüsü ve kalori takibi, sağda ilerleme ekranı.
+        </p>
+      </div>
+    </article>
+
+    <!-- ===== NAPLIST ===== -->
+    <article class="vitrin pr-naplist">
+      <div class="vitrin-ic">
+        <div class="vitrin-govde">
+          <div class="vitrin-ust">
+            <h3>Naplist — DEHB görev takibi</h3>
+            <span class="rozet rozet-canli">Google Play'de yayında</span>
+          </div>
+
+          <div class="soz">
+            <div class="avatar" aria-hidden="true">ÖA</div>
+            <div class="balon">
+              <p>
+                Dikkat dağınıklığıyla görev takibi yapmak zor bir iş; mevcut
+                uygulamaların çoğu <em>daha fazla kurulum</em> istiyor.
+                Ben tersini denedim: <strong>konuş, gerisini uygulama
+                halletsin.</strong>
+              </p>
+            </div>
+          </div>
+
+          <p>
+            Sesle görev ekleme, takvim entegrasyonu, hatırlatıcılar.
+            Tamamen yerel çalışıyor: <em>veri cihazdan çıkmıyor, hesap yok,
+            reklam yok.</em>
+          </p>
+
+          <figure class="kanit">
+            <img src="g/naplist-play.jpg" alt="Naplist uygulamasının Google Play mağaza sayfası" loading="lazy">
+            <figcaption>Google Play mağaza sayfası — yayıncı "Naplist Studio", uygulama indirilebilir durumda.</figcaption>
+          </figure>
+
+          <div class="baglar">
+            <a class="pr-bag pr-bag-dolu" href="https://play.google.com/store/apps/details?id=com.akinc.adhdapp">Google Play'de aç</a>
+          </div>
+        </div>
+        <figure class="kanit" style="margin:0;border-radius:0;border:none;border-top:1px solid var(--pr-cizgi)">
+          <img src="g/naplist-ekranlar.jpg" alt="Naplist uygulamasının mağaza ekran görüntüleri" loading="lazy">
+          <figcaption>Mağazadaki uygulama görselleri: takvim senkronu, sesle görev ekleme, odak modu, öncelik görünümü.</figcaption>
+        </figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="sar">
+    <span class="bolum-no">02 · Bölümüm için</span>
+    <h2>Yayın ve temsilcilik</h2>
+    <p class="bolum-ozet">
+      Kendi projelerim dışında, bölümüme dönük iki iş yaptım: etkinliklerinin
+      canlı yayınını kurdum ve bölümün durumunu veriyle araştırıp bir dosya
+      hazırladım.
+    </p>
+
+    <!-- ===== HAVAMET ===== -->
+    <article class="vitrin pr-havamet">
+      <div class="vitrin-fon" aria-hidden="true"><img src="g/havamet-obs.jpg" alt=""></div>
+      <div class="vitrin-ic">
+        <img class="vitrin-kapak" src="g/kurulum-2.jpg" alt="Yayın masası: ses mikseri, kamera ve dizüstünde OBS">
+        <div class="vitrin-govde">
+          <div class="vitrin-ust">
+            <h3>Bölümümün canlı yayınları</h3>
+            <span class="rozet rozet-canli">İki etkinlik</span>
+          </div>
+
+          <div class="soz">
+            <div class="avatar" aria-hidden="true">ÖA</div>
+            <div class="balon">
+              <p>
+                Bölümümün <strong>iki ayrı etkinliğinin</strong> canlı yayınını
+                tek başıma kurdum ve yürüttüm: <em>HAVAMET 360 Çalıştayı</em>
+                (Kasım 2025, dört gün) ve <em>Dünya Meteoroloji Günü</em>
+                (Mart 2026).
+              </p>
+              <p>
+                İkisinde de kamera, ses, ışık ve sahne geçişleri bendeydi;
+                <strong>yayın grafiklerini de ayrı ayrı ben tasarladım.</strong>
+                Yukarıdaki fotoğraf kurduğum yayın masası.
+              </p>
+              <p>
+                <em>Ne ücret aldım ne ders kredisi.</em> HAVAMET kaydında
+                hocamız bu görevi bana atfederek ismimi anıyor.
+              </p>
+            </div>
+          </div>
+
+          <p>
+            Bir kez yapılan iş şans olabilir; <strong>ikincisinde çağrıldıysanız
+            iş güvenilirdir.</strong> Bunu böyle görüyorum.
+          </p>
+
+          <div class="baglar">
+            <a class="pr-bag pr-bag-dolu" href="https://youtu.be/FsCxPE2TNiE?t=17008">Hocamın ismimi andığı an →</a>
+            <a class="pr-bag" href="sempozyum/">Yayının arkası →</a>
+          </div>
+        </div>
+        <div class="serit serit-3">
+          <img src="g/kurulum-1.jpg" alt="Yayın masasının genel görünümü" loading="lazy">
+          <img src="g/kurulum-6.jpg" alt="Mikser ve mikrofon hatları" loading="lazy">
+          <img src="g/kurulum-5.jpg" alt="Kontrol monitörleri ve OBS" loading="lazy">
+          <img src="g/havamet-logo.jpg" alt="HAVAMET çalıştay logosu" loading="lazy">
+          <img src="g/mto-kapak.jpg" alt="Dünya Meteoroloji Günü yayın kapağı" loading="lazy">
+          <img src="g/havamet-bekleme.jpg" alt="Yayın bekleme ekranı" loading="lazy">
+        </div>
+        <p style="padding:13px 24px 19px;margin:0;font-size:.86rem;font-style:italic;
+                  color:var(--murekkep-3);text-align:center">
+          Üst sıra kurduğum yayın masası, alt sıra iki etkinlik için
+          hazırladığım grafikler.
+        </p>
+      </div>
+    </article>
+
+    <!-- ===== TEMSILCILIK ===== -->
+    <article class="vitrin pr-rapor" id="temsilcilik">
+      <div class="vitrin-ic">
+        <div class="vitrin-govde">
+          <div class="vitrin-ust">
+            <h3>Bölüm araştırması ve savunuculuk dosyası</h3>
+            <span class="rozet rozet-canli">10+ rapor</span>
+          </div>
+
+          <div class="soz">
+            <div class="avatar" aria-hidden="true">ÖA</div>
+            <div class="balon">
+              <p>
+                <strong>Bölüm öğrenci temsilcisi</strong> ve <strong>UUBF Birim
+                Kalite Komisyonu üyesi</strong> olarak görev yaptım. Bu görevi
+                toplantıya girip çıkmak olarak görmedim.
+              </p>
+              <p>
+                Bölümün nerede olduğunu <em>veriyle</em> çıkardım: YÖK Atlas
+                yerleştirme verileri, müfredat karşılaştırması, mezun istihdam
+                haritası. Sonra bunları bölüm başkanlığına ve fakülteye
+                sundum.
+              </p>
+            </div>
+          </div>
+
+          <div class="tablo-sar">
+            <table>
+              <caption style="text-align:left;padding:12px 15px 4px;font-size:.88rem;
+                             font-style:italic;color:var(--murekkep-3)">
+                Bölümün taban başarı sıralaması — araştırmamın ana bulgusu
+              </caption>
+              <thead>
+                <tr><th>Yıl</th><th>Başarı sıralaması</th><th>Değişim</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="sayi">2021</td><td class="sayi">96.225</td><td>—</td></tr>
+                <tr><td class="sayi">2023</td><td class="sayi">74.276</td><td>↑ iyileşme</td></tr>
+                <tr><td class="sayi">2025</td><td class="sayi">56.627</td><td>↑ iyileşme</td></tr>
+                <tr><td class="sayi"><strong>2026</strong></td><td class="sayi"><strong>50.380</strong></td>
+                    <td><strong>Beş yılda ~46.000 sıra</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Bulgu şu: <em>"kimse bu bölümü tercih etmiyor" dönemi kapandı.</em>
+            2025'te Türkiye'deki üç meteoroloji programının üçü de ilk kez doldu.
+            Sorun artık öğrenci çekmek değil — <strong>gelen daha nitelikli
+            öğrenciyi tutmak ve iyi eğitmek.</strong>
+          </p>
+
+          <p>
+            Bunun üzerine bir dosya hazırladım: istatistik ve karşılaştırma
+            raporu, iş olanakları haritası, bölüm tarihçesi, akademisyen
+            rehberi, ders iyileştirme önerileri, aday öğrenciler için tanıtım
+            sunumu ve yeni öğrenciler için bir kılavuz. Hepsini bölüm
+            başkanlığına, on öğretim üyesine ve dekanlığa ilettim.
+          </p>
+
+          <div class="not" style="margin:18px 0 0">
+            <h3 style="font-family:var(--serif)">Bir açıklık</h3>
+            <p>
+              Bu çalışma bir <em>anket</em> değildir; öğrencilere soru sorup
+              veri toplamadım. Yöntemim kurumsal ve istatistikseldi: YÖK Atlas
+              yerleştirme verileri, müfredat incelemesi ve istihdam taraması.
+              Olmayan bir veriyi varmış gibi sunmak istemiyorum.
+            </p>
+          </div>
+
+          <div class="baglar">
+            <a class="pr-bag pr-bag-dolu" href="dosya/01_RAPOR_istatistik_ve_karsilastirma.pdf">İstatistik raporu (PDF)</a>
+            <a class="pr-bag" href="dosya/bolum-vizyon-raporu.pdf">Vizyon ve eylem planı</a>
+            <a class="pr-bag" href="dosya/04_RAPOR_is_olanaklari.pdf">İş olanakları</a>
+            <a class="pr-bag" href="dosya/08_OGRENCI_DOSTU_kilavuz.pdf">Öğrenci kılavuzu</a>
+          </div>
+
+          <p style="margin-top:18px;font-size:.93rem;font-style:italic;color:var(--murekkep-3)">
+            Okuduğum bölümün benden sonraki hâliyle de ilgileniyorum;
+            bu dosyayı o yüzden hazırladım.
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="sar">
+    <span class="bolum-no">03 · Alan dışı</span>
+    <h2>Fotoğraf</h2>
+
+    <div class="soz">
+      <div class="avatar" aria-hidden="true">ÖA</div>
+      <div class="balon">
+        <p>
+          Fotoğraf ve video çekiyorum; bu alanda <strong>ücretli işler
+          yapıyorum</strong> — 2026 baharında İşkur, Ford Otosan, düğün ve
+          mezuniyet çekimleri dâhil sekiz iş.
+        </p>
+        <p>
+          Sempozyumlarda hem kamerayı kullanabilmemin hem de yayın
+          grafiklerini kendim hazırlayabilmemin sebebi bu birikim.
+          <em>Meteoroloji ile medya üretimini bir arada bilmek, bölümümde
+          pek rastlanan bir birleşim değil.</em>
+        </p>
+      </div>
+    </div>
+
+    <figure class="kanit">
+      <img src="g/havamet-salon.jpg" alt="Sempozyum salonu geniş açı sahnesi" loading="lazy">
+      <figcaption>
+        Sempozyumda kullandığım geniş açı sahnesi — kadrajı, ışığı ve yayın
+        çerçevesini kendim kurdum.
+      </figcaption>
+    </figure>
+
+    <p style="margin-top:18px">
+      Çektiğim fotoğrafların tamamı Instagram hesabımda. Buraya yalnızca kendi
+      hazırladığım görselleri koydum; <em>salondaki kişilerin fotoğraflarını
+      izinleri olmadan yayınlamak istemedim.</em>
+    </p>
+    <div class="baglar">
+      <a class="bag" href="https://instagram.com/akinci.22">Instagram'da fotoğraflarım</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sar">
+    <span class="bolum-no">04 · Yön</span>
+    <h2>Ne üzerine çalışmak istiyorum</h2>
+
+    <div class="soz">
+      <div class="avatar" aria-hidden="true">ÖA</div>
+      <div class="balon">
+        <p>
+          Hedefim meteoroloji mühendisliğini <strong>veri ve yazılım
+          tarafıyla birleştirmek</strong>: sayısal hava tahmini modellerinin
+          çıktılarını makine öğrenmesiyle iyileştirmek üzerine çalışmak
+          istiyorum.
+        </p>
+        <p>
+          <em>Bu ikisini birden bilen mühendis bu ülkede hâlâ az;
+          faydalı olabileceğim yer orası.</em>
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Buraya koyduğum işlerin ortak noktası şu: hiçbiri ödev değildi.
+      Her biri, karşılaştığım gerçek bir sorunu çözmek için yazıldı —
+      yolda hava tahmini, yemekhanede kalori takibi, dikkat dağınıklığıyla
+      görev takibi, bölümün nerede durduğunu bilmek.
+    </p>
+    <p>
+      Öğrendiğim şeyi <strong>çalışan bir ürüne çevirebilmek</strong> benim
+      için mühendisliğin tanımı. Bundan sonra da böyle çalışmak istiyorum.
+    </p>
+  </section>
+
+</main>
+
+<section class="iletisim">
+  <div class="sar">
+    <span class="bolum-no">İletişim</span>
+    <h2>Ulaşmak için</h2>
+    <p class="bolum-ozet">
+      Projeler, iş birliği ya da soru için yazabilirsiniz.
+    </p>
+    <ul class="iletisim-liste">
+      <li><b>E-posta</b> <a href="mailto:akinci22@itu.edu.tr">akinci22@itu.edu.tr</a></li>
+      <li><b>Telefon</b> <a href="tel:+905074140700">0507 414 07 00</a></li>
+      <li><b>Öğrenci no</b> <span style="font-family:var(--mono);font-size:.92rem">110220205</span></li>
+      <li><b>Projeler</b> <a href="https://github.com/akinci22">github.com/akinci22</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="sar">
+    <p>Ömer Faruk Akıncı · Bu sayfayı kendim hazırladım · 2026</p>
+  </div>
+</footer>
+<script src="hareket.js" defer></script>

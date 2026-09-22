@@ -1,0 +1,272 @@
+<script>document.documentElement.classList.add("js-yok");</script>
+<title>YolHava</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&family=Bitter:ital,wght@0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="../ortak.css">
+
+<style>
+/* YolHava: atmosfer kimligi */
+:root{
+  --pr-vurgu:#1b8fd6;
+  --pr-cizgi:color-mix(in srgb, #1b8fd6 26%, var(--cizgi));
+}
+body{background:
+  radial-gradient(1200px 520px at 78% -8%, color-mix(in srgb,#1b8fd6 13%,transparent), transparent 66%),
+  radial-gradient(900px 440px at 8% 22%, color-mix(in srgb,#3fc7d4 9%,transparent), transparent 62%),
+  var(--kagit);
+  background-attachment:fixed;
+}
+h1{font-family:'Space Grotesk', var(--sans);font-weight:700;letter-spacing:-.035em}
+h2{font-family:'Space Grotesk', var(--sans);font-weight:700;letter-spacing:-.025em;color:var(--pr-vurgu)}
+.etiket{color:var(--pr-vurgu)}
+.atmosfer-serit{
+  height:5px;border-radius:3px;margin:0 0 22px;
+  background:linear-gradient(90deg,#0b2a54,#1b8fd6 22%,#3fc7d4 44%,#8fe08a 62%,#f2c14e 80%,#e0603c);
+}
+.bag-vurgu{background:var(--pr-vurgu);border-color:var(--pr-vurgu)}
+.adimlar li::before{border-color:var(--pr-vurgu)}
+.adim-bas{color:var(--pr-vurgu)}
+.alinti{border-left-color:var(--pr-vurgu)}
+.girizgah em,.adimlar p em{font-style:italic}
+</style>
+
+<div class="geri-bant">
+  <div class="sar"><a class="geri" href="../">← Ömer Faruk Akıncı</a></div>
+</div>
+
+<header class="sar sayfa-bas">
+  <p class="etiket">Proje · 2026</p>
+  <h1>YolHava</h1>
+  <div class="soz">
+      <div class="avatar" aria-hidden="true">ÖA</div>
+      <div class="balon">
+        <span class="balon-kim">Ömer Faruk</span>
+        <p>
+          Gideceğiniz rotayı ve kalkış saatinizi verdiğinizde, <strong>yolun her
+          noktasından geçeceğiniz anda</strong> karşılaşacağınız havayı hesaplayan
+          bir uygulama.
+        </p>
+        <p>
+          Bu sayfada fikrin nereden çıktığını, <em>yolda hangi duvarlara
+          tosladığımı</em> ve şu an neden hâlâ Play Store'da olmadığını anlattım.
+        </p>
+      </div>
+    </div>
+  <div class="atmosfer-serit" aria-hidden="true"></div>
+  <figure class="kapak">
+    <img src="../g/yolhava-afis.jpg" alt="YolHava tanıtım görseli">
+  </figure>
+  <div class="baglar">
+    <a class="bag bag-vurgu" href="https://akinci22.github.io/yolhava/">Uygulamayı tarayıcıda aç</a>
+    <a class="bag" href="../dosya/YolHava-6.4.apk">Android sürümünü indir (APK · 1,9 MB)</a>
+  </div>
+</header>
+
+<main>
+
+<section class="sar">
+  <span class="bolum-no">01 · Sorun</span>
+  <h2>Neden böyle bir şeye ihtiyaç duydum</h2>
+  <p>
+    Hava durumu uygulamalarının hepsi aynı şeyi yapıyor: <em>bir noktanın</em>
+    havasını gösteriyor. Ama yola çıkan biri için bu yanlış soruya verilmiş doğru
+    cevap. Siz İstanbul'dan saat 11'de çıkıp Ankara'ya gidiyorsanız, İstanbul'un
+    şu anki havası sizi ilgilendirmiyor; sizi ilgilendiren, <strong>saat 14 civarında
+    Bolu'ya vardığınızda orada ne olacağı.</strong>
+  </p>
+  <div class="soz">
+      <div class="avatar" aria-hidden="true">ÖA</div>
+      <div class="balon">
+        <p>
+          Bu, meteoroloji açısından bambaşka bir hesap. Tek konumun zaman serisi
+          değil, rota boyunca bir <strong>zaman-mekân kesiti</strong> çıkarmanız
+          gerekiyor: <em>aracın konumu zamanla ilerlerken tahmin alanı da
+          zamanla değişiyor.</em> İkisini eşleştirmek lazım.
+        </p>
+      </div>
+    </div>
+  <p>
+    Bölümümde öğrendiğim şeyin tam olarak karşılığı olan bir problem bu. O yüzden
+    yazmaya karar verdim.
+  </p>
+</section>
+
+<section class="sar">
+  <span class="bolum-no">02 · Süreç</span>
+  <h2>Yolda ne oldu</h2>
+  <p>
+    Uygulama şu an 6.4 sürümünde. Bu, arada 15 sürüm çıkardığım anlamına geliyor
+    ve her birinin sebebi bir şeyin çalışmamasıydı. Önemli kırılmaları yazdım:
+  </p>
+
+  <ol class="adimlar">
+    <li>
+      <span class="adim-bas">Sürüm 2 · başlangıç</span>
+      <h3>Önce sadece sinoptik harita yaptım</h3>
+      <p>
+        İlk hedefim basitti: basınç alanlarını ve cepheleri düzgün çizebilen bir
+        harita. Rota hesabı yoktu. Bu sürüm bana veri kaynaklarının nasıl
+        davrandığını öğretti — asıl işin çizim değil, veriyi zamanında ve
+        tutarlı almak olduğunu burada gördüm.
+      </p>
+      <figure class="adim-gorsel">
+        <img src="../g/yolhava-5.jpg" alt="Siklon ve cephe analizi ekranı" loading="lazy">
+        <figcaption>Sinoptik katman — siklonlar ve cepheler.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <span class="adim-bas">Duvar</span>
+      <h3>Rota ile tahmin zamanını eşleştirmek</h3>
+      <p>
+        İlk rota denemesi yanlış sonuç veriyordu, çünkü yolun her noktası için
+        aynı tahmin saatini kullanıyordum. Sürücü Bolu'ya 3 saat sonra varacaksa
+        Bolu için <em>3 saat sonrasının</em> tahminini okumak gerekiyor. Çözüm,
+        rotayı mesafe değil <strong>süre</strong> üzerinden bölümlemek oldu:
+        her parça kendi tahmin adımıyla eşleşiyor.
+      </p>
+    </li>
+    <li>
+      <span class="adim-bas">Duvar</span>
+      <h3>Veriyi kullanıcının anlayacağı şeye çevirmek</h3>
+      <p>
+        Bir meteoroloji öğrencisine "18 mm/sa yağış, 850 hPa'da -2 °C" deyince
+        bir şey ifade eder. Sürücüye etmez. Uzun süre burada takıldım.
+        Sonunda her segmenti <strong>yeşil / sarı / kırmızı</strong> bir karara
+        indirdim ve ham değerleri isteyen görebilsin diye arkaya koydum.
+        Bilgiyi silmeden basitleştirmek gerekiyordu.
+      </p>
+      <figure class="adim-gorsel">
+        <img src="../g/yolhava-3.jpg" alt="Haritayı oku rehberi" loading="lazy">
+        <figcaption>"Haritayı oku" — sembollerin anlamını açıklayan rehber.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <span class="adim-bas">Sürüm 6.x</span>
+      <h3>3B atmosfer görselleştirmesi</h3>
+      <p>
+        Küre üzerinde siklonları, cepheleri ve taşınım hareketini gösteren bir
+        katman ekledim. Bu, uygulamayı "hava durumu" olmaktan çıkarıp
+        atmosferin nasıl çalıştığını gösteren bir şeye dönüştürdü.
+      </p>
+      <figure class="adim-gorsel">
+        <img src="../g/yolhava-2.jpg" alt="Taşınım katmanı" loading="lazy">
+        <figcaption>Taşınım katmanı — havanın dikey hareketi.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <span class="adim-bas">Sürüm 7 · şu an</span>
+      <h3>Öğreten katman</h3>
+      <p>
+        Şu an üzerinde çalıştığım şey: uygulamanın içine meteoroloji terimlerini,
+        formüllerini ve bunların birbiriyle bağlantısını anlatan bir eğitim
+        katmanı. Amaç, kullanıcı bir uyarı gördüğünde <em>neden</em> öyle
+        olduğunu da okuyabilsin.
+      </p>
+      <figure class="adim-gorsel">
+        <img src="../g/yolhava-6.jpg" alt="Akademi bölümü" loading="lazy">
+        <figcaption>Akademi — sürüm 7'de gelen eğitim katmanı.</figcaption>
+      </figure>
+    </li>
+  </ol>
+</section>
+
+<section class="sar">
+  <span class="bolum-no">03 · Ekranlar</span>
+  <h2>Uygulamadan görüntüler</h2>
+  <div class="galeri">
+    <figure>
+      <img src="../g/yolhava-1.jpg" alt="YolHava açılış ekranı" loading="lazy">
+      <figcaption>Açılış — rota ve kalkış saati girişi.</figcaption>
+    </figure>
+    <figure>
+      <img src="../g/yolhava-2.jpg" alt="Taşınım katmanı" loading="lazy">
+      <figcaption>Taşınım katmanı: havanın dikey hareketi.</figcaption>
+    </figure>
+    <figure>
+      <img src="../g/yolhava-3.jpg" alt="Haritayı oku rehberi" loading="lazy">
+      <figcaption>"Haritayı oku" — sembollerin ne anlama geldiğini anlatan rehber.</figcaption>
+    </figure>
+    <figure>
+      <img src="../g/yolhava-4.jpg" alt="Atmosfer sondası" loading="lazy">
+      <figcaption>Sonda: atmosferin dikey kesiti (Skew-T).</figcaption>
+    </figure>
+    <figure>
+      <img src="../g/yolhava-5.jpg" alt="Siklon ve cephe görünümü" loading="lazy">
+      <figcaption>Siklon ve cephe analizi.</figcaption>
+    </figure>
+    <figure>
+      <img src="../g/yolhava-6.jpg" alt="Akademi bölümü" loading="lazy">
+      <figcaption>Akademi — sürüm 7'de gelen eğitim katmanı.</figcaption>
+    </figure>
+    <figure>
+      <img src="../g/yolhava-7.jpg" alt="Katman kartı" loading="lazy">
+      <figcaption>Katman kartı — hangi verinin gösterildiğini seçme.</figcaption>
+    </figure>
+    <figure>
+      <img src="../g/yolhava-8.jpg" alt="Harita üzerine çizim" loading="lazy">
+      <figcaption>Harita üzerine kendi analizini çizebilme.</figcaption>
+    </figure>
+    <figure class="tam-genis">
+      <img src="../g/yolhava-9.jpg" alt="Sıcaklık alanı görünümü" loading="lazy">
+      <figcaption>Sıcaklık alanı — renk ölçeği ve izotermler birlikte.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sar">
+  <span class="bolum-no">04 · Şu an</span>
+  <h2>Hangi noktadayım</h2>
+
+  <div class="tablo-sar">
+    <table>
+      <thead>
+        <tr><th>Ne</th><th>Durum</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Web sürümü</td><td>Canlı ve herkese açık</td></tr>
+        <tr><td>Android sürümü</td><td>İmzalı paket hazır, bu sayfadan indirilebilir</td></tr>
+        <tr><td>Google Play</td><td><strong>Yayında değil</strong> — sebebi aşağıda</td></tr>
+        <tr><td>Güncel sürüm</td><td class="sayi">6.4</td></tr>
+        <tr><td>Geliştirici</td><td>Tek kişi (ben)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="not">
+    <h3>Neden Play Store'da değil</h3>
+    <p>
+      Google Play geliştirici hesabı tek seferlik <strong>25 dolar</strong> istiyor.
+      Uygulamanın imzalı yayın paketi, mağaza metni, ekran görüntüleri, gizlilik
+      politikası ve veri güvenliği formu — hepsi hazır ve bekliyor.
+      Tek eksik bu ücret.
+    </p>
+    <p>
+      Bunu buraya yazmam biraz tuhaf geliyor ama en dürüst hâli bu: bölümümde
+      öğrendiğimi çalışan bir ürüne çevirdim, ürünü yayınlayamıyorum.
+      İçinde bulunduğum durumu en açık anlatan örnek de bu sanırım.
+    </p>
+  </div>
+
+  <p>
+    Bu arada aynı ücreti ödeyebildiğim tek bir uygulamam var —
+    <a href="https://play.google.com/store/apps/details?id=com.akinc.adhdapp">Naplist</a>
+    Google Play'de yayında. Yani süreci biliyorum; mesele bilgi değil.
+  </p>
+
+  <div class="baglar">
+    <a class="bag bag-vurgu" href="https://akinci22.github.io/yolhava/">Uygulamayı aç</a>
+    <a class="bag" href="../dosya/YolHava-6.4.apk">APK indir</a>
+    <a class="bag" href="../">← Ana sayfaya dön</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="sar">
+    <p>Ömer Faruk Akıncı · İTÜ Meteoroloji Mühendisliği</p>
+    <p><a href="mailto:akinci22@itu.edu.tr">akinci22@itu.edu.tr</a></p>
+  </div>
+</footer>
+<script src="../hareket.js" defer></script>
