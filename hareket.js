@@ -117,4 +117,175 @@
       }
     }
   }
+
+  /* ---------- 4) Gorseller yuklendikce yumusak acilsin ---------- */
+  (function gorselAc() {
+    function ac(im) { im.classList.add("yuklendi"); }
+    Array.prototype.forEach.call(document.images, function (im) {
+      if (im.complete && im.naturalWidth) ac(im);
+      else {
+        im.addEventListener("load", function () { ac(im); }, { once: true });
+        im.addEventListener("error", function () { ac(im); }, { once: true });
+      }
+    });
+    // Sonradan eklenenler icin
+    if (window.MutationObserver) {
+      new MutationObserver(function (kayitlar) {
+        kayitlar.forEach(function (k) {
+          Array.prototype.forEach.call(k.addedNodes, function (n) {
+            if (n.tagName === "IMG") {
+              if (n.complete && n.naturalWidth) ac(n);
+              else n.addEventListener("load", function () { ac(n); }, { once: true });
+            }
+          });
+        });
+      }).observe(document.body, { childList: true, subtree: true });
+    }
+  })();
+
+  if (azalt) return;
+
+  /* ---------- 5) Basliklarda kelime kelime giris ---------- */
+  (function baslikAyir() {
+    var basliklar = document.querySelectorAll("h1, h2");
+    Array.prototype.forEach.call(basliklar, function (b) {
+      if (b.dataset.ayrildi) return;
+      // sadece duz metin iceren basliklari ayir
+      if (b.children.length) return;
+      var metin = b.textContent.trim();
+      if (!metin || metin.length > 90) return;
+      b.dataset.ayrildi = "1";
+      b.textContent = "";
+      metin.split(/\s+/).forEach(function (k, i) {
+        var sp = document.createElement("span");
+        sp.className = "kelime";
+        sp.textContent = k;
+        sp.style.transitionDelay = (i * 55) + "ms";
+        b.appendChild(sp);
+        b.appendChild(document.createTextNode(" "));
+      });
+    });
+
+    if (!("IntersectionObserver" in window)) {
+      document.querySelectorAll(".kelime").forEach(function (k) { k.classList.add("ac"); });
+      return;
+    }
+    var go = new IntersectionObserver(function (gs) {
+      gs.forEach(function (g) {
+        if (g.isIntersecting) {
+          g.target.querySelectorAll(".kelime").forEach(function (k) { k.classList.add("ac"); });
+          go.unobserve(g.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    Array.prototype.forEach.call(basliklar, function (b) { go.observe(b); });
+  })();
+
+  /* ---------- 6) Tablo satirlari sirayla girsin ---------- */
+  (function tabloGiris() {
+    if (!("IntersectionObserver" in window)) {
+      document.querySelectorAll("tbody tr").forEach(function (t) { t.classList.add("ac"); });
+      return;
+    }
+    var go = new IntersectionObserver(function (gs) {
+      gs.forEach(function (g) {
+        if (!g.isIntersecting) return;
+        var satirlar = g.target.querySelectorAll("tbody tr");
+        Array.prototype.forEach.call(satirlar, function (tr, i) {
+          setTimeout(function () { tr.classList.add("ac"); }, i * 70);
+        });
+        go.unobserve(g.target);
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll("table").forEach(function (t) { go.observe(t); });
+  })();
+
+  /* ---------- 7) Sayilar sayarak gelsin ---------- */
+  (function sayacKur() {
+    var hucreler = Array.prototype.filter.call(
+      document.querySelectorAll("td.sayi, .kunye dd"),
+      function (h) { return /^[\d.,]+$/.test(h.textContent.trim()) && h.textContent.trim().length > 2; }
+    );
+    if (!hucreler.length || !("IntersectionObserver" in window)) return;
+
+    function say(el) {
+      var ham = el.textContent.trim();
+      var hedef = parseFloat(ham.replace(/\./g, "").replace(",", "."));
+      if (!isFinite(hedef)) return;
+      var ondalik = ham.indexOf(",") > -1;
+      var basla = null, sure = 900;
+      el.classList.add("sayac");
+      function adim(t) {
+        if (!basla) basla = t;
+        var o = Math.min(1, (t - basla) / sure);
+        var yum = 1 - Math.pow(1 - o, 3);
+        var d = hedef * yum;
+        el.textContent = ondalik
+          ? d.toFixed(2).replace(".", ",")
+          : Math.round(d).toLocaleString("tr-TR");
+        if (o < 1) requestAnimationFrame(adim);
+        else el.textContent = ham;
+      }
+      requestAnimationFrame(adim);
+    }
+
+    var go = new IntersectionObserver(function (gs) {
+      gs.forEach(function (g) {
+        if (g.isIntersecting) { say(g.target); go.unobserve(g.target); }
+      });
+    }, { threshold: 0.5 });
+    hucreler.forEach(function (h) { go.observe(h); });
+  })();
+
+  /* ---------- 8) Vitrin kartlarinda fare egimi ---------- */
+  (function kartEgimi() {
+    if (!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+    document.querySelectorAll(".vitrin").forEach(function (k) {
+      k.addEventListener("pointermove", function (e) {
+        var r = k.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        k.style.setProperty("--eY", (x * 2.2).toFixed(2) + "deg");
+        k.style.setProperty("--eX", (-y * 1.6).toFixed(2) + "deg");
+      }, { passive: true });
+      k.addEventListener("pointerleave", function () {
+        k.style.setProperty("--eY", "0deg");
+        k.style.setProperty("--eX", "0deg");
+      });
+    });
+  })();
+
+  /* ---------- 9) Bolum ayraci parlamasi ---------- */
+  (function ayraclar() {
+    if (!("IntersectionObserver" in window)) return;
+    var go = new IntersectionObserver(function (gs) {
+      gs.forEach(function (g) {
+        if (g.isIntersecting) { g.target.classList.add("gorundu"); go.unobserve(g.target); }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll("section").forEach(function (b) { go.observe(b); });
+  })();
+
+  /* ---------- 10) Uste don dugmesi ---------- */
+  (function usteDon() {
+    var d = document.createElement("button");
+    d.className = "uste";
+    d.type = "button";
+    d.setAttribute("aria-label", "Sayfanın başına dön");
+    d.innerHTML = "&uarr;";
+    document.body.appendChild(d);
+    d.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    var bekle = false;
+    function bak() {
+      var ust = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      d.classList.toggle("gorunur", ust > 700);
+      bekle = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!bekle) { bekle = true; requestAnimationFrame(bak); }
+    }, { passive: true });
+    bak();
+  })();
 })();
