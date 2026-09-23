@@ -143,7 +143,40 @@
     }
   })();
 
-  if (azalt) return;
+  /* ---------- 11) Video: tiklayinca yukle (gizlilik + hiz) ---------- */
+  (function videoKur() {
+    document.querySelectorAll(".video-kapak").forEach(function (d) {
+      d.addEventListener("click", function () {
+        var id = d.dataset.video, basla = d.dataset.basla || 0;
+        var kutu = d.parentNode;
+        var f = document.createElement("iframe");
+        f.src = "https://www.youtube-nocookie.com/embed/" + id +
+                "?start=" + basla + "&autoplay=1&rel=0&modestbranding=1";
+        f.title = "Hocamın konuşması";
+        f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture";
+        f.allowFullscreen = true;
+        f.setAttribute("loading", "lazy");
+        kutu.appendChild(f);
+        d.remove();
+      });
+    });
+  })();
+
+  /* ---------- 12) Grafikler goruse girince canlansin ---------- */
+  (function grafikKur() {
+    var g = document.querySelectorAll(".grafik");
+    if (!g.length) return;
+    if (azalt || !("IntersectionObserver" in window)) {
+      g.forEach(function (k) { k.classList.add("ac"); });
+      return;
+    }
+    var go = new IntersectionObserver(function (gs) {
+      gs.forEach(function (x) {
+        if (x.isIntersecting) { x.target.classList.add("ac"); go.unobserve(x.target); }
+      });
+    }, { threshold: 0.25 });
+    g.forEach(function (k) { go.observe(k); });
+    if (azalt) return;
 
   /* ---------- 5) Basliklarda kelime kelime giris ---------- */
   (function baslikAyir() {
@@ -288,4 +321,6 @@
     }, { passive: true });
     bak();
   })();
+
+})();
 })();
