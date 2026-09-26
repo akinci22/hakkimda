@@ -1,0 +1,161 @@
+/* ============================================================
+   TASARIM KATMANI — 2026 modern web teknikleri
+   Kaynak ilhamı: 21st.dev bileşen kaydı + Awwwards tipi vitrin siteleri
+   Hepsi @supports ile korumalı; desteklemeyen tarayıcıda site aynen çalışır.
+   ============================================================ */
+
+/* ---------- 1) Sayfalar arası geçiş (View Transitions) ---------- */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root){
+  animation: vt-cik .28s cubic-bezier(.4,0,1,1) both;
+}
+::view-transition-new(root){
+  animation: vt-gir .42s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes vt-cik{
+  from{opacity:1; transform:translateY(0) scale(1)}
+  to  {opacity:0; transform:translateY(-10px) scale(.994)}
+}
+@keyframes vt-gir{
+  from{opacity:0; transform:translateY(14px) scale(.994)}
+  to  {opacity:1; transform:none}
+}
+/* başlık sayfalar arasında yerinde kalsın */
+.hero h1, .sayfa-bas h1{ view-transition-name: sayfa-basligi; }
+.bant{ view-transition-name: ust-bant; }
+
+/* ---------- 2) Kaydırmaya bağlı animasyon (native, JS'siz) ----------
+   Destekleyen tarayıcıda .bel öğeleri ana iş parçacığından bağımsız,
+   60fps akıcılıkla belirir. JS gözcüsü yedek olarak kalır. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .bel{
+      animation: bel-ac linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 26%;
+      opacity:1;            /* JS beklemesin */
+      transform:none;
+      transition:none;
+    }
+    @keyframes bel-ac{
+      from{opacity:0; transform:translateY(28px)}
+      to  {opacity:1; transform:none}
+    }
+
+    /* şerit görselleri sırayla değil, kendi konumlarına göre */
+    .serit img{
+      animation: serit-ac linear both;
+      animation-timeline: view();
+      animation-range: entry 4% cover 22%;
+      transition:none;
+    }
+    @keyframes serit-ac{
+      from{opacity:0; transform:scale(.965)}
+      to  {opacity:1; transform:none}
+    }
+
+    /* vitrin kapakları hafif paralaks */
+    .vitrin-kapak{
+      animation: kapak-kay linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+    @keyframes kapak-kay{
+      from{object-position:50% 38%}
+      to  {object-position:50% 62%}
+    }
+  }
+}
+
+/* ---------- 3) Kartlarda imleç ışığı (spotlight) ---------- */
+.vitrin, .bakis-kart{ position:relative; }
+.vitrin::after, .bakis-kart::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  border-radius:inherit;opacity:0;
+  transition:opacity .4s ease;
+  background:radial-gradient(
+    380px circle at var(--mx,50%) var(--my,50%),
+    color-mix(in srgb, var(--pr-vurgu, var(--izohips)) 12%, transparent),
+    transparent 62%);
+}
+.vitrin:hover::after, .bakis-kart:hover::after{opacity:1}
+/* kenar parıltısı */
+.vitrin::before{
+  content:"";position:absolute;inset:-1px;z-index:1;pointer-events:none;
+  border-radius:inherit;padding:1px;opacity:0;transition:opacity .4s ease;
+  background:radial-gradient(
+    340px circle at var(--mx,50%) var(--my,50%),
+    color-mix(in srgb, var(--pr-vurgu, var(--izohips)) 55%, transparent),
+    transparent 60%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+}
+.vitrin:hover::before{opacity:1}
+
+/* ---------- 4) Bölüm etiketi kaydırırken yapışsın ---------- */
+@supports (position: sticky) {
+  @media (min-width: 900px) {
+    .bolum-no{
+      position:sticky;
+      top:calc(env(safe-area-inset-top, 0px) + 18px);
+      z-index:3;
+      backdrop-filter:blur(8px);
+      width:fit-content;
+      padding:5px 11px;margin-left:-11px;
+      border-radius:999px;
+      background:color-mix(in srgb, var(--kagit) 72%, transparent);
+    }
+  }
+}
+
+/* ---------- 5) Tipografi inceliği ---------- */
+h1, h2{
+  font-optical-sizing:auto;
+  font-synthesis:none;
+}
+.hero h1{
+  /* satır içi degrade — mürekkepten izohipse doğru çok hafif */
+  background:linear-gradient(174deg,
+    var(--murekkep) 28%,
+    color-mix(in srgb, var(--murekkep) 82%, var(--izohips)) 100%);
+  -webkit-background-clip:text;
+          background-clip:text;
+  color:transparent;
+}
+@supports not (background-clip: text){
+  .hero h1{color:var(--murekkep);background:none}
+}
+/* rakamlar hizalı, tireler düzgün */
+body{ font-variant-numeric:proportional-nums; hanging-punctuation:first allow-end; }
+.sayi, table, .kunye dd, .gr-deger{ font-variant-numeric:tabular-nums; }
+
+/* ---------- 6) Odak halkası (klavye erişimi) ---------- */
+:where(a, button, [tabindex]):focus-visible{
+  outline:2px solid var(--izohips);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ---------- 7) Seçili metin ---------- */
+::selection{
+  background:color-mix(in srgb, var(--izohips) 30%, transparent);
+  color:var(--murekkep);
+}
+
+/* ---------- 8) Kaydırma çubuğu (ince, temaya uyumlu) ---------- */
+@supports (scrollbar-width: thin) {
+  html{
+    scrollbar-width:thin;
+    scrollbar-color: color-mix(in srgb, var(--murekkep-3) 55%, transparent) transparent;
+  }
+}
+
+/* ---------- 9) Hareket azaltma ---------- */
+@media (prefers-reduced-motion: reduce){
+  ::view-transition-old(root),
+  ::view-transition-new(root){ animation:none }
+  .vitrin::after,.vitrin::before,.bakis-kart::after{display:none}
+  .bolum-no{position:static;backdrop-filter:none;background:none;padding:0;margin-left:0}
+}

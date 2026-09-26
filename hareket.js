@@ -323,4 +323,24 @@
   })();
 
 })();
+
+  /* ---------- 13) Kartlarda imlec isigi (spotlight) ---------- */
+  (function spotlight() {
+    if (!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+    var kartlar = document.querySelectorAll(".vitrin, .bakis-kart");
+    kartlar.forEach(function (k) {
+      k.addEventListener("pointermove", function (e) {
+        var r = k.getBoundingClientRect();
+        k.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100).toFixed(1) + "%");
+        k.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100).toFixed(1) + "%");
+      }, { passive: true });
+    });
+  })();
+
+  /* ---------- 14) Native scroll-driven varsa JS gozcusunu kapat ---------- */
+  (function nativeVarsa() {
+    if (!CSS.supports || !CSS.supports("animation-timeline: view()")) return;
+    // Native calisiyor; JS ile ayrica 'gorundu' eklemeye gerek yok.
+    document.documentElement.classList.add("native-kaydirma");
+  })();
 })();
