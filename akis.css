@@ -1,0 +1,166 @@
+/* ============================================================
+   AKIŞ KATMANI v4 (28 Eyl 2026) — tüm sayfalarda en son yüklenir
+   1) Kasma kaynağı olan her şeyi kapatır (dev blur fonlar, sonsuz animasyonlar,
+      kaydırmaya bağlı yarı-saydam görseller, 3B eğimler).
+   2) Tek, ucuz bir giriş animasyonu: opacity+transform, bir kez, sonra tam görünür.
+   3) Lacivert çerçeve dili + proje temaları (zemin, yazı, vurgu, çerçeve tonu).
+   ============================================================ */
+
+/* ---------- 1) Kasmayı kes ---------- */
+.hero-fon img,.vitrin-fon img{animation:none!important}
+.vitrin-fon,.hero-fon{display:none!important}
+.rozet-canli::after{animation:none!important;display:none}
+.vitrin{transform:none!important;transform-style:flat!important}
+.fare-isik{display:none!important}
+.bel,.serit img,.buyu,.vitrin-kapak,img,tbody tr,.kelime{
+  animation:none!important;opacity:1!important;filter:none;transform:none}
+.bolum-no{backdrop-filter:none!important}
+.menu{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  background:color-mix(in srgb, var(--kagit) 96%, transparent)!important}
+html{scroll-behavior:smooth}
+img{content-visibility:auto}
+
+/* ---------- 2) Tek giriş animasyonu ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .js .gel{opacity:0;transform:translate3d(0,18px,0);
+    transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
+  .js .gel.var{opacity:1;transform:none}
+  .js .sohbet .gel:nth-child(2){transition-delay:.08s}
+  .js .sohbet .gel:nth-child(3){transition-delay:.16s}
+  .js .sohbet .gel:nth-child(4){transition-delay:.24s}
+  .js .sohbet .gel:nth-child(5){transition-delay:.32s}
+}
+
+/* ---------- 3) Çerçeve dili — her fotoğraf lacivert çerçevede ---------- */
+:root{--cer:#0b1a33;--cer-ic:#24406e}
+.cer,.galeri img,.adim-gorsel,.kapak,.kanit,.serit img,.belge-metin figure img,.yh-fig img{
+  border:6px solid var(--cer)!important;outline:1px solid var(--cer-ic)!important;outline-offset:-7px;
+  border-radius:12px!important;background:var(--cer)!important;
+  box-shadow:0 16px 34px -20px rgba(4,10,24,.7)!important}
+.cer{display:block;width:100%;height:auto}
+
+/* ============ ANA SAYFA v4 ============ */
+.sar{max-width:1060px}
+.blok{padding-block:clamp(56px,7vw,104px);background:var(--zemin,var(--kagit));color:var(--yazi,var(--murekkep));
+  border-top:1px solid color-mix(in srgb,var(--vurgu,#888) 18%,transparent);position:relative}
+.blok h2,.blok h3{color:var(--baslik,var(--yazi,var(--murekkep)))}
+.blok .bolum-no{color:var(--vurgu);background:none!important;position:static!important;padding:0;margin:0}
+.blok .bolum-ozet{color:var(--yazi-2,var(--murekkep-2))}
+.blok h2{font-family:var(--font-b,var(--serif));letter-spacing:-.02em;
+  font-size:clamp(2rem,3.4vw + .8rem,3.4rem);line-height:1.05;margin:.25em 0 .35em}
+.blok-ust{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.blok-ust img.ikon{width:56px;height:56px;border-radius:14px}
+.etiketler{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 0}
+.etk{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 10px;border-radius:99px;border:1px solid color-mix(in srgb,var(--vurgu) 40%,transparent);color:var(--vurgu)}
+.etk.uyari{border-color:color-mix(in srgb,#c27a1a 50%,transparent);color:#b36a10}
+
+/* --- proje temaları: zemin + yazı + vurgu + çerçeve tonu --- */
+.t-yolhava{--zemin:#eaf2fb;--yazi:#0e2440;--yazi-2:#34506f;--vurgu:#1570b0;--cer:#0b1f3f;--cer-ic:#2b5d9a;--font-b:'Space Grotesk',var(--sans);--balon:#fff}
+.t-yemek{--zemin:#fbf1e8;--yazi:#3a1f12;--yazi-2:#6c4432;--vurgu:#b24c21;--cer:#1d1a33;--cer-ic:#8c4a2a;--font-b:'Bitter',Georgia,serif;--balon:#fffaf5}
+.t-naplist{--zemin:#eeeefb;--yazi:#1c1f47;--yazi-2:#474b7c;--vurgu:#4a55c8;--cer:#15173f;--cer-ic:#5560c8;--font-b:var(--sans);--balon:#fff}
+.t-bulut{--zemin:#e7f4f3;--yazi:#0f2d31;--yazi-2:#3a5d61;--vurgu:#0f7d82;--cer:#0c2233;--cer-ic:#2d7f86;--font-b:var(--serif);--balon:#fff}
+.t-yayin{--zemin:#0c1424;--yazi:#e6edf7;--yazi-2:#a9b8cc;--vurgu:#4fb3e8;--cer:#050b17;--cer-ic:#2f6fa0;--font-b:'Space Grotesk',var(--sans);--balon:#16223a;--baslik:#fff}
+.t-temsil{--zemin:#f6f1e7;--yazi:#2c2417;--yazi-2:#5d4f3a;--vurgu:#8a6a2e;--cer:#1a1f33;--cer-ic:#8a6a2e;--font-b:'Fraunces',var(--serif);--balon:#fffdf8}
+.t-foto{--zemin:#111;--yazi:#eee;--yazi-2:#b5b5b5;--vurgu:#f2b84b;--cer:#0b1a33;--cer-ic:#33507d;--font-b:'Fraunces',var(--serif);--balon:#1d1d1f;--baslik:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  .t-yolhava{--zemin:#0b1a2e;--yazi:#e3eefb;--yazi-2:#9fb6d0;--vurgu:#5fb2ee;--balon:#13263f}
+  .t-yemek{--zemin:#1f140e;--yazi:#f7e7da;--yazi-2:#cfae98;--vurgu:#f08a55;--balon:#2b1c14}
+  .t-naplist{--zemin:#12132c;--yazi:#e5e6fb;--yazi-2:#a9acd8;--vurgu:#8b95f0;--balon:#1c1e3f}
+  .t-bulut{--zemin:#0b1f21;--yazi:#dff2f1;--yazi-2:#9ec3c4;--vurgu:#4cc4c9;--balon:#112e31}
+  .t-temsil{--zemin:#1d1810;--yazi:#f1e8d6;--yazi-2:#c8b797;--vurgu:#d9b46a;--balon:#29221a}
+}}
+
+/* --- sohbet: kısa mesajlar, paragraf yok --- */
+.sohbet{display:flex;flex-direction:column;gap:8px;max-width:620px;margin:22px 0 8px;
+  padding-left:56px;position:relative}
+.sohbet>.av{position:absolute;left:0;top:0;width:42px;height:42px;border-radius:50%;object-fit:cover;
+  border:2px solid var(--balon,#fff);box-shadow:0 0 0 1px color-mix(in srgb,var(--vurgu) 35%,transparent)}
+.msj{align-self:flex-start;max-width:100%;background:var(--balon,#fff);color:var(--yazi);
+  padding:10px 15px;border-radius:6px 18px 18px 18px;font-size:clamp(1rem,.3vw + .93rem,1.12rem);line-height:1.45;
+  box-shadow:0 1px 1px rgba(0,0,0,.05),0 6px 16px -10px rgba(0,0,0,.25)}
+.msj+.msj{border-radius:18px}
+.msj b{color:var(--vurgu);font-weight:700}
+.msj i{font-style:italic}
+.msj-ad{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--yazi-2);margin:0 0 2px 4px}
+.msj-gorsel{align-self:flex-start;width:min(100%,460px);margin-top:4px}
+.msj-gorsel img{border-radius:12px}
+.msj-gorsel small{display:block;font-size:.8rem;color:var(--yazi-2);margin:6px 4px 0;font-style:italic}
+
+/* --- bilgi kartları (infografik) --- */
+.bilgi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:26px 0}
+.bilgi div{background:var(--balon,#fff);border-radius:14px;padding:16px 16px 14px;
+  border:1px solid color-mix(in srgb,var(--vurgu) 20%,transparent)}
+.bilgi b{display:block;font-family:var(--font-b,var(--serif));font-size:clamp(1.7rem,2vw + .8rem,2.4rem);line-height:1;color:var(--vurgu);font-variant-numeric:tabular-nums}
+.bilgi small{display:block;margin-top:6px;font-size:.86rem;color:var(--yazi-2);line-height:1.3}
+
+/* --- vitrin görseli (projenin ilk karesi) --- */
+.vitrin-gorsel{margin:26px 0 0}
+.vitrin-gorsel img{aspect-ratio:16/9;object-fit:cover}
+.ikili{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(22px,3vw,44px);align-items:start}
+@media (max-width:860px){.ikili{grid-template-columns:1fr}}
+
+/* --- derinlemesine --- */
+details.derin{margin:26px 0 0;border-top:1px solid color-mix(in srgb,var(--vurgu) 25%,transparent)}
+details.derin>summary{list-style:none;cursor:pointer;padding:18px 0;display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vurgu);font-weight:600}
+details.derin>summary::-webkit-details-marker{display:none}
+details.derin>summary::before{content:"+";display:grid;place-items:center;width:30px;height:30px;border-radius:50%;
+  border:1.5px solid currentColor;font-size:18px;transition:transform .3s}
+details.derin[open]>summary::before{transform:rotate(45deg)}
+.kartlar{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;padding-bottom:10px}
+.kart{background:var(--balon,#fff);border-radius:14px;padding:16px 18px;border-left:4px solid var(--vurgu)}
+.kart h4{margin:0 0 6px;font-family:var(--font-b,var(--sans));font-size:1.02rem;color:var(--yazi)}
+.kart p{margin:0;font-size:.93rem;line-height:1.5;color:var(--yazi-2)}
+.kart code{font-size:.85em}
+
+/* --- galeriler --- */
+.kareler{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:22px 0}
+.kareler img{aspect-ratio:1;object-fit:cover;border-width:4px!important;border-radius:10px!important;outline-offset:-5px}
+.kareler.genis{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.kareler.genis img{aspect-ratio:16/10}
+.yayin-kare{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0}
+.yayin-kare figure{margin:0}
+.yayin-kare figcaption{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--yazi-2);margin:8px 2px 0}
+.yayin-kare figure:first-child{grid-column:1/-1}
+@media (max-width:640px){.yayin-kare{grid-template-columns:1fr}.sohbet{padding-left:0}.sohbet>.av{position:static;margin-bottom:2px}}
+
+/* --- özet kapıları --- */
+.kisaca{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+@media (max-width:860px){.kisaca{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.kisaca{grid-template-columns:1fr}}
+.kapi{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--yazi);background:var(--zemin);
+  border-radius:14px;padding:10px;border:1px solid color-mix(in srgb,var(--vurgu) 25%,transparent);
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+.kapi:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(0,0,0,.45)}
+.kapi img{width:74px;height:74px;object-fit:cover;border-radius:10px;border:3px solid var(--cer);flex-shrink:0}
+.kapi b{display:block;font-size:1rem;color:var(--vurgu)}
+.kapi span{display:block;font-size:.86rem;color:var(--yazi-2);line-height:1.3}
+
+/* --- dosya içeriği (PDF yerine) --- */
+.dosya{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:24px 0}
+.dosya a{display:block;text-decoration:none;background:var(--balon);border-radius:14px;padding:16px;color:var(--yazi);
+  border:1px solid color-mix(in srgb,var(--vurgu) 22%,transparent);transition:transform .2s,border-color .2s}
+.dosya a:hover{transform:translateY(-2px);border-color:var(--vurgu)}
+.dosya em{font-style:normal;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--vurgu);text-transform:uppercase}
+.dosya strong{display:block;margin:4px 0 4px;font-size:1rem}
+.dosya span{font-size:.86rem;color:var(--yazi-2);line-height:1.4;display:block}
+.blok .grafik{background:var(--balon)}
+.blok .pr-bag{color:var(--yazi);border-color:color-mix(in srgb,var(--vurgu) 40%,transparent)}
+.blok .pr-bag-dolu{background:var(--vurgu);border-color:var(--vurgu);color:#fff}
+.t-yayin .pr-bag-dolu{color:#04121e}
+.hero .kunye dd{font-size:clamp(.9rem,.3vw + .82rem,1.04rem)}
+.foto-ayrac{column-count:4;column-gap:10px;margin:24px 0}
+.foto-ayrac img{width:100%;margin:0 0 10px;break-inside:avoid;border-width:4px!important;border-radius:8px!important;outline-offset:-5px}
+@media (max-width:860px){.foto-ayrac{column-count:3}}
+@media (max-width:520px){.foto-ayrac{column-count:2}}
+.kapi-sayi{width:74px;height:74px;border-radius:10px;border:3px solid var(--cer);flex-shrink:0;display:grid;place-items:center;
+  background:var(--balon);font-family:var(--font-b);font-weight:700;font-size:1.3rem;color:var(--vurgu)}
+.sohbet p.msj,.sohbet .msj-ad{margin:0}
+.kapi .kapi-sayi{display:grid}
+.kareler.genis{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+figure.msj-gorsel{margin:4px 0 0}
+/* gözlem günlüğü: dikey duvar yerine yatay kaydırmalı şerit */
+.blok .gozlem{display:grid!important;grid-auto-flow:column;grid-auto-columns:clamp(150px,19vw,200px);grid-template-columns:none!important;
+  overflow-x:auto;gap:12px;padding:6px 2px 14px;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}
+.blok .gozlem>figure{scroll-snap-align:start;margin:0}
