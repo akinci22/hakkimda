@@ -159,3 +159,14 @@ body{ font-variant-numeric:proportional-nums; hanging-punctuation:first allow-en
   .vitrin::after,.vitrin::before,.bakis-kart::after{display:none}
   .bolum-no{position:static;backdrop-filter:none;background:none;padding:0;margin-left:0}
 }
+
+/* ---------- 10) Avatar artık fotoğraf (monogram değil) ----------
+   img{opacity:0} kuralı avatarı JS'e bağımlı kılıyordu; avatar her
+   koşulda görünmeli — JS çalışmasa da, yükleme animasyonu beklemeden. */
+img.avatar{
+  opacity:1 !important;
+  object-fit:cover;
+  background:var(--yuzey-2);   /* yüklenene kadar sade zemin, degrade değil */
+  display:block;
+  transition:none;
+}
