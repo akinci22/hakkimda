@@ -362,3 +362,16 @@
     k.addEventListener('pointerleave', function () { k.style.setProperty('--rx', '0deg'); k.style.setProperty('--ry', '0deg'); });
   });
 })();
+
+/* ---------- Görseller kaydırdıkça büyüsün (28 Eyl 2026) ---------- */
+(function buyuKur() {
+  var sec = '.galeri img, .serit img, .adim-gorsel, .kapak, .kanit, .belge-metin figure img, .yh-fig img';
+  var el = document.querySelectorAll(sec);
+  el.forEach(function (x) { x.classList.add('buyu'); });
+  if (window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) return;
+  if (!('IntersectionObserver' in window)) { el.forEach(function (x) { x.classList.add('acik'); }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('acik'); io.unobserve(e.target); } });
+  }, { threshold: 0.25 });
+  el.forEach(function (x) { io.observe(x); });
+})();

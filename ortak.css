@@ -472,3 +472,35 @@ tbody tr.ac{opacity:1;transform:none}
   .kanit:hover,.galeri figure:hover{transform:none}
   .uste{transition:none}
 }
+
+/* ============ GÖRSEL DİLİ v3 (28 Eyl 2026) — tüm sitede ============
+   Koyu lacivert çerçeve (açık/koyu temada aynı), görseller arası bol boşluk, görsel küçük gelir ve
+   ekrana girdikçe büyüyüp açılır (CSS scroll-driven; desteklemeyen tarayıcıda JS sınıfı; hareket
+   azaltmada doğrudan tam boy). */
+:root{ --cerceve:#0b1a33; --cerceve-ic:#1d3257; }
+.galeri{gap:clamp(22px,3vw,40px)!important;margin:30px 0!important}
+.galeri img,.adim-gorsel,.kapak,.kanit,.serit img,.belge-metin figure img,.yh-fig img{
+  border:6px solid var(--cerceve)!important;outline:1px solid var(--cerceve-ic);outline-offset:-7px;
+  border-radius:10px!important;box-shadow:0 18px 40px -22px rgba(4,10,24,.75);background:var(--cerceve)}
+.adim-gorsel img,.kapak img,.kanit img{border:0!important;outline:0;box-shadow:none;border-radius:0!important}
+.galeri figcaption,.adim-gorsel figcaption{margin-top:10px}
+.galeri-grup{grid-column:1/-1;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--murekkep-3);margin:18px 0 -8px;padding-top:14px;border-top:1px solid var(--cizgi)}
+.galeri-grup:first-child{border-top:0;padding-top:0;margin-top:0}
+.serit{gap:clamp(14px,2vw,24px)!important;background:transparent!important;border-top:0!important;padding:clamp(16px,2.2vw,28px)}
+.serit img{aspect-ratio:16/10!important;border-radius:10px}
+.serit img:hover{transform:none}
+.serit-yh{grid-template-columns:repeat(3,1fr)!important}
+@media (max-width:760px){.serit,.serit-yh{grid-template-columns:repeat(2,1fr)!important}}
+/* kaydırdıkça büyü */
+.buyu{transform-origin:50% 60%}
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .buyu{animation:buyuAc linear both;animation-timeline:view();animation-range:entry 0% cover 42%}
+  }
+  @supports not (animation-timeline:view()){
+    .buyu{transform:scale(.8);opacity:.55;transition:transform .9s cubic-bezier(.22,1,.36,1),opacity .9s}
+    .buyu.acik{transform:none;opacity:1}
+  }
+}
+@keyframes buyuAc{from{transform:scale(.78);opacity:.5;filter:saturate(.6)}to{transform:scale(1);opacity:1;filter:none}}
