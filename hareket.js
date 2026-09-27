@@ -143,24 +143,8 @@
     }
   })();
 
-  /* ---------- 11) Video: tiklayinca yukle (gizlilik + hiz) ---------- */
-  (function videoKur() {
-    document.querySelectorAll(".video-kapak").forEach(function (d) {
-      d.addEventListener("click", function () {
-        var id = d.dataset.video, basla = d.dataset.basla || 0;
-        var kutu = d.parentNode;
-        var f = document.createElement("iframe");
-        f.src = "https://www.youtube-nocookie.com/embed/" + id +
-                "?start=" + basla + "&autoplay=1&rel=0&modestbranding=1";
-        f.title = "Hocamın konuşması";
-        f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture";
-        f.allowFullscreen = true;
-        f.setAttribute("loading", "lazy");
-        kutu.appendChild(f);
-        d.remove();
-      });
-    });
-  })();
+  /* ---------- 11) Video: kaynak videoda gömme kapalı (playableInEmbed=false), kapak artık
+     doğrudan YouTube bağlantısı — burada iş yok. ---------- */
 
   /* ---------- 12) Grafikler goruse girince canlansin ---------- */
   (function grafikKur() {
@@ -343,4 +327,38 @@
     // Native calisiyor; JS ile ayrica 'gorundu' eklemeye gerek yok.
     document.documentElement.classList.add("native-kaydirma");
   })();
+})();
+
+/* ---------- Üç başlık: 3B eğim + giriş (28 Eyl 2026) ---------- */
+(function ucBaslik3B() {
+  var kap = document.querySelector('.bakis');
+  if (!kap) return;
+  var azalt = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!azalt && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { kap.classList.add('giris'); io.disconnect(); } });
+    }, { threshold: 0.2 });
+    io.observe(kap);
+  }
+  // Tıklayınca kart kapı gibi 3B açılır, sonra sayfaya geçilir (dokunmatikte de).
+  if (!azalt) kap.querySelectorAll('[data-egim]').forEach(function (k) {
+    k.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      k.classList.add('aciliyor');
+      setTimeout(function () { window.location.href = k.href; }, 400);
+    });
+  });
+  window.addEventListener('pageshow', function () { kap.querySelectorAll('.aciliyor').forEach(function (k) { k.classList.remove('aciliyor'); }); });
+  if (azalt || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  kap.querySelectorAll('[data-egim]').forEach(function (k) {
+    k.addEventListener('pointermove', function (e) {
+      var r = k.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      k.style.setProperty('--ry', ((x - 0.5) * 16).toFixed(2) + 'deg');
+      k.style.setProperty('--rx', ((0.5 - y) * 12).toFixed(2) + 'deg');
+      k.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      k.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    });
+    k.addEventListener('pointerleave', function () { k.style.setProperty('--rx', '0deg'); k.style.setProperty('--ry', '0deg'); });
+  });
 })();
