@@ -18,12 +18,11 @@
 .menu{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
   background:color-mix(in srgb, var(--kagit) 96%, transparent)!important}
 html{scroll-behavior:smooth}
-img{content-visibility:auto}
 
 /* ---------- 2) Tek giriş animasyonu ---------- */
 @media (prefers-reduced-motion:no-preference){
   .js .gel{opacity:0;transform:translate3d(0,18px,0);
-    transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
+    transition:opacity .4s ease-out,transform .4s cubic-bezier(.2,.7,.2,1)}
   .js .gel.var{opacity:1;transform:none}
   .js .sohbet .gel:nth-child(2){transition-delay:.08s}
   .js .sohbet .gel:nth-child(3){transition-delay:.16s}
@@ -164,3 +163,24 @@ figure.msj-gorsel{margin:4px 0 0}
 .blok .gozlem{display:grid!important;grid-auto-flow:column;grid-auto-columns:clamp(150px,19vw,200px);grid-template-columns:none!important;
   overflow-x:auto;gap:12px;padding:6px 2px 14px;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}
 .blok .gozlem>figure{scroll-snap-align:start;margin:0}
+/* --- öne çıkarılanlar (Instagram highlight gibi) --- */
+.one{display:flex;gap:clamp(14px,3vw,30px);overflow-x:auto;padding:8px 2px 14px;margin:18px 0 6px;scrollbar-width:none}
+.one::-webkit-scrollbar{display:none}
+.one button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;width:92px}
+.one button img{width:82px;height:82px;border-radius:50%;object-fit:cover;padding:3px;background:#111;
+  box-shadow:0 0 0 2px #3a3a3a;transition:transform .25s,box-shadow .25s}
+.one button[aria-pressed="true"] img{box-shadow:0 0 0 2.5px var(--vurgu)}
+.one button:hover img{transform:scale(1.05)}
+.one button span{font-size:.78rem;font-weight:600;color:var(--yazi);text-align:center;letter-spacing:.02em;max-width:92px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.one-panel[hidden]{display:none}
+/* beyaz çerçeve — Instagram'daki gibi */
+.beyaz-izgara{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin:12px 0 8px}
+.beyaz-izgara img{width:100%;aspect-ratio:4/5;object-fit:contain;background:#fff;padding:7%;border-radius:4px;
+  box-shadow:0 12px 26px -16px rgba(0,0,0,.8)}
+
+.beyaz-izgara{display:block!important;column-count:3;column-gap:14px}
+@media (max-width:640px){.beyaz-izgara{column-count:2}}
+.beyaz-izgara img{aspect-ratio:auto!important;object-fit:initial!important;padding:10px!important;margin:0 0 14px;break-inside:avoid;display:block;height:auto}
+.foto-ayrac img,.beyaz-izgara img{height:auto}
+.one-panel[hidden]{display:none!important}

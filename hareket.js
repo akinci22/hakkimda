@@ -19,13 +19,25 @@
   } else {
     var go = new IntersectionObserver(function (gs) {
       gs.forEach(function (g) { if (g.isIntersecting) { ac(g.target); go.unobserve(g.target); } });
-    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.08 });
+    }, { rootMargin: "0px 0px 18% 0px", threshold: 0.01 });
     Array.prototype.forEach.call(hepsi, function (e) { go.observe(e); });
     // Emniyet: hızlı kaydırmada / bağlantı ile atlamada hiçbir şey görünmez kalmasın
     window.addEventListener("hashchange", function () { setTimeout(function () {
       Array.prototype.forEach.call(hepsi, function (e) { var r = e.getBoundingClientRect(); if (r.top < innerHeight) ac(e); });
     }, 350); });
   }
+
+  // Öne çıkarılanlar: halkaya basınca o grubun fotoğrafları
+  Array.prototype.forEach.call(document.querySelectorAll(".one button"), function (b, _, hepsiB) {
+    b.addEventListener("click", function () {
+      Array.prototype.forEach.call(document.querySelectorAll(".one button"), function (x) {
+        var on = x === b;
+        x.setAttribute("aria-pressed", on ? "true" : "false");
+        var p = document.getElementById("one-" + x.dataset.one);
+        if (p) p.hidden = !on;
+      });
+    });
+  });
 
   // İlerleme çubuğu + üste dön
   var cubuk = document.createElement("div");
