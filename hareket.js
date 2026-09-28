@@ -85,10 +85,10 @@
 
 
 
-  // Fotoğraf montajı: tüm kareler çok hızlı değişir (yalnız ekrandayken), altta sonsuz akan şerit
-  (function () {
-    var m = document.querySelector(".montaj"), L = window.MONTAJ;
-    if (!m || !L || !L.length) return;
+  // Fotoğraf montajları: her grup (kampüs, sokak) kendi karelerini çok hızlı değiştirir (yalnız ekrandayken), altta sonsuz akan şerit
+  Array.prototype.forEach.call(document.querySelectorAll(".montaj"), function (m) {
+    var T = window.MONTAJ || {}, L = T[m.dataset.grup] || (Array.isArray(T) ? T : null);
+    if (!L || !L.length) return;
     var kare = m.querySelector(".montaj-kare"), ic = m.querySelector(".montaj-ic"), html = "";
     for (var t = 0; t < 2; t++) L.forEach(function (u) { html += '<img src="' + u + '" alt="" loading="lazy" decoding="async" width="99" height="62">'; });
     ic.innerHTML = html;
@@ -98,7 +98,7 @@
     function oynat() { if (zam) return; if (!y) yukle(); zam = setInterval(function () { if (hazir.length > 1) { i = (i + 1) % hazir.length; kare.src = hazir[i]; } }, 110); }
     function dur() { clearInterval(zam); zam = null; }
     new IntersectionObserver(function (g) { g[0].isIntersecting ? oynat() : dur(); }).observe(m);
-  })();
+  });
 
   // Fotoğrafa basınca büyüt: tam ekran, ok tuşu / kaydırma ile sonraki-önceki, Esc ile kapat
   (function () {
