@@ -39,6 +39,22 @@
     });
   });
 
+  // Öne çıkarılan kartları: fare/parmak yatay gezdikçe sıradaki kareye geç
+  Array.prototype.forEach.call(document.querySelectorAll(".hl"), function (k) {
+    var im = k.querySelectorAll(".hl-kutu img"), cb = k.querySelectorAll(".hl-cubuk i"), son = 0;
+    function goster(i) { if (i === son) return; im[son].classList.remove("on"); cb[son] && cb[son].classList.remove("on");
+      im[i].classList.add("on"); cb[i] && cb[i].classList.add("on"); son = i;
+      if (!im[i].src && im[i].dataset.src) im[i].src = im[i].dataset.src; }
+    k.addEventListener("pointermove", function (e) {
+      var r = k.getBoundingClientRect();
+      goster(Math.min(im.length - 1, Math.max(0, Math.floor((e.clientX - r.left) / r.width * im.length))));
+    }, { passive: true });
+    k.addEventListener("pointerleave", function () { goster(0); });
+    k.addEventListener("pointerenter", function () {   // ilk dokunuşta hepsini yükle
+      Array.prototype.forEach.call(im, function (x) { if (!x.src && x.dataset.src) x.src = x.dataset.src; });
+    }, { once: true });
+  });
+
   // İlerleme çubuğu + üste dön
   var cubuk = document.createElement("div");
   cubuk.className = "ilerleme"; cubuk.setAttribute("aria-hidden", "true");

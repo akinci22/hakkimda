@@ -188,3 +188,18 @@ figure.msj-gorsel{margin:4px 0 0}
 @media (max-width:900px){.beyaz-izgara{column-count:4!important}}
 @media (max-width:640px){.beyaz-izgara{column-count:3!important}}
 .beyaz-izgara img{padding:6px!important;margin:0 0 10px!important;border-radius:2px!important}
+/* --- öne çıkarılanlar: kart başına bir highlight, fareyi gezdirdikçe içindeki kareler kayar --- */
+.hl-izgara{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;margin:20px 0 10px}
+.hl{margin:0;cursor:ew-resize;touch-action:pan-y}
+.hl-kutu{position:relative;aspect-ratio:4/5;background:#fff;padding:10px;border-radius:3px;overflow:hidden;
+  box-shadow:0 16px 30px -18px rgba(0,0,0,.85);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.hl:hover .hl-kutu{transform:translateY(-4px)}
+.hl-kutu img{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px);object-fit:cover;
+  opacity:0;transition:opacity .18s linear}
+.hl-kutu img.on{opacity:1}
+.hl-cubuk{position:absolute;left:14px;right:14px;top:14px;display:flex;gap:3px;z-index:2}
+.hl-cubuk i{flex:1;height:2.5px;border-radius:2px;background:rgba(255,255,255,.45)}
+.hl-cubuk i.on{background:#fff}
+.hl figcaption{text-align:center;margin-top:10px;font-weight:700;font-size:.92rem;letter-spacing:.04em;color:var(--yazi)}
+.hl figcaption small{display:block;font-weight:400;font-size:.75rem;color:var(--yazi-2);letter-spacing:0}
+.yazi-izgara{column-count:3!important}@media (max-width:640px){.yazi-izgara{column-count:1!important}}
