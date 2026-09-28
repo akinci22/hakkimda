@@ -84,6 +84,22 @@
   });
 
 
+
+  // Fotoğraf montajı: tüm kareler çok hızlı değişir (yalnız ekrandayken), altta sonsuz akan şerit
+  (function () {
+    var m = document.querySelector(".montaj"), L = window.MONTAJ;
+    if (!m || !L || !L.length) return;
+    var kare = m.querySelector(".montaj-kare"), ic = m.querySelector(".montaj-ic"), html = "";
+    for (var t = 0; t < 2; t++) L.forEach(function (u) { html += '<img src="' + u + '" alt="" loading="lazy" decoding="async" width="99" height="62">'; });
+    ic.innerHTML = html;
+    if (azalt) return;
+    var hazir = [], y = 0, i = 0, zam = null;
+    function yukle() { if (y >= L.length) return; var im = new Image(); im.onload = function () { hazir.push(im.src); yukle(); }; im.onerror = yukle; im.src = L[y++]; }
+    function oynat() { if (zam) return; if (!y) yukle(); zam = setInterval(function () { if (hazir.length > 1) { i = (i + 1) % hazir.length; kare.src = hazir[i]; } }, 110); }
+    function dur() { clearInterval(zam); zam = null; }
+    new IntersectionObserver(function (g) { g[0].isIntersecting ? oynat() : dur(); }).observe(m);
+  })();
+
   // Fotoğrafa basınca büyüt: tam ekran, ok tuşu / kaydırma ile sonraki-önceki, Esc ile kapat
   (function () {
     var kutu, resim, sayac, liste = [], i = 0;
@@ -112,11 +128,11 @@
       var im = e.target.closest && e.target.closest("img");
       var hl = e.target.closest && e.target.closest(".hl");
       if (hl) im = hl.querySelector(".hl-kutu img.on") || hl.querySelector(".hl-kutu img");
-      if (!im || im.closest("a, button, header, nav, .buyut") || im.classList.contains("av") || im.classList.contains("ikon")) return;
+      if (!im || im.classList.contains("montaj-kare") || im.closest("a, button, header, nav, .buyut") || im.classList.contains("av") || im.classList.contains("ikon")) return;
       if (!im.closest("main")) return;
-      var grup = hl || im.closest("section") || document.body;
+      var serit = im.closest(".montaj-ic"), grup = serit || hl || im.closest("section") || document.body;
       liste = Array.prototype.filter.call(grup.querySelectorAll("img"), function (x) {
-        return !x.closest("a, button") && !x.classList.contains("av") && !x.classList.contains("ikon") && kaynak(x);
+        return !x.closest("a, button") && !x.classList.contains("montaj-kare") && (serit || !x.closest(".montaj")) && !x.classList.contains("av") && !x.classList.contains("ikon") && kaynak(x);
       });
       i = Math.max(0, liste.indexOf(im));
       if (!kutu) kur();
