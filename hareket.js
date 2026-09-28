@@ -83,6 +83,47 @@
     }, { once: true });
   });
 
+
+  // Fotoğrafa basınca büyüt: tam ekran, ok tuşu / kaydırma ile sonraki-önceki, Esc ile kapat
+  (function () {
+    var kutu, resim, sayac, liste = [], i = 0;
+    function kaynak(im) { return im.currentSrc || im.src || im.dataset.src; }
+    function goster() { resim.src = kaynak(liste[i]); resim.alt = liste[i].alt || ""; sayac.textContent = (i + 1) + " / " + liste.length; }
+    function git(d) { i = (i + d + liste.length) % liste.length; goster(); }
+    function kapat() { kutu.hidden = true; document.body.style.overflow = ""; }
+    function kur() {
+      kutu = document.createElement("div"); kutu.className = "buyut"; kutu.hidden = true;
+      kutu.innerHTML = '<img alt=""><button class="b-kapat" aria-label="Kapat">×</button>' +
+        '<button class="b-onceki" aria-label="Önceki">‹</button><button class="b-sonraki" aria-label="Sonraki">›</button><span class="b-sayac"></span>';
+      document.body.appendChild(kutu);
+      resim = kutu.querySelector("img"); sayac = kutu.querySelector(".b-sayac");
+      kutu.querySelector(".b-kapat").onclick = kapat;
+      kutu.querySelector(".b-onceki").onclick = function (e) { e.stopPropagation(); git(-1); };
+      kutu.querySelector(".b-sonraki").onclick = function (e) { e.stopPropagation(); git(1); };
+      kutu.addEventListener("click", function (e) { if (e.target === kutu) kapat(); });
+      document.addEventListener("keydown", function (e) { if (kutu.hidden) return;
+        if (e.key === "Escape") kapat(); else if (e.key === "ArrowRight") git(1); else if (e.key === "ArrowLeft") git(-1); });
+      var x0 = null;
+      kutu.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      kutu.addEventListener("touchend", function (e) { if (x0 === null) return; var d = e.changedTouches[0].clientX - x0;
+        if (Math.abs(d) > 40) git(d < 0 ? 1 : -1); x0 = null; }, { passive: true });
+    }
+    document.addEventListener("click", function (e) {
+      var im = e.target.closest && e.target.closest("img");
+      var hl = e.target.closest && e.target.closest(".hl");
+      if (hl) im = hl.querySelector(".hl-kutu img.on") || hl.querySelector(".hl-kutu img");
+      if (!im || im.closest("a, button, header, nav, .buyut") || im.classList.contains("av") || im.classList.contains("ikon")) return;
+      if (!im.closest("main")) return;
+      var grup = hl || im.closest("section") || document.body;
+      liste = Array.prototype.filter.call(grup.querySelectorAll("img"), function (x) {
+        return !x.closest("a, button") && !x.classList.contains("av") && !x.classList.contains("ikon") && kaynak(x);
+      });
+      i = Math.max(0, liste.indexOf(im));
+      if (!kutu) kur();
+      goster(); kutu.hidden = false; document.body.style.overflow = "hidden";
+    });
+  })();
+
   // İlerleme çubuğu + üste dön
   var cubuk = document.createElement("div");
   cubuk.className = "ilerleme"; cubuk.setAttribute("aria-hidden", "true");
