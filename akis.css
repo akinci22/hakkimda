@@ -224,3 +224,51 @@ figure.msj-gorsel{margin:4px 0 0}
   scroll-snap-align:start;box-shadow:0 8px 18px -12px rgba(0,0,0,.9)}
 .siir-izgara{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:14px 0}
 .siir-izgara img{width:100%;height:auto;background:#fff;padding:6px;border-radius:2px}
+
+/* ============ v6 GÖRSEL DİL: tıklanan = buton, tıklanmayan = madde (2026-09-28) ============ */
+/* Tıklanmayan etiketler: kutu değil, noktayla başlayan satır */
+.etiketler{gap:4px 18px}
+.etk,.etk.uyari{border:0!important;padding:0!important;border-radius:0;background:none!important;text-transform:none;
+  font-family:inherit;font-size:.9rem;letter-spacing:0;color:var(--yazi-2)}
+.etk::before{content:"•";color:var(--vurgu);font-weight:700;margin-right:7px}
+.etk.uyari::before{color:#c27a1a}
+/* Tıklanmayan bilgi kartları: madde listesi */
+.kartlar{display:block!important;margin:4px 0 0;padding:0}
+.kart{background:none!important;border:0!important;border-radius:0;padding:10px 0 10px 22px!important;position:relative;
+  border-bottom:1px solid color-mix(in srgb,var(--yazi-2) 15%,transparent)!important;box-shadow:none!important}
+.kart:last-child{border-bottom:0!important}
+.kart::before{content:"";position:absolute;left:4px;top:19px;width:7px;height:7px;border-radius:50%;background:var(--vurgu)}
+.kart h4{display:inline;font-size:1rem;margin:0}
+.kart h4::after{content:" · ";color:var(--yazi-2);font-weight:400}
+.kart p{display:inline;font-size:.97rem}
+/* Sayılar: kutu değil, sade */
+.bilgi div{background:none!important;box-shadow:none!important;border:0!important;border-radius:0;
+  border-left:3px solid var(--vurgu)!important;padding:4px 0 4px 14px!important}
+
+/* Tıklanan her şey: belirgin buton + ok + basma hissi */
+.pr-bag,.bag{cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-weight:700;
+  box-shadow:0 6px 16px -8px color-mix(in srgb,var(--vurgu,#1b4f8a) 70%,transparent);
+  transition:transform .15s,box-shadow .15s,background .15s}
+.pr-bag::after,.bag::after{content:"→";display:inline-block;transition:transform .18s;opacity:1!important;position:static!important;background:none!important;inset:auto!important;width:auto!important;height:auto!important}
+.pr-bag[target=_blank]::after,.bag[target=_blank]::after{content:"↗"}
+.pr-bag:hover,.bag:hover{transform:translateY(-2px);box-shadow:0 12px 24px -10px color-mix(in srgb,var(--vurgu,#1b4f8a) 80%,transparent)}
+.pr-bag:hover::after,.bag:hover::after{transform:translateX(4px)}
+.pr-bag:active,.bag:active{transform:translateY(1px) scale(.98)}
+.kapi,.dosya a{position:relative;cursor:pointer;border:1.5px solid color-mix(in srgb,var(--vurgu) 35%,transparent)!important;
+  box-shadow:0 8px 20px -14px rgba(0,0,0,.5);padding-right:44px!important}
+.kapi::after,.dosya a::after{content:"→";position:absolute;right:14px;top:50%;width:26px;height:26px;margin-top:-13px;
+  display:grid;place-items:center;border-radius:50%;background:var(--vurgu);color:#fff;font-weight:700;font-size:.9rem;
+  transition:transform .18s}
+.kapi:hover,.dosya a:hover{border-color:var(--vurgu)!important}
+.kapi:hover::after,.dosya a:hover::after{transform:translateX(4px)}
+.kapi:active,.dosya a:active{transform:scale(.98)}
+.t-yayin .kapi::after,.t-yayin .dosya a::after{color:#04121e}
+
+/* Kaydırma animasyonları: sırayla gelme (JS sıra gecikmesi verir), aşağı-yukarı her iki yönde tetiklenir */
+@media (prefers-reduced-motion:no-preference){
+  .js .gel{transition-duration:.45s}
+  .js h2.gel{transform:translate3d(-14px,0,0)}
+  .js .bilgi b{transition:color .3s}
+  .js .tur-satir.gel>img{transform:scale(.96);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .js .tur-satir.gel.var>img{transform:none}
+}

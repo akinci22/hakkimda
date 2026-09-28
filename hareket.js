@@ -12,13 +12,41 @@
   var eski = document.querySelectorAll(".vitrin, .bakis-kart, .galeri figure, .adim-gorsel, .kanit, .tablo-sar, .kutu, .not, .grafik");
   Array.prototype.forEach.call(eski, function (e) { if (!e.closest("header")) e.classList.add("gel"); });
 
+  // v6: grupların çocukları sırayla gelsin; başlıklar da kaysın
+  var gruplar = document.querySelectorAll(".kartlar, .bilgi, .etiketler, .kisaca, .dosya, .baglar, .tur-satir>div, .kareler, .yayin-kare");
+  Array.prototype.forEach.call(gruplar, function (g) {
+    Array.prototype.forEach.call(g.children, function (c, i) {
+      c.classList.add("gel"); c.style.transitionDelay = Math.min(i, 8) * 70 + "ms";
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("main h2, main h3, .bolum-no"), function (h) { h.classList.add("gel"); });
+
+  // Sayılar görününce sayarak gelsin (yalnız düz sayılar: 52, 2.122, 96.225)
+  function say(b) {
+    var ham = b.dataset.say || b.textContent.trim();
+    if (!/^[\d.]+$/.test(ham)) return;
+    b.dataset.say = ham;
+    var hedef = parseInt(ham.replace(/\./g, ""), 10), t0 = null, sure = 700;
+    function ad(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / sure); k = 1 - Math.pow(1 - k, 3);
+      b.textContent = Math.round(hedef * k).toLocaleString("tr-TR"); if (k < 1) requestAnimationFrame(ad); }
+    requestAnimationFrame(ad);
+  }
+
   var hepsi = document.querySelectorAll(".gel, .grafik");
-  function ac(e) { e.classList.add("var"); if (e.classList.contains("grafik")) e.classList.add("ac"); }
+  function ac(e) {
+    if (e.classList.contains("var")) return;
+    e.classList.add("var"); if (e.classList.contains("grafik")) e.classList.add("ac");
+    if (!azalt) { var b = e.matches(".bilgi>div") ? e.querySelector("b") : null; if (b) say(b); }
+  }
+  function kapat(e) { e.classList.remove("var"); e.classList.remove("ac"); }
   if (azalt || !("IntersectionObserver" in window)) {
     Array.prototype.forEach.call(hepsi, ac);
   } else {
     var go = new IntersectionObserver(function (gs) {
-      gs.forEach(function (g) { if (g.isIntersecting) { ac(g.target); go.unobserve(g.target); } });
+      gs.forEach(function (g) {
+        if (g.isIntersecting) ac(g.target);
+        else if (g.boundingClientRect.top > innerHeight || g.boundingClientRect.bottom < 0) kapat(g.target); // tekrar gelince yeniden oynasın
+      });
     }, { rootMargin: "0px 0px 18% 0px", threshold: 0.01 });
     Array.prototype.forEach.call(hepsi, function (e) { go.observe(e); });
     // Emniyet: hızlı kaydırmada / bağlantı ile atlamada hiçbir şey görünmez kalmasın
