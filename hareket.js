@@ -13,7 +13,7 @@
   Array.prototype.forEach.call(eski, function (e) { if (!e.closest("header")) e.classList.add("gel"); });
 
   // v6: grupların çocukları sırayla gelsin; başlıklar da kaysın
-  var gruplar = document.querySelectorAll(".kartlar, .bilgi, .etiketler, .kisaca, .dosya, .baglar, .tur-satir>div, .kareler, .yayin-kare");
+  var gruplar = document.querySelectorAll(".kartlar, .bilgi, .etiketler, .kisaca, .dosya, .baglar, .tur-satir>div, .kareler, .yayin-kare, .gif-izgara");
   Array.prototype.forEach.call(gruplar, function (g) {
     Array.prototype.forEach.call(g.children, function (c, i) {
       c.classList.add("gel"); c.style.transitionDelay = Math.min(i, 8) * 70 + "ms";
@@ -84,6 +84,22 @@
   });
 
 
+
+
+  // Uygulama klipleri ("GIF"): yalnız ekrandayken yüklenip oynar, çıkınca durur
+  (function () {
+    var v = document.querySelectorAll("video.gif");
+    if (!v.length) return;
+    if (azalt || !("IntersectionObserver" in window)) { Array.prototype.forEach.call(v, function (x) { x.controls = true; }); return; }
+    var io = new IntersectionObserver(function (gs) {
+      gs.forEach(function (g) {
+        var x = g.target;
+        if (g.isIntersecting) { if (x.preload !== "auto") { x.preload = "auto"; x.load(); } var p = x.play(); if (p && p.catch) p.catch(function () {}); }
+        else x.pause();
+      });
+    }, { rootMargin: "120px 0px", threshold: 0.2 });
+    Array.prototype.forEach.call(v, function (x) { io.observe(x); });
+  })();
 
   // Fotoğraf montajları: her grup (kampüs, sokak) kendi karelerini çok hızlı değiştirir (yalnız ekrandayken), altta sonsuz akan şerit
   Array.prototype.forEach.call(document.querySelectorAll(".montaj"), function (m) {
