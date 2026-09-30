@@ -67,24 +67,30 @@
     });
   });
 
-  // Öne çıkarılan kartları: fare/parmak yatay gezdikçe sıradaki kareye geç
-  Array.prototype.forEach.call(document.querySelectorAll(".hl"), function (k) {
-    var im = k.querySelectorAll(".hl-kutu img"), cb = k.querySelectorAll(".hl-cubuk i"), son = 0;
-    function goster(i) { if (i === son) return; im[son].classList.remove("on"); cb[son] && cb[son].classList.remove("on");
-      im[i].classList.add("on"); cb[i] && cb[i].classList.add("on"); son = i;
-      if (!im[i].src && im[i].dataset.src) im[i].src = im[i].dataset.src; }
-    k.addEventListener("pointermove", function (e) {
-      var r = k.getBoundingClientRect();
-      goster(Math.min(im.length - 1, Math.max(0, Math.floor((e.clientX - r.left) / r.width * im.length))));
-    }, { passive: true });
-    k.addEventListener("pointerleave", function () { goster(0); });
-    k.addEventListener("pointerenter", function () {   // ilk dokunuşta hepsini yükle
-      Array.prototype.forEach.call(im, function (x) { if (!x.src && x.dataset.src) x.src = x.dataset.src; });
-    }, { once: true });
-  });
-
-
-
+  // Öne çıkarılan kartları: fare üstünde bekledikçe kareler sırayla değişir; dokunmatikte ekrandayken kendiliğinden döner
+  (function () {
+    var dokunmatik = window.matchMedia && matchMedia("(hover: none)").matches;
+    var kartlar = document.querySelectorAll(".hl");
+    Array.prototype.forEach.call(kartlar, function (k) {
+      var im = k.querySelectorAll(".hl-kutu img"), cb = k.querySelectorAll(".hl-cubuk i"), son = 0, zam = null;
+      if (im.length < 2) return;
+      function yukle() { Array.prototype.forEach.call(im, function (x) { if (x.dataset.src && x.getAttribute("src") !== x.dataset.src) x.src = x.dataset.src; }); }
+      function goster(i) { if (i === son) return; im[son].classList.remove("on"); cb[son] && cb[son].classList.remove("on");
+        im[i].classList.add("on"); cb[i] && cb[i].classList.add("on"); son = i; }
+      function basla() { if (zam || azalt) return; yukle(); zam = setInterval(function () { goster((son + 1) % im.length); }, 700); }
+      function dur(sifirla) { clearInterval(zam); zam = null; if (sifirla) goster(0); }
+      k._basla = basla; k._dur = dur;
+      if (!dokunmatik) {
+        k.addEventListener("pointerenter", function () { yukle(); goster((son + 1) % im.length); basla(); });
+        k.addEventListener("pointerleave", function () { dur(true); });
+      }
+    });
+    if (dokunmatik && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { var k = g.target; if (!k._basla) return;
+        g.isIntersecting ? k._basla() : k._dur(false); }); }, { threshold: 0.6 });
+      Array.prototype.forEach.call(kartlar, function (k) { io.observe(k); });
+    }
+  })();
 
   // Uygulama klipleri ("GIF"): yalnız ekrandayken yüklenip oynar, çıkınca durur
   (function () {
@@ -119,7 +125,7 @@
   // Fotoğrafa basınca büyüt: tam ekran, ok tuşu / kaydırma ile sonraki-önceki, Esc ile kapat
   (function () {
     var kutu, resim, sayac, liste = [], i = 0;
-    function kaynak(im) { return im.currentSrc || im.src || im.dataset.src; }
+    function kaynak(im) { return im.dataset.src || im.currentSrc || im.src; }
     function goster() { resim.src = kaynak(liste[i]); resim.alt = liste[i].alt || ""; sayac.textContent = (i + 1) + " / " + liste.length; }
     function git(d) { i = (i + d + liste.length) % liste.length; goster(); }
     function kapat() { kutu.hidden = true; document.body.style.overflow = ""; }
