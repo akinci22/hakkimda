@@ -315,7 +315,8 @@
     '<g class="hb-gunes" transform="translate(66 24)"><g class="hb-isin">' + isin + '</g><circle r="12"/></g>' +
     '<path class="hb-bulut" d="M22 44h52a12 12 0 0 0 0-24 16 16 0 0 0-30-6 12 12 0 0 0-20 8 11 11 0 0 0-2 22z"/>' +
     '<polygon class="hb-simsek" points="50,40 43,52 49,52 45,62 57,48 51,48 55,40"/>' +
-    '<g class="hb-yagmur">' + yag + '</g></svg>';
+    '<g class="hb-yagmur">' + yag + '</g></svg><span class="hb-ad"></span>';
+  var adlar = ["YolHava", "İTÜ Yemek", "Naplist", "Canlı yayın", "Temsilcilik", "Fotoğraf", "İletişim"], ad = b.querySelector(".hb-ad");
   document.body.appendChild(b);
   var kok = document.documentElement, bk = false;
   function ciz() {
@@ -323,8 +324,8 @@
     var top = kok.scrollHeight - innerHeight, p = top > 0 ? Math.min(1, scrollY / top) : 0, ev = 0;
     for (var i = 0; i < sira.length; i++) { var s = document.getElementById(sira[i]); if (s && s.getBoundingClientRect().top < innerHeight * .5) ev = i; }
     if (p > .965) ev = 6;
-    b.dataset.evre = ev;
-    b.style.transform = "translateX(" + (p * (innerWidth - 110)).toFixed(1) + "px) scale(" + (.85 + p * .3).toFixed(3) + ")";
+    if (b.dataset.evre != ev) { b.dataset.evre = ev; ad.textContent = adlar[ev]; }
+    b.style.transform = "translateX(" + (p * (innerWidth - 120)).toFixed(1) + "px)"; b.firstChild.style.transform = "scale(" + (.85 + p * .3).toFixed(3) + ")";
   }
   addEventListener("scroll", function () { if (!bk) { bk = true; requestAnimationFrame(ciz); } }, { passive: true });
   addEventListener("resize", ciz); ciz();

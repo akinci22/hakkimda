@@ -598,3 +598,16 @@ html,body{overflow-x:clip}
 .blok .ara-baslik{text-align:center}
 .blok h2,.blok .bolum-no{text-align:center;display:block;margin-left:auto;margin-right:auto}
 .blok .blok-ust{display:flex;justify-content:center;align-items:center;gap:12px}
+/* Nasıl yaptım: adım adım akış diyagramı (numaralı düğümler, aralarında ok), küçük yazı */
+.akis-not{text-align:center;font-size:.86rem;color:var(--yazi-2);margin:-4px 0 10px}
+.kartlar.akis-diyagram{display:flex!important;flex-wrap:wrap;justify-content:center;gap:26px 34px;counter-reset:adim;margin:14px 0 6px}
+.akis-diyagram .kart{counter-increment:adim;flex:0 1 190px;position:relative;background:var(--balon,#fff)!important;border:1.5px solid var(--vurgu)!important;border-radius:12px;padding:26px 14px 12px!important;text-align:center;box-shadow:0 6px 16px -10px rgba(0,0,0,.35)}
+.akis-diyagram .kart::before{content:counter(adim);position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:28px;height:28px;border-radius:50%;background:var(--vurgu);color:#fff;font:700 .8rem/28px 'Helvetica Neue',Helvetica,Arial,sans-serif}
+.akis-diyagram .kart:not(:last-child)::after{content:"";position:absolute;right:-28px;top:50%;width:20px;height:2px;background:var(--vurgu);box-shadow:none}
+.akis-diyagram .kart:not(:last-child) h4::before{content:"";position:absolute;right:-30px;top:calc(50% - 4px);border:5px solid transparent;border-left:7px solid var(--vurgu)}
+.akis-diyagram .kart h4{display:block!important;font-size:.86rem!important;margin:0 0 4px!important;text-transform:uppercase;letter-spacing:.05em;color:var(--vurgu)!important}
+.akis-diyagram .kart h4::after{content:none!important}
+.akis-diyagram .kart p{display:block!important;font-size:.8rem!important;line-height:1.45;margin:0}
+@media (max-width:600px){.akis-diyagram .kart{flex-basis:100%}.akis-diyagram .kart:not(:last-child)::after{right:50%;top:auto;bottom:-22px;width:2px;height:16px}
+ .akis-diyagram .kart:not(:last-child) h4::before{display:none}}
+.gif-kart video.kod-serit{display:block;width:100%;height:auto;aspect-ratio:640/200;margin-top:6px;border-radius:8px;object-fit:cover}
