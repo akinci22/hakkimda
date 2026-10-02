@@ -241,18 +241,30 @@
     k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; perde(true);
     if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
     requestAnimationFrame(function () { requestAnimationFrame(function () {
-      k.style.transition = "transform 2.4s cubic-bezier(.75,0,.9,.55)"; k.style.transform = "none"; }); });
+      k.style.transition = "transform 2.8s cubic-bezier(.8,0,.85,.6)"; k.style.transform = "none"; }); });
   }
   function on(el) {   // bekleme sırasında tam kaliteyi hazırla
     if (el.matches("video.gif")) { if (el.preload !== "auto") { el.preload = "auto"; el.load(); } }
     else el.querySelectorAll("img[data-src]").forEach(function (x) { if (x.getAttribute("src") !== x.dataset.src) x.src = x.dataset.src; });
   }
+  // İmleç gelir gelmez yavaşça büyümeye başlar; imleç büyüyen görselin ya da kartın içinde kaldıkça sürer.
+  // Kapanır: görselin dışına çıkınca ya da tıklayınca.
+  function icinde(el, x, y) { if (!el) return false; var r = el.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; }
   document.addEventListener("pointermove", function (e) {
-    if (Math.abs(e.clientX - son.x) + Math.abs(e.clientY - son.y) < 3) return;
-    son = { x: e.clientX, y: e.clientY };
+    var x = e.clientX, y = e.clientY;
+    if (kat) {
+      var r1 = kat.getBoundingClientRect(), r2 = hedef ? hedef.getBoundingClientRect() : r1;   // kart ile büyük görsel arası boşluk da "içeride" sayılır
+      if (x >= Math.min(r1.left, r2.left) && x <= Math.max(r1.right, r2.right) && y >= Math.min(r1.top, r2.top) && y <= Math.max(r1.bottom, r2.bottom)) {   // içerideyken kare kaydırmayı büyük görsele de yansıt
+        var su = hedef && hedef.querySelector && hedef.querySelector(".hl-kutu img.on");
+        if (su && kat.tagName === "IMG" && kat.src !== (su.currentSrc || su.src)) kat.src = su.currentSrc || su.src;
+        return;
+      }
+      kapat(); hedef = null;
+    }
     var el = e.target.closest && e.target.closest(".hl, video.gif");
-    kapat(); hedef = el;
-    if (el) { on(el); zam = setTimeout(buyut, 500); }
+    if (el === hedef) return;
+    clearTimeout(zam); hedef = el;
+    if (el) { on(el); zam = setTimeout(buyut, 60); }
   }, { passive: true });
-  addEventListener("scroll", function () { if (kat) kapat(); }, { passive: true });
+  document.addEventListener("click", function () { if (kat) { kapat(); hedef = null; } }, true);
 })();
