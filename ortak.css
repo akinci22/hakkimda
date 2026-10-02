@@ -533,3 +533,23 @@ tbody tr.ac{opacity:1;transform:none}
 .hava-bulut{display:flex;flex-direction:column;align-items:center;width:110px;transform-origin:0 0}
 .hava-bulut svg{transform-origin:50% 0;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .hb-ad{margin-top:2px;font:600 11px/1.2 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.02em;color:#0e2440;background:rgba(255,255,255,.85);padding:2px 8px;border-radius:99px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+/* Menü zaman çizgisi (geniş ekran) */
+@media (min-width:900px){
+ .menu-bag.cizgi{position:absolute;left:0;right:0;top:0;height:52px;overflow:visible;pointer-events:none}
+ .menu-bag.cizgi a{position:absolute;top:4px;pointer-events:auto;transition:left .4s ease}
+ .menu-ic{position:static}
+ .menu{position:sticky}
+}
+/* Kaldığın yere dön bulutu */
+.geri-bulut{position:fixed;left:14px;bottom:110px;z-index:70;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;cursor:pointer;
+ opacity:0;transform:translateX(-40px);transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;padding:4px}
+.geri-bulut.acik{opacity:1;transform:none;animation:gbSalin 2.6s ease-in-out .5s infinite}
+.geri-bulut svg path:first-child{fill:#fff;stroke:#9fb3c8;stroke-width:1.4}
+.geri-bulut .gb-ok{fill:none;stroke:#1570b0;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.geri-bulut svg{filter:drop-shadow(0 6px 10px rgba(0,0,0,.28))}
+.geri-bulut b{font-size:.78rem;color:#0e2440;background:rgba(255,255,255,.92);padding:3px 9px;border-radius:99px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.geri-bulut small{font-size:.66rem;color:#34506f;background:rgba(255,255,255,.8);padding:1px 7px;border-radius:99px}
+.geri-bulut:hover b{background:#1570b0;color:#fff}
+@keyframes gbSalin{0%,100%{transform:translate(0,0) rotate(-2deg)}50%{transform:translate(8px,-6px) rotate(2deg)}}
+@media (max-width:600px){.geri-bulut{left:6px;top:auto;bottom:90px}.geri-bulut svg{width:70px;height:42px}}
+@media (prefers-reduced-motion:reduce){.geri-bulut.acik{animation:none}}

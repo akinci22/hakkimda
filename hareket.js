@@ -353,8 +353,46 @@
     for (var i = 0; i < sira.length; i++) { var s = document.getElementById(sira[i]); if (s && s.getBoundingClientRect().top < innerHeight * .5) ev = i; }
     if (p > .965) ev = 6;
     if (b.dataset.evre != ev) { b.dataset.evre = ev; ad.textContent = adlar[ev]; }
-    b.style.transform = "translateX(" + (p * (innerWidth - 120)).toFixed(1) + "px)"; b.firstChild.style.transform = "scale(" + (.85 + p * .3).toFixed(3) + ")";
+    b.style.transform = "translateX(" + (window.hizaX ? window.hizaX(p) - 61 : p * (innerWidth - 120)).toFixed(1) + "px)"; b.firstChild.style.transform = "scale(" + (.85 + p * .3).toFixed(3) + ")";
   }
   addEventListener("scroll", function () { if (!bk) { bk = true; requestAnimationFrame(ciz); } }, { passive: true });
   addEventListener("resize", ciz); ciz();
+})();
+
+
+/* Üst menü bir zaman çizgisi: her başlık, bölümün sayfadaki sırasına ve yerine göre bulutun yolu üzerinde durur.
+   Menüden atlayınca solda "kaldığın yere dön" bulutu salınarak bekler. */
+(function () {
+  var kok = document.documentElement, bag = document.querySelector(".menu-bag"); if (!bag) return;
+  var linkler = Array.prototype.slice.call(bag.querySelectorAll('a[href^="#"]'));
+  function hedefY(a) { var h = document.querySelector(a.getAttribute("href")); return h ? h.getBoundingClientRect().top + scrollY - 64 : 0; }
+  function genis() { return innerWidth >= 900; }
+  window.hizaX = function (p) { var a = genis() ? 230 : 61, b = innerWidth - (genis() ? 70 : 61); return a + p * (b - a); };
+  function diz() {
+    var top = kok.scrollHeight - innerHeight;
+    linkler.sort(function (x, y) { return hedefY(x) - hedefY(y); }).forEach(function (a) { bag.appendChild(a); });
+    if (!genis()) { bag.classList.remove("cizgi"); linkler.forEach(function (a) { a.style.left = ""; }); return; }
+    bag.classList.add("cizgi"); var son = -1e9;
+    linkler.forEach(function (a) {
+      var x = window.hizaX(Math.max(0, Math.min(1, hedefY(a) / top))), w = a.offsetWidth;
+      x = Math.max(x, son + w / 2 + 6); x = Math.min(x, innerWidth - w / 2 - 8); son = x + w / 2;
+      a.style.left = (x - w / 2) + "px";
+    });
+  }
+  addEventListener("load", diz); addEventListener("resize", diz); setTimeout(diz, 1500); setTimeout(diz, 5000); diz();
+
+  var g = document.createElement("button"); g.type = "button"; g.className = "geri-bulut"; g.hidden = true;
+  g.innerHTML = '<svg viewBox="0 0 100 60" width="96" height="58" aria-hidden="true"><path d="M22 46h52a12 12 0 0 0 0-24 16 16 0 0 0-30-6 12 12 0 0 0-20 8 11 11 0 0 0-2 22z"/>' +
+    '<path class="gb-ok" d="M58 34H40m0 0 7-7m-7 7 7 7"/></svg><b>Kaldığın yere dön</b><small>henüz görmediğin şeyler var</small>';
+  document.body.appendChild(g);
+  var donY = null;
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a || a.getAttribute("href").length < 2) return;
+    var y = hedefY(a); if (Math.abs(y - scrollY) < innerHeight) return;
+    donY = scrollY; setTimeout(function () { g.hidden = false; requestAnimationFrame(function () { g.classList.add("acik"); }); }, 900);
+  }, true);
+  function gizle() { g.classList.remove("acik"); setTimeout(function () { if (!g.classList.contains("acik")) g.hidden = true; }, 400); }
+  g.addEventListener("click", function () { if (donY === null) return; var y = donY; donY = null; gizle();
+    scrollTo({ top: y, behavior: "smooth" }); });
+  addEventListener("scroll", function () { if (donY !== null && !g.hidden && Math.abs(scrollY - donY) < 200) { donY = null; gizle(); } }, { passive: true });
 })();
