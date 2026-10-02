@@ -103,7 +103,7 @@
         if (g.isIntersecting) { if (x.preload !== "auto") { x.preload = "auto"; x.load(); } var p = x.play(); if (p && p.catch) p.catch(function () {}); }
         else x.pause();
       });
-    }, { rootMargin: "120px 0px", threshold: 0.2 });
+    }, { rootMargin: "600px 0px", threshold: 0 });
     Array.prototype.forEach.call(v, function (x) { io.observe(x); });
   })();
 
@@ -179,4 +179,25 @@
   }
   addEventListener("scroll", function () { if (!bekle) { bekle = true; requestAnimationFrame(ciz); } }, { passive: true });
   ciz();
+})();
+
+/* Fare tekerleğinde ivmeli, yumuşak kaydırma (Lenis). Dokunmatikte ve "az hareket" tercihinde kapalı. */
+(function () {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || matchMedia("(pointer: coarse)").matches) return;
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js";
+  s.onload = function () {
+    if (!window.Lenis) return;
+    document.documentElement.style.scrollBehavior = "auto";
+    var l = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, smoothWheel: true });
+    function r(t) { l.raf(t); requestAnimationFrame(r); }
+    requestAnimationFrame(r);
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a || a.getAttribute("href").length < 2) return;
+      var h = document.querySelector(a.getAttribute("href"));
+      if (h) { e.preventDefault(); l.scrollTo(h, { offset: -10 }); }
+    });
+  };
+  document.head.appendChild(s);
 })();
