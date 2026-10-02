@@ -79,7 +79,7 @@
         im[i].classList.add("on"); cb[i] && cb[i].classList.add("on"); son = i; }
       function basla() { if (zam || azalt) return; yukle(); zam = setInterval(function () { goster((son + 1) % im.length); }, 700); }
       function dur(sifirla) { clearInterval(zam); zam = null; if (sifirla) goster(0); }
-      k._basla = basla; k._dur = dur;
+      k._basla = basla; k._dur = dur; k._git = function (n) { yukle(); goster(((son + n) % im.length + im.length) % im.length); };
       if (!dokunmatik) {   // imleç sağa/sola kaydıkça o kadar kare ilerler/geriler
         var x0 = null, ADIM = 28;
         k.addEventListener("pointerenter", function (e) { yukle(); x0 = e.clientX; });
@@ -87,6 +87,16 @@
           if (Math.abs(d) >= ADIM) { var n = Math.trunc(d / ADIM); x0 += n * ADIM; goster(((son + n) % im.length + im.length) % im.length); } });
         k.addEventListener("pointerleave", function () { x0 = null; });
       }
+    });
+    if (dokunmatik) Array.prototype.forEach.call(kartlar, function (k) {   // telefonda parmakla yana kaydır: kareler ilerler/geriler
+      if (!k._basla) return; var x0 = null, sx = 0, sy = 0, yatay = null, tekrar = null;
+      var im = k.querySelectorAll(".hl-kutu img");
+      k.addEventListener("touchstart", function (e) { var t = e.touches[0]; x0 = sx = t.clientX; sy = t.clientY; yatay = null; }, { passive: true });
+      k.addEventListener("touchmove", function (e) { if (x0 === null) return; var t = e.touches[0];
+        if (yatay === null && Math.abs(t.clientX - sx) + Math.abs(t.clientY - sy) > 8) yatay = Math.abs(t.clientX - sx) > Math.abs(t.clientY - sy);
+        if (!yatay) return; k._dur(false); clearTimeout(tekrar);
+        var d = t.clientX - x0; if (Math.abs(d) >= 22) { var n = Math.trunc(d / 22); x0 += n * 22; k._git(n); } }, { passive: true });
+      k.addEventListener("touchend", function () { x0 = null; if (yatay) tekrar = setTimeout(k._basla, 2500); }, { passive: true });
     });
     if (dokunmatik && "IntersectionObserver" in window) {
       var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { var k = g.target; if (!k._basla) return;
@@ -212,7 +222,8 @@
 /* Öne çıkarılanlar ve klipler: imleç 2 sn kıpırdamazsa önce çok yavaş, sonra hızlanarak ekranın çoğunu kaplayacak kadar büyür.
    Beklerken tam kalite arka planda yüklenir. İmleç kıpırdayınca ya da çıkınca küçülür. */
 (function () {
-  if (matchMedia("(hover: none)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var dokun = matchMedia("(hover: none)").matches;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var hedef = null, zam = null, kat = null, son = { x: 0, y: 0 }, kaydi = 0;
   addEventListener("scroll", function () { kaydi = Date.now(); if (kat && kat._evre1) { kapat(); hedef = null; } }, { passive: true });
   var pd = document.createElement("div");   // arka perde: büyürken kararıp bulanıklaşır, sonunda kapkara
@@ -235,7 +246,7 @@
     var el = kaynak(hedef); if (!el) return;
     var r = el.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
     var oran = (el.videoWidth || el.naturalWidth || r.width) / (el.videoHeight || el.naturalHeight || r.height);
-    var w = Math.min(vw * (hz ? .48 : .62), vh * (hz ? .58 : .72) * oran), h = w / oran;
+    var w = Math.min(vw * (dokun ? .94 : hz ? .48 : .62), vh * (dokun ? .8 : hz ? .58 : .72) * oran), h = w / oran;
     var k = el.tagName === "VIDEO" ? el.cloneNode(true) : new Image();
     if (k.tagName === "IMG") k.src = el.currentSrc || el.src;
     else { k.muted = true; k.loop = true; k.preload = "auto"; k.currentTime = el.currentTime || 0; }
@@ -263,6 +274,7 @@
   // Kapanır: görselin dışına çıkınca ya da tıklayınca.
   function icinde(el, x, y) { if (!el) return false; var r = el.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; }
   document.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "mouse") return;
     var x = e.clientX, y = e.clientY;
     if (kat) {
       var r1 = kat.getBoundingClientRect(), r2 = hedef ? hedef.getBoundingClientRect() : r1;   // kart ile büyük görsel arası boşluk da "içeride" sayılır
@@ -279,7 +291,23 @@
     if (el) { on(el); if (Date.now() - kaydi < 350) { hedef = null; return; }   // tekerlek hızlı dönüyorsa tetikleme
     zam = setTimeout(buyut, 60); }
   }, { passive: true });
-  document.addEventListener("click", function () { if (kat) { kapat(); hedef = null; } }, true);
+  var yut = false;
+  document.addEventListener("click", function (e) {
+    if (yut) { yut = false; e.preventDefault(); e.stopPropagation(); return; }   // uzun basışın ardından gelen tık
+    if (kat) { kapat(); hedef = null; if (dokun) { e.preventDefault(); e.stopPropagation(); } }
+  }, true);
+  if (dokun) {   // Telefon: basılı tut (0,45 sn) → büyür; herhangi bir yere dokun → kapanır. Kaydırma başlarsa iptal.
+    var bas = null, bx = 0, by = 0;
+    document.addEventListener("touchstart", function (e) {
+      var el = e.target.closest && e.target.closest(".hl, video.gif"); if (!el || kat) return;
+      var t = e.touches[0]; bx = t.clientX; by = t.clientY; on(el);
+      bas = setTimeout(function () { bas = null; hedef = el; buyut(); yut = true; if (navigator.vibrate) navigator.vibrate(8); }, 450);
+    }, { passive: true });
+    document.addEventListener("touchmove", function (e) { if (!bas) return; var t = e.touches[0];
+      if (Math.abs(t.clientX - bx) + Math.abs(t.clientY - by) > 10) { clearTimeout(bas); bas = null; } }, { passive: true });
+    document.addEventListener("touchend", function () { if (bas) { clearTimeout(bas); bas = null; } }, { passive: true });
+    document.addEventListener("contextmenu", function (e) { if (e.target.closest && e.target.closest(".hl, video.gif")) e.preventDefault(); });
+  }
 })();
 
 /* Yükleme önceliği: önce ekrandaki klipler (yukarıdaki gözlemci). Kaydırma durunca yakındaki
