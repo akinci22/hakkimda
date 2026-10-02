@@ -217,9 +217,12 @@
   var pd = document.createElement("div");   // arka perde: büyürken kararıp bulanıklaşır, sonunda kapkara
   pd.style.cssText = "position:fixed;inset:0;z-index:9998;pointer-events:none;background:#000;opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)";
   document.body.appendChild(pd);
-  function perde(ac) {
-    pd.style.transition = ac ? "opacity 2.4s cubic-bezier(.75,0,.9,.55), backdrop-filter 1.2s ease-out" : "opacity .45s ease, backdrop-filter .45s";
-    pd.style.opacity = ac ? "1" : "0"; var b = ac ? "blur(14px)" : "blur(0px)";
+  // hizli = YolHava klipleri: 1 sn bekler, hızlı büyür, arka kararmaz yalnız bokeh gibi bulanıklaşır
+  function perde(ac, hizli) {
+    pd.style.background = hizli ? "rgba(10,20,40,.12)" : "#000";
+    pd.style.transition = !ac ? "opacity .4s ease, backdrop-filter .4s" : hizli ? "opacity .35s ease-out, backdrop-filter .45s ease-out"
+      : "opacity 1.5s cubic-bezier(.75,0,.9,.55), backdrop-filter .9s ease-out";
+    pd.style.opacity = ac ? "1" : "0"; var b = !ac ? "blur(0px)" : hizli ? "blur(18px) saturate(1.35) brightness(1.05)" : "blur(14px)";
     pd.style.backdropFilter = b; pd.style.webkitBackdropFilter = b;
   }
   function kaynak(el) { return el.matches("video.gif") ? el : (el.querySelector(".hl-kutu img.on") || el.querySelector("video.gif") || el.querySelector("img")); }
@@ -227,10 +230,11 @@
     k.style.transition = "transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s"; k.style.transform = k._ilk; k.style.opacity = "0";
     setTimeout(function () { k.remove(); }, 460); }
   function buyut() {
+    var hz = !!hedef.closest("#projeler");
     var el = kaynak(hedef); if (!el) return;
     var r = el.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
     var oran = (el.videoWidth || el.naturalWidth || r.width) / (el.videoHeight || el.naturalHeight || r.height);
-    var w = Math.min(vw * .62, vh * .72 * oran), h = w / oran;
+    var w = Math.min(vw * (hz ? .48 : .62), vh * (hz ? .58 : .72) * oran), h = w / oran;
     var k = el.tagName === "VIDEO" ? el.cloneNode(true) : new Image();
     if (k.tagName === "IMG") k.src = el.currentSrc || el.src;
     else { k.muted = true; k.loop = true; k.preload = "auto"; k.currentTime = el.currentTime || 0; }
@@ -238,10 +242,10 @@
     k.style.cssText = "position:fixed;z-index:9999;left:" + (vw - w) / 2 + "px;top:" + (vh - h) / 2 + "px;width:" + w + "px;height:" + h +
       "px;object-fit:contain;background:#000;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6);pointer-events:none;will-change:transform;transform-origin:0 0";
     var s = r.width / w, ilk = "translate(" + (r.left - (vw - w) / 2) + "px," + (r.top - (vh - h) / 2) + "px) scale(" + s + ")";
-    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; perde(true);
+    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; perde(true, hz);
     if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
     requestAnimationFrame(function () { requestAnimationFrame(function () {
-      k.style.transition = "transform 2.8s cubic-bezier(.8,0,.85,.6)"; k.style.transform = "none"; }); });
+      k.style.transition = hz ? "transform .5s cubic-bezier(.2,.8,.2,1)" : "transform 1.5s cubic-bezier(.8,0,.85,.6)"; k.style.transform = "none"; }); });
   }
   function on(el) {   // bekleme sırasında tam kaliteyi hazırla
     if (el.matches("video.gif")) { if (el.preload !== "auto") { el.preload = "auto"; el.load(); } }
@@ -264,7 +268,55 @@
     var el = e.target.closest && e.target.closest(".hl, video.gif");
     if (el === hedef) return;
     clearTimeout(zam); hedef = el;
-    if (el) { on(el); zam = setTimeout(buyut, 60); }
+    if (el) { on(el); zam = setTimeout(buyut, el.closest("#projeler") ? 1000 : 60); }
   }, { passive: true });
   document.addEventListener("click", function () { if (kat) { kapat(); hedef = null; } }, true);
+})();
+
+/* Yükleme önceliği: önce ekrandaki klipler (yukarıdaki gözlemci). Kaydırma durunca yakındaki
+   (yaklaşık iki ekran içindeki) klipler, ekrana yakın olandan başlayarak tek tek arka planda iner. */
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  var yakin = new Set(), dur = null, calisiyor = false;
+  var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { g.isIntersecting ? yakin.add(g.target) : yakin.delete(g.target); }); planla(); },
+    { rootMargin: "1800px 0px" });
+  document.querySelectorAll("video.gif").forEach(function (v) { io.observe(v); });
+  function planla() { clearTimeout(dur); dur = setTimeout(sira, 700); }
+  addEventListener("scroll", planla, { passive: true });
+  function sira() {
+    if (calisiyor) return;
+    var orta = innerHeight / 2, en = null, ed = 1e9;
+    yakin.forEach(function (v) { if (v.preload === "auto") { yakin.delete(v); return; }
+      var r = v.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - orta); if (d < ed) { ed = d; en = v; } });
+    if (!en) return;
+    calisiyor = true; yakin.delete(en); en.preload = "auto"; en.load();
+    var bitti = function () { calisiyor = false; en.removeEventListener("canplaythrough", bitti); setTimeout(sira, 50); };
+    en.addEventListener("canplaythrough", bitti); setTimeout(function () { if (calisiyor) bitti(); }, 4000);
+  }
+})();
+
+/* İlerleme bulutu: üstteki çubuğun yerine bir kümülüs. Sayfa ilerledikçe sağa kayar ve biraz büyür;
+   her bölümde hava değişir: bulut → güneş doğar → hüzmeler artar → şimşek → yağmur → güneş döner → yalnız güneş. */
+(function () {
+  var sira = ["projeler", "yemek", "naplist", "yayin", "temsilcilik", "fotograf"];
+  var b = document.createElement("div"); b.className = "hava-bulut"; b.setAttribute("aria-hidden", "true");
+  var isin = ""; for (var a = 0; a < 360; a += 30) isin += '<line x1="0" y1="-17" x2="0" y2="-25" transform="rotate(' + a + ')"/>';
+  var yag = ""; for (var r = 0; r < 6; r++) yag += '<line x1="' + (30 + r * 8) + '" y1="44" x2="' + (27 + r * 8) + '" y2="52" style="animation-delay:' + (r * .13) + 's"/>';
+  b.innerHTML = '<svg viewBox="0 0 100 64" width="100" height="64">' +
+    '<g class="hb-gunes" transform="translate(66 24)"><g class="hb-isin">' + isin + '</g><circle r="12"/></g>' +
+    '<path class="hb-bulut" d="M22 44h52a12 12 0 0 0 0-24 16 16 0 0 0-30-6 12 12 0 0 0-20 8 11 11 0 0 0-2 22z"/>' +
+    '<polygon class="hb-simsek" points="50,40 43,52 49,52 45,62 57,48 51,48 55,40"/>' +
+    '<g class="hb-yagmur">' + yag + '</g></svg>';
+  document.body.appendChild(b);
+  var kok = document.documentElement, bk = false;
+  function ciz() {
+    bk = false;
+    var top = kok.scrollHeight - innerHeight, p = top > 0 ? Math.min(1, scrollY / top) : 0, ev = 0;
+    for (var i = 0; i < sira.length; i++) { var s = document.getElementById(sira[i]); if (s && s.getBoundingClientRect().top < innerHeight * .5) ev = i; }
+    if (p > .965) ev = 6;
+    b.dataset.evre = ev;
+    b.style.transform = "translateX(" + (p * (innerWidth - 110)).toFixed(1) + "px) scale(" + (.85 + p * .3).toFixed(3) + ")";
+  }
+  addEventListener("scroll", function () { if (!bk) { bk = true; requestAnimationFrame(ciz); } }, { passive: true });
+  addEventListener("resize", ciz); ciz();
 })();
