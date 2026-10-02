@@ -80,9 +80,12 @@
       function basla() { if (zam || azalt) return; yukle(); zam = setInterval(function () { goster((son + 1) % im.length); }, 700); }
       function dur(sifirla) { clearInterval(zam); zam = null; if (sifirla) goster(0); }
       k._basla = basla; k._dur = dur;
-      if (!dokunmatik) {
-        k.addEventListener("pointerenter", function () { yukle(); goster((son + 1) % im.length); basla(); });
-        k.addEventListener("pointerleave", function () { dur(true); });
+      if (!dokunmatik) {   // imleç sağa/sola kaydıkça o kadar kare ilerler/geriler
+        var x0 = null, ADIM = 28;
+        k.addEventListener("pointerenter", function (e) { yukle(); x0 = e.clientX; });
+        k.addEventListener("pointermove", function (e) { if (x0 === null) return; var d = e.clientX - x0;
+          if (Math.abs(d) >= ADIM) { var n = Math.trunc(d / ADIM); x0 += n * ADIM; goster(((son + n) % im.length + im.length) % im.length); } });
+        k.addEventListener("pointerleave", function () { x0 = null; });
       }
     });
     if (dokunmatik && "IntersectionObserver" in window) {
@@ -200,4 +203,44 @@
     });
   };
   document.head.appendChild(s);
+})();
+
+/* Öne çıkarılanlar ve klipler: imleç 2 sn kıpırdamazsa önce çok yavaş, sonra hızlanarak ekranın çoğunu kaplayacak kadar büyür.
+   Beklerken tam kalite arka planda yüklenir. İmleç kıpırdayınca ya da çıkınca küçülür. */
+(function () {
+  if (matchMedia("(hover: none)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var hedef = null, zam = null, kat = null, son = { x: 0, y: 0 };
+  function kaynak(el) { return el.matches("video.gif") ? el : (el.querySelector(".hl-kutu img.on") || el.querySelector("video.gif") || el.querySelector("img")); }
+  function kapat() { clearTimeout(zam); zam = null; if (!kat) return; var k = kat; kat = null;
+    k.style.transition = "transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s"; k.style.transform = k._ilk; k.style.opacity = "0";
+    setTimeout(function () { k.remove(); }, 460); }
+  function buyut() {
+    var el = kaynak(hedef); if (!el) return;
+    var r = el.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
+    var oran = (el.videoWidth || el.naturalWidth || r.width) / (el.videoHeight || el.naturalHeight || r.height);
+    var w = Math.min(vw * .9, vh * .9 * oran), h = w / oran;
+    var k = el.tagName === "VIDEO" ? el.cloneNode(true) : new Image();
+    if (k.tagName === "IMG") k.src = el.currentSrc || el.src;
+    else { k.muted = true; k.loop = true; k.preload = "auto"; k.currentTime = el.currentTime || 0; }
+    k.className = "buyuk-kat";
+    k.style.cssText = "position:fixed;z-index:9999;left:" + (vw - w) / 2 + "px;top:" + (vh - h) / 2 + "px;width:" + w + "px;height:" + h +
+      "px;object-fit:contain;background:#000;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6);pointer-events:none;will-change:transform;transform-origin:0 0";
+    var s = r.width / w, ilk = "translate(" + (r.left - (vw - w) / 2) + "px," + (r.top - (vh - h) / 2) + "px) scale(" + s + ")";
+    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k;
+    if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      k.style.transition = "transform 2.4s cubic-bezier(.75,0,.9,.55)"; k.style.transform = "none"; }); });
+  }
+  function on(el) {   // bekleme sırasında tam kaliteyi hazırla
+    if (el.matches("video.gif")) { if (el.preload !== "auto") { el.preload = "auto"; el.load(); } }
+    else el.querySelectorAll("img[data-src]").forEach(function (x) { if (x.getAttribute("src") !== x.dataset.src) x.src = x.dataset.src; });
+  }
+  document.addEventListener("pointermove", function (e) {
+    if (Math.abs(e.clientX - son.x) + Math.abs(e.clientY - son.y) < 3) return;
+    son = { x: e.clientX, y: e.clientY };
+    var el = e.target.closest && e.target.closest(".hl, video.gif");
+    kapat(); hedef = el;
+    if (el) { on(el); zam = setTimeout(buyut, 2000); }
+  }, { passive: true });
+  addEventListener("scroll", function () { if (kat) kapat(); }, { passive: true });
 })();
