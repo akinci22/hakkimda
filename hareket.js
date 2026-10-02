@@ -103,7 +103,7 @@
         if (g.isIntersecting) { if (x.preload !== "auto") { x.preload = "auto"; x.load(); } var p = x.play(); if (p && p.catch) p.catch(function () {}); }
         else x.pause();
       });
-    }, { rootMargin: "600px 0px", threshold: 0 });
+    }, { rootMargin: "300px 0px", threshold: 0 });
     Array.prototype.forEach.call(v, function (x) { io.observe(x); });
   })();
 
