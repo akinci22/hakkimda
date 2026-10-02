@@ -119,8 +119,12 @@
     ic.innerHTML = html;
     if (azalt) return;
     var hazir = [], y = 0, i = 0, zam = null;
-    function yukle() { if (y >= L.length) return; var im = new Image(); im.onload = function () { hazir.push(im.src); yukle(); }; im.onerror = yukle; im.src = L[y++]; }
-    function oynat() { if (zam) return; if (!y) yukle(); zam = setInterval(function () { if (hazir.length > 1) { i = (i + 1) % hazir.length; kare.src = hazir[i]; } }, 110); }
+    // bölüme yaklaşınca öncelikli ve 4 paralel yükle; yüklenen kare hemen döngüye girer
+    function yukle() { if (y >= L.length) return; var im = new Image(); im.fetchPriority = "high"; im.decoding = "async";
+      im.onload = function () { hazir.push(im.src); yukle(); }; im.onerror = yukle; im.src = L[y++]; }
+    function basla() { if (!y) for (var p = 0; p < 4; p++) yukle(); }
+    new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { basla(); o.disconnect(); } }, { rootMargin: "1500px 0px" }).observe(m);
+    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length > 1) { i = (i + 1) % hazir.length; kare.src = hazir[i]; } }, 110); }
     function dur() { clearInterval(zam); zam = null; }
     new IntersectionObserver(function (g) { g[0].isIntersecting ? oynat() : dur(); }).observe(m);
   });
