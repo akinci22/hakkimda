@@ -183,7 +183,7 @@ function kaydirDegis(k, src, yon) {
       var im = e.target.closest && e.target.closest("img");
       var hl = e.target.closest && e.target.closest(".hl");
       if (hl) im = hl.querySelector(".hl-kutu img.on") || hl.querySelector(".hl-kutu img");
-      if (!im || im.classList.contains("montaj-kare") || im.closest("a, button, header, nav, .buyut") || im.classList.contains("av") || im.classList.contains("ikon")) return;
+      if (!im || im.classList.contains("montaj-kare") || im.closest("a, button, header, nav, .buyut, .dmg-foto") || im.classList.contains("av") || im.classList.contains("ikon")) return;
       if (!im.closest("main")) return;
       var serit = im.closest(".montaj-ic"), grup = serit || hl || im.closest("section") || document.body;
       liste = Array.prototype.filter.call(grup.querySelectorAll("img"), function (x) {
@@ -612,5 +612,33 @@ function kaydirDegis(k, src, yon) {
   Array.prototype.forEach.call(b, function (s) {
     s.style.setProperty("--onceki", onceki);
     onceki = getComputedStyle(s).getPropertyValue("--zemin").trim() || getComputedStyle(s).backgroundColor;
+  });
+})();
+
+/* "Bu işin çıkması için gerekenler": zihin haritası — ortada merkez, iki yana dallar, eğri bağlantılar; ekrana girince sırayla belirir */
+(function () {
+  document.querySelectorAll('.yetkin[data-harita]').forEach(function (y) {
+    var h3 = y.querySelector('h3'), p = y.querySelector('p'), li = [].slice.call(y.querySelectorAll('li')); if (!p || !li.length) return;
+    var sol = document.createElement('div'), sag = document.createElement('div'), hub = document.createElement('div'), map = document.createElement('div');
+    sol.className = 'zh-yan sol'; sag.className = 'zh-yan sag'; hub.className = 'zh-hub'; map.className = 'zh';
+    hub.innerHTML = '<b>Gerekenler</b><span>' + p.textContent + '</span>';
+    li.forEach(function (l, i) { var d = document.createElement('div'); d.className = 'zh-dal'; d.style.setProperty('--i', i + 1); d.innerHTML = l.innerHTML; (i % 2 ? sag : sol).appendChild(d); });
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('class', 'zh-cizgi');
+    map.appendChild(svg); map.appendChild(sol); map.appendChild(hub); map.appendChild(sag);
+    y.innerHTML = ''; y.appendChild(h3); y.appendChild(map);
+    function ciz() {
+      var r = map.getBoundingClientRect(), hr = hub.getBoundingClientRect(), html = '';
+      svg.setAttribute('viewBox', '0 0 ' + r.width + ' ' + r.height);
+      var hy = hr.top - r.top + hr.height / 2;
+      map.querySelectorAll('.zh-dal').forEach(function (d, i) {
+        var b = d.getBoundingClientRect(), solda = d.parentNode.classList.contains('sol');
+        var x1 = solda ? hr.left - r.left : hr.right - r.left, x2 = solda ? b.right - r.left : b.left - r.left, y2 = b.top - r.top + b.height / 2;
+        html += '<path d="M' + x1 + ' ' + hy + ' C ' + (x1 + x2) / 2 + ' ' + hy + ', ' + (x1 + x2) / 2 + ' ' + y2 + ', ' + x2 + ' ' + y2 + '" style="--i:' + (i + 1) + '"/>';
+      });
+      svg.innerHTML = html;
+    }
+    ciz(); addEventListener('resize', ciz);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { ciz(); y.classList.add('zh-ac'); o.disconnect(); } }, { threshold: .2 }).observe(y);
+    else y.classList.add('zh-ac');
   });
 })();
