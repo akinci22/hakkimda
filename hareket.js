@@ -500,7 +500,7 @@ function kaydirDegis(k, src) {
 (function () {
   if (!matchMedia("(pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var TIK = "a,button,[role=button],summary,label,select,video.gif,.hl,.ss-yan img,.montaj-ic img,.r-kart,.hava-bulut,.geri-bulut,.cer,.gif-kart";
-  var im = document.createElement("div"); im.className = "bulut-imlec"; im.setAttribute("aria-hidden", "true");
+  var im = document.createElement("div"); im.className = "bulut-imlec"; im.setAttribute("aria-hidden", "true"); im.style.transform = "translate(-200px,-200px)";
   var yag = ""; for (var i = 0; i < 4; i++) yag += '<line x1="' + (12 + i * 5) + '" y1="25" x2="' + (10 + i * 5) + '" y2="31" style="animation-delay:' + i * .12 + 's"/>';
   im.innerHTML = '<svg viewBox="0 0 40 40" width="58" height="58"><path class="bi-uc" d="M1 1 L9 4 L4 9 Z"/>' +
     '<path class="bi-bulut" d="M9 22h20a6 6 0 0 0 0-12 8 8 0 0 0-15-2 6 6 0 0 0-5 14z"/>' +
