@@ -422,7 +422,11 @@ function ray() {
 /* yumuşak tekerlek: hız sınırlı, yumuşatılmış kaydırma (fare/trackpad); dokunmatik ve hareket-azalt etkilenmez */
 let hedefY = null, kayRaf = 0;
 function kaydirHedef(y) { hedefY = Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight)); if (!kayRaf) kayRaf = requestAnimationFrame(kaydirAdim); }
-function kaydirAdim() { const cur = scrollY; const fark = hedefY - cur; if (Math.abs(fark) < .6) { scrollTo(0, hedefY); kayRaf = 0; hedefY = null; return; } scrollTo(0, cur + fark * .11); kayRaf = requestAnimationFrame(kaydirAdim); }
+let kayTakil = 0;
+function kaydirDur() { if (kayRaf) cancelAnimationFrame(kayRaf); kayRaf = 0; hedefY = null; kayTakil = 0; }
+function kaydirAdim() { if (hedefY == null) { kayRaf = 0; return; } const cur = scrollY; const fark = hedefY - cur; if (Math.abs(fark) < .6 || kayTakil > 6) { if (kayTakil <= 6) scrollTo(0, hedefY); kaydirDur(); return; } scrollTo(0, cur + fark * .11); kayTakil = Math.abs(scrollY - cur) < .3 ? kayTakil + 1 : 0; kayRaf = requestAnimationFrame(kaydirAdim); }
+/* dokunmatikte kullanıcı parmağını koyunca otomatik kaydırma bırakılır (adres çubuğu yüksekliği değişince hedefe ulaşılamayıp takılmasın) */
+addEventListener('touchstart', kaydirDur, { passive: true });
 function yumusakKaydirma() {
   if (dokunmatik || azalt) return;
   addEventListener('wheel', e => { if (e.ctrlKey) return; const d = $('#detay'); if (d && d.open) return; if (e.target.closest('.tablo-sar, .serit, .panel, textarea')) return; e.preventDefault(); const adim = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 100) * 1.1; const taban = hedefY == null ? scrollY : hedefY; kaydirHedef(taban + adim); }, { passive: false });
