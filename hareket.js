@@ -125,7 +125,8 @@
     var T = window.MONTAJ || {}, L = T[m.dataset.grup] || (Array.isArray(T) ? T : null);
     if (!L || !L.length) return;
     var kare = m.querySelector(".montaj-kare"), ic = m.querySelector(".montaj-ic"), html = "";
-    for (var t = 0; t < 2; t++) L.forEach(function (u) { html += '<img src="' + u + '" alt="" loading="lazy" decoding="async" width="99" height="62">'; });
+    var sabit = m.dataset.grup === "kampus";   // kampüs: şerit kaymaz, tek sıra; kareler yavaş, solup belirerek değişir
+    for (var t = 0; t < (sabit ? 1 : 2); t++) L.forEach(function (u) { html += '<img src="' + u + '" alt="" loading="lazy" decoding="async" width="99" height="62">'; });
     ic.innerHTML = html;
     if (azalt) return;
     var hazir = [], y = 0, i = 0, zam = null;
@@ -134,7 +135,9 @@
       im.onload = function () { hazir.push(im.src); yukle(); }; im.onerror = yukle; im.src = L[y++]; }
     function basla() { if (!y) for (var p = 0; p < 4; p++) yukle(); }
     new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { basla(); o.disconnect(); } }, { rootMargin: "1500px 0px" }).observe(m);
-    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length > 1) { i = (i + 1) % hazir.length; kare.src = hazir[i]; } }, 110); }
+    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length < 2) return; i = (i + 1) % hazir.length;
+      if (!sabit) { kare.src = hazir[i]; return; }
+      kare.classList.add("sol"); setTimeout(function () { kare.src = hazir[i]; kare.classList.remove("sol"); }, 450); }, sabit ? 2600 : 110); }
     function dur() { clearInterval(zam); zam = null; }
     new IntersectionObserver(function (g) { g[0].isIntersecting ? oynat() : dur(); }).observe(m);
   });
