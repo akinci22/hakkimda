@@ -496,8 +496,12 @@ function kaydirDegis(k, src) {
   var duz = []; gr.forEach(function (g) { duz = duz.concat(g.ii); });
   function img(i) { return '<img src="' + L[i] + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; }
   function sira(ii, n) { var h = ii.map(img).join(""); for (var z = ii.length; z < n; z++) h += "<i></i>"; return '<div class="ss-sira s' + n + '">' + h + '</div>'; }
-  for (var p = 0, k = 0; p < duz.length; k++) { var n = k % 2 ? 3 : 2;
-    sol += sira(duz.slice(p, p + n), n); p += n; sag += sira(duz.slice(p, p + n), n); p += n; }
+  // dikeyler uçlarda ve büyük fotoğrafın yanında, yataylar ortada: 2'li satır [D,D], 3'lü satır [D,Y,D]
+  var yon = M0.yon || [], V = duz.filter(function (i) { return yon[i] !== "h"; }), Hh = duz.filter(function (i) { return yon[i] === "h"; });
+  function al(t) { var a = t === "h" ? Hh : V, b = t === "h" ? V : Hh; return a.length ? a.shift() : b.shift(); }
+  for (var k = 0; V.length + Hh.length > 0; k++) { var tip = k % 2 ? ["v", "h", "v"] : ["v", "v"];
+    [0, 1].forEach(function (yan) { var ii = []; tip.forEach(function (t) { var x = al(t); if (x !== undefined) ii.push(x); });
+      if (yan === 0) sol += sira(ii, tip.length); else sag += sira(ii, tip.length); }); }
   kap.innerHTML = '<div class="ss-yan">' + sol + '</div><div class="ss-orta"><img class="ss-ana" src="' + L[0] + '" alt="Sokak fotoğrafı" width="420" height="600"></div><div class="ss-yan">' + sag + '</div>';
   var ana = kap.querySelector(".ss-ana"), k = kap.querySelectorAll(".ss-yan img"), i = 0, ust = false, gorunur = false;
   var bul = {}; Array.prototype.forEach.call(k, function (x) { bul[x.dataset.i] = x; });
