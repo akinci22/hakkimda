@@ -492,16 +492,12 @@ function kaydirDegis(k, src) {
   var gr = [], son = null;
   L.forEach(function (u, i) { var key = (M0.grup || [])[i]; if (key === undefined) key = "t" + i;
     if (!son || son.k !== key) { son = { k: key, ii: [] }; gr.push(son); } son.ii.push(i); });
-  var seri = [], tek = [], tekler = [];
-  gr.forEach(function (g) { if (g.ii.length > 1) for (var a = 0; a < g.ii.length; a += 4) seri.push({ s: 1, ii: g.ii.slice(a, a + 4), o: g.ii[0] });
-    else tekler.push(g.ii[0]); });
-  for (var a = 0; a < tekler.length; a += 4) tek.push({ s: 0, ii: tekler.slice(a, a + 4), o: tekler[a] });
+  // 2-3-2-3 düzeni: kareler (gruplar bitişik) sırayla akar; her satır çifti solda ve sağda aynı sayıda: tam ayna simetri
+  var duz = []; gr.forEach(function (g) { duz = duz.concat(g.ii); });
   function img(i) { return '<img src="' + L[i] + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; }
-  function sira(r) { return r ? '<div class="ss-sira' + (r.s ? ' seri' : '') + '">' + r.ii.map(img).join("") + '</div>' : '<div class="ss-sira bos"><i></i><i></i><i></i><i></i></div>'; }
-  var ciftler = [];
-  [seri, tek].forEach(function (R) { for (var a = 0; a < R.length; a += 2) ciftler.push([R[a], R[a + 1]]); });
-  ciftler.sort(function (x, y) { return x[0].o - y[0].o; });
-  ciftler.forEach(function (c) { sol += sira(c[0]); sag += sira(c[1] || null); });
+  function sira(ii, n) { var h = ii.map(img).join(""); for (var z = ii.length; z < n; z++) h += "<i></i>"; return '<div class="ss-sira s' + n + '">' + h + '</div>'; }
+  for (var p = 0, k = 0; p < duz.length; k++) { var n = k % 2 ? 3 : 2;
+    sol += sira(duz.slice(p, p + n), n); p += n; sag += sira(duz.slice(p, p + n), n); p += n; }
   kap.innerHTML = '<div class="ss-yan">' + sol + '</div><div class="ss-orta"><img class="ss-ana" src="' + L[0] + '" alt="Sokak fotoğrafı" width="420" height="600"></div><div class="ss-yan">' + sag + '</div>';
   var ana = kap.querySelector(".ss-ana"), k = kap.querySelectorAll(".ss-yan img"), i = 0, ust = false, gorunur = false;
   var bul = {}; Array.prototype.forEach.call(k, function (x) { bul[x.dataset.i] = x; });
