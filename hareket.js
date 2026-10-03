@@ -261,8 +261,10 @@ function kaydirDegis(k, src) {
     ak.style.left = bas0 + "px"; ak.style.width = Math.max(220, gen) + "px"; ak.classList.add("acik");
   }
   function perde(ac, hizli, hemen) {
-    if (hizli === "bokeh") { pd.style.background = "rgba(0,0,0,.42)"; pd.style.transition = "opacity .4s ease-out, backdrop-filter .4s ease-out";
-      pd.style.opacity = "1"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(22px) saturate(1.2)"; return; }
+    if (hizli === "bokeh") {   // önce yalnız kararır; biraz bekleyince flu (bokeh) eklenir
+      var kk = kat; pd.style.background = "rgba(0,0,0,.5)"; pd.style.transition = "opacity .22s ease-out, backdrop-filter .45s ease-out";
+      pd.style.opacity = "1"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(0px)";
+      setTimeout(function () { if (kat && kat === kk) pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(20px) saturate(1.2)"; }, 600); return; }
     pd.style.background = hizli ? "rgba(10,20,40,.12)" : "#000";
     pd.style.transition = !ac ? "opacity .4s ease, backdrop-filter .4s" : hizli ? "opacity .35s ease-out, backdrop-filter .45s ease-out"
       : hemen ? "opacity .35s ease-out, backdrop-filter .35s ease-out" : "opacity 1.5s cubic-bezier(.75,0,.9,.55), backdrop-filter .9s ease-out";
@@ -334,7 +336,7 @@ function kaydirDegis(k, src) {
     if (el && el.closest(".montaj-ic")) { var mk = el.closest(".montaj").querySelector(".montaj-kare"); mk.src = el.currentSrc || el.src; }   // şeritteki kare önce büyük çerçevede görünür
     clearTimeout(zam); hedef = el;
     if (el) { on(el); if (Date.now() - kaydi < 350) { hedef = null; return; }   // tekerlek hızlı dönüyorsa tetikleme
-    zam = setTimeout(buyut, 60); }
+    zam = setTimeout(function () { if (hedef === el) buyut(); }, 260); }   // görseller arasında geçerken yanlışlıkla açılmasın: imleç ~0,26 sn durmalı
   }, { passive: true });
   var yut = false;
   document.addEventListener("click", function (e) {
