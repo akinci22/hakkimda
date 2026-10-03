@@ -146,10 +146,12 @@ function kaydirDegis(k, src) {
       im.onload = function () { hazir.push(im.src); yukle(); }; im.onerror = yukle; im.src = L[y++]; }
     function basla() { if (!y) for (var p = 0; p < 4; p++) yukle(); }
     new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { basla(); o.disconnect(); } }, { rootMargin: "1500px 0px" }).observe(m);
-    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length < 2 || m.matches(":hover") || (m._tut || 0) > Date.now()) return; i = (i + 1) % hazir.length;
+    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length < 2 || (!sabit && m.matches(":hover")) || (m._tut || 0) > Date.now()) return; i = (i + 1) % hazir.length;
       if (!sabit) { kare.src = hazir[i]; return; }
       kaydirDegis(kare, hazir[i]); }, sabit ? 2600 : 110); }
     function dur() { clearInterval(zam); zam = null; }
+    if (sabit) m.addEventListener("pointerenter", function () {   // kampüs: imleç gelir gelmez sıradaki kayarak gelir
+      if (hazir.length < 2) return; i = (i + 1) % hazir.length; kaydirDegis(kare, hazir[i]); });
     new IntersectionObserver(function (g) { g[0].isIntersecting ? oynat() : dur(); }).observe(m);
   });
 
