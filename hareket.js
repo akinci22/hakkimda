@@ -528,9 +528,9 @@ function kaydirDegis(k, src) {
   var im = document.createElement("div"); im.className = "bulut-imlec"; im.setAttribute("aria-hidden", "true"); im.style.transform = "translate(-200px,-200px)";
   var yag = ""; for (var i = 0; i < 4; i++) yag += '<line x1="' + (12 + i * 5) + '" y1="25" x2="' + (10 + i * 5) + '" y2="31" style="animation-delay:' + i * .12 + 's"/>';
   // imleç = ucu ok gibi sivri bir şimşek; arkasında minik bir bulut
-  im.innerHTML = '<svg class="bi-ana" viewBox="0 0 40 40" width="46" height="46">' +
-    '<path class="bi-bulut" d="M21 33h11a3.4 3.4 0 0 0 0-6.8 4.6 4.6 0 0 0-8.6-1.2 3.4 3.4 0 0 0-2.4 8z"/>' +
-    '<polygon class="bi-simsek-uc" points="1,1 15,9 10,11 19,19 13,20 23,30 7,17 12,15 4,11"/>' +
+  im.innerHTML = '<svg class="bi-ana" viewBox="0 0 40 40" width="44" height="44">' +
+    '<polygon class="bi-simsek-uc" points="1.5,1.5 13,3.5 9.2,7 17.5,9 12.8,11.8 20,17 5.5,10.2 9.6,7.8 2.5,6.2"/>' +
+    '<g transform="rotate(-24 23 17)"><path class="bi-bulut" d="M14.5 22.5h14a4.4 4.4 0 0 0 1-8.7 5.8 5.8 0 0 0-11-1.8 4.6 4.6 0 0 0-6.6 3.6 3.5 3.5 0 0 0 2.6 6.9z"/></g>' +
     '<g class="bi-yag">' + yag + '</g></svg>' +
     '<svg class="bi-kamera" viewBox="0 0 40 40" width="52" height="52"><rect x="4" y="12" width="32" height="22" rx="4"/><rect x="14" y="7" width="12" height="6" rx="2"/><circle cx="20" cy="23" r="7" class="bk-lens"/><circle cx="20" cy="23" r="3.2" class="bk-ic"/><circle cx="31" cy="16" r="1.5" class="bk-flas"/></svg><span>tıkla</span>';
   document.body.appendChild(im); document.documentElement.classList.add("bulut-imlec-acik");
