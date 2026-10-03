@@ -5,8 +5,9 @@ function kaydirDegis(k, src) {
   setTimeout(function () {
     function gel() { k.style.transition = "none"; k.classList.remove("cik"); k.classList.add("gir"); k.src = src;
       void k.offsetWidth; k.style.transition = ""; k.classList.remove("gir"); }
-    if (yeni.complete) gel(); else { yeni.onload = gel; yeni.onerror = gel; }
-  }, 420);
+    var bitti = false; function bir() { if (!bitti) { bitti = true; gel(); } }
+    if (yeni.complete) bir(); else { yeni.onload = bir; yeni.onerror = bir; setTimeout(bir, 350); }   // en çok 0,35 sn bekle
+  }, k.classList.contains("hizli") ? 200 : 420);
 }
 /* Hareket katmanı v4 (28 Eyl 2026) — hafif ve kasmayan.
    Tek IntersectionObserver: .gel ögeleri bir kez belirir, grafikler (.grafik) bir kez çizilir.
@@ -460,4 +461,23 @@ function kaydirDegis(k, src) {
       zam = setTimeout(function () { m._tut = Date.now() + 6000; kaydirDegis(kare, im.currentSrc || im.src); }, 2000); });
     iz.addEventListener("pointerleave", function () { clearTimeout(zam); });
   });
+})();
+
+
+/* Sokak ve şehir: ortada büyük dikey ana fotoğraf (aşağı kaydırdıkça yanlar bitene dek seninle gelir), sağda-solda küçükler.
+   İmleç bir küçüğün üstüne gelince o hemen ortada görünür; imleç yoksa ana fotoğraf biraz daha hızlı sırayla değişir. Büyütme yok. */
+(function () {
+  var kap = document.querySelector(".sokak-sahne"), L = (window.MONTAJ || {}).sokak; if (!kap || !L || !L.length) return;
+  var sol = "", sag = "";
+  L.forEach(function (u, i) { var t = '<img src="' + u + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; if (i % 2) sag += t; else sol += t; });
+  kap.innerHTML = '<div class="ss-yan">' + sol + '</div><div class="ss-orta"><img class="ss-ana" src="' + L[0] + '" alt="Sokak fotoğrafı" width="420" height="600"></div><div class="ss-yan">' + sag + '</div>';
+  var ana = kap.querySelector(".ss-ana"), k = kap.querySelectorAll(".ss-yan img"), i = 0, ust = false, gorunur = false;
+  var bul = {}; Array.prototype.forEach.call(k, function (x) { bul[x.dataset.i] = x; });
+  function goster(n, hizli) { i = (n + L.length) % L.length; ana.classList.toggle("hizli", !!hizli); kaydirDegis(ana, L[i]);
+    Array.prototype.forEach.call(k, function (x) { x.classList.toggle("su", +x.dataset.i === i); }); }
+  kap.addEventListener("pointerover", function (e) { var x = e.target.closest(".ss-yan img"); if (!x) return; ust = true; if (+x.dataset.i !== i) goster(+x.dataset.i, true); });
+  kap.addEventListener("pointerleave", function () { ust = false; });
+  new IntersectionObserver(function (g) { gorunur = g[0].isIntersecting; }).observe(kap);
+  setInterval(function () { if (gorunur && !ust && !document.hidden) { var y = new Image(); y.src = L[(i + 1) % L.length]; goster(i + 1, false); } }, 1700);
+  goster(0, true);
 })();
