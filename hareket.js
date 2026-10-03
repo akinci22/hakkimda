@@ -481,12 +481,21 @@ function kaydirDegis(k, src) {
 (function () {
   var kap = document.querySelector(".sokak-sahne"), M0 = window.MONTAJ || {}, L = (M0.sokak || []).concat(M0.hl || []); if (!kap || !L || !L.length) return;
   var sol = "", sag = "";
-  // aynı hikâye serisinin kareleri (g/hl/<seri>/) storydeki sırayla yan yana, aynı tarafta kalır; taraflar dengelenir
-  var gr = [], son = null, ns = 0, nr = 0;
-  L.forEach(function (u, i) { var key = (M0.grup || [])[i]; if (key === undefined) key = "t" + i;   // aynı gönderi / aynı yer → aynı grup (sahne_grup.py)
-    if (!son || son.k !== key) { son = { k: key, h: "" , n: 0 }; gr.push(son); }
-    son.h += '<img src="' + u + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; son.n++; });
-  gr.forEach(function (g) { var h = g.n > 1 ? '<div class="ss-seri">' + g.h + '</div>' : g.h; if (ns <= nr) { sol += h; ns += g.n; } else { sag += h; nr += g.n; } });
+  // Simetrik yerleşim: her satır 4 yuvalık. Seriler (aynı gönderi/yer) kendi satırında yan yana, tekler 4'erli satırda.
+  // Satırlar çift çift eşlenir (seri–seri, tek–tek) ve sola/sağa aynı yüksekliğe konur: iki taraf ayna gibi.
+  var gr = [], son = null;
+  L.forEach(function (u, i) { var key = (M0.grup || [])[i]; if (key === undefined) key = "t" + i;
+    if (!son || son.k !== key) { son = { k: key, ii: [] }; gr.push(son); } son.ii.push(i); });
+  var seri = [], tek = [], tekler = [];
+  gr.forEach(function (g) { if (g.ii.length > 1) for (var a = 0; a < g.ii.length; a += 4) seri.push({ s: 1, ii: g.ii.slice(a, a + 4), o: g.ii[0] });
+    else tekler.push(g.ii[0]); });
+  for (var a = 0; a < tekler.length; a += 4) tek.push({ s: 0, ii: tekler.slice(a, a + 4), o: tekler[a] });
+  function img(i) { return '<img src="' + L[i] + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; }
+  function sira(r) { return r ? '<div class="ss-sira' + (r.s ? ' seri' : '') + '">' + r.ii.map(img).join("") + '</div>' : '<div class="ss-sira bos"><i></i><i></i><i></i><i></i></div>'; }
+  var ciftler = [];
+  [seri, tek].forEach(function (R) { for (var a = 0; a < R.length; a += 2) ciftler.push([R[a], R[a + 1]]); });
+  ciftler.sort(function (x, y) { return x[0].o - y[0].o; });
+  ciftler.forEach(function (c) { sol += sira(c[0]); sag += sira(c[1] || null); });
   kap.innerHTML = '<div class="ss-yan">' + sol + '</div><div class="ss-orta"><img class="ss-ana" src="' + L[0] + '" alt="Sokak fotoğrafı" width="420" height="600"></div><div class="ss-yan">' + sag + '</div>';
   var ana = kap.querySelector(".ss-ana"), k = kap.querySelectorAll(".ss-yan img"), i = 0, ust = false, gorunur = false;
   var bul = {}; Array.prototype.forEach.call(k, function (x) { bul[x.dataset.i] = x; });
