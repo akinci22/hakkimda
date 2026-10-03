@@ -262,9 +262,9 @@ function kaydirDegis(k, src) {
   }
   function perde(ac, hizli, hemen) {
     if (hizli === "bokeh") {   // önce yalnız kararır; biraz bekleyince flu (bokeh) eklenir
-      var kk = kat; pd.style.background = "rgba(0,0,0,.5)"; pd.style.transition = "opacity .22s ease-out, backdrop-filter .45s ease-out";
+      var kk = kat; pd.style.background = "rgba(0,0,0,.42)"; pd.style.transition = "opacity 2s ease-in-out, backdrop-filter .9s ease-out";   // 2 sn yavaş kararma (tam değil), sonra flu
       pd.style.opacity = "1"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(0px)";
-      setTimeout(function () { if (kat && kat === kk) pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(20px) saturate(1.2)"; }, 600); return; }
+      setTimeout(function () { if (kat && kat === kk) pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(16px) saturate(1.15)"; }, 2000); return; }
     pd.style.background = hizli ? "rgba(10,20,40,.12)" : "#000";
     pd.style.transition = !ac ? "opacity .4s ease, backdrop-filter .4s" : hizli ? "opacity .35s ease-out, backdrop-filter .45s ease-out"
       : hemen ? "opacity .35s ease-out, backdrop-filter .35s ease-out" : "opacity 1.5s cubic-bezier(.75,0,.9,.55), backdrop-filter .9s ease-out";
@@ -533,7 +533,7 @@ function kaydirDegis(k, src) {
     if (e.pointerType !== "mouse") return; x = e.clientX; y = e.clientY; if (!ciz) { ciz = true; requestAnimationFrame(yaz); }
     var t = e.target.closest && e.target.closest(TIK);
     if (t !== ust) { ust = t; clearTimeout(zam1); clearTimeout(zam2); im.classList.remove("yagmur", "simsek"); im.classList.toggle("islak", !!t);
-      if (t) { zam1 = setTimeout(function () { im.classList.add("yagmur"); }, 1200); zam2 = setTimeout(function () { im.classList.add("simsek"); }, 2600); } }
+      if (t) { zam2 = setTimeout(function () { im.classList.add("simsek"); }, 2600); } }
   }, { passive: true });
   document.addEventListener("pointerdown", function () { im.classList.add("bas"); setTimeout(function () { im.classList.remove("bas"); }, 180); });
   document.addEventListener("mouseleave", function () { im.style.opacity = "0"; });
