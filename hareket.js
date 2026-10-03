@@ -481,7 +481,12 @@ function kaydirDegis(k, src) {
 (function () {
   var kap = document.querySelector(".sokak-sahne"), M0 = window.MONTAJ || {}, L = (M0.sokak || []).concat(M0.hl || []); if (!kap || !L || !L.length) return;
   var sol = "", sag = "";
-  L.forEach(function (u, i) { var t = '<img src="' + u + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; if (i % 2) sag += t; else sol += t; });
+  // aynı hikâye serisinin kareleri (g/hl/<seri>/) storydeki sırayla yan yana, aynı tarafta kalır; taraflar dengelenir
+  var gr = [], son = null, ns = 0, nr = 0;
+  L.forEach(function (u, i) { var m = u.match(/g\/hl\/([^\/]+)\//), key = m ? m[1] : "t" + i;
+    if (!son || son.k !== key) { son = { k: key, h: "" , n: 0 }; gr.push(son); }
+    son.h += '<img src="' + u + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; son.n++; });
+  gr.forEach(function (g) { var h = g.n > 1 ? '<div class="ss-seri">' + g.h + '</div>' : g.h; if (ns <= nr) { sol += h; ns += g.n; } else { sag += h; nr += g.n; } });
   kap.innerHTML = '<div class="ss-yan">' + sol + '</div><div class="ss-orta"><img class="ss-ana" src="' + L[0] + '" alt="Sokak fotoğrafı" width="420" height="600"></div><div class="ss-yan">' + sag + '</div>';
   var ana = kap.querySelector(".ss-ana"), k = kap.querySelectorAll(".ss-yan img"), i = 0, ust = false, gorunur = false;
   var bul = {}; Array.prototype.forEach.call(k, function (x) { bul[x.dataset.i] = x; });
