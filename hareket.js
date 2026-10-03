@@ -479,7 +479,7 @@ function kaydirDegis(k, src) {
 /* Sokak ve şehir: ortada büyük dikey ana fotoğraf (aşağı kaydırdıkça yanlar bitene dek seninle gelir), sağda-solda küçükler.
    İmleç bir küçüğün üstüne gelince o hemen ortada görünür; imleç yoksa ana fotoğraf biraz daha hızlı sırayla değişir. Büyütme yok. */
 (function () {
-  var kap = document.querySelector(".sokak-sahne"), L = (window.MONTAJ || {}).sokak; if (!kap || !L || !L.length) return;
+  var kap = document.querySelector(".sokak-sahne"), M0 = window.MONTAJ || {}, L = (M0.sokak || []).concat(M0.hl || []); if (!kap || !L || !L.length) return;
   var sol = "", sag = "";
   L.forEach(function (u, i) { var t = '<img src="' + u + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; if (i % 2) sag += t; else sol += t; });
   kap.innerHTML = '<div class="ss-yan">' + sol + '</div><div class="ss-orta"><img class="ss-ana" src="' + L[0] + '" alt="Sokak fotoğrafı" width="420" height="600"></div><div class="ss-yan">' + sag + '</div>';
