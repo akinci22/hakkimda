@@ -267,7 +267,7 @@ function kaydirDegis(k, src) {
     var el = kaynak(hedef); if (!el) return;
     var r = el.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
     var oran = (el.videoWidth || el.naturalWidth || r.width) / (el.videoHeight || el.naturalHeight || r.height);
-    var w = Math.min(vw * (dokun ? .94 : hz ? .48 : .62), vh * (dokun ? .8 : hz ? .58 : .72) * oran), h = w / oran;
+    var w = Math.min(vw * (dokun ? .94 : hz ? .42 : .62), vh * (dokun ? .8 : hz ? .52 : .72) * oran), h = w / oran;
     var k = el.tagName === "VIDEO" ? el.cloneNode(true) : new Image();
     if (k.tagName === "IMG") k.src = el.currentSrc || el.src;
     else { k.muted = true; k.loop = true; k.preload = "auto"; k.currentTime = el.currentTime || 0; }
@@ -277,13 +277,10 @@ function kaydirDegis(k, src) {
     var s = r.width / w, ilk = "translate(" + (r.left - (vw - w) / 2) + "px," + (r.top - (vh - h) / 2) + "px) scale(" + s + ")";
     k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; k._hz = hz; if (!hz) perde(true, false, true);
     if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
-    if (hz) {   // YolHava: 1) hemen, yerinde, dikkat çekecek kadar (%15) büyür; 2) imleç 2 sn kalırsa hızla ortada son boyuna
-      var dx = r.left - (vw - w) / 2 - r.width * .075, dy = r.top - (vh - h) / 2 - r.height * .075;
-      k._evre1 = true;
-      requestAnimationFrame(function () { requestAnimationFrame(function () {
-        k.style.transition = "transform .6s cubic-bezier(.2,.8,.3,1)"; k.style.transform = "translate(" + dx + "px," + dy + "px) scale(" + s * 1.15 + ")"; }); });
-      setTimeout(function () { if (kat !== k) return; k._evre1 = false; perde(true, true);
-        k.style.transition = "transform .45s cubic-bezier(.3,.7,.2,1)"; k.style.transform = "none"; }, 2000);
+    if (hz) {   // YolHava: 1) imlecin altındaki kalır, çevresi hızla kararır + "büyüteceğim" sinyali; 2) kararınca seri büyür, ortada orta boy
+      k._evre1 = true; k.classList.add("sinyal"); perde(true, false, true);
+      setTimeout(function () { if (kat !== k) return; k._evre1 = false; k.classList.remove("sinyal");
+        k.style.transition = "transform .32s cubic-bezier(.2,.9,.3,1)"; k.style.transform = "none"; }, 550);
     } else {   // fotoğraf/hikâye: önce çevre hızla kararır, sonra yavaşça büyümeye başlar; 1,5 sn kalınırsa hızlanıp tamamlanır
       var ara = "translate(" + (r.left - (vw - w) / 2) * .6 + "px," + (r.top - (vh - h) / 2) * .6 + "px) scale(" + (s + (1 - s) * .35) + ")";
       setTimeout(function () { if (kat !== k) return; k.style.transition = "transform 1.15s cubic-bezier(.4,0,.6,1)"; k.style.transform = ara; }, 350);
@@ -308,6 +305,7 @@ function kaydirDegis(k, src) {
         if (su && kat.tagName === "IMG" && kat.src !== (su.currentSrc || su.src)) kat.src = su.currentSrc || su.src;
         clearTimeout(cik); cik = null; return;
       }
+      if (kat._hz && !kat._evre1) { clearTimeout(cik); cik = null; return; }   // YolHava büyüdükten sonra: yalnız boşa tıklayınca kapanır
       if (!kat._hz) {   // fotoğraf: dışarı çıkınca 2 sn bekler (geri gelirsen açık kalır); hızlı kapatmak için boş yere tıkla
         if (!cik) cik = setTimeout(function () { cik = null; kapat(); hedef = null; }, 2000);
         return;
