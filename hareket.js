@@ -455,12 +455,18 @@ function kaydirDegis(k, src) {
     var top = kok.scrollHeight - innerHeight;
     linkler.sort(function (x, y) { return hedefY(x) - hedefY(y); }).forEach(function (a) { bag.appendChild(a); });
     if (!genis()) { bag.classList.remove("cizgi"); linkler.forEach(function (a) { a.style.left = ""; }); return; }
-    bag.classList.add("cizgi"); var son = -1e9;
+    bag.classList.add("cizgi"); var son = -1e9, xs = [];
     linkler.forEach(function (a) {
       var x = window.hizaX(Math.max(0, Math.min(1, hedefY(a) / top))), w = a.offsetWidth;
       x = Math.max(x, son + w / 2 + 6); x = Math.min(x, innerWidth - w / 2 - 8); son = x + w / 2;
-      a.style.left = (x - w / 2) + "px";
+      xs.push(x);
     });
+    /* sağ kenara yapışan son başlıklar öncekilerin üstüne binmesin: sağdan sola ikinci geçiş */
+    for (var i = linkler.length - 2; i >= 0; i--) {
+      var wi = linkler[i].offsetWidth, wn = linkler[i + 1].offsetWidth;
+      xs[i] = Math.min(xs[i], xs[i + 1] - wn / 2 - wi / 2 - 6);
+    }
+    linkler.forEach(function (a, i) { a.style.left = (xs[i] - a.offsetWidth / 2) + "px"; });
   }
   addEventListener("load", diz); addEventListener("resize", diz); setTimeout(diz, 1500); setTimeout(diz, 5000); diz();
 
