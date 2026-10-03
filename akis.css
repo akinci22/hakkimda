@@ -668,3 +668,14 @@ h3:has(+ .sokak-sahne){position:relative;z-index:2;color:#111!important;text-ali
 .ss-yan:first-child .ss-sira:not(.seri){flex-direction:row-reverse}
 .ss-sira i{flex:0 0 calc((100% - 24px)/4);aspect-ratio:420/600}
 .montaj[data-grup="kampus"] .montaj-kare{transition:opacity .52s ease,transform .52s cubic-bezier(.4,0,.2,1)!important}
+/* Yayından kısa anlar: büyük, iki sütun */
+.yayin-kare{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:18px!important}
+.yayin-kare figure{margin:0}
+.yayin-kare video{width:100%!important;height:auto!important;aspect-ratio:720/406}
+@media (max-width:700px){.yayin-kare{grid-template-columns:1fr!important}.dmg-foto{grid-template-columns:repeat(2,1fr)}}
+/* Telefon: sokak sahnesinde büyük foto üstte yapışık, küçükler altında */
+@media (max-width:700px){
+ .sokak-sahne{grid-template-columns:1fr!important;--ana:min(78vw,52vh)}
+ .ss-orta{order:-1;width:calc(var(--ana) + 12px);margin:0 auto;top:58px!important;z-index:3}
+ .ss-yan{gap:6px}.ss-sira{gap:5px}
+}
