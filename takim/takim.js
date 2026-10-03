@@ -449,7 +449,8 @@ function inisKontrol() {
   if (inisDurum) { const r2 = pad.getBoundingClientRect(); I.style.transform = `translate(${r2.left + r2.width / 2 - 14}px,${r2.top - 34}px)`; }
   if (!gorunur && inisDurum) { inisDurum = false; I.classList.remove('donus'); document.body.classList.remove('inis'); document.body.classList.add('imlec-aktif'); }
 }
-function inisKur() { const I = $('#imlec'); if (!I) return; I.addEventListener('click', () => { if (inisDurum) git('baloncuk'); }); }
+function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => Z.setAttribute('viewBox', innerWidth < 700 ? '430 40 770 280' : '0 0 1200 320'); ayar(); addEventListener('resize', ayar); }
+  const I = $('#imlec'); if (!I) return; I.addEventListener('click', () => { if (inisDurum) git('baloncuk'); }); }
 
 /* ---------------- BAŞLAT ---------------- */
 (async () => {
