@@ -85,22 +85,57 @@ function terimSar(kok) {
 /* kart etkileşimi: üzerinde dur → kararır + arka plan bulanır + "ne öğrenirsin" satırı; tıkla → ayrıntı (sayfa gibi döner) */
 let odakZ;
 function etkilesim(e, al) {
-  e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, 'tıkla: ayrıntı · bekle: karar'));
+  e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, 'tıkla: dallan · bekle: karar'));
   if (!dokunmatik && !azalt) {
-    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); e.classList.remove('cevrildi'); void e.offsetWidth; e.classList.add('cevrildi'); odakZ = setTimeout(() => { document.body.classList.add('odak'); e.classList.add('odakli'); const d = al(); $('#p-not-m').textContent = d.kisa || ''; $('#p-not').querySelector('.panel-ust').textContent = 'Kart · ' + (d.baslik || ''); }, 650); });
+    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); odakZ = setTimeout(() => { document.body.classList.add('odak'); e.classList.add('odakli'); const d = al(); $('#p-not-m').textContent = d.kisa || ''; $('#p-not').querySelector('.panel-ust').textContent = 'Kart · ' + (d.baslik || ''); }, 650); });
     e.addEventListener('pointerleave', () => { clearTimeout(odakZ); document.body.classList.remove('odak'); e.classList.remove('odakli'); });
-    e.addEventListener('animationend', () => e.classList.remove('cevrildi'));
   }
   e.addEventListener('click', ev => { if (ev.target.closest('a,input,select,textarea,.cip,.oy,.sec')) return; detayAc(al()); });
   e.addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target === e) detayAc(al()); });
 }
+/* ayrıntı = zihin haritası: ortada tıklanan kart (kök), çevresinde dallar; dala tıkla → açılır, cümleleri alt budak olur; köke tıkla → geri */
+const cumleler = t => String(t || '').replace(/\s+/g, ' ').trim().split(/(?<=[.!?…])\s+(?=[A-ZÇĞİÖŞÜ0-9"(])/).filter(Boolean);
+function dallar(d) {
+  if (Array.isArray(d.dallar) && d.dallar.length) return d.dallar;
+  const par = String(d.uzun || '').split(/\n+/).map(p => p.trim()).filter(Boolean);
+  const kisalt = (t, n) => t.length > n ? t.slice(0, n - 3).replace(/\s\S*$/, '') + '…' : t;
+  let L;
+  if (par.length <= 1) {                                                 /* tek paragraf: her cümle bir dal (yaprak) */
+    L = cumleler(par[0] || '').map(c => ({ baslik: kisalt(c, 120), alt: c.length > 120 ? [c] : [] }));
+  } else {                                                              /* çok paragraf: paragraf = dal, cümleleri = alt budak */
+    L = par.map(p => { const c = cumleler(p); const ilk = c[0] || p; const kisa = ilk.length <= 74; return { baslik: kisalt(ilk, 74), alt: kisa ? c.slice(1) : c }; });
+  }
+  if (d.link) L.push({ baslik: d.linkAd || 'bağlantı →', link: d.link, alt: ['Kaynağa git: ' + d.link.replace(/^https?:\/\//, '')] });
+  return L;
+}
+const YUVALAR = [[79, 24], [79, 76], [21, 24], [21, 76], [50, 90], [50, 10]];   // kök etrafındaki dal yerleri (% x, % y)
 function detayAc(d) {
   const D = $('#detay'); if (!D) return; document.body.classList.remove('odak'); $$('.odakli').forEach(x => x.classList.remove('odakli'));
-  $('#detay-ust').textContent = d.ust || 'ayrıntı'; $('#detay-baslik').textContent = d.baslik || ''; $('#detay-kisa').textContent = d.kisa || '';
-  const U = $('#detay-uzun'); U.replaceChildren(...String(d.uzun || '').split(/\n+/).filter(Boolean).map(p => el('p', { style: 'margin:0 0 8px' }, p)));
-  const L = $('#detay-link'); L.replaceChildren(); if (d.link) L.append(el('a', { href: d.link, target: d.link.startsWith('http') ? '_blank' : null, rel: 'noopener' }, d.linkAd || 'bağlantı →'));
-  terimSar(D); durum.etkilesim++;
+  $('#detay-ust').textContent = d.ust || 'ayrıntı';
+  const H = $('#harita'), S = $('#harita-cizgi'); H.replaceChildren(); S.replaceChildren(); D.classList.remove('dal-acik');
+  const kok = el('button', { class: 'dugum kok', type: 'button', 'aria-label': 'Kök: ' + (d.baslik || '') }, el('span', { class: 'dugum-ust' }, 'kök'), el('h3', { id: 'detay-baslik' }, d.baslik || ''), el('p', {}, d.kisa || ''), el('span', { class: 'dugum-ip' }, 'dallara tıkla'));
+  H.append(kok);
+  const L = dallar(d).slice(0, YUVALAR.length);
+  const dalEl = L.map((b, i) => {
+    const y = YUVALAR[i]; const n = el(b.link ? 'a' : 'button', { class: 'dugum dal', style: `--x:${y[0]}%;--y:${y[1]}%;--g:${i * 90}ms`, href: b.link || null, target: b.link && b.link.startsWith('http') ? '_blank' : null, rel: b.link ? 'noopener' : null, type: b.link ? null : 'button' },
+      el('span', { class: 'dugum-no' }, String(i + 1).padStart(2, '0')), el('b', {}, b.baslik), el('ul', { class: 'budak' }, (b.alt || []).map((c, j) => el('li', { style: `--g:${j * 70}ms` }, c))), b.link ? null : el('span', { class: 'dal-geri' }, '← köke dön'));
+    if (!b.link) n.addEventListener('click', () => { const acik = n.classList.contains('acik'); dalEl.forEach(x => x.classList.remove('acik')); if (!acik) { n.classList.add('acik'); D.classList.add('dal-acik'); } else D.classList.remove('dal-acik'); durum.etkilesim++; cizgiler(); });
+    return n;
+  });
+  H.append(...dalEl);
+  kok.addEventListener('click', () => { dalEl.forEach(x => x.classList.remove('acik')); D.classList.remove('dal-acik'); cizgiler(); });
+  function cizgiler() {
+    if (D.classList.contains('dar')) { S.replaceChildren(); return; }
+    const R = S.getBoundingClientRect(); S.setAttribute('viewBox', `0 0 ${R.width} ${R.height}`); S.replaceChildren();
+    const kr = kok.getBoundingClientRect(), kx = kr.left - R.left + kr.width / 2, ky = kr.top - R.top + kr.height / 2;
+    dalEl.forEach((n, i) => { const r = n.getBoundingClientRect(); const x = r.left - R.left + r.width / 2, y = r.top - R.top + r.height / 2; const mx = (kx + x) / 2;
+      const p = svgEl('path', { d: `M${kx} ${ky} C${mx} ${ky} ${mx} ${y} ${x} ${y}`, class: n.classList.contains('acik') ? 'acik' : '' }); S.append(p); const u = p.getTotalLength(); p.style.setProperty('--u', u); p.style.animationDelay = (i * 90) + 'ms'; });
+  }
+  terimSar(H); durum.etkilesim++;
+  D.classList.toggle('dar', innerWidth < 860);
   if (typeof D.showModal === 'function') { if (!D.open) D.showModal(); } else D.setAttribute('open', '');
+  requestAnimationFrame(() => requestAnimationFrame(cizgiler));
+  D._ciz = cizgiler;
 }
 const DETAYLAR = {
   skewt: { ust: 'nasıl okunur', baslik: 'Skew-T diyagramı', kisa: 'Sondajın resmi: basınç yukarı doğru azalır, sıcaklık ekseni 45° eğiktir.', uzun: `Kırmızı çizgi sıcaklık (T), yeşil çizgi çiy noktası (Td). İkisi birbirine yaklaşınca hava doymuş, bulut var demektir; 28 Nisan'da 850 hPa civarında tam bu oluyor. Kesikli çizgiler Ömer'in Python'da adım adım (Runge-Kutta) kurduğu profil; düz çizgiler Kartal'dan kalkan gerçek radyosonde. Fark, dersteki denklemin doymuş hava varsayımından geliyor.\nSayfanın kendisi de bu diyagramdır: soldaki ray basınç ekseni, balon senin konumun, sağdaki panel okumalar.`, link: '../#arastirma', linkAd: 'Bulut projesinin tamamı →' },
@@ -356,23 +391,25 @@ function sonKart() {
 }
 
 /* ---------------- PANEL · RAY · AŞAMA ---------------- */
-const ASAMA_ADI = { 0: ['Yüzey', 'Sondaj başlıyor: olay ne, akış ne.'], 1: ['Olay ne', 'Vizyon, misyon, iki kol.'], 2: ['Ne yapacağız', '6 basamak ve sel vakası.'], 3: ['Kanıt', 'Canlı karne ve yapılmış işler.'], 4: ['Sen', 'Kapı, kaydırma, 5 soru.'], 5: ['Başka bölüm', 'Senin dersin ↔ bizim dersimiz.'], 6: ['Gerçekçilik', 'Takım yaşları ve neden şimdi.'], 7: ['Anketler', 'Ne olsa gelirsin, anlatılar.'], 8: ['Söz senin', 'Baloncuk, kaynaklar, rolün.'] };
+const ASAMA_ADI = { 0: ['Tropopoz', 'Balon patladı, iniş başlıyor: olay ne, akış ne.'], 1: ['Olay ne', 'Vizyon, misyon, iki kol.'], 2: ['Ne yapacağız', '6 basamak ve sel vakası.'], 3: ['Kanıt', 'Canlı karne ve yapılmış işler.'], 4: ['Sen', 'Kapı, kaydırma, 5 soru.'], 5: ['Başka bölüm', 'Senin dersin ↔ bizim dersimiz.'], 6: ['Gerçekçilik', 'Takım yaşları ve neden şimdi.'], 7: ['Anketler', 'Ne olsa gelirsin, anlatılar.'], 8: ['Söz senin', 'Baloncuk, kaynaklar, rolün.'] };
 const basincTen = p => 1000 * Math.pow(0.1, p);                       /* 0→1000 hPa, 1→100 hPa (log) */
 const yukseklik = P => 44330 * (1 - Math.pow(P / 1013.25, 0.1903));  /* standart atmosfer, m */
-function panelSen() { const s = []; s.push(durum.grup ? `Kapı: ${durum.grup}.` : 'Kapıyı seçmedin (700 hPa).'); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
+function panelSen() { const s = []; s.push(durum.grup ? `Kapı: ${durum.grup}.` : 'Kapıyı seçmedin (500 hPa).'); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
 function git(id) { const h = document.getElementById(id); if (!h) return; const y = h.getBoundingClientRect().top + scrollY - 70; kaydirHedef(y); }
 function ilerleme() {
   const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'); const bloklar = $$('main > section[data-asama]');
   const g = () => { const h = document.documentElement; const p = Math.min(1, Math.max(0, h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight))); bar.style.width = (p * 100).toFixed(1) + '%';
-    h.style.setProperty('--yuk', p.toFixed(3)); h.style.setProperty('--yukp', (p * 100).toFixed(1) + '%');
-    if (balon) balon.style.top = (90 - p * 77).toFixed(1) + '%';
-    const P = basincTen(p), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;
+    const yuk = 1 - p;                                                   /* iniş: sayfa başı tropopoz (yuk=1), sonu yüzey (yuk=0) */
+    h.style.setProperty('--yuk', yuk.toFixed(3)); h.style.setProperty('--yukp', (yuk * 100).toFixed(1) + '%');
+    if (balon) balon.style.top = (13 + p * 77).toFixed(1) + '%';
+    const P = basincTen(yuk * .7), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;   /* .7 → 1000…200 hPa aralığı */
     const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io) io.textContent = ok;
     const ph = $('#p-hpa'); if (ph) { ph.textContent = Math.round(P) + ' hPa'; $('#p-km').textContent = km.toFixed(1).replace('.', ',') + ' km'; $('#p-t').textContent = Math.round(T) + ' °C'; }
     let aktif = 0; for (const b of bloklar) { if (b.getBoundingClientRect().top < innerHeight * .45) aktif = +b.dataset.asama; }
     if (aktif !== durum.asama) { durum.asama = aktif; h.dataset.asama = aktif; const [ad, m] = ASAMA_ADI[aktif]; $('#p-asama').textContent = aktif; $('#p-ad').textContent = ad; $('#p-m').textContent = m; $$('#serit button').forEach(b => { const n = +b.dataset.asama; b.classList.toggle('aktif', n === aktif); b.classList.toggle('gecti', n < aktif); }); }
     const kalan = bloklar.filter(b => b.getBoundingClientRect().top > innerHeight).length;
-    if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Tropopoz: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🪂'; } else rm.textContent = `Tropopozda: sana göre rol · ${kalan} seviye kaldı`; };
+    if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Yerdesin: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🪂'; } else rm.textContent = `Yere inince: sana göre rol · ${kalan} seviye kaldı`;
+    inisKontrol(); };
   addEventListener('scroll', g, { passive: true }); addEventListener('resize', g); g();
 }
 function ray() {
@@ -397,12 +434,22 @@ function gorunme() {
 function imlec() {
   if (dokunmatik || azalt) return; const I = $('#imlec'); document.body.classList.add('imlec-aktif'); I.style.display = 'block';
   let x = 0, y = 0, tx = 0, ty = 0, raf = 0;
-  const ciz = () => { x += (tx - x) * .35; y += (ty - y) * .35; I.style.transform = `translate(${x - 14}px,${y - 14}px)`; if (Math.abs(tx - x) + Math.abs(ty - y) > .3) raf = requestAnimationFrame(ciz); else raf = 0; };
-  addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; I.classList.remove('gizli'); const h = e.target.closest('a,button,[role=button],summary,input,textarea,select,label,.kartd,.oy,.cip,.bk,.md-basamak,.etk,.terim,.tik,.hpa'); I.classList.toggle('kod', !!h); if (!raf) raf = requestAnimationFrame(ciz); }, { passive: true });
+  const ciz = () => { if (I.classList.contains('donus')) { raf = 0; return; } x += (tx - x) * .35; y += (ty - y) * .35; I.style.transform = `translate(${x - 14}px,${y - 14}px)`; if (Math.abs(tx - x) + Math.abs(ty - y) > .3) raf = requestAnimationFrame(ciz); else raf = 0; };
+  addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; if (I.classList.contains('donus')) return; I.classList.remove('gizli'); const h = e.target.closest('a,button,[role=button],summary,input,textarea,select,label,.kartd,.oy,.cip,.bk,.md-basamak,.etk,.terim,.tik,.hpa'); I.classList.toggle('kod', !!h); if (!raf) raf = requestAnimationFrame(ciz); }, { passive: true });
   addEventListener('pointerdown', e => { for (let i = 0; i < 3; i++) { const d = el('span', { class: 'damla', style: `left:${e.clientX - 6 + i * 6}px;top:${e.clientY + 6}px;animation-delay:${i * 60}ms` }); document.body.append(d); setTimeout(() => d.remove(), 800); } });
   document.addEventListener('pointerleave', () => I.classList.add('gizli')); document.addEventListener('pointerenter', () => I.classList.remove('gizli'));
 }
-function detayKur() { const D = $('#detay'); if (!D) return; $('#detay-kapat').addEventListener('click', () => D.close()); D.addEventListener('click', e => { if (e.target === D) D.close(); }); }
+function detayKur() { const D = $('#detay'); if (!D) return; $('#detay-kapat').addEventListener('click', () => D.close()); D.addEventListener('click', e => { if (e.target === D) D.close(); }); addEventListener('resize', () => { if (D.open) { D.classList.toggle('dar', innerWidth < 860); D._ciz && D._ciz(); } }); }
+/* iniş: fırlatma noktası ekrana girince imleç balonu oraya uçar, "bize katıl" yazar; tıklanır. Nokta ekrandan çıkınca imleç geri gelir. */
+let inisDurum = false;
+function inisKontrol() {
+  const pad = $('#firlatma'), I = $('#imlec'); if (!pad || !I || dokunmatik || azalt) return;
+  const r = pad.getBoundingClientRect(); const gorunur = r.top > 60 && r.bottom < innerHeight - 10;
+  if (gorunur && !inisDurum) { inisDurum = true; I.classList.add('donus'); I.classList.remove('gizli', 'kod'); document.body.classList.remove('imlec-aktif'); document.body.classList.add('inis'); $('#im-okuma').textContent = 'bize katıl →'; }
+  if (inisDurum) { const r2 = pad.getBoundingClientRect(); I.style.transform = `translate(${r2.left + r2.width / 2 - 14}px,${r2.top - 34}px)`; }
+  if (!gorunur && inisDurum) { inisDurum = false; I.classList.remove('donus'); document.body.classList.remove('inis'); document.body.classList.add('imlec-aktif'); }
+}
+function inisKur() { const I = $('#imlec'); if (!I) return; I.addEventListener('click', () => { if (inisDurum) git('baloncuk'); }); }
 
 /* ---------------- BAŞLAT ---------------- */
 (async () => {
@@ -411,5 +458,5 @@ function detayKur() { const D = $('#detay'); if (!D) return; $('#detay-kapat').a
   if (durum.grup) document.documentElement.dataset.grup = durum.grup;
   await arkaKur();
   acilis(); sesYerlestir(); olay(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
-  terimSar(document); detayKur(); ray(); gorunme(); ilerleme(); imlec(); yumusakKaydirma();
+  terimSar(document); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); yumusakKaydirma();
 })();

@@ -2,7 +2,7 @@
 <html lang="tr" data-grup="" data-asama="0">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="İTÜ'de yapay zekâ ile hava tahmini düzeltme ve doğrulama üzerine kurulan öğrenci proje takımı. Bir sondaj diyagramı gibi: 1000 hPa'dan tropopoza 8 aşama, canlı tahmin karnesi, 3 anket, sonda sana göre bir rol.">
+<meta name="description" content="İTÜ'de yapay zekâ ile hava tahmini düzeltme ve doğrulama üzerine kurulan öğrenci proje takımı. Bir sondaj diyagramı gibi: tropopozdan (200 hPa) yere 8 aşama, canlı tahmin karnesi, 3 anket, sonda sana göre bir rol.">
 <link rel="canonical" href="https://akinci22.github.io/hakkimda/takim/">
 <meta name="theme-color" content="#f4efe3">
 <link rel="icon" href="../g/favicon.svg" type="image/svg+xml">
@@ -16,42 +16,42 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="takim.css?v=3">
+<link rel="stylesheet" href="takim.css?v=4">
 <script src="firebase-config.js?v=1"></script>
 
 <body>
 <a class="atla" href="#olay">İçeriğe geç</a>
 <div class="ilerleme" aria-hidden="true"><span id="ilerleme-bar"></span></div>
 <div id="perde" aria-hidden="true"></div>
-<div id="imlec" aria-hidden="true"><svg viewBox="0 0 28 34"><ellipse class="im-balon" cx="14" cy="11" rx="9" ry="11"/><path class="im-ip" d="M14 22 L14 32 M12 32 h4"/><path class="im-arti" d="M14 4v20M4 14h20"/></svg><span class="im-okuma" id="im-okuma">1000 hPa · 0 km</span></div>
+<div id="imlec" aria-hidden="true"><svg viewBox="0 0 28 34"><ellipse class="im-balon" cx="14" cy="11" rx="9" ry="11"/><path class="im-ip" d="M14 22 L14 32 M12 32 h4"/><path class="im-arti" d="M14 4v20M4 14h20"/></svg><span class="im-okuma" id="im-okuma">200 hPa · 11,8 km</span></div>
 <div id="ipucu" class="ipucu-kutu" role="tooltip" hidden></div>
 
 <aside class="ray" aria-label="Basınç rayı">
   <div class="ray-baslik">Sondaj</div>
-  <button class="tik" type="button" style="top:13%" data-seviye="200" data-hedef="son"><b>200</b> hPa</button>
-  <button class="tik" type="button" style="top:24%" data-seviye="300" data-hedef="coklu"><b>300</b></button>
-  <button class="tik" type="button" style="top:36%" data-seviye="500" data-hedef="bolumler"><b>500</b></button>
-  <button class="tik" type="button" style="top:52%" data-seviye="700" data-hedef="kapi"><b>700</b></button>
-  <button class="tik" type="button" style="top:66%" data-seviye="850" data-hedef="karne"><b>850</b></button>
-  <button class="tik" type="button" style="top:78%" data-seviye="925" data-hedef="vizyon"><b>925</b></button>
-  <button class="tik" type="button" style="top:90%" data-seviye="1000" data-hedef="olay"><b>1000</b> yüzey</button>
-  <div class="balon" id="ray-balon" style="top:90%"><svg viewBox="0 0 30 46"><ellipse cx="15" cy="14" rx="12" ry="14" fill="#c0392b"/><path d="M15 28v12M12 40h6M13 44h4" stroke="#1f2a2e" stroke-width="1.2" fill="none"/><rect x="11" y="40" width="8" height="5" fill="#fcfaf4" stroke="#1f2a2e" stroke-width="1"/></svg></div>
+  <button class="tik" type="button" style="top:13%" data-seviye="200" data-hedef="olay"><b>200</b> tropopoz</button>
+  <button class="tik" type="button" style="top:24%" data-seviye="300" data-hedef="merdiven"><b>300</b></button>
+  <button class="tik" type="button" style="top:36%" data-seviye="500" data-hedef="kapi"><b>500</b></button>
+  <button class="tik" type="button" style="top:52%" data-seviye="700" data-hedef="bolumler"><b>700</b></button>
+  <button class="tik" type="button" style="top:66%" data-seviye="850" data-hedef="neden"><b>850</b></button>
+  <button class="tik" type="button" style="top:78%" data-seviye="925" data-hedef="canli"><b>925</b></button>
+  <button class="tik" type="button" style="top:90%" data-seviye="1000" data-hedef="son"><b>1000</b> yüzey</button>
+  <div class="ray-balon" id="ray-balon" style="top:13%"><svg viewBox="0 0 30 46"><ellipse cx="15" cy="14" rx="12" ry="14" fill="#c0392b"/><path d="M15 28v12M12 40h6M13 44h4" stroke="#1f2a2e" stroke-width="1.2" fill="none"/><rect x="11" y="40" width="8" height="5" fill="#fcfaf4" stroke="#1f2a2e" stroke-width="1"/></svg></div>
 </aside>
 
 <aside class="panel" id="panel" aria-label="Sondaj paneli">
   <div class="panel-kutu">
     <p class="panel-ust">Aşama <b id="p-asama">0</b>/8</p>
-    <p class="panel-ad" id="p-ad">Yüzey</p>
-    <p class="panel-m" id="p-m">Sondaj başlıyor.</p>
+    <p class="panel-ad" id="p-ad">Tropopoz</p>
+    <p class="panel-m" id="p-m">Balon patladı, iniş başlıyor.</p>
   </div>
   <div class="panel-kutu okuma">
-    <div><span>Basınç</span><b id="p-hpa">1000 hPa</b></div>
-    <div><span>Yükseklik</span><b id="p-km">0,0 km</b></div>
-    <div><span>Standart T</span><b id="p-t">15 °C</b></div>
+    <div><span>Basınç</span><b id="p-hpa">200 hPa</b></div>
+    <div><span>Yükseklik</span><b id="p-km">11,8 km</b></div>
+    <div><span>Standart T</span><b id="p-t">−57 °C</b></div>
   </div>
   <div class="panel-kutu">
     <p class="panel-ust">Senin durumun</p>
-    <p class="panel-m" id="p-sen">Kapıyı seçmedin. Üç kapı 700 hPa'da.</p>
+    <p class="panel-m" id="p-sen">Kapıyı seçmedin. Üç kapı 500 hPa'da.</p>
   </div>
   <div class="panel-kutu not" id="p-not">
     <p class="panel-ust">Not · üzerine gel</p>
@@ -68,16 +68,16 @@
   <div class="serit" id="serit" role="navigation" aria-label="Aşamalar"></div>
 </nav>
 
-<header id="acilis" class="blok acilis" data-hpa="1000">
+<header id="acilis" class="blok acilis" data-hpa="200">
   <div class="sar">
-    <p class="seviye"><span class="hpa" data-seviye="1000">1000 hPa</span> yüzey · İTÜ · UUBF · Meteoroloji · proje takımı</p>
+    <p class="seviye"><span class="hpa" data-seviye="200">200 hPa</span> tropopoz · ~12 km · balon patladı · İTÜ · UUBF · Meteoroloji · proje takımı</p>
     <div class="acilis-ic">
       <div>
         <h1>Yapay zekâ ile hava tahmini <em>düzeltme</em> ve <em>doğrulama</em>.</h1>
-        <p class="alt buyuk">Öğrenirken öğreten takım. Bu sayfa bir Skew-T diyagramı gibi okunur: aşağı kaydırdıkça balon yükselir, geniş ekranda soldaki ray ve sağdaki panel nerede olduğunu söyler, en sonda tropopozda sana göre bir rol vardır.</p>
+        <p class="alt buyuk">Öğrenirken öğreten takım. Bu sayfa bir sondajın inişi gibi okunur: 12 km'de balon patladı; aşağı kaydırdıkça sonda alçalır, basınç artar, balon küçülür. Geniş ekranda soldaki ray ve sağdaki panel nerede olduğunu söyler; yerde, İTÜ Ayazağa rasat parkında sana göre bir rol vardır.</p>
         <div class="sayilar" id="acilis-sayilar"></div>
         <div class="ses" data-ses="acilis"></div>
-        <p class="ipucu">↑ 8 aşama · 4 dakika · 3 anket · 7 görsel · 1 canlı grafik · altı noktalı kelimelerin üstünde dur</p>
+        <p class="ipucu">↓ 8 aşama · 4 dakika · 3 anket · 7 görsel · 1 canlı grafik · altı noktalı kelimelerin üstünde dur</p>
       </div>
       <div>
         <svg class="mini-sondaj" viewBox="0 0 200 150" role="img" aria-label="Şematik Skew-T: sıcaklık ve çiy noktası izleri çiziliyor">
@@ -99,7 +99,7 @@
 
 <main>
 
-<section id="olay" class="blok olay" data-asama="0" data-hpa="1000">
+<section id="olay" class="blok olay" data-asama="0" data-hpa="200">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="1000">1000 hPa</span> 00 · olay ne?</p>
     <h2 id="olay-baslik"></h2>
@@ -107,7 +107,7 @@
   </div>
 </section>
 
-<section id="akis" class="blok" data-asama="0" data-hpa="975">
+<section id="akis" class="blok" data-asama="0" data-hpa="225">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="925">975 hPa</span> 00 · akış</p>
     <h2 id="akis-baslik"></h2>
@@ -117,7 +117,7 @@
 </section>
 
 <div class="asama-baslik" data-asama="1"><span>Aşama 1</span><b>Olay ne</b></div>
-<section id="vizyon" class="blok" data-asama="1" data-hpa="950">
+<section id="vizyon" class="blok" data-asama="1" data-hpa="250">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="925">950 hPa</span> 01 · vizyon · misyon · iki kol</p>
     <div class="ikili" id="vizyon-kartlar"></div>
@@ -136,7 +136,7 @@
 </section>
 
 <div class="asama-baslik" data-asama="2"><span>Aşama 2</span><b>Ne yapacağız</b></div>
-<section id="merdiven" class="blok" data-asama="2" data-hpa="900">
+<section id="merdiven" class="blok" data-asama="2" data-hpa="300">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="850">900 hPa</span> 02 · ne yapacağız</p>
     <h2 id="merdiven-baslik"></h2>
@@ -167,7 +167,7 @@
 </section>
 
 <div class="asama-baslik" data-asama="3"><span>Aşama 3</span><b>Kanıt</b></div>
-<section id="karne" class="blok" data-asama="3" data-hpa="850">
+<section id="karne" class="blok" data-asama="3" data-hpa="350">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="850">850 hPa</span> 03 · basamak 1'i şimdi yaptık</p>
     <h2>İstanbul'un tahmin karnesi, son 30 gün</h2>
@@ -181,7 +181,7 @@
   </div>
 </section>
 
-<section id="mumkun" class="blok blok--ters" data-asama="3" data-hpa="800">
+<section id="mumkun" class="blok blok--ters" data-asama="3" data-hpa="400">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="850">800 hPa</span> 04 · nasıl &amp; neden mümkün</p>
     <h2 id="mumkun-baslik"></h2>
@@ -191,7 +191,7 @@
 </section>
 
 <div class="asama-baslik" data-asama="4"><span>Aşama 4</span><b>Sen</b></div>
-<section id="kapi" class="blok" data-asama="4" data-hpa="700">
+<section id="kapi" class="blok" data-asama="4" data-hpa="500">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="700">700 hPa</span> 05 · sen hangisisin?</p>
     <h2 id="kapi-soru"></h2>
@@ -200,7 +200,7 @@
   </div>
 </section>
 
-<section id="kaydir" class="blok blok--ters" data-asama="4" data-hpa="650">
+<section id="kaydir" class="blok blok--ters" data-asama="4" data-hpa="550">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="700">650 hPa</span> 06 · anket 1 · kaydır</p>
     <h2 id="kaydir-baslik"></h2>
@@ -241,7 +241,7 @@
 </section>
 
 <div class="asama-baslik" data-asama="5"><span>Aşama 5</span><b>Başka bölümdensen</b></div>
-<section id="bolumler" class="blok" data-asama="5" data-hpa="500">
+<section id="bolumler" class="blok" data-asama="5" data-hpa="700">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="500">500 hPa</span> 08 · başka bölümdensen</p>
     <h2 id="bolumler-baslik"></h2>
@@ -255,7 +255,7 @@
 </section>
 
 <div class="asama-baslik" data-asama="6"><span>Aşama 6</span><b>Gerçekçilik</b></div>
-<section id="gercek" class="blok blok--ters" data-asama="6" data-hpa="400">
+<section id="gercek" class="blok blok--ters" data-asama="6" data-hpa="800">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="300">400 hPa</span> 09 · dürüst gerçekçilik</p>
     <h2 id="gercek-baslik"></h2>
@@ -271,7 +271,7 @@
   </div>
 </section>
 
-<section id="neden" class="blok" data-asama="6" data-hpa="350">
+<section id="neden" class="blok" data-asama="6" data-hpa="850">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="300">350 hPa</span> 10 · neden şimdi</p>
     <h2 id="neden-baslik"></h2>
@@ -281,7 +281,7 @@
 </section>
 
 <div class="asama-baslik" data-asama="7"><span>Aşama 7</span><b>Anketler</b></div>
-<section id="coklu" class="blok" data-asama="7" data-hpa="300">
+<section id="coklu" class="blok" data-asama="7" data-hpa="900">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="300">300 hPa</span> 11 · anket 2 · tıkla</p>
     <h2>Ne olsa gelirsin, neden gelmezsin?</h2>
@@ -289,7 +289,7 @@
   </div>
 </section>
 
-<section id="canli" class="blok blok--ters" data-asama="7" data-hpa="275">
+<section id="canli" class="blok blok--ters" data-asama="7" data-hpa="925">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="300">275 hPa</span> 12 · anket 3 · canlı</p>
     <h2>Dokun, yüzdeyi gör.</h2>
@@ -298,7 +298,7 @@
   </div>
 </section>
 
-<section id="anlatilar" class="blok" data-asama="7" data-hpa="250">
+<section id="anlatilar" class="blok" data-asama="7" data-hpa="950">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="200">250 hPa</span> 13 · atmosfer anlatıları</p>
     <h2 id="anlatilar-baslik"></h2>
@@ -308,7 +308,7 @@
 </section>
 
 <div class="asama-baslik" data-asama="8"><span>Aşama 8</span><b>Söz senin</b></div>
-<section id="baloncuk" class="blok" data-asama="8" data-hpa="200">
+<section id="baloncuk" class="blok" data-asama="8" data-hpa="975">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="200">200 hPa</span> 14 · söyle, uçsun</p>
     <h2 id="baloncuk-baslik"></h2>
@@ -337,7 +337,7 @@
   <div class="sar genis"><div class="gok" id="gok" aria-live="polite" aria-label="Uçuşan mesajlar"></div></div>
 </section>
 
-<section id="meraklisina" class="blok" data-asama="8" data-hpa="150">
+<section id="meraklisina" class="blok" data-asama="8" data-hpa="990">
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="200">150 hPa</span> 15 · meraklısına</p>
     <h2 id="merak-baslik"></h2>
@@ -346,9 +346,9 @@
   </div>
 </section>
 
-<section id="son" class="blok son" data-asama="8" data-hpa="100">
+<section id="son" class="blok son" data-asama="8" data-hpa="1000">
   <div class="sar">
-    <p class="seviye"><span class="hpa" data-seviye="200">≈100 hPa</span> 16 · tropopoz · balon patladı, paraşüt açıldı</p>
+    <p class="seviye"><span class="hpa" data-seviye="1000">1000 hPa</span> yüzey · İTÜ Ayazağa · rasat parkı · sonda yerde</p>
     <div class="son-ic">
       <div>
         <div class="son-kart" id="son-kart"></div>
@@ -358,6 +358,33 @@
       <div class="parasut" aria-hidden="true">
         <svg viewBox="0 0 120 170"><g class="gov"><path d="M10 60 A50 50 0 0 1 110 60 Q85 70 60 60 Q35 70 10 60z" fill="#c0392b" stroke="#1f2a2e" stroke-width="1.5"/><path d="M35 62 A25 40 0 0 1 60 60 A25 40 0 0 1 85 62" fill="none" stroke="#fcfaf4" stroke-width="1.2"/><path d="M12 62 L50 130 M110 62 L70 130 M60 62 L60 130" stroke="#1f2a2e" stroke-width="1"/><rect x="46" y="128" width="28" height="22" fill="#fcfaf4" stroke="#1f2a2e" stroke-width="1.5"/><text x="60" y="143" text-anchor="middle" style="font:600 9px 'IBM Plex Mono',monospace;fill:#1f2a2e">RS41</text></g></svg>
       </div>
+    </div>
+    <div class="zemin" id="zemin" role="img" aria-label="Çizim: İTÜ Ayazağa kampüsü, meteoroloji binası, gözlem kulesi ve rasat parkı; sonda paraşütle fırlatma noktasına iniyor">
+      <svg viewBox="0 0 1200 320" preserveAspectRatio="xMidYMax slice">
+        <defs><pattern id="zm-cim" width="14" height="8" patternUnits="userSpaceOnUse"><path d="M2 8 l2 -5 M7 8 l2 -5 M12 8 l1 -4" stroke="currentColor" stroke-width=".8" fill="none" opacity=".45"/></pattern></defs>
+        <g class="zm-tepe"><path d="M0 230 C120 170 220 200 330 190 S520 150 640 175 S900 160 1010 185 S1140 165 1200 180 V320 H0z"/></g>
+        <g class="zm-uzak"><rect x="1035" y="105" width="26" height="90"/><rect x="1068" y="80" width="22" height="115"/><rect x="1096" y="118" width="30" height="77"/><rect x="1132" y="95" width="18" height="100"/>
+          <g class="zm-pencere"><path d="M1040 115h16M1040 127h16M1040 139h16M1040 151h16M1040 163h16M1072 90h14M1072 102h14M1072 114h14M1072 126h14M1072 138h14M1072 150h14M1072 162h14M1101 128h20M1101 140h20M1101 152h20M1101 164h20M1101 176h20"/></g>
+          <text x="1090" y="212" text-anchor="middle">Maslak</text></g>
+        <g class="zm-agac"><ellipse cx="90" cy="222" rx="26" ry="20"/><rect x="87" y="238" width="6" height="18"/><ellipse cx="150" cy="226" rx="20" ry="16"/><rect x="148" y="238" width="5" height="16"/><ellipse cx="610" cy="228" rx="18" ry="14"/><rect x="608" y="238" width="5" height="14"/><ellipse cx="1180" cy="224" rx="22" ry="17"/><rect x="1178" y="238" width="5" height="16"/></g>
+        <g class="zm-bina"><rect x="210" y="150" width="250" height="100"/><rect x="235" y="128" width="200" height="24"/><path d="M225 170h30v22h-30zM275 170h30v22h-30zM325 170h30v22h-30zM375 170h30v22h-30zM425 170h25v22h-25zM225 212h30v22h-30zM275 212h30v22h-30zM375 212h30v22h-30zM425 212h25v22h-25z" class="zm-cam"/><rect x="325" y="212" width="30" height="38" class="zm-kapi"/>
+          <text x="335" y="145" text-anchor="middle">İTÜ · UUBF · METEOROLOJİ</text></g>
+        <g class="zm-kule"><path d="M520 250 L532 100 L548 100 L560 250z"/><path d="M522 230h36M525 205h30M528 180h24M530 155h20M531 130h18M522 230l36-25M558 230l-36-25M525 205l30-25M555 205l-30-25M528 180l24-25M552 180l-24-25M530 155l20-25M550 155l-20-25"/><line x1="540" y1="100" x2="540" y2="78"/><g class="zm-anemo"><circle cx="540" cy="78" r="2.5"/><path d="M540 78 l-14 -6 M540 78 l14 -6 M540 78 l0 14"/><circle cx="526" cy="72" r="3.5"/><circle cx="554" cy="72" r="3.5"/><circle cx="540" cy="92" r="3.5"/></g>
+          <text x="540" y="268" text-anchor="middle">gözlem kulesi</text></g>
+        <g class="zm-park">
+          <path class="zm-cit" d="M690 250 V232 M720 250 V232 M750 250 V232 M780 250 V232 M810 250 V232 M840 250 V232 M870 250 V232 M900 250 V232 M930 250 V232 M960 250 V232 M990 250 V232 M690 238 H990 M690 245 H990"/>
+          <g class="zm-stevenson"><path d="M712 250 V212 M742 250 V212"/><rect x="706" y="188" width="42" height="28"/><path d="M706 184 L727 176 L748 184z"/><path d="M710 194h34M710 200h34M710 206h34"/></g>
+          <g class="zm-yagis"><rect x="775" y="214" width="12" height="36"/><path d="M771 214 h20 l-3 -8 h-14z"/></g>
+          <g class="zm-direk"><line x1="820" y1="250" x2="820" y2="160"/><path d="M820 160 l-16 -8 l0 6 l10 6z"/><path d="M806 170h28" /><circle cx="820" cy="186" r="3"/><path d="M817 186h-8M823 186h8"/></g>
+          <g class="zm-radyasyon"><line x1="955" y1="250" x2="955" y2="226"/><rect x="947" y="220" width="16" height="6"/><path d="M948 218 l14 0" stroke-dasharray="2 2"/></g>
+          <g class="zm-pad" id="firlatma"><ellipse cx="880" cy="247" rx="30" ry="7"/><ellipse cx="880" cy="247" rx="14" ry="3.5"/><path d="M880 240v-6M875 237l5-3 5 3"/></g>
+          <text x="880" y="268" text-anchor="middle">fırlatma noktası</text>
+          <text x="840" y="290" text-anchor="middle" class="zm-ad">rasat parkı</text>
+        </g>
+        <g class="zm-inen" aria-hidden="true"><path d="M860 0 A20 20 0 0 1 900 0 Q890 4 880 0 Q870 4 860 0z"/><path d="M861 1 L874 30 M899 1 L886 30 M880 1 L880 30"/><rect x="873" y="30" width="14" height="11"/></g>
+        <rect class="zm-zemin" x="0" y="250" width="1200" height="70"/><rect x="0" y="250" width="1200" height="18" fill="url(#zm-cim)" class="zm-cimen"/>
+      </svg>
+      <a class="katil" id="katil" href="#baloncuk">Bize katıl →</a>
     </div>
   </div>
 </section>
@@ -371,19 +398,17 @@
   </div>
 </footer>
 
-<div class="surpriz" id="surpriz" aria-live="polite"><span class="kilit">🔒</span> <span id="surpriz-metin">Tropopozda: sana göre rol</span></div>
+<div class="surpriz" id="surpriz" aria-live="polite"><span class="kilit">🔒</span> <span id="surpriz-metin">Yere inince: sana göre rol</span></div>
 
 <dialog id="detay" class="detay" aria-labelledby="detay-baslik">
-  <div class="detay-ic">
+  <div class="detay-ic" id="detay-ic">
     <button class="detay-kapat" type="button" id="detay-kapat" aria-label="Kapat">✕</button>
-    <p class="yorum" id="detay-ust"></p>
-    <h3 id="detay-baslik"></h3>
-    <p class="detay-kisa" id="detay-kisa"></p>
-    <div class="detay-uzun" id="detay-uzun"></div>
-    <p class="detay-alt" id="detay-link"></p>
+    <p class="detay-yol" id="detay-yol"><span class="yorum" id="detay-ust"></span> · dallara tıkla, köke dön · Esc kapatır</p>
+    <svg class="harita-cizgi" id="harita-cizgi" aria-hidden="true"></svg>
+    <div class="harita" id="harita"></div>
   </div>
 </dialog>
 
-<script type="module" src="takim.js?v=3"></script>
+<script type="module" src="takim.js?v=4"></script>
 </body>
 </html>
