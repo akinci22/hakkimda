@@ -280,6 +280,7 @@ function kaydirDegis(k, src, yon) {
   function kapat() { clearTimeout(zam); zam = null; clearTimeout(cik); cik = null; yz.classList.remove("acik"); ak.classList.remove("acik"); if (!kat) return; var k = kat; kat = null; perde(false);
     k.style.transition = "transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s"; k.style.transform = k._ilk; k.style.opacity = "0";
     setTimeout(function () { k.remove(); }, 460); }
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && kat) kapat(); });   // Esc: büyüyen klip/fotoğraf kapanır
   function buyut() {
     var hz = hedef.matches("video.gif");   // klipler (fotoğraflar hariç): kararır + bokeh, sonra bulunduğu tarafa seri büyür, yanında büyük yazı
     var el = kaynak(hedef); if (!el) return;
