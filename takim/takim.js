@@ -61,7 +61,9 @@ function ipucuGoster(baslik, metin, x, y) {
   const w = Math.min(320, innerWidth - 24); let lx = x + 18, ly = y + 18; if (lx + w > innerWidth - 8) lx = x - w - 18; if (ly + 140 > innerHeight) ly = y - 150; k.style.left = Math.max(8, lx) + 'px'; k.style.top = Math.max(8, ly) + 'px';
   const pn = $('#p-not'); if (pn) { pn.classList.add('canli'); $('#p-not-m').textContent = metin; pn.querySelector('.panel-ust').textContent = 'Not · ' + baslik; }
 }
-function ipucuGizle() { $('#ipucu').hidden = true; const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); }
+const NOT_VARSAYILAN = ['Not · üzerine gel', 'Altı noktalı terimlere, kartlara ve ray üstündeki seviyelere gelince açıklaması burada belirir.'];
+let notZ; function notSifirla() { clearTimeout(notZ); notZ = setTimeout(() => { const pn = $('#p-not'); if (!pn || pn.classList.contains('canli')) return; pn.querySelector('.panel-ust').textContent = NOT_VARSAYILAN[0]; $('#p-not-m').textContent = NOT_VARSAYILAN[1]; }, 2500); }
+function ipucuGizle() { $('#ipucu').hidden = true; const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); }
 function ipucuBagla(e, al) {
   if (dokunmatik) { e.addEventListener('click', ev => { const { baslik, metin } = al(); ipucuGoster(baslik, metin, ev.clientX, ev.clientY); setTimeout(ipucuGizle, 3500); }); return; }
   let t; e.addEventListener('pointerenter', ev => { clearTimeout(t); t = setTimeout(() => { const { baslik, metin } = al(); ipucuGoster(baslik, metin, ev.clientX, ev.clientY); }, 350); });
@@ -88,7 +90,7 @@ function etkilesim(e, al) {
   e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, 'tıkla: dallan · bekle: karar'));
   if (!dokunmatik && !azalt) {
     e.addEventListener('pointerenter', () => { clearTimeout(odakZ); odakZ = setTimeout(() => { document.body.classList.add('odak'); e.classList.add('odakli'); const d = al(); $('#p-not-m').textContent = d.kisa || ''; $('#p-not').querySelector('.panel-ust').textContent = 'Kart · ' + (d.baslik || ''); }, 650); });
-    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); document.body.classList.remove('odak'); e.classList.remove('odakli'); });
+    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); document.body.classList.remove('odak'); e.classList.remove('odakli'); notSifirla(); });
   }
   e.addEventListener('click', ev => { if (ev.target.closest('a,input,select,textarea,.cip,.oy,.sec')) return; detayAc(al()); });
   e.addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target === e) detayAc(al()); });
@@ -403,7 +405,7 @@ function ilerleme() {
     h.style.setProperty('--yuk', yuk.toFixed(3)); h.style.setProperty('--yukp', (yuk * 100).toFixed(1) + '%');
     if (balon) balon.style.top = (13 + p * 77).toFixed(1) + '%';
     const P = basincTen(yuk * .7), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;   /* .7 → 1000…200 hPa aralığı */
-    const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io) io.textContent = ok;
+    const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum) io.textContent = ok; const mb = $('#mb-okuma'); if (mb) mb.textContent = ok;
     const ph = $('#p-hpa'); if (ph) { ph.textContent = Math.round(P) + ' hPa'; $('#p-km').textContent = km.toFixed(1).replace('.', ',') + ' km'; $('#p-t').textContent = Math.round(T) + ' °C'; }
     let aktif = 0; for (const b of bloklar) { if (b.getBoundingClientRect().top < innerHeight * .45) aktif = +b.dataset.asama; }
     if (aktif !== durum.asama) { durum.asama = aktif; h.dataset.asama = aktif; const [ad, m] = ASAMA_ADI[aktif]; $('#p-asama').textContent = aktif; $('#p-ad').textContent = ad; $('#p-m').textContent = m; $$('#serit button').forEach(b => { const n = +b.dataset.asama; b.classList.toggle('aktif', n === aktif); b.classList.toggle('gecti', n < aktif); }); }

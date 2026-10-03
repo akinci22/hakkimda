@@ -434,7 +434,18 @@ body.imlec-aktif,body.imlec-aktif a,body.imlec-aktif button,body.imlec-aktif [ro
 .gel{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
 .gel.goster{opacity:1;transform:none}
 
-@media (max-width:600px){.surpriz{font-size:.74rem;padding:5px 9px;max-width:72vw}}
+@media (max-width:600px){.surpriz{font-size:.72rem;padding:5px 9px;max-width:58vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+/* mobil: ray ve imleç yok → sol altta küçülen balon + okuma */
+.mobil-balon{position:fixed;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:35;display:none;align-items:flex-end;gap:6px;pointer-events:none}
+.mobil-balon svg{width:26px;height:40px;transform:scale(calc(var(--balon) * .5 + .4));transform-origin:50% 100%;transition:transform .9s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(1px 2px 0 rgba(31,42,46,.25))}
+.mobil-balon span{font:600 .7rem var(--mono);background:var(--panel-bg);border:1px solid var(--murekkep);padding:2px 6px;color:var(--murekkep)}
+@media (max-width:999px){.mobil-balon{display:flex}}
+@media (max-width:700px){
+  .ust-ic{min-height:40px;gap:8px;flex-wrap:nowrap;padding-inline:12px}
+  .geri{font-size:.78rem;white-space:nowrap} .ust-ad{font-size:1rem;margin-left:auto;white-space:nowrap} .ust-ad .prompt{display:none}
+  .rozet{font-size:.62rem;padding:1px 6px;order:3;flex:0 1 auto;max-width:34vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .serit{padding:0 10px 4px} .serit button{min-width:84px;padding:4px 6px 1px} .serit button b{font-size:.82rem} .serit button span{font-size:.64rem}
+}
 @media (max-width:860px){
   .acilis-ic,.merdiven-sar,.vaka,.karne,.test-ic,.son-ic{grid-template-columns:1fr}
   .gridfig{position:static}
