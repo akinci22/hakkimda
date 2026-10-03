@@ -642,3 +642,10 @@ function kaydirDegis(k, src, yon) {
     else y.classList.add('zh-ac');
   });
 })();
+
+/* Yön galerisi: telefonda dokununca açıklama açılır/kapanır (hover yok) */
+(function () {
+  document.querySelectorAll('.yg-kart').forEach(function (k) {
+    k.addEventListener('click', function () { var ac = k.classList.contains('ac'); document.querySelectorAll('.yg-kart.ac').forEach(function (x) { x.classList.remove('ac'); }); if (!ac) k.classList.add('ac'); });
+  });
+})();
