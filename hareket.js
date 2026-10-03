@@ -252,11 +252,13 @@ function kaydirDegis(k, src) {
     yz.firstChild.textContent = t; yz.firstChild.style.display = t ? "" : "none";
     yz.style.left = r.left + "px"; yz.style.width = r.width + "px"; yz.style.top = Math.min(innerHeight - 90, r.bottom + 10) + "px"; yz.classList.add("acik");
   }
-  var ak = document.createElement("div"); ak.className = "kat-acik"; ak.innerHTML = "<h3></h3><p></p>"; document.body.appendChild(ak);
+  var ak = document.createElement("div"); ak.className = "kat-acik"; ak.innerHTML = "<h3></h3><div></div>"; document.body.appendChild(ak);
   function acikla(el, sol, x0, w) {   // büyüyen klibin yanında: büyük, net başlık ve kısa açıklama (figcaption'dan)
     var f = el.closest("figure"), c = f && f.querySelector("figcaption"); if (!c) return;
     var b = c.querySelector("b"), bas = b ? b.textContent : "", ac = c.textContent.replace(bas, "").trim();
-    ak.firstChild.textContent = bas || ac; ak.lastChild.textContent = bas ? ac : "";
+    var ul = c.querySelector("ul"); ac = (c.cloneNode(true)); var x = ac.querySelector("ul"); if (x) x.remove(); var y = ac.querySelector("b"); if (y) y.remove(); ac = ac.textContent.trim();
+    ak.firstChild.textContent = bas || ac;
+    if (ul) ak.lastChild.innerHTML = ul.outerHTML; else ak.lastChild.textContent = bas ? ac : "";
     var bas0 = sol ? x0 + w + innerWidth * .04 : innerWidth * .04, gen = innerWidth - w - innerWidth * .12;
     ak.style.left = bas0 + "px"; ak.style.width = Math.max(220, gen) + "px"; ak.classList.add("acik");
   }
@@ -297,6 +299,7 @@ function kaydirDegis(k, src) {
     if (hz) {   // YolHava: 1) imlecin altındaki kalır, çevresi hızla kararır + "büyüteceğim" sinyali; 2) kararınca seri büyür, ortada orta boy
       k._evre1 = true; k.classList.add("sinyal"); perde(true, "bokeh");
       k._buyu = function () { if (kat !== k || !k._evre1) return; k._evre1 = false; k.classList.remove("sinyal");   // tıklayınca büyür
+        pd.style.transition = "opacity .3s, backdrop-filter .3s"; pd.style.background = "rgba(0,0,0,.6)"; pd.style.opacity = "1"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(18px) saturate(1.1)";   // büyürken yazı okunsun
         k.style.transition = "transform .28s cubic-bezier(.2,.9,.3,1)"; k.style.transform = "none";
         if (!dokun) setTimeout(function () { if (kat === k) acikla(hedef, sol, x0, w); }, 200); };
       if (dokun) setTimeout(k._buyu, 300);
