@@ -693,3 +693,23 @@ h3:has(+ .sokak-sahne){position:relative;z-index:2;color:#111!important;text-ali
 .sokak-sahne::before{top:-520px!important;bottom:-360px!important;
  background:linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,.35) 160px,rgba(255,255,255,.8) 320px,#fff 480px,#fff calc(100% - 340px),rgba(255,255,255,.8) calc(100% - 220px),rgba(255,255,255,.35) calc(100% - 110px),rgba(255,255,255,0) 100%)!important}
 .foto-ayrac.sanat{background:transparent!important;box-shadow:none!important}
+/* OKUNABİLİRLİK (3 Eki): küçük yazılar okunur boya, satır aralığı ferah */
+.gif-kart figcaption,.yayin-kare figcaption,.dmg-foto figcaption{font-size:.95rem!important;line-height:1.5}
+.gif-kart figcaption b{font-size:1.02rem}
+.yayin-kare figcaption{font-family:var(--font-b,var(--sans))!important;text-transform:none!important;letter-spacing:0!important;font-size:1rem!important}
+.kart p,.akis-diyagram .kart p{font-size:.95rem!important;line-height:1.55!important}
+.akis-diyagram .kart h4{font-size:.95rem!important}
+.yetkin li{font-size:.92rem!important}
+.yetkin p,.akis-not,.ara-not{font-size:1rem!important}
+.msj{font-size:1.02rem}
+.msj-ad,.po-ust{font-size:.78rem!important}
+/* Bölümler arası yumuşak renk geçişi */
+.blok{position:relative}
+.blok::before{content:"";position:absolute;left:0;right:0;top:-160px;height:160px;pointer-events:none;z-index:0;
+ background:linear-gradient(to bottom,rgba(0,0,0,0),var(--zemin,transparent))}
+.blok > .sar{position:relative;z-index:1}
+/* Tam ekran düğmesi */
+.tam-ekran{position:fixed;right:18px;bottom:84px;z-index:80;display:flex;align-items:center;gap:8px;background:#0e2440;color:#fff;border:0;border-radius:99px;padding:10px 16px;
+ font:600 .9rem 'Helvetica Neue',Helvetica,Arial,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:opacity .4s,transform .4s}
+.tam-ekran.gizli{opacity:0;transform:translateY(10px);pointer-events:none}
+@media (hover:none){.tam-ekran{display:none}}

@@ -551,3 +551,15 @@ function kaydirDegis(k, src) {
   new IntersectionObserver(function (g) { document.documentElement.classList.toggle("beyaz-mod", g[0].isIntersecting); },
     { rootMargin: "-40% 0px -40% 0px" }).observe(sahne);
 })();
+
+/* TAM EKRAN (PC): tarayıcılar tıklamasız tam ekrana izin vermez; sayfadaki İLK tıklama tam ekranı açar,
+   ayrıca sağ altta belirgin bir "Tam ekran" düğmesi durur. Esc ile çıkılır. */
+(function () {
+  if (!document.documentElement.requestFullscreen || matchMedia("(hover: none)").matches) return;
+  var d = document.createElement("button"); d.type = "button"; d.className = "tam-ekran"; d.innerHTML = "⛶ Tam ekranda gez";
+  document.body.appendChild(d);
+  function ac() { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () {}); }
+  d.addEventListener("click", function (e) { e.stopPropagation(); document.fullscreenElement ? document.exitFullscreen() : ac(); });
+  document.addEventListener("fullscreenchange", function () { d.classList.toggle("gizli", !!document.fullscreenElement); });
+  var ilk = true; document.addEventListener("pointerdown", function (e) { if (ilk && e.pointerType === "mouse") { ilk = false; ac(); } }, true);
+})();
