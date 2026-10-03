@@ -279,7 +279,9 @@ function kaydirDegis(k, src) {
     var el = kaynak(hedef); if (!el) return;
     var r = el.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
     var oran = (el.videoWidth || el.naturalWidth || r.width) / (el.videoHeight || el.naturalHeight || r.height);
-    var w = Math.min(vw * (dokun ? .94 : hz ? .5 : .62), vh * (dokun ? .8 : hz ? .72 : .72) * oran), h = w / oran;
+    var w = Math.min(vw * (dokun ? .94 : hz ? .5 : .62), vh * (dokun ? .8 : hz ? .72 : .72) * oran), h;
+    if (hz) w = Math.min(Math.max(w, r.width * 1.3), vw * .96, vh * .92 * oran);   // klip en az %30 büyür
+    h = w / oran;
     var k = el.tagName === "VIDEO" ? el.cloneNode(true) : new Image();
     if (k.tagName === "IMG") k.src = el.currentSrc || el.src;
     else { k.muted = true; k.loop = true; k.preload = "auto"; k.currentTime = el.currentTime || 0; }
