@@ -339,11 +339,11 @@
   var b = document.createElement("div"); b.className = "hava-bulut"; b.setAttribute("aria-hidden", "true");
   var isin = ""; for (var a = 0; a < 360; a += 30) isin += '<line x1="0" y1="-17" x2="0" y2="-25" transform="rotate(' + a + ')"/>';
   var yag = ""; for (var r = 0; r < 6; r++) yag += '<line x1="' + (30 + r * 8) + '" y1="44" x2="' + (27 + r * 8) + '" y2="52" style="animation-delay:' + (r * .13) + 's"/>';
-  b.innerHTML = '<svg viewBox="0 0 100 64" width="100" height="64">' +
+  b.innerHTML = '<svg viewBox="0 0 100 64" width="100" height="64"><g class="hb-jel">' +
     '<g class="hb-gunes" transform="translate(66 24)"><g class="hb-isin">' + isin + '</g><circle r="12"/></g>' +
     '<path class="hb-bulut" d="M22 44h52a12 12 0 0 0 0-24 16 16 0 0 0-30-6 12 12 0 0 0-20 8 11 11 0 0 0-2 22z"/>' +
     '<polygon class="hb-simsek" points="50,40 43,52 49,52 45,62 57,48 51,48 55,40"/>' +
-    '<g class="hb-yagmur">' + yag + '</g></svg><span class="hb-ad"></span>';
+    '<g class="hb-yagmur">' + yag + '</g></g></svg><span class="hb-ad"></span>';
   var adlar = ["YolHava", "İTÜ Yemek", "Naplist", "Canlı yayın", "Temsilcilik", "Fotoğraf", "İletişim"], ad = b.querySelector(".hb-ad");
   document.body.appendChild(b);
   var kok = document.documentElement, bk = false;
@@ -357,6 +357,29 @@
   }
   addEventListener("scroll", function () { if (!bk) { bk = true; requestAnimationFrame(ciz); } }, { passive: true });
   addEventListener("resize", ciz); ciz();
+
+  // Bulutu tutup yana sürükle: sayfa o noktaya gider. Bulut su dolu balon gibi: hızlı çekince çok, yavaş çekince az esner; bırakınca yaylanarak oturur.
+  var jel = b.querySelector(".hb-jel"), tut = false, sonX = 0, sonT = 0, hiz = 0, sx = 1, sy = 1, vs = 0, sk = 0, vk = 0, dongu = false;
+  function fizik() {
+    var hedefS = 1 + Math.min(.45, Math.abs(hiz) / 2400), hedefK = Math.max(-20, Math.min(20, -hiz / 70));
+    if (!tut) { hedefS = 1; hedefK = 0; hiz *= .85; }
+    vs = (vs + (hedefS - sx) * .18) * .78; sx += vs;          // yay + sönüm: bırakınca birkaç kez salınır
+    vk = (vk + (hedefK - sk) * .16) * .8; sk += vk;
+    sy = 1 / Math.sqrt(Math.max(.6, sx));                       // hacim korunur: uzarken incelir
+    jel.style.transform = "skewX(" + sk.toFixed(2) + "deg) scale(" + sx.toFixed(3) + "," + sy.toFixed(3) + ")";
+    if (tut || Math.abs(sx - 1) > .002 || Math.abs(vs) > .002 || Math.abs(sk) > .05) requestAnimationFrame(fizik); else { jel.style.transform = ""; dongu = false; }
+  }
+  function basla() { if (!dongu) { dongu = true; requestAnimationFrame(fizik); } }
+  function git(x) { var a = window.hizaX ? window.hizaX(0) : 61, z = window.hizaX ? window.hizaX(1) : innerWidth - 61;
+    var p = Math.max(0, Math.min(1, (x - a) / (z - a))); scrollTo(0, p * (kok.scrollHeight - innerHeight)); }
+  b.addEventListener("pointerdown", function (e) {
+    tut = true; b.setPointerCapture(e.pointerId); b.classList.add("tutuldu"); sonX = e.clientX; sonT = performance.now(); hiz = 0;
+    vs -= .12; basla(); e.preventDefault();                     // dokununca balon gibi içe göçer
+  });
+  b.addEventListener("pointermove", function (e) { if (!tut) return; var t = performance.now(), dt = Math.max(8, t - sonT);
+    hiz = hiz * .6 + ((e.clientX - sonX) / dt * 1000) * .4; sonX = e.clientX; sonT = t; git(e.clientX); });
+  function birak() { if (!tut) return; tut = false; b.classList.remove("tutuldu"); vk += hiz / 400; basla(); }
+  b.addEventListener("pointerup", birak); b.addEventListener("pointercancel", birak);
 })();
 
 
