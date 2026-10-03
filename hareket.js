@@ -7,7 +7,7 @@ function kaydirDegis(k, src) {
       void k.offsetWidth; k.style.transition = ""; k.classList.remove("gir"); }
     var bitti = false; function bir() { if (!bitti) { bitti = true; gel(); } }
     if (yeni.complete) bir(); else { yeni.onload = bir; yeni.onerror = bir; setTimeout(bir, 350); }   // en çok 0,35 sn bekle
-  }, k.classList.contains("hizli") ? 200 : 420);
+  }, k.classList.contains("hizli") ? 300 : 520);
 }
 /* Hareket katmanı v4 (28 Eyl 2026) — hafif ve kasmayan.
    Tek IntersectionObserver: .gel ögeleri bir kez belirir, grafikler (.grafik) bir kez çizilir.
@@ -507,10 +507,12 @@ function kaydirDegis(k, src) {
   var bul = {}; Array.prototype.forEach.call(k, function (x) { bul[x.dataset.i] = x; });
   function goster(n, hizli) { i = (n + L.length) % L.length; ana.classList.toggle("hizli", !!hizli); kaydirDegis(ana, L[i]);
     Array.prototype.forEach.call(k, function (x) { x.classList.toggle("su", +x.dataset.i === i); }); }
-  kap.addEventListener("pointerover", function (e) { var x = e.target.closest(".ss-yan img"); if (!x) return; ust = true; if (+x.dataset.i !== i) goster(+x.dataset.i, true); });
+  var bek = null;
+  kap.addEventListener("pointerover", function (e) { var x = e.target.closest(".ss-yan img"); clearTimeout(bek); if (!x) return; ust = true;
+    bek = setTimeout(function () { if (+x.dataset.i !== i) goster(+x.dataset.i, false); }, 220); });   // üstünden geçerken her kareye atlamasın
   kap.addEventListener("pointerleave", function () { ust = false; });
   new IntersectionObserver(function (g) { gorunur = g[0].isIntersecting; }).observe(kap);
-  setInterval(function () { if (gorunur && !ust && !document.hidden) { var y = new Image(); y.src = L[(i + 1) % L.length]; goster(i + 1, false); } }, 1700);
+  setInterval(function () { if (gorunur && !ust && !document.hidden) { var y = new Image(); y.src = L[(i + 1) % L.length]; goster(i + 1, false); } }, 3200);
   goster(0, true);
 })();
 
@@ -522,9 +524,11 @@ function kaydirDegis(k, src) {
   var TIK = "a,button,[role=button],summary,label,select,video.gif,.hl,.ss-yan img,.montaj-ic img,.r-kart,.hava-bulut,.geri-bulut,.cer,.gif-kart";
   var im = document.createElement("div"); im.className = "bulut-imlec"; im.setAttribute("aria-hidden", "true"); im.style.transform = "translate(-200px,-200px)";
   var yag = ""; for (var i = 0; i < 4; i++) yag += '<line x1="' + (12 + i * 5) + '" y1="25" x2="' + (10 + i * 5) + '" y2="31" style="animation-delay:' + i * .12 + 's"/>';
-  im.innerHTML = '<svg viewBox="0 0 40 40" width="58" height="58"><path class="bi-uc" d="M1 1 L9 4 L4 9 Z"/>' +
-    '<path class="bi-bulut" d="M9 22h20a6 6 0 0 0 0-12 8 8 0 0 0-15-2 6 6 0 0 0-5 14z"/>' +
-    '<polygon class="bi-simsek" points="21,22 17,30 20,30 18,37 25,27 22,27 24,22"/><g class="bi-yag">' + yag + '</g></svg>' +
+  // imleç = ucu ok gibi sivri bir şimşek; arkasında minik bir bulut
+  im.innerHTML = '<svg class="bi-ana" viewBox="0 0 40 40" width="46" height="46">' +
+    '<path class="bi-bulut" d="M21 33h11a3.4 3.4 0 0 0 0-6.8 4.6 4.6 0 0 0-8.6-1.2 3.4 3.4 0 0 0-2.4 8z"/>' +
+    '<polygon class="bi-simsek-uc" points="1,1 15,9 10,11 19,19 13,20 23,30 7,17 12,15 4,11"/>' +
+    '<g class="bi-yag">' + yag + '</g></svg>' +
     '<svg class="bi-kamera" viewBox="0 0 40 40" width="52" height="52"><rect x="4" y="12" width="32" height="22" rx="4"/><rect x="14" y="7" width="12" height="6" rx="2"/><circle cx="20" cy="23" r="7" class="bk-lens"/><circle cx="20" cy="23" r="3.2" class="bk-ic"/><circle cx="31" cy="16" r="1.5" class="bk-flas"/></svg><span>tıkla</span>';
   document.body.appendChild(im); document.documentElement.classList.add("bulut-imlec-acik");
   var x = -100, y = -100, ciz = false, zam1 = null, zam2 = null, ust = null;

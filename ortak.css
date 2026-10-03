@@ -612,9 +612,23 @@ html.beyaz-mod .t-foto{background:#fff!important;transition:background .5s}
 .bulut-imlec .bi-kamera{display:none;overflow:visible;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))}
 .bi-kamera rect{fill:#1d1d1f;stroke:#000;stroke-width:1}
 .bi-kamera .bk-lens{fill:#3a3a3c;stroke:#c9c9c9;stroke-width:1.4}.bi-kamera .bk-ic{fill:#5ab0f0;opacity:.8}.bi-kamera .bk-flas{fill:#f2b84b}
-html.beyaz-mod .bulut-imlec svg:first-child{display:none}
+html.beyaz-mod .bulut-imlec .bi-ana{display:none}
 html.beyaz-mod .bulut-imlec .bi-kamera{display:block}
 html.beyaz-mod .bulut-imlec span{display:none}
 html.beyaz-mod .bulut-imlec.bas .bi-kamera .bk-flas{fill:#fff;filter:drop-shadow(0 0 6px #fff)}
 .kat-acik h3{font-size:clamp(2.6rem,5.2vw,5.4rem)!important;line-height:1!important;margin-bottom:18px!important}
 .kat-acik p{font-size:clamp(1.2rem,1.9vw,1.9rem)!important;opacity:.92}
+/* Şimşek imleç: uç = imleç ucu; tıklanabilirde öne eğilip kalkar (tık hareketi) */
+.bi-simsek-uc{fill:#ffd23d;stroke:#7a5a00;stroke-width:1.1;stroke-linejoin:round}
+.bulut-imlec .bi-ana{transform-origin:2px 2px}
+.bulut-imlec .bi-bulut{fill:#fff;stroke:#8aa0b8;stroke-width:1}
+.bulut-imlec.islak .bi-ana{animation:biTik 1.1s ease-in-out infinite}
+.bulut-imlec.islak .bi-bulut{fill:#7f8b99;stroke:#4d5a69}
+.bulut-imlec.simsek .bi-simsek-uc{fill:#fff36b;filter:drop-shadow(0 0 4px #ffe14d)}
+.bulut-imlec.simsek .bi-ana{animation:biTik 1.1s ease-in-out infinite,biParla 1.4s infinite}
+.bulut-imlec.bas .bi-ana{transform:rotate(-14deg) scale(.9)}
+@keyframes biTik{0%,60%,100%{transform:rotate(0)}20%{transform:rotate(-16deg) translate(1px,1px)}35%{transform:rotate(0)}}
+@keyframes biParla{0%,55%,70%,100%{filter:none}60%,66%{filter:drop-shadow(0 0 6px #ffe14d) brightness(1.3)}}
+.bulut-imlec span{left:40px!important;top:4px!important}
+.ss-ana.hizli{transition-duration:.35s!important}
+.ss-ana{transition-duration:.55s!important}
