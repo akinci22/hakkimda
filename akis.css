@@ -627,8 +627,9 @@ html,body{overflow-x:clip}
 .montaj[data-grup="kampus"] .montaj-serit,.montaj[data-grup="kampus"] .montaj-ic{background:#fff!important;padding:0!important;mask-image:none!important;-webkit-mask-image:none!important}
 .montaj-kare{transition:opacity .3s ease}.montaj-kare.sol{opacity:0}
 .montaj[data-grup="kampus"] .montaj-kare{transition:opacity .42s ease,transform .42s cubic-bezier(.4,0,.2,1)!important}
-.montaj[data-grup="kampus"] .montaj-kare.cik{opacity:0;transform:translateX(-60px)}
-.montaj[data-grup="kampus"] .montaj-kare.gir{opacity:0;transform:translateX(60px)}
+.montaj[data-grup="kampus"] .montaj-kare.cik{opacity:0;transform:translateX(calc(var(--yon,1)*-60px))}
+.montaj[data-grup="kampus"] .montaj-kare.gir{opacity:0;transform:translateX(calc(var(--yon,1)*60px))}
+.montaj[data-grup="kampus"] .montaj-kare.hizli{transition-duration:.22s!important}
 .montaj[data-grup="kampus"] .montaj-kare.sol{opacity:1;transform:none}
 .montaj[data-grup="sokak"] .montaj-serit{display:none!important}
 /* Sokak ve şehir sahnesi */
@@ -640,8 +641,8 @@ html,body{overflow-x:clip}
 .ss-orta{position:sticky;top:72px;background:#fff;border:1px solid #000;padding:10px;border-radius:6px;overflow:hidden}
 .ss-ana{display:block;width:100%;height:auto;aspect-ratio:420/600;object-fit:contain;background:#fff;transition:opacity .38s ease,transform .38s cubic-bezier(.4,0,.2,1)}
 .ss-ana.hizli{transition-duration:.2s}
-.ss-ana.cik{opacity:0;transform:translateX(-50px)}
-.ss-ana.gir{opacity:0;transform:translateX(50px)}
+.ss-ana.cik{opacity:0;transform:translateX(calc(var(--yon,1)*-50px))}
+.ss-ana.gir{opacity:0;transform:translateX(calc(var(--yon,1)*50px))}
 @media (max-width:700px){.sokak-sahne{grid-template-columns:1fr 1.6fr 1fr;gap:6px}.ss-yan{grid-template-columns:1fr 1fr;gap:4px}.ss-orta{top:60px;padding:5px}}
 /* Sokak ve şehir v2: bembeyaz zemin (kampüsten yumuşak geçiş), ortadaki büyük foto ekranın tam ortasında yapışık */
 .t-foto{overflow-x:clip}
@@ -722,3 +723,11 @@ h3:has(+ .sokak-sahne){position:relative;z-index:2;color:#111!important;text-ali
 .kat-acik ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
 .kat-acik ul li{font:500 clamp(1.15rem,1.7vw,1.7rem)/1.35 'Helvetica Neue',Helvetica,'Inter',Arial,sans-serif;padding-left:28px;position:relative;text-shadow:0 2px 12px rgba(0,0,0,.5)}
 .kat-acik ul li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:12px;border-radius:50%;background:#ffd23d}
+
+/* Beyaz sahne: her yeni fotoğrafta flaş — ekran çok kısa beyaz parlar, yumuşak söner */
+.flas{position:fixed;inset:0;z-index:95;background:#fff;opacity:0;pointer-events:none}
+.flas.ac{animation:flasPatla .34s cubic-bezier(.1,.8,.3,1) both}
+@keyframes flasPatla{0%{opacity:.92}18%{opacity:.7}100%{opacity:0}}
+.ss-ana,.ss-yan{touch-action:pan-y}
+@media (prefers-reduced-motion:reduce){.flas.ac{animation:none}}
+.ss-ana,.ss-yan img{-webkit-user-drag:none;user-select:none}

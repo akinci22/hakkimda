@@ -1,6 +1,6 @@
 /* Montaj karesi değişimi: eski kare sola kayıp söner, sıradaki sağdan kayarak gelir */
-function kaydirDegis(k, src) {
-  var yeni = new Image(); yeni.src = src;
+function kaydirDegis(k, src, yon) {
+  var yeni = new Image(); yeni.src = src; k.style.setProperty("--yon", yon < 0 ? -1 : 1);
   k.classList.add("cik");
   setTimeout(function () {
     function gel() { k.style.transition = "none"; k.classList.remove("cik"); k.classList.add("gir"); k.src = src;
@@ -484,14 +484,15 @@ function kaydirDegis(k, src) {
 })();
 
 
-/* Kampüs / sokak ızgarası: imleç bir fotoğrafta 2 sn durursa o fotoğraf üstteki büyük çerçevede görünür (döngü 6 sn bekler). */
+/* Kampüs ızgarası: imleç bir fotoğrafa gelir gelmez o fotoğraf üstteki büyük çerçeveye hızlıca kayar (döngü 6 sn bekler). */
 (function () {
   var zam = null;
   document.querySelectorAll(".foto-ayrac").forEach(function (iz) {
     var m = iz.previousElementSibling; while (m && !(m.classList && m.classList.contains("montaj"))) m = m.previousElementSibling;
     if (!m) return; var kare = m.querySelector(".montaj-kare");
     iz.addEventListener("pointerover", function (e) { var im = e.target.closest("img"); clearTimeout(zam); if (!im) return;
-      zam = setTimeout(function () { m._tut = Date.now() + 6000; kaydirDegis(kare, im.currentSrc || im.src); }, 2000); });
+      var yon = e.clientX < (kare.getBoundingClientRect().left + kare.offsetWidth / 2) ? -1 : 1;
+      zam = setTimeout(function () { m._tut = Date.now() + 6000; kare.classList.add("hizli"); kaydirDegis(kare, im.currentSrc || im.src, yon); }, 120); });
     iz.addEventListener("pointerleave", function () { clearTimeout(zam); });
   });
 })();
@@ -520,14 +521,24 @@ function kaydirDegis(k, src) {
   kap.innerHTML = '<div class="ss-yan">' + sol + '</div><div class="ss-orta"><img class="ss-ana" src="' + L[0] + '" alt="Sokak fotoğrafı" width="420" height="600"></div><div class="ss-yan">' + sag + '</div>';
   var ana = kap.querySelector(".ss-ana"), k = kap.querySelectorAll(".ss-yan img"), i = 0, ust = false, gorunur = false;
   var bul = {}; Array.prototype.forEach.call(k, function (x) { bul[x.dataset.i] = x; });
-  function goster(n, hizli) { i = (n + L.length) % L.length; ana.classList.toggle("hizli", !!hizli); kaydirDegis(ana, L[i]);
+  var flas = document.createElement("div"); flas.className = "flas"; flas.setAttribute("aria-hidden", "true"); document.body.appendChild(flas);
+  function patlat() { flas.classList.remove("ac"); void flas.offsetWidth; flas.classList.add("ac"); }   // her yeni fotoğrafta flaş; hızlı geçince hızlı hızlı
+  function goster(n, hizli, yon) { var once = i; i = (n + L.length) % L.length; if (i === once && !hizli) return; ana.classList.toggle("hizli", !!hizli);
+    kaydirDegis(ana, L[i], yon || 1); if (document.documentElement.classList.contains("beyaz-mod")) patlat();
     Array.prototype.forEach.call(k, function (x) { x.classList.toggle("su", +x.dataset.i === i); }); }
   var bek = null;
+  var sonPX = 0, yonIm = 1;
+  kap.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") { if (e.clientX !== sonPX) yonIm = e.clientX > sonPX ? 1 : -1; sonPX = e.clientX; } }, { passive: true });
   kap.addEventListener("pointerover", function (e) { var x = e.target.closest(".ss-yan img"); clearTimeout(bek); if (!x) return; ust = true;
-    bek = setTimeout(function () { if (+x.dataset.i !== i) goster(+x.dataset.i, false); }, 220); });   // üstünden geçerken her kareye atlamasın
+    bek = setTimeout(function () { if (+x.dataset.i !== i) goster(+x.dataset.i, true, yonIm); }, 90); });   // imlecin gittiği yöne kayar; hızlı geçince hızlı değişir
+  // parmakla / fareyle sürükle: hangi yöne çektiysen fotoğraf o yöne kayar, sıradaki gelir
+  var sx = null, sy = 0;
+  kap.addEventListener("pointerdown", function (e) { sx = e.clientX; sy = e.clientY; }, { passive: true });
+  kap.addEventListener("pointerup", function (e) { if (sx === null) return; var dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+    if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.3) { ust = true; goster(dx < 0 ? i + 1 : i - 1, true, dx < 0 ? 1 : -1); setTimeout(function () { ust = false; }, 4000); } });
   kap.addEventListener("pointerleave", function () { ust = false; });
   new IntersectionObserver(function (g) { gorunur = g[0].isIntersecting; }).observe(kap);
-  setInterval(function () { if (gorunur && !ust && !document.hidden) { var y = new Image(); y.src = L[(i + 1) % L.length]; goster(i + 1, false); } }, 3200);
+  setInterval(function () { if (gorunur && !ust && !document.hidden) { var y = new Image(); y.src = L[(i + 1) % L.length]; goster(i + 1, false, 1); } }, 3200);
   goster(0, true);
   // sahneye 2 ekran kala tüm küçükleri yüklemeye başla: hızlı gelince (menüden atlayınca) bembeyaz boş sahne görünmesin
   new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { Array.prototype.forEach.call(k, function (x) { x.loading = "eager"; }); o.disconnect(); } },
@@ -579,7 +590,9 @@ function kaydirDegis(k, src) {
   function ac() { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () {}); }
   d.addEventListener("click", function (e) { e.stopPropagation(); document.fullscreenElement ? document.exitFullscreen() : ac(); });
   document.addEventListener("fullscreenchange", function () { d.classList.toggle("gizli", !!document.fullscreenElement); });
-  var ilk = true; document.addEventListener("pointerdown", function (e) { if (ilk && e.pointerType === "mouse") { ilk = false; ac(); } }, true);
+  ac();                                                        // açılışta dene (tarayıcı izin verirse F11 gibi açılır)
+  document.addEventListener("pointerdown", function (e) { if (e.pointerType === "mouse" && !document.fullscreenElement) ac(); }, true);   // çıkılsa bile ilk tıklamada geri döner
+  document.addEventListener("keydown", function (e) { if (!document.fullscreenElement && e.key !== "Escape") ac(); }, true);
 })();
 
 /* Her bölüme bir önceki bölümün zemin rengini ver: üst kenarda yumuşak geçiş için */
