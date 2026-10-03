@@ -250,7 +250,17 @@ function kaydirDegis(k, src) {
     yz.firstChild.textContent = t; yz.firstChild.style.display = t ? "" : "none";
     yz.style.left = r.left + "px"; yz.style.width = r.width + "px"; yz.style.top = Math.min(innerHeight - 90, r.bottom + 10) + "px"; yz.classList.add("acik");
   }
+  var ak = document.createElement("div"); ak.className = "kat-acik"; ak.innerHTML = "<h3></h3><p></p>"; document.body.appendChild(ak);
+  function acikla(el, sol, x0, w) {   // büyüyen klibin yanında: büyük, net başlık ve kısa açıklama (figcaption'dan)
+    var f = el.closest("figure"), c = f && f.querySelector("figcaption"); if (!c) return;
+    var b = c.querySelector("b"), bas = b ? b.textContent : "", ac = c.textContent.replace(bas, "").trim();
+    ak.firstChild.textContent = bas || ac; ak.lastChild.textContent = bas ? ac : "";
+    var bas0 = sol ? x0 + w + innerWidth * .04 : innerWidth * .04, gen = innerWidth - w - innerWidth * .12;
+    ak.style.left = bas0 + "px"; ak.style.width = Math.max(220, gen) + "px"; ak.classList.add("acik");
+  }
   function perde(ac, hizli, hemen) {
+    if (hizli === "bokeh") { pd.style.background = "rgba(0,0,0,.42)"; pd.style.transition = "opacity .4s ease-out, backdrop-filter .4s ease-out";
+      pd.style.opacity = "1"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(22px) saturate(1.2)"; return; }
     pd.style.background = hizli ? "rgba(10,20,40,.12)" : "#000";
     pd.style.transition = !ac ? "opacity .4s ease, backdrop-filter .4s" : hizli ? "opacity .35s ease-out, backdrop-filter .45s ease-out"
       : hemen ? "opacity .35s ease-out, backdrop-filter .35s ease-out" : "opacity 1.5s cubic-bezier(.75,0,.9,.55), backdrop-filter .9s ease-out";
@@ -259,28 +269,30 @@ function kaydirDegis(k, src) {
   }
   function kaynak(el) { if (el.closest(".montaj-ic")) return el.closest(".montaj").querySelector(".montaj-kare");
     return el.matches("video.gif") ? el : (el.querySelector(".hl-kutu img.on") || el.querySelector("video.gif") || el.querySelector("img")); }
-  function kapat() { clearTimeout(zam); zam = null; clearTimeout(cik); cik = null; yz.classList.remove("acik"); if (!kat) return; var k = kat; kat = null; perde(false);
+  function kapat() { clearTimeout(zam); zam = null; clearTimeout(cik); cik = null; yz.classList.remove("acik"); ak.classList.remove("acik"); if (!kat) return; var k = kat; kat = null; perde(false);
     k.style.transition = "transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s"; k.style.transform = k._ilk; k.style.opacity = "0";
     setTimeout(function () { k.remove(); }, 460); }
   function buyut() {
-    var hz = !!hedef.closest("#projeler");
+    var hz = hedef.matches("video.gif");   // klipler (fotoğraflar hariç): kararır + bokeh, sonra bulunduğu tarafa seri büyür, yanında büyük yazı
     var el = kaynak(hedef); if (!el) return;
     var r = el.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
     var oran = (el.videoWidth || el.naturalWidth || r.width) / (el.videoHeight || el.naturalHeight || r.height);
-    var w = Math.min(vw * (dokun ? .94 : hz ? .42 : .62), vh * (dokun ? .8 : hz ? .52 : .72) * oran), h = w / oran;
+    var w = Math.min(vw * (dokun ? .94 : hz ? .5 : .62), vh * (dokun ? .8 : hz ? .72 : .72) * oran), h = w / oran;
     var k = el.tagName === "VIDEO" ? el.cloneNode(true) : new Image();
     if (k.tagName === "IMG") k.src = el.currentSrc || el.src;
     else { k.muted = true; k.loop = true; k.preload = "auto"; k.currentTime = el.currentTime || 0; }
     k.className = "buyuk-kat";
-    k.style.cssText = "position:fixed;z-index:9999;left:" + (vw - w) / 2 + "px;top:" + (vh - h) / 2 + "px;width:" + w + "px;height:" + h +
+    var sol = r.left + r.width / 2 < vw / 2, x0 = hz && !dokun ? (sol ? vw * .04 : vw * .96 - w) : (vw - w) / 2;
+    k.style.cssText = "position:fixed;z-index:9999;left:" + x0 + "px;top:" + (vh - h) / 2 + "px;width:" + w + "px;height:" + h +
       "px;object-fit:contain;background:#000;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6);pointer-events:none;will-change:transform;transform-origin:0 0";
-    var s = r.width / w, ilk = "translate(" + (r.left - (vw - w) / 2) + "px," + (r.top - (vh - h) / 2) + "px) scale(" + s + ")";
+    var s = r.width / w, ilk = "translate(" + (r.left - x0) + "px," + (r.top - (vh - h) / 2) + "px) scale(" + s + ")";
     k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; k._hz = hz; if (!hz) perde(true, false, true);
     if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
     if (hz) {   // YolHava: 1) imlecin altındaki kalır, çevresi hızla kararır + "büyüteceğim" sinyali; 2) kararınca seri büyür, ortada orta boy
-      k._evre1 = true; k.classList.add("sinyal"); perde(true, false, true);
+      k._evre1 = true; k.classList.add("sinyal"); perde(true, "bokeh");
       setTimeout(function () { if (kat !== k) return; k._evre1 = false; k.classList.remove("sinyal");
-        k.style.transition = "transform .32s cubic-bezier(.2,.9,.3,1)"; k.style.transform = "none"; }, 550);
+        k.style.transition = "transform .28s cubic-bezier(.2,.9,.3,1)"; k.style.transform = "none";
+        if (!dokun) setTimeout(function () { if (kat === k) acikla(hedef, sol, x0, w); }, 200); }, 450);
     } else {   // fotoğraf/hikâye: önce çevre hızla kararır, sonra yavaşça büyümeye başlar; 1,5 sn kalınırsa hızlanıp tamamlanır
       var ara = "translate(" + (r.left - (vw - w) / 2) * .6 + "px," + (r.top - (vh - h) / 2) * .6 + "px) scale(" + (s + (1 - s) * .35) + ")";
       setTimeout(function () { if (kat !== k) return; k.style.transition = "transform 1.15s cubic-bezier(.4,0,.6,1)"; k.style.transform = ara; }, 350);
