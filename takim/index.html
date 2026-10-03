@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr" data-grup="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="İTÜ'de yapay zekâ ile hava tahmini düzeltme ve doğrulama üzerine kurulan öğrenci proje takımı: ne yapacağız, neden mümkün, sen nerede durursun. 4 dakikalık etkileşimli sayfa.">
+<link rel="canonical" href="https://akinci22.github.io/hakkimda/takim/">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="../g/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NWP Takımı — öğrenirken öğreten takım">
+<meta property="og:description" content="Hava tahminini yapay zekâyla düzelten, bunu yaparken öğreten İTÜ öğrenci takımı. 0 TL donanım, açık veri, 6 basamak.">
+<meta property="og:url" content="https://akinci22.github.io/hakkimda/takim/">
+<meta property="og:image" content="https://akinci22.github.io/hakkimda/takim/g/og-takim.jpg">
+<meta property="og:locale" content="tr_TR">
+<title>NWP Takımı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="takim.css?v=1">
+<script src="firebase-config.js?v=1"></script>
+
+<body>
+<a class="atla" href="#acilis">İçeriğe geç</a>
+<div class="ilerleme" aria-hidden="true"><span id="ilerleme-bar"></span></div>
+<canvas id="izobar" aria-hidden="true"></canvas>
+<div id="imlec" aria-hidden="true"><svg viewBox="0 0 32 32"><path class="im-bulut" d="M9 24a6 6 0 0 1-.8-11.95A8 8 0 0 1 23.6 13 5.5 5.5 0 0 1 23 24H9z"/><text class="im-kod" x="16" y="21" text-anchor="middle">&lt;/&gt;</text></svg></div>
+
+<nav class="ust" aria-label="Üst">
+  <div class="sar ust-ic">
+    <a class="geri" href="../">← Ömer Faruk Akıncı</a>
+    <span class="ust-ad"><span class="prompt">nwp@itu:~$</span> takim</span>
+    <span id="mod-rozet" class="rozet" hidden>test modu · oylar bu cihazda</span>
+  </div>
+</nav>
+
+<header id="acilis" class="blok acilis">
+  <div class="sar">
+    <p class="yorum">// İTÜ · UUBF · Meteoroloji · proje takımı</p>
+    <h1>Yapay zekâ ile hava tahmini <em>düzeltme</em> ve <em>doğrulama</em>.</h1>
+    <p class="alt">Öğrenirken öğreten takım.</p>
+    <div class="sayilar" id="acilis-sayilar"></div>
+    <div class="ses" data-ses="acilis"></div>
+    <p class="ipucu">↓ 4 dakika · 3 anket · sonda sana göre bir rol</p>
+  </div>
+</header>
+
+<main>
+
+<section id="kapi" class="blok">
+  <div class="sar">
+    <p class="yorum">// 01 · sen hangisisin?</p>
+    <h2 id="kapi-soru"></h2>
+    <div class="kapi-kartlar" id="kapi-kartlar" role="radiogroup" aria-labelledby="kapi-soru"></div>
+    <p class="not">Seçimin sadece bu sayfanın tonunu ayarlar. Değiştirebilirsin.</p>
+  </div>
+</section>
+
+<section id="vizyon" class="blok">
+  <div class="sar">
+    <p class="yorum">// 02 · vizyon · misyon · iki kol</p>
+    <div class="ikili" id="vizyon-kartlar"></div>
+    <svg class="kol-sema" viewBox="0 0 640 170" role="img" aria-label="İki kol: ürün ve eğitim, ortada takım">
+      <defs><marker id="ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5 0 10z" fill="var(--buz)"/></marker></defs>
+      <rect x="250" y="60" width="140" height="50" rx="10" class="sm-kutu"/><text x="320" y="90" class="sm-yazi" text-anchor="middle">NWP TAKIMI</text>
+      <rect x="20" y="20" width="170" height="44" rx="10" class="sm-kutu sm-urun"/><text x="105" y="47" class="sm-yazi" text-anchor="middle">ÜRÜN · düzeltici</text>
+      <rect x="20" y="106" width="170" height="44" rx="10" class="sm-kutu sm-urun"/><text x="105" y="133" class="sm-yazi" text-anchor="middle">ÜRÜN · AI karnesi</text>
+      <rect x="450" y="20" width="170" height="44" rx="10" class="sm-kutu sm-egitim"/><text x="535" y="47" class="sm-yazi" text-anchor="middle">EĞİTİM · videolar</text>
+      <rect x="450" y="106" width="170" height="44" rx="10" class="sm-kutu sm-egitim"/><text x="535" y="133" class="sm-yazi" text-anchor="middle">EĞİTİM · atölye</text>
+      <path d="M190 42 C 220 42, 230 85, 250 85" class="sm-cizgi" marker-end="url(#ok)"/><path d="M190 128 C 220 128, 230 85, 250 85" class="sm-cizgi" marker-end="url(#ok)"/>
+      <path d="M390 85 C 410 85, 420 42, 450 42" class="sm-cizgi" marker-end="url(#ok)"/><path d="M390 85 C 410 85, 420 128, 450 128" class="sm-cizgi" marker-end="url(#ok)"/>
+    </svg>
+    <div class="kollar" id="kollar"></div>
+  </div>
+</section>
+
+<section id="merdiven" class="blok">
+  <div class="sar">
+    <p class="yorum">// 03 · ne yapacağız</p>
+    <h2 id="merdiven-baslik"></h2>
+    <p class="alt" id="merdiven-alt"></p>
+    <div class="merdiven-sar">
+      <svg class="merdiven-svg" viewBox="0 0 600 330" aria-hidden="true" id="merdiven-svg"></svg>
+      <div class="basamaklar" id="basamaklar" role="tablist" aria-label="Basamaklar"></div>
+    </div>
+    <div class="basamak-detay" id="basamak-detay" role="tabpanel" aria-live="polite"></div>
+    <ul class="kurallar" id="merdiven-kural"></ul>
+  </div>
+</section>
+
+<section id="mumkun" class="blok">
+  <div class="sar">
+    <p class="yorum">// 04 · nasıl &amp; neden mümkün</p>
+    <h2 id="mumkun-baslik"></h2>
+    <div class="kartlar-3" id="mumkun-kartlar"></div>
+  </div>
+</section>
+
+<section id="kaydir" class="blok">
+  <div class="sar">
+    <p class="yorum">// 05 · anket 1 · kaydır</p>
+    <h2 id="kaydir-baslik"></h2>
+    <p class="alt mizah" id="kaydir-mizah"></p>
+    <div class="deste" id="deste" aria-live="polite"></div>
+    <div class="deste-dugmeler">
+      <button class="dg dg-hayir" id="dg-hayir" type="button" aria-label="Katılmıyorum">✕ Katılmıyorum</button>
+      <button class="dg dg-evet" id="dg-evet" type="button" aria-label="Katılıyorum">Katılıyorum ✓</button>
+    </div>
+    <p class="tepki" id="deste-tepki" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="test" class="blok">
+  <div class="sar">
+    <p class="yorum">// 06 · 5 soru</p>
+    <h2 id="test-baslik"></h2>
+    <div class="test-sec" role="tablist">
+      <button class="sec aktif" type="button" data-set="mto" role="tab" aria-selected="true">Meteoroloji öğrencisiyim</button>
+      <button class="sec" type="button" data-set="misafir" role="tab" aria-selected="false">Başka bölümdenim</button>
+    </div>
+    <div id="test-sorular"></div>
+    <p class="tepki" id="test-sonuc"></p>
+  </div>
+</section>
+
+<section id="bolumler" class="blok">
+  <div class="sar">
+    <p class="yorum">// 07 · başka bölümdensen</p>
+    <h2 id="bolumler-baslik"></h2>
+    <p class="alt" id="bolumler-alt"></p>
+    <div class="ses" data-ses="bolumler"></div>
+    <div class="bolum-kartlar" id="bolum-kartlar"></div>
+    <p class="not" id="bolum-not"></p>
+  </div>
+</section>
+
+<section id="gercek" class="blok">
+  <div class="sar">
+    <p class="yorum">// 08 · dürüst gerçekçilik</p>
+    <h2 id="gercek-baslik"></h2>
+    <p class="alt" id="gercek-alt"></p>
+    <div class="ses" data-ses="gercekcilik"></div>
+    <div class="tablo-sar"><table class="tablo" id="gercek-tablo"></table></div>
+    <p class="not" id="gercek-not"></p>
+  </div>
+</section>
+
+<section id="neden" class="blok">
+  <div class="sar">
+    <p class="yorum">// 09 · neden şimdi</p>
+    <h2 id="neden-baslik"></h2>
+    <div class="sayi-kartlar" id="sayi-kartlar"></div>
+    <div class="kartlar-2" id="neden-kartlar"></div>
+  </div>
+</section>
+
+<section id="coklu" class="blok">
+  <div class="sar">
+    <p class="yorum">// 10 · anket 2 · tıkla</p>
+    <h2>Ne olsa gelirsin, neden gelmezsin?</h2>
+    <div id="coklu-sorular"></div>
+  </div>
+</section>
+
+<section id="canli" class="blok">
+  <div class="sar">
+    <p class="yorum">// 11 · anket 3 · canlı</p>
+    <h2>Dokun, yüzdeyi gör.</h2>
+    <p class="alt">Bir cihaz, bir oy. Sonuçlar herkese açık.</p>
+    <div id="canli-sorular"></div>
+  </div>
+</section>
+
+<section id="anlatilar" class="blok">
+  <div class="sar">
+    <p class="yorum">// 12 · atmosfer anlatıları</p>
+    <h2 id="anlatilar-baslik"></h2>
+    <ol class="adimlar" id="anlatilar-adimlar"></ol>
+    <div id="anlatilar-sorular"></div>
+  </div>
+</section>
+
+<section id="baloncuk" class="blok">
+  <div class="sar">
+    <p class="yorum">// 13 · söyle, uçsun</p>
+    <h2 id="baloncuk-baslik"></h2>
+    <p class="alt" id="baloncuk-alt"></p>
+    <form class="balon-form" id="balon-form" autocomplete="off">
+      <label class="gorunmez" for="balon-metin">Mesaj</label>
+      <textarea id="balon-metin" maxlength="200" rows="2" placeholder="Ne yapılsa güzel olur?"></textarea>
+      <div class="balon-satir">
+        <div class="radyo" id="balon-gorunum" role="radiogroup" aria-label="Görünüm"></div>
+        <input id="balon-ad" type="text" maxlength="40" placeholder="Adın (isteğe bağlı)" hidden>
+      </div>
+      <details class="rol-detay">
+        <summary id="rol-soru"></summary>
+        <div class="rol-ikili">
+          <select id="rol-org" aria-label="Kulüp / takım"></select>
+          <select id="rol-unvan" aria-label="Görev"></select>
+        </div>
+      </details>
+      <div class="balon-satir">
+        <span class="sayac" id="balon-sayac">0/200</span>
+        <button class="dg dg-evet" type="submit">Uçur</button>
+      </div>
+      <p class="tepki" id="balon-tepki" aria-live="polite"></p>
+    </form>
+    <div class="gok" id="gok" aria-live="polite" aria-label="Uçuşan mesajlar"></div>
+  </div>
+</section>
+
+<section id="meraklisina" class="blok">
+  <div class="sar">
+    <p class="yorum">// 14 · meraklısına</p>
+    <h2 id="merak-baslik"></h2>
+    <p class="alt" id="merak-alt"></p>
+    <div id="merak-icerik"></div>
+  </div>
+</section>
+
+<section id="son" class="blok son">
+  <div class="sar">
+    <p class="yorum">// 15 · çıktı</p>
+    <div class="son-kart" id="son-kart"></div>
+    <div class="cta" id="son-cta"></div>
+    <p class="not" id="son-ozet"></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="alt-bilgi">
+  <div class="sar">
+    <p><span class="prompt">nwp@itu:~$</span> exit · Ömer Faruk Akıncı · 2026 · Bu sayfa derleme kullanmaz; kaynak <a href="https://github.com/akinci22/hakkimda">GitHub</a>'da.</p>
+    <p class="kucuk">Oylar anonimdir; yalnız cihaz kimliği tutulur. Mesajlar herkese açıktır, küfür ve bağlantı filtrelenir. Takım amblemleri tanıtım amaçlı, kaynak linkiyle gösterilir; itiraz hâlinde kaldırılır.</p>
+  </div>
+</footer>
+
+<div class="surpriz" id="surpriz" aria-live="polite"><span class="kilit">🔒</span> <span id="surpriz-metin">Sonda: sana göre rol</span></div>
+
+<script type="module" src="takim.js?v=1"></script>
+</body>
+</html>

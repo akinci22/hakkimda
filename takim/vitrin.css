@@ -1,0 +1,25 @@
+/* Ana sayfadaki takım vitrini — /takim/ ile aynı koyu editör kimliği */
+.t-takim{--zemin:#0b1220;--yazi:#e6edf7;--yazi-2:#a3b1c6;--vurgu:#f0b35c;--cer:#050b17;--cer-ic:#2d3d5a;--font-b:'Space Grotesk',var(--sans);--balon:#111a2b;--baslik:#fff}
+.t-takim .vitrin{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center;
+  background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important;border-radius:0!important}
+.t-takim .vitrin>div{background:transparent!important}
+.t-takim .vitrin-yorum{font-family:var(--mono);font-size:.82rem;color:#8bd5ff;margin:0 0 8px;text-shadow:0 1px 10px #0b1220,0 0 2px #0b1220}
+.t-takim h2{font-size:clamp(1.5rem,2.6vw,2.3rem);line-height:1.15;text-shadow:0 2px 14px rgba(11,18,32,.95),0 0 3px rgba(11,18,32,.9)}
+.t-takim .vitrin-alt{font-family:var(--mono);font-size:.9rem;color:#6ad1e3;margin:6px 0 18px}
+.t-takim .vitrin-ses{display:grid;gap:6px;font-family:var(--mono);font-size:.88rem;background:var(--balon);border:1px solid #223049;border-radius:12px;padding:12px 14px;margin:0 0 20px;color:var(--yazi-2)}
+.t-takim .vitrin-ses p{margin:0} .t-takim .vitrin-ses .p-h{color:#ffb86b} .t-takim .vitrin-ses .p-r{color:#8bd5ff}
+.t-takim .vitrin-cta{display:inline-flex;align-items:center;gap:8px;background:var(--vurgu);color:#1a1205;text-decoration:none;font:600 1rem var(--font-b);padding:12px 20px;border-radius:999px;transition:transform .2s}
+.t-takim .vitrin-cta:hover{transform:translateY(-2px)}
+.t-takim .vitrin-cipler{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.t-takim .vitrin-cipler span{font-family:var(--mono);font-size:.74rem;color:var(--yazi-2);border:1px solid #2d3d5a;border-radius:999px;padding:3px 9px}
+/* bulut → kod ikon */
+.t-takim .bulutkod{position:relative;aspect-ratio:1;max-width:320px;width:100%;margin:auto;display:grid;place-items:center}
+.t-takim .bulutkod svg{width:100%;height:100%;overflow:visible}
+.t-takim .bk-bulut{fill:#e6edf7;opacity:.95;transform-origin:50% 50%;animation:bk-bulut 6s ease-in-out infinite}
+.t-takim .bk-kod{fill:#f0b35c;font:700 56px 'JetBrains Mono',monospace;opacity:0;animation:bk-kod 6s ease-in-out infinite}
+.t-takim .bk-cizgi{stroke:#6ad1e3;stroke-width:1.2;fill:none;opacity:.5;stroke-dasharray:4 6;animation:bk-akis 3s linear infinite}
+@keyframes bk-bulut{0%,38%{opacity:.95;transform:scale(1)}50%,88%{opacity:0;transform:scale(.6)}100%{opacity:.95;transform:scale(1)}}
+@keyframes bk-kod{0%,38%{opacity:0}50%,88%{opacity:1}100%{opacity:0}}
+@keyframes bk-akis{to{stroke-dashoffset:-20}}
+@media (max-width:760px){.t-takim .vitrin{grid-template-columns:1fr}.t-takim .bulutkod{max-width:200px}}
+@media (prefers-reduced-motion:reduce){.t-takim .bk-bulut,.t-takim .bk-kod,.t-takim .bk-cizgi{animation:none}.t-takim .bk-kod{opacity:1}.t-takim .bk-bulut{opacity:.35}}

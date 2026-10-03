@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function girisli() { return request.auth != null; }
+    function metin(a, en, encok) { return a is string && a.size() >= en && a.size() <= encok; }
+
+    // Oylar: belge kimliği "{pollId}_{uid}" → bir cihaz (anonim kullanıcı) bir oy; güncelleme ve silme yok.
+    match /votes/{oyId} {
+      allow read: if true;
+      allow create: if girisli()
+        && oyId == request.resource.data.pollId + '_' + request.auth.uid
+        && request.resource.data.uid == request.auth.uid
+        && metin(request.resource.data.pollId, 1, 24)
+        && request.resource.data.keys().hasOnly(['pollId','uid','secim','diger','grup','ts'])
+        && (request.resource.data.secim is string || (request.resource.data.secim is list && request.resource.data.secim.size() <= 12))
+        && (!('diger' in request.resource.data) || metin(request.resource.data.diger, 0, 120))
+        && (!('grup' in request.resource.data) || metin(request.resource.data.grup, 0, 12));
+      allow update, delete: if false;
+    }
+
+    // Baloncuklar: herkes okur (gizli olmayanlar), girişli anonim kullanıcı ekler; küfür filtresi istemcide, uzunluk burada.
+    match /bubbles/{id} {
+      allow read: if true;
+      allow create: if girisli()
+        && request.resource.data.uid == request.auth.uid
+        && metin(request.resource.data.metin, 3, 200)
+        && request.resource.data.gorunum in ['anon','isim']
+        && (!('ad' in request.resource.data) || metin(request.resource.data.ad, 0, 40))
+        && (!('org' in request.resource.data) || metin(request.resource.data.org, 0, 40))
+        && (!('unvan' in request.resource.data) || metin(request.resource.data.unvan, 0, 30))
+        && (!('grup' in request.resource.data) || metin(request.resource.data.grup, 0, 12))
+        && request.resource.data.gizli == false
+        && request.resource.data.keys().hasOnly(['uid','metin','gorunum','ad','org','unvan','grup','gizli','ts']);
+      // Gizleme/silme yalnız konsoldan (Ömer). İstemciden güncelleme yok.
+      allow update, delete: if false;
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}
