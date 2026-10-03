@@ -135,7 +135,7 @@
       im.onload = function () { hazir.push(im.src); yukle(); }; im.onerror = yukle; im.src = L[y++]; }
     function basla() { if (!y) for (var p = 0; p < 4; p++) yukle(); }
     new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { basla(); o.disconnect(); } }, { rootMargin: "1500px 0px" }).observe(m);
-    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length < 2 || m.matches(":hover")) return; i = (i + 1) % hazir.length;
+    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length < 2 || m.matches(":hover") || (m._tut || 0) > Date.now()) return; i = (i + 1) % hazir.length;
       if (!sabit) { kare.src = hazir[i]; return; }
       kare.classList.add("sol"); setTimeout(function () { kare.src = hazir[i]; kare.classList.remove("sol"); }, 450); }, sabit ? 2600 : 110); }
     function dur() { clearInterval(zam); zam = null; }
@@ -233,16 +233,22 @@
   pd.style.cssText = "position:fixed;inset:0;z-index:9998;pointer-events:none;background:#000;opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)";
   document.body.appendChild(pd);
   // hizli = YolHava klipleri: 1 sn bekler, hızlı büyür, arka kararmaz yalnız bokeh gibi bulanıklaşır
-  function perde(ac, hizli) {
+  var yz = document.createElement("div"); yz.className = "kat-yazi"; yz.innerHTML = "<b></b><span>Ömer Faruk Akıncı</span>"; document.body.appendChild(yz);
+  function yaziGoster(k) {   // büyüyen fotoğrafın altında: paylaşırken yazdığım yazı (varsa, data-yazi) ve imza
+    var r = k.getBoundingClientRect(), t = hedef && (hedef.getAttribute("data-yazi") || (kaynak(hedef) || {}).getAttribute && kaynak(hedef).getAttribute("data-yazi")) || "";
+    yz.firstChild.textContent = t; yz.firstChild.style.display = t ? "" : "none";
+    yz.style.left = r.left + "px"; yz.style.width = r.width + "px"; yz.style.top = Math.min(innerHeight - 90, r.bottom + 10) + "px"; yz.classList.add("acik");
+  }
+  function perde(ac, hizli, hemen) {
     pd.style.background = hizli ? "rgba(10,20,40,.12)" : "#000";
     pd.style.transition = !ac ? "opacity .4s ease, backdrop-filter .4s" : hizli ? "opacity .35s ease-out, backdrop-filter .45s ease-out"
-      : "opacity 1.5s cubic-bezier(.75,0,.9,.55), backdrop-filter .9s ease-out";
+      : hemen ? "opacity .35s ease-out, backdrop-filter .35s ease-out" : "opacity 1.5s cubic-bezier(.75,0,.9,.55), backdrop-filter .9s ease-out";
     pd.style.opacity = ac ? "1" : "0"; var b = !ac ? "blur(0px)" : hizli ? "blur(18px) saturate(1.35) brightness(1.05)" : "blur(14px)";
     pd.style.backdropFilter = b; pd.style.webkitBackdropFilter = b;
   }
   function kaynak(el) { if (el.closest(".montaj-ic")) return el.closest(".montaj").querySelector(".montaj-kare");
     return el.matches("video.gif") ? el : (el.querySelector(".hl-kutu img.on") || el.querySelector("video.gif") || el.querySelector("img")); }
-  function kapat() { clearTimeout(zam); zam = null; clearTimeout(cik); cik = null; if (!kat) return; var k = kat; kat = null; perde(false);
+  function kapat() { clearTimeout(zam); zam = null; clearTimeout(cik); cik = null; yz.classList.remove("acik"); if (!kat) return; var k = kat; kat = null; perde(false);
     k.style.transition = "transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s"; k.style.transform = k._ilk; k.style.opacity = "0";
     setTimeout(function () { k.remove(); }, 460); }
   function buyut() {
@@ -258,7 +264,7 @@
     k.style.cssText = "position:fixed;z-index:9999;left:" + (vw - w) / 2 + "px;top:" + (vh - h) / 2 + "px;width:" + w + "px;height:" + h +
       "px;object-fit:contain;background:#000;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6);pointer-events:none;will-change:transform;transform-origin:0 0";
     var s = r.width / w, ilk = "translate(" + (r.left - (vw - w) / 2) + "px," + (r.top - (vh - h) / 2) + "px) scale(" + s + ")";
-    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; k._hz = hz; if (!hz) perde(true);
+    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; k._hz = hz; if (!hz) perde(true, false, true);
     if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
     if (hz) {   // YolHava: 1) hemen, yerinde, dikkat çekecek kadar (%15) büyür; 2) imleç 2 sn kalırsa hızla ortada son boyuna
       var dx = r.left - (vw - w) / 2 - r.width * .075, dy = r.top - (vh - h) / 2 - r.height * .075;
@@ -267,8 +273,12 @@
         k.style.transition = "transform .6s cubic-bezier(.2,.8,.3,1)"; k.style.transform = "translate(" + dx + "px," + dy + "px) scale(" + s * 1.15 + ")"; }); });
       setTimeout(function () { if (kat !== k) return; k._evre1 = false; perde(true, true);
         k.style.transition = "transform .45s cubic-bezier(.3,.7,.2,1)"; k.style.transform = "none"; }, 2000);
-    } else requestAnimationFrame(function () { requestAnimationFrame(function () {
-      k.style.transition = "transform 1.5s cubic-bezier(.8,0,.85,.6)"; k.style.transform = "none"; }); });
+    } else {   // fotoğraf/hikâye: önce çevre hızla kararır, sonra yavaşça büyümeye başlar; 1,5 sn kalınırsa hızlanıp tamamlanır
+      var ara = "translate(" + (r.left - (vw - w) / 2) * .6 + "px," + (r.top - (vh - h) / 2) * .6 + "px) scale(" + (s + (1 - s) * .35) + ")";
+      setTimeout(function () { if (kat !== k) return; k.style.transition = "transform 1.15s cubic-bezier(.4,0,.6,1)"; k.style.transform = ara; }, 350);
+      setTimeout(function () { if (kat !== k) return; k.style.transition = "transform .55s cubic-bezier(.3,.7,.2,1)"; k.style.transform = "none";
+        setTimeout(function () { if (kat === k) yaziGoster(k); }, 560); }, 1500);
+    }
   }
   function on(el) {   // bekleme sırasında tam kaliteyi hazırla
     if (el.matches("video.gif")) { if (el.preload !== "auto") { el.preload = "auto"; el.load(); } }
@@ -427,4 +437,18 @@
   g.addEventListener("click", function () { if (donY === null) return; var y = donY; donY = null; gizle();
     scrollTo({ top: y, behavior: "smooth" }); });
   addEventListener("scroll", function () { if (donY !== null && !g.hidden && Math.abs(scrollY - donY) < 200) { donY = null; gizle(); } }, { passive: true });
+})();
+
+
+/* Kampüs / sokak ızgarası: imleç bir fotoğrafta 2 sn durursa o fotoğraf üstteki büyük çerçevede görünür (döngü 6 sn bekler). */
+(function () {
+  var zam = null;
+  document.querySelectorAll(".foto-ayrac").forEach(function (iz) {
+    var m = iz.previousElementSibling; while (m && !(m.classList && m.classList.contains("montaj"))) m = m.previousElementSibling;
+    if (!m) return; var kare = m.querySelector(".montaj-kare");
+    iz.addEventListener("pointerover", function (e) { var im = e.target.closest("img"); clearTimeout(zam); if (!im) return;
+      zam = setTimeout(function () { m._tut = Date.now() + 6000; kare.classList.add("sol");
+        setTimeout(function () { kare.src = im.currentSrc || im.src; kare.classList.remove("sol"); }, 300); }, 2000); });
+    iz.addEventListener("pointerleave", function () { clearTimeout(zam); });
+  });
 })();
