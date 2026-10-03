@@ -526,6 +526,9 @@ function kaydirDegis(k, src) {
   new IntersectionObserver(function (g) { gorunur = g[0].isIntersecting; }).observe(kap);
   setInterval(function () { if (gorunur && !ust && !document.hidden) { var y = new Image(); y.src = L[(i + 1) % L.length]; goster(i + 1, false); } }, 3200);
   goster(0, true);
+  // sahneye 2 ekran kala tüm küçükleri yüklemeye başla: hızlı gelince (menüden atlayınca) bembeyaz boş sahne görünmesin
+  new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { Array.prototype.forEach.call(k, function (x) { x.loading = "eager"; }); o.disconnect(); } },
+    { rootMargin: "200% 0px" }).observe(kap);
 })();
 
 
