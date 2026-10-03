@@ -1,3 +1,13 @@
+/* Montaj karesi değişimi: eski kare sola kayıp söner, sıradaki sağdan kayarak gelir */
+function kaydirDegis(k, src) {
+  var yeni = new Image(); yeni.src = src;
+  k.classList.add("cik");
+  setTimeout(function () {
+    function gel() { k.style.transition = "none"; k.classList.remove("cik"); k.classList.add("gir"); k.src = src;
+      void k.offsetWidth; k.style.transition = ""; k.classList.remove("gir"); }
+    if (yeni.complete) gel(); else { yeni.onload = gel; yeni.onerror = gel; }
+  }, 420);
+}
 /* Hareket katmanı v4 (28 Eyl 2026) — hafif ve kasmayan.
    Tek IntersectionObserver: .gel ögeleri bir kez belirir, grafikler (.grafik) bir kez çizilir.
    Kaydırmaya bağlı sürekli iş yok; ilerleme çubuğu rAF ile ve yalnız transform değiştirir. */
@@ -137,7 +147,7 @@
     new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { basla(); o.disconnect(); } }, { rootMargin: "1500px 0px" }).observe(m);
     function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length < 2 || m.matches(":hover") || (m._tut || 0) > Date.now()) return; i = (i + 1) % hazir.length;
       if (!sabit) { kare.src = hazir[i]; return; }
-      kare.classList.add("sol"); setTimeout(function () { kare.src = hazir[i]; kare.classList.remove("sol"); }, 450); }, sabit ? 2600 : 110); }
+      kaydirDegis(kare, hazir[i]); }, sabit ? 2600 : 110); }
     function dur() { clearInterval(zam); zam = null; }
     new IntersectionObserver(function (g) { g[0].isIntersecting ? oynat() : dur(); }).observe(m);
   });
@@ -447,8 +457,7 @@
     var m = iz.previousElementSibling; while (m && !(m.classList && m.classList.contains("montaj"))) m = m.previousElementSibling;
     if (!m) return; var kare = m.querySelector(".montaj-kare");
     iz.addEventListener("pointerover", function (e) { var im = e.target.closest("img"); clearTimeout(zam); if (!im) return;
-      zam = setTimeout(function () { m._tut = Date.now() + 6000; kare.classList.add("sol");
-        setTimeout(function () { kare.src = im.currentSrc || im.src; kare.classList.remove("sol"); }, 300); }, 2000); });
+      zam = setTimeout(function () { m._tut = Date.now() + 6000; kaydirDegis(kare, im.currentSrc || im.src); }, 2000); });
     iz.addEventListener("pointerleave", function () { clearTimeout(zam); });
   });
 })();
