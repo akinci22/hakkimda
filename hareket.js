@@ -290,9 +290,10 @@ function kaydirDegis(k, src) {
     if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
     if (hz) {   // YolHava: 1) imlecin altındaki kalır, çevresi hızla kararır + "büyüteceğim" sinyali; 2) kararınca seri büyür, ortada orta boy
       k._evre1 = true; k.classList.add("sinyal"); perde(true, "bokeh");
-      setTimeout(function () { if (kat !== k) return; k._evre1 = false; k.classList.remove("sinyal");
+      k._buyu = function () { if (kat !== k || !k._evre1) return; k._evre1 = false; k.classList.remove("sinyal");   // tıklayınca büyür
         k.style.transition = "transform .28s cubic-bezier(.2,.9,.3,1)"; k.style.transform = "none";
-        if (!dokun) setTimeout(function () { if (kat === k) acikla(hedef, sol, x0, w); }, 200); }, 450);
+        if (!dokun) setTimeout(function () { if (kat === k) acikla(hedef, sol, x0, w); }, 200); };
+      if (dokun) setTimeout(k._buyu, 300);
     } else {   // fotoğraf/hikâye: önce çevre hızla kararır, sonra yavaşça büyümeye başlar; 1,5 sn kalınırsa hızlanıp tamamlanır
       var ara = "translate(" + (r.left - (vw - w) / 2) * .6 + "px," + (r.top - (vh - h) / 2) * .6 + "px) scale(" + (s + (1 - s) * .35) + ")";
       setTimeout(function () { if (kat !== k) return; k.style.transition = "transform 1.15s cubic-bezier(.4,0,.6,1)"; k.style.transform = ara; }, 350);
@@ -334,6 +335,7 @@ function kaydirDegis(k, src) {
   var yut = false;
   document.addEventListener("click", function (e) {
     if (yut) { yut = false; e.preventDefault(); e.stopPropagation(); return; }   // uzun basışın ardından gelen tık
+    if (kat && kat._evre1 && kat._buyu) { kat._buyu(); e.preventDefault(); e.stopPropagation(); return; }   // klip: kararınca tıkla → büyür
     if (kat) { kapat(); hedef = null; if (dokun) { e.preventDefault(); e.stopPropagation(); } }
   }, true);
   if (dokun) {   // Telefon: basılı tut (0,45 sn) → büyür; herhangi bir yere dokun → kapanır. Kaydırma başlarsa iptal.
@@ -490,4 +492,29 @@ function kaydirDegis(k, src) {
   new IntersectionObserver(function (g) { gorunur = g[0].isIntersecting; }).observe(kap);
   setInterval(function () { if (gorunur && !ust && !document.hidden) { var y = new Image(); y.src = L[(i + 1) % L.length]; goster(i + 1, false); } }, 1700);
   goster(0, true);
+})();
+
+
+/* Bulut imleç: fare imleci gibi uçlu küçük bir bulut. Tıklanacak bir yerin üstünde ıslanıp koyulaşır ve "tıkla" der;
+   beklemeye devam edersen yağmur yağdırır, daha da beklersen şimşek çakar. Yalnız fareli cihazlarda. */
+(function () {
+  if (!matchMedia("(pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var TIK = "a,button,[role=button],summary,label,select,video.gif,.hl,.ss-yan img,.montaj-ic img,.r-kart,.hava-bulut,.geri-bulut,.cer,.gif-kart";
+  var im = document.createElement("div"); im.className = "bulut-imlec"; im.setAttribute("aria-hidden", "true");
+  var yag = ""; for (var i = 0; i < 4; i++) yag += '<line x1="' + (12 + i * 5) + '" y1="25" x2="' + (10 + i * 5) + '" y2="31" style="animation-delay:' + i * .12 + 's"/>';
+  im.innerHTML = '<svg viewBox="0 0 40 40" width="58" height="58"><path class="bi-uc" d="M1 1 L9 4 L4 9 Z"/>' +
+    '<path class="bi-bulut" d="M9 22h20a6 6 0 0 0 0-12 8 8 0 0 0-15-2 6 6 0 0 0-5 14z"/>' +
+    '<polygon class="bi-simsek" points="21,22 17,30 20,30 18,37 25,27 22,27 24,22"/><g class="bi-yag">' + yag + '</g></svg><span>tıkla</span>';
+  document.body.appendChild(im); document.documentElement.classList.add("bulut-imlec-acik");
+  var x = -100, y = -100, ciz = false, zam1 = null, zam2 = null, ust = null;
+  function yaz() { ciz = false; im.style.transform = "translate(" + x + "px," + y + "px)"; }
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "mouse") return; x = e.clientX; y = e.clientY; if (!ciz) { ciz = true; requestAnimationFrame(yaz); }
+    var t = e.target.closest && e.target.closest(TIK);
+    if (t !== ust) { ust = t; clearTimeout(zam1); clearTimeout(zam2); im.classList.remove("yagmur", "simsek"); im.classList.toggle("islak", !!t);
+      if (t) { zam1 = setTimeout(function () { im.classList.add("yagmur"); }, 1200); zam2 = setTimeout(function () { im.classList.add("simsek"); }, 2600); } }
+  }, { passive: true });
+  document.addEventListener("pointerdown", function () { im.classList.add("bas"); setTimeout(function () { im.classList.remove("bas"); }, 180); });
+  document.addEventListener("mouseleave", function () { im.style.opacity = "0"; });
+  document.addEventListener("mouseenter", function () { im.style.opacity = ""; });
 })();

@@ -579,3 +579,23 @@ html::-webkit-scrollbar-thumb{border-radius:8px;background-color:transparent;
  background-repeat:repeat-y;background-size:14px 12px;background-position:center top}
 html::-webkit-scrollbar-thumb:hover{filter:brightness(1.1);background-color:rgba(255,255,255,.08)}
 html{scrollbar-width:auto!important;scrollbar-color:auto!important}   /* yoksa Chrome bulutlu çubuğu yok sayar */
+/* Bulut imleç */
+html.bulut-imlec-acik,html.bulut-imlec-acik *{cursor:none!important}
+html.bulut-imlec-acik input,html.bulut-imlec-acik textarea{cursor:text!important}
+.bulut-imlec{position:fixed;left:0;top:0;z-index:100000;pointer-events:none;will-change:transform;transition:opacity .2s}
+.bulut-imlec svg{display:block;overflow:visible;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));transition:transform .15s}
+.bi-uc{fill:#fff;stroke:#33507d;stroke-width:1.2;stroke-linejoin:round}
+.bi-bulut{fill:#fff;stroke:#7e93ab;stroke-width:1.2;transition:fill .35s,stroke .35s}
+.bi-simsek{fill:#ffd93d;stroke:#b8860b;stroke-width:.6;opacity:0}
+.bi-yag line{stroke:#4f8fd8;stroke-width:1.8;stroke-linecap:round;opacity:0}
+.bulut-imlec span{position:absolute;left:34px;top:6px;font:700 11px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fff;background:#1570b0;padding:3px 7px;border-radius:99px;opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s;white-space:nowrap}
+.bulut-imlec.islak .bi-bulut{fill:#8e9bab;stroke:#4d5a69}
+.bulut-imlec.islak span{opacity:1;transform:none}
+.bulut-imlec.yagmur .bi-yag line{animation:biYag .55s linear infinite}
+.bulut-imlec.simsek .bi-bulut{fill:#5c6672}
+.bulut-imlec.simsek .bi-simsek{animation:biSimsek 1.4s infinite}
+.bulut-imlec.simsek span{background:#e0a800;color:#111}
+.bulut-imlec.bas svg{transform:scale(.85)}
+@keyframes biYag{0%{opacity:0;transform:translateY(-3px)}30%{opacity:1}100%{opacity:0;transform:translateY(6px)}}
+@keyframes biSimsek{0%,55%,70%,100%{opacity:0}58%,66%{opacity:1}62%{opacity:.3}}
+.bulut-imlec span{left:52px;top:10px;font-size:13px;padding:4px 9px}
