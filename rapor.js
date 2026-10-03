@@ -27,6 +27,14 @@
   var h = decodeURIComponent(location.hash.slice(1));
   if (h) { var hb = document.getElementById(h); if (hb && hb.classList.contains('r-bolum')) { ac(hb, true, false); setTimeout(function () { hb.scrollIntoView({ block: 'start' }); }, 50); } }
 
+  // Tıklamadan: aşağı kaydırdıkça her bölüm ekrana girince kendiliğinden açılır (tıklayınca yine kapanabilir)
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (g) {
+      g.forEach(function (e) { if (e.isIntersecting) { var b = e.target; io.unobserve(b); if (!b.classList.contains('acik') && !b._kapatildi) { b.classList.add('acik'); var k = b.querySelector('.r-kart'); if (k) k.setAttribute('aria-expanded', 'true'); guncelle(); } } });
+    }, { rootMargin: '0px 0px -28% 0px' });
+    bolumler.forEach(function (b) { io.observe(b); var k = b.querySelector('.r-kart'); if (k) k.addEventListener('click', function () { b._kapatildi = !b.classList.contains('acik'); }); });
+  }
+
   // hero sayıları sayarak gelsin (yalnız düz sayılarda: 50.380, %100, 181 ...)
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.querySelectorAll('[data-say]').forEach(function (el) {

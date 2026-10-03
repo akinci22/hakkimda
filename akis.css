@@ -726,8 +726,8 @@ h3:has(+ .sokak-sahne){position:relative;z-index:2;color:#111!important;text-ali
 
 /* Beyaz sahne: her yeni fotoğrafta flaş — ekran çok kısa beyaz parlar, yumuşak söner */
 .flas{position:fixed;inset:0;z-index:95;background:#fff;opacity:0;pointer-events:none}
-.flas.ac{animation:flasPatla .34s cubic-bezier(.1,.8,.3,1) both}
-@keyframes flasPatla{0%{opacity:.92}18%{opacity:.7}100%{opacity:0}}
+.flas.ac{animation:flasPatla var(--fs,.5s) ease-out both}
+@keyframes flasPatla{0%{opacity:var(--fp,.5)}30%{opacity:calc(var(--fp,.5)*.55)}100%{opacity:0}}
 .ss-ana,.ss-yan{touch-action:pan-y}
 @media (prefers-reduced-motion:reduce){.flas.ac{animation:none}}
 .ss-ana,.ss-yan img{-webkit-user-drag:none;user-select:none}

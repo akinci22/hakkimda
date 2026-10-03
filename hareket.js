@@ -522,9 +522,13 @@ function kaydirDegis(k, src, yon) {
   var ana = kap.querySelector(".ss-ana"), k = kap.querySelectorAll(".ss-yan img"), i = 0, ust = false, gorunur = false;
   var bul = {}; Array.prototype.forEach.call(k, function (x) { bul[x.dataset.i] = x; });
   var flas = document.createElement("div"); flas.className = "flas"; flas.setAttribute("aria-hidden", "true"); document.body.appendChild(flas);
-  function patlat() { flas.classList.remove("ac"); void flas.offsetWidth; flas.classList.add("ac"); }   // her yeni fotoğrafta flaş; hızlı geçince hızlı hızlı
+  var sonFlas = 0;
+  function patlat(hizli) {                                      // flaş geçişle aynı sürede; üst üste hızlı geçişlerde neredeyse belli olmayan minik parlama
+    var t = performance.now(), sik = t - sonFlas < 700; sonFlas = t;
+    flas.style.setProperty("--fp", sik ? ".12" : ".5"); flas.style.setProperty("--fs", (sik ? .25 : hizli ? .35 : .55) + "s");
+    flas.classList.remove("ac"); void flas.offsetWidth; flas.classList.add("ac"); }
   function goster(n, hizli, yon) { var once = i; i = (n + L.length) % L.length; if (i === once && !hizli) return; ana.classList.toggle("hizli", !!hizli);
-    kaydirDegis(ana, L[i], yon || 1); if (document.documentElement.classList.contains("beyaz-mod")) patlat();
+    kaydirDegis(ana, L[i], yon || 1); if (document.documentElement.classList.contains("beyaz-mod")) patlat(hizli);
     Array.prototype.forEach.call(k, function (x) { x.classList.toggle("su", +x.dataset.i === i); }); }
   var bek = null;
   var sonPX = 0, yonIm = 1;
