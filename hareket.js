@@ -504,7 +504,8 @@ function kaydirDegis(k, src) {
   var yag = ""; for (var i = 0; i < 4; i++) yag += '<line x1="' + (12 + i * 5) + '" y1="25" x2="' + (10 + i * 5) + '" y2="31" style="animation-delay:' + i * .12 + 's"/>';
   im.innerHTML = '<svg viewBox="0 0 40 40" width="58" height="58"><path class="bi-uc" d="M1 1 L9 4 L4 9 Z"/>' +
     '<path class="bi-bulut" d="M9 22h20a6 6 0 0 0 0-12 8 8 0 0 0-15-2 6 6 0 0 0-5 14z"/>' +
-    '<polygon class="bi-simsek" points="21,22 17,30 20,30 18,37 25,27 22,27 24,22"/><g class="bi-yag">' + yag + '</g></svg><span>tıkla</span>';
+    '<polygon class="bi-simsek" points="21,22 17,30 20,30 18,37 25,27 22,27 24,22"/><g class="bi-yag">' + yag + '</g></svg>' +
+    '<svg class="bi-kamera" viewBox="0 0 40 40" width="52" height="52"><rect x="4" y="12" width="32" height="22" rx="4"/><rect x="14" y="7" width="12" height="6" rx="2"/><circle cx="20" cy="23" r="7" class="bk-lens"/><circle cx="20" cy="23" r="3.2" class="bk-ic"/><circle cx="31" cy="16" r="1.5" class="bk-flas"/></svg><span>tıkla</span>';
   document.body.appendChild(im); document.documentElement.classList.add("bulut-imlec-acik");
   var x = -100, y = -100, ciz = false, zam1 = null, zam2 = null, ust = null;
   function yaz() { ciz = false; im.style.transform = "translate(" + x + "px," + y + "px)"; }
@@ -517,4 +518,12 @@ function kaydirDegis(k, src) {
   document.addEventListener("pointerdown", function () { im.classList.add("bas"); setTimeout(function () { im.classList.remove("bas"); }, 180); });
   document.addEventListener("mouseleave", function () { im.style.opacity = "0"; });
   document.addEventListener("mouseenter", function () { im.style.opacity = ""; });
+})();
+
+
+/* Beyaz fotoğraf sahnesine gelince: tüm site beyaz, menü/bulut/düğmeler gizli (minimum arayüz), imleç fotoğraf makinesi */
+(function () {
+  var sahne = document.querySelector(".sokak-sahne"); if (!sahne || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (g) { document.documentElement.classList.toggle("beyaz-mod", g[0].isIntersecting); },
+    { rootMargin: "-40% 0px -40% 0px" }).observe(sahne);
 })();
