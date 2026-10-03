@@ -649,3 +649,31 @@ function kaydirDegis(k, src, yon) {
     k.addEventListener('click', function () { var ac = k.classList.contains('ac'); document.querySelectorAll('.yg-kart.ac').forEach(function (x) { x.classList.remove('ac'); }); if (!ac) k.classList.add('ac'); });
   });
 })();
+
+
+/* Naplist mini deneme: baloncuğu basılı tut (~0,5 sn) → menü açılır → yöne sürükle → bırak: ilerleme küçültür + halka dolar, zorluk büyütür, tarih rengi canlandırır, bitti soldurur */
+(function () {
+  var alan = document.querySelector('#np-deneme .np-alan'); if (!alan) return;
+  var menu = alan.querySelector('.np-menu'), aktif = null, zam = null, acik = false, x0 = 0, y0 = 0, sec = null;
+  function konum(e) { var r = alan.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
+  function yon(dx, dy) { if (Math.hypot(dx, dy) < 34) return null; return Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'r' : 'l') : (dy > 0 ? 'd' : 'u'); }
+  alan.addEventListener('pointerdown', function (e) {
+    var g = e.target.closest('.np-g'); if (!g) return; e.preventDefault(); aktif = g; g.setPointerCapture(e.pointerId); g.classList.add('tut');
+    var k = konum(e); x0 = k[0]; y0 = k[1]; acik = false; sec = null;
+    zam = setTimeout(function () { acik = true; menu.hidden = false; var W = alan.clientWidth, H = alan.clientHeight, cx = Math.max(150, Math.min(W - 150, g.offsetLeft)), cy = Math.max(112, Math.min(H - 112, g.offsetTop)); menu.style.left = cx + 'px'; menu.style.top = cy + 'px'; requestAnimationFrame(function () { menu.classList.add('ac'); }); }, 480);
+  });
+  alan.addEventListener('pointermove', function (e) {
+    if (!aktif) return; var k = konum(e), dx = k[0] - x0, dy = k[1] - y0;
+    if (!acik) { if (Math.hypot(dx, dy) > 10) { aktif.style.left = (aktif.offsetLeft + dx) + 'px'; aktif.style.top = (aktif.offsetTop + dy) + 'px'; x0 = k[0]; y0 = k[1]; } return; }   // menü açılmadan: baloncuğu taşı
+    var y = yon(dx, dy); if (y !== sec) { sec = y; menu.querySelectorAll('i').forEach(function (i) { i.classList.toggle('sec', i.dataset.y === y); }); }
+  });
+  function birak() {
+    clearTimeout(zam); if (!aktif) return; var g = aktif; aktif = null; g.classList.remove('tut'); menu.classList.remove('ac'); setTimeout(function () { menu.hidden = true; }, 220);
+    if (!acik || !sec) return; var s = parseFloat(g.style.getPropertyValue('--s')) || 1, h = parseFloat(g.style.getPropertyValue('--halka')) || 0;
+    if (sec === 'u') { h = Math.min(100, h + 34); g.style.setProperty('--halka', h); g.style.setProperty('--s', Math.max(.55, s - .18)); if (h >= 100) g.classList.add('bitti'); }
+    else if (sec === 'd') g.style.setProperty('--s', Math.min(1.7, s + .2));
+    else if (sec === 'r') { g.style.setProperty('--r', '#ff4d3d'); g.style.setProperty('--s', Math.min(1.7, s + .08)); }
+    else { g.classList.add('bitti'); g.style.setProperty('--halka', 100); g.style.setProperty('--s', Math.max(.5, s - .3)); }
+  }
+  alan.addEventListener('pointerup', birak); alan.addEventListener('pointercancel', birak);
+})();
