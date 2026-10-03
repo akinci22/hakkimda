@@ -643,3 +643,13 @@ html,body{overflow-x:clip}
 .ss-ana.cik{opacity:0;transform:translateX(-50px)}
 .ss-ana.gir{opacity:0;transform:translateX(50px)}
 @media (max-width:700px){.sokak-sahne{grid-template-columns:1fr 1.6fr 1fr;gap:6px}.ss-yan{grid-template-columns:1fr 1fr;gap:4px}.ss-orta{top:60px;padding:5px}}
+/* Sokak ve şehir v2: bembeyaz zemin (kampüsten yumuşak geçiş), ortadaki büyük foto ekranın tam ortasında yapışık */
+.t-foto{overflow-x:clip}
+.sokak-sahne{position:relative;--ana:min(520px,54vh);grid-template-columns:1fr calc(var(--ana) + 22px) 1fr!important;align-items:start}
+.sokak-sahne::before{content:"";position:absolute;left:50%;width:100vw;transform:translateX(-50%);top:-300px;bottom:-140px;z-index:0;pointer-events:none;
+ background:linear-gradient(to bottom,rgba(255,255,255,0) 0,#fff 260px,#fff calc(100% - 140px),rgba(255,255,255,0) 100%)}
+.sokak-sahne > *{position:relative;z-index:1}
+h3:has(+ .sokak-sahne){position:relative;z-index:2;color:#111!important;text-align:center}
+.ss-orta{position:sticky!important;top:calc(50vh - (var(--ana) * 1.4286 + 22px) / 2 + 26px)!important;box-shadow:0 18px 40px -18px rgba(0,0,0,.35)}
+.ss-yan img{outline-color:#bbb}
+@media (max-width:700px){.sokak-sahne{--ana:46vw}}
