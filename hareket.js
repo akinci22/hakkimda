@@ -135,7 +135,7 @@
       im.onload = function () { hazir.push(im.src); yukle(); }; im.onerror = yukle; im.src = L[y++]; }
     function basla() { if (!y) for (var p = 0; p < 4; p++) yukle(); }
     new IntersectionObserver(function (g, o) { if (g[0].isIntersecting) { basla(); o.disconnect(); } }, { rootMargin: "1500px 0px" }).observe(m);
-    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length < 2) return; i = (i + 1) % hazir.length;
+    function oynat() { if (zam) return; basla(); zam = setInterval(function () { if (hazir.length < 2 || m.matches(":hover")) return; i = (i + 1) % hazir.length;
       if (!sabit) { kare.src = hazir[i]; return; }
       kare.classList.add("sol"); setTimeout(function () { kare.src = hazir[i]; kare.classList.remove("sol"); }, 450); }, sabit ? 2600 : 110); }
     function dur() { clearInterval(zam); zam = null; }
@@ -227,7 +227,7 @@
 (function () {
   var dokun = matchMedia("(hover: none)").matches;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var hedef = null, zam = null, kat = null, son = { x: 0, y: 0 }, kaydi = 0;
+  var hedef = null, zam = null, cik = null, kat = null, son = { x: 0, y: 0 }, kaydi = 0;
   addEventListener("scroll", function () { kaydi = Date.now(); if (kat && kat._evre1) { kapat(); hedef = null; } }, { passive: true });
   var pd = document.createElement("div");   // arka perde: büyürken kararıp bulanıklaşır, sonunda kapkara
   pd.style.cssText = "position:fixed;inset:0;z-index:9998;pointer-events:none;background:#000;opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)";
@@ -240,8 +240,9 @@
     pd.style.opacity = ac ? "1" : "0"; var b = !ac ? "blur(0px)" : hizli ? "blur(18px) saturate(1.35) brightness(1.05)" : "blur(14px)";
     pd.style.backdropFilter = b; pd.style.webkitBackdropFilter = b;
   }
-  function kaynak(el) { return el.matches("video.gif") ? el : (el.querySelector(".hl-kutu img.on") || el.querySelector("video.gif") || el.querySelector("img")); }
-  function kapat() { clearTimeout(zam); zam = null; if (!kat) return; var k = kat; kat = null; perde(false);
+  function kaynak(el) { if (el.closest(".montaj-ic")) return el.closest(".montaj").querySelector(".montaj-kare");
+    return el.matches("video.gif") ? el : (el.querySelector(".hl-kutu img.on") || el.querySelector("video.gif") || el.querySelector("img")); }
+  function kapat() { clearTimeout(zam); zam = null; clearTimeout(cik); cik = null; if (!kat) return; var k = kat; kat = null; perde(false);
     k.style.transition = "transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s"; k.style.transform = k._ilk; k.style.opacity = "0";
     setTimeout(function () { k.remove(); }, 460); }
   function buyut() {
@@ -257,7 +258,7 @@
     k.style.cssText = "position:fixed;z-index:9999;left:" + (vw - w) / 2 + "px;top:" + (vh - h) / 2 + "px;width:" + w + "px;height:" + h +
       "px;object-fit:contain;background:#000;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6);pointer-events:none;will-change:transform;transform-origin:0 0";
     var s = r.width / w, ilk = "translate(" + (r.left - (vw - w) / 2) + "px," + (r.top - (vh - h) / 2) + "px) scale(" + s + ")";
-    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; if (!hz) perde(true);
+    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; k._hz = hz; if (!hz) perde(true);
     if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
     if (hz) {   // YolHava: 1) hemen, yerinde, dikkat çekecek kadar (%15) büyür; 2) imleç 2 sn kalırsa hızla ortada son boyuna
       var dx = r.left - (vw - w) / 2 - r.width * .075, dy = r.top - (vh - h) / 2 - r.height * .075;
@@ -284,12 +285,17 @@
       if (x >= Math.min(r1.left, r2.left) && x <= Math.max(r1.right, r2.right) && y >= Math.min(r1.top, r2.top) && y <= Math.max(r1.bottom, r2.bottom)) {   // içerideyken kare kaydırmayı büyük görsele de yansıt
         var su = hedef && hedef.querySelector && hedef.querySelector(".hl-kutu img.on");
         if (su && kat.tagName === "IMG" && kat.src !== (su.currentSrc || su.src)) kat.src = su.currentSrc || su.src;
+        clearTimeout(cik); cik = null; return;
+      }
+      if (!kat._hz) {   // fotoğraf: dışarı çıkınca 2 sn bekler (geri gelirsen açık kalır); hızlı kapatmak için boş yere tıkla
+        if (!cik) cik = setTimeout(function () { cik = null; kapat(); hedef = null; }, 2000);
         return;
       }
       kapat(); hedef = null;
     }
-    var el = e.target.closest && e.target.closest(".hl, video.gif");
+    var el = e.target.closest && e.target.closest(".hl, video.gif, .montaj-ic img");
     if (el === hedef) return;
+    if (el && el.closest(".montaj-ic")) { var mk = el.closest(".montaj").querySelector(".montaj-kare"); mk.src = el.currentSrc || el.src; }   // şeritteki kare önce büyük çerçevede görünür
     clearTimeout(zam); hedef = el;
     if (el) { on(el); if (Date.now() - kaydi < 350) { hedef = null; return; }   // tekerlek hızlı dönüyorsa tetikleme
     zam = setTimeout(buyut, 60); }
