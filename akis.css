@@ -731,3 +731,16 @@ h3:has(+ .sokak-sahne){position:relative;z-index:2;color:#111!important;text-ali
 .ss-ana,.ss-yan{touch-action:pan-y}
 @media (prefers-reduced-motion:reduce){.flas.ac{animation:none}}
 .ss-ana,.ss-yan img{-webkit-user-drag:none;user-select:none}
+
+/* İş başında (DMG): simetrik ızgara — üstte iki dikey yan, ortada büyük; altta eşit kareler. Hover: büyütme/yazı yok;
+   imlecin üstündeki hafifçe parlar, diğerleri HIZLA kararıp küçülür (öndeki üçlü daha çok). */
+.dmg-foto{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:auto;gap:12px;margin:8px 0 22px}
+.dmg-foto .ust.sol{grid-column:1;grid-row:1/span 2}.dmg-foto .ust.orta{grid-column:2/span 2;grid-row:1/span 2}.dmg-foto .ust.sag{grid-column:4;grid-row:1/span 2}
+.dmg-foto .ust img{aspect-ratio:auto;height:100%}.dmg-foto .ust.sol img,.dmg-foto .ust.sag img{aspect-ratio:718/938}.dmg-foto .ust.orta img{aspect-ratio:1400/938}
+.dmg-foto .ust{display:flex;flex-direction:column}.dmg-foto .ust img{flex:1;min-height:0}
+.dmg-foto figure{margin:0;transition:transform .16s ease-out}.dmg-foto img{transition:filter .16s ease-out,transform .16s ease-out;border-radius:8px}
+.dmg-foto:has(figure:hover) figure:not(:hover) img{filter:brightness(.45) saturate(.8);transform:scale(.965)}
+.dmg-foto:has(figure:hover) .ust:not(:hover) img{transform:scale(.94)}
+.dmg-foto figure:hover img{filter:brightness(1.08) saturate(1.05)}
+.dmg-foto .buyuk{grid-column:auto}
+@media (max-width:620px){.dmg-foto{grid-template-columns:1fr 1fr}.dmg-foto .ust.sol{grid-column:1;grid-row:1}.dmg-foto .ust.orta{grid-column:1/span 2;grid-row:2}.dmg-foto .ust.sag{grid-column:2;grid-row:1}}

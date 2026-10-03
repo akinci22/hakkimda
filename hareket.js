@@ -560,7 +560,7 @@ function kaydirDegis(k, src, yon) {
    beklemeye devam edersen yağmur yağdırır, daha da beklersen şimşek çakar. Yalnız fareli cihazlarda. */
 (function () {
   if (!matchMedia("(pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var TIK = "a,button,[role=button],summary,label,select,video.gif,.hl,.ss-yan img,.montaj-ic img,.r-kart,.hava-bulut,.geri-bulut,.cer,.gif-kart";
+  var TIK = "a,button,[role=button],summary,label,select,video.gif,.hl,.ss-yan img,.montaj-ic img,.r-kart,.hava-bulut,.geri-bulut,.cer:not(.dmg-foto *),.gif-kart";
   var im = document.createElement("div"); im.className = "bulut-imlec"; im.setAttribute("aria-hidden", "true"); im.style.transform = "translate(-200px,-200px)";
   var yag = ""; for (var i = 0; i < 4; i++) yag += '<line x1="' + (12 + i * 5) + '" y1="25" x2="' + (10 + i * 5) + '" y2="31" style="animation-delay:' + i * .12 + 's"/>';
   // imleç = ucu ok gibi sivri bir şimşek; arkasında minik bir bulut
