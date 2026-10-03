@@ -440,6 +440,9 @@ function kaydirDegis(k, src) {
     hiz = hiz * .6 + ((e.clientX - sonX) / dt * 1000) * .4; sonX = e.clientX; sonT = t; git(e.clientX); });
   function birak() { if (!tut) return; tut = false; b.classList.remove("tutuldu"); vk += hiz / 400; basla(); }
   b.addEventListener("pointerup", birak); b.addEventListener("pointercancel", birak);
+  // telefon: tarayıcı parmağı sayfa kaydırması sanıp sürüklemeyi iptal etmesin (iOS Safari touch-action'a tam uymaz)
+  b.addEventListener("touchstart", function (e) { e.preventDefault(); }, { passive: false });
+  b.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
 })();
 
 
