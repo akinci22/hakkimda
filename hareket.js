@@ -563,3 +563,13 @@ function kaydirDegis(k, src) {
   document.addEventListener("fullscreenchange", function () { d.classList.toggle("gizli", !!document.fullscreenElement); });
   var ilk = true; document.addEventListener("pointerdown", function (e) { if (ilk && e.pointerType === "mouse") { ilk = false; ac(); } }, true);
 })();
+
+/* Her bölüme bir önceki bölümün zemin rengini ver: üst kenarda yumuşak geçiş için */
+(function () {
+  var b = document.querySelectorAll("section.blok, main > section");
+  var onceki = getComputedStyle(document.body).backgroundColor;
+  Array.prototype.forEach.call(b, function (s) {
+    s.style.setProperty("--onceki", onceki);
+    onceki = getComputedStyle(s).getPropertyValue("--zemin").trim() || getComputedStyle(s).backgroundColor;
+  });
+})();
