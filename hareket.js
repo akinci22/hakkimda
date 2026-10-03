@@ -483,7 +483,7 @@ function kaydirDegis(k, src) {
   var sol = "", sag = "";
   // aynı hikâye serisinin kareleri (g/hl/<seri>/) storydeki sırayla yan yana, aynı tarafta kalır; taraflar dengelenir
   var gr = [], son = null, ns = 0, nr = 0;
-  L.forEach(function (u, i) { var m = u.match(/g\/hl\/([^\/]+)\//), key = m ? m[1] : "t" + i;
+  L.forEach(function (u, i) { var key = (M0.grup || [])[i]; if (key === undefined) key = "t" + i;   // aynı gönderi / aynı yer → aynı grup (sahne_grup.py)
     if (!son || son.k !== key) { son = { k: key, h: "" , n: 0 }; gr.push(son); }
     son.h += '<img src="' + u + '" data-i="' + i + '" alt="" loading="lazy" decoding="async" width="420" height="600">'; son.n++; });
   gr.forEach(function (g) { var h = g.n > 1 ? '<div class="ss-seri">' + g.h + '</div>' : g.h; if (ns <= nr) { sol += h; ns += g.n; } else { sag += h; nr += g.n; } });
