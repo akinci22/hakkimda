@@ -46,14 +46,14 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik'].map(async a => { try { veri[a] = await (await fetch(`veri/${a}.json?v=1`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne'].map(async a => { try { veri[a] = await (await fetch(`veri/${a}.json?v=1`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
 
 /* ---------------- RENDER ---------------- */
 function ses(hirsli, rahat) {
-  return el('div', { class: 'ses' }, el('p', { class: 's-h' }, el('span', { class: 'prompt p-h' }, 'hırslı@nwp:~$ '), yerDoldur(hirsli)), el('p', { class: 's-r' }, el('span', { class: 'prompt p-r' }, 'rahat@nwp:~$ '), yerDoldur(rahat)));
+  return el('div', { class: 'ses' }, el('p', { class: 's-h' }, el('span', { class: 'prompt p-h' }, 'T · hırslı ▸ '), yerDoldur(hirsli)), el('p', { class: 's-r' }, el('span', { class: 'prompt p-r' }, 'Td · rahat ▸ '), yerDoldur(rahat)));
 }
 function sesYerlestir() {
   const M = veri.metinler;
@@ -102,10 +102,15 @@ function basamakSec(i, sessiz) {
 }
 function mumkun() {
   const M = veri.metinler.mumkun; $('#mumkun-baslik').textContent = M.baslik;
-  $('#mumkun-kartlar').replaceChildren(...M.kartlar.map(k => el('div', { class: 'kart' }, el('b', {}, k.b), el('p', {}, k.m), k.ref ? el('a', { class: 'ref', href: '../' + k.ref }, 'portfolyoda gör →') : null)));
+  const medya = (m) => { if (!m) return null; if (m.tip === 'video') return el('div', { class: 'medya' }, el('video', { src: m.src, poster: m.poster, autoplay: true, muted: true, loop: true, playsinline: true, preload: 'metadata', 'aria-label': m.alt || '' }));
+    if (m.tip === 'serit') return el('div', { class: 'medya serit' }, ...m.src.map(s => el('img', { src: s, alt: '', loading: 'lazy', decoding: 'async' })));
+    return el('div', { class: 'medya' }, el('img', { src: m.src, alt: m.alt || '', loading: 'lazy', decoding: 'async' })); };
+  $('#mumkun-kartlar').replaceChildren(...M.kartlar.map(k => el('div', { class: 'kart' }, medya(k.medya), el('b', {}, k.b), el('p', {}, k.m), k.ref ? el('a', { class: 'ref', href: '../' + k.ref }, 'portfolyoda gör →') : null)));
+  $$('#mumkun-kartlar video').forEach(v => { v.muted = true; v.play && v.play().catch(() => { }); });
 }
 
 /* --- deste --- */
+const BULUTLAR = [['g20', 'Cirrus uncinus · 20 Nis'], ['g15', 'Altocumulus · 15 Nis'], ['g28', 'Cumulus humilis · 28 Nis'], ['g13', 'Altostratus · 13 Nis'], ['g16', 'Stratus · 16 Nis'], ['g03', 'Nimbostratus · 3 May']];
 function deste() {
   const K = veri.anket.kaydir; $('#kaydir-baslik').textContent = K.baslik; $('#kaydir-mizah').textContent = K.mizah_giris;
   const D = $('#deste'); const kartlar = [...K.kartlar]; let i = 0;
@@ -114,7 +119,8 @@ function deste() {
     if (i >= kartlar.length) { const y = durum.eslesme.toplam ? Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam) : 0; D.append(el('div', { class: 'deste-bitti' }, el('b', { class: 'eslesme' }, `Eşleşme: %${y}`), el('span', {}, K.son.baslik), el('span', { class: 'not' }, y >= 70 ? 'Süper eşleşme. Bu bir tanışma uygulaması olsa şu an bildirim gelirdi.' : y >= 40 ? 'Makul. Ortada buluşuruz.' : 'Zor bir kitlesin; tam da videoları senin için çekiyoruz.'))); $('#dg-evet').disabled = $('#dg-hayir').disabled = true; sonKart(); return; }
     for (let j = Math.min(i + 2, kartlar.length - 1); j >= i; j--) {
       const k = kartlar[j]; const derin = j - i;
-      const c = el('article', { class: 'kartd', style: `transform:translateY(${derin * 10}px) scale(${1 - derin * .04});z-index:${10 - derin}`, 'aria-hidden': String(derin > 0) }, el('span', { class: 'kno' }, `${j + 1}/${kartlar.length}`), el('p', { class: 'kmetin' }, k.metin), el('span', { class: 'damga d-evet' }, 'KATILIYORUM'), el('span', { class: 'damga d-hayir' }, 'HAYIR'));
+      const bulut = BULUTLAR[j % BULUTLAR.length];
+      const c = el('article', { class: 'kartd', style: `transform:translateY(${derin * 10}px) scale(${1 - derin * .04});z-index:${10 - derin};background-image:url('../g/bulut/${bulut[0]}.jpg')`, 'aria-hidden': String(derin > 0) }, el('span', { class: 'kno' }, el('span', {}, `${j + 1}/${kartlar.length}`), el('i', {}, `☁ ${bulut[1]}`)), el('p', { class: 'kmetin' }, k.metin), el('span', { class: 'damga d-evet' }, 'KATILIYORUM'), el('span', { class: 'damga d-hayir' }, 'HAYIR'));
       if (derin === 0) surukle(c); D.append(c);
     }
   };
@@ -190,12 +196,37 @@ function anlatilar() {
 }
 
 /* --- bölümler / gerçekçilik / neden şimdi --- */
+const IKONLAR = {
+  UCK: '<path d="M3 16l9-2 9 2M12 14V5l3 2M12 5L9 7M8 20h8"/>', UZB: '<circle cx="12" cy="12" r="4"/><path d="M2 12c0-2 4-3 10-3s10 1 10 3-4 3-10 3S2 14 2 12zM12 2v3M12 19v3"/>',
+  BLG: '<rect x="5" y="5" width="14" height="14" rx="1"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>', YZV: '<circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><path d="M8 7l2 4M8 17l2-4M14 12h2"/>',
+  MAT: '<path d="M6 4h12L10 12l8 8H6"/>', FIZ: '<circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)"/>',
+  CEV: '<path d="M12 21c-5 0-8-4-8-9 0-4 3-8 8-9 5 1 8 5 8 9 0 5-3 9-8 9zM12 21V9M12 13l-4-3M12 16l4-3"/>', EHB: '<path d="M12 21V9M6 9a8 8 0 0 1 12 0M3 6a12 12 0 0 1 18 0M9 9a4 4 0 0 1 6 0"/>',
+  KON: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>', GEO: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>'
+};
+function ikon(k) { const t = document.createElement('template'); t.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${IKONLAR[k] || '<circle cx="12" cy="12" r="8"/>'}</svg>`; return t.content.firstChild; }
+function karne() {
+  const K = veri.karne; const S = $('#karne-svg'), O = $('#karne-ozet'); if (!K || !S) return;
+  const NS = 'http://www.w3.org/2000/svg'; const g = (t, a, txt) => { const n = document.createElementNS(NS, t); for (const [k, v] of Object.entries(a)) n.setAttribute(k, v); if (txt !== undefined) n.textContent = txt; return n; };
+  const G = K.gunler, W = 720, H = 260, L = 42, R = 12, T = 18, B = 40, ih = H - T - B, iw = W - L - R;
+  const err = G.map(d => d.tahmin1 - d.gercek); const mx = Math.max(1, ...err.map(Math.abs)); const y0 = T + ih / 2; const sc = (ih / 2 - 6) / mx;
+  S.replaceChildren();
+  [-mx, -mx / 2, 0, mx / 2, mx].forEach(v => { const y = y0 - v * sc; S.append(g('line', { x1: L, x2: W - R, y1: y, y2: y, class: v === 0 ? 'sifir' : 'eksen' })); S.append(g('text', { x: L - 6, y: y + 3, 'text-anchor': 'end' }, (v > 0 ? '+' : '') + v.toFixed(1) + '°')); });
+  const bw = iw / G.length;
+  G.forEach((d, i) => { const e = err[i]; const h = Math.abs(e) * sc; const x = L + i * bw + 1;
+    const r = g('rect', { x, y: e >= 0 ? y0 - h : y0, width: Math.max(2, bw - 2), height: h, class: 'cubuk ' + (e >= 0 ? 'c-art' : 'c-eksi') }); r.append(g('title', {}, `${d.t}: tahmin ${d.tahmin1}° · gerçekleşen ${d.gercek}° · fark ${e >= 0 ? '+' : ''}${e.toFixed(1)}°`)); S.append(r);
+    if (i % 5 === 0) S.append(g('text', { x: x + bw / 2, y: H - B + 14, 'text-anchor': 'middle' }, d.t.slice(8, 10) + '.' + d.t.slice(5, 7))); });
+  S.append(g('text', { x: L, y: H - 6 }, 'kırmızı: model sıcak verdi · yeşil-mavi: soğuk verdi · günlük Tmax, GFS'));
+  const z = K.ozet;
+  O.replaceChildren(...[[`${z.bias1 >= 0 ? '+' : ''}${z.bias1.toFixed(2)}°`, 'bias (sistematik sapma), 1 gün önce'], [`${z.mae1.toFixed(2)}°`, 'MAE (ortalama mutlak hata), 1 gün önce'], [z.mae3 != null ? `${z.mae3.toFixed(2)}°` : '—', 'MAE, 3 gün önce: ufuk uzadıkça hata büyür'], [`${z.n} gün`, K.istasyon]].map(([s, e]) => el('div', { class: 'sk' }, el('b', {}, s), el('span', {}, e))),
+    el('p', { class: 'not' }, K.kaynak + ' · ', el('a', { href: K.kaynakUrl, target: '_blank', rel: 'noopener' }, 'Open-Meteo'), ` · üretim ${K.uretim}`),
+    ses('Bu grafiği 40 satır Python ile sen de çıkarırsın. Gözlemle (MGM) karşılaştırınca 2209 başvurusunun ilk şekli hazır.', 'Bakması bile yeter: model bazen sıcak, bazen soğuk verir; ikisinin ortalaması sıfıra yakınsa "bias" düşüktür. Bu kadar.'));
+}
 function bolumler() {
   const M = veri.metinler.bolumler; $('#bolumler-baslik').textContent = M.baslik; $('#bolumler-alt').textContent = M.alt;
   const B = veri.bolumler || [];
   if (!B.length) { $('#bolum-kartlar').replaceChildren(el('div', { class: 'bos' }, '// 10 bölümün ders planı karşılaştırması derleniyor — yakında burada.')); return; }
   $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button', 'aria-expanded': 'false', onclick: () => { const a = k.getAttribute('aria-expanded') === 'true'; k.setAttribute('aria-expanded', String(!a)); durum.etkilesim++; } },
-    el('span', { class: 'bk-ad' }, b.bolum, el('span', { class: 'bk-k' }, b.k)),
+    el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum, el('span', { class: 'bk-k' }, b.k)),
     el('div', { class: 'es' }, el('span', {}, 'senin'), el('span', {}, b.senin), el('span', {}, 'bizim'), el('span', {}, b.bizim), el('span', {}, 'ortak'), el('span', {}, b.ortakIs)),
     el('div', { class: 'bk-detay' }, ...(b.projeler || []).map(p => el('span', {}, '→ ' + p)), b.hocaSayisi ? el('span', {}, `${b.hocaSayisi} ilgili hoca · ${b.projeSayisi || 0} ortak proje fikri`) : null)); return k; }));
   $('#bolum-not').textContent = 'Kaynak: İTÜ ders planları ve bölüm siteleri. Tam tablo "Meraklısına" bölümünde.';
@@ -204,8 +235,21 @@ function gercek() {
   const M = veri.metinler.gercekcilik; $('#gercek-baslik').textContent = M.baslik; $('#gercek-alt').textContent = M.alt; $('#gercek-not').textContent = M.tablo_not;
   const G = veri.gercekcilik || []; const T = $('#gercek-tablo');
   if (!G.length) { T.replaceWith(el('div', { class: 'bos', id: 'gercek-tablo' }, '// Takım yaşı ve bütçe tablosu kaynaklarıyla derleniyor.')); return; }
+  yasCubuklari(G);
   T.replaceChildren(el('thead', {}, el('tr', {}, ...['Takım', 'Kuruluş', 'Yaş', 'Bütçe (yıllık)', 'İlk büyük derece', 'Kaynak'].map(h => el('th', {}, h)))),
     el('tbody', {}, ...G.map(g => el('tr', { class: g.biz ? 'biz' : '' }, el('td', {}, (g.dogrulandi === false ? '⚠ ' : '') + g.takim), el('td', {}, g.kurulus || '—'), el('td', {}, g.yas || '—'), el('td', {}, g.butce || '—'), el('td', {}, g.ilkDerece || '—'), el('td', {}, g.kaynakUrl ? el('a', { href: g.kaynakUrl, target: '_blank', rel: 'noopener' }, g.kaynakAdi || 'kaynak') : '—')))));
+}
+function yasCubuklari(G) {
+  const S = $('#yas-svg'); if (!S) return; const NS = 'http://www.w3.org/2000/svg';
+  const g = (t, a, txt) => { const n = document.createElementNS(NS, t); for (const [k, v] of Object.entries(a)) n.setAttribute(k, v); if (txt !== undefined) n.textContent = txt; return n; };
+  const satir = G.filter(x => x.kurulus && /^\d{4}$/.test(String(x.kurulus))).map(x => ({ ad: x.takim.replace(/^İTÜ /, '').replace(/ (Takımı|Roket Grubu|Team|Ar-Ge)$/, ''), yas: Math.max(0, 2026 - +x.kurulus), derece: (String(x.ilkDerece || '').match(/\b(20\d\d)\b/) || [])[1], biz: !!x.biz, kurulus: +x.kurulus })).sort((a, b) => b.yas - a.yas);
+  const SAT = 30, W = 720, H = Math.max(120, 34 + satir.length * SAT), L = 150, R = 60, iw = W - L - R, mx = Math.max(5, ...satir.map(s => s.yas)); S.setAttribute('viewBox', `0 0 ${W} ${H}`); S.replaceChildren();
+  [0, 5, 10, 15, 20].filter(v => v <= mx).forEach(v => { const x = L + v / mx * iw; S.append(g('line', { x1: x, x2: x, y1: 16, y2: H - 10, stroke: 'rgba(31,42,46,.14)' })); S.append(g('text', { x, y: 11, 'text-anchor': 'middle' }, v + ' yıl')); });
+  satir.forEach((s, i) => { const y = 26 + i * SAT; const bw = Math.max(3, s.yas / mx * iw); S.append(g('text', { x: L - 8, y: y + 12, 'text-anchor': 'end', class: 'ad' }, s.ad));
+    S.append(g('rect', { x: L, y, width: bw, height: 16, class: 'cubuk' + (s.biz ? ' biz' : '') }));
+    if (s.derece && s.derece > s.kurulus) { const dx = L + (s.derece - s.kurulus) / mx * iw; S.append(g('path', { d: `M${dx} ${y + 1} l-4 -7 h8 z`, class: 'derece' })); S.append(g('text', { x: dx + 7, y: y - 1, class: 'derece' }, `ilk derece ${s.derece - s.kurulus}. yılda`)); }
+    S.append(g('text', { x: L + bw + 6, y: y + 12 }, s.biz ? '0 · başlıyoruz' : `${s.yas} yıl`)); });
+  S.append(g('text', { x: L, y: H - 2 }, 'çubuk: kuruluştan bugüne · üçgen: kaynaklı ilk büyük derece'));
 }
 function neden() {
   const M = veri.metinler.nedensimdi; $('#neden-baslik').textContent = M.baslik;
@@ -269,21 +313,22 @@ function sonKart() {
   if (durum.eslesme.toplam) satirlar.push(`kaydırma eşleşmesi %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}`);
   if (durum.test.toplam) satirlar.push(`bilgi testi ${durum.test.dogru}/${durum.test.toplam}`);
   if (durum.roller.length) satirlar.push('rol: ' + durum.roller.join(', '));
-  K.replaceChildren(el('p', { class: 'yorum' }, S.baslik), kural ? el('p', { class: 'rol' }, kural.rol) : el('p', { class: 'kilitli' }, '// kapıyı seçince (01) burada sana göre bir rol çıkar'), el('p', {}, kural ? kural.metin : 'Yukarıdaki üç kapıdan biri yeter.'), satirlar.length ? el('p', { class: 'kilitli' }, '// ' + satirlar.join(' · ')) : null);
+  K.replaceChildren(...[el('p', { class: 'yorum' }, S.baslik), kural ? el('p', { class: 'rol' }, kural.rol) : el('p', { class: 'kilitli' }, 'kapıyı seçince (01) burada sana göre bir rol çıkar'), el('p', {}, kural ? kural.metin : 'Yukarıdaki üç kapıdan biri yeter.'), satirlar.length ? el('p', { class: 'kilitli' }, satirlar.join(' · ')) : null].filter(Boolean));
   const M = veri.metinler.kapanis; $('#son-ozet').replaceChildren(ses(M.hirsli, M.rahat));
   $('#son-cta').replaceChildren(...S.cta.map((c, i) => el('a', { class: i === 0 ? 'birincil' : '', href: c.href }, c.etiket)));
 }
 
 /* ---------------- SÜSLER ---------------- */
 function ilerleme() {
-  const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'); const bloklar = $$('main > section');
+  const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'); const bloklar = $$('main > section');
   const g = () => { const h = document.documentElement; const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight); bar.style.width = (p * 100).toFixed(1) + '%';
+    if (balon) balon.style.top = (90 - p * 80).toFixed(1) + '%';
     const kalan = bloklar.filter(b => b.getBoundingClientRect().top > innerHeight).length;
-    if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Açıldı: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🔓'; } else rm.textContent = `Sonda: sana göre rol · ${kalan} blok kaldı`; };
+    if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Tropopoz: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🪂'; } else rm.textContent = `Tropopozda: sana göre rol · ${kalan} seviye kaldı`; };
   addEventListener('scroll', g, { passive: true }); g();
 }
 function gorunme() {
-  const hedefler = $$('main .sar > *, header.acilis .sar > *'); hedefler.forEach(h => h.classList.add('gel'));
+  const hedefler = $$('main .sar > *:not(.seviye), header.acilis .acilis-ic > *'); hedefler.forEach(h => h.classList.add('gel'));
   if (azalt || !('IntersectionObserver' in window)) { hedefler.forEach(h => h.classList.add('goster')); return; }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('goster'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' }); hedefler.forEach(h => io.observe(h));
 }
@@ -310,6 +355,6 @@ function izobar() {
   if (!veri.anket || !veri.metinler) { document.body.insertAdjacentHTML('afterbegin', '<p class="bos" style="margin:16px">Veri yüklenemedi (veri/*.json). Sayfayı bir sunucu üzerinden aç.</p>'); return; }
   if (durum.grup) document.documentElement.dataset.grup = durum.grup;
   await arkaKur();
-  acilis(); sesYerlestir(); kapi(); vizyon(); merdiven(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart();
-  gorunme(); ilerleme(); imlec(); izobar();
+  acilis(); sesYerlestir(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart();
+  gorunme(); ilerleme(); imlec();
 })();
