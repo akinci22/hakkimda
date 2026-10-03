@@ -1,0 +1,27 @@
+/* Ana sayfadaki "Proje Takımı" vitrini — /takim/ ile aynı SONDAJ (Skew-T) kimliği */
+.t-takim{--zemin:#f4efe3;--yazi:#1f2a2e;--yazi-2:#4f5f66;--vurgu:#a2552b;--cer:#1f2a2e;--cer-ic:#a2552b;--font-b:'Barlow Condensed','Arial Narrow',sans-serif;--balon:#fcfaf4;--baslik:#1f2a2e;
+  background-image:repeating-linear-gradient(135deg,transparent 0 44px,rgba(162,85,43,.17) 44px 45px),repeating-linear-gradient(112deg,transparent 0 76px,rgba(107,122,42,.13) 76px 77px),repeating-linear-gradient(180deg,transparent 0 118px,rgba(31,42,46,.11) 118px 119px)!important}
+.t-takim .sar>.bolum-no{font-family:'IBM Plex Mono',monospace;color:#a2552b}
+.t-takim h2{font-family:'Barlow Condensed','Arial Narrow',sans-serif!important;font-weight:700!important;text-transform:uppercase;font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.05;letter-spacing:.005em}
+.t-takim .vitrin{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;align-items:center;
+  background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important;border-radius:0!important}
+.t-takim .vitrin>div{background:transparent!important}
+.t-takim .vitrin-yorum{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:#4f5f66;margin:0 0 8px;display:flex;gap:10px;align-items:center}
+.t-takim .vitrin-yorum .hpa{font-weight:600;color:#a2552b;border:1px solid #a2552b;padding:1px 7px;border-radius:999px;background:#fcfaf4}
+.t-takim .vitrin-alt{font-family:'IBM Plex Mono',monospace;font-size:.9rem;color:#2a7f7a;margin:6px 0 18px}
+.t-takim .vitrin-ses{display:grid;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:.86rem;background:#fcfaf4;border:1px solid #1f2a2e;border-left:4px solid #a2552b;box-shadow:3px 3px 0 rgba(31,42,46,.18);padding:12px 14px;margin:0 0 20px;color:#4f5f66}
+.t-takim .vitrin-ses p{margin:0} .t-takim .vitrin-ses .p-h{color:#c0392b;font-weight:600} .t-takim .vitrin-ses .p-r{color:#1e8449;font-weight:600}
+.t-takim .vitrin-cta{display:inline-flex;align-items:center;gap:8px;background:#c0392b;color:#fff;text-decoration:none;font:700 1.05rem 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:12px 22px;border:1px solid #c0392b;box-shadow:3px 3px 0 rgba(31,42,46,.25);transition:transform .15s}
+.t-takim .vitrin-cta:hover{transform:translate(-1px,-1px)}
+.t-takim .vitrin-cipler{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.t-takim .vitrin-cipler span{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#4f5f66;border:1px solid rgba(31,42,46,.32);padding:3px 9px;background:#fcfaf4}
+/* sağ: gerçek Skew-T karesi + çizilen sondaj izi */
+.t-takim .vitrin-fig{position:relative;border:1px solid #1f2a2e;box-shadow:3px 3px 0 rgba(31,42,46,.18);background:#fcfaf4;padding:6px}
+.t-takim .vitrin-fig img{display:block;width:100%;height:auto;border:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important}
+.t-takim .vitrin-fig figcaption{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#4f5f66;margin-top:6px;line-height:1.4;text-align:left}
+.t-takim .vitrin-fig .iz{position:absolute;left:6px;top:6px;width:calc(100% - 12px);height:auto;pointer-events:none}
+.t-takim .vitrin-fig .iz path{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;animation:vt-ciz 3s ease-out forwards}
+.t-takim .vitrin-fig .iz .t{stroke:#c0392b} .t-takim .vitrin-fig .iz .td{stroke:#1e8449;animation-delay:.6s}
+@keyframes vt-ciz{to{stroke-dashoffset:0}}
+@media (max-width:760px){.t-takim .vitrin{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.t-takim .vitrin-fig .iz path{animation:none;stroke-dashoffset:0}}

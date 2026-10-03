@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="tr" data-grup="" data-asama="0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="İTÜ'de yapay zekâ ile hava tahmini düzeltme ve doğrulama üzerine kurulan öğrenci proje takımı. Bir sondaj diyagramı gibi: 1000 hPa'dan tropopoza 8 aşama, canlı tahmin karnesi, 3 anket, sonda sana göre bir rol.">
+<link rel="canonical" href="https://akinci22.github.io/hakkimda/takim/">
+<meta name="theme-color" content="#f4efe3">
+<link rel="icon" href="../g/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Proje Takımı — SONDAJ">
+<meta property="og:description" content="Hava tahminini yapay zekâyla düzelten, bunu yaparken öğreten İTÜ öğrenci takımı. 0 TL donanım, açık veri, 6 basamak.">
+<meta property="og:url" content="https://akinci22.github.io/hakkimda/takim/">
+<meta property="og:image" content="https://akinci22.github.io/hakkimda/takim/g/daniel-poster.jpg">
+<meta property="og:locale" content="tr_TR">
+<title>Proje Takımı · Sondaj</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="takim.css?v=3">
+<script src="firebase-config.js?v=1"></script>
+
+<body>
+<a class="atla" href="#olay">İçeriğe geç</a>
+<div class="ilerleme" aria-hidden="true"><span id="ilerleme-bar"></span></div>
+<div id="perde" aria-hidden="true"></div>
+<div id="imlec" aria-hidden="true"><svg viewBox="0 0 28 34"><ellipse class="im-balon" cx="14" cy="11" rx="9" ry="11"/><path class="im-ip" d="M14 22 L14 32 M12 32 h4"/><path class="im-arti" d="M14 4v20M4 14h20"/></svg><span class="im-okuma" id="im-okuma">1000 hPa · 0 km</span></div>
+<div id="ipucu" class="ipucu-kutu" role="tooltip" hidden></div>
+
+<aside class="ray" aria-label="Basınç rayı">
+  <div class="ray-baslik">Sondaj</div>
+  <button class="tik" type="button" style="top:13%" data-seviye="200" data-hedef="son"><b>200</b> hPa</button>
+  <button class="tik" type="button" style="top:24%" data-seviye="300" data-hedef="coklu"><b>300</b></button>
+  <button class="tik" type="button" style="top:36%" data-seviye="500" data-hedef="bolumler"><b>500</b></button>
+  <button class="tik" type="button" style="top:52%" data-seviye="700" data-hedef="kapi"><b>700</b></button>
+  <button class="tik" type="button" style="top:66%" data-seviye="850" data-hedef="karne"><b>850</b></button>
+  <button class="tik" type="button" style="top:78%" data-seviye="925" data-hedef="vizyon"><b>925</b></button>
+  <button class="tik" type="button" style="top:90%" data-seviye="1000" data-hedef="olay"><b>1000</b> yüzey</button>
+  <div class="balon" id="ray-balon" style="top:90%"><svg viewBox="0 0 30 46"><ellipse cx="15" cy="14" rx="12" ry="14" fill="#c0392b"/><path d="M15 28v12M12 40h6M13 44h4" stroke="#1f2a2e" stroke-width="1.2" fill="none"/><rect x="11" y="40" width="8" height="5" fill="#fcfaf4" stroke="#1f2a2e" stroke-width="1"/></svg></div>
+</aside>
+
+<aside class="panel" id="panel" aria-label="Sondaj paneli">
+  <div class="panel-kutu">
+    <p class="panel-ust">Aşama <b id="p-asama">0</b>/8</p>
+    <p class="panel-ad" id="p-ad">Yüzey</p>
+    <p class="panel-m" id="p-m">Sondaj başlıyor.</p>
+  </div>
+  <div class="panel-kutu okuma">
+    <div><span>Basınç</span><b id="p-hpa">1000 hPa</b></div>
+    <div><span>Yükseklik</span><b id="p-km">0,0 km</b></div>
+    <div><span>Standart T</span><b id="p-t">15 °C</b></div>
+  </div>
+  <div class="panel-kutu">
+    <p class="panel-ust">Senin durumun</p>
+    <p class="panel-m" id="p-sen">Kapıyı seçmedin. Üç kapı 700 hPa'da.</p>
+  </div>
+  <div class="panel-kutu not" id="p-not">
+    <p class="panel-ust">Not · üzerine gel</p>
+    <p class="panel-m" id="p-not-m">Altı noktalı terimlere, kartlara ve ray üstündeki seviyelere gelince açıklaması burada belirir.</p>
+  </div>
+</aside>
+
+<nav class="ust" aria-label="Üst">
+  <div class="ust-ic">
+    <a class="geri" href="../">← Ömer Faruk Akıncı</a>
+    <span class="ust-ad"><span class="prompt">radyosonde ▸</span> Proje Takımı</span>
+    <span id="mod-rozet" class="rozet" hidden>test modu · oylar bu cihazda</span>
+  </div>
+  <div class="serit" id="serit" role="navigation" aria-label="Aşamalar"></div>
+</nav>
+
+<header id="acilis" class="blok acilis" data-hpa="1000">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="1000">1000 hPa</span> yüzey · İTÜ · UUBF · Meteoroloji · proje takımı</p>
+    <div class="acilis-ic">
+      <div>
+        <h1>Yapay zekâ ile hava tahmini <em>düzeltme</em> ve <em>doğrulama</em>.</h1>
+        <p class="alt buyuk">Öğrenirken öğreten takım. Bu sayfa bir Skew-T diyagramı gibi okunur: aşağı kaydırdıkça balon yükselir, geniş ekranda soldaki ray ve sağdaki panel nerede olduğunu söyler, en sonda tropopozda sana göre bir rol vardır.</p>
+        <div class="sayilar" id="acilis-sayilar"></div>
+        <div class="ses" data-ses="acilis"></div>
+        <p class="ipucu">↑ 8 aşama · 4 dakika · 3 anket · 7 görsel · 1 canlı grafik · altı noktalı kelimelerin üstünde dur</p>
+      </div>
+      <div>
+        <svg class="mini-sondaj" viewBox="0 0 200 150" role="img" aria-label="Şematik Skew-T: sıcaklık ve çiy noktası izleri çiziliyor">
+          <g class="grid"><line x1="30" y1="140" x2="190" y2="140"/><line x1="30" y1="100" x2="190" y2="100"/><line x1="30" y1="60" x2="190" y2="60"/><line x1="30" y1="20" x2="190" y2="20"/></g>
+          <g class="gr-iz"><line x1="30" y1="140" x2="130" y2="5"/><line x1="70" y1="140" x2="170" y2="5"/><line x1="110" y1="140" x2="190" y2="32"/><line x1="150" y1="140" x2="190" y2="86"/></g>
+          <text x="2" y="143">1000</text><text x="8" y="103">850</text><text x="8" y="63">500</text><text x="8" y="23">200</text>
+          <path class="iz iz-t" d="M152 140 L142 112 L130 88 L113 58 L97 28 L82 6"/>
+          <path class="iz iz-td" d="M124 140 L108 112 L98 90 L72 62 L57 32 L32 9"/>
+          <text x="156" y="136" style="fill:#c0392b">T</text><text x="113" y="136" style="fill:#1e8449">Td</text>
+        </svg>
+        <figure class="cerceve etk" data-detay="skewt">
+          <img src="../g/bulut/skewt-28.jpg" alt="28 Nisan 2026 İstanbul Skew-T: hesaplanan profil ve Kartal radyosonde ölçümü aynı diyagramda" width="820" height="1025" loading="eager" decoding="async">
+          <figcaption>Gerçek veri: 28 Nisan 2026, Kartal radyosondesi (düz) ve Ömer'in Python'da kurduğu profil (kesikli). Tıkla: nasıl okunur.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="olay" class="blok olay" data-asama="0" data-hpa="1000">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="1000">1000 hPa</span> 00 · olay ne?</p>
+    <h2 id="olay-baslik"></h2>
+    <div class="olay-kartlar" id="olay-kartlar"></div>
+  </div>
+</section>
+
+<section id="akis" class="blok" data-asama="0" data-hpa="975">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="925">975 hPa</span> 00 · akış</p>
+    <h2 id="akis-baslik"></h2>
+    <p class="alt" id="akis-alt"></p>
+    <ol class="akis-kartlar" id="akis-kartlar"></ol>
+  </div>
+</section>
+
+<div class="asama-baslik" data-asama="1"><span>Aşama 1</span><b>Olay ne</b></div>
+<section id="vizyon" class="blok" data-asama="1" data-hpa="950">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="925">950 hPa</span> 01 · vizyon · misyon · iki kol</p>
+    <div class="ikili" id="vizyon-kartlar"></div>
+    <svg class="kol-sema" viewBox="0 0 640 170" role="img" aria-label="İki kol: ürün ve eğitim, ortada takım">
+      <defs><marker id="ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5 0 10z" fill="#a2552b"/></marker></defs>
+      <rect x="250" y="60" width="140" height="50" class="sm-kutu"/><text x="320" y="90" class="sm-yazi" text-anchor="middle">NWP TAKIMI</text>
+      <rect x="20" y="20" width="170" height="44" class="sm-kutu sm-urun"/><text x="105" y="47" class="sm-yazi" text-anchor="middle">ÜRÜN · düzeltici</text>
+      <rect x="20" y="106" width="170" height="44" class="sm-kutu sm-urun"/><text x="105" y="133" class="sm-yazi" text-anchor="middle">ÜRÜN · AI karnesi</text>
+      <rect x="450" y="20" width="170" height="44" class="sm-kutu sm-egitim"/><text x="535" y="47" class="sm-yazi" text-anchor="middle">EĞİTİM · videolar</text>
+      <rect x="450" y="106" width="170" height="44" class="sm-kutu sm-egitim"/><text x="535" y="133" class="sm-yazi" text-anchor="middle">EĞİTİM · atölye</text>
+      <path d="M190 42 C 220 42, 230 85, 250 85" class="sm-cizgi" marker-end="url(#ok)"/><path d="M190 128 C 220 128, 230 85, 250 85" class="sm-cizgi" marker-end="url(#ok)"/>
+      <path d="M390 85 C 410 85, 420 42, 450 42" class="sm-cizgi" marker-end="url(#ok)"/><path d="M390 85 C 410 85, 420 128, 450 128" class="sm-cizgi" marker-end="url(#ok)"/>
+    </svg>
+    <div class="kollar" id="kollar"></div>
+  </div>
+</section>
+
+<div class="asama-baslik" data-asama="2"><span>Aşama 2</span><b>Ne yapacağız</b></div>
+<section id="merdiven" class="blok" data-asama="2" data-hpa="900">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="850">900 hPa</span> 02 · ne yapacağız</p>
+    <h2 id="merdiven-baslik"></h2>
+    <p class="alt" id="merdiven-alt"></p>
+    <div class="merdiven-sar">
+      <svg class="merdiven-svg" viewBox="0 0 600 330" aria-hidden="true" id="merdiven-svg"></svg>
+      <div class="basamaklar" id="basamaklar" role="tablist" aria-label="Basamaklar"></div>
+    </div>
+    <div class="basamak-detay" id="basamak-detay" role="tabpanel" aria-live="polite"></div>
+    <ul class="kurallar" id="merdiven-kural"></ul>
+  </div>
+  <div class="sar genis">
+    <div class="vaka">
+      <figure class="etk" data-detay="daniel">
+        <div class="kayan" role="img" aria-label="MODIS uydu görüntüleri, 3-8 Eylül 2023: Storm Daniel Yunanistan'dan Marmara'ya ve Libya'ya doğru ilerliyor">
+          <img src="g/daniel-2023-09-03.jpg" alt="" width="760" height="538" loading="lazy" decoding="async"><img src="g/daniel-2023-09-04.jpg" alt="" width="760" height="538" loading="lazy" decoding="async"><img src="g/daniel-2023-09-05.jpg" alt="" width="760" height="538" loading="lazy" decoding="async"><img src="g/daniel-2023-09-06.jpg" alt="" width="760" height="538" loading="lazy" decoding="async"><img src="g/daniel-2023-09-07.jpg" alt="" width="760" height="538" loading="lazy" decoding="async"><img src="g/daniel-2023-09-08.jpg" alt="" width="760" height="538" loading="lazy" decoding="async">
+          <span class="tarih">3 → 8 Eylül 2023 · MODIS Terra</span>
+        </div>
+        <figcaption>NASA Worldview (GIBS), kamu malı. Ege–Marmara–Doğu Akdeniz; 5 Eylül'de İstanbul'u basan sistem bu. Tıkla: olayın hikâyesi.</figcaption>
+      </figure>
+      <div>
+        <h3>Vaka: 5-6 Eylül 2023 İstanbul seli</h3>
+        <p>Tezin konusu bu. 6. basamağın sorusu: GraphCast ya da AIFS bu seli bir gün önceden görebilir miydi?</p>
+        <p>Ekip bunu bir ödev değil, yıl yıl düşen bir hata eğrisi olarak çalışacak. Ders videoları da aynı vakadan beslenir: "o gün atmosfer neden böyle davrandı?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="asama-baslik" data-asama="3"><span>Aşama 3</span><b>Kanıt</b></div>
+<section id="karne" class="blok" data-asama="3" data-hpa="850">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="850">850 hPa</span> 03 · basamak 1'i şimdi yaptık</p>
+    <h2>İstanbul'un tahmin karnesi, son 30 gün</h2>
+    <p class="alt">GFS'nin bir gün önceki günlük en yüksek sıcaklık tahmini ile aynı günün 0. gün koşusu arasındaki fark. Dürüst not: gerçek gözlem değil, modelin kendi en taze koşusu. Gözlemle (MGM) karşılaştırma tam olarak 1. basamağın işi. Çubukların üstüne gel.</p>
+  </div>
+  <div class="sar genis">
+    <div class="karne">
+      <svg class="karne-svg" id="karne-svg" viewBox="0 0 720 260" role="img" aria-label="Günlük sıcaklık tahmin hatası çubukları"></svg>
+      <div class="karne-ozet" id="karne-ozet"></div>
+    </div>
+  </div>
+</section>
+
+<section id="mumkun" class="blok blok--ters" data-asama="3" data-hpa="800">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="850">800 hPa</span> 04 · nasıl &amp; neden mümkün</p>
+    <h2 id="mumkun-baslik"></h2>
+    <p class="alt">Hepsi yapılmış iş; klipler gerçek arayüzler. Üstüne gel: karar, tıkla: hikâyesi.</p>
+    <div class="kartlar-3" id="mumkun-kartlar"></div>
+  </div>
+</section>
+
+<div class="asama-baslik" data-asama="4"><span>Aşama 4</span><b>Sen</b></div>
+<section id="kapi" class="blok" data-asama="4" data-hpa="700">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="700">700 hPa</span> 05 · sen hangisisin?</p>
+    <h2 id="kapi-soru"></h2>
+    <div class="kapi-kartlar" id="kapi-kartlar" role="radiogroup" aria-labelledby="kapi-soru"></div>
+    <p class="not">Seçimin sayfanın tonunu ayarlar: kırmızı T izi hırslı ses, yeşil Td izi rahat ses. Üzerine gel, "ne demek" açılır; tıkla, seç.</p>
+  </div>
+</section>
+
+<section id="kaydir" class="blok blok--ters" data-asama="4" data-hpa="650">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="700">650 hPa</span> 06 · anket 1 · kaydır</p>
+    <h2 id="kaydir-baslik"></h2>
+    <p class="alt mizah" id="kaydir-mizah"></p>
+    <div class="deste" id="deste" aria-live="polite"></div>
+    <div class="deste-dugmeler">
+      <button class="dg dg-hayir" id="dg-hayir" type="button" aria-label="Katılmıyorum">✕ Katılmıyorum</button>
+      <button class="dg dg-evet" id="dg-evet" type="button" aria-label="Katılıyorum">Katılıyorum ✓</button>
+    </div>
+    <p class="tepki" id="deste-tepki" aria-live="polite"></p>
+    <p class="not">Kartların arkasındaki gökyüzü fotoğrafları Ömer'in 2026 bahar bulut günlüğünden; her kartta bulutun adı yazıyor. Ok tuşları da çalışır.</p>
+  </div>
+</section>
+
+<section id="test" class="blok" data-asama="4" data-hpa="600">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="500">600 hPa</span> 07 · 5 soru</p>
+    <h2 id="test-baslik"></h2>
+    <div class="test-sec" role="tablist">
+      <button class="sec aktif" type="button" data-set="mto" role="tab" aria-selected="true">Meteoroloji öğrencisiyim</button>
+      <button class="sec" type="button" data-set="misafir" role="tab" aria-selected="false">Başka bölümdenim</button>
+    </div>
+    <div class="test-ic">
+      <div>
+        <div id="test-sorular"></div>
+        <p class="tepki" id="test-sonuc"></p>
+      </div>
+      <figure class="gridfig etk" data-detay="grid">
+        <div class="kutu cerceve" style="padding:0">
+          <img src="g/istanbul-grid.jpg" alt="İstanbul ve Marmara'nın uydu görüntüsü üzerine 0,25 derecelik model gridi" width="1000" height="500" loading="lazy" decoding="async">
+          <div class="izgara" aria-hidden="true"></div>
+          <div class="hucre" aria-hidden="true"></div>
+        </div>
+        <figcaption>GFS'nin 0,25° gridi (~28 km): bu karede 50 kutu var; kırmızı kutu İTÜ Ayazağa'nın hücresi. Model o kutuya tek bir sıcaklık verir. Tıkla: neden önemli.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="asama-baslik" data-asama="5"><span>Aşama 5</span><b>Başka bölümdensen</b></div>
+<section id="bolumler" class="blok" data-asama="5" data-hpa="500">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="500">500 hPa</span> 08 · başka bölümdensen</p>
+    <h2 id="bolumler-baslik"></h2>
+    <p class="alt" id="bolumler-alt"></p>
+    <div class="ses" data-ses="bolumler"></div>
+  </div>
+  <div class="sar genis">
+    <div class="bolum-kartlar" id="bolum-kartlar"></div>
+    <p class="not" id="bolum-not"></p>
+  </div>
+</section>
+
+<div class="asama-baslik" data-asama="6"><span>Aşama 6</span><b>Gerçekçilik</b></div>
+<section id="gercek" class="blok blok--ters" data-asama="6" data-hpa="400">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="300">400 hPa</span> 09 · dürüst gerçekçilik</p>
+    <h2 id="gercek-baslik"></h2>
+    <p class="alt" id="gercek-alt"></p>
+    <div class="ses" data-ses="gercekcilik"></div>
+  </div>
+  <div class="sar genis">
+    <div class="gercek-ic">
+      <svg class="yas-svg" id="yas-svg" viewBox="0 0 720 300" role="img" aria-label="İTÜ takımlarının yaşı ve ilk büyük dereceye kadar geçen süre"></svg>
+      <div class="tablo-sar"><table class="tablo" id="gercek-tablo"></table></div>
+    </div>
+    <p class="not" id="gercek-not"></p>
+  </div>
+</section>
+
+<section id="neden" class="blok" data-asama="6" data-hpa="350">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="300">350 hPa</span> 10 · neden şimdi</p>
+    <h2 id="neden-baslik"></h2>
+    <div class="sayi-kartlar" id="sayi-kartlar"></div>
+    <div class="kartlar-2" id="neden-kartlar"></div>
+  </div>
+</section>
+
+<div class="asama-baslik" data-asama="7"><span>Aşama 7</span><b>Anketler</b></div>
+<section id="coklu" class="blok" data-asama="7" data-hpa="300">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="300">300 hPa</span> 11 · anket 2 · tıkla</p>
+    <h2>Ne olsa gelirsin, neden gelmezsin?</h2>
+    <div id="coklu-sorular"></div>
+  </div>
+</section>
+
+<section id="canli" class="blok blok--ters" data-asama="7" data-hpa="275">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="300">275 hPa</span> 12 · anket 3 · canlı</p>
+    <h2>Dokun, yüzdeyi gör.</h2>
+    <p class="alt">Bir cihaz, bir oy. Sonuçlar herkese açık.</p>
+    <div id="canli-sorular"></div>
+  </div>
+</section>
+
+<section id="anlatilar" class="blok" data-asama="7" data-hpa="250">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="200">250 hPa</span> 13 · atmosfer anlatıları</p>
+    <h2 id="anlatilar-baslik"></h2>
+    <ol class="adimlar" id="anlatilar-adimlar"></ol>
+    <div id="anlatilar-sorular"></div>
+  </div>
+</section>
+
+<div class="asama-baslik" data-asama="8"><span>Aşama 8</span><b>Söz senin</b></div>
+<section id="baloncuk" class="blok" data-asama="8" data-hpa="200">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="200">200 hPa</span> 14 · söyle, uçsun</p>
+    <h2 id="baloncuk-baslik"></h2>
+    <p class="alt" id="baloncuk-alt"></p>
+    <form class="balon-form" id="balon-form" autocomplete="off">
+      <label class="gorunmez" for="balon-metin">Mesaj</label>
+      <textarea id="balon-metin" maxlength="200" rows="2" placeholder="Ne yapılsa güzel olur?"></textarea>
+      <div class="balon-satir">
+        <div class="radyo" id="balon-gorunum" role="radiogroup" aria-label="Görünüm"></div>
+        <input id="balon-ad" type="text" maxlength="40" placeholder="Adın (isteğe bağlı)" hidden>
+      </div>
+      <details class="rol-detay">
+        <summary id="rol-soru"></summary>
+        <div class="rol-ikili">
+          <select id="rol-org" aria-label="Kulüp / takım"></select>
+          <select id="rol-unvan" aria-label="Görev"></select>
+        </div>
+      </details>
+      <div class="balon-satir">
+        <span class="sayac" id="balon-sayac">0/200</span>
+        <button class="dg dg-evet" type="submit">Uçur</button>
+      </div>
+      <p class="tepki" id="balon-tepki" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="sar genis"><div class="gok" id="gok" aria-live="polite" aria-label="Uçuşan mesajlar"></div></div>
+</section>
+
+<section id="meraklisina" class="blok" data-asama="8" data-hpa="150">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="200">150 hPa</span> 15 · meraklısına</p>
+    <h2 id="merak-baslik"></h2>
+    <p class="alt" id="merak-alt"></p>
+    <div id="merak-icerik"></div>
+  </div>
+</section>
+
+<section id="son" class="blok son" data-asama="8" data-hpa="100">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="200">≈100 hPa</span> 16 · tropopoz · balon patladı, paraşüt açıldı</p>
+    <div class="son-ic">
+      <div>
+        <div class="son-kart" id="son-kart"></div>
+        <div class="cta" id="son-cta"></div>
+        <p class="not" id="son-ozet"></p>
+      </div>
+      <div class="parasut" aria-hidden="true">
+        <svg viewBox="0 0 120 170"><g class="gov"><path d="M10 60 A50 50 0 0 1 110 60 Q85 70 60 60 Q35 70 10 60z" fill="#c0392b" stroke="#1f2a2e" stroke-width="1.5"/><path d="M35 62 A25 40 0 0 1 60 60 A25 40 0 0 1 85 62" fill="none" stroke="#fcfaf4" stroke-width="1.2"/><path d="M12 62 L50 130 M110 62 L70 130 M60 62 L60 130" stroke="#1f2a2e" stroke-width="1"/><rect x="46" y="128" width="28" height="22" fill="#fcfaf4" stroke="#1f2a2e" stroke-width="1.5"/><text x="60" y="143" text-anchor="middle" style="font:600 9px 'IBM Plex Mono',monospace;fill:#1f2a2e">RS41</text></g></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="alt-bilgi">
+  <div class="sar">
+    <p>Ömer Faruk Akıncı · 2026 · Bu sayfa derleme kullanmaz; kaynak <a href="https://github.com/akinci22/hakkimda">GitHub</a>'da. Uydu görüntüleri NASA Worldview/GIBS (kamu malı); tahmin karnesi Open-Meteo; Skew-T ve bulut fotoğrafları Ömer'in ders projesi.</p>
+    <p class="kucuk">Oylar anonimdir; yalnız cihaz kimliği tutulur. Mesajlar herkese açıktır, küfür ve bağlantı filtrelenir. Takım amblemleri tanıtım amaçlı, kaynak linkiyle gösterilir; itiraz hâlinde kaldırılır.</p>
+  </div>
+</footer>
+
+<div class="surpriz" id="surpriz" aria-live="polite"><span class="kilit">🔒</span> <span id="surpriz-metin">Tropopozda: sana göre rol</span></div>
+
+<dialog id="detay" class="detay" aria-labelledby="detay-baslik">
+  <div class="detay-ic">
+    <button class="detay-kapat" type="button" id="detay-kapat" aria-label="Kapat">✕</button>
+    <p class="yorum" id="detay-ust"></p>
+    <h3 id="detay-baslik"></h3>
+    <p class="detay-kisa" id="detay-kisa"></p>
+    <div class="detay-uzun" id="detay-uzun"></div>
+    <p class="detay-alt" id="detay-link"></p>
+  </div>
+</dialog>
+
+<script type="module" src="takim.js?v=3"></script>
+</body>
+</html>
