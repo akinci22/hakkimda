@@ -171,13 +171,17 @@ function ses(hirsli, rahat) {
   etkilesim(k, () => ({ ust: 'iki ses', baslik: 'Hırslıysan / Rahatsan', kisa: 'Aynı şeyi iki tonda söylüyorum; hangisi sana yakınsa onu oku.', uzun: `Hırslı ses: ${yerDoldur(hirsli)}\nRahat ses: ${yerDoldur(rahat)}\nÜç kapıdan birini seçince sana uzak olan ses soluklaşır. Seçim cihazında kalır, kimse görmez.` })); return k;
 }
 function sesYerlestir() {
-  const M = veri.metinler; const harita = { acilis: [M.acilis.hirsli, M.acilis.rahat], bolumler: [M.bolumler.hirsli, M.bolumler.rahat], gercekcilik: [M.gercekcilik.hirsli, M.gercekcilik.rahat] };
+  const M = veri.metinler; const harita = { acilis: [M.acilis.hirsli, M.acilis.rahat], sana: M.sana ? [M.sana.hirsli, M.sana.rahat] : null, bolumler: [M.bolumler.hirsli, M.bolumler.rahat], gercekcilik: [M.gercekcilik.hirsli, M.gercekcilik.rahat] };
   $$('.ses[data-ses]').forEach(k => { const p = harita[k.dataset.ses]; if (p) k.replaceWith(ses(p[0], p[1])); });
 }
 function acilis() { const M = veri.metinler.acilis; $('#acilis-sayilar').replaceChildren(...M.sayilar.map(s => { const d = el('button', { class: 'sayi', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ ust: 'rakamın hikâyesi', baslik: s.s + ' ' + s.e, kisa: s.e, uzun: s.detay })); return d; })); $$('figure[data-detay]').forEach(f => etkilesim(f, () => DETAYLAR[f.dataset.detay])); }
 function olay() {
   const O = veri.metinler.olay; if (!O) return; $('#olay-baslik').textContent = O.baslik;
   $('#olay-kartlar').replaceChildren(...O.satirlar.map(s => { const k = el('button', { class: 'olay-k', type: 'button' }, el('span', { class: 'k' }, s.k), el('p', { class: 'm' }, s.m), el('span', { class: 'devam' }, 'tıkla → uzun hâli')); etkilesim(k, () => ({ ust: 'olay ne · ' + s.k, baslik: s.k, kisa: s.m, uzun: s.detay })); return k; }));
+}
+function sana() {
+  const S = veri.metinler.sana; if (!S || !$('#sana-kartlar')) return; $('#sana-baslik').textContent = S.baslik; $('#sana-alt').textContent = S.alt;
+  $('#sana-kartlar').replaceChildren(...S.kartlar.map(k => { const b = el('button', { class: 'sana-k', type: 'button' }, el('span', { class: 'k' }, k.k), el('span', { class: 'bolum' }, k.bolum), el('p', { class: 'm' }, k.m), el('p', { class: 'kazanc' }, '→ ' + k.kazanc), el('span', { class: 'devam' }, 'tıkla → örnek görevler, neden burası, yük')); etkilesim(b, () => ({ ust: 'sana ne var · ' + k.bolum, baslik: k.k, kisa: k.m, uzun: k.detay })); return b; }));
 }
 function akis() {
   const A = veri.metinler.akis; if (!A) return; $('#akis-baslik').textContent = A.baslik; $('#akis-alt').textContent = A.alt;
@@ -503,7 +507,7 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => Z.se
   if (!veri.anket || !veri.metinler) { document.body.insertAdjacentHTML('afterbegin', '<p class="bos" style="margin:16px">Veri yüklenemedi (veri/*.json). Sayfayı bir sunucu üzerinden aç.</p>'); return; }
   if (durum.grup) document.documentElement.dataset.grup = durum.grup;
   await arkaKur();
-  acilis(); sesYerlestir(); olay(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
+  acilis(); olay(); sana(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
   terimSar(document); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
