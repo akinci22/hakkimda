@@ -440,7 +440,7 @@ function kaydirDegis(k, src, yon) {
   b.addEventListener("pointermove", function (e) { if (!tut) return; var t = performance.now(), dt = Math.max(8, t - sonT);
     hiz = hiz * .6 + ((e.clientX - sonX) / dt * 1000) * .4; sonX = e.clientX; sonT = t; git(e.clientX); });
   function birak() { if (!tut) return; tut = false; b.classList.remove("tutuldu"); vk += hiz / 400; basla(); }
-  b.addEventListener("pointerup", birak); b.addEventListener("pointercancel", birak);
+  b.addEventListener("pointerup", birak); b.addEventListener("pointercancel", function () { if (dokunId === null) birak(); });   // tarayıcı pointer'ı iptal etse de parmak hâlâ ekrandaysa dokunma yolu devam eder
   // telefon: tarayıcı parmağı sayfa kaydırması sanıp sürüklemeyi iptal etmesin (iOS Safari touch-action'a tam uymaz)
   b.addEventListener("touchstart", function (e) { e.preventDefault(); }, { passive: false });
   b.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
@@ -448,9 +448,10 @@ function kaydirDegis(k, src, yon) {
   var dokunId = null;
   function yakin(t) { var r = b.getBoundingClientRect(); return t.clientX > r.left - 28 && t.clientX < r.right + 28 && t.clientY > r.top - 28 && t.clientY < r.bottom + 16; }
   document.addEventListener("touchstart", function (e) {
-    if (tut || dokunId !== null || document.documentElement.classList.contains("beyaz-mod")) return;
+    if (dokunId !== null || document.documentElement.classList.contains("beyaz-mod")) return;
     var t = e.changedTouches[0]; if (!yakin(t)) return;
-    dokunId = t.identifier; tut = true; b.classList.add("tutuldu"); sonX = t.clientX; sonT = performance.now(); hiz = 0; vs -= .12; basla(); e.preventDefault();
+    dokunId = t.identifier; e.preventDefault(); if (tut) return;   // pointer yolu zaten tuttuysa yalnız kimliği not et (pointercancel gelirse dokunma yolu sürdürür)
+    tut = true; b.classList.add("tutuldu"); sonX = t.clientX; sonT = performance.now(); hiz = 0; vs -= .12; basla();
   }, { passive: false });
   document.addEventListener("touchmove", function (e) {
     if (dokunId === null) return; var t = null; for (var i = 0; i < e.changedTouches.length; i++) if (e.changedTouches[i].identifier === dokunId) t = e.changedTouches[i];
