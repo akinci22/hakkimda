@@ -180,8 +180,8 @@ const DETAYLAR = {
 
 /* ---------------- RENDER ---------------- */
 function ses(hirsli, rahat) {
-  const k = el('div', { class: 'ses', tabindex: 0 }, el('p', { class: 's-h' }, el('span', { class: 'prompt p-h' }, 'Hırslıysan ▸ '), yerDoldur(hirsli)), el('p', { class: 's-r' }, el('span', { class: 'prompt p-r' }, 'Rahatsan ▸ '), yerDoldur(rahat)));
-  etkilesim(k, () => ({ ust: 'iki ses', baslik: 'Hırslıysan / Rahatsan', kisa: 'Aynı şeyi iki tonda söylüyorum; hangisi sana yakınsa onu oku.', uzun: `Hırslı ses: ${yerDoldur(hirsli)}\nRahat ses: ${yerDoldur(rahat)}\nÜç kapıdan birini seçince sana uzak olan ses soluklaşır. Seçim cihazında kalır, kimse görmez.` })); return k;
+  const k = el('div', { class: 'ses', tabindex: 0 }, el('p', { class: 's-h' }, el('span', { class: 'prompt p-h' }, 'Daha çok istiyorsan: '), yerDoldur(hirsli)), el('p', { class: 's-r' }, el('span', { class: 'prompt p-r' }, 'Az vaktin varsa: '), yerDoldur(rahat)));
+  etkilesim(k, () => ({ ust: 'iki yol', baslik: 'Hangisi sana daha yakın?', kisa: 'Aynı şeyi iki şekilde anlattım. Sana yakın olanı oku, öbürünü geç.', uzun: `Daha çok istiyorsan: ${yerDoldur(hirsli)}\nAz vaktin varsa: ${yerDoldur(rahat)}\nAşağıda sana yakın olanı seçersen öbürü biraz silikleşir. Seçimin yalnız senin cihazında kalır.` })); return k;
 }
 function sesYerlestir() {
   const M = veri.metinler; const harita = { acilis: [M.acilis.hirsli, M.acilis.rahat], sana: M.sana ? [M.sana.hirsli, M.sana.rahat] : null, bolumler: [M.bolumler.hirsli, M.bolumler.rahat], gercekcilik: [M.gercekcilik.hirsli, M.gercekcilik.rahat] };
@@ -203,7 +203,7 @@ function akis() {
 }
 function kapi() {
   const K = veri.anket.kapi; $('#kapi-soru').textContent = K.soru; const ikon = { pasif: '☁', orta: '⛅', hirsli: '⚡' };
-  $('#kapi-kartlar').replaceChildren(...K.secenekler.map(s => { const k = el('button', { class: 'kapi', type: 'button', role: 'radio', 'aria-checked': String(durum.grup === s.id), 'data-id': s.id, onclick: () => grupSec(s.id) }, el('span', { class: 'k-ikon' }, `${ikon[s.id]} ${s.id}`), el('b', {}, s.etiket), el('span', {}, s.alt));
+  $('#kapi-kartlar').replaceChildren(...K.secenekler.map(s => { const k = el('button', { class: 'kapi', type: 'button', role: 'radio', 'aria-checked': String(durum.grup === s.id), 'data-id': s.id, onclick: () => grupSec(s.id) }, el('span', { class: 'k-ikon' }, ikon[s.id]), el('b', {}, s.etiket), el('span', {}, s.alt));
     ipucuBagla(k, () => ({ baslik: s.etiket, metin: s.detay || s.alt })); return k; }));
 }
 function grupSec(id) { durum.grup = id; ls('takim-grup', id); KOKEL.dataset.grup = id; $$('.kapi').forEach(k => k.setAttribute('aria-checked', String(k.dataset.id === id))); sonKart(); panelSen(); durum.etkilesim++; }
@@ -432,16 +432,16 @@ function sonKart() {
   if (durum.eslesme.toplam) satirlar.push(`kaydırma eşleşmesi %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}`);
   if (durum.test.toplam) satirlar.push(`bilgi testi ${durum.test.dogru}/${durum.test.toplam}`);
   if (durum.roller.length) satirlar.push('rol: ' + durum.roller.join(', '));
-  K.replaceChildren(...[el('p', { class: 'yorum' }, S.baslik), kural ? el('p', { class: 'rol' }, kural.rol) : el('p', { class: 'kilitli' }, 'kapıyı seçince (aşama 4) burada sana göre bir rol çıkar'), el('p', {}, kural ? kural.metin : 'Üç kapıdan biri yeter.'), satirlar.length ? el('p', { class: 'kilitli' }, satirlar.join(' · ')) : null].filter(Boolean));
+  K.replaceChildren(...[el('p', { class: 'yorum' }, S.baslik), kural ? el('p', { class: 'rol' }, kural.rol) : el('p', { class: 'kilitli' }, "aşama 4'te sana yakın olanı seçince burada sana göre bir rol çıkar"), el('p', {}, kural ? kural.metin : 'Üç seçenekten biri yeter.'), satirlar.length ? el('p', { class: 'kilitli' }, satirlar.join(' · ')) : null].filter(Boolean));
   const M = veri.metinler.kapanis; $('#son-ozet').replaceChildren(ses(M.hirsli, M.rahat));
   $('#son-cta').replaceChildren(...S.cta.map((c, i) => el('a', { class: i === 0 ? 'birincil' : '', href: c.href }, c.etiket)));
 }
 
 /* ---------------- PANEL · RAY · AŞAMA ---------------- */
-const ASAMA_ADI = { 0: ['Tropopoz', 'Balon patladı, iniş başlıyor: olay ne, akış ne.'], 1: ['Olay ne', 'Vizyon, misyon, iki kol.'], 2: ['Ne yapacağız', '6 basamak ve sel vakası.'], 3: ['Kanıt', 'Canlı karne ve yapılmış işler.'], 4: ['Sen', 'Kapı, kaydırma, 5 soru.'], 5: ['Başka bölüm', 'Senin dersin ↔ bizim dersimiz.'], 6: ['Gerçekçilik', 'Takım yaşları ve neden şimdi.'], 7: ['Anketler', 'Ne olsa gelirsin, anlatılar.'], 8: ['Söz senin', 'Baloncuk, kaynaklar, rolün.'] };
+const ASAMA_ADI = { 0: ['Tropopoz', 'Balon patladı, iniş başlıyor: olay ne, akış ne.'], 1: ['Olay ne', 'Vizyon, misyon, iki kol.'], 2: ['Ne yapacağız', '6 basamak ve sel vakası.'], 3: ['Kanıt', 'Canlı karne ve yapılmış işler.'], 4: ['Sen', 'Seçim, kaydırma, 5 soru.'], 5: ['Başka bölüm', 'Senin dersin ↔ bizim dersimiz.'], 6: ['Gerçekçilik', 'Takım yaşları ve neden şimdi.'], 7: ['Anketler', 'Ne olsa gelirsin, anlatılar.'], 8: ['Söz senin', 'Baloncuk, kaynaklar, rolün.'] };
 const basincTen = p => 1000 * Math.pow(0.1, p);                       /* 0→1000 hPa, 1→100 hPa (log) */
 const yukseklik = P => 44330 * (1 - Math.pow(P / 1013.25, 0.1903));  /* standart atmosfer, m */
-function panelSen() { const s = []; s.push(durum.grup ? `Kapı: ${durum.grup}.` : 'Kapıyı seçmedin (500 hPa).'); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
+function panelSen() { const s = []; s.push(durum.grup ? `Seçimin: ${(veri.anket.kapi.secenekler.find(x => x.id === durum.grup) || {}).etiket || durum.grup}.` : 'Henüz seçim yapmadın (500 hPa).'); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
 function git(id) { const h = KOK.getElementById(id); if (!h) return;
   if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); GOVDE._hz = setTimeout(() => GOVDE.classList.remove('hepsi-acik'), 2500); }   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
   const y = h.getBoundingClientRect().top + scrollY - 70; if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { const d = h.getBoundingClientRect().top - 70; if (Math.abs(d) > 4) { if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 }); else scrollBy({ top: d, behavior: 'smooth' }); } }, 1400);   /* geç yüklenen görseller kaydırdıysa ince ayar */ return; } kaydirHedef(y); }
