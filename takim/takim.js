@@ -448,7 +448,9 @@ function kaydirAdim() { if (hedefY == null) { kayRaf = 0; return; } const cur = 
 addEventListener('touchstart', kaydirDur, { passive: true });
 function yumusakKaydirma() {
   if (dokunmatik || azalt) return;
-  addEventListener('wheel', e => { if (e.ctrlKey) return; const d = $('#detay'); if (d && d.open) return; if (e.target.closest('.tablo-sar, .serit, .panel, textarea')) return; e.preventDefault(); const adim = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 100) * 1.1; const taban = hedefY == null ? scrollY : hedefY; kaydirHedef(taban + adim); }, { passive: false });
+  addEventListener('wheel', e => { if (e.ctrlKey) return; const d = $('#detay'); if (d && d.open) return; if (e.target.closest('.tablo-sar, .serit, .panel, textarea')) return;
+    if (gomulu) { const enAlt = scrollY >= document.documentElement.scrollHeight - innerHeight - 2; if ((e.deltaY < 0 && scrollY <= 0 && hedefY == null) || (e.deltaY > 0 && enAlt)) return; }   /* iframe'de uçlardayken dış sayfa kaysın */
+    e.preventDefault(); const adim = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 100) * 1.1; const taban = hedefY == null ? scrollY : hedefY; kaydirHedef(taban + adim); }, { passive: false });
   addEventListener('keydown', e => { if (e.target.matches('input,textarea,select')) return; const h = innerHeight; const m = { ArrowDown: 80, ArrowUp: -80, PageDown: h * .85, PageUp: -h * .85, ' ': h * .85 }; if (e.key in m && !e.shiftKey) { e.preventDefault(); kaydirHedef((hedefY == null ? scrollY : hedefY) + m[e.key]); } });
 }
 function gorunme() {
