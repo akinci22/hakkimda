@@ -43,7 +43,8 @@
 /* içkin mod ekleri */
 :host{display:block;position:relative;isolation:isolate;contain:paint}
 .govde{position:relative;padding:0!important;overflow:clip}
-.govde::before{position:absolute}
+.govde::before{display:none}   /* dev izobar deseni içkin modda yok: her kaydırmada yeniden boyanıyordu */
+.takim-main > section,header.acilis{content-visibility:auto;contain-intrinsic-size:auto 900px}   /* görünmeyen bölümler yerleşim/boyamaya girmez */
 .ray,.panel,#imlec,.ilerleme,.surpriz,.mobil-balon,.geri,.atla,.damla{display:none!important}
 .ust{top:var(--tk-ust,52px)} .ust-ad{margin-left:0}
 #perde{position:absolute}
