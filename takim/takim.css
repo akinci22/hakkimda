@@ -448,14 +448,35 @@ details.merak summary{padding:13px 0;cursor:pointer;font-family:var(--baslik);fo
 .detay.dal-acik .dugum.dal.acik{left:50%;top:58%}
 .dal-geri{display:none;margin-top:12px;font:600 .82rem var(--mono);color:var(--vurgu);background:none;border:1px dashed var(--vurgu);padding:5px 10px;cursor:pointer} .dugum.dal.acik .dal-geri{display:inline-block}
 .detay.dal-acik .harita-cizgi path:not(.acik){opacity:.2}
-/* dar ekran: dikey ağaç */
-.detay.dar{height:auto;max-height:92vh;overflow:auto}
-.detay.dar .detay-ic{height:auto}
-.detay.dar .harita{padding:12px 16px 20px;display:grid;gap:12px}
-.detay.dar .dugum{position:relative;left:auto;top:auto;transform:none!important;width:auto!important;animation:none}
-.detay.dar .dugum.dal{margin-left:22px;border-left:4px solid var(--vurgu)}
+/* dar ekran: ayrıntı = tam ekran dikey YOL. Üstte kök (konu), soldan inen gövde çizgisi, numaralı düğümler; dala dokununca cümleler sırayla iner. */
+.detay.dar{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;inset:0;border:0;box-shadow:none;overflow:auto;overscroll-behavior:contain}
+.detay.dar .detay-ic{height:auto;min-height:100%;display:block;background:var(--kagit)}
+.detay.dar .detay-yol{position:sticky;top:0;z-index:5;margin:0;padding:14px 64px 12px 18px;background:color-mix(in srgb,var(--kagit) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--cizgi-2);font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+.detay.dar .detay-kapat{position:fixed;right:12px;top:8px;z-index:6}
+.detay.dar .dugum.kok .dugum-ip::before{content:none!important}
+.detay.dar .harita{position:relative;padding:18px 16px 28px;display:block;overflow:visible}
+.detay.dar .harita::before{content:"";position:absolute;left:31px;top:40px;bottom:120px;width:2px;background:var(--vurgu);opacity:.45}
+.detay.dar .dugum{position:relative!important;left:auto!important;top:auto!important;transform:none!important;width:auto!important;opacity:1!important;filter:none!important;animation:none}
+.detay.dar .dugum.kok{margin:0 0 22px;padding:18px 18px 16px 20px;border-width:1px;border-left:6px solid var(--vurgu);box-shadow:6px 6px 0 var(--murekkep);cursor:default}
+.detay.dar .dugum.kok h3{font-size:clamp(1.7rem,8vw,2.3rem);line-height:1}
+.detay.dar .dugum.kok p{font-size:1.05rem;line-height:1.5}
+.detay.dar .dugum.kok .dugum-ip{display:block;margin-top:8px;font-size:.78rem}
+.detay.dar .dugum.dal{display:block;margin:0 0 14px 56px;padding:14px 14px 14px 16px;border-left:4px solid var(--vurgu);box-shadow:4px 4px 0 var(--cizgi-2);animation:dar-gel .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--g)}
+@keyframes dar-gel{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.detay.dar .dugum.dal::before{content:"";position:absolute;left:-28px;top:24px;width:24px;height:2px;background:var(--vurgu);opacity:.7}
+.detay.dar .dugum-no{position:absolute;left:-56px;top:9px;width:32px;height:32px;border-radius:50%;background:var(--kagit);border:2px solid var(--vurgu);color:var(--vurgu);display:grid;place-items:center;font:700 .8rem var(--mono);transition:background .25s,color .25s,transform .25s}
+.detay.dar .dugum.dal.acik .dugum-no{background:var(--vurgu);color:#fff;transform:scale(1.12)}
+.detay.dar .dugum.dal b{display:block;font-size:1.08rem;line-height:1.35;padding-right:26px}
+.detay.dar .dugum.dal:not(.bag)::after{content:"+";position:absolute;right:12px;top:10px;font:600 1.3rem/1 var(--mono);color:var(--vurgu);transition:transform .3s}
+.detay.dar .dugum.dal.acik::after{content:"−"}
+.detay.dar .dugum.dal.acik{background:var(--panel-bg);box-shadow:0 0 0 2px var(--vurgu),6px 6px 0 var(--murekkep)}
+.detay.dar .dugum.dal.acik b{font-size:1.14rem}
+.detay.dar .budak{margin-top:10px;gap:8px} .detay.dar .budak li{font-size:1rem;line-height:1.5;padding-left:16px}
+.detay.dar .dal-geri{display:none!important}
 .detay.dar .harita-cizgi{display:none}
-.detay.dar.dal-acik .dugum.dal:not(.acik),.detay.dar.dal-acik .dugum.kok{opacity:1;filter:none}
+.detay.dar .detay-alt{display:block;width:100%;margin:10px 0 0;padding:14px;border:1px solid var(--murekkep);background:var(--murekkep);color:var(--kagit);font:600 1rem var(--baslik);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
+.detay.dar.dal-acik .dugum.dal:not(.acik){opacity:.55!important}
+.detay:not(.dar) .detay-alt{display:none}
 
 /* zemin: İTÜ Ayazağa çizimi (son bölüm, 1000 hPa) */
 .zemin{position:relative;margin:34px -16px 0;border-top:1px solid var(--murekkep);color:var(--murekkep);background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--kagit-2) 60%,transparent))}
@@ -475,8 +496,8 @@ details.merak summary{padding:13px 0;cursor:pointer;font-family:var(--baslik);fo
 .zm-zemin{fill:color-mix(in srgb,var(--kagit-2) 80%,var(--adyabat))} .zm-cimen{color:var(--murekkep)}
 .zm-inen{animation:inen 7s cubic-bezier(.3,.1,.5,1) infinite;transform-origin:880px 0} .zm-inen path:first-child{fill:var(--sicaklik);stroke:var(--murekkep);stroke-width:1} .zm-inen path:nth-child(2){stroke:var(--murekkep);stroke-width:.8;fill:none} .zm-inen rect{fill:#fff;stroke:var(--murekkep);stroke-width:1}
 @keyframes inen{0%{transform:translate(60px,-80px) rotate(-6deg);opacity:0}8%{opacity:1}50%{transform:translate(20px,110px) rotate(5deg)}88%{transform:translate(0,200px) rotate(-2deg);opacity:1}100%{transform:translate(0,205px);opacity:0}}
-.katil{display:block;width:max-content;margin:14px auto 18px;text-decoration:none;font:700 1rem var(--baslik);letter-spacing:.06em;text-transform:uppercase;background:var(--sicaklik);color:#fff;padding:10px 18px;border:1px solid var(--sicaklik);box-shadow:var(--golge)}
-.katil:hover{color:#fff;transform:translate(-1px,-1px)}
+.katil{position:absolute;left:var(--kx,73.3%);top:var(--ky,77%);transform:translate(-50%,0);z-index:2;display:block;width:max-content;margin:0;text-decoration:none;font:700 1rem var(--baslik);letter-spacing:.06em;text-transform:uppercase;background:var(--sicaklik);color:#fff;padding:10px 18px;border:1px solid var(--sicaklik);box-shadow:var(--golge)}
+.katil:hover{color:#fff;transform:translate(calc(-50% - 1px),-1px)}
 body.imlec-aktif .katil,body.inis .katil{visibility:hidden}
 /* imleç inişte: fırlatma noktasına uçar, tıklanır */
 #imlec.donus{transition:transform 1.1s cubic-bezier(.2,.8,.2,1);pointer-events:auto;cursor:pointer;width:56px;height:68px}

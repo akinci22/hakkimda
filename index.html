@@ -26,12 +26,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&family=Caveat:wght@600&family=Inter:wght@500;700;800&family=Nunito:wght@600;800&family=Oswald:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Bitter:ital,wght@0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="ortak.css?v=1791129421">
-<link rel="stylesheet" href="tasarim.css?v=1791129421">
+<link rel="stylesheet" href="ortak.css?v=1791131862">
+<link rel="stylesheet" href="tasarim.css?v=1791131862">
 <link rel="stylesheet" href="nwp.css">
 <link rel="stylesheet" href="grafik.css">
-<link rel="stylesheet" href="akis.css?v=1791129421">
-<link rel="stylesheet" href="takim/vitrin.css?v=3">
+<link rel="stylesheet" href="akis.css?v=1791131862">
+<link rel="stylesheet" href="takim/vitrin.css?v=4">
 
 <style>
 /* ============ ANA SAYFA ============ */
@@ -1084,10 +1084,19 @@ section[id]{scroll-margin-top:64px}
         </div>
         <div class="vitrin-cipler"><span>aşağı kaydır</span><span>4 dakika</span><span>3 anket</span><span>10 bölüme açık</span><span>canlı tahmin karnesi</span><span>sonda sana göre bir rol</span></div>
       </div>
-      <figure class="vitrin-fig">
-        <img src="g/bulut/skewt-28.jpg" alt="Skew-T diyagramı: 28 Nisan 2026 İstanbul, hesaplanan profil ve radyosonde" width="820" height="1025" loading="lazy" decoding="async">
-        <svg class="iz" viewBox="0 0 820 1025" aria-hidden="true"><path class="t" d="M560 980 L545 860 L520 720 L480 560 L430 400 L380 240 L330 90"/><path class="td" d="M470 980 L440 850 L400 720 L330 580 L280 420 L220 260 L150 110"/></svg>
-        <figcaption>Takımın dili bu diyagram: bir hava balonunun ölçtüğü sıcaklık izi. Aşağısı da o balonun inişi gibi okunur.</figcaption>
+      <figure class="vitrin-fig vitrin-sema">
+        <svg viewBox="0 0 400 500" role="img" aria-label="Şematik Skew-T diyagramı: basınç seviyeleri, eğik sıcaklık çizgileri, kırmızı sıcaklık ve yeşil çiy noktası izi">
+          <defs><clipPath id="vs-ic"><rect x="62" y="30" width="318" height="420"/></clipPath></defs>
+          <rect x="62" y="30" width="318" height="420" class="vs-cerceve"/>
+          <g class="vs-izoterm" clip-path="url(#vs-ic)"><line x1="40" y1="450" x2="300" y2="30"/><line x1="100" y1="450" x2="360" y2="30"/><line x1="160" y1="450" x2="420" y2="30"/><line x1="220" y1="450" x2="480" y2="30"/><line x1="280" y1="450" x2="540" y2="30"/><line x1="-20" y1="450" x2="240" y2="30"/><line x1="-80" y1="450" x2="180" y2="30"/></g>
+          <g class="vs-izobar"><line x1="62" y1="450" x2="380" y2="450"/><line x1="62" y1="395" x2="380" y2="395"/><line x1="62" y1="330" x2="380" y2="330"/><line x1="62" y1="235" x2="380" y2="235"/><line x1="62" y1="120" x2="380" y2="120"/><line x1="62" y1="30" x2="380" y2="30"/></g>
+          <g class="vs-etiket"><text x="54" y="454">1000</text><text x="54" y="399">850</text><text x="54" y="334">700</text><text x="54" y="239">500</text><text x="54" y="124">300</text><text x="54" y="34">200</text><text x="12" y="250" transform="rotate(-90 12 250)" class="vs-eksen">basınç · hPa</text><text x="220" y="478" class="vs-eksen">sıcaklık → (eğik eksen)</text></g>
+          <path class="vs-iz vs-t" d="M312 450 C296 410 282 370 266 330 S236 250 214 200 S176 110 148 30"/>
+          <path class="vs-iz vs-td" d="M262 450 C240 405 226 372 206 330 S170 262 150 215 S112 120 92 30"/>
+          <g class="vs-doygun"><rect x="200" y="380" width="86" height="34" rx="3"/><text x="243" y="401">T ≈ Td · bulut</text></g>
+          <g class="vs-legend"><line x1="262" y1="62" x2="286" y2="62" class="vs-t"/><text x="292" y="66">T sıcaklık</text><line x1="262" y1="84" x2="286" y2="84" class="vs-td"/><text x="292" y="88">Td çiy noktası</text></g>
+        </svg>
+        <figcaption>Takımın dili bu diyagram: yukarı çıktıkça basınç düşer; kırmızı sıcaklık, yeşil nem izi. İkisi yaklaşınca bulut vardır. Gerçek ölçüm aşağıda, açılışta.</figcaption>
       </figure>
     </div>
   </div>
@@ -1117,6 +1126,6 @@ section[id]{scroll-margin-top:64px}
     <p>Ömer Faruk Akıncı · Bu sayfayı kendim hazırladım · 2026</p>
   </div>
 </footer>
-<script src="g/montaj/liste.js?v=1791129421" defer></script>
-<script src="hareket.js?v=1791129421" defer></script>
-<script type="module" src="takim/ic.js?v=1791129421"></script>
+<script src="g/montaj/liste.js?v=1791131862" defer></script>
+<script src="hareket.js?v=1791131862" defer></script>
+<script type="module" src="takim/ic.js?v=1791131862"></script>
