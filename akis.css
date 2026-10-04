@@ -826,3 +826,18 @@ h3:has(+ .sokak-sahne){position:relative;z-index:2;color:#111!important;text-ali
 .kat-acik.alt{max-width:none!important}
 .kat-acik.alt>div,.kat-acik.alt ul li{font-size:clamp(1.15rem,5vw,1.4rem)!important}
 .kat-yazi b{font-size:clamp(1.3rem,2.6vw,2.2rem)!important}
+
+/* Akın 5 Eki: bulanıklık son dozuna gelince yazı — klip açıklaması tıklamadan belirir (hareket.js), fotoğraf altı yazı daha büyük, geçişler bulanıklıkla aynı tempoda */
+.kat-acik{transition:opacity .55s ease,transform .55s ease}
+.kat-yazi{transition:opacity .55s ease,transform .55s ease}
+.kat-yazi b{font-size:clamp(1.5rem,3vw,2.6rem)!important;text-shadow:0 2px 16px rgba(0,0,0,.7),0 0 2px rgba(0,0,0,.5)}
+.kat-yazi span{font-size:clamp(1.1rem,1.5vw,1.5rem);text-shadow:0 2px 12px rgba(0,0,0,.7)}
+/* yön galerisi: bir karta gelince (telefonda dokununca) galeri bütünüyle bulanır, o kartın açıklaması galerinin üstünde BÜYÜK yazıyla (kart içindeki küçük yazı yerine; hareket.js .yg-yazi) */
+.yon-galeri{position:relative}
+.yon-galeri.odak .yg-kart img{filter:brightness(.4) blur(4px) saturate(.9);transform:scale(1.04)}
+.yg-kart:hover figcaption,.yg-kart.ac figcaption{opacity:0!important}
+.yg-yazi{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:22px 26px;color:#fff;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .45s ease .1s,transform .45s ease .1s;text-shadow:0 2px 14px rgba(0,0,0,.75),0 0 2px rgba(0,0,0,.6);user-select:none;-webkit-user-select:none}
+.yon-galeri.odak .yg-yazi{opacity:1;transform:none}
+.yg-yazi b{display:block;font-family:var(--font-b);font-size:clamp(1.5rem,2.3vw,2.1rem);line-height:1.1;margin-bottom:12px}
+.yg-yazi span{display:block;font-size:clamp(1.1rem,1.45vw,1.4rem);line-height:1.45;color:#eef3fa}
+@media (max-width:900px){.yg-yazi{padding:16px 18px}.yg-yazi b{font-size:1.4rem}.yg-yazi span{font-size:1.08rem}}

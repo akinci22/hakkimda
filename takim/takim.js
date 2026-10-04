@@ -76,7 +76,8 @@ function panelNot(baslik, kisa, uzun, ipucu) {
 }
 function ipucuGoster(baslik, metin, x, y) {
   const k = $('#ipucu'); k.replaceChildren(el('b', {}, baslik), metin); k.hidden = false;
-  const w = Math.min(320, innerWidth - 24); let lx = x + 18, ly = y + 18; if (lx + w > innerWidth - 8) lx = x - w - 18; if (ly + 140 > innerHeight) ly = y - 150; k.style.left = Math.max(8, lx) + 'px'; k.style.top = Math.max(8, ly) + 'px';
+  const w = Math.min(320, innerWidth - 24); let lx = x + 18, ly = y + 18; if (lx + w > innerWidth - 8) lx = x - w - 18; if (ly + 140 > innerHeight) ly = y - 150;
+  const g = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 }; k.style.left = (Math.max(8, lx) - g.left) + 'px'; k.style.top = (Math.max(8, ly) - g.top) + 'px';   /* içkin: gövdeye göre (host contain:paint → fixed çalışmaz) */
   panelNot(baslik, metin, '', false);
 }
 const NOT_VARSAYILAN = ['Not · üzerine gel', 'Altı noktalı terimlere, kartlara ve ray üstündeki seviyelere gelince açıklaması burada belirir.'];
@@ -86,7 +87,7 @@ function altNotKur() { const k = $('#alt-not-kapat'); if (k) k.addEventListener(
 function ipucuBagla(e, al) {
   if (dokunmatik) { e.addEventListener('click', ev => { const { baslik, metin } = al(); ipucuGoster(baslik, metin, ev.clientX, ev.clientY); setTimeout(ipucuGizle, 3500); }); return; }
   let t; e.addEventListener('pointerenter', ev => { clearTimeout(t); t = setTimeout(() => { const { baslik, metin } = al(); ipucuGoster(baslik, metin, ev.clientX, ev.clientY); }, 350); });
-  e.addEventListener('pointermove', ev => { if (!$('#ipucu').hidden) { const k = $('#ipucu'); const w = k.offsetWidth; let lx = ev.clientX + 18; if (lx + w > innerWidth - 8) lx = ev.clientX - w - 18; k.style.left = Math.max(8, lx) + 'px'; k.style.top = Math.min(innerHeight - k.offsetHeight - 8, ev.clientY + 18) + 'px'; } });
+  e.addEventListener('pointermove', ev => { if (!$('#ipucu').hidden) { const k = $('#ipucu'); const w = k.offsetWidth; let lx = ev.clientX + 18; if (lx + w > innerWidth - 8) lx = ev.clientX - w - 18; const g = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 }; k.style.left = (Math.max(8, lx) - g.left) + 'px'; k.style.top = (Math.min(innerHeight - k.offsetHeight - 8, ev.clientY + 18) - g.top) + 'px'; } });
   e.addEventListener('pointerleave', () => { clearTimeout(t); ipucuGizle(); });
 }
 /* sade dil: terimin yanına parantezle kısa karşılık. Sözlükteki "ad (karşılık)" parantezi varsa o; yoksa açıklamanın ilk cümlesi (≤64 harf). */
@@ -112,14 +113,56 @@ function terimSar(kok) {
     yuru(h);
   });
 }
+/* odak yazısı (Akın 5 Eki): bulanıklık son dozuna ulaşırken açıklama ayrı panel/dialog yerine doğrudan perdenin ÜSTÜNDE, büyük ve okunaklı.
+   Perdede karta oyuk açılır (clip-path) → kart içkin modda da net kalır (content-visibility bölümleri ayrı stacking context, z-index yetmez).
+   Yazı kartın en geniş boş tarafına (sağ/sol öncelikli, yoksa alt/üst) yerleşir; dokunmatik ve azaltılmış harekette yok. */
+let odakEl = null, odakRaf = 0, odakTemiz;
+function odakKutu() { let k = $('#odak-yazi'); if (!k) { k = el('div', { id: 'odak-yazi', 'aria-hidden': 'true' }, el('p', { class: 'oy-ust' }), el('h3', { class: 'oy-baslik' }), el('p', { class: 'oy-kisa' }), el('div', { class: 'oy-uzun' })); GOVDE.append(k); } return k; }
+function odakYerlestir() {
+  const e = odakEl, k = $('#odak-yazi'), P = $('#perde'); if (!e || !k) return;
+  const r = e.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
+  const g = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 };   /* içkin: perde ve yazı gövdeye göre (absolute) konumlu */
+  if (P) { const p = 10, x1 = r.left - p - g.left, y1 = r.top - p - g.top, x2 = r.right + p - g.left, y2 = r.bottom + p - g.top;
+    P.style.clipPath = `polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,${x1}px ${y1}px,${x1}px ${y2}px,${x2}px ${y2}px,${x2}px ${y1}px,${x1}px ${y1}px)`; }
+  const pan = (!IC && vw >= 1180) ? $('.panel') : null, sag = pan ? pan.getBoundingClientRect().left : vw;   /* bağımsız sayfada sağ panelin üstüne yazılmaz */
+  const B = 36, cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2, genis = Math.min(980, sag - 2 * B);
+  const bolge = [
+    { ad: 'sag', w: sag - r.right - 2 * B, h: vh - 2 * B, x: r.right + B, yan: true },
+    { ad: 'sol', w: r.left - 2 * B, h: vh - 2 * B, x: B, yan: true },
+    { ad: 'alt', w: genis, h: vh - r.bottom - 2 * B, y: r.bottom + B },
+    { ad: 'ust', w: genis, h: r.top - 2 * B, y: B },
+  ].map(b => Object.assign(b, { puan: Math.max(0, b.w) * Math.max(0, b.h) * (b.w < 300 || b.h < 160 ? .15 : 1) * (b.yan && b.w >= 380 ? 1.6 : 1) })).sort((a, b) => b.puan - a.puan)[0];
+  k.style.setProperty('--oy', bolge.w < 400 ? '.74' : bolge.w < 540 ? '.86' : '1');   /* dar bölgede punto biraz küçülür, yine büyük */
+  k.style.width = Math.max(220, bolge.w) + 'px'; k.style.maxHeight = Math.max(120, bolge.h) + 'px';
+  const kh = k.offsetHeight, kw = k.offsetWidth; let x, y;
+  if (bolge.yan) { x = bolge.x; y = Math.min(Math.max(B, cy - kh / 2), vh - B - kh); }
+  else { x = Math.min(Math.max(B, cx - kw / 2), sag - B - kw); y = bolge.ad === 'alt' ? bolge.y : Math.max(B, r.top - B - kh); }
+  k.style.left = (x - g.left) + 'px'; k.style.top = (y - g.top) + 'px';
+}
+function odakGoster(e, d) {
+  if (dokunmatik || azalt) return;
+  clearTimeout(odakTemiz); odakEl = e; const k = odakKutu();
+  k.querySelector('.oy-ust').textContent = d.ust || ''; k.querySelector('.oy-baslik').textContent = d.baslik || ''; k.querySelector('.oy-kisa').textContent = d.kisa || '';
+  k.querySelector('.oy-uzun').replaceChildren(...String(d.uzun || '').split(/\n+/).map(p => p.trim()).filter(Boolean).slice(0, 4).map(p => el('p', {}, yerDoldur(p))));
+  k.classList.remove('acik'); odakYerlestir();
+  const t0 = performance.now(); cancelAnimationFrame(odakRaf);
+  const dongu = () => { if (odakEl !== e) return; odakYerlestir(); if (performance.now() - t0 < 520) odakRaf = requestAnimationFrame(dongu); };   /* kart .35 sn büyürken oyuk onu izler */
+  odakRaf = requestAnimationFrame(dongu);
+  requestAnimationFrame(() => { if (odakEl === e) k.classList.add('acik'); });   /* perde .7 sn'de dolar, yazı .18 sn gecikmeyle .5 sn'de gelir: bulanıklık tamamlanırken yazı yerinde */
+}
+function odakGizle() {
+  odakEl = null; cancelAnimationFrame(odakRaf); const k = $('#odak-yazi'); if (k) k.classList.remove('acik');
+  clearTimeout(odakTemiz); odakTemiz = setTimeout(() => { const P = $('#perde'); if (P && !odakEl) P.style.clipPath = ''; }, 750);   /* perde sönerken oyuk kalır, kart bir an bile bulanmaz */
+}
+addEventListener('scroll', () => { if (odakEl) { GOVDE.classList.remove('odak'); odakEl.classList.remove('odakli'); odakGizle(); } }, { passive: true });   /* kaydırmada odak biter: tam ekran blur kaydırma karelerini yemesin */
 /* kart etkileşimi: üzerinde dur → kararır + arka plan bulanır + "ne öğrenirsin" satırı; tıkla → ayrıntı (sayfa gibi döner) */
 let odakZ;
 function etkilesim(e, al) {
   e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, dokunmatik ? 'dokun: uzun hâli' : 'tıkla: uzun hâli · bekle: karar')); if (!e.querySelector('.etk-roz')) e.append(el('span', { class: 'etk-roz', 'aria-hidden': 'true' }));   /* sözsüz işaret: köşede açılır-ok (›), yazı yok */
   if (dokunmatik && !e.querySelector('.etk-on')) { try { const d = al(); const ilk = cumleler(String(d.uzun || '').replace(/\n+/g, ' ')).find(c => !/^(Kaynak|Güven)\s*:/i.test(c)) || ''; const cek = ilk.replace(/^[^:]{0,24}:\s*/, '').slice(0, 30); if (ilk && ilk !== d.kisa && !e.textContent.includes(cek)) e.append(el('span', { class: 'etk-on' }, ilk.length > 120 ? ilk.slice(0, 117).replace(/\s\S*$/, '') + '…' : ilk)); } catch (err) { } }   /* dokunmadan bilgi: ayrıntının ilk cümlesi kartta */
   if (!dokunmatik && !azalt) {
-    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(notZ); const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true); odakZ = setTimeout(() => { GOVDE.classList.add('odak'); e.classList.add('odakli'); }, 650); });
-    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); GOVDE.classList.remove('odak'); e.classList.remove('odakli'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); });
+    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(notZ); const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true); odakZ = setTimeout(() => { GOVDE.classList.add('odak'); e.classList.add('odakli'); odakGoster(e, d); }, 650); });
+    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); GOVDE.classList.remove('odak'); e.classList.remove('odakli'); odakGizle(); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); });
   }
   if (!azalt && 'IntersectionObserver' in window) { const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { e.classList.add('kesfet'); io.disconnect(); } }, { threshold: .6 }); io.observe(e); }
   e.addEventListener('click', ev => { if (ev.target.closest('a,input,select,textarea,.cip,.oy,.sec')) return; kocKapat(); detayAc(al()); });
@@ -142,7 +185,7 @@ function dallar(d) {
 }
 const YUVALAR = [[79, 24], [79, 76], [21, 24], [21, 76], [50, 90], [50, 10]];   // kök etrafındaki dal yerleri (% x, % y)
 function detayAc(d) {
-  const D = $('#detay'); if (!D) return; GOVDE.classList.remove('odak'); $$('.odakli').forEach(x => x.classList.remove('odakli'));
+  const D = $('#detay'); if (!D) return; GOVDE.classList.remove('odak'); $$('.odakli').forEach(x => x.classList.remove('odakli')); odakGizle();
   $('#detay-ust').textContent = d.ust || 'ayrıntı';
   const H = $('#harita'), S = $('#harita-cizgi'); H.replaceChildren(); S.replaceChildren(); D.classList.remove('dal-acik');
   const kok = el('button', { class: 'dugum kok', type: 'button', 'aria-label': 'Kök: ' + (d.baslik || '') }, el('span', { class: 'dugum-ust' }, 'kök'), el('h3', { id: 'detay-baslik' }, d.baslik || ''), el('p', {}, d.kisa || ''), el('span', { class: 'dugum-ip' }, dokunmatik ? 'aşağıdaki dallara dokun; açılır' : 'dallara tıkla'));

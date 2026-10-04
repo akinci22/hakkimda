@@ -595,3 +595,15 @@ html.gomulu .geri{display:none} html.gomulu .ust-ad{margin-left:0}
 @media (prefers-reduced-motion:reduce){.odakli{transform:none}}
 /* telefonda alttan çıkan not da büyük */
 .alt-not b{font-size:1.1rem!important} .alt-not p{font-size:1.02rem;line-height:1.5}
+
+/* ===== Akın 5 Eki: açıklama doğrudan bulanıklığın ÜSTÜNDE — perde buzlu krem (son doz: 12px), karta oyuk (JS clip-path); yazı büyük, mürekkep rengi ===== */
+#perde{background:rgba(248,245,238,.74);backdrop-filter:blur(12px) saturate(.85);-webkit-backdrop-filter:blur(12px) saturate(.85)}
+#odak-yazi{position:fixed;left:0;top:0;z-index:26;pointer-events:none;opacity:0;transform:translateY(10px);transition:opacity .5s ease .18s,transform .5s ease .18s;color:var(--murekkep);text-shadow:0 0 16px var(--kagit),0 0 3px var(--kagit);--oy:1;overflow:hidden;user-select:none;-webkit-user-select:none}
+#odak-yazi.acik{opacity:1;transform:none}
+#odak-yazi .oy-ust{margin:0 0 8px;font:600 calc(.82rem*var(--oy)) var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--vurgu)}
+#odak-yazi .oy-ust:empty{display:none}
+#odak-yazi .oy-baslik{margin:0 0 12px;font:700 calc(clamp(2.1rem,3.6vw,3.6rem)*var(--oy))/1.02 var(--baslik);letter-spacing:-.01em;text-wrap:balance}
+#odak-yazi .oy-kisa{margin:0 0 14px;font:600 calc(clamp(1.25rem,1.8vw,1.7rem)*var(--oy))/1.35 var(--govde)}
+#odak-yazi .oy-kisa:empty{display:none}
+#odak-yazi .oy-uzun p{margin:0 0 9px;font:400 calc(clamp(1.08rem,1.4vw,1.38rem)*var(--oy))/1.5 var(--govde);color:var(--murekkep)}
+@media (hover:none),(prefers-reduced-motion:reduce){#odak-yazi{display:none!important}}

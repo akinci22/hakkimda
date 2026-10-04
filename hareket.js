@@ -247,8 +247,8 @@ function kaydirDegis(k, src, yon) {
   document.body.appendChild(pd);
   // hizli = YolHava klipleri: 1 sn bekler, hızlı büyür, arka kararmaz yalnız bokeh gibi bulanıklaşır
   var yz = document.createElement("div"); yz.className = "kat-yazi"; yz.innerHTML = "<b></b><span>Ömer Faruk Akıncı</span>"; document.body.appendChild(yz);
-  function yaziGoster(k) {   // büyüyen fotoğrafın altında: paylaşırken yazdığım yazı (varsa, data-yazi) ve imza
-    var r = k.getBoundingClientRect(), t = hedef && (hedef.getAttribute("data-yazi") || (kaynak(hedef) || {}).getAttribute && kaynak(hedef).getAttribute("data-yazi")) || "";
+  function yaziGoster(k, R) {   // büyüyen fotoğrafın altında: paylaşırken yazdığım yazı (varsa, data-yazi) ve imza; R verilirse fotoğrafın ineceği yere göre
+    var r = R || k.getBoundingClientRect(), t =hedef && (hedef.getAttribute("data-yazi") || (kaynak(hedef) || {}).getAttribute && kaynak(hedef).getAttribute("data-yazi")) || "";
     yz.firstChild.textContent = t; yz.firstChild.style.display = t ? "" : "none";
     yz.style.left = r.left + "px"; yz.style.width = r.width + "px"; yz.style.top = Math.min(innerHeight - 90, r.bottom + 10) + "px"; yz.classList.add("acik");
   }
@@ -259,14 +259,14 @@ function kaydirDegis(k, src, yon) {
     var ul = c.querySelector("ul"); ac = (c.cloneNode(true)); var x = ac.querySelector("ul"); if (x) x.remove(); var y = ac.querySelector("b"); if (y) y.remove(); ac = ac.textContent.trim();
     ak.firstChild.textContent = bas || ac;
     if (ul) ak.lastChild.innerHTML = ul.outerHTML; else ak.lastChild.textContent = bas ? ac : "";
-    var bas0 = sol ? x0 + w + innerWidth * .04 : innerWidth * .04, gen = innerWidth - w - innerWidth * .12;
+    var bas0 = sol ? x0 + w + innerWidth * .04 : innerWidth * .04, gen = sol ? innerWidth - (x0 + w) - innerWidth * .08 : x0 - innerWidth * .08;   // klibin boş kalan tarafı: küçük klipte de, büyümüşünde de
     if (alt != null) { ak.style.left = '5vw'; ak.style.width = '90vw'; ak.style.top = (alt + 16) + 'px'; ak.classList.add('alt'); }   // telefon: klibin altında
     else { ak.style.left = bas0 + "px"; ak.style.width = Math.max(220, gen) + "px"; ak.style.top = ''; ak.classList.remove('alt'); }
     ak.classList.add("acik");
   }
   function perde(ac, hizli, hemen) {
     if (hizli === "bokeh") {   // önce yalnız kararır; biraz bekleyince flu (bokeh) eklenir
-      var kk = kat; pd.style.background = "rgba(0,0,0,.42)"; pd.style.transition = "opacity 2s ease-in-out, backdrop-filter .9s ease-out";   // 2 sn yavaş kararma (tam değil), sonra flu
+      var kk = kat; pd.style.background = "rgba(0,0,0,.55)"; pd.style.transition = "opacity 2s ease-in-out, backdrop-filter .9s ease-out";   // 2 sn yavaş kararma (tam değil), sonra flu
       pd.style.opacity = "1"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(0px)";
       setTimeout(function () { if (kat && kat === kk) pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(16px) saturate(1.15)"; }, 2000); return; }
     pd.style.background = hizli ? "rgba(10,20,40,.12)" : "#000";
@@ -308,11 +308,12 @@ function kaydirDegis(k, src, yon) {
         k.style.transition = "transform .28s cubic-bezier(.2,.9,.3,1)"; k.style.transform = "none";
         setTimeout(function () { if (kat === k) acikla(hedef, sol, x0, w, dokun ? y0 + h : null); }, 200); };
       if (dokun) setTimeout(k._buyu, 120);
+      else setTimeout(function () { if (kat === k && k._evre1) acikla(hedef, sol, r.left, r.width, null); }, 2050);   // bulanıklık son dozuna gelirken (2 sn + .9 sn) açıklama tıklamadan, klibin boş tarafında
     } else {   // fotoğraf/hikâye: önce çevre hızla kararır, sonra yavaşça büyümeye başlar; 1,5 sn kalınırsa hızlanıp tamamlanır
       var ara = "translate(" + (r.left - (vw - w) / 2) * .6 + "px," + (r.top - (vh - h) / 2) * .6 + "px) scale(" + (s + (1 - s) * .35) + ")";
       setTimeout(function () { if (kat !== k) return; k.style.transition = "transform 1.15s cubic-bezier(.4,0,.6,1)"; k.style.transform = ara; }, 350);
-      setTimeout(function () { if (kat !== k) return; k.style.transition = "transform .55s cubic-bezier(.3,.7,.2,1)"; k.style.transform = "none";
-        setTimeout(function () { if (kat === k) yaziGoster(k); }, 560); }, 1500);
+      setTimeout(function () { if (kat === k) yaziGoster(k, { left: x0, width: w, bottom: y0 + h }); }, 420);   // perde bulanıklığı tamamlanır tamamlanmaz yazı, fotoğrafın ineceği yerin altında
+      setTimeout(function () { if (kat !== k) return; k.style.transition = "transform .55s cubic-bezier(.3,.7,.2,1)"; k.style.transform = "none"; }, 1500);
     }
   }
   function on(el) {   // bekleme sırasında tam kaliteyi hazırla
@@ -696,4 +697,22 @@ function kaydirDegis(k, src, yon) {
     else { g.classList.add('bitti'); g.style.setProperty('--halka', 100); g.style.setProperty('--s', Math.max(.5, s - .3)); }
   }
   alan.addEventListener('pointerup', birak); alan.addEventListener('pointercancel', birak);
+})();
+
+/* Yön galerisi: bir karta gelince galeri bütünüyle bulanır, o kartın açıklaması galerinin üstünde büyük yazıyla
+   (Akın 5 Eki: bulanıklık son dozuna gelince yazı doğrudan üstünde; kart içindeki küçük yazı yerine). Dokunmatikte .ac (dokununca) aynı yolu kullanır. */
+(function () {
+  var g = document.querySelector(".yon-galeri"); if (!g) return;
+  var y = document.createElement("div"); y.className = "yg-yazi"; y.setAttribute("aria-hidden", "true"); y.innerHTML = "<b></b><span></span>"; g.appendChild(y);
+  var acik = null;
+  function goster(k) { var c = k.querySelector("figcaption"); if (!c) return; var b = c.querySelector("b"), s = c.querySelector("span");
+    y.firstChild.textContent = b ? b.textContent : ""; y.lastChild.textContent = s ? s.textContent : c.textContent; g.classList.add("odak"); acik = k; }
+  function gizle() { g.classList.remove("odak"); if (acik) acik.classList.remove("ac"); acik = null; }
+  g.addEventListener("pointerover", function (e) { if (e.pointerType !== "mouse") return; var k = e.target.closest(".yg-kart"); if (k && k !== acik) goster(k); });
+  g.addEventListener("pointerout", function (e) { if (e.pointerType !== "mouse") return; var k = e.target.closest(".yg-kart"); if (!k) return;
+    var r = e.relatedTarget; if (r && r.closest && r.closest(".yg-kart")) return;   /* aynı karta ya da başka karta geçiş: pointerover halleder */
+    gizle(); });
+  new MutationObserver(function (ms) {   // yalnız kartların .ac değişimi; galerinin kendi .odak sınıfı sayılmaz
+    if (!ms.some(function (m) { return m.target.classList && m.target.classList.contains("yg-kart"); })) return;
+    var k = g.querySelector(".yg-kart.ac"); if (k) { if (k !== acik) goster(k); } else if (acik) gizle(); }).observe(g, { attributes: true, subtree: true, attributeFilter: ["class"] });
 })();

@@ -49,7 +49,7 @@
 .govde.hepsi-acik .takim-main > section{content-visibility:visible}   /* hedefe kaydırırken üstteki bölümler gerçek boyuna açılır, hedef kaçmaz */
 .ray,.panel,#imlec,.ilerleme,.surpriz,.mobil-balon,.geri,.atla,.damla{display:none!important}
 .ust{top:var(--tk-ust,52px)} .ust-ad{margin-left:0}
-#perde{position:absolute}
+#perde,#odak-yazi,#ipucu{position:absolute}   /* :host contain:paint → fixed burada çalışmaz; takim.js içkin modda gövdeye göre konumlar */
 .govde,.govde a,.govde button{cursor:auto}
 /* içkin görünüm: krem-beyaz, yumuşak köşeler ve gölgeler (ana sitenin lacivertinden ayrışan açık tema) */
 :host{--kagit:#f8f5ee!important;--kagit-2:#efeadf!important;--panel-bg:#ffffff!important;--cizgi:rgba(31,42,46,.10);--cizgi-2:rgba(31,42,46,.18);--golge:0 1px 2px rgba(31,42,46,.05),0 10px 28px rgba(31,42,46,.08)}
