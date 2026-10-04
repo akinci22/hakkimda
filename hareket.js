@@ -395,7 +395,7 @@ function kaydirDegis(k, src, yon) {
 /* İlerleme bulutu: üstteki çubuğun yerine bir kümülüs. Sayfa ilerledikçe sağa kayar ve biraz büyür;
    her bölümde hava değişir: bulut → güneş doğar → hüzmeler artar → şimşek → yağmur → güneş döner → yalnız güneş. */
 (function () {
-  var sira = ["projeler", "yemek", "naplist", "yayin", "temsilcilik", "fotograf"];
+  var sira = ["projeler", "yemek", "naplist", "yayin", "temsilcilik", "fotograf", "takim"];
   var b = document.createElement("div"); b.className = "hava-bulut"; b.setAttribute("aria-hidden", "true");
   var isin = ""; for (var a = 0; a < 360; a += 30) isin += '<line x1="0" y1="-17" x2="0" y2="-25" transform="rotate(' + a + ')"/>';
   var yag = ""; for (var r = 0; r < 6; r++) yag += '<line x1="' + (30 + r * 8) + '" y1="44" x2="' + (27 + r * 8) + '" y2="52" style="animation-delay:' + (r * .13) + 's"/>';
@@ -404,14 +404,14 @@ function kaydirDegis(k, src, yon) {
     '<path class="hb-bulut" d="M22 44h52a12 12 0 0 0 0-24 16 16 0 0 0-30-6 12 12 0 0 0-20 8 11 11 0 0 0-2 22z"/>' +
     '<polygon class="hb-simsek" points="50,40 43,52 49,52 45,62 57,48 51,48 55,40"/>' +
     '<g class="hb-yagmur">' + yag + '</g></g></svg><span class="hb-ad"></span>';
-  var adlar = ["YolHava", "İTÜ Yemek", "Naplist", "Canlı yayın", "Temsilcilik", "Fotoğraf", "İletişim"], ad = b.querySelector(".hb-ad");
+  var adlar = ["YolHava", "İTÜ Yemek", "Naplist", "Canlı yayın", "Temsilcilik", "Fotoğraf", "Proje takımı", "İletişim"], ad = b.querySelector(".hb-ad");
   document.body.appendChild(b);
   var kok = document.documentElement, bk = false;
   function ciz() {
     bk = false;
     var top = kok.scrollHeight - innerHeight, p = top > 0 ? Math.min(1, scrollY / top) : 0, ev = 0;
     for (var i = 0; i < sira.length; i++) { var s = document.getElementById(sira[i]); if (s && s.getBoundingClientRect().top < innerHeight * .5) ev = i; }
-    if (p > .965) ev = 6;
+    if (p > .985) ev = 7;
     if (b.dataset.evre != ev) { b.dataset.evre = ev; ad.textContent = adlar[ev]; }
     b.style.transform = "translateX(" + (window.hizaX ? window.hizaX(p) - 61 : p * (innerWidth - 120)).toFixed(1) + "px)"; b.firstChild.style.transform = "scale(" + (.85 + p * .3).toFixed(3) + ")";
   }
