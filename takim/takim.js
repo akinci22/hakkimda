@@ -203,7 +203,7 @@ function akis() {
 }
 function kapi() {
   const K = veri.anket.kapi; $('#kapi-soru').textContent = K.soru; const ikon = { pasif: '☁', orta: '⛅', hirsli: '⚡' };
-  $('#kapi-kartlar').replaceChildren(...K.secenekler.map(s => { const k = el('button', { class: 'kapi', type: 'button', role: 'radio', 'aria-checked': String(durum.grup === s.id), 'data-id': s.id, onclick: () => grupSec(s.id) }, el('span', { class: 'k-ikon' }, `${ikon[s.id]} ${s.id}`), el('b', {}, s.etiket), el('span', {}, s.alt), el('span', { class: 'k-detay' }, 'üzerinde dur: ne demek · tıkla: seç'));
+  $('#kapi-kartlar').replaceChildren(...K.secenekler.map(s => { const k = el('button', { class: 'kapi', type: 'button', role: 'radio', 'aria-checked': String(durum.grup === s.id), 'data-id': s.id, onclick: () => grupSec(s.id) }, el('span', { class: 'k-ikon' }, `${ikon[s.id]} ${s.id}`), el('b', {}, s.etiket), el('span', {}, s.alt));
     ipucuBagla(k, () => ({ baslik: s.etiket, metin: s.detay || s.alt })); return k; }));
 }
 function grupSec(id) { durum.grup = id; ls('takim-grup', id); KOKEL.dataset.grup = id; $$('.kapi').forEach(k => k.setAttribute('aria-checked', String(k.dataset.id === id))); sonKart(); panelSen(); durum.etkilesim++; }
