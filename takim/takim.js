@@ -257,7 +257,7 @@ function mumkun() {
     if (m.tip === 'serit') return el('div', { class: 'medya serit' }, ...m.src.map(s => el('img', { src: yol(s), alt: '', loading: 'lazy', decoding: 'async' }))); return el('div', { class: 'medya' }, el('img', { src: yol(m.src), alt: m.alt || '', loading: 'lazy', decoding: 'async' })); };
   $('#mumkun-kartlar').replaceChildren(...M.kartlar.map(k => { const e = el('div', { class: 'kart', tabindex: 0 }, medya(k.medya), el('b', {}, k.b), el('p', {}, k.m), k.ref ? el('a', { class: 'ref', href: yol('../' + k.ref) }, 'portfolyoda gör →') : null); etkilesim(e, () => ({ ust: 'neden mümkün', baslik: k.b, kisa: k.m, uzun: k.detay, link: k.ref ? yol('../' + k.ref) : null, linkAd: 'portfolyoda gör →' })); return e; }));
   const vids = $$('#mumkun-kartlar video'); vids.forEach(v => { v.muted = true; });
-  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(x => { const v = x.target; if (x.isIntersecting) { v.play && v.play().catch(() => { }); } else v.pause(); }), { rootMargin: '200px 0px' }); vids.forEach(v => io.observe(v)); } else vids.forEach(v => v.play && v.play().catch(() => { }));   /* ekran dışı klip oynamaz */
+  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(x => { const v = x.target; if (x.isIntersecting) { v.play && v.play().catch(() => { }); } else v.pause(); }), { rootMargin: '0px', threshold: .15 }); vids.forEach(v => io.observe(v)); } else vids.forEach(v => v.play && v.play().catch(() => { }));   /* ekran dışı klip oynamaz */
 }
 const BULUTLAR = [['g20', 'Cirrus uncinus · 20 Nis'], ['g15', 'Altocumulus · 15 Nis'], ['g28', 'Cumulus humilis · 28 Nis'], ['g13', 'Altostratus · 13 Nis'], ['g16', 'Stratus · 16 Nis'], ['g03', 'Nimbostratus · 3 May']];
 function deste() {
@@ -442,7 +442,9 @@ const ASAMA_ADI = { 0: ['Tropopoz', 'Balon patladı, iniş başlıyor: olay ne, 
 const basincTen = p => 1000 * Math.pow(0.1, p);                       /* 0→1000 hPa, 1→100 hPa (log) */
 const yukseklik = P => 44330 * (1 - Math.pow(P / 1013.25, 0.1903));  /* standart atmosfer, m */
 function panelSen() { const s = []; s.push(durum.grup ? `Kapı: ${durum.grup}.` : 'Kapıyı seçmedin (500 hPa).'); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
-function git(id) { const h = KOK.getElementById(id); if (!h) return; const y = h.getBoundingClientRect().top + scrollY - 70; if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); return; } kaydirHedef(y); }
+function git(id) { const h = KOK.getElementById(id); if (!h) return;
+  if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); GOVDE._hz = setTimeout(() => GOVDE.classList.remove('hepsi-acik'), 2500); }   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
+  const y = h.getBoundingClientRect().top + scrollY - 70; if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { const d = h.getBoundingClientRect().top - 70; if (Math.abs(d) > 4) { if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 }); else scrollBy({ top: d, behavior: 'smooth' }); } }, 1400);   /* geç yüklenen görseller kaydırdıysa ince ayar */ return; } kaydirHedef(y); }
 function ilerleme() {
   const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'); const bloklar = $$('main > section[data-asama], .takim-main > section[data-asama]');
   const g = () => { const h = KOKEL; let p;

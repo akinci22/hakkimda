@@ -44,7 +44,9 @@
 :host{display:block;position:relative;isolation:isolate;contain:paint}
 .govde{position:relative;padding:0!important;overflow:clip}
 .govde::before{display:none}   /* dev izobar deseni içkin modda yok: her kaydırmada yeniden boyanıyordu */
-.takim-main > section,header.acilis{content-visibility:auto;contain-intrinsic-size:auto 900px}   /* görünmeyen bölümler yerleşim/boyamaya girmez */
+.takim-main > section{content-visibility:auto;contain-intrinsic-size:auto 900px}   /* görünmeyen bölümler yerleşim/boyamaya girmez; açılış hep render */
+@media (max-width:860px){.takim-main > section{contain-intrinsic-size:auto 1700px}}
+.govde.hepsi-acik .takim-main > section{content-visibility:visible}   /* hedefe kaydırırken üstteki bölümler gerçek boyuna açılır, hedef kaçmaz */
 .ray,.panel,#imlec,.ilerleme,.surpriz,.mobil-balon,.geri,.atla,.damla{display:none!important}
 .ust{top:var(--tk-ust,52px)} .ust-ad{margin-left:0}
 #perde{position:absolute}
@@ -73,8 +75,10 @@
   kok.addEventListener('click', e => {
     const a = e.composedPath().find(n => n.tagName === 'A' && n.getAttribute && /^#./.test(n.getAttribute('href') || '')); if (!a) return;
     const h = kok.getElementById(a.getAttribute('href').slice(1)); if (!h) return;
-    e.preventDefault(); const y = h.getBoundingClientRect().top + scrollY - 70;
+    e.preventDefault(); govde.classList.add('hepsi-acik'); clearTimeout(govde._hz); govde._hz = setTimeout(() => govde.classList.remove('hepsi-acik'), 2500);
+    const y = h.getBoundingClientRect().top + scrollY - 70;
     if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' });
+    setTimeout(() => { const d = h.getBoundingClientRect().top - 70; if (Math.abs(d) > 4) { if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 }); else scrollBy({ top: d, behavior: 'smooth' }); } }, 1400);   /* geç yüklenen görseller kaydırdıysa ince ayar */
   });
 
   window.TAKIM_IC = { kok, host, govde };
