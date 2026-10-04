@@ -607,3 +607,12 @@ html.gomulu .geri{display:none} html.gomulu .ust-ad{margin-left:0}
 #odak-yazi .oy-kisa:empty{display:none}
 #odak-yazi .oy-uzun p{margin:0 0 9px;font:400 calc(clamp(1.08rem,1.4vw,1.38rem)*var(--oy))/1.5 var(--govde);color:var(--murekkep)}
 @media (hover:none),(prefers-reduced-motion:reduce){#odak-yazi{display:none!important}}
+/* Akın 5 Eki (2): odak yazısı daha büyük; satırlar yukarıdan aşağı kademeli ve hızlı; kararma önce yavaş sonra hızlı (ease-in) */
+#perde{transition:opacity .9s cubic-bezier(.7,0,.95,.45)}
+#odak-yazi .oy-baslik{font-size:calc(clamp(2.4rem,4vw,4rem)*var(--oy))}
+#odak-yazi .oy-kisa{font-size:calc(clamp(1.4rem,2vw,1.9rem)*var(--oy))}
+#odak-yazi .oy-uzun p{font-size:calc(clamp(1.15rem,1.5vw,1.5rem)*var(--oy))}
+#odak-yazi .oy-ust,#odak-yazi .oy-baslik,#odak-yazi .oy-kisa,#odak-yazi .oy-uzun p{opacity:0;transform:translateY(12px);transition:opacity .3s ease,transform .3s ease}
+#odak-yazi.acik .oy-ust,#odak-yazi.acik .oy-baslik,#odak-yazi.acik .oy-kisa,#odak-yazi.acik .oy-uzun p{opacity:1;transform:none}
+#odak-yazi.acik .oy-ust{transition-delay:.12s} #odak-yazi.acik .oy-baslik{transition-delay:.18s} #odak-yazi.acik .oy-kisa{transition-delay:.26s}
+#odak-yazi.acik .oy-uzun p:nth-child(1){transition-delay:.34s} #odak-yazi.acik .oy-uzun p:nth-child(2){transition-delay:.41s} #odak-yazi.acik .oy-uzun p:nth-child(3){transition-delay:.48s} #odak-yazi.acik .oy-uzun p:nth-child(4){transition-delay:.55s}

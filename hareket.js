@@ -266,9 +266,9 @@ function kaydirDegis(k, src, yon) {
   }
   function perde(ac, hizli, hemen) {
     if (hizli === "bokeh") {   // önce yalnız kararır; biraz bekleyince flu (bokeh) eklenir
-      var kk = kat; pd.style.background = "rgba(0,0,0,.55)"; pd.style.transition = "opacity 2s ease-in-out, backdrop-filter .9s ease-out";   // 2 sn yavaş kararma (tam değil), sonra flu
+      var kk = kat; pd.style.background = "rgba(0,0,0,.55)"; pd.style.transition = "opacity 1.8s cubic-bezier(.8,0,.95,.5), backdrop-filter .8s ease-out";   // kararma önce çok yavaş, sona doğru hızlı; sonra flu
       pd.style.opacity = "1"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(0px)";
-      setTimeout(function () { if (kat && kat === kk) pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(16px) saturate(1.15)"; }, 2000); return; }
+      setTimeout(function () { if (kat && kat === kk) pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(16px) saturate(1.15)"; }, 1800); return; }
     pd.style.background = hizli ? "rgba(10,20,40,.12)" : "#000";
     pd.style.transition = !ac ? "opacity .4s ease, backdrop-filter .4s" : hizli ? "opacity .35s ease-out, backdrop-filter .45s ease-out"
       : hemen ? "opacity .35s ease-out, backdrop-filter .35s ease-out" : "opacity 1.5s cubic-bezier(.75,0,.9,.55), backdrop-filter .9s ease-out";
@@ -308,7 +308,7 @@ function kaydirDegis(k, src, yon) {
         k.style.transition = "transform .28s cubic-bezier(.2,.9,.3,1)"; k.style.transform = "none";
         setTimeout(function () { if (kat === k) acikla(hedef, sol, x0, w, dokun ? y0 + h : null); }, 200); };
       if (dokun) setTimeout(k._buyu, 120);
-      else setTimeout(function () { if (kat === k && k._evre1) acikla(hedef, sol, r.left, r.width, null); }, 2050);   // bulanıklık son dozuna gelirken (2 sn + .9 sn) açıklama tıklamadan, klibin boş tarafında
+      else setTimeout(function () { if (kat === k && k._evre1) acikla(hedef, sol, r.left, r.width, null); }, 1850);   // bulanıklık son dozuna gelirken (2 sn + .9 sn) açıklama tıklamadan, klibin boş tarafında
     } else {   // fotoğraf/hikâye: önce çevre hızla kararır, sonra yavaşça büyümeye başlar; 1,5 sn kalınırsa hızlanıp tamamlanır
       var ara = "translate(" + (r.left - (vw - w) / 2) * .6 + "px," + (r.top - (vh - h) / 2) * .6 + "px) scale(" + (s + (1 - s) * .35) + ")";
       setTimeout(function () { if (kat !== k) return; k.style.transition = "transform 1.15s cubic-bezier(.4,0,.6,1)"; k.style.transform = ara; }, 350);
