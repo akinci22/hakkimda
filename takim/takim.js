@@ -4,6 +4,9 @@ const $ = (s, k = document) => k.querySelector(s);
 const $$ = (s, k = document) => Array.from(k.querySelectorAll(s));
 const azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const dokunmatik = matchMedia('(pointer: coarse)').matches;
+/* gömülü mod: ana sayfadaki pencerede açılınca geri bağlantısı gizlenir, ana siteye giden bağlantılar üst pencereyi hedefler */
+const gomulu = new URLSearchParams(location.search).has('gomulu') || window.top !== window.self;
+if (gomulu) { document.documentElement.classList.add('gomulu'); document.addEventListener('click', e => { const a = e.target.closest('a[href^="../"]'); if (a) a.target = '_top'; }, true); }
 const ls = (k, v) => { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); return v; } catch (e) { return null; } };
 const el = (tag, attrs = {}, ...cocuklar) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k === 'html') e.innerHTML = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else if (v !== null && v !== undefined && v !== false) e.setAttribute(k, v === true ? '' : v); } for (const c of cocuklar.flat()) if (c !== null && c !== undefined && c !== false) e.append(c.nodeType ? c : document.createTextNode(String(c))); return e; };
 const rastgele = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);

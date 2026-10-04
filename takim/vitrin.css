@@ -1,6 +1,6 @@
 /* Ana sayfadaki "Proje Takımı" vitrini — /takim/ ile aynı SONDAJ (Skew-T) kimliği */
 .t-takim{--zemin:#f4efe3;--yazi:#1f2a2e;--yazi-2:#4f5f66;--vurgu:#a2552b;--cer:#1f2a2e;--cer-ic:#a2552b;--font-b:'Barlow Condensed','Arial Narrow',sans-serif;--balon:#fcfaf4;--baslik:#1f2a2e;
-  background-image:repeating-linear-gradient(135deg,transparent 0 44px,rgba(162,85,43,.17) 44px 45px),repeating-linear-gradient(112deg,transparent 0 76px,rgba(107,122,42,.13) 76px 77px),repeating-linear-gradient(180deg,transparent 0 118px,rgba(31,42,46,.11) 118px 119px)!important}
+  background-image:repeating-linear-gradient(180deg,transparent 0 118px,rgba(31,42,46,.045) 118px 119px)!important}
 .t-takim .sar>.bolum-no{font-family:'IBM Plex Mono',monospace;color:#a2552b}
 .t-takim h2{font-family:'Barlow Condensed','Arial Narrow',sans-serif!important;font-weight:700!important;text-transform:uppercase;font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.05;letter-spacing:.005em}
 .t-takim .vitrin{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;align-items:center;
@@ -25,3 +25,9 @@
 @keyframes vt-ciz{to{stroke-dashoffset:0}}
 @media (max-width:760px){.t-takim .vitrin{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.t-takim .vitrin-fig .iz path{animation:none;stroke-dashoffset:0}}
+
+/* gömülü takım penceresi (ana sayfada, ayrı sayfa yok) */
+.t-takim .takim-pencere{margin-top:28px;border:1px solid #1f2a2e;box-shadow:4px 4px 0 rgba(31,42,46,.22);background:#fcfaf4}
+.t-takim .takim-pencere-ust{margin:0;padding:8px 14px;font:600 .78rem 'IBM Plex Mono',monospace;color:#4f5f66;border-bottom:1px solid rgba(31,42,46,.32);letter-spacing:.03em;text-transform:uppercase}
+.t-takim .takim-pencere iframe{display:block;width:100%;height:min(88vh,900px);border:0;background:#f4efe3}
+@media (max-width:760px){.t-takim .takim-pencere iframe{height:82vh}}
