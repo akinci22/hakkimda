@@ -48,7 +48,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`veri/${a}.json?v=3`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`veri/${a}.json?v=4`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -70,6 +70,15 @@ function ipucuBagla(e, al) {
   e.addEventListener('pointermove', ev => { if (!$('#ipucu').hidden) { const k = $('#ipucu'); const w = k.offsetWidth; let lx = ev.clientX + 18; if (lx + w > innerWidth - 8) lx = ev.clientX - w - 18; k.style.left = Math.max(8, lx) + 'px'; k.style.top = Math.min(innerHeight - k.offsetHeight - 8, ev.clientY + 18) + 'px'; } });
   e.addEventListener('pointerleave', () => { clearTimeout(t); ipucuGizle(); });
 }
+/* sade dil: terimin yanına parantezle kısa karşılık. Sözlükteki "ad (karşılık)" parantezi varsa o; yoksa açıklamanın ilk cümlesi (≤64 harf). */
+function kisaKarsilik(t) { const p = (t.ad || '').match(/\(([^)]+)\)/); if (p) return p[1]; const c = String(t.m || '').split(/(?<=[.!?])\s/)[0].replace(/\.$/, ''); return c.length > 64 ? c.slice(0, 61).replace(/\s\S*$/, '') + '…' : c; }
+function sadeKur() {
+  const ic = $('.ust-ic'); if (!ic) return; const kayit = ls('takim-sade'); let acik = kayit == null ? dokunmatik : kayit === '1';
+  const b = el('button', { class: 'sade-dugme', type: 'button', 'aria-pressed': String(acik), title: 'Terimlerin yanına kısa Türkçe karşılığını yazar' }, 'Sade dil');
+  const uygula = () => { document.documentElement.classList.toggle('sade', acik); b.setAttribute('aria-pressed', String(acik)); };
+  b.addEventListener('click', () => { acik = !acik; ls('takim-sade', acik ? '1' : '0'); uygula(); durum.etkilesim++; });
+  const r = $('#mod-rozet'); ic.insertBefore(b, r || null); uygula();
+}
 /* sözlük: metinde geçen terimleri (blok başına ilk geçiş) sarar */
 function terimSar(kok) {
   const T = veri.sozluk?.terimler; if (!T) return;
@@ -79,7 +88,7 @@ function terimSar(kok) {
   const hedefler = $$('.alt, .kart p, .ses p, figcaption, .soru h3, .bd-satir span:last-child, .olay-k .m, .vaka p, .akis-k span, .adimlar span, .kapi > span, .bk .es span, .sk span, .son-kart p, .detay-uzun, .detay-kisa, .bd-uzun', kok);
   hedefler.forEach(h => {
     const gorulen = new Set(); const yuru = (n) => { if (n.nodeType === 3) { const m = n.nodeValue.match(re); if (!m) return; const key = m[2].toLowerCase(); if (gorulen.has(key)) return; const idx = m.index + m[1].length; const once = n.nodeValue.slice(0, idx), kelime = n.nodeValue.slice(idx, idx + m[2].length), sonra = n.nodeValue.slice(idx + m[2].length);
-      const sp = el('span', { class: 'terim', 'data-terim': key, tabindex: 0 }, kelime); const f = document.createDocumentFragment(); f.append(once, sp, sonra); const son = f.lastChild; n.replaceWith(f); gorulen.add(key); const t = T[key]; ipucuBagla(sp, () => ({ baslik: t.ad, metin: t.m })); if (son && son.nodeType === 3) yuru(son); return; }
+      const t = T[key]; const sp = el('span', { class: 'terim', 'data-terim': key, 'data-k': kisaKarsilik(t), tabindex: 0 }, el('span', { class: 'tk' }, kelime)); const f = document.createDocumentFragment(); f.append(once, sp, sonra); const son = f.lastChild; n.replaceWith(f); gorulen.add(key); ipucuBagla(sp, () => ({ baslik: t.ad, metin: t.m })); if (son && son.nodeType === 3) yuru(son); return; }
       if (n.nodeType === 1 && !n.classList.contains('terim') && n.tagName !== 'A' && n.tagName !== 'B') Array.from(n.childNodes).forEach(yuru); };
     yuru(h);
   });
@@ -147,7 +156,7 @@ const DETAYLAR = {
 
 /* ---------------- RENDER ---------------- */
 function ses(hirsli, rahat) {
-  return el('div', { class: 'ses' }, el('p', { class: 's-h' }, el('span', { class: 'prompt p-h' }, 'T · hırslı ▸ '), yerDoldur(hirsli)), el('p', { class: 's-r' }, el('span', { class: 'prompt p-r' }, 'Td · rahat ▸ '), yerDoldur(rahat)));
+  return el('div', { class: 'ses' }, el('p', { class: 's-h' }, el('span', { class: 'prompt p-h' }, 'Hırslıysan ▸ '), yerDoldur(hirsli)), el('p', { class: 's-r' }, el('span', { class: 'prompt p-r' }, 'Rahatsan ▸ '), yerDoldur(rahat)));
 }
 function sesYerlestir() {
   const M = veri.metinler; const harita = { acilis: [M.acilis.hirsli, M.acilis.rahat], bolumler: [M.bolumler.hirsli, M.bolumler.rahat], gercekcilik: [M.gercekcilik.hirsli, M.gercekcilik.rahat] };
@@ -308,7 +317,9 @@ function bolumler() {
   const B = veri.bolumler || [];
   if (!B.length) { $('#bolum-kartlar').replaceChildren(el('div', { class: 'bos' }, '10 bölümün ders planı karşılaştırması derleniyor.')); return; }
   $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button' }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum, el('span', { class: 'bk-k' }, b.k)),
-    el('div', { class: 'es' }, el('span', {}, 'senin'), el('span', {}, b.senin), el('span', {}, 'bizim'), el('span', {}, b.bizim), el('span', {}, 'ortak'), el('span', {}, b.ortakIs)), el('span', { class: 'devam' }, `${(b.projeler || []).length} ortak proje fikri → tıkla`));
+    el('div', { class: 'es' }, el('span', {}, 'senin'), el('span', {}, b.senin), el('span', {}, 'bizim'), el('span', {}, b.bizim), el('span', {}, 'ortak'), el('span', {}, b.ortakIs)),
+    (b.projeler || []).length ? el('ol', { class: 'bk-proje' }, (b.projeler || []).slice(0, 3).map(p => el('li', {}, p))) : null,
+    el('span', { class: 'devam' }, (b.projeler || []).length > 3 ? `+${b.projeler.length - 3} fikir daha · ayrıntı için tıkla` : 'ayrıntı için tıkla'));
     etkilesim(k, () => ({ ust: 'başka bölümdensen · ' + b.k, baslik: b.bolum, kisa: `Senin: ${b.senin} · Bizim: ${b.bizim}`, uzun: `Ortak iş: ${b.ortakIs}.\n` + (b.projeler || []).map((p, i) => `${i + 1}. ${p}`).join('\n') + (b.hocaSayisi ? `\n${b.hocaSayisi} ilgili hoca bulundu.` : '\nİlgili hoca adları henüz derlenmedi; bölüm sitesinden bakılacak.') })); return k; }));
   $('#bolum-not').textContent = 'Kaynak: İTÜ ders planları ve bölüm siteleri. Tam tablo "Meraklısına" bölümünde.';
 }
@@ -465,5 +476,5 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => Z.se
   if (durum.grup) document.documentElement.dataset.grup = durum.grup;
   await arkaKur();
   acilis(); sesYerlestir(); olay(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
-  terimSar(document); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); yumusakKaydirma();
+  terimSar(document); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); yumusakKaydirma();
 })();

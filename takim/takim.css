@@ -26,10 +26,9 @@ html[data-asama="5"]{--vurgu:#6b7a2a;--balon:1.5;--balon-im:1} html[data-asama="
 *{box-sizing:border-box}
 html{scroll-behavior:auto}
 body{margin:0;background:var(--kagit);color:var(--murekkep);font-family:var(--govde);font-size:19px;line-height:1.55;min-height:100%;transition:background-color .6s}
+/* zemin çizgileri: okuyucu geri bildirimi (4 Eki) "arka fon göz yoruyor" → eğik çizgiler kaldırıldı, yalnız çok silik izobarlar kaldı */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
-  repeating-linear-gradient(135deg,transparent 0 44px,color-mix(in srgb,var(--izoterm) 22%,transparent) 44px 45px),
-  repeating-linear-gradient(112deg,transparent 0 76px,color-mix(in srgb,var(--adyabat) 16%,transparent) 76px 77px),
-  repeating-linear-gradient(180deg,transparent 0 calc(var(--isobar) - 1px),rgba(31,42,46,.11) calc(var(--isobar) - 1px) var(--isobar)),
+  repeating-linear-gradient(180deg,transparent 0 calc(var(--isobar) - 1px),rgba(31,42,46,.045) calc(var(--isobar) - 1px) var(--isobar)),
   var(--kagit)}
 a{color:#1f6b66;text-decoration-thickness:1px} a:hover{color:var(--sicaklik)}
 .sar{max-width:1040px;margin-inline:auto;padding-inline:16px}
@@ -81,7 +80,7 @@ a{color:#1f6b66;text-decoration-thickness:1px} a:hover{color:var(--sicaklik)}
 
 /* --- bloklar --- */
 .blok{padding-block:clamp(44px,6vw,80px);border-top:1px solid var(--cizgi-2);position:relative;overflow:hidden}
-.blok[data-hpa]::after{content:attr(data-hpa);position:absolute;right:-6px;top:10px;font:700 clamp(5rem,13vw,15rem)/1 var(--baslik);color:var(--vurgu);opacity:.07;pointer-events:none;letter-spacing:-.04em;transition:color .6s}
+.blok[data-hpa]::after{content:attr(data-hpa);position:absolute;right:-6px;top:10px;font:700 clamp(5rem,13vw,15rem)/1 var(--baslik);color:var(--vurgu);opacity:.045;pointer-events:none;letter-spacing:-.04em;transition:color .6s}
 .blok--ters[data-hpa]::after{right:auto;left:-6px}
 .blok--ters .seviye{flex-direction:row-reverse;text-align:right}
 .blok--ters h2,.blok--ters .alt,.blok--ters .not{text-align:right;margin-left:auto}
@@ -106,7 +105,11 @@ h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;text-transform:uppercase} h3
 figure{margin:0} figcaption{font-family:var(--mono);font-size:.88rem;color:var(--murekkep-2);margin-top:8px;line-height:1.45}
 .cerceve{border:1px solid var(--murekkep);box-shadow:var(--golge);background:var(--panel-bg);padding:6px}
 .cerceve img,.cerceve video{display:block;width:100%;height:auto}
-.terim{text-decoration:underline dotted var(--izoterm);text-decoration-thickness:1.5px;text-underline-offset:3px;cursor:help}
+.terim{cursor:help} .terim .tk{text-decoration:underline dotted var(--izoterm);text-decoration-thickness:1.5px;text-underline-offset:3px}
+/* sade dil: terimin yanına kısa Türkçe karşılığı parantezle yazılır (dokunmatikte varsayılan açık; üstte düğme) */
+html.sade .terim::after{content:" (" attr(data-k) ")";color:var(--murekkep-2);font-size:.9em;font-style:italic}
+.sade-dugme{font:600 .76rem var(--mono);letter-spacing:.03em;border:1px solid var(--murekkep);background:var(--panel-bg);color:var(--murekkep-2);padding:3px 9px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.sade-dugme::before{content:"○ "} .sade-dugme[aria-pressed=true]{background:var(--murekkep);color:var(--kagit)} .sade-dugme[aria-pressed=true]::before{content:"● "}
 
 /* etkileşim: üzerinde dur → kararır, arka plan bulanır; tıkla → ayrıntı */
 #perde{position:fixed;inset:0;z-index:25;pointer-events:none;opacity:0;transition:opacity .7s ease;background:rgba(31,42,46,.28);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
@@ -277,6 +280,9 @@ html[data-grup="hirsli"] .ses .s-r,html[data-grup="pasif"] .ses .s-h{opacity:.4}
 .bk .es{display:grid;grid-template-columns:auto 1fr;gap:4px 8px;font-size:1rem;color:var(--murekkep-2)}
 .bk .es span:nth-child(odd){font-family:var(--mono);font-size:.8rem;color:var(--izoterm);padding-top:3px}
 .bk .devam{font-family:var(--mono);font-size:.8rem;color:var(--murekkep-3)}
+/* 700 hPa: ortak proje fikirleri tıklamasız görünür (telefonda kimse tıklamıyor, 4 Eki geri bildirimi) */
+.bk .bk-proje{margin:4px 0 0;padding:8px 0 0 18px;border-top:1px dashed var(--cizgi-2);display:grid;gap:4px;font-size:.98rem;color:var(--murekkep);line-height:1.4}
+.bk .bk-proje li::marker{color:var(--izoterm);font-family:var(--mono);font-size:.85em}
 .bos{color:var(--murekkep-3);font-family:var(--mono);font-size:.9rem;border:1px dashed var(--cizgi-2);padding:14px}
 
 /* tablo + yaş */
@@ -348,8 +354,7 @@ details.merak summary{padding:13px 0;cursor:pointer;font-family:var(--baslik);fo
 .detay[open]{animation:detay-ac .5s cubic-bezier(.2,.8,.2,1)}
 @keyframes detay-ac{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
 .detay-ic{position:relative;height:100%;display:grid;grid-template-rows:auto 1fr;background:
-  repeating-linear-gradient(135deg,transparent 0 44px,color-mix(in srgb,var(--izoterm) 14%,transparent) 44px 45px),
-  repeating-linear-gradient(180deg,transparent 0 59px,rgba(31,42,46,.08) 59px 60px)}
+  repeating-linear-gradient(180deg,transparent 0 59px,rgba(31,42,46,.05) 59px 60px)}
 .detay-kapat{position:absolute;right:12px;top:10px;z-index:3;border:1px solid var(--murekkep);background:var(--kagit);font:600 1.1rem var(--mono);width:40px;height:40px;cursor:pointer}
 .detay-kapat:hover{background:var(--sicaklik);color:#fff}
 .detay-yol{margin:0;padding:14px 60px 8px 20px;font-family:var(--mono);font-size:.84rem;color:var(--murekkep-3)} .detay-yol .yorum{display:inline;margin:0}
@@ -444,6 +449,7 @@ body.imlec-aktif,body.imlec-aktif a,body.imlec-aktif button,body.imlec-aktif [ro
   .ust-ic{min-height:40px;gap:8px;flex-wrap:nowrap;padding-inline:12px}
   .geri{font-size:.78rem;white-space:nowrap} .ust-ad{font-size:1rem;margin-left:auto;white-space:nowrap} .ust-ad .prompt{display:none}
   .rozet{font-size:.62rem;padding:1px 6px;order:3;flex:0 1 auto;max-width:34vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sade-dugme{font-size:.68rem;padding:2px 7px}
   .serit{padding:0 10px 4px} .serit button{min-width:84px;padding:4px 6px 1px} .serit button b{font-size:.82rem} .serit button span{font-size:.64rem}
 }
 @media (max-width:860px){
