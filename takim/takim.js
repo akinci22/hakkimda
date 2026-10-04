@@ -116,6 +116,7 @@ function terimSar(kok) {
 let odakZ;
 function etkilesim(e, al) {
   e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, dokunmatik ? 'dokun: uzun hâli' : 'tıkla: uzun hâli · bekle: karar')); if (!e.querySelector('.etk-roz')) e.append(el('span', { class: 'etk-roz', 'aria-hidden': 'true' }, dokunmatik ? '👆' : '🖱', el('i', {}, dokunmatik ? 'dokun' : 'tıkla')));
+  if (dokunmatik && !e.querySelector('.etk-on')) { try { const d = al(); const ilk = cumleler(String(d.uzun || '').split(/\n+/)[0] || '')[0] || ''; const cek = ilk.replace(/^[^:]{0,24}:\s*/, '').slice(0, 30); if (ilk && ilk !== d.kisa && !e.textContent.includes(cek)) e.append(el('span', { class: 'etk-on' }, ilk.length > 120 ? ilk.slice(0, 117).replace(/\s\S*$/, '') + '…' : ilk)); } catch (err) { } }   /* dokunmadan bilgi: ayrıntının ilk cümlesi kartta */
   if (!dokunmatik && !azalt) {
     e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(notZ); const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true); odakZ = setTimeout(() => { GOVDE.classList.add('odak'); e.classList.add('odakli'); }, 650); });
     e.addEventListener('pointerleave', () => { clearTimeout(odakZ); GOVDE.classList.remove('odak'); e.classList.remove('odakli'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); });

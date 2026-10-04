@@ -445,10 +445,10 @@ function kaydirDegis(k, src, yon) {
   b.addEventListener("touchstart", function (e) { e.preventDefault(); }, { passive: false });
   b.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
   // Telefon yedeği: pointer yakalama çalışmasa da (bazı tarayıcılar, dokunma hedef kaydırması) belgedeki dokunma bulutun yakınındaysa sürükleme dokunma olaylarıyla yürür
-  var dokunId = null;
+  var dokunId = null, yalnizGoster = matchMedia('(hover:none)').matches;   // telefonda bulut dokunulamaz, yalnız gösterir (Akın 4 Eki)
   function yakin(t) { var r = b.getBoundingClientRect(); return t.clientX > r.left - 28 && t.clientX < r.right + 28 && t.clientY > r.top - 28 && t.clientY < r.bottom + 16; }
   document.addEventListener("touchstart", function (e) {
-    if (dokunId !== null || document.documentElement.classList.contains("beyaz-mod")) return;
+    if (yalnizGoster || dokunId !== null || document.documentElement.classList.contains("beyaz-mod")) return;
     var t = e.changedTouches[0]; if (!yakin(t)) return;
     dokunId = t.identifier; e.preventDefault(); if (tut) return;   // pointer yolu zaten tuttuysa yalnız kimliği not et (pointercancel gelirse dokunma yolu sürdürür)
     tut = true; b.classList.add("tutuldu"); sonX = t.clientX; sonT = performance.now(); hiz = 0; vs -= .12; basla();

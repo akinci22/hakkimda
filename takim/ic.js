@@ -48,6 +48,16 @@
 .ust{top:var(--tk-ust,52px)} .ust-ad{margin-left:0}
 #perde{position:absolute}
 .govde,.govde a,.govde button{cursor:auto}
+/* içkin görünüm: krem-beyaz, yumuşak köşeler ve gölgeler (ana sitenin lacivertinden ayrışan açık tema) */
+:host{--kagit:#f8f5ee!important;--kagit-2:#efeadf!important;--panel-bg:#ffffff!important;--cizgi:rgba(31,42,46,.10);--cizgi-2:rgba(31,42,46,.18);--golge:0 1px 2px rgba(31,42,46,.05),0 10px 28px rgba(31,42,46,.08)}
+.govde{background:var(--kagit)} .govde::before{opacity:.5}
+.kart,.olay-k,.akis-k,.soru,.bk,.kapi,.ses,.sk,.adimlar li,.son-kart,.balon-form,.basamak-detay,.bs,details.merak,.cerceve,.vaka,.karne-svg,.yas-svg,.panel-kutu,.kartd,.deste-bitti,.gok,.koc,.dugum{border-radius:14px;border-color:rgba(31,42,46,.12)}
+.kart,.olay-k,.akis-k,.soru,.bk,.kapi,.sk,.adimlar li,.balon-form,.basamak-detay,.bs,details.merak,.cerceve,.vaka{box-shadow:0 1px 2px rgba(31,42,46,.05),0 10px 28px rgba(31,42,46,.08)}
+.ses{border-radius:12px;box-shadow:0 1px 2px rgba(31,42,46,.04)} .cip,.oy,.dg,.sec,.gonder,.cta a,.katil,.sade-dugme,.detay-alt{border-radius:999px} .cta a,.dg,.katil{box-shadow:0 2px 8px rgba(31,42,46,.12)}
+.etk:hover{box-shadow:0 2px 4px rgba(31,42,46,.06),0 16px 36px rgba(31,42,46,.14)}
+.ust{background:rgba(248,245,238,.88);border-bottom:1px solid rgba(31,42,46,.1)}
+.detay{border-radius:18px;border-color:rgba(31,42,46,.12);box-shadow:0 30px 80px rgba(31,42,46,.25)}
+@media (max-width:999px){.ust{position:static;backdrop-filter:none} .detay{border-radius:0}}
 `;
   const st = document.createElement('style'); st.textContent = s;
 
