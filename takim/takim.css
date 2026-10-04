@@ -38,7 +38,7 @@ a{color:#1f6b66;text-decoration-thickness:1px} a:hover{color:var(--sicaklik)}
 .atla:focus{left:8px}
 :focus-visible{outline:2px solid var(--sicaklik);outline-offset:2px}
 @media (min-width:1000px){body{padding-left:var(--ray)}}
-@media (min-width:1320px){body{padding-right:var(--panel)}}
+@media (min-width:1180px){body{padding-right:var(--panel)}}
 
 /* --- üst --- */
 .ilerleme{position:fixed;top:0;left:0;right:0;height:4px;background:rgba(31,42,46,.08);z-index:40}
@@ -68,14 +68,22 @@ a{color:#1f6b66;text-decoration-thickness:1px} a:hover{color:var(--sicaklik)}
 
 /* --- sağ panel --- */
 .panel{position:fixed;right:0;top:0;bottom:0;width:var(--panel);display:none;flex-direction:column;gap:10px;padding:60px 14px 14px;border-left:1px solid var(--cizgi-2);background:color-mix(in srgb,var(--kagit) 75%,transparent);z-index:20;overflow:auto}
-@media (min-width:1320px){.panel{display:flex}}
+@media (min-width:1180px){.panel{display:flex}} @media (min-width:1180px) and (max-width:1319px){:root{--panel:272px}}
 .panel-kutu{background:var(--panel-bg);border:1px solid var(--murekkep);box-shadow:var(--golge);padding:10px 12px}
 .panel-ust{margin:0;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--izoterm)}
 .panel-ad{margin:2px 0 4px;font:700 1.6rem/1 var(--baslik);text-transform:uppercase;color:var(--vurgu)}
 .panel-m{margin:0;font-size:.95rem;color:var(--murekkep-2);line-height:1.45}
 .panel-kutu.okuma{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
 .panel-kutu.okuma div{display:grid;gap:2px} .panel-kutu.okuma span{font-family:var(--mono);font-size:.68rem;color:var(--murekkep-3)} .panel-kutu.okuma b{font:700 1.2rem/1.1 var(--baslik);color:var(--murekkep);font-variant-numeric:tabular-nums}
-.panel-kutu.not{border-left:4px solid var(--vurgu);transition:border-color .4s}
+.panel-kutu.not{border-left:4px solid var(--vurgu);transition:border-color .4s;flex:1 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.panel-uzun{font-size:.92rem;line-height:1.5;color:var(--murekkep-2);border-top:1px dashed var(--cizgi-2);padding-top:6px} .panel-uzun:empty{display:none} .panel-uzun p{margin:0 0 6px}
+.panel-ip{margin:auto 0 0;font:600 .74rem var(--mono);color:var(--vurgu)}
+/* dar ekran: dokunulan terimin/seviyenin notu altta kayan kutu */
+.alt-not{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:45;background:var(--murekkep);color:#f4efe3;padding:12px 40px 12px 14px;box-shadow:5px 5px 0 var(--vurgu);font-size:.95rem;line-height:1.45;animation:alt-gel .3s ease}
+.alt-not b{display:block;font:700 1rem var(--baslik);text-transform:uppercase;letter-spacing:.03em;color:#ffd9d2;margin-bottom:2px} .alt-not p{margin:0}
+.alt-not-kapat{position:absolute;right:8px;top:8px;background:none;border:1px solid #f4efe3;color:#f4efe3;width:28px;height:28px;cursor:pointer}
+@keyframes alt-gel{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+@media (min-width:1180px){.alt-not{display:none}}
 .panel-kutu.not.canli{background:#fff}
 
 /* --- bloklar --- */
@@ -107,7 +115,7 @@ figure{margin:0} figcaption{font-family:var(--mono);font-size:.88rem;color:var(-
 .cerceve img,.cerceve video{display:block;width:100%;height:auto}
 .terim{cursor:help} .terim .tk{text-decoration:underline dotted var(--izoterm);text-decoration-thickness:1.5px;text-underline-offset:3px}
 /* sade dil: terimin yanına kısa Türkçe karşılığı parantezle yazılır (dokunmatikte varsayılan açık; üstte düğme) */
-html.sade .terim::after{content:" (" attr(data-k) ")";color:var(--murekkep-2);font-size:.9em;font-style:italic}
+html.sade .terim::after{content:" (" attr(data-k) ")";color:var(--murekkep-2);font-size:.9em;font-style:italic} html.sade .terim[data-k=""]::after{content:none}
 .sade-dugme{font:600 .76rem var(--mono);letter-spacing:.03em;border:1px solid var(--murekkep);background:var(--panel-bg);color:var(--murekkep-2);padding:3px 9px;border-radius:999px;cursor:pointer;white-space:nowrap}
 .sade-dugme::before{content:"○ "} .sade-dugme[aria-pressed=true]{background:var(--murekkep);color:var(--kagit)} .sade-dugme[aria-pressed=true]::before{content:"● "}
 
@@ -470,7 +478,7 @@ body.imlec-aktif .katil,body.inis .katil{visibility:hidden}
 
 /* sürpriz rozeti */
 .surpriz{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:35;background:var(--panel-bg);border:1px solid var(--murekkep);box-shadow:var(--golge);padding:7px 12px;font:500 .84rem var(--mono);color:var(--murekkep-2);transition:opacity .3s}
-@media (min-width:1320px){.surpriz{right:calc(var(--panel) + 12px)}}
+@media (min-width:1180px){.surpriz{right:calc(var(--panel) + 12px)}}
 .surpriz.acildi{border-color:var(--sicaklik);color:var(--sicaklik)}
 .alt-bilgi{border-top:1px solid var(--murekkep);padding-block:28px;color:var(--murekkep-3);font-size:.92rem} .alt-bilgi p{margin:0 0 6px} .kucuk{font-size:.82rem}
 

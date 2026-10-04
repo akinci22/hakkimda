@@ -59,14 +59,22 @@ const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) =>
 /* ---------------- ETKİLEŞİM ÇEKİRDEĞİ ---------------- */
 /* ipucu: imlecin yanında küçük kutu + sağ paneldeki "Not" kutusu aynı metni gösterir (bilgi veren hover) */
 let ipucuZaman = 0;
+/* sağ panel notu: üzerine gelinen/dokunulan şeyin başlığı, kısa ve UZUN hâli (boş alan dolu kalsın) */
+function panelNot(baslik, kisa, uzun, ipucu) {
+  const pn = $('#p-not'); if (!pn) return; pn.classList.add('canli'); pn.querySelector('.panel-ust').textContent = 'Not · ' + (baslik || '');
+  $('#p-not-m').textContent = kisa || ''; const U = $('#p-not-uzun'); U.replaceChildren(...String(uzun || '').split(/\n+/).filter(Boolean).slice(0, 4).map(p => el('p', {}, p)));
+  const ip = $('#p-not-ip'); if (ip) ip.hidden = !ipucu;
+  if (dokunmatik || innerWidth < 1180) { const A = $('#alt-not'); if (A && !ipucu) { $('#alt-not-b').textContent = baslik || ''; $('#alt-not-m').textContent = kisa || ''; A.hidden = false; clearTimeout(A._z); A._z = setTimeout(() => { A.hidden = true; }, 6000); } }
+}
 function ipucuGoster(baslik, metin, x, y) {
   const k = $('#ipucu'); k.replaceChildren(el('b', {}, baslik), metin); k.hidden = false;
   const w = Math.min(320, innerWidth - 24); let lx = x + 18, ly = y + 18; if (lx + w > innerWidth - 8) lx = x - w - 18; if (ly + 140 > innerHeight) ly = y - 150; k.style.left = Math.max(8, lx) + 'px'; k.style.top = Math.max(8, ly) + 'px';
-  const pn = $('#p-not'); if (pn) { pn.classList.add('canli'); $('#p-not-m').textContent = metin; pn.querySelector('.panel-ust').textContent = 'Not · ' + baslik; }
+  panelNot(baslik, metin, '', false);
 }
 const NOT_VARSAYILAN = ['Not · üzerine gel', 'Altı noktalı terimlere, kartlara ve ray üstündeki seviyelere gelince açıklaması burada belirir.'];
-let notZ; function notSifirla() { clearTimeout(notZ); notZ = setTimeout(() => { const pn = $('#p-not'); if (!pn || pn.classList.contains('canli')) return; pn.querySelector('.panel-ust').textContent = NOT_VARSAYILAN[0]; $('#p-not-m').textContent = NOT_VARSAYILAN[1]; }, 2500); }
+let notZ; function notSifirla() { clearTimeout(notZ); notZ = setTimeout(() => { const pn = $('#p-not'); if (!pn || pn.classList.contains('canli')) return; pn.querySelector('.panel-ust').textContent = NOT_VARSAYILAN[0]; $('#p-not-m').textContent = NOT_VARSAYILAN[1]; $('#p-not-uzun').replaceChildren(); const ip = $('#p-not-ip'); if (ip) ip.hidden = true; }, 6000); }
 function ipucuGizle() { $('#ipucu').hidden = true; const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); }
+function altNotKur() { const k = $('#alt-not-kapat'); if (k) k.addEventListener('click', () => { $('#alt-not').hidden = true; }); }
 function ipucuBagla(e, al) {
   if (dokunmatik) { e.addEventListener('click', ev => { const { baslik, metin } = al(); ipucuGoster(baslik, metin, ev.clientX, ev.clientY); setTimeout(ipucuGizle, 3500); }); return; }
   let t; e.addEventListener('pointerenter', ev => { clearTimeout(t); t = setTimeout(() => { const { baslik, metin } = al(); ipucuGoster(baslik, metin, ev.clientX, ev.clientY); }, 350); });
@@ -91,7 +99,7 @@ function terimSar(kok) {
   const hedefler = $$('.alt, .kart p, .ses p, figcaption, .soru h3, .bd-satir span:last-child, .olay-k .m, .vaka p, .akis-k span, .adimlar span, .kapi > span, .bk .es span, .sk span, .son-kart p, .detay-uzun, .detay-kisa, .bd-uzun', kok);
   hedefler.forEach(h => {
     const gorulen = new Set(); const yuru = (n) => { if (n.nodeType === 3) { const m = n.nodeValue.match(re); if (!m) return; const key = m[2].toLowerCase(); if (gorulen.has(key)) return; const idx = m.index + m[1].length; const once = n.nodeValue.slice(0, idx), kelime = n.nodeValue.slice(idx, idx + m[2].length), sonra = n.nodeValue.slice(idx + m[2].length);
-      const t = T[key]; const sp = el('span', { class: 'terim', 'data-terim': key, 'data-k': kisaKarsilik(t), tabindex: 0 }, el('span', { class: 'tk' }, kelime)); const f = document.createDocumentFragment(); f.append(once, sp, sonra); const son = f.lastChild; n.replaceWith(f); gorulen.add(key); ipucuBagla(sp, () => ({ baslik: t.ad, metin: t.m })); if (son && son.nodeType === 3) yuru(son); return; }
+      const t = T[key]; const sp = el('span', { class: 'terim', 'data-terim': key, 'data-k': /^\s*\(/.test(sonra) ? '' : kisaKarsilik(t), tabindex: 0 }, el('span', { class: 'tk' }, kelime));   /* metinde zaten parantezli karşılık varsa sade dil ikinci kez yazmaz */ const f = document.createDocumentFragment(); f.append(once, sp, sonra); const son = f.lastChild; n.replaceWith(f); gorulen.add(key); ipucuBagla(sp, () => ({ baslik: t.ad, metin: t.m })); if (son && son.nodeType === 3) yuru(son); return; }
       if (n.nodeType === 1 && !n.classList.contains('terim') && n.tagName !== 'A' && n.tagName !== 'B') Array.from(n.childNodes).forEach(yuru); };
     yuru(h);
   });
@@ -101,8 +109,8 @@ let odakZ;
 function etkilesim(e, al) {
   e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, dokunmatik ? 'dokun: uzun hâli' : 'tıkla: uzun hâli · bekle: karar')); if (!e.querySelector('.etk-roz')) e.append(el('span', { class: 'etk-roz', 'aria-hidden': 'true' }, dokunmatik ? '👆' : '🖱', el('i', {}, dokunmatik ? 'dokun' : 'tıkla')));
   if (!dokunmatik && !azalt) {
-    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); odakZ = setTimeout(() => { document.body.classList.add('odak'); e.classList.add('odakli'); const d = al(); $('#p-not-m').textContent = d.kisa || ''; $('#p-not').querySelector('.panel-ust').textContent = 'Kart · ' + (d.baslik || ''); }, 650); });
-    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); document.body.classList.remove('odak'); e.classList.remove('odakli'); notSifirla(); });
+    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(notZ); const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true); odakZ = setTimeout(() => { document.body.classList.add('odak'); e.classList.add('odakli'); }, 650); });
+    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); document.body.classList.remove('odak'); e.classList.remove('odakli'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); });
   }
   e.addEventListener('click', ev => { if (ev.target.closest('a,input,select,textarea,.cip,.oy,.sec')) return; kocKapat(); detayAc(al()); });
   e.addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target === e) detayAc(al()); });
@@ -496,6 +504,6 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => Z.se
   if (durum.grup) document.documentElement.dataset.grup = durum.grup;
   await arkaKur();
   acilis(); sesYerlestir(); olay(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
-  terimSar(document); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); yumusakKaydirma();
+  terimSar(document); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
