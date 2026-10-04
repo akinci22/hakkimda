@@ -28,14 +28,14 @@
 
 <aside class="ray" aria-label="Basınç rayı">
   <div class="ray-baslik">Sondaj</div>
-  <button class="tik" type="button" style="top:13%" data-seviye="200" data-hedef="olay"><b>200</b> tropopoz</button>
-  <button class="tik" type="button" style="top:24%" data-seviye="300" data-hedef="merdiven"><b>300</b></button>
-  <button class="tik" type="button" style="top:36%" data-seviye="500" data-hedef="kapi"><b>500</b></button>
-  <button class="tik" type="button" style="top:52%" data-seviye="700" data-hedef="bolumler"><b>700</b></button>
+  <button class="tik" type="button" style="top:18%" data-seviye="200" data-hedef="olay"><b>200</b> tropopoz</button>
+  <button class="tik" type="button" style="top:28%" data-seviye="300" data-hedef="merdiven"><b>300</b></button>
+  <button class="tik" type="button" style="top:39%" data-seviye="500" data-hedef="kapi"><b>500</b></button>
+  <button class="tik" type="button" style="top:53%" data-seviye="700" data-hedef="bolumler"><b>700</b></button>
   <button class="tik" type="button" style="top:66%" data-seviye="850" data-hedef="neden"><b>850</b></button>
   <button class="tik" type="button" style="top:78%" data-seviye="925" data-hedef="canli"><b>925</b></button>
   <button class="tik" type="button" style="top:90%" data-seviye="1000" data-hedef="son"><b>1000</b> yüzey</button>
-  <div class="ray-balon" id="ray-balon" style="top:13%"><svg viewBox="0 0 30 46"><ellipse cx="15" cy="14" rx="12" ry="14" fill="#c0392b"/><path d="M15 28v12M12 40h6M13 44h4" stroke="#1f2a2e" stroke-width="1.2" fill="none"/><rect x="11" y="40" width="8" height="5" fill="#fcfaf4" stroke="#1f2a2e" stroke-width="1"/></svg></div>
+  <div class="ray-balon" id="ray-balon" style="top:18%"><svg viewBox="0 0 30 46"><ellipse cx="15" cy="14" rx="12" ry="14" fill="#c0392b"/><path d="M15 28v12M12 40h6M13 44h4" stroke="#1f2a2e" stroke-width="1.2" fill="none"/><rect x="11" y="40" width="8" height="5" fill="#fcfaf4" stroke="#1f2a2e" stroke-width="1"/></svg></div>
 </aside>
 
 <aside class="panel" id="panel" aria-label="Sondaj paneli">
@@ -74,13 +74,21 @@
     <div class="acilis-ic">
       <div>
         <h1>Yapay zekâ ile hava tahmini <em>düzeltme</em> ve <em>doğrulama</em>.</h1>
-        <p class="alt buyuk">Kısaca: hava tahmini programları İstanbul için her gün bir sayı söyler ve o sayı çoğu gün biraz yanılır. Biz bu yanılmayı ölçüp yapay zekâyla düzeltecek, yaparken de kısa videolarla anlatacağız. Meteoroloji bilmen gerekmez.</p>
-        <p class="alt">Sayfa yukarıdan aşağı 8 adım. "hPa" sayıları bir hava balonunun yere inişini anlatan süsleme: kaydırdıkça balon alçalır. Sonda sana göre bir rol çıkar.</p>
+        <p class="alt buyuk">Ben Ömer, meteoroloji 3. sınıf. Fark ettiğim şey şu: hava tahmini İstanbul için her gün bir sayı söylüyor ve o sayı çoğu gün biraz yanılıyor. Bunu ölçmek, yapay zekâyla düzeltmek ve yaparken kısa videolarla anlatmak istiyorum. Bir takım kuruyorum; meteoroloji bilmen gerekmiyor.</p>
+        <p class="alt">Sayfa yukarıdan aşağı 8 adım, genelden özele gider. Kartlarda kısa cümle var; <b>dokununca ya da tıklayınca</b> uzun hâli açılır. Kaydırdıkça baştaki balon küçülür, yere iner; en altta sana göre bir rol çıkar.</p>
         <div class="sayilar" id="acilis-sayilar"></div>
         <div class="ses" data-ses="acilis"></div>
         <p class="ipucu">↓ 8 aşama · 4 dakika · 3 anket · 7 görsel · 1 canlı grafik · altı noktalı kelimeler: üstüne gel ya da dokun; "Sade dil" açıkken karşılığı yanında yazar</p>
       </div>
-      <div>
+      <div class="acilis-sag">
+        <div class="buyuk-balon" id="buyuk-balon" aria-hidden="true">
+          <svg viewBox="0 0 200 300"><defs><radialGradient id="bb-g" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#e8695a"/><stop offset=".7" stop-color="#c0392b"/><stop offset="1" stop-color="#8e2a1f"/></radialGradient></defs>
+            <ellipse class="bb-golge" cx="100" cy="292" rx="46" ry="6"/>
+            <g class="bb-gov"><ellipse cx="100" cy="95" rx="78" ry="90" fill="url(#bb-g)" stroke="#1f2a2e" stroke-width="2"/><path d="M62 30 Q50 90 70 170" fill="none" stroke="#fcfaf4" stroke-width="2" opacity=".55"/><path d="M100 185 L92 200 L108 200z" fill="#8e2a1f" stroke="#1f2a2e" stroke-width="1.5"/>
+              <path class="bb-ip" d="M94 200 L86 262 M106 200 L114 262 M100 200 L100 262"/><rect x="80" y="262" width="40" height="26" rx="2" fill="#fcfaf4" stroke="#1f2a2e" stroke-width="2"/><text x="100" y="279" text-anchor="middle">RS41</text></g>
+          </svg>
+          <span class="bb-not" id="bb-not">12 km · 200 hPa · balon tam şişkin</span>
+        </div>
         <svg class="mini-sondaj" viewBox="0 0 200 150" role="img" aria-label="Şematik Skew-T: sıcaklık ve çiy noktası izleri çiziliyor">
           <g class="grid"><line x1="30" y1="140" x2="190" y2="140"/><line x1="30" y1="100" x2="190" y2="100"/><line x1="30" y1="60" x2="190" y2="60"/><line x1="30" y1="20" x2="190" y2="20"/></g>
           <g class="gr-iz"><line x1="30" y1="140" x2="130" y2="5"/><line x1="70" y1="140" x2="170" y2="5"/><line x1="110" y1="140" x2="190" y2="32"/><line x1="150" y1="140" x2="190" y2="86"/></g>
