@@ -624,11 +624,14 @@ function kaydirDegis(k, src, yon) {
 
 /* Her bölüme bir önceki bölümün zemin rengini ver: üst kenarda yumuşak geçiş için */
 (function () {
-  var b = document.querySelectorAll("section.blok, main > section");
+  var b = document.querySelectorAll("section.blok, main > section, #takim, #iletisim");
   var onceki = getComputedStyle(document.body).backgroundColor;
   Array.prototype.forEach.call(b, function (s) {
     s.style.setProperty("--onceki", onceki);
-    onceki = getComputedStyle(s).getPropertyValue("--zemin").trim() || getComputedStyle(s).backgroundColor;
+    if (s.id === "iletisim") { var kendi = getComputedStyle(s).backgroundColor; s.style.backgroundImage = "linear-gradient(to bottom," + onceki + " 0," + kendi + " clamp(260px,38vh,520px))"; return; }
+    if (s.id === "takim") { onceki = "#f8f5ee"; return; }   // proje takımı: krem (vitrin + içkin gövde aynı ton)
+    var cs = getComputedStyle(s), z = cs.getPropertyValue("--zemin").trim() || cs.getPropertyValue("--kagit").trim() || cs.backgroundColor;
+    if (z && z !== "rgba(0, 0, 0, 0)" && z !== "transparent") onceki = z;   // şeffafsa önceki renk sürer
   });
 })();
 

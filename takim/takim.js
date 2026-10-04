@@ -132,9 +132,9 @@ function dallar(d) {
   const kisalt = (t, n) => t.length > n ? t.slice(0, n - 3).replace(/\s\S*$/, '') + '…' : t;
   let L;
   if (par.length <= 1) {                                                 /* tek paragraf: her cümle bir dal (yaprak) */
-    L = cumleler(par[0] || '').map(c => ({ baslik: kisalt(c, 120), alt: c.length > 120 ? [c] : [] }));
+    L = cumleler(par[0] || '').map(c => ({ baslik: c, alt: [] }));                                  /* tam cümle: üç nokta ile kesilmiş başlık yok */
   } else {                                                              /* çok paragraf: paragraf = dal, cümleleri = alt budak */
-    L = par.map(p => { const c = cumleler(p); const ilk = c[0] || p; const kisa = ilk.length <= 74; return { baslik: kisalt(ilk, 74), alt: kisa ? c.slice(1) : c }; });
+    L = par.map(p => { const c = cumleler(p); const ilk = c[0] || p; return { baslik: ilk, alt: c.slice(1) }; });
   }
   if (d.link) L.push({ baslik: d.linkAd || 'bağlantı →', link: yol(d.link), alt: ['Kaynağa git: ' + d.link.replace(/^https?:\/\//, '')] });
   return L;
