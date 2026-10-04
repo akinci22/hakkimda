@@ -18,7 +18,7 @@ class Yerel {
   constructor() { this.uid = ls('takim-uid') || ls('takim-uid', 'yerel-' + rastgele()); this.d = {}; this.bd = []; this.mod = 'yerel'; }
   async oyAl(id) { try { return JSON.parse(ls('oy:' + id) || 'null'); } catch (e) { return null; } }
   async oyVer(id, data) { if (await this.oyAl(id)) throw new Error('var'); ls('oy:' + id, JSON.stringify({ ...data, pollId: id, uid: this.uid, ts: Date.now() })); (this.d[id] || []).forEach(f => f()); }
-  dinle(id, cb) { const f = async () => { const v = await this.oyAl(id); const sayim = {}; if (v) [].concat(v.secim).forEach(s => sayim[s] = (sayim[s] || 0) + 1); cb(sayim, v ? 1 : 0); }; (this.d[id] = this.d[id] || []).push(f); f(); return () => { this.d[id] = this.d[id].filter(x => x !== f); }; }
+  dinle(id, cb) { const f = async () => { const v = await this.oyAl(id); const sayim = {}; if (v) [].concat(v.secim).forEach(s => sayim[s] = (sayim[s] || 0) + 1); cb(sayim, v ? 1 : 0, v && v.diger ? [v.diger] : []); }; (this.d[id] = this.d[id] || []).push(f); f(); return () => { this.d[id] = this.d[id].filter(x => x !== f); }; }
   async balonEkle(b) { const l = this._balonlar(); l.unshift({ ...b, uid: this.uid, ts: Date.now(), id: rastgele() }); ls('balonlar', JSON.stringify(l.slice(0, 60))); this.bd.forEach(f => f()); }
   _balonlar() { try { return JSON.parse(ls('balonlar') || '[]'); } catch (e) { return []; } }
   balonDinle(cb) { const f = () => cb(this._balonlar()); this.bd.push(f); f(); return () => { }; }
@@ -35,7 +35,7 @@ class Bulut {
   async oyAl(id) { const s = await this.F.getDoc(this.F.doc(this.db, 'votes', id + '_' + this.uid)); return s.exists() ? s.data() : null; }
   async oyVer(id, data) { const ref = this.F.doc(this.db, 'votes', id + '_' + this.uid); const d = { pollId: id, uid: this.uid, secim: data.secim, ts: this.F.serverTimestamp() }; if (data.diger) d.diger = data.diger; if (data.grup) d.grup = data.grup; await this.F.setDoc(ref, d); }
   /* 1.000+ oyda getCountFromServer ile değiştir (KURULUM.md). */
-  dinle(id, cb) { const q = this.F.query(this.F.collection(this.db, 'votes'), this.F.where('pollId', '==', id)); return this.F.onSnapshot(q, snap => { const sayim = {}; let n = 0; snap.forEach(d => { n++; [].concat(d.data().secim).forEach(s => sayim[s] = (sayim[s] || 0) + 1); }); cb(sayim, n); }, () => cb({}, 0)); }
+  dinle(id, cb) { const q = this.F.query(this.F.collection(this.db, 'votes'), this.F.where('pollId', '==', id)); return this.F.onSnapshot(q, snap => { const sayim = {}; let n = 0; const sozler = []; snap.forEach(d => { n++; const v = d.data(); [].concat(v.secim).forEach(s => sayim[s] = (sayim[s] || 0) + 1); if (v.diger) sozler.push(String(v.diger).slice(0, 120)); }); cb(sayim, n, sozler); }, () => cb({}, 0, [])); }
   async balonEkle(b) { const d = { uid: this.uid, metin: b.metin, gorunum: b.gorunum, gizli: false, ts: this.F.serverTimestamp() }; for (const k of ['ad', 'org', 'unvan', 'grup']) if (b[k]) d[k] = b[k]; await this.F.addDoc(this.F.collection(this.db, 'bubbles'), d); }
   balonDinle(cb) { const q = this.F.query(this.F.collection(this.db, 'bubbles'), this.F.where('gizli', '==', false), this.F.orderBy('ts', 'desc'), this.F.limit(60)); return this.F.onSnapshot(q, snap => { const l = []; snap.forEach(d => l.push({ id: d.id, ...d.data(), ts: d.data().ts?.toMillis?.() || 0 })); cb(l); }, () => cb([])); }
 }
@@ -73,7 +73,7 @@ function ipucuBagla(e, al) {
 /* sade dil: terimin yanına parantezle kısa karşılık. Sözlükteki "ad (karşılık)" parantezi varsa o; yoksa açıklamanın ilk cümlesi (≤64 harf). */
 function kisaKarsilik(t) { const p = (t.ad || '').match(/\(([^)]+)\)/); if (p) return p[1]; const c = String(t.m || '').split(/(?<=[.!?])\s/)[0].replace(/\.$/, ''); return c.length > 64 ? c.slice(0, 61).replace(/\s\S*$/, '') + '…' : c; }
 function sadeKur() {
-  const ic = $('.ust-ic'); if (!ic) return; const kayit = ls('takim-sade'); let acik = kayit == null ? dokunmatik : kayit === '1';
+  const ic = $('.ust-ic'); if (!ic) return; const kayit = ls('takim-sade'); let acik = kayit == null ? true : kayit === '1';
   const b = el('button', { class: 'sade-dugme', type: 'button', 'aria-pressed': String(acik), title: 'Terimlerin yanına kısa Türkçe karşılığını yazar' }, 'Sade dil');
   const uygula = () => { document.documentElement.classList.toggle('sade', acik); b.setAttribute('aria-pressed', String(acik)); };
   b.addEventListener('click', () => { acik = !acik; ls('takim-sade', acik ? '1' : '0'); uygula(); durum.etkilesim++; });
@@ -258,7 +258,7 @@ function deste() {
   };
   $('#dg-evet').onclick = () => karar(true); $('#dg-hayir').onclick = () => karar(false);
   document.addEventListener('keydown', e => { if (!D.closest('section').matches(':hover') && document.activeElement?.closest('#kaydir') == null) return; if (e.key === 'ArrowRight') karar(true); if (e.key === 'ArrowLeft') karar(false); });
-  ciz();
+  Promise.all(kartlar.map(k => arka.oyAl(k.id).catch(() => null))).then(onceki => { onceki.forEach((v, j) => { if (v && j === i) { const evet = v.secim === 'evet'; const uyum = (kartlar[j].id === 'k5') ? !evet : evet; durum.eslesme.toplam++; if (uyum) durum.eslesme.evet++; i++; } }); if (i > 0) $('#deste-tepki').textContent = i >= kartlar.length ? 'Bu desteyi daha önce bitirdin; kararların kayıtlı.' : `${i} kartı daha önce cevapladın, kaldığın yerden.`; ciz(); if (i > 0) { sonKart(); panelSen(); } });
 }
 function test() {
   const T = veri.anket.test; $('#test-baslik').textContent = T.baslik;
@@ -274,19 +274,23 @@ function test() {
         durum.test.toplam++; if (dogru) durum.test.dogru++; durum.etkilesim++; arka.oyVer(s.id, { secim: String(oi), grup: durum.grup }).catch(() => { });
         if (durum.test.toplam === T[set].length) { const d = durum.test.dogru; $('#test-sonuc').textContent = d === 5 ? '5/5. Anlatıcı koltuğu senin.' : d >= 3 ? `${d}/5. İyi; eksikleri ilk üç video kapatır.` : `${d}/5. Tam da bu yüzden videolar var. Utanma, kimse görmedi.`; sonKart(); panelSen(); }
       } }, o));
+      arka.oyAl(s.id).then(v => { if (!v) return; const oi = +v.secim; if (!(oi >= 0)) return; const dogru = oi === s.dogru; secenekler[oi].classList.add(dogru ? 'dogru' : 'yanlis'); secenekler[s.dogru].classList.add('dogru'); secenekler.forEach(b => b.disabled = true); ac.textContent = (dogru ? '✓ ' : '✗ ') + s.aciklama + ' (daha önce cevapladın)'; ac.hidden = false; durum.test.toplam++; if (dogru) durum.test.dogru++; if (durum.test.toplam === T[set].length) { $('#test-sonuc').textContent = `${durum.test.dogru}/5 · daha önce çözdün; cevaplar kayıtlı.`; sonKart(); panelSen(); } }).catch(() => { });
       return el('div', { class: 'soru' }, el('h3', {}, `${qi + 1}. ${s.soru}`), el('div', { class: 'secenekler' }, ...secenekler), ac, sur);
     }));
     terimSar($('#test-sorular'));
   };
   $$('.test-sec .sec').forEach(b => b.onclick = () => ciz(b.dataset.set)); ciz('mto');
 }
+/* oy kilidi: her anket cihaz başına bir kez (test modunda localStorage, canlıda Firebase anonim kimlik + create-only kural) */
+const kilitSatiri = () => el('p', { class: 'oy-kilit' }, '✓ Oyun kaydedildi · bu cihazdan bir kez · değiştirilemez');
+const sozlerKutusu = (sozler) => sozler && sozler.length ? el('div', { class: 'sozler' }, el('span', { class: 'sozler-ust' }, 'Oy verenlerin kendi cümleleri'), ...sozler.slice(0, 12).map(t => el('span', { class: 'soz' }, '“' + t + '”'))) : null;
 function cokluSoru(s) {
   const secili = new Set(); let diger = '';
   const cipler = s.secenekler.map(o => el('button', { class: 'cip', type: 'button', 'aria-pressed': 'false', onclick: (e) => { if (s.tip === 'single') { secili.clear(); cipler.forEach(c => c.setAttribute('aria-pressed', 'false')); } if (secili.has(o)) { secili.delete(o); e.currentTarget.setAttribute('aria-pressed', 'false'); } else { secili.add(o); e.currentTarget.setAttribute('aria-pressed', 'true'); } gonder.disabled = secili.size === 0 && !diger; } }, o));
   const gonder = el('button', { class: 'gonder', type: 'button', disabled: true }, 'Gönder');
   const alt = el('div', { class: 'coklu-alt' }); if (s.diger) alt.append(el('input', { type: 'text', maxlength: 120, placeholder: 'Diğer…', oninput: (e) => { diger = e.target.value.trim(); gonder.disabled = secili.size === 0 && !diger; } })); alt.append(gonder);
   const sonuc = el('div', { class: 'oylar', hidden: true }); const kutu = el('div', { class: 'soru' }, el('h3', {}, s.soru), el('div', { class: 'secenekler' }, ...cipler), alt, sonuc);
-  const goster = (sayim, n) => { sonuc.hidden = false; sonuc.replaceChildren(...s.secenekler.map(o => { const c = sayim[o] || 0; const y = n ? Math.round(100 * c / n) : 0; return el('div', { class: 'oy' + (secili.has(o) ? ' benim' : ''), role: 'img', 'aria-label': `${o}: %${y}` }, el('span', { class: 'cubuk', style: `width:${y}%` }), el('span', {}, o), el('span', { class: 'yuzde' }, `%${y}`)); }), el('p', { class: 'oy-toplam' }, `${n} kişi`)); };
+  const goster = (sayim, n, sozler) => { sonuc.hidden = false; sonuc.replaceChildren(...s.secenekler.map(o => { const c = sayim[o] || 0; const y = n ? Math.round(100 * c / n) : 0; return el('div', { class: 'oy' + (secili.has(o) ? ' benim' : ''), role: 'img', 'aria-label': `${o}: %${y}` }, el('span', { class: 'cubuk', style: `width:${y}%` }), el('span', {}, o), el('span', { class: 'yuzde' }, `%${y}`)); }), el('p', { class: 'oy-toplam' }, `${n} kişi oy verdi`), sozlerKutusu(sozler), kilitSatiri()); kutu.classList.add('oylandi'); };
   gonder.onclick = async () => { gonder.disabled = true; cipler.forEach(c => c.disabled = true); const inp = alt.querySelector('input'); if (inp) inp.disabled = true; try { await arka.oyVer(s.id, { secim: [...secili], diger: diger || undefined, grup: durum.grup }); } catch (e) { } if (s.id === 'c4') durum.roller = [...secili]; durum.etkilesim++; arka.dinle(s.id, goster); sonKart(); panelSen(); };
   arka.oyAl(s.id).then(v => { if (v) { [].concat(v.secim).forEach(x => secili.add(x)); cipler.forEach(c => { c.disabled = true; c.setAttribute('aria-pressed', String(secili.has(c.textContent))); }); gonder.disabled = true; const inp = alt.querySelector('input'); if (inp) inp.disabled = true; if (s.id === 'c4') durum.roller = [...secili]; arka.dinle(s.id, goster); } });
   return kutu;
@@ -295,9 +299,9 @@ function coklu() { $('#coklu-sorular').replaceChildren(...veri.anket.coklu.map(c
 function canliSoru(s) {
   let benim = null; const n0 = el('p', { class: 'oy-toplam' }, 'Oy ver, yüzdeyi gör.');
   const dugmeler = s.secenekler.map(o => el('button', { class: 'oy', type: 'button', onclick: async () => { if (benim) return; benim = o; dugmeler.forEach(d => { d.disabled = true; d.classList.toggle('benim', d === dugmeler[s.secenekler.indexOf(o)]); }); try { await arka.oyVer(s.id, { secim: o, grup: durum.grup }); } catch (e) { } durum.etkilesim++; arka.dinle(s.id, goster); } }, el('span', { class: 'cubuk' }), el('span', {}, o), el('span', { class: 'yuzde' }, '')));
-  const goster = (sayim, n) => { dugmeler.forEach((d, i) => { const o = s.secenekler[i]; const c = sayim[o] || 0; const y = n ? Math.round(100 * c / n) : 0; d.querySelector('.cubuk').style.width = y + '%'; d.querySelector('.yuzde').textContent = `%${y} · ${c}`; }); n0.textContent = `${n} oy`; };
+  const goster = (sayim, n) => { dugmeler.forEach((d, i) => { const o = s.secenekler[i]; const c = sayim[o] || 0; const y = n ? Math.round(100 * c / n) : 0; d.querySelector('.cubuk').style.width = y + '%'; d.querySelector('.yuzde').textContent = `%${y} · ${c}`; }); n0.textContent = `${n} oy · ✓ seninki kaydedildi, bu cihazdan bir kez`; kutu.classList.add('oylandi'); };
   arka.oyAl(s.id).then(v => { if (v) { benim = v.secim; dugmeler.forEach((d, i) => { d.disabled = true; d.classList.toggle('benim', s.secenekler[i] === benim); }); arka.dinle(s.id, goster); } });
-  return el('div', { class: 'soru' }, el('h3', {}, s.soru), el('div', { class: 'oylar' }, ...dugmeler), n0);
+  const kutu = el('div', { class: 'soru' }, el('h3', {}, s.soru), el('div', { class: 'oylar' }, ...dugmeler), n0); return kutu;
 }
 function canli() { $('#canli-sorular').replaceChildren(...veri.anket.canli.map(canliSoru)); }
 function anlatilar() {
@@ -464,6 +468,9 @@ function kocKur() { if (ls('takim-koc') || azalt) return; const hedef = $('#olay
   hedef.append(k);
   const io = new IntersectionObserver(es => { if (es[0].isIntersecting) k.classList.add('goster'); }, { threshold: .6 }); io.observe(hedef);
 }
+/* genelden özele: her aşama başlığının altında 'burada ne var' cümlesi */
+const ASAMA_NE = { 1: 'Büyük resim: ne yapıyoruz, neden, nasıl. Ayrıntıya girmeden önce burayı oku.', 2: 'Planın kendisi: 6 basamak ve bir gerçek vaka (2023 İstanbul seli).', 3: 'Lafta kalmasın: canlı tahmin karnesi ve şimdiye kadar yapılmış işler.', 4: 'Sıra sende: kendini tanımla, 10 kartı kaydır, 5 soruluk mini test.', 5: 'Meteoroloji dışındaysan: senin dersinle bizimki nerede kesişiyor.', 6: 'Dürüst beklenti: öteki takımlar kaç yaşında, biz neden şimdi başlıyoruz.', 7: 'Oy ver: neyi görmek istersin, hangi dersi anlatmak istersin. Her oy bir kez.', 8: 'Mesaj bırak, kaynaklara bak, sana göre rolü gör.' };
+function asamaNe() { $$('.asama-baslik').forEach(h => { const n = +h.dataset.asama; const t = ASAMA_NE[n]; if (t && !h.querySelector('.asama-ne')) h.append(el('span', { class: 'asama-ne' }, t)); }); }
 function detayKur() { const D = $('#detay'); if (!D) return; $('#detay-kapat').addEventListener('click', () => D.close()); D.addEventListener('click', e => { if (e.target === D) D.close(); }); addEventListener('resize', () => { if (D.open) { D.classList.toggle('dar', innerWidth < 860); D._ciz && D._ciz(); } }); }
 /* iniş: fırlatma noktası ekrana girince imleç balonu oraya uçar, "bize katıl" yazar; tıklanır. Nokta ekrandan çıkınca imleç geri gelir. */
 let inisDurum = false;
@@ -484,6 +491,6 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => Z.se
   if (durum.grup) document.documentElement.dataset.grup = durum.grup;
   await arkaKur();
   acilis(); sesYerlestir(); olay(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
-  terimSar(document); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); yumusakKaydirma();
+  terimSar(document); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); yumusakKaydirma();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();

@@ -143,6 +143,30 @@ button.sayi .etk-roz{position:static;margin-top:4px;width:max-content}
 .bb-not{display:inline-block;margin-top:2px;font:600 .8rem var(--mono);color:var(--murekkep);background:var(--panel-bg);border:1px solid var(--murekkep);padding:3px 10px}
 @media (max-width:860px){.buyuk-balon svg{width:min(62vw,300px)} .acilis-ic{grid-template-columns:1fr} .acilis-sag{order:-1} .mini-sondaj{max-width:240px;margin:0 auto}}
 .ses{cursor:pointer} .ses:hover{box-shadow:5px 5px 0 var(--cizgi-2)}
+/* oy kilidi + oy verenlerin sözleri */
+.oy-kilit{margin:8px 0 0;font:600 .82rem var(--mono);color:var(--iyi);border-top:1px dashed var(--cizgi-2);padding-top:8px}
+.soru.oylandi{border-left:4px solid var(--iyi)}
+.sozler{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px} .sozler-ust{flex:0 0 100%;font:600 .78rem var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--izoterm)}
+.soz{font-size:.95rem;background:#fff;border:1px solid var(--murekkep);border-radius:14px 14px 14px 3px;padding:5px 10px;color:var(--murekkep)}
+/* aşama altı 'burada ne var' */
+.asama-baslik{flex-wrap:wrap} .asama-ne{flex:0 0 100%;font-size:1.05rem;color:var(--murekkep-2);margin-top:6px;max-width:70ch}
+/* nasıl okunur şeridi */
+.nasil{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:640px}
+.nasil li{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center;background:var(--panel-bg);border:1px solid var(--murekkep);box-shadow:var(--golge);padding:10px 12px}
+.nasil b{grid-row:span 2;font:700 1.6rem var(--baslik);color:var(--sicaklik)} .nasil span{font:600 1rem var(--baslik);text-transform:uppercase;letter-spacing:.03em} .nasil small{font-size:.82rem;color:var(--murekkep-2)}
+@media (max-width:600px){.nasil{grid-template-columns:1fr}}
+/* mobil düzen */
+@media (max-width:700px){
+  body{font-size:18px}
+  .asama-baslik{padding:34px 16px 6px} .asama-baslik b{font-size:clamp(1.9rem,8vw,2.6rem)} .asama-ne{font-size:.98rem}
+  .soru{padding:14px} .secenekler{gap:6px} .cip{flex:1 1 100%;text-align:left}
+  .oy{padding:12px} .oy .yuzde{font-size:.85rem}
+  h2{font-size:clamp(1.7rem,7.5vw,2.4rem)} .alt{font-size:1.05rem} .alt.buyuk{font-size:1.12rem}
+  .olay-k,.kart,.kapi{padding:16px}
+  .serit{scroll-snap-type:x mandatory} .serit button{scroll-snap-align:start}
+  .surpriz{display:none}
+  .mobil-balon{bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+}
 /* mobil dokunma alanları */
 @media (pointer:coarse){.cip,.oy,.kapi,.serit button,.tik,.akis-k,.gonder,.radyo label,.sec{min-height:44px} .cip{padding:10px 14px} .etk .etk-ipucu{display:none}}
 .odakli{z-index:26!important;box-shadow:0 0 0 2px var(--vurgu),8px 8px 0 rgba(31,42,46,.3)!important}
