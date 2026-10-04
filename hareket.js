@@ -444,6 +444,21 @@ function kaydirDegis(k, src, yon) {
   // telefon: tarayıcı parmağı sayfa kaydırması sanıp sürüklemeyi iptal etmesin (iOS Safari touch-action'a tam uymaz)
   b.addEventListener("touchstart", function (e) { e.preventDefault(); }, { passive: false });
   b.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
+  // Telefon yedeği: pointer yakalama çalışmasa da (bazı tarayıcılar, dokunma hedef kaydırması) belgedeki dokunma bulutun yakınındaysa sürükleme dokunma olaylarıyla yürür
+  var dokunId = null;
+  function yakin(t) { var r = b.getBoundingClientRect(); return t.clientX > r.left - 28 && t.clientX < r.right + 28 && t.clientY > r.top - 28 && t.clientY < r.bottom + 16; }
+  document.addEventListener("touchstart", function (e) {
+    if (tut || dokunId !== null || document.documentElement.classList.contains("beyaz-mod")) return;
+    var t = e.changedTouches[0]; if (!yakin(t)) return;
+    dokunId = t.identifier; tut = true; b.classList.add("tutuldu"); sonX = t.clientX; sonT = performance.now(); hiz = 0; vs -= .12; basla(); e.preventDefault();
+  }, { passive: false });
+  document.addEventListener("touchmove", function (e) {
+    if (dokunId === null) return; var t = null; for (var i = 0; i < e.changedTouches.length; i++) if (e.changedTouches[i].identifier === dokunId) t = e.changedTouches[i];
+    if (!t) return; e.preventDefault(); var n = performance.now(), dt = Math.max(8, n - sonT);
+    hiz = hiz * .6 + ((t.clientX - sonX) / dt * 1000) * .4; sonX = t.clientX; sonT = n; git(t.clientX);
+  }, { passive: false });
+  function dokunBitti(e) { if (dokunId === null) return; for (var i = 0; i < e.changedTouches.length; i++) if (e.changedTouches[i].identifier === dokunId) { dokunId = null; birak(); } }
+  document.addEventListener("touchend", dokunBitti); document.addEventListener("touchcancel", dokunBitti);
 })();
 
 
