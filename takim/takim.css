@@ -567,3 +567,16 @@ html.gomulu .geri{display:none} html.gomulu .ust-ad{margin-left:0}
   .etk:active{transform:scale(.985);transition:transform .08s}
   .etk .etk-ipucu{display:none}
 }
+
+/* etkileşim sözsüz anlaşılır: köşede küçük açılır-ok, kart hafif yükselir; "dokun/tıkla" yazısı ve ipucu şeridi yok */
+.etk .etk-ipucu{display:none!important}
+.etk .etk-roz{width:30px;height:30px;padding:0;border-radius:50%;background:color-mix(in srgb,var(--vurgu) 10%,transparent);border:0;display:grid;place-items:center;gap:0;font-size:0;transition:background .25s,transform .25s}
+.etk .etk-roz::before{content:none}
+.etk .etk-roz::after{content:"›";font:600 20px/1 var(--baslik);color:var(--vurgu);transform:translateX(1px)}
+.etk:hover .etk-roz,.etk.odakli .etk-roz{background:var(--vurgu);transform:translateX(2px)} .etk:hover .etk-roz::after,.etk.odakli .etk-roz::after{color:#fff}
+.etk .devam{display:none}
+.bk .devam{display:block;font-family:var(--mono);font-size:.8rem;color:var(--vurgu)}
+.etk.kesfet .etk-roz{animation:roz-sez 1.4s ease-in-out 2}   /* görünür alana ilk girişte okun bir-iki kez hafif kıpırdaması */
+@keyframes roz-sez{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+.bk .etk-roz{top:auto;bottom:12px;right:12px}
+.ses,.olay-k,.kart p,.akis-k{user-select:none;-webkit-user-select:none}
