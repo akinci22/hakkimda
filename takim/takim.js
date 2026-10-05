@@ -127,18 +127,19 @@ function odakYerlestir() {
   if (P) { const p = 10, x1 = r.left - p - g.left, y1 = r.top - p - g.top, x2 = r.right + p - g.left, y2 = r.bottom + p - g.top;
     P.style.clipPath = `polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,${x1}px ${y1}px,${x1}px ${y2}px,${x2}px ${y2}px,${x2}px ${y1}px,${x1}px ${y1}px)`; }
   const pan = (!IC && vw >= 1180) ? $('.panel') : null, sag = pan ? pan.getBoundingClientRect().left : vw;   /* bağımsız sayfada sağ panelin üstüne yazılmaz */
+  const ub = $('.ust') ? $('.ust').getBoundingClientRect() : null, U = Math.max(0, ub && ub.top < 4 ? ub.bottom : 0);   /* yapışkan aşama çubuğunun altına yerleşir, üstüne binmez */
   const B = 36, cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2, genis = Math.min(980, sag - 2 * B);
   const bolge = [
-    { ad: 'sag', w: sag - r.right - 2 * B, h: vh - 2 * B, x: r.right + B, yan: true },
-    { ad: 'sol', w: r.left - 2 * B, h: vh - 2 * B, x: B, yan: true },
+    { ad: 'sag', w: sag - r.right - 2 * B, h: vh - U - 2 * B, x: r.right + B, yan: true },
+    { ad: 'sol', w: r.left - 2 * B, h: vh - U - 2 * B, x: B, yan: true },
     { ad: 'alt', w: genis, h: vh - r.bottom - 2 * B, y: r.bottom + B },
-    { ad: 'ust', w: genis, h: r.top - 2 * B, y: B },
+    { ad: 'ust', w: genis, h: r.top - U - 2 * B, y: U + B },
   ].map(b => Object.assign(b, { puan: Math.max(0, b.w) * Math.max(0, b.h) * (b.w < 300 || b.h < 160 ? .15 : 1) * (b.yan && b.w >= 380 ? 1.6 : 1) })).sort((a, b) => b.puan - a.puan)[0];
   k.style.setProperty('--oy', bolge.w < 400 ? '.74' : bolge.w < 540 ? '.86' : '1');   /* dar bölgede punto biraz küçülür, yine büyük */
   k.style.width = Math.max(220, bolge.w) + 'px'; k.style.maxHeight = Math.max(120, bolge.h) + 'px';
   const kh = k.offsetHeight, kw = k.offsetWidth; let x, y;
-  if (bolge.yan) { x = bolge.x; y = Math.min(Math.max(B, cy - kh / 2), vh - B - kh); }
-  else { x = Math.min(Math.max(B, cx - kw / 2), sag - B - kw); y = bolge.ad === 'alt' ? bolge.y : Math.max(B, r.top - B - kh); }
+  if (bolge.yan) { x = bolge.x; y = Math.max(U + B, Math.min(Math.max(U + B, cy - kh / 2), vh - B - kh)); }
+  else { x = Math.min(Math.max(B, cx - kw / 2), sag - B - kw); y = bolge.ad === 'alt' ? bolge.y : Math.max(U + B, r.top - B - kh); }
   k.style.left = (x - g.left) + 'px'; k.style.top = (y - g.top) + 'px';
 }
 function odakGoster(e, d) {

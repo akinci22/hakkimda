@@ -413,6 +413,7 @@ function kaydirDegis(k, src, yon) {
     var top = kok.scrollHeight - innerHeight, p = top > 0 ? Math.min(1, scrollY / top) : 0, ev = 0;
     for (var i = 0; i < sira.length; i++) { var s = document.getElementById(sira[i]); if (s && s.getBoundingClientRect().top < innerHeight * .5) ev = i; }
     if (p > .985) ev = 7;
+    var tu = document.getElementById("takim"), tr = tu && tu.getBoundingClientRect(); b.classList.toggle("hb-sakla", !!tr && tr.top < 90 && tr.bottom > 140);   /* takım bölümünün kendi aşama çubuğu var: bulut onun üstüne binmesin */
     if (b.dataset.evre != ev) { b.dataset.evre = ev; ad.textContent = adlar[ev]; }
     b.style.transform = "translateX(" + (window.hizaX ? window.hizaX(p) - 61 : p * (innerWidth - 120)).toFixed(1) + "px)"; b.firstChild.style.transform = "scale(" + (.85 + p * .3).toFixed(3) + ")";
   }
