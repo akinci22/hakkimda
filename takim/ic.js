@@ -35,7 +35,7 @@
   /* CSS uyarlama */
   let s = css
     .replace(/:root\b/g, ':host')
-    .replace(/(^|[^\w.#-])html\[data-(asama|grup)="([^"]+)"\]/g, '$1:host([data-$2="$3"])')
+    .replace(/(^|[^\w.#-])html\[data-(asama|grup|kime|kitle|derin)="([^"]+)"\]/g, '$1:host([data-$2="$3"])')
     .replace(/(^|[^\w.#-])html\.(sade|gomulu)\b/g, '$1:host(.$2)')
     .replace(/(^|[^\w.#-])html(?=[\s{,])/g, '$1:host')
     .replace(/(^|[^\w.#-])body(?=[\s{,.:])/g, '$1.govde');
@@ -49,7 +49,8 @@
 .govde.hepsi-acik .takim-main > section{content-visibility:visible}   /* hedefe kaydırırken üstteki bölümler gerçek boyuna açılır, hedef kaçmaz */
 .ray,.panel,#imlec,.ilerleme,.surpriz,.mobil-balon,.geri,.atla,.damla{display:none!important}
 .ust{top:var(--tk-ust,52px)} .ust-ad{margin-left:0}
-#perde,#odak-yazi,#ipucu{position:absolute}   /* :host contain:paint → fixed burada çalışmaz; takim.js içkin modda gövdeye göre konumlar */
+#perde,#odak-yazi,#ipucu{position:absolute}
+.yan-balon{display:block} #donus{display:none!important}   /* içkin: sağda sürekli balon; dönüş için ana sitenin bulutu */   /* :host contain:paint → fixed burada çalışmaz; takim.js içkin modda gövdeye göre konumlar */
 .govde,.govde a,.govde button{cursor:auto}
 /* içkin görünüm: krem-beyaz, yumuşak köşeler ve gölgeler (ana sitenin lacivertinden ayrışan açık tema) */
 :host{--kagit:#f8f5ee!important;--kagit-2:#efeadf!important;--panel-bg:#ffffff!important;--cizgi:rgba(31,42,46,.10);--cizgi-2:rgba(31,42,46,.18);--golge:0 1px 2px rgba(31,42,46,.05),0 10px 28px rgba(31,42,46,.08)}

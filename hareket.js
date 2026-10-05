@@ -502,6 +502,7 @@ function kaydirDegis(k, src, yon) {
     donY = scrollY; setTimeout(function () { g.hidden = false; requestAnimationFrame(function () { g.classList.add("acik"); }); }, 900);
   }, true);
   function gizle() { g.classList.remove("acik"); setTimeout(function () { if (!g.classList.contains("acik")) g.hidden = true; }, 400); }
+  window.__geriGoster = function (y) { donY = y; setTimeout(function () { if (donY === null) return; g.hidden = false; requestAnimationFrame(function () { g.classList.add("acik"); }); }, 900); };   // takım bölümü (gölge kök) içindeki atlamalar da aynı bulutu kullanır
   g.addEventListener("click", function () { if (donY === null) return; var y = donY; donY = null; gizle();
     scrollTo({ top: y, behavior: "smooth" }); });
   addEventListener("scroll", function () { if (donY !== null && !g.hidden && Math.abs(scrollY - donY) < 200) { donY = null; gizle(); } }, { passive: true });

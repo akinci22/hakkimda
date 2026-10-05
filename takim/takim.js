@@ -12,6 +12,8 @@ const $ = (s, k = KOK) => k.querySelector(s);
 const $$ = (s, k = KOK) => Array.from(k.querySelectorAll(s));
 const azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const dokunmatik = matchMedia('(pointer: coarse)').matches;
+/* v2 (5 Eki): ?kime=khsm|hoca → resmî görünüm (kanıt açık, anket/baloncuk yok, kuruluş özeti üstte). İçkin modda ana sayfanın adresinden okunur. */
+const KIME = (() => { try { const v = new URLSearchParams(location.search).get('kime') || ''; return /^(khsm|hoca)$/.test(v) ? v : ''; } catch (e) { return ''; } })();
 /* gömülü mod: ana sayfadaki pencerede açılınca geri bağlantısı gizlenir, ana siteye giden bağlantılar üst pencereyi hedefler */
 const gomulu = !IC && (new URLSearchParams(location.search).has('gomulu') || window.top !== window.self);
 if (gomulu) { document.documentElement.classList.add('gomulu'); document.addEventListener('click', e => { const a = e.target.closest('a[href^="../"]'); if (a) a.target = '_top'; }, true); }
@@ -22,7 +24,7 @@ const NS = 'http://www.w3.org/2000/svg';
 const svgEl = (t, a, txt) => { const n = document.createElementNS(NS, t); for (const [k, v] of Object.entries(a)) n.setAttribute(k, v); if (txt !== undefined) n.textContent = txt; return n; };
 
 const veri = {};
-const durum = { grup: ls('takim-grup') || '', eslesme: { evet: 0, toplam: 0 }, test: { dogru: 0, toplam: 0, set: 'mto' }, roller: [], etkilesim: 0, asama: 0 };
+const durum = { grup: ls('takim-grup') || '', kitle: ls('takim-kitle') || '', eslesme: { evet: 0, toplam: 0 }, test: { dogru: 0, toplam: 0, set: 'mto' }, roller: [], etkilesim: 0, asama: 0 };
 
 /* ---------------- ARKA UÇ ---------------- */
 class Yerel {
@@ -54,12 +56,12 @@ let arka;
 async function arkaKur() {
   const cfg = window.TAKIM_FIREBASE;
   if (cfg && cfg.apiKey) { try { const b = new Bulut(cfg); await b.init(); arka = b; return; } catch (e) { console.warn('Firebase başlatılamadı, yerel moda düşüldü', e); } }
-  arka = new Yerel(); $('#mod-rozet').hidden = false;
+  arka = new Yerel(); if (/[?&]test/.test(location.search)) $('#mod-rozet').hidden = false;
 }
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=5`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=7`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -184,8 +186,29 @@ function dallar(d) {
   return L;
 }
 const YUVALAR = [[79, 24], [79, 76], [21, 24], [21, 76], [50, 90], [50, 10]];   // kök etrafındaki dal yerleri (% x, % y)
+/* v2 (Akın 5 Eki): ayrıntı beyaz kutuda değil, doğrudan bulanık zeminin ÜSTÜNDE büyük yazıyla; altta kaynak bağlantıları. */
 function detayAc(d) {
   const D = $('#detay'); if (!D) return; GOVDE.classList.remove('odak'); $$('.odakli').forEach(x => x.classList.remove('odakli')); odakGizle();
+  $('#detay-ust').textContent = d.ust || 'ayrıntı';
+  const H = $('#harita'), S = $('#harita-cizgi'); if (S) S.replaceChildren(); H.replaceChildren(); D.classList.remove('dal-acik');
+  const par = String(d.uzun || '').split(/\n+/).map(p => p.trim()).filter(Boolean);
+  const kay = [...(d.kaynaklar || []), ...(d.link ? [{ ad: d.linkAd || 'bağlantı →', url: d.link }] : [])].filter(k => k && k.url);
+  const dallarL = Array.isArray(d.dallar) ? d.dallar : [];
+  H.append(el('div', { class: 'dm-ic' },
+    el('p', { class: 'dm-ust' }, d.ust || ''),
+    el('h3', { id: 'detay-baslik', class: 'dm-baslik' }, d.baslik || ''),
+    d.kisa ? el('p', { class: 'dm-kisa' }, d.kisa) : null,
+    par.length ? el('div', { class: 'dm-uzun' }, ...par.map((p, i) => el('p', { style: `--g:${200 + i * 80}ms` }, p))) : null,
+    dallarL.length ? el('ol', { class: 'dm-dal' }, ...dallarL.map(b => el('li', {}, el('b', {}, b.baslik), (b.alt || []).length ? ' ' + b.alt.join(' ') : ''))) : null,
+    kay.length ? el('p', { class: 'dm-kaynak' }, el('span', {}, kay.length > 1 ? 'Kaynaklar: ' : 'Kaynak: '), ...kay.flatMap((k, i) => [i ? ' · ' : '', el('a', { href: yol(k.url), target: /^https?:/.test(k.url) ? '_blank' : null, rel: 'noopener', onclick: k.url.startsWith('#') ? (e) => { e.preventDefault(); D.close(); git(k.url.slice(1)); } : null }, k.ad || k.url)])) : null,
+    el('button', { class: 'detay-alt', type: 'button', onclick: () => D.close() }, '✕ Kapat')));
+  terimSar(H); durum.etkilesim++;
+  D.classList.add('metin'); D.classList.toggle('dar', innerWidth < 860); D.scrollTop = 0; D._ciz = null;
+  if (typeof D.showModal === 'function') { if (!D.open) D.showModal(); } else D.setAttribute('open', '');
+}
+/* eski zihin haritası (v4); v2'de kullanılmıyor, geri dönüş için duruyor */
+function detayAcHarita(d) {
+  const D = $('#detay'); if (!D) return; GOVDE.classList.remove('odak'); $$('.odakli').forEach(x => x.classList.remove('odakli')); odakGizle(); D.classList.remove('metin');
   $('#detay-ust').textContent = d.ust || 'ayrıntı';
   const H = $('#harita'), S = $('#harita-cizgi'); H.replaceChildren(); S.replaceChildren(); D.classList.remove('dal-acik');
   const kok = el('button', { class: 'dugum kok', type: 'button', 'aria-label': 'Kök: ' + (d.baslik || '') }, el('span', { class: 'dugum-ust' }, 'kök'), el('h3', { id: 'detay-baslik' }, d.baslik || ''), el('p', {}, d.kisa || ''), el('span', { class: 'dugum-ip' }, dokunmatik ? 'aşağıdaki dallara dokun; açılır' : 'dallara tıkla'));
@@ -217,7 +240,7 @@ function detayAc(d) {
 }
 const DETAYLAR = {
   skewt: { ust: 'nasıl okunur', baslik: 'Skew-T diyagramı', kisa: 'Sondajın resmi: basınç yukarı doğru azalır, sıcaklık ekseni 45° eğiktir.', uzun: `Kırmızı çizgi sıcaklık (T), yeşil çizgi çiy noktası (Td). İkisi birbirine yaklaşınca hava doymuş, bulut var demektir; 28 Nisan'da 850 hPa civarında tam bu oluyor. Kesikli çizgiler Ömer'in Python'da adım adım (Runge-Kutta) kurduğu profil; düz çizgiler Kartal'dan kalkan gerçek radyosonde. Fark, dersteki denklemin doymuş hava varsayımından geliyor.\nSayfanın kendisi de bu diyagramdır: soldaki ray basınç ekseni, balon senin konumun, sağdaki panel okumalar.`, link: '../#arastirma', linkAd: 'Bulut projesinin tamamı →' },
-  daniel: { ust: 'vaka', baslik: 'Storm Daniel ve İstanbul seli', kisa: '5-6 Eylül 2023: Başakşehir ve Küçükçekmece\'de saatte 100 mm\'yi aşan yağış, can kaybı.', uzun: 'Yunanistan üzerinde kesilmiş bir alçak basınç (cut-off low) günlerce yerinde kaldı; Teselya\'ya rekor yağış bıraktı, sonra Libya\'da Derne barajlarını yıktı. İstanbul\'daki sel aynı sistemin kuzeydoğu kanadında, Marmara üstünde gelişen konvektif hücrelerden geldi.\nTezin sorusu: yüksek çözünürlüklü model (WRF) bu yağışı nerede ve ne kadar yanlış koydu; klasik olasılıklı düzeltme (EMOS) ile yapay zekâ katmanı bu hatayı ne kadar azaltır. Uydu kareleri NASA Worldview\'den, kamu malı.' },
+  daniel: { ust: 'vaka', baslik: 'Storm Daniel ve İstanbul seli', kisa: '5-6 Eylül 2023: Başakşehir ve Küçükçekmece\'de saatte 100 mm\'yi aşan yağış, can kaybı.', uzun: 'Yunanistan üzerinde kesilmiş bir alçak basınç (cut-off low) günlerce yerinde kaldı; Teselya\'ya rekor yağış bıraktı, sonra Libya\'da Derne barajlarını yıktı. İstanbul\'daki sel aynı sistemin kuzeydoğu kanadında, Marmara üstünde gelişen konvektif hücrelerden geldi.\nSorumuz: yüksek çözünürlüklü bir hava tahmini bu yağışı nerede ve ne kadar yanlış koydu; olasılıklı düzeltme ve yapay zekâ bu hatayı ne kadar azaltır. Uydu kareleri NASA Worldview\'den, kamu malı.' },
   grid: { ust: 'neden önemli', baslik: '28 km\'lik kutu', kisa: 'Küresel model İstanbul\'u 50 kutuya böler ve her kutuya tek bir değer verir.', uzun: 'Boğaz, tepeler, deniz etkisi, şehir ısı adası: hepsi tek kutunun içinde kaybolur. Model Ayazağa ile Kadıköy\'e aynı sıcaklığı verebilir. Bu yüzden "tahmin düzeltme" diye bir iş var: kutunun değerini o kutudaki gerçek istasyonlara göre düzeltmek.\nBasamak 1\'de bu kutu için günlük hatayı ölçüyoruz; basamak 2-4\'te düzeltiyoruz. Yapay zekâ modelleri (GraphCast, AIFS) de aynı 0,25° gridde çalışır; onların da düzeltmeye ihtiyacı var.' }
 };
 
@@ -230,7 +253,65 @@ function sesYerlestir() {
   const M = veri.metinler; const harita = { acilis: [M.acilis.hirsli, M.acilis.rahat], sana: M.sana ? [M.sana.hirsli, M.sana.rahat] : null, bolumler: [M.bolumler.hirsli, M.bolumler.rahat], gercekcilik: [M.gercekcilik.hirsli, M.gercekcilik.rahat] };
   $$('.ses[data-ses]').forEach(k => { const p = harita[k.dataset.ses]; if (p) k.replaceWith(ses(p[0], p[1])); });
 }
-function acilis() { const M = veri.metinler.acilis; $('#acilis-sayilar').replaceChildren(...M.sayilar.map(s => { const d = el('button', { class: 'sayi', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ ust: 'rakamın hikâyesi', baslik: s.s + ' ' + s.e, kisa: s.e, uzun: s.detay })); return d; })); $$('figure[data-detay]').forEach(f => etkilesim(f, () => DETAYLAR[f.dataset.detay])); }
+/* açılış v2: paragraf yok — başlık, tek satır vaat, kitle seçimi, zaman rozetleri, aranan bölümler */
+function acilis() {
+  const M = veri.metinler.acilis;
+  const v = $('#acilis-vaat'); if (v) v.textContent = M.vaat || '';
+  const al = $('#acilis-alt'); if (al) al.textContent = M.alt || '';
+  const ip = $('#acilis-ipucu'); if (ip && M.ipucu) ip.textContent = M.ipucu;
+  const bn = $('#balon-not'); if (bn) bn.textContent = M.balonNot || '';   /* hPa metaforu bir kez, açılışta açıklanır */
+  const Z = M.zaman || M.sayilar || [];
+  $('#acilis-sayilar').replaceChildren(...Z.map(s => { const d = el('button', { class: 'sayi', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ ust: 'ne kadar zaman', baslik: s.s + ' · ' + s.e, kisa: s.e, uzun: s.detay })); return d; }));
+  const A = $('#arananlar'); if (A && Array.isArray(M.arananlar)) {   /* ilk 7 bölüm görünür, kalanı tek düğmeyle açılır (telefonda 3-4 satır tutmasın) */
+    const cip = a => el('button', { class: 'ar', type: 'button', 'data-k': a.k, onclick: () => bolumeGit(a.k) }, a.ad);
+    const ilk = M.arananlar.slice(0, 7), kalan = M.arananlar.slice(7);
+    const daha = kalan.length ? el('button', { class: 'ar ar-daha', type: 'button', 'aria-expanded': 'false', onclick: (e) => { e.currentTarget.replaceWith(...kalan.map(cip)); } }, `+${kalan.length} bölüm`) : null;
+    A.replaceChildren(el('span', { class: 'ar-ust' }, M.arananBaslik || 'Aranıyor:'), ...ilk.map(cip), daha); }
+  girisKur();
+  $$('figure[data-detay]').forEach(f => etkilesim(f, () => DETAYLAR[f.dataset.detay]));
+}
+/* kitle: "meteorolojide okuyorum / başka bölümdeyim" — ton aynı; bölüm kartlarının sırası, atölyelerin açıklığı ve 5 soru seti değişir */
+function girisKur() {
+  const G = veri.metinler.giris, S = $('#giris-sec'); if (!G || !S) { const g = $('#giris'); if (g) g.hidden = true; return; }
+  $('#giris-soru').textContent = G.soru || '';
+  S.replaceChildren(...G.secenekler.map(o => el('button', { class: 'giris-b', type: 'button', role: 'radio', 'aria-checked': String(durum.kitle === o.id), 'data-id': o.id, onclick: () => kitleSec(o.id) }, el('b', {}, o.etiket), o.alt ? el('span', {}, o.alt) : null)));
+}
+let testSetSec = null;
+function kitleSec(id, sessiz) {
+  durum.kitle = id; ls('takim-kitle', id); KOKEL.dataset.kitle = id;
+  $$('.giris-b').forEach(b => b.setAttribute('aria-checked', String(b.dataset.id === id)));
+  katliAyarla('anlatilar', id === 'mto' || !!KIME);
+  bolumler();
+  if (testSetSec && durum.test.toplam === 0) testSetSec(id === 'dis' ? 'misafir' : 'mto');
+  if (!sessiz) { durum.etkilesim++; setTimeout(() => git(id === 'dis' ? 'bolumler' : 'olay'), 250); }
+}
+function bolumeGit(k) {
+  const c = $(`#bolum-kartlar .bk[data-k="${k}"]`); if (!c) { git('bolumler'); return; }
+  gitEl(c, 120); c.classList.remove('isaret'); void c.offsetWidth; c.classList.add('isaret'); setTimeout(() => c.classList.remove('isaret'), 2600);
+}
+/* katlanan bloklar: genel görünümde kapalı, kapak kartıyla açılır; resmî görünümde (kime) hepsi açık */
+function katliAyarla(grup, acik) {
+  $$(`section[data-katli="${grup}"]`).forEach(s => s.classList.toggle('acik', acik));
+  if (grup === 'derin') { if (acik) KOKEL.dataset.derin = 'acik'; else delete KOKEL.dataset.derin; }
+  const b = $(`#${grup}-ac`); if (b) b.setAttribute('aria-expanded', String(acik));
+}
+function katliKur() {
+  const M = veri.metinler, A = veri.anket.anlatilar || {};
+  const yaz = (id, t) => { const e = $(id); if (e) e.textContent = t || ''; };
+  yaz('#merdiven-kapak-b', (M.merdiven && M.merdiven.baslik) || 'Ne yapacağız: 6 adım'); yaz('#merdiven-kapak-m', (M.merdiven && M.merdiven.kapak) || 'Hatayı ölçmekten yapay zekâya: adım adım yol haritası.');
+  yaz('#anlatilar-kapak-b', A.baslik || 'Atmosfer Anlatıları'); yaz('#anlatilar-kapak-m', A.kapak || 'Öğrenci zor bir dersin kolay bir parçasını 10-20 dakikada anlatır; video kalır.');
+  const D = M.derin || { baslik: 'Meraklısına: kanıt ve ayrıntı', alt: 'Kanıt, karne ve kaynaklar burada.', icerik: ['Canlı tahmin karnesi', 'Yapılmış işler', 'Takımların yaşı ve bütçesi', 'Kaynaklar ve tam tablolar'] };
+  yaz('#derin-baslik', D.baslik); yaz('#derin-alt', D.alt); const L = $('#derin-icerik'); if (L) L.replaceChildren(...(D.icerik || []).map(x => el('li', {}, x)));
+  ['merdiven', 'anlatilar', 'derin'].forEach(g => { const b = $(`#${g}-ac`); if (b) b.addEventListener('click', () => { const ac = b.getAttribute('aria-expanded') !== 'true'; katliAyarla(g, ac); durum.etkilesim++; }); });
+  katliAyarla('derin', !!KIME); katliAyarla('merdiven', !!KIME); katliAyarla('anlatilar', !!KIME || durum.kitle === 'mto');
+}
+/* resmî görünüm: KHŞM ve hocalar için kuruluş özeti (yalnız ?kime=… ile görünür) */
+function resmi() {
+  const R = veri.metinler.resmi, H = veri.metinler.hoca; if (!KIME || !R || !$('#resmi')) return;
+  $('#resmi-baslik').textContent = R.baslik || ''; $('#resmi-alt').textContent = R.alt || '';
+  $('#resmi-satirlar').replaceChildren(...(R.satirlar || []).flatMap(x => [el('dt', {}, x.k), el('dd', {}, yerDoldur(x.m))]));
+  if (H) { $('#hoca-baslik').textContent = H.baslik || ''; $('#hoca-alt').textContent = H.alt || ''; $('#hoca-maddeler').replaceChildren(...(H.maddeler || []).map(x => el('li', {}, x))); }
+}
 function olay() {
   const O = veri.metinler.olay; if (!O) return; $('#olay-baslik').textContent = O.baslik;
   $('#olay-kartlar').replaceChildren(...O.satirlar.map(s => { const k = el('button', { class: 'olay-k', type: 'button' }, el('span', { class: 'k' }, s.k), el('p', { class: 'm' }, s.m)); etkilesim(k, () => ({ ust: 'olay ne · ' + s.k, baslik: s.k, kisa: s.m, uzun: s.detay })); return k; }));
@@ -246,7 +327,8 @@ function akis() {
 }
 function kapi() {
   const K = veri.anket.kapi; $('#kapi-soru').textContent = K.soru; const ikon = { pasif: '☁', orta: '⛅', hirsli: '⚡' };
-  $('#kapi-kartlar').replaceChildren(...K.secenekler.map(s => { const k = el('button', { class: 'kapi', type: 'button', role: 'radio', 'aria-checked': String(durum.grup === s.id), 'data-id': s.id, onclick: () => grupSec(s.id) }, el('span', { class: 'k-ikon' }, ikon[s.id]), el('b', {}, s.etiket), el('span', {}, s.alt));
+  $('#kapi-kartlar').replaceChildren(...K.secenekler.map(s => { const sat = [['ne yaparsın', s.ne], ['kazancın', s.kazanc], ['zaman', s.saat]].filter(x => x[1]);
+    const k = el('button', { class: 'kapi', type: 'button', role: 'radio', 'aria-checked': String(durum.grup === s.id), 'data-id': s.id, onclick: () => grupSec(s.id) }, el('span', { class: 'k-ikon' }, ikon[s.id]), el('b', {}, s.etiket), s.alt ? el('span', { class: 'k-alt' }, s.alt) : null, sat.length ? el('dl', { class: 'k-satir' }, ...sat.flatMap(([a, b]) => [el('dt', {}, a), el('dd', {}, b)])) : null);
     ipucuBagla(k, () => ({ baslik: s.etiket, metin: s.detay || s.alt })); return k; }));
 }
 function grupSec(id) { durum.grup = id; ls('takim-grup', id); KOKEL.dataset.grup = id; $$('.kapi').forEach(k => k.setAttribute('aria-checked', String(k.dataset.id === id))); sonKart(); panelSen(); durum.etkilesim++; }
@@ -255,7 +337,7 @@ function vizyon() {
   const kv = el('div', { class: 'kart kart-vurgu' }, el('b', {}, V.vizyon.b), el('p', {}, V.vizyon.m)); etkilesim(kv, () => ({ ust: 'olay ne', baslik: V.vizyon.b, kisa: V.vizyon.m, uzun: V.vizyon.detay }));
   const km = el('div', { class: 'kart' }, el('b', {}, V.misyon.b), el('p', {}, V.misyon.m)); etkilesim(km, () => ({ ust: 'olay ne', baslik: V.misyon.b, kisa: V.misyon.m, uzun: V.misyon.detay }));
   $('#vizyon-kartlar').replaceChildren(kv, km);
-  $('#kollar').replaceChildren(...V.kollar.map(k => { const e = el('div', { class: 'kart' }, el('b', {}, k.b), el('p', {}, k.m), ses(k.hirsli, k.rahat)); etkilesim(e, () => ({ ust: 'iki kol', baslik: k.b, kisa: k.m, uzun: k.detay })); return e; }));
+  $('#kollar').replaceChildren(...V.kollar.map(k => { const e = el('div', { class: 'kart' }, el('b', {}, k.b), el('p', {}, k.m)); etkilesim(e, () => ({ ust: 'iki kol', baslik: k.b, kisa: k.m, uzun: [k.detay, k.hirsli ? 'Daha çok istiyorsan: ' + k.hirsli : '', k.rahat ? 'Az vaktin varsa: ' + k.rahat : ''].filter(Boolean).join('\n') })); return e; }));   /* v2: kart yüzünde iki ses yok, ayrıntıda */
 }
 function merdiven() {
   const M = veri.metinler.merdiven; $('#merdiven-baslik').textContent = M.baslik; $('#merdiven-alt').textContent = M.alt;
@@ -351,7 +433,7 @@ function test() {
     }));
     terimSar($('#test-sorular'));
   };
-  $$('.test-sec .sec').forEach(b => b.onclick = () => ciz(b.dataset.set)); ciz('mto');
+  $$('.test-sec .sec').forEach(b => b.onclick = () => ciz(b.dataset.set)); testSetSec = ciz; ciz(durum.kitle === 'dis' ? 'misafir' : 'mto');   /* v2: set, girişteki kitle seçimine göre */
 }
 /* oy kilidi: her anket cihaz başına bir kez (test modunda localStorage, canlıda Firebase anonim kimlik + create-only kural) */
 const kilitSatiri = () => el('p', { class: 'oy-kilit' }, '✓ Oyun kaydedildi · bu cihazdan bir kez · değiştirilemez');
@@ -379,25 +461,28 @@ function canli() { $('#canli-sorular').replaceChildren(...veri.anket.canli.map(c
 function anlatilar() {
   const A = veri.anket.anlatilar; $('#anlatilar-baslik').textContent = A.baslik;
   $('#anlatilar-adimlar').replaceChildren(...A.adimlar.map(a => { const li = el('li', { tabindex: 0 }, el('b', {}, a.b), el('span', {}, a.a)); etkilesim(li, () => ({ ust: 'atmosfer anlatıları · adım ' + a.n, baslik: a.b, kisa: a.a, uzun: a.detay })); return li; }));
-  $('#anlatilar-sorular').replaceChildren(...A.sorular.map(canliSoru));
+  $('#anlatilar-sorular').replaceChildren(...(KIME ? [] : A.sorular.map(canliSoru)));
 }
 const IKONLAR = {
   UCK: '<path d="M3 16l9-2 9 2M12 14V5l3 2M12 5L9 7M8 20h8"/>', UZB: '<circle cx="12" cy="12" r="4"/><path d="M2 12c0-2 4-3 10-3s10 1 10 3-4 3-10 3S2 14 2 12zM12 2v3M12 19v3"/>',
   BLG: '<rect x="5" y="5" width="14" height="14" rx="1"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>', YZV: '<circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><path d="M8 7l2 4M8 17l2-4M14 12h2"/>',
-  MAT: '<path d="M6 4h12L10 12l8 8H6"/>', FIZ: '<circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)"/>',
+  MAT: '<path d="M6 4h12L10 12l8 8H6"/>', MTO: '<path d="M7 17h10a4 4 0 0 0 0-8 5 5 0 0 0-9.5-1.5A3.5 3.5 0 0 0 7 17z"/><path d="M9 20l-1 2M13 20l-1 2M17 20l-1 2"/>',
+  MET: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 3v18M4 7.5l16 9M20 7.5l-16 9"/>', END: '<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a4 4 0 0 0 4-4V8M6 16V10a4 4 0 0 1 4-4h6"/>',
+  GEM: '<path d="M3 15h18l-3 5H6zM12 3v12M12 4l6 8h-6"/>', INS: '<path d="M2 18h20M4 18V10M20 18V10M4 10c4-5 12-5 16 0M8 18v-5M12 18v-6M16 18v-5"/>', FIZ: '<circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)"/>',
   CEV: '<path d="M12 21c-5 0-8-4-8-9 0-4 3-8 8-9 5 1 8 5 8 9 0 5-3 9-8 9zM12 21V9M12 13l-4-3M12 16l4-3"/>', EHB: '<path d="M12 21V9M6 9a8 8 0 0 1 12 0M3 6a12 12 0 0 1 18 0M9 9a4 4 0 0 1 6 0"/>',
   KON: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>', GEO: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>'
 };
 function ikon(k) { const t = document.createElement('template'); t.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${IKONLAR[k] || '<circle cx="12" cy="12" r="8"/>'}</svg>`; return t.content.firstChild; }
 function bolumler() {
   const M = veri.metinler.bolumler; $('#bolumler-baslik').textContent = M.baslik; $('#bolumler-alt').textContent = M.alt;
-  const B = veri.bolumler || [];
-  if (!B.length) { $('#bolum-kartlar').replaceChildren(el('div', { class: 'bos' }, '10 bölümün ders planı karşılaştırması derleniyor.')); return; }
-  $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button' }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum, el('span', { class: 'bk-k' }, b.k)),
-    el('div', { class: 'es' }, el('span', {}, 'senin'), el('span', {}, b.senin), el('span', {}, 'bizim'), el('span', {}, b.bizim), el('span', {}, 'ortak'), el('span', {}, b.ortakIs)),
-    (b.projeler || []).length ? el('ol', { class: 'bk-proje' }, (b.projeler || []).slice(0, 3).map(p => el('li', {}, p))) : null,
-    (b.projeler || []).length > 3 ? el('span', { class: 'devam' }, `+${b.projeler.length - 3} fikir daha`) : null);
-    etkilesim(k, () => ({ ust: 'başka bölümdensen · ' + b.k, baslik: b.bolum, kisa: `Senin: ${b.senin} · Bizim: ${b.bizim}`, uzun: `Ortak iş: ${b.ortakIs}.\n` + (b.projeler || []).map((p, i) => `${i + 1}. ${p}`).join('\n') + (b.hocaSayisi ? `\n${b.hocaSayisi} ilgili hoca bulundu.` : '\nİlgili hoca adları henüz derlenmedi; bölüm sitesinden bakılacak.') })); return k; }));
+  let B = (veri.bolumler || []).slice();
+  if (!B.length) { $('#bolum-kartlar').replaceChildren(el('div', { class: 'bos' }, 'Bölümlerin ders planı karşılaştırması derleniyor.')); return; }
+  const biz = B.filter(x => x.k === 'MTO'), oteki = B.filter(x => x.k !== 'MTO'); B = durum.kitle === 'mto' ? [...biz, ...oteki] : [...oteki, ...biz];   /* meteorolojiden gelen önce kendi kartını görür */
+  /* v2 (Akın 5 Eki): kart yüzünde paragraf yok — bölüm adı + büyük yazıyla tek, pratik örnek; dersler ve fikirler ayrıntıda */
+  $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum), el('p', { class: 'bk-yuz' }, b.yuz || b.ortakIs || ''));
+    etkilesim(k, () => ({ ust: 'başka bölümdensen · ' + b.bolum.replace(/\s*\(.*?\)\s*/g, ' ').replace(/ (Mühendisliği|Programı)$/, '').trim().toLowerCase(), baslik: b.bolum, kisa: b.yuz || b.ortakIs || '',
+      uzun: [b.detay, b.senin ? `Senin dersin: ${b.senin}.` : '', b.bizim ? `Bizdeki karşılığı: ${b.bizim}.` : '', b.ortakIs ? `Birlikte yapılabilecek: ${b.ortakIs}.` : '', (b.projeler || []).length ? 'Fikirler: ' + b.projeler.join(' · ') + '.' : ''].filter(Boolean).join('\n'),
+      kaynaklar: [...(b.kaynak ? [{ ad: 'İTÜ ders planı', url: b.kaynak }] : []), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] })); return k; }));
   $('#bolum-not').textContent = 'Kaynak: İTÜ ders planları ve bölüm siteleri. Tam tablo "Meraklısına" bölümünde.';
 }
 function gercek() {
@@ -420,10 +505,17 @@ function yasCubuklari(G) {
   S.append(svgEl('text', { x: L, y: H - 2 }, 'çubuk: kuruluştan bugüne · üçgen: kaynaklı ilk büyük derece · çubuğun üstünde dur'));
 }
 function neden() {
-  const M = veri.metinler.nedensimdi; $('#neden-baslik').textContent = M.baslik;
+  const M = veri.metinler.nedensimdi; $('#neden-baslik').textContent = M.baslik; const na = $('#neden-alt'); if (na) na.textContent = M.alt || '';
+  /* v2: üstte üç kilit kart (kredi · diploma · network), sade başlık; basınca bulanık zeminin üstünde ayrıntı + kaynak. Takvim ve sayı kartları "meraklısına"da. */
+  const kilit = (M.kartlar || []).slice(0, 3), takvim = M.takvim || (M.kartlar || [])[3];
+  $('#neden-kartlar').replaceChildren(...kilit.map((k, i) => { const e = el('div', { class: 'kart kilit-k', tabindex: 0 }, el('span', { class: 'kk-no', 'aria-hidden': 'true' }, String(i + 1).padStart(2, '0')), el('b', {}, k.b), el('p', {}, yerDoldur(k.m)));
+    etkilesim(e, () => ({ ust: (M.baslik || 'neden şimdi').toLowerCase(), baslik: k.b, kisa: yerDoldur(k.m), uzun: yerDoldur(k.detay || ''), kaynaklar: k.kaynaklar || [] })); return e; }));
+  const TK = $('#takvim-kart'); if (TK && takvim) { const e = el('div', { class: 'kart' }, el('b', {}, takvim.b), el('p', {}, yerDoldur(takvim.m))); etkilesim(e, () => ({ ust: 'takvim', baslik: takvim.b, kisa: yerDoldur(takvim.m), uzun: yerDoldur(takvim.detay || ''), kaynaklar: takvim.kaynaklar || [] })); TK.replaceChildren(e); }
+  nedenSayilar();
+}
+function nedenSayilar() {
   const S = (veri.sayilar || []).filter(s => s.sayi).slice(0, 8);
   $('#sayi-kartlar').replaceChildren(...(S.length ? S.map(s => { const e = el('div', { class: 'sk', tabindex: 0 }, el('b', {}, s.sayi), el('span', {}, s.etiket), s.kaynakUrl ? el('a', { href: s.kaynakUrl, target: '_blank', rel: 'noopener' }, s.kaynakAdi || 'kaynak') : null); etkilesim(e, () => ({ ust: 'sayı · güven: ' + (s.guven || '—'), baslik: s.sayi, kisa: s.etiket, uzun: `Kaynak: ${s.kaynakAdi || '—'}. Güven: ${s.guven === 'yuksek' ? 'yüksek — resmî sayfa 3 Ekim 2026\'da açılıp teyit edildi' : s.guven === 'orta' ? 'orta — ikincil kaynak ya da yeniden açılmadı' : '—'}.`, link: s.kaynakUrl, linkAd: 'kaynağı aç →' })); return e; }) : [el('div', { class: 'bos' }, 'Sayı kartları kaynaklarıyla derleniyor.')]));
-  $('#neden-kartlar').replaceChildren(...M.kartlar.map(k => { const e = el('div', { class: 'kart' }, el('b', {}, k.b), el('p', {}, yerDoldur(k.m)), ses(k.hirsli, k.rahat)); etkilesim(e, () => ({ ust: 'neden şimdi', baslik: k.b, kisa: yerDoldur(k.m), uzun: k.detay })); return e; }));
 }
 let kufurVeri;
 const sadele = s => s.toLowerCase().replace(/ş/g, 's').replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/İ/g, 'i');
@@ -449,7 +541,8 @@ function baloncuk() {
     try { await arka.balonEkle(b); T.textContent = B.tesekkur; ta.value = ''; $('#balon-sayac').textContent = '0/200'; durum.etkilesim++; } catch (err) { T.textContent = 'Gönderilemedi. Bir daha dene.'; }
   });
   const G = $('#gok'); let ilk = true; const gorulen = new Set();
-  arka.balonDinle(l => {
+  const tohum = (B.seed || []).filter(x => x.onay === 'tamam').map((x, i) => ({ id: 'tohum-' + i, gorunum: 'isim', ...x, ts: 0 }));   /* ilk baloncuk: kurucunun kendi cümlesi — yalnız Akın onayladıysa (onay: "tamam"); yalnız ekranda, veritabanına yazılmaz */
+  arka.balonDinle(l0 => { const l = [...l0, ...tohum.filter(t => !l0.some(x => x.metin === t.metin))];
     if (!l.length) { G.replaceChildren(el('div', { class: 'gok-bos' }, 'Henüz kimse bir şey söylemedi.\nİlk baloncuk seninki olsun.')); return; }
     G.replaceChildren(...l.slice(0, 40).map((b, i) => { const yeni = !ilk && !gorulen.has(b.id); gorulen.add(b.id);
       const kim = [b.gorunum === 'isim' && b.ad ? b.ad : 'anonim', b.org, b.unvan, b.grup].filter(Boolean).join(' · '); const h = [...(b.id || String(i))].reduce((a, c) => a + c.charCodeAt(0), 0);
@@ -475,21 +568,40 @@ function sonKart() {
   if (durum.eslesme.toplam) satirlar.push(`kaydırma eşleşmesi %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}`);
   if (durum.test.toplam) satirlar.push(`bilgi testi ${durum.test.dogru}/${durum.test.toplam}`);
   if (durum.roller.length) satirlar.push('rol: ' + durum.roller.join(', '));
-  K.replaceChildren(...[el('p', { class: 'yorum' }, S.baslik), kural ? el('p', { class: 'rol' }, kural.rol) : el('p', { class: 'kilitli' }, "aşama 4'te sana yakın olanı seçince burada sana göre bir rol çıkar"), el('p', {}, kural ? kural.metin : 'Üç seçenekten biri yeter.'), satirlar.length ? el('p', { class: 'kilitli' }, satirlar.join(' · ')) : null].filter(Boolean));
+  K.replaceChildren(...[el('p', { class: 'yorum' }, S.baslik), kural ? el('p', { class: 'rol' }, kural.rol) : el('p', { class: 'kilitli' }, "aşama 2'de sana yakın olanı seçince burada sana göre bir rol çıkar"), el('p', {}, kural ? kural.metin : 'Üç seçenekten biri yeter.'), satirlar.length ? el('p', { class: 'kilitli' }, satirlar.join(' · ')) : null].filter(Boolean));
   const M = veri.metinler.kapanis; $('#son-ozet').replaceChildren(ses(M.hirsli, M.rahat));
   $('#son-cta').replaceChildren(...S.cta.map((c, i) => el('a', { class: i === 0 ? 'birincil' : '', href: c.href }, c.etiket)));
 }
 
 /* ---------------- PANEL · RAY · AŞAMA ---------------- */
-const ASAMA_ADI = { 0: ['Tropopoz', 'Balon patladı, iniş başlıyor: olay ne, akış ne.'], 1: ['Olay ne', 'Vizyon, misyon, iki kol.'], 2: ['Ne yapacağız', '6 basamak ve sel vakası.'], 3: ['Kanıt', 'Canlı karne ve yapılmış işler.'], 4: ['Sen', 'Seçim, kaydırma, 5 soru.'], 5: ['Başka bölüm', 'Senin dersin ↔ bizim dersimiz.'], 6: ['Gerçekçilik', 'Takım yaşları ve neden şimdi.'], 7: ['Anketler', 'Ne olsa gelirsin, anlatılar.'], 8: ['Söz senin', 'Baloncuk, kaynaklar, rolün.'] };
+/* v2 sırası (Akın 5 Eki): önce çekim (kısaca · neden şimdi · sen · başka bölüm), sonra ne yapıyoruz, kanıt katlı, anketler sonda. metinler.json "asamalar" varsa onu kullanır. */
+const ASAMA_ADI = { 0: ['Başlangıç', 'Kısaca: ne yapıyoruz, sana ne var, kaç saat.'], 1: ['Neden şimdi', 'Kredi, diploma, network.'], 2: ['Sen', 'Hangisi sana yakın?'], 3: ['Başka bölüm', 'Senin dersin ↔ bizim işimiz.'], 4: ['Ne yapıyoruz', 'İki kol, 6 adım, atölyeler.'], 5: ['Meraklısına', 'Kanıt, karne, kaynaklar.'], 6: ['Anketler', 'Kaydır, 5 soru, oy ver.'], 7: ['Söz senin', 'Baloncuk, bize katıl.'] };
+function asamaYukle() { const A = veri.metinler.asamalar;
+  if (A) { Object.entries(A).forEach(([n, v]) => { if (!Array.isArray(v)) return; ASAMA_ADI[n] = [v[0], v[1] || '']; if (v[2]) ASAMA_NE[n] = v[2]; }); $$('.asama-baslik').forEach(h => { const v = A[h.dataset.asama]; const b = h.querySelector('b'); if (v && b) b.textContent = v[0]; }); }
+  const pa = $('#p-ad'), pm = $('#p-m'); if (pa) pa.textContent = ASAMA_ADI[0][0]; if (pm) pm.textContent = ASAMA_ADI[0][1]; }
 const basincTen = p => 1000 * Math.pow(0.1, p);                       /* 0→1000 hPa, 1→100 hPa (log) */
 const yukseklik = P => 44330 * (1 - Math.pow(P / 1013.25, 0.1903));  /* standart atmosfer, m */
-function panelSen() { const s = []; s.push(durum.grup ? `Seçimin: ${(veri.anket.kapi.secenekler.find(x => x.id === durum.grup) || {}).etiket || durum.grup}.` : 'Henüz seçim yapmadın (500 hPa).'); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
+function panelSen() { const s = []; s.push(durum.grup ? `Seçimin: ${(veri.anket.kapi.secenekler.find(x => x.id === durum.grup) || {}).etiket || durum.grup}.` : 'Henüz seçim yapmadın (300 hPa).'); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
+/* kaldığın yere dön (Akın 5 Eki): şerit/akış/ray ile uzağa atlayınca, eski yere tek tıkla dönüş. İçkin modda ana sitenin "Kaldığın yere dön" bulutu kullanılır. */
+let donusY = null;
+function donusGoster(y) {
+  if (IC) { if (window.__geriGoster) window.__geriGoster(y); return; }
+  const b = $('#donus'); if (!b) return; donusY = y; setTimeout(() => { if (donusY == null) return; b.hidden = false; requestAnimationFrame(() => b.classList.add('acik')); }, 900);
+}
+function donusKur() {
+  const b = $('#donus'); if (!b || IC) return; const gizle = () => { donusY = null; b.classList.remove('acik'); setTimeout(() => { if (!b.classList.contains('acik')) b.hidden = true; }, 350); };
+  b.addEventListener('click', () => { if (donusY == null) return; const y = donusY; gizle(); kaydirHedef(y); });
+  addEventListener('scroll', () => { if (donusY != null && !b.hidden && Math.abs(scrollY - donusY) < 200) gizle(); }, { passive: true });
+}
+function gitEl(h, pay = 70) { if (!h) return; const y = h.getBoundingClientRect().top + scrollY - pay; if (Math.abs(y - scrollY) > innerHeight) donusGoster(scrollY);
+  if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); return; } kaydirHedef(y); }
 function git(id) { const h = KOK.getElementById(id); if (!h) return;
+  if (h.dataset.katli && !h.getClientRects().length) katliAyarla(h.dataset.katli, true);   /* katlı bir bölüme gidiliyorsa önce aç */
+  if (Math.abs(h.getBoundingClientRect().top - 70) > innerHeight) donusGoster(scrollY);
   if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); GOVDE._hz = setTimeout(() => GOVDE.classList.remove('hepsi-acik'), 2500); }   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
   const y = h.getBoundingClientRect().top + scrollY - 70; if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { const d = h.getBoundingClientRect().top - 70; if (Math.abs(d) > 4) { if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 }); else scrollBy({ top: d, behavior: 'smooth' }); } }, 1400);   /* geç yüklenen görseller kaydırdıysa ince ayar */ return; } kaydirHedef(y); }
 function ilerleme() {
-  const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'); const bloklar = $$('main > section[data-asama], .takim-main > section[data-asama]');
+  const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'), ybIc = $('#yan-balon .yb-ic'); const bloklar = $$('main > section[data-asama], .takim-main > section[data-asama]');
   const g = () => { const h = KOKEL; let p;
     if (IC) { const r = KOKEL.getBoundingClientRect(); p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - innerHeight))); }   /* içkin: bölümün görünür alandaki ilerlemesi */
     else { const d = document.documentElement; p = Math.min(1, Math.max(0, d.scrollTop / Math.max(1, d.scrollHeight - d.clientHeight))); }
@@ -500,9 +612,10 @@ function ilerleme() {
     const P = basincTen(yuk * .7), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;   /* .7 → 1000…200 hPa aralığı */
     const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum) io.textContent = ok; const mb = $('#mb-okuma'); if (mb) mb.textContent = ok; const bn = $('#bb-not'); if (bn) bn.textContent = `${km.toFixed(0)} km · ${Math.round(P)} hPa · ` + (p < .02 ? 'balon tam şişkin' : p < .5 ? 'balon küçülüyor' : 'balon neredeyse yerde');
     const ph = $('#p-hpa'); if (ph) { ph.textContent = Math.round(P) + ' hPa'; $('#p-km').textContent = km.toFixed(1).replace('.', ',') + ' km'; $('#p-t').textContent = Math.round(T) + ' °C'; }
-    let aktif = 0; for (const b of bloklar) { if (b.getBoundingClientRect().top < innerHeight * .45) aktif = +b.dataset.asama; }
+    if (ybIc) { ybIc.style.transform = `translateY(-50%) scale(${(1 - p * .55).toFixed(3)})`; ybIc.style.opacity = p > .965 ? '0' : '1'; }   /* sağdaki balon: indikçe küçülür, yere yaklaşınca sahneyi zemindeki paraşüte bırakır */
+    let aktif = 0; for (const b of bloklar) { if (!b.getClientRects().length) continue; if (b.getBoundingClientRect().top < innerHeight * .45) aktif = +b.dataset.asama; }   /* katlı (görünmez) bölümler sayılmaz */
     if (aktif !== durum.asama) { durum.asama = aktif; h.dataset.asama = aktif; const [ad, m] = ASAMA_ADI[aktif]; $('#p-asama').textContent = aktif; $('#p-ad').textContent = ad; $('#p-m').textContent = m; $$('#serit button').forEach(b => { const n = +b.dataset.asama; b.classList.toggle('aktif', n === aktif); b.classList.toggle('gecti', n < aktif); }); }
-    const kalan = bloklar.filter(b => b.getBoundingClientRect().top > innerHeight).length;
+    const kalan = bloklar.filter(b => b.getClientRects().length && b.getBoundingClientRect().top > innerHeight).length;
     if (roz && rm) { if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Yerdesin: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🪂'; } else rm.textContent = `Yere inince: sana göre rol · ${kalan} seviye kaldı`; }
     inisKontrol(); };
   let gRaf = 0; const gK = () => { if (!gRaf) gRaf = requestAnimationFrame(() => { gRaf = 0; g(); }); };   /* kare başına en çok bir kez */
@@ -550,9 +663,9 @@ function kocKur() { return;   /* sözsüz etkileşim: öğretici kutu yok */
   const io = new IntersectionObserver(es => { if (es[0].isIntersecting) k.classList.add('goster'); }, { threshold: .6 }); io.observe(hedef);
 }
 /* genelden özele: her aşama başlığının altında 'burada ne var' cümlesi */
-const ASAMA_NE = { 1: 'Büyük resim: ne yapıyoruz, neden, nasıl. Ayrıntıya girmeden önce burayı oku.', 2: 'Planın kendisi: 6 basamak ve bir gerçek vaka (2023 İstanbul seli).', 3: 'Lafta kalmasın: canlı tahmin karnesi ve şimdiye kadar yapılmış işler.', 4: 'Sıra sende: kendini tanımla, 10 kartı kaydır, 5 soruluk mini test.', 5: 'Meteoroloji dışındaysan: senin dersinle bizimki nerede kesişiyor.', 6: 'Dürüst beklenti: öteki takımlar kaç yaşında, biz neden şimdi başlıyoruz.', 7: 'Oy ver: neyi görmek istersin, hangi dersi anlatmak istersin. Her oy bir kez.', 8: 'Mesaj bırak, kaynaklara bak, sana göre rolü gör.' };
+const ASAMA_NE = { 1: 'Bu iş neden şimdi değerli: ders dışı kredi, diplomanın yetmemesi, seni hatırlayacak insanlar.', 2: 'Sana uyan yolu seç: izle, ara ara katıl ya da çekirdekte ol.', 3: 'Meteoroloji dışındaysan: senin dersinle bizim işimiz nerede buluşuyor.', 4: 'Ne yapacağız: iki kol, 6 adımlık yol haritası ve ders atölyeleri.', 5: 'Merak edene kanıt ve ayrıntı: canlı karne, yapılmış işler, kaynaklar.', 6: 'Oy ver: neyi görmek istersin. Her oy bir kez.', 7: 'Mesaj bırak, sana göre rolü gör, bize katıl.' };
 function asamaNe() { $$('.asama-baslik').forEach(h => { const n = +h.dataset.asama; const t = ASAMA_NE[n]; if (t && !h.querySelector('.asama-ne')) h.append(el('span', { class: 'asama-ne' }, t)); }); }
-function detayKur() { const D = $('#detay'); if (!D) return; $('#detay-kapat').addEventListener('click', () => D.close()); D.addEventListener('click', e => { if (e.target === D) D.close(); }); addEventListener('resize', () => { if (D.open) { D.classList.toggle('dar', innerWidth < 860); D._ciz && D._ciz(); } }); }
+function detayKur() { const D = $('#detay'); if (!D) return; $('#detay-kapat').addEventListener('click', () => D.close()); D.addEventListener('click', e => { if (e.target === D || (D.classList.contains('metin') && (e.target.id === 'detay-ic' || e.target.id === 'harita'))) D.close(); });   /* metin görünümü: yazının dışındaki boşluğa tıklayınca kapanır */ addEventListener('resize', () => { if (D.open) { D.classList.toggle('dar', innerWidth < 860); D._ciz && D._ciz(); } }); }
 /* iniş: fırlatma noktası ekrana girince imleç balonu oraya uçar, "bize katıl" yazar; tıklanır. Nokta ekrandan çıkınca imleç geri gelir. */
 let inisDurum = false;
 function inisKontrol() {
@@ -574,8 +687,11 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => { Z.
   await yukle();
   if (!veri.anket || !veri.metinler) { GOVDE.insertAdjacentHTML('afterbegin', '<p class="bos" style="margin:16px">Veri yüklenemedi (veri/*.json). Sayfayı bir sunucu üzerinden aç.</p>'); return; }
   if (durum.grup) KOKEL.dataset.grup = durum.grup;
+  if (durum.kitle) KOKEL.dataset.kitle = durum.kitle;
+  if (KIME) KOKEL.dataset.kime = KIME;
   await arkaKur();
-  acilis(); olay(); sana(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
-  terimSar(KOK); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma();
+  asamaYukle();
+  acilis(); resmi(); olay(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
+  katliKur(); terimSar(KOK); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
