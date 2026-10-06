@@ -621,22 +621,25 @@ function git(id) { const h = KOK.getElementById(id); if (!h) return;
   const y = h.getBoundingClientRect().top + scrollY - 70; if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { const d = h.getBoundingClientRect().top - 70; if (Math.abs(d) > 4) { if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 }); else scrollBy({ top: d, behavior: 'smooth' }); } }, 1400);   /* geç yüklenen görseller kaydırdıysa ince ayar */ return; } kaydirHedef(y); }
 function ilerleme() {
   const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'), ybIc = $('#yan-balon .yb-ic'); const bloklar = $$('main > section[data-asama], .takim-main > section[data-asama]');
+  let yukSon = -1;   /* --yuk/--yukp kökte: her yazım tüm sayfayı yeniden stiller → yalnız %1'lik adımlarda yazılır (renk farkı gözle seçilmez) */
   const g = () => { const h = KOKEL; let p;
+    /* akıcılık: önce tüm okumalar (yerleşim), sonra yazımlar → kare başına zorunlu yeniden yerleşim yok */
+    let aktif = 0; for (const b of bloklar) { if (!b.getClientRects().length) continue; if (b.getBoundingClientRect().top < innerHeight * .45) aktif = +b.dataset.asama; }   /* katlı (görünmez) bölümler sayılmaz */
+    const kalan = bloklar.filter(b => b.getClientRects().length && b.getBoundingClientRect().top > innerHeight).length;
+    inisKontrol();
     if (IC) { const r = KOKEL.getBoundingClientRect(); p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - innerHeight))); }   /* içkin: bölümün görünür alandaki ilerlemesi */
     else { const d = document.documentElement; p = Math.min(1, Math.max(0, d.scrollTop / Math.max(1, d.scrollHeight - d.clientHeight))); }
     if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
     const yuk = 1 - p;                                                   /* iniş: sayfa başı tropopoz (yuk=1), sonu yüzey (yuk=0) */
-    if (!IC) { h.style.setProperty('--yuk', yuk.toFixed(3)); h.style.setProperty('--yukp', (yuk * 100).toFixed(1) + '%'); }   /* içkin: zemin sabit, değişken yazılmaz (yeniden boyama yok) */
+    if (!IC) { const yq = Math.round(yuk * 100); if (yq !== yukSon) { yukSon = yq; h.style.setProperty('--yuk', (yq / 100).toFixed(2)); h.style.setProperty('--yukp', yq + '%'); } }   /* içkin: zemin sabit, değişken yazılmaz (yeniden boyama yok) */
     if (balon) balon.style.top = (18 + p * 72).toFixed(1) + '%';
     const P = basincTen(yuk * .7), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;   /* .7 → 1000…200 hPa aralığı */
     const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum) io.textContent = ok; const mb = $('#mb-okuma'); if (mb) mb.textContent = ok; const bn = $('#bb-not'); if (bn) bn.textContent = `${km.toFixed(0)} km · ${Math.round(P)} hPa · ` + (p < .02 ? 'balon tam şişkin' : p < .5 ? 'balon küçülüyor' : 'balon neredeyse yerde');
     const ph = $('#p-hpa'); if (ph) { ph.textContent = Math.round(P) + ' hPa'; $('#p-km').textContent = km.toFixed(1).replace('.', ',') + ' km'; $('#p-t').textContent = Math.round(T) + ' °C'; }
     if (ybIc) { ybIc.style.transform = `translateY(-50%) scale(${(1 - p * .55).toFixed(3)})`; ybIc.style.opacity = p > .965 ? '0' : '1'; }   /* sağdaki balon: indikçe küçülür, yere yaklaşınca sahneyi zemindeki paraşüte bırakır */
-    let aktif = 0; for (const b of bloklar) { if (!b.getClientRects().length) continue; if (b.getBoundingClientRect().top < innerHeight * .45) aktif = +b.dataset.asama; }   /* katlı (görünmez) bölümler sayılmaz */
     if (aktif !== durum.asama) { durum.asama = aktif; h.dataset.asama = aktif; const [ad, m] = ASAMA_ADI[aktif]; $('#p-asama').textContent = aktif; $('#p-ad').textContent = ad; $('#p-m').textContent = m; $$('#serit button').forEach(b => { const n = +b.dataset.asama; b.classList.toggle('aktif', n === aktif); b.classList.toggle('gecti', n < aktif); }); }
-    const kalan = bloklar.filter(b => b.getClientRects().length && b.getBoundingClientRect().top > innerHeight).length;
     if (roz && rm) { if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Yerdesin: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🪂'; } else rm.textContent = `Yere inince: sana göre rol · ${kalan} seviye kaldı`; }
-    inisKontrol(); };
+    };
   let gRaf = 0; const gK = () => { if (!gRaf) gRaf = requestAnimationFrame(() => { gRaf = 0; g(); }); };   /* kare başına en çok bir kez */
   addEventListener('scroll', gK, { passive: true }); addEventListener('resize', gK); g();
 }
@@ -647,13 +650,14 @@ function ray() {
 }
 /* yumuşak tekerlek: hız sınırlı, yumuşatılmış kaydırma (fare/trackpad); dokunmatik ve hareket-azalt etkilenmez */
 let hedefY = null, kayRaf = 0;
-function kaydirHedef(y) { hedefY = Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight)); if (!kayRaf) kayRaf = requestAnimationFrame(kaydirAdim); }
+function kaydirHedef(y) { kaydirDur(); scrollTo({ top: Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight)), behavior: azalt ? 'auto' : 'smooth' }); }   /* akıcılık: tarayıcının kendi yumuşak kaydırması (kompozitörde, ana iş parçacığını beklemez); eski rAF yolu kaydirAdim yedek */
 let kayTakil = 0;
 function kaydirDur() { if (kayRaf) cancelAnimationFrame(kayRaf); kayRaf = 0; hedefY = null; kayTakil = 0; }
 function kaydirAdim() { if (hedefY == null) { kayRaf = 0; return; } const cur = scrollY; const fark = hedefY - cur; if (Math.abs(fark) < .6 || kayTakil > 6) { if (kayTakil <= 6) scrollTo(0, hedefY); kaydirDur(); return; } scrollTo(0, cur + fark * .11); kayTakil = Math.abs(scrollY - cur) < .3 ? kayTakil + 1 : 0; kayRaf = requestAnimationFrame(kaydirAdim); }
 /* dokunmatikte kullanıcı parmağını koyunca otomatik kaydırma bırakılır (adres çubuğu yüksekliği değişince hedefe ulaşılamayıp takılmasın) */
 addEventListener('touchstart', kaydirDur, { passive: true });
 function yumusakKaydirma() {
+  return;   /* akıcılık (6 Eki): tekerlek/klavye ele geçirilmez → tarayıcının yerel kaydırması (kompozitörde, 120 Hz'de takılmaz). Eski yol aşağıda duruyor. */
   if (dokunmatik || azalt || IC) return;
   addEventListener('wheel', e => { if (e.ctrlKey) return; const d = $('#detay'); if (d && d.open) return; if (e.target.closest('.tablo-sar, .serit, .panel, textarea')) return;
     if (gomulu) { const enAlt = scrollY >= document.documentElement.scrollHeight - innerHeight - 2; if ((e.deltaY < 0 && scrollY <= 0 && hedefY == null) || (e.deltaY > 0 && enAlt)) return; }   /* iframe'de uçlardayken dış sayfa kaysın */

@@ -5,7 +5,7 @@
   const host = document.getElementById('takim-ic'); if (!host || host.shadowRoot) return;
   const V = new URL(import.meta.url).searchParams.get('v') || '1';
   const al = async (u) => { const r = await fetch(u); if (!r.ok) throw new Error(u); return r.text(); };
-  let html, css;
+  let html, css; const akisP = al('takim/akis.css?v=' + V).catch(() => '');   /* akıcılık kuralları: en sona eklenir */
   try { [html, css] = await Promise.all([al('takim/index.html?v=' + V), al('takim/takim.css?v=' + V)]); }
   catch (e) { host.innerHTML = '<p style="padding:24px;font:600 1rem monospace">Takım bölümü yüklenemedi. <a href="takim/">Ayrı sayfada aç →</a></p>'; return; }
 
@@ -66,6 +66,7 @@
 .blok[data-hpa]::after{display:none} .ust-ad .prompt{display:none} #mod-rozet{display:none!important}
 .govde{background:linear-gradient(to bottom,var(--onceki,var(--kagit)) 0,var(--kagit) 200px)}
 `;
+  s += '\n' + (await akisP).replace(/(^|[^\w.#-])html(?=[\s{,])/g, '$1:host');
   const st = document.createElement('style'); st.textContent = s;
 
   const kok = host.attachShadow({ mode: 'open' }); kok.append(st, govde);
