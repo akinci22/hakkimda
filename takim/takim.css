@@ -764,3 +764,35 @@ body.odak-son #perde{background:rgba(248,245,238,.8);backdrop-filter:blur(12px) 
 #p-not .panel-ust{font-size:.82rem}
 #p-not .panel-m{font:700 1.22rem/1.38 var(--govde);margin:6px 0 12px;text-wrap:balance}
 #p-not-uzun p.md{font:500 1.06rem/1.45 var(--govde);margin:0 0 10px;color:var(--murekkep)}
+
+/* ===== Akın 6 Eki: SİMETRİ + madde düzeni. Başlıklar ortada, kart ızgaraları ortalı (son satır ortaya), kısa metin büyük, uzun metin madde ===== */
+.blok .seviye,.blok--ters .seviye{flex-direction:row;justify-content:center;text-align:center}
+.blok h2,.blok--ters h2{text-align:center;margin-inline:auto;text-wrap:balance}
+.blok>.sar>.alt,.blok>.sar>.not,.blok--ters .alt,.blok--ters .not{text-align:center;margin-inline:auto;max-width:62ch}
+.blok[data-hpa]::after,.blok--ters[data-hpa]::after{left:50%;right:auto;transform:translateX(-50%)}
+.asama-baslik{flex-direction:column;align-items:center;text-align:center;gap:4px}
+.asama-baslik::after{display:none}
+.asama-baslik .asama-ne{text-align:center;margin-inline:auto}
+.olay-kartlar,.sana-kartlar,.akis-kartlar,.kapi-kartlar,.kartlar-3,.bolum-kartlar,.adimlar{display:flex;flex-wrap:wrap;justify-content:center}
+.olay-kartlar>*,.sana-kartlar>*,.kapi-kartlar>*,.kartlar-3>*,.bolum-kartlar>*,.adimlar>*{flex:1 1 260px;max-width:calc((100% - 32px)/3)}
+.akis-kartlar>*{flex:1 1 220px;max-width:calc((100% - 30px)/4)}
+.kartlar-2,.ikili,.kollar{display:flex;flex-wrap:wrap;justify-content:center}
+.kartlar-2>*,.ikili>*,.kollar>*{flex:1 1 280px;max-width:calc((100% - 16px)/2)}
+.sayi-kartlar{display:flex;flex-wrap:wrap;justify-content:center}
+.sayi-kartlar>*{flex:1 1 180px;max-width:calc((100% - 36px)/4)}
+@media (max-width:760px){.olay-kartlar>*,.sana-kartlar>*,.kapi-kartlar>*,.kartlar-3>*,.bolum-kartlar>*,.adimlar>*,.akis-kartlar>*,.kartlar-2>*,.ikili>*,.kollar>*,.sayi-kartlar>*{max-width:100%}}
+.bk,.olay-k,.sana-k{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.bk .bk-ad{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.olay-k .k,.sana-k .k{text-align:center}
+p.oz{font:600 clamp(1.15rem,1.5vw,1.35rem)/1.4 var(--govde);text-align:center;text-wrap:balance;margin-inline:auto}
+p.maddeli{display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;margin-inline:auto;width:fit-content;max-width:100%}
+p.maddeli .md{display:block;position:relative;padding-left:1.05em;font:500 clamp(1.02rem,1.25vw,1.15rem)/1.4 var(--govde)}
+p.maddeli .md::before{content:"";position:absolute;left:0;top:.6em;width:.4em;height:.4em;border-radius:50%;background:var(--vurgu)}
+.son-ic{justify-items:center}
+
+.seviye::before{content:"";flex:1;height:1px;background:var(--cizgi-2);min-width:40px}
+.blok .seviye,.blok--ters .seviye{flex-direction:row}
+.balon-form{margin-inline:auto}
+.kart h3,.soru h3,.soru>p{text-align:center}
+.kapi{text-align:center}.kapi .k-ikon,.kapi>b{display:block;text-align:center}.kapi .k-satir{text-align:left}
+.olay-k>*{align-self:stretch;text-align:center}

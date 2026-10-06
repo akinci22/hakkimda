@@ -72,6 +72,14 @@ let ipucuZaman = 0;
 /* sağ panel notu: üzerine gelinen/dokunulan şeyin başlığı, kısa ve UZUN hâli (boş alan dolu kalsın) */
 /* Akın 6 Eki: anlatı paragraf değil madde — cümleler kısa maddelere, kaynak satırları dışarıda */
 function maddeler(t, n) { return cumleler(yerDoldur(String(t || '').replace(/\n+/g, ' '))).filter(c => !/^(Kaynak|Güven)\s*:/i.test(c)).slice(0, n).map(c => c.length > 120 ? c.slice(0, 117).replace(/\s\S*$/, '') + '…' : c); }
+/* Akın 6 Eki: kart metinleri — iki ve üstü cümle maddeye bölünür; tek kısa cümle "öz" olur, büyük yazılır */
+function maddele(kok) {
+  $$('.olay-k .m, .sana-k .m, .bk-yuz, .kart > p, .vaka p', kok).forEach(p => {
+    if (p.dataset.md || p.children.length) return; p.dataset.md = '1'; const parca = cumleler(p.textContent);   /* yalnız tam cümleler maddeye ayrılır; noktalı virgülle bölmek yarım cümle bırakıyordu */
+    if (parca.length > 1) { p.classList.add('maddeli'); p.replaceChildren(...parca.map(x => el('span', { class: 'md' }, x.replace(/\.\s*$/, '')))); }
+    else p.classList.add('oz');
+  });
+}
 function panelNot(baslik, kisa, uzun, ipucu) {
   const pn = $('#p-not'); if (!pn) return; pn.classList.add('canli'); pn.querySelector('.panel-ust').textContent = 'Not · ' + (baslik || '');
   $('#p-not-m').textContent = kisa || ''; const U = $('#p-not-uzun'); U.replaceChildren(...maddeler(uzun, 3).map(p => el('p', { class: 'md' }, p)));
@@ -703,6 +711,6 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => { Z.
   await arkaKur();
   asamaYukle();
   acilis(); resmi(); olay(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
-  katliKur(); terimSar(KOK); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur();
+  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
