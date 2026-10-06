@@ -614,7 +614,7 @@ function donusKur() {
 }
 function gitEl(h, pay = 70) { if (!h) return; const y = h.getBoundingClientRect().top + scrollY - pay; if (Math.abs(y - scrollY) > innerHeight) donusGoster(scrollY);
   if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); return; } kaydirHedef(y); }
-function ustPay() { const u = $('.ust'); const b = u ? u.getBoundingClientRect().bottom : 0; return Math.max(70, b + 16); }   /* iniş: yapışkan şeridin gerçek alt kenarı + 16 px (içkinde ana menü + şerit) */
+function ustPay() { const u = $('.ust'); if (!u) return 70; const t = parseFloat(getComputedStyle(u).top) || 0; return Math.max(70, t + u.offsetHeight + 16); }   /* yapışık hâldeki alt kenar: sticky top + yükseklik (şerit henüz yapışmamışken de doğru) */   /* iniş: yapışkan şeridin gerçek alt kenarı + 16 px (içkinde ana menü + şerit) */
 function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = ustPay();
   if (h.dataset.katli && !h.getClientRects().length) katliAyarla(h.dataset.katli, true);   /* katlı bir bölüme gidiliyorsa önce aç */
   { const o = h.previousElementSibling; if (o && o.classList.contains('asama-baslik') && o.getClientRects().length) h = o; }   /* aşamanın başlığı görünsün */
@@ -622,7 +622,7 @@ function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = u
   if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); GOVDE._hz = setTimeout(() => GOVDE.classList.remove('hepsi-acik'), 2500); }   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
   const y = h.getBoundingClientRect().top + scrollY - pay; if (IC) { icGit(h, y); return; } kaydirHedef(y); }
 /* içkin uzun atlama: Lenis kaydırması yarıda kesilebiliyor (content-visibility açılınca hedef kayar) → bitince yeniden ölç, hedefe 4 px yaklaşana kadar en çok 5 tur */
-function icGit(h, y, tur = 0) { const L = window.__lenis; let bitti = false; const sonra = () => { if (bitti) return; bitti = true; const d = h.getBoundingClientRect().top - ustPay(); if (Math.abs(d) > 4 && tur < 5) icGit(h, scrollY + d, tur + 1); };
+function icGit(h, y, tur = 0) { const L = window.__lenis; let bitti = false; const sonra = () => { if (bitti) return; bitti = true; const d = h.getBoundingClientRect().top - ustPay(); if (Math.abs(d) > 4) { if (tur < 2) icGit(h, scrollY + d, tur + 1); else if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { immediate: true, force: true }); else scrollTo(0, scrollY + d); } };
   if (L && !azalt) { const uzak = Math.abs(y - scrollY); L.scrollTo(y, { force: true, lock: true, duration: tur ? .35 : Math.min(1.1, .45 + uzak / 9000), onComplete: () => setTimeout(sonra, 60) }); setTimeout(sonra, 2600); }
   else { scrollTo({ top: y, behavior: azalt ? 'auto' : 'smooth' }); setTimeout(sonra, 900); } }
 function ilerleme() {
