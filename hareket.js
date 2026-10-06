@@ -222,7 +222,7 @@ function kaydirDegis(k, src, yon) {
   s.onload = function () {
     if (!window.Lenis) return;
     document.documentElement.style.scrollBehavior = "auto";
-    var l = window.__lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, smoothWheel: false });   // akıcılık (6 Eki): tekerlek tarayıcıda kalır (kompozitör, 120 Hz); Lenis yalnız bağlantı/bulut atlamalarını yumuşatır
+    var l = window.__lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, lerp: 0.2, smoothWheel: true });   // Akın 6 Eki: kısa, hızlı bir kayma animasyonu kalsın (lerp .2 = çabuk oturur); sayfa yükü düştüğü için takılmaz   // akıcılık (6 Eki): tekerlek tarayıcıda kalır (kompozitör, 120 Hz); Lenis yalnız bağlantı/bulut atlamalarını yumuşatır
     function r(t) { l.raf(t); requestAnimationFrame(r); }
     requestAnimationFrame(r);
     document.addEventListener("click", function (e) {

@@ -650,7 +650,7 @@ function ray() {
 }
 /* yumuşak tekerlek: hız sınırlı, yumuşatılmış kaydırma (fare/trackpad); dokunmatik ve hareket-azalt etkilenmez */
 let hedefY = null, kayRaf = 0;
-function kaydirHedef(y) { kaydirDur(); scrollTo({ top: Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight)), behavior: azalt ? 'auto' : 'smooth' }); }   /* akıcılık: tarayıcının kendi yumuşak kaydırması (kompozitörde, ana iş parçacığını beklemez); eski rAF yolu kaydirAdim yedek */
+function kaydirHedef(y) { kaydirDur(); if (window.__lenis && !azalt) { window.__lenis.scrollTo(Math.max(0, y), { duration: .7 }); return; } scrollTo({ top: Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight)), behavior: azalt ? 'auto' : 'smooth' }); }   /* akıcılık: tarayıcının kendi yumuşak kaydırması (kompozitörde, ana iş parçacığını beklemez); eski rAF yolu kaydirAdim yedek */
 let kayTakil = 0;
 function kaydirDur() { if (kayRaf) cancelAnimationFrame(kayRaf); kayRaf = 0; hedefY = null; kayTakil = 0; }
 function kaydirAdim() { if (hedefY == null) { kayRaf = 0; return; } const cur = scrollY; const fark = hedefY - cur; if (Math.abs(fark) < .6 || kayTakil > 6) { if (kayTakil <= 6) scrollTo(0, hedefY); kaydirDur(); return; } scrollTo(0, cur + fark * .11); kayTakil = Math.abs(scrollY - cur) < .3 ? kayTakil + 1 : 0; kayRaf = requestAnimationFrame(kaydirAdim); }
