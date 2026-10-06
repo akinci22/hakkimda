@@ -620,7 +620,11 @@ function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = u
   { const o = h.previousElementSibling; if (o && o.classList.contains('asama-baslik') && o.getClientRects().length) h = o; }   /* aşamanın başlığı görünsün */
   if (Math.abs(h.getBoundingClientRect().top - pay) > innerHeight) donusGoster(scrollY);
   if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); GOVDE._hz = setTimeout(() => GOVDE.classList.remove('hepsi-acik'), 2500); }   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
-  const y = h.getBoundingClientRect().top + scrollY - pay; if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { const d = h.getBoundingClientRect().top - ustPay(); if (Math.abs(d) > 4) { if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 }); else scrollBy({ top: d, behavior: 'smooth' }); } }, 1400);   /* geç yüklenen görseller kaydırdıysa ince ayar */ return; } kaydirHedef(y); }
+  const y = h.getBoundingClientRect().top + scrollY - pay; if (IC) { icGit(h, y); return; } kaydirHedef(y); }
+/* içkin uzun atlama: Lenis kaydırması yarıda kesilebiliyor (content-visibility açılınca hedef kayar) → bitince yeniden ölç, hedefe 4 px yaklaşana kadar en çok 5 tur */
+function icGit(h, y, tur = 0) { const L = window.__lenis; let bitti = false; const sonra = () => { if (bitti) return; bitti = true; const d = h.getBoundingClientRect().top - ustPay(); if (Math.abs(d) > 4 && tur < 5) icGit(h, scrollY + d, tur + 1); };
+  if (L && !azalt) { const uzak = Math.abs(y - scrollY); L.scrollTo(y, { force: true, lock: true, duration: tur ? .35 : Math.min(1.1, .45 + uzak / 9000), onComplete: () => setTimeout(sonra, 60) }); setTimeout(sonra, 2600); }
+  else { scrollTo({ top: y, behavior: azalt ? 'auto' : 'smooth' }); setTimeout(sonra, 900); } }
 function ilerleme() {
   const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'), ybIc = $('#yan-balon .yb-ic'); const bloklar = $$('main > section[data-asama], .takim-main > section[data-asama]');
   let yukSon = -1;   /* --yuk/--yukp kökte: her yazım tüm sayfayı yeniden stiller → yalnız %1'lik adımlarda yazılır (renk farkı gözle seçilmez) */
