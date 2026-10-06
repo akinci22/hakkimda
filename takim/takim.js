@@ -126,8 +126,10 @@ function odakYerlestir() {
   const e = odakEl, k = $('#odak-yazi'), P = $('#perde'); if (!e || !k) return;
   const r = e.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
   const g = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 };   /* içkin: perde ve yazı gövdeye göre (absolute) konumlu */
-  if (P) { const p = 10, x1 = r.left - p - g.left, y1 = r.top - p - g.top, x2 = r.right + p - g.left, y2 = r.bottom + p - g.top;
-    P.style.clipPath = `polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,${x1}px ${y1}px,${x1}px ${y2}px,${x2}px ${y2}px,${x2}px ${y1}px,${x1}px ${y1}px)`; }
+  if (P) { /* Akın 6 Eki: oyuk kartın kendi yuvarlak köşesiyle birebir; sert dikdörtgen çerçeve kalmaz */
+    const pr = P.getBoundingClientRect(), W = pr.width, H = pr.height, x1 = r.left - pr.left, y1 = r.top - pr.top, w = r.width, h = r.height;
+    const rad = Math.min(parseFloat(getComputedStyle(e).borderTopLeftRadius) || 0, w / 2, h / 2);
+    P.style.clipPath = `path(evenodd,'M0 0H${W}V${H}H0Z M${x1 + rad} ${y1}H${x1 + w - rad}A${rad} ${rad} 0 0 1 ${x1 + w} ${y1 + rad}V${y1 + h - rad}A${rad} ${rad} 0 0 1 ${x1 + w - rad} ${y1 + h}H${x1 + rad}A${rad} ${rad} 0 0 1 ${x1} ${y1 + h - rad}V${y1 + rad}A${rad} ${rad} 0 0 1 ${x1 + rad} ${y1}Z')`; }
   const pan = (!IC && vw >= 1180) ? $('.panel') : null, sag = pan ? pan.getBoundingClientRect().left : vw;   /* bağımsız sayfada sağ panelin üstüne yazılmaz */
   const ub = $('.ust') ? $('.ust').getBoundingClientRect() : null, U = Math.max(0, ub && ub.top < 4 ? ub.bottom : 0);   /* yapışkan aşama çubuğunun altına yerleşir, üstüne binmez */
   const B = 36, cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2, genis = Math.min(980, sag - 2 * B);
