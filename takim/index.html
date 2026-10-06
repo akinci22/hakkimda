@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="takim.css?v=1791263000">
+<link rel="stylesheet" href="takim.css?v=1791310000">
 <link rel="stylesheet" href="akis.css?v=1791260000">
 <script src="firebase-config.js?v=1"></script>
 
@@ -73,7 +73,7 @@
 
 <header id="acilis" class="blok acilis" data-hpa="200">
   <div class="sar">
-    <p class="seviye"><span class="hpa" data-seviye="200">200 hPa</span> başlangıç · İTÜ · UUBF · Meteoroloji · proje takımı · kuruluş aşamasında</p>
+    <p class="seviye"><span class="hpa" data-seviye="200">200 hPa</span> başlangıç · İTÜ · UUBF · Meteoroloji · <span class="sv-uzun">proje takımı · </span>kuruluş aşamasında</p>
     <div class="acilis-ic">
       <div>
         <p class="aura-ad"><b>AURA</b> <span>Atmospheric Understanding with Reliable AI</span></p>
@@ -81,9 +81,9 @@
         <p class="alt-sat" id="acilis-alt"></p>
         <p class="vaat" id="acilis-vaat"></p>
         <div class="giris" id="giris"><span class="giris-soru" id="giris-soru"></span><div class="giris-sec" id="giris-sec" role="radiogroup" aria-labelledby="giris-soru"></div></div>
-        <div class="sayilar zaman" id="acilis-sayilar"></div>
+        <!-- Akın 6 Eki akşam: ana kapı = bölümden / bölüm dışı seçimi; seçime göre madde madde kısa anlatım. Zaman rozetleri (0 saat / ayda 1 / haftada 1-2) aşağıda, #kapi üstünde tek satır. -->
+        <div class="kitle-blok" id="kitle-blok" hidden aria-live="polite"></div>
         <div class="arananlar" id="arananlar" aria-label="Aranan bölümler"></div>
-        <div class="ses" data-ses="acilis"></div>
         <ol class="nasil" aria-label="Sayfa nasıl okunur"><li><b>1</b><span>Oku</span><small>her kartta kısa bir cümle</small></li><li><b>2</b><span>Aç</span><small>köşesinde › olan kart uzun hâlini anlatır</small></li><li><b>3</b><span>Oy ver</span><small>sonucu hemen görürsün; her oy bir kez</small></li></ol>
         <p class="ipucu" id="acilis-ipucu">↓ 1 dakikada özet · ayrıntı açınca, bulanık zeminin üstünde</p>
         <p class="balon-not" id="balon-not"></p>
@@ -146,6 +146,7 @@
   <div class="sar">
     <p class="seviye"><span class="hpa" data-seviye="300">300 hPa</span> 02 · hangisi sana yakın?</p>
     <h2 id="kapi-soru"></h2>
+    <div class="zaman-serit" id="zaman-serit" aria-label="Kaç saat alır"></div>
     <div class="kapi-kartlar" id="kapi-kartlar" role="radiogroup" aria-labelledby="kapi-soru"></div>
     <p class="not" id="kapi-not">Seçimin yalnız bu cihazda kalır; sayfanın tonu sana göre ayarlanır.</p>
   </div>
@@ -448,7 +449,7 @@
 <dialog id="detay" class="detay" aria-labelledby="detay-baslik">
   <div class="detay-ic" id="detay-ic">
     <button class="detay-kapat" type="button" id="detay-kapat" aria-label="Kapat">✕</button>
-    <p class="detay-yol" id="detay-yol"><span class="yorum" id="detay-ust"></span> · boşluğa dokun ya da Esc: kapanır</p>
+    <p class="detay-yol" id="detay-yol"><span class="yorum" id="detay-ust"></span><span class="dy-ip"> · boşluğa dokun ya da Esc: kapanır</span></p>
     <svg class="harita-cizgi" id="harita-cizgi" aria-hidden="true"></svg>
     <div class="harita" id="harita"></div>
   </div>
@@ -458,6 +459,6 @@
 <script>/* Akın 6 Eki: tekerlekte kısa, hızlı kayma animasyonu (bağımsız sayfa); hareket azaltma ve dokunmatikte kapalı */
 addEventListener('load', function () { if (!window.Lenis || matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(hover: none)').matches) return;
   var l = window.__lenis = new Lenis({ lerp: 0.2, smoothWheel: true }); (function r(t) { l.raf(t); requestAnimationFrame(r); })(performance.now()); });</script>
-<script type="module" src="takim.js?v=1791263000"></script>
+<script type="module" src="takim.js?v=1791310000"></script>
 </body>
 </html>

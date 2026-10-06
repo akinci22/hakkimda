@@ -61,7 +61,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=12`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=13`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -211,14 +211,17 @@ function detayAc(d) {
   const D = $('#detay'); if (!D) return; GOVDE.classList.remove('odak'); $$('.odakli').forEach(x => x.classList.remove('odakli')); odakGizle();
   $('#detay-ust').textContent = d.ust || 'ayrıntı';
   const H = $('#harita'), S = $('#harita-cizgi'); if (S) S.replaceChildren(); H.replaceChildren(); D.classList.remove('dal-acik');
-  const par = String(d.uzun || '').split(/\n+/).map(p => p.trim()).filter(Boolean);
+  let par = String(d.uzun || '').split(/\n+/).map(p => p.trim()).filter(Boolean);
+  const dar = innerWidth < 860;
+  /* Akın 6 Eki akşam (mobil): uzun metin madde madde, ayrık; tek paragrafsa cümleleri madde olur. Kaynak/Güven satırları madde değil, en sonda küçük. */
+  let madde = false; if (dar && par.length) { const kg = par.filter(p => /^(Kaynak|Güven)\s*:/i.test(p)), ic = par.filter(p => !/^(Kaynak|Güven)\s*:/i.test(p)); const L = ic.length <= 1 ? cumleler(ic[0] || '') : ic.flatMap(p => p.length > 200 ? cumleler(p) : [p]);   /* uzun paragraf (>200 harf) da cümle cümle ayrılır */ if (L.length > 1) { madde = true; par = [...L, ...kg]; } }
   const kay = [...(d.kaynaklar || []), ...(d.link ? [{ ad: d.linkAd || 'bağlantı →', url: d.link }] : [])].filter(k => k && k.url);
   const dallarL = Array.isArray(d.dallar) ? d.dallar : [];
   H.append(el('div', { class: 'dm-ic' },
     el('p', { class: 'dm-ust' }, d.ust || ''),
     el('h3', { id: 'detay-baslik', class: 'dm-baslik' }, d.baslik || ''),
     d.kisa ? el('p', { class: 'dm-kisa' }, d.kisa) : null,
-    par.length ? el('div', { class: 'dm-uzun' }, ...par.map((p, i) => el('p', { style: `--g:${200 + i * 80}ms` }, p))) : null,
+    par.length ? el('div', { class: 'dm-uzun' + (madde ? ' madde' : '') }, ...par.map((p, i) => el('p', { class: /^(Kaynak|Güven)\s*:/i.test(p) ? 'dm-kg' : null, style: `--g:${200 + i * 80}ms` }, p))) : null,
     dallarL.length ? el('ol', { class: 'dm-dal' }, ...dallarL.map(b => el('li', {}, el('b', {}, b.baslik), (b.alt || []).length ? ' ' + b.alt.join(' ') : ''))) : null,
     kay.length ? el('p', { class: 'dm-kaynak' }, el('span', {}, kay.length > 1 ? 'Kaynaklar: ' : 'Kaynak: '), ...kay.flatMap((k, i) => [i ? ' · ' : '', el('a', { href: yol(k.url), target: /^https?:/.test(k.url) ? '_blank' : null, rel: 'noopener', onclick: k.url.startsWith('#') ? (e) => { e.preventDefault(); D.close(); git(k.url.slice(1)); } : null }, k.ad || k.url)])) : null,
     el('button', { class: 'detay-alt', type: 'button', onclick: () => D.close() }, '✕ Kapat')));
@@ -281,7 +284,9 @@ function acilis() {
   const ip = $('#acilis-ipucu'); if (ip && M.ipucu) ip.textContent = M.ipucu;
   const bn = $('#balon-not'); if (bn) bn.textContent = M.balonNot || '';   /* hPa metaforu bir kez, açılışta açıklanır */
   const Z = M.zaman || M.sayilar || [];
-  $('#acilis-sayilar').replaceChildren(...Z.map(s => { const d = el('button', { class: 'sayi', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ ust: 'ne kadar zaman', baslik: s.s + ' · ' + s.e, kisa: s.e, uzun: s.detay })); return d; }));
+  /* Akın 6 Eki akşam: zaman rozetleri açılışta değil, "ne kadar katılmak istersin?" bölümünün üstünde tek satır (az yer, net dil) */
+  const ZS = $('#zaman-serit'); if (ZS) ZS.replaceChildren(el('span', { class: 'zs-ust' }, M.zamanBaslik || 'Kaç saat alır?'), ...Z.map(s => { const d = el('button', { class: 'zs', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ ust: 'ne kadar zaman · ' + s.e, baslik: s.s, kisa: '', uzun: s.detay })); return d; }), M.zamanNot ? el('span', { class: 'zs-not' }, M.zamanNot) : null);
+  const ES = $('#acilis-sayilar'); if (ES) ES.replaceChildren(...Z.map(s => { const d = el('button', { class: 'sayi', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ ust: 'ne kadar zaman', baslik: s.s + ' · ' + s.e, kisa: s.e, uzun: s.detay })); return d; }));
   const A = $('#arananlar'); if (A && Array.isArray(M.arananlar)) {   /* ilk 7 bölüm görünür, kalanı tek düğmeyle açılır (telefonda 3-4 satır tutmasın) */
     const cip = a => el('button', { class: 'ar', type: 'button', 'data-k': a.k, onclick: () => bolumeGit(a.k) }, a.ad);
     const ilk = M.arananlar.slice(0, 7), kalan = M.arananlar.slice(7);
@@ -295,6 +300,17 @@ function girisKur() {
   const G = veri.metinler.giris, S = $('#giris-sec'); if (!G || !S) { const g = $('#giris'); if (g) g.hidden = true; return; }
   $('#giris-soru').textContent = G.soru || '';
   S.replaceChildren(...G.secenekler.map(o => el('button', { class: 'giris-b', type: 'button', role: 'radio', 'aria-checked': String(durum.kitle === o.id), 'data-id': o.id, onclick: () => kitleSec(o.id) }, el('b', {}, o.etiket), o.alt ? el('span', {}, o.alt) : null)));
+  if (durum.kitle) kitleGoster(durum.kitle, true);
+}
+/* Akın 6 Eki akşam: seçimden hemen sonra, seçimin altında madde madde kısa anlatım (bölüm dışı: ajan tabanlı ortak iş, kendi alanında uzmanlaşma, çok disiplinli çevre;
+   bölüm içi: ajan tabanlı tahmin). Sayfa başka yere kaymaz; "devam" düğmesi sıradaki bölüme götürür, "ayrıntı" uzun hâlini açar. */
+function kitleGoster(id, sessiz) {
+  const G = veri.metinler.giris, B = $('#kitle-blok'); if (!B) return; const K = G && G.kitle && G.kitle[id]; if (!K) { B.hidden = true; return; }
+  const ayr = el('button', { class: 'kb-ayrinti', type: 'button' }, 'Ayrıntı ›');
+  const dev = K.devam ? el('button', { class: 'kb-devam', type: 'button', onclick: () => { durum.etkilesim++; git(K.devam); } }, K.devamEtiket || 'Devam ↓') : null;
+  B.replaceChildren(el('p', { class: 'kb-baslik' }, K.baslik || ''), el('ul', {}, ...(K.maddeler || []).map(m => el('li', {}, m))), el('div', { class: 'kb-dugmeler' }, dev, K.detay ? ayr : null));
+  if (K.detay) { const d = () => ({ ust: 'sana göre · ' + (K.baslik || ''), baslik: K.baslik, kisa: (K.maddeler || [])[0] || '', uzun: K.detay }); ayr.addEventListener('click', () => { durum.etkilesim++; detayAc(d()); }); }
+  B.hidden = false; B.classList.remove('flas'); if (!sessiz) { void B.offsetWidth; B.classList.add('flas'); }
 }
 let testSetSec = null;
 function kitleSec(id, sessiz) {
@@ -303,7 +319,8 @@ function kitleSec(id, sessiz) {
   katliAyarla('anlatilar', id === 'mto' || !!KIME);
   bolumler();
   if (testSetSec && durum.test.toplam === 0) testSetSec(id === 'dis' ? 'misafir' : 'mto');
-  if (!sessiz) { durum.etkilesim++; setTimeout(() => git(id === 'dis' ? 'bolumler' : 'olay'), 250); }
+  kitleGoster(id, sessiz);
+  if (!sessiz) { durum.etkilesim++; const B = $('#kitle-blok'); if (B && !B.hidden) { const r = B.getBoundingClientRect(); if (r.bottom > innerHeight - 24) gitEl(B, Math.max(96, innerHeight - r.height - 40)); } }   /* blok ekran dışındaysa yalnız onu görünür et; sayfa başka bölüme atlamaz */
 }
 function bolumeGit(k) {
   const c = $(`#bolum-kartlar .bk[data-k="${k}"]`); if (!c) { git('bolumler'); return; }
@@ -644,7 +661,8 @@ function ilerleme() {
     const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum) io.textContent = ok; const mb = $('#mb-okuma'); if (mb) mb.textContent = ok; const bn = $('#bb-not'); if (bn) bn.textContent = `${km.toFixed(0)} km · ${Math.round(P)} hPa · ` + (p < .02 ? 'balon tam şişkin' : p < .5 ? 'balon küçülüyor' : 'balon neredeyse yerde');
     const ph = $('#p-hpa'); if (ph) { ph.textContent = Math.round(P) + ' hPa'; $('#p-km').textContent = km.toFixed(1).replace('.', ',') + ' km'; $('#p-t').textContent = Math.round(T) + ' °C'; }
     if (ybIc) { ybIc.style.transform = `translateY(-50%) scale(${(1 - p * .55).toFixed(3)})`; ybIc.style.opacity = p > .965 ? '0' : '1'; }   /* sağdaki balon: indikçe küçülür, yere yaklaşınca sahneyi zemindeki paraşüte bırakır */
-    if (aktif !== durum.asama) { durum.asama = aktif; h.dataset.asama = aktif; const [ad, m] = ASAMA_ADI[aktif]; $('#p-asama').textContent = aktif; $('#p-ad').textContent = ad; $('#p-m').textContent = m; $$('#serit button').forEach(b => { const n = +b.dataset.asama; b.classList.toggle('aktif', n === aktif); b.classList.toggle('gecti', n < aktif); }); }
+    if (aktif !== durum.asama) { durum.asama = aktif; h.dataset.asama = aktif; const [ad, m] = ASAMA_ADI[aktif]; $('#p-asama').textContent = aktif; $('#p-ad').textContent = ad; $('#p-m').textContent = m; $$('#serit button').forEach(b => { const n = +b.dataset.asama; b.classList.toggle('aktif', n === aktif); b.classList.toggle('gecti', n < aktif); });
+      const S = $('#serit'), ab = S && S.querySelector('button.aktif'); if (S && ab && S.scrollWidth > S.clientWidth + 4) S.scrollTo({ left: Math.max(0, ab.offsetLeft - S.clientWidth / 2 + ab.offsetWidth / 2), behavior: azalt ? 'auto' : 'smooth' }); }   /* mobil: yapışkan şeritte aktif aşama hep görünür (nerede olduğunu anlama) */
     if (roz && rm) { if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Yerdesin: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🪂'; } else rm.textContent = `Yere inince: sana göre rol · ${kalan} seviye kaldı`; }
     };
   let gRaf = 0; const gK = () => { if (!gRaf) gRaf = requestAnimationFrame(() => { gRaf = 0; g(); }); };   /* kare başına en çok bir kez */

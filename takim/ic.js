@@ -61,7 +61,7 @@
 .etk:hover{box-shadow:0 2px 4px rgba(31,42,46,.06),0 16px 36px rgba(31,42,46,.14)}
 .ust{background:rgba(248,245,238,.88);border-bottom:1px solid rgba(31,42,46,.1)}
 .detay{border-radius:18px;border-color:rgba(31,42,46,.12);box-shadow:0 30px 80px rgba(31,42,46,.25)}
-@media (max-width:999px){.ust{position:static;backdrop-filter:none} .detay{border-radius:0}}
+@media (max-width:999px){.ust{position:sticky;top:var(--tk-ust,52px);backdrop-filter:none;z-index:30} .ust-ic{display:none} .serit{border-top:0;padding-top:2px} .detay{border-radius:0}}   /* mobil: yalnız aşama şeridi yapışkan — nerede olduğunu anlama, tek dokunuşla yer değiştirme */
 /* sade: filigran rakamlar, 'radyosonde ▸' öneki ve test rozeti içkin görünümde yok */
 .blok[data-hpa]::after{display:none} .ust-ad .prompt{display:none} #mod-rozet{display:none!important}
 .govde{background:linear-gradient(to bottom,var(--onceki,var(--kagit)) 0,var(--kagit) 200px)}
