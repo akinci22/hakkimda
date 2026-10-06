@@ -61,7 +61,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=10`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=11`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -357,7 +357,7 @@ function vizyon() {
   const kv = el('div', { class: 'kart kart-vurgu' }, el('b', {}, V.vizyon.b), el('p', {}, V.vizyon.m)); etkilesim(kv, () => ({ ust: 'olay ne', baslik: V.vizyon.b, kisa: V.vizyon.m, uzun: V.vizyon.detay }));
   const km = el('div', { class: 'kart' }, el('b', {}, V.misyon.b), el('p', {}, V.misyon.m)); etkilesim(km, () => ({ ust: 'olay ne', baslik: V.misyon.b, kisa: V.misyon.m, uzun: V.misyon.detay }));
   $('#vizyon-kartlar').replaceChildren(kv, km);
-  $('#kollar').replaceChildren(...V.kollar.map(k => { const e = el('div', { class: 'kart' }, el('b', {}, k.b), el('p', {}, k.m)); etkilesim(e, () => ({ ust: 'iki kol', baslik: k.b, kisa: k.m, uzun: [k.detay, k.hirsli ? 'Daha çok istiyorsan: ' + k.hirsli : '', k.rahat ? 'Az vaktin varsa: ' + k.rahat : ''].filter(Boolean).join('\n') })); return e; }));   /* v2: kart yüzünde iki ses yok, ayrıntıda */
+  $('#kollar').replaceChildren(...V.kollar.map(k => { const e = el('div', { class: 'kart' }, el('b', {}, k.b), el('p', {}, k.m)); etkilesim(e, () => ({ ust: 'takımın kolları', baslik: k.b, kisa: k.m, uzun: [k.detay, k.hirsli ? 'Daha çok istiyorsan: ' + k.hirsli : '', k.rahat ? 'Az vaktin varsa: ' + k.rahat : ''].filter(Boolean).join('\n') })); return e; }));   /* v2: kart yüzünde iki ses yok, ayrıntıda */
 }
 function merdiven() {
   const M = veri.metinler.merdiven; $('#merdiven-baslik').textContent = M.baslik; $('#merdiven-alt').textContent = M.alt;
