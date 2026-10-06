@@ -147,8 +147,9 @@ function odakYerlestir() {
     { ad: 'alt', w: genis, h: vh - r.bottom - 2 * B, y: r.bottom + B },
     { ad: 'ust', w: genis, h: r.top - U - 2 * B, y: U + B },
   ].map(b => Object.assign(b, { puan: Math.max(0, b.w) * Math.max(0, b.h) * (b.w < 300 || b.h < 160 ? .15 : 1) * (b.yan && b.w >= 380 ? 1.6 : 1) })).sort((a, b) => b.puan - a.puan)[0];
-  k.style.setProperty('--oy', bolge.w < 400 ? '.74' : bolge.w < 540 ? '.86' : '1');   /* dar bölgede punto biraz küçülür, yine büyük */
+  k.style.setProperty('--oy', bolge.w < 400 ? '1' : bolge.w < 540 ? '1.2' : '1.45');   /* Akın 6 Eki: tıklayınca yazılar çok daha büyük */   /* dar bölgede punto biraz küçülür, yine büyük */
   k.style.width = Math.max(220, bolge.w) + 'px'; k.style.maxHeight = Math.max(120, bolge.h) + 'px';
+  for (let o = parseFloat(k.style.getPropertyValue('--oy')); o > .62 && k.scrollHeight > k.clientHeight + 2; o -= .08) k.style.setProperty('--oy', o.toFixed(2));   /* sığmazsa kademeli küçült */
   const kh = k.offsetHeight, kw = k.offsetWidth; let x, y;
   if (bolge.yan) { x = bolge.x; y = Math.max(U + B, Math.min(Math.max(U + B, cy - kh / 2), vh - B - kh)); }
   else { x = Math.min(Math.max(B, cx - kw / 2), sag - B - kw); y = bolge.ad === 'alt' ? bolge.y : Math.max(U + B, r.top - B - kh); }
