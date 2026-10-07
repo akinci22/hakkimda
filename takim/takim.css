@@ -898,3 +898,9 @@ html[data-kitle="mto"] .arananlar{display:none}   /* bölüm içi: aranan bölü
 .deste-oran .cubuk{position:absolute;inset:0 auto 0 0;background:var(--vurgu);opacity:.18;transition:width .5s}
 .deste-oran .yuzde{white-space:nowrap;font-family:var(--mono)}
 .cip .oran{font-family:var(--mono);font-size:.85em;opacity:.75}
+
+/* 7 Eki: hiçbir yazı başka bir yazının üstüne binmez */
+.blok[data-hpa]::after{display:none!important}   /* dev soluk hPa sayısı başlık/metinle çakışıyordu */
+.surpriz{display:none}
+@media (min-width:1180px){.surpriz{display:block;right:14px;left:auto;width:calc(var(--panel) - 28px);white-space:normal}.panel{padding-bottom:64px}}   /* rozet yalnız panelin dibinde, içeriğin üstünde değil */
+@media (max-width:860px){.yan-balon,.mobil-balon{display:none!important}}   /* telefonda kart düğmelerinin üstüne biniyordu */

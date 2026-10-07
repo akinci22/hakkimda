@@ -61,7 +61,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=17`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=18`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -279,7 +279,7 @@ function sesYerlestir() {
 /* açılış v2: paragraf yok — başlık, tek satır vaat, kitle seçimi, zaman rozetleri, aranan bölümler */
 function acilis() {
   const M = veri.metinler.acilis;
-  const v = $('#acilis-vaat'); if (v) v.textContent = M.vaat || '';
+  const v = $('#acilis-vaat'); if (v) v.textContent = durum.kitle ? (M.vaat || '') : '';
   const al = $('#acilis-alt'); if (al) al.textContent = M.alt || '';
   const ip = $('#acilis-ipucu'); if (ip && M.ipucu) ip.textContent = M.ipucu;
   const bn = $('#balon-not'); if (bn) bn.textContent = M.balonNot || '';   /* hPa metaforu bir kez, açılışta açıklanır */
@@ -310,6 +310,8 @@ function kitleGoster(id, sessiz) {
   const dev = K.devam ? el('button', { class: 'kb-devam', type: 'button', onclick: () => { durum.etkilesim++; git(K.devam); } }, K.devamEtiket || 'Devam ↓') : null;
   B.replaceChildren(el('p', { class: 'kb-baslik' }, K.baslik || ''), el('ul', {}, ...(K.maddeler || []).map(m => el('li', {}, m))), el('div', { class: 'kb-dugmeler' }, dev, K.detay ? ayr : null));
   if (K.detay) { const d = () => ({ ust: 'sana göre · ' + (K.baslik || ''), baslik: K.baslik, kisa: (K.maddeler || [])[0] || '', uzun: K.detay }); ayr.addEventListener('click', () => { durum.etkilesim++; detayAc(d()); }); }
+  const H = $('#acilis-h1'); if (H) { if (K.h1) H.innerHTML = K.h1; H.hidden = false; }   /* 7 Eki: ana başlık bölüm seçilince, kitleye göre */
+  const V = $('#acilis-vaat'); if (V && K.vaat) V.textContent = K.vaat;
   B.hidden = false; B.classList.remove('flas'); if (!sessiz) { void B.offsetWidth; B.classList.add('flas'); }
 }
 let testSetSec = null;
@@ -701,7 +703,7 @@ function gorunme() {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('goster'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' }); hedefler.forEach(h => io.observe(h));
 }
 function imlec() {
-  if (dokunmatik || azalt || IC) return; const I = $('#imlec'); GOVDE.classList.add('imlec-aktif'); I.style.display = 'block';
+  if (dokunmatik || azalt || IC) return; const I = $('#imlec'); GOVDE.classList.add('imlec-aktif'); addEventListener('pointermove', () => { I.style.display = 'block'; }, { once: true });   /* fare gelmeden sol üstte boş etiket durmasın */
   let x = 0, y = 0, tx = 0, ty = 0, raf = 0;
   const ciz = () => { if (I.classList.contains('donus')) { raf = 0; return; } x += (tx - x) * .35; y += (ty - y) * .35; I.style.transform = `translate(${x - 14}px,${y - 14}px)`; if (Math.abs(tx - x) + Math.abs(ty - y) > .3) raf = requestAnimationFrame(ciz); else raf = 0; };
   addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; if (I.classList.contains('donus')) return; I.classList.remove('gizli'); const h = e.target.closest('a,button,[role=button],summary,input,textarea,select,label,.kartd,.oy,.cip,.bk,.md-basamak,.etk,.terim,.tik,.hpa'); I.classList.toggle('kod', !!h); if (!raf) raf = requestAnimationFrame(ciz); }, { passive: true });
