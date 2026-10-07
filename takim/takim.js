@@ -61,7 +61,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=20`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=21`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -392,7 +392,7 @@ function merdiven() {
     svg.append(svgEl('text', { x: x + 8, y: y + 18, class: 'md-no' }, '0' + b.n)); svg.append(svgEl('text', { x: x + 8, y: y + 36, class: 'md-ad' }, b.kisa || b.b));
   });
   const fig = svgEl('g', { class: 'md-figur', id: 'md-figur' }); fig.innerHTML = '<circle cx="0" cy="-16" r="6"/><rect x="-5" y="-9" width="10" height="14" rx="3"/>'; svg.append(fig);
-  $('#basamaklar').replaceChildren(...M.basamaklar.map((b, i) => { const e = el('button', { class: 'bs', type: 'button', role: 'tab', 'aria-selected': 'false', 'data-i': i, onclick: () => basamakSec(i) }, el('span', { class: 'n' }, '0' + b.n), el('span', { class: 'ad' }, b.b), el('span', { class: 'z' }, b.zaman)); ipucuBagla(e, () => ({ baslik: b.b, metin: b.kavram + ' · ' + b.video })); return e; }));
+  $('#basamaklar').replaceChildren(...M.basamaklar.map((b, i) => { const e = el('button', { class: 'bs', type: 'button', role: 'tab', 'aria-selected': 'false', 'data-i': i, onclick: () => basamakSec(i) }, el('span', { class: 'n' }, '0' + b.n), el('span', { class: 'ad' }, b.b), el('span', { class: 'z' }, b.zaman)); ipucuBagla(e, () => ({ baslik: b.b, metin: b.kavram + ' · ' + (b.cikti || b.video) })); return e; }));
   basamakSec(0, true);
   if (!azalt && 'IntersectionObserver' in window) { let acilan = 0; const io = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; const t = setInterval(() => { const r = svg.querySelector(`.md-basamak[data-i="${acilan}"]`); if (!r) { clearInterval(t); return; } r.classList.add('acik'); acilan++; }, 140); io.disconnect(); }, { threshold: .4 }); io.observe(svg); } else $$('.md-basamak', svg).forEach(r => r.classList.add('acik'));
 }
@@ -401,7 +401,7 @@ function basamakSec(i, sessiz) {
   $$('.bs').forEach(x => x.setAttribute('aria-selected', String(+x.dataset.i === i))); $$('.md-basamak').forEach(x => x.classList.toggle('secili', +x.dataset.i === i));
   const fig = $('#md-figur'); if (fig) fig.setAttribute('transform', `translate(${10 + i * 96 + 70},${300 - (i + 1) * 44})`);
   const D = $('#basamak-detay');
-  D.replaceChildren(el('h3', {}, `0${b.n} · ${b.b}`), ...[['kavram', b.kavram], ['video', b.video], ['dayanak', b.ref], ['zaman', b.zaman]].map(([k, v]) => el('div', { class: 'bd-satir' }, el('span', {}, k), el('span', {}, v))), b.detay ? el('p', { class: 'bd-uzun' }, b.detay) : null, ses(b.hirsli, b.rahat));
+  D.replaceChildren(el('h3', {}, `0${b.n} · ${b.b}`), ...[['kavram', b.kavram], ['çıktı', b.cikti || b.video], ['dayanak', b.ref], ['zaman', b.zaman]].map(([k, v]) => el('div', { class: 'bd-satir' }, el('span', {}, k), el('span', {}, v))), b.detay ? el('p', { class: 'bd-uzun' }, b.detay) : null, ses(b.hirsli, b.rahat));
   terimSar(D); if (!sessiz) durum.etkilesim++;
 }
 function karne() {
