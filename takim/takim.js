@@ -61,7 +61,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=15`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=16`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -348,6 +348,10 @@ function resmi() {
   $('#resmi-baslik').textContent = R.baslik || ''; $('#resmi-alt').textContent = R.alt || '';
   $('#resmi-satirlar').replaceChildren(...(R.satirlar || []).flatMap(x => [el('dt', {}, x.k), el('dd', {}, yerDoldur(x.m))]));
   if (H) { $('#hoca-baslik').textContent = H.baslik || ''; $('#hoca-alt').textContent = H.alt || ''; $('#hoca-maddeler').replaceChildren(...(H.maddeler || []).map(x => el('li', {}, x))); }
+}
+function sss() {
+  const Q = veri.metinler.sss; if (!Q) return; $('#sss-baslik').textContent = Q.baslik; $('#sss-alt').textContent = Q.alt;
+  $('#sss-kartlar').replaceChildren(...Q.sorular.map(q => { const k = el('button', { class: 'olay-k sss-k', type: 'button' }, el('span', { class: 'k' }, q.s), el('p', { class: 'm' }, q.c)); etkilesim(k, () => ({ ust: 'sık sorulan', baslik: q.s, kisa: q.c, uzun: q.d })); return k; }));
 }
 function olay() {
   const O = veri.metinler.olay; if (!O) return; $('#olay-baslik').textContent = O.baslik;
@@ -739,7 +743,7 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => { Z.
   if (KIME) KOKEL.dataset.kime = KIME;
   await arkaKur();
   asamaYukle();
-  acilis(); resmi(); olay(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
+  acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
   katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
