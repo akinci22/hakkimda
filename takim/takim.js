@@ -170,7 +170,8 @@ function odakGizle() {
   odakEl = null; cancelAnimationFrame(odakRaf); const k = $('#odak-yazi'); if (k) k.classList.remove('acik');
   clearTimeout(odakTemiz); odakTemiz = setTimeout(() => { const P = $('#perde'); if (P && !odakEl) P.style.clipPath = ''; }, 750);   /* perde sönerken oyuk kalır, kart bir an bile bulanmaz */
 }
-addEventListener('scroll', () => { if (odakEl) { GOVDE.classList.remove('odak', 'odak-son'); odakEl.classList.remove('odakli'); odakGizle(); } }, { passive: true });   /* kaydırmada odak biter: tam ekran blur kaydırma karelerini yemesin */
+let odakKaydirMuaf = 0;   /* 7 Eki: hızlı kaydırıp hemen karta gelince Lenis'in sönümleme karesi (lerp) birkaç yüz ms daha 'scroll' ateşler; bu, daha yeni başlayan odağı anında iptal ediyordu (özellikle sayfanın altındaki SSS gibi uzun kaydırma gereken bölümlerde) → kart üstüne gelişten kısa bir süre sonrasına kadar kalıntı kaydırma odağı iptal etmez */
+addEventListener('scroll', () => { if (odakEl && performance.now() > odakKaydirMuaf) { GOVDE.classList.remove('odak', 'odak-son'); odakEl.classList.remove('odakli'); odakGizle(); } }, { passive: true });   /* kaydırmada odak biter: tam ekran blur kaydırma karelerini yemesin */
 /* kart etkileşimi: üzerinde dur → kararır + arka plan bulanır + "ne öğrenirsin" satırı; tıkla → ayrıntı (sayfa gibi döner) */
 let odakZ, odakZ2, odakBirak;
 function etkilesim(e, al) {
@@ -178,7 +179,7 @@ function etkilesim(e, al) {
   if (dokunmatik && !e.querySelector('.etk-on')) { try { const d = al(); const ilk = cumleler(String(d.uzun || '').replace(/\n+/g, ' ')).find(c => !/^(Kaynak|Güven)\s*:/i.test(c)) || ''; const cek = ilk.replace(/^[^:]{0,24}:\s*/, '').slice(0, 30); if (ilk && ilk !== d.kisa && !e.textContent.includes(cek)) e.append(el('span', { class: 'etk-on' }, ilk.length > 120 ? ilk.slice(0, 117).replace(/\s\S*$/, '') + '…' : ilk)); } catch (err) { } }   /* dokunmadan bilgi: ayrıntının ilk cümlesi kartta */
   if (!dokunmatik && !azalt) {
     /* Akın 6 Eki: beklerken yalnız kararma; kararma bitince çok hızlı bulanıklık + yazı. Kartlar arası geçişte perde sönmez, yazı anında değişir (kasma/yanıp sönme yok). */
-    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true);
+    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); odakKaydirMuaf = performance.now() + 900; const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true);
       $$('.odakli').forEach(x => { if (x !== e) x.classList.remove('odakli'); });
       if (GOVDE.classList.contains('odak-son')) { e.classList.add('odakli'); odakGoster(e, d); return; }
       odakZ = setTimeout(() => { GOVDE.classList.add('odak'); e.classList.add('odakli'); odakGoster(e, d, false); }, 300);
