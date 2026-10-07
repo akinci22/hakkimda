@@ -722,13 +722,14 @@ function kaydirDegis(k, src, yon) {
 /* Çapa atlayışında iniş düzeltmesi: üstteki bölümler kaydırma sırasında boy alınca (geç yüklenen görsel/klip) hedef kısa düşüyordu
    (mobilde menü → #takim ilk tıklamada 574 px eksik). İniş bitince hedefin yerini yeniden ölçer, sapma varsa kısa bir kaydırmayla oturtur. */
 (function () {
+  if(!window.__girdiKur){window.__girdiKur=1;window.__girdi=0;var __g=function(){window.__girdi=performance.now();};['wheel','touchstart','touchmove'].forEach(function(t){addEventListener(t,__g,{passive:true,capture:true});});addEventListener('keydown',function(e){if(/^(Arrow|Page|Home|End| )/.test(e.key)||e.key===' ')__g();},true);}   /* 7 Eki: kullanıcı kaydırmaya başladıysa gecikmeli 'iniş düzeltmeleri' onu yukarı geri çekmesin */
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a || a.getAttribute("href").length < 2) return;
     var id = a.getAttribute("href").slice(1), h = document.getElementById(id); if (!h || a.closest("#takim-ic")) return;
     var ust = window.__lenis ? 10 : (parseFloat(getComputedStyle(h).scrollMarginTop) || 0);
     var ic = window.TAKIM_IC && window.TAKIM_IC.govde, host = document.getElementById("takim-ic");   // hedef takımın altındaysa: içkin bölümler gerçek boyuna açılır (content-visibility yer tutucusu hedefi kısa ölçtürüyordu)
-    if (ic && host && (host.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING) && !host.contains(h)) { ic.classList.add("hepsi-acik"); clearTimeout(ic._hz2); ic._hz2 = setTimeout(function () { ic.classList.remove("hepsi-acik"); }, 4000); }
-    function duzelt() { var d = h.getBoundingClientRect().top - ust; if (Math.abs(d) <= 4) return;
+    if (ic && host && (host.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING) && !host.contains(h)) { ic.classList.add("hepsi-acik"); clearTimeout(ic._hz2);  }
+    var t0 = performance.now(); function duzelt() { if ((window.__girdi || 0) > t0) return; var d = h.getBoundingClientRect().top - ust; if (Math.abs(d) <= 4) return;
       if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: Math.abs(d) > innerHeight ? .9 : .45 }); else scrollBy({ top: d, behavior: Math.abs(d) > innerHeight ? "instant" : "smooth" }); }
     setTimeout(duzelt, 1400); setTimeout(duzelt, 2500); setTimeout(duzelt, 3600);
   }, true);

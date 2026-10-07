@@ -77,10 +77,10 @@
   kok.addEventListener('click', e => {
     const a = e.composedPath().find(n => n.tagName === 'A' && n.getAttribute && /^#./.test(n.getAttribute('href') || '')); if (!a) return;
     const h = kok.getElementById(a.getAttribute('href').slice(1)); if (!h) return;
-    e.preventDefault(); govde.classList.add('hepsi-acik'); clearTimeout(govde._hz); govde._hz = setTimeout(() => govde.classList.remove('hepsi-acik'), 2500);
+    e.preventDefault(); govde.classList.add('hepsi-acik'); clearTimeout(govde._hz); 
     const y = h.getBoundingClientRect().top + scrollY - 70;
     if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' });
-    setTimeout(() => { const d = h.getBoundingClientRect().top - 70; if (Math.abs(d) > 4) { if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 }); else scrollBy({ top: d, behavior: 'smooth' }); } }, 1400);   /* geç yüklenen görseller kaydırdıysa ince ayar */
+    const t0 = performance.now(); setTimeout(() => { if (window.__girdi > t0) return; const d = h.getBoundingClientRect().top - 70; if (Math.abs(d) > 4) { if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 }); else scrollBy({ top: d, behavior: 'smooth' }); } }, 1400);   /* geç yüklenen görseller kaydırdıysa ince ayar */
   });
 
   window.TAKIM_IC = { kok, host, govde };

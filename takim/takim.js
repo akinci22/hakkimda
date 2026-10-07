@@ -431,7 +431,7 @@ function deste() {
   const D = $('#deste'); const kartlar = [...K.kartlar]; let i = 0;
   const ciz = () => {
     D.replaceChildren();
-    if (i >= kartlar.length) { const y = durum.eslesme.toplam ? Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam) : 0; D.append(el('div', { class: 'deste-bitti' }, el('b', { class: 'eslesme' }, `Eşleşme: %${y}`), el('span', {}, K.son.baslik), el('span', { class: 'not' }, y >= 70 ? 'Süper eşleşme. Bu bir tanışma uygulaması olsa şu an bildirim gelirdi.' : y >= 40 ? 'Makul. Ortada buluşuruz.' : 'Zor bir kitlesin; tam da videoları senin için çekiyoruz.'))); $('#dg-evet').disabled = $('#dg-hayir').disabled = true; sonKart(); panelSen(); return; }
+    if (i >= kartlar.length) { const y = durum.eslesme.toplam ? Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam) : 0; const oranlar = el('div', { class: 'oylar deste-oran' }, ...kartlar.map(k => { const sat = el('div', { class: 'oy', role: 'img' }, el('span', { class: 'cubuk' }), el('span', {}, k.metin), el('span', { class: 'yuzde' }, '…')); arka.dinle(k.id, (say, n) => { const y = n ? Math.round(100 * (say.evet || 0) / n) : 0; sat.querySelector('.cubuk').style.width = y + '%'; sat.querySelector('.yuzde').textContent = `%${y} katılıyor · ${n}`; sat.setAttribute('aria-label', `${k.metin}: %${y} katılıyor`); }); return sat; })); D.parentNode.querySelector('.deste-oran')?.remove(); D.after(oranlar); D.append(el('div', { class: 'deste-bitti' }, el('b', { class: 'eslesme' }, `Eşleşme: %${y}`), el('span', {}, K.son.baslik), el('span', { class: 'not' }, y >= 70 ? 'Süper eşleşme. Bu bir tanışma uygulaması olsa şu an bildirim gelirdi.' : y >= 40 ? 'Makul. Ortada buluşuruz.' : 'Zor bir kitlesin; tam da videoları senin için çekiyoruz.'))); $('#dg-evet').disabled = $('#dg-hayir').disabled = true; sonKart(); panelSen(); return; }
     for (let j = Math.min(i + 2, kartlar.length - 1); j >= i; j--) {
       const k = kartlar[j]; const derin = j - i; const bulut = BULUTLAR[j % BULUTLAR.length];
       const c = el('article', { class: 'kartd', style: `transform:translateY(${derin * 10}px) scale(${1 - derin * .04});z-index:${10 - derin};background-image:url('${yol('../g/bulut/')}${bulut[0]}.jpg')`, 'aria-hidden': String(derin > 0) }, el('span', { class: 'kno' }, el('span', {}, `${j + 1}/${kartlar.length}`), el('i', {}, `☁ ${bulut[1]}`)), el('p', { class: 'kmetin' }, k.metin), el('span', { class: 'damga d-evet' }, 'KATILIYORUM'), el('span', { class: 'damga d-hayir' }, 'HAYIR'));
@@ -441,7 +441,7 @@ function deste() {
   const karar = (evet) => {
     const k = kartlar[i]; if (!k) return; const ust = D.querySelector('.kartd'); if (ust) ust.classList.add(evet ? 'ucar-sag' : 'ucar-sol');
     const uyum = (k.id === 'k5') ? !evet : evet; durum.eslesme.toplam++; if (uyum) durum.eslesme.evet++; durum.etkilesim++;
-    $('#deste-tepki').textContent = evet ? k.evet : k.hayir; arka.oyVer(k.id, { secim: evet ? 'evet' : 'hayir', grup: durum.grup }).catch(() => { });
+    $('#deste-tepki').textContent = evet ? k.evet : k.hayir; const tepki = evet ? k.evet : k.hayir; arka.oyVer(k.id, { secim: evet ? 'evet' : 'hayir', grup: durum.grup }).catch(() => { }).finally(() => { const kapat = arka.dinle(k.id, (say, n) => { if (kartlar[i - 1] !== k) { if (typeof kapat === 'function') kapat(); return; } $('#deste-tepki').textContent = `${tepki} · %${n ? Math.round(100 * (say.evet || 0) / n) : 0} katılıyor (${n} oy)`; }); });
     i++; setTimeout(ciz, azalt ? 0 : 320);
   };
   const surukle = (c) => {
@@ -466,10 +466,11 @@ function test() {
         if (secenekler.some(b => b.disabled)) return;
         const dogru = oi === s.dogru; e.currentTarget.classList.add(dogru ? 'dogru' : 'yanlis'); secenekler[s.dogru].classList.add('dogru'); secenekler.forEach(b => b.disabled = true);
         ac.textContent = (dogru ? '✓ ' : '✗ ') + s.aciklama; ac.hidden = false; if (s.surpriz) { sur.textContent = '▸ ' + s.surpriz; sur.hidden = false; }
-        durum.test.toplam++; if (dogru) durum.test.dogru++; durum.etkilesim++; arka.oyVer(s.id, { secim: String(oi), grup: durum.grup }).catch(() => { });
+        durum.test.toplam++; if (dogru) durum.test.dogru++; durum.etkilesim++; arka.oyVer(s.id, { secim: String(oi), grup: durum.grup }).catch(() => { }).finally(oranGoster);
         if (durum.test.toplam === T[set].length) { const d = durum.test.dogru; $('#test-sonuc').textContent = d === 5 ? '5/5. Anlatıcı koltuğu senin.' : d >= 3 ? `${d}/5. İyi; eksikleri ilk üç video kapatır.` : `${d}/5. Tam da bu yüzden videolar var. Utanma, kimse görmedi.`; sonKart(); panelSen(); }
       } }, o));
-      arka.oyAl(s.id).then(v => { if (!v) return; const oi = +v.secim; if (!(oi >= 0)) return; const dogru = oi === s.dogru; secenekler[oi].classList.add(dogru ? 'dogru' : 'yanlis'); secenekler[s.dogru].classList.add('dogru'); secenekler.forEach(b => b.disabled = true); ac.textContent = (dogru ? '✓ ' : '✗ ') + s.aciklama + ' (daha önce cevapladın)'; ac.hidden = false; durum.test.toplam++; if (dogru) durum.test.dogru++; if (durum.test.toplam === T[set].length) { $('#test-sonuc').textContent = `${durum.test.dogru}/5 · daha önce çözdün; cevaplar kayıtlı.`; sonKart(); panelSen(); } }).catch(() => { });
+      arka.oyAl(s.id).then(v => { if (!v) return; const oi = +v.secim; if (!(oi >= 0)) return; const dogru = oi === s.dogru; secenekler[oi].classList.add(dogru ? 'dogru' : 'yanlis'); secenekler[s.dogru].classList.add('dogru'); secenekler.forEach(b => b.disabled = true); oranGoster(); ac.textContent = (dogru ? '✓ ' : '✗ ') + s.aciklama + ' (daha önce cevapladın)'; ac.hidden = false; durum.test.toplam++; if (dogru) durum.test.dogru++; if (durum.test.toplam === T[set].length) { $('#test-sonuc').textContent = `${durum.test.dogru}/5 · daha önce çözdün; cevaplar kayıtlı.`; sonKart(); panelSen(); } }).catch(() => { });
+      const oranGoster = () => arka.dinle(s.id, (say, n) => secenekler.forEach((b, oi) => { const y = n ? Math.round(100 * (say[String(oi)] || 0) / n) : 0; let t = b.querySelector('.oran'); if (!t) { t = el('span', { class: 'oran' }); b.append(t); } t.textContent = ` · %${y}`; }));
       return el('div', { class: 'soru' }, el('h3', {}, `${qi + 1}. ${s.soru}`), el('div', { class: 'secenekler' }, ...secenekler), ac, sur);
     }));
     terimSar($('#test-sorular'));
@@ -637,15 +638,16 @@ function donusKur() {
 function gitEl(h, pay = 70) { if (!h) return; const y = h.getBoundingClientRect().top + scrollY - pay; if (Math.abs(y - scrollY) > innerHeight) donusGoster(scrollY);
   if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); return; } kaydirHedef(y); }
 function ustPay() { const u = $('.ust'); if (!u) return 70; const t = parseFloat(getComputedStyle(u).top) || 0; return Math.max(70, t + u.offsetHeight + 16); }   /* yapışık hâldeki alt kenar: sticky top + yükseklik (şerit henüz yapışmamışken de doğru) */   /* iniş: yapışkan şeridin gerçek alt kenarı + 16 px (içkinde ana menü + şerit) */
+if(!window.__girdiKur){window.__girdiKur=1;window.__girdi=0;var __g=function(){window.__girdi=performance.now();};['wheel','touchstart','touchmove'].forEach(function(t){addEventListener(t,__g,{passive:true,capture:true});});addEventListener('keydown',function(e){if(/^(Arrow|Page|Home|End| )/.test(e.key)||e.key===' ')__g();},true);}   /* 7 Eki: kullanıcı kaydırmaya başladıysa gecikmeli 'iniş düzeltmeleri' onu yukarı geri çekmesin */
 function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = ustPay();
   if (h.dataset.katli && !h.getClientRects().length) katliAyarla(h.dataset.katli, true);   /* katlı bir bölüme gidiliyorsa önce aç */
   { const o = h.previousElementSibling; if (o && o.classList.contains('asama-baslik') && o.getClientRects().length) h = o; }   /* aşamanın başlığı görünsün */
   if (Math.abs(h.getBoundingClientRect().top - pay) > innerHeight) donusGoster(scrollY);
-  if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); GOVDE._hz = setTimeout(() => GOVDE.classList.remove('hepsi-acik'), 2500); }   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
-  const y = h.getBoundingClientRect().top + scrollY - pay; if (IC) { icGit(h, y); return; } kaydirHedef(y); }
+  if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); }   /* sınıf kalır: kaldırılınca bölümler yer tutucu boyuna döner, sayfa zıplıyordu */   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
+  const y = h.getBoundingClientRect().top + scrollY - pay; if (IC) { icGit(h, y, 0, performance.now()); return; } kaydirHedef(y); }
 /* içkin uzun atlama: Lenis kaydırması yarıda kesilebiliyor (content-visibility açılınca hedef kayar) → bitince yeniden ölç, hedefe 4 px yaklaşana kadar en çok 5 tur */
-function icGit(h, y, tur = 0) { const L = window.__lenis; let bitti = false; const sonra = () => { if (bitti) return; bitti = true; const d = h.getBoundingClientRect().top - ustPay(); if (Math.abs(d) > 4) { if (tur < 2) icGit(h, scrollY + d, tur + 1); else if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { immediate: true, force: true }); else scrollTo(0, scrollY + d); } };
-  if (L && !azalt) { const uzak = Math.abs(y - scrollY); L.scrollTo(y, { force: true, lock: true, duration: tur ? .35 : Math.min(1.1, .45 + uzak / 9000), onComplete: () => setTimeout(sonra, 60) }); setTimeout(sonra, 2600); }
+function icGit(h, y, tur = 0, t0 = performance.now()) { const L = window.__lenis; let bitti = false; const sonra = () => { if (bitti) return; bitti = true; if (window.__girdi > t0) return; const d = h.getBoundingClientRect().top - ustPay(); if (Math.abs(d) > 4) { if (tur < 2) icGit(h, scrollY + d, tur + 1, t0); else if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { immediate: true, force: true }); else scrollTo(0, scrollY + d); } };
+  if (L && !azalt) { const uzak = Math.abs(y - scrollY); L.scrollTo(y, { force: true, duration: tur ? .35 : Math.min(1.1, .45 + uzak / 9000), onComplete: () => setTimeout(sonra, 60) }); setTimeout(sonra, 2600); }
   else { scrollTo({ top: y, behavior: azalt ? 'auto' : 'smooth' }); setTimeout(sonra, 900); } }
 function ilerleme() {
   const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'), ybIc = $('#yan-balon .yb-ic'); const bloklar = $$('main > section[data-asama], .takim-main > section[data-asama]');
