@@ -29,7 +29,10 @@
     for (const [id, K] of Object.entries(KENAR)) {
       const S = document.getElementById(id); if (!S) continue;
       if (getComputedStyle(S).position === 'static') S.style.position = 'relative';
-      const sr = rect(S); if (sr.h < 420) continue;
+      const sr = rect(S);
+      /* bölümün içinde gölge köklü bir alt bölüm varsa (#yon içindeki #takim: içeriği dışarıdan görünmez) yerleşim onun başladığı yerde biter */
+      const kesik = S.querySelector('#takim, #takim-ic, [data-kenar-dur]'); if (kesik) { const kr = rect(kesik); sr.h = Math.max(0, kr.y - sr.y); }
+      if (sr.h < 420) continue;
       /* içerik = yazı taşıyan her yaprak öğe + medya + bağlantı/düğme (sınıf adından bağımsız); kenar görsellerinin kendisi hariç */
       const icerik = Array.from(S.querySelectorAll(ICERIK + ',a,svg,input,select,textarea,*:not(:has(*))')).filter(e => !e.closest('.kenar') && (e.matches('img,video,svg,canvas,iframe,input,select,textarea') || (e.textContent || '').trim().length > 0 || getComputedStyle(e).backgroundImage !== 'none')).map(rect).filter(r => r.w > 2 && r.h > 2);
       const yerlesen = [];
