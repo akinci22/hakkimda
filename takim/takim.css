@@ -1015,7 +1015,7 @@ html[data-kitle="mto"] .arananlar{display:none}   /* bölüm içi: aranan bölü
 .or-kutu{display:grid;gap:.35em;border-left:3px solid var(--vurgu);padding:.15em 1em} .or-ust{font:500 .72em var(--mono);color:var(--murekkep-3)} .or-kutu b{font:700 1.1em/1.25 var(--baslik)} .or-link{font:600 .8em var(--mono);color:var(--vurgu);text-decoration:none;justify-self:start;border-bottom:1px solid currentColor} .or-link:hover{color:var(--murekkep)}
 .blk-md{margin:0;padding:0;list-style:none;display:grid;gap:.5em} .blk-md li{position:relative;padding-left:1.15em;line-height:1.45} .blk-md li::before{content:"";position:absolute;left:0;top:.58em;width:.42em;height:.42em;border-radius:50%;background:var(--vurgu)}
 .is-liste,.is-kisa{margin:0;padding:0;list-style:none;display:grid;gap:.8em;counter-reset:is} .is-kisa{gap:.45em}
-.is-liste li,.is-kisa li{position:relative;padding-left:2.2em;counter-increment:is} .is-liste li::before,.is-kisa li::before{content:counter(is,decimal-leading-zero);position:absolute;left:0;top:.15em;font:600 .76em var(--mono);color:var(--vurgu)}
+.is-liste>li,.is-kisa>li{position:relative;padding-left:2.2em;counter-increment:is} .is-liste>li::before,.is-kisa>li::before{content:counter(is,decimal-leading-zero);position:absolute;left:0;top:.15em;font:600 .76em var(--mono);color:var(--vurgu)}
 .is-ust{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25em .6em;margin-bottom:.35em} .is-liste b,.is-kisa b{font:700 1.1em/1.2 var(--baslik)}
 .cipler{display:inline-flex;flex-wrap:wrap;gap:.3em;margin-left:.45em;vertical-align:middle} .cipler i{font:500 .66em var(--mono);font-style:normal;border:1px solid var(--cizgi-2);border-radius:999px;padding:.08em .6em;color:var(--murekkep-2);white-space:nowrap}
 .is-sat{display:grid;grid-template-columns:6.4em minmax(0,1fr);gap:.3em .8em;margin:0} .is-sat dt{font:600 .7em/1.7 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--murekkep-3)} .is-sat dd{margin:0;line-height:1.42}
@@ -1041,7 +1041,7 @@ html[data-kitle="dis"] #derslerin,html[data-kitle="dis"] #derslerin + .gecis{dis
 @media (max-width:640px){.yil-sec{gap:6px}.yil-b{padding:6px 12px;font-size:.92rem}}
 
 /* 8 Eki: adım adım işler — numaralı adımlar, ferah */
-.is-sat ol.adimlar{margin:0;padding:0 0 0 1.4em;display:grid;gap:.35em} .is-sat ol.adimlar li{line-height:1.42;padding-left:.2em} .is-sat ol.adimlar li::marker{font:600 .8em var(--mono);color:var(--vurgu)}
+.is-sat ol.is-adimlar{margin:0;padding:0 0 0 1.5em;display:grid;gap:.4em;list-style:decimal} .is-sat ol.is-adimlar>li{display:list-item;line-height:1.45;padding:0 0 0 .25em;border:0;background:none;box-shadow:none;counter-increment:none} .is-sat ol.is-adimlar>li::before{content:none} .is-sat ol.is-adimlar>li::marker{font:600 .82em var(--mono);color:var(--vurgu)}
 .dm-kaynak a{word-break:break-word}
 
 /* ======== 8 Eki: ana soru (mezun olunca) ======== */
@@ -1052,3 +1052,9 @@ html[data-kitle="dis"] #derslerin,html[data-kitle="dis"] #derslerin + .gecis{dis
 .mezun-adim li::before{content:counter(mn);position:absolute;left:14px;top:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 .8rem var(--mono);color:#fcfaf4;background:var(--vurgu)}
 .mezun-adim b{font:700 1.05rem/1.2 var(--baslik);text-transform:uppercase;letter-spacing:.02em}
 .mezun-adim span{font-size:1rem;line-height:1.42;color:var(--murekkep-2)}
+
+@media (min-width:1100px){.mezun-kartlar{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:640px) and (max-width:1099px){.mezun-kartlar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mezun-kartlar .kilit-k p,.mezun-kartlar .kilit-k p.oz{text-align:left;font-size:1.04rem;font-weight:500;line-height:1.45}
+
+.mezun-adim li,.mezun-adim span{text-align:left}

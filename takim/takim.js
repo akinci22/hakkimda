@@ -61,7 +61,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=24`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=25`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -231,7 +231,7 @@ function blokCiz(bloklar, kisa) {   /* kisa: odak yazısı (üzerine gelince) �
     else if (bl.tip === 'ornek') out.push(el('div', { class: 'blk blk-or' }, bas, el('div', { class: 'or-kutu' }, bl.ust ? el('span', { class: 'or-ust' }, bl.ust) : null, el('b', {}, bl.b), kisa ? null : el('ul', { class: 'blk-md' }, ...(bl.maddeler || []).map(x => el('li', {}, x))), (!kisa && bl.link) ? el('a', { class: 'or-link', href: bl.link.url, target: '_blank', rel: 'noopener' }, bl.link.ad + ' →') : null)));
     else if (bl.tip === 'isler') out.push(el('div', { class: 'blk blk-is' }, bas, el('ol', { class: kisa ? 'is-kisa' : 'is-liste' }, ...bl.liste.map(i => kisa
       ? el('li', {}, el('b', {}, i.b), i.cipler.length ? el('span', { class: 'cipler' }, ...i.cipler.map(c => el('i', {}, c))) : null)
-      : el('li', {}, el('div', { class: 'is-ust' }, el('b', {}, i.b), i.cipler.length ? el('span', { class: 'cipler' }, ...i.cipler.map(c => el('i', {}, c))) : null), el('dl', { class: 'is-sat' }, ...i.satirlar.filter(s => Array.isArray(s[1]) ? s[1].length : s[1]).flatMap(s => [el('dt', {}, s[0]), el('dd', {}, Array.isArray(s[1]) ? el('ol', { class: 'adimlar' }, ...s[1].map(x => el('li', {}, x))) : s[1])])))))));
+      : el('li', {}, el('div', { class: 'is-ust' }, el('b', {}, i.b), i.cipler.length ? el('span', { class: 'cipler' }, ...i.cipler.map(c => el('i', {}, c))) : null), el('dl', { class: 'is-sat' }, ...i.satirlar.filter(s => Array.isArray(s[1]) ? s[1].length : s[1]).flatMap(s => [el('dt', {}, s[0]), el('dd', {}, Array.isArray(s[1]) ? el('ol', { class: 'is-adimlar' }, ...s[1].map(x => el('li', {}, x))) : s[1])])))))));
     else if (bl.tip === 'madde') { if (kisa && !bl.kisaGoster) continue; out.push(el('div', { class: 'blk' }, bas, el('ul', { class: 'blk-md' }, ...(bl.maddeler || []).slice(0, kisa ? 3 : 99).map(x => el('li', {}, x))))); }
     else if (bl.tip === 'satir') out.push(el('div', { class: 'blk blk-satir' }, el('span', { class: 'blk-b' }, bl.etiket), el('span', {}, bl.m)));
   }
