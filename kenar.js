@@ -36,7 +36,7 @@
       /* aday yerler: iki yan × bölüm boyunca eşit aralıklı yükseklikler; sol/sağ sırayla, aynı yanda üst üste gelmez */
       const adaylar = [];
       const adim = Math.max(360, Math.min(620, sr.h / 4));
-      for (let y = 90, i = 0; y + 260 < sr.h - 60; y += adim, i++) { const yan = (i + sira) % 2 ? 'sag' : 'sol'; adaylar.push({ yan, y }); adaylar.push({ yan: yan === 'sol' ? 'sag' : 'sol', y: y + adim / 2 }); }
+      for (let y = 120, i = 0; y + 260 < sr.h - 160; y += adim, i++) { const yan = (i + sira) % 2 ? 'sag' : 'sol'; adaylar.push({ yan, y }); adaylar.push({ yan: yan === 'sol' ? 'sag' : 'sol', y: y + adim / 2 }); }
       let gi = 0;
       for (const a of adaylar) {
         if (gi >= K.g.length || yerlesen.length >= 3) break;
@@ -44,7 +44,7 @@
         let dw = W, dh = Math.round(W * .72);
         try { await img.decode(); const o = img.naturalWidth / img.naturalHeight; if (o >= 1) { dw = W; dh = Math.round(W / o); } else { dh = Math.min(Math.round(W * 1.25), 260); dw = Math.round(dh * o); } } catch (e) { gi++; continue; }
         const kutu = { w: dw + 20, h: dh + 20 }; const x = a.yan === 'sol' ? sr.x + KENAR_BOSLUK : sr.x + sr.w - KENAR_BOSLUK - kutu.w; const r = { x, y: sr.y + a.y, w: kutu.w, h: kutu.h };
-        if (r.y + r.h > sr.y + sr.h - 40) continue;
+        if (r.y + r.h > sr.y + sr.h - 160) continue;   /* bölüm sonuna 160 px kala yok: sonraki bölümün yapışkan şeridi/başlığıyla çakışmasın */
         if (icerik.some(c => kesisir(r, c, PAY)) || yerlesen.some(c => kesisir(r, c, 60))) continue;
         const f = document.createElement('figure'); f.className = 'kenar kenar-' + a.yan; f.setAttribute('aria-hidden', 'true');
         f.style.cssText = `top:${a.y}px;${a.yan === 'sol' ? 'left' : 'right'}:${KENAR_BOSLUK}px;width:${kutu.w}px;--don:${((sayac % 3) - 1) * 2.6 + (a.yan === 'sol' ? -1 : 1)}deg`;
@@ -57,8 +57,11 @@
     }
     return sayac;
   }
-  let z; function yenile() { clearTimeout(z); z = setTimeout(() => { kur().then(n => { document.documentElement.dataset.kenar = n; }); }, 220); }
-  function basla() { yenile(); addEventListener('resize', yenile); if (document.fonts && document.fonts.ready) document.fonts.ready.then(yenile); setTimeout(yenile, 2500); setTimeout(yenile, 7000); }   /* görseller/klipler yüklendikçe yükseklikler değişir: birkaç kez yeniden ölç */
+  let z; function yenile() { clearTimeout(z); z = setTimeout(() => { kur().then(n => { document.documentElement.dataset.kenar = n; }); }, 260); }
+  /* bölüm yükseklikleri sonradan değişir (tembel yüklenen görsel/klip, açılan kutular): ResizeObserver 40 px'ten büyük değişimde yeniden yerleştirir */
+  const boylar = new Map();
+  function gozle() { if (!('ResizeObserver' in window)) return; const ro = new ResizeObserver(es => { let degisti = false; es.forEach(e => { const h = e.contentRect.height, o = boylar.get(e.target) || 0; if (Math.abs(h - o) > 40) { boylar.set(e.target, h); degisti = true; } }); if (degisti) yenile(); }); Object.keys(KENAR).forEach(id => { const S = document.getElementById(id); if (S) { boylar.set(S, S.getBoundingClientRect().height); ro.observe(S); } }); }
+  function basla() { yenile(); gozle(); addEventListener('resize', yenile); if (document.fonts && document.fonts.ready) document.fonts.ready.then(yenile); setTimeout(yenile, 2500); setTimeout(yenile, 7000); }
   if (document.readyState === 'complete') basla(); else addEventListener('load', basla);
   window.kenarYenile = yenile;
 })();
