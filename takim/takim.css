@@ -1026,3 +1026,29 @@ html[data-kitle="mto"] .arananlar{display:none}   /* bölüm içi: aranan bölü
 /* 8 Eki: odak perdesi daha örtücü — arkadaki yazı hayaletleri odak yazısıyla yarışmasın (ferah görünüm) */
 body.odak-son #perde,.odak-son #perde{background:rgba(248,245,238,.88);backdrop-filter:blur(18px) saturate(.8);-webkit-backdrop-filter:blur(18px) saturate(.8)}
 #odak-yazi .oy-uzun .blk{margin-bottom:1.1em} #odak-yazi .is-kisa li{line-height:1.35}
+
+/* ======== 8 Eki: derslerine göre projeler (bölüm içi) ======== */
+.yil-sec{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.yil-b{font:700 1rem var(--baslik);text-transform:uppercase;letter-spacing:.03em;color:var(--murekkep);background:var(--panel-bg);border:1.5px solid var(--cizgi-2);border-radius:999px;padding:7px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:border-color .2s,background .2s}
+.yil-b small{font:500 .74rem var(--mono);color:var(--murekkep-3)}
+.yil-b:hover{border-color:var(--vurgu)}
+.yil-b[aria-selected="true"]{background:var(--murekkep);color:#fcfaf4;border-color:var(--murekkep)} .yil-b[aria-selected="true"] small{color:rgba(252,250,244,.7)}
+.bk.dk .bk-ad{flex-direction:column;align-items:flex-start;gap:4px;font-size:1.3rem;line-height:1.1}
+.bk.dk .dk-kod{font:600 .78rem var(--mono);letter-spacing:.06em;color:var(--vurgu);border:1px solid var(--cizgi-2);padding:1px 7px;text-transform:none}
+.bk.dk .bk-yuz{font:600 1.12rem/1.35 var(--govde);margin:0}
+.ders-kartlar{animation:yz-gel .35s ease both}
+html[data-kitle="dis"] #derslerin,html[data-kitle="dis"] #derslerin + .gecis{display:none}
+@media (max-width:640px){.yil-sec{gap:6px}.yil-b{padding:6px 12px;font-size:.92rem}}
+
+/* 8 Eki: adım adım işler — numaralı adımlar, ferah */
+.is-sat ol.adimlar{margin:0;padding:0 0 0 1.4em;display:grid;gap:.35em} .is-sat ol.adimlar li{line-height:1.42;padding-left:.2em} .is-sat ol.adimlar li::marker{font:600 .8em var(--mono);color:var(--vurgu)}
+.dm-kaynak a{word-break:break-word}
+
+/* ======== 8 Eki: ana soru (mezun olunca) ======== */
+.mezun-kartlar{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px}
+.mezun-nasil{margin-top:28px}
+.mezun-adim{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;counter-reset:mn}
+.mezun-adim li{counter-increment:mn;position:relative;display:grid;gap:4px;padding:14px 16px 14px 46px;border:1px dashed var(--cizgi-2);background:color-mix(in srgb,var(--panel-bg) 70%,transparent)}
+.mezun-adim li::before{content:counter(mn);position:absolute;left:14px;top:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 .8rem var(--mono);color:#fcfaf4;background:var(--vurgu)}
+.mezun-adim b{font:700 1.05rem/1.2 var(--baslik);text-transform:uppercase;letter-spacing:.02em}
+.mezun-adim span{font-size:1rem;line-height:1.42;color:var(--murekkep-2)}

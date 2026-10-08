@@ -1,0 +1,1406 @@
+{
+ "surum": "tohum-20261008-2151",
+ "dersler": [
+  {
+   "kod": "MTO 111E",
+   "ad": "Atmosfer Bilimlerine Giriş",
+   "yil": "1",
+   "yuz": "Kitapta gördüğün soğuk cephe, İstanbul gözleminde rüzgârın kuzeye döndüğü saat olarak görünür.",
+   "baglanti": "Takımın ölçtüğü her tahmin hatası, bu derste gördüğün bir hava olayına dayanır: cephe, lodos, poyraz, sis.",
+   "isler": [
+    {
+     "ad": "İki haftalık tahmin karnesi",
+     "ne": "Hava tahmini konusundaki kalıcılık yöntemini (yarın bugün gibi) GFS ve ECMWF ile yarıştır: İstanbul Havalimanı'nın ertesi gün en yüksek sıcaklığı, METAR'a karşı.",
+     "ilkAdim": "Colab'da 30 satır: Open-Meteo önceki koşular API'sinden iki modelin 24 saat önceki tahminini, IEM'den LTFM METAR'ını çek, tabloya yaz.",
+     "cikti": "14 günlük karne: üç tahmin, ortalama hata, en büyük hatanın olduğu gün",
+     "veri": "Open-Meteo önceki koşular API, Iowa Mesonet METAR arşivi (LTFM)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Bir cephe İstanbul'dan geçerken",
+     "ne": "Yakın geçmişten bir soğuk cephe günü seç. Sıcaklık, çiy noktası, basınç ve rüzgâr yönünü saat saat çiz; hava kütlesinin değişimini kısa videoda anlat.",
+     "ilkAdim": "IEM'den LTBA'nın bir kış ayını indir; basıncın dip yaptığı, sıcaklığın düştüğü ve rüzgârın kuzeye döndüğü günü bul.",
+     "cikti": "Dört panelli zaman grafiği ve 10 dakikalık anlatım videosu",
+     "veri": "Iowa Mesonet METAR arşivi (LTBA), Copernicus CDS ERA5",
+     "kol": "ikisi"
+    },
+    {
+     "ad": "Lodos ve poyraz: basınç farkının rüzgârı",
+     "ne": "Basınç gradyanı kuvveti ve Coriolis konusunu Marmara'da gerçek bir lodos ve bir poyraz gününün haritasıyla anlatan etkileşimli görsel. İzobarlar sıklaştıkça rüzgâr hızlanır.",
+     "ilkAdim": "CDS'ten bir lodos ve bir poyraz günü için ERA5 deniz seviyesi basıncı ve 10 m rüzgârını indir, saat saat izobar haritası çiz.",
+     "cikti": "Saat sürgülü izobar-rüzgâr haritası ve 10-15 dakikalık video",
+     "veri": "Copernicus CDS ERA5 (saatlik, tek seviye)",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "MTO 111E ders kataloğu (İTÜ ÖBS)",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=111"
+    },
+    {
+     "ad": "Open-Meteo önceki koşular API (24 saat önceki tahmin)",
+     "url": "https://open-meteo.com/en/docs/previous-runs-api"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, Türkiye METAR arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    },
+    {
+     "ad": "Copernicus CDS, ERA5 tek seviye saatlik veri",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 112",
+   "ad": "Meteoroloji Alet & Gözlem Usulleri",
+   "yil": "1",
+   "yuz": "Ölçtüğün her sıcaklık bir tahminin karnesidir; aletin hatası da o karneye yazılır.",
+   "baglanti": "Tahmini düzeltmek için önce gözleme güvenmek gerekir; bu ders takımın veri kalite kontrolünün temeli.",
+   "isler": [
+    {
+     "ad": "METAR için kalite kontrol süzgeci",
+     "ne": "Derste gördüğün ölçüm sınırlarını koda dök: fiziksel sınır, ani sıçrama ve iç tutarlılık (çiy noktası sıcaklığı aşamaz) testi. Takımın her betiği gözlemi önce buradan geçirir.",
+     "ilkAdim": "LTFM'nin bir aylık METAR'ını indir; sınır dışı, bir saatte aşırı sıçrayan ya da çiy noktası sıcaklıktan yüksek satırları işaretle.",
+     "cikti": "kalite_kontrol.py ve aylık eksik-şüpheli veri raporu",
+     "veri": "Iowa Mesonet METAR arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Üç havalimanı, bir şehir: yer seçimi farkı",
+     "ne": "LTFM, LTBA ve LTFJ'yi aynı saatte karşılaştır. Derste gördüğün istasyon yeri seçimi burada sayıya döner: kıyıya uzaklık ve çevre, aynı şehirde farklı sıcaklık ve rüzgâr verir.",
+     "ilkAdim": "IEM'den üç istasyonun aynı ayını indir; saatlik sıcaklık farklarını tek grafikte çiz, deniz rüzgârı saatlerini işaretle.",
+     "cikti": "İstasyonlar arası fark grafiği ve kıyı etkisi üzerine kısa not",
+     "veri": "Iowa Mesonet METAR arşivi (LTFM, LTBA, LTFJ)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Psikrometre: iki termometre, bir nem değeri",
+     "ne": "Kuru ve ıslak termometreden bağıl nemin nasıl çıktığını anlatan kısa video. Islak bez, buharlaşmanın serinletmesi ve psikrometre denklemi adım adım.",
+     "ilkAdim": "İki termometre ve ıslak pamukla deneyi kur, ıslak haznenin önünü yelpazele; okumaları psikrometre tablosuyla karşılaştır.",
+     "cikti": "10 dakikalık video ve tarayıcıda çalışan nem hesaplayıcı",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "MTO 112 ders kataloğu (İTÜ ÖBS)",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=112"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, Türkiye METAR arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    }
+   ]
+  },
+  {
+   "kod": "BIL 100E",
+   "ad": "Programlamaya Giriş (Python)",
+   "yil": "1",
+   "yuz": "Derste yazdığın ilk for döngüsü, İstanbul için dünkü tahminin ne kadar şaştığını hesaplayabilir.",
+   "baglanti": "Takımın yazılım kolu Python'la yazılıyor; bu dersteki liste, döngü ve fonksiyon bilgisi ilk katkın için yeter.",
+   "isler": [
+    {
+     "ad": "METAR'dan günlük en yüksek ve en düşük",
+     "ne": "IEM'den indirdiğin CSV'yi satır satır oku, Fahrenheit'ı Celsius'a çeviren bir fonksiyon yaz, her günün en yüksek ve en düşük sıcaklığını bul.",
+     "ilkAdim": "Colab'da csv modülüyle 25 satır: LTFM'nin bir aylık sıcaklığını oku, bir sözlükte günlere ayır.",
+     "cikti": "gunluk_ekstrem.py ve 30 günlük tablo",
+     "veri": "Iowa Mesonet METAR arşivi (LTFM)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "İlk hata fonksiyonun: mae(tahmin, gozlem)",
+     "ne": "requests ile Open-Meteo'dan JSON çek, listeleri eşleştir, ortalama mutlak hatayı numpy kullanmadan kendin hesapla. Fonksiyon takımın ortak kod deposuna girer.",
+     "ilkAdim": "15 satırda requests.get ile dünkü GFS sıcaklık tahminini al, gözlemle zip edip farkların mutlak ortalamasını bul.",
+     "cikti": "Testleriyle birlikte metrikler.py: mae ve bias fonksiyonları",
+     "veri": "Open-Meteo geçmiş tahmin API, Iowa Mesonet METAR arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "10 satırda yarının hava durumu",
+     "ne": "API, JSON, sözlük ve liste kavramlarını İstanbul'un yarınki sıcaklığını çeken tek bir örnekle anlatan kısa video ve açık defter.",
+     "ilkAdim": "Colab defterinde her hücreye bir kavram koy: istek, JSON, sözlükten değer alma, grafik. Sonra senaryoyu yaz.",
+     "cikti": "Paylaşılabilir Colab defteri ve 10-12 dakikalık video",
+     "veri": "Open-Meteo tahmin API",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "BIL 100E ders kataloğu (İTÜ ÖBS)",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIL&dersNo=100"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, Türkiye METAR arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 223",
+   "ad": "Bilgisayar Grafiğine Giriş",
+   "yil": "2",
+   "yuz": "Derste GrADS'la çizdiğin harita, GFS'nin Türkiye üzerinde nerede saptığını gösterebilir.",
+   "baglanti": "Takımın veri hattı Linux kabuğunda döner, GRIB ve NetCDF okur; bu dersin araçları doğrudan işin içinde.",
+   "isler": [
+    {
+     "ad": "Her sabah kendiliğinden inen GFS",
+     "ne": "NOMADS süzgeciyle yalnız Marmara kutusunu ve birkaç değişkeni indiren bir kabuk betiği yaz, cron ile her gün çalıştır. NOMADS yalnız son günleri tutar; arşivi bu betik biriktirir.",
+     "ilkAdim": "20 satırlık indir.sh: wget ile 00 UTC koşusunun 24. saatini Marmara kutusu için çek, wgrib2 ile LTFM noktasını ayıkla.",
+     "cikti": "indir.sh, cron satırı ve bir haftalık GRIB2 arşivi",
+     "veri": "NOAA GFS (NOMADS süzgeci)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "GrADS ile tahmin farkı haritası",
+     "ne": "GFS'nin 24 saatlik 2 m sıcaklık tahminini ERA5 ile karşılaştır, farkı Türkiye üzerinde renkli harita olarak çiz. Fark dağlarda mı büyüyor, kıyıda mı, gör.",
+     "ilkAdim": "CDS'ten bir günün ERA5 2 m sıcaklığını, AWS'den aynı saatin GFS tahminini al; ikisini NetCDF'e çevirip GrADS'ta farkı çiz.",
+     "cikti": "fark_haritasi.gs betiği ve aylık ortalama fark haritası",
+     "veri": "Copernicus CDS ERA5, NOAA GFS (AWS Open Data)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Aynı harita, üç araç: GrADS, Ferret, R",
+     "ne": "Tek bir ERA5 deniz seviyesi basıncı haritasını derste gördüğün üç araçla çiz, betikleri yan yana koyup farklarını kısa videoda anlat.",
+     "ilkAdim": "Bir fırtına gününün ERA5 dosyasını indir; önce GrADS'ta 10 satırlık izobar haritasını çıkar.",
+     "cikti": "Üç betik, üç harita ve 15 dakikalık karşılaştırmalı video",
+     "veri": "Copernicus CDS ERA5",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "MTO 223 ders kataloğu (İTÜ ÖBS)",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=223"
+    },
+    {
+     "ad": "NOAA NOMADS (GFS süzgeci)",
+     "url": "https://nomads.ncep.noaa.gov/"
+    },
+    {
+     "ad": "NOAA GFS, AWS Open Data",
+     "url": "https://registry.opendata.aws/noaa-gfs-bdp-pds/"
+    },
+    {
+     "ad": "Copernicus CDS, ERA5 tek seviye saatlik veri",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    }
+   ]
+  },
+  {
+   "kod": "MAT 271",
+   "ad": "Olasılık ve İstatistik",
+   "yil": "2",
+   "yuz": "Derste gördüğün t testi, GFS'nin İstanbul'u sistematik olarak soğuk tahmin edip etmediğini söyler.",
+   "baglanti": "Tahmin düzeltme bir istatistik işidir: hatanın dağılımı, tahmin ediciler, anlamlılık testleri ve korelasyon.",
+   "isler": [
+    {
+     "ad": "Tahmin hatasının dağılımı ve t testi",
+     "ne": "Bir mevsim boyunca GFS'nin LTFM için 2 m sıcaklık hatasını topla. Histogram çiz, ortalama ve standart sapmayı tahmin et, ortalama hata sıfırdan farklı mı sına.",
+     "ilkAdim": "Colab'da önceki koşular API'sinden 90 günlük GFS tahminini ve METAR'ı çek, yalnız 12 UTC farklarının histogramını çiz.",
+     "cikti": "Defter ve tek sayfa sonuç: sapma, güven aralığı, p değeri",
+     "veri": "Open-Meteo önceki koşular API, Iowa Mesonet METAR arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Yağış oldu mu? 2x2 tablo ve ki-kare testi",
+     "ne": "Model yağış dediğinde gerçekten yağdı mı? METAR hava kodlarından yağışı çıkar, 2x2 çapraz tablo kur, isabet ve yanlış alarm oranını bul, ki-kare ile bağımsızlığı sına.",
+     "ilkAdim": "IEM'den LTFM METAR'ını hava kodu sütunuyla indir; RA, DZ ya da SN içeren saatleri yağışlı say, tahminle eşle.",
+     "cikti": "Aylık 2x2 tablo, isabet ve yanlış alarm oranları, ki-kare sonucu",
+     "veri": "Iowa Mesonet METAR arşivi, Open-Meteo geçmiş tahmin API",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Yüzde 70 yağmur ihtimali ne demek?",
+     "ne": "Olasılığı ECMWF topluluk tahmininin üyeleriyle anlatan etkileşimli görsel: üyelerin kaçta kaçı yağış veriyorsa olasılık tahmini o. Derste gördüğün göreli frekans aynı ekranda.",
+     "ilkAdim": "Open-Meteo topluluk API'sinden İstanbul için ECMWF'nin 51 üyesinin yarınki yağışını çek, 1 mm'yi geçen üyeleri say.",
+     "cikti": "Üye sayacı olan etkileşimli sayfa ve 10 dakikalık video",
+     "veri": "Open-Meteo topluluk API (ECMWF IFS topluluk tahmini)",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "MAT 271 ders kataloğu (İTÜ ÖBS)",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=271"
+    },
+    {
+     "ad": "Open-Meteo önceki koşular API (24 saat önceki tahmin)",
+     "url": "https://open-meteo.com/en/docs/previous-runs-api"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "Open-Meteo topluluk tahmini API",
+     "url": "https://open-meteo.com/en/docs/ensemble-api"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, Türkiye METAR arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 225",
+   "ad": "Güneş ve Yer Radyasyonu",
+   "yil": "2",
+   "yuz": "Derste hesapladığın atmosfer dışı radyasyon, bulutun güneşten ne kadar kestiğini ölçen cetveldir.",
+   "baglanti": "Gündüz sıcaklık hatasının önemli bir kaynağı radyasyon ve buluttur; bu dersin denklemleri o payı ayırmaya yarar.",
+   "isler": [
+    {
+     "ad": "Atmosfer dışı radyasyonu kendin hesapla",
+     "ne": "Deklinasyon, saat açısı ve zenit açısıyla İstanbul'da yatay yüzeye gelen atmosfer dışı radyasyonu saat saat hesapla, Open-Meteo'nun saatlik ortalamasıyla karşılaştır.",
+     "ilkAdim": "Colab'da 30 satır: güneş sabiti, yörünge düzeltmesi ve cos(zenit) ile 21 Haziran ve 21 Aralık eğrilerini çiz.",
+     "cikti": "radyasyon.py fonksiyonu ve hesap-API karşılaştırma grafiği",
+     "veri": "Open-Meteo terrestrial_radiation (adı yanıltıcı: atmosfer dışı güneş ışınımı)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Açıklık indeksi: bulut güneşin ne kadarını aldı?",
+     "ne": "Yüzeye ulaşan kısa dalgayı atmosfer dışı değere bölüp açıklık indeksini bul, METAR bulut kapalılığıyla karşılaştır. Sonra GFS'nin radyasyon tahminini aynı ölçüyle sına.",
+     "ilkAdim": "Open-Meteo uydu ışınımı API'sinden (SARAH3) yüzey kısa dalgasını ve atmosfer dışı değeri çek, oranı FEW, SCT, BKN, OVC'ye göre kutu grafiğe dök.",
+     "cikti": "Bulut sınıfına göre açıklık indeksi grafiği, GFS radyasyon hata özeti",
+     "veri": "Open-Meteo uydu ışınımı (EUMETSAT SARAH3), geçmiş tahmin API, Iowa Mesonet METAR",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Gökyüzü neden mavi, gün batımı neden kızıl?",
+     "ne": "Rayleigh ve Mie saçılmasını dalga boyu ve güneş yüksekliği sürgüleriyle anlatan etkileşimli görsel. Dalga boyunun dördüncü kuvvetiyle ters orantı ve uzayan yol tek ekranda.",
+     "ilkAdim": "λ⁻⁴ yasasıyla mavi ve kırmızı ışığın saçılma oranını hesapla, güneş yükseklik açısına göre atmosferdeki yol uzunluğunu çiz.",
+     "cikti": "Sürgülü etkileşimli sayfa ve 10-15 dakikalık video",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "MTO 225 ders kataloğu (İTÜ ÖBS)",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=225"
+    },
+    {
+     "ad": "Open-Meteo uydu ışınımı API (EUMETSAT SARAH3)",
+     "url": "https://open-meteo.com/en/docs/satellite-radiation-api"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, Türkiye METAR arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    }
+   ]
+  },
+  {
+   "kod": "MAT 202E",
+   "ad": "Sayısal Yöntemler",
+   "yil": "2",
+   "yuz": "Derste çözdüğün en küçük kareler sistemi, bir hava tahmininin ilk düzeltme denklemidir.",
+   "baglanti": "MOS düzeltmesi bir doğrusal denklem takımı, ızgaradan istasyona geçiş bir interpolasyon; ikisi de bu dersin konusu.",
+   "isler": [
+    {
+     "ad": "En küçük karelerle ilk MOS",
+     "ne": "Gözlem = a + b × tahmin doğrusunu, normal denklemleri kendi yazdığın Gauss eliminasyonuyla çözerek bul. İlk 45 günle kur, son 15 günde hatanın ne kadar düştüğünü ölç.",
+     "ilkAdim": "Önceki koşular API'sinden 60 günlük GFS tahminini METAR'la eşle, 2x2 normal denklem sistemini kur, sonucu numpy.linalg.lstsq ile karşılaştır.",
+     "cikti": "Düzeltme katsayıları, öncesi-sonrası hata tablosu ve gauss.py",
+     "veri": "Open-Meteo önceki koşular API, Iowa Mesonet METAR arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Izgaradan istasyona: hangi interpolasyon?",
+     "ne": "GFS 0,25° ızgarasından İstanbul Havalimanı'na değer taşımanın üç yolunu dene: en yakın nokta, çift doğrusal, Lagrange. Hangisi METAR'a daha yakın, bir ay boyunca ölç.",
+     "ilkAdim": "Herbie ile AWS'den bir GFS dosyası al, LTFM çevresindeki 4x4 ızgara noktasının 2 m sıcaklığını çıkar.",
+     "cikti": "Üç yöntemin aylık ortalama hata karşılaştırması ve interp.py",
+     "veri": "NOAA GFS (AWS Open Data), Iowa Mesonet METAR arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Newton-Raphson ile ıslak termometre sıcaklığı",
+     "ne": "Islak termometre sıcaklığı doğrudan tam bir formülle çıkmaz, doğrusal olmayan bir denklemin köküdür. İkiye bölme ve Newton-Raphson adımlarını animasyonla karşılaştıran kısa video.",
+     "ilkAdim": "Psikrometre denklemini f(Tw)=0 biçiminde yaz; Python'da iki yöntemin her adımını tabloya dök, kaç adımda yakınsadığını gör.",
+     "cikti": "Adım adım animasyon ve 10-15 dakikalık video",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "MAT 202E ders kataloğu (İTÜ ÖBS)",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=202"
+    },
+    {
+     "ad": "Open-Meteo önceki koşular API (24 saat önceki tahmin)",
+     "url": "https://open-meteo.com/en/docs/previous-runs-api"
+    },
+    {
+     "ad": "NOAA GFS, AWS Open Data",
+     "url": "https://registry.opendata.aws/noaa-gfs-bdp-pds/"
+    },
+    {
+     "ad": "Herbie (Python ile GFS indirme)",
+     "url": "https://herbie.readthedocs.io/"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, Türkiye METAR arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 214",
+   "ad": "Atmosfer Termodinamiği",
+   "yil": "2",
+   "yuz": "Termodinamikte çizdiğin Skew-T, yarın İstanbul'da sağanak ihtimalini okumanı sağlar.",
+   "baglanti": "Kartal radyosondası tahminin sıcaklık-nem profiliyle kıyaslanır; kararlılık indeksleri tahmin karnesine girer.",
+   "isler": [
+    {
+     "ad": "Kartal sondajı ile tahmin profili yan yana",
+     "ne": "Wyoming arşivinden Kartal (17064) sondajını al. Aynı saatin tahmin profilini Skew-T üzerine bindir, hangi seviyede saptığını gör.",
+     "ilkAdim": "Colab'da 40 satır: Wyoming'den 17064'ün 00 UTC sondajını metin olarak al, MetPy ile Skew-T çiz, LCL'yi işaretle.",
+     "cikti": "İki profilli Skew-T ve seviye seviye sıcaklık farkı tablosu",
+     "veri": "Wyoming radyosonde arşivi (17064), Open-Meteo geçmiş tahmin API",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "CAPE karnesi: Kararsızlık tahmini tuttu mu?",
+     "ne": "Sondajdan hesapladığın CAPE ve kaldırma indeksini bir yaz ayı boyunca tahminin değerleriyle kıyasla. Gök gürültülü saatleri Kartal'a yakın LTFJ METAR'ından (TS) işaretle.",
+     "ilkAdim": "MetPy'nin parcel_profile ve cape_cin fonksiyonlarıyla her sondajın yüzey parseli CAPE'ini hesapla, 30 günlük seri çıkar.",
+     "cikti": "Aylık CAPE karşılaştırma grafiği ve kısa bulgu notu",
+     "veri": "Wyoming radyosonde arşivi, Open-Meteo, IEM METAR (LTFJ)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Bir parsel yükseliyor: Kuru ve nemli adyabat",
+     "ne": "Parselin önce kuru, LCL'den sonra nemli adyabatla soğumasını gerçek bir sondaj üzerinde anlat. 10-15 dakikalık video ya da sürgülü bir Skew-T olabilir.",
+     "ilkAdim": "Bir Kartal sondajı seç, parselin yolunu üç adımda gösteren senaryoyu tek sayfaya yaz.",
+     "cikti": "Kısa ders videosu ya da etkileşimli Skew-T sayfası",
+     "veri": "University of Wyoming radyosonde arşivi (17064)",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "MTO 214 ders bilgisi (İTÜ OBS)",
+     "url": "https://obs.itu.edu.tr/public/DersBilgi?bransKodu=MTO&dersNo=214"
+    },
+    {
+     "ad": "University of Wyoming radyosonde arşivi, Kartal 17064",
+     "url": "https://weather.uwyo.edu/wsgi/sounding?datetime=2021-10-20+00:00:00&id=17064&type=TEXT:LIST"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, METAR/ASOS arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    },
+    {
+     "ad": "MetPy",
+     "url": "https://unidata.github.io/MetPy/latest/"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 222",
+   "ad": "Hidroloji",
+   "yil": "2",
+   "yuz": "Hidrolojide incelediğin yağış serisi, tahminin yağmuru ne kadar iyi bildiğini ölçer.",
+   "baglanti": "Yağış, tahmin karnesinin en zor kalemlerinden; hidrolojinin yağış analizi ve istatistik araçları burada doğrudan iş görür.",
+   "isler": [
+    {
+     "ad": "Yağış karnesi: Var-yok tablosu",
+     "ne": "İstanbul için günlük yağış tahminini istasyon gözlemiyle kıyasla. 1 mm eşiğiyle 2x2 olumsallık tablosu kur, isabet oranını ve yanlış alarm oranını (FAR) hesapla.",
+     "ilkAdim": "Colab'da 40 satır: Open-Meteo'dan günlük yağış tahminini, Ogimet günlük özetinden Kartal (17064) yağışını çek.",
+     "cikti": "Üç aylık yağış karnesi: isabet, yanlış alarm, frekans sapması",
+     "veri": "Open-Meteo geçmiş tahmin API, Ogimet günlük özetleri",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Uydu, yeniden analiz, istasyon: Üç yağış",
+     "ne": "Aynı ay için istasyon yağışını, GPM IMERG uydu kestirimini ve ERA5'i kıyasla. Farkları yağış ölçümü konusuyla, nokta ölçümü ve alan ortalaması üzerinden tartış.",
+     "ilkAdim": "Ücretsiz Earthdata hesabı aç, NASA Giovanni'den İstanbul kutusunun günlük IMERG (Final) serisini CSV olarak indir.",
+     "cikti": "Üç kaynaklı yağış karşılaştırma grafiği",
+     "veri": "NASA GPM IMERG (Giovanni), ERA5 (Open-Meteo), Ogimet",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Yağmur dereye nasıl ulaşır: Birim hidrograf",
+     "ne": "Etkin yağış, sızma ve yüzeysel akışın hidrografı nasıl biçimlendirdiğini anlat. Yağış şiddetini değiştirebildiğin bir görsel ya da kısa video olabilir.",
+     "ilkAdim": "Ders kitabındaki birim hidrograf örneğini tabloya dök; iki ardışık etkin yağışı süperpozisyonla toplayıp eğriyi çiz.",
+     "cikti": "Kısa ders videosu ya da etkileşimli hidrograf görseli",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "MTO 222 ders bilgisi (İTÜ OBS)",
+     "url": "https://obs.itu.edu.tr/public/DersBilgi?bransKodu=MTO&dersNo=222"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "Ogimet",
+     "url": "https://www.ogimet.com/"
+    },
+    {
+     "ad": "NASA GPM IMERG",
+     "url": "https://gpm.nasa.gov/data/imerg"
+    },
+    {
+     "ad": "NASA Giovanni",
+     "url": "https://giovanni.gsfc.nasa.gov/giovanni/"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 254",
+   "ad": "İklim Bilimi",
+   "yil": "2",
+   "yuz": "İklim biliminde öğrendiğin normal, tahminin işe yarayıp yaramadığını ölçen çıtadır.",
+   "baglanti": "Her tahmin karnesi bir referansla kıyaslanır; o referans çoğu zaman iklim ortalamasıdır.",
+   "isler": [
+    {
+     "ad": "Tahmin iklim ortalamasını yenebiliyor mu?",
+     "ne": "ERA5'ten İstanbul için her takvim gününün sıcaklık normalini çıkar. Tahminin hatasını normalin hatasıyla kıyaslayıp beceri skorunu hesapla.",
+     "ilkAdim": "Colab'da 40 satır: Open-Meteo ERA5 arşivinden 1991-2020 günlük sıcaklığı çek, gün gün ortala.",
+     "cikti": "Gün gün iklim normali ve beceri skoru grafiği",
+     "veri": "Open-Meteo ERA5 arşivi, IEM METAR (LTFM)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Sıcak günlerde tahmin daha mı çok şaşıyor?",
+     "ne": "Gözlemi normalden farka (anomali) çevir. 90. yüzdelik üstü sıcak günlerde tahmin hatasını ayrı hesapla; uç değerde düzeltme ihtiyacını gör.",
+     "ilkAdim": "METAR saatlik sıcaklığından günlük en yüksek değeri bul, ERA5 normalinden farkına göre beş gruba ayır.",
+     "cikti": "Anomaliye göre hata grafiği ve kısa bulgu notu",
+     "veri": "IEM METAR (LTFM), Open-Meteo geçmiş tahmin ve ERA5",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "İstanbul'un iklim şeridi ve Köppen sınıfı",
+     "ne": "ERA5 ile İstanbul'un yıllık sıcaklık şeridini çiz, Köppen sınıfını aylık sıcaklık ve yağış ortalamalarından kendin bul. Değişkenlik ile değişimi bu görselle anlat.",
+     "ilkAdim": "1940'tan bugüne yıllık ortalama sıcaklığı hesapla, renk şeridini matplotlib ile çiz.",
+     "cikti": "Etkileşimli iklim şeridi ya da kısa ders videosu",
+     "veri": "Open-Meteo ERA5 arşivi",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "MTO 254 ders bilgisi (İTÜ OBS)",
+     "url": "https://obs.itu.edu.tr/public/DersBilgi?bransKodu=MTO&dersNo=254"
+    },
+    {
+     "ad": "Open-Meteo ERA5 arşivi",
+     "url": "https://open-meteo.com/en/docs/historical-weather-api"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, METAR/ASOS arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    }
+   ]
+  },
+  {
+   "kod": "AKM 204E",
+   "ad": "Fluid Mechanics (Akışkanlar Mekaniği)",
+   "yil": "2",
+   "yuz": "Akışkanlarda gördüğün sınır tabakası, tahminin 10 m rüzgârda neden şaştığını açıklar.",
+   "baglanti": "Tahminler yüzey sürtünmesini hesaba katarak rüzgâr üretir; sınır tabakası bilgisi rüzgâr hatasını düzeltmenin temeli olur.",
+   "isler": [
+    {
+     "ad": "10 m rüzgâr hatası ve logaritmik profil",
+     "ne": "Tahminin 10 m rüzgârını havalimanı METAR rüzgârıyla kıyasla. Nötr saatlerde logaritmik profil ve pürüzlülük uzunluğuyla basit bir düzeltme dene.",
+     "ilkAdim": "Colab'da 40 satır: LTFM METAR rüzgârını ve Open-Meteo 10 m tahminini çek, saat saat farkı çiz.",
+     "cikti": "Rüzgâr hata grafiği, düzeltme öncesi-sonrası hata tablosu",
+     "veri": "IEM METAR (LTFM), Open-Meteo geçmiş tahmin API",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Hamle rüzgârı tahmini tutuyor mu?",
+     "ne": "METAR hamlesini tahminin hamlesiyle kıyasla. METAR hamleyi yalnız ortalamayı 10 kt aşınca verir; örneği buna göre seç, hamle oranını türbülans konusuyla yorumla.",
+     "ilkAdim": "METAR satırlarından G ile verilen hamleyi ayıklayan 20 satırlık fonksiyonu yaz, bir aylık seri çıkar.",
+     "cikti": "Hamle oranı grafiği ve tahmin hata tablosu",
+     "veri": "IEM METAR (LTFM), Open-Meteo geçmiş tahmin API",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Kaymama koşulundan rüzgâr profiline",
+     "ne": "Duvarda hızın sıfırlanmasından logaritmik rüzgâr profiline uzanan yolu anlat. Pürüzlülüğü değiştirebildiğin bir görsel ya da kısa video olabilir.",
+     "ilkAdim": "Deniz, çayır ve şehir için üç pürüzlülük değeriyle log profil eğrilerini tek grafikte çiz.",
+     "cikti": "Kısa ders videosu ya da etkileşimli rüzgâr profili",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "AKM 204E ders bilgisi (İTÜ OBS)",
+     "url": "https://obs.itu.edu.tr/public/DersBilgi?bransKodu=AKM&dersNo=204"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, METAR/ASOS arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "ad": "Atmosfer Dinamiği I",
+   "yil": "3",
+   "yuz": "Dinamikte türettiğin jeostrofik rüzgâr, tahmin haritasındaki rüzgârı kâğıt kalemle sınamanı sağlar.",
+   "baglanti": "Tahmin hatasını ararken ilk test dengelerdir; jeostrofik ve hidrostatik yaklaşım takımın kontrol listesine girer.",
+   "isler": [
+    {
+     "ad": "Jeostrofik rüzgâr gerçek rüzgârdan ne kadar sapar?",
+     "ne": "ERA5 500 hPa yükseklik alanından jeostrofik rüzgârı hesapla, aynı noktadaki gerçek rüzgârla kıyasla. Fark büyüdüğünde eğrilik etkisini gradyan rüzgârıyla tartış.",
+     "ilkAdim": "Colab'da 40 satır: MetPy geostrophic_wind ile İstanbul çevresinin 500 hPa jeostrofik rüzgârını hesapla.",
+     "cikti": "Jeostrofik ve gerçek rüzgâr karşılaştırma haritası",
+     "veri": "Copernicus CDS ERA5 basınç seviyeleri",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Kalınlık karnesi: Hipsometrik denklem",
+     "ne": "Kartal sondajından 1000-500 hPa kalınlığını hipsometrik denklemle hesapla. Tahminin aynı kalınlığıyla bir ay boyunca kıyasla.",
+     "ilkAdim": "Sondajdan ortalama sanal sıcaklığı bul, kalınlığı hesapla, ölçülen yükseklik farkıyla kontrol et.",
+     "cikti": "Aylık kalınlık hata grafiği",
+     "veri": "Wyoming radyosonde arşivi (17064), Open-Meteo basınç seviyeleri",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Dönen eksende görünen kuvvetler",
+     "ne": "Dönen eksen takımında Coriolis kuvvetinin nereden çıktığını anlat. Dönen masada top ya da bir canlandırma ile 10-15 dakikalık video olabilir.",
+     "ilkAdim": "Python'da 30 satır: aynı topun yolunu sabit ve dönen eksende yan yana canlandır.",
+     "cikti": "Kısa ders videosu ve canlandırma dosyası",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "MTO 337 ders bilgisi (İTÜ OBS)",
+     "url": "https://obs.itu.edu.tr/public/DersBilgi?bransKodu=MTO&dersNo=337"
+    },
+    {
+     "ad": "Copernicus CDS, ERA5 basınç seviyeleri",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+    },
+    {
+     "ad": "University of Wyoming radyosonde arşivi, Kartal 17064",
+     "url": "https://weather.uwyo.edu/wsgi/sounding?datetime=2021-10-20+00:00:00&id=17064&type=TEXT:LIST"
+    },
+    {
+     "ad": "MetPy",
+     "url": "https://unidata.github.io/MetPy/latest/"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 229E",
+   "ad": "Physics of Clouds & Precipitation (Bulut ve Yağış Fiziği)",
+   "yil": "3",
+   "yuz": "Bulut fiziğinde gördüğün doyma, havalimanında sis ihtimalini okumanı sağlar.",
+   "baglanti": "Sis ve bulutluluk, tahminin en çok zorlandığı alanlardan; doyma ve yoğuşma fiziği düzeltmenin dilidir.",
+   "isler": [
+    {
+     "ad": "Sis karnesi: Görüş ve çiy noktası farkı",
+     "ne": "LTFM METAR'ından görüşün 1000 m altına düştüğü saatleri bul. Tahminin sıcaklık-çiy noktası farkı bu saatlerde ne kadar küçülüyor, bak.",
+     "ilkAdim": "Colab'da 40 satır: IEM'den bir kışın METAR'ını indir, sisli saatleri işaretle.",
+     "cikti": "Sis saatleri tablosu ve basit eşik kuralının isabet oranı",
+     "veri": "IEM METAR (LTFM), Open-Meteo geçmiş tahmin API",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Bulutluluk tahmini METAR'a karşı",
+     "ne": "Tahminin toplam bulutluluğunu METAR bulut gruplarıyla (FEW, SCT, BKN, OVC) kıyasla. En kapalı katmanı okta aralığına çevirip hata tablosu çıkar.",
+     "ilkAdim": "METAR bulut gruplarını okta aralığına çeviren 20 satırlık fonksiyonu yaz, CAVOK ve NSC'yi de ele al, bir aylık seri çıkar.",
+     "cikti": "Bulutluluk karışıklık matrisi",
+     "veri": "IEM METAR (LTFM), Open-Meteo geçmiş tahmin API",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Köhler eğrisi: Damla neden hemen büyümez?",
+     "ne": "Eğrilik ve çözelti etkisinin damlanın denge doymasını nasıl değiştirdiğini anlat. Çekirdek boyutunu ayarlayabildiğin bir grafik ya da kısa video olabilir.",
+     "ilkAdim": "Kelvin ve Raoult terimlerini Python'da yaz, üç çekirdek boyutu için Köhler eğrilerini çiz.",
+     "cikti": "Etkileşimli Köhler grafiği ya da kısa ders videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "MTO 229E ders bilgisi (İTÜ OBS)",
+     "url": "https://obs.itu.edu.tr/public/DersBilgi?bransKodu=MTO&dersNo=229"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet, METAR/ASOS arşivi",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml?network=TR__ASOS"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 301",
+   "ad": "Meteorolojide Uzaktan Algılamanın Temelleri",
+   "yil": "3",
+   "yuz": "Planck yasasıyla okuduğun kızılötesi kanal, İstanbul üstündeki bulut tepesinin yüksekliğini söyler.",
+   "baglanti": "Uydu ve radar, tahminin bulutu ve yağışı doğru yere koyup koymadığını gösteren bağımsız gözlemdir.",
+   "isler": [
+    {
+     "ad": "Uydudan yağış, tahminden yağış",
+     "ne": "GPM IMERG, mikrodalga ve kızılötesi uydu ölçümlerinden yağış çıkarır. Bu alanı aynı günlerin GFS yağış tahminiyle karşılaştır; Marmara'da tahminin yağışı nereye yanlış koyduğuna bak.",
+     "ilkAdim": "Colab'da 40 satır: ücretsiz Earthdata hesabıyla yağışlı bir haftanın IMERG günlük dosyasını indir, Marmara kutusunu kırp, haritasını çiz.",
+     "cikti": "Uydu ve tahmin yağışını yan yana koyan harita ve hata tablosu",
+     "veri": "NASA GPM IMERG, Open-Meteo geçmiş tahmin API'si",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Planck eğrisi ve uydu kanalları",
+     "ne": "Sıcaklık sürgüsüyle oynayan bir Planck eğrisi sayfası yap; Meteosat kanallarının eğrinin neresine düştüğünü ve bulut tepesinin neden soğuk göründüğünü göster.",
+     "ilkAdim": "Python'da 30 satır: Planck fonksiyonunu birkaç sıcaklık için çiz, Wien tepe noktasını işaretle.",
+     "cikti": "Etkileşimli Planck sayfası ve 10 dakikalık anlatım videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    },
+    {
+     "ad": "Bulut tepesi sıcaklığı ve oraj saati",
+     "ne": "Oraj olan bir günde Meteosat'ın 10,8 µm kanalından bulut tepesinin parlaklık sıcaklığını çıkar; METAR'da TS görülen saatlerle üst üste koy.",
+     "ilkAdim": "EUMETSAT Data Store'dan o günün birkaç saatlik SEVIRI dosyasını indir, satpy ile İstanbul pikselinin parlaklık sıcaklığını çiz.",
+     "cikti": "Bulut tepesi sıcaklığı ile oraj saatlerini gösteren grafik ve kısa animasyon",
+     "veri": "EUMETSAT Data Store (Meteosat), Iowa Mesonet METAR arşivi",
+     "kol": "ikisi"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ ÖBS ders bilgisi: MTO 301",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=301"
+    },
+    {
+     "ad": "NASA GPM IMERG",
+     "url": "https://gpm.nasa.gov/data/imerg"
+    },
+    {
+     "ad": "EUMETSAT Data Store",
+     "url": "https://data.eumetsat.int"
+    },
+    {
+     "ad": "Satpy belgeleri",
+     "url": "https://satpy.readthedocs.io/en/stable/"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet ASOS/METAR",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "ad": "Data Analysis (Veri Analizi)",
+   "yil": "3",
+   "yuz": "Derste kurduğun regresyon, GFS'nin İstanbul sıcaklığındaki sistematik hatasını düzeltir.",
+   "baglanti": "Takımın düzeltme yazılımı bu dersin regresyonu: tahmin girdi, gözlem hedef, hata ölçülen şey.",
+   "isler": [
+    {
+     "ad": "İlk düzeltme: sıcaklığa doğrusal regresyon",
+     "ne": "GFS'nin geçmiş 2 m sıcaklık tahminlerini LTFM METAR'ıyla eşleştir; bir ayın verisiyle doğrusal regresyon kur, sonraki ayda dene, öncesi ve sonrası hatayı karşılaştır.",
+     "ilkAdim": "Colab'da 40 satır: bir aylık tahmin ve LTFM METAR sıcaklığını saat saat eşleştir, farkın ortalamasını çiz.",
+     "cikti": "Düzeltme öncesi ve sonrası RMSE'yi gösteren küçük bir tahmin karnesi",
+     "veri": "Open-Meteo geçmiş tahmin API'si, Iowa Mesonet METAR arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Hata serisinin spektrumu",
+     "ne": "Tahmin hatası serisinin periyodogramını çıkar; 24 saatlik tepe varsa hata günün saatine bağlıdır ve düzeltmeye saat bilgisi eklenmelidir.",
+     "ilkAdim": "Colab'da 25 satır: önceki işin hata serisini saatlik aralığa getir, FFT uygula, 24 ve 12 saatlik tepeleri işaretle.",
+     "cikti": "Hatanın hangi periyotlarda toplandığını gösteren spektrum grafiği",
+     "veri": "Open-Meteo geçmiş tahmin API'si, Iowa Mesonet METAR arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Havalimanı değişince seri ne olur",
+     "ne": "İstanbul'un ana havalimanı değişti; LTBA ve LTFM serilerini art arda eklersen yapay bir kırılma oluşur. Bu örnekle homojenlik testini anlat.",
+     "ilkAdim": "İki istasyonun aylık sıcaklık anomalisini çiz, LTBA'dan LTFM'ye geçen birleşik seride Pettitt testini çalıştır.",
+     "cikti": "Homojenlik testini gerçek seride gösteren 12 dakikalık video",
+     "veri": "Iowa Mesonet METAR arşivi (LTBA, LTFM)",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ ÖBS ders bilgisi: MTO 311E",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=311"
+    },
+    {
+     "ad": "Open-Meteo Historical Forecast API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet ASOS/METAR",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 303E",
+   "ad": "Computational Fluid Dynamics in Meteorological Engineering",
+   "yil": "3",
+   "yuz": "Derste çözdüğün adveksiyon denklemi, GFS'nin her zaman adımında çözdüğü denklemin küçük hali.",
+   "baglanti": "GFS ve IFS denklemleri sayısal olarak çözer; takımın düzelttiği hatanın bir kısmı bu çözümün şemasından gelir.",
+   "isler": [
+    {
+     "ad": "CFL koşulu: çözüm neden patlar",
+     "ne": "Tek boyutlu adveksiyonu tarayıcıda çözen bir sayfa yap; Courant sayısını sürgüyle büyüt, 1'i geçince upwind çözümün nasıl bozulduğunu göster.",
+     "ilkAdim": "Python'da 30 satır: upwind şemayla bir tepeyi taşı, Courant 0,8 ve 1,2 için sonucu yan yana çiz.",
+     "cikti": "Etkileşimli CFL sayfası ve 10 dakikalık anlatım videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    },
+    {
+     "ad": "Gerçek rüzgârla sıcaklık taşıma",
+     "ne": "ERA5'ten 850 hPa sıcaklık ve rüzgârı al; sıcaklığı yalnız adveksiyonla 6 saat ileri taşı. Sonucu ERA5'in gerçek alanıyla ve kalıcılık tahminiyle karşılaştır.",
+     "ilkAdim": "Colab'da 50 satır: soğuk hava girişi olan bir günün 850 hPa alanını CDS'den indir, CFL'ye uyan iki boyutlu upwind adımı yaz.",
+     "cikti": "Adveksiyon ve kalıcılık tahmininin gerçek alanla fark haritası ve RMSE",
+     "veri": "Copernicus CDS ERA5 (basınç seviyeleri)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Runge-Kutta ile Lorenz-63",
+     "ne": "Lorenz-63 sistemini RK4 ile çöz; başlangıcı çok az farklı 20 üye çalıştır ve tek tahmin yerine neden topluluk tahmini kullanıldığını göster.",
+     "ilkAdim": "Python'da 30 satır: RK4 ile Lorenz-63'ü çöz, başlangıcı 0,001 farklı iki yörüngeyi aynı grafikte çiz.",
+     "cikti": "Topluluk tahmininin mantığını gösteren animasyon ve kısa video",
+     "veri": "gerekmez",
+     "kol": "ikisi"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ ÖBS ders bilgisi: MTO 303E",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=303"
+    },
+    {
+     "ad": "Copernicus CDS ERA5 basınç seviyeleri",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "ad": "Hava Analizi ve Öngörü I",
+   "yil": "3",
+   "yuz": "Derste çizdiğin Skew-T, öğleden sonra İstanbul'da sağanak olup olmayacağına dair ilk ipucunu verir.",
+   "baglanti": "Sinoptik analiz, takımın tahmin hatasını hava tipine göre ayırmasını sağlar: cephe günü, sakin gün, sağanak günü.",
+   "isler": [
+    {
+     "ad": "Cephe geçişi günlerinde tahmin hatası",
+     "ne": "METAR'da rüzgâr dönüşü, sıcaklık düşüşü ve basınç artışıyla soğuk cephe geçişlerini bul; GFS ve IFS'nin bu günlerdeki hatasını sakin günlerle karşılaştır.",
+     "ilkAdim": "Colab'da 40 satır: LTFM METAR'ından üç saatlik sıcaklık ve basınç değişimini hesapla, eşiği aşan saatleri listele.",
+     "cikti": "Cephe günleri ile sakin günlerin hata karşılaştırma tablosu",
+     "veri": "Iowa Mesonet METAR arşivi, Open-Meteo geçmiş tahmin API'si",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Tahmin sondajından sağanak ihtimali",
+     "ne": "GFS'nin İstanbul için basınç seviyesi tahmininden Skew-T çiz, CAPE'e bak; aynı öğleden sonra METAR'da sağanak ya da oraj olup olmadığını kontrol et.",
+     "ilkAdim": "MetPy ile 40 satır: bir yaz gününün tahmin profilini Open-Meteo'dan çek, Skew-T'sini ve CAPE değerini çiz.",
+     "cikti": "Bir yaz için CAPE ile sağanak günlerini eşleştiren tablo ve örnek Skew-T'ler",
+     "veri": "Open-Meteo geçmiş tahmin API'si, Iowa Mesonet METAR, Wyoming 17064 Kartal (seyrek)",
+     "kol": "ikisi"
+    },
+    {
+     "ad": "Bir dalga siklonunun gün gün haritası",
+     "ne": "Türkiye'yi etkilemiş gerçek bir dalga siklonunu ERA5'le gün gün izle; cepheleri 850 hPa sıcaklık gradyanından bul, 500 hPa oluğuyla birlikte anlat.",
+     "ilkAdim": "CDS'den bir fırtına haftasının deniz seviyesi basıncını, 850 hPa sıcaklığını ve 500 hPa yüksekliğini indir, günlük haritaları çiz.",
+     "cikti": "Gerçek bir siklonu adım adım anlatan 15 dakikalık video",
+     "veri": "Copernicus CDS ERA5",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ ÖBS ders bilgisi: MTO 302",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=302"
+    },
+    {
+     "ad": "Open-Meteo Historical Forecast API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "University of Wyoming radyosonde arşivi",
+     "url": "https://weather.uwyo.edu/upperair/sounding.shtml"
+    },
+    {
+     "ad": "Copernicus CDS ERA5 basınç seviyeleri",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+    },
+    {
+     "ad": "Copernicus CDS ERA5 tek seviye",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 304",
+   "ad": "Havacılık Meteorolojisi",
+   "yil": "3",
+   "yuz": "Okumayı öğrendiğin TAF, geçerli olduğu saatlerin METAR'larıyla eşleşince bir tahmin karnesine döner.",
+   "baglanti": "TAF ve METAR hazır bir tahmin-gözlem çifti; takımın doğrulama yazılımı aynı karneyi burada da çıkarır.",
+   "isler": [
+    {
+     "ad": "TAF karnesi: görüş ve tavan",
+     "ne": "LTFM ve LTFJ'nin TAF'larını düzenli topla, METAR'la eşleştir; görüş ve tavan kategorilerinde TAF'ın ne sıklıkla tuttuğunu ölç, TEMPO gruplarını ayrı say.",
+     "ilkAdim": "GitHub Actions'ta 20 satır: aviationweather.gov'dan LTFM TAF'ını altı saatte bir çekip bir dosyaya ekle.",
+     "cikti": "Görüş ve tavan kategorileri için TAF isabet tablosu",
+     "veri": "NOAA aviationweather.gov TAF API, Iowa Mesonet METAR arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Pist rüzgârı ve yan rüzgâr gülü",
+     "ne": "METAR rüzgârından her pist yönü için yan rüzgâr bileşenini hesapla; rüzgâr gülü çiz, pistin ICAO kullanılabilirlik oranının ne çıktığına bak.",
+     "ilkAdim": "Colab'da 30 satır: LTFJ'nin bir yıllık METAR rüzgârını indir, pist yönünü gerçek kuzeye çevir, dik bileşeni hesapla.",
+     "cikti": "Pist bazında yan rüzgâr gülü ve kullanılabilirlik yüzdesi",
+     "veri": "Iowa Mesonet METAR arşivi",
+     "kol": "ikisi"
+    },
+    {
+     "ad": "Altimetre neden yanılır: QNH, QFE, QNE",
+     "ne": "Standart atmosfer ve altimetre ayarlarını anlatan etkileşimli bir sayfa yap; soğuk havada uçağın göstergeden daha alçakta uçtuğunu sürgüyle göster.",
+     "ilkAdim": "Python'da 25 satır: hipsometrik denklemle aynı basınç seviyesinin ISA'da ve daha soğuk bir kolonda yüksekliğini hesapla.",
+     "cikti": "Etkileşimli altimetre sayfası ve 10 dakikalık anlatım videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ ÖBS ders bilgisi: MTO 304",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=304"
+    },
+    {
+     "ad": "NOAA Aviation Weather Center Data API",
+     "url": "https://aviationweather.gov/data/api/"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet ASOS/METAR",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 340",
+   "ad": "Atmosfer Dinamiği II",
+   "yil": "3",
+   "yuz": "Sirkülasyon teoremiyle açıkladığın deniz meltemini, İstanbul'un yaz METAR'larında arayabilirsin.",
+   "baglanti": "Tahmin bir rüzgâr dönüşünü ya da oluğu kaçırdığında, nedenini bu dersin denklemleri açıklar.",
+   "isler": [
+    {
+     "ad": "Deniz meltemi METAR'da görünüyor mu",
+     "ne": "Yaz günlerinde METAR rüzgârının öğleden sonra denizden esmeye dönüp dönmediğini bul; GFS ve IFS'nin bu dönüşü yakalayıp yakalamadığını ölç.",
+     "ilkAdim": "Colab'da 40 satır: LTFJ'nin bir yaz ayındaki rüzgâr yönünü günün saatine göre ortala, gözlem ve tahmini yan yana çiz.",
+     "cikti": "Meltem günlerinde gözlenen ve tahmin edilen rüzgâr yönü karşılaştırması",
+     "veri": "Iowa Mesonet METAR arşivi, Open-Meteo geçmiş tahmin API'si",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Q-vektörlerle düşey hareket",
+     "ne": "Bir fırtına gününün ERA5 alanlarından Q-vektörlerini hesapla; yakınsadığı bölgeleri ERA5 düşey hızı (omega) ve yağışla üst üste koy.",
+     "ilkAdim": "MetPy ile 40 satır: CDS'den 700 hPa yükseklik ve sıcaklığı indir, jeostrofik rüzgârla q_vector hesapla, yakınsamayı haritala.",
+     "cikti": "Q-vektör yakınsaması ile düşey hız haritası ve kısa yorum",
+     "veri": "Copernicus CDS ERA5 (basınç ve tek seviye)",
+     "kol": "ikisi"
+    },
+    {
+     "ad": "Potansiyel vortisite ve dağ arkası oluğu",
+     "ne": "Batı rüzgârı bir dağ sırasını aşarken potansiyel vortisitenin korunumunun nasıl oluk oluşturduğunu etkileşimli bir çizimle anlat.",
+     "ilkAdim": "Python'da 30 satır: (ζ+f)/h sabitken kolon yüksekliği değişince göreli vortisitenin nasıl değiştiğini çiz.",
+     "cikti": "Dağ arkası oluğunu anlatan etkileşimli sayfa ve 12 dakikalık video",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ ÖBS ders bilgisi: MTO 340",
+     "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=340"
+    },
+    {
+     "ad": "Copernicus CDS ERA5 basınç seviyeleri",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+    },
+    {
+     "ad": "Iowa Environmental Mesonet ASOS/METAR",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    },
+    {
+     "ad": "MetPy q_vector",
+     "url": "https://unidata.github.io/MetPy/latest/api/generated/metpy.calc.q_vector.html"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "ad": "Hava Analizi ve Öngörü II",
+   "yil": "4",
+   "yuz": "Omega denkleminin terimleri, yarın İstanbul üzerinde havanın yükselip yükselmeyeceğini söyler.",
+   "baglanti": "Sinoptik yorumun model çıktısıyla yan yana konur; tahmin karnesinin insan tahminci sütunu buradan gelir.",
+   "isler": [
+    {
+     "ad": "Sen mi, model mi? Haftalık tahmin karnesi",
+     "ne": "Her hafta İstanbul Havalimanı için ertesi günün en yüksek sıcaklığını ve yüzde olarak yağış olasılığını tahmin edersin. GFS, IFS ve dünkü havanın tekrarıyla aynı ölçütle karşılaştırılır.",
+     "ilkAdim": "Kısa bir form aç; Colab'da 30 satır: IEM'den LTFM METAR'ını, Open-Meteo'dan GFS ve IFS tahminini çek, MAE ve Brier skorunu hesapla.",
+     "cikti": "Haftalık karne tablosu: insan, GFS, IFS, dünkü hava",
+     "veri": "IEM METAR (LTFM), Open-Meteo geçmiş tahmin",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "QG omega: tek vakada yükselme nerede?",
+     "ne": "Bir Balkan siklonu vakasında 500 hPa mutlak vortisite adveksiyonunu ve 850 hPa sıcaklık adveksiyonunu haritalarsın. Haritalar, düşey hareketi anlatan kısa bir ders videosunun omurgası olur.",
+     "ilkAdim": "Ücretsiz CDS hesabıyla vaka günü için ERA5 basınç seviyesi verisini indir; MetPy ile 500 hPa vortisite adveksiyonunu çiz.",
+     "cikti": "12-15 dakikalık ders videosu ve dört haritalık şekil seti",
+     "veri": "Copernicus CDS ERA5 basınç seviyeleri",
+     "kol": "anlatim"
+    },
+    {
+     "ad": "İzentropik yüzeyde nemli akış",
+     "ne": "300 K civarı bir izentropik yüzeyde basınç, rüzgar ve karışım oranını çizip yağışlı bir İstanbul gününde nemli havanın nereden yükseldiğini gösterirsin. Şekil hem nota hem videoya gider.",
+     "ilkAdim": "Colab'da MetPy isentropic_interpolation ile tek bir ERA5 zaman adımında 300 K yüzeyini çiz.",
+     "cikti": "Yeniden kullanılabilir izentropik çizim defteri ve vaka şekli",
+     "veri": "Copernicus CDS ERA5 basınç seviyeleri",
+     "kol": "ikisi"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "IEM ASOS/METAR arşivi (Türkiye ağı: TR__ASOS)",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "ERA5 basınç seviyeleri (CDS)",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 426E",
+   "ad": "Micrometeorology (Mikrometeoroloji)",
+   "yil": "4",
+   "yuz": "Gece kararlı tabakada 100 m'deki rüzgar, 10 m ölçümün söylediğinden çok daha hızlı olabilir.",
+   "baglanti": "Sınır tabakası bilgisi, modelin yere yakın sıcaklık ve rüzgar hatasını açıklayan düzeltme özelliklerine dönüşür.",
+   "isler": [
+    {
+     "ad": "10 m'den 100 m'ye: profil düzeltmesi",
+     "ne": "İstanbul'daki bir noktada 10 m ve 100 m rüzgarından kuvvet yasası üssünü saate ve mevsime göre çıkarırsın. Gece kararlı tabakada üssün nasıl büyüdüğü görünür.",
+     "ilkAdim": "Colab'da 30 satır: Open-Meteo ERA5 arşivinden bir yıllık 10 m ve 100 m rüzgarını çek, saatlik üs ortalamasını çiz.",
+     "cikti": "Saat ve mevsime göre üs tablosu ve ısı haritası",
+     "veri": "Open-Meteo ERA5 arşivi, Copernicus CDS ERA5",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Açık ve sakin gecelerde sıcaklık hatası",
+     "ne": "GFS ve IFS'in 2 m sıcaklık hatasını açık-sakin geceler ile rüzgarlı-bulutlu geceler için ayrı hesaplarsın. Kararlı sınır tabakasının modeli nerede zorladığı ortaya çıkar.",
+     "ilkAdim": "IEM'den LTFM METAR'ını çek; rüzgar ve bulut koduna göre geceleri iki gruba ayır, her grupta model hatasını hesapla.",
+     "cikti": "Gece türüne göre hata grafiği ve önerilen düzeltme özelliği",
+     "veri": "IEM METAR (LTFM), Open-Meteo geçmiş tahmin",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Monin-Obukhov uzunluğu tek sürgüyle",
+     "ne": "Obukhov uzunluğunu değiştirdikçe rüzgar ve sıcaklık profilinin nasıl büküldüğünü gösteren etkileşimli bir görsel hazırlarsın. Kararlı, nötr ve kararsız durum tek ekranda karşılaştırılır.",
+     "ilkAdim": "Tek HTML dosyasında Businger-Dyer bağıntılarıyla profili çizen 60 satırlık bir JavaScript taslağı yaz.",
+     "cikti": "Etkileşimli profil sayfası ve 10 dakikalık ders videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "Open-Meteo ERA5 arşivi",
+     "url": "https://open-meteo.com/en/docs/historical-weather-api"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "IEM ASOS/METAR arşivi (Türkiye ağı: TR__ASOS)",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 4901",
+   "ad": "Meteoroloji Mühendisliği Tasarımı I-II (MTO 4901/4902)",
+   "yil": "4",
+   "yuz": "İki dönemlik tasarımın, İstanbul için her sabah güncellenen bir tahmin karnesi olabilir.",
+   "baglanti": "Takımın açık yazılımı, iki dönem boyunca büyüyen bir bitirme tasarımı olarak kurulabilir.",
+   "isler": [
+    {
+     "ad": "İstanbul için EMOS düzeltme hattı",
+     "ne": "GFS, IFS ve AIFS tahminlerini İstanbul havalimanlarının gözlemiyle eşleştirip EMOS ile olasılıklı sıcaklık ve rüzgar tahmini üretirsin. Her gün kendiliğinden çalışan bir hat kurulur.",
+     "ilkAdim": "Colab'da 40 satır: Open-Meteo'dan geçmiş IFS tahmini ve IEM'den LTFM gözlemini tek tabloda birleştir.",
+     "cikti": "Tasarım raporu, açık kod deposu ve her gün güncellenen karne sayfası",
+     "veri": "Open-Meteo geçmiş tahmin, IEM METAR, ECMWF açık veri",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Sis ve düşük görüş için karar ağacı",
+     "ne": "Havalimanı METAR'ında düşük görüş saatlerini işaretleyip model nemi, rüzgarı ve sıcaklık-çiy noktası farkıyla gradyan artırmalı ağaç eğitirsin. ROC ve Brier skoruyla doğrularsın.",
+     "ilkAdim": "IEM'den LTFM ve LTFJ METAR'ını indir; görüş alanını sayısala çevirip düşük görüş saatlerini aylara göre say.",
+     "cikti": "Sis olasılığı tahmin aracı ve doğrulama raporu",
+     "veri": "IEM METAR (LTFM, LTFJ), Open-Meteo geçmiş tahmin",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "İstanbul olay atlası",
+     "ne": "Yüksek etkili İstanbul olaylarını (kar, fırtına, sağanak) seçip her biri için ERA5 haritasını, model tahminini ve gözlemi yan yana koyan sayfalar hazırlarsın. Her sayfada kısa bir ders videosu olur.",
+     "ilkAdim": "Colab'da 30 satır: IEM METAR'dan en kuvvetli rüzgarlı, Open-Meteo ERA5 arşivinden en yağışlı günleri listele.",
+     "cikti": "Vaka sayfaları ve her vaka için kısa ders videosu",
+     "veri": "IEM METAR, Open-Meteo ERA5 arşivi, Copernicus CDS ERA5",
+     "kol": "ikisi"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "ECMWF açık veri",
+     "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+    },
+    {
+     "ad": "IEM ASOS/METAR arşivi (Türkiye ağı: TR__ASOS)",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    },
+    {
+     "ad": "Open-Meteo ERA5 arşivi",
+     "url": "https://open-meteo.com/en/docs/historical-weather-api"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 494",
+   "ad": "Araştırma Projesi",
+   "yil": "4",
+   "yuz": "Araştırma sorusu hazır: İstanbul'da AIFS mi daha iyi, IFS mi?",
+   "baglanti": "Takımın karşılaştırma verisi, tek dönemde bitecek net bir araştırma sorusuna zemin olur.",
+   "isler": [
+    {
+     "ad": "AIFS, IFS ve GFS: kim hangi değişkende iyi?",
+     "ne": "Bir sezon boyunca 2 m sıcaklık, 10 m rüzgar ve yağış var/yok tahminlerini İstanbul gözlemiyle karşılaştırırsın. Farkın anlamlı olup olmadığını bootstrap ile sınarsın.",
+     "ilkAdim": "Open-Meteo'dan üç modelin aynı döneme ait tahminini çek; LTFM gözlemiyle eşleştirip ilk MAE tablosunu çıkar.",
+     "cikti": "Kısa araştırma raporu ve açık kod",
+     "veri": "Open-Meteo geçmiş tahmin (IFS, AIFS, GFS), IEM METAR",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Lodos mu poyraz mı: rüzgar hatası yöne bağlı mı?",
+     "ne": "Model rüzgar hatasını gözlenen rüzgar yönüne göre gruplarsın. Güneybatı ve kuzeydoğu akışında hatanın farklılaşıp farklılaşmadığı sorusuna cevap ararsın.",
+     "ilkAdim": "IEM'den LTFJ METAR'ını çek; rüzgar yönünü sekiz sektöre böl ve her sektörde model hatasını hesapla.",
+     "cikti": "Yöne göre hata gülü ve bir sayfalık bulgu notu",
+     "veri": "IEM METAR (LTFJ), Open-Meteo geçmiş tahmin",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Fark gerçek mi, şans mı? Bootstrap'ı gör",
+     "ne": "İki modelin günlük hata dizisini yeniden örnekleyip MAE farkının güven aralığını adım adım çizen etkileşimli bir görsel hazırlarsın. Araştırmadaki anlamlılık sorusunu anlatır.",
+     "ilkAdim": "Tek HTML dosyasında iki örnek hata dizisini 1000 kez yeniden örnekleyip MAE farkının histogramını çizen taslağı yaz.",
+     "cikti": "Etkileşimli anlamlılık sayfası ve 10 dakikalık ders videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "IEM ASOS/METAR arşivi (Türkiye ağı: TR__ASOS)",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 463E",
+   "ad": "Numerical Weather Prediction (Sayısal Hava Öngörüsü)",
+   "yil": "S",
+   "yuz": "CFL koşulu, ızgara sıklaştıkça zaman adımının da neden küçülmesi gerektiğini söyler.",
+   "baglanti": "Sayısal çözümün sınırları ve MOS, takımın ölçtüğü hatanın nereden geldiğini ve nasıl düzeltildiğini açıklar.",
+   "isler": [
+    {
+     "ad": "CFL koşulunu tarayıcıda boz",
+     "ne": "Tek boyutlu adveksiyon denklemini upwind ve leapfrog şemalarıyla çözen etkileşimli bir sayfa yaparsın. Courant sayısı 1'i geçince çözümün nasıl patladığı görünür.",
+     "ilkAdim": "Tek HTML dosyasında 80 satırlık JavaScript ile upwind şemasını ve zaman adımı sürgüsünü yaz.",
+     "cikti": "Etkileşimli şema sayfası ve 10-15 dakikalık ders videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    },
+    {
+     "ad": "Öngörü süresi uzadıkça hata nasıl büyür?",
+     "ne": "Aynı gün için 1 ile 7 gün önce yapılmış GFS ve IFS tahminlerini İstanbul gözlemiyle karşılaştırıp hata büyüme eğrisini çizersin.",
+     "ilkAdim": "Colab'da 30 satır: Open-Meteo Previous Runs API'den 2 m sıcaklığın önceki gün değerlerini çek, LTFM ile eşleştir.",
+     "cikti": "Öngörü süresine göre hata eğrisi, model başına",
+     "veri": "Open-Meteo Previous Runs API, IEM METAR (LTFM)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "İlk MOS denklemin: GFS sıcaklığını düzelt",
+     "ne": "GFS'in 2 m ve 850 hPa sıcaklık, rüzgar ve bulut tahminlerini yordayıcı alıp LTFM gözlemine çoklu doğrusal regresyon kurarsın. Ham GFS ile MOS'un hatasını karşılaştırırsın.",
+     "ilkAdim": "Colab'da 40 satır: Open-Meteo'dan bir yıllık GFS tahminini, IEM'den LTFM sıcaklığını çek; scikit-learn ile regresyonu kur.",
+     "cikti": "MOS katsayı tablosu ve ham-düzeltilmiş hata karşılaştırması",
+     "veri": "Open-Meteo geçmiş tahmin (GFS), IEM METAR (LTFM)",
+     "kol": "yazilim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "Open-Meteo Previous Runs API",
+     "url": "https://open-meteo.com/en/docs/previous-runs-api"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "IEM ASOS/METAR arşivi (Türkiye ağı: TR__ASOS)",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 462E",
+   "ad": "Severe and Hazardous Weather (Şiddetli ve Tehlikeli Hava)",
+   "yil": "S",
+   "yuz": "CAPE ve rüzgar kayması, İstanbul'da gök gürültülü fırtına gününü önceden ayırt edebilir mi?",
+   "baglanti": "Konvektif parametreler, takımın olasılıklı fırtına tahmini ve sağanak doğrulama işine girdi olur.",
+   "isler": [
+    {
+     "ad": "CAPE ve kayma ile fırtına günü ayırt etmek",
+     "ne": "METAR'daki gök gürültüsü (TS) kodlarıyla fırtına günlerini işaretleyip ERA5 CAPE ve 0-6 km rüzgar kaymasıyla lojistik regresyon kurarsın. ROC eğrisiyle doğrularsın.",
+     "ilkAdim": "IEM'den LTFM ve LTFJ METAR'ını çek; TS içeren günleri işaretleyip aylara göre dağılımını çiz.",
+     "cikti": "Fırtına olasılığı aracı ve ROC eğrisi",
+     "veri": "IEM METAR (LTFM, LTFJ), Copernicus CDS ERA5 tek ve basınç seviyeleri",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Hodografı okumak: süper hücre neden döner?",
+     "ne": "Rüzgar profilini değiştirdikçe hodografın ve fırtınaya göreli helisitenin nasıl değiştiğini gösteren etkileşimli bir görsel hazırlarsın. Kısa bir ders videosuna dönüşür.",
+     "ilkAdim": "Tek HTML dosyasında sürüklenebilir dört seviyeli rüzgar noktasıyla hodograf çizen taslağı yaz.",
+     "cikti": "Etkileşimli hodograf sayfası ve 12 dakikalık ders videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    },
+    {
+     "ad": "Ani sağanakta model ne kadar ıskaladı?",
+     "ne": "Seçtiğin İstanbul sağanak vakalarında GFS yağış alanını IMERG ile karşılaştırıp fractions skill score (FSS) hesaplarsın. Yağışın yanlış yere düşme payı ölçülür.",
+     "ilkAdim": "Ücretsiz Earthdata hesabıyla bir vaka gününün IMERG günlük dosyasını indir; Marmara kutusunu kesip yağışı çiz.",
+     "cikti": "Vaka başına FSS tablosu ve karşılaştırma haritası",
+     "veri": "NASA GPM IMERG, NOAA GFS (AWS Open Data)",
+     "kol": "yazilim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "NASA GPM IMERG",
+     "url": "https://gpm.nasa.gov/data/imerg"
+    },
+    {
+     "ad": "NOAA GFS (AWS Open Data)",
+     "url": "https://registry.opendata.aws/noaa-gfs-bdp-pds/"
+    },
+    {
+     "ad": "ERA5 tek seviye (CDS)",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    },
+    {
+     "ad": "ERA5 basınç seviyeleri (CDS)",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+    },
+    {
+     "ad": "IEM ASOS/METAR arşivi (Türkiye ağı: TR__ASOS)",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 460E",
+   "ad": "Intr. to Energy Meteorology (Enerji Meteorolojisine Giriş)",
+   "yil": "S",
+   "yuz": "Rüzgar tahminindeki küçük bir hata, güç eğrisinde büyük bir üretim farkına dönüşür.",
+   "baglanti": "Rüzgar ve güneş tahmini, takımın doğrulama araçlarının enerji tarafındaki karşılığıdır.",
+   "isler": [
+    {
+     "ad": "100 m rüzgar tahmininden güç tahminine",
+     "ne": "GFS ve IFS'in 100 m rüzgar tahminini genel bir türbin güç eğrisinden geçirip ERA5 referansıyla güç hatasını ölçersin. Rüzgar hatasının güçte nasıl büyüdüğünü görürsün.",
+     "ilkAdim": "Colab'da 30 satır: Open-Meteo'dan Marmara'da bir nokta için 100 m rüzgar tahminini ve ERA5 değerini çek.",
+     "cikti": "Güç tahmini karnesi ve hata büyütme grafiği",
+     "veri": "Open-Meteo geçmiş tahmin, Open-Meteo ERA5 arşivi",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Weibull dağılımı: rüzgar kaynağı tek grafikte",
+     "ne": "Çok yıllık ERA5 100 m rüzgarına Weibull dağılımı oturtup k ve c parametrelerini sürgüyle değiştiren bir görsel hazırlarsın. Genel bir güç eğrisiyle aylık kapasite faktörünü de bulursun.",
+     "ilkAdim": "Colab'da scipy ile ERA5 100 m rüzgarına Weibull uydur; histogram ve eğriyi aynı grafikte çiz.",
+     "cikti": "Etkileşimli Weibull sayfası ve aylık kapasite faktörü tablosu",
+     "veri": "Open-Meteo ERA5 arşivi, Copernicus CDS ERA5",
+     "kol": "ikisi"
+    },
+    {
+     "ad": "Güneşin üç bileşeni ve panel açısı",
+     "ne": "Doğrudan, yayılı ve toplam ışınımın güneş açısı ve panel eğimiyle nasıl değiştiğini gösteren etkileşimli bir görsel ve kısa bir ders videosu hazırlarsın.",
+     "ilkAdim": "pvlib ile İstanbul için açık gök GHI, DNI ve DHI eğrilerini bir gün boyunca çizen Colab defteri aç.",
+     "cikti": "Etkileşimli ışınım sayfası ve 10 dakikalık ders videosu",
+     "veri": "gerekmez (pvlib açık gök hesabı)",
+     "kol": "anlatim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "Open-Meteo geçmiş tahmin API",
+     "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+    },
+    {
+     "ad": "Open-Meteo ERA5 arşivi",
+     "url": "https://open-meteo.com/en/docs/historical-weather-api"
+    },
+    {
+     "ad": "pvlib belgeleri",
+     "url": "https://pvlib-python.readthedocs.io/"
+    }
+   ]
+  },
+  {
+   "kod": "MTO 358E",
+   "ad": "Air Pollution Meteorology (Hava Kirliliği Meteorolojisi)",
+   "yil": "S",
+   "yuz": "Kışın alçalan karışma yüksekliği, İstanbul'da kirliliğin neden yere yakın kaldığını açıklar.",
+   "baglanti": "Kararlılık ve karışma yüksekliği, takımın veri araçlarıyla hava kalitesine bağlanır.",
+   "isler": [
+    {
+     "ad": "Havalandırma katsayısı ve PM10",
+     "ne": "ERA5 sınır tabakası yüksekliğini rüzgarla çarparak günlük havalandırma katsayısını bulursun. Kış aylarında İstanbul için CAMS PM10 tahminiyle yan yana koyar, durgun günleri ayırırsın.",
+     "ilkAdim": "Colab'da 30 satır: CDS'ten ERA5 sınır tabakası yüksekliği (blh) ve 10 m rüzgarını, Open-Meteo'dan CAMS PM10'u çek.",
+     "cikti": "Havalandırma katsayısı-PM10 grafiği ve durgun gün listesi",
+     "veri": "Copernicus CDS ERA5 tek seviye, Open-Meteo hava kalitesi API (CAMS)",
+     "kol": "yazilim"
+    },
+    {
+     "ad": "Gauss dumanı: kararlılık değişince",
+     "ne": "Pasquill kararlılık sınıfı, rüzgar ve baca yüksekliğiyle yer seviyesi derişimini çizen etkileşimli bir Gauss dumanı görseli hazırlarsın. Kısa bir ders videosuna dönüşür.",
+     "ilkAdim": "Tek HTML dosyasında Briggs dağılım katsayılarıyla yer seviyesi derişimini çizen taslağı yaz.",
+     "cikti": "Etkileşimli duman sayfası ve 12 dakikalık ders videosu",
+     "veri": "gerekmez",
+     "kol": "anlatim"
+    },
+    {
+     "ad": "METAR'dan saatlik Pasquill sınıfı",
+     "ne": "Rüzgar hızı, bulut örtüsü ve güneş yüksekliğinden Turner yöntemiyle saatlik kararlılık sınıfı çıkaran bir araç yazarsın. Sonucu ERA5 sınır tabakası yüksekliğiyle karşılaştırırsın.",
+     "ilkAdim": "IEM'den LTFM METAR'ını çek; bulut kodlarını okta değerine çeviren ve güneş yüksekliğini hesaplayan fonksiyonu yaz.",
+     "cikti": "Saatlik kararlılık sınıfı aracı ve aylık dağılım grafiği",
+     "veri": "IEM METAR (LTFM), Copernicus CDS ERA5 tek seviye",
+     "kol": "yazilim"
+    }
+   ],
+   "kaynaklar": [
+    {
+     "ad": "İTÜ Meteoroloji Mühendisliği ders planı",
+     "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+    },
+    {
+     "ad": "Open-Meteo hava kalitesi API",
+     "url": "https://open-meteo.com/en/docs/air-quality-api"
+    },
+    {
+     "ad": "ERA5 tek seviye (CDS)",
+     "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    },
+    {
+     "ad": "IEM ASOS/METAR arşivi (Türkiye ağı: TR__ASOS)",
+     "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+    }
+   ]
+  }
+ ]
+}
