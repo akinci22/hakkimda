@@ -140,10 +140,11 @@ function odakYerlestir() {
     P.style.clipPath = `path(evenodd,'M0 0H${W}V${H}H0Z M${x1 + rad} ${y1}H${x1 + w - rad}A${rad} ${rad} 0 0 1 ${x1 + w} ${y1 + rad}V${y1 + h - rad}A${rad} ${rad} 0 0 1 ${x1 + w - rad} ${y1 + h}H${x1 + rad}A${rad} ${rad} 0 0 1 ${x1} ${y1 + h - rad}V${y1 + rad}A${rad} ${rad} 0 0 1 ${x1 + rad} ${y1}Z')`; }
   const pan = (!IC && vw >= 1180) ? $('.panel') : null, sag = pan ? pan.getBoundingClientRect().left : vw;   /* bağımsız sayfada sağ panelin üstüne yazılmaz */
   const ub = $('.ust') ? $('.ust').getBoundingClientRect() : null, U = Math.max(0, ub && ub.top < 4 ? ub.bottom : 0);   /* yapışkan aşama çubuğunun altına yerleşir, üstüne binmez */
-  const B = 36, cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2, genis = Math.min(980, sag - 2 * B);
+  const rayEl = $('.ray'), rayR = rayEl && getComputedStyle(rayEl).display !== 'none' ? rayEl.getBoundingClientRect().right : 0, solK = Math.max(0, rayR);   /* 8 Eki: soldaki basınç rayının üstüne yazılmaz */
+  const B = 36, cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2, genis = Math.min(980, sag - solK - 2 * B);
   const bolge = [
     { ad: 'sag', w: sag - r.right - 2 * B, h: vh - U - 2 * B, x: r.right + B, yan: true },
-    { ad: 'sol', w: r.left - 2 * B, h: vh - U - 2 * B, x: B, yan: true },
+    { ad: 'sol', w: r.left - solK - 2 * B, h: vh - U - 2 * B, x: solK + B, yan: true },
     { ad: 'alt', w: genis, h: vh - r.bottom - 2 * B, y: r.bottom + B },
     { ad: 'ust', w: genis, h: r.top - U - 2 * B, y: U + B },
   ].map(b => Object.assign(b, { puan: Math.max(0, b.w) * Math.max(0, b.h) * (b.w < 300 || b.h < 160 ? .15 : 1) * (b.yan && b.w >= 380 ? 1.6 : 1) })).sort((a, b) => b.puan - a.puan)[0];
@@ -152,14 +153,16 @@ function odakYerlestir() {
   for (let o = parseFloat(k.style.getPropertyValue('--oy')); o > .62 && k.scrollHeight > k.clientHeight + 2; o -= .08) k.style.setProperty('--oy', o.toFixed(2));   /* sığmazsa kademeli küçült */
   const kh = k.offsetHeight, kw = k.offsetWidth; let x, y;
   if (bolge.yan) { x = bolge.x; y = Math.max(U + B, Math.min(Math.max(U + B, cy - kh / 2), vh - B - kh)); }
-  else { x = Math.min(Math.max(B, cx - kw / 2), sag - B - kw); y = bolge.ad === 'alt' ? bolge.y : Math.max(U + B, r.top - B - kh); }
+  else { x = Math.min(Math.max(solK + B, cx - kw / 2), sag - B - kw); y = bolge.ad === 'alt' ? bolge.y : Math.max(U + B, r.top - B - kh); }
   k.style.left = (x - g.left) + 'px'; k.style.top = (y - g.top) + 'px';
 }
 function odakGoster(e, d, goster = true) {
   if (dokunmatik || azalt) return;
   clearTimeout(odakTemiz); odakEl = e; const k = odakKutu();
   k.querySelector('.oy-ust').textContent = d.ust || ''; k.querySelector('.oy-baslik').textContent = d.baslik || ''; k.querySelector('.oy-kisa').textContent = d.kisa || '';
-  k.querySelector('.oy-uzun').replaceChildren(...maddeler(d.uzun, 4).map(p => el('p', { class: 'md' }, p)));
+  /* 8 Eki: yapılı kartlarda ayrık bloklar; düz metinde de etiketli kısa bloklar (en çok 3 blok × 2 madde, madde ≤ 110 harf) — paragraf yığını yok */
+  const kisaBlok = Array.isArray(d.bloklar) && d.bloklar.length ? d.bloklar : metinBloklar(d.uzun).filter(b => b.tip !== 'satir' || !/^(Kaynak|Güven)$/i.test(b.etiket)).slice(0, 3).map(b => b.tip === 'madde' ? { ...b, kisaGoster: true, maddeler: b.maddeler.slice(0, 2).map(x => x.length > 110 ? x.slice(0, 107).replace(/\s\S*$/, '') + '…' : x) } : b);
+  k.querySelector('.oy-uzun').replaceChildren(...(kisaBlok.length ? blokCiz(kisaBlok, true) : maddeler(d.uzun, 4).map(p => el('p', { class: 'md' }, p))));
   k.classList.remove('acik'); odakYerlestir();
   const t0 = performance.now(); cancelAnimationFrame(odakRaf);
   const dongu = () => { if (odakEl !== e) return; odakYerlestir(); if (performance.now() - t0 < 520) odakRaf = requestAnimationFrame(dongu); };   /* kart .35 sn büyürken oyuk onu izler */
@@ -173,19 +176,22 @@ function odakGizle() {
 let odakKaydirMuaf = 0;   /* 7 Eki: hızlı kaydırıp hemen karta gelince Lenis'in sönümleme karesi (lerp) birkaç yüz ms daha 'scroll' ateşler; bu, daha yeni başlayan odağı anında iptal ediyordu (özellikle sayfanın altındaki SSS gibi uzun kaydırma gereken bölümlerde) → kart üstüne gelişten kısa bir süre sonrasına kadar kalıntı kaydırma odağı iptal etmez */
 addEventListener('scroll', () => { if (odakEl && performance.now() > odakKaydirMuaf) { GOVDE.classList.remove('odak', 'odak-son'); odakEl.classList.remove('odakli'); odakGizle(); } }, { passive: true });   /* kaydırmada odak biter: tam ekran blur kaydırma karelerini yemesin */
 /* kart etkileşimi: üzerinde dur → kararır + arka plan bulanır + "ne öğrenirsin" satırı; tıkla → ayrıntı (sayfa gibi döner) */
-let odakZ, odakZ2, odakBirak;
+let odakZ, odakZ2, odakBirak, sonKapanis = -1e9; const ISRAR_SN = 3;   /* 8 Eki: son kapanıştan 3 sn içinde yeni kart → 3 sn ısrar */
 function etkilesim(e, al) {
   e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, dokunmatik ? 'dokun: uzun hâli' : 'tıkla: uzun hâli · bekle: karar')); if (!e.querySelector('.etk-roz')) e.append(el('span', { class: 'etk-roz', 'aria-hidden': 'true' }));   /* sözsüz işaret: köşede açılır-ok (›), yazı yok */
   if (dokunmatik && !e.querySelector('.etk-on')) { try { const d = al(); const ilk = cumleler(String(d.uzun || '').replace(/\n+/g, ' ')).find(c => !/^(Kaynak|Güven)\s*:/i.test(c)) || ''; const cek = ilk.replace(/^[^:]{0,24}:\s*/, '').slice(0, 30); if (ilk && ilk !== d.kisa && !e.textContent.includes(cek)) e.append(el('span', { class: 'etk-on' }, ilk.length > 120 ? ilk.slice(0, 117).replace(/\s\S*$/, '') + '…' : ilk)); } catch (err) { } }   /* dokunmadan bilgi: ayrıntının ilk cümlesi kartta */
   if (!dokunmatik && !azalt) {
-    /* Akın 6 Eki: beklerken yalnız kararma; kararma bitince çok hızlı bulanıklık + yazı. Kartlar arası geçişte perde sönmez, yazı anında değişir (kasma/yanıp sönme yok). */
+    /* Akın 8 Eki: imleç gelince HEMEN açılır; karttan çıkınca HEMEN kapanır. Az önce (3 sn içinde) bir kart kapandıysa yeni kart 3 sn ısrar ister:
+       kartlar arasında gezinirken aç-kapa aç-kapa olmaz, kullanıcı imleci düşünmek zorunda kalmaz. */
     e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); odakKaydirMuaf = performance.now() + 900; const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true);
       $$('.odakli').forEach(x => { if (x !== e) x.classList.remove('odakli'); });
-      if (GOVDE.classList.contains('odak-son')) { e.classList.add('odakli'); odakGoster(e, d); return; }
-      odakZ = setTimeout(() => { GOVDE.classList.add('odak'); e.classList.add('odakli'); odakGoster(e, d, false); }, 300);
-      odakZ2 = setTimeout(() => { GOVDE.classList.add('odak-son'); const k = $('#odak-yazi'); if (k && odakEl === e) k.classList.add('acik'); }, 1350); });
-    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); clearTimeout(odakZ2); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla();
-      odakBirak = setTimeout(() => { GOVDE.classList.remove('odak', 'odak-son'); e.classList.remove('odakli'); odakGizle(); }, 220); });
+      const ac = () => { if (!e.matches(':hover')) return; e.classList.remove('bekliyor'); GOVDE.classList.add('odak'); e.classList.add('odakli'); odakGoster(e, d, false);
+        odakZ2 = setTimeout(() => { GOVDE.classList.add('odak-son'); const k = $('#odak-yazi'); if (k && odakEl === e) k.classList.add('acik'); }, 240); };
+      const israr = performance.now() - sonKapanis < ISRAR_SN * 1000; e.classList.toggle('bekliyor', israr);
+      if (israr) odakZ = setTimeout(ac, ISRAR_SN * 1000); else ac(); });
+    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); clearTimeout(odakZ2); e.classList.remove('bekliyor'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla();
+      if (GOVDE.classList.contains('odak')) sonKapanis = performance.now();
+      GOVDE.classList.remove('odak', 'odak-son'); e.classList.remove('odakli'); odakGizle(); });
   }
   if (!azalt && 'IntersectionObserver' in window) { const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { e.classList.add('kesfet'); io.disconnect(); } }, { threshold: .6 }); io.observe(e); }
   e.addEventListener('click', ev => { if (ev.target.closest('a,input,select,textarea,.cip,.oy,.sec')) return; kocKapat(); detayAc(al()); });
@@ -193,6 +199,44 @@ function etkilesim(e, al) {
 }
 /* ayrıntı = zihin haritası: ortada tıklanan kart (kök), çevresinde dallar; dala tıkla → açılır, cümleleri alt budak olur; köke tıkla → geri */
 const cumleler = t => String(t || '').replace(/\s+/g, ' ').trim().split(/(?<=[.!?…])\s+(?=[A-ZÇĞİÖŞÜ0-9"(])/).filter(Boolean);
+/* ======== 8 Eki (Akın): ayrıntı ve odak yazısı paragraf DEĞİL, ayrık bloklar: eşleşme (sol → sağ), güncel örnek kutusu, numaralı işler, kısa maddeler, tek satır. ======== */
+function bolumBloklar(b) {   /* Gemini bölüm kartı (fakulteler.json) → bloklar */
+  const B = []; const G = b.guncelOrnek;
+  if ((b.karsilastirma || []).length) B.push({ tip: 'eslesme', baslik: 'Senin dersin → bizde', satirlar: b.karsilastirma.map(k => ({ sol: k.senin, sag: k.bizim, not: k.neden })) });
+  if (G && G.baslik) B.push({ tip: 'ornek', baslik: 'Güncel örnek', ust: [G.tarih, G.kaynakAdi].filter(Boolean).join(' · '), b: G.baslik, maddeler: cumleler(G.metin), link: G.kaynakUrl ? { ad: G.kaynakAdi || 'kaynak', url: G.kaynakUrl } : null });
+  if ((b.isFikirleri || []).length) B.push({ tip: 'isler', baslik: 'Bugün başlanacak işler', liste: b.isFikirleri.map(f => ({ b: f.ad, cipler: f.dersler || [], satirlar: [['Ne', f.ne], ['İlk adım', f.ilkAdim], ['Elde kalan', f.cikti]] })) });
+  if (b.detay) B.push({ tip: 'madde', baslik: 'Neden sana uyar', maddeler: cumleler(b.detay) });
+  if (b.zaman) B.push({ tip: 'satir', etiket: 'Zaman', m: b.zaman });
+  return B;
+}
+function metinBloklar(uzun) {   /* düz metin ("Etiket: a · b", "1) ... 2) ...", cümleler) → bloklar; her paragraf ayrı blok, her cümle ayrı madde */
+  const B = [];
+  for (const p0 of String(uzun || '').split(/\n+/).map(p => p.trim()).filter(Boolean)) {
+    if (/^(Kaynak|Güven)\s*:/i.test(p0)) { B.push({ tip: 'satir', etiket: p0.split(':')[0].trim(), m: p0.slice(p0.indexOf(':') + 1).trim() }); continue; }
+    const m = p0.match(/^([^:.!?]{2,40}):\s+(.+)$/s); const baslik = m ? m[1].trim() : '', govde = m ? m[2] : p0;
+    let L = govde.split(/\s(?=\(?\d{1,2}\)\s)/).map(x => x.replace(/^\(?\d{1,2}\)\s*/, '').replace(/[;,]\s*$/, '').trim()).filter(Boolean);
+    if (L.length <= 1) L = govde.split(/\s·\s/).map(x => x.trim()).filter(Boolean);
+    if (L.length <= 1) L = cumleler(govde);
+    if (L.length === 1 && baslik) B.push({ tip: 'satir', etiket: baslik, m: L[0] });
+    else B.push({ tip: 'madde', baslik, maddeler: L });
+  }
+  return B;
+}
+function blokCiz(bloklar, kisa) {   /* kisa: odak yazısı (üzerine gelince) — az ve ferah; tam: tıklayınca ayrıntı */
+  const out = [];
+  for (const bl of bloklar || []) {
+    const bas = bl.baslik ? el('div', { class: 'blk-b' }, bl.baslik) : null;
+    if (bl.tip === 'eslesme') { const S = kisa ? bl.satirlar.slice(0, 2) : bl.satirlar;
+      out.push(el('div', { class: 'blk blk-es' }, bas, el('div', { class: 'es-izgara' }, ...S.flatMap(s => [el('span', { class: 'sol' }, s.sol), el('span', { class: 'ok', 'aria-hidden': 'true' }, '→'), el('span', { class: 'sag' }, s.sag), (!kisa && s.not) ? el('span', { class: 'not' }, s.not) : null])))); }
+    else if (bl.tip === 'ornek') out.push(el('div', { class: 'blk blk-or' }, bas, el('div', { class: 'or-kutu' }, bl.ust ? el('span', { class: 'or-ust' }, bl.ust) : null, el('b', {}, bl.b), kisa ? null : el('ul', { class: 'blk-md' }, ...(bl.maddeler || []).map(x => el('li', {}, x))), (!kisa && bl.link) ? el('a', { class: 'or-link', href: bl.link.url, target: '_blank', rel: 'noopener' }, bl.link.ad + ' →') : null)));
+    else if (bl.tip === 'isler') out.push(el('div', { class: 'blk blk-is' }, bas, el('ol', { class: kisa ? 'is-kisa' : 'is-liste' }, ...bl.liste.map(i => kisa
+      ? el('li', {}, el('b', {}, i.b), i.cipler.length ? el('span', { class: 'cipler' }, ...i.cipler.map(c => el('i', {}, c))) : null)
+      : el('li', {}, el('div', { class: 'is-ust' }, el('b', {}, i.b), i.cipler.length ? el('span', { class: 'cipler' }, ...i.cipler.map(c => el('i', {}, c))) : null), el('dl', { class: 'is-sat' }, ...i.satirlar.filter(s => s[1]).flatMap(s => [el('dt', {}, s[0]), el('dd', {}, s[1])])))))));
+    else if (bl.tip === 'madde') { if (kisa && !bl.kisaGoster) continue; out.push(el('div', { class: 'blk' }, bas, el('ul', { class: 'blk-md' }, ...(bl.maddeler || []).slice(0, kisa ? 3 : 99).map(x => el('li', {}, x))))); }
+    else if (bl.tip === 'satir') out.push(el('div', { class: 'blk blk-satir' }, el('span', { class: 'blk-b' }, bl.etiket), el('span', {}, bl.m)));
+  }
+  return out;
+}
 function dallar(d) {
   if (Array.isArray(d.dallar) && d.dallar.length) return d.dallar;
   const par = String(d.uzun || '').split(/\n+/).map(p => p.trim()).filter(Boolean);
@@ -215,14 +259,15 @@ function detayAc(d) {
   let par = String(d.uzun || '').split(/\n+/).map(p => p.trim()).filter(Boolean);
   const dar = innerWidth < 860;
   /* Akın 6 Eki akşam (mobil): uzun metin madde madde, ayrık; tek paragrafsa cümleleri madde olur. Kaynak/Güven satırları madde değil, en sonda küçük. */
-  let madde = false; if (dar && par.length) { const kg = par.filter(p => /^(Kaynak|Güven)\s*:/i.test(p)), ic = par.filter(p => !/^(Kaynak|Güven)\s*:/i.test(p)); const L = ic.length <= 1 ? cumleler(ic[0] || '') : ic.flatMap(p => p.length > 200 ? cumleler(p) : [p]);   /* uzun paragraf (>200 harf) da cümle cümle ayrılır */ if (L.length > 1) { madde = true; par = [...L, ...kg]; } }
+  /* Akın 8 Eki: her genişlikte paragraf YOK — yapılı kartlarda bloklar (eşleşme, örnek, işler), düz metinde her paragraf ayrı blok, her cümle ayrı madde */
+  const bloklar = Array.isArray(d.bloklar) && d.bloklar.length ? d.bloklar : metinBloklar(d.uzun);
   const kay = [...(d.kaynaklar || []), ...(d.link ? [{ ad: d.linkAd || 'bağlantı →', url: d.link }] : [])].filter(k => k && k.url);
   const dallarL = Array.isArray(d.dallar) ? d.dallar : [];
   H.append(el('div', { class: 'dm-ic' },
     el('p', { class: 'dm-ust' }, d.ust || ''),
     el('h3', { id: 'detay-baslik', class: 'dm-baslik' }, d.baslik || ''),
     d.kisa ? el('p', { class: 'dm-kisa' }, d.kisa) : null,
-    par.length ? el('div', { class: 'dm-uzun' + (madde ? ' madde' : '') }, ...par.map((p, i) => el('p', { class: /^(Kaynak|Güven)\s*:/i.test(p) ? 'dm-kg' : null, style: `--g:${200 + i * 80}ms` }, p))) : null,
+    bloklar.length ? el('div', { class: 'dm-uzun blok' }, ...blokCiz(bloklar, false).map((b, i) => { b.style.setProperty('--g', (120 + i * 70) + 'ms'); return b; })) : null,
     dallarL.length ? el('ol', { class: 'dm-dal' }, ...dallarL.map(b => el('li', {}, el('b', {}, b.baslik), (b.alt || []).length ? ' ' + b.alt.join(' ') : ''))) : null,
     kay.length ? el('p', { class: 'dm-kaynak' }, el('span', {}, kay.length > 1 ? 'Kaynaklar: ' : 'Kaynak: '), ...kay.flatMap((k, i) => [i ? ' · ' : '', el('a', { href: yol(k.url), target: /^https?:/.test(k.url) ? '_blank' : null, rel: 'noopener', onclick: k.url.startsWith('#') ? (e) => { e.preventDefault(); D.close(); git(k.url.slice(1)); } : null }, k.ad || k.url)])) : null,
     el('button', { class: 'detay-alt', type: 'button', onclick: () => D.close() }, '✕ Kapat')));
@@ -789,7 +834,7 @@ function fakulteler() {
       el('div', { class: 'bolum-kartlar fak-bk' }, ...f.bolumler.map(b => {
         const tamam = b._durum === 'tamam' || b._durum === 'hatali'; const yuz = tamam ? (b.yuz || '') : (M.derleniyor || 'Hazırlanıyor.');
         const k = el('button', { class: 'bk fb' + (tamam ? '' : ' bekliyor'), type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikonGuvenli(b.k, b.ikon), b.bolum, el('span', { class: 'bk-k' }, tamam ? (b.dogrulandi === false ? '⚠ ' : '') + b.k : (M.bekliyor || 'derleniyor'))), el('p', { class: 'bk-yuz' }, yuz));
-        if (tamam) etkilesim(k, () => ({ ust: f.ad.toLowerCase() + ' · ' + b.bolum.toLowerCase(), baslik: b.bolum, kisa: b.yuz || '', uzun: kartUzun(b),
+        if (tamam) etkilesim(k, () => ({ ust: f.ad.toLowerCase() + ' · ' + b.bolum.toLowerCase(), baslik: b.bolum, kisa: b.yuz || '', uzun: kartUzun(b), bloklar: bolumBloklar(b),
           kaynaklar: [...(b.guncelOrnek && b.guncelOrnek.kaynakUrl ? [{ ad: 'Güncel örnek: ' + (b.guncelOrnek.kaynakAdi || 'kaynak'), url: b.guncelOrnek.kaynakUrl }] : []), ...(b.kaynaklar || []).map(x => ({ ad: x.ad, url: x.url })), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] }));
         return k; })));
     BL.hidden = false; IZ.hidden = true; maddele(BL); terimSar(BL);
