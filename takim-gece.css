@@ -1,0 +1,40 @@
+/* takim-gece.css — Akın 8 Eki: portföyde takım kısmının BAŞLANGICI lacivert, yavaş (slowed) yapay zekâ havası; farklı renk, özgün yazı.
+   Bu dosya ana sayfadaki takım vitrinini boyar; devamı (gölge kökteki şerit + AURA açılışı) takim.css'in "AURA gece" bölümünde, aynı paletle. */
+#takim{--gece-0:#060d22;--gece-1:#0a1634;--gece-2:#13234c;--buz:#eaf1ff;--buz-2:#b9c7e8;--buz-3:#8fa3cc;--aur-1:#45e3d3;--aur-2:#9a8cff;--aur-3:#7fd2ff;
+  --gece-yazi:'Instrument Serif',Georgia,'Times New Roman',serif;--gece-imza:'Unbounded','Barlow Condensed',system-ui,sans-serif;
+  --gece-gren:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#takim>.sar{position:relative;isolation:isolate;color:var(--buz);padding-block:clamp(70px,9vw,130px) clamp(56px,7vw,96px)}
+#takim>.sar::before{content:"";position:absolute;z-index:-2;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);
+  background:var(--gece-gren),radial-gradient(110% 80% at 12% 0%,#172a5e 0%,transparent 58%),radial-gradient(80% 70% at 100% 40%,#1b1d55 0%,transparent 60%),linear-gradient(180deg,var(--gece-0) 0%,var(--gece-1) 100%)}
+#takim>.sar::after{content:"";position:absolute;z-index:-1;top:-10%;bottom:-10%;left:50%;width:110vw;transform:translateX(-50%);pointer-events:none;filter:blur(40px);opacity:.9;
+  background:radial-gradient(38% 34% at 22% 30%,rgba(69,227,211,.20),transparent 70%),radial-gradient(32% 30% at 72% 22%,rgba(154,140,255,.22),transparent 70%),radial-gradient(42% 38% at 58% 82%,rgba(127,210,255,.14),transparent 70%);
+  animation:gece-akis 42s ease-in-out infinite alternate}
+@keyframes gece-akis{0%{transform:translateX(-50%) translate3d(0,0,0) scale(1)}50%{transform:translateX(-50%) translate3d(3%,-2%,0) scale(1.06)}100%{transform:translateX(-50%) translate3d(-3%,2%,0) scale(1.02)}}
+#takim .sar>.bolum-no{font:500 .78rem var(--gece-imza);letter-spacing:.32em;text-transform:uppercase;color:var(--aur-3);opacity:.85}
+#takim .vitrin{gap:clamp(28px,5vw,80px)}
+#takim .vitrin-yorum{color:var(--buz-3);font-size:.78rem;letter-spacing:.04em}
+#takim .vitrin-yorum .hpa{color:var(--aur-3);border-color:rgba(127,210,255,.45);background:rgba(127,210,255,.06)}
+#takim .vitrin h2{font:400 italic clamp(2.4rem,4.6vw,4.4rem)/1.04 var(--gece-yazi);letter-spacing:-.01em;text-transform:none;text-align:left;margin:18px 0 22px;max-width:15ch;
+  background:linear-gradient(100deg,#f3f7ff 0%,#c7d3ff 38%,#a6efe6 78%,#c9bfff 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 22px rgba(127,210,255,.18));animation:gece-gel 2.8s cubic-bezier(.2,.7,.2,1) both,gece-isil 16s ease-in-out 3s infinite alternate}
+#takim .vitrin-alt{color:#9fe3da;font-size:.86rem;letter-spacing:.02em;opacity:.9}
+@keyframes gece-gel{from{opacity:0;filter:blur(10px) drop-shadow(0 0 22px rgba(127,210,255,0));transform:translateY(14px)}to{opacity:1;filter:blur(0) drop-shadow(0 0 22px rgba(127,210,255,.18));transform:none}}
+@keyframes gece-isil{from{background-position:0% 50%}to{background-position:100% 50%}}
+/* Skew-T: koyu zeminde ince çizgiler */
+#takim .vitrin-fig{background:rgba(234,241,255,.035);border:1px solid rgba(146,170,255,.22);box-shadow:0 30px 80px -40px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.02);border-radius:14px;padding:12px;backdrop-filter:blur(4px)}
+#takim .vs-cerceve{fill:rgba(10,22,52,.55);stroke:rgba(234,241,255,.45)}
+#takim .vs-izoterm line{stroke:#9a8cff;opacity:.28}
+#takim .vs-izobar line{stroke:#b9c7e8;opacity:.22}
+#takim .vs-etiket text{fill:#9fb0d6}
+#takim .vs-t,#takim .vs-legend .vs-t{stroke:#ff7b6b}
+#takim .vs-td,#takim .vs-legend .vs-td{stroke:#45e3d3}
+#takim .vs-legend text{fill:#dbe5ff}
+#takim .vs-doygun rect{fill:rgba(127,210,255,.08);stroke:#7fd2ff}
+#takim .vs-doygun text{fill:#7fd2ff}
+#takim .vitrin-fig figcaption{color:#93a6cf;font-size:.72rem;line-height:1.5}
+@media (prefers-reduced-motion:reduce){#takim>.sar::after,#takim .vitrin h2{animation:none}}
+@media (max-width:760px){#takim>.sar{padding-block:56px 44px} #takim .vitrin h2{font-size:clamp(2rem,9vw,2.8rem);max-width:none}}
+/* düzeltmeler: başlık yazı tipi diğer kurallardan güçlü; Skew-T zemin şeffaf; vitrin ile takım şeridi arasında açık renkli boşluk yok */
+#takim .vitrin h2{font-family:var(--gece-yazi)!important;font-weight:400!important;font-style:italic!important;text-transform:none!important}
+#takim .vitrin-sema svg{background:transparent!important}
+#takim .takim-ic{margin-top:0!important;border-top:0!important}

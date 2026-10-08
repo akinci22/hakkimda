@@ -176,6 +176,8 @@ function odakGizle() {
 let odakKaydirMuaf = 0;   /* 7 Eki: hızlı kaydırıp hemen karta gelince Lenis'in sönümleme karesi (lerp) birkaç yüz ms daha 'scroll' ateşler; bu, daha yeni başlayan odağı anında iptal ediyordu (özellikle sayfanın altındaki SSS gibi uzun kaydırma gereken bölümlerde) → kart üstüne gelişten kısa bir süre sonrasına kadar kalıntı kaydırma odağı iptal etmez */
 addEventListener('scroll', () => { if (odakEl && performance.now() > odakKaydirMuaf) { GOVDE.classList.remove('odak', 'odak-son'); odakEl.classList.remove('odakli'); odakGizle(); } }, { passive: true });   /* kaydırmada odak biter: tam ekran blur kaydırma karelerini yemesin */
 /* kart etkileşimi: üzerinde dur → kararır + arka plan bulanır + "ne öğrenirsin" satırı; tıkla → ayrıntı (sayfa gibi döner) */
+const kaynakAl = (...o) => { const g = new Set(); return o.flatMap(x => !x ? [] : [...(x.kaynaklar || []), ...(x.kaynakUrl ? [{ ad: x.kaynakAdi || 'kaynak', url: x.kaynakUrl }] : []), ...(typeof x.kaynak === 'string' && /^https?:/.test(x.kaynak) ? [{ ad: 'kaynak', url: x.kaynak }] : [])]).filter(k => k && k.url && !g.has(k.url) && g.add(k.url)); };   /* 8 Eki: her bilgi kaynağıyla */
+const kaynakMini = (L, on = 'Kaynak: ') => { L = (L || []).filter(k => k && k.url); return L.length ? el('span', { class: 'kaynak-mini' }, on, ...L.flatMap((k, i) => [i ? ' · ' : '', el('a', { href: k.url, target: '_blank', rel: 'noopener' }, k.ad || 'kaynak')])) : null; };
 let odakZ, odakZ2, odakBirak, sonKapanis = -1e9; const ISRAR_SN = 3;   /* 8 Eki: son kapanıştan 3 sn içinde yeni kart → 3 sn ısrar */
 function etkilesim(e, al) {
   e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, dokunmatik ? 'dokun: uzun hâli' : 'tıkla: uzun hâli · bekle: karar')); if (!e.querySelector('.etk-roz')) e.append(el('span', { class: 'etk-roz', 'aria-hidden': 'true' }));   /* sözsüz işaret: köşede açılır-ok (›), yazı yok */
@@ -331,8 +333,8 @@ function acilis() {
   const bn = $('#balon-not'); if (bn) bn.textContent = M.balonNot || '';   /* hPa metaforu bir kez, açılışta açıklanır */
   const Z = M.zaman || M.sayilar || [];
   /* Akın 6 Eki akşam: zaman rozetleri açılışta değil, "ne kadar katılmak istersin?" bölümünün üstünde tek satır (az yer, net dil) */
-  const ZS = $('#zaman-serit'); if (ZS) ZS.replaceChildren(el('span', { class: 'zs-ust' }, M.zamanBaslik || 'Kaç saat alır?'), ...Z.map(s => { const d = el('button', { class: 'zs', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ ust: 'ne kadar zaman · ' + s.e, baslik: s.s, kisa: '', uzun: s.detay })); return d; }), M.zamanNot ? el('span', { class: 'zs-not' }, M.zamanNot) : null);
-  const ES = $('#acilis-sayilar'); if (ES) ES.replaceChildren(...Z.map(s => { const d = el('button', { class: 'sayi', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ ust: 'ne kadar zaman', baslik: s.s + ' · ' + s.e, kisa: s.e, uzun: s.detay })); return d; }));
+  const ZS = $('#zaman-serit'); if (ZS) ZS.replaceChildren(el('span', { class: 'zs-ust' }, M.zamanBaslik || 'Kaç saat alır?'), ...Z.map(s => { const d = el('button', { class: 'zs', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ kaynaklar: kaynakAl(s), ust: 'ne kadar zaman · ' + s.e, baslik: s.s, kisa: '', uzun: s.detay })); return d; }), M.zamanNot ? el('span', { class: 'zs-not' }, M.zamanNot) : null);
+  const ES = $('#acilis-sayilar'); if (ES) ES.replaceChildren(...Z.map(s => { const d = el('button', { class: 'sayi', type: 'button' }, el('b', {}, s.s), el('span', {}, s.e)); if (s.detay) etkilesim(d, () => ({ kaynaklar: kaynakAl(s), ust: 'ne kadar zaman', baslik: s.s + ' · ' + s.e, kisa: s.e, uzun: s.detay })); return d; }));
   const A = $('#arananlar'); if (A && Array.isArray(M.arananlar)) {   /* ilk 7 bölüm görünür, kalanı tek düğmeyle açılır (telefonda 3-4 satır tutmasın) */
     const cip = a => el('button', { class: 'ar', type: 'button', 'data-k': a.k, onclick: () => bolumeGit(a.k) }, a.ad);
     const ilk = M.arananlar.slice(0, 7), kalan = M.arananlar.slice(7);
@@ -394,20 +396,20 @@ function katliKur() {
 function resmi() {
   const R = veri.metinler.resmi, H = veri.metinler.hoca; if (!KIME || !R || !$('#resmi')) return;
   $('#resmi-baslik').textContent = R.baslik || ''; $('#resmi-alt').textContent = R.alt || '';
-  $('#resmi-satirlar').replaceChildren(...(R.satirlar || []).flatMap(x => [el('dt', {}, x.k), el('dd', {}, yerDoldur(x.m))]));
+  $('#resmi-satirlar').replaceChildren(...(R.satirlar || []).flatMap(x => [el('dt', {}, x.k), el('dd', {}, yerDoldur(x.m), kaynakMini(kaynakAl(x), ' · '))]));
   if (H) { $('#hoca-baslik').textContent = H.baslik || ''; $('#hoca-alt').textContent = H.alt || ''; $('#hoca-maddeler').replaceChildren(...(H.maddeler || []).map(x => el('li', {}, x))); }
 }
 function sss() {
   const Q = veri.metinler.sss; if (!Q) return; $('#sss-baslik').textContent = Q.baslik; $('#sss-alt').textContent = Q.alt;
-  $('#sss-kartlar').replaceChildren(...Q.sorular.map(q => { const k = el('button', { class: 'olay-k sss-k', type: 'button' }, el('span', { class: 'k' }, q.s), el('p', { class: 'm' }, q.c)); etkilesim(k, () => ({ ust: 'sık sorulan', baslik: q.s, kisa: q.c, uzun: q.d })); return k; }));
+  $('#sss-kartlar').replaceChildren(...Q.sorular.map(q => { const k = el('button', { class: 'olay-k sss-k', type: 'button' }, el('span', { class: 'k' }, q.s), el('p', { class: 'm' }, q.c)); etkilesim(k, () => ({ kaynaklar: kaynakAl(q), ust: 'sık sorulan', baslik: q.s, kisa: q.c, uzun: q.d })); return k; }));
 }
 function olay() {
   const O = veri.metinler.olay; if (!O) return; $('#olay-baslik').textContent = O.baslik;
-  $('#olay-kartlar').replaceChildren(...O.satirlar.map(s => { const k = el('button', { class: 'olay-k', type: 'button' }, el('span', { class: 'k' }, s.k), el('p', { class: 'm' }, s.m)); etkilesim(k, () => ({ ust: 'olay ne · ' + s.k, baslik: s.k, kisa: s.m, uzun: s.detay })); return k; }));
+  $('#olay-kartlar').replaceChildren(...O.satirlar.map(s => { const k = el('button', { class: 'olay-k', type: 'button' }, el('span', { class: 'k' }, s.k), el('p', { class: 'm' }, s.m)); etkilesim(k, () => ({ kaynaklar: kaynakAl(s), ust: 'olay ne · ' + s.k, baslik: s.k, kisa: s.m, uzun: s.detay })); return k; }));
 }
 function sana() {
   const S = veri.metinler.sana; if (!S || !$('#sana-kartlar')) return; $('#sana-baslik').textContent = S.baslik; $('#sana-alt').textContent = S.alt;
-  $('#sana-kartlar').replaceChildren(...S.kartlar.map(k => { const b = el('button', { class: 'sana-k', type: 'button' }, el('span', { class: 'k' }, k.k), el('span', { class: 'bolum' }, k.bolum), el('p', { class: 'm' }, k.m), el('p', { class: 'kazanc' }, '→ ' + k.kazanc), el('span', { class: 'devam' }, 'tıkla → örnek görevler, neden burası, yük')); etkilesim(b, () => ({ ust: 'sana ne var · ' + k.bolum, baslik: k.k, kisa: k.m, uzun: k.detay })); return b; }));
+  $('#sana-kartlar').replaceChildren(...S.kartlar.map(k => { const b = el('button', { class: 'sana-k', type: 'button' }, el('span', { class: 'k' }, k.k), el('span', { class: 'bolum' }, k.bolum), el('p', { class: 'm' }, k.m), el('p', { class: 'kazanc' }, '→ ' + k.kazanc), el('span', { class: 'devam' }, 'tıkla → örnek görevler, neden burası, yük')); etkilesim(b, () => ({ kaynaklar: kaynakAl(k), ust: 'sana ne var · ' + k.bolum, baslik: k.k, kisa: k.m, uzun: k.detay })); return b; }));
 }
 function akis() {
   const A = veri.metinler.akis; if (!A) return; $('#akis-baslik').textContent = A.baslik; $('#akis-alt').textContent = A.alt;
@@ -419,14 +421,15 @@ function kapi() {
   $('#kapi-kartlar').replaceChildren(...K.secenekler.map(s => { const sat = [['ne yaparsın', s.ne], ['kazancın', s.kazanc], ['zaman', s.saat]].filter(x => x[1]);
     const k = el('button', { class: 'kapi', type: 'button', role: 'radio', 'aria-checked': String(durum.grup === s.id), 'data-id': s.id, onclick: () => grupSec(s.id) }, el('span', { class: 'k-ikon' }, ikon[s.id]), el('b', {}, s.etiket), s.alt ? el('span', { class: 'k-alt' }, s.alt) : null, sat.length ? el('dl', { class: 'k-satir' }, ...sat.flatMap(([a, b]) => [el('dt', {}, a), el('dd', {}, b)])) : null);
     ipucuBagla(k, () => ({ baslik: s.etiket, metin: s.detay || s.alt })); return k; }));
+  const kn = $('#kapi-not'), kl = kaynakAl(...K.secenekler); if (kn && kl.length) kn.append(' ', kaynakMini(kl));   /* 8 Eki: kapı seçeneklerindeki dış bilgilerin kaynakları */
 }
 function grupSec(id) { durum.grup = id; ls('takim-grup', id); KOKEL.dataset.grup = id; $$('.kapi').forEach(k => k.setAttribute('aria-checked', String(k.dataset.id === id))); sonKart(); panelSen(); durum.etkilesim++; }
 function vizyon() {
   const V = veri.metinler.vizyon;
-  const kv = el('div', { class: 'kart kart-vurgu' }, el('b', {}, V.vizyon.b), el('p', {}, V.vizyon.m)); etkilesim(kv, () => ({ ust: 'olay ne', baslik: V.vizyon.b, kisa: V.vizyon.m, uzun: V.vizyon.detay }));
-  const km = el('div', { class: 'kart' }, el('b', {}, V.misyon.b), el('p', {}, V.misyon.m)); etkilesim(km, () => ({ ust: 'olay ne', baslik: V.misyon.b, kisa: V.misyon.m, uzun: V.misyon.detay }));
+  const kv = el('div', { class: 'kart kart-vurgu' }, el('b', {}, V.vizyon.b), el('p', {}, V.vizyon.m)); etkilesim(kv, () => ({ kaynaklar: kaynakAl(V.vizyon), ust: 'olay ne', baslik: V.vizyon.b, kisa: V.vizyon.m, uzun: V.vizyon.detay }));
+  const km = el('div', { class: 'kart' }, el('b', {}, V.misyon.b), el('p', {}, V.misyon.m)); etkilesim(km, () => ({ kaynaklar: kaynakAl(V.misyon), ust: 'olay ne', baslik: V.misyon.b, kisa: V.misyon.m, uzun: V.misyon.detay }));
   $('#vizyon-kartlar').replaceChildren(kv, km);
-  $('#kollar').replaceChildren(...V.kollar.map(k => { const e = el('div', { class: 'kart' }, el('b', {}, k.b), el('p', {}, k.m)); etkilesim(e, () => ({ ust: 'takımın kolları', baslik: k.b, kisa: k.m, uzun: [k.detay, k.hirsli ? 'Daha çok istiyorsan: ' + k.hirsli : '', k.rahat ? 'Az vaktin varsa: ' + k.rahat : ''].filter(Boolean).join('\n') })); return e; }));   /* v2: kart yüzünde iki ses yok, ayrıntıda */
+  $('#kollar').replaceChildren(...V.kollar.map(k => { const e = el('div', { class: 'kart' }, el('b', {}, k.b), el('p', {}, k.m)); etkilesim(e, () => ({ kaynaklar: kaynakAl(k), ust: 'takımın kolları', baslik: k.b, kisa: k.m, uzun: [k.detay, k.hirsli ? 'Daha çok istiyorsan: ' + k.hirsli : '', k.rahat ? 'Az vaktin varsa: ' + k.rahat : ''].filter(Boolean).join('\n') })); return e; }));   /* v2: kart yüzünde iki ses yok, ayrıntıda */
 }
 function merdiven() {
   const M = veri.metinler.merdiven; $('#merdiven-baslik').textContent = M.baslik; $('#merdiven-alt').textContent = M.alt;
@@ -469,7 +472,7 @@ function mumkun() {
   const M = veri.metinler.mumkun; $('#mumkun-baslik').textContent = M.baslik;
   const medya = (m) => { if (!m) return null; if (m.tip === 'video') return el('div', { class: 'medya' }, el('video', { src: yol(m.src), poster: yol(m.poster), autoplay: true, muted: true, loop: true, playsinline: true, preload: 'metadata', 'aria-label': m.alt || '' }));
     if (m.tip === 'serit') return el('div', { class: 'medya serit' }, ...m.src.map(s => el('img', { src: yol(s), alt: '', loading: 'lazy', decoding: 'async' }))); return el('div', { class: 'medya' }, el('img', { src: yol(m.src), alt: m.alt || '', loading: 'lazy', decoding: 'async' })); };
-  $('#mumkun-kartlar').replaceChildren(...M.kartlar.map(k => { const e = el('div', { class: 'kart', tabindex: 0 }, medya(k.medya), el('b', {}, k.b), el('p', {}, k.m), k.ref ? el('a', { class: 'ref', href: yol('../' + k.ref) }, 'portfolyoda gör →') : null); etkilesim(e, () => ({ ust: 'neden mümkün', baslik: k.b, kisa: k.m, uzun: k.detay, link: k.ref ? yol('../' + k.ref) : null, linkAd: 'portfolyoda gör →' })); return e; }));
+  $('#mumkun-kartlar').replaceChildren(...M.kartlar.map(k => { const e = el('div', { class: 'kart', tabindex: 0 }, medya(k.medya), el('b', {}, k.b), el('p', {}, k.m), k.ref ? el('a', { class: 'ref', href: yol('../' + k.ref) }, 'portfolyoda gör →') : null); etkilesim(e, () => ({ kaynaklar: kaynakAl(k), ust: 'neden mümkün', baslik: k.b, kisa: k.m, uzun: k.detay, link: k.ref ? yol('../' + k.ref) : null, linkAd: 'portfolyoda gör →' })); return e; }));
   const vids = $$('#mumkun-kartlar video'); vids.forEach(v => { v.muted = true; });
   if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(x => { const v = x.target; if (x.isIntersecting) { v.play && v.play().catch(() => { }); } else v.pause(); }), { rootMargin: '0px', threshold: .15 }); vids.forEach(v => io.observe(v)); } else vids.forEach(v => v.play && v.play().catch(() => { }));   /* ekran dışı klip oynamaz */
 }
@@ -550,7 +553,7 @@ function canliSoru(s) {
 function canli() { $('#canli-sorular').replaceChildren(...veri.anket.canli.map(canliSoru)); }
 function anlatilar() {
   const A = veri.anket.anlatilar; $('#anlatilar-baslik').textContent = A.baslik;
-  $('#anlatilar-adimlar').replaceChildren(...A.adimlar.map(a => { const li = el('li', { tabindex: 0 }, el('b', {}, a.b), el('span', {}, a.a)); etkilesim(li, () => ({ ust: 'atmosfer anlatıları · adım ' + a.n, baslik: a.b, kisa: a.a, uzun: a.detay })); return li; }));
+  $('#anlatilar-adimlar').replaceChildren(...A.adimlar.map(a => { const li = el('li', { tabindex: 0 }, el('b', {}, a.b), el('span', {}, a.a)); etkilesim(li, () => ({ kaynaklar: kaynakAl(a), ust: 'atmosfer anlatıları · adım ' + a.n, baslik: a.b, kisa: a.a, uzun: a.detay })); return li; }));
   $('#anlatilar-sorular').replaceChildren(...(KIME ? [] : A.sorular.map(canliSoru)));
 }
 const IKONLAR = {
