@@ -27,6 +27,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&family=Caveat:wght@600&family=Inter:wght@500;700;800&family=Nunito:wght@600;800&family=Oswald:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Bitter:ital,wght@0,600;1,400;1,600&display=swap">
 <link rel="stylesheet" href="ortak.css?v=1791241506">
+<link rel="stylesheet" href="gecis.css?v=1791447569">
+<script src="gecis.js?v=1791447569"></script>
 <link rel="stylesheet" href="tasarim.css?v=1791238535">
 <link rel="stylesheet" href="nwp.css">
 <link rel="stylesheet" href="grafik.css">
@@ -1094,6 +1096,10 @@ section[id]{scroll-margin-top:64px}
 </section>
 
 </main>
+<script>/* Akın 8 Eki: bölüm ayrıklığı — her bölümden sonra boşluk + konsepte uygun çizgi animasyonu (gecis.js) */
+(function(){ if(!window.gecisKur) return; var T={kisaca:'izobar',projeler:'rota',akademi:'kitap',yemek:'kase',naplist:'saat',yayin:'dalga',temsilcilik:'devre',fotograf:'kamera',yon:'pusula',takim:'balon'};
+  window.gecisKur(document,'main > section.blok, main > #takim',function(s){return T[s.id]||null;},{sinif:'ana-gecis',etiket:function(s){var n=s.nextElementSibling;while(n&&n.classList.contains('gecis'))n=n.nextElementSibling;if(!n)return '';var h=n.querySelector('h2');return h?'↓ '+h.textContent.trim().slice(0,34):'';}}); })();
+</script>
 
 <section class="iletisim" id="iletisim">
   <div class="sar">
@@ -1116,4 +1122,4 @@ section[id]{scroll-margin-top:64px}
 </footer>
 <script src="g/montaj/liste.js?v=1791238535" defer></script>
 <script src="hareket.js?v=1791257953" defer></script>
-<script type="module" src="takim/ic.js?v=1791312010"></script>
+<script type="module" src="takim/ic.js?v=1791447569"></script>

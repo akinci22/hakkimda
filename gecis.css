@@ -1,0 +1,19 @@
+/* gecis.css — bölüm ayırıcı (Akın 8 Eki): boşluk → kendi kendine çizilen ikon → boşluk. Ana sayfa ve takım (takim.css sonuna da kopyalanır) */
+.gecis{position:relative;min-height:clamp(260px,46vh,460px);display:grid;place-items:center;pointer-events:none;color:var(--vurgu,var(--izohips,#1d7a8c));margin:0;padding:0;overflow:hidden}
+.gecis .gecis-ip{position:absolute;left:50%;width:1px;background:currentColor;opacity:0;transform:scaleY(0);transition:opacity .9s,transform 1.5s cubic-bezier(.2,.7,.2,1)}
+.gecis .gecis-ip.ust{top:0;bottom:calc(50% + 86px);transform-origin:top;background:linear-gradient(to bottom,transparent,currentColor)}
+.gecis .gecis-ip.alt{top:calc(50% + 86px);bottom:0;transform-origin:bottom;transition-delay:1.4s;background:linear-gradient(to top,transparent,currentColor)}
+.gecis svg{width:clamp(100px,14vw,150px);height:auto;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;position:relative;opacity:0;transform:translateY(28px) scale(.92);transition:opacity .8s,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.gecis svg *{stroke-dasharray:460;stroke-dashoffset:460;transition:stroke-dashoffset 2.4s ease .3s}
+.gecis .gecis-ad{position:absolute;top:calc(50% + 96px);font:500 .74rem/1 var(--mono,ui-monospace,monospace);letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .8s 1.2s;color:var(--murekkep-3,#76849a);background:inherit;padding:2px 8px}
+.gecis.canli .gecis-ip{opacity:.5;transform:scaleY(1)}
+.gecis.canli svg{opacity:1;transform:none;animation:gecis-suzul 7s ease-in-out 1.6s infinite}
+.gecis.canli svg *{stroke-dashoffset:0}
+.gecis.canli .gecis-ad{opacity:.75}
+.gecis.gorundu:not(.canli) svg{opacity:.35;transition-duration:.6s}
+@keyframes gecis-suzul{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (max-width:640px){.gecis{min-height:clamp(190px,34vh,300px)}.gecis .gecis-ip.ust{bottom:calc(50% + 66px)}.gecis .gecis-ip.alt{top:calc(50% + 66px)}.gecis .gecis-ad{top:calc(50% + 74px)}}
+@media (prefers-reduced-motion:reduce){.gecis svg,.gecis .gecis-ip,.gecis .gecis-ad{opacity:1;transform:none;animation:none;transition:none}.gecis .gecis-ip{opacity:.4}.gecis svg *{stroke-dashoffset:0;transition:none}.gecis{min-height:clamp(160px,26vh,260px)}}
+/* 8 Eki düzeltme: son kartta yazı rengi, poster görseli daha silik, etiket ile dikey çizgi çakışmasın */
+.gecis .gecis-ip.alt{top:calc(50% + 128px)}
+@media (max-width:640px){.gecis .gecis-ip.alt{top:calc(50% + 104px)}}

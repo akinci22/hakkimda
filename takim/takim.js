@@ -61,7 +61,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=22`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=23`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -748,7 +748,99 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => { Z.
   if (KIME) KOKEL.dataset.kime = KIME;
   await arkaKur();
   asamaYukle();
-  acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
-  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur();
+  acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); yzSor(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
+  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur(); gecisler();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
+
+/* ======== 8 Eki (Akın): bütün fakülteler → bölümler → ayrıntı. Veri: veri/fakulteler.json (Gemini → _araclar/gemini_al.py) ======== */
+const FAK_IKON = {
+  BBF: '<rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 21h8M12 17v4M7 9h4M7 13h7"/>', DEF: '<path d="M3 17h18l-2 4H5zM12 3v14M12 5l7 8H5z"/>', EEF: '<path d="M13 2L5 14h6l-1 8 8-12h-6z"/>',
+  FEF: '<circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)"/>',
+  GIDB: '<path d="M2 16c2 1 4 1 6 0s4-1 6 0 4 1 6 0M4 14l2-6h12l2 6M12 8V3"/>', INS: '<path d="M2 20h20M4 20V9l8-5 8 5v11M9 20v-6h6v6"/>', ISL: '<path d="M3 20h18M5 20V10h4v10M10 20V5h4v15M15 20v-7h4v7"/>',
+  KMF: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7 15h10"/>', MDF: '<path d="M3 20L12 4l9 16H3z"/><path d="M8 20l4-7 4 7M12 13V9"/>', MKF: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>',
+  MIM: '<path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-8h6v8M12 3v5"/>', TTF: '<path d="M4 4h16v16H4zM4 9h16M4 14h16M9 4v16M14 4v16"/>', UUBF: '<path d="M3 16l9-2 9 2M12 14V5l3 2M12 5L9 7M8 20h8"/>',
+  TMDK: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>'
+};
+const IKON_IZIN_ET = new Set(['path', 'circle', 'line', 'rect', 'polyline']), IKON_IZIN_NIT = new Set(['d', 'cx', 'cy', 'r', 'x', 'y', 'x1', 'y1', 'x2', 'y2', 'width', 'height', 'rx', 'ry', 'points', 'opacity', 'transform']);
+function ikonGuvenli(k, ham) {   /* Gemini'den gelen SVG içi: yalnız izinli etiket/nitelik; aksi hâlde yerleşik ikon */
+  const t = document.createElement('template'); t.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${IKONLAR[k] || FAK_IKON[k] || '<circle cx="12" cy="12" r="8"/>'}</svg>`; const yedek = t.content.firstChild;
+  if (!ham || typeof ham !== 'string') return yedek;
+  try { const doc = new DOMParser().parseFromString(`<svg xmlns="${NS}" viewBox="0 0 24 24">${ham}</svg>`, 'image/svg+xml'); if (doc.querySelector('parsererror')) return yedek;
+    const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('aria-hidden', 'true'); let n = 0;
+    for (const c of Array.from(doc.documentElement.children)) { if (!IKON_IZIN_ET.has(c.localName)) return yedek; const e = document.createElementNS(NS, c.localName); for (const a of Array.from(c.attributes)) if (IKON_IZIN_NIT.has(a.name)) e.setAttribute(a.name, a.value); svg.append(e); n++; }
+    return n ? svg : yedek; } catch (e) { return yedek; }
+}
+function fakulteler() {
+  const S = $('#fakulteler'); if (!S) return; const M = veri.metinler.fakulteler || {}; const F = (veri.fakulteler && veri.fakulteler.fakulteler) || [];
+  $('#fak-baslik').textContent = M.baslik || 'Bütün fakülteler'; $('#fak-alt').textContent = M.alt || '';
+  if (!F.length) { $('#fak-izgara').replaceChildren(el('div', { class: 'bos' }, 'Fakülte kartları derleniyor.')); return; }
+  const IZ = $('#fak-izgara'), BL = $('#fak-bolumler'); let acik = ls('takim-fak') || '';
+  const kartUzun = b => [
+    (b.karsilastirma || []).length ? 'Senin dersin, bizdeki karşılığı: ' + b.karsilastirma.map(k => `${k.senin} → ${k.bizim} (${k.neden})`).join(' · ') : '',
+    b.guncelOrnek ? `Güncel örnek: ${b.guncelOrnek.baslik}. ${b.guncelOrnek.metin}` : '',
+    (b.isFikirleri || []).length ? 'Bugün başlanacak işler: ' + b.isFikirleri.map((f, i) => `${i + 1}) ${f.ad} (${(f.dersler || []).join(', ')}): ${f.ne} İlk adım: ${f.ilkAdim} Elde kalan: ${f.cikti}.`).join(' ') : '',
+    b.detay || '', b.zaman ? `Zaman: ${b.zaman}` : ''].filter(Boolean).join('\n');
+  const bolumCiz = f => {
+    const hazir = f.bolumler.filter(b => b._durum === 'tamam').length;
+    BL.replaceChildren(
+      el('div', { class: 'fak-ust' }, el('button', { type: 'button', class: 'fak-geri', onclick: () => { acik = ''; ls('takim-fak', ''); BL.hidden = true; IZ.hidden = false; $$('.fk', IZ).forEach(x => x.setAttribute('aria-pressed', 'false')); gitEl(IZ, 120); } }, M.geri || '‹ fakülteler'),
+        el('h3', {}, ikonGuvenli(f.kod), f.ad), el('span', { class: 'fak-sayac' }, `${f.bolumler.length} bölüm · ${hazir} ${M.hazir || 'hazır'}`)),
+      el('div', { class: 'bolum-kartlar fak-bk' }, ...f.bolumler.map(b => {
+        const tamam = b._durum === 'tamam' || b._durum === 'hatali'; const yuz = tamam ? (b.yuz || '') : (M.derleniyor || 'Hazırlanıyor.');
+        const k = el('button', { class: 'bk fb' + (tamam ? '' : ' bekliyor'), type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikonGuvenli(b.k, b.ikon), b.bolum, el('span', { class: 'bk-k' }, tamam ? (b.dogrulandi === false ? '⚠ ' : '') + b.k : (M.bekliyor || 'derleniyor'))), el('p', { class: 'bk-yuz' }, yuz));
+        if (tamam) etkilesim(k, () => ({ ust: f.ad.toLowerCase() + ' · ' + b.bolum.toLowerCase(), baslik: b.bolum, kisa: b.yuz || '', uzun: kartUzun(b),
+          kaynaklar: [...(b.guncelOrnek && b.guncelOrnek.kaynakUrl ? [{ ad: 'Güncel örnek: ' + (b.guncelOrnek.kaynakAdi || 'kaynak'), url: b.guncelOrnek.kaynakUrl }] : []), ...(b.kaynaklar || []).map(x => ({ ad: x.ad, url: x.url })), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] }));
+        return k; })));
+    BL.hidden = false; IZ.hidden = true; maddele(BL); terimSar(BL);
+  };
+  IZ.replaceChildren(...F.map(f => { const hazir = f.bolumler.filter(b => b._durum === 'tamam').length;
+    const k = el('button', { class: 'fk', type: 'button', role: 'listitem', 'aria-pressed': String(acik === f.kod), 'data-kod': f.kod }, ikonGuvenli(f.kod), el('b', {}, f.ad.replace(/ Fakültesi$/, '')), el('span', {}, `${f.bolumler.length} bölüm${hazir ? ` · ${hazir} ${M.hazir || 'hazır'}` : ''}`),
+      el('span', { class: 'fk-ilerleme', style: `--p:${f.bolumler.length ? Math.round(hazir / f.bolumler.length * 100) : 0}%` }));
+    k.addEventListener('click', () => { acik = f.kod; ls('takim-fak', f.kod); durum.etkilesim++; bolumCiz(f); gitEl(BL, 110); }); return k; }));
+  const say = veri.fakulteler.sayac || {}; $('#fak-not').textContent = (M.not || '') + (say.toplam ? ` ${say.tamam}/${say.toplam} bölüm hazır.` : '');
+  const ilk = F.find(f => f.kod === acik); if (ilk && acik) bolumCiz(ilk);   /* son bakılan fakülte açık kalsın */
+}
+
+/* ======== 8 Eki (Akın): hangi yapay zekâ → agentic mi → fark → 40 sn hızlı tur → asıl gereken ======== */
+function yzSor() {
+  const S = $('#yz'); const Y = veri.metinler.yz; if (!S) return; if (!Y) { S.hidden = true; return; }
+  $('#yz-baslik').textContent = Y.baslik; $('#yz-alt').textContent = Y.alt; $('#yz-soru1').textContent = Y.soru1; $('#yz-soru2').textContent = Y.soru2; $('#yz-soru2-alt').textContent = Y.soru2alt || '';
+  const sec = { ai: ls('takim-yz-ai') || '', ag: ls('takim-yz-ag') || '' };
+  const dugmeler = (hedef, liste, anahtar, sonra) => $(hedef).replaceChildren(...liste.map(o => el('button', { class: 'giris-b yz-b', type: 'button', role: 'radio', 'aria-checked': String(sec[anahtar] === o.id), 'data-id': o.id,
+    onclick: ev => { sec[anahtar] = o.id; ls('takim-yz-' + anahtar, o.id); durum.etkilesim++; $$(hedef + ' .yz-b').forEach(b => b.setAttribute('aria-checked', String(b.dataset.id === o.id))); sonra(o.id, ev.currentTarget); } }, el('b', {}, o.ad))));
+  const fark = () => { const agentik = sec.ag && sec.ag !== 'hayir'; const K = Y.fark[agentik ? 'evet' : 'hayir'] || [];
+    $('#yz-fark').replaceChildren(...K.map((k, i) => el('div', { class: 'kart yz-k', style: `--g:${i}` }, el('span', { class: 'kk-no', 'aria-hidden': 'true' }, String(i + 1).padStart(2, '0')), el('b', {}, k.b), el('p', {}, k.m))),
+      el('button', { type: 'button', class: 'yz-tur-ac', onclick: () => { $('#yz-4').hidden = false; turKur(); gitEl($('#yz-4'), 90); } }, Y.turBaslik || '40 saniyede göster →'));
+    $('#yz-3').hidden = false; };
+  dugmeler('#yz-sec1', Y.araclar, 'ai', () => { $('#yz-2').hidden = false; if (!sec.ag) { const r = $('#yz-2').getBoundingClientRect(); if (r.bottom > innerHeight - 24) gitEl($('#yz-2'), Math.max(96, innerHeight - r.height - 60)); } });
+  dugmeler('#yz-sec2', Y.agentic, 'ag', () => { fark(); const r = $('#yz-3').getBoundingClientRect(); if (r.bottom > innerHeight - 24) gitEl($('#yz-3'), 90); });
+  if (sec.ai) $('#yz-2').hidden = false; if (sec.ai && sec.ag) fark();
+  /* hızlı tur: gif gibi — büyük yazı ≤3 satır + gereken bilgiler çipleri, 2,8 sn'de bir ilerler; üstünde durunca bekler; hareket azaltmada liste */
+  let turKuruldu = false;
+  function turKur() {
+    if (turKuruldu) return; turKuruldu = true; const T = Y.tur || []; const SH = $('#yz-tur-sahne'), BAR = $('#yz-tur-bar'); $('#yz-tur-baslik').textContent = Y.turBaslik || '';
+    const kartlar = [...T.map(t => el('figure', { class: 'yz-kart' }, t.img ? el('img', { src: yol(t.img), alt: '', loading: 'lazy', decoding: 'async' }) : null, el('figcaption', {}, el('b', {}, t.b), el('span', { class: 'yz-gerek' }, 'gereken: '), el('span', { class: 'yz-cipler' }, ...(t.g || []).map(g => el('i', {}, g)))))),
+      el('figure', { class: 'yz-kart son' }, el('figcaption', {}, el('b', {}, Y.son.b), el('em', {}, Y.son.m), el('p', {}, Y.son.d)))];
+    SH.replaceChildren(...kartlar); BAR.replaceChildren(...kartlar.map(() => el('i')));
+    let i = 0, z = null, duruk = azalt; const SURE = 2800;
+    const asilGoster = () => { const A = $('#yz-asil'); if (A.hidden) { A.hidden = false; A.replaceChildren(el('b', {}, Y.asil.b), el('p', { class: 'buyuk' }, Y.asil.m), el('p', { class: 'alt' }, Y.asil.alt || '')); } };
+    const goster = n => { i = (n + kartlar.length) % kartlar.length; kartlar.forEach((k, j) => k.classList.toggle('aktif', j === i)); $$('#yz-tur-bar i').forEach((b, j) => { b.classList.toggle('dolu', j < i); b.classList.toggle('akan', j === i && !duruk); b.style.setProperty('--sure', SURE + 'ms'); });
+      if (i === kartlar.length - 1) asilGoster(); };
+    const ileri = () => goster(i + 1); const basla = () => { clearInterval(z); if (!duruk) z = setInterval(() => { if (i < kartlar.length - 1) ileri(); else { clearInterval(z); duruk = true; $('#yz-tur-dur').textContent = '↻'; goster(i); } }, SURE); };
+    $('#yz-tur-ileri').onclick = () => { ileri(); basla(); }; $('#yz-tur-geri').onclick = () => { goster(i - 1); basla(); };
+    $('#yz-tur-dur').onclick = () => { if (i === kartlar.length - 1 && duruk) { duruk = false; $('#yz-tur-dur').textContent = '⏸'; goster(0); basla(); return; } duruk = !duruk; $('#yz-tur-dur').textContent = duruk ? '▶' : '⏸'; goster(i); basla(); };
+    if (!dokunmatik) { SH.addEventListener('pointerenter', () => { clearInterval(z); $$('#yz-tur-bar i').forEach(b => b.classList.remove('akan')); }); SH.addEventListener('pointerleave', () => { if (!duruk) { goster(i); basla(); } }); }
+    if (azalt) { SH.classList.add('liste'); kartlar.forEach(k => k.classList.add('aktif')); asilGoster(); return; }
+    goster(0); if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { basla(); } else clearInterval(z); }, { threshold: .4 }); io.observe(SH); } else basla();
+  }
+}
+
+/* ======== 8 Eki (Akın): bölüm ayrıklığı — her bloktan sonra boşluk + konsepte uygun çizgi animasyonu (gecis.js ortak) ======== */
+function gecisler() {
+  if (!window.gecisKur) return;
+  const TEMA = { yz: 'devre', olay: 'izobar', akis: 'rota', neden: 'devre', kapi: 'pusula', bolumler: 'kitap', fakulteler: 'fakulte', vizyon: 'bulut', merdiven: 'sinek', anlatilar: 'dalga', karne: 'izobar', mumkun: 'balon', gercek: 'saat', meraklisina: 'kitap', sss: 'mesaj', kaydir: 'pusula', test: 'izobar', coklu: 'devre', canli: 'dalga', baloncuk: 'bulut', resmi: 'balon' };
+  const ana = $('.takim-main') || $('main'); if (!ana) return;
+  const etiket = s => { let n = s.nextElementSibling; while (n && (n.classList.contains('gecis') || n.hidden)) n = n.nextElementSibling; if (!n) return ''; const b = n.matches('.asama-baslik') ? n.querySelector('b') : n.querySelector('h2'); const t = b ? b.textContent.trim() : ''; return t ? '↓ ' + t.slice(0, 34) : ''; };
+  window.gecisKur(ana, ':scope > section.blok:not(.kapak-blok):not([data-katli]):not(.son)', s => TEMA[s.id] || 'izobar', { sinif: 'takim-gecis', etiket });
+}
