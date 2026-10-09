@@ -573,10 +573,17 @@ function bolumler() {
   const biz = B.filter(x => x.k === 'MTO'), oteki = B.filter(x => x.k !== 'MTO'); B = durum.kitle === 'mto' ? [...biz, ...oteki] : [...oteki, ...biz];   /* meteorolojiden gelen önce kendi kartını görür */
   /* v2 (Akın 5 Eki): kart yüzünde paragraf yok — bölüm adı + büyük yazıyla tek, pratik örnek; dersler ve fikirler ayrıntıda */
   $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum), el('p', { class: 'bk-yuz' }, b.yuz || b.ortakIs || ''));
-    etkilesim(k, () => ({ ust: 'başka bölümdensen · ' + b.bolum.replace(/\s*\(.*?\)\s*/g, ' ').replace(/ (Mühendisliği|Programı)$/, '').trim().toLowerCase(), baslik: b.bolum, kisa: b.yuz || b.ortakIs || '',
+    etkilesim(k, () => ({ bloklar: ortakBloklar(b), ust: 'başka bölümdensen · ' + b.bolum.replace(/\s*\(.*?\)\s*/g, ' ').replace(/ (Mühendisliği|Programı)$/, '').trim().toLowerCase(), baslik: b.bolum, kisa: b.yuz || b.ortakIs || '',
       uzun: [b.detay, b.senin ? `Senin dersin: ${b.senin}.` : '', b.bizim ? `Bizdeki karşılığı: ${b.bizim}.` : '', b.ortakIs ? `Birlikte yapılabilecek: ${b.ortakIs}.` : '', (b.projeler || []).length ? 'Fikirler: ' + b.projeler.join(' · ') + '.' : ''].filter(Boolean).join('\n'),
       kaynaklar: [...(b.kaynak ? [{ ad: 'İTÜ ders planı', url: b.kaynak }] : []), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] })); return k; }));
   $('#bolum-not').textContent = 'Kaynak: İTÜ ders planları ve bölüm siteleri. Tam tablo "Meraklısına" bölümünde.';
+}
+function ortakBloklar(b) {   /* 9 Eki (Akın): ortak projeler net — her proje: ne, adım adım, sonuç, kimin dersi */
+  const P = b.projeDetay || []; if (!P.length) return null; const B = [];
+  if (b.senin || b.bizim) B.push({ tip: 'eslesme', baslik: 'Senin dersin → bizde', satirlar: [{ sol: b.senin || '', sag: b.bizim || '', not: b.ortakIs || '' }] });
+  B.push({ tip: 'isler', baslik: 'Birlikte yapabileceğimiz projeler', liste: P.map(x => ({ b: x.ad, cipler: [], satirlar: [['Ne', x.ne], ['Adımlar', x.adimlar || []], ['Sonuç', x.sonuc], ['Senden', x.senin], ['Bizden', x.bizden]].filter(r => r[1] && r[1].length) })) });
+  if (b.detay) B.push({ tip: 'madde', baslik: 'Neden sana uyar', maddeler: cumleler(b.detay) });
+  return B;
 }
 function gercek() {
   const M = veri.metinler.gercekcilik; $('#gercek-baslik').textContent = M.baslik; $('#gercek-alt').textContent = M.alt; $('#gercek-not').textContent = M.tablo_not;
