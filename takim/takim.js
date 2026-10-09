@@ -578,10 +578,11 @@ function bolumler() {
       kaynaklar: [...(b.kaynak ? [{ ad: 'İTÜ ders planı', url: b.kaynak }] : []), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] })); return k; }));
   $('#bolum-not').textContent = 'Kaynak: İTÜ ders planları ve bölüm siteleri. Tam tablo "Meraklısına" bölümünde.';
 }
+const ORNEK_TUR = { girisim: 'girişim', universite: 'üniversite', takim: 'öğrenci takımı' };
 function ortakBloklar(b) {   /* 9 Eki (Akın): ortak projeler net — her proje: ne, adım adım, sonuç, kimin dersi */
   const P = b.projeDetay || []; if (!P.length) return null; const B = [];
   if (b.senin || b.bizim) B.push({ tip: 'eslesme', baslik: 'Senin dersin → bizde', satirlar: [{ sol: b.senin || '', sag: b.bizim || '', not: b.ortakIs || '' }] });
-  B.push({ tip: 'isler', baslik: 'Birlikte yapabileceğimiz projeler', liste: P.map(x => ({ b: x.ad, cipler: [], satirlar: [['Ne', x.ne], ['Adımlar', x.adimlar || []], ['Sonuç', x.sonuc], ['Senden', x.senin], ['Bizden', x.bizden]].filter(r => r[1] && r[1].length) })) });
+  B.push({ tip: 'isler', baslik: 'Birlikte yapabileceğimiz projeler', liste: P.map(x => ({ b: x.ad, cipler: [], satirlar: [['Ne', x.ne], ['Adımlar', x.adimlar || []], ['Sonuç', x.sonuc], ['Dünyada yapanlar', (x.ornekler || []).filter(o => o && o.url).map(o => el('span', { class: 'ornek-s' }, el('i', { class: 'ornek-tur' }, ORNEK_TUR[o.tur] || o.tur || ''), ' ', el('a', { href: o.url, target: '_blank', rel: 'noopener' }, o.ad), o.ne ? ' · ' + o.ne : ''))], ['Senden', x.senin], ['Bizden', x.bizden]].filter(r => r[1] && r[1].length) })) });
   if (b.detay) B.push({ tip: 'madde', baslik: 'Neden sana uyar', maddeler: cumleler(b.detay) });
   return B;
 }
