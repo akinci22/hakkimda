@@ -12,6 +12,15 @@
   /* ---------- PC: flaş yalnız yavaş gezerken ---------- */
   // hareket.js'teki patlat() beyaz-mod'da her geçişte flaş atıyor. Hızlı geçişte flaşı tamamen bastır:
   // .flas ögesine 'ac' sınıfı eklenmesini izleyip, son geçişten bu yana 900 ms geçmemişse hemen kaldır.
+  if (dokun) {   // TELEFON: flaş patlaması hiç olmasın
+    var bak0 = setInterval(function () {
+      var f = document.querySelector(".flas"); if (!f) return; clearInterval(bak0);
+      f.style.display = "none";
+      new MutationObserver(function () { if (f.classList.contains("ac")) f.classList.remove("ac"); })
+        .observe(f, { attributes: true, attributeFilter: ["class"] });
+    }, 200);
+    setTimeout(function () { clearInterval(bak0); }, 8000);
+  }
   if (!dokun) {
     var sonGecis = 0;
     var bak = setInterval(function () {
@@ -48,7 +57,7 @@
     fv.querySelector(".fv-kapat").addEventListener("click", function (e) { e.stopPropagation(); kapat(); });
 
     // tek parmak: yakınken kaydır, yakın değilken boşa dokunma = kapat
-    var p = {}, bas = null, basOl = 1, basUz = 0, basTX = 0, basTY = 0, oynadi = false, orta0 = null;
+    var p = {}, bas = null, basOl = 1, basUz = 0, basTX = 0, basTY = 0, oynadi = false, orta0 = null, suruk = 0;
     function uz(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
     function noktalar() { var k = []; for (var id in p) k.push(p[id]); return k; }
 
@@ -75,6 +84,11 @@
         var dx = e.clientX - bas.x, dy = e.clientY - bas.y;
         if (Math.abs(dx) + Math.abs(dy) > 8) oynadi = true;
         if (ol > 1.02) { tx = basTX + dx; ty = basTY + dy; fv.classList.add("yakin"); yaz(); }
+        else if (dy > 0 && Math.abs(dy) > Math.abs(dx)) {   // yakın değilken aşağı sürükleme = kapatma hareketi
+          suruk = dy; fv.classList.add("suruk");
+          fvIm.style.transform = "translateY(" + dy + "px) scale(" + Math.max(.75, 1 - dy / 900) + ")";
+          fv.style.opacity = String(Math.max(.25, 1 - dy / 520));
+        }
       }
     });
 
@@ -84,6 +98,14 @@
       var n = noktalar();
       if (n.length === 0) {
         fv.classList.remove("yakin");
+        if (suruk > 0) {   // aşağı sürükleme bitti: yeterince indiyse kapat, değilse yerine dönsün
+          var yeter = suruk > 110;
+          fv.classList.remove("suruk"); fv.style.opacity = "";
+          suruk = 0;
+          if (yeter) { kapat(); return; }
+          fvIm.style.transform = ""; ol = 1; tx = 0; ty = 0;
+          return;
+        }
         if (ol <= 1.02) { ol = 1; tx = 0; ty = 0; yaz(); }
         if (!oynadi) kapat();   // dokun-bırak, kaydırma değil → geri çık
       }
@@ -105,7 +127,7 @@
     kaynaklar = [].slice.call(kap.querySelectorAll(".ss-yan img, .ss-sira img"));
     sira = Math.max(0, kaynaklar.indexOf(im));
     fvIm.src = im.dataset.src || im.currentSrc || im.src; fvIm.alt = im.alt || "";
-    ol = 1; tx = 0; ty = 0; yaz();
+    ol = 1; tx = 0; ty = 0; yaz(); fv.classList.remove("suruk"); fv.style.opacity = "";
     fv.hidden = false; acik = true; acilisT = performance.now(); kilitle();
     requestAnimationFrame(function () { fv.classList.add("ac"); });
     try { history.pushState({ fv: 1 }, ""); } catch (x) {}   // geri tuşu kapatsın
@@ -113,8 +135,8 @@
 
   function kapat(geriden) {
     if (!acik) return; acik = false;
-    fv.classList.remove("ac"); fv.classList.add("kapanis");
-    setTimeout(function () { fv.hidden = true; fv.classList.remove("kapanis"); }, 240);
+    fv.classList.remove("ac", "suruk"); fv.classList.add("kapanis"); fv.style.opacity = "";
+    setTimeout(function () { fv.hidden = true; fv.classList.remove("kapanis"); fvIm.style.transform = ""; }, 240);
     kilitAc();
     if (!geriden) { try { if (history.state && history.state.fv) history.back(); } catch (x) {} }
   }
