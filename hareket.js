@@ -161,7 +161,7 @@ function kaydirDegis(k, src, yon) {
     function kaynak(im) { return im.dataset.src || im.currentSrc || im.src; }
     function goster() { resim.src = kaynak(liste[i]); resim.alt = liste[i].alt || ""; sayac.textContent = (i + 1) + " / " + liste.length; }
     function git(d) { i = (i + d + liste.length) % liste.length; goster(); }
-    function kapat() { kutu.hidden = true; document.body.style.overflow = ""; }
+    function kapat() { kutu.hidden = true; document.documentElement.classList.remove("fv-acik"); document.body.style.overflow = ""; }
     function kur() {
       kutu = document.createElement("div"); kutu.className = "buyut"; kutu.hidden = true;
       kutu.innerHTML = '<img alt=""><button class="b-kapat" aria-label="Kapat">×</button>' +
@@ -191,7 +191,7 @@ function kaydirDegis(k, src, yon) {
       });
       i = Math.max(0, liste.indexOf(im));
       if (!kutu) kur();
-      goster(); kutu.hidden = false; document.body.style.overflow = "hidden";
+      goster(); kutu.hidden = false; document.documentElement.classList.add("fv-acik");
     });
   })();
 
@@ -241,7 +241,8 @@ function kaydirDegis(k, src, yon) {
   var dokun = matchMedia("(hover: none)").matches;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var hedef = null, zam = null, cik = null, kat = null, son = { x: 0, y: 0 }, kaydi = 0;
-  addEventListener("scroll", function () { kaydi = Date.now(); if (kat && kat._evre1) { kapat(); hedef = null; } }, { passive: true });
+  var okRaf = 0;   /* kendiliğinden iniş rAF kimliği (aşağıda kurulur) */
+  addEventListener("scroll", function () { if (okRaf) return; kaydi = Date.now(); if (kat && kat._evre1) { kapat(); hedef = null; } }, { passive: true });   /* kendiliğinden iniş sırasındaki kaydırma "kullanıcı kaydırdı" sayılmaz */
   var pd = document.createElement("div");   // arka perde: büyürken kararıp bulanıklaşır, sonunda kapkara
   pd.style.cssText = "position:fixed;inset:0;z-index:9998;pointer-events:none;background:#000;opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)";
   document.body.appendChild(pd);
@@ -277,7 +278,39 @@ function kaydirDegis(k, src, yon) {
   }
   function kaynak(el) { if (el.closest(".montaj-ic")) return el.closest(".montaj").querySelector(".montaj-kare");
     return el.matches("video.gif") ? el : (el.querySelector(".hl-kutu img.on") || el.querySelector("video.gif") || el.querySelector("img")); }
-  function kapat() { clearTimeout(zam); zam = null; clearTimeout(cik); cik = null; yz.classList.remove("acik"); ak.classList.remove("acik"); if (!kat) return; var k = kat; kat = null; perde(false);
+  /* 11 Eki (Akın): cihazın geri hareketi (yandan kaydırma / navigasyon barı) büyümüş görseli kapatır; kapanınca
+     ana ekrana değil, en son açılan karta dönülür; 3 sn dokunulmazsa sayfa kendiliğinden yavaşça aşağı iner. */
+  var geriBasamak = false, acan = null, okSon = 0;
+  function geriEkle() { try { history.pushState({ buyuk: 1 }, ""); geriBasamak = true; } catch (e) { geriBasamak = false; } }
+  function geriAl() { if (!geriBasamak) return; geriBasamak = false; try { history.back(); } catch (e) {} }
+  function okumaDur() { if (okRaf) cancelAnimationFrame(okRaf); okRaf = 0; }
+  function okumaBasla() {   /* açık kalıp 3 sn dokunulmazsa: yavaş, akıcı aşağı iniş */
+    okumaDur(); okSon = Date.now();
+    var kesirli = 0, oncekiT = 0;
+    var adim = function (t) {
+      if (!kat) { okumaDur(); return; }
+      if (Date.now() - okSon < 3000) { oncekiT = t; okRaf = requestAnimationFrame(adim); return; }
+      var son = document.documentElement.scrollHeight - innerHeight;
+      if (scrollY >= son - 1) { okumaDur(); return; }
+      var dt = oncekiT ? Math.min(50, t - oncekiT) : 16; oncekiT = t;
+      kesirli = Math.min(son, Math.max(kesirli, scrollY) + 26 * dt / 1000);   /* ~26 px/sn, kesirli birikim (tam sayıya yuvarlanıp yerinde saymasın) */
+      if (window.__lenis) window.__lenis.scrollTo(kesirli, { immediate: true }); else scrollTo(0, kesirli);
+      okRaf = requestAnimationFrame(adim);
+    };
+    okRaf = requestAnimationFrame(adim);
+  }
+  ["pointerdown", "wheel", "keydown", "touchstart", "touchmove"].forEach(function (t) {
+    addEventListener(t, function () { okSon = Date.now(); }, { passive: true, capture: true });
+  });
+  function donusKart() {   /* kapanışta: en son büyütülen kart ekranda ortalanır */
+    var e = acan; if (!e || !e.getClientRects || !e.getClientRects().length) return;
+    var r = e.getBoundingClientRect();
+    if (r.top >= 70 && r.bottom <= innerHeight - 8) return;
+    var y = Math.max(0, r.top + scrollY - Math.max(70, (innerHeight - r.height) / 2));
+    if (window.__lenis) window.__lenis.scrollTo(y, { duration: .6 }); else scrollTo({ top: y, behavior: "smooth" });
+  }
+  addEventListener("popstate", function () { geriBasamak = false; if (kat) { kapat(); hedef = null; } });
+  function kapat() { clearTimeout(zam); zam = null; clearTimeout(cik); cik = null; yz.classList.remove("acik"); ak.classList.remove("acik"); okumaDur(); if (!kat) return; geriAl(); setTimeout(donusKart, 60); var k = kat; kat = null; perde(false);
     k.style.transition = "transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s"; k.style.transform = k._ilk; k.style.opacity = "0";
     setTimeout(function () { k.remove(); }, 460); }
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && kat) kapat(); });   // Esc: büyüyen klip/fotoğraf kapanır
@@ -299,7 +332,7 @@ function kaydirDegis(k, src, yon) {
     k.style.cssText = "position:fixed;z-index:9999;left:" + x0 + "px;top:" + y0 + "px;width:" + w + "px;height:" + h +
       "px;object-fit:contain;background:#000;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6);pointer-events:none;will-change:transform;transform-origin:0 0";
     var s = r.width / w, ilk = "translate(" + (r.left - x0) + "px," + (r.top - y0) + "px) scale(" + s + ")";
-    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; k._hz = hz; if (!hz) perde(true, false, true);
+    k._ilk = ilk; k.style.transform = ilk; document.body.appendChild(k); kat = k; k._hz = hz; acan = hedef; geriEkle(); okumaBasla(); if (!hz) perde(true, false, true);
     if (k.play) { var p = k.play(); if (p && p.catch) p.catch(function () {}); }
     if (hz) {   // YolHava: 1) imlecin altındaki kalır, çevresi hızla kararır + "büyüteceğim" sinyali; 2) kararınca seri büyür, ortada orta boy
       k._evre1 = true; k.classList.add("sinyal"); perde(true, "bokeh");
@@ -325,6 +358,7 @@ function kaydirDegis(k, src, yon) {
   function icinde(el, x, y) { if (!el) return false; var r = el.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; }
   document.addEventListener("pointermove", function (e) {
     if (e.pointerType !== "mouse") return;
+    if (okRaf) return;   /* kendiliğinden inerken imleç sabitken de sahte pointermove gelebilir: katmanı kapatmasın */
     var x = e.clientX, y = e.clientY;
     if (kat) {
       var r1 = kat.getBoundingClientRect(), r2 = hedef ? hedef.getBoundingClientRect() : r1;   // kart ile büyük görsel arası boşluk da "içeride" sayılır
@@ -367,6 +401,20 @@ function kaydirDegis(k, src, yon) {
       var el = e.target.closest && e.target.closest("video.gif"); if (!el || kat) return;   // klipte kısa dokunuş: hemen büyüt + açıklama
       hedef = el; on(el); buyut(); yut = true;
     }, { passive: true });
+    /* parmakla aşağı kaydırarak kapatma: büyümüş görsel açıkken 1 parmakla 40 px aşağı çekiş kapatır */
+    var ky0 = null;
+    document.addEventListener("touchstart", function (e) { ky0 = (kat && e.touches.length === 1) ? e.touches[0].clientY : null; }, { passive: true });
+    document.addEventListener("touchmove", function (e) {
+      if (ky0 == null || !kat || e.touches.length !== 1) return;
+      var d = e.touches[0].clientY - ky0; if (d <= 10) return;
+      kat.style.transition = "none";
+      kat.style.transform = "translateY(" + Math.min(d * .5, 140) + "px)";
+      kat.style.opacity = String(Math.max(.4, 1 - d / 380));
+      if (d > 40) kat._kapanacak = true;
+    }, { passive: true });
+    var birak = function () { if (ky0 == null) return; ky0 = null; if (kat && kat._kapanacak) { kapat(); hedef = null; yut = true; } };
+    document.addEventListener("touchend", birak, { passive: true });
+    document.addEventListener("touchcancel", birak, { passive: true });
     document.addEventListener("contextmenu", function (e) { if (e.target.closest && e.target.closest(".hl, video.gif")) e.preventDefault(); });
   }
 })();
