@@ -489,8 +489,14 @@ function kaydirDegis(k, src, yon) {
   var adlar = ["YolHava", "İTÜ Yemek", "Naplist", "Canlı yayın", "Temsilcilik", "Fotoğraf", "Proje takımı", "İletişim"], ad = b.querySelector(".hb-ad");
   document.body.appendChild(b);
   var kok = document.documentElement, bk = false;
+  // 14 Eki 2026 (Playwright QA): sayfa en üstteyken üst bant (.bant) başlık çubuğunu aşağı ittiği için bulut menünün üstüne biniyordu.
+  // Bant görünür olduğu sürece bulut o kadar aşağıda durur; bant kayıp gidince CSS'teki tabana (56px / telefonda 50px) döner.
+  var bant = document.querySelector(".bant"), bantH = 0, tabanTop = 56;
+  function bulutOlc() { bantH = bant ? bant.offsetHeight : 0; b.style.top = ""; tabanTop = parseFloat(getComputedStyle(b).top) || 56; }
+  bulutOlc(); addEventListener("resize", bulutOlc);
   function ciz() {
     bk = false;
+    b.style.top = (tabanTop + Math.max(0, bantH - scrollY)) + "px";
     var top = kok.scrollHeight - innerHeight, p = top > 0 ? Math.min(1, scrollY / top) : 0, ev = 0;
     for (var i = 0; i < sira.length; i++) { var s = document.getElementById(sira[i]); if (s && s.getBoundingClientRect().top < innerHeight * .5) ev = i; }
     if (p > .985) ev = 7;

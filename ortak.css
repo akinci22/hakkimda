@@ -659,3 +659,20 @@ html .hava-bulut.tutuldu{opacity:1!important;pointer-events:auto!important}
 #yolhava .baglar a.pr-bag{background:#2973b3;color:#fff}
 .yan-anim .sahne .konusma{background:#5a63c9;color:#fff}
 a.pr-bag.pr-bag-dolu{color:#1b1b1b}
+
+/* ============================================================
+   14 Eki 2026 — Web Interface Guidelines (Vercel) + Taste/redesign denetimi sonrası küçük dokunuşlar
+   (tema, renk, yazı tipi DEĞİŞMEDİ; yalnız etkileşim hijyeni)
+   ============================================================ */
+html{color-scheme:light}
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]){color-scheme:dark}}
+html[data-theme="dark"]{color-scheme:dark}
+/* dokunma: çift dokunma yakınlaştırma gecikmesi yok, mavi vurgu kutusu yok */
+a,button,summary,label,[role="button"]{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+/* basınca fiziksel geri bildirim (hover'ı olan öğelerde zaten var; geri kalan düğme/bağlantılar) */
+button:not([disabled]):active,.etiket:active,summary:active{transform:translateY(1px)}
+/* klavye odağı: her etkileşimli öğede görünür halka */
+a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--izohips);outline-offset:3px}
+/* büyütme kutusu: kaydırma zinciri sayfaya sızmasın */
+.buyut{overscroll-behavior:contain}
+@media (prefers-reduced-motion:reduce){button:active,.etiket:active,summary:active{transform:none}}
