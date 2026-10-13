@@ -120,15 +120,48 @@ function kaydirDegis(k, src, yon) {
   (function () {
     var v = document.querySelectorAll("video.gif");
     if (!v.length) return;
-    if (azalt || !("IntersectionObserver" in window)) { Array.prototype.forEach.call(v, function (x) { x.controls = true; }); return; }
+    // Akın 13 Eki: klipler GIF gibi davranmalı — DAİMA kendiliğinden oynar, oynat/durdur düğmesi ASLA çıkmaz.
+    // (Eskiden "az hareket" tercihinde controls=true veriliyordu; düğmeler çıkıyor, klip oynamıyordu.)
+    Array.prototype.forEach.call(v, function (x) {
+      x.controls = false; x.removeAttribute("controls"); x.muted = true; x.defaultMuted = true;
+      x.loop = true; x.playsInline = true; x.setAttribute("playsinline", ""); x.setAttribute("webkit-playsinline", "");
+      x.disablePictureInPicture = true; x.setAttribute("disablepictureinpicture", "");
+      x.setAttribute("controlslist", "nodownload noplaybackrate noremoteplayback");
+    });
+    if (!("IntersectionObserver" in window)) {   // gözlemci yoksa hepsi doğrudan oynasın (düğme yok)
+      Array.prototype.forEach.call(v, function (x) { x.preload = "auto"; var p = x.play(); if (p && p.catch) p.catch(function () {}); });
+      return; }
+    function oynat(x, kalan) {   // tarayıcı reddederse (güç tasarrufu, sekme arkada) yeniden dene
+      if (x.controls) { x.controls = false; x.removeAttribute("controls"); }
+      var p = x.play();
+      if (p && p.catch) p.catch(function () {
+        var n = kalan === undefined ? 4 : kalan;
+        if (n <= 0) return;
+        setTimeout(function () {
+          var r = x.getBoundingClientRect();
+          if (r.bottom > 0 && r.top < innerHeight && x.paused) { x.muted = true; oynat(x, n - 1); }
+        }, 400);
+      });
+    }
     var io = new IntersectionObserver(function (gs) {
       gs.forEach(function (g) {
         var x = g.target;
-        if (g.isIntersecting) { if (x.preload !== "auto") { x.preload = "auto"; x.load(); } var p = x.play(); if (p && p.catch) p.catch(function () {}); }
+        if (g.isIntersecting) { if (x.preload !== "auto") { x.preload = "auto"; x.load(); } oynat(x); }
         else x.pause();
       });
     }, { rootMargin: "300px 0px", threshold: 0 });
     Array.prototype.forEach.call(v, function (x) { io.observe(x); });
+    function ekrandakileriOynat() {
+      Array.prototype.forEach.call(v, function (x) {
+        var r = x.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < innerHeight && x.paused) oynat(x);
+      });
+    }
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) ekrandakileriOynat(); });
+    addEventListener("pageshow", ekrandakileriOynat);
+    ["touchstart", "pointerdown"].forEach(function (n) {   // tarayıcı "kullanıcı etkileşimi" bekliyorsa ilk dokunuşta başlat
+      addEventListener(n, function bir() { ekrandakileriOynat(); removeEventListener(n, bir); }, { passive: true, once: true });
+    });
   })();
 
   // Fotoğraf montajları: her grup (kampüs, sokak) kendi karelerini çok hızlı değiştirir (yalnız ekrandayken), altta sonsuz akan şerit
