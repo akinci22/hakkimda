@@ -892,3 +892,85 @@ h3:has(+ .sokak-sahne){position:relative;z-index:2;color:#111!important;text-ali
 .fv-kapat:active{background:rgba(0,0,0,.14)}
 html.fv-acik,html.fv-acik body{overflow:hidden!important;overscroll-behavior:none}
 @media (prefers-reduced-motion:reduce){.fv,.fv img{transition:none}}
+
+/* ===== GİRİZGÂH + İÇİNDEKİLER — 13 Eki (Akın) =====
+   "Ben kimim" ile "Neler yaptım" tek bir beyaz yüzeyde birleşir; şablonsal, kategorili
+   bir içindekiler tablosu gibi okunur. Apple estetiği: bembeyaz zemin, saç teli çizgiler,
+   bol boşluk, renk yerine tipografi hiyerarşisi. */
+
+/* --- hero ile içindekiler aynı beyaz yüzey: arada renk/çizgi kırılması yok --- */
+.hero{background:#fff!important;border-bottom:0!important}
+.ick-blok{background:#fff!important;background-image:none!important;border-top:0!important;
+ padding-top:clamp(10px,2vw,26px)!important;padding-bottom:clamp(56px,8vw,110px)!important}
+.hero + main .ick-blok,.ick-blok{margin-top:0}
+.hero .hero-ic{padding-bottom:clamp(14px,2.2vw,26px)}
+.hero{padding-bottom:0!important}
+/* girizgâhın künyesi: kutu değil, ince çizgili şerit (içindekiler diliyle aynı) */
+.hero .kunye{border-top:1px solid #e8e8ed;padding-top:18px;margin-top:26px}
+.hero .kunye dt{color:#86868b;letter-spacing:.01em}
+.hero .kunye dd{color:#1d1d1f}
+
+/* --- başlık bloğu --- */
+.ick-ust{border-top:1px solid #e8e8ed;padding-top:clamp(26px,4vw,46px);margin-bottom:clamp(22px,3.4vw,40px)}
+.ick-etiket{display:block;font:600 .74rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#86868b;margin-bottom:14px}
+@media (max-width:700px){.ick-etiket{padding-left:86px}}   /* ilerleme bulutu etiketin üstüne binmesin */
+.ick-h2{font:700 clamp(2.1rem,5.2vw,3.5rem)/1.05 var(--sans)!important;letter-spacing:-.025em;color:#1d1d1f!important;margin:0 0 12px!important;text-align:left!important}
+.ick-blok h2::after,.ick-blok h2::before{display:none!important}   /* ortalanmış başlık süsleri yok */
+.ick-giris{font:400 clamp(1.02rem,1.5vw,1.26rem)/1.5 var(--sans);color:#86868b;max-width:60ch;margin:0}
+
+/* --- kategori listesi --- */
+.ick{list-style:none;margin:0;padding:0;counter-reset:ick}
+.ick-grup{border-top:1px solid #e8e8ed;padding:clamp(26px,3.6vw,44px) 0}
+.ick-grup:last-child{border-bottom:1px solid #e8e8ed}
+.ick-bas{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.ick-no{font:600 .84rem/1 var(--mono);color:#86868b;letter-spacing:.04em;flex-shrink:0;min-width:2.2em}
+.ick-bas h3{font:700 clamp(1.5rem,3.1vw,2.2rem)/1.15 var(--sans)!important;letter-spacing:-.02em;color:#1d1d1f!important;margin:0!important;flex:1 1 auto}
+.ick-adet{font:400 .86rem/1 var(--sans);color:#86868b;white-space:nowrap}
+.ick-ac{font:400 clamp(.96rem,1.2vw,1.08rem)/1.5 var(--sans);color:#86868b;margin:0 0 20px;padding-left:calc(2.2em + 14px);max-width:62ch}
+
+/* --- kategori içindeki maddeler: sade satırlar, oklu --- */
+.ick-sat{display:grid;gap:10px;padding-left:calc(2.2em + 14px)}
+.ick-oge{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;text-decoration:none;
+ background:#f5f5f7;border-radius:14px;padding:16px 46px 16px 20px;position:relative;
+ transition:background .18s ease,transform .18s ease}
+.ick-oge::after{content:"";position:absolute;right:20px;top:50%;width:8px;height:8px;margin-top:-5px;
+ border-right:1.6px solid #86868b;border-bottom:1.6px solid #86868b;transform:rotate(-45deg);
+ transition:transform .18s ease,border-color .18s ease}
+.ick-oge:hover{background:#ececf0;transform:translateX(2px)}
+.ick-oge:hover::after{border-color:#1d1d1f;transform:rotate(-45deg) translate(2px,2px)}
+.ick-oge:active{transform:scale(.995)}
+.ick-ad{font:600 clamp(1.02rem,1.5vw,1.18rem)/1.3 var(--sans);color:#1d1d1f;letter-spacing:-.01em}
+.ick-not{font:400 clamp(.9rem,1.1vw,1rem)/1.4 var(--sans);color:#86868b;flex:1 1 16ch;min-width:0}
+
+/* --- telefon: numara hizası sadeleşir, satırlar alt alta --- */
+@media (max-width:700px){
+ .ick-ac,.ick-sat{padding-left:0}
+ .ick-bas{gap:10px}
+ .ick-no{min-width:auto}
+ .ick-oge{padding:14px 40px 14px 16px;gap:4px}
+ .ick-ad,.ick-not{flex:1 1 100%}
+}
+
+/* --- Akın 13 Eki: "renkleri çok daha beyaz" — girizgâh + içindekiler cihaz koyu temada bile BEYAZ kalır.
+       (Kapak/içindekiler sayfası; aşağıdaki bölümler cihazın temasına uymayı sürdürür.) --- */
+.hero,.ick-blok{background:#fff!important;color-scheme:light}
+.hero h1,.hero .altbaslik,.hero .etiket,.hero .msj,.hero .msj-ad,.hero .kunye dt,.hero .kunye dd,
+.ick-etiket,.ick-h2,.ick-giris,.ick-bas h3,.ick-no,.ick-adet,.ick-ac,.ick-ad,.ick-not{color:unset}
+.hero h1{color:#1d1d1f!important}
+.hero .altbaslik,.hero .etiket{color:#86868b!important}
+.hero .sohbet .msj{background:#f5f5f7!important;color:#1d1d1f!important;border-color:#e8e8ed!important}
+.hero .sohbet .msj-ad{color:#86868b!important}
+.hero .kunye dt{color:#86868b!important}
+.hero .kunye dd{color:#1d1d1f!important}
+.hero .kunye > div{background:#fff!important;border-color:#e8e8ed!important;box-shadow:none!important}
+.ick-etiket,.ick-giris,.ick-adet,.ick-ac,.ick-not,.ick-no{color:#86868b!important}
+.ick-h2,.ick-bas h3,.ick-ad{color:#1d1d1f!important}
+.ick-ust,.ick-grup,.ick-grup:last-child,.hero .kunye{border-color:#e8e8ed!important}
+/* içindekiler satırları bölüm temalarından (t-takim vb.) etkilenmesin: hepsi aynı açık gri */
+.ick-oge,.ick-oge.t-yolhava,.ick-oge.t-yemek,.ick-oge.t-naplist,.ick-oge.t-bulut,
+.ick-oge.t-yayin,.ick-oge.t-temsil,.ick-oge.t-takim,.ick-oge.t-foto{
+ background:#f5f5f7!important;--zemin:#f5f5f7;--yazi:#1d1d1f;--yazi-2:#86868b;--vurgu:#1d1d1f;--balon:#fff;--kagit:#fff}
+.ick-oge:hover{background:#ececf0!important}
+.ick-oge::after{border-color:#86868b!important}
+.ick-oge:hover::after{border-color:#1d1d1f!important}
+}
