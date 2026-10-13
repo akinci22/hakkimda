@@ -719,17 +719,47 @@ function kaydirDegis(k, src, yon) {
     var k = g.querySelector(".yg-kart.ac"); if (k) { if (k !== acik) goster(k); } else if (acik) gizle(); }).observe(g, { attributes: true, subtree: true, attributeFilter: ["class"] });
 })();
 
-/* Çapa atlayışında iniş düzeltmesi: üstteki bölümler kaydırma sırasında boy alınca (geç yüklenen görsel/klip) hedef kısa düşüyordu
-   (mobilde menü → #takim ilk tıklamada 574 px eksik). İniş bitince hedefin yerini yeniden ölçer, sapma varsa kısa bir kaydırmayla oturtur. */
+/* Çapa atlayışında iniş düzeltmesi (v2 — 12 Eki, Akın: "hızlı aşağı kaydırdıktan sonra kendi kendine geri gitmeler oluyor")
+   Sorun: düzeltme 1400/2500/3600 ms sonra KOŞULSUZ çalışıyordu. Kullanıcı o arada elle kaydırdıysa ya da başka bir
+   bağlantıya bastıysa, eski hedefe zorla geri çekiyordu (ölçüldü: 300 px'e kaydırılan sayfa 31978'e fırladı).
+   Çözüm: her atlayış bir "oturum"; kullanıcı araya girdiği (tekerlek/dokunma/tuş/yeni tıklama) anda oturum iptal olur
+   ve o atlayışın bekleyen düzeltmeleri bir daha çalışmaz. Düzeltme yalnız hedefe yakınken ve küçük sapmalarda yapılır. */
 (function () {
+  var oturum = 0, aktif = null;                      // aktif = o an süren atlayış; null = serbest
+  function iptal() { oturum++; aktif = null; }       // sayaç artınca eski zamanlayıcılar kendini geçersiz sayar
+
+  // kullanıcı araya girdi mi? (Lenis'in kendi programlı kaydırması sayılmaz — yalnız gerçek girdi)
+  ["wheel", "touchstart", "pointerdown", "keydown"].forEach(function (t) {
+    addEventListener(t, function (e) {
+      if (t === "keydown" && !/^(Arrow|Page|Home|End| )/.test(e.key)) return;
+      if (t === "pointerdown" && e.target.closest && e.target.closest('a[href^="#"]')) return;  // çapa tıklaması: aşağıdaki click halleder
+      iptal();
+    }, { passive: true, capture: true });
+  });
+
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a || a.getAttribute("href").length < 2) return;
     var id = a.getAttribute("href").slice(1), h = document.getElementById(id); if (!h || a.closest("#takim-ic")) return;
+
+    iptal();                                          // yeni atlayış: öncekinin bekleyen düzeltmeleri ölür
+    var benim = ++oturum; aktif = h;
     var ust = window.__lenis ? 10 : (parseFloat(getComputedStyle(h).scrollMarginTop) || 0);
-    var ic = window.TAKIM_IC && window.TAKIM_IC.govde, host = document.getElementById("takim-ic");   // hedef takımın altındaysa: içkin bölümler gerçek boyuna açılır (content-visibility yer tutucusu hedefi kısa ölçtürüyordu)
-    if (ic && host && (host.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING) && !host.contains(h)) { ic.classList.add("hepsi-acik"); clearTimeout(ic._hz2); ic._hz2 = setTimeout(function () { ic.classList.remove("hepsi-acik"); }, 4000); }
-    function duzelt() { var d = h.getBoundingClientRect().top - ust; if (Math.abs(d) <= 4) return;
-      if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: Math.abs(d) > innerHeight ? .9 : .45 }); else scrollBy({ top: d, behavior: Math.abs(d) > innerHeight ? "instant" : "smooth" }); }
-    setTimeout(duzelt, 1400); setTimeout(duzelt, 2500); setTimeout(duzelt, 3600);
+
+    var ic = window.TAKIM_IC && window.TAKIM_IC.govde, host = document.getElementById("takim-ic");
+    if (ic && host && (host.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING) && !host.contains(h)) {
+      ic.classList.add("hepsi-acik"); clearTimeout(ic._hz2);
+      ic._hz2 = setTimeout(function () { ic.classList.remove("hepsi-acik"); }, 4000);
+    }
+
+    function duzelt() {
+      if (oturum !== benim || aktif !== h) return;                 // kullanıcı araya girdi → dokunma
+      var d = h.getBoundingClientRect().top - ust;
+      if (Math.abs(d) <= 4) return;                                // zaten yerinde
+      if (Math.abs(d) > innerHeight * 3) { iptal(); return; }      // hedef çok uzakta: kullanıcı başka yere gitmiş, zorlama
+      if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: .45 });
+      else scrollBy({ top: d, behavior: "smooth" });                // "instant" zıplaması kaldırıldı (mobilde sert duruyordu)
+    }
+    setTimeout(duzelt, 1400); setTimeout(duzelt, 2500);
+    setTimeout(function () { duzelt(); if (oturum === benim) aktif = null; }, 3600);
   }, true);
 })();

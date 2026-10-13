@@ -40,31 +40,26 @@
     .replace(/(^|[^\w.#-])html(?=[\s{,])/g, '$1:host')
     .replace(/(^|[^\w.#-])body(?=[\s{,.:])/g, '$1.govde');
   s += `
-/* içkin mod ekleri */
+/* içkin mod ekleri — YALNIZ yapısal / host'a özgü (görünüm takim.css PARİTE bloğunda, 14 Eki). host contain:paint → fixed çalışmaz:
+   ray / panel / ilerleme = yükseklik-0 YAPIŞKAN kabuk + mutlak iç kutu (.yan-balon kalıbı); imleç/damla host'a göre mutlak (takim.js ofsetler) */
 :host{display:block;position:relative;isolation:isolate;contain:paint}
 .govde{position:relative;padding:0!important;overflow:clip}
-.govde::before{display:none}   /* dev izobar deseni içkin modda yok: her kaydırmada yeniden boyanıyordu */
+@media (min-width:1000px){.govde{padding-left:var(--ray)!important}}
+@media (min-width:1180px){.govde{padding-right:var(--panel)!important}}
 .takim-main > section{content-visibility:auto;contain-intrinsic-size:auto 900px}   /* görünmeyen bölümler yerleşim/boyamaya girmez; açılış hep render */
 @media (max-width:860px){.takim-main > section{contain-intrinsic-size:auto 1700px}}
 .govde.hepsi-acik .takim-main > section{content-visibility:visible}   /* hedefe kaydırırken üstteki bölümler gerçek boyuna açılır, hedef kaçmaz */
-.ray,.panel,#imlec,.ilerleme,.surpriz,.mobil-balon,.geri,.atla,.damla{display:none!important}
-.ust{top:var(--tk-ust,52px)} .ust-ad{margin-left:0}
-#perde,#odak-yazi,#ipucu{position:absolute}
-.yan-balon{display:block} #donus{display:none!important}   /* içkin: sağda sürekli balon; dönüş için ana sitenin bulutu */   /* :host contain:paint → fixed burada çalışmaz; takim.js içkin modda gövdeye göre konumlar */
-.govde,.govde a,.govde button{cursor:auto}
-/* içkin görünüm: krem-beyaz, yumuşak köşeler ve gölgeler (ana sitenin lacivertinden ayrışan açık tema) */
-:host{--kagit:#f8f5ee!important;--kagit-2:#efeadf!important;--panel-bg:#ffffff!important;--cizgi:rgba(31,42,46,.10);--cizgi-2:rgba(31,42,46,.18);--golge:0 1px 2px rgba(31,42,46,.05),0 10px 28px rgba(31,42,46,.08)}
-.govde{background:var(--kagit)} .govde::before{opacity:.5}
-.kart,.olay-k,.akis-k,.soru,.bk,.kapi,.ses,.sk,.adimlar li,.son-kart,.balon-form,.basamak-detay,.bs,details.merak,.cerceve,.vaka,.karne-svg,.yas-svg,.panel-kutu,.kartd,.deste-bitti,.gok,.koc,.dugum{border-radius:14px;border-color:rgba(31,42,46,.12)}
-.kart,.olay-k,.akis-k,.soru,.bk,.kapi,.sk,.adimlar li,.balon-form,.basamak-detay,.bs,details.merak,.cerceve,.vaka{box-shadow:0 1px 2px rgba(31,42,46,.05),0 10px 28px rgba(31,42,46,.08)}
-.ses{border-radius:12px;box-shadow:0 1px 2px rgba(31,42,46,.04)} .cip,.oy,.dg,.sec,.gonder,.cta a,.katil,.sade-dugme,.detay-alt{border-radius:999px} .cta a,.dg,.katil{box-shadow:0 2px 8px rgba(31,42,46,.12)}
-.etk:hover{box-shadow:0 2px 4px rgba(31,42,46,.06),0 16px 36px rgba(31,42,46,.14)}
-.ust{background:rgba(248,245,238,.88);border-bottom:1px solid rgba(31,42,46,.1)}
-.detay{border-radius:18px;border-color:rgba(31,42,46,.12);box-shadow:0 30px 80px rgba(31,42,46,.25)}
-@media (max-width:999px){.ust{position:static;backdrop-filter:none} .detay{border-radius:0}}
-/* sade: filigran rakamlar, 'radyosonde ▸' öneki ve test rozeti içkin görünümde yok */
-.blok[data-hpa]::after{display:none} .ust-ad .prompt{display:none} #mod-rozet{display:none!important}
-.govde{background:linear-gradient(to bottom,var(--onceki,var(--kagit)) 0,var(--kagit) 200px)}
+.geri,.atla{display:none!important}                                    /* ana sayfaya dönüş bağlantısı ana sayfanın içinde anlamsız */
+.ust{top:var(--tk-ust,52px)} .ust-ad{margin-left:0}                   /* aşama şeridi ana menünün altına yapışır */
+#perde,#odak-yazi,#ipucu,#imlec,.damla{position:absolute}
+#donus{display:none!important}                                         /* dönüş için ana sitenin bulutu */
+.ilerleme{position:sticky;top:var(--tk-ust,52px);left:auto;right:auto;height:4px;margin-bottom:-4px}
+.ray{position:sticky;top:var(--tk-ust,52px);left:auto;bottom:auto;height:0;width:0;overflow:visible;border:0;background:none}
+.ray-ic{inset:auto;left:calc(-1 * var(--ray));top:0;width:var(--ray);height:calc(100vh - var(--tk-ust,52px));border-right:1px solid var(--cizgi-2);background:color-mix(in srgb,var(--kagit) 75%,transparent)}
+.panel{position:sticky;top:var(--tk-ust,52px);right:auto;bottom:auto;height:0;width:0;overflow:visible;margin-left:auto;border:0;background:none}
+.panel-ic{inset:auto;right:calc(-1 * var(--panel));top:0;width:var(--panel);height:calc(100vh - var(--tk-ust,52px));border-left:1px solid var(--cizgi-2);background:color-mix(in srgb,var(--kagit) 75%,transparent)}
+@media (max-width:999px){.ust{position:static;backdrop-filter:none}}
+.govde{background:linear-gradient(to bottom,var(--onceki,var(--kagit)) 0,var(--kagit) 200px)}   /* üstteki bölümden yumuşak geçiş */
 `;
   s += '\n' + (await akisP).replace(/(^|[^\w.#-])html(?=[\s{,])/g, '$1:host');
   const st = document.createElement('style'); st.textContent = s;

@@ -3,6 +3,7 @@
 /* içkin mod (ana sayfa): takim/ic.js bu dosyayı window.TAKIM_IC = {kok: gölge kök, host: #takim-ic, govde: .govde} ile içe aktarır.
    O zaman sorgular gölge kökte çalışır, durum sınıfları host'a yazılır, yollar takim/ önekli olur; ray/panel/imleç/yumuşak tekerlek kapalıdır. Bağımsız /takim/ sayfasında IC null. */
 const IC = window.TAKIM_IC || null;
+const PARITE = true;   /* 14 Eki (Akın): gömülü ve bağımsız birebir aynı → imleç/fırlatma gömülüde de açık, kâğıt/vurgu ısınması iki modda da kapalı */
 const KOK = IC ? IC.kok : document;
 const KOKEL = IC ? IC.host : document.documentElement;
 const GOVDE = IC ? IC.govde : document.body;
@@ -61,7 +62,7 @@ async function arkaKur() {
 
 /* ---------------- VERİ ---------------- */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=10`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'kaynaklar'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=13`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -138,7 +139,7 @@ function odakYerlestir() {
     const pr = P.getBoundingClientRect(), W = pr.width, H = pr.height, x1 = r.left - pr.left, y1 = r.top - pr.top, w = r.width, h = r.height;
     const rad = Math.min(parseFloat(getComputedStyle(e).borderTopLeftRadius) || 0, w / 2, h / 2);
     P.style.clipPath = `path(evenodd,'M0 0H${W}V${H}H0Z M${x1 + rad} ${y1}H${x1 + w - rad}A${rad} ${rad} 0 0 1 ${x1 + w} ${y1 + rad}V${y1 + h - rad}A${rad} ${rad} 0 0 1 ${x1 + w - rad} ${y1 + h}H${x1 + rad}A${rad} ${rad} 0 0 1 ${x1} ${y1 + h - rad}V${y1 + rad}A${rad} ${rad} 0 0 1 ${x1 + rad} ${y1}Z')`; }
-  const pan = (!IC && vw >= 1180) ? $('.panel') : null, sag = pan ? pan.getBoundingClientRect().left : vw;   /* bağımsız sayfada sağ panelin üstüne yazılmaz */
+  const pan = (vw >= 1180) ? $('.panel-ic') : null, sag = pan ? pan.getBoundingClientRect().left : vw;   /* bağımsız sayfada sağ panelin üstüne yazılmaz */
   const ub = $('.ust') ? $('.ust').getBoundingClientRect() : null, U = Math.max(0, ub && ub.top < 4 ? ub.bottom : 0);   /* yapışkan aşama çubuğunun altına yerleşir, üstüne binmez */
   const B = 36, cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2, genis = Math.min(980, sag - 2 * B);
   const bolge = [
@@ -217,13 +218,13 @@ function detayAc(d) {
     el('p', { class: 'dm-ust' }, d.ust || ''),
     el('h3', { id: 'detay-baslik', class: 'dm-baslik' }, d.baslik || ''),
     d.kisa ? el('p', { class: 'dm-kisa' }, d.kisa) : null,
-    par.length ? el('div', { class: 'dm-uzun' }, ...par.map((p, i) => el('p', { style: `--g:${200 + i * 80}ms` }, p))) : null,
+    (Array.isArray(d.projeler) && d.projeler.length && typeof d.projeler[0] === 'object') ? projeKatlar(d.projeler, d.kaynakEk) : uzunKatla(par),
     dallarL.length ? el('ol', { class: 'dm-dal' }, ...dallarL.map(b => el('li', {}, el('b', {}, b.baslik), (b.alt || []).length ? ' ' + b.alt.join(' ') : ''))) : null,
     kay.length ? el('p', { class: 'dm-kaynak' }, el('span', {}, kay.length > 1 ? 'Kaynaklar: ' : 'Kaynak: '), ...kay.flatMap((k, i) => [i ? ' · ' : '', el('a', { href: yol(k.url), target: /^https?:/.test(k.url) ? '_blank' : null, rel: 'noopener', onclick: k.url.startsWith('#') ? (e) => { e.preventDefault(); D.close(); git(k.url.slice(1)); } : null }, k.ad || k.url)])) : null,
     el('button', { class: 'detay-alt', type: 'button', onclick: () => D.close() }, '✕ Kapat')));
   terimSar(H); durum.etkilesim++;
   D.classList.add('metin'); D.classList.toggle('dar', innerWidth < 860); D.scrollTop = 0; D._ciz = null;
-  if (typeof D.showModal === 'function') { if (!D.open) D.showModal(); } else D.setAttribute('open', '');
+  if (typeof D.showModal === 'function') { if (!D.open) D.showModal(); } else D.setAttribute('open', '');   D.tabIndex = -1; requestAnimationFrame(() => D.focus({ preventScroll: true }));   /* 13 Eki: odak kaydırma kabında → ok tuşları PANELİ kaydırır (kapat düğmesi fixed; odak ondayken belge kayıyordu, ölçüldü) */
 }
 /* eski zihin haritası (v4); v2'de kullanılmıyor, geri dönüş için duruyor */
 function detayAcHarita(d) {
@@ -253,7 +254,7 @@ function detayAcHarita(d) {
   terimSar(H); durum.etkilesim++;
   D.classList.toggle('dar', innerWidth < 860); const yolP = $('#detay-yol'); if (yolP) { const dar = D.classList.contains('dar'); yolP.replaceChildren($('#detay-ust'), dar ? ' · dala dokun, açılır' : ' · dallara tıkla, köke dön · Esc kapatır'); }
   if (D.classList.contains('dar')) D.scrollTop = 0;
-  if (typeof D.showModal === 'function') { if (!D.open) D.showModal(); } else D.setAttribute('open', '');
+  if (typeof D.showModal === 'function') { if (!D.open) D.showModal(); } else D.setAttribute('open', '');   D.tabIndex = -1; requestAnimationFrame(() => D.focus({ preventScroll: true }));   /* 13 Eki: odak kaydırma kabında → ok tuşları PANELİ kaydırır (kapat düğmesi fixed; odak ondayken belge kayıyordu, ölçüldü) */
   requestAnimationFrame(() => requestAnimationFrame(cizgiler));
   D._ciz = cizgiler;
 }
@@ -262,6 +263,108 @@ const DETAYLAR = {
   daniel: { ust: 'vaka', baslik: 'Storm Daniel ve İstanbul seli', kisa: '5-6 Eylül 2023: Başakşehir ve Küçükçekmece\'de saatte 100 mm\'yi aşan yağış, can kaybı.', uzun: 'Yunanistan üzerinde kesilmiş bir alçak basınç (cut-off low) günlerce yerinde kaldı; Teselya\'ya rekor yağış bıraktı, sonra Libya\'da Derne barajlarını yıktı. İstanbul\'daki sel aynı sistemin kuzeydoğu kanadında, Marmara üstünde gelişen konvektif hücrelerden geldi.\nSorumuz: yüksek çözünürlüklü bir hava tahmini bu yağışı nerede ve ne kadar yanlış koydu; olasılıklı düzeltme ve yapay zekâ bu hatayı ne kadar azaltır. Uydu kareleri NASA Worldview\'den, kamu malı.' },
   grid: { ust: 'neden önemli', baslik: '28 km\'lik kutu', kisa: 'Küresel model İstanbul\'u 50 kutuya böler ve her kutuya tek bir değer verir.', uzun: 'Boğaz, tepeler, deniz etkisi, şehir ısı adası: hepsi tek kutunun içinde kaybolur. Model Ayazağa ile Kadıköy\'e aynı sıcaklığı verebilir. Bu yüzden "tahmin düzeltme" diye bir iş var: kutunun değerini o kutudaki gerçek istasyonlara göre düzeltmek.\nBasamak 1\'de bu kutu için günlük hatayı ölçüyoruz; basamak 2-4\'te düzeltiyoruz. Yapay zekâ modelleri (GraphCast, AIFS) de aynı 0,25° gridde çalışır; onların da düzeltmeye ihtiyacı var.' }
 };
+
+
+/* ---------------- EELISA (12 Eki) — resmî bağ yok, yöntem feyzi ---------------- */
+/* **kalın** işaretini güvenli düğümlere çevirir (innerHTML yok) */
+function kalinla(t) { return yerDoldur(t).split(/\*\*(.+?)\*\*/g).map((p, i) => i % 2 ? el('b', {}, p) : p).filter(p => p !== ''); }
+function eelisa() {
+  const E = veri.metinler.eelisa; if (!E || !$('#eelisa')) return;
+  const yaz = (id, t) => { const e = $(id); if (e) e.textContent = t || ''; };
+  yaz('#eelisa-kapak-b', E.kapakB); yaz('#eelisa-kapak-m', E.kapakM);
+  yaz('#eelisa-baslik', E.baslik); yaz('#eelisa-alt', E.alt);
+
+  /* 1) sınır: ne DEĞİLİZ — en üstte, kaçırılmasın */
+  const N = E.netlik;
+  if (N) $('#ee-netlik').replaceChildren(
+    el('p', { class: 'ee-n-ust' }, N.baslik),
+    el('ul', { class: 'ee-n-liste' }, ...(N.maddeler || []).map(m => el('li', {}, ...kalinla(m)))));
+
+  /* 2) ilkeler: onlarda ne var · bizde karşılığı ne */
+  $('#ee-ilkeler').replaceChildren(...(E.ilkeler || []).map(i => {
+    const k = el('article', { class: 'ee-k' },
+      el('p', { class: 'ee-k-ust' }, i.ust),
+      el('h3', {}, i.k),
+      el('p', { class: 'ee-k-o' }, el('span', { class: 'ee-et' }, 'EELISA\'da'), ...kalinla(i.m)),
+      el('p', { class: 'ee-k-b' }, el('span', { class: 'ee-et ee-et-b' }, 'Bizde'), ...kalinla(i.biz)));
+    etkilesim(k, () => ({ ust: 'feyz · ' + i.ust, baslik: i.k, kisa: yerDoldur(i.m).replace(/\*\*/g, ''), uzun: 'EELISA\'da: ' + yerDoldur(i.m).replace(/\*\*/g, '') + '\nBizde: ' + yerDoldur(i.biz).replace(/\*\*/g, '') }));
+    return k; }));
+
+  /* 3) boşluk: bizim konumuz orada yok */
+  const B = E.bosluk;
+  if (B) $('#ee-bosluk').replaceChildren(el('h3', {}, B.baslik), el('p', {}, ...kalinla(B.m)), el('p', { class: 'ee-kucuk' }, B.kaynak));
+
+  /* 4) fark tablosu: onlar / biz */
+  const F = E.fark;
+  if (F) $('#ee-fark').replaceChildren(el('h3', {}, F.baslik),
+    el('div', { class: 'ee-f-liste' }, ...(F.satirlar || []).map(r => el('div', { class: 'ee-f' },
+      el('p', { class: 'ee-f-k' }, r.k),
+      el('p', { class: 'ee-f-o' }, r.e),
+      el('p', { class: 'ee-f-b' }, r.b)))));
+
+  /* 5) ileride ne olur — söz vermeden */
+  const S = E.sonra;
+  if (S) $('#ee-sonra').replaceChildren(el('h3', {}, S.baslik), el('p', {}, ...kalinla(S.m)));
+
+  /* 6) kaynaklar */
+  $('#ee-kaynak').replaceChildren(el('p', { class: 'ee-n-ust' }, 'Okuduğumuz kaynaklar'),
+    el('ul', { class: 'ee-k-liste' }, ...(E.kaynaklar || []).map(x =>
+      el('li', {}, el('a', { href: x.u, target: '_blank', rel: 'noopener' }, x.ad)))));
+}
+
+/* ---------------- GENELDEN ÖZELE (13 Eki, Akın): az yazı, tıkladıkça açılır ----------------
+   Genel panel: ilk paragraf görünür, kalanı "devamı" altında.
+   Bölüm paneli: yalnız projeler alt alta (ad · ortak ders · tek satır ne) → aç: NASIL (adımlar) · HANGİ DERS → EDİNİM ·
+   KAYNAKLAR → kaynak aç: önizleme görseli + bağlantı. Yerleşik <details>: fare, dokunma, klavye (Tab + Enter/Space) aynı. */
+function uzunKatla(par) {
+  if (!par.length) return null;
+  const ilk = el('p', { style: '--g:200ms' }, par[0]);
+  if (par.length === 1) return el('div', { class: 'dm-uzun' }, ilk);
+  return el('div', { class: 'dm-uzun' }, ilk, el('details', { class: 'dm-devam' }, el('summary', {}, 'devamı · ' + (par.length - 1) + ' parça'), ...par.slice(1).map(p => el('p', {}, p))));
+}
+function katDetay(baslik, icerik, sinif) { return el('details', { class: 'dp-kat ' + (sinif || '') }, el('summary', {}, baslik), el('div', { class: 'dp-kat-ic' }, icerik)); }
+function kaynakKutu(slug) {
+  const K = (veri.kaynaklar || {})[slug]; if (!K) return null;
+  const dis = /^https?:/.test(K.url);
+  return el('li', {}, el('details', { class: 'dp-k' }, el('summary', {}, el('b', {}, K.ad), K.lisans ? el('span', { class: 'dp-k-lis' }, K.lisans) : null),
+    el('a', { class: 'dp-k-git', href: dis ? K.url : yol(K.url), target: dis ? '_blank' : null, rel: dis ? 'noopener' : null },
+      K.gorsel ? el('img', { src: yol(K.gorsel), alt: K.ad + ' — önizleme', loading: 'lazy', decoding: 'async', width: 640, height: 400 }) : null,
+      el('span', {}, (K.ac || 'Kaynağa git') + ' → ' + K.url.replace(/^https?:\/\//, '').replace(/\/$/, '')))));
+}
+function projeKatlar(P, ek) {
+  const liste = el('ol', { class: 'dm-projeler' }, ...P.map((p, i) => el('li', { style: `--g:${160 + i * 70}ms` },
+    el('details', { class: 'dm-proje' },
+      el('summary', {}, el('span', { class: 'dp-no' }, String(i + 1).padStart(2, '0')),
+        el('span', { class: 'dp-bas' }, el('b', {}, p.ad), p.ders ? el('span', { class: 'dp-ders' }, p.ders) : null),
+        p.ne ? el('span', { class: 'dp-ne' }, p.ne) : null),
+      el('div', { class: 'dp-ic' },
+        (p.nasil || []).length ? katDetay('Nasıl yapılır', el('ol', { class: 'dp-adim' }, ...p.nasil.map(a => el('li', {}, a)))) : null,
+        (p.edinim || []).length ? katDetay('Hangi ders → hangi edinim', el('ul', { class: 'dp-edinim' }, ...p.edinim.map(e => el('li', {}, el('b', {}, e[0]), el('span', {}, ' → ' + e[1]))))) : null,
+        (p.kaynak || []).length ? katDetay('Kaynaklar', el('ul', { class: 'dp-kaynaklar' }, ...p.kaynak.map(kaynakKutu).filter(Boolean)), 'dp-kat-kaynak') : null)))));
+  const ekK = (ek || []).map(kaynakKutu).filter(Boolean);
+  return el('div', { class: 'dm-proje-sar' }, el('p', { class: 'dm-proje-ust' }, P.length + ' proje · satıra dokun, açılır'), liste,
+    ekK.length ? el('details', { class: 'dp-kat dp-kat-obs' }, el('summary', {}, 'İTÜ ders planı'), el('div', { class: 'dp-kat-ic' }, el('ul', { class: 'dp-kaynaklar' }, ...ekK))) : null);
+}
+
+/* ---------------- AURA GİRİZGÂH (14 Eki v2) ----------------
+   Oynatma: logotip ekranda (IO) + sekme önde + yazı tipi hazır (≤900 ms) → .oyna. Sekme arkadayken oynadıysa öne gelince yeniden.
+   Tıklama / Enter / Space → tekrar. CSS'teki reduced-motion kuralı yalnız hareketi kaldırır; girizgâh her koşulda oynar (Akın). */
+function auraKur() {
+  const ad = $('.aura-ad'); if (!ad) return;
+  ad.classList.add('hazir'); ad.tabIndex = 0; ad.setAttribute('title', 'Tekrar izlemek için tıkla');
+  let gorunur = false, oynadi = false, gorunurkenOynadi = false, bekliyor = false;
+  const oyna = () => { ad.classList.remove('oyna'); void ad.offsetWidth; ad.classList.add('oyna'); oynadi = true; gorunurkenOynadi = document.visibilityState === 'visible'; };
+  const dene = () => {
+    if (oynadi || bekliyor || !gorunur || document.visibilityState !== 'visible') return;
+    bekliyor = true; const f = document.fonts;
+    Promise.race([f && f.ready ? f.ready : Promise.resolve(), new Promise(r => setTimeout(r, 900))]).then(() => { bekliyor = false; if (!oynadi && gorunur && document.visibilityState === 'visible') oyna(); });
+  };
+  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => { gorunur = es.some(e => e.isIntersecting); dene(); }, { threshold: .35 }); io.observe(ad); }
+  else { gorunur = true; dene(); }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState !== 'visible') return; if (oynadi && !gorunurkenOynadi && gorunur) oyna(); else dene(); });
+  ad.addEventListener('click', oyna);
+  ad.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); oyna(); } });
+}
 
 /* ---------------- RENDER ---------------- */
 function ses(hirsli, rahat) {
@@ -275,6 +378,12 @@ function sesYerlestir() {
 /* açılış v2: paragraf yok — başlık, tek satır vaat, kitle seçimi, zaman rozetleri, aranan bölümler */
 function acilis() {
   const M = veri.metinler.acilis;
+  /* AURA logotipi + genelden özele kademeler (12 Eki) */
+  const AU = veri.metinler.aura;
+  if (AU) {
+    const kd = $('#aura-kademe'); if (kd && Array.isArray(AU.kademe)) kd.replaceChildren(...AU.kademe.map(k => { const m = yerDoldur(k.m); let oz = m.split(/[;:.]/)[0].trim(); if (oz.length > 64) oz = oz.slice(0, 61).replace(/\s\S*$/, '') + '…';   /* 14 Eki: genelden özele — başlık + tek satır özet, açınca cümle; masaüstü açık, mobil kapalı */
+      return el('li', {}, el('details', { class: 'aura-k', open: innerWidth >= 860 ? true : null }, el('summary', {}, el('b', {}, k.ust), el('span', { class: 'aura-k-oz' }, oz)), el('p', {}, m))); }));
+  }
   const v = $('#acilis-vaat'); if (v) v.textContent = M.vaat || '';
   const al = $('#acilis-alt'); if (al) al.textContent = M.alt || '';
   const ip = $('#acilis-ipucu'); if (ip && M.ipucu) ip.textContent = M.ipucu;
@@ -286,7 +395,7 @@ function acilis() {
     const ilk = M.arananlar.slice(0, 7), kalan = M.arananlar.slice(7);
     const daha = kalan.length ? el('button', { class: 'ar ar-daha', type: 'button', 'aria-expanded': 'false', onclick: (e) => { e.currentTarget.replaceWith(...kalan.map(cip)); } }, `+${kalan.length} bölüm`) : null;
     A.replaceChildren(el('span', { class: 'ar-ust' }, M.arananBaslik || 'Aranıyor:'), ...ilk.map(cip), daha); }
-  girisKur();
+  girisKur(); auraKur();
   $$('figure[data-detay]').forEach(f => etkilesim(f, () => DETAYLAR[f.dataset.detay]));
 }
 /* kitle: "meteorolojide okuyorum / başka bölümdeyim" — ton aynı; bölüm kartlarının sırası, atölyelerin açıklığı ve 5 soru seti değişir */
@@ -321,7 +430,7 @@ function katliKur() {
   yaz('#anlatilar-kapak-b', A.baslik || 'Atmosfer Anlatıları'); yaz('#anlatilar-kapak-m', A.kapak || 'Öğrenci zor bir dersin kolay bir parçasını 10-20 dakikada anlatır; video kalır.');
   const D = M.derin || { baslik: 'Meraklısına: kanıt ve ayrıntı', alt: 'Kanıt, karne ve kaynaklar burada.', icerik: ['Canlı tahmin karnesi', 'Yapılmış işler', 'Takımların yaşı ve bütçesi', 'Kaynaklar ve tam tablolar'] };
   yaz('#derin-baslik', D.baslik); yaz('#derin-alt', D.alt); const L = $('#derin-icerik'); if (L) L.replaceChildren(...(D.icerik || []).map(x => el('li', {}, x)));
-  ['merdiven', 'anlatilar', 'derin'].forEach(g => { const b = $(`#${g}-ac`); if (b) b.addEventListener('click', () => { const ac = b.getAttribute('aria-expanded') !== 'true'; katliAyarla(g, ac); durum.etkilesim++; }); });
+  ['merdiven', 'anlatilar', 'eelisa', 'derin'].forEach(g => { const b = $(`#${g}-ac`); if (b) b.addEventListener('click', () => { const ac = b.getAttribute('aria-expanded') !== 'true'; katliAyarla(g, ac); durum.etkilesim++; }); });
   katliAyarla('derin', !!KIME); katliAyarla('merdiven', !!KIME); katliAyarla('anlatilar', !!KIME || durum.kitle === 'mto');
 }
 /* resmî görünüm: KHŞM ve hocalar için kuruluş özeti (yalnız ?kime=… ile görünür) */
@@ -500,7 +609,7 @@ function bolumler() {
   /* v2 (Akın 5 Eki): kart yüzünde paragraf yok — bölüm adı + büyük yazıyla tek, pratik örnek; dersler ve fikirler ayrıntıda */
   $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum), el('p', { class: 'bk-yuz' }, b.yuz || b.ortakIs || ''));
     etkilesim(k, () => ({ ust: 'başka bölümdensen · ' + b.bolum.replace(/\s*\(.*?\)\s*/g, ' ').replace(/ (Mühendisliği|Programı)$/, '').trim().toLowerCase(), baslik: b.bolum, kisa: b.yuz || b.ortakIs || '',
-      uzun: [b.detay, b.senin ? `Senin dersin: ${b.senin}.` : '', b.bizim ? `Bizdeki karşılığı: ${b.bizim}.` : '', b.ortakIs ? `Birlikte yapılabilecek: ${b.ortakIs}.` : '', (b.projeler || []).length ? 'Fikirler: ' + b.projeler.join(' · ') + '.' : ''].filter(Boolean).join('\n'),
+      uzun: [b.detay, b.senin ? `Senin dersin: ${b.senin}.` : '', b.bizim ? `Bizdeki karşılığı: ${b.bizim}.` : '', b.ortakIs ? `Birlikte yapılabilecek: ${b.ortakIs}.` : '', (b.projeler || []).length ? 'Fikirler: ' + b.projeler.map(x => x.ad || x).join(' · ') + '.' : ''].filter(Boolean).join('\n'), projeler: b.projeler, kaynakEk: b.kaynak ? ['obs-' + b.k.toLowerCase()] : [],
       kaynaklar: [...(b.kaynak ? [{ ad: 'İTÜ ders planı', url: b.kaynak }] : []), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] })); return k; }));
   $('#bolum-not').textContent = 'Kaynak: İTÜ ders planları ve bölüm siteleri. Tam tablo "Meraklısına" bölümünde.';
 }
@@ -621,8 +730,22 @@ function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = u
   if (Math.abs(h.getBoundingClientRect().top - pay) > innerHeight) donusGoster(scrollY);
   if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); GOVDE._hz = setTimeout(() => GOVDE.classList.remove('hepsi-acik'), 2500); }   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
   const y = h.getBoundingClientRect().top + scrollY - pay; if (IC) { icGit(h, y); return; } kaydirHedef(y); }
-/* içkin uzun atlama: Lenis kaydırması yarıda kesilebiliyor (content-visibility açılınca hedef kayar) → bitince yeniden ölç, hedefe 4 px yaklaşana kadar en çok 5 tur */
-function icGit(h, y, tur = 0) { const L = window.__lenis; let bitti = false; const sonra = () => { if (bitti) return; bitti = true; const d = h.getBoundingClientRect().top - ustPay(); if (Math.abs(d) > 4) { if (tur < 2) icGit(h, scrollY + d, tur + 1); else if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { immediate: true, force: true }); else scrollTo(0, scrollY + d); } };
+/* içkin uzun atlama: Lenis kaydırması yarıda kesilebiliyor (content-visibility açılınca hedef kayar) → bitince yeniden ölç.
+   12 Eki: kullanıcı araya girerse (tekerlek/dokunma/tuş) düzeltme İPTAL — yoksa elle kaydırılan sayfa eski hedefe geri çekiliyordu. */
+let atlaOturum = 0;
+["wheel", "touchstart", "pointerdown", "keydown"].forEach(t => addEventListener(t, e => {
+  if (t === 'keydown' && !/^(Arrow|Page|Home|End| )/.test(e.key)) return;
+  if (t === 'pointerdown' && e.target.closest && e.target.closest('#serit button, .tik, a[href^="#"]')) return;
+  atlaOturum++;
+}, { passive: true, capture: true }));
+function icGit(h, y, tur = 0, oturum) { const L = window.__lenis; if (oturum === undefined) oturum = ++atlaOturum;
+  let bitti = false;
+  const sonra = () => { if (bitti || oturum !== atlaOturum) return; bitti = true;      /* araya girildiyse dokunma */
+    const d = h.getBoundingClientRect().top - ustPay();
+    if (Math.abs(d) <= 4 || Math.abs(d) > innerHeight * 3) return;                      /* yerinde ya da kullanıcı çok uzağa gitmiş */
+    if (tur < 2) icGit(h, scrollY + d, tur + 1, oturum);
+    else if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { immediate: true, force: true });
+    else scrollTo(0, scrollY + d); };
   if (L && !azalt) { const uzak = Math.abs(y - scrollY); L.scrollTo(y, { force: true, lock: true, duration: tur ? .35 : Math.min(1.1, .45 + uzak / 9000), onComplete: () => setTimeout(sonra, 60) }); setTimeout(sonra, 2600); }
   else { scrollTo({ top: y, behavior: azalt ? 'auto' : 'smooth' }); setTimeout(sonra, 900); } }
 function ilerleme() {
@@ -637,7 +760,7 @@ function ilerleme() {
     else { const d = document.documentElement; p = Math.min(1, Math.max(0, d.scrollTop / Math.max(1, d.scrollHeight - d.clientHeight))); }
     if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
     const yuk = 1 - p;                                                   /* iniş: sayfa başı tropopoz (yuk=1), sonu yüzey (yuk=0) */
-    if (!IC) { const yq = Math.round(yuk * 100); if (yq !== yukSon) { yukSon = yq; h.style.setProperty('--yuk', (yq / 100).toFixed(2)); h.style.setProperty('--yukp', yq + '%'); } }   /* içkin: zemin sabit, değişken yazılmaz (yeniden boyama yok) */
+    if (!IC && !PARITE) { const yq = Math.round(yuk * 100); if (yq !== yukSon) { yukSon = yq; h.style.setProperty('--yuk', (yq / 100).toFixed(2)); h.style.setProperty('--yukp', yq + '%'); } }   /* içkin: zemin sabit, değişken yazılmaz (yeniden boyama yok) */
     if (balon) balon.style.top = (18 + p * 72).toFixed(1) + '%';
     const P = basincTen(yuk * .7), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;   /* .7 → 1000…200 hPa aralığı */
     const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum) io.textContent = ok; const mb = $('#mb-okuma'); if (mb) mb.textContent = ok; const bn = $('#bb-not'); if (bn) bn.textContent = `${km.toFixed(0)} km · ${Math.round(P)} hPa · ` + (p < .02 ? 'balon tam şişkin' : p < .5 ? 'balon küçülüyor' : 'balon neredeyse yerde');
@@ -676,12 +799,13 @@ function gorunme() {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('goster'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' }); hedefler.forEach(h => io.observe(h));
 }
 function imlec() {
-  if (dokunmatik || azalt || IC) return; const I = $('#imlec'); GOVDE.classList.add('imlec-aktif'); I.style.display = 'block';
+  if (dokunmatik || azalt) return; const I = $('#imlec'); GOVDE.classList.add('imlec-aktif'); I.style.display = 'block';   /* 14 Eki parite: gömülüde de */
   let x = 0, y = 0, tx = 0, ty = 0, raf = 0;
-  const ciz = () => { if (I.classList.contains('donus')) { raf = 0; return; } x += (tx - x) * .35; y += (ty - y) * .35; I.style.transform = `translate(${x - 14}px,${y - 14}px)`; if (Math.abs(tx - x) + Math.abs(ty - y) > .3) raf = requestAnimationFrame(ciz); else raf = 0; };
-  addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; if (I.classList.contains('donus')) return; I.classList.remove('gizli'); const h = e.target.closest('a,button,[role=button],summary,input,textarea,select,label,.kartd,.oy,.cip,.bk,.md-basamak,.etk,.terim,.tik,.hpa'); I.classList.toggle('kod', !!h); if (!raf) raf = requestAnimationFrame(ciz); }, { passive: true });
-  addEventListener('pointerdown', e => { for (let i = 0; i < 3; i++) { const d = el('span', { class: 'damla', style: `left:${e.clientX - 6 + i * 6}px;top:${e.clientY + 6}px;animation-delay:${i * 60}ms` }); GOVDE.append(d); setTimeout(() => d.remove(), 800); } });
+  const ciz = () => { if (I.classList.contains('donus')) { raf = 0; return; } x += (tx - x) * .35; y += (ty - y) * .35; const g = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 }; I.style.transform = `translate(${x - 14 - g.left}px,${y - 14 - g.top}px)`; if (Math.abs(tx - x) + Math.abs(ty - y) > .3) raf = requestAnimationFrame(ciz); else raf = 0; };
+  addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; if (I.classList.contains('donus')) return; if (IC) { const r = GOVDE.getBoundingClientRect(); if (e.clientY < r.top || e.clientY > r.bottom) { I.classList.add('gizli'); return; } } I.classList.remove('gizli'); const h = e.target.closest('a,button,[role=button],summary,input,textarea,select,label,.kartd,.oy,.cip,.bk,.md-basamak,.etk,.terim,.tik,.hpa'); I.classList.toggle('kod', !!h); if (!raf) raf = requestAnimationFrame(ciz); }, { passive: true });
+  addEventListener('pointerdown', e => { const g = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 }; for (let i = 0; i < 3; i++) { const d = el('span', { class: 'damla', style: `left:${e.clientX - 6 + i * 6 - g.left}px;top:${e.clientY + 6 - g.top}px;animation-delay:${i * 60}ms` }); GOVDE.append(d); setTimeout(() => d.remove(), 800); } });
   document.addEventListener('pointerleave', () => I.classList.add('gizli')); document.addEventListener('pointerenter', () => I.classList.remove('gizli'));
+  if (IC) addEventListener('scroll', () => { if (!raf && !I.classList.contains('donus') && !I.classList.contains('gizli')) raf = requestAnimationFrame(ciz); }, { passive: true });   /* host kayınca balon yerinde kalsın */
 }
 /* koç işareti: ilk ziyarette ilk karta 'buna dokun' eli */
 function kocKapat() { const k = $('#koc'); if (k) { k.remove(); ls('takim-koc', '1'); } }
@@ -698,10 +822,10 @@ function detayKur() { const D = $('#detay'); if (!D) return; $('#detay-kapat').a
 /* iniş: fırlatma noktası ekrana girince imleç balonu oraya uçar, "bize katıl" yazar; tıklanır. Nokta ekrandan çıkınca imleç geri gelir. */
 let inisDurum = false;
 function inisKontrol() {
-  const pad = $('#firlatma'), I = $('#imlec'); if (!pad || !I || dokunmatik || azalt || IC) return;
+  const pad = $('#firlatma'), I = $('#imlec'); if (!pad || !I || dokunmatik || azalt) return;
   const r = pad.getBoundingClientRect(); const gorunur = r.top > 60 && r.bottom < innerHeight - 10;
   if (gorunur && !inisDurum) { inisDurum = true; I.classList.add('donus'); I.classList.remove('gizli', 'kod'); GOVDE.classList.remove('imlec-aktif'); GOVDE.classList.add('inis'); $('#im-okuma').textContent = 'bize katıl →'; }
-  if (inisDurum) { const r2 = pad.getBoundingClientRect(); I.style.transform = `translate(${r2.left + r2.width / 2 - 14}px,${r2.top - 34}px)`; }
+  if (inisDurum) { const r2 = pad.getBoundingClientRect(); const g2 = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 }; I.style.transform = `translate(${r2.left + r2.width / 2 - 14 - g2.left}px,${r2.top - 34 - g2.top}px)`; }
   if (!gorunur && inisDurum) { inisDurum = false; I.classList.remove('donus'); GOVDE.classList.remove('inis'); GOVDE.classList.add('imlec-aktif'); }
 }
 function katilYerlestir() {   /* "Bize katıl" tam fırlatma noktasının üstünde: paraşüt oraya iner */
@@ -720,7 +844,21 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => { Z.
   if (KIME) KOKEL.dataset.kime = KIME;
   await arkaKur();
   asamaYukle();
-  acilis(); resmi(); olay(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); baloncuk(); merak(); sonKart(); panelSen();
+  acilis(); resmi(); olay(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); gercek(); neden(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); merak(); sonKart(); panelSen();
   katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
+})();
+
+/* 13 Eki (Akın): açık panelde klavye kaydırması tarayıcıya bırakılmaz. Ölçüm: odak dialog'un kendisindeyken bile Chrome
+   ok tuşuyla paneli kaydırmadı (belge de kaymadı). Ok / PageUp-Down / Space / Home / End → panelin kendisi kayar.
+   Space, düğme-summary-bağlantı üstündeyken etkinleştirme olarak kalır. */
+(() => { const D = $('#detay'); if (!D) return; let hedef = null, t = 0;   /* hedef birikir: tuşu basılı tutunca her basış bir öncekinin ÜSTÜNE ekler (yoksa smooth kaydırma birbirini keser, adım başına 1 kare) */
+  D.addEventListener('keydown', e => {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.target.matches('input,textarea,select')) return;
+    const h = D.clientHeight, m = { ArrowDown: 64, ArrowUp: -64, PageDown: h * .85, PageUp: -h * .85, ' ': e.shiftKey ? -h * .85 : h * .85, Home: -1e9, End: 1e9 };
+    if (!(e.key in m)) return;
+    if (e.key === ' ' && e.target.closest('summary,button,a')) return;
+    const taban = (hedef != null) ? (performance.now() - t < 700 ? hedef : D.scrollTop) : D.scrollTop; hedef = Math.max(0, Math.min(taban + m[e.key], D.scrollHeight - D.clientHeight)); t = performance.now();
+    e.preventDefault(); D.scrollTo({ top: hedef, behavior: azalt ? 'auto' : 'smooth' });
+  });
 })();

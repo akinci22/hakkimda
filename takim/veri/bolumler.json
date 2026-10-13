@@ -7,10 +7,108 @@
   "bizim": "MTO311E Veri Analizi, MAT271 Olasılık ve İstatistik",
   "ortakIs": "Doğrulama tasarımı, vaka seçimi, sonucu fizikle yorumlamak",
   "projeler": [
-   "İstanbul için tahmin karnesi: hangi gün, hangi hava tipinde yanılıyor",
-   "5-6 Eylül 2023 İstanbul seli vaka çalışması",
-   "Atmosfer Anlatıları: bir dersin zor parçasına 10-20 dakikalık video",
-   "Yapay zekâ tahminlerini fizikle sorgulamak: hata nerede, neden"
+   {
+    "ad": "Tahmin karnesi: İstanbul",
+    "ders": "MTO302 · MAT271",
+    "ne": "Dünkü tahmin ile gözlemin farkını istasyon istasyon ölçmek.",
+    "nasil": [
+     "GFS'ten dünkü sıcaklık tahminini indir (açık veri)",
+     "OGIMET'ten aynı günün gözlemini eşle",
+     "bias, MAE, RMSE hesapla; hava tipine göre grupla"
+    ],
+    "edinim": [
+     [
+      "MAT271",
+      "ortalama, sapma, hata ölçüleri"
+     ],
+     [
+      "MTO302",
+      "tahmin ürününü okumak, sinoptik durumu sınıflamak"
+     ],
+     [
+      "MTO311E",
+      "veriyi temizleyip grafiğe dökmek"
+     ]
+    ],
+    "kaynak": [
+     "gfs",
+     "ogimet",
+     "wmo-verif"
+    ]
+   },
+   {
+    "ad": "5-6 Eylül 2023 sel vakası",
+    "ders": "MTO340 · MTO406",
+    "ne": "Model seli nerede, ne kadar yanlış koydu?",
+    "nasil": [
+     "Worldview'den 3-8 Eylül uydu karelerini al",
+     "ERA5 ile o günlerin yağış ve rüzgâr alanını çiz",
+     "Tahmin edilen ile düşen yağışı ilçe ilçe karşılaştır"
+    ],
+    "edinim": [
+     [
+      "MTO340",
+      "kesik alçak basınç, konvektif hücre dinamiği"
+     ],
+     [
+      "MTO406",
+      "vaka analizi, sinoptik harita okuma"
+     ]
+    ],
+    "kaynak": [
+     "worldview",
+     "era5",
+     "bulut"
+    ]
+   },
+   {
+    "ad": "Atmosfer Anlatıları",
+    "ders": "MTO337 · MTO302",
+    "ne": "Bir dersin zor parçasını 10 dakikada anlat, video kalsın.",
+    "nasil": [
+     "Tek bir kavram seç (örn. termal rüzgâr)",
+     "4 arkadaşa anlat; 2 soru al",
+     "Hoca incelemesinden sonra arşive koy"
+    ],
+    "edinim": [
+     [
+      "MTO337",
+      "bir kavramı kendi sözlerinle kurmak"
+     ],
+     [
+      "anlatım",
+      "topluluk önünde konuşma, soru alma"
+     ]
+    ],
+    "kaynak": [
+     "anlatilar"
+    ]
+   },
+   {
+    "ad": "YZ tahminini fizikle sorgula",
+    "ders": "MTO340 · MTO406",
+    "ne": "AIFS/GraphCast çıktısında hata nerede, fiziksel olarak neden?",
+    "nasil": [
+     "ECMWF Open Data'dan AIFS tahminini indir",
+     "Aynı günün IFS tahmini ve gözlemiyle yan yana koy",
+     "Farkın büyüdüğü yerde sinoptik nedeni yaz"
+    ],
+    "edinim": [
+     [
+      "MTO340",
+      "cephe, jet, kararsızlık: hatayı fizikle açıklamak"
+     ],
+     [
+      "MTO406",
+      "tahmin doğrulama pratiği"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "aifs",
+     "graphcast"
+    ]
+   }
   ],
   "detay": "Örnek görev: doğrulama tasarımı (hangi değişken, eşik, bölge, dönem), vaka seçimi (cephe, orografi, 2023 İstanbul seli gibi konvektif olay) ve sonucu fizikle yorumlamak. Yapay zekâ bilmen gerekmiyor; gerekeni ilk haftalarda kısa videolarla anlatacağım. Atmosfer Anlatıları'nda bir dersin zor parçasını anlatıp hoca incelemesinden geçen bir video bırakırsın. Kazanç: bölümler arası ortak iş kurmayı öğrenmek; sektörde seni ayıran şey bu olabilir.",
   "hocaSayisi": 0,
@@ -26,11 +124,124 @@
   "bizim": "MTO337 Atmosfer Dinamiği, MTO302/406 Hava Analizi ve Öngörü",
   "ortakIs": "Sığ su denklemi çözücüsü, oyuncak veri asimilasyonu (Lorenz-96)",
   "projeler": [
-   "YZ ile kısa vadeli sıcaklık tahmini",
-   "ERA5 üzerinde öğrenilmiş hava tahmini",
-   "Sığ su denklemi çözücüsü ve kararlılık",
-   "Oyuncak veri asimilasyonu (Lorenz-96 + Kalman/3D-Var)",
-   "Ucuz sensörlerle YZ düzeltmeli yerel tahmin"
+   {
+    "ad": "YZ ile kısa vadeli sıcaklık",
+    "ders": "MAT 308 · MTO302",
+    "ne": "Yarının sıcaklığını küçük bir öğrenme modeliyle tahmin etmek.",
+    "nasil": [
+     "Open-Meteo'dan geçmiş gözlem ve tahmini çek",
+     "Doğrusal model → ağaç → küçük sinir ağı sırayla dene",
+     "Hatayı ECMWF açık tahminiyle karşılaştır"
+    ],
+    "edinim": [
+     [
+      "MAT 308",
+      "kayıp fonksiyonu, gradyan, aşırı öğrenme"
+     ],
+     [
+      "MTO302",
+      "hangi değişken tahmini taşıyor"
+     ]
+    ],
+    "kaynak": [
+     "open-meteo",
+     "ecmwf-open"
+    ]
+   },
+   {
+    "ad": "ERA5'te öğrenilmiş tahmin",
+    "ders": "MAT 308 · MTO337",
+    "ne": "Geçmiş atmosferden bir sonraki adımı öğrenen küçük model.",
+    "nasil": [
+     "ERA5'ten bir bölge, birkaç değişken, birkaç yıl indir",
+     "t → t+6 saat eşlemesini öğret",
+     "Kaç saat sonra bozulduğunu ölç"
+    ],
+    "edinim": [
+     [
+      "MAT 308",
+      "sıralı veri, hata birikimi"
+     ],
+     [
+      "MTO337",
+      "modelin fiziksel olarak neyi kaçırdığı"
+     ]
+    ],
+    "kaynak": [
+     "era5",
+     "graphcast"
+    ]
+   },
+   {
+    "ad": "Sığ su çözücüsü",
+    "ders": "MAT 234 · MTO337",
+    "ne": "Atmosferin en basit dalga denklemini çözüp kararlılığını sınamak.",
+    "nasil": [
+     "Sığ su denklemlerini 1 boyutta ayrıkla",
+     "CFL sınırını deneyle bul",
+     "Dalga hızını teoriyle karşılaştır"
+    ],
+    "edinim": [
+     [
+      "MAT 234",
+      "hiperbolik KDD, kararlılık koşulu"
+     ],
+     [
+      "MTO337",
+      "yerçekimi dalgası, jeostrofik denge"
+     ]
+    ],
+    "kaynak": [
+     "sw-eq"
+    ]
+   },
+   {
+    "ad": "Oyuncak veri asimilasyonu",
+    "ders": "MAT 234 · MTO406",
+    "ne": "Lorenz-96'da gözlemi modele Kalman ile katmak.",
+    "nasil": [
+     "DAPPER ile Lorenz-96'yı çalıştır",
+     "Seyrek, gürültülü gözlem üret",
+     "EnKF / 3D-Var ile hatayı düşür, karşılaştır"
+    ],
+    "edinim": [
+     [
+      "MAT 234",
+      "dinamik sistem, kaos"
+     ],
+     [
+      "MTO406",
+      "gözlemin tahmine nasıl girdiği"
+     ]
+    ],
+    "kaynak": [
+     "dapper"
+    ]
+   },
+   {
+    "ad": "Ucuz sensör + YZ düzeltme",
+    "ders": "MAT 308 · MTO302",
+    "ne": "Birkaç sensörle modelin yerel hatasını öğrenip düzeltmek.",
+    "nasil": [
+     "Sensor.Community tipi 2-3 sensör kur",
+     "Sensör − tahmin farkını saat ve mevsime göre öğren",
+     "Düzeltilmiş tahmini ham tahminle kıyasla"
+    ],
+    "edinim": [
+     [
+      "MAT 308",
+      "küçük veride öğrenme, düzenlileştirme"
+     ],
+     [
+      "MTO302",
+      "yerel etkiler: şehir ısı adası, deniz meltemi"
+     ]
+    ],
+    "kaynak": [
+     "sensor-community",
+     "open-meteo"
+    ]
+   }
   ],
   "detay": "Ortak zemin: MAT 234 Kısmi Dif. Denklemler ↔ MTO337 Atmosfer Dinamiği; MAT 308 YZ'nin Matematiksel Temelleri ↔ MTO302/406 Hava Analizi ve Öngörü. Örnek görev: CRPS, Brier ve güvenilirlik diyagramıyla olasılıksal doğrulama; EMOS gibi klasik düzeltmeyi yapay zekâ sürümüyle yan yana koymak. Kazanç: teoriyi gerçek belirsizlikte sınamak; makaleye dönüşebilecek bir karşılaştırma.",
   "hocaSayisi": 0,
@@ -46,11 +257,128 @@
   "bizim": "MAT202E Sayısal Yöntemler, MTO302 Hava Analizi ve Öngörü",
   "ortakIs": "ERA5 ile ML sıcaklık tahmini, radar nowcasting",
   "projeler": [
-   "ERA5 ile İstanbul 24 saatlik sıcaklık: ML vs ECMWF",
-   "ML ile MOS (bias düzeltme)",
-   "Radar/uydu ile 0-2 saat nowcasting",
-   "Ucuz sensörlü kampüs istasyonu + canlı panel",
-   "Açık YZ hava tahminini Türkiye için değerlendirme"
+   {
+    "ad": "ML vs ECMWF: 24 saat sıcaklık",
+    "ders": "BLG 202E · MTO302",
+    "ne": "Öğrenme modeli ECMWF'yi İstanbul'da geçebiliyor mu?",
+    "nasil": [
+     "ERA5'ten 10 yıl İstanbul verisi indir",
+     "Gradient boosting ile 24 saat ileri tahmin",
+     "ECMWF açık tahminiyle aynı günlerde yarıştır"
+    ],
+    "edinim": [
+     [
+      "BLG 202E",
+      "sayısal hata, enterpolasyon"
+     ],
+     [
+      "MTO302",
+      "tahmin ürününü ve zaman dilimlerini doğru okumak"
+     ]
+    ],
+    "kaynak": [
+     "era5",
+     "ecmwf-open",
+     "wmo-verif"
+    ]
+   },
+   {
+    "ad": "ML ile MOS düzeltme",
+    "ders": "BLG 202E · MAT202E",
+    "ne": "Model çıktısının sistematik sapmasını istasyona göre öğrenmek.",
+    "nasil": [
+     "GFS tahmini + gözlem çiftlerini topla",
+     "Sapmayı yer, saat, mevsime göre öğren",
+     "Düzeltilmiş hatayı ham hatayla kıyasla"
+    ],
+    "edinim": [
+     [
+      "MAT202E",
+      "regresyon, en küçük kareler"
+     ],
+     [
+      "MTO302",
+      "MOS nedir, neden gerekir"
+     ]
+    ],
+    "kaynak": [
+     "gfs",
+     "ogimet"
+    ]
+   },
+   {
+    "ad": "Radar nowcasting (0-2 saat)",
+    "ders": "BLG 354E · MTO302",
+    "ne": "Radar görüntüsünden yağış 2 saat sonra nerede?",
+    "nasil": [
+     "pySTEPS ile optik akış tabanlı tahmin kur",
+     "Açık örnek radar verisinde çalıştır",
+     "Yakalama / boş alarm oranlarını ölç"
+    ],
+    "edinim": [
+     [
+      "BLG 354E",
+      "2B sinyal, filtreleme, optik akış"
+     ],
+     [
+      "MTO302",
+      "konvektif hücre ömrü, yağış tipleri"
+     ]
+    ],
+    "kaynak": [
+     "pysteps",
+     "wmo-verif"
+    ]
+   },
+   {
+    "ad": "Kampüs istasyonu + canlı panel",
+    "ders": "BLG 202E · MTO302",
+    "ne": "Ucuz sensörden canlı veri alıp tahminle yan yana göstermek.",
+    "nasil": [
+     "Sensor.Community tipi sensörü kur",
+     "Veriyi API ile topla, veritabanına yaz",
+     "Canlı panelde tahmin − gözlem farkını göster"
+    ],
+    "edinim": [
+     [
+      "BLG 202E",
+      "veri akışı, zaman serisi işleme"
+     ],
+     [
+      "MTO302",
+      "gözlem kalitesi, yerleşim hataları"
+     ]
+    ],
+    "kaynak": [
+     "sensor-community",
+     "open-meteo"
+    ]
+   },
+   {
+    "ad": "Açık YZ tahminini Türkiye'de sına",
+    "ders": "BLG 202E · MTO302",
+    "ne": "GraphCast/AIFS Türkiye'de IFS kadar iyi mi?",
+    "nasil": [
+     "AIFS ve IFS açık tahminlerini indir",
+     "Türkiye istasyonlarıyla doğrula",
+     "Bölge ve mevsime göre karne çıkar"
+    ],
+    "edinim": [
+     [
+      "BLG 202E",
+      "büyük grid verisini işlemek"
+     ],
+     [
+      "MTO302",
+      "doğrulama ölçütleri"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "aifs",
+     "graphcast"
+    ]
+   }
   ],
   "detay": "Ortak zemin: BLG 202E Numerical Methods ↔ MAT202E Sayısal Yöntemler. Örnek görev: ERA5/GFS/AIFS açık verisini her gün çeken, xarray/Zarr ile saklayan veri hattı, küçük bir skor API'si ve canlı doğrulama panosu. Kazanç: uçtan uca çalışan bir sistem ve GitHub'da adının olduğu altyapı işi. Veri gerçek ve her gün akıyor; oyuncak veri seti değil.",
   "hocaSayisi": 0,
@@ -66,10 +394,102 @@
   "bizim": "MTO301 Uzaktan Algılama, MTO337/340 Atmosfer Dinamiği",
   "ortakIs": "Radar nowcasting, ERA5 ile küçük bir yapay zekâ tahmincisi",
   "projeler": [
-   "İstanbul radar nowcasting (0-6 saat)",
-   "ERA5 üzerinde küçük GraphCast tarzı emülatör",
-   "Tahmin çıktısında YZ ile sıcaklık sapma düzeltmesi",
-   "Uydudan bulut tipi sınıflandırma"
+   {
+    "ad": "İstanbul radar nowcasting (0-6 saat)",
+    "ders": "YZV 303E · MTO301",
+    "ne": "Radar dizisinden sonraki kareleri öğrenen ağ.",
+    "nasil": [
+     "pySTEPS örnek verisiyle başla",
+     "ConvLSTM / U-Net ile sonraki kareyi tahmin et",
+     "Optik akış yöntemiyle karşılaştır"
+    ],
+    "edinim": [
+     [
+      "YZV 303E",
+      "uzamsal-zamansal ağlar"
+     ],
+     [
+      "MTO301",
+      "radar yansıtıcılığı ne gösterir"
+     ]
+    ],
+    "kaynak": [
+     "pysteps"
+    ]
+   },
+   {
+    "ad": "Küçük GraphCast emülatörü",
+    "ders": "YZV 303E · MTO337",
+    "ne": "ERA5'te bölgesel, hafif bir yapay zekâ tahmincisi.",
+    "nasil": [
+     "GraphCast deposunu oku, mimariyi anla",
+     "ERA5 alt bölgesinde küçük grafik ağ eğit",
+     "Hangi değişkende önce bozulduğunu bul"
+    ],
+    "edinim": [
+     [
+      "YZV 303E",
+      "grafik sinir ağları, otoregresif tahmin"
+     ],
+     [
+      "MTO337",
+      "dinamik dengeler ağda korunuyor mu"
+     ]
+    ],
+    "kaynak": [
+     "graphcast",
+     "era5"
+    ]
+   },
+   {
+    "ad": "YZ ile sıcaklık sapma düzeltmesi",
+    "ders": "YZV 303E · MTO337",
+    "ne": "Tahmin çıktısının yerel hatasını ağla öğrenip düzeltmek.",
+    "nasil": [
+     "ECMWF açık tahmini + gözlem çiftlerini topla",
+     "Küçük ağ ile sapmayı öğren",
+     "Klasik MOS ile yan yana koy"
+    ],
+    "edinim": [
+     [
+      "YZV 303E",
+      "küçük veride ağ eğitimi, aşırı öğrenme"
+     ],
+     [
+      "MTO337",
+      "sapmanın fiziksel kaynağı"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "ogimet"
+    ]
+   },
+   {
+    "ad": "Uydudan bulut tipi sınıflandırma",
+    "ders": "YZV 416E · MTO301",
+    "ne": "Meteosat görüntüsünden bulut türünü otomatik tanımak.",
+    "nasil": [
+     "EUMETSAT örnek görüntülerini al",
+     "CNN ile bulut tipini etiketle",
+     "Bulut projesinin fotoğraflarıyla karşılaştır"
+    ],
+    "edinim": [
+     [
+      "YZV 416E",
+      "görüntü sınıflandırma"
+     ],
+     [
+      "MTO301",
+      "kanal, parlaklık sıcaklığı, bulut imzası"
+     ]
+    ],
+    "kaynak": [
+     "eumetsat",
+     "worldview",
+     "bulut"
+    ]
+   }
   ],
   "detay": "Ortak zemin: YZV 303E Deep Learning ↔ MTO337/340 Atmosfer Dinamiği; YZV 416E Computer Vision ↔ MTO301 Uzaktan Algılama. Örnek görev: GFS/AIFS sıcaklık çıktısını istasyon gözlemine göre düzelten gradient boosting ya da küçük bir sinir ağı; belirsizlik ve kalibrasyon. Kazanç: gerçek, kirli, zaman serili veriyle PyTorch/xarray deneyimi ve portföyde ölçülmüş bir iyileşme. Bu alandaki ilanlar PyTorch, xarray/Zarr, veri hattı ve olasılıksal doğrulama istiyor.",
   "hocaSayisi": 5,
@@ -85,10 +505,103 @@
   "bizim": "MTO214 Atmosfer Termodinamiği, MAT271 Olasılık ve İstatistik, MTO229E Bulut ve Yağış Fiziği",
   "ortakIs": "Atmosferik aşındırıcılık haritası, nem tahmininin istasyona göre düzeltilmesi",
   "projeler": [
-   "İstanbul için atmosferik aşındırıcılık haritası (ISO 9223 sınıfları)",
-   "Nem tahminini düzeltmek korozyon haritasını ne kadar değiştiriyor?",
-   "Nem ve ıslaklık süresi tahmininden korozyon riski uyarısı",
-   "Kıyı ve sanayi bölgesinde tuz ve kükürt dioksitle korozyon karşılaştırması"
+   {
+    "ad": "Aşındırıcılık haritası (ISO 9223)",
+    "ders": "MET 437E · MTO214",
+    "ne": "İstanbul'da nem ve ıslaklıktan korozyon sınıfı haritası.",
+    "nasil": [
+     "ERA5'ten nem, sıcaklık, ıslaklık süresi çıkar",
+     "ISO 9223 sınıflarına dök",
+     "İlçe ilçe haritala"
+    ],
+    "edinim": [
+     [
+      "MET 437E",
+      "atmosferik korozyon mekanizması"
+     ],
+     [
+      "MTO214",
+      "bağıl nem, çiy noktası, ıslaklık süresi"
+     ]
+    ],
+    "kaynak": [
+     "iso9223",
+     "era5"
+    ]
+   },
+   {
+    "ad": "Nem düzeltmesi korozyonu değiştirir mi?",
+    "ders": "MAT 271 · MTO214",
+    "ne": "Nem tahminindeki hata korozyon sınıfını kaç yerde değiştiriyor?",
+    "nasil": [
+     "GFS nem tahmini ile gözlemi karşılaştır",
+     "Hatayı istasyona göre düzelt",
+     "Düzeltme öncesi/sonrası sınıf haritasını kıyasla"
+    ],
+    "edinim": [
+     [
+      "MAT 271",
+      "hata dağılımı, güven aralığı"
+     ],
+     [
+      "MTO214",
+      "nem değişkenleri arasındaki ilişki"
+     ]
+    ],
+    "kaynak": [
+     "gfs",
+     "ogimet",
+     "iso9223"
+    ]
+   },
+   {
+    "ad": "Korozyon riski uyarısı",
+    "ders": "MET 437E · MTO229E",
+    "ne": "Islaklık süresi tahmininden günlük risk uyarısı.",
+    "nasil": [
+     "Open-Meteo'dan nem ve çiy noktası tahmini al",
+     "Islaklık süresini hesapla",
+     "Eşik aşımında uyarı üret"
+    ],
+    "edinim": [
+     [
+      "MET 437E",
+      "ıslaklık süresi ve korozyon hızı"
+     ],
+     [
+      "MTO229E",
+      "çiy, sis, yağış oluşumu"
+     ]
+    ],
+    "kaynak": [
+     "open-meteo",
+     "iso9223"
+    ]
+   },
+   {
+    "ad": "Kıyı ve sanayi karşılaştırması",
+    "ders": "MET 215 · MTO214",
+    "ne": "Tuz ve SO₂ ile korozyonun kıyı/sanayi farkı.",
+    "nasil": [
+     "CAMS'tan SO₂ ve deniz tuzu alanlarını al",
+     "Kıyı ve sanayi noktaları seç",
+     "Sınıf farkını haritada göster"
+    ],
+    "edinim": [
+     [
+      "MET 215",
+      "termodinamik itici güç, reaksiyon"
+     ],
+     [
+      "MTO214",
+      "atmosferde nem ve kirleticilerin taşınımı"
+     ]
+    ],
+    "kaynak": [
+     "cams",
+     "iso9223"
+    ]
+   }
   ],
   "detay": "Ortak zemin: MET 215 ↔ MTO214 Atmosfer Termodinamiği; MAT 271 iki bölümde aynı ders. ISO 9223 atmosferin aşındırıcılığını C1'den CX'e 6 sınıfa ayırır; ana etkenler sıcaklık-nem, kükürt dioksit ve havadaki tuz. Örnek görev: nem tahminini istasyon gözlemine göre düzeltmek; kükürt dioksit ve tuz verisi bulunursa bununla semt semt aşındırıcılık haritası çıkarıp düzeltmenin haritayı ne kadar değiştirdiğini ölçmek. Kazanç: son sınıftaki korozyon dersine (MET 437E) gerçek veriyle önden başlamak.",
   "hocaSayisi": 0,
@@ -110,10 +623,100 @@
   "bizim": "MTO337 Atmosfer Dinamiği, MTO303E CFD",
   "ortakIs": "Lorenz-63 ensemble oyuncağı, sığ su çözücüsü + emülatör",
   "projeler": [
-   "Ucuz sensörlü kampüs istasyon ağı + YZ düzeltme",
-   "Sığ su çözücüsü + sinir ağı emülatörü",
-   "Lorenz-63 kaos ve ensemble oyuncağı",
-   "Radar yansıtıcılığından ML ile yağış"
+   {
+    "ad": "Kampüs sensör ağı + YZ",
+    "ders": "FIZ 272E · MTO337",
+    "ne": "Birkaç sensörle yerel ölçüm; tahmini onlara göre düzelt.",
+    "nasil": [
+     "Sensor.Community tipi sensörleri kur",
+     "Tahmin − gözlem farkını öğren",
+     "Düzeltmenin kazancını ölç"
+    ],
+    "edinim": [
+     [
+      "FIZ 272E",
+      "veri işleme, uydurma"
+     ],
+     [
+      "MTO337",
+      "yerel akış: meltem, ısı adası"
+     ]
+    ],
+    "kaynak": [
+     "sensor-community",
+     "open-meteo"
+    ]
+   },
+   {
+    "ad": "Sığ su + sinir ağı emülatörü",
+    "ders": "FIZ 272E · MTO303E",
+    "ne": "Fiziksel çözücüyü bir ağa öğretip hızını ölç.",
+    "nasil": [
+     "Sığ su çözücüsünü yaz",
+     "Çıktılarıyla küçük bir ağ eğit",
+     "Hız ve doğruluğu karşılaştır"
+    ],
+    "edinim": [
+     [
+      "FIZ 272E",
+      "sayısal çözüm, hata analizi"
+     ],
+     [
+      "MTO303E",
+      "akış denklemlerinin ayrıklaştırılması"
+     ]
+    ],
+    "kaynak": [
+     "sw-eq",
+     "graphcast"
+    ]
+   },
+   {
+    "ad": "Lorenz-63 kaos ve ensemble",
+    "ders": "FIZ 284 · MTO337",
+    "ne": "Küçük başlangıç farkı tahmini ne zaman bozar?",
+    "nasil": [
+     "Lorenz-63'ü çöz",
+     "20 üyeli ensemble başlat",
+     "Yayılmanın büyüdüğü süreyi ölç"
+    ],
+    "edinim": [
+     [
+      "FIZ 284",
+      "dinamik sistem, faz uzayı"
+     ],
+     [
+      "MTO337",
+      "tahmin edilebilirlik sınırı"
+     ]
+    ],
+    "kaynak": [
+     "dapper"
+    ]
+   },
+   {
+    "ad": "Radar yansıtıcılığından yağış",
+    "ders": "FIZ 272E · MTO337",
+    "ne": "Z–R ilişkisini veriyle öğrenmek.",
+    "nasil": [
+     "pySTEPS örnek radar verisini al",
+     "Yansıtıcılık–yağış ilişkisini uydur",
+     "Gözlemle doğrula"
+    ],
+    "edinim": [
+     [
+      "FIZ 272E",
+      "uydurma, belirsizlik"
+     ],
+     [
+      "MTO337",
+      "yağış süreçleri"
+     ]
+    ],
+    "kaynak": [
+     "pysteps"
+    ]
+   }
   ],
   "detay": "Ortak zemin: FIZ 284 Klasik Mekanik ↔ MTO337 Atmosfer Dinamiği (Coriolis aynı terim); FIZ 272E Hesaplamalı Yöntemler ↔ MTO303E. Örnek görev: Lorenz-63 ile kaosu ve topluluk tahminini görmek; bütçe bulunursa kampüste ucuz sensörlü bir istasyonun ölçümünü yapay zekâyla düzeltmek. Kazanç: ölçümden tahmine giden zincirin her halkasını elle tutmak.",
   "hocaSayisi": 0,
@@ -129,11 +732,125 @@
   "bizim": "MTO337/340 Atmosfer Dinamiği, MTO304 Havacılık Meteorolojisi",
   "ortakIs": "Drone ile sınır tabaka ölçümü, türbülans/rüzgar kesmesi tahmini",
   "projeler": [
-   "Drone ile sınır tabaka profili + tahmin doğrulama",
-   "YZ ile havalimanı türbülans/rüzgar kesmesi tahmini",
-   "Hava durumuna göre İHA rota optimizasyonu",
-   "Buzlanma riski haritası (YZ sınıflandırıcı)",
-   "Ortak adveksiyon denklemi mini kütüphanesi"
+   {
+    "ad": "Drone ile sınır tabaka profili",
+    "ders": "AKM 219 · MTO337",
+    "ne": "Ölçüm yapıp modelin sınır tabakasını doğrula.",
+    "nasil": [
+     "Küçük sensörlü drone ile dikey profil al",
+     "Aynı saatin model profiliyle karşılaştır",
+     "Farkı sınır tabaka tipine göre yorumla"
+    ],
+    "edinim": [
+     [
+      "AKM 219",
+      "sınır tabaka, kayma, türbülans"
+     ],
+     [
+      "MTO337",
+      "atmosferik sınır tabaka"
+     ]
+    ],
+    "kaynak": [
+     "ogimet",
+     "open-meteo"
+    ]
+   },
+   {
+    "ad": "Havalimanı türbülans tahmini",
+    "ders": "AKM 219 · MTO304",
+    "ne": "Rüzgâr kesmesi ve türbülansı YZ ile öngör.",
+    "nasil": [
+     "Açık tahmin verisinden rüzgâr profili al",
+     "Türbülans göstergelerini hesapla",
+     "Sınıflandırıcı eğit, uyarıyla kıyasla"
+    ],
+    "edinim": [
+     [
+      "AKM 219",
+      "kayma gerilmesi, türbülans"
+     ],
+     [
+      "MTO304",
+      "havacılık uyarıları, rüzgâr kesmesi"
+     ]
+    ],
+    "kaynak": [
+     "awc",
+     "ecmwf-open"
+    ]
+   },
+   {
+    "ad": "İHA rota optimizasyonu",
+    "ders": "MAT 202E · MTO304",
+    "ne": "Hava durumuna göre en güvenli rota.",
+    "nasil": [
+     "Rüzgâr ve yağış alanını al",
+     "Rota maliyetini tanımla",
+     "En iyi rotayı sayısal olarak bul"
+    ],
+    "edinim": [
+     [
+      "MAT 202E",
+      "optimizasyon, sayısal yöntemler"
+     ],
+     [
+      "MTO304",
+      "uçuş için kritik hava olayları"
+     ]
+    ],
+    "kaynak": [
+     "open-meteo",
+     "awc"
+    ]
+   },
+   {
+    "ad": "Buzlanma riski haritası",
+    "ders": "AKM 219 · MTO304",
+    "ne": "Nem ve sıcaklıktan buzlanma riskini sınıflandır.",
+    "nasil": [
+     "Sıcaklık, nem, bulut katmanlarını al",
+     "Buzlanma eşiklerini uygula",
+     "Haritayı AWC ürünleriyle karşılaştır"
+    ],
+    "edinim": [
+     [
+      "AKM 219",
+      "akış içinde damlacık davranışı"
+     ],
+     [
+      "MTO304",
+      "buzlanma türleri ve koşulları"
+     ]
+    ],
+    "kaynak": [
+     "awc",
+     "era5"
+    ]
+   },
+   {
+    "ad": "Adveksiyon denklemi kütüphanesi",
+    "ders": "MAT 202E · MTO337",
+    "ne": "Ortak kullanılacak küçük sayısal çözücü.",
+    "nasil": [
+     "1B adveksiyonu ayrıkla",
+     "Şemaları karşılaştır",
+     "Paylaşılabilir kütüphane hâline getir"
+    ],
+    "edinim": [
+     [
+      "MAT 202E",
+      "ayrıklaştırma, kararlılık"
+     ],
+     [
+      "MTO337",
+      "adveksiyon ve taşınım"
+     ]
+    ],
+    "kaynak": [
+     "sw-eq"
+    ]
+   }
   ],
   "detay": "Ortak zemin: AKM 219 Akışkanlar Mekaniği ↔ MTO337/340 Atmosfer Dinamiği; aynı korunum denklemleri, biz Coriolis'i ekliyoruz. MAT 202E Sayısal Yöntemler iki bölümde aynı ders. Örnek görev: drone ile sınır tabaka ölçümü ya da havalimanında türbülans ve rüzgâr kesmesi tahmini. Kazanç: uçuş güvenliğinde gerçek hava verisiyle çalışmış olmak.",
   "hocaSayisi": 0,
@@ -149,10 +866,101 @@
   "bizim": "MTO337 Atmosfer Dinamiği, MTO225 Radyasyon, MTO301 Uzaktan Algılama",
   "ortakIs": "Küp-uydu yükünde bulut tespiti, fırlatma penceresi hava riski",
   "projeler": [
-   "Küp-uydu yükü için bulut/yağış tespit algoritması",
-   "Roket fırlatma penceresi rüzgar/şimşek riski",
-   "Kendi sonda balonumuzla atmosfer profili",
-   "Uydu sürüklenmesi için üst atmosfer yoğunluğu öngörüsü"
+   {
+    "ad": "Küp-uydu yükünde bulut tespiti",
+    "ders": "UZB 411E · MTO301",
+    "ne": "Küçük kamera görüntüsünden bulut/yağış ayırt etmek.",
+    "nasil": [
+     "EUMETSAT görüntüleriyle eğitim verisi kur",
+     "Hafif sınıflandırıcı eğit",
+     "Uydu kısıtlarında (bellek, güç) çalıştır"
+    ],
+    "edinim": [
+     [
+      "UZB 411E",
+      "uzay ortamı, yük kısıtları"
+     ],
+     [
+      "MTO301",
+      "bulut imzası, kanallar"
+     ]
+    ],
+    "kaynak": [
+     "eumetsat",
+     "worldview"
+    ]
+   },
+   {
+    "ad": "Fırlatma penceresi hava riski",
+    "ders": "AKM 219E · MTO337",
+    "ne": "Rüzgâr ve şimşek riskiyle fırlatma kararı.",
+    "nasil": [
+     "Açık tahminden rüzgâr ve kararsızlık al",
+     "Risk eşiklerini tanımla",
+     "Pencere takvimi üret"
+    ],
+    "edinim": [
+     [
+      "AKM 219E",
+      "rüzgâr yükü, akış"
+     ],
+     [
+      "MTO337",
+      "kararsızlık, konvektif risk"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "awc"
+    ]
+   },
+   {
+    "ad": "Kendi sonda balonumuz",
+    "ders": "AKM 219E · MTO225",
+    "ne": "Balonla dikey profil ölçüp modelle karşılaştır.",
+    "nasil": [
+     "Sensör paketini hazırla",
+     "Profili ölç",
+     "Bulut projesindeki hesapla karşılaştır"
+    ],
+    "edinim": [
+     [
+      "AKM 219E",
+      "yükselme, sürükleme"
+     ],
+     [
+      "MTO225",
+      "radyasyon ve sıcaklık profili"
+     ]
+    ],
+    "kaynak": [
+     "bulut",
+     "ogimet"
+    ]
+   },
+   {
+    "ad": "Üst atmosfer yoğunluğu ve sürüklenme",
+    "ders": "UZB 411E · MTO225",
+    "ne": "Uzay havasıyla uydu sürüklenmesini öngör.",
+    "nasil": [
+     "SWPC'den güneş aktivitesi al",
+     "Yoğunluk modeline bağla",
+     "Sürüklenme değişimini hesapla"
+    ],
+    "edinim": [
+     [
+      "UZB 411E",
+      "termosfer, uydu sürüklenmesi"
+     ],
+     [
+      "MTO225",
+      "radyasyon dengesi"
+     ]
+    ],
+    "kaynak": [
+     "swpc"
+    ]
+   }
   ],
   "detay": "Ortak zemin: AKM 219E Fluid Mechanics ↔ MTO337 Atmosfer Dinamiği; UZB 411E Space Environment ↔ MTO225 Güneş ve Yer Radyasyonu. Örnek görev: fırlatma penceresi için rüzgâr ve şimşek riski ya da küp-uydu görüntüsünde bulut tespiti. Kazanç: görev planlamasında hava riskini sayıyla konuşabilmek.",
   "hocaSayisi": 0,
@@ -168,10 +976,102 @@
   "bizim": "MTO214 Atmosfer Termodinamiği, MTO303E CFD",
   "ortakIs": "YZ ile İstanbul PM2.5 tahmini, baca dumanı yayılım haritası",
   "projeler": [
-   "YZ destekli İstanbul PM2.5/PM10 tahmini (24-48 saat)",
-   "Yoğun yağış ile yağmursuyu taşkın erken uyarısı",
-   "Gauss yayılım hesabı + gerçek tahminle baca dumanı haritası",
-   "Ucuz hava kalitesi sensör ağı + YZ kalibrasyon"
+   {
+    "ad": "YZ ile PM2.5 tahmini",
+    "ders": "CEV 308 · MTO214",
+    "ne": "24-48 saat sonraki hava kalitesini öngör.",
+    "nasil": [
+     "CAMS ve sensör verisini topla",
+     "Meteorolojik değişkenlerle model eğit",
+     "Gözlemle doğrula"
+    ],
+    "edinim": [
+     [
+      "CEV 308",
+      "kirletici kaynak ve taşınım"
+     ],
+     [
+      "MTO214",
+      "kararlılık, karışma yüksekliği"
+     ]
+    ],
+    "kaynak": [
+     "cams",
+     "sensor-community"
+    ]
+   },
+   {
+    "ad": "Yağmursuyu taşkın erken uyarısı",
+    "ders": "CEV 427 · MTO214",
+    "ne": "Yoğun yağış tahmininden taşkın uyarısı.",
+    "nasil": [
+     "Yağış tahminini havzaya indir",
+     "Basit akış modeline bağla",
+     "2023 seliyle sına"
+    ],
+    "edinim": [
+     [
+      "CEV 427",
+      "hidrolojik modelleme"
+     ],
+     [
+      "MTO214",
+      "yağış oluşumu, yoğunluk"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "worldview"
+    ]
+   },
+   {
+    "ad": "Baca dumanı yayılım haritası",
+    "ders": "CEV 427 · MTO303E",
+    "ne": "Gauss yayılımı + gerçek rüzgârla duman izi.",
+    "nasil": [
+     "AERMOD/Gauss hesabını kur",
+     "Gerçek tahmin rüzgârını gir",
+     "Haritada izi göster"
+    ],
+    "edinim": [
+     [
+      "CEV 427",
+      "yayılım modeli"
+     ],
+     [
+      "MTO303E",
+      "akış ve türbülans"
+     ]
+    ],
+    "kaynak": [
+     "epa-scram",
+     "gfs"
+    ]
+   },
+   {
+    "ad": "Sensör ağı + YZ kalibrasyon",
+    "ders": "CEV 308 · MTO214",
+    "ne": "Ucuz sensörleri referansa göre düzelt.",
+    "nasil": [
+     "Sensörleri kur",
+     "Referansla eşleştir",
+     "Nem düzeltmeli kalibrasyon öğren"
+    ],
+    "edinim": [
+     [
+      "CEV 308",
+      "ölçüm, kalite güvence"
+     ],
+     [
+      "MTO214",
+      "nemin ölçüme etkisi"
+     ]
+    ],
+    "kaynak": [
+     "sensor-community",
+     "cams"
+    ]
+   }
   ],
   "detay": "Ortak zemin: CEV 308 Hava Kirlenmesi ↔ MTO214 Atmosfer Termodinamiği; Akışkanlar Mekaniği (AKM 204) iki bölümde de var. Örnek görev: rüzgâr ve yağış tahminini kullanarak İstanbul için 24-48 saatlik PM2.5 tahmini. Kazanç: hava kalitesi uyarısında meteoroloji verisini doğru kullanmayı öğrenmek.",
   "hocaSayisi": 0,
@@ -187,11 +1087,125 @@
   "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO112 Alet ve Gözlem",
   "ortakIs": "Kalman filtresiyle veri asimilasyonu, otomatik meteoroloji istasyonu",
   "projeler": [
-   "Otomatik meteoroloji istasyonu + YZ sıcaklık tahmini",
-   "Basit bir atmosfer oyuncağında Kalman ile veri asimilasyonu",
-   "ERA5 ile sinir ağı yağış/rüzgâr tahmini",
-   "Tahmine dayalı akıllı sera/bina ısıtma kontrolü",
-   "Rüzgâr türbini için kısa vadeli rüzgâr tahmini"
+   {
+    "ad": "Otomatik istasyon + YZ sıcaklık",
+    "ders": "KON 303 · MTO112",
+    "ne": "Kendi istasyonundan ölç, tahmini düzelt.",
+    "nasil": [
+     "Sensör ve kayıt devresini kur",
+     "Veriyi standart gözlemle karşılaştır",
+     "Yerel düzeltme öğren"
+    ],
+    "edinim": [
+     [
+      "KON 303",
+      "ölçüm, kalibrasyon, gürültü"
+     ],
+     [
+      "MTO112",
+      "gözlem standartları"
+     ]
+    ],
+    "kaynak": [
+     "sensor-community",
+     "open-meteo"
+    ]
+   },
+   {
+    "ad": "Kalman ile veri asimilasyonu",
+    "ders": "KON 405E · MTO406",
+    "ne": "Oyuncak atmosferde gözlemi modele kat.",
+    "nasil": [
+     "DAPPER ile Lorenz-96'yı kur",
+     "Kalman filtresini uygula",
+     "Hatanın düşüşünü ölç"
+    ],
+    "edinim": [
+     [
+      "KON 405E",
+      "durum uzayı, Kalman filtresi"
+     ],
+     [
+      "MTO406",
+      "asimilasyon mantığı"
+     ]
+    ],
+    "kaynak": [
+     "dapper"
+    ]
+   },
+   {
+    "ad": "Sinir ağıyla yağış/rüzgâr",
+    "ders": "KON 405E · MTO406",
+    "ne": "ERA5'ten kısa vadeli tahmin öğren.",
+    "nasil": [
+     "ERA5 verisini hazırla",
+     "Ağ eğit",
+     "ECMWF ile kıyasla"
+    ],
+    "edinim": [
+     [
+      "KON 405E",
+      "sistem tanılama"
+     ],
+     [
+      "MTO406",
+      "tahmin doğrulama"
+     ]
+    ],
+    "kaynak": [
+     "era5",
+     "ecmwf-open"
+    ]
+   },
+   {
+    "ad": "Tahmine dayalı sera/bina kontrolü",
+    "ders": "KON 405E · MTO406",
+    "ne": "Yarının havasına göre ısıtmayı planla.",
+    "nasil": [
+     "Tahmini al",
+     "Model öngörülü kontrol kur",
+     "Enerji tasarrufunu ölç"
+    ],
+    "edinim": [
+     [
+      "KON 405E",
+      "model öngörülü kontrol"
+     ],
+     [
+      "MTO406",
+      "tahmin belirsizliği"
+     ]
+    ],
+    "kaynak": [
+     "open-meteo",
+     "epias"
+    ]
+   },
+   {
+    "ad": "Türbin için kısa vadeli rüzgâr",
+    "ders": "KON 405E · MTO406",
+    "ne": "Saatlik rüzgârı yerel veriyle düzelt.",
+    "nasil": [
+     "Açık tahmini al",
+     "Yerel sapmayı öğren",
+     "Üretim tahminine çevir"
+    ],
+    "edinim": [
+     [
+      "KON 405E",
+      "kestirim, filtreleme"
+     ],
+     [
+      "MTO406",
+      "rüzgâr alanı okuma"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "open-meteo"
+    ]
+   }
   ],
   "detay": "Ortak zemin: KON 405E State Space Methods ↔ MTO406 Hava Analizi ve Öngörü II; Kalman filtresi, tahmini gözlemle birleştirmenin (veri asimilasyonu) temel yöntemlerinden biri. Örnek görev: basit bir atmosfer oyuncağında Kalman ile veri asimilasyonu ya da rüzgâr türbini için kısa vadeli rüzgâr tahmini. Kazanç: derste gördüğün filtreyi gerçek bir tahmin probleminde çalıştırmak.",
   "hocaSayisi": 0,
@@ -207,10 +1221,101 @@
   "bizim": "MTO311E Veri Analizi, MTO301 Uzaktan Algılama",
   "ortakIs": "IoT hava istasyonu ağı, yağmur sönümlemesinden yağış tahmini",
   "projeler": [
-   "IoT hava istasyonu ağı + YZ kısa vadeli tahmin",
-   "Radar yansıtıcılığından YZ ile nowcasting",
-   "Haberleşme linklerinde yağmur sönümlemesinden yağış",
-   "ECMWF açık verisine YZ ile MOS"
+   {
+    "ad": "IoT istasyon ağı + YZ",
+    "ders": "EEF 206 · MTO311E",
+    "ne": "Ucuz istasyonlardan kısa vadeli tahmin.",
+    "nasil": [
+     "İstasyonları kur, veriyi topla",
+     "Gürültüyü filtrele",
+     "Kısa vadeli tahmin öğren"
+    ],
+    "edinim": [
+     [
+      "EEF 206",
+      "örnekleme, filtreleme"
+     ],
+     [
+      "MTO311E",
+      "zaman serisi analizi"
+     ]
+    ],
+    "kaynak": [
+     "sensor-community",
+     "open-meteo"
+    ]
+   },
+   {
+    "ad": "Radar nowcasting",
+    "ders": "EEF 206 · MTO301",
+    "ne": "Radar dizisinden yağışın bir sonraki karesi.",
+    "nasil": [
+     "pySTEPS örnek verisi",
+     "Optik akış",
+     "Doğrulama"
+    ],
+    "edinim": [
+     [
+      "EEF 206",
+      "2B işaret işleme"
+     ],
+     [
+      "MTO301",
+      "radar ürünleri"
+     ]
+    ],
+    "kaynak": [
+     "pysteps"
+    ]
+   },
+   {
+    "ad": "Yağmur sönümlemesinden yağış",
+    "ders": "EEF 212 · MTO301",
+    "ne": "Haberleşme linkindeki zayıflamadan yağış ölç.",
+    "nasil": [
+     "Link sinyal seviyesini kaydet",
+     "Sönümleme–yağış ilişkisini kur",
+     "Gözlemle doğrula"
+    ],
+    "edinim": [
+     [
+      "EEF 212",
+      "dalga yayılımı, sönümleme"
+     ],
+     [
+      "MTO301",
+      "uzaktan algılama ilkesi"
+     ]
+    ],
+    "kaynak": [
+     "ogimet",
+     "era5"
+    ]
+   },
+   {
+    "ad": "ECMWF açık verisine MOS",
+    "ders": "EEF 206 · MTO311E",
+    "ne": "Açık tahminin istasyon sapmasını öğren.",
+    "nasil": [
+     "Açık tahmini indir",
+     "Gözlemle eşle",
+     "Sapmayı öğren, düzelt"
+    ],
+    "edinim": [
+     [
+      "EEF 206",
+      "sayısal filtre, kestirim"
+     ],
+     [
+      "MTO311E",
+      "regresyon, doğrulama"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "ogimet"
+    ]
+   }
   ],
   "detay": "Ortak zemin: EEF 206 İşaret İşleme ↔ MTO311E Veri Analizi; EEF 212 Elektromanyetik Teori ↔ MTO301 Uzaktan Algılama. Örnek görev: haberleşme bağlantılarındaki yağmur zayıflamasından yağış kestirmek ya da IoT istasyon ağı kurmak. Kazanç: sinyal işlemeyi gerçek hava verisinde denemek.",
   "hocaSayisi": 0,
@@ -226,11 +1331,125 @@
   "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO301 Uzaktan Algılama",
   "ortakIs": "Uydudan YZ ile sis haritası, GNSS ile su buharı",
   "projeler": [
-   "Uydudan YZ ile sis/alçak bulut haritası",
-   "GNSS ile su buharı ve tahmin karşılaştırması",
-   "Yükseklik verisiyle ML downscaling",
-   "Sel/taşkın risk panosu",
-   "Dengeleme ile veri asimilasyonu: oyuncak örnek"
+   {
+    "ad": "Uydudan sis haritası",
+    "ders": "GEO 313E · MTO301",
+    "ne": "Meteosat görüntüsünden sis/alçak bulut maskesi.",
+    "nasil": [
+     "EUMETSAT görüntülerini al",
+     "Kanal farkıyla maske üret",
+     "Yer gözlemiyle doğrula"
+    ],
+    "edinim": [
+     [
+      "GEO 313E",
+      "görüntü işleme, sınıflandırma"
+     ],
+     [
+      "MTO301",
+      "sis imzası, kanallar"
+     ]
+    ],
+    "kaynak": [
+     "eumetsat",
+     "worldview"
+    ]
+   },
+   {
+    "ad": "GNSS ile su buharı",
+    "ders": "GEO 204 · MTO406",
+    "ne": "GNSS gecikmesinden su buharı, tahminle kıyas.",
+    "nasil": [
+     "E-GVAP verisini al",
+     "ERA5 su buharıyla karşılaştır",
+     "Farkı haritala"
+    ],
+    "edinim": [
+     [
+      "GEO 204",
+      "hata teorisi, dengeleme"
+     ],
+     [
+      "MTO406",
+      "nem alanı okuma"
+     ]
+    ],
+    "kaynak": [
+     "egvap",
+     "era5"
+    ]
+   },
+   {
+    "ad": "Yükseklikle ML downscaling",
+    "ders": "GEO 313E · MTO406",
+    "ne": "Kaba tahmini yükseklik verisiyle incelt.",
+    "nasil": [
+     "ERA5 ve yükseklik modelini hizala",
+     "İnce ölçek ilişkisini öğren",
+     "İstasyonla doğrula"
+    ],
+    "edinim": [
+     [
+      "GEO 313E",
+      "raster işleme, yeniden örnekleme"
+     ],
+     [
+      "MTO406",
+      "orografik etkiler"
+     ]
+    ],
+    "kaynak": [
+     "era5",
+     "open-meteo"
+    ]
+   },
+   {
+    "ad": "Sel/taşkın risk panosu",
+    "ders": "GEO 313E · MTO406",
+    "ne": "Yağış tahmini + arazi → risk haritası.",
+    "nasil": [
+     "Yağış tahminini al",
+     "Eğim ve akış yönünü hesapla",
+     "Risk panosunu yayınla"
+    ],
+    "edinim": [
+     [
+      "GEO 313E",
+      "CBS, arazi analizi"
+     ],
+     [
+      "MTO406",
+      "yağış tahmini okuma"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "worldview"
+    ]
+   },
+   {
+    "ad": "Dengeleme = veri asimilasyonu",
+    "ders": "GEO 204 · MTO406",
+    "ne": "En küçük kareler ile asimilasyon aynı fikir.",
+    "nasil": [
+     "Lorenz-96 oyuncağını kur",
+     "Dengeleme ile çöz",
+     "Kalman ile karşılaştır"
+    ],
+    "edinim": [
+     [
+      "GEO 204",
+      "en küçük kareler, ağırlık"
+     ],
+     [
+      "MTO406",
+      "asimilasyon"
+     ]
+    ],
+    "kaynak": [
+     "dapper"
+    ]
+   }
   ],
   "detay": "Ortak zemin: GEO 204 Hata Teorisi ve Dengeleme ↔ MTO406; en küçük kareler veri asimilasyonunun matematiği. GEO 313E Digital Image Processing ↔ MTO301 Uzaktan Algılama. Örnek görev: uydudan sis ve alçak bulut haritası ya da GNSS ile su buharı karşılaştırması. Kazanç: görüntü işlemeyi havacılık ve ulaşım için anlamlı bir işte kullanmak.",
   "hocaSayisi": 0,
@@ -246,10 +1465,102 @@
   "bizim": "MTO302 Hava Analizi ve Öngörü I, MTO311E Veri Analizi",
   "ortakIs": "Hava riskini hesaba katan lojistik planı, havaya duyarlı talep tahmini",
   "projeler": [
-   "Kar ve fırtına tahminiyle dağıtım rotası ve stok planı",
-   "Sıcaklık tahmininden elektrik talebi tahmini",
-   "Hava durumuna duyarlı perakende satış tahmini",
-   "Tahmin belirsizliğini karar sürecine katmak"
+   {
+    "ad": "Fırtına tahminiyle dağıtım planı",
+    "ders": "END 331 · MTO302",
+    "ne": "Kar/fırtına riskine göre rota ve stok.",
+    "nasil": [
+     "Tahmin riskini al",
+     "Rota modelini kur",
+     "Riskli günleri planla"
+    ],
+    "edinim": [
+     [
+      "END 331",
+      "optimizasyon, ulaştırma"
+     ],
+     [
+      "MTO302",
+      "tahmin ürünü, uyarı"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "open-meteo"
+    ]
+   },
+   {
+    "ad": "Sıcaklıktan elektrik talebi",
+    "ders": "END 421 · MTO311E",
+    "ne": "Yarının sıcaklığı yarının tüketimi.",
+    "nasil": [
+     "EPİAŞ tüketim verisini al",
+     "Sıcaklıkla ilişkiyi öğren",
+     "Tahminle talep öngör"
+    ],
+    "edinim": [
+     [
+      "END 421",
+      "talep tahmini"
+     ],
+     [
+      "MTO311E",
+      "regresyon, zaman serisi"
+     ]
+    ],
+    "kaynak": [
+     "epias",
+     "era5"
+    ]
+   },
+   {
+    "ad": "Havaya duyarlı satış tahmini",
+    "ders": "END 421 · MTO311E",
+    "ne": "Yağmur satışı nasıl değiştiriyor?",
+    "nasil": [
+     "Satış ve hava verisini eşle",
+     "Etkiyi ölç",
+     "Tahmine kat"
+    ],
+    "edinim": [
+     [
+      "END 421",
+      "tahmin ve planlama"
+     ],
+     [
+      "MTO311E",
+      "veri analizi"
+     ]
+    ],
+    "kaynak": [
+     "open-meteo",
+     "era5"
+    ]
+   },
+   {
+    "ad": "Belirsizliği karara katmak",
+    "ders": "END 331 · MTO302",
+    "ne": "Olasılıklı tahminle karar.",
+    "nasil": [
+     "Ensemble tahmini al",
+     "Olasılığı maliyete çevir",
+     "Karar eşiğini bul"
+    ],
+    "edinim": [
+     [
+      "END 331",
+      "karar analizi"
+     ],
+     [
+      "MTO302",
+      "olasılıklı tahmin"
+     ]
+    ],
+    "kaynak": [
+     "ecmwf-open",
+     "wmo-verif"
+    ]
+   }
   ],
   "detay": "Ortak zemin: END 421 Üretim Planlama ve Kontrol ve END 331 Yöneylem Araştırması I ↔ MTO302 Hava Analizi ve Öngörü I. Örnek görev: kar, fırtına ya da sıcak hava dalgası tahminini bir dağıtım planına risk olarak eklemek; sıcaklık tahmininden enerji ya da perakende talebini tahmin etmek. Kazanç: belirsiz bir girdiyle karar vermeyi gerçek veriyle denemek.",
   "hocaSayisi": 0,
@@ -265,10 +1576,103 @@
   "bizim": "MTO337/340 Atmosfer Dinamiği, MTO302 Hava Analizi ve Öngörü I",
   "ortakIs": "Deniz meteorolojisi: dalga ve rüzgâr tahmini, hava durumuna göre rota",
   "projeler": [
-   "Rüzgâr tahmininden Marmara için dalga yüksekliği tahmini",
-   "Hava durumuna göre gemi rotası karşılaştırması",
-   "Boğaz'da sis ve görüş mesafesi tahmini",
-   "Dalga ve rüzgâr tahmininin gözlemle doğrulanması"
+   {
+    "ad": "Rüzgârdan Marmara dalga tahmini",
+    "ders": "DEN 323E · MTO302",
+    "ne": "Rüzgâr tahmininden dalga yüksekliği.",
+    "nasil": [
+     "Rüzgâr alanını al",
+     "Dalga modeline bağla",
+     "Copernicus Marine ile kıyasla"
+    ],
+    "edinim": [
+     [
+      "DEN 323E",
+      "dalga mekaniği"
+     ],
+     [
+      "MTO302",
+      "rüzgâr alanı okuma"
+     ]
+    ],
+    "kaynak": [
+     "cmems",
+     "ecmwf-open"
+    ]
+   },
+   {
+    "ad": "Hava durumuna göre rota",
+    "ders": "GEM 421 · MTO302",
+    "ne": "Dalga ve rüzgâra göre en iyi rota.",
+    "nasil": [
+     "Dalga/rüzgâr tahminini al",
+     "Rota maliyeti tanımla",
+     "Rotaları karşılaştır"
+    ],
+    "edinim": [
+     [
+      "GEM 421",
+      "gemi hareketi, manevra"
+     ],
+     [
+      "MTO302",
+      "deniz tahmini"
+     ]
+    ],
+    "kaynak": [
+     "cmems",
+     "ecmwf-open"
+    ]
+   },
+   {
+    "ad": "Boğaz'da sis ve görüş",
+    "ders": "DEN 304E · MTO337",
+    "ne": "Sis riskini önceden görmek.",
+    "nasil": [
+     "Gözlem ve uydu verisini al",
+     "Sis koşullarını belirle",
+     "Risk takvimi üret"
+    ],
+    "edinim": [
+     [
+      "DEN 304E",
+      "deniz-atmosfer etkileşimi"
+     ],
+     [
+      "MTO337",
+      "kararlılık, inversiyon"
+     ]
+    ],
+    "kaynak": [
+     "ogimet",
+     "eumetsat"
+    ]
+   },
+   {
+    "ad": "Dalga/rüzgâr doğrulaması",
+    "ders": "DEN 323E · MTO302",
+    "ne": "Tahmin gözlemle ne kadar tutuyor?",
+    "nasil": [
+     "Şamandıra gözlemini al",
+     "Tahminle eşle",
+     "Hata ölçülerini çıkar"
+    ],
+    "edinim": [
+     [
+      "DEN 323E",
+      "dalga ölçümü"
+     ],
+     [
+      "MTO302",
+      "doğrulama"
+     ]
+    ],
+    "kaynak": [
+     "ndbc",
+     "cmems",
+     "wmo-verif"
+    ]
+   }
   ],
   "detay": "Ortak zemin: DEN 304E Oceanography ve DEN 323E Wave Mechanics ↔ MTO337/340 Atmosfer Dinamiği; rüzgâr dalgayı, dalga gemiyi hareket ettirir. Örnek görev: rüzgâr tahmininden dalga yüksekliğine geçip bir gemi rotasını hava riskine göre karşılaştırmak. Gemi ve Deniz Teknolojisi planında MYZ 308E Artificial Intelligence in Marine Technology dersi de var. Kazanç: deniz meteorolojisinde gerçek veriyle çalışan, gösterilebilir bir rota çalışması.",
   "hocaSayisi": 0,
