@@ -952,3 +952,14 @@ body{background:var(--kagit)} body::before{display:none}            /* izobar de
 
 /* 14 Eki mobil: alt-sat (mono büyük harf) kademelerle aynı bilgi → mobilde yok (az yazı) */
 @media (max-width:860px){.acilis .alt-sat{display:none}}
+
+/* 14 Eki (denetim bulgusu): dosyadaki genel `@media (prefers-reduced-motion:reduce){*{animation:none!important}}` kuralı girizgâhı
+   eziyor, .hazir harfleri gizlediği için logotip hiç görünmüyordu. AURA reduce-mod ezici: aynı zaman çizgisi !important ile,
+   hareket (transform) kapalı. ::after'ı `*` yakalamadığı için parlama zaten sürüyor. */
+@media (prefers-reduced-motion:reduce){
+  .aura-ad.oyna .a-h{animation:aura-harf var(--harf) cubic-bezier(.2,.8,.2,1) calc(var(--bas) + var(--i) * var(--adim)) both!important;transform:none!important}
+  .aura-ad.oyna .a-ac{animation:aura-ac .72s cubic-bezier(.2,.8,.2,1) calc(var(--bas) + var(--i) * var(--adim) + .26s) both!important;transform:none!important}
+  .aura-ad.oyna .a-i{animation:aura-i .45s cubic-bezier(.2,.9,.2,1.15) var(--i-bas) both,aura-nabiz 1.7s ease-in-out calc(var(--i-bas) + .8s) infinite alternate!important;transform:none!important}
+  .aura-ad.oyna .a-ac-i{animation:aura-ac .95s cubic-bezier(.2,.8,.2,1) calc(var(--i-bas) + .3s) both!important}
+  .aura-ad.oyna .a-i::after{animation:aura-parla 1.7s ease-in-out calc(var(--i-bas) + .8s) infinite alternate!important}
+}
