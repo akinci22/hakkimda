@@ -762,8 +762,11 @@ body.odak-son #perde{background:rgba(248,245,238,.8);backdrop-filter:blur(12px) 
 #odak-yazi .oy-uzun p.md,#p-not-uzun p.md{position:relative;padding-left:1.1em}
 #odak-yazi .oy-uzun p.md::before,#p-not-uzun p.md::before{content:"";position:absolute;left:0;top:.62em;width:.42em;height:.42em;border-radius:50%;background:var(--vurgu)}
 #p-not .panel-ust{font-size:.82rem}
-#p-not .panel-m{font:700 1.22rem/1.38 var(--govde);margin:6px 0 12px;text-wrap:balance}
-#p-not-uzun p.md{font:500 1.06rem/1.45 var(--govde);margin:0 0 10px;color:var(--murekkep)}
+#p-not .panel-m{font:700 1.22rem/1.7 var(--govde);margin:6px 0 12px;text-wrap:balance}
+#p-not-uzun p.md{font:500 1.14rem/1.7 var(--govde);margin:0 0 12px;color:var(--murekkep)}   /* tur 9 (14 Eki): 2-4 kısa satır, büyük punto, ferah satır arası */
+#p-not-gorsel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 6px} #p-not-gorsel[hidden]{display:none}
+.pn-g{margin:0;min-width:0} .pn-g img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border:1px solid var(--cizgi);border-radius:6px;background:var(--kagit-2)}
+.pn-g figcaption{margin-top:3px;font:500 .66rem/1.3 var(--mono);color:var(--murekkep-3);overflow-wrap:anywhere}
 
 /* ===== Akın 6 Eki: SİMETRİ + madde düzeni. Başlıklar ortada, kart ızgaraları ortalı (son satır ortaya), kısa metin büyük, uzun metin madde ===== */
 .blok .seviye,.blok--ters .seviye{flex-direction:row;justify-content:center;text-align:center}
@@ -1325,6 +1328,9 @@ body{background:var(--kagit)} body::before{display:none}            /* izobar de
    "Tıkla/aç" yazısı yok: tıklanabilirlik sağda › dairesi (30 px, kenarlık 1.5 px; üstüne gelince satır 2 px kalkar + daire dolar, basınca 90° döner, dokunmatikte scale(.985)).
    Yalnız transform/opacity animasyonu; prefers-reduced-motion'da anında (dosya başındaki genel kural da keser). Gömülüde fixed yalnız top-layer dialog içindeki büyütme katmanı. */
 .detay.p3-acik .detay-yol{display:none}                                          /* kırıntı yolu üst şeridin yerini alır */
+/* tur 9 (14 Eki): p3 açıkken sağ panel (≥1180) okunur kalsın — dialog panel genişliği kadar daralır, bulanık arka plan o şeritten kırpılır (panel sticky/fixed, top-layer'ın altında ama görünür) */
+@media (min-width:1180px){.detay.metin.p3-acik{width:calc(100vw - var(--panel));max-width:calc(100vw - var(--panel))} .detay.metin.p3-acik .detay-kapat{right:calc(var(--panel) + 12px)} .detay.p3-acik::backdrop{clip-path:inset(0 272px 0 0)}}   /* ::backdrop özel değişken okumaz: genişlikler --panel tanımlarıyla (71, 585. satır) birebir */
+@media (min-width:1320px){.detay.p3-acik::backdrop{clip-path:inset(0 360px 0 0)}}
 .detay.metin.p3-acik .harita,.detay.metin.dar.p3-acik .harita{align-items:start}
 .p3-dm{text-shadow:none;min-width:0;max-width:100%}
 .p3{position:relative;max-width:min(860px,100%);margin:0 auto;font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.58;color:var(--murekkep)}
@@ -1440,4 +1446,22 @@ button.p3-kr{cursor:pointer} button.p3-kr:hover{color:var(--vurgu);text-decorati
   .p3-terim td{padding:5px 8px 5px 0} .p3-tex{font-size:1.1em}
   .p3-adim-gez{flex-wrap:wrap}
 }
-@media (prefers-reduced-motion:reduce){.p3-ekr,.p3-sat,.p3-parca,.p3-ok,.p3-geri,.p3-mini-k img,.p3-mini-k video{transition:none!important} .p3-ekr.giris,.p3-ekr.geri-bas{transform:none;opacity:1}}
+/* ---- tur 9 (14 Eki): satır görseli (E1/E3), yapılış meta + tıklanabilir alt adım satırları (E5b), kazanım çipi ---- */
+.p3-sat.gorselli{grid-template-columns:auto minmax(0,1fr) auto auto} .p3-sat-2.gorselli{grid-template-columns:minmax(0,1fr) auto auto}
+.p3-sat-g{align-self:center;min-width:0} .p3-sat-g img{display:block;width:96px;aspect-ratio:16/10;object-fit:cover;border-radius:8px;border:1px solid var(--cizgi);background:var(--kagit-2)}
+.p3-adim-meta{font:500 .74rem var(--mono);letter-spacing:.03em;color:var(--murekkep-3)}
+.p3-nasil-blok .p3-alt-adim{max-width:none;gap:8px;padding-left:1.4em}
+.p3-nasil{line-height:1.55}
+.p3-nasil-b{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;min-height:44px;padding:8px 8px 8px 10px;border:0;border-radius:10px;background:none;color:inherit;font:inherit;line-height:1.5;text-align:left;cursor:pointer;transition:background .2s,transform .2s}
+.p3-nasil-b:hover{background:color-mix(in srgb,var(--vurgu) 7%,transparent)} .p3-nasil-b:active{transform:scale(.99)} .p3-nasil-b:focus-visible{outline:2px solid var(--sicaklik);outline-offset:2px}
+.p3-nasil-t{overflow-wrap:anywhere}
+.p3-ok-k{width:26px;height:26px} .p3-nasil-b:hover .p3-ok-k{background:var(--vurgu);border-color:var(--vurgu)} .p3-nasil-b:hover .p3-ok-k::before{color:#fff}
+.p3-nasil.acik .p3-ok-k{transform:rotate(90deg)}
+.p3-nasil-ac{margin:2px 0 6px 10px;padding:10px 0 4px 14px;border-left:1px dashed var(--cizgi-2);display:grid;gap:10px;max-width:52ch}
+.p3-nasil-ac[hidden]{display:none}
+.p3-nasil-sade{margin:0;line-height:1.6}
+.p3-nasil-alt{margin:0;padding-left:1.3em;display:grid;gap:5px;font-size:.95em} .p3-nasil-alt li::marker{font:600 .82em var(--mono);color:var(--vurgu)}
+.p3-kazanim{margin:0;display:inline-block;padding:6px 12px 6px 10px;border:1px solid var(--cizgi-2);border-radius:999px;background:var(--panel-bg);font-size:.9em;line-height:1.5;color:var(--murekkep-2)} .p3-kazanim q{font-style:italic;color:var(--murekkep)}
+.p3-kazanimlar li{line-height:1.55}
+@media (max-width:860px){.p3-sat-g img{width:72px} .p3-nasil-ac{margin-left:4px;padding-left:10px} .p3-nasil-b{min-height:48px}}
+@media (prefers-reduced-motion:reduce){.p3-ekr,.p3-sat,.p3-parca,.p3-ok,.p3-geri,.p3-mini-k img,.p3-mini-k video,.p3-nasil-b{transition:none!important} .p3-ekr.giris,.p3-ekr.geri-bas{transform:none;opacity:1}}

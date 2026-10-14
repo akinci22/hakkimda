@@ -397,91 +397,278 @@
   "adimlar": [
    {
     "baslik": "ERA5'i CDS API ile indir",
-    "oz": "Copernicus hesabı aç, cdsapi ile İstanbul hücresinin 2015-2024 saatlik 2 m sıcaklığını NetCDF olarak çek.",
-    "ayrinti": "ERA5, ECMWF'nin 1940'tan bugüne saatlik yeniden analizi; gözlemle modelin en iyi uzlaşısı, bu yüzden 'gerçek' diye onu alıyoruz. Tüm küre değil, yalnız İstanbul çevresindeki küçük bir kutu istenir; dosya küçük kalır. İstekte alan kutusu, değişken adı ve yıl-ay-gün-saat listesi girilir. Veri yaklaşık 5 gün gecikmeyle gelir; en taze günler için ERA5T sürümü ya da Open-Meteo arşivi kullanılır.",
+    "oz": "Copernicus CDS'ten İstanbul koordinatlarına karşılık gelen 10 yıllık saatlik 2 m sıcaklık ve yüzey verisini netCDF olarak çek.",
+    "ayrinti": "Copernicus İklim Değişikliği Servisi (CDS), 1940'tan günümüze tüm kürenin saatlik atmosfer durumunu 0,25° çözünürlükle sunar. İstanbul için 41.0° K, 29.0° D hücresini seçeriz. Veri boyutu tüm küre için terabaytları bulurken tek hücrede 10 yıl yaklaşık 15 megabayttır. cdsapi Python kütüphanesiyle istek yollanır; gelen netCDF dosyası xarray ile açılarak yerel zaman serisine dönüştürülür.",
     "nasil": [
-     "cds.climate.copernicus.eu'da hesap aç, veri setinin lisansını onayla, ~/.cdsapirc dosyasına url ve key satırlarını yaz",
-     "pip install \"cdsapi>=0.7.7\" xarray netCDF4; cdsapi.Client().retrieve('reanalysis-era5-single-levels', istek, 'era5_ist.nc')",
-     "İstek: variable=['2m_temperature'], year 2015..2024, tüm ay/gün/saat, area=[41.5, 28.5, 40.5, 29.5], data_format='netcdf'",
-     "xarray.open_dataset ile aç; 41,0N 29,0E hücresini sel ile seç; Kelvin'i °C'ye çevir (−273,15)",
-     "Beklenen çıktı: yaklaşık 87 700 satırlık saatlik seri (zaman, t2m) → parquet olarak sakla",
-     "Hesap açmak istemeyen için: archive-api.open-meteo.com/v1/archive?…&hourly=temperature_2m aynı ERA5'i verir"
-    ],
-    "gorseller": [
      {
-      "tur": "ekran",
-      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
-      "aciklama": "CDS'te ERA5 saatlik veri sayfası: değişken, tarih ve alan seçimi"
+      "teknik": "cdsapi istemcisiyle CDS sunucusuna bağlanıp İstanbul hücresi (41,0° K, 29,0° D) için 2m_temperature parametresini netCDF olarak iste",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle veri akış boru hattı kurulur. CDS API üzerinden 2015-2024 yılları arasındaki saatlik sıcaklık değerleri netCDF formatında yerel ortama aktarılır. Bu sayede makine öğrenmesi modelinin eğitileceği kesintisiz zaman serisi elde edilir.",
+      "altAdimlar": [
+       "cds.climate.copernicus.eu adresinde hesap açıp API anahtarını kullanıcı dizinine .cdsapirc olarak kaydet",
+       "cdsapi kütüphanesini kurarak Client nesnesi üzerinden 10 yıllık saatlik sıcaklık sorgusunu başlat",
+       "İndirilen NetCDF dosyasını yerel veri dizinine era5_istanbul_2015_2024.nc adıyla yaz"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     },
+     {
+      "teknik": "xarray.open_dataset ile netCDF dosyasını açıp İstanbul hücresini seç ve sıcaklığı Kelvin biriminden Celsius'a dönüştür",
+      "sade": "BLG 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle birim dönüşümü ve duyarlılık kontrolü yapılır. Ham verideki Kelvin değerleri 273,15 çıkarılarak Celsius'a çevrilirken kayan nokta hassasiyeti korunur. xarray kütüphanesi çok boyutlu ızgara verisini tek boyutlu zaman serisi indeksine indirger.",
+      "altAdimlar": [
+       "xarray.open_dataset komutuyla era5_istanbul.nc dosyasını açıp koordinat boyutlarını doğrula",
+       "sel(latitude=41.0, longitude=29.0, method='nearest') ile İstanbul hücresini filtrele",
+       "t2m değişkeninden 273.15 sabitini çıkararak derece Celsius biriminde pandas serisine dönüştür"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek"
+      }
+     },
+     {
+      "teknik": "Zaman serisinde eksik saatleri pandas.date_range ile tara ve eksik gözlemleri doğrusal enterpolasyonla tamamla",
+      "sade": "MTO 302 dersindeki 'İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak' bilgisiyle veri kalitesi denetlenir. Kronolojik saat serisinde kopukluk olup olmadığı incelenir. Nadir boş satırlar doğrusal tamamlama ile doldurularak model için kusursuz bir zaman çizelgesi hazırlanır.",
+      "altAdimlar": [
+       "pd.date_range ile 2015-01-01 ile 2024-12-31 arasındaki eksiksiz saatlik indeks kümesini oluştur",
+       "reindex ile zaman indeksini eşleştirip boş saatleri tespit et",
+       "interpolate(method='linear') uygulayarak varsa 1-2 saatlik küçük boşlukları doldur ve temiz DataFrame üret"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak"
+      }
      }
     ]
    },
    {
     "baslik": "Özellikleri çıkar",
     "oz": "Her saat için hedef 24 saat sonraki sıcaklık; girdiler son saatler, günün ve yılın saati, rüzgâr ve basınç.",
-    "ayrinti": "Model geleceği bilmez; ona geçmiş gözlem tablosu veririz. Hedef sütun t2m(t+24) olurken girdiler son 24 saatin sıcaklıkları, döngüsel saat ve gün sinüs-kosinüs değerleridir. Ayrıca 10 m rüzgârı, yüzey basıncı ve sıcaklık adveksiyonu eklenir. Eğitim 2015-2022, doğrulama 2023, test 2024 olarak bölünür ve yıllar asla karıştırılmaz.",
+    "ayrinti": "Model geleceği bilmez; ona 'şu anda ve dünden beri ne oldu' tablosu veririz. Hedef sütun t2m(t+24). Girdiler: t2m(t) … t2m(t−24) ve son 24 saatin en yüksek ve en düşüğü. Ayrıca günün saati ve yılın günü (sin/cos ile döngüsel). Bir de 10 m rüzgâr bileşenleri, deniz seviyesi basıncı ve komşu hücre farkından adveksiyon terimi. Eğitim 2015-2022, doğrulama 2023, sınama 2024 olarak ayrılır; kronolojik sıra bozulursa model yarını ezberler.",
     "nasil": [
-     "pandas: df['hedef'] = df['t2m'].shift(-24); gecikmeler için df['t2m'].shift(k), k = 1..24",
-     "Döngüsel zaman: sin(2π·saat/24), cos(…), sin(2π·gün/365,25), cos(…)",
-     "ERA5'ten ek değişkenler: 10m_u_component_of_wind, 10m_v_component_of_wind, mean_sea_level_pressure; aynı CDS isteğine eklenir",
-     "Adveksiyon: −(u·ΔT/Δx + v·ΔT/Δy); ΔT komşu hücrelerden, Δx ≈ 21 km (41° enlemde 0,25°), Δy ≈ 28 km",
-     "Bölme: 2015-2022 eğitim, 2023 doğrulama, 2024 sınama; NaN satırları at",
-     "Beklenen çıktı: ~87 000 satır × ~35 sütun özellik tablosu (parquet)"
+     {
+      "teknik": "pandas.shift ile t+24 hedef değişkenini ve son 24 saatin gecikmeli sıcaklık (lag) sütunlarını matrise ekle",
+      "sade": "BLG 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle gecikmeli öznitelik matrisi kurulur. Modelin dünden bugüne gerçekleşen sıcaklık eğilimini görebilmesi için son 24 saatin değerleri girdi sütunlarına dönüştürülür. Hedef olarak 24 saat sonraki sıcaklık tanımlanır.",
+      "altAdimlar": [
+       "df['hedef_24h'] = df['t2m'].shift(-24) komutuyla regresyon hedefini tanımla",
+       "for lag in range(1, 25): df[f't2m_lag_{lag}'] = df['t2m'].shift(lag) döngüsüyle gecikmeleri türet",
+       "rolling(24).min() ve rolling(24).max() ile son 24 saatin ekstrem sıcaklık aralığını sütun olarak ekle"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "Döngüsel zaman değişkenlerini trigonometrik sinüs ve kosinüs bileşenlerine dönüştürerek 4 sütunlu zaman özniteliği üret",
+      "sade": "BLG 202E dersindeki 'Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak' bilgisiyle periyodik zaman fonksiyonları modellenir. Günün 23. saati ile 0. saati arasındaki ardışıklık sinüs ve kosinüs izdüşümüyle kesintisiz hale getirilir. Aynı dönüşüm yılın 365 günü için tekrarlanarak mevsimsel döngü ağaca aktarılır.",
+      "altAdimlar": [
+       "saat = df['time'].dt.hour değişkeninden sin(2π*saat/24) ve cos(2π*saat/24) sütunlarını üret",
+       "gun = df['time'].dt.dayofyear değişkeninden sin(2π*gun/365.25) ve cos(2π*gun/365.25) sütunlarını türet",
+       "Tüm satırlarda sin² + cos² = 1 eşitliğini test ederek döngüsel sürekliliği doğrula"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak"
+      }
+     },
+     {
+      "teknik": "10 m rüzgâr bileşenleri ve komşu hücre sıcaklık gradyanından yatay adveksiyon terimini hesaplayıp özellik tablosuna yaz",
+      "sade": "MTO 302 dersindeki 'Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek' bilgisiyle fiziksel adveksiyon terimi hesaplanır. Rüzgârın kuzeyden veya güneyden getirdiği hava kütlesinin sıcaklığı nasıl değiştireceği matematiksel olarak formüle edilir. Bu fiziksel bilgi modelin ani sıcaklık kırılmalarını yakalamasını sağlar.",
+      "altAdimlar": [
+       "u10 ve v10 rüzgâr bileşenleri ile komşu ERA5 ızgaralarından enlem/boylam sıcaklık gradyanlarını çıkar",
+       "adveksiyon = -(u * dT_dx + v * dT_dy) formülünü uygulayarak derece/saat cinsinden adveksiyon sütunu oluştur",
+       "Veri kümesini 2015-2022 eğitim, 2023 doğrulama ve 2024 test olarak kronolojik üç parçaya ayır"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek"
+      }
+     }
     ]
    },
    {
     "baslik": "LightGBM ile eğit",
-    "oz": "Gradyan artırma: her yeni ağaç öncekilerin hatasını düzeltir; önce basit doğruyu, sonra kalıcılığı geç.",
-    "ayrinti": "Gradyan artırma yüzlerce küçük karar ağacını sırayla kurar; her ağaç, kalan hatanın türevine bakarak bir adım daha düzeltir. LightGBM bunun hızlı ve az bellek isteyen sürümü. İki çıta önce: 'kalıcılık' (yarın bugünkü gibi) ve en küçük karelerle uydurulan doğru. Model bunları geçmiyorsa özellikler yanlıştır. Erken durdurma doğrulama yılına göre yapılır; aşırı öğrenmeyi (ezber) böyle keseriz.",
+    "oz": "Eğitim verisinde gradyan artırma ağacı kur; erken durdurma ile ezberi kes; kalıcılık ve doğrusal çıtayı geç.",
+    "ayrinti": "Gradyan artırma ağaçları (GBDT), tabular veride derin öğrenmeden hızlı ve genelde daha başarılıdır. LightGBM kütüphanesi yaprak odaklı büyür ve histogram temelli hızlandırma kullanır. Amaç regresyon (L2 kaybı), değerlendirme metriği RMSE. Erken durdurma (early stopping) 100 tur olarak ayarlanır: doğrulama hatası 100 tur boyunca düşmezse eğitim kesilir, böylece model ezberlemez (overfitting önlenir). Kalıcılık ve basit doğrusal regresyon çıta olarak hesaplanır.",
     "nasil": [
-     "pip install lightgbm; train = lgb.Dataset(X_egitim, label=y_egitim); valid = lgb.Dataset(X_dogrulama, label=y_dogrulama)",
-     "params = {'objective': 'regression', 'metric': 'rmse', 'learning_rate': 0.05, 'num_leaves': 31}",
-     "bst = lgb.train(params, train, num_boost_round=2000, valid_sets=[valid], callbacks=[lgb.early_stopping(100)])",
-     "Çıtalar: kalıcılık RMSE (tahmin = t2m(t)) ve numpy.polyfit(…, 1) doğrusu; ikisi de 2023 üzerinde hesaplanır",
-     "bst.feature_importance() ile hangi özellik iş yapıyor; adveksiyon ve son 3 saat genelde başta",
-     "Beklenen çıktı: model dosyası (bst.save_model) + 2024 için saatlik tahmin sütunu"
+     {
+      "teknik": "LightGBM Dataset nesnelerini oluşturup L2 kayıp fonksiyonu ve RMSE metriğiyle regresyon parametrelerini ayarla",
+      "sade": "BLG 202E dersindeki 'Doğrusal olmayan denklemlerin köklerini Newton-Raphson ve ikiye bölme ile bulmak' bilgisiyle kayıp fonksiyonunun gradyanı optimize edilir. Her iterasyonda hatanın birinci ve ikinci türevleri alınarak ağaç yapraklarının optimal ağırlıkları belirlenir. Bu sayısal optimizasyon algoritması modelin tahmin hatasını hızla küçültür.",
+      "altAdimlar": [
+       "lightgbm kütüphanesinden lgb.Dataset ile eğitim ve doğrulama veri matrislerini RAM'de hazırla",
+       "params sözlüğünde objective='regression', metric='rmse', learning_rate=0.05 değerlerini tanımla",
+       "lgb.train fonksiyonunu early_stopping_rounds=100 geri çağrımı ile çalıştırıp en iyi modeli kaydet"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Doğrusal olmayan denklemlerin köklerini Newton-Raphson ve ikiye bölme ile bulmak"
+      }
+     },
+     {
+      "teknik": "numpy.polyfit ile doğrusal regresyon çıtasını ve kalıcılık hatasını hesaplayarak temel karşılaştırma çizgisi kur",
+      "sade": "BLG 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle basit referans modeller kurulur. Kalıcılık modeli yarınki sıcaklığın bugünküyle aynı kalacağını varsayarken, en küçük kareler doğrusu ortalama eğilimi yakalar. Geliştirilen ağaç modelinin bu temel yöntemlerden belirgin biçimde üstün olması beklenir.",
+      "altAdimlar": [
+       "rmse_kalicilik = np.sqrt(np.mean((y_test - X_test['t2m_lag_0'])**2)) ile kalıcılık hatasını çıkar",
+       "np.polyfit(X_train['t2m_lag_0'], y_train, 1) ile en küçük kareler regresyon katsayılarını hesapla",
+       "Her iki referansın test kümesi RMSE değerlerini ekrana basıp ağaç modelinin hatasıyla karşılaştır"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "feature_importance ile öznitelik ağırlıklarını çıkar ve en yüksek katkıyı veren meteorolojik değişkenleri raporla",
+      "sade": "MTO 302 dersindeki 'Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek' bilgisiyle öznitelik önem dereceleri incelenir. Karar ağaçlarının en çok adveksiyon, son saatlerin sıcaklığı ve basınç değişimine dayandığı doğrulanır. Bu analiz modelin fiziksel atmosfer kurallarına uygun öğrendiğini kanıtlar.",
+      "altAdimlar": [
+       "bst.feature_importance(importance_type='gain') çağrısıyla sütun bazlı bilgi kazancını al",
+       "Öznitelikleri önem sırasına göre dizip ilk 10 değişkeni yatay çubuk grafiğinde görselleştir",
+       "Adveksiyon ve geçmiş sıcaklık sütunlarının en üstte yer aldığını denetleyip gereksiz özellikleri ele"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek"
+      }
+     }
     ]
    },
    {
     "baslik": "ECMWF açık tahminini indir",
-    "oz": "ecmwf-opendata ile 00 UTC koşusunun +24 saat 2 m sıcaklığını her gün çek, İstanbul hücresini al.",
-    "ayrinti": "ECMWF, IFS ve AIFS tahminlerini 0,25° çözünürlükte, CC BY 4.0 lisansıyla açık veriyor. Ama arşiv 'dönen' türden: yalnız son 2-3 gün durur. Bu yüzden her gün küçük bir betik çalışıp +24 adımını diske yazmalı; yarışma günleri böyle birikir. GRIB2 dosyası cfgrib ile xarray'e açılır. Adımlar 3 saatlik olduğundan saatlik ERA5 ile hizalamak için Lagrange enterpolasyonu ya da yalnız 00/03/06… saatlerinde karşılaştırma gerekir.",
+    "oz": "Açık veri API'siyle 0,25° IFS ve AIFS 24 saatlik tahminini günlük çek; ara saatleri enterpole et.",
+    "ayrinti": "ECMWF, 2024'ten itibaren operasyonel IFS (fizik temelli) ve AIFS (yapay zekâ temelli) modellerinin 0,25° tahminlerini açık lisansla (CC BY 4.0) ücretsiz sunuyor. ecmwf-opendata Python kütüphanesiyle sabah 00 UTC çalıştırmasının 24 saat sonrasını (step=24) gösteren 2 m sıcaklık alanı indirilir. Dosya GRIB2 biçimindedir; cfgrib motoruyla xarray'e aktarılır. Model 3 saatlik adımlarla geldiğinden saatlik karşılaştırma için ara saatler enterpolasyonla tamamlanır.",
     "nasil": [
-     "pip install ecmwf-opendata cfgrib; from ecmwf.opendata import Client; client = Client(model='ifs')",
-     "client.retrieve(time=0, step=24, type='fc', param='2t', target='ifs_2t_24.grib2'); AIFS için Client(model='aifs-single')",
-     "xarray.open_dataset('ifs_2t_24.grib2', engine='cfgrib'); sel(latitude=41.0, longitude=29.0) ile hücreyi al",
-     "Günlük zamanlayıcı (Windows Görev Zamanlayıcı ya da cron) her sabah çalışır, CSV'ye tarih + tahmin ekler",
-     "Beklenen çıktı: her yarışma günü için bir satır: koşu tarihi, hedef saat, IFS 2t, AIFS 2t"
-    ],
-    "gorseller": [
      {
-      "tur": "ekran",
-      "url": "https://github.com/ecmwf/ecmwf-opendata",
-      "aciklama": "ecmwf-opendata deposu: retrieve örneği, model ve adım seçenekleri"
+      "teknik": "ecmwf-opendata istemcisiyle 00 UTC IFS ve AIFS koşularının step=24 iki metre sıcaklık GRIB2 dosyasını indir",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle sayısal hava tahmin modeli ürünleri indirilir. Operasyonel IFS ve yapay zekâ tabanlı AIFS çıktılarından 24 saat sonraki sıcaklık alanı çekilir. Böylece makine öğrenmesi modeline karşı dünya standardında iki güçlü rakip elde edilir.",
+      "altAdimlar": [
+       "ecmwf.opendata modülünden Client(model='ifs') ve Client(model='aifs-single') istemcilerini başlat",
+       "client.retrieve(time=0, step=24, type='fc', param='2t', target='ecmwf_ifs.grib2') çağrısını yap",
+       "İndirilen GRIB2 dosyalarının boyut ve dosya başlıklarını kontrol edip yerel depoya aktar"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     },
+     {
+      "teknik": "cfgrib motoru ile GRIB2 verisini açıp İstanbul hücresini çek ve Kelvin değerlerini Celsius birimine çevir",
+      "sade": "BLG 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle ızgara koordinat dönüşümü yapılır. GRIB2 dosyasındaki küresel ızgaradan İstanbul hücresi tam koordinatla çekilir. Sayısal yuvarlama farkı olmaksızın Kelvin birimi Celsius değerine indirgenir.",
+      "altAdimlar": [
+       "xarray.open_dataset('ecmwf_ifs.grib2', engine='cfgrib') ile veri setini belleğe yükle",
+       "sel(latitude=41.0, longitude=29.0, method='nearest') ile İstanbul hücresini seç",
+       "t2m - 273.15 formülüyle derece Celsius değerlerini pandas zaman serisine dönüştür"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek"
+      }
+     },
+     {
+      "teknik": "3 saatlik ECMWF tahmin noktaları arasına Lagrange enterpolasyonu uygulayarak saatlik tahmin dizisi üret",
+      "sade": "BLG 202E dersindeki 'Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak' bilgisiyle ara saatler hesaplanır. ECMWF'nin 3 saatlik adımları arasında sürekli bir polinom eğrisi geçirilir. Bu yöntemle saatlik ERA5 gözlemi ve makine öğrenmesi tahminiyle bire bir aynı zaman noktalarında karşılaştırma sağlanır.",
+      "altAdimlar": [
+       "0, 3, 6, 9... saatlik tahmin noktalarını x ve y dizileri olarak düzenle",
+       "scipy.interpolate modülünden lagrange veya cubic spline fonksiyonuyla ara saatleri türet",
+       "Oluşan saatlik tahmin eğrisini aşırı salınım kontrolünden geçirip karne tablosuna hazırla"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak"
+      }
      }
     ]
    },
    {
     "baslik": "Aynı günlerde doğrula: RMSE ve sapma",
-    "oz": "ML ve ECMWF tahminlerini aynı hedef saatlerde ERA5 ile karşılaştır; her gün için RMSE ve sistematik sapma.",
-    "ayrinti": "Dürüst karşılaştırmanın kuralı: aynı başlangıç saati, aynı hedef saat, aynı gerçek. ERA5 5 gün geriden geldiği için karne gecikmeli dolar. Her gün için fark = tahmin − ERA5; RMSE büyük hataları ağır cezalandırır, sapma (bias) sürekli ılık ya da soğuk kalmayı gösterir. 24 saatlik 2 m sıcaklıkta RMSE tipik olarak 1-2 °C; cephe geçişi günlerinde daha büyük. Haftalık toplamda kimin önde olduğu ve nerede geride kaldığı not edilir.",
+    "oz": "Test döneminde LightGBM, IFS ve AIFS'i ERA5 gerçeğiyle karşılaştır; hata karnesini çıkar.",
+    "ayrinti": "2024 test döneminde model tahminleri ile ECMWF çıktıları ortak günlerde eşleştirilir. ERA5 reanalizi hakikat (doğrulama referansı) kabul edilir. Temel metrikler: Kök Ortalama Kare Hata (RMSE) ve Ortalama Sapma (bias). Ayrıca kalıcılığa göre tahmin beceri skoru (Skill Score) hesaplanır. Hataların büyüdüğü günler sinoptik hava haritalarıyla eşleştirilerek modelin hangi durumlarda zorlandığı incelenir.",
     "nasil": [
-     "pandas.merge ile üç seriyi hedef saatte birleştir: era5, ml, ifs (hepsi UTC; yerel saate çevirme)",
-     "RMSE = sqrt(mean((F−O)²)), bias = mean(F−O); gün ve haftalık pencere için groupby",
-     "Kalıcılık ve doğru çıtasını da aynı tabloya koy: dört sütunlu karne",
-     "Beceri skoru: 1 − RMSE_model / RMSE_kalicilik; artı değer kalıcılığı geçti demek (JWGFVR doğrulama sayfası)",
-     "Beklenen çıktı: gün × {ML, IFS, AIFS, kalıcılık} RMSE ve bias tablosu (CSV)"
+     {
+      "teknik": "pandas.merge ile ERA5 gözlemi, LightGBM tahmini ve ECMWF çıktılarını UTC zaman damgasında birleştir",
+      "sade": "BLG 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle çok sütunlu karne tablosu kurulur. Farklı kaynaklardan gelen tahminler ortak UTC zaman damgası altında tek bir veri çerçevesinde hizalanır. Böylece her tahmincinin aynı hedef saatteki başarısı objektif olarak kıyaslanır.",
+      "altAdimlar": [
+       "era5_df, ml_df ve ecmwf_df serilerini time indeksi üzerinde inner join ile birleştir",
+       "Tüm sütunların UTC zaman diliminde olduğunu ve kayma olmadığını doğrula",
+       "Eksik satır içermeyen birleşik tahmin karnesi tablosunu df_karne adıyla sakla"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "Her model için RMSE, MAE ve sapma (bias) metriklerini hesaplayıp kalıcılık beceri skorunu (SS) türet",
+      "sade": "BLG 202E dersindeki 'Hatayı ölçmek ve kodda sınırlamak' bilgisiyle sayısal hata metrikleri hesaplanır. Tahmin hatalarının kare ortalaması ve yönlü sapmaları bulunarak modellerin güvenilirliği test edilir. Kalıcılık referansına göre beceri skoru hesaplanarak modelin katma değeri sayısallaştırılır.",
+      "altAdimlar": [
+       "rmse = np.sqrt(np.mean((tahmin - gozlem)**2)) ve bias = np.mean(tahmin - gozlem) formüllerini uygula",
+       "ss = 1 - (rmse_model / rmse_kalicilik) formülüyle kalıcılığa göre beceri skorunu hesapla",
+       "Sonuçları tabloya aktarıp LightGBM, IFS ve AIFS modellerini yan yana sırala"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Hatayı ölçmek ve kodda sınırlamak"
+      }
+     },
+     {
+      "teknik": "Hatanın yükseldiği günleri ERA5 yüzey basıncı ve rüzgâr alanlarıyla eşleştirerek sinoptik hata analizi yap",
+      "sade": "MTO 302 dersindeki 'Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek' bilgisiyle uç hata günleri irdelenir. Modelin yanıldığı günlerde cephe geçişi, lodos fırtınası ya da ani sıcaklık düşüşü olup olmadığı haritalardan teşhis edilir. Bu adım sayısal hatayı fiziksel meteorolojiyle anlamlandırmayı sağlar.",
+      "altAdimlar": [
+       "df_karne tablosunda mutlak hatanın 2,5 °C üzerine çıktığı günleri filtrele",
+       "Bu günlerdeki ERA5 deniz seviyesi basınç ve rüzgâr haritalarını çizdir",
+       "Hataların cephe geçişi veya ani hava kütlesi değişimleriyle örtüşmesini raporla"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek"
+      }
+     }
     ]
    },
    {
     "baslik": "Grafik ve defter",
-    "oz": "Tek grafikte iki hata eğrisi, altında kısa yorum; kod ve veri bağlantıları GitHub'da bir Jupyter defterinde.",
-    "ayrinti": "Sonuç bir bakışta okunmalı: üstte ERA5 ile iki tahmin üst üste, altta günlük RMSE çubukları yan yana. Hangi günlerde kimin önde olduğu ve hatanın büyüdüğü günlerde ne olduğu (poyraz, lodos, cephe) 3-4 cümleyle yazılır. Defter baştan sona çalışır olmalı: 'Run all' deyince aynı grafik çıkmalı. Veri lisansları (Copernicus, CC BY 4.0) defterin başına yazılır.",
+    "oz": "Tahmin serilerini ve günlük RMSE çubuklarını iki panelli grafikte göster; Jupyter defterini hazırla.",
+    "ayrinti": "Çalışmanın tüm adımları temiz, baştan sona çalıştırılabilir tek bir Jupyter defterinde toplanır. Matplotlib ile hazırlanan ana görselde üst panelde gözlem ve tahmin zaman serileri, alt panelde ise gün gün modellerin RMSE çubukları yer alır. Kodlar GitHub deposunda requirements.txt ve açıklayıcı README ile paylaşılır; veri lisansları ve atıflar açıkça belirtilir.",
     "nasil": [
-     "matplotlib: üst panel üç çizgi (ERA5, ML, IFS), alt panel günlük RMSE çubukları; tek PNG",
-     "Jupyter defteri: 1 veri, 2 özellik, 3 model, 4 ECMWF, 5 karne, 6 yorum bölümleri; her bölüm kendi başına çalışır",
-     "requirements.txt ve README: nasıl kurulur, hangi hesap gerekir, kaç dakika sürer",
-     "GitHub deposu: defter + küçük örnek veri (1 ay) + günlük indirme betiği",
-     "Beklenen çıktı: karne grafiği PNG + çalışan defter + kısa yorum"
+     {
+      "teknik": "matplotlib ile üstte zaman serileri, altta günlük hata çubukları bulunan iki panelli özet grafiği çizdir",
+      "sade": "BLG 202E dersindeki 'Hatayı ölçmek ve kodda sınırlamak' bilgisiyle görsel doğrulama paneli üretilir. Gözlem ve tahmin eğrileri üst panelde çakıştırılarak sapmalar açıkça gösterilir. Alt paneldeki günlük hata çubukları hangi gün kimin daha başarılı olduğunu görsel olarak kanıtlar.",
+      "altAdimlar": [
+       "plt.subplots(2, 1, figsize=(12, 8), sharex=True) ile iki panelli tuvali oluştur",
+       "Üst panele ERA5 gerçeği, LightGBM, IFS ve AIFS eğrilerini farklı renklerle çiz",
+       "Alt panele modellerin günlük RMSE değerlerini gruplu çubuk grafik olarak yerleştirip PNG olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Hatayı ölçmek ve kodda sınırlamak"
+      }
+     },
+     {
+      "teknik": "Jupyter defterini hücre bazlı mantıksal sıraya dizip 'Run All' komutunun hatasız çalışmasını sağla",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle tekrarlanabilir hesaplama defteri düzenlenir. Veri indirmeden model eğitimine ve doğrulama karnesine kadar tüm kodlar sıralı hücrelerde yapılandırılır. Çekirdek sıfırlandığında tüm analiz baştan sona otomatik olarak yeniden üretilir.",
+      "altAdimlar": [
+       "Defteri veri çekme, özellik çıkarma, eğitim, ECMWF doğrulama ve görselleştirme başlıklarına ayır",
+       "Her kod hücresinin üzerine yapılan işlemi açıklayan kısa markdown notları ekle",
+       "Çekirdeği yeniden başlatıp tüm defteri baştan sona çalıştırarak çıktıları sabitle"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     },
+     {
+      "teknik": "GitHub deposu için requirements.txt, açık lisans atıfları ve bulguları özetleyen README belgesini derle",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle proje sonuçları özetlenir. Makine öğrenmesi modelinin IFS ve AIFS karşısındaki performansı teknik bir brifing dilinde sunulur. Açık kaynak kodlar ve veri referansları araştırmacıların kullanımına açılır.",
+      "altAdimlar": [
+       "pip freeze veya pipreqs ile projenin bağımlılık listesini requirements.txt dosyasına yaz",
+       "README dosyasında model mimarisini, elde edilen RMSE skorlarını ve sinoptik çıkarımları açıkla",
+       "Copernicus CDS ve ECMWF açık veri lisans atıf metinlerini depoya ekleyip son haline getir"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     }
     ]
    }
   ],
@@ -497,9 +684,9 @@
    "aciklama": "Bir haftalık saatlik sıcaklık eğrisi akarken 24 saat sonrası için hedef nokta önden ilerliyor"
   },
   {
-   "tur": "ekran",
+   "tur": "kaydirma",
    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
-   "aciklama": "ECMWF açık veri sayfası: IFS ve AIFS, 0,25°, CC BY 4.0"
+   "aciklama": "ECMWF açık veri indirme sayfası: IFS ve AIFS model parametreleri ile CC BY 4.0 veri kılavuzu"
   },
   {
    "tur": "kamu",
@@ -549,10 +736,10 @@
  "guven": "yuksek",
  "dogrulandi": true,
  "tarih": "2026-10-14",
- "notlar": "Tüm bağlantılar 14 Ekim 2026'da açıldı; DOI'ler Crossref ile doğrulandı (yayıncı sayfaları bota kapalı). kaynaklar.json'daki cawcr.gov.au adresi jwgfvr.github.io'ya yönleniyor, aifs slug'ındaki sayfa 404. charts.ecmwf.int bot engeli yüzünden açılamadı, görsel listesine alınmadı.",
+ "notlar": "Bağlantılar 14 Eki 2026'da açıldı; DOI'ler Crossref ile doğrulandı. charts.ecmwf.int bot engeli yüzünden görsel listesine alınmadı. Tur 9: nasil[] nesneye çevrildi; kazanımlar OBS katalog öğrenme çıktılarından (BLG 202E, MTO 302) kısaltıldı.",
  "_birlestirme": {
   "kaynak": "cikti/BLG-01.json",
-  "tarih": "2026-10-14 20:15",
-  "geminiSha1": "238fd766c071"
+  "tarih": "2026-10-14 23:01",
+  "geminiSha1": "653f75041021"
  }
 }

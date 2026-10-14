@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '27';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '28';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -82,12 +82,26 @@ function maddele(kok) {
     else p.classList.add('oz');
   });
 }
-function panelNot(baslik, kisa, uzun, ipucu) {
+/* 14 Eki (tur 9): ek = { satirlar: ['…', …] (2-4 kısa satır, her biri ayrı <p>; verilirse uzun metnin maddeleri yerine geçer), gorseller: [{src, ad, kaynak}] (benzer projelerin görselleri; yoksa satır görünmez) } */
+function panelNot(baslik, kisa, uzun, ipucu, ek) {
   const pn = $('#p-not'); if (!pn) return; pn.classList.add('canli'); pn.querySelector('.panel-ust').textContent = 'Not · ' + (baslik || '');
-  $('#p-not-m').textContent = kisa || ''; const U = $('#p-not-uzun'); U.replaceChildren(...maddeler(uzun, 3).map(p => el('p', { class: 'md' }, p)));
+  $('#p-not-m').textContent = kisa || ''; const U = $('#p-not-uzun');
+  const satirlar = (ek && Array.isArray(ek.satirlar) && ek.satirlar.length) ? ek.satirlar.slice(0, 4).map(s => kisalt(s, 96)) : maddeler(uzun, 3);
+  U.replaceChildren(...satirlar.map(p => el('p', { class: 'md' }, p)));
+  panelGorselYaz(ek && ek.gorseller);
   const ip = $('#p-not-ip'); if (ip) ip.hidden = !ipucu;
-  if (dokunmatik || innerWidth < 1180) { const A = $('#alt-not'); if (A && !ipucu) { $('#alt-not-b').textContent = baslik || ''; $('#alt-not-m').textContent = kisa || ''; A.hidden = false; clearTimeout(A._z); A._z = setTimeout(() => { A.hidden = true; }, 6000); } }
+  if (dokunmatik || innerWidth < 1180) { const A = $('#alt-not'); if (A && !ipucu) { const D = $('#detay'); if (D && (D.open || D.classList.contains('p3-acik'))) { if (A.parentNode !== D) D.append(A); } else if (A.parentNode !== GOVDE) GOVDE.append(A);   /* dialog top-layer'da: alt not onun içine taşınır ki görünsün; kapanınca gövdeye döner */
+    $('#alt-not-b').textContent = baslik || ''; $('#alt-not-m').textContent = kisa || ''; A.hidden = false; clearTimeout(A._z); A._z = setTimeout(() => { A.hidden = true; }, 6000); } }
 }
+/* panel notunun altında 2-4 küçük görsel (alt yazı: ad · kaynak alanı); yüklenemeyen kaldırılır — boş kutu yok */
+function panelGorselYaz(G) {
+  const U = $('#p-not-uzun'); if (!U) return; let K = $('#p-not-gorsel');
+  if (!K) { K = el('div', { id: 'p-not-gorsel', hidden: true }); U.after(K); }
+  const L = (G || []).filter(g => g && g.src).slice(0, 4);
+  K.replaceChildren(...L.map(g => { const f = el('figure', { class: 'pn-g' }, el('img', { src: yol(g.src), alt: g.ad || g.alt || '', loading: 'lazy', decoding: 'async', onerror: () => { f.remove(); if (!K.children.length) K.hidden = true; } }), el('figcaption', {}, [g.ad || g.alt || '', kaynakAlan(g.kaynak)].filter(Boolean).join(' · '))); return f; }));
+  K.hidden = !L.length;
+}
+const kaynakAlan = u => { try { return u ? new URL(u).hostname.replace(/^www\./, '') : ''; } catch (e) { return ''; } };
 function ipucuGoster(baslik, metin, x, y) {
   const k = $('#ipucu'); k.replaceChildren(el('b', {}, baslik), metin); k.hidden = false;
   const w = Math.min(320, innerWidth - 24); let lx = x + 18, ly = y + 18; if (lx + w > innerWidth - 8) lx = x - w - 18; if (ly + 140 > innerHeight) ly = y - 150;
@@ -95,7 +109,7 @@ function ipucuGoster(baslik, metin, x, y) {
   panelNot(baslik, metin, '', false);
 }
 const NOT_VARSAYILAN = ['Not · üzerine gel', 'Altı noktalı terimlere, kartlara ve ray üstündeki seviyelere gelince açıklaması burada belirir.'];
-let notZ; function notSifirla() { clearTimeout(notZ); notZ = setTimeout(() => { const pn = $('#p-not'); if (!pn || pn.classList.contains('canli')) return; pn.querySelector('.panel-ust').textContent = NOT_VARSAYILAN[0]; $('#p-not-m').textContent = NOT_VARSAYILAN[1]; $('#p-not-uzun').replaceChildren(); const ip = $('#p-not-ip'); if (ip) ip.hidden = true; }, 6000); }
+let notZ; function notSifirla() { clearTimeout(notZ); notZ = setTimeout(() => { const pn = $('#p-not'); if (!pn || pn.classList.contains('canli') || P3) return; pn.querySelector('.panel-ust').textContent = NOT_VARSAYILAN[0]; $('#p-not-m').textContent = NOT_VARSAYILAN[1]; $('#p-not-uzun').replaceChildren(); panelGorselYaz(null); const ip = $('#p-not-ip'); if (ip) ip.hidden = true; }, 6000); }   /* p3 ekranı açıkken panel o ekranın özetini tutar, sıfırlanmaz */
 function ipucuGizle() { $('#ipucu').hidden = true; const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); }
 function altNotKur() { const k = $('#alt-not-kapat'); if (k) k.addEventListener('click', () => { $('#alt-not').hidden = true; }); }
 function ipucuBagla(e, al) {
@@ -187,7 +201,8 @@ function etkilesim(e, al) {
   if (!dokunmatik && !azalt) {
     /* Akın 8 Eki: imleç gelince HEMEN açılır; karttan çıkınca HEMEN kapanır. Az önce (3 sn içinde) bir kart kapandıysa yeni kart 3 sn ısrar ister:
        kartlar arasında gezinirken aç-kapa aç-kapa olmaz, kullanıcı imleci düşünmek zorunda kalmaz. */
-    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); odakKaydirMuaf = performance.now() + 900; const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true);
+    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); odakKaydirMuaf = performance.now() + 900; const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true, d.ozet);
+      if (d.p3) p3PanelGorselleri(d.p3).then(G => { if (G.length && e.matches(':hover') && !P3) panelGorselYaz(G); });   /* 14 Eki tur 9: bölüm kartında benzerini yapan projelerin görselleri */
       $$('.odakli').forEach(x => { if (x !== e) x.classList.remove('odakli'); });
       const ac = () => { if (!e.matches(':hover')) return; e.classList.remove('bekliyor'); GOVDE.classList.add('odak'); e.classList.add('odakli'); odakGoster(e, d, false);
         odakZ2 = setTimeout(() => { GOVDE.classList.add('odak-son'); const k = $('#odak-yazi'); if (k && odakEl === e) k.classList.add('acik'); }, 240); };
@@ -196,6 +211,9 @@ function etkilesim(e, al) {
     e.addEventListener('pointerleave', () => { clearTimeout(odakZ); clearTimeout(odakZ2); e.classList.remove('bekliyor'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla();
       if (GOVDE.classList.contains('odak')) sonKapanis = performance.now();
       GOVDE.classList.remove('odak', 'odak-son'); e.classList.remove('odakli'); odakGizle(); });
+  } else if (!dokunmatik) {   /* tur 9: hareket azaltmada odak/bulanıklık yok ama panel notu (ve bölüm görselleri) yine gelir — hareketsiz */
+    e.addEventListener('pointerenter', () => { clearTimeout(notZ); const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true, d.ozet); if (d.p3) p3PanelGorselleri(d.p3).then(G => { if (G.length && e.matches(':hover') && !P3) panelGorselYaz(G); }); });
+    e.addEventListener('pointerleave', () => { const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); });
   }
   if (!azalt && 'IntersectionObserver' in window) { const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { e.classList.add('kesfet'); io.disconnect(); } }, { threshold: .6 }); io.observe(e); }
   e.addEventListener('click', ev => { if (ev.target.closest('a,input,select,textarea,.cip,.oy,.sec')) return; kocKapat(); ACAN = e; detayAc(al()); });
@@ -679,7 +697,7 @@ function bolumler() {
   const biz = B.filter(x => x.k === 'MTO'), oteki = B.filter(x => x.k !== 'MTO'); B = durum.kitle === 'mto' ? [...biz, ...oteki] : [...oteki, ...biz];   /* meteorolojiden gelen önce kendi kartını görür */
   /* v2 (Akın 5 Eki): kart yüzünde paragraf yok — bölüm adı + büyük yazıyla tek, pratik örnek; dersler ve fikirler ayrıntıda */
   $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum), el('p', { class: 'bk-yuz' }, b.yuz || b.ortakIs || ''));
-    etkilesim(k, () => ({ p3: { tur: 'bolum', k: b.k }, ust: 'başka bölümdensen · ' + b.bolum.replace(/\s*\(.*?\)\s*/g, ' ').replace(/ (Mühendisliği|Programı)$/, '').trim().toLowerCase(), baslik: b.bolum, kisa: b.yuz || b.ortakIs || '',
+    etkilesim(k, () => ({ p3: { tur: 'bolum', k: b.k }, ozet: { satirlar: p3Ozet({ tur: 'bolum', k: b.k }) }, ust: 'başka bölümdensen · ' + b.bolum.replace(/\s*\(.*?\)\s*/g, ' ').replace(/ (Mühendisliği|Programı)$/, '').trim().toLowerCase(), baslik: b.bolum, kisa: b.yuz || b.ortakIs || '',
       uzun: [b.detay, b.senin ? `Senin dersin: ${b.senin}.` : '', b.bizim ? `Bizdeki karşılığı: ${b.bizim}.` : '', b.ortakIs ? `Birlikte yapılabilecek: ${b.ortakIs}.` : '', (b.projeler || []).length ? 'Fikirler: ' + b.projeler.join(' · ') + '.' : ''].filter(Boolean).join('\n'),
       kaynaklar: [...(b.kaynak ? [{ ad: 'İTÜ ders planı', url: b.kaynak }] : []), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] })); return k; }));
   $('#bolum-not').textContent = 'Kaynak: İTÜ ders planları ve bölüm siteleri. Tam tablo "Meraklısına" bölümünde.';
@@ -930,7 +948,7 @@ function kapanisKur() {
   let kapanisIslendi = false;   /* 14 Eki: tek kapı — close olayı kapandi()'yi yalnız sarmalı/popstate dışından gelen kapanışta (ör. tarayıcı) çağırır */
   if (ac0) D.showModal = function () { ac0(); acildi(); };
   D.close = function (v) { if (!D.open) { kp0(v); return; } kapanisIslendi = true; kapandi(); kp0(v); };
-  D.addEventListener('close', () => { if (D.open) { kapanisIslendi = false; return; } if (!kapanisIslendi) kapandi(); kapanisIslendi = false; p3Temizle(); D.classList.remove('p3-acik'); });   /* close olayı kuyruklu gelir: dialog o arada yeniden açıldıysa (kart→popstate kapanış→hemen kart) yeni açılışı bozma */
+  D.addEventListener('close', () => { if (D.open) { kapanisIslendi = false; return; } if (!kapanisIslendi) kapandi(); kapanisIslendi = false; p3Temizle(); D.classList.remove('p3-acik'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); const A = $('#alt-not'); if (A && A.parentNode === D) { A.hidden = true; GOVDE.append(A); } });   /* tur 9: panel notu 6 sn sonra varsayılana döner, alt not gövdeye geri taşınır */   /* close olayı kuyruklu gelir: dialog o arada yeniden açıldıysa (kart→popstate kapanış→hemen kart) yeni açılışı bozma */
   /* Esc: tarayıcı cancel→dahili close ile sarmalı atlar, basamak ölü kalırdı → cancel'ı kesip kendi kapanışımızdan geçiriyoruz. Galeri büyütmesi açıksa yalnız o kapanır. */
   D.addEventListener('cancel', e => { e.preventDefault(); if (p3BuyukKapat()) return; D.close(); });
 
@@ -1224,6 +1242,48 @@ const kisalt = (t, n) => { t = String(t || ''); return t.length > n ? t.slice(0,
 function obsUrl(kod, no) { const m = String(kod || '').trim().toUpperCase().match(/^([A-Z]{2,4})\s?(\d{3,4})/); if (!m) return null; return `https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=${m[1]}&dersNo=${no || m[2]}`; }   /* NO = koddaki sayı, E eki yok (BLG 202E → 202); ders dosyasında obsNo varsa o */
 function p3Al(u) { if (!P3_ONBELLEK.has(u)) P3_ONBELLEK.set(u, fetch(`${TABAN}veri/${u}.json?v=${VERI_V}`).then(r => r.ok ? r.json() : null).catch(() => null)); return P3_ONBELLEK.get(u); }
 function p3Index() { const I = veri['p3/_index']; return (I && Array.isArray(I.projeler)) ? I.projeler : []; }
+/* ---- tur 9 (14 Eki): örnek görselleri (veri/p3/ornek-gorsel.json: {gorseller:{"<örnek url>":{src,ad,tur,...}}}; B hattı üretir, yoksa 404 → boş) ---- */
+let P3_OG = null;
+function p3OG() { return p3Al('p3/ornek-gorsel').then(j => { P3_OG = (j && j.gorseller && typeof j.gorseller === 'object') ? j.gorseller : {}; return P3_OG; }); }
+const urlNorm = u => String(u || '').trim().toLowerCase().replace(/^http:/, 'https:').replace(/\/+$/, '').replace(/^https:\/\/www\./, 'https://');
+function p3OGBul(url, OG = P3_OG) { if (!OG || !url) return null; let g = OG[url]; if (!g) { const n = urlNorm(url); for (const k in OG) if (urlNorm(k) === n) { g = OG[k]; break; } } return (g && g.src) ? g : null; }
+/* bir index projesi için tek küçük görsel: hazır projede gorsel.json → gorseller[0] (video ise poster), yoksa örneklerden ilk eşleşen ekran görüntüsü */
+async function p3ProjeGorsel(p) {
+  if (p.gorsel) { const g = await p3Al('p3/' + p.id + '.gorsel'); const ilk = ((g && g.gorseller) || []).find(x => x && (x.poster || (x.src && !/\.(webm|mp4)(\?|$)/i.test(x.src)))); if (ilk) return { src: ilk.poster || ilk.src, ad: ilk.alt || p.ad, kaynak: ilk.kaynak || '' }; }
+  const OG = P3_OG || await p3OG();
+  for (const o of p.ornekler || []) { const g = p3OGBul(o && o.url, OG); if (g) return { src: g.src, ad: (g.ad || o.ad) + ' · ' + (p.ad || ''), kaynak: o.url }; }
+  return null;
+}
+/* bölüm kartı paneli: o bölümün projelerinde benzerini yapanların görselleri (2-4): ornek-gorsel.json eşleşmesi + hazır projelerin gorsel.json → ornekler */
+const P3_PANEL_ONBELLEK = new Map();
+function p3PanelGorselleri(f) {
+  const anahtar = JSON.stringify(f); if (P3_PANEL_ONBELLEK.has(anahtar)) return P3_PANEL_ONBELLEK.get(anahtar);
+  const soz = (async () => {
+    const L = p3Filtre(f), out = [], gorulen = new Set(); const OG = await p3OG();
+    const ekle = g => { if (g && g.src && !gorulen.has(g.src) && out.length < 4) { gorulen.add(g.src); out.push(g); } };
+    for (const p of L) for (const o of p.ornekler || []) { const g = p3OGBul(o && o.url, OG); if (g) ekle({ src: g.src, ad: kisalt(p.ad, 44), kaynak: o.url }); }   /* alt yazı: proje adı · kaynak alanı */
+    for (const p of L) { if (out.length >= 4) break; if (!p.gorsel) continue; const g = await p3Al('p3/' + p.id + '.gorsel'); const O = (g && g.ornekler) || {}; for (const ad in O) for (const x of O[ad] || []) if (x && (x.poster || (x.src && !/\.(webm|mp4)(\?|$)/i.test(x.src)))) ekle({ src: x.poster || x.src, ad: kisalt(p.ad, 44), kaynak: x.kaynak || '' }); }
+    return out;
+  })();
+  P3_PANEL_ONBELLEK.set(anahtar, soz); return soz;
+}
+/* panel özeti (2-4 kısa satır): bölüm filtresi → proje sayısı · ortak dersler · örnekler */
+function p3Ozet(f, L) {
+  L = L || p3Filtre(f); if (!L.length) return [];
+  const tekil = A => Array.from(new Set(A.filter(Boolean))); const kod = (p, yan) => ((p.dersler || {})[yan] || []).map(x => x && x.kod);
+  const biz = tekil(L.flatMap(p => kod(p, 'bizim'))), sen = tekil(L.flatMap(p => kod(p, 'senin'))), orn = tekil(L.flatMap(p => (p.ornekler || []).map(o => o && o.ad)));
+  return [L.length + ' proje' + (biz.length ? ' · ortak dersler ' + biz.slice(0, 3).join(', ') : ''), sen.length ? 'Senin derslerin: ' + sen.slice(0, 3).join(', ') : '', orn.length ? 'Benzerini yapanlar: ' + orn.slice(0, 3).join(', ') : ''].filter(Boolean);
+}
+/* aktif ekranın özeti sağ panele (darda alt nota): ekran değişince güncellenir */
+function p3PanelGuncelle() {
+  const S = P3; if (!S) return; const e = S.ekranlar[S.ekranlar.length - 1]; if (!e) return; const o = e.ozet || {};
+  panelNot(o.baslik || e.ad, o.kisa || '', '', false, { satirlar: o.satirlar || [], gorseller: o.gorseller || [] });
+  if (o.gorselSoz && !o.gorseller) o.gorselSoz.then(G => { if (P3 === S && S.ekranlar[S.ekranlar.length - 1] === e && G && G.length) { o.gorseller = G; panelGorselYaz(G); } });
+}
+/* adımın kazanımları: adim.kazanimlar ∪ nasil[].kazanim (ders+madde tekil) */
+function p3Kazanimlar(a) { const g = new Set(), L = []; [...(a.kazanimlar || []), ...((a.nasil || []).map(x => x && typeof x === 'object' ? x.kazanim : null))].forEach(k => { if (!k || !k.ders) return; const id = k.ders + '|' + (k.madde || ''); if (!g.has(id)) { g.add(id); L.push(k); } }); return L; }
+/* satırın sağına küçük görsel (yüklenemezse kaldırılır) */
+function p3SatGorsel(sat, g) { if (!sat || !g || !g.src || sat.querySelector('.p3-sat-g')) return; const sp = el('span', { class: 'p3-sat-g' }, el('img', { src: yol(g.src), alt: g.ad || g.alt || '', loading: 'lazy', decoding: 'async', onerror: () => { sp.remove(); sat.classList.remove('gorselli'); } })); const ok = sat.querySelector('.p3-ok'); sat.classList.add('gorselli'); if (ok) sat.insertBefore(sp, ok); else sat.append(sp); }
 function p3Filtre(f) {
   const L = p3Index(); if (!f) return [];
   if (f.tur === 'ders') { const n = kodNorm(f.dersKod), n3 = n.replace(/^([A-Z]+)(\d{3})\d$/, '$1$2'); let R = L.filter(p => p.kaynakTur === 'ders' && kodNorm(p.sahip.dersKod) === n); if (!R.length && n3 !== n) R = L.filter(p => p.kaynakTur === 'ders' && kodNorm(p.sahip.dersKod) === n3); return R; }   /* MTO 4901 → MTO 490 */
@@ -1232,7 +1292,7 @@ function p3Filtre(f) {
 }
 /* tam proje nesnesi: index satırı ∪ tembel <id>.json ∪ <id>.gorsel.json; yoksa taban */
 async function p3Proje(p) {
-  const [tam, g] = await Promise.all([p.durum === 'hazir' ? p3Al('p3/' + p.id) : null, p.gorsel ? p3Al('p3/' + p.id + '.gorsel') : null]);
+  const [tam, g] = await Promise.all([p.durum === 'hazir' ? p3Al('p3/' + p.id) : null, p.gorsel ? p3Al('p3/' + p.id + '.gorsel') : null, p3OG()]);   /* örnek görselleri de hazır: E3/E3b eşzamanlı kullanır */
   const T = p.taban || {}, Y = (tam && tam.yapilis) || null;
   const adimlar = (Y && Array.isArray(Y.adimlar) && Y.adimlar.length) ? Y.adimlar : (T.adimlar || []).map(a => typeof a === 'string' ? { baslik: a } : a);
   return { p, tam, taban: !tam, id: p.id, ad: p.ad || '', amac: (tam && tam.amac) || p.amac || T.ne || '',
@@ -1254,12 +1314,12 @@ function p3Kur(d, D) {
   const kok = el('div', { class: 'p3' }, el('div', { class: 'p3-yol' }, geri, kirinti), yigin);
   P3 = { D, kok, kirinti, yigin, ekranlar: [], basamak: 0, buyuk: null, io: null };
   p3Jestler(yigin, D);
-  p3EkranAc({ ad: kisaAd, kur: sec => p3E1(sec, d, liste) }, true);
+  p3EkranAc({ ad: kisaAd, ozet: { baslik: kisaAd, kisa: kisalt(d.kisa || (liste.length ? liste.length + ' proje' : ''), 120), satirlar: p3Ozet(f, liste), gorselSoz: p3PanelGorselleri(f) }, kur: sec => p3E1(sec, d, liste) }, true);
   return kok;
 }
 function p3Temizle() { if (!P3) return; p3BuyukKapat(); P3.kok.querySelectorAll('video').forEach(v => { try { v.pause(); } catch (e) { } }); if (P3.io) P3.io.disconnect(); P3 = null; }
 function p3Odakla() { if (!P3) return; const e = P3.ekranlar[P3.ekranlar.length - 1]; if (!e) return; const h = e.el.querySelector('.p3-baslik') || e.el; try { h.focus({ preventScroll: true }); } catch (err) { } }
-function p3Videolar(kok, oynat) { kok.querySelectorAll('video').forEach(v => { if (!oynat || azalt) { try { v.pause(); } catch (e) { } return; } const r = v.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) { const p = v.play(); if (p && p.catch) p.catch(() => { }); } }); }
+function p3Videolar(kok, oynat) { kok.querySelectorAll('video').forEach(v => { if (!oynat) { try { v.pause(); } catch (e) { } return; } const r = v.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) { const p = v.play(); if (p && p.catch) p.catch(() => { }); } }); }
 function p3VideoIzle(v) {   /* görünür olunca oynar, çıkınca durur; geride kalan ekrandakiler durur */
   if (!P3) return; if (!P3.io) P3.io = new IntersectionObserver(es => es.forEach(x => { const v = x.target; if (x.isIntersecting && !v.closest('.geride, .cikis, .gizli')) { const p = v.play(); if (p && p.catch) p.catch(() => { }); } else v.pause(); }), { threshold: .15 });
   P3.io.observe(v);
@@ -1269,9 +1329,9 @@ function p3EkranAc(t, ilk) {
   const onceki = S.ekranlar[S.ekranlar.length - 1];
   if (onceki) onceki.scroll = S.D.scrollTop;   /* geri dönünce önceki ekranın kaydırma konumu geri gelir */
   const sec = el('section', { class: 'p3-ekr' + (ilk ? ' aktif' : ' giris'), 'data-ad': t.ad });
-  const e = { ad: t.ad, el: sec, scroll: 0, veri: t.veri || null };
+  const e = { ad: t.ad, el: sec, scroll: 0, veri: t.veri || null, ozet: t.ozet || null };
   const ic = t.kur(sec, e); if (Array.isArray(ic)) sec.append(...ic.filter(Boolean)); else if (ic) sec.append(ic);
-  S.ekranlar.push(e); S.yigin.append(sec);
+  S.ekranlar.push(e); S.yigin.append(sec); p3PanelGuncelle();
   if (!ilk) { try { history.pushState({ tkDetay: 1, p3: S.ekranlar.length, id: (e.veri && e.veri.id) || '' }, ''); S.basamak++; } catch (err) { } }
   if (onceki) { onceki.el.classList.add('geride'); onceki.el.inert = true; p3Videolar(onceki.el, false); }
   p3KirintiCiz();
@@ -1295,7 +1355,7 @@ function p3Geriye(h) {   /* yığını h derinliğine indir (popstate'ten gelir)
     if (azalt) { bitir(); giden.el.remove(); } else { requestAnimationFrame(() => requestAnimationFrame(bitir)); setTimeout(() => giden.el.remove(), 320); }
     p3Videolar(hedef.el, true);
   }
-  p3KirintiCiz(); p3Odakla(); okSon = performance.now();
+  p3KirintiCiz(); p3Odakla(); p3PanelGuncelle(); okSon = performance.now();
 }
 function p3Geri() { const S = P3; if (!S) return; if (S.ekranlar.length <= 1) { S.D.close(); return; } if (S.basamak >= 1) { try { history.back(); return; } catch (e) { } } p3Geriye(S.ekranlar.length - 1); }
 function p3KirintiCiz() {
@@ -1330,14 +1390,15 @@ const p3Ok = () => el('span', { class: 'p3-ok', 'aria-hidden': 'true' });
 function p3Medya(g, buyuk, oynatDugmesi) {
   const src = yol(g.src), video = /\.(webm|mp4)(\?|$)/i.test(String(g.src));
   if (!video) return el('img', { src, alt: g.alt || '', loading: buyuk ? 'eager' : 'lazy', decoding: 'async' });
-  const v = el('video', { src, poster: g.poster ? yol(g.poster) : null, muted: true, loop: true, playsinline: true, preload: 'metadata', autoplay: azalt ? null : true, 'aria-label': g.alt || '' });
-  v.muted = true; v.loop = true; v.playsInline = true;
-  if (azalt) { if (!oynatDugmesi) return v; const oy = el('button', { class: 'p3-oynat', type: 'button', 'aria-label': 'oynat', onclick: ev => { ev.stopPropagation(); ev.preventDefault(); const p = v.play(); if (p && p.catch) p.catch(() => { }); oy.remove(); } }, '▶'); return el('span', { class: 'p3-video' }, v, oy); }   /* hareket azaltma: otomatik oynatma yok, poster + ▶ */
+  /* 15 Eki (Akın): her klip GIF gibi — kendiliğinden oynar, durdurulamaz, sonsuz döngü, kontrol yok; hareket azaltmada da aynı (▶ düğmesi kaldırıldı). Görünmezken IntersectionObserver duraklatır. */
+  const v = el('video', { src, poster: g.poster ? yol(g.poster) : null, muted: true, loop: true, playsinline: true, preload: 'metadata', autoplay: true, controlslist: 'nodownload noplaybackrate noremoteplayback', disablepictureinpicture: true, 'aria-label': g.alt || '' });
+  v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.controls = false; v.disablePictureInPicture = true;
+  v.addEventListener('pause', () => { if (v.ended || !v.isConnected || v.closest('.geride, .cikis, .gizli')) return; const r = v.getBoundingClientRect(); if (r.height > 0 && r.bottom > 0 && r.top < innerHeight) { const p = v.play(); if (p && p.catch) p.catch(() => { }); } });   /* kullanıcı duraklatamaz; görünürken hep oynar (görünmezken IO'nun duraklatması kalır) */
   p3VideoIzle(v); return v;
 }
 function p3MiniSerit(G) {   /* 3 mini görsel; basınca E6 galeri. Görsel yoksa şerit yok. */
-  const L = (G || []).filter(g => g && g.src).slice(0, 3); if (!L.length) return null;
-  return el('div', { class: 'p3-mini' }, ...L.map(g => el('button', { class: 'p3-mini-k', type: 'button', 'aria-label': (g.alt || 'görsel') + ' — galeri', onclick: () => p3EkranAc({ ad: 'Görseller', kur: s => p3E6(s, L) }) }, p3Medya(g), g.alt ? el('span', { class: 'p3-alt' }, g.alt) : null)));
+  const T = (G || []).filter(g => g && g.src), L = T.slice(0, 3); if (!L.length) return null;
+  return el('div', { class: 'p3-mini' }, ...L.map(g => el('button', { class: 'p3-mini-k', type: 'button', 'aria-label': (g.alt || 'görsel') + ' — galeri', onclick: () => p3EkranAc({ ad: 'Görseller', ozet: p3OzetE6(T), kur: s => p3E6(s, T) }) }, p3Medya(g), g.alt ? el('span', { class: 'p3-alt' }, g.alt) : null)));
 }
 function p3KodLink(kod, no) { const u = obsUrl(kod, no); return u ? el('a', { class: 'p3-kod', href: u, target: '_blank', rel: 'noopener', onclick: e => e.stopPropagation() }, kod + ' ↗') : el('span', { class: 'p3-kod' }, kod); }
 /* ---- KaTeX (tembel; CSS belgeye + gömülüde gölge köke) ---- */
@@ -1359,21 +1420,32 @@ function p3E1(sec, d, liste) {
     const ds = p.dersler || {}; const biz = (ds.bizim || []).map(x => x && x.kod).filter(Boolean), sen = (ds.senin || []).map(x => x && x.kod).filter(Boolean);
     const dersSatir = [biz.length ? 'bizde ' + biz.join(' · ') : '', sen.length ? 'sizde ' + sen.join(' · ') : ''].filter(Boolean).join('   ');
     const orn = (p.ornekler || []).filter(o => o && o.ad).slice(0, 4);
-    return el('li', {}, el('button', { class: 'p3-sat', type: 'button', onclick: () => p3ProjeAc(p) },
+    const sat = el('button', { class: 'p3-sat', type: 'button', onclick: () => p3ProjeAc(p) },
       el('span', { class: 'p3-no' }, String(i + 1).padStart(2, '0')),
       el('span', { class: 'p3-sat-ic' },
         el('b', { class: 'p3-ad' }, p.ad || ''),
         dersSatir ? el('span', { class: 'p3-ders' }, dersSatir) : null,
         el('span', { class: 'p3-amac' }, p.amac || (p.taban && p.taban.ne) || ''),
         orn.length ? el('ul', { class: 'p3-ornek-mini' }, ...orn.map(o => el('li', {}, o.ad, ' ', el('i', { class: 'p3-tur' }, ORNEK_TUR[o.tur] || o.tur || '')))) : null),
-      p3Ok())); })));
+      p3Ok());
+    p3ProjeGorsel(p).then(g => { if (g && sat.isConnected) p3SatGorsel(sat, g); });   /* tur 9: sağda 1 küçük görsel (tembel; yoksa yok) */
+    return el('li', {}, sat); })));
   return out;
 }
 async function p3ProjeAc(p) {
   if (!P3 || p3Yukleniyor) return; p3Yukleniyor = true; const S = P3;
-  try { const pr = await p3Proje(p); if (P3 !== S) return; p3EkranAc({ ad: kisalt(pr.ad, 28), veri: pr, kur: sec => p3E2(sec, pr) }); }
+  try { const pr = await p3Proje(p); if (P3 !== S) return; p3EkranAc({ ad: kisalt(pr.ad, 28), veri: pr, ozet: p3OzetE2(pr), kur: sec => p3E2(sec, pr) }); }
   finally { p3Yukleniyor = false; }
 }
+/* ekran özetleri (panel): 2-4 kısa satır */
+function p3OzetE2(pr) { const k = p3DersListe(pr).map(x => x.kod); return { baslik: kisalt(pr.ad, 48), kisa: kisalt(pr.amac, 120), satirlar: [pr.ornekler.length ? 'Girişimler ve üniversiteler · ' + pr.ornekler.length + ' örnek' : '', k.length ? 'Ortak dersler · ' + k.join(', ') : '', pr.yapilis.adimlar.length ? 'Yapılış · ' + pr.yapilis.adimlar.length + ' adım' : ''].filter(Boolean) }; }
+function p3OzetE3(pr) { return { baslik: 'Girişimler ve üniversiteler', kisa: pr.ornekler.length + ' örnek', satirlar: pr.ornekler.slice(0, 4).map(o => (ORNEK_TUR[o.tur] || o.tur || '') + ' · ' + o.ad) }; }
+function p3OzetE3b(pr, o) { const A = o.ayrinti || {}; const g = (P3_OG && p3OGBul(o.url) ? 1 : 0) + ((pr.ornekGorsel[o.ad] || []).length); return { baslik: kisalt(o.ad, 48), kisa: ORNEK_TUR[o.tur] || o.tur || '', satirlar: [kisalt(o.ne, 96), A.neYaptilar ? 'Ne yaptılar · Nasıl · Ne edindiler · Biz nasıl katkı sağlarız' : '', [(A.referanslar || []).length ? (A.referanslar || []).length + ' referans' : '', g ? g + ' görsel' : ''].filter(Boolean).join(' · ')].filter(Boolean) }; }
+function p3OzetE4(pr) { const L = p3DersListe(pr); return { baslik: 'Ortak dersler', kisa: L.length + ' ders', satirlar: L.slice(0, 4).map(d => d.kod + (d.ad ? ' · ' + d.ad : '')) }; }
+function p3OzetE4b(d, ders) { const F = ((ders && ders.formuller) || []).filter(f => f && f.ad); return { baslik: d.kod, kisa: (ders && ders.ad) || d.ad || '', satirlar: F.length ? F.slice(0, 4).map(f => f.ad) : [kisalt(d.katki, 96) || 'Ders ayrıntısı derleniyor'].filter(Boolean) }; }
+function p3OzetE5(pr) { const A = pr.yapilis.adimlar; const kaz = Array.from(new Set(A.flatMap(a => p3Kazanimlar(a).map(k => k.ders)))); return { baslik: 'Yapılış', kisa: A.length + ' adım', satirlar: [kisalt(pr.yapilis.oz, 96), ...A.slice(0, 2).map((a, i) => (i + 1) + '. ' + a.baslik), kaz.length ? 'Kazanımlar: ' + kaz.join(', ') : ''].filter(Boolean).slice(0, 4) }; }
+function p3OzetE5b(pr, i) { const A = pr.yapilis.adimlar, a = A[i] || {}; const b = Math.max(0, Math.min(i - 1, A.length - 4)); return { baslik: (i + 1) + '. ' + kisalt(a.baslik, 40), kisa: kisalt(a.oz, 120), satirlar: A.slice(b, b + 4).map((x, j) => (b + j === i ? '▸ ' : '') + (b + j + 1) + '. ' + x.baslik) }; }
+function p3OzetE6(L) { return { baslik: 'Görseller', kisa: L.length + ' görsel', satirlar: L.slice(0, 4).map(g => g.alt || g.src) }; }
 /* ---- E2 · proje (Faz 2) ---- */
 function p3E2(sec, pr) {
   const ornAd = pr.ornekler.slice(0, 3).map(o => o.ad).join(', ');
@@ -1383,18 +1455,25 @@ function p3E2(sec, pr) {
   return [p3Baslik(pr.ad), pr.amac ? el('p', { class: 'p3-amac-b' }, pr.amac) : null,
     p3MiniSerit(pr.gorseller),
     el('div', { class: 'p3-parcalar' },
-      pr.ornekler.length ? parca('Girişimler ve üniversiteler', ornAd, () => p3EkranAc({ ad: 'Girişimler', veri: pr, kur: s => p3E3(s, pr) })) : null,
-      kodlar.length ? parca('Ortak dersler', kodlar.join(' · '), () => p3EkranAc({ ad: 'Ortak dersler', veri: pr, kur: s => p3E4(s, pr) })) : null,
-      (oz3 || pr.yapilis.adimlar.length) ? parca('Yapılış', oz3, () => p3EkranAc({ ad: 'Yapılış', veri: pr, kur: s => p3E5(s, pr) })) : null),
+      pr.ornekler.length ? parca('Girişimler ve üniversiteler', ornAd, () => p3EkranAc({ ad: 'Girişimler', veri: pr, ozet: p3OzetE3(pr), kur: s => p3E3(s, pr) })) : null,
+      kodlar.length ? parca('Ortak dersler', kodlar.join(' · '), () => p3EkranAc({ ad: 'Ortak dersler', veri: pr, ozet: p3OzetE4(pr), kur: s => p3E4(s, pr) })) : null,
+      (oz3 || pr.yapilis.adimlar.length) ? parca('Yapılış', oz3, () => p3EkranAc({ ad: 'Yapılış', veri: pr, ozet: p3OzetE5(pr), kur: s => p3E5(s, pr) })) : null),
     pr.sonuc ? el('p', { class: 'p3-sonuc' }, el('span', { class: 'p3-etiket' }, 'Elde kalan'), pr.sonuc) : null,
     (pr.senden || pr.bizden) ? el('div', { class: 'p3-cipler' }, pr.senden ? el('span', { class: 'p3-cip' }, el('i', {}, 'senden'), pr.senden) : null, pr.bizden ? el('span', { class: 'p3-cip' }, el('i', {}, 'bizden'), pr.bizden) : null) : null,
     pr.taban ? el('p', { class: 'p3-not' }, 'Ayrıntılar derleniyor.') : null];
 }
 /* ---- E3 · örnekler → E3b · örnek ---- */
+/* örneğin görselleri: ornek-gorsel.json ekran görüntüsü (varsa, önce) + gorsel.json → ornekler["<ad>"] */
+function p3OrnekGorseller(pr, o) {
+  const g = p3OGBul(o.url); const L = (pr.ornekGorsel[o.ad] || []).filter(x => x && x.src);
+  return g && !L.some(x => x.src === g.src) ? [{ src: g.src, tur: 'ekran', alt: (g.ad || o.ad) + ' — sayfa görüntüsü', kaynak: o.url, lisans: 'ekran görüntüsü' }, ...L] : L;
+}
 function p3E3(sec, pr) {
   return [p3Baslik('Girişimler ve üniversiteler'),
-    el('ol', { class: 'p3-liste' }, ...pr.ornekler.map(o => el('li', {}, el('button', { class: 'p3-sat p3-sat-2', type: 'button', onclick: () => p3EkranAc({ ad: kisalt(o.ad, 22), veri: pr, kur: s => p3E3b(s, pr, o) }) },
-      el('span', { class: 'p3-sat-ic' }, el('i', { class: 'p3-tur' }, ORNEK_TUR[o.tur] || o.tur || ''), el('b', { class: 'p3-ad' }, o.ad), o.ne ? el('span', { class: 'p3-amac' }, o.ne) : null), p3Ok()))))];
+    el('ol', { class: 'p3-liste' }, ...pr.ornekler.map(o => { const sat = el('button', { class: 'p3-sat p3-sat-2', type: 'button', onclick: () => p3EkranAc({ ad: kisalt(o.ad, 22), veri: pr, ozet: p3OzetE3b(pr, o), kur: s => p3E3b(s, pr, o) }) },
+      el('span', { class: 'p3-sat-ic' }, el('i', { class: 'p3-tur' }, ORNEK_TUR[o.tur] || o.tur || ''), el('b', { class: 'p3-ad' }, o.ad), o.ne ? el('span', { class: 'p3-amac' }, o.ne) : null), p3Ok());
+      const g = p3OrnekGorseller(pr, o).find(x => x.poster || !/\.(webm|mp4)(\?|$)/i.test(x.src)); if (g) p3SatGorsel(sat, { src: g.poster || g.src, ad: g.alt || o.ad });   /* tur 9: satırda örnek görseli */
+      return el('li', {}, sat); }))];
 }
 function p3E3b(sec, pr, o) {
   const A = o.ayrinti || null;
@@ -1403,7 +1482,7 @@ function p3E3b(sec, pr, o) {
     (!A && o.ne) ? el('p', { class: 'p3-amac-b' }, o.ne) : null,
     A ? el('div', { class: 'p3-bloklar' }, p3Blok('Ne yaptılar', A.neYaptilar), p3Blok('Nasıl yaptılar', A.nasil), p3Blok('Ne edindiler', A.neEdindiler), p3Blok('Biz nasıl katkı sağlarız', A.bizNasilKatki)) : null,
     (A && (A.referanslar || []).filter(r => r && r.url).length) ? el('div', { class: 'p3-blok p3-refler' }, el('span', { class: 'p3-etiket' }, 'Referanslar'), el('ul', { class: 'p3-ref' }, ...A.referanslar.filter(r => r && r.url).map(r => el('li', {}, el('a', { href: r.url, target: '_blank', rel: 'noopener' }, (r.ad || r.url) + ' ↗'), r.tur ? el('i', { class: 'p3-tur' }, r.tur) : null)))) : null,
-    p3MiniSerit(pr.ornekGorsel[o.ad])];
+    p3MiniSerit(p3OrnekGorseller(pr, o))];
 }
 /* ---- E4 · dersler → E4b · ders ---- */
 function p3DersListe(pr) {   /* bizim + senin, kod tekil; projeyeKatki ortakDers'ten */
@@ -1419,7 +1498,7 @@ function p3E4(sec, pr) {
 }
 async function p3DersAc(pr, d) {
   if (!P3 || p3Yukleniyor) return; p3Yukleniyor = true; const S = P3;
-  try { const ders = d.hazir ? await p3Al('ders/' + kodNorm(d.kod)) : null; if (P3 !== S) return; p3EkranAc({ ad: d.kod, veri: pr, kur: s => p3E4b(s, pr, d, ders) }); }
+  try { const ders = d.hazir ? await p3Al('ders/' + kodNorm(d.kod)) : null; if (P3 !== S) return; p3EkranAc({ ad: d.kod, veri: pr, ozet: p3OzetE4b(d, ders), kur: s => p3E4b(s, pr, d, ders) }); }
   finally { p3Yukleniyor = false; }
 }
 function p3E4b(sec, pr, d, ders) {
@@ -1446,19 +1525,38 @@ function p3E5(sec, pr) {
   const Y = pr.yapilis, A = Y.adimlar;
   return [p3Baslik('Yapılış'), Y.oz ? el('p', { class: 'p3-oz-buyuk' }, Y.oz) : null, Y.ayrinti ? el('p', { class: 'p3-amac-b' }, Y.ayrinti) : null,
     A.length ? el('ol', { class: 'p3-liste' }, ...A.map((a, i) => Y.hazir
-      ? el('li', {}, el('button', { class: 'p3-sat', type: 'button', onclick: () => p3AdimAc(pr, i) }, el('span', { class: 'p3-no' }, String(i + 1).padStart(2, '0')), el('span', { class: 'p3-sat-ic' }, el('b', { class: 'p3-ad' }, a.baslik || ''), a.oz ? el('span', { class: 'p3-amac' }, a.oz) : null), p3Ok()))
+      ? el('li', {}, el('button', { class: 'p3-sat', type: 'button', onclick: () => p3AdimAc(pr, i) }, el('span', { class: 'p3-no' }, String(i + 1).padStart(2, '0')), el('span', { class: 'p3-sat-ic' }, el('b', { class: 'p3-ad' }, a.baslik || ''), a.oz ? el('span', { class: 'p3-amac' }, a.oz) : null, p3AdimMeta(a)), p3Ok()))
       : el('li', { class: 'p3-sat p3-sat-duz' }, el('span', { class: 'p3-no' }, String(i + 1).padStart(2, '0')), el('span', { class: 'p3-sat-ic' }, el('span', { class: 'p3-ad' }, a.baslik || ''))))) : null];   /* taban: satır tıklanmaz, › yok */
 }
-function p3AdimAc(pr, i) { p3EkranAc({ ad: (i + 1) + '. ' + kisalt(pr.yapilis.adimlar[i].baslik, 20), veri: pr, kur: s => p3E5b(s, pr, i) }); }
+/* tur 9: E5 satırında küçük meta — "n alt madde · kazanım: MTO 302, BLG 202E" */
+function p3AdimMeta(a) { const n = (a.nasil || []).length, K = Array.from(new Set(p3Kazanimlar(a).map(k => k.ders))); const m = [n ? n + ' alt madde' : '', K.length ? 'kazanım: ' + K.join(', ') : ''].filter(Boolean).join(' · '); return m ? el('span', { class: 'p3-adim-meta' }, m) : null; }
+/* tur 9: alt adım satırları. Dizge → düz madde. Nesne → tıklanabilir satır: önce yalnız 'teknik'; basınca altında 'sade' + numaralı altAdimlar + kazanım çipi (ders kodu ↗ OBS). Hepsi birden açılabilir; aria-expanded. */
+function p3Nasil(a) {
+  const L = (a.nasil || []).filter(x => x); if (!L.length) return null;
+  return el('div', { class: 'p3-blok p3-nasil-blok' }, el('span', { class: 'p3-etiket' }, 'Alt adımlar'), el('ol', { class: 'p3-alt-adim' }, ...L.map(x => {
+    if (typeof x !== 'object') return el('li', {}, String(x));
+    const id = 'p3n-' + rastgele(); const k = x.kazanim && x.kazanim.ders ? x.kazanim : null;
+    const ac = el('div', { class: 'p3-nasil-ac', id, hidden: true },
+      x.sade ? el('p', { class: 'p3-nasil-sade' }, x.sade) : null,
+      (x.altAdimlar || []).length ? el('ol', { class: 'p3-nasil-alt' }, ...x.altAdimlar.map(y => el('li', {}, y))) : null,
+      k ? el('p', { class: 'p3-kazanim' }, p3KodLink(k.ders), ' dersindeki ', el('q', {}, k.madde || ''), ' bilgisiyle') : null);
+    const b = el('button', { class: 'p3-nasil-b', type: 'button', 'aria-expanded': 'false', 'aria-controls': id }, el('span', { class: 'p3-nasil-t' }, x.teknik || ''), el('span', { class: 'p3-ok p3-ok-k', 'aria-hidden': 'true' }));
+    const li = el('li', { class: 'p3-nasil' }, b, ac);
+    b.addEventListener('click', () => { const acik = b.getAttribute('aria-expanded') === 'true'; b.setAttribute('aria-expanded', String(!acik)); ac.hidden = acik; li.classList.toggle('acik', !acik); durum.etkilesim++; });
+    return li; })));
+}
+function p3AdimAc(pr, i) { p3EkranAc({ ad: (i + 1) + '. ' + kisalt(pr.yapilis.adimlar[i].baslik, 20), veri: pr, ozet: p3OzetE5b(pr, i), kur: s => p3E5b(s, pr, i) }); }
 function p3E5b(sec, pr, i) {
   const A = pr.yapilis.adimlar, a = A[i] || {};
   const degistir = k => {   /* önceki/sonraki adım: yığında yer değiştirir (replaceState, aynı derinlik) */
     const j = i + k; if (j < 0 || j >= A.length || !P3) return; const S = P3, e = S.ekranlar[S.ekranlar.length - 1];
-    p3Videolar(e.el, false); e.ad = (j + 1) + '. ' + kisalt(A[j].baslik, 20); e.el.replaceChildren(...p3E5b(e.el, pr, j).filter(Boolean));
+    p3Videolar(e.el, false); e.ad = (j + 1) + '. ' + kisalt(A[j].baslik, 20); e.ozet = p3OzetE5b(pr, j); e.el.replaceChildren(...p3E5b(e.el, pr, j).filter(Boolean));
     try { history.replaceState({ tkDetay: 1, p3: S.ekranlar.length, id: pr.id }, ''); } catch (err) { }
-    p3KirintiCiz(); S.D.scrollTop = 0; p3Odakla(); p3Videolar(e.el, true); durum.etkilesim++; };
+    p3KirintiCiz(); S.D.scrollTop = 0; p3Odakla(); p3PanelGuncelle(); p3Videolar(e.el, true); durum.etkilesim++; };
+  const K = p3Kazanimlar(a);
   return [p3Baslik((i + 1) + '. ' + (a.baslik || '')), a.oz ? el('p', { class: 'p3-oz-buyuk' }, a.oz) : null, a.ayrinti ? el('p', { class: 'p3-amac-b' }, a.ayrinti) : null,
-    (a.nasil || []).length ? el('div', { class: 'p3-blok' }, el('span', { class: 'p3-etiket' }, 'Alt adımlar'), el('ol', { class: 'p3-alt-adim' }, ...a.nasil.map(x => el('li', {}, x)))) : null,
+    p3Nasil(a),
+    K.length ? el('div', { class: 'p3-blok' }, el('span', { class: 'p3-etiket' }, 'Dayandığı kazanımlar'), el('ul', { class: 'p3-madde p3-kazanimlar' }, ...K.map(k => el('li', {}, p3KodLink(k.ders), ' · ', k.madde || '')))) : null,
     p3MiniSerit(pr.adimGorsel[String(i + 1)]),
     el('div', { class: 'p3-adim-gez' }, i > 0 ? el('button', { class: 'p3-gez', type: 'button', onclick: () => degistir(-1) }, '‹ önceki adım') : el('span'), i < A.length - 1 ? el('button', { class: 'p3-gez', type: 'button', onclick: () => degistir(1) }, 'sonraki adım ›') : null)];
 }
@@ -1476,7 +1574,7 @@ function p3Buyuk(L, i) {   /* dialog içinde fixed katman (top layer); history'y
   const kapat = el('button', { class: 'p3-buyuk-kapat', type: 'button', 'aria-label': 'kapat', onclick: () => p3BuyukKapat() }, '✕');
   const onc = el('button', { class: 'p3-buyuk-gez p3-onceki', type: 'button', 'aria-label': 'önceki', onclick: () => gez(-1) }, '‹'), snr = el('button', { class: 'p3-buyuk-gez p3-sonraki', type: 'button', 'aria-label': 'sonraki', onclick: () => gez(1) }, '›');
   let n = i;
-  const ciz = () => { const g = L[n]; const m = p3Medya(g, true, true); govde.replaceChildren(m); alt.replaceChildren(g.alt || '', p3Kunye(g)); const v = m.tagName === 'VIDEO' ? m : (m.querySelector && m.querySelector('video')); if (v && !azalt) { const p = v.play(); if (p && p.catch) p.catch(() => { }); } onc.hidden = snr.hidden = L.length < 2; };
+  const ciz = () => { const g = L[n]; const m = p3Medya(g, true, true); govde.replaceChildren(m); alt.replaceChildren(g.alt || '', p3Kunye(g)); const v = m.tagName === 'VIDEO' ? m : (m.querySelector && m.querySelector('video')); if (v) { const p = v.play(); if (p && p.catch) p.catch(() => { }); } onc.hidden = snr.hidden = L.length < 2; };
   const gez = k => { n = (n + k + L.length) % L.length; ciz(); };
   const kap = el('div', { class: 'p3-buyuk', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'görsel büyütme' }, kapat, onc, govde, snr, alt);
   kap.addEventListener('click', e => { if (e.target === kap || e.target === govde) p3BuyukKapat(); });
