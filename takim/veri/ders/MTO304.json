@@ -1,0 +1,141 @@
+{
+ "kod": "MTO 304",
+ "ad": "Havacılık Meteorolojisi",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "304",
+ "ozet": "Havacılık faaliyetlerini etkileyen atmosferik olayları, tehlikeli hava koşullarını ve uçuş güvenliği standartlarını öğretir. Düşük görüş, sis, uçak buzlanması, açık hava türbülansı (CAT), rüzgâr kesmesi (wind shear) ve konvektif fırtınaların fiziksel nedenleri ile tahmin yöntemleri ele alınır. METAR, TAF, SIGMET raporlama formatları ve sayısal modellerden havacılık risk indislerinin türetilmesi incelenir.",
+ "neOgrenirsin": [
+  "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak.",
+  "Uçak buzlanma mekanizmalarını ve aşırı soğumuş su damlacıkları riskini hesaplamak.",
+  "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek.",
+  "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak.",
+  "Havalimanı yaklaşma hattında mikropatlama ve dikey rüzgâr kayması tehlikesini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Ellrod açık hava türbülansı indeksi",
+   "tex": "\\mathrm{TI} = \\left| \\frac{\\partial \\mathbf{V}}{\\partial z} \\right| \\times \\left( \\sqrt{D_s^2 + D_a^2} - \\nabla \\cdot \\mathbf{V} \\right)",
+   "terimler": [
+    [
+     "\\mathrm{TI}",
+     "Ellrod türbülans indeksi",
+     "10⁻⁷ s⁻²"
+    ],
+    [
+     "\\partial \\mathbf{V} / \\partial z",
+     "dikey rüzgâr kayması büyüklüğü",
+     "s⁻¹"
+    ],
+    [
+     "D_s",
+     "gerilme deformasyonu (du/dx - dv/dy)",
+     "s⁻¹"
+    ],
+    [
+     "D_a",
+     "kesme deformasyonu (dv/dx + du/dy)",
+     "s⁻¹"
+    ],
+    [
+     "\\nabla \\cdot \\mathbf{V}",
+     "yatay rüzgâr ıraksaması",
+     "s⁻¹"
+    ]
+   ],
+   "sade": "Jet akımı çevresinde rüzgârın yükseklikle ani hız değişimi ile yatay akışın deformasyonunu çarpar. Çarpım değeri yükseldikçe uçakların ani irtifa kaybetmesine neden olan açık hava türbülansı ihtimali artar.",
+   "ornek": "Üst troposferde 300 hPa seviyesinde dikey rüzgâr kayması 8 m/s per km ve yatay deformasyon 6×10⁻⁵ s⁻¹ iken TI yaklaşık 4,8×10⁻⁷ s⁻² çıkar; bu da orta şiddette türbülans eşiğidir.",
+   "nerede": "Uçuş rotası planlamasında ve sayısal tahmin rüzgârlarından açık hava türbülansı haritası üretirken."
+  },
+  {
+   "ad": "Düşey rüzgâr kayması şiddeti",
+   "tex": "\\mathrm{VWS} = \\frac{\\sqrt{(u_2 - u_1)^2 + (v_2 - v_1)^2}}{z_2 - z_1}",
+   "terimler": [
+    [
+     "\\mathrm{VWS}",
+     "düşey rüzgâr kayması şiddeti",
+     "s⁻¹"
+    ],
+    [
+     "u_1, v_1",
+     "alt seviyedeki yatay rüzgâr bileşenleri",
+     "m/s"
+    ],
+    [
+     "u_2, v_2",
+     "üst seviyedeki yatay rüzgâr bileşenleri",
+     "m/s"
+    ],
+    [
+     "z_2 - z_1",
+     "iki seviye arasındaki dikey mesafe",
+     "m"
+    ]
+   ],
+   "sade": "İki yükseklik katmanı arasında esen rüzgârın hız ve yön farkını aradaki mesafeye böler. Havalimanı iniş ve kalkış hatlarında ani hız düşüşü veya kaldırma kuvveti kaybı riskini belirler.",
+   "ornek": "Yüzeyden 300 metre irtifada rüzgâr 5 m/s iken 17 m/s seviyesine fırlarsa, VWS = 0,04 s⁻¹ yani 100 metrede 4 m/s bulunur; bu durum havacılıkta tehlikeli rüzgâr kesmesi uyarısı tetikler.",
+   "nerede": "Havalimanı yaklaşma hattında radar ve rüzgâr profili verisinden rüzgâr kesmesi alarmı üretirken."
+  },
+  {
+   "ad": "Gradyan Richardson sayısı",
+   "tex": "Ri = \\frac{\\frac{g}{\\theta} \\frac{\\partial \\theta}{\\partial z}}{\\left( \\frac{\\partial u}{\\partial z} \\right)^2 + \\left( \\frac{\\partial v}{\\partial z} \\right)^2}",
+   "terimler": [
+    [
+     "Ri",
+     "gradyan Richardson sayısı",
+     "birimsiz"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi (9,81 m/s²)",
+     "m/s²"
+    ],
+    [
+     "\\theta",
+     "potansiyel sıcaklık",
+     "K"
+    ],
+    [
+     "\\partial \\theta / \\partial z",
+     "dikey potansiyel sıcaklık gradyanı",
+     "K/m"
+    ],
+    [
+     "\\partial u / \\partial z, \\partial v / \\partial z",
+     "rüzgâr bileşenlerinin dikey türevleri",
+     "s⁻¹"
+    ]
+   ],
+   "sade": "Atmosferik kararlılık ile mekanik rüzgâr kayması arasındaki dengeyi gösterir. Sayı 0,25 kritik değerinin altına indiğinde akış dinamik olarak kararsızlaşır ve türbülans patlak verir.",
+   "ornek": "Sıcaklık terselmesi katmanında dikey gradyan zayıf ve rüzgâr kayması 0,05 s⁻¹ ise Ri = 0,18 bulunur; kritik 0,25 altı olduğu için dinamik türbülans başlar.",
+   "nerede": "Sınır tabaka ve jet çevresinde türbülans başlangıcını sayısal modellerde tespit ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara bölgesi 250 hPa rüzgâr ve açık hava türbülansı indeksi, ERA5, 2024-02-10..15, 6 saatlik",
+   "aciklama": "Jet akımı kenarlarında dikey rüzgâr kayması ve türbülans indeksi alanlarının animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Windshear_downburst.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Havalimanı iniş hattında mikropatlama ve dikey rüzgâr kayması şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 304 (Havacılık Meteorolojisi)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=304"
+  },
+  {
+   "ad": "Gultepe, I. vd. (2019) A Review of Aviation Meteorology: Observation, Modeling, and Forecasting, Pure and Applied Geophysics · DOI 10.1007/s00024-019-02188-2",
+   "url": "https://doi.org/10.1007/s00024-019-02188-2"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=304"
+}

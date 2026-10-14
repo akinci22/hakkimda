@@ -1,0 +1,151 @@
+{
+ "kod": "MTO 303E",
+ "ad": "Computational Fluid Dynamics in Meteorological Engineering",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "303E",
+ "ozet": "Akışkanlar mekaniği ve atmosfer dinamiği denklemlerinin sonlu farklar, sonlu hacimler ve spektral yöntemlerle sayısal çözümünü öğretir. Adveksiyon-difüzyon denklemleri, CFL kararlılık kriteri, sayısal dağılma ve yapay sönümleme, sığ su denklemleri (Saint-Venant), Arakawa ızgara sistemleri ve fizik-bilgili yapay zekâ (PINN) yaklaşımları ele alınır.",
+ "neOgrenirsin": [
+  "Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak.",
+  "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek.",
+  "Doğrusal adveksiyon denkleminde yukarı rüzgâr (upwind) ve leapfrog şemalarını kurmak.",
+  "Sığ su denklemlerini (shallow water equations) Arakawa ızgarasında sayısal olarak integre etmek.",
+  "Sayısal dağılma ve yapay sönümleme hatalarını dalga yayılımında analiz etmek.",
+  "Fizik bilgili sinir ağları (PINN) ve yapay zekâ emülatörleriyle akışkan çözümlerini hızlandırmak."
+ ],
+ "formuller": [
+  {
+   "ad": "CFL kararlılık kriteri (Courant sayısı)",
+   "tex": "C = \\frac{u \\, \\Delta t}{\\Delta x} \\le C_{\\max}",
+   "terimler": [
+    [
+     "C",
+     "Courant sayısı (kararlılık parametresi)",
+     "birimsiz"
+    ],
+    [
+     "u",
+     "akışkanın veya dalganın ilerleme hızı",
+     "m/s"
+    ],
+    [
+     "\\Delta t",
+     "zaman adımı büyüklüğü",
+     "s"
+    ],
+    [
+     "\\Delta x",
+     "uzaysal ızgara aralığı",
+     "m"
+    ],
+    [
+     "C_{\\max}",
+     "sayısal şemanın izin verdiği azami sınır (genelde 1)",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Bilgisayarın zamanda attığı adımın, akışkan dalgasının ızgara aralığını aşma hızından küçük olmasını şart koşar. Courant sayısı 1'i aştığında sayısal çözüm sonsuza patlar ve kararsızlaşır.",
+   "ornek": "Hızı u = 20 m/s ve ızgara adımı dx = 1000 m olan bir akışta kararlılık için dt zaman adımı en fazla 50 saniye seçilebilir.",
+   "nerede": "FIZ-02 ve D-MTO303E-01'de sığ su çözücüsünün zaman adımını patlamayacak şekilde belirlerken."
+  },
+  {
+   "ad": "1B doğrusal adveksiyon denklemi",
+   "tex": "\\frac{\\partial u}{\\partial t} + c \\, \\frac{\\partial u}{\\partial x} = 0",
+   "terimler": [
+    [
+     "\\frac{\\partial u}{\\partial t}",
+     "hız alanının zamana göre kısmi türevi",
+     "m/s²"
+    ],
+    [
+     "c",
+     "adveksiyon dalga yayılma hızı",
+     "m/s"
+    ],
+    [
+     "\\frac{\\partial u}{\\partial x}",
+     "hız alanının uzaya göre kısmi türevi",
+     "s⁻¹"
+    ],
+    [
+     "u",
+     "taşınan skaler alan veya hız bileşeni",
+     "m/s"
+    ]
+   ],
+   "sade": "Bir skaler büyüklüğün (sıcaklık, nem, vortisite) akışkan hızı boyunca şeklini değiştirmeden uzayda nasıl sürüklendiğini formüle eder. Sayısal hava modellerinin taşıma mekanizmasıdır.",
+   "ornek": "c = 10 m/s sabit rüzgâr altında Gauss profilli sıcaklık tepesi 100 saniye sonra 1000 metre doğuya taşınır.",
+   "nerede": "FIZ-02 ve D-MTO303E-01'de sinir ağı emülatörüne adveksiyon fiziğini öğretirken."
+  },
+  {
+   "ad": "2B sığ su kütle korunum denklemi",
+   "tex": "\\frac{\\partial h}{\\partial t} + \\frac{\\partial (h u)}{\\partial x} + \\frac{\\partial (h v)}{\\partial y} = 0",
+   "terimler": [
+    [
+     "\\frac{\\partial h}{\\partial t}",
+     "akışkan sütun yüksekliğinin zamana bağlı değişimi",
+     "m/s"
+    ],
+    [
+     "h",
+     "akışkan tabakasının toplam serbest yüzey yüksekliği",
+     "m"
+    ],
+    [
+     "u",
+     "x yönündeki derinlik ortalamalı yatay hız bileşeni",
+     "m/s"
+    ],
+    [
+     "v",
+     "y yönündeki derinlik ortalamalı yatay hız bileşeni",
+     "m/s"
+    ],
+    [
+     "\\frac{\\partial (h u)}{\\partial x}",
+     "x doğrultusundaki kütle akısı gradyanı",
+     "m/s"
+    ],
+    [
+     "\\frac{\\partial (h v)}{\\partial y}",
+     "y doğrultusundaki kütle akısı gradyanı",
+     "m/s"
+    ]
+   ],
+   "sade": "Yatay ölçeği dikey derinliğinden çok büyük olan atmosfer ve okyanus tabakalarında toplam kütlenin korunumunu ifade eder. Akışkanın biriktiği yerlerde yüzey yükselirken, ıraksadığı yerlerde tabaka incelir.",
+   "ornek": "İki boyutlu göl veya deniz yüzeyinde yerçekimi dalgası yayılırken h yüksekliğinin ve yatay hızların zamanla değişimi hesaplanır.",
+   "nerede": "FIZ-02 ve FIZ-03'te 2B sığ su sayısal çözücüsü ve emülatör veri üretim motoru olarak."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Shallow_water_waves.gif",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "İki boyutlu sığ su denklemiyle simüle edilen serbest yüzey yerçekimi dalgaları animasyonu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "Küresel atmosferik 500 hPa jeopotansiyel yükseklik ve Rossby dalgaları AIFS tahmin döngüsü, 2024-03-10..15, 6 saatlik",
+   "aciklama": "Yapay zekâ tabanlı atmosferik akışkan modeli çıktılarının gezegensel dalga simülasyonu animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 303E (Computational Fluid Dynamics in Meteorological Engineering)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=303E"
+  },
+  {
+   "ad": "Durran, D. R. (2010) Numerical Methods for Fluid Dynamics: With Applications to Geophysics, 2. baskı, Springer · ISBN 978-1441964113",
+   "url": "https://openlibrary.org/isbn/9781441964113"
+  },
+  {
+   "ad": "Ferziger, J. H., Perić, M. & Street, R. L. (2020) Computational Methods for Fluid Dynamics, 4. baskı, Springer · ISBN 978-3319996912",
+   "url": "https://openlibrary.org/isbn/9783319996912"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=303E"
+}

@@ -1,0 +1,161 @@
+{
+ "kod": "FIZ 272E",
+ "ad": "Fizikte Hesaplamalı Yöntemler",
+ "bolum": "Fizik Mühendisliği",
+ "obsNo": "272E",
+ "ozet": "Fizik problemlerinin bilgisayar ortamında sayısal olarak çözülmesinde kullanılan temel algoritmaları ve hesaplamalı yöntemleri öğretir. Hata analizi, sayısal integrasyon, diferansiyel denklem çözücüleri (Runge-Kutta), eğri uydurma ve en küçük kareler yöntemi, hızlı Fourier dönüşümü (FFT) ve rastgele süreçler ele alınır. Sensör verisi işleme ve dinamik sistem simülasyonlarında temel ders niteliğindedir.",
+ "neOgrenirsin": [
+  "Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek.",
+  "En küçük kareler yöntemiyle doğrusal ve çok terimli regresyon eğrisi uydurmak.",
+  "Dördüncü derece Runge-Kutta (RK4) algoritmasıyla dinamik hareket denklemlerini integre etmek.",
+  "Hızlı Fourier Dönüşümü (FFT) ile zaman serilerindeki periyodik salınımları ve frekans spektrumunu çıkarmak.",
+  "Sayısal türev ve Simpson integraliyle fiziksel korunum denklemlerini ayrıklaştırmak.",
+  "Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek."
+ ],
+ "formuller": [
+  {
+   "ad": "Dördüncü derece Runge-Kutta (RK4) çözücüsü",
+   "tex": "y_{n+1} = y_n + \\frac{h}{6} \\, \\left(k_1 + 2 k_2 + 2 k_3 + k_4\\right)",
+   "terimler": [
+    [
+     "y_{n+1}",
+     "sonraki zaman adımındaki durum değişkeni",
+     "birimsiz"
+    ],
+    [
+     "y_n",
+     "mevcut zaman adımındaki durum değişkeni",
+     "birimsiz"
+    ],
+    [
+     "h",
+     "zaman adımı büyüklüğü (dt)",
+     "s"
+    ],
+    [
+     "k_1",
+     "adım başındaki eğim",
+     "s⁻¹"
+    ],
+    [
+     "k_2",
+     "adım ortasındaki ilk deneme eğimi",
+     "s⁻¹"
+    ],
+    [
+     "k_3",
+     "adım ortasındaki ikinci deneme eğimi",
+     "s⁻¹"
+    ],
+    [
+     "k_4",
+     "adım sonundaki deneme eğimi",
+     "s⁻¹"
+    ]
+   ],
+   "sade": "Diferansiyel denklemleri çözmek için adım boyunca dört farklı noktada teğet eğimi hesaplayıp ağırlıklı ortalamasını alır. Basit Euler yöntemine göre hatayı dördüncü dereceden bastırarak kararlı ve hassas gidişat sağlar.",
+   "ornek": "Zaman adımı h = 0,01 saniye seçildiğinde harmonik salınıcının konumu ve hız vektörü dördüncü derece hassasiyetle hesaplanır.",
+   "nerede": "FIZ-02 ve FIZ-03'te Lorenz kaotik çekicisini ve sığ su hareket denklemlerini zamanda adım adım ilerletirken."
+  },
+  {
+   "ad": "En küçük kareler doğrusal uydurma eğimi",
+   "tex": "m = \\frac{N \\sum (x_i y_i) - \\sum x_i \\sum y_i}{N \\sum x_i^2 - (\\sum x_i)^2}",
+   "terimler": [
+    [
+     "m",
+     "en iyi uydurulan doğrunun eğim katsayısı",
+     "birimsiz"
+    ],
+    [
+     "N",
+     "toplam gözlem ve ölçüm noktası sayısı",
+     "birimsiz"
+    ],
+    [
+     "x_i",
+     "bağımsız sensör ölçüm değeri",
+     "°C"
+    ],
+    [
+     "y_i",
+     "bağımlı referans meteoroloji istasyonu değeri",
+     "°C"
+    ]
+   ],
+   "sade": "Hatalı veya kayma gösteren sensör ölçümlerini referans istasyon değerlerine en az karesel hatayla uyduracak doğrusal kalibrasyon eğimini bulur.",
+   "ornek": "Kampüsteki ucuz sensörün N = 100 saatlik sıcaklık ölçümü ile resmi meteoroloji istasyonu eşleştirildiğinde m = 0,92 eğim katsayısıyla kalibrasyon doğrusu çıkarılır.",
+   "nerede": "FIZ-01'de ucuz sıcaklık ve nem sensörlerinin sistematik sıfır ve kazanç kaymalarını gidermek için kalibrasyon hattı kurarken."
+  },
+  {
+   "ad": "Ayrık Fourier Dönüşümü (DFT) frekans dönüşümü",
+   "tex": "X_k = \\sum_{n=0}^{N-1} x_n \\, \\exp\\left(-i \\, \\frac{2\\pi}{N} \\, k \\, n\\right)",
+   "terimler": [
+    [
+     "X_k",
+     "k frekans bileşenine karşılık gelen karmaşık genlik",
+     "birimsiz"
+    ],
+    [
+     "x_n",
+     "n anındaki ayrık zaman serisi sinyali",
+     "birimsiz"
+    ],
+    [
+     "N",
+     "zaman serisindeki toplam örnek sayısı",
+     "birimsiz"
+    ],
+    [
+     "k",
+     "frekans indeksi",
+     "birimsiz"
+    ],
+    [
+     "n",
+     "zaman indeksi",
+     "birimsiz"
+    ],
+    [
+     "i",
+     "sanal birim",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Zaman alanındaki karmaşık sensör sinyalini farklı frekanslardaki sinüs ve kosinüs dalgalarının toplamına ayrıştırır. Sinyalin içindeki gizli günlük periyotları veya yüksek frekanslı gürültüleri ayıklar.",
+   "ornek": "N = 1024 noktalık saatlik sıcaklık serisine FFT uygulandığında k = 42 frekansında 24 saatlik günlük ısınma periyodu baskın tepe verir.",
+   "nerede": "FIZ-01 ve FIZ-04'te sensör zaman serilerinden yüksek frekanslı termal gürültüyü filtreleyip günlük ısı dalgasını ayrıştırırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Runge-kutta.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Dördüncü derece Runge-Kutta algoritması eğim adımları ve sayısal çözüm şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul kentsel ısı adası ucuz sensör ağı sıcaklık dağılımı döngüsü, 2024-06-15..20, saatlik",
+   "aciklama": "Ucuz sensörlerden gelen ölçümlerin yapay zekâ ve regresyonla düzeltilmiş mekânsal sıcaklık alanı animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · FIZ 272E (Fizikte Hesaplamalı Yöntemler)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=FIZ&dersNo=272E"
+  },
+  {
+   "ad": "Landau, R. H., Páez, M. J. & Bordeianu, C. C. (2015) Computational Physics: Problem Solving with Python, 3. baskı, Wiley · ISBN 978-3527413157",
+   "url": "https://openlibrary.org/isbn/9783527413157"
+  },
+  {
+   "ad": "Press, W. H. vd. (2007) Numerical Recipes: The Art of Scientific Computing, 3. baskı, Cambridge University Press · ISBN 978-0521880688",
+   "url": "https://openlibrary.org/isbn/9780521880688"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=FIZ&dersNo=272E"
+}

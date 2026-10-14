@@ -1,0 +1,145 @@
+{
+ "kod": "MAT 271",
+ "ad": "Olasılık ve İstatistik",
+ "bolum": "Matematik Mühendisliği",
+ "obsNo": "271",
+ "ozet": "Mühendislik verilerinin rassal doğasını anlamayı, olasılık modelleri kurmayı ve istatistiksel çıkarım yapmayı öğretir. Örnekleme teorisi, rastgele değişkenler, kesikli ve sürekli dağılımlar, hipotez testleri, güven aralıkları ve korelasyon analizi ele alınır. Hava tahmin modellerinin doğrulanmasında hata dağılımları, güvenilirlik diyagramları ve anlamlılık testlerinin temelini oluşturur.",
+ "neOgrenirsin": [
+  "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak.",
+  "Normal, binom ve Poisson dağılımlarını mühendislik problemlerine uyarlamak.",
+  "Merkezi limit teoremini kullanarak örneklem ortalamasının davranışını incelemek.",
+  "Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak.",
+  "Pearson ve Spearman korelasyon katsayılarıyla değişkenler arası ilişkiyi ölçmek.",
+  "Meteorolojik doğrulamada Brier skoru ile olasılıklı tahminleri puanlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Örneklem varyansı ve standart sapma",
+   "tex": "s^2 = \\frac{1}{n-1}\\sum_{i=1}^{n}\\left(x_i - \\bar{x}\\right)^2, \\qquad s = \\sqrt{s^2}",
+   "terimler": [
+    [
+     "s^2",
+     "örneklem varyansı",
+     "ölçüm biriminin karesi"
+    ],
+    [
+     "s",
+     "örneklem standart sapması",
+     "ölçüm birimi"
+    ],
+    [
+     "x_i",
+     "i. ölçüm değeri",
+     "örnekte °C veya mm"
+    ],
+    [
+     "\\bar{x}",
+     "örneklem aritmetik ortalaması",
+     "ölçüm birimi"
+    ],
+    [
+     "n",
+     "örneklem büyüklüğü",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Verilerin ortalama etrafında ne kadar dağıldığını gösterir. Standart sapma küçükse tahminler birbirine ve ortalamaya yakın, büyükse belirsizlik yüksektir.",
+   "ornek": "İstanbul'da 30 günlük sıcaklık tahmin hatasının ortalaması 0,4 °C ve standart sapması s = 1,1 °C bulunursa, hataların %68'inin -0,7 ile +1,5 °C arasında değiştiği söylenir.",
+   "nerede": "MTO-01'de farklı hava tiplerindeki tahmin hatalarının saçılımını ve kararsızlığını ölçerken."
+  },
+  {
+   "ad": "Brier skoru (olasılıklı hata ölçümü)",
+   "tex": "\\mathrm{BS} = \\frac{1}{N}\\sum_{i=1}^{N}\\left(p_i - o_i\\right)^2",
+   "terimler": [
+    [
+     "\\mathrm{BS}",
+     "Brier skoru; olasılıklı tahminler için ortalama kare hata",
+     "0 ile 1 arası birimsiz"
+    ],
+    [
+     "N",
+     "tahmin-olay çifti sayısı",
+     "birimsiz"
+    ],
+    [
+     "p_i",
+     "olayın gerçekleşme tahmin olasılığı",
+     "0 ile 1 arası"
+    ],
+    [
+     "o_i",
+     "olayın gerçek durumu (gerçekleştiyse 1, gerçekleşmediyse 0)",
+     "0 veya 1"
+    ]
+   ],
+   "sade": "Yüzdeyle verilen tahminlerin başarısını ölçer. BS = 0 kusursuz tahmin demektir; olasılık ile gerçek olay arasındaki kare farkı ne kadar küçükse tahmin o kadar güvenilirdir.",
+   "ornek": "Yarın yağış olasılığı %80 (p=0,8) verilip yağmur yağarsa (o=1) o günün karesel kaybı (0,8-1)² = 0,04 olur. Yağmur yağmazsa (0,8-0)² = 0,64 ceza puanı yazılır.",
+   "nerede": "Olasılıklı topluluk tahminlerinin ve ekstrem hava ihtimallerinin doğrulanmasında."
+  },
+  {
+   "ad": "İki örneklem Student t-testi istatistiği",
+   "tex": "t = \\frac{\\bar{x}_1 - \\bar{x}_2}{\\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}}",
+   "terimler": [
+    [
+     "t",
+     "t-test istatistiği değeri",
+     "birimsiz"
+    ],
+    [
+     "\\bar{x}_1, \\bar{x}_2",
+     "iki grubun örneklem ortalamaları",
+     "ölçüm birimi"
+    ],
+    [
+     "s_1^2, s_2^2",
+     "iki grubun örneklem varyansları",
+     "ölçüm biriminin karesi"
+    ],
+    [
+     "n_1, n_2",
+     "iki gruptaki veri sayıları",
+     "birimsiz"
+    ]
+   ],
+   "sade": "İki farklı grubun ortalamaları arasındaki farkın gerçek mi yoksa şans eseri mi olduğunu belirler. Lodos günlerindeki tahmin hatasının poyraz günlerinden anlamlı derecede farklı olup olmadığını sınar.",
+   "ornek": "Lodos günlerinde ortalama hata 1,8 °C (n=45), poyraz günlerinde 0,6 °C (n=60) olsun. Hesaplanan t = 4,21 değeri p < 0,001 seviyesinde lodos hatasının tesadüfi olmadığını kanıtlar.",
+   "nerede": "MTO-01'de farklı sinoptik hava rejimleri arasındaki tahmin hatalarının istatistiksel anlamlılığını test ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Normal dağılım eğrisi: ortalama etrafında 1, 2 ve 3 standart sapma aralıkları"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Brier_score_decomposition.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Brier skoru bileşenleri: güvenilirlik, çözünürlük ve belirsizlik terimleri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MAT 271 (Olasılık ve İstatistik)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=271"
+  },
+  {
+   "ad": "Walpole, R. E. vd. (2012) Probability and Statistics for Engineers and Scientists, 9. baskı, Pearson · ISBN 978-0-321-62911-1",
+   "url": "https://openlibrary.org/isbn/9780321629111"
+  },
+  {
+   "ad": "Wilks, D. S. (2011) Statistical Methods in the Atmospheric Sciences, Academic Press · DOI 10.1016/C2009-0-61921-1",
+   "url": "https://doi.org/10.1016/C2009-0-61921-1"
+  },
+  {
+   "ad": "WMO WWRP JWGFVR tahmin doğrulama metrikleri kılavuzu",
+   "url": "https://jwgfvr.github.io/forecastverification/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=271"
+}

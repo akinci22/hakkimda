@@ -1,0 +1,141 @@
+{
+ "kod": "YZV 416E",
+ "ad": "Computer Vision",
+ "bolum": "Yapay Zeka ve Veri Mühendisliği",
+ "obsNo": "416E",
+ "ozet": "Dijital görüntülerden bilgi çıkarma, nesne tespiti, anlamsal bölütleme ve görüntü sınıflandırma kuramlarını öğretir. Görüntü filtreleme, kenar bulma, çok ölçekli evrişimli sinir ağları, U-Net ve Vision Transformer mimarileri ele alınır. Uydu ve uzaktan algılama görüntülerinde bulut ve fırtına yapılarının otomatik analizinde uygulanır.",
+ "neOgrenirsin": [
+  "Dijital görüntülerde uzamsal filtreleme ve parlaklık gradyanlarını hesaplamak.",
+  "Evrişimli sinir ağları ile çok sınıflı görüntü sınıflandırma yapmak.",
+  "U-Net mimarisi ile piksel düzeyinde anlamsal bölütleme yürütmek.",
+  "Çapraz entropi ve IoU kayıp fonksiyonları ile dengesiz sınıfları eğitmek.",
+  "Veri artırma teknikleriyle modelin genelleme başarısını yükseltmek.",
+  "Öznitelik aktivasyon haritaları (Grad-CAM) ile ağın karar mekanizmasını yorumlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Çok sınıflı çapraz entropi (Cross-Entropy) kaybı",
+   "tex": "\\mathcal{L}_{CE} = -\\sum_{c=1}^C y_c \\log(\\hat{y}_c)",
+   "terimler": [
+    [
+     "\\mathcal{L}_{CE}",
+     "çapraz entropi kayıp değeri",
+     "birimsiz"
+    ],
+    [
+     "C",
+     "sınıf sayısı",
+     "adet"
+    ],
+    [
+     "y_c",
+     "doğru sınıf göstergesi",
+     "birimsiz"
+    ],
+    [
+     "\\hat{y}_c",
+     "modelin tahmin ettiği olasılık",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Modelin tahmin ettiği olasılık dağılımının gerçek etiketle ne kadar örtüştüğünü ölçer. Model yanlış sınıfa yüksek olasılık verdiğinde kaybı logaritmik cezalandırır.",
+   "ornek": "Bir uydu karesinde gerçek sınıf Kümülonimbus iken model yüzde 85 Sirrüs tahmin ederse (olasılık 0,05), kayıp L_CE = -log(0,05) ≈ 3,0 çıkarak ağırlıkları düzeltir.",
+   "nerede": "YZV-04'te uydu parçalarından bulut tiplerini (sirrüs, kümülüs, stratus) ayıran sınıflandırıcıyı eğitirken."
+  },
+  {
+   "ad": "Kesişim bölü Birleşim (IoU / Jaccard İndeksi)",
+   "tex": "\\mathrm{IoU} = \\frac{|A \\cap B|}{|A \\cup B|} = \\frac{|A \\cap B|}{|A| + |B| - |A \\cap B|}",
+   "terimler": [
+    [
+     "\\mathrm{IoU}",
+     "kesişim bölü birleşim benzerlik skoru",
+     "birimsiz"
+    ],
+    [
+     "A",
+     "yer gerçeği piksel maskesi",
+     "adet piksel"
+    ],
+    [
+     "B",
+     "tahmin edilen piksel maskesi",
+     "adet piksel"
+    ],
+    [
+     "|A \\cap B|",
+     "örtüşen piksel sayısı",
+     "adet piksel"
+    ],
+    [
+     "|A \\cup B|",
+     "toplam birleşim alanı piksel sayısı",
+     "adet piksel"
+    ]
+   ],
+   "sade": "Tahmin edilen bulut bölgesiyle gerçek bulut örtüsünün ne kadar üst üste bindiğini ölçer. Piksel sınırlarının doğruluğunu tek bir yüzdeye indirger.",
+   "ornek": "Uydu görüntüsündeki 1000 piksellik sirrüs örtüsünün 800 pikselini doğru yakalayan ve 200 piksel yanlış pozitif üreten modelde IoU = 800 / 1200 = 0,67 bulunur.",
+   "nerede": "YZV-04'te bulut maskeleme ve bölütleme başarısını piksel düzeyinde doğrularken."
+  },
+  {
+   "ad": "Softmax sınıf olasılık fonksiyonu",
+   "tex": "\\sigma(\\mathbf{z})_i = \\frac{e^{z_i}}{\\sum_{j=1}^K e^{z_j}}",
+   "terimler": [
+    [
+     "\\sigma(\\mathbf{z})_i",
+     "i'inci sınıfın olasılığı",
+     "birimsiz"
+    ],
+    [
+     "z_i",
+     "i'inci sınıfın çıktı katmanı ham skoru",
+     "birimsiz"
+    ],
+    [
+     "K",
+     "toplam kategori sayısı",
+     "adet"
+    ],
+    [
+     "e",
+     "Euler sabiti üstel fonksiyonu",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Ağın son katmanından çıkan ham sayıları toplamı 1 olan olasılıklara dönüştürür. En yüksek skora sahip sınıfa en büyük olasılığı atar.",
+   "ornek": "Ham çıktı logitleri z = [2.0, 1.0, 0.1] olan üç sınıflı bir modelde (Kümülonimbus, Stratus, Açık), Softmax çıktıları sırasıyla yüzde 65, yüzde 24 ve yüzde 11 olasılık verir.",
+   "nerede": "YZV-04'te uydu karesinin hangi bulut türüne ait olduğuna karar veren en son katmanda."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Typical_cnn.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Evrişimli sinir ağları ile görüntü sınıflandırma ve öznitelik haritası katmanları"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Doğu Akdeniz MSG SEVIRI kızılötesi bulut sınıflandırma haritası, 2024-03-15..20, 3 saatlik",
+   "aciklama": "Uydu parlaklık sıcaklığından türetilen bulut tipi sınıflandırma animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · YZV 416E (Computer Vision)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=YZV&dersNo=416E"
+  },
+  {
+   "ad": "Szeliski, R. (2022) Computer Vision: Algorithms and Applications, 2. baskı, Springer",
+   "url": "https://doi.org/10.1007/978-3-030-58452-8"
+  },
+  {
+   "ad": "Stevens, B. et al. (2020) Mesoscale Cloud Patterns in the Trade Winds, BAMS",
+   "url": "https://doi.org/10.1175/BAMS-D-19-0324.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=YZV&dersNo=416E"
+}

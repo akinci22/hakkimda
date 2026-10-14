@@ -1,0 +1,166 @@
+{
+ "kod": "YZV 303E",
+ "ad": "Deep Learning",
+ "bolum": "Yapay Zeka ve Veri Mühendisliği",
+ "obsNo": "303E",
+ "ozet": "Derin yapay sinir ağlarının mimarisini, optimizasyon yöntemlerini ve pratik uygulamalarını öğretir. Çok katmanlı algılayıcılar, evrişimli sinir ağları (CNN), tekrarlayan ağlar (RNN/LSTM), dikkat mekanizmaları ve üretici mimariler ele alınır. Görüntü işleme, uzamsal-zamansal radar kestirimi ve büyük veri problemlerinde derin ağların tasarımı incelenir.",
+ "neOgrenirsin": [
+  "Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak.",
+  "Evrişimli sinir ağları ile 2D/3D uzamsal öznitelik haritalarını çıkarmak.",
+  "ConvLSTM ve U-Net mimarileri ile ardışık uzamsal-zamansal dizileri işlemek.",
+  "Adam ve ağırlık azaltma teknikleriyle eğitim dinamiklerini yönetmek.",
+  "Batch normalization ve dropout ile aşırı öğrenmeyi kontrol etmek.",
+  "PyTorch çerçevesinde tensör operasyonları ve GPU tabanlı paralel eğitim yürütmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Evrişim (Convolution) işlem katmanı bağıntısı",
+   "tex": "S(i, j) = (I * K)(i, j) = \\sum_{m} \\sum_{n} I(i - m, j - n) \\, K(m, n)",
+   "terimler": [
+    [
+     "S(i, j)",
+     "çıktı öznitelik haritasının piksel değeri",
+     "birimsiz"
+    ],
+    [
+     "I",
+     "girdi görüntü veya radar tensörü",
+     "fiziksel birim"
+    ],
+    [
+     "K",
+     "öğrenilebilir evrişim çekirdeği",
+     "birimsiz"
+    ],
+    [
+     "m, n",
+     "çekirdek mekânsal indisleri",
+     "adet"
+    ]
+   ],
+   "sade": "Girdi görüntüsü üzerinde küçük bir filtre penceresi kaydırarak yerel desenleri yakalar. Ağırlık paylaşımı sayesinde parametre sayısını azaltır.",
+   "ornek": "256x256 boyutlu bir radar görüntüsüne 3x3 boyutlu bir çekirdek uygulandığında, yağış hücresinin sınırlarını belirleyen 254x254'lük öznitelik haritası elde edilir.",
+   "nerede": "YZV-01 ve BLG-03'te radar görüntülerinden mezoolçek konvektif desenleri çıkaran ilk katmanlarda."
+  },
+  {
+   "ad": "ConvLSTM hücre içi durum güncelleme denklemi",
+   "tex": "C_t = f_t \\odot C_{t-1} + i_t \\odot \\tanh(W_{xc} * X_t + W_{hc} * H_{t-1} + b_c)",
+   "terimler": [
+    [
+     "C_t",
+     "t anındaki hücre bellek durumu",
+     "birimsiz"
+    ],
+    [
+     "f_t",
+     "unutma kapısı aktivasyonu",
+     "birimsiz"
+    ],
+    [
+     "i_t",
+     "girdi kapısı aktivasyonu",
+     "birimsiz"
+    ],
+    [
+     "\\odot",
+     "Hadamard eleman bazlı çarpım",
+     "birimsiz"
+    ],
+    [
+     "*",
+     "2D evrişim operatörü",
+     "birimsiz"
+    ],
+    [
+     "X_t",
+     "t anındaki girdi radar karesi",
+     "birimsiz"
+    ],
+    [
+     "H_{t-1}",
+     "önceki adımdaki gizli durum çıktısı",
+     "birimsiz"
+    ],
+    [
+     "b_c",
+     "hücre yanlılık terimi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "LSTM'deki matris çarpımları yerine 2D evrişim koyar. Böylece ağ hem zaman boyunca fırtınanın evrimini hatırlar hem de mekânsal yapıyı korur.",
+   "ornek": "Son 4 radar karesini alan ConvLSTM, fırtına hücresinin hareket yönünü ve zayıflama eğilimini hücre belleğinde saklayarak sonraki 15 dakikalık kareyi üretir.",
+   "nerede": "YZV-01 radar nowcasting projesinde ardışık kare tahminini yürüten ana mimari olarak."
+  },
+  {
+   "ad": "Adam optimizatörü ağırlık güncelleme kuralı",
+   "tex": "\\theta_{t+1} = \\theta_t - \\frac{\\alpha}{\\sqrt{\\hat{v}_t} + \\epsilon} \\, \\hat{m}_t",
+   "terimler": [
+    [
+     "\\theta_{t+1}",
+     "güncellenmiş parametre vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\theta_t",
+     "mevcut adım parametre vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\alpha",
+     "öğrenme katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\hat{m}_t",
+     "düzeltilmiş birinci moment",
+     "birimsiz"
+    ],
+    [
+     "\\hat{v}_t",
+     "düzeltilmiş ikinci moment",
+     "birimsiz"
+    ],
+    [
+     "\\epsilon",
+     "sıfıra bölünmeyi önleyen sabit",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Her parametre için öğrenme hızını ayrı ayrı uyarlar. Gradyanın geçmiş ortalamasını ve dalgalanmasını takip ederek kararlı adımlar atar.",
+   "ornek": "Öğrenme hızı alpha = 1e-3 iken sık güncellenen piksel ağırlıklarının adımları küçültülür, nadir aktifleşen yağış kanallarının adımları korunur.",
+   "nerede": "YZV-01 ve YZV-02'de derin sinir ağlarının eğitiminde standart kayıp optimizatörü olarak."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Typical_cnn.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Evrişimli sinir ağı (CNN) katmanları ve öznitelik haritası mimarisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Marmara radar karesi ConvLSTM öznitelik haritaları, 2023-09-05, saatlik",
+   "aciklama": "Derin evrişimli sinir ağının radar karelerinden çıkardığı konvektif desen öznitelikleri animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · YZV 303E (Deep Learning)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=YZV&dersNo=303E"
+  },
+  {
+   "ad": "Goodfellow, I., Bengio, Y., & Courville, A. (2016) Deep Learning, MIT Press",
+   "url": "https://www.deeplearningbook.org/contents/intro.html"
+  },
+  {
+   "ad": "Shi, X. et al. (2015) Convolutional LSTM Network for Precipitation Nowcasting",
+   "url": "https://arxiv.org/abs/1506.04214"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=YZV&dersNo=303E"
+}

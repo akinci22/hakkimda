@@ -1,0 +1,156 @@
+{
+ "kod": "MTO 229E",
+ "ad": "Bulut ve Yağış Fiziği",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "229E",
+ "ozet": "Bulutların oluşumu, mikrofiziksel büyüme süreçleri ve yağış mekanizmalarını kuramsal ve gözlemsel olarak inceler. Yoğuşma çekirdekleri (CCN), su buharı difüzyonuyla damla büyümesi, Köhler kuramı, çarpışma-birleşme süreci, buz fazı mikrofiziği, Marshall-Palmer damla boyu dağılımı ve ılık-soğuk yağmur mekanizmaları ele alınır.",
+ "neOgrenirsin": [
+  "Bulut yoğuşma çekirdekleri (CCN) üzerinde su buharı difüzyonuyla damla büyümesini hesaplamak.",
+  "Köhler eğrisi bağıntısıyla kritik aşırı doymuşluk ve damlacık aktivasyon çapını belirlemek.",
+  "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek.",
+  "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak.",
+  "Buz çekirdeklenmesi ve Bergeron-Findeisen süreciyle soğuk bulutlarda yağış gelişimini incelemek.",
+  "Bulut tabanı ve tepe sıcaklıklarından mikrofiziksel faz durumunu ve yağış türünü belirlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Köhler eğrisi denklemi (aşırı doymuşluk ve damla çapı)",
+   "tex": "\\ln\\left(\\frac{e}{e_s}\\right) = \\frac{A}{r} - \\frac{B}{r^3}",
+   "terimler": [
+    [
+     "\\ln\\left(\\frac{e}{e_s}\\right)",
+     "su buharı aşırı doymuşluk oranı",
+     "birimsiz"
+    ],
+    [
+     "A",
+     "Kelvin eğrilik etkisi katsayısı",
+     "m"
+    ],
+    [
+     "B",
+     "Raoult çözünen etkisi katsayısı",
+     "m³"
+    ],
+    [
+     "r",
+     "bulut damlacığının yarıçapı",
+     "m"
+    ],
+    [
+     "e",
+     "ortam su buharı basıncı",
+     "hPa"
+    ],
+    [
+     "e_s",
+     "düz su yüzeyi için doymuş buhar basıncı",
+     "hPa"
+    ]
+   ],
+   "sade": "Bulut damlasının yüzey eğriliği buharlaşmayı hızlandırırken, içindeki çözünmüş tuz gibi maddeler buhar basıncını düşürür. İki etkinin dengelendiği kritik çap aşıldığında damlacık kendiliğinden büyümeye başlar.",
+   "ornek": "Çapı r = 0,5 mikrometre olan bir aerosol taneciği kritik aşırı doymuşluk eşiğini (%0,2) aştığında Köhler eğrisinin tepe noktasını geçerek aktif bulut damlacığına dönüşür.",
+   "nerede": "MET-03 ve D-MTO229E-02'de yüksek nemli havada mikro damlacıkların yoğuşma ve metal yüzeyinde ince su filmi oluşturma eşiğini saptarken."
+  },
+  {
+   "ad": "Marshall-Palmer yağmur damlası boyutu dağılımı",
+   "tex": "N(D) = N_0 \\, \\exp(-\\Lambda \\, D)",
+   "terimler": [
+    [
+     "N(D)",
+     "D çapındaki damlaların birim hacimdeki sayı yoğunluğu",
+     "m⁻³ mm⁻¹"
+    ],
+    [
+     "N_0",
+     "başlangıç boyutu dağılım sabiti (8000)",
+     "m⁻³ mm⁻¹"
+    ],
+    [
+     "\\Lambda",
+     "yağış şiddetine bağlı eğim parametresi",
+     "mm⁻¹"
+    ],
+    [
+     "D",
+     "yağmur damlasının eşdeğer küresel çapı",
+     "mm"
+    ]
+   ],
+   "sade": "Yağmur damlalarının boyut dağılımını üstel olarak verir. Çap büyüdükçe damla sayısı hızla azalır; şiddetli yağmurda eğim yatıklaşarak büyük damlaların oranı artar.",
+   "ornek": "R = 10 mm/saatlik bir yağışta eğim parametresi Lambda = 2,5 mm⁻¹ çıkar; 1 mm çapındaki damlaların sayısı birim hacimde hesaplanır.",
+   "nerede": "D-MTO229E-01 ve D-MTO229E-02'de damla boyutu spektrumundan radar yansıtıcılığı ve zemin ıslanma şiddetini türetirken."
+  },
+  {
+   "ad": "Çarpışma-birleşme damlacık süpürme büyüme denklemi",
+   "tex": "\\frac{dM}{dt} = \\pi \\, R^2 \\, E \\, (V - v) \\, w_L",
+   "terimler": [
+    [
+     "\\frac{dM}{dt}",
+     "büyük damlanın zamana bağlı kütle artış hızı",
+     "kg/s"
+    ],
+    [
+     "R",
+     "düşen büyük damlanın yarıçapı",
+     "m"
+    ],
+    [
+     "E",
+     "çarpışma ve birleşme etkinlik katsayısı",
+     "birimsiz"
+    ],
+    [
+     "V",
+     "büyük damlanın terminal düşüş hızı",
+     "m/s"
+    ],
+    [
+     "v",
+     "küçük damlacıkların terminal düşüş hızı",
+     "m/s"
+    ],
+    [
+     "w_L",
+     "bulutun sıvı su içeriği (LWC)",
+     "kg/m³"
+    ]
+   ],
+   "sade": "Ağır ve hızlı düşen bir yağmur damlası, altındaki daha hafif damlacıkları süpürerek bünyesine katar. Düşüş hızı farkı ve bulutun sıvı su yoğunluğu büyüdükçe damla kütlesi katlanarak artar.",
+   "ornek": "Yarıçapı R = 1 mm olan bir damla, sıvı su içeriği w_L = 1 g/m³ olan bulut içinde saniyede 9 metre hızla inerken kütlesi saniyede mikrogram düzeyinde büyür.",
+   "nerede": "D-MTO229E-03 ve MET-03'te yağış periyotlarında ıslaklık süresi ve yüzey maruziyet süresini hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Raindrops_sizes_and_shapes.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Yağmur damlası boyut dağılımı ve aerodinamik damla geometrisi şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "İstanbul ve Marmara bölgesi bulut tavanı ve yağış hücresi yansıtıcılık döngüsü, 2024-05-10 12:00..16:00 UTC, 15 dakikalık",
+   "aciklama": "Mikrofiziksel yağmur oluşumunun radar ekoları üzerindeki zamansal değişimi animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 229E (Bulut ve Yağış Fiziği)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=229E"
+  },
+  {
+   "ad": "Rogers, R. R. & Yau, M. K. (1989) A Short Course in Cloud Physics, 3. baskı, Butterworth-Heinemann · ISBN 978-0750632157",
+   "url": "https://openlibrary.org/isbn/9780750632157"
+  },
+  {
+   "ad": "Pruppacher, H. R. & Klett, J. D. (2010) Microphysics of Clouds and Precipitation, Springer · ISBN 978-0792344094",
+   "url": "https://openlibrary.org/isbn/9780792344094"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=229E"
+}

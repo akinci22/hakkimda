@@ -1,0 +1,156 @@
+{
+ "kod": "MAT 308",
+ "ad": "YZ'nin Matematiksel Temelleri",
+ "bolum": "Matematik Mühendisliği",
+ "obsNo": "308",
+ "ozet": "Yapay zekâ ve makine öğrenmesi algoritmalarının arkasındaki temel matematiksel yapıları öğretir. Çok değişkenli diferansiyel hesap ve gradyan inişi, kayıp fonksiyonları, dışbükey optimizasyon, aşırı öğrenme ve regülarizasyon teknikleri ele alınır. Sinir ağlarının parametre güncelleme ve genelleme mekanizmalarını kuramsal ve algoritmik olarak anlamayı sağlar.",
+ "neOgrenirsin": [
+  "Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak.",
+  "Gradyan inişi ve stokastik gradyan inişi (SGD) algoritmalarını optimize etmek.",
+  "Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak.",
+  "L1 ve L2 regülarizasyonu ile aşırı öğrenmeyi (overfitting) engellemek.",
+  "Dışbükey (konveks) optimizasyon problemlerinde yerel ve küresel minimumları ayırt etmek.",
+  "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek."
+ ],
+ "formuller": [
+  {
+   "ad": "L2 regülarizasyonlu ortalama kare hata kaybı",
+   "tex": "\\mathcal{L}(\\mathbf{w}) = \\frac{1}{N}\\sum_{i=1}^N \\left(y_i - \\mathbf{w}^T \\mathbf{x}_i\\right)^2 + \\lambda \\|\\mathbf{w}\\|_2^2",
+   "terimler": [
+    [
+     "\\mathcal{L}(\\mathbf{w})",
+     "toplam kayıp değeri",
+     "birimsiz"
+    ],
+    [
+     "N",
+     "eğitim örneklemi sayısı",
+     "adet"
+    ],
+    [
+     "y_i",
+     "i'inci hedeflenen gerçek değer",
+     "fiziksel birim"
+    ],
+    [
+     "\\mathbf{w}",
+     "model ağırlık vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{x}_i",
+     "i'inci girdi öznitelik vektörü",
+     "fiziksel birim"
+    ],
+    [
+     "\\lambda",
+     "regülarizasyon katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\|\\mathbf{w}\\|_2^2",
+     "ağırlık vektörünün Öklid norm karesi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Tahminin gerçek değerden ne kadar saptığını ölçer ve model ağırlıklarının aşırı büyümesini cezalandırır. Böylece sinir ağı ezberlemek yerine genelleme yapar.",
+   "ornek": "Sıcaklık tahmininde 1000 günlük eğitim verisinde MSE 1,8 °C² iken lambda = 0,01 seçilerek ağırlıkların şişmesi engellenir ve test hatası 2,1 °C seviyesinde tutulur.",
+   "nerede": "MAT-01 ve MAT-02'de sinir ağı eğitilirken aşırı öğrenmeyi önleyen ana kayıp fonksiyonu olarak."
+  },
+  {
+   "ad": "Stokastik gradyan inişi (SGD) güncelleme bağıntısı",
+   "tex": "\\mathbf{w}_{t+1} = \\mathbf{w}_t - \\eta \\nabla_{\\mathbf{w}} \\mathcal{L}_B(\\mathbf{w}_t)",
+   "terimler": [
+    [
+     "\\mathbf{w}_{t+1}",
+     "güncellenmiş ağırlık vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{w}_t",
+     "t adımındaki mevcut ağırlık vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\eta",
+     "öğrenme katsayısı (learning rate)",
+     "birimsiz"
+    ],
+    [
+     "\\nabla_{\\mathbf{w}} \\mathcal{L}_B",
+     "mini-yığın üzerindeki kayıp fonksiyonu gradyanı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Kayıp fonksiyonunun yokuş aşağı yönünde küçük adımlar atarak hatayı en aza indiren ağırlıkları bulur. Her adımda küçük bir yığına (mini-batch) bakar.",
+   "ornek": "Öğrenme katsayısı eta = 0,001 ve gradyan 4,5 iken ağırlık her adımda 0,0045 birim küçülerek 50 epok sonunda hatayı minimuma çeker.",
+   "nerede": "MAT-01 ve MAT-05'te sinir ağlarının ağırlıklarını geri yayılım gradyanlarıyla güncellerken."
+  },
+  {
+   "ad": "Geriye yayılım zincir kuralı gradyanı",
+   "tex": "\\frac{\\partial \\mathcal{L}}{\\partial w_{ij}} = \\delta_j \\, a_i, \\qquad \\delta_j = \\frac{\\partial \\mathcal{L}}{\\partial z_j}",
+   "terimler": [
+    [
+     "\\frac{\\partial \\mathcal{L}}{\\partial w_{ij}}",
+     "kaybın ağırlığa göre türevi",
+     "birimsiz"
+    ],
+    [
+     "\\delta_j",
+     "j düğümündeki yerel hata terimi",
+     "birimsiz"
+    ],
+    [
+     "a_i",
+     "i düğümünün aktivasyon çıktısı",
+     "birimsiz"
+    ],
+    [
+     "z_j",
+     "j düğümünün net girdi toplamı",
+     "birimsiz"
+    ],
+    [
+     "w_{ij}",
+     "i ve j düğümleri arasındaki bağlantı ağırlığı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Çıktı katmanındaki hatayı zincirleme türev alarak geriye doğru dağıtır. Her bir ağırlığın hatadaki sorumluluğunu ayrı ayrı hesaplar.",
+   "ornek": "Üç katmanlı sinir ağında çıkış hatası 0,4 iken gizli katmandaki w_12 ağırlığının türevi 0,08 bulunur ve ağırlık buna göre düzeltilir.",
+   "nerede": "MAT-01 ve MAT-04'te derin sinir ağlarının katmanlar arası türevlerini hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gradient_descent.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Gradyan inişi optimizasyonu: kayıp yüzeyinde yerel minimuma ilerleme"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul günlük maksimum sıcaklık tahmini ve sinir ağı kayıp eğrisi, Open-Meteo, 2024-01-01..12-31, günlük",
+   "aciklama": "Yapay sinir ağı eğitim adımlarında kayıp fonksiyonunun ve tahmin hatasının değişimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MAT 308 (YZ'nin Matematiksel Temelleri)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=308"
+  },
+  {
+   "ad": "Goodfellow, I., Bengio, Y., & Courville, A. (2016) Deep Learning, MIT Press · ISBN 978-0262035613",
+   "url": "https://www.deeplearningbook.org/contents/intro.html"
+  },
+  {
+   "ad": "Boyd, S. & Vandenberghe, L. (2004) Convex Optimization, Cambridge University Press · DOI 10.1017/CBO9780511804441",
+   "url": "https://doi.org/10.1017/CBO9780511804441"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=308"
+}

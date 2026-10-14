@@ -1,0 +1,156 @@
+{
+ "kod": "MTO 311E",
+ "ad": "Data Analysis in Meteorology",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "311E",
+ "ozet": "Meteorolojik zaman serilerinin ve mekânsal ızgara verilerinin istatistiksel analiz yöntemlerini öğretir. Eksik veri tamamlama, spektral analiz, Fourier dönüşümü, ampirik ortogonal fonksiyonlar (EOF/PCA) ve mekânsal enterpolasyon teknikleri ele alınır. Atmosferik dalgaları, telekonneksiyon desenlerini ve model tahmin hatalarını veri temelli yöntemlerle çözmeyi hedefler.",
+ "neOgrenirsin": [
+  "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak.",
+  "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak.",
+  "Ampirik Ortogonal Fonksiyonlar (EOF) ile basınç ve sıcaklık alanlarındaki temel salınım modlarını ayıklamak.",
+  "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek.",
+  "Sayısal filtreler uygulayarak yüksek frekanslı gürültüyü sinoptik dalgalardan ayırmak.",
+  "Mekânsal enterpolasyon ile istasyon verilerini düzenli ızgaraya aktarmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+   "tex": "\\mathbf{C} = \\frac{1}{N} \\mathbf{X} \\mathbf{X}^T, \\qquad \\mathbf{C} \\mathbf{e}_k = \\lambda_k \\mathbf{e}_k",
+   "terimler": [
+    [
+     "\\mathbf{C}",
+     "uzaysal kovaryans matrisi",
+     "birimsiz"
+    ],
+    [
+     "N",
+     "zaman adımı sayısı",
+     "adet"
+    ],
+    [
+     "\\mathbf{X}",
+     "uzay-zaman anomali matrisi",
+     "fiziksel birim"
+    ],
+    [
+     "\\mathbf{e}_k",
+     "k'inci mekânsal mod (özvektör / EOF)",
+     "birimsiz"
+    ],
+    [
+     "\\lambda_k",
+     "k'inci modun açıkladığı varyans (özdeğer)",
+     "fiziksel birimin karesi"
+    ]
+   ],
+   "sade": "Yüzlerce ızgara noktasındaki hava alanını en baskın 2-3 temel desene indirger. Birinci mod atmosferdeki toplam değişkenliğin en büyük kısmını tek başına açıklar.",
+   "ornek": "Kuzey Atlantik üzerinde 500 hPa jeopotansiyel yükseklik anomalileri için hesaplanan EOF1 modu, toplam varyansın yüzde 38'ini açıklayarak klasik Kuzey Atlantik Salınımı iki kutuplu yapısını verir.",
+   "nerede": "MTO-04'te yapay zekâ model hatalarının mekânsal desenlerini sınıflandırırken ve baskın hata modlarını ayıklarken."
+  },
+  {
+   "ad": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+   "tex": "X_k = \\sum_{n=0}^{N-1} x_n e^{-i 2\\pi k n / N}, \\qquad P_k = \\frac{1}{N} |X_k|^2",
+   "terimler": [
+    [
+     "X_k",
+     "k frekansına karşılık gelen Fourier katsayısı",
+     "fiziksel birim"
+    ],
+    [
+     "x_n",
+     "zaman serisindeki n'inci gözlem değeri",
+     "fiziksel birim"
+    ],
+    [
+     "N",
+     "örneklem büyüklüğü",
+     "adet"
+    ],
+    [
+     "k",
+     "dalga sayısı veya frekans indisi",
+     "birimsiz"
+    ],
+    [
+     "P_k",
+     "k frekansındaki spektral güç yoğunluğu",
+     "fiziksel birimin karesi"
+    ]
+   ],
+   "sade": "Zaman serisini farklı dalga boylarındaki sinüs ve kosinüs dalgalarının toplamı olarak açar. Hangi periyodun havayı yönettiğini tepe noktalarından gösterir.",
+   "ornek": "İstanbul saatlik sıcaklık serisine DFT uygulandığında 24 saatlik periyotta (k = N/24) dev bir güç tepesi çıkar; bu tepe günlük güneşlenme döngüsünü temsil eder.",
+   "nerede": "MTO-04'te yapay zekâ tahminlerinin yüksek frekanslı sinoptik dalgaları doğru periyotta üretip üretmediğini incelerken."
+  },
+  {
+   "ad": "Gecikmeli çapraz korelasyon katsayısı",
+   "tex": "r_k = \\frac{\\sum_{t=1}^{N-k} (x_t - \\bar{x})(y_{t+k} - \\bar{y})}{\\sqrt{\\sum_{t=1}^N (x_t - \\bar{x})^2 \\sum_{t=1}^N (y_t - \\bar{y})^2}}",
+   "terimler": [
+    [
+     "r_k",
+     "k zaman adımı gecikmeli çapraz korelasyon",
+     "birimsiz (-1 ile +1 arası)"
+    ],
+    [
+     "x_t",
+     "birinci zaman serisinin t anındaki değeri",
+     "fiziksel birim"
+    ],
+    [
+     "y_{t+k}",
+     "ikinci serinin k adım sonraki değeri",
+     "fiziksel birim"
+    ],
+    [
+     "\\bar{x}",
+     "birinci serinin aritmetik ortalaması",
+     "fiziksel birim"
+    ],
+    [
+     "\\bar{y}",
+     "ikinci serinin aritmetik ortalaması",
+     "fiziksel birim"
+    ],
+    [
+     "k",
+     "zaman gecikmesi (lag)",
+     "zaman adımı"
+    ]
+   ],
+   "sade": "Bir yerdeki hava değişiminin başka bir yeri kaç gün sonra etkilediğini ölçer. En yüksek korelasyonun çıktığı gecikme süresi, sinyalin seyahat süresini verir.",
+   "ornek": "Kuzey Atlantik basınç anomalisi ile 3 gün sonraki Balkanlar sıcaklık anomalisi arasında r = 0,62 korelasyon bulunması, sinoptik dalganın doğuya yayılma hızını gösterir.",
+   "nerede": "MTO-04'te AIFS model hatalarının üst akış kaynaklı anomalilerle ilişkisini zaman gecikmeli olarak test ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Principal_component_analysis.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Ampirik Ortogonal Fonksiyonlar (EOF / PCA): veri varyansını açıklayan ana eksenler"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Akdeniz ve Türkiye 500 hPa jeopotansiyel yükseklik anomalileri EOF1 modu, ERA5, 2024-01-01..31, günlük",
+   "aciklama": "Kış mevsimi 500 hPa yükseklik alanının birinci ampirik ortogonal fonksiyon (EOF1) mekânsal deseni"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 311E (Data Analysis in Meteorology)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=311E"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences, 4. baskı, Elsevier · DOI 10.1016/C2017-0-03923-6",
+   "url": "https://doi.org/10.1016/C2017-0-03923-6"
+  },
+  {
+   "ad": "von Storch, H. & Zwiers, F. W. (2001) Statistical Analysis in Climate Research, Cambridge University Press · DOI 10.1017/CBO9780511612336",
+   "url": "https://doi.org/10.1017/CBO9780511612336"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=311E"
+}

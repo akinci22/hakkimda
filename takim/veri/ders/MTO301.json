@@ -1,0 +1,136 @@
+{
+ "kod": "MTO 301",
+ "ad": "Meteorolojide Uzaktan Algılamanın Temelleri",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "301",
+ "ozet": "Meteorolojik radar, uydu ve radyometre sistemlerinin fiziksel prensiplerini ve veri işleme yöntemlerini öğretir. Elektromanyetik ışıma, Rayleigh ve Mie saçılması, radar denklemi, Doppler hız ölçümü ve Z-R bağıntısıyla yağış kestirimi ele alınır. Aşırı hava olaylarının, fırtına hücrelerinin ve yağış alanlarının anlık takibinde temel ders niteliğindedir.",
+ "neOgrenirsin": [
+  "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek.",
+  "Meteorolojik radar denklemi ile geri saçılan güçten radar yansıtıcılığını (Z) hesaplamak.",
+  "Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek.",
+  "Doppler radar verilerinden radyal hız ve rüzgâr kaymasını çıkarmak.",
+  "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak.",
+  "Zemin ekosu, parazitler ve zayıflama etkilerini kalite kontrolle temizlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Meteorolojik radar denklemi (hacimsel hedef)",
+   "tex": "\\bar{P}_r = \\frac{C_r}{r^2} \\, |K|^2 \\, Z",
+   "terimler": [
+    [
+     "\\bar{P}_r",
+     "ortalama alınan geri saçılan radar gücü",
+     "W"
+    ],
+    [
+     "C_r",
+     "radar donanım sabiti",
+     "birimsiz"
+    ],
+    [
+     "r",
+     "hedefin radara olan uzaklığı",
+     "m"
+    ],
+    [
+     "|K|^2",
+     "su damlalarının dielektrik faktörü",
+     "birimsiz"
+    ],
+    [
+     "Z",
+     "radar yansıtıcılık faktörü",
+     "mm⁶/m³"
+    ]
+   ],
+   "sade": "Radarın gönderdiği darbenin yağmur damlalarından sekip dönen gücünü ölçer. Dönen güç mesafenin karesiyle azalır; yansıtıcılık büyüdükçe şiddetli yağış anlamına gelir.",
+   "ornek": "Radardan 50 km uzaklıktaki bir fırtına hücresinden dönen güç Pr = -80 dBm ölçüldüğünde, donanım sabitiyle ters işlem yapılarak Z = 50 dBZ olarak bulunur.",
+   "nerede": "YZV-01 ve BLG-03'te radar ham sinyalinden yağış yansıtıcılık alanını ızgaraya çıkarırken."
+  },
+  {
+   "ad": "Marshall-Palmer Z-R yağış şiddeti bağıntısı",
+   "tex": "Z = a \\, R^b, \\qquad R = \\left(\\frac{Z}{a}\\right)^{1/b}",
+   "terimler": [
+    [
+     "Z",
+     "radar yansıtıcılık faktörü",
+     "mm⁶/m³"
+    ],
+    [
+     "R",
+     "anlık yağış şiddeti",
+     "mm/saat"
+    ],
+    [
+     "a",
+     "yağış türüne bağlı katsayı",
+     "birimsiz"
+    ],
+    [
+     "b",
+     "yağış türüne bağlı üs",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Radar yansıtıcılığını doğrudan yeryüzüne düşecek saatlik yağmur miktarına çevirir. Yağmur damlalarının boyut dağılımına göre katsayılar değişir.",
+   "ornek": "Z = 40 dBZ ölçülen bir yağışta a = 200 ve b = 1,6 seçildiğinde saatlik yağış şiddeti R = (10000 / 200)^(1/1.6) ≈ 11,5 mm/saat bulunur.",
+   "nerede": "YZV-01'de derin öğrenme modelinin tahmin ettiği dBZ değerlerini yerel yağış miktarına dönüştürürken."
+  },
+  {
+   "ad": "Doppler radyal hız ve faz kayması bağıntısı",
+   "tex": "v_r = -\\frac{\\lambda \\, f_d}{2}",
+   "terimler": [
+    [
+     "v_r",
+     "radara doğru veya radardan uzaklaşan radyal hız",
+     "m/s"
+    ],
+    [
+     "\\lambda",
+     "radar elektromanyetik dalga boyu",
+     "m"
+    ],
+    [
+     "f_d",
+     "alınan sinyaldeki Doppler frekans kayması",
+     "Hz"
+    ]
+   ],
+   "sade": "Yağmur damlalarının radara yaklaşma veya uzaklaşma hızını frekanstaki kaymadan bulur. Fırtınanın dönüşünü ve rüzgâr hızını uzaktan görmemizi sağlar.",
+   "ornek": "Dalga boyu lambda = 0,05 m olan bir radarda Doppler frekans kayması fd = 800 Hz ölçülürse, damlaların radara doğru hızı vr = -20 m/s olarak hesaplanır.",
+   "nerede": "YZV-01'de optik akış vektörlerini gerçek Doppler hız alanıyla karşılaştırırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Doppler hava radarı yansıtıcılık ekoları ve yağış alanları haritası"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Marmara Bölgesi C-bant radar yansıtıcılığı (dBZ) döngüsü, 2023-09-05 15:00..18:00 UTC, 10 dakikalık",
+   "aciklama": "İstanbul üzerinde konvektif yağış hücresinin radar yansıtıcılık faktörü (dBZ) zaman evrimi animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 301 (Meteorolojide Uzaktan Algılamanın Temelleri)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=301"
+  },
+  {
+   "ad": "Rinehart, R. E. (2010) Radar for Meteorologists, 5. baskı",
+   "url": "https://openlibrary.org/books/OL24956799M"
+  },
+  {
+   "ad": "Doviak, R. J. & Zrnic, D. S. (1993) Doppler Radar and Weather Observations, Academic Press · ISBN 978-0122214226",
+   "url": "https://openlibrary.org/isbn/9780122214226"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=301"
+}

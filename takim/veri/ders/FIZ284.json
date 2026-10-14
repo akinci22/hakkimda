@@ -1,0 +1,136 @@
+{
+ "kod": "FIZ 284",
+ "ad": "Klasik Mekanik",
+ "bolum": "Fizik Mühendisliği",
+ "obsNo": "284",
+ "ozet": "Newton dinamik yasalarının genelleştirilmesini, analitik mekaniğin temellerini ve dönen sistemleri öğretir. Euler-Lagrange ve Hamilton hareket denklemleri, korunum yasaları ve simetriler (Noether teoremi), dönen referans çerçevesinde Coriolis ve merkezkaç ivmeleri, merkezi kuvvet alanları ve faz uzayında kararlılık ele alınır. Atmosfer dinamiği ve gök mekaniği simülasyonlarında kuramsal omurgadır.",
+ "neOgrenirsin": [
+  "Genelleştirilmiş koordinatlarla kinetik ve potansiyel enerjiden Lagrange fonksiyonunu kurmak.",
+  "Euler-Lagrange hareket denklemlerini türeterek karmaşık dinamik sistemleri çözmek.",
+  "Dönen referans sistemlerinde Coriolis ve merkezkaç kuvvetlerini analitik olarak hesaplamak.",
+  "Hamiltonyen fonksiyonu ve kanonik denklemlerle faz uzayı yörüngelerini incelemek.",
+  "Küçük salınımlar teorisiyle normal modları ve rezonans frekanslarını bulmak.",
+  "Dinamik sistemlerde enerji ve açısal momentum korunumunu simetrilerle ilişkilendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Euler-Lagrange analitik hareket denklemi",
+   "tex": "\\frac{d}{dt}\\left(\\frac{\\partial L}{\\partial \\dot{q}_i}\\right) - \\frac{\\partial L}{\\partial q_i} = 0",
+   "terimler": [
+    [
+     "\\frac{d}{dt}",
+     "zamana göre tam türev operatörü",
+     "s⁻¹"
+    ],
+    [
+     "L",
+     "Lagrange fonksiyonu (T - V)",
+     "J"
+    ],
+    [
+     "\\dot{q}_i",
+     "genelleştirilmiş hız bileşeni",
+     "m/s"
+    ],
+    [
+     "q_i",
+     "genelleştirilmiş koordinat",
+     "m"
+    ]
+   ],
+   "sade": "Sistemin kinetik ve potansiyel enerji farkını minimum kılacak en az eylem yolunu belirler. Newton kuvvetlerini yazmak yerine skaler enerjilerden hareket denklemini kurar.",
+   "ornek": "Sarkaç için L = 0.5*m*l^2*theta_dot^2 - m*g*l*(1-cos(theta)) yazılıp türevler alındığında basit harmonik salınım denklemi çıkarılır.",
+   "nerede": "FIZ-02 ve FIZ-03'te akışkan dalgaları ve sarkaç hareketinin analitik omurgasını kurarken."
+  },
+  {
+   "ad": "Coriolis ivmesi vektör bağıntısı",
+   "tex": "\\vec{a}_{\\text{cor}} = -2 \\, (\\vec{\\Omega} \\times \\vec{v})",
+   "terimler": [
+    [
+     "\\vec{a}_{\\text{cor}}",
+     "Coriolis ivme vektörü",
+     "m/s²"
+    ],
+    [
+     "\\vec{\\Omega}",
+     "dönen çerçevenin açısal hız vektörü",
+     "rad/s"
+    ],
+    [
+     "\\vec{v}",
+     "dönen çerçevedeki bağıl hız vektörü",
+     "m/s"
+    ]
+   ],
+   "sade": "Dönen Dünya veya dönen disk üzerinde hareket eden kütlelerin hız vektörüne dik sapma kuvvetini hesaplar. Kuzey yarımkürede akışkanları sağa saptırarak siklonik dönüşleri oluşturur.",
+   "ornek": "Açısal hızı Omega = 7.292e-5 rad/s olan Dünya'da kuzeye doğru v = 10 m/s hızla esen rüzgârın Coriolis ivmesi orta enlemlerde hesaplanır.",
+   "nerede": "FIZ-02 ve MTO 337'de sığ su denklemlerine gezeğensel dönme etkisini eklerken."
+  },
+  {
+   "ad": "Hamilton kanonik hareket denklemleri",
+   "tex": "\\dot{q}_i = \\frac{\\partial H}{\\partial p_i}, \\qquad \\dot{p}_i = -\\frac{\\partial H}{\\partial q_i}",
+   "terimler": [
+    [
+     "\\dot{q}_i",
+     "genelleştirilmiş hız",
+     "m/s"
+    ],
+    [
+     "H",
+     "Hamiltonyen fonksiyonu (toplam enerji)",
+     "J"
+    ],
+    [
+     "p_i",
+     "genelleştirilmiş momentum",
+     "kg m/s"
+    ],
+    [
+     "\\dot{p}_i",
+     "momentumun zamana göre türevi (kuvvet)",
+     "N"
+    ],
+    [
+     "q_i",
+     "genelleştirilmiş konum",
+     "m"
+    ]
+   ],
+   "sade": "İkinci derece diferansiyel denklemleri iki adet birinci derece diferansiyel denklem çiftine indirger. Konum ve momentumun faz uzayında zamanla nasıl aktığını ve enerjinin korunduğunu gösterir.",
+   "ornek": "Harmonik osilatörde H = p^2/(2m) + 0.5*k*q^2 yazılarak faz uzayı elips yörüngeleri çıkarılır.",
+   "nerede": "FIZ-02 ve FIZ-03'te sinir ağı emülatörünün fiziksel korunum yasalarını öğrenmesini sağlarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Corioliskraftanimation.gif",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Dönen disk üzerinde Coriolis ivmesi ve saptırma kuvveti animasyonu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Kuzey Yarımküre orta enlem siklonik girdap ve Coriolis sapma rüzgâr döngüsü, 2024-02-10..15, 6 saatlik",
+   "aciklama": "Coriolis kuvveti etkisiyle oluşan siklonik hava akışının dinamik ızgara animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · FIZ 284 (Klasik Mekanik)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=FIZ&dersNo=284"
+  },
+  {
+   "ad": "Goldstein, H., Poole, C. & Safko, J. (2001) Classical Mechanics, 3. baskı, Addison-Wesley · ISBN 978-0201657029",
+   "url": "https://openlibrary.org/isbn/9780201657029"
+  },
+  {
+   "ad": "Taylor, J. R. (2005) Classical Mechanics, University Science Books · ISBN 978-1891389221",
+   "url": "https://openlibrary.org/isbn/9781891389221"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=FIZ&dersNo=284"
+}

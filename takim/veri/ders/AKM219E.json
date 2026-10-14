@@ -1,0 +1,156 @@
+{
+ "kod": "AKM 219E",
+ "ad": "Fluid Mechanics",
+ "bolum": "Uçak Mühendisliği",
+ "obsNo": "219E",
+ "ozet": "Akışkanların statik ve dinamik davranışını, integral ve diferansiyel korunum denklemlerini öğretir. Kütle, momentum (Navier-Stokes) ve enerji korunumu, Reynolds sayısı, laminer ve türbülanslı akışlar, sınır tabaka gelişimi, logaritmik hız profili, yüzey kayma gerilmesi ve aerodinamik sürükleme kuvvetleri ele alınır. Uçak aerodinamiği ve atmosferik sınır tabaka akışlarında temel mühendislik dersidir.",
+ "neOgrenirsin": [
+  "Kontrol hacmi analiziyle kütle ve momentum korunum denklemlerini uygulamak.",
+  "Navier-Stokes denklemlerini viskoz akışlar için ölçekleyip sadeleştirmek.",
+  "Prandtl sınır tabaka teorisiyle viskoz etki kalınlığını ve hız gradyanını hesaplamak.",
+  "Türbülanslı sınır tabakada logaritmik hız profili (Law of the Wall) bağıntısını kurmak.",
+  "Yüzey kayma gerilmesinden sürtünme hızını ve aerodinamik pürüzlülüğü bulmak.",
+  "Dinamik ve kinematik benzerlik kriterleriyle Reynolds sayısını hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Prandtl logaritmik sınır tabaka hız profili",
+   "tex": "u(z) = \\frac{u_*}{\\kappa} \\, \\ln\\left(\\frac{z}{z_0}\\right)",
+   "terimler": [
+    [
+     "u(z)",
+     "z yüksekliğindeki ortalama rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "u_*",
+     "sürtünme hızı (friction velocity)",
+     "m/s"
+    ],
+    [
+     "\\kappa",
+     "von Kármán sabiti (yaklaşık 0.40)",
+     "birimsiz"
+    ],
+    [
+     "z",
+     "yüzeyden itibaren dikey yükseklik",
+     "m"
+    ],
+    [
+     "z_0",
+     "aerodinamik yüzey pürüzlülük uzunluğu",
+     "m"
+    ]
+   ],
+   "sade": "Yere yakın atmosferik sınır tabakada rüzgâr hızının yükseklikle logaritmik olarak nasıl arttığını verir. Yüzey sürtünmesi rüzgârı yavaşlatırken, yükseldikçe sürtünme etkisi logaritmik olarak azalır.",
+   "ornek": "Sürtünme hızı u* = 0,4 m/s ve çim zemin pürüzlülüğü z0 = 0,05 m olan bir sahada z = 10 metredeki rüzgâr hızı yaklaşık 5,3 m/s bulunur.",
+   "nerede": "UCK-01 ve UCK-02'de drone dikey profillerinden yüzey sürtünme hızını ve pürüzlülüğü çıkarırken."
+  },
+  {
+   "ad": "Yüzey kayma gerilmesi ve sürtünme hızı",
+   "tex": "\\tau_0 = \\rho \\, u_*^2 = \\mu \\, \\left(\\frac{du}{dz}\\right)_{z=0}",
+   "terimler": [
+    [
+     "\\tau_0",
+     "yüzey kayma gerilmesi (shear stress)",
+     "N/m²"
+    ],
+    [
+     "\\rho",
+     "akışkan yoğunluğu (hava yoğunluğu)",
+     "kg/m³"
+    ],
+    [
+     "u_*",
+     "sürtünme hızı",
+     "m/s"
+    ],
+    [
+     "\\mu",
+     "dinamik viskozite katsayısı",
+     "kg/(m s)"
+    ],
+    [
+     "\\left(\\frac{du}{dz}\\right)_{z=0}",
+     "yüzeydeki dikey hız gradyanı",
+     "s⁻¹"
+    ]
+   ],
+   "sade": "Akışkanın katı yüzey üzerinde akarken uyguladığı sürtünme kuvvetini hız gradyanına ve sürtünme hızına bağlar. Uçağın gövde sürtünmesini ve rüzgârın zemine aktardığı momentum akısını belirler.",
+   "ornek": "Hava yoğunluğu rho = 1,225 kg/m³ ve sürtünme hızı u* = 0,3 m/s olduğunda zemin kayma gerilmesi tau0 = 0,11 Pa olarak hesaplanır.",
+   "nerede": "UCK-01 ve UCK-03'te pist yüzeyindeki rüzgâr kayması ve sürtünme kuvvetini hesaplarken."
+  },
+  {
+   "ad": "Reynolds sayısı benzerlik bağıntısı",
+   "tex": "Re = \\frac{\\rho \\, U \\, L}{\\mu} = \\frac{U \\, L}{\\nu}",
+   "terimler": [
+    [
+     "Re",
+     "Reynolds sayısı",
+     "birimsiz"
+    ],
+    [
+     "\\rho",
+     "akışkan yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "U",
+     "karakteristik akış hızı",
+     "m/s"
+    ],
+    [
+     "L",
+     "karakteristik geometrik uzunluk",
+     "m"
+    ],
+    [
+     "\\mu",
+     "dinamik viskozite",
+     "kg/(m s)"
+    ],
+    [
+     "\\nu",
+     "kinematik viskozite (mu/rho)",
+     "m²/s"
+    ]
+   ],
+   "sade": "Akışkandaki eylemsizlik kuvvetlerinin viskoz sürtünme kuvvetlerine oranını gösterir. Değer büyüdükçe akış laminer yapıdan türbülanslı ve kaotik girdaplı yapıya geçer.",
+   "ornek": "Kanat veteri L = 1,5 m olan bir İHA U = 30 m/s hızla uçarken Reynolds sayısı Re = 3.000.000 çıkarak türbülanslı sınır tabaka bölgesinde kalır.",
+   "nerede": "UCK-01 ve UCK-05'te drone ve kanat profillerinin etrafındaki akış rejimini saptarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Boundary_layer_turbulence.gif",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Katı yüzey üzerinde laminerden türbülanslıya geçen sınır tabaka akış animasyonu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi sınır tabaka yüksekliği ve 100 metre rüzgâr kayması döngüsü, 2024-04-15..20, 3 saatlik",
+   "aciklama": "Atmosferik sınır tabaka derinliği ve rüzgâr profilinin günlük döngüsünü gösteren dinamik ızgara animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · AKM 219E (Fluid Mechanics)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=AKM&dersNo=219E"
+  },
+  {
+   "ad": "White, F. M. (2015) Fluid Mechanics, 8. baskı, McGraw-Hill · ISBN 978-0073398273",
+   "url": "https://openlibrary.org/isbn/9780073398273"
+  },
+  {
+   "ad": "Munson, B. R. vd. (2013) Fundamentals of Fluid Mechanics, 7. baskı, Wiley · ISBN 978-1118116135",
+   "url": "https://openlibrary.org/isbn/9781118116135"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=AKM&dersNo=219E"
+}

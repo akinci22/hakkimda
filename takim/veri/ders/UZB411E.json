@@ -1,0 +1,141 @@
+{
+ "kod": "UZB 411E",
+ "ad": "Space Environment",
+ "bolum": "Uzay Mühendisliği",
+ "obsNo": "411E",
+ "ozet": "Dünya yakınındaki uzay ortamının fiziksel özelliklerini ve uzay araçları üzerindeki etkilerini öğretir. Güneş rüzgârı, manyetosfer, iyonosfer, termosfer yapısı, Van Allen radyasyon kuşakları, uzay havası fırtınaları ve kozmik ışınların uydu aviyonikleri ile yük sistemleri üzerindeki bozucu etkileri ele alınır. Küp-uydu ve uzay aracı tasarım kısıtları incelenir.",
+ "neOgrenirsin": [
+  "Güneş aktivitesi ve jeomanyetik fırtınaların üst atmosfer yoğunluğuna etkisini hesaplamak.",
+  "Van Allen radyasyon kuşaklarındaki yüklü parçacık akılarını ve uydu radyasyon dozunu kestirmek.",
+  "Termosferdeki atomik oksijen akısı ve yüzey erozyon hızını belirlemek.",
+  "Güneş paneli ve aviyoniklerde tekil olay bozulmalarını uzay ortamı verileriyle analiz etmek.",
+  "İyonosferik toplam elektron içeriği ile uydu sinyal gecikmelerini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Termosferik sürtünme ivmesi bağıntısı",
+   "tex": "a_d = -\\frac{1}{2} C_d \\frac{A}{m} \\rho v^2",
+   "terimler": [
+    [
+     "a_d",
+     "atmosferik sürtünme ivmesi",
+     "m/s²"
+    ],
+    [
+     "C_d",
+     "aerodinamik sürtünme katsayısı",
+     "birimsiz"
+    ],
+    [
+     "A/m",
+     "kesit alanı bölü uydu kütlesi",
+     "m²/kg"
+    ],
+    [
+     "\\rho",
+     "termosferik atmosfer yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "v",
+     "uydunun yörünge hızı",
+     "m/s"
+    ]
+   ],
+   "sade": "Alçak Dünya yörüngesindeki uyduların seyrek termosfer gazlarına çarpmasıyla oluşan frenleme kuvvetini hesaplar. Güneş fırtınalarında atmosfer genişleyip yoğunluk arttığında sürtünme katlanarak yörünge irtifasını hızla düşürür.",
+   "ornek": "400 km irtifada 3U küp-uydu için rho = 3×10⁻¹² kg/m³ ve v = 7660 m/s iken sürtünme ivmesi yaklaşık 1,9×10⁻⁵ m/s² çıkar; bu da uydunun günde onlarca metre irtifa kaybetmesine yol açar.",
+   "nerede": "Küp-uydu görev ömrü planlamasında ve güneş fırtınası kaynaklı yörünge bozunumunu hesaplarken."
+  },
+  {
+   "ad": "Toplam iyonlaştırıcı radyasyon dozu",
+   "tex": "D = \\frac{1}{\\rho_m} \\int_0^T \\int_E \\Phi(E) \\left( \\frac{dE}{dx} \\right) dE dt",
+   "terimler": [
+    [
+     "D",
+     "toplam absorbe edilen radyasyon dozu",
+     "Gy"
+    ],
+    [
+     "\\rho_m",
+     "hedef yarı iletken malzemenin yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "\\Phi(E)",
+     "enerjiye bağlı diferansiyel parçacık akısı",
+     "m⁻² s⁻¹ MeV⁻¹"
+    ],
+    [
+     "dE/dx",
+     "malzemedeki lineer enerji transferi",
+     "MeV/m"
+    ],
+    [
+     "t",
+     "yörüngedeki maruz kalma süresi",
+     "s"
+    ]
+   ],
+   "sade": "Van Allen kuşaklarından ve kozmik ışınlardan gelen yüklü parçacıkların uydu elektronik çiplerinde biriktirdiği toplam enerjiyi hesaplar. Doz eşiği aşıldığında mikrodenetleyiciler ve sensörler kalıcı olarak bozulur.",
+   "ornek": "Güneş eşzamanlı kutup yörüngesindeki bir küp-uydu 2 mm alüminyum kalkanla yılda yaklaşık 10 ila 15 Gy radyasyon dozu emer; bu da tüketici sınıfı elektroniklerin arıza sınırını belirler.",
+   "nerede": "Küp-uydu aviyonik bileşenlerinin kalkan kalınlığını ve radyasyon toleransını optimize ederken."
+  },
+  {
+   "ad": "İyonosferik sinyal gecikmesi bağıntısı",
+   "tex": "\\Delta t = \\frac{40{,}3}{c \\, f^2} \\mathrm{TEC}",
+   "terimler": [
+    [
+     "\\Delta t",
+     "iyonosferik sinyal gecikme süresi",
+     "s"
+    ],
+    [
+     "c",
+     "ışık hızı (3 × 10⁸ m/s)",
+     "m/s"
+    ],
+    [
+     "f",
+     "iletişim taşıyıcı frekansı",
+     "Hz"
+    ],
+    [
+     "\\mathrm{TEC}",
+     "toplam elektron içeriği",
+     "m⁻²"
+    ]
+   ],
+   "sade": "Güneş ışınlarıyla iyonlaşan üst atmosferdeki serbest elektronların radyo ve uydu sinyallerini yavaşlatma süresini belirler. Frekans düştükçe veya elektron yoğunluğu arttıkça sinyal gecikmesi ve konum hatası büyür.",
+   "ornek": "L-bandı 1,575 GHz GPS frekansında 50 TECU (5×10¹⁷ el/m²) değerinde bir iyonosferik geçiş yaklaşık 27 nanosaniye gecikme ve 8,1 metre mesafe hatası yaratır.",
+   "nerede": "Küp-uydu yer istasyonu telemetri bağlantısında ve GPS tabanlı yörünge tayininde sinyal düzeltmesi yaparken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Van_Allen_radiation_belt_model.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Dünya manyetosferindeki Van Allen iç ve dış radyasyon kuşakları ve yüklü parçacık dağılımı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Güneş diski X-ışını parlaması ve proton akısı artışı, GOES-16, 2024-05-10, 1 saatlik",
+   "aciklama": "Şiddetli jeomanyetik fırtına öncesi güneş patlamasının uzay ortamı radyasyon akılarına etkisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · UZB 411E (Space Environment)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=UZB&dersNo=411E"
+  },
+  {
+   "ad": "Hastings, D. ve Garrett, H. (2004) Spacecraft-Environment Interactions, Cambridge University Press · DOI 10.1017/CBO9780511525032",
+   "url": "https://doi.org/10.1017/CBO9780511525032"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=UZB&dersNo=411E"
+}

@@ -1,0 +1,146 @@
+{
+ "kod": "MAT 234",
+ "ad": "Kısmi Diferansiyel Denklemler",
+ "bolum": "Matematik Mühendisliği",
+ "obsNo": "234",
+ "ozet": "Birinci ve ikinci mertebeden kısmi diferansiyel denklemlerin sınıflandırılması, analitik ve sayısal çözüm yöntemlerini öğretir. Dalga, ısı ve Laplace denklemleri, d'Alembert çözümü, Fourier değişkenlerine ayırma ve CFL kararlılık kriteri ele alınır. Atmosferik dalgaların ve akışkan hareketlerinin kuramsal analizinde temel matematiksel omurgayı oluşturur.",
+ "neOgrenirsin": [
+  "Kısmi diferansiyel denklemleri hiperbolik, parabolik ve eliptik olarak sınıflandırmak.",
+  "Karakteristikler yöntemi ve d'Alembert formülü ile dalga denklemini çözmek.",
+  "Değişkenlerine ayırma ve Fourier serileri ile sınır değer problemlerini çözmek.",
+  "Sonlu farklar yöntemi ile hiperbolik denklemleri zaman ve uzayda ayrıklaştırmak.",
+  "Courant-Friedrichs-Lewy (CFL) kararlılık koşulu ile sayısal patlamaları engellemek.",
+  "Von Neumann kararlılık analizi ile sayısal yayılım ve sönümleme hatalarını hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Courant-Friedrichs-Lewy (CFL) kararlılık koşulu",
+   "tex": "C = \\frac{u \\, \\Delta t}{\\Delta x} \\le C_{\\max}",
+   "terimler": [
+    [
+     "C",
+     "Courant sayısı",
+     "birimsiz"
+    ],
+    [
+     "u",
+     "dalga yayılma hızı veya akış hızı",
+     "m/s"
+    ],
+    [
+     "\\Delta t",
+     "zaman adımı boyutu",
+     "s"
+    ],
+    [
+     "\\Delta x",
+     "uzaysal ızgara adımı boyutu",
+     "m"
+    ],
+    [
+     "C_{\\max}",
+     "sayısal şemanın kararlılık sınırı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Bilgisayarın bir adımda hesapladığı bilgi, dalganın gerçekte gittiği mesafeden daha yavaş kalmamalıdır. Zaman adımı çok büyük seçilirse sayısal çözüm sonsuza patlar.",
+   "ornek": "Sığ su denkleminde dalga hızı u = 20 m/s ve ızgara adımı Delta x = 1000 m iken, CFL <= 1 şartı için zaman adımı Delta t en fazla 50 saniye seçilebilir.",
+   "nerede": "MAT-03'te 1D sığ su çözücüsünün zaman adımını patlama noktasına kadar büyütüp test ederken."
+  },
+  {
+   "ad": "Bir boyutlu dalga denklemi d'Alembert çözümü",
+   "tex": "u(x, t) = \\frac{1}{2}\\left[f(x - ct) + f(x + ct)\\right] + \\frac{1}{2c}\\int_{x-ct}^{x+ct} g(s)\\,ds",
+   "terimler": [
+    [
+     "u(x, t)",
+     "t anında ve x konumundaki dalga genliği",
+     "m"
+    ],
+    [
+     "c",
+     "dalga faz yayılma hızı",
+     "m/s"
+    ],
+    [
+     "f(x - ct)",
+     "sağa doğru ilerleyen dalga profili",
+     "m"
+    ],
+    [
+     "f(x + ct)",
+     "sola doğru ilerleyen dalga profili",
+     "m"
+    ],
+    [
+     "g(s)",
+     "başlangıç dikey hız dağılımı",
+     "m/s"
+    ],
+    [
+     "s",
+     "entegrasyon değişkeni",
+     "m"
+    ]
+   ],
+   "sade": "Başlangıçta oluşan bir dalganın sağa ve sola eşit hızla yayılan iki ayrı dalga paketine ayrışacağını analitik olarak gösterir.",
+   "ornek": "Su yüzeyinde t=0 anında 1 metre yüksekliğinde bir tepe bırakıldığında, dalga c = 10 m/s hızıyla ikiye ayrılarak her yöne 0,5 metre genlikle yayılır.",
+   "nerede": "MAT-03 ve MAT-04'te sayısal çözücünün ilk adımlarını analitik dalga çözümüyle kıyaslayıp doğrularken."
+  },
+  {
+   "ad": "Sığ su denklemleri yerçekimi dalgası faz hızı",
+   "tex": "c = \\sqrt{g \\, H}",
+   "terimler": [
+    [
+     "c",
+     "yerçekimi dalgası faz hızı",
+     "m/s"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi (9,81 m/s²)",
+     "m/s²"
+    ],
+    [
+     "H",
+     "akışkanın ortalama denge derinliği",
+     "m"
+    ]
+   ],
+   "sade": "Sığ su yüzeyinde yayılan dalgaların hızının yalnızca su derinliğine ve yerçekimine bağlı olduğunu söyler. Su ne kadar derinse dalga o kadar hızlı koşar.",
+   "ornek": "Ortalama kalınlığı H = 1000 metre olan bir tabakada, yerçekimi dalgası hızı c = sqrt(9,81 * 1000) ≈ 99 m/s olarak hesaplanır.",
+   "nerede": "MAT-03'te CFL kararlılık kriterinde kullanılan dalga hızını belirlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wave_packet.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Dalga paketi yayılımı ve grup hızı ile faz hızı ayrışımı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Akdeniz 1D sığ su serbest yüzey salınımı ve CFL kararlılık sınırı, sentetik dalga, 2024-01-01, dakikalık",
+   "aciklama": "Bir boyutlu sığ su denkleminde zaman adımına bağlı dalga yayılımı ve CFL patlaması animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MAT 234 (Kısmi Diferansiyel Denklemler)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=234"
+  },
+  {
+   "ad": "Strauss, W. A. (2007) Partial Differential Equations: An Introduction, 2. baskı, Wiley · ISBN 978-0470054567",
+   "url": "https://openlibrary.org/isbn/9780470054567"
+  },
+  {
+   "ad": "LeVeque, R. J. (2002) Finite Volume Methods for Hyperbolic Problems, Cambridge University Press · DOI 10.1017/CBO9780511791246",
+   "url": "https://doi.org/10.1017/CBO9780511791246"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=234"
+}
