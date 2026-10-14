@@ -1,0 +1,242 @@
+{
+ "kod": "BLG 202E",
+ "ad": "Numerical Methods in CE",
+ "bolum": "Bilgisayar Mühendisliği",
+ "obsNo": "202",
+ "ozet": "Bilgisayarın tam çözemediği problemleri yaklaşık ama hatası ölçülü biçimde çözmeyi öğretir. Kök bulma, doğrusal sistemler, enterpolasyon, eğri uydurma, sayısal türev ve integral; dört ödevin hepsi Python'da yazılır. Hava verisiyle çalışan her projenin arkasındaki hesap mutfağıdır.",
+ "neOgrenirsin": [
+  "Kayan noktalı sayının nerede yanıldığını görmek; hatayı ölçmek ve kodda sınırlamak.",
+  "Doğrusal olmayan bir denklemin kökünü Bisection, Newton-Raphson ve Secant ile bulmak.",
+  "Doğrusal denklem sistemlerini Gauss eliminasyonu ve LU ayrıştırmasıyla çözmek.",
+  "Özdeğer, özvektör ve tekil değer ayrışımını (SVD) veri sıkıştırma gibi işlerde kullanmak.",
+  "Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak.",
+  "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Newton-Raphson kök bulma",
+   "tex": "x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}",
+   "terimler": [
+    [
+     "x_n",
+     "n. adımdaki tahmin (kökün yaklaşık değeri)",
+     "problemin birimi; çiy noktasında °C"
+    ],
+    [
+     "x_{n+1}",
+     "bir sonraki, daha iyi tahmin",
+     "aynı birim"
+    ],
+    [
+     "f(x_n)",
+     "sıfır yapmak istediğimiz fonksiyonun o noktadaki değeri",
+     "örnekte hPa"
+    ],
+    [
+     "f'(x_n)",
+     "fonksiyonun o noktadaki türevi, eğrinin eğimi",
+     "örnekte hPa/°C"
+    ],
+    [
+     "n",
+     "adım sayacı: 0, 1, 2 …",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Bir eğrinin sıfırı geçtiği yeri arıyoruz. Bulunduğumuz noktadan teğet çizip teğetin ekseni kestiği yere atlıyoruz. Her atlama hatayı yaklaşık karesi kadar küçültür; 3-4 adım çoğu zaman yeter.",
+   "ornek": "İstanbul'da tipik bir yaz öğleni: 30 °C, bağıl nem %60. Havadaki buhar basıncı 25,5 hPa; çiy noktası, doygun buhar basıncını (Bolton formülü) 25,5 hPa yapan sıcaklıktır. Başlangıç 30 °C alınınca adımlar 23,0 → 21,5 → 21,4 °C; üçüncü adımda hata 0,01 °C'nin altına iner. Kapalı çözüm de 21,4 °C verir.",
+   "nerede": "BLG-04 kampüs panelinde sıcaklık ve nemden çiy noktası hesaplarken. BLG-01'de modelin kaybını küçülten gradyan adımı da aynı 'türevle ilerle' mantığıdır."
+  },
+  {
+   "ad": "Lagrange enterpolasyonu",
+   "tex": "P(x) = \\sum_{i=0}^{n} y_i \\prod_{j \\ne i} \\frac{x - x_j}{x_i - x_j}",
+   "terimler": [
+    [
+     "P(x)",
+     "bilinen noktaların hepsinden geçen polinomun x'teki değeri",
+     "örnekte °C"
+    ],
+    [
+     "x",
+     "değerini istediğimiz ara nokta",
+     "örnekte saat"
+    ],
+    [
+     "x_i, x_j",
+     "bilinen noktaların konumları (i hedef nokta, j diğerleri)",
+     "saat"
+    ],
+    [
+     "y_i",
+     "x_i noktasındaki bilinen değer",
+     "°C"
+    ],
+    [
+     "\\prod_{j \\ne i}",
+     "i dışındaki tüm j'ler için çarpım; i. noktanın ağırlığı L_i(x)",
+     "birimsiz, ağırlıklar toplamı 1"
+    ],
+    [
+     "\\sum_{i=0}^{n}",
+     "n+1 noktanın ağırlıklı toplamı",
+     "°C"
+    ],
+    [
+     "n",
+     "nokta sayısının bir eksiği (polinomun derecesi)",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Elinde birkaç saatin değeri var, aradaki saati istiyorsun. Her bilinen noktaya bir ağırlık veriliyor; hedefe yakın nokta büyük, uzak nokta küçük hatta negatif ağırlık alıyor. Ağırlıklı toplam, tüm noktalardan geçen tek eğrinin aradaki değeridir.",
+   "ornek": "Open-Meteo ERA5 arşivine göre İstanbul'da 15 Temmuz 2024 (yerel saat): 12:00'de 31,4, 15:00'te 31,9, 18:00'de 29,2 °C. Üç saatlik bu noktalardan 13:30'u istiyoruz. Ağırlıklar 0,375 · 0,75 · −0,125; sonuç 32,1 °C. Aynı veride 13:00 için parabol 31,9 °C verir; gerçek değer 32,3. İki noktayı düz çizgiyle birleştirmek 31,6 °C ile daha çok sapar.",
+   "nerede": "BLG-01'de 3 saatlik ECMWF açık tahminini ERA5'in saatlik serisiyle hizalarken. BLG-04'te sensörün atladığı saatleri doldururken; 4-5 noktadan fazlası salınım yapar, parça parça uygulanır."
+  },
+  {
+   "ad": "En küçük kareler (doğru uydurma)",
+   "tex": "y_i \\approx \\beta_0 + \\beta_1 x_i, \\quad \\hat{\\beta} = (\\mathbf{X}^{\\top}\\mathbf{X})^{-1}\\mathbf{X}^{\\top}\\mathbf{y}",
+   "terimler": [
+    [
+     "x_i",
+     "i. saatteki ham tahmin (girdi)",
+     "°C"
+    ],
+    [
+     "y_i",
+     "i. saatteki gözlem ya da yeniden analiz değeri (hedef)",
+     "°C"
+    ],
+    [
+     "\\beta_0",
+     "kesme: sabit sapmayı taşıyan katsayı",
+     "°C"
+    ],
+    [
+     "\\beta_1",
+     "eğim: tahmin 1 °C artınca gözlem kaç °C artar",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{X}",
+     "her satırı [1, x_i] olan N×2 tasarım matrisi",
+     "ikinci sütun °C"
+    ],
+    [
+     "\\mathbf{y}",
+     "N gözlemin sütun vektörü",
+     "°C"
+    ],
+    [
+     "\\hat{\\beta}",
+     "hata karelerinin toplamını en küçük yapan katsayı çifti",
+     "°C ve birimsiz"
+    ],
+    [
+     "^{\\top}",
+     "devrik (transpoz): satırla sütunun yer değiştirmesi",
+     "—"
+    ],
+    [
+     "^{-1}",
+     "2×2 matrisin tersi; normal denklemlerin çözümü",
+     "—"
+    ]
+   ],
+   "sade": "Noktaların arasından, hepsine toplamda en az 'kare uzaklıkta' kalan doğruyu geçiriyoruz. Kesme sabit sapmayı, eğim ölçek hatasını düzeltir. Sağdaki matris ifadesi aynı işi tek satırda, binlerce nokta için yapar.",
+   "ornek": "28 Eylül–10 Ekim 2026, İstanbul: Open-Meteo'nun bir gün önceki sıcaklık tahmini ERA5 ile 312 saat eşleştirildi. Tahmin ortalama 0,5 °C ılık çıktı. Uydurulan doğru: gözlem ≈ −0,35 + 0,991 × tahmin. Bu düzeltmeyle RMSE 0,86'dan 0,69 °C'ye iner; yıllarca veriyle kurulan sürümü MOS (model çıktı istatistiği) olur.",
+   "nerede": "BLG-02'nin özü: tahmin–gözlem çiftlerinden sapma düzeltme doğrusu. BLG-01'de en basit model olarak ilk çıta; makine öğrenmesi önce bunu geçmeli."
+  },
+  {
+   "ad": "RMSE (kök ortalama kare hata)",
+   "tex": "\\mathrm{RMSE} = \\sqrt{\\frac{1}{N}\\sum_{i=1}^{N}\\left(F_i - O_i\\right)^2}",
+   "terimler": [
+    [
+     "\\mathrm{RMSE}",
+     "tahmin hatasının tek sayıya inmiş ölçüsü; büyük hatayı daha çok cezalandırır",
+     "°C"
+    ],
+    [
+     "N",
+     "karşılaştırılan saat (çift) sayısı",
+     "birimsiz"
+    ],
+    [
+     "F_i",
+     "i. saat için tahmin (forecast)",
+     "°C"
+    ],
+    [
+     "O_i",
+     "i. saat için gözlem ya da ERA5 değeri (observation)",
+     "°C"
+    ],
+    [
+     "(F_i - O_i)^2",
+     "o saatin hata karesi; işaret kaybolur, büyük hata büyür",
+     "°C²"
+    ],
+    [
+     "\\sum, \\sqrt{\\,}",
+     "topla ve ortalamasını al, sonra kareyi geri aç",
+     "—"
+    ]
+   ],
+   "sade": "Her saat için tahminden gözlemi çıkar, kare al, hepsinin ortalamasını al, karekökünü al. Çıkan sayı 'tipik olarak kaç derece yanılıyoruz' demektir. Birkaç büyük hata, çok sayıda küçük hatadan daha ağır sayılır.",
+   "ornek": "Aynı 312 saatlik İstanbul karşılaştırmasında bir gün önceki tahminin RMSE'si 0,86 °C çıktı. Ortalama mutlak hata 0,69 °C, en büyük tek hata 2,6 °C. Bunlar sakin sonbahar günleri. Yıl geneline ve cephe geçişlerine yayılınca 2 m sıcaklıkta 24 saatlik RMSE tipik olarak 1-2 °C olur.",
+   "nerede": "BLG-01'de ML ile ECMWF'yi yarıştıran tek sayı; her gün için ayrı hesaplanıp zaman serisi çizilir. BLG-05'te Türkiye'de her ızgara hücresi için hesaplanıp 'hata nerede büyük' haritasına dönüşür."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:NewtonIteration_Ani.gif",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Newton-Raphson adımları: her teğet, ekseni kestiği yere atlıyor ve köke yaklaşıyor; hareketli çizim"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Lagrange_polynomial.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Dört noktanın hepsinden geçen Lagrange polinomu ve onu oluşturan ağırlık eğrileri"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul 2 m sıcaklık, ERA5 ile bir gün önceki Open-Meteo tahmini, 2026-09-28..10-10, saatlik; fark çizgisi ve RMSE",
+   "aciklama": "Tahmin ile ERA5 üst üste, altta saatlik fark; sağda ilerledikçe güncellenen RMSE sayacı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · BLG 202 / 202E",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BLG&dersNo=202"
+  },
+  {
+   "ad": "Ascher & Greif (2011) A First Course on Numerical Methods, SIAM · dersin kitabı · DOI 10.1137/9780898719987",
+   "url": "https://doi.org/10.1137/9780898719987"
+  },
+  {
+   "ad": "Chapra & Canale, Numerical Methods for Engineers, 7. baskı, McGraw-Hill · ISBN 978-0-07-339792-4",
+   "url": "https://openlibrary.org/isbn/9780073397924"
+  },
+  {
+   "ad": "Cheney & Kincaid (2008) Numerical Mathematics and Computing, 6. baskı · ISBN 978-0-495-11475-8",
+   "url": "https://openlibrary.org/isbn/9780495114758"
+  },
+  {
+   "ad": "Bolton (1980) doygun buhar basıncı formülü, Mon. Wea. Rev. 108 · DOI 10.1175/1520-0493(1980)108<1046:TCOEPT>2.0.CO;2",
+   "url": "https://doi.org/10.1175/1520-0493(1980)108%3C1046:TCOEPT%3E2.0.CO;2"
+  },
+  {
+   "ad": "Open-Meteo Historical Weather API (ERA5 saatlik, İstanbul 41.01N 28.97E)",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  },
+  {
+   "ad": "Open-Meteo Previous Runs API (bir gün önceki tahmin çalıştırması)",
+   "url": "https://open-meteo.com/en/docs/previous-runs-api"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BLG&dersNo=202"
+}

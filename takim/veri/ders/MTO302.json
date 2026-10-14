@@ -1,0 +1,233 @@
+{
+ "kod": "MTO 302",
+ "ad": "Hava Analizi ve Öngörü I",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "302",
+ "ozet": "Günlük havayı yapan orta enlem sistemlerini haritadan okumayı ve yarını öngörmeyi öğretir. İstasyon modeli, yüzey ve üst hava analizi, cepheler, Skew-T diyagramı, radar ve uydu görüntüsü, jeostrofik rüzgâr, adveksiyon ve girdap tek bir soruya bağlanır: yağmur nereye, ne zaman, ne kadar? Dönem boyunca günlük tahmin hazırlanır ve bir hava brifingi verilir.",
+ "neOgrenirsin": [
+  "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak.",
+  "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek.",
+  "Skew-T diyagramından kararsızlığı, bulut tabanını ve yağış türünü (yağmur, kar, karla karışık) kestirmek.",
+  "Radar ve uydu görüntüsünü haritayla birlikte yorumlayıp aktif havanın nerede olacağını söylemek.",
+  "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek.",
+  "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+ ],
+ "formuller": [
+  {
+   "ad": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+   "tex": "Z_2 - Z_1 = \\frac{R_d \\, \\bar{T}_v}{g} \\ln\\frac{p_1}{p_2}",
+   "terimler": [
+    [
+     "Z_2 - Z_1",
+     "iki basınç yüzeyi arasındaki yükseklik farkı, yani tabakanın kalınlığı",
+     "m (haritada dam = 10 m)"
+    ],
+    [
+     "R_d",
+     "kuru hava için gaz sabiti",
+     "287 J/(kg·K)"
+    ],
+    [
+     "\\bar{T}_v",
+     "tabakanın ortalama sanal sıcaklığı; nem payı eklenmiş sıcaklık",
+     "K"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "9,81 m/s²"
+    ],
+    [
+     "p_1",
+     "alt basınç yüzeyi (örnekte 1000 hPa)",
+     "hPa"
+    ],
+    [
+     "p_2",
+     "üst basınç yüzeyi (örnekte 500 hPa)",
+     "hPa"
+    ],
+    [
+     "\\ln",
+     "doğal logaritma; 1000/500 için 0,693",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Sıcak hava genleşir, soğuk hava büzülür. O yüzden iki basınç yüzeyi arasındaki mesafe tabakanın sıcaklığını söyler: kalınlık büyükse tabaka sıcak, küçükse soğuk. Tek bir sayıya bakıp 'bu hava kar getirir mi' sorusuna ilk cevabı veririz.",
+   "ornek": "1000-500 hPa tabakasının ortalama sanal sıcaklığı −7 °C (266 K) ise kalınlık 287 × 266 / 9,81 × 0,693 ≈ 5390 m, yani 539 dam. Orta enlemlerde 540 dam çizgisi klasik yağmur-kar sınırı olarak kullanılır: 0 °C'lik tabaka 554 dam, −15 °C'lik tabaka 523 dam verir. İstanbul için kar tahmininde bu çizginin şehrin kuzeyinde mi güneyinde mi kaldığına bakılır.",
+   "nerede": "END-01'de kar beklenen günleri rotadan önce ayıklarken ilk eleme. MTO-01 karnesinde kar-yağmur ayrımının yanlış çıktığı günleri kalınlıkla açıklarken."
+  },
+  {
+   "ad": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+   "tex": "V_g = \\frac{g}{f}\\,\\frac{\\Delta Z}{\\Delta n}, \\qquad f = 2\\Omega \\sin\\varphi",
+   "terimler": [
+    [
+     "V_g",
+     "jeostrofik rüzgâr hızı; basınç kuvvetiyle Coriolis'in dengelendiği rüzgâr",
+     "m/s"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "9,81 m/s²"
+    ],
+    [
+     "f",
+     "Coriolis parametresi; enlemle büyür, ekvatorda sıfır",
+     "s⁻¹ (41° K için ≈ 9,6 × 10⁻⁵)"
+    ],
+    [
+     "\\Delta Z",
+     "iki komşu yükseklik konturu arasındaki fark",
+     "m (500 hPa haritasında genelde 60 m)"
+    ],
+    [
+     "\\Delta n",
+     "konturlara dik yöndeki uzaklık; konturlar sıkışınca küçülür",
+     "m"
+    ],
+    [
+     "\\Omega",
+     "Dünya'nın dönme hızı",
+     "7,292 × 10⁻⁵ rad/s"
+    ],
+    [
+     "\\varphi",
+     "enlem",
+     "derece"
+    ]
+   ],
+   "sade": "Üst hava haritasında konturlar ne kadar sık, rüzgâr o kadar sert. Rüzgâr konturlara paralel eser; Kuzey Yarımküre'de alçak yükseklik solda kalır. Tek bir cetvelle, rüzgâr oku olmayan haritadan bile rüzgârı tahmin ederiz.",
+   "ornek": "İstanbul enleminde (41° K) f ≈ 9,6 × 10⁻⁵ s⁻¹. 500 hPa haritasında 60 m'lik iki kontur arası 300 km ölçülürse V_g = (9,81 / 9,6 × 10⁻⁵) × (60 / 300 000) ≈ 20 m/s, yani 74 km/sa ya da 40 knot. Konturlar 150 km'ye sıkışırsa hız ikiye katlanıp 40 m/s'ye çıkar; bu, jet akımı sınırıdır. Gerçek rüzgâr, oluk ve sırtlardaki eğrilik yüzünden bundan yüzde 10-20 sapar.",
+   "nerede": "GEM-01'de yüzey rüzgârı eksikken basınç haritasından rüzgârı kestirip dalga tahminine girdi yaparken. BLG-05'te YZ tahmininin 500 hPa alanının dengeli olup olmadığını kontrol ederken."
+  },
+  {
+   "ad": "Sıcaklık adveksiyonu",
+   "tex": "\\left(\\frac{\\partial T}{\\partial t}\\right)_{adv} = -\\mathbf{V} \\cdot \\nabla T = -\\left(u\\frac{\\partial T}{\\partial x} + v\\frac{\\partial T}{\\partial y}\\right)",
+   "terimler": [
+    [
+     "(\\partial T / \\partial t)_{adv}",
+     "yalnız rüzgârın taşımasından kaynaklanan yerel sıcaklık değişimi",
+     "K/s (pratikte °C/saat)"
+    ],
+    [
+     "\\mathbf{V}",
+     "yatay rüzgâr vektörü; bileşenleri u (doğu) ve v (kuzey)",
+     "m/s"
+    ],
+    [
+     "\\nabla T",
+     "sıcaklığın yatay eğimi; soğuktan sıcağa değil, sıcağa doğru artış yönü",
+     "K/m"
+    ],
+    [
+     "u, v",
+     "rüzgârın doğuya ve kuzeye doğru bileşenleri",
+     "m/s"
+    ],
+    [
+     "\\partial T / \\partial x, \\partial T / \\partial y",
+     "sıcaklığın doğu ve kuzey yönündeki değişim hızı",
+     "K/m"
+    ],
+    [
+     "-",
+     "eksi işareti: rüzgâr sıcaktan soğuğa eserse ısınma (sıcak adveksiyon)",
+     "—"
+    ]
+   ],
+   "sade": "Rüzgâr sıcak havayı bulunduğun yere taşıyorsa ısınırsın, soğuk havayı taşıyorsa soğursun. Formül bunu sayıya döker: rüzgâr hızı çarpı sıcaklığın mesafeyle değişimi. Haritada izotermleri kesen rüzgâr okları varsa adveksiyon vardır; paralel esiyorsa yoktur.",
+   "ornek": "850 hPa'da güneyden 10 m/s rüzgâr esiyor ve sıcaklık güneye doğru her 500 km'de 5 °C artıyor olsun. Adveksiyon = −(10 × (−5 / 500 000)) = 1 × 10⁻⁴ K/s, yani saatte 0,36 °C, 12 saatte yaklaşık 4 °C ısınma. Yalnız taşımadan gelen bu değer; gerçek değişim karışma ve yükselme soğumasıyla daha küçük çıkar. Lodos günlerinde İstanbul için tipik bir sıcak adveksiyon düzeni budur.",
+   "nerede": "MTO-01'de tahminin sıcaklıkta şaştığı günleri 'adveksiyonu kaçırmış mı' diye sınıflarken. MAT-01 ve BLG-01'de rüzgâr yönü ve sıcaklık gradyanını yapay zekâya özellik olarak verirken."
+  },
+  {
+   "ad": "Bağıl girdap ve girdap adveksiyonu",
+   "tex": "\\zeta = \\frac{\\partial v}{\\partial x} - \\frac{\\partial u}{\\partial y}, \\qquad \\eta = \\zeta + f",
+   "terimler": [
+    [
+     "\\zeta",
+     "bağıl girdap; havanın yere göre kendi etrafında dönme hızı, Kuzey Yarımküre'de saat yönü tersi pozitif",
+     "s⁻¹ (500 hPa'da tipik 10⁻⁵ - 10⁻⁴)"
+    ],
+    [
+     "\\partial v / \\partial x",
+     "kuzey bileşeninin doğuya doğru değişimi",
+     "s⁻¹"
+    ],
+    [
+     "\\partial u / \\partial y",
+     "doğu bileşeninin kuzeye doğru değişimi",
+     "s⁻¹"
+    ],
+    [
+     "\\eta",
+     "mutlak girdap; bağıl girdap artı Dünya'nın dönmesi",
+     "s⁻¹"
+    ],
+    [
+     "f",
+     "Coriolis parametresi",
+     "s⁻¹ (41° K için ≈ 9,6 × 10⁻⁵)"
+    ],
+    [
+     "u, v",
+     "doğuya ve kuzeye doğru rüzgâr bileşenleri",
+     "m/s"
+    ]
+   ],
+   "sade": "Girdap, havanın ne kadar döndüğünü ölçer; oluklarda büyük, sırtlarda küçük hatta negatiftir. Rüzgâr büyük girdabı önüne taşıyorsa (pozitif girdap adveksiyonu) orada hava yükselir, bulut ve yağış kurulur. Oluğun önü ıslak, arkası kuru: bu kuralın sayısal hali.",
+   "ornek": "500 hPa'da bir oluğun batısında rüzgâr kuzeyden 10 m/s (v = −10), 1000 km doğusunda güneyden 10 m/s (v = +10) olsun. ∂v/∂x = 20 / 1 000 000 = 2 × 10⁻⁵ s⁻¹; ikinci terim küçükse ζ ≈ 2 × 10⁻⁵ s⁻¹, yani f'nin beşte biri. Oluk ekseni İstanbul'un batısındayken bu girdap doğuya, şehrin üstüne taşınır; 5-6 Eylül 2023 selinde Balkanlar üzerindeki kesik alçak tam bu düzeni kurdu.",
+   "nerede": "MTO-02 vaka çalışmasında selin üst hava desenini anlatırken ana araç. BLG-03'te radar hareketinin bir sonraki iki saatte hangi yöne süreceğini üst hava rüzgârıyla sınarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Geostrophic_Wind_Diagram.svg",
+   "lisans": "CC0",
+   "aciklama": "Jeostrofik denge: basınç gradyan kuvveti ile Coriolis kuvveti eşit ve zıt, rüzgâr konturlara paralel esiyor"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Skewt-KILN_12zP.png",
+   "lisans": "kamu malı",
+   "aciklama": "Bir radyosonda ölçümünün Skew-T log-P diyagramı: sıcaklık, çiy noktası ve rüzgâr profili; kararsızlık alanı gözle görülüyor"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye ve Balkanlar, 500 hPa jeopotansiyel yükseklik + 850 hPa sıcaklık, ERA5, 2023-09-03..07, 6 saatlik",
+   "aciklama": "Kesik alçağın Balkanlar'dan Marmara'ya inişi; konturlar sıklaşırken 5-6 Eylül İstanbul seli kuruluyor"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 302 / 302E (Hava Analizi ve Öngörü I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=302"
+  },
+  {
+   "ad": "Djuric, D. (1994) Weather Analysis, Prentice Hall · dersin kitabı · ISBN 978-0-13-501149-2",
+   "url": "https://openlibrary.org/isbn/9780135011492"
+  },
+  {
+   "ad": "Vasquez, T. (2011) Weather Analysis and Forecasting Handbook, Weather Graphics · ISBN 978-0-9832533-0-3",
+   "url": "https://openlibrary.org/isbn/9780983253303"
+  },
+  {
+   "ad": "COMET MetEd modülleri (derste bilgisayar uygulaması olarak kullanılıyor)",
+   "url": "https://www.meted.ucar.edu"
+  },
+  {
+   "ad": "Copernicus CDS · ERA5 saatlik basınç seviyesi verisi (500 hPa yükseklik, 850 hPa sıcaklık ve rüzgâr)",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+  },
+  {
+   "ad": "Open-Meteo Historical Weather API (ERA5 saatlik yüzey verisi, İstanbul 41.01N 28.97E)",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=302"
+}

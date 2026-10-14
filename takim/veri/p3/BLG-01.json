@@ -1,0 +1,558 @@
+{
+ "id": "BLG-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "BLG",
+  "bolum": "Bilgisayar Mühendisliği",
+  "fakulteKod": "BBF"
+ },
+ "ad": "ERA5 ile İstanbul 24 saatlik sıcaklık: ML vs ECMWF",
+ "ne": "Kendi makine öğrenmesi tahminimiz ile ECMWF'nin açık tahminini aynı günlerde yarıştırıyoruz.",
+ "adimlar": [
+  "ERA5'ten 2015-2024 İstanbul saatlik sıcaklığını indir",
+  "24 saat sonrasını tahmin eden basit bir model eğit",
+  "Aynı günler için ECMWF açık tahminini indir",
+  "İkisinin hatasını tek grafikte karşılaştır"
+ ],
+ "sonuc": "Sonunda karşılaştırma grafiği ve kodu olan bir defter olur.",
+ "senden": "BLG 202E Numerical Methods",
+ "bizden": "Doğru karşılaştırma yöntemi ve tahmin doğrulama bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "BLG 202E",
+    "ad": "Numerical Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "WeatherBench 2 (Google)",
+   "ne": "Yapay zekâ ve klasik tahminleri aynı ölçütlerle yarıştıran açık bir karşılaştırma ortamı.",
+   "url": "https://github.com/google-research/weatherbench2",
+   "ayrinti": {
+    "neYaptilar": "Google Research, ECMWF'den araştırmacılarla birlikte 2023'te hava tahmin modellerini adil biçimde karşılaştıran açık bir çerçeve kurdu. Ölçüt, veri ve kod herkese açık; sonuçlar sürekli güncellenen bir karne sayfasında duruyor. Makalesi 2024'te JAMES dergisinde çıktı (Rasp vd.). Soru basit: yeni bir model ECMWF'nin HRES'inden gerçekten daha mı iyi?",
+    "nasil": "Gerçek diye ERA5 yeniden analizi alınıyor; her model aynı başlangıç günlerinden 1-15 gün ileriye koşturuluyor. Ana ölçüt küresel RMSE (kök ortalama kare hata), olasılıklı modeller için CRPS. Sıcaklık, rüzgâr ve jeopotansiyel gibi değişkenler için ayrı karne (scorecard) çiziliyor. Veri bulutta Zarr biçiminde, kod Apache 2.0 lisanslı Python.",
+    "neEdindiler": "GraphCast, Pangu-Weather, Aurora, FuXi, NeuralGCM ve GenCast gibi modeller IFS HRES ile tek tabloda karşılaştırılabilir oldu. Yayın: Rasp vd. 2024, JAMES 16(6). Alanın ortak dili: herkes aynı ölçütle konuşuyor.",
+    "bizNasilKatki": "Bizim projemiz WeatherBench'in tek şehirlik, tek değişkenli küçük bir kopyası olur: aynı ölçüt (RMSE), aynı gerçek (ERA5), aynı dürüst karşılaştırma. Haftada 1-2 saatle önce kendi İstanbul karnemizi çıkarırız. Sonra WeatherBench'in Zarr verisinden İstanbul hücresini çekip GraphCast'in bizim şehirde ne yaptığına bakabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Rasp vd. 2024, WeatherBench 2, JAMES 16(6) · DOI 10.1029/2023MS004019",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     },
+     {
+      "ad": "WeatherBench 2 kodu ve veri bağlantıları (GitHub, Apache 2.0)",
+      "url": "https://github.com/google-research/weatherbench2",
+      "tur": "kod"
+     },
+     {
+      "ad": "WeatherBench 2 karne sayfası (güncel skorlar)",
+      "url": "https://sites.research.google/weatherbench/",
+      "tur": "web"
+     },
+     {
+      "ad": "arXiv ön baskısı 2308.15560 (Ağustos 2023)",
+      "url": "https://arxiv.org/abs/2308.15560",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://sites.research.google/weatherbench/",
+      "aciklama": "WeatherBench 2 karnesi: modeller IFS HRES'e göre renkli hücrelerde; satırlar değişken, sütunlar gün"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://sites.research.google/weatherbench/",
+      "aciklama": "Karne sayfasında aşağı inerken deterministik ve olasılıklı tablolar"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:AtmosphericModelSchematic.png",
+      "lisans": "NOAA",
+      "aciklama": "Fizik tabanlı modelin ızgarası: atmosfer kutulara bölünür, her kutuda denklemler çözülür"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "GraphCast (Google DeepMind)",
+   "ne": "ERA5 ile eğitilen ve 10 günlük küresel tahmin yapan yapay zekâ; bu işin büyük ölçekli hali.",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "ayrinti": {
+    "neYaptilar": "DeepMind 2023'te GraphCast'i yayımladı. Model, ERA5'in yaklaşık 40 yıllık geçmişinden öğrenen bir çizge sinir ağı (ızgarayı düğüm ve bağlarla temsil eden graph neural network). 0,25° çözünürlükte, 10 güne kadar küresel tahmin üretiyor. Makale Science'ta çıktı (Lam vd., Aralık 2023).",
+    "nasil": "Girdi, 6 saat arayla iki küresel durum; çıktı, 6 saat sonraki durum. Model bunu ardı ardına uygulayarak 10 güne ulaşıyor. Eğitim ERA5 ile; doğrulama ECMWF HRES'e karşı 1380 hedef değişkende. Tek bir Google TPU v4 makinesinde 10 günlük tahmin bir dakikadan kısa sürüyor.",
+    "neEdindiler": "1380 doğrulama hedefinin %90'ından fazlasında HRES'ten daha isabetli çıktı. Kod ve ağırlıklar açık (GitHub; kod Apache 2.0, diğer malzeme CC BY 4.0). DeepMind'ın yazısına göre ECMWF'nin açık grafik sitesinde deneysel çıktısı yayımlanıyor.",
+    "bizNasilKatki": "GraphCast'i eğitmek bizim ölçeğimizi aşar; çıktısını kullanmak aşmaz. Önce kendi küçük modelimizle İstanbul karnesini çıkarırız. Sonraki adımda WeatherBench'in açık GraphCast tahminlerinden İstanbul hücresini çekip aynı RMSE tablosuna üçüncü sütun olarak ekleriz. 'Küçük yerel model mi, dev küresel model mi' sorusunu kendi verimizle sorarız.",
+    "referanslar": [
+     {
+      "ad": "Lam vd. 2023, Learning skillful medium-range global weather forecasting, Science 382(6677) · DOI 10.1126/science.adi2336",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     },
+     {
+      "ad": "DeepMind blog yazısı (14 Kasım 2023)",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "tur": "web"
+     },
+     {
+      "ad": "GraphCast / GenCast / WeatherNext kodu (GitHub)",
+      "url": "https://github.com/google-deepmind/graphcast",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "DeepMind yazısında modelin çalışma şeması ve HRES ile karşılaştırma grafikleri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/google-deepmind/graphcast",
+      "aciklama": "Açık kod deposu: Colab defteri, lisans ve ERA5 bağlantısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "Avrupa 2 m sıcaklık, ECMWF AIFS açık tahmini, tek koşunun 0..240 saat adımları",
+      "aciklama": "Yapay zekâ tahmininin 10 günlük akışı: sıcak ve soğuk hava kütleleri Avrupa üzerinde ilerliyor"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Tomorrow.io",
+   "ne": "Kurucuları hava kuvvetlerinde görevdeyken tahminlerin yetersizliğini yaşadı; bugün kendi uydularını uçuran bir hava zekâsı şirketi.",
+   "url": "https://www.tomorrow.io",
+   "ayrinti": {
+    "neYaptilar": "2016'da Boston'da ClimaCell adıyla kuruldu; kurucular hava kuvvetlerinde görevdeyken tahminlerin yetersizliğini yaşamıştı. 2023'te ilk ticari hava radarı uydusunu uçurdu. 2024'te mikrodalga sondaj uydularına geçti; Ocak 2026'da ilk takımyıldızı tamamlayıp 60 dakikada bir küresel tarama duyurdu.",
+    "nasil": "Önce baz istasyonu sinyali gibi alışılmadık kaynaklardan gözlem türetti. Sonra uzaya çıktı: Tomorrow-R1 radar uydusu Nisan 2023'te, R2 Haziran 2023'te; Tomorrow-S1 mikrodalga sondaj uydusu Ağustos 2024'te 487 km yörüngeye yerleşti (WMO OSCAR). Uydu verisi kendi yapay zekâ modeline ve işletmelere hizmet veren API'ye besleniyor.",
+    "neEdindiler": "Şubat 2026'da yörüngede 13 uydu, 60 dakikalık küresel yenileme ve 175 milyon dolarlık yeni yatırım. Lufthansa, Uber ve Ford gibi müşteriler; şirket 250'den fazla kuruma hizmet verdiğini açıklıyor.",
+    "bizNasilKatki": "Uydu bizim işimiz değil; ama Tomorrow.io'nun ilk yıllardaki sorusu bizimkiyle aynı: eldeki veriden daha isabetli yerel tahmin çıkar mı? Biz bu soruyu ücretsiz ERA5 ve ECMWF verisiyle İstanbul için sorarız. Açık bir karne çıkarmak, haftada 1-2 saatle yapılabilir bir ilk adımdır.",
+    "referanslar": [
+     {
+      "ad": "Boston Globe (16 Mayıs 2023): ilk ticari hava radarı uydusu",
+      "url": "https://www.bostonglobe.com/2023/05/16/business/boston-startup-launches-first-commercial-weather-radar-satellite",
+      "tur": "haber"
+     },
+     {
+      "ad": "WMO OSCAR: Tomorrow-S1 uydu kartı (fırlatma 16 Ağustos 2024, 487 km)",
+      "url": "https://space.oscar.wmo.int/satellites/view/tomorrow_s1",
+      "tur": "veri"
+     },
+     {
+      "ad": "Tomorrow.io blog (12 Ocak 2026): 60 dakikalık küresel yenileme",
+      "url": "https://www.tomorrow.io/blog/tomorrow-io-reaches-60-minute-global-revisit-completing-its-first-constellation/",
+      "tur": "web"
+     },
+     {
+      "ad": "SiliconANGLE (3 Şubat 2026): 175 M$ yatırım, yörüngede 13 uydu",
+      "url": "https://siliconangle.com/2026/02/03/tomorrow-io-raises-175m-deploy-ai-native-weather-satellite-constellation/",
+      "tur": "haber"
+     },
+     {
+      "ad": "Israel21c (2019): kurucuların hava kuvvetleri geçmişi",
+      "url": "https://archive.israel21c.org/as-our-weather-gets-worse-forecasting-just-got-better/",
+      "tur": "haber"
+     },
+     {
+      "ad": "Tomorrow.io uzay programı sayfası",
+      "url": "https://www.tomorrow.io/space/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.tomorrow.io/space/",
+      "aciklama": "Şirketin uzay programı sayfası: mikrodalga sondaj ve radar uyduları"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:SpaceX_-_Transporter_8_-_plume_over_Eastern_Europe.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Tomorrow-R2'yi taşıyan Transporter-8 fırlatmasının gökyüzündeki izi, 12 Haziran 2023, Macaristan'dan tüm-gök kamerası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "GOES-East, Helene kasırgası, 2024-09-26 00..24 UTC, 10 dakikalık kızılötesi",
+      "aciklama": "Uydudan sık tarama ne demek: fırtına gözü saat saat değil, dakika dakika izleniyor"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Atmo",
+   "ne": "Derin öğrenmeyle ülke ölçeğinde yüksek çözünürlüklü tahmin kurdu; Filipinler hükûmeti ve ABD Hava Kuvvetleri müşterisi.",
+   "url": "https://www.atmo.ai",
+   "ayrinti": {
+    "neYaptilar": "San Francisco merkezli Atmo, fizik modelinin yerine derin öğrenmeyle tahmin üretiyor. 2023'te Filipinler Bilim ve Teknoloji Bakanlığı (DOST) ile anlaştı; 1 Ekim 2024'te ülke çapında 2 km çözünürlüklü sistem için sözleşme imzalandı. Şubat 2025'te PAGASA ve ASTI ile veri paylaşımı başladı.",
+    "nasil": "Model, uydu, istasyon, radar ve şamandıra gözlemleriyle 30 yılı aşkın geçmiş veriden öğreniyor. Filipinler sisteminde tahmin 15 dakikada üretiliyor ve 14 güne uzanıyor; çözünürlük 2 km, küresel modellerden 100 kata kadar ayrıntılı. Yerel istasyon ağları (PhilSensors, POTEKA) modele besleniyor.",
+    "neEdindiler": "Asya'nın en büyük yapay zekâ tahmin programı olarak duyuruldu (iTnews Asia, 2023). Şirket ABD Hava Kuvvetleri, Donanma ve Filipinler hükûmetini müşteri sayıyor; Tuvalu ve Cape Canaveral için de sistem kurdu.",
+    "bizNasilKatki": "Atmo'nun işi, 'yerel veri + öğrenen model' fikrinin ülke ölçeğine taşınmış hali. Biz aynı fikri tek şehir ve tek değişkenle sınarız. Modelimiz ECMWF'yi geçemese bile nerede ve neden geride kaldığını görmek öğretir. Sonraki adım, Türkiye istasyonlarıyla bölgesel bir karne olabilir.",
+    "referanslar": [
+     {
+      "ad": "Silicon UK basın bülteni (1 Ekim 2024): Filipinler ile 2 km'lik ulusal sözleşme",
+      "url": "https://www.silicon.co.uk/press-release/atmo-signs-historic-commercial-agreement-with-the-philippines-to-bring-ai-powered-weather-forecasting-to-the-country",
+      "tur": "haber"
+     },
+     {
+      "ad": "DOST-ASTI haberi (18 Şubat 2025): PAGASA ve ASTI ile veri paylaşımı",
+      "url": "https://asti.dost.gov.ph/?p=32604",
+      "tur": "haber"
+     },
+     {
+      "ad": "iTnews Asia (27 Kasım 2023): 2 km, 15 dakika, 14 gün",
+      "url": "https://www.itnews.asia/news/philippines-to-build-ai-powered-weather-forecasting-system-602733",
+      "tur": "haber"
+     },
+     {
+      "ad": "Atmo haber sayfası (Tuvalu, Cape Canaveral, ABD Hava Kuvvetleri)",
+      "url": "https://www.atmo.ai/news",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://earth.atmo.ai/",
+      "aciklama": "Atmo'nun herkese açık küresel sıcaklık görüntüleyicisi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Typhoon_Yagi_Strengthens_After_Swiping_the_Philippines_(MODIS_2024-09-05).jpg",
+      "lisans": "NASA",
+      "aciklama": "Yagi tayfunu Filipinler'i geçtikten sonra Güney Çin Denizi'nde güçleniyor; NASA Aqua/MODIS, 4 Eylül 2024"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Filipinler 2 m sıcaklık ve 10 m rüzgâr, ERA5, 2024-09-01..06, saatlik",
+      "aciklama": "Yagi geçerken ERA5'te rüzgâr ve sıcaklık alanı: yüksek çözünürlüğün neden önemli olduğu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AI Weather Quest (ECMWF yarışması)",
+   "ne": "ECMWF'nin açık yarışması: üniversite takımları dahil 42 ekip, 3-4 hafta ilerisi için yapay zekâ tahmini yarıştırıyor.",
+   "url": "https://aiweatherquest.ecmwf.int/",
+   "ayrinti": {
+    "neYaptilar": "ECMWF 2025'te uzun süreli açık bir yarışma başlattı. Öğrenciler dahil en çok 10 kişilik takımlar katılıyor. Hedef, 19-25 ve 26-32 gün ilerisi için haftalık ortalama sıcaklık, yağış ve deniz seviyesi basıncı. İlk iki dönemde (Eylül-Kasım 2025, Aralık-Şubat 2025/26) 42 takım, 194 katılımcı ve 74 model yarıştı.",
+    "nasil": "Tahminler küresel ızgarada, beşte birlik olasılık dilimleri (kentil) olarak veriliyor. Puan RPSS (sıralı olasılık beceri skoru): 0 iklim ortalaması kadar, artı değer daha iyi. Liderlik tablosu her hafta güncelleniyor. Harvard, Toronto, MIT ve Fudan gibi üniversitelerden takımlar sanayi ve meteoroloji kurumlarıyla aynı tabloda.",
+    "neEdindiler": "Her takım için saydam, operasyonel tarzda bir karne; ilk dönemin sonuçları Aralık 2025'te ödül webinarında sunuldu. Öğrenci takımları için bedava ve gerçek bir sahne: veri açık, ölçüt açık, rakipler belli.",
+    "bizNasilKatki": "Yarışmanın 3-4 haftalık ufku bizim 24 saatlik projemizden çok daha zor; önce kendi küçük karnemizi çıkarmalıyız. Ama yapısı birebir örnek: aynı ölçüt, haftalık tablo, açık veri. Projemiz oturunca bir sonraki dönem için 2-3 kişilik bir AURA takımı başvurabilir; çıta 'iklim ortalamasını geçmek', hedef küçük ve gerçek.",
+    "referanslar": [
+     {
+      "ad": "AI Weather Quest ana sayfası ve katılım koşulları",
+      "url": "https://aiweatherquest.ecmwf.int/",
+      "tur": "web"
+     },
+     {
+      "ad": "ECMWF Newsletter 187: 42 takım, 194 katılımcı, 74 model",
+      "url": "https://www.ecmwf.int/en/newsletter/187/news/ai-weather-quest-mid-year-global-participation-and-first-insights",
+      "tur": "rapor"
+     },
+     {
+      "ad": "ECMWF forumu (19 Eylül 2025): ilk liderlik tabloları yayında",
+      "url": "https://forum.ecmwf.int/t/first-ai-weather-quest-leaderboards-are-live/14181",
+      "tur": "web"
+     },
+     {
+      "ad": "Liderlik tabloları (RPSS, haftalık)",
+      "url": "https://aiweatherquest.ecmwf.int/leaderboards/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://aiweatherquest.ecmwf.int/leaderboards/",
+      "aciklama": "Liderlik tablosu: takımlar ve RPSS puanları, değişken ve dönem seçimli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://aiweatherquest.ecmwf.int/",
+      "aciklama": "Yarışma sayfasında kurallar, takvim ve değişkenler"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:ERA5_global_mean_temperature.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "ERA5'ten 1991-2020 ortalama yüzey sıcaklığı haritası: yarışmanın 'iklim ortalaması' çıtası böyle bir alan"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "ERA5'ten 10 yıl İstanbul verisi indir",
+   "Gradient boosting ile 24 saat ileri tahmin",
+   "ECMWF açık tahminiyle aynı günlerde yarıştır"
+  ],
+  "edinim": [
+   [
+    "BLG 202E",
+    "sayısal hata, enterpolasyon"
+   ],
+   [
+    "MTO302",
+    "tahmin ürününü ve zaman dilimlerini doğru okumak"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   },
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "WMO/WWRP tahmin doğrulama yöntemleri",
+    "url": "https://www.cawcr.gov.au/projects/verification/",
+    "gorsel": "g/kaynak/wmo-verif.jpg",
+    "lisans": "serbest erişim",
+    "slug": "wmo-verif"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Herkese açık tahmin verisini her gün çeken veri hattını (pipeline) ve panoyu sen kurarsın.",
+  "senin": "BLG 202E Numerical Methods, BLG 354E Signal & Systems",
+  "bizim": "MAT202E Sayısal Yöntemler, MTO302 Hava Analizi ve Öngörü",
+  "ortakIs": "ERA5 ile ML sıcaklık tahmini, radar nowcasting",
+  "detay": "Ortak zemin: BLG 202E Numerical Methods ↔ MAT202E Sayısal Yöntemler. Örnek görev: ERA5/GFS/AIFS açık verisini her gün çeken, xarray/Zarr ile saklayan veri hattı, küçük bir skor API'si ve canlı doğrulama panosu. Kazanç: uçtan uca çalışan bir sistem ve GitHub'da adının olduğu altyapı işi. Veri gerçek ve her gün akıyor; oyuncak veri seti değil.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1561"
+ },
+ "amac": "İstanbul'da 24 saat sonraki sıcaklığı ERA5'ten öğrenen gradyan artırma modeliyle (ağaç tabanlı öğrenme) tahmin edip ECMWF'nin açık tahminiyle yarıştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Tahmin ürününü doğru okumak bu dersten gelir. ECMWF'nin 00 UTC koşusu, +24 saat adımı, 2 m sıcaklık ve 0,25°'lik hücre ne demek, burada öğrenilir. Modelin özellikleri de buradan: rüzgârla taşınan sıcaklık (adveksiyon) ve basınç alanından çıkan rüzgâr. Hatanın büyüdüğü günleri cephe geçişiyle açıklamak da bu dersin işi.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "2. adımda özellik olarak: ERA5'in 10 m rüzgârı ile komşu hücrelerin sıcaklık farkından adveksiyon terimi hesaplanır; soğuk poyraz günlerinde modelin en güçlü ipucudur."
+    },
+    {
+     "formulAd": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+     "nerede": "Deniz seviyesi basıncı alanından (ERA5 msl) İstanbul çevresinde rüzgârın yönü ve şiddeti türetilir; adveksiyon için gereken 'hava hangi yönden geliyor' bilgisi."
+    },
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "5. adımda yorum için: 1000-500 hPa kalınlığından hava kütlesinin soğuk mu ılık mı olduğu okunur; büyük hatalı günler kalınlık değişimiyle çakışıyor mu diye bakılır."
+    }
+   ]
+  },
+  {
+   "kod": "BLG 202E",
+   "projeyeKatki": "Hesap mutfağı bu ders. ECMWF'nin 3 saatlik adımlarını saatlik ERA5 ile hizalamak enterpolasyon; en basit rakip model en küçük kareler; tek sayılık karne RMSE. Gradyan artırmanın her ağacı da kaybın türevine göre adım atar; Newton-Raphson'daki 'teğetle ilerle' mantığının aynısı.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Lagrange enterpolasyonu",
+     "nerede": "4. adımda: ECMWF'nin 0, 3, 6 … saatlik değerlerinden ara saatleri türetip ERA5 ile aynı saat damgasına getirmek; en çok 3-4 nokta kullanılır, fazlası salınır."
+    },
+    {
+     "formulAd": "En küçük kareler (doğru uydurma)",
+     "nerede": "3. adımda ilk çıta: 'yarın = bugünkü sıcaklık + saatin ortalama farkı' doğrusu; LightGBM önce bunu geçmeli. 5. adımda sapma düzeltmesi için aynı doğru."
+    },
+    {
+     "formulAd": "RMSE (kök ortalama kare hata)",
+     "nerede": "5. adımda: her gün için ML ve ECMWF hatası ayrı ayrı; sistematik sapma (bias) yanına yazılır, zaman serisi çizilir."
+    },
+    {
+     "formulAd": "Newton-Raphson kök bulma",
+     "nerede": "3. adımda arka planda: LightGBM yaprak değerlerini kaybın birinci ve ikinci türeviyle seçer; türevle köke yaklaşmanın aynısı."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5'ten öğrenen bir model kur, ECMWF'nin açık tahminini indir, ikisini aynı günlerde aynı ölçütle karşılaştır.",
+  "ayrinti": "Yol dört parça: veri, model, rakip, karne. ERA5 2015-2024 saatlik 2 m sıcaklığı CDS API ile iner; LightGBM ile 24 saat ilerisi öğrenilir; ECMWF'nin 00 UTC koşusunun +24 adımı aynı günler için çekilir; ikisinin RMSE ve sistematik sapması tek grafikte çizilir. Araçlar Python, xarray, cfgrib, LightGBM, Matplotlib. Kurulum 1-2 hafta sonu; karne haftada 1-2 saatle 4-6 haftada oturur. En zor yer zaman hizalaması: UTC, 3 saatlik adımlar ve ERA5'in 5 günlük gecikmesi.",
+  "adimlar": [
+   {
+    "baslik": "ERA5'i CDS API ile indir",
+    "oz": "Copernicus hesabı aç, cdsapi ile İstanbul hücresinin 2015-2024 saatlik 2 m sıcaklığını NetCDF olarak çek.",
+    "ayrinti": "ERA5, ECMWF'nin 1940'tan bugüne saatlik yeniden analizi; gözlemle modelin en iyi uzlaşısı, bu yüzden 'gerçek' diye onu alıyoruz. Tüm küre değil, yalnız İstanbul çevresindeki küçük bir kutu istenir; dosya küçük kalır. İstekte alan kutusu, değişken adı ve yıl-ay-gün-saat listesi girilir. Veri yaklaşık 5 gün gecikmeyle gelir; en taze günler için ERA5T sürümü ya da Open-Meteo arşivi kullanılır.",
+    "nasil": [
+     "cds.climate.copernicus.eu'da hesap aç, veri setinin lisansını onayla, ~/.cdsapirc dosyasına url ve key satırlarını yaz",
+     "pip install \"cdsapi>=0.7.7\" xarray netCDF4; cdsapi.Client().retrieve('reanalysis-era5-single-levels', istek, 'era5_ist.nc')",
+     "İstek: variable=['2m_temperature'], year 2015..2024, tüm ay/gün/saat, area=[41.5, 28.5, 40.5, 29.5], data_format='netcdf'",
+     "xarray.open_dataset ile aç; 41,0N 29,0E hücresini sel ile seç; Kelvin'i °C'ye çevir (−273,15)",
+     "Beklenen çıktı: yaklaşık 87 700 satırlık saatlik seri (zaman, t2m) → parquet olarak sakla",
+     "Hesap açmak istemeyen için: archive-api.open-meteo.com/v1/archive?…&hourly=temperature_2m aynı ERA5'i verir"
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "CDS'te ERA5 saatlik veri sayfası: değişken, tarih ve alan seçimi"
+     }
+    ]
+   },
+   {
+    "baslik": "Özellikleri çıkar",
+    "oz": "Her saat için hedef 24 saat sonraki sıcaklık; girdiler son saatler, günün ve yılın saati, rüzgâr ve basınç.",
+    "ayrinti": "Model geleceği bilmez; ona geçmiş gözlem tablosu veririz. Hedef sütun t2m(t+24) olurken girdiler son 24 saatin sıcaklıkları, döngüsel saat ve gün sinüs-kosinüs değerleridir. Ayrıca 10 m rüzgârı, yüzey basıncı ve sıcaklık adveksiyonu eklenir. Eğitim 2015-2022, doğrulama 2023, test 2024 olarak bölünür ve yıllar asla karıştırılmaz.",
+    "nasil": [
+     "pandas: df['hedef'] = df['t2m'].shift(-24); gecikmeler için df['t2m'].shift(k), k = 1..24",
+     "Döngüsel zaman: sin(2π·saat/24), cos(…), sin(2π·gün/365,25), cos(…)",
+     "ERA5'ten ek değişkenler: 10m_u_component_of_wind, 10m_v_component_of_wind, mean_sea_level_pressure; aynı CDS isteğine eklenir",
+     "Adveksiyon: −(u·ΔT/Δx + v·ΔT/Δy); ΔT komşu hücrelerden, Δx ≈ 21 km (41° enlemde 0,25°), Δy ≈ 28 km",
+     "Bölme: 2015-2022 eğitim, 2023 doğrulama, 2024 sınama; NaN satırları at",
+     "Beklenen çıktı: ~87 000 satır × ~35 sütun özellik tablosu (parquet)"
+    ]
+   },
+   {
+    "baslik": "LightGBM ile eğit",
+    "oz": "Gradyan artırma: her yeni ağaç öncekilerin hatasını düzeltir; önce basit doğruyu, sonra kalıcılığı geç.",
+    "ayrinti": "Gradyan artırma yüzlerce küçük karar ağacını sırayla kurar; her ağaç, kalan hatanın türevine bakarak bir adım daha düzeltir. LightGBM bunun hızlı ve az bellek isteyen sürümü. İki çıta önce: 'kalıcılık' (yarın bugünkü gibi) ve en küçük karelerle uydurulan doğru. Model bunları geçmiyorsa özellikler yanlıştır. Erken durdurma doğrulama yılına göre yapılır; aşırı öğrenmeyi (ezber) böyle keseriz.",
+    "nasil": [
+     "pip install lightgbm; train = lgb.Dataset(X_egitim, label=y_egitim); valid = lgb.Dataset(X_dogrulama, label=y_dogrulama)",
+     "params = {'objective': 'regression', 'metric': 'rmse', 'learning_rate': 0.05, 'num_leaves': 31}",
+     "bst = lgb.train(params, train, num_boost_round=2000, valid_sets=[valid], callbacks=[lgb.early_stopping(100)])",
+     "Çıtalar: kalıcılık RMSE (tahmin = t2m(t)) ve numpy.polyfit(…, 1) doğrusu; ikisi de 2023 üzerinde hesaplanır",
+     "bst.feature_importance() ile hangi özellik iş yapıyor; adveksiyon ve son 3 saat genelde başta",
+     "Beklenen çıktı: model dosyası (bst.save_model) + 2024 için saatlik tahmin sütunu"
+    ]
+   },
+   {
+    "baslik": "ECMWF açık tahminini indir",
+    "oz": "ecmwf-opendata ile 00 UTC koşusunun +24 saat 2 m sıcaklığını her gün çek, İstanbul hücresini al.",
+    "ayrinti": "ECMWF, IFS ve AIFS tahminlerini 0,25° çözünürlükte, CC BY 4.0 lisansıyla açık veriyor. Ama arşiv 'dönen' türden: yalnız son 2-3 gün durur. Bu yüzden her gün küçük bir betik çalışıp +24 adımını diske yazmalı; yarışma günleri böyle birikir. GRIB2 dosyası cfgrib ile xarray'e açılır. Adımlar 3 saatlik olduğundan saatlik ERA5 ile hizalamak için Lagrange enterpolasyonu ya da yalnız 00/03/06… saatlerinde karşılaştırma gerekir.",
+    "nasil": [
+     "pip install ecmwf-opendata cfgrib; from ecmwf.opendata import Client; client = Client(model='ifs')",
+     "client.retrieve(time=0, step=24, type='fc', param='2t', target='ifs_2t_24.grib2'); AIFS için Client(model='aifs-single')",
+     "xarray.open_dataset('ifs_2t_24.grib2', engine='cfgrib'); sel(latitude=41.0, longitude=29.0) ile hücreyi al",
+     "Günlük zamanlayıcı (Windows Görev Zamanlayıcı ya da cron) her sabah çalışır, CSV'ye tarih + tahmin ekler",
+     "Beklenen çıktı: her yarışma günü için bir satır: koşu tarihi, hedef saat, IFS 2t, AIFS 2t"
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/ecmwf/ecmwf-opendata",
+      "aciklama": "ecmwf-opendata deposu: retrieve örneği, model ve adım seçenekleri"
+     }
+    ]
+   },
+   {
+    "baslik": "Aynı günlerde doğrula: RMSE ve sapma",
+    "oz": "ML ve ECMWF tahminlerini aynı hedef saatlerde ERA5 ile karşılaştır; her gün için RMSE ve sistematik sapma.",
+    "ayrinti": "Dürüst karşılaştırmanın kuralı: aynı başlangıç saati, aynı hedef saat, aynı gerçek. ERA5 5 gün geriden geldiği için karne gecikmeli dolar. Her gün için fark = tahmin − ERA5; RMSE büyük hataları ağır cezalandırır, sapma (bias) sürekli ılık ya da soğuk kalmayı gösterir. 24 saatlik 2 m sıcaklıkta RMSE tipik olarak 1-2 °C; cephe geçişi günlerinde daha büyük. Haftalık toplamda kimin önde olduğu ve nerede geride kaldığı not edilir.",
+    "nasil": [
+     "pandas.merge ile üç seriyi hedef saatte birleştir: era5, ml, ifs (hepsi UTC; yerel saate çevirme)",
+     "RMSE = sqrt(mean((F−O)²)), bias = mean(F−O); gün ve haftalık pencere için groupby",
+     "Kalıcılık ve doğru çıtasını da aynı tabloya koy: dört sütunlu karne",
+     "Beceri skoru: 1 − RMSE_model / RMSE_kalicilik; artı değer kalıcılığı geçti demek (JWGFVR doğrulama sayfası)",
+     "Beklenen çıktı: gün × {ML, IFS, AIFS, kalıcılık} RMSE ve bias tablosu (CSV)"
+    ]
+   },
+   {
+    "baslik": "Grafik ve defter",
+    "oz": "Tek grafikte iki hata eğrisi, altında kısa yorum; kod ve veri bağlantıları GitHub'da bir Jupyter defterinde.",
+    "ayrinti": "Sonuç bir bakışta okunmalı: üstte ERA5 ile iki tahmin üst üste, altta günlük RMSE çubukları yan yana. Hangi günlerde kimin önde olduğu ve hatanın büyüdüğü günlerde ne olduğu (poyraz, lodos, cephe) 3-4 cümleyle yazılır. Defter baştan sona çalışır olmalı: 'Run all' deyince aynı grafik çıkmalı. Veri lisansları (Copernicus, CC BY 4.0) defterin başına yazılır.",
+    "nasil": [
+     "matplotlib: üst panel üç çizgi (ERA5, ML, IFS), alt panel günlük RMSE çubukları; tek PNG",
+     "Jupyter defteri: 1 veri, 2 özellik, 3 model, 4 ECMWF, 5 karne, 6 yorum bölümleri; her bölüm kendi başına çalışır",
+     "requirements.txt ve README: nasıl kurulur, hangi hesap gerekir, kaç dakika sürer",
+     "GitHub deposu: defter + küçük örnek veri (1 ay) + günlük indirme betiği",
+     "Beklenen çıktı: karne grafiği PNG + çalışan defter + kısa yorum"
+    ]
+   }
+  ],
+  "sonuc": "Aynı günlerde ML ve ECMWF'yi ERA5'e karşı yarıştıran karne grafiği, günlük RMSE/sapma tablosu ve baştan sona çalışan bir Jupyter defteri.",
+  "senden": "BLG 202E'den gelen kısım: veri hattı, özellik tablosu, LightGBM eğitimi, enterpolasyon ve hata hesabı; GitHub'daki defter.",
+  "bizden": "MTO 302'den gelen kısım: ECMWF ürününü doğru okumak, adveksiyon ve basınç özelliklerini kurmak, hatalı günleri sinoptik durumla açıklamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul 2 m sıcaklık, ERA5, 2024-01-20..27, saatlik",
+   "aciklama": "Bir haftalık saatlik sıcaklık eğrisi akarken 24 saat sonrası için hedef nokta önden ilerliyor"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+   "aciklama": "ECMWF açık veri sayfası: IFS ve AIFS, 0,25°, CC BY 4.0"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:The_Bosphorus_Strait_splits_the_city_of_Istanbul,_T%C3%BCrkiye_(iss072e574770).jpg",
+   "lisans": "NASA",
+   "aciklama": "İstanbul uzaydan: ERA5'in 0,25°'lik tek hücresi (yaklaşık 21×28 km) şehrin büyük kısmını kaplar"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ERA5 saatlik veri, tek seviye · Copernicus CDS (1940'tan bugüne, 0,25°, ~5 gün gecikme)",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+  },
+  {
+   "ad": "Hersbach vd. 2020, The ERA5 global reanalysis, QJRMS 146(730) · DOI 10.1002/qj.3803",
+   "url": "https://doi.org/10.1002/qj.3803"
+  },
+  {
+   "ad": "CDS API kurulumu (.cdsapirc, cdsapi örneği)",
+   "url": "https://cds.climate.copernicus.eu/how-to-api"
+  },
+  {
+   "ad": "ECMWF Open Data (IFS + AIFS, 0,25°, CC BY 4.0, 0-144 saat 3'er saatlik)",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  },
+  {
+   "ad": "ecmwf-opendata Python istemcisi (GitHub)",
+   "url": "https://github.com/ecmwf/ecmwf-opendata"
+  },
+  {
+   "ad": "WMO/WWRP JWGFVR tahmin doğrulama yöntemleri (bias, MAE, RMSE, beceri skoru)",
+   "url": "https://jwgfvr.github.io/forecastverification/"
+  },
+  {
+   "ad": "LightGBM belgeleri: Python hızlı başlangıç",
+   "url": "https://lightgbm.readthedocs.io/en/stable/Python-Intro.html"
+  },
+  {
+   "ad": "Open-Meteo Historical Weather API (ERA5 saatlik, hesapsız)",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  },
+  {
+   "ad": "WeatherBench 2 karne sayfası",
+   "url": "https://sites.research.google/weatherbench/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm bağlantılar 14 Ekim 2026'da açıldı; DOI'ler Crossref ile doğrulandı (yayıncı sayfaları bota kapalı). kaynaklar.json'daki cawcr.gov.au adresi jwgfvr.github.io'ya yönleniyor, aifs slug'ındaki sayfa 404. charts.ecmwf.int bot engeli yüzünden açılamadı, görsel listesine alınmadı.",
+ "_birlestirme": {
+  "kaynak": "cikti/BLG-01.json",
+  "tarih": "2026-10-14 20:15",
+  "geminiSha1": "238fd766c071"
+ }
+}

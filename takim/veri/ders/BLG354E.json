@@ -1,0 +1,155 @@
+{
+ "kod": "BLG 354E",
+ "ad": "Signals and Systems",
+ "bolum": "Bilgisayar Mühendisliği",
+ "obsNo": "354",
+ "ozet": "Sürekli ve ayrık zamanlı sinyallerin ve doğrusal zamanla değişmeyen (LTI) sistemlerin matematiksel analizini öğretir. Konvolüsyon, Fourier serisi ve dönüşümü, Laplace ve Z-dönüşümleri, frekans tepkisi ve filtreleme ele alınır. Radar ve uydu görüntülerinde 2 boyutlu uzamsal filtreleme, gürültü ayıklama, kenar tespiti ve optik akış takibinin sinyal işleme temellerini kurar.",
+ "neOgrenirsin": [
+  "Sürekli ve ayrık sinyalleri zaman ve frekans ortamlarında temsil etmek.",
+  "LTI sistemlerin dürtü yanıtı ve konvolüsyon integrali/toplamını hesaplamak.",
+  "Fourier dönüşümü ile spektral analiz ve frekans bileşenlerini ayrıştırmak.",
+  "Laplace ve Z-dönüşümü ile sistem kararlılığı ve kutup-sıfır diyagramlarını incelemek.",
+  "2 boyutlu uzamsal konvolüsyon ve filtrelerle görüntüde kenar ve desen belirlemek.",
+  "Örnekleme teoremi ve Nyquist kriterine göre aliasing etkisini önlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "2B ayrık konvolüsyon (uzamsal filtreleme)",
+   "tex": "g[x, y] = \\sum_{s=-M}^{M} \\sum_{t=-N}^{N} h[s, t] \\, f[x - s, y - t]",
+   "terimler": [
+    [
+     "g[x, y]",
+     "filtrelenmiş çıkış görüntüsü matrisi",
+     "örnekte dBZ veya piksel"
+    ],
+    [
+     "f[x, y]",
+     "giriş ham radar veya uydu görüntüsü matrisi",
+     "dBZ veya yansıtma"
+    ],
+    [
+     "h[s, t]",
+     "filtre çekirdeği (kernel, örn. Gauss veya Sobel)",
+     "ağırlık katsayısı"
+    ],
+    [
+     "M, N",
+     "çekirdek yarı pencere boyutları",
+     "piksel"
+    ],
+    [
+     "\\sum",
+     "komşu pikseller üzerinden ağırlıklı toplam",
+     "—"
+    ]
+   ],
+   "sade": "Her pikselin değerini kendi ve etrafındaki komşu piksellerin ağırlıklı toplamıyla değiştirir. Gauss çekirdeği gürültüyü silerken, Sobel çekirdeği yağış cephesinin kenarlarını ve sınırlarını belirginleştirir.",
+   "ornek": "İstanbul radarındaki tekil parazit piksellerini (ground clutter) temizlemek için 3×3 Gauss çekirdeği uygulanır. 45 dBZ'lik yapay piksel komşularıyla dengelenip 18 dBZ seviyesine inerken gerçek fırtına çekirdeği korunur.",
+   "nerede": "BLG-03'te radar görüntüsünden optik akış hesaplamadan önce gürültü giderme ve kenar keskinleştirme adımında."
+  },
+  {
+   "ad": "2B Ayrık Fourier Dönüşümü (2D-DFT)",
+   "tex": "F[u, v] = \\sum_{x=0}^{M-1} \\sum_{y=0}^{N-1} f[x, y] \\, e^{-j 2\\pi \\left(\\frac{ux}{M} + \\frac{vy}{N}\\right)}",
+   "terimler": [
+    [
+     "F[u, v]",
+     "uzamsal frekans spektrumu bileşeni",
+     "karmaşık sayı genliği"
+    ],
+    [
+     "f[x, y]",
+     "uzamsal uzaydaki piksel parlaklığı",
+     "yansıtma / parlaklık sıcaklığı"
+    ],
+    [
+     "u, v",
+     "yatay ve dikey uzamsal frekans değişkenleri",
+     "çevrim / piksel"
+    ],
+    [
+     "M, N",
+     "görüntünün yatay ve dikey piksel sayıları",
+     "piksel"
+    ],
+    [
+     "e^{-j 2\\pi (...)}",
+     "karmaşık üstel baz fonksiyonları",
+     "faz ve frekans"
+    ]
+   ],
+   "sade": "Görüntüyü farklı dalga boylarındaki yatay ve dikey sinüs dalgalarının toplamı olarak ifade eder. Periyodik gürültüleri ayıklamaya ve büyük ölçekli hava desenlerini küçük türbülanslardan ayırmaya yarar.",
+   "ornek": "Meteosat kızılötesi görüntüsündeki 512×512 piksellik bulut alanında 2D-FFT alınarak dalga deseni incelenir; Marmara üzerindeki 15 km dalga boylu gravite dalgalarının spektral tepe noktası u=34 frekansında tespit edilir.",
+   "nerede": "Radar nowcasting modellerinde (pySTEPS) çok ölçekli spektral kaskad ayrışımı ile bulut hareketini ölçeklere bölerken."
+  },
+  {
+   "ad": "Optik akış parlaklık süreklilik denklemi",
+   "tex": "I_x u + I_y v + I_t = 0, \\qquad \\nabla I \\cdot \\mathbf{v} + \\frac{\\partial I}{\\partial t} = 0",
+   "terimler": [
+    [
+     "I_x, I_y",
+     "görüntü yoğunluğunun uzamsal gradyanları (∂I/∂x, ∂I/∂y)",
+     "yoğunluk / piksel"
+    ],
+    [
+     "I_t",
+     "görüntü yoğunluğunun zamana göre değişim hızı (∂I/∂t)",
+     "yoğunluk / saniye"
+    ],
+    [
+     "u, v",
+     "hareket hızı vektörünün yatay ve dikey bileşenleri",
+     "piksel / saniye"
+    ],
+    [
+     "\\mathbf{v}",
+     "hareket hızı vektörü (u, v)",
+     "piksel / çerçeve"
+    ],
+    [
+     "\\nabla I",
+     "uzamsal gradyan vektörü (I_x, I_y)",
+     "yoğunluk gradyanı"
+    ]
+   ],
+   "sade": "Bir bulut parçasının parlaklığı hareket ederken değişmiyorsa, zamandaki değişim uzaydaki eğim ve hızın çarpımıyla dengelenmelidir. Ardışık iki radar karesinden bulutun piksel hızını çıkarmaya yarar.",
+   "ornek": "5 dakika arayla alınan iki radar görüntüsünde ∂I/∂t = -2 dBZ/dk ve doğu yönünde ∂I/∂x = 0,1 dBZ/km ise bulutun doğuya hareket hızı u = -(-2) / 0,1 = 20 km/dk (veya yaklaşık 15 m/s) olarak hesaplanır.",
+   "nerede": "BLG-03'te radar yansıtırlığının önümüzdeki 30-120 dakikalık hareket alanını (adveksiyon alanı) kestirirken temel yöntem."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Optical_flow_visualization.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Optik akış hareket vektörleri: görüntüdeki piksellerin ardışık kareler arasındaki yer değiştirme yönleri"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gaussian_filter.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "2B Gauss çekirdeği ile uzamsal alçak geçiren filtreleme ve görüntü düzleştirme"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · BLG 354 / 354E (Signals and Systems)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BLG&dersNo=354"
+  },
+  {
+   "ad": "Oppenheim, A. V. & Willsky, A. S. (1996) Signals and Systems, 2. baskı, Prentice Hall · ISBN 978-0-13-814757-0",
+   "url": "https://openlibrary.org/isbn/9780138147570"
+  },
+  {
+   "ad": "Gonzalez, R. C. & Woods, R. E. (2018) Digital Image Processing, 4. baskı, Pearson · ISBN 978-0-13-335672-4",
+   "url": "https://openlibrary.org/isbn/9780133356724"
+  },
+  {
+   "ad": "Horn & Schunck (1981) Determining Optical Flow, Artificial Intelligence 17 · DOI 10.1016/0004-3702(81)90024-2",
+   "url": "https://doi.org/10.1016/0004-3702(81)90024-2"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BLG&dersNo=354"
+}

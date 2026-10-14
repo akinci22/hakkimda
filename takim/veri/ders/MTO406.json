@@ -1,0 +1,141 @@
+{
+ "kod": "MTO 406",
+ "ad": "Hava Analizi ve Öngörü II",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "406",
+ "ozet": "Orta enlem siklonlarının evrimi, üst seviye jet akımları, yarı-jeostrofik teori ve mezoolçek hava sistemlerinin sayısal modellerle öngörülmesini öğretir. Q-vektör analizi, potansiyel girdap (PV) düşüncesi, konvektif kararsızlık indeksleri ve operasyonel tahmin brifingleri ele alınır. Şiddetli hava olaylarının ve fırtına dinamiğinin çözümlenmesinde ileri düzey teorik ve pratik temel sağlar.",
+ "neOgrenirsin": [
+  "Yarı-jeostrofik omega ve geopotansiyel eğilim denklemleriyle dikey hareketi ve siklon gelişimini hesaplamak.",
+  "Q-vektör yaklaşımıyla sıcaklık adveksiyonu ve girdap adveksiyonunu tek bir alanda birleştirip dikey hareketi teşhis etmek.",
+  "Ertel potansiyel girdap (PV) korunumunu ve tropopoz katlanmalarını izleyerek siklogenezi öngörmek.",
+  "Konvektif yararlı potansiyel enerji (CAPE) ve rüzgâr kayması ile süperhücre ve fırtına potansiyelini değerlendirmek.",
+  "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak.",
+  "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Yarı-jeostrofik Q-vektörü",
+   "tex": "\\mathbf{Q} = -\\left(\\frac{\\partial \\mathbf{V}_g}{\\partial x} \\cdot \\nabla T, \\; \\frac{\\partial \\mathbf{V}_g}{\\partial y} \\cdot \\nabla T\\right)",
+   "terimler": [
+    [
+     "\\mathbf{Q}",
+     "Q-vektörü; dikey hareketi zorlayan dinamik vektör",
+     "K/(m·s)"
+    ],
+    [
+     "\\mathbf{V}_g",
+     "jeostrofik rüzgâr vektörü",
+     "m/s"
+    ],
+    [
+     "\\nabla T",
+     "sıcaklığın yatay gradyanı",
+     "K/m"
+    ],
+    [
+     "\\partial / \\partial x, \\partial / \\partial y",
+     "doğu ve kuzey yönündeki kısmi türevler",
+     "m⁻¹"
+    ]
+   ],
+   "sade": "Sıcaklık gradyanı ile rüzgâr kaymasının etkileşimini tek bir vektörde birleştirir. Q-vektörlerinin birbirine yaklaştığı yerde hava yukarı yükselir ve bulut-yağış yapar; uzaklaştığı yerde hava çöker ve hava açar.",
+   "ornek": "500 hPa haritasında bir soğuk cephenin önünde Q-vektör yakınsaması 4×10⁻¹⁶ K/(m²·s) olarak hesaplanır; bu değer saatte yaklaşık 3 cm/s'lik güçlü bir geniş ölçekli yükselici harekete ve cephesel yağışa işaret eder.",
+   "nerede": "MTO-01 ve MTO-02'de siklonik fırtınalarda yağış alanlarının nerede gelişeceğini teşhis ederken."
+  },
+  {
+   "ad": "Ertel potansiyel girdap (PV)",
+   "tex": "q = \\frac{1}{\\rho} \\boldsymbol{\\eta} \\cdot \\nabla \\theta",
+   "terimler": [
+    [
+     "q",
+     "Ertel potansiyel girdap (1 PVU = 10⁻⁶ K·m²/(kg·s))",
+     "PVU"
+    ],
+    [
+     "\\rho",
+     "hava yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "\\boldsymbol{\\eta}",
+     "üç boyutlu mutlak girdap vektörü",
+     "s⁻¹"
+    ],
+    [
+     "\\nabla \\theta",
+     "potansiyel sıcaklığın üç boyutlu gradyanı",
+     "K/m"
+    ]
+   ],
+   "sade": "Havanın dönme hızı ile tabakalaşma kararlılığının çarpımıdır. Sürtünmesiz akışta korunur; stratosferik havanın (yüksek PV) troposfere inmesi fırtınaları hızla patlatır.",
+   "ornek": "Marmara üzerine inen 2 PVU'luk dinamik tropopoz çökmesi, 300 hPa jet akımının sol çıkış bölgesinde zemin siklonunun 24 saatte 18 hPa derinleşmesine neden olur.",
+   "nerede": "MTO-02 vaka analizinde patlayıcı siklon gelişimini ve üst seviye anomalisini açıklarken."
+  },
+  {
+   "ad": "Konvektif yararlı potansiyel enerji (CAPE)",
+   "tex": "\\mathrm{CAPE} = \\int_{z_f}^{z_n} g \\left(\\frac{T_{v,p} - T_{v,e}}{T_{v,e}}\\right) dz",
+   "terimler": [
+    [
+     "\\mathrm{CAPE}",
+     "parselin serbest konveksiyon boyunca kazandığı azami kinetik enerji",
+     "J/kg"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "9,81 m/s²"
+    ],
+    [
+     "z_f, z_n",
+     "serbest konveksiyon seviyesi ve denge seviyesi yükseklikleri",
+     "m"
+    ],
+    [
+     "T_{v,p}, T_{v,e}",
+     "parselin ve çevrenin sanal sıcaklıkları",
+     "K"
+    ],
+    [
+     "dz",
+     "dikey yükseklik artımı",
+     "m"
+    ]
+   ],
+   "sade": "Yükselen sıcak hava parselinin etrafındaki soğuk havaya göre ne kadar hızlı fırlayabileceğini ölçer. Değer ne kadar büyükse dolu ve fırtına riski o kadar şiddetlidir.",
+   "ornek": "İstanbul radiosonda ölçümünde yaz ikindisinde CAPE = 2450 J/kg ve kargı indeksi yaklaşık 70 m/s hesaplanır; bu durum süperhücre ve iri dolu fırtınası habercisidir.",
+   "nerede": "Şiddetli konvektif hava vakalarında ve yaz yağışlarının kestiriminde kararsızlık ölçüsü olarak."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Cyclogenesis.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Orta enlem siklonunun dalga aşamasından oklüzyon evresine yaşam döngüsü şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Doğu Akdeniz 300 hPa rüzgâr ve 500 hPa jeopotansiyel, ERA5, 2023-11-25..30, 6 saatlik",
+   "aciklama": "Üst seviye jet akımı ve derinleşen trof hattının Türkiye üzerine hareketi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 406 (Hava Analizi ve Öngörü II)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=406"
+  },
+  {
+   "ad": "Holton, J. R. & Hakim, G. J. (2012) An Introduction to Dynamic Meteorology, 5. baskı, Academic Press · ISBN 978-0-12-384866-6",
+   "url": "https://openlibrary.org/isbn/9780123848666"
+  },
+  {
+   "ad": "Lackmann, G. (2011) Midlatitude Synoptic Meteorology: Dynamics, Analysis, and Forecasting, AMS · ISBN 978-1-878220-10-3",
+   "url": "https://openlibrary.org/isbn/9781878220103"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=406"
+}
