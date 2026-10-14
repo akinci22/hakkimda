@@ -676,3 +676,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 /* büyütme kutusu: kaydırma zinciri sayfaya sızmasın */
 .buyut{overscroll-behavior:contain}
 @media (prefers-reduced-motion:reduce){button:active,.etiket:active,summary:active{transform:none}}
+
+/* 14 Eki (Akın): takım bölümündeyken (html.takimda) üst menü sadeleşir — yalnız "Ö. F. Akıncı" sağda; fare/odak gelince bağlantılar belirir. ≥1000px */
+@media (min-width:1000px){
+html.takimda .menu-ic{text-align:right}
+html.takimda .menu-ad{display:inline-block;margin-left:auto}
+html.takimda .menu-bag{opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s}
+html.takimda .menu:hover .menu-bag,html.takimda .menu:focus-within .menu-bag{opacity:1;visibility:visible;transition:opacity .25s ease}
+}
