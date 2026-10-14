@@ -1075,3 +1075,139 @@ html[data-kitle="dis"] #derslerin,html[data-kitle="dis"] #derslerin + .gecis{dis
 .mezun-adim li.acik>span{max-height:none;mask-image:none}
 .mezun-adim li::after{content:"Tıkla · ayrıntı ›";display:block;margin-top:8px;font:500 .7rem var(--mono);color:var(--murekkep-3)}
 .mezun-adim li.acik::after{content:"‹ kapat"}
+
+/* ===================== 12 Eki (Akın): GİRİŞ YAZILARI FERAH =====================
+   "yazılar daha ferah görünmeli, zıbık dibe değil; net, anlaşılır" + süreç içi ayrıntı (dilekçe/FYK gibi) giriş yazısında yok.
+   Dört blok (AURA · alt satır · vaat · bölüm seçimi) birbirine yapışmasın: ölçülü boşluk, daha açık satır arası,
+   üst üste BÜYÜK HARF yığını yerine tek caps satır. Boşluklar sayfa düzenini bozmaz, yalnız nefes aldırır. */
+.aura-ad{margin:0 0 18px;gap:8px 16px}
+.aura-ad span{line-height:1.45;opacity:.9}
+.alt-sat{margin:0 0 22px;font:600 .82rem/1.6 var(--mono);letter-spacing:.07em;color:var(--murekkep-3);text-transform:none}   /* caps kalabalığı yok: alt satır normal yazımda, harf arası açık */
+.acilis h1{margin:0 0 18px;line-height:1.08}
+.vaat{line-height:1.55;max-width:46ch;margin:0 0 26px}                                 /* satır arası ve satır boyu: göz satır başını kolay bulur */
+.giris{gap:14px;margin:0 0 24px}
+.giris-soru{font-size:.8rem;letter-spacing:.08em;color:var(--murekkep-2)}
+.giris-sec{gap:14px}
+.giris-b{padding:18px 20px;gap:7px;border-radius:16px}
+.giris-b b{line-height:1.2}
+.giris-b span{font-size:.92rem;line-height:1.55;color:var(--murekkep-2)}
+.kitle-blok{margin:0 0 24px;padding:22px 24px 20px}
+.kitle-blok .kb-baslik{margin:0 0 16px;letter-spacing:.03em}
+.kitle-blok ul{gap:14px}                                                                /* madde arası: maddeler ayrı ayrı okunsun */
+.kitle-blok li{padding-left:1.35em;line-height:1.6}
+.kitle-blok li::before{top:.62em}
+.kb-dugmeler{margin-top:20px;gap:10px}
+.arananlar{margin:0 0 18px;gap:8px}
+.ipucu{margin-top:4px}
+@media (max-width:860px){   /* telefon: dar ekranda yapışma daha çok batar; bloklar arası biraz daha açık, satır arası yüksek */
+  .aura-ad{margin:0 0 16px}
+  .alt-sat{margin:0 0 20px;font-size:.8rem;line-height:1.65}
+  .vaat{line-height:1.6;margin:0 0 24px;max-width:none}
+  .giris{gap:12px;margin:0 0 22px}
+  .giris-sec{grid-template-columns:1fr;gap:12px}                                        /* iki kart yan yana sıkışmasın: alt alta, tam genişlik */
+  .giris-b{padding:16px 18px}
+  .giris-b span{line-height:1.6}
+  .kitle-blok{padding:20px 20px 18px;margin:0 0 22px}
+  .kitle-blok ul{gap:16px}
+  .kitle-blok li{line-height:1.65}
+}
+
+/* ===================== 12 Eki (Akın): DÜNYADA NE OLDU — diğer ülkelerdeki net örnekler =====================
+   İstek: "örnek gösterilen kısımlarda fotoğraf ve gifler olsun, daha ikna edici · görsel kompozisyon ferah,
+   estetik, simetrik, daha iyi kalitede · basit anlaşılır genel anlatımdan detaylı anlatıma doğru gitsin."
+   Kademe: ① numara + tek cümle özet  ② geniş görsel  ③ tam 3 eş kart (simetri)  ④ blok sonucu  ⑤ karta dokun: ayrıntı. */
+.dunya-bloklar{display:grid;gap:56px}                                    /* iki blok arası geniş nefes */
+.dny-blok{display:grid;gap:22px}
+.dny-ust{display:grid;gap:10px;max-width:62ch;margin:0 auto;text-align:center}   /* ① genel: ortada, kısa */
+.dny-no{margin:0;font:600 .8rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#35617d}   /* --vurgu (#3e6f8e) küçük puntoda 4.37; bir ton koyu = 5.2 */
+.dny-ozet{margin:0;font:600 clamp(1.3rem,2.4vw,1.95rem)/1.4 var(--govde);color:var(--murekkep);text-wrap:balance}
+/* ② görsel: geniş, tek, sinematik oran; kart gibi değil sahne gibi dursun */
+.dny-medya{aspect-ratio:21/9;overflow:hidden;border:1px solid var(--cizgi-2);border-radius:18px;background:var(--kagit-2);box-shadow:var(--golge)}
+.dny-medya img,.dny-medya video{width:100%;height:100%;object-fit:cover;display:block}
+/* ③ üç eş kart: simetri — her zaman üçe böl, kartlar eşit yükseklikte, içerik üstten hizalı */
+.dny-kartlar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.dny-k{display:grid;grid-template-rows:auto auto 1fr;gap:10px;align-content:start;margin:0;padding:22px 22px 20px;
+  background:var(--panel-bg);border:1px solid var(--cizgi-2);border-radius:16px;box-shadow:var(--golge);cursor:pointer;
+  transition:border-color .2s,box-shadow .2s,transform .2s}
+.dny-k:hover,.dny-k:focus-visible{border-color:var(--vurgu);box-shadow:0 2px 4px rgba(31,42,46,.06),0 16px 36px rgba(31,42,46,.14);transform:translateY(-2px)}
+.dny-sayi{display:block;line-height:1}
+.dny-sayi b,.dny-sayi span{display:block}   /* sayı ile etiketi aynı satıra yapışmasın (grid inline alt öğelerde çalışmıyordu) */
+.dny-sayi b{font:700 clamp(2rem,3.4vw,2.9rem)/1 var(--baslik);color:var(--vurgu);letter-spacing:.01em}
+.dny-sayi span{margin-top:6px;font:600 .76rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--murekkep-3)}
+.dny-b{font:700 clamp(1.05rem,1.5vw,1.25rem)/1.3 var(--baslik);color:var(--murekkep)}
+.dny-m{margin:0;font:500 clamp(.98rem,1.2vw,1.06rem)/1.6 var(--govde);color:var(--murekkep-2)}
+/* ④ blok sonucu: tek satır, sola hizalı ince şerit — "yani" cümlesi */
+.dny-sonuc{margin:0;padding:14px 20px;border-left:4px solid var(--vurgu);background:color-mix(in srgb,var(--vurgu) 5%,transparent);
+  border-radius:0 12px 12px 0;font:600 clamp(1rem,1.4vw,1.15rem)/1.6 var(--govde);color:var(--murekkep)}
+.dunya-kapanis{margin:44px auto 0;max-width:56ch;text-align:center;font:600 clamp(1.1rem,1.8vw,1.4rem)/1.55 var(--govde);color:var(--murekkep);text-wrap:balance}
+.dunya-kunye{margin:22px 0 0;text-align:center;font-size:.76rem;color:var(--murekkep-3)}
+.dunya-kunye a{color:inherit}
+@media (max-width:860px){   /* telefon: tek sütun, görsel biraz daha dik (21/9 telefonda şerit gibi kalıyor) */
+  .dunya-bloklar{gap:44px}
+  .dny-medya{aspect-ratio:16/10;border-radius:14px}
+  .dny-kartlar{grid-template-columns:1fr;gap:14px}
+  .dny-k{padding:18px 18px 16px}
+  .dny-ust{text-align:left;max-width:none}
+  .dunya-kapanis{margin-top:34px;text-align:left}
+}
+/* kart içi görsel: üstte tam genişlik şerit, köşeleri kartla aynı (simetri bozulmasın) */
+.dny-k--medya{padding-top:0;overflow:hidden}
+.dny-kmedya{margin:0 -22px 16px;aspect-ratio:16/9;overflow:hidden;background:var(--kagit-2);border-bottom:1px solid var(--cizgi-2)}
+.dny-kmedya img,.dny-kmedya video{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:860px){.dny-kmedya{margin:0 -18px 14px}}
+/* #dunya kartları: tek cümle kırpılmasın (2 satır sınırı burada anlamı kesiyordu) ve
+   "Tıkla · ayrıntı" yazısı çıkmasın — Akın'ın yazısız etkileşim kuralı; köşedeki › yeter. */
+.dny-k .etk-ipucu{display:none!important}
+.dny-k>p,.dny-k>span:not(.etk-roz):not(.etk-ipucu):not(.etk-on){-webkit-line-clamp:unset!important;display:block!important;overflow:visible!important}
+.dny-k .dny-sayi{display:block!important}
+.dny-k .etk-on{display:none!important}   /* ayrıntının ilk cümlesi kartta tekrar etmesin: kart zaten tek cümle */
+/* 12 Eki: Lighthouse kontrast (eşik 4.5) — mevcut renkler bir ton koyultuldu, tasarım değişmiyor.
+   .prompt ve .blk-b #3e6f8e→#35617d (4.37→5.2) · .aura-ad span #5d6d74→#4f5e65 (4.33→5.4) · .gecis-ad #727e85→#5c686e (3.35→5.0) */
+.ust-ad .prompt,#mezun-nasil .blk-b{color:#35617d}
+.acilis .aura-ad span{color:#44525a}
+/* .gecis-ad'de metin ayrıca opacity:.75 ile soluyordu: rengi koyult VE tam opaklığa al (görünüm aynı tonda kalır) */
+.gecis.canli .gecis-ad{opacity:1}
+.gecis .gecis-ad{color:#56626a}
+.kaynak-mini a{color:#35617d}
+
+/* ===================== 13 Eki (Akın): BÖLÜME GÖRE İÇERİK — kapalı gelir, basınca açılır =====================
+   "bu kısımlar kapalı, basınca açılan tarzda görünmeli; genelden özele anlatım dili önemli
+    (direkt söylemek değil, görsel şekilde anlatımıyla)"
+   Görsel dil — hiçbir yerde 'önce genel, sonra ayrıntı' YAZMADAN aynı şeyi gösterir:
+     ① kapalı kart   : kalın sol çizgi · en büyük yazı · yalnız ad + tek cümle  → en genel
+     ② 1. halka      : daha ince çizgi · bir kademe içeride · adımlar/sonuç     → işin kendisi
+     ③ 2. halka      : en ince, kesikli çizgi · iki kademe içeride · en küçük   → çevre, paylaşım
+   Yani: içeri girdikçe çizgi incelir, yazı küçülür, girinti artar. Göz derinleştiğini kendi görür. */
+.is-liste>li.is-k{padding-left:0;list-style:none}
+.is-liste>li.is-k::before{content:none}                      /* numara düğmenin içine taşındı */
+.is-k{border-left:3px solid var(--vurgu);border-radius:0 12px 12px 0;background:var(--panel-bg);
+  box-shadow:0 1px 2px rgba(31,42,46,.05);overflow:hidden;transition:box-shadow .2s,border-color .2s}
+.is-k.acik{box-shadow:0 2px 4px rgba(31,42,46,.06),0 12px 28px rgba(31,42,46,.10)}
+/* kapalı yüz: tıklanabilir, tam genişlik, sağda açılır oku */
+.is-ac{display:block;width:100%;position:relative;text-align:left;font:inherit;color:inherit;
+  background:none;border:0;padding:16px 46px 14px 18px;cursor:pointer;min-height:44px}
+.is-ac:hover{background:color-mix(in srgb,var(--vurgu) 5%,transparent)}
+.is-ac:focus-visible{outline:2px solid var(--vurgu);outline-offset:-2px}
+.is-ac .is-ust{margin:0 0 6px}
+.is-k .is-ne{margin:0;font-size:.97em;line-height:1.55;color:var(--murekkep-2)}
+/* açılır işareti: kapalıyken aşağı, açıkken yukarı bakan ok — yazısız */
+.is-ok{position:absolute;right:16px;top:18px;width:22px;height:22px;border:1px solid var(--cizgi-2);
+  border-radius:50%;transition:transform .25s ease,border-color .2s,background .2s}
+.is-ok::before{content:"";position:absolute;left:7px;top:8px;width:6px;height:6px;
+  border-right:1.6px solid var(--vurgu);border-bottom:1.6px solid var(--vurgu);transform:rotate(45deg)}
+.is-ac:hover .is-ok{border-color:var(--vurgu);background:color-mix(in srgb,var(--vurgu) 10%,transparent)}
+.is-k.acik .is-ok{transform:rotate(180deg)}
+/* açılan gövde */
+.is-ic{padding:0 18px 16px;display:grid;gap:14px;animation:is-ac .28s ease both}
+@keyframes is-ac{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.is-ic[hidden]{display:none}
+/* ② ve ③ halkalar: girinti artar, çizgi incelir, yazı küçülür */
+.is-sat.is-h2{margin-left:10px;padding-left:14px;border-left:2px solid color-mix(in srgb,var(--vurgu) 45%,transparent)}
+.is-sat.is-h3{margin-left:22px;padding-left:14px;border-left:1px dashed var(--cizgi-2);font-size:.94em}
+.is-sat.is-h3 dt{color:var(--murekkep-3);opacity:.9}
+@media (max-width:860px){
+  .is-ac{padding:14px 42px 12px 15px}
+  .is-ic{padding:0 15px 14px;gap:12px}
+  .is-sat.is-h2{margin-left:4px;padding-left:11px}
+  .is-sat.is-h3{margin-left:12px;padding-left:11px}
+}
