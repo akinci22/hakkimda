@@ -20,15 +20,31 @@
 html{scroll-behavior:smooth}
 
 /* ---------- 2) Tek giriş animasyonu ---------- */
-@media (prefers-reduced-motion:no-preference){
-  .js .gel{opacity:0;transform:translate3d(0,18px,0);
-    transition:opacity .4s ease-out,transform .4s cubic-bezier(.2,.7,.2,1)}
-  .js .gel.var{opacity:1;transform:none}
-  .js .sohbet .gel:nth-child(2){transition-delay:.08s}
-  .js .sohbet .gel:nth-child(3){transition-delay:.16s}
-  .js .sohbet .gel:nth-child(4){transition-delay:.24s}
-  .js .sohbet .gel:nth-child(5){transition-delay:.32s}
+/* TUR 10 (15 Eki): giriş animasyonu her ortamda kalır; "az hareket"te yalnız daha kısa ve daha az yol (aşağıdaki reduce bloğu) */
+.js .gel{opacity:0;transform:translate3d(0,18px,0);
+  transition:opacity .4s ease-out,transform .4s cubic-bezier(.2,.7,.2,1)}
+.js .gel.var{opacity:1;transform:none}
+.js .sohbet .gel:nth-child(2){transition-delay:.08s}
+.js .sohbet .gel:nth-child(3){transition-delay:.16s}
+.js .sohbet .gel:nth-child(4){transition-delay:.24s}
+.js .sohbet .gel:nth-child(5){transition-delay:.32s}
+/* görsel taşıyan .gel ögeleri: belirirken hafif ölçek (aynı geçiş, çakışma yok) */
+.js :is(figure,.cer,video).gel:not(.var){transform:translate3d(0,14px,0) scale(.965)}
+/* .gel olmayan bölüm görselleri/klipler (JS .bel-g verir): yumuşak belirme + hafif ölçek, tek sefer */
+.js .bel-g{opacity:0;transform:translate3d(0,10px,0) scale(.96);transition:opacity .55s ease-out,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .bel-g.var{opacity:1;transform:none}
+/* bölüm başlıkları harf harf (AURA --i kalıbı); .bh-oyna tek sefer verilir */
+.js h2.bh .bh-k{display:inline-block;white-space:nowrap}
+.js h2.bh .bh-h{display:inline-block;opacity:0}
+.js h2.bh.bh-oyna .bh-h{animation:bhHarf .5s cubic-bezier(.2,.8,.2,1) calc(var(--i,0) * 32ms) both}
+@keyframes bhHarf{from{opacity:0;transform:translate3d(0,.32em,0) scale(.96)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .js .gel{transform:translate3d(0,8px,0);transition-duration:.2s}
+  .js :is(figure,.cer,video).gel:not(.var){transform:translate3d(0,6px,0) scale(.985)}
+  .js .bel-g{transform:translate3d(0,4px,0) scale(.985);transition-duration:.2s}
+  .js h2.bh.bh-oyna .bh-h{animation-duration:.25s;animation-delay:calc(var(--i,0) * 12ms)}
 }
+.js-yok h2 .bh-h,.js-yok .bel-g{opacity:1}
 
 /* ---------- 3) Çerçeve dili — her fotoğraf lacivert çerçevede ---------- */
 :root{--cer:#0b1a33;--cer-ic:#24406e}

@@ -180,7 +180,11 @@ footer p{margin:0 0 .5em}
   body{font-size:16px}
   .galeri{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+/* TUR 10 (15 Eki): "az hareket" tercihi animasyonları KAPATMAZ, yalnız kısaltır (eski *{animation:none!important} tuzağı:
+   Akın'ın Windows'u reduce bildiriyor, girizgâh/bölüm girişleri hiç görünmüyordu). Parallaks/sonsuz döngüler kendi kurallarında kapanır. */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.3s!important;transition-duration:.2s!important}
+}
 
 /* kapak gorseli (alt sayfa basligi altinda) */
 .kapak{margin:22px 0 4px;border:1px solid var(--cizgi);border-radius:6px;overflow:hidden}
@@ -581,8 +585,8 @@ html::-webkit-scrollbar-thumb{border-radius:8px;background-color:transparent;
 html::-webkit-scrollbar-thumb:hover{filter:brightness(1.1);background-color:rgba(255,255,255,.08)}
 html{scrollbar-width:auto!important;scrollbar-color:auto!important}   /* yoksa Chrome bulutlu çubuğu yok sayar */
 /* Bulut imleç */
-html.bulut-imlec-acik,html.bulut-imlec-acik *{cursor:none!important}
-html.bulut-imlec-acik input,html.bulut-imlec-acik textarea{cursor:text!important}
+/* TUR 10 (15 Eki): imleç balonu kapalı — tarayıcının kendi imleci (cursor:auto); eski "cursor:none" kuralı kaldırıldı, JS'te BULUT_IMLEC=false */
+html.bulut-imlec-acik{cursor:auto}
 .bulut-imlec{position:fixed;left:0;top:0;z-index:100000;pointer-events:none;will-change:transform;transition:opacity .2s}
 .bulut-imlec svg{display:block;overflow:visible;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));transition:transform .15s}
 .bi-uc{fill:#fff;stroke:#33507d;stroke-width:1.2;stroke-linejoin:round}

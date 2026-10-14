@@ -50,7 +50,7 @@ function kaydirDegis(k, src, yon) {
     if (!azalt) { var b = e.matches(".bilgi>div") ? e.querySelector("b") : null; if (b) say(b); }
   }
   function kapat(e) { e.classList.remove("var"); e.classList.remove("ac"); }
-  if (azalt || !("IntersectionObserver" in window)) {
+  if (!("IntersectionObserver" in window)) {   // TUR 10: "az hareket" tercihinde de giriş animasyonu kalır (CSS süreleri kısaltır); yalnız sayı sayma kapalı
     Array.prototype.forEach.call(hepsi, ac);
   } else {
     var go = new IntersectionObserver(function (gs) {
@@ -247,15 +247,18 @@ function kaydirDegis(k, src, yon) {
   ciz();
 })();
 
-/* Fare tekerleğinde ivmeli, yumuşak kaydırma (Lenis). Dokunmatikte ve "az hareket" tercihinde kapalı. */
+/* Fare tekerleğinde ivmeli, yumuşak kaydırma (Lenis). Dokunmatikte kapalı (native).
+   TUR 10 (15 Eki): lerp .09 + wheelMultiplier .9 + expo-out 1.2 s → sabit hızda kayıp aniden durma yok, eylemsizlikle yavaşlar.
+   "Az hareket" tercihinde kapanmaz, yalnız daha çabuk oturur (lerp .14) — Akın'ın Windows'u reduce bildiriyor. */
 (function () {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches || matchMedia("(pointer: coarse)").matches) return;
+  if (matchMedia("(pointer: coarse)").matches) return;
+  var azalt = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var s = document.createElement("script");
   s.src = "https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js";
   s.onload = function () {
     if (!window.Lenis) return;
     document.documentElement.style.scrollBehavior = "auto";
-    var l = window.__lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, lerp: 0.2, smoothWheel: true });   // Akın 6 Eki: kısa, hızlı bir kayma animasyonu kalsın (lerp .2 = çabuk oturur); sayfa yükü düştüğü için takılmaz   // akıcılık (6 Eki): tekerlek tarayıcıda kalır (kompozitör, 120 Hz); Lenis yalnız bağlantı/bulut atlamalarını yumuşatır
+    var l = window.__lenis = new Lenis({ duration: azalt ? .7 : 1.2, easing: function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }, lerp: azalt ? .14 : .09, wheelMultiplier: .9, smoothWheel: true });
     function r(t) { l.raf(t); requestAnimationFrame(r); }
     requestAnimationFrame(r);
     document.addEventListener("click", function (e) {
@@ -666,7 +669,8 @@ function kaydirDegis(k, src, yon) {
 /* Bulut imleç: fare imleci gibi uçlu küçük bir bulut. Tıklanacak bir yerin üstünde ıslanıp koyulaşır ve "tıkla" der;
    beklemeye devam edersen yağmur yağdırır, daha da beklersen şimşek çakar. Yalnız fareli cihazlarda. */
 (function () {
-  if (!matchMedia("(pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var BULUT_IMLEC = false;   // TUR 10 (15 Eki, Akın): imleç balonu kapalı; tarayıcının kendi imleci kalır (performans). Geri açmak: true
+  if (!BULUT_IMLEC || !matchMedia("(pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var TIK = "a,button,[role=button],summary,label,select,video.gif,.hl,.ss-yan img,.montaj-ic img,.r-kart,.hava-bulut,.geri-bulut,.cer:not(.dmg-foto *),.gif-kart";
   var im = document.createElement("div"); im.className = "bulut-imlec"; im.setAttribute("aria-hidden", "true"); im.style.transform = "translate(-200px,-200px)";
   var yag = ""; for (var i = 0; i < 4; i++) yag += '<line x1="' + (12 + i * 5) + '" y1="25" x2="' + (10 + i * 5) + '" y2="31" style="animation-delay:' + i * .12 + 's"/>';
@@ -828,4 +832,43 @@ function kaydirDegis(k, src, yon) {
       if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { duration: Math.abs(d) > innerHeight ? .9 : .45 }); else scrollBy({ top: d, behavior: Math.abs(d) > innerHeight ? "instant" : "smooth" }); }
     setTimeout(duzelt, 1400); setTimeout(duzelt, 2500); setTimeout(duzelt, 3600);
   }, true);
+})();
+
+/* TUR 10 (15 Eki 2026) — hareket dili: görseller + bölüm başlıkları
+   6) Bölüm görselleri/klipler görünür alana girerken yumuşak belirme + hafif ölçek (yalnız transform/opacity, IntersectionObserver, tek sefer).
+      Var olan .gel ögeleri ve .gel içindekiler dokunulmaz (kendi girişleri var); hero, montaj, sokak sahnesi, takım içkin alanı dışarıda.
+   7) Bölüm başlıkları (h2) AURA girizgâhındaki --i gecikme kalıbıyla harf harf belirir; tek seferlik; metin bütünlüğü için
+      h2'ye aria-label verilir, harf span'ları aria-hidden. "Az hareket" tercihinde yalnız süreler kısalır (CSS). */
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  var DIS = ".gel, header, .hero, .montaj, .sokak-sahne, #takim-ic, .buyut, .buyuk-kat, .bel-g";
+  var gorseller = [];
+  Array.prototype.forEach.call(document.querySelectorAll("main figure, main .cer, main video.gif"), function (e) {
+    if (e.classList.contains("gel") || e.classList.contains("bel-g")) return;
+    var p = e.parentNode; if (p && p.closest && p.closest(DIS)) return;
+    if (e.closest("header, .hero, .montaj, .sokak-sahne, #takim-ic")) return;
+    e.classList.add("bel-g"); gorseller.push(e);
+  });
+  // Başlıklar: yalnız düz metinli h2'ler bölünür (içinde öge olanlar olduğu gibi kalır)
+  var basliklar = [];
+  Array.prototype.forEach.call(document.querySelectorAll("main h2, .iletisim h2"), function (h) {
+    if (h.closest("#takim-ic") || h.children.length || !h.textContent.trim()) return;
+    var metin = h.textContent.replace(/\s+/g, " ").trim(); h.setAttribute("aria-label", metin); h.textContent = "";
+    var n = 0;
+    metin.split(" ").forEach(function (kelime, ki) {
+      if (ki) h.appendChild(document.createTextNode(" "));
+      var k = document.createElement("span"); k.className = "bh-k"; k.setAttribute("aria-hidden", "true");
+      Array.prototype.forEach.call(kelime, function (ch) { var s = document.createElement("span"); s.className = "bh-h"; s.textContent = ch; s.style.setProperty("--i", n++); k.appendChild(s); });
+      h.appendChild(k);
+    });
+    h.classList.add("bh"); basliklar.push(h);
+  });
+  if (!gorseller.length && !basliklar.length) return;
+  var io = new IntersectionObserver(function (gs) {
+    gs.forEach(function (g) { if (!g.isIntersecting) return; var e = g.target; e.classList.add(e.classList.contains("bh") ? "bh-oyna" : "var"); io.unobserve(e); });
+  }, { rootMargin: "0px 0px 12% 0px", threshold: 0.05 });
+  gorseller.concat(basliklar).forEach(function (e) { io.observe(e); });
+  // Emniyet: bağlantıyla atlayınca ya da çok hızlı kaydırınca ekranda görünür hiçbir şey saklı kalmasın
+  function emniyet() { setTimeout(function () { gorseller.concat(basliklar).forEach(function (e) { var r = e.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) { e.classList.add(e.classList.contains("bh") ? "bh-oyna" : "var"); io.unobserve(e); } }); }, 400); }
+  addEventListener("hashchange", emniyet); addEventListener("load", emniyet);
 })();
