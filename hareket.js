@@ -800,13 +800,19 @@ function kaydirDegis(k, src, yon) {
     var k = g.querySelector(".yg-kart.ac"); if (k) { if (k !== acik) goster(k); } else if (acik) gizle(); }).observe(g, { attributes: true, subtree: true, attributeFilter: ["class"] });
 })();
 
-/* Çapa atlayışında iniş düzeltmesi: üstteki bölümler kaydırma sırasında boy alınca (geç yüklenen görsel/klip) hedef kısa düşüyordu
-   (mobilde menü → #takim ilk tıklamada 574 px eksik). İniş bitince hedefin yerini yeniden ölçer, sapma varsa kısa bir kaydırmayla oturtur. */
+/* Çapa atlayışında iniş düzeltmesi (v2 — 12 Eki, Akın: "hızlı aşağı kaydırdıktan sonra kendi kendine geri gitmeler oluyor")
+   Sorun: düzeltme 1400/2500/3600 ms sonra KOŞULSUZ çalışıyordu. Kullanıcı o arada elle kaydırdıysa ya da başka bir
+   bağlantıya bastıysa, eski hedefe zorla geri çekiyordu (ölçüldü: 300 px'e kaydırılan sayfa 31978'e fırladı).
+   Çözüm: her atlayış bir "oturum"; kullanıcı araya girdiği (tekerlek/dokunma/tuş/yeni tıklama) anda oturum iptal olur
+   ve o atlayışın bekleyen düzeltmeleri bir daha çalışmaz. Düzeltme yalnız hedefe yakınken ve küçük sapmalarda yapılır. */
 (function () {
   if(!window.__girdiKur){window.__girdiKur=1;window.__girdi=0;var __g=function(){window.__girdi=performance.now();};['wheel','touchstart','touchmove'].forEach(function(t){addEventListener(t,__g,{passive:true,capture:true});});addEventListener('keydown',function(e){if(/^(Arrow|Page|Home|End| )/.test(e.key)||e.key===' ')__g();},true);}   /* 7 Eki: kullanıcı kaydırmaya başladıysa gecikmeli 'iniş düzeltmeleri' onu yukarı geri çekmesin */
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a || a.getAttribute("href").length < 2) return;
     var id = a.getAttribute("href").slice(1), h = document.getElementById(id); if (!h || a.closest("#takim-ic")) return;
+
+    iptal();                                          // yeni atlayış: öncekinin bekleyen düzeltmeleri ölür
+    var benim = ++oturum; aktif = h;
     var ust = window.__lenis ? 10 : (parseFloat(getComputedStyle(h).scrollMarginTop) || 0);
     var ic = window.TAKIM_IC && window.TAKIM_IC.govde, host = document.getElementById("takim-ic");   // hedef takımın altındaysa: içkin bölümler gerçek boyuna açılır (content-visibility yer tutucusu hedefi kısa ölçtürüyordu)
     if (ic && host && (host.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING) && !host.contains(h)) { ic.classList.add("hepsi-acik"); clearTimeout(ic._hz2);  }
