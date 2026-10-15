@@ -32,7 +32,13 @@
     });
     const hepsi = Array.from((kok || document).querySelectorAll('.gecis'));
     if (azalt || !('IntersectionObserver' in window)) { hepsi.forEach(function (g) { g.classList.add('canli'); }); return hepsi.length; }
-    const io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('canli', e.isIntersecting); if (e.isIntersecting) e.target.classList.add('gorundu'); }); }, { threshold: 0.3 });
+    /* 120 fps (15 Eki): çizim (stroke-dashoffset, ana iş parçacığında boyanır) kaydırma sürerken başlamaz; kaydırma durunca (140 ms) aynen çizilir */
+    const bekleyen = new Set(); let dur = 0;
+    function uygula() { bekleyen.forEach(function (g) { if (g.__gorunur) { g.classList.add('canli', 'gorundu'); } }); bekleyen.clear(); }
+    addEventListener('scroll', function () { clearTimeout(dur); dur = setTimeout(uygula, 140); }, { passive: true });
+    const io = new IntersectionObserver(function (es) { es.forEach(function (e) { const g = e.target; g.__gorunur = e.isIntersecting;
+      if (!e.isIntersecting) { g.classList.remove('canli'); bekleyen.delete(g); return; }
+      bekleyen.add(g); clearTimeout(dur); dur = setTimeout(uygula, 140); }); }, { threshold: 0.3 });
     hepsi.forEach(function (g) { io.observe(g); });
     return hepsi.length;
   }
