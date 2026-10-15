@@ -462,7 +462,9 @@ function kaydirDegis(k, src, yon) {
   var yakin = new Set(), dur = null, calisiyor = false;
   var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { g.isIntersecting ? yakin.add(g.target) : yakin.delete(g.target); }); planla(); },
     { rootMargin: "1800px 0px" });
-  document.querySelectorAll("video.gif").forEach(function (v) { io.observe(v); });
+  /* 120 fps: arka plan ön-yüklemesi sayfa yüklenip 2,5 sn geçince başlar (açılışta bant genişliği ilk ekrana kalsın) */
+  function basla() { document.querySelectorAll("video.gif").forEach(function (v) { io.observe(v); }); }
+  if (document.readyState === "complete") setTimeout(basla, 2500); else addEventListener("load", function () { setTimeout(basla, 2500); });
   function planla() { clearTimeout(dur); dur = setTimeout(sira, 700); }
   addEventListener("scroll", planla, { passive: true });
   function sira() {
@@ -890,4 +892,13 @@ function kaydirDegis(k, src, yon) {
   if (!("IntersectionObserver" in window)) return;
   var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { g.target.classList.toggle("ekran-disi", !g.isIntersecting); }); }, { rootMargin: "400px 0px" });
   document.querySelectorAll("main>section, header.hero, section.iletisim").forEach(function (s) { io.observe(s); });
+})();
+
+/* 120 fps (15 Eki): klip kapak görselleri (poster) açılışta 59 tane birden inmesin — klip ekrana ~1,5 ekran kala atanır. */
+(function () {
+  var v = document.querySelectorAll("video[data-poster]"); if (!v.length) return;
+  function ata(x) { if (x.dataset.poster) { x.poster = x.dataset.poster; x.removeAttribute("data-poster"); } }
+  if (!("IntersectionObserver" in window)) { v.forEach(ata); return; }
+  var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { if (g.isIntersecting) { ata(g.target); io.unobserve(g.target); } }); }, { rootMargin: "1500px 0px" });
+  v.forEach(function (x) { io.observe(x); });
 })();

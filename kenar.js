@@ -63,8 +63,9 @@
   let z; function yenile() { clearTimeout(z); z = setTimeout(() => { kur().then(n => { document.documentElement.dataset.kenar = n; }); }, 260); }
   /* bölüm yükseklikleri sonradan değişir (tembel yüklenen görsel/klip, açılan kutular): ResizeObserver 40 px'ten büyük değişimde yeniden yerleştirir */
   const boylar = new Map();
-  function gozle() { if (!('ResizeObserver' in window)) return; const ro = new ResizeObserver(es => { let degisti = false; es.forEach(e => { const h = e.contentRect.height, o = boylar.get(e.target) || 0; if (Math.abs(h - o) > 40) { boylar.set(e.target, h); degisti = true; } }); if (degisti) yenile(); }); Object.keys(KENAR).forEach(id => { const S = document.getElementById(id); if (S) { boylar.set(S, S.getBoundingClientRect().height); ro.observe(S); } }); }
-  function basla() { yenile(); gozle(); addEventListener('resize', yenile); if (document.fonts && document.fonts.ready) document.fonts.ready.then(yenile); setTimeout(yenile, 2500); setTimeout(yenile, 7000); }
+  function gozle() { if (!('ResizeObserver' in window)) return; const ro = new ResizeObserver(es => { let degisti = false; es.forEach(e => { const h = e.contentRect.height, o = boylar.get(e.target) || 0; if (Math.abs(h - o) > 40) { boylar.set(e.target, h); degisti = true; } }); if (degisti) yenile(); }); Object.keys(KENAR).forEach(id => { const S = document.getElementById(id); if (S) ro.observe(S); }); }
+  function basla() { if (innerWidth < 1180) { addEventListener('resize', function g() { if (innerWidth >= 1180) { removeEventListener('resize', g); basla(); } }); return; }   /* 120 fps (15 Eki): dar ekranda kenar görseli yok; ölçüm/gözlemci de kurulmaz */
+    yenile(); gozle(); addEventListener('resize', yenile); if (document.fonts && document.fonts.ready) document.fonts.ready.then(yenile); setTimeout(yenile, 2500); setTimeout(yenile, 7000); }
   if (document.readyState === 'complete') basla(); else addEventListener('load', basla);
   window.kenarYenile = yenile;
 })();
