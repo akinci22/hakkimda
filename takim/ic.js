@@ -3,6 +3,8 @@
    Gölge kök: ana sitenin CSS'i takıma, takımınki ana siteye sızmaz; id'ler çakışmaz. */
 (async () => {
   const host = document.getElementById('takim-ic'); if (!host || host.shadowRoot) return;
+  /* 120fps (15 Eki): ağır kurulum (fetch + gölge kök + takim.js) ana sayfanın ilk boyamasından sonra, boşta */
+  await new Promise(r => (window.requestIdleCallback ? requestIdleCallback(() => r(), { timeout: 1200 }) : setTimeout(r, 200)));
   const V = new URL(import.meta.url).searchParams.get('v') || '1';
   const al = async (u) => { const r = await fetch(u); if (!r.ok) throw new Error(u); return r.text(); };
   let html, css; const akisP = al('takim/akis.css?v=' + V).catch(() => '');   /* akıcılık kuralları: en sona eklenir */
