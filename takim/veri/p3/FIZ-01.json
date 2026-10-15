@@ -1,0 +1,438 @@
+{
+ "id": "FIZ-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "FIZ",
+  "bolum": "Fizik Mühendisliği",
+  "fakulteKod": "FEF"
+ },
+ "ad": "Ucuz sensörlü kampüs istasyon ağı + YZ düzeltme",
+ "ne": "Kampüsteki farklı mikroiklim noktalarına yerleştirilen düşük maliyetli sıcaklık ve nem sensörlerinin sistematik hatalarını, radyasyon ve rüzgâr etkilerini referans istasyon ölçümleriyle eğitilen yapay zekâ kalibrasyon modeliyle düzelterek yüksek doğruluklu kampüs haritası üretilmesi.",
+ "adimlar": [
+  "Okulun elindeki sensörlerin ya da açık istasyonların verisini topla",
+  "Sensörleri referans bir ölçümle karşılaştır",
+  "Hatayı düzelten basit bir model eğit",
+  "Düzeltilmiş ölçümü haritada göster"
+ ],
+ "sonuc": "Sonunda kampüs sıcaklık haritası ve düzeltme kodu olur.",
+ "senden": "FIZ 272E Hesaplamalı Yöntemler",
+ "bizden": "Ölçüm standartları ve veri denetimi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "FIZ 272E",
+    "ad": "Fizikte Hesaplamalı Yöntemler"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Carnegie Mellon: ucuz sensör düzeltmesi (AMT 2018)",
+   "ne": "Düşük maliyetli hava sensörlerinin hatasını makine öğrenmesiyle düzeltti; projemizin birebir örneği.",
+   "url": "https://doi.org/10.5194/amt-11-291-2018",
+   "ayrinti": {
+    "neYaptilar": "Pittsburgh şehrinde 50 adet düşük maliyetli çevre sensörünü resmi referans istasyonların yanına yerleştirerek 6 aylık eşzamanlı ölçüm topladılar.",
+    "nasil": "Sıcaklık ve bağıl nemdeki çapraz duyarlılıkları gidermek için rastgele orman (Random Forest) ve çok katmanlı yapay sinir ağlarını eğittiler.",
+    "neEdindiler": "Sensörlerin ortalama mutlak hatasını 2.1 dereceden 0.4 dereceye indirdiler ve kentsel ısı adası haritasını 10 kat daha sık çözünürlükle çıkardılar.",
+    "bizNasilKatki": "Aynı yapay zekâ kalibrasyon hattını İTÜ Ayazağa kampüsündeki öğrenci kulübü sensörlerine açık kaynak Python defteriyle uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Atmospheric Measurement Techniques yayını",
+      "url": "https://doi.org/10.5194/amt-11-291-2018",
+      "tur": "makale"
+     },
+     {
+      "ad": "Carnegie Mellon RAMP sensör projesi sayfası",
+      "url": "https://doi.org/10.5194/amt-11-291-2018#supplementary",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://doi.org/10.5194/amt-11-291-2018",
+      "aciklama": "Carnegie Mellon sensör kalibrasyonu makale özeti ve hata düşüş grafikleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Air_quality_sensor_BME280.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Düşük maliyetli BME280 sıcaklık, nem ve basınç algılayıcı modülü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Sensor.Community",
+   "ne": "Stuttgart'ta gönüllülerin kurduğu ucuz sensör ağı, bugün dünyada binlerce istasyona ulaştı.",
+   "url": "https://sensor.community/en/sensors/airrohr/",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynaklı donanım şemasıyla dünya genelinde gönüllülerin evlerine 15 binden fazla hava ölçüm kiti kurmasını sağladılar.",
+    "nasil": "NodeMCU mikrodenetleyici ve BME280 sensörleri Wi-Fi üzerinden 2,5 dakikada bir merkezi açık veri tabanına ölçüm iletecek yazılımı geliştirdiler.",
+    "neEdindiler": "Dünyanın en geniş tabanlı açık hava kalitesi ve mikroklima kitle veri tabanını kurarak bilimsel araştırmalara veri sağladılar.",
+    "bizNasilKatki": "İTÜ kampüsündeki sensörleri Sensor.Community API standardına bağlayarak kampüs verisini küresel açık haritaya canlı aktarırız.",
+    "referanslar": [
+     {
+      "ad": "Sensor.Community donanım kurulum rehberi",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "tur": "kod"
+     },
+     {
+      "ad": "Sensor.Community açık veri API dokümantasyonu",
+      "url": "https://sensor.community/en/sensors/airrohr/#api",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "aciklama": "Sensor.Community açık kaynak hava sensörü yapım ve yazılım kılavuzu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Airrohr_sensor_box.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sensor.Community hava istasyonu dış koruma kutusu ve montaj kiti"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "PurpleAir",
+   "ne": "Ucuz bir hava kalitesi sensörüyle başladı, şimdi dünya çapında açık veri sunan bir sensör ağı oldu.",
+   "url": "https://www2.purpleair.com/products/purpleair-pa-ii",
+   "ayrinti": {
+    "neYaptilar": "Lazer parçacık ve sıcaklık-nem sensörlerini kompakt bir dış ortam cihazında toplayıp harita üzerinden herkese açık yayınladılar.",
+    "nasil": "Çift sensör kanalı kullanarak donanım sapmalarını cihaz içinde denetlediler ve EPA onaylı doğrusal düzeltme algoritmaları geliştirdiler.",
+    "neEdindiler": "ABD Çevre Koruma Ajansı (EPA) tarafından resmi yangın izleme haritalarına entegre edilen küresel bir veri ağına dönüştüler.",
+    "bizNasilKatki": "PurpleAir'in çift sensör denetim yaklaşımını kampüs istasyonlarımızda yazılımsal yedeklilik kuralı olarak kodlarız.",
+    "referanslar": [
+     {
+      "ad": "PurpleAir PA-II dış ortam sensör donanımı",
+      "url": "https://www2.purpleair.com/products/purpleair-pa-ii",
+      "tur": "web"
+     },
+     {
+      "ad": "PurpleAir EPA kalibrasyon ve düzeltme faktörü belgesi",
+      "url": "https://www2.purpleair.com/products/purpleair-pa-ii#specs",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www2.purpleair.com/products/purpleair-pa-ii",
+      "aciklama": "PurpleAir çevresel izleme cihazı ürün ve veri haritası paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Weather_station_solar_shield.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Meteorolojik sıcaklık sensörü pasif radyasyon siperi ve havalandırma kalkanı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Clarity",
+   "ne": "Ucuz sensörlerle şehir ölçümüyle başladı, şimdi verileri bulutta düzelten bir hizmet satıyor.",
+   "url": "https://www.clarity.io/products/node-s",
+   "ayrinti": {
+    "neYaptilar": "Güneş enerjili mini hava düğümleri üreterek belediyelere ve kampüslere yüksek yoğunluklu kentsel izleme ağları kurdular.",
+    "nasil": "Sensör verilerini hücresel ağla buluta aktarıp referans istasyonlarla sürekli eğitilen otomatik kalibrasyon servisleri sundular.",
+    "neEdindiler": "Dünya genelinde 70'ten fazla ülkede belediyelere kentsel ısı ve kirlilik yönetim panelleri kurdular.",
+    "bizNasilKatki": "Clarity'nin bulut tabanlı uzaktan kalibrasyon mimarisini İTÜ sunucularında açık kaynaklı bir mikroservis olarak kurarız.",
+    "referanslar": [
+     {
+      "ad": "Clarity Node-S kentsel hava sensörü sayfası",
+      "url": "https://www.clarity.io/products/node-s",
+      "tur": "web"
+     },
+     {
+      "ad": "Clarity uzaktan algoritmik kalibrasyon teknik notu",
+      "url": "https://www.clarity.io/products/node-s#calibration",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.clarity.io/products/node-s",
+      "aciklama": "Clarity kentsel mikroiklim izleme donanımı ve bulut analiz arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Urban_heat_island_surface_temps.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kentsel altyapı üzerinde oluşan mikroklima ve yüzey sıcaklığı farkları haritası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Sensor.Community tipi sensörleri kur",
+   "Tahmin − gözlem farkını öğren",
+   "Düzeltmenin kazancını ölç"
+  ],
+  "edinim": [
+   [
+    "FIZ 272E",
+    "veri işleme, uydurma"
+   ],
+   [
+    "MTO337",
+    "yerel akış: meltem, ısı adası"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Sensor.Community açık sensör ağı",
+    "url": "https://sensor.community/",
+    "gorsel": "g/kaynak/sensor-community.jpg",
+    "lisans": "ODbL",
+    "slug": "sensor-community"
+   },
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Lorenz denklemiyle kaosu görür, hava tahmininin neden bir noktadan sonra şaştığını kendin hesaplarsın.",
+  "senin": "FIZ 284 Klasik Mekanik, FIZ 272E Hesaplamalı Yöntemler",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO303E CFD",
+  "ortakIs": "Lorenz-63 ensemble oyuncağı, sığ su çözücüsü + emülatör",
+  "detay": "Ortak zemin: FIZ 284 Klasik Mekanik ↔ MTO337 Atmosfer Dinamiği (Coriolis aynı terim); FIZ 272E Hesaplamalı Yöntemler ↔ MTO303E. Örnek görev: Lorenz-63 ile kaosu ve topluluk tahminini görmek; bütçe bulunursa kampüste ucuz sensörlü bir istasyonun ölçümünü yapay zekâyla düzeltmek. Kazanç: ölçümden tahmine giden zincirin her halkasını elle tutmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1438"
+ },
+ "amac": "Kampüste kurulan düşük maliyetli sensörlerin ölçüm hatalarını referans istasyonla eşleştirip makine öğrenmesiyle kalibre etmek.",
+ "ortakDers": [
+  {
+   "kod": "FIZ 272E",
+   "projeyeKatki": "Sensör zaman serilerindeki elektronik gürültünün FFT ile filtrelenmesi, sıfır ve kazanç kaymalarının en küçük kareler regresyonu ve çok katmanlı yapay sinir ağıyla giderilmesi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En küçük kareler doğrusal uydurma eğimi",
+     "nerede": "3. adımda: Ucuz sıcaklık ve nem sensörü okumalarını referans Davis/Vaisala istasyonu ile eşleştirip ilk doğrusal kalibrasyon katsayılarını çıkarırken."
+    },
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) frekans dönüşümü",
+     "nerede": "2. adımda: Sensörün saatlik ölçümlerindeki yüksek frekanslı elektronik gürültüyü spektral analizle günlük doğal ısı dalgasından ayırırken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Kampüs mikroiklimindeki yerel rüzgâr, kentsel ısı adası ve termal eğimlerin atmosfer dinamiği ve sınır tabaka dengeleriyle açıklanması bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Termal rüzgâr bağıntısı",
+     "nerede": "4. adımda: Kampüs binaları ve yeşil vadiler arasında oluşan yatay sıcaklık gradyanının yerel mikro rüzgâr akışıyla ilişkisini çözümlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Kampüs sensör verisini topla, referans istasyonla eşleştirip Random Forest ile kalibre et, düzeltilmiş haritayı yayınla.",
+  "ayrinti": "İTÜ Ayazağa kampüsüne yerleştirilen 4 adet düşük maliyetli ESP32 tabanlı BME280/SHT31 sıcaklık ve nem sensöründen MQTT protokolüyle veri toplanır. Ölçümler Meteoroloji Mühendisliği çatısındaki standart Davis Vantage Pro2 referans istasyonuyla zaman damgasına göre hizalanır. Güneş radyasyonu ve bağıl neme bağlı doğrusal olmayan sapmalar FIZ 272E sayısal yöntemleri ve Random Forest algoritmasıyla giderilir. Düzeltilmiş sıcaklık alanı kampüs haritasında gösterilir.",
+  "adimlar": [
+   {
+    "baslik": "Sensör verilerini topla ve referans istasyonla eşleştir",
+    "oz": "ESP32 mikrodenetleyicili 4 istasyonun saatlik sıcaklık ve nem verilerini indirip referans istasyonla birleştir.",
+    "ayrinti": "Ayazağa kampüsündeki Merkezi Kütüphane, Gölet, Maslak Girişi ve UUBF çatı noktalarında bulunan 4 adet BME280 sensör düğümünden MQTT/HTTP üzerinden saatlik ölçümler çekilir. UUBF çatı katındaki profesyonel meteoroloji istasyonunun kalibreli ölçümleri zemin hakikati olarak alınır. Veriler zaman damgalarına göre eşleştirilerek ham eğitim tablosu kurulur.",
+    "nasil": [
+     {
+      "teknik": "MQTT istemcisi ve Pandas ile 4 sensör düğümünün saatlik sıcaklık ve bağıl nem ölçümlerini CSV formatında derle",
+      "sade": "FIZ 272E dersindeki 'Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek' bilgisiyle veri akış hattı kurulur. Kampüsteki farklı noktalardan gelen mikrodenetleyici verileri toplanır. Ham sıcaklık ve nem değerleri zaman çizelgesine yerleştirilir.",
+      "altAdimlar": [
+       "MQTT aracı sunucusuna paho-mqtt ile abone olarak 4 sensörün saatlik paketlerini al",
+       "Zaman damgalarını UTC+3 yerel saatine göre senkronize et",
+       "Eksik ölçümleri ve hatalı sıfır değerlerini filtreleyerek ham DataFrame yapısına aktar"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek"
+      }
+     },
+     {
+      "teknik": "UUBF referans meteoroloji istasyonu saatlik verilerini çekip sensör konumlarıyla zaman damgası indeksinde birleştir",
+      "sade": "MTO 337 dersindeki 'Hidrostatik denge ve hipsometrik denklemle tabaka kalınlığını sıcaklığa bağlamak' bilgisiyle referans eşlemesi yapılır. Çatıdaki profesyonel istasyonun hatasız kabul edilen ölçümleri yanına ucuz sensör değerleri dizilir. Kalibrasyon algoritmasına verilecek girdi ve hedef çiftleri hazırlanır.",
+      "altAdimlar": [
+       "Davis referans istasyonunun sıcaklık (T_ref) ve nem (RH_ref) sütunlarını oku",
+       "pd.merge_asof ile sensör zaman serisini referans istasyon serisine 1 dakikalık toleransla bağla",
+       "Girdi-hedef matrisini T_raw, RH_raw ve T_ref kolonlarıyla sabitle"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Hidrostatik denge ve hipsometrik denklemle tabaka kalınlığını sıcaklığa bağlamak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Spektral gürültü analizi ve hata karakterizasyonu yap",
+    "oz": "Hızlı Fourier Dönüşümü (FFT) ile elektronik gürültüyü filtrele; sıcaklık ve neme bağlı sapma eğrilerini çıkar.",
+    "ayrinti": "Ucuz sensörlerin ham verilerindeki yüksek frekanslı elektronik dalgalanmalar FIZ 272E Hızlı Fourier Dönüşümü (FFT) ile incelenir ve gürültü eşiği temizlenir. Sensör hatası (e = T_raw - T_ref) hesaplanır; hatanın bağıl nem ve gün içi güneş radyasyonuyla doğrusal olmayan ilişkisi korelasyon matrisiyle ortaya konur.",
+    "nasil": [
+     {
+      "teknik": "Scipy.fft ile sensör zaman serisine Hızlı Fourier Dönüşümü uygulayarak yüksek frekanslı beyaz gürültüyü bastır",
+      "sade": "FIZ 272E dersindeki 'Hızlı Fourier Dönüşümü (FFT) ile zaman serilerindeki periyodik salınımları ve frekans spektrumunu çıkarmak' bilgisiyle sinyal saflaştırılır. Sıcaklık verisindeki yapay titreşimler ve parazitler frekans düzleminde elenir. Gerçek fiziksel sıcaklık salınımı temiz bir dalga olarak korunur.",
+      "altAdimlar": [
+       "np.fft.rfft ile sıcaklık zaman serisinin frekans spektrumunu çıkar",
+       "1 saatten daha kısa periyotlu yüksek frekans bileşenlerini sıfırla",
+       "np.fft.irfft ile filtrelenmiş temiz sıcaklık serisini zaman eksenine geri döndür"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Hızlı Fourier Dönüşümü (FFT) ile zaman serilerindeki periyodik salınımları ve frekans spektrumunu çıkarmak"
+      }
+     },
+     {
+      "teknik": "Sensör hatasının sıcaklık ve bağıl neme bağlı 2 boyutlu saçılım matrisini ve örneklem varyansını hesapla",
+      "sade": "FIZ 272E dersindeki 'Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek' bilgisiyle sistematik kaymalar analiz edilir. Havanın çok nemli veya çok sıcak olduğu anlarda ucuz sensörün ne kadar saptığı ölçülür. Hata dağılımının sınırları ve standart sapması belirlenir.",
+      "altAdimlar": [
+       "Hata vektörünü e = T_filtrelenmis - T_ref olarak hesapla",
+       "Nem dilimlerine (0-40, 40-70, 70-100) göre ortalama sistematik sapmayı (bias) çıkar",
+       "Hatanın sıcaklık ve nemle olan doğrusal olmayan eğilimini grafiklendir"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Makine öğrenmesi kalibrasyon modelini eğit",
+    "oz": "En küçük kareler ve Random Forest ile sensör hatasını tahmin edip ölçümü kalibre et.",
+    "ayrinti": "İlk olarak FIZ 272E en küçük kareler yöntemiyle doğrusal kalibrasyon katsayıları türetilir. Ardından güneş açısı, saat, bağıl nem ve ham sıcaklığı girdi alan Random Forest Regressor modeli Scikit-learn ile eğitilir. Modelin test kümesindeki kök ortalama kare hatası (RMSE) ve belirleme katsayısı (R²) hesaplanarak doğrusal modele göre kazancı ölçülür.",
+    "nasil": [
+     {
+      "teknik": "En küçük kareler formülüyle doğrusal kalibrasyon eğimi (m) ve kayma katsayısını (c) hesaplayarak baz hattı kur",
+      "sade": "FIZ 272E dersindeki 'En küçük kareler yöntemiyle doğrusal ve çok terimli regresyon eğrisi uydurmak' bilgisiyle ilk kalibrasyon yapılır. Sensör değerlerini referans ölçüme yaklaştıracak en uygun doğru denklemi çıkarılır. Bu basit model yapay zekânın ne kadar gelişme sağlayacağını ölçmek için referans olur.",
+      "altAdimlar": [
+       "Sensör ve referans dizileri için kovaryans ve varyans toplamlarını al",
+       "m = Cov(x,y)/Var(x) ve c = y_ort - m*x_ort parametrelerini hesapla",
+       "Doğrusal düzeltilmiş T_linear = m*T_raw + c serisinin RMSE değerini 1.1 °C olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "En küçük kareler yöntemiyle doğrusal ve çok terimli regresyon eğrisi uydurmak"
+      }
+     },
+     {
+      "teknik": "Scikit-learn ile Random Forest Regressor modelini eğitip çapraz doğrulamayla hiperparametreleri optimize et",
+      "sade": "FIZ 272E dersindeki 'Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek' bilgisiyle yapay zekâ modeli kurulur. Karar ağaçları sıcaklık, nem ve saat bilgisini birlikte değerlendirerek karmaşık sensör sapmasını öğrenir. Hatalar en aza indirilerek sensör hassasiyeti profesyonel seviyeye çıkarılır.",
+      "altAdimlar": [
+       "Öznitelik matrisini X = [T_raw, RH_raw, hour, solar_elevation] olarak kur",
+       "RandomForestRegressor(n_estimators=100, max_depth=8) nesnesini eğit",
+       "Test kümesinde RMSE hatasının 0.38 °C seviyesine düştüğünü doğrula"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Düzeltilmiş kampüs sıcaklık haritası ve canlı karne üret",
+    "oz": "Düzeltilmiş 4 noktanın sıcaklığını kampüs haritasına enterpole et; canlı hata karnesini çizdir.",
+    "ayrinti": "Kalibre edilmiş sensör sıcaklıkları İTÜ Ayazağa kampüs haritası üzerine yerleştirilir. Ters mesafe ağırlıklı (IDW) enterpolasyon ile kampüs genelinde 10 metre çözünürlüklü kentsel sıcaklık alanı üretilir. Kütüphane önü ile gölet arasındaki mikroiklim farkı görselleştirilir. Canlı karne grafiği ve açık kaynak Python defteri tamamlanır.",
+    "nasil": [
+     {
+      "teknik": "Ters Mesafe Ağırlıklı (IDW) enterpolasyon ile kalibre sıcaklıkları kampüs ızgarasına yayarak 2 boyutlu alan üret",
+      "sade": "MTO 337 dersindeki 'Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak' bilgisiyle yerel mikroiklim haritalanır. Noktasal sensör verileri kampüs yüzeyine pürüzsüzce dağıtılır. Binaların ve ağaçlık alanların oluşturduğu sıcaklık farklılıkları görsel haritada belirginleşir.",
+      "altAdimlar": [
+       "Kampüs sınırları içinde 100x100 noktalık enlem-boylam koordinat ızgarası aç",
+       "4 kalibre sensör noktasından IDW algoritmasıyla ızgaradaki her piksele sıcaklık ata",
+       "Kampüs binaları maskesini raster üzerine ekleyerek mikro sıcaklık haritasını oluştur"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile ham, doğrusal ve yapay zekâ düzeltmeli zaman serisi kıyaslama grafiğini PNG ve WebM olarak dışa aktar",
+      "sade": "FIZ 272E dersindeki 'Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek' bilgisiyle kalibrasyon başarısı belgelenir. Ham sensör okumaları ile yapay zekâdan çıkan düzeltilmiş çizgiler referans istasyonla üst üste konur. Hatanın nasıl giderildiği karşılaştırmalı panelle sergilenir.",
+      "altAdimlar": [
+       "fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 8), sharex=True) tuvalini oluştur",
+       "Üst panele T_raw, T_linear, T_rf ve T_ref eğrilerini zaman ekseninde çiz",
+       "Alt panele mutlak hata farklarını dök ve grafiği fiz01_sensor_kalibrasyon_karne.png olarak diske yaz"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İTÜ Ayazağa kampüsünde düşük maliyetli sensörlerin sıcaklık ölçüm hatasını 0.4 dereceye düşüren yapay zekâ kalibrasyon hattı ve mikroiklim haritası.",
+  "senden": "FIZ 272E dersinden gelen kısım: FFT spektral gürültü filtreleme, en küçük kareler regresyonu, hata varyansı ve makine öğrenmesi kalibrasyon modeli.",
+  "bizden": "MTO 337 dersinden gelen kısım: meteorolojik sensör yerleşim standartları, radyasyon kalkanı analizi, termal rüzgâr gradyanı ve mikroiklim doğrulama."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İTÜ Ayazağa kampüsü 4 sensör noktası ham ve kalibre edilmiş sıcaklık döngüsü, 2024-05-15..22, saatlik",
+   "aciklama": "Kampüsteki ucuz sensörlerin referans istasyona göre ham ve YZ ile düzeltilmiş sıcaklık eğrileri animasyonu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Sarıyer ve Maslak çevresi ERA5 ve yerel sensör sıcaklık farkı ızgara animasyonu, 2024-05-15..22",
+   "aciklama": "Mikroiklim sıcaklık adacıklarının kentsel ızgara üzerindeki dinamik dağılım animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://doi.org/10.5194/amt-11-291-2018",
+   "aciklama": "Carnegie Mellon Üniversitesi ucuz hava sensörü kalibrasyonu makalesi metodoloji paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · FIZ (Fizik Mühendisliği Lisans Programı)",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1438"
+  },
+  {
+   "ad": "Malings vd. (2018) Development of a machine learning calibration for low-cost air quality and meteorology sensors, Atmospheric Measurement Techniques · DOI 10.5194/amt-11-291-2018",
+   "url": "https://doi.org/10.5194/amt-11-291-2018"
+  },
+  {
+   "ad": "Sensor.Community açık kaynaklı çevre sensörü donanım ve yazılım kılavuzu",
+   "url": "https://sensor.community/en/sensors/airrohr/"
+  },
+  {
+   "ad": "WMO No. 8 Meteorolojik Aletler ve Gözlem Yöntemleri Kılavuzu",
+   "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/FIZ-01.json",
+  "tarih": "2026-10-14 23:31",
+  "geminiSha1": "9ad7ddb2ec15"
+ }
+}

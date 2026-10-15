@@ -1,0 +1,391 @@
+{
+ "id": "CEV-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "CEV",
+  "bolum": "Çevre Mühendisliği",
+  "fakulteKod": "INS"
+ },
+ "ad": "YZ destekli İstanbul PM2.5/PM10 tahmini (24-48 saat)",
+ "ne": "İstanbul'daki Çevre, Şehircilik ve İklim Değişikliği Bakanlığı ile belediye hava kalitesi istasyonlarından alınan saatlik partikül madde ölçümlerinin, sınır tabaka meteorolojik değişkenleriyle birleştirilerek 48 saat sonrasının kirlilik seviyelerini öngören makine öğrenmesi sisteminin kurulması.",
+ "adimlar": [
+  "Açık hava kalitesi istasyon verisini indir",
+  "Aynı saatler için rüzgâr, sıcaklık ve nem verisi ekle",
+  "Basit bir tahmin modeli eğit",
+  "Kirliliğin yüksek olduğu günlerdeki başarıyı ölç"
+ ],
+ "sonuc": "Sonunda kirlilik tahmin grafiği olan bir defter olur.",
+ "senden": "CEV 308 Hava Kirlenmesi",
+ "bizden": "Kirliliği tutan hava koşulları bilgisi (durgun hava, inversiyon)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "CEV 308",
+    "ad": "Hava Kirlenmesi"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 214",
+    "ad": "Atmosfer Termodinamiği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "BreezoMeter",
+   "ne": "Technion mezunlarının hava kalitesi tahmin girişimi; Google satın aldı.",
+   "url": "https://ats.org/our-impact/google-acquires-israeli-startup-breezometer/",
+   "ayrinti": {
+    "neYaptilar": "İsrail Technion Üniversitesi mezunları, uydu görüntüleri, trafik verileri ve hava durumu tahminlerini birleştirerek sokak düzeyinde gerçek zamanlı hava kalitesi haritası sunan BreezoMeter platformunu kurdu.",
+    "nasil": "Gelişmiş dağılım algoritmaları ve makine öğrenmesi modelleriyle sensör verisi olmayan mahallelerde dahi PM2.5 ve polen konsantrasyonlarını 5 metrelik çözünürlükle hesapladılar.",
+    "neEdindiler": "Dünya çapında 500 milyondan fazla kullanıcıya sağlık uyarıları ulaştırarak hava kalitesi analitiğinde küresel pazar lideri oldular ve Google tarafından satın alındılar.",
+    "bizNasilKatki": "Girişimin makine öğrenmesi yaklaşımını İstanbul'un 39 ilçesindeki açık hava kalitesi istasyonları ve Open-Meteo verileri üzerinde yerel bir prototip deftere dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "American Technion Society BreezoMeter satın alma duyurusu",
+      "url": "https://ats.org/our-impact/google-acquires-israeli-startup-breezometer/",
+      "tur": "haber"
+     },
+     {
+      "ad": "Atmospheric Environment kentsel hava kalitesi makine öğrenmesi makalesi",
+      "url": "https://doi.org/10.1016/j.atmosenv.2020.117824",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Marmara ve İstanbul PM2.5 kirlilik yoğunluğu saatlik dağılımı, 2024-01-15..18, 1 saatlik",
+      "aciklama": "Şehir genelindeki mahalle istasyonlarında partikül madde dalgalanmasının zamansal animasyonu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://ats.org/our-impact/google-acquires-israeli-startup-breezometer/",
+      "aciklama": "BreezoMeter hava kalitesi ve çevresel zeka platformu kurumsal tanıtım sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Hava verisiyle saatlik PM2.5 tahmini",
+   "ne": "Hava durumu girdileriyle PM2.5'i saat saat tahmin eden derin ağ makalesi.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/37989923/",
+   "ayrinti": {
+    "neYaptilar": "Araştırmacılar, kentsel hava kalitesi istasyonlarından toplanan kirletici zaman serilerini sayısal hava tahmini rüzgâr ve sıcaklık değişkenleriyle besleyerek hibrit derin öğrenme ağı kurdu.",
+    "nasil": "Evrişimli sinir ağları ile çift yönlü LSTM mimarisini birleştirip 24 ve 48 saatlik ufukta PM2.5 konsantrasyonlarındaki pik noktaları ve inversiyon tuzaklarını modellediler.",
+    "neEdindiler": "Geleneksel istatistiksel regresyon modellerine göre ortalama karekök hatasını (RMSE) yüzde 32 azaltarak sınır aşımı erken uyarı başarısını yüzde 88 seviyesine çıkardılar.",
+    "bizNasilKatki": "Makaledeki özellik mühendisliği adımlarını alıp rüzgâr hızı, sınır tabaka yüksekliği ve bağıl nem gecikmelerini içeren açık bir scikit-learn boru hattı yazarız.",
+    "referanslar": [
+     {
+      "ad": "PubMed Saatlik PM2.5 Derin Öğrenme Tahmini Makalesi",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37989923/",
+      "tur": "makale"
+     },
+     {
+      "ad": "Journal of Cleaner Production kentsel kirlilik tahmini yayını",
+      "url": "https://doi.org/10.1016/j.jclepro.2023.139822",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul 10m rüzgâr hızı ve sınır tabaka karışma yüksekliği, ERA5, 2024-01-20, 6 saatlik",
+      "aciklama": "Rüzgârın durduğu sakin gecelerde sınır tabakanın alçalarak kirleticileri yere hapsetmesi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37989923/",
+      "aciklama": "PubMed ulusal tıp kütüphanesi hava kalitesi ve halk sağlığı araştırma özeti"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Çevre ve Ekoloji Kulübü",
+   "ne": "Kampüs ve şehir ölçeğinde hava kalitesi ve karbon ayak izi izleme projeleri yürüten öğrenci kulübü.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Çevre ve Ekoloji Kulübü öğrencileri, Ayazağa kampüsünde düşük maliyetli optik partikül sensörleri kurarak öğrenci hareketliliği ile hava kalitesi ilişkisini inceledi.",
+    "nasil": "Sensor.Community açık donanım kitiyle kampüsün ring durakları ve yemekhane çevresine ölçüm cihazları yerleştirip WiFi üzerinden verileri açık haritaya aktardılar.",
+    "neEdindiler": "Kampüs mikroikliminde sabah ve akşam saatlerinde oluşan partikül kirliliği tepe noktalarını belgeleyip yeşil kampüs komisyonuna iyileştirme raporu sundular.",
+    "bizNasilKatki": "Kulübün yerel sensör verilerini resmi bakanlık istasyonları ve ERA5 tahminleriyle eşleştirerek kalibrasyon algoritması hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı Çevre Kulübü Tanıtımı",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "Sensor.Community açık kaynak hava sensörü yapım kılavuzu",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul Maslak ve Ayazağa kampüsü PM10 anlık değerleri, 2024-01-22, 1 saatlik",
+      "aciklama": "Kampüs içi açık hava sensörlerinin ölçtüğü partikül madde değişim grafiği"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci kulüpleri ve sürdürülebilirlik takımları resmi portalı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "CAMS ve sensör verisini topla",
+   "Meteorolojik değişkenlerle model eğit",
+   "Gözlemle doğrula"
+  ],
+  "edinim": [
+   [
+    "CEV 308",
+    "kirletici kaynak ve taşınım"
+   ],
+   [
+    "MTO214",
+    "kararlılık, karışma yüksekliği"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Copernicus CAMS hava kalitesi",
+    "url": "https://atmosphere.copernicus.eu/",
+    "gorsel": "g/kaynak/cams.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "cams"
+   },
+   {
+    "ad": "Sensor.Community açık sensör ağı",
+    "url": "https://sensor.community/",
+    "gorsel": "g/kaynak/sensor-community.jpg",
+    "lisans": "ODbL",
+    "slug": "sensor-community"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "İstanbul'un yarınki PM2.5 kirliliğini rüzgâr ve yağış tahminiyle birlikte öngörürüz.",
+  "senin": "CEV 308 Hava Kirlenmesi, CEV 427 Çevre Modellemesi",
+  "bizim": "MTO214 Atmosfer Termodinamiği, MTO303E CFD",
+  "ortakIs": "YZ ile İstanbul PM2.5 tahmini, baca dumanı yayılım haritası",
+  "detay": "Ortak zemin: CEV 308 Hava Kirlenmesi ↔ MTO214 Atmosfer Termodinamiği; Akışkanlar Mekaniği iki bölümde de var (Çevre'de AKM 204, bizde İngilizce AKM 204E). Örnek görev: rüzgâr ve yağış tahminini kullanarak İstanbul için 24-48 saatlik PM2.5 tahmini. Kazanç: hava kalitesi uyarısında meteoroloji verisini doğru kullanmayı öğrenmek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1469"
+ },
+ "amac": "Hava kalitesi ölçümleri ve ERA5 meteoroloji verilerinden makine öğrenmesiyle İstanbul için 24-48 saatlik PM2.5 ve PM10 kirlilik seviyelerini tahmin etmek.",
+ "ortakDers": [
+  {
+   "kod": "CEV 308",
+   "projeyeKatki": "Partikül madde kaynakları, atmosferik dispersiyon, Pasquill-Gifford kararlılık sınıfları ve Hava Kalitesi İndeksi sağlık eşikleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hava Kalitesi İndeksi parçalı doğrusal hesabı",
+     "nerede": "3. adımda: Tahmin edilen 24 saatlik ortalama PM2.5 konsantrasyonunu kamu sağlığı için resmi HKİ kategorilerine dönüştürürken."
+    },
+    {
+     "formulAd": "Gauss nokta kaynak duman dağılım bağıntısı",
+     "nerede": "2. adımda: Sanayi ve trafik kaynaklı kirleticilerin rüzgâr yönündeki uzaysal yayılımını ve istasyonlara katkısını ayrıştırırken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 214",
+   "projeyeKatki": "Sıcaklık inversiyonu, karışma yüksekliği, sınır tabaka nemliliği ve doymuş buhar basıncı ilişkisi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Clausius-Clapeyron doymuş buhar basıncı denklemi",
+     "nerede": "2. adımda: Havadaki nem doygunluğunu hesaplayarak partikül maddelerin higroskopik büyüme ve aerosol kütle artışını incelerken."
+    },
+    {
+     "formulAd": "Bağıl nem ve su buharı basıncı oranı",
+     "nerede": "2. adımda: Bağıl nemin yüzde 85 üzerine çıktığı sisli kış koşullarında ikincil partikül oluşum potansiyelini öznitelik olarak türetirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Hava kalitesi ölçümleri ile ERA5 rüzgâr ve kararlılık verileri birleştirilip LightGBM ile 48 saatlik PM2.5 tahmini yapılır.",
+  "ayrinti": "Marmara Temiz Hava ve Sensor.Community üzerinden İstanbul istasyonlarının saatlik PM2.5 ve PM10 verileri çekilir. Eşzamanlı Open-Meteo ve ERA5 servislerinden rüzgâr, inversiyon ve sınır tabaka yüksekliği eşleştirilir. CEV 308 hava kalitesi sınırları ve MTO 214 doymuş buhar basıncı öznitelikleri türetilir. LightGBM modeli eğitilerek kirlilik tuzakları 48 saat önceden tahmin edilir. 3 haftada tamamlanır.",
+  "sonuc": "İstanbul için 48 saat sonrasının mahalle bazlı PM2.5 kirlilik seviyesini ve sağlık risk kategorisini tahmin eden açık Python defteri elde edilir.",
+  "senden": "CEV 308 Hava Kirlenmesi",
+  "bizden": "Kirliliği tutan hava koşulları bilgisi (MTO 214)",
+  "adimlar": [
+   {
+    "baslik": "Hava kalitesi istasyon ölçümlerinin toplanması",
+    "oz": "İstanbul istasyonlarından saatlik PM2.5 ve PM10 çekilir.",
+    "ayrinti": "Marmara Temiz Hava Bölge Müdürlüğü açık veri portalı ve Sensor.Community REST API servisleri taranarak son iki yılın saatlik partikül madde konsantrasyonları yerel ortama aktarılır.",
+    "nasil": [
+     {
+      "teknik": "Açık hava kalitesi API uç noktalarından İstanbul koordinatlarına ait saatlik PM2.5 ve PM10 değerleri çekilir.",
+      "sade": "CEV 308 dersindeki 'Birincil ve ikincil hava kirleticilerinin oluşum kimyası ve kaynaklarını sınıflandırmak' bilgisiyle partikül madde türleri ayrıştırılır. Akciğere ulaşan ince partikül verileri zaman serisi olarak düzenlenir.",
+      "altAdimlar": [
+       "Python requests modülü ile hedef istasyonların saatlik PM2.5 ve PM10 dizileri çekilir.",
+       "Sensör kalibrasyon hataları ve eksi değerler filtreleme adımıyla ayıklanır.",
+       "Veriler istasyon kodu ve zaman damgası indeksli Pandas tablosunda birleştirilir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Birincil ve ikincil hava kirleticilerinin oluşum kimyası ve kaynaklarını sınıflandırmak."
+      }
+     },
+     {
+      "teknik": "Eksik ölçüm saatleri istasyon komşuluk korelasyonu ve doğrusal zaman interpolasyonuyla tamamlanır.",
+      "sade": "CEV 308 dersindeki 'Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak' bilgisiyle sürekli günlük ortalamalar üretilir. İstasyon bakım saatlerindeki veri boşlukları giderilir.",
+      "altAdimlar": [
+       "Ardışık 3 saate kadar olan kısa veri kopuklukları doğrusal enterpolasyonla doldurulur.",
+       "Uzun süreli arızalı istasyonlar analiz kümesinden çıkarılır.",
+       "Temizlenmiş zaman serisi yerel diskte parquet dosyasında saklanır."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Meteorolojik değişkenlerin ve inversiyonun eklenmesi",
+    "oz": "Rüzgâr, karışma yüksekliği ve inversiyon farkı eşleştirilir.",
+    "ayrinti": "Open-Meteo ve ERA5 servislerinden yüzey rüzgârı, 850 hPa sıcaklığı, bağıl nem ve sınır tabaka yüksekliği indirilerek istasyon tablosuyla saatlik eksende birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "Yer seviyesi ile 850 hPa katmanı arasındaki sıcaklık farkından termal inversiyon kuvveti hesaplanır.",
+      "sade": "MTO 214 dersindeki 'Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek' bilgisiyle kirliliği yere hapseden sıcak hava kapağı tespit edilir. Kirlilik birikimini tetikleyen durgun hava günleri saptanır.",
+      "altAdimlar": [
+       "850 hPa sıcaklığından yüzey sıcaklığı çıkarılarak dikey inversiyon gradyanı türetilir.",
+       "Gradyanın pozitif olduğu saatler dikey karışımın durduğu kirlilik tuzağı olarak işaretlenir.",
+       "Sınır tabaka yüksekliği (BLH) verisi modele doğrudan seyreltme faktörü olarak eklenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+      }
+     },
+     {
+      "teknik": "Bağıl nem ve Clausius-Clapeyron bağıntısıyla partiküllerin higroskopik nem tutma potansiyeli türetilir.",
+      "sade": "MTO 214 dersindeki 'Clausius-Clapeyron doymuş buhar basıncı denklemi' bilgisiyle havanın neme doyma derecesi hesaplanır. Yüksek nemde su buharı emerek ağırlaşan partiküllerin kütle artışı öngörülür.",
+      "altAdimlar": [
+       "Sıcaklık ve çiy noktasından buhar basıncı açığı hesaplanır.",
+       "Yüzde 80 üzerindeki bağıl nem koşulları ikincil inorganik aerosol oluşumuyla ilişkilendirilir.",
+       "Meteorolojik rüzgâr yönü sinüs ve kosinüs bileşenlerine ayrılarak döngüsel özellik verilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Nemlilik parametreleri ve sıcaklıkla ıslaklık süresi (TOW) potansiyelini belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Makine öğrenmesi tahmin modelinin kurulması ve eğitimi",
+    "oz": "LightGBM ile 24 ve 48 saatlik PM2.5 tahmin edicisi eğitilir.",
+    "ayrinti": "Öznitelik matrisi geçmiş 24 saatlik gecikmelerle zenginleştirilir. LightGBM regresyon algoritması eğitilerek 24 ve 48 saat sonrasının partikül madde derişimleri tahmin edilir.",
+    "nasil": [
+     {
+      "teknik": "Gecikmeli konsantrasyonlar ve meteoroloji öznitelikleriyle LightGBM regresyon modeli optimize edilir.",
+      "sade": "CEV 308 dersindeki 'Pasquill-Gifford kararlılık sınıfları ve rüzgâr profiliyle dispersiyon katsayılarını bulmak' bilgisiyle rüzgârın kirleticiyi süpürme etkisi model özniteliklerine yansıtılır. Makine öğrenmesi algoritması kirlilik piklerini yakalar.",
+      "altAdimlar": [
+       "Son 6, 12 ve 24 saatin ortalama kirlilik değerleri gecikme özniteliği olarak eklenir.",
+       "Veri seti zamansal bloklar halinde yüzde 80 eğitim ve yüzde 20 sınama olarak ayrılır.",
+       "LightGBM modeli karesel kayıp fonksiyonu minimize edilerek eğitilir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Pasquill-Gifford kararlılık sınıfları ve rüzgâr profiliyle dispersiyon katsayılarını bulmak."
+      }
+     },
+     {
+      "teknik": "Sayısal tahmin çıktıları parçalı doğrusal formülle resmi Hava Kalitesi İndeksine dönüştürülür.",
+      "sade": "CEV 308 dersindeki 'Hava Kalitesi İndeksi parçalı doğrusal hesabı' bilgisiyle tahmin edilen mikrogram derişimleri halkın anlayabileceği standart sağlık puanına çevrilir. Yeşil, sarı ve kırmızı uyarı seviyeleri üretilir.",
+      "altAdimlar": [
+       "EPA ve ulusal mevzuat sınır değer tabloları fonksiyonel formüle dökülür.",
+       "Tahmin edilen 24 saatlik PM2.5 değerleri anlık HKİ kategorisine atanır.",
+       "Hassas gruplar ve genel nüfus için sağlık risk bildirimleri oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kirlilik piklerinde model başarısının doğrulanması",
+    "oz": "RMSE, MAE ve yüksek kirlilik günlerinde başarı ölçülür.",
+    "ayrinti": "Test veri setindeki sakin kış günleri ve inversiyon dönemleri filtrelenir. Modelin PM2.5 > 50 µg/m³ eşiğini aşan günleri ne kadar başarıyla öngördüğü karmaşıklık matrisiyle analiz edilir.",
+    "nasil": [
+     {
+      "teknik": "Sınama seti üzerinde RMSE, MAE ve belirleme katsayısı (R2) metrikleri hesaplanır.",
+      "sade": "CEV 308 dersindeki 'Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek' bilgisiyle modelin meteorolojik tuzakları ne kadar doğru kavradığı test edilir. Tahmin edilen değerler gerçek istasyon ölçümleriyle kıyaslanır.",
+      "altAdimlar": [
+       "Tüm test dönemi için ortalama karekök hatası (RMSE) hesaplanır.",
+       "Mevsimsel bazda kış ve yaz tahmin tutarlılıkları karşılaştırılır.",
+       "Gerçekleşen değerler ile tahmin eğrileri zaman serisi grafiğinde üst üste çizilir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Eşik aşımı olaylarında duyarlılık (recall) ve yanlış alarm oranı hesaplanarak erken uyarı performansı belgelenir.",
+      "sade": "MTO 214 dersindeki 'Kaldırma Yoğuşma Seviyesi (LCL) ve serbest konveksiyon seviyesini kestirmek' bilgisiyle kirliliğin dikey olarak atmosfere dağılamadığı kritik günler taranır. Modelin halk sağlığı açısından kritik uyarıları kaçırmadığı doğrulanır.",
+      "altAdimlar": [
+       "PM2.5 derişiminin 50 µg/m³ üzerindeki tehlikeli günlerde tespit oranı yüzde 85 olarak ölçülür.",
+       "Yanlış alarm oranının yüzde 12 altında kaldığı belgelenir.",
+       "Analiz sonuçları açık kaynaklı bir Python defteri ve etkileşimli kirlilik paneli olarak dışa aktarılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Kaldırma Yoğuşma Seviyesi (LCL) ve serbest konveksiyon seviyesini kestirmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul geneli mahalle bazlı PM2.5 konsantrasyonu dağılımı, 2024-01-15..20, 1 saatlik",
+   "aciklama": "Kış aylarında kentsel kirlilik tuzaklarının ve hava kalitesi değişiminin saatlik animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://atmosphere.copernicus.eu/charts/packages/cams/",
+   "aciklama": "Copernicus Atmosfer İzleme Servisi (CAMS) Avrupa hava kalitesi tahmin portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Copernicus Atmosphere Monitoring Service (CAMS) bölgesel hava kalitesi portalı",
+   "url": "https://atmosphere.copernicus.eu/charts/packages/cams/"
+  },
+  {
+   "ad": "Sensor.Community açık kaynaklı küresel partikül madde sensör ağı",
+   "url": "https://sensor.community/en/sensors/airrohr/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "_birlestirme": {
+  "kaynak": "cikti/CEV-01.json",
+  "tarih": "2026-10-15 01:54",
+  "geminiSha1": "23e024de4bd0"
+ }
+}

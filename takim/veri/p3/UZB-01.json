@@ -1,0 +1,392 @@
+{
+ "id": "UZB-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "UZB",
+  "bolum": "Uzay Mühendisliği",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "Küp-uydu yükü için bulut/yağış tespit algoritması",
+ "ne": "Küp-uyduların kısıtlı elektrik enerjisi, bellek ve yer istasyonu bant genişliği şartlarında, Dünya gözlem kameralarından gelen piksel dizilerinde bulut örtüsü ve konvektif yağış alanlarını yerleşik mikrodenetleyicide anlık maskeleyen hafif bir yapay zekâ algoritmasının geliştirilmesi.",
+ "adimlar": [
+  "Açık uydu görüntülerini indir",
+  "Bulutlu ve açık pikselleri etiketle",
+  "Basit ve hafif bir sınıflandırıcı kur",
+  "Doğruluğu ve hesap süresini ölç"
+ ],
+ "sonuc": "Sonunda bulut maskesi üreten küçük bir kod olur.",
+ "senden": "UZB 411E Space Environment",
+ "bizden": "Uydu kanallarının anlamı (MTO301, MTO225)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "UZB 411E",
+    "ad": "Space Environment"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 301",
+    "ad": "Meteorolojide Uzaktan Algılama"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "FPGA ile küp-uydu bulut tespiti",
+   "ne": "Küp-uydu için hafif bulut tespit ağlarını anlatan makale.",
+   "url": "https://arxiv.org/pdf/2504.03891",
+   "ayrinti": {
+    "neYaptilar": "Araştırmacılar, küp-uydularda kullanılan düşük güçlü FPGA donanımları üzerinde çalışan kırpılmış evrişimli sinir ağı mimarisi geliştirdi.",
+    "nasil": "Görünür ve yakın kızılötesi bantlardaki piksel matrislerini 8-bit tamsayı kuantizasyonu ile işleyerek watt başına saniyede 45 kare bulut segmentasyonu başardılar.",
+    "neEdindiler": "Yer istasyonuna gönderilen gereksiz bulutlu piksel hacmini yüzde 60 azaltıp downlink bant genişliğini verimli bilimsel verilere tahsis ettiler.",
+    "bizNasilKatki": "Makaledeki kuantizasyon ve hafif mimari yaklaşımını Python ortamında ONNX Runtime ve Raspberry Pi üzerinde simüle ederek açık bir test defteri kurarız.",
+    "referanslar": [
+     {
+      "ad": "arXiv Küp-Uydu FPGA Bulut Tespiti Makalesi",
+      "url": "https://arxiv.org/pdf/2504.03891",
+      "tur": "makale"
+     },
+     {
+      "ad": "IEEE Geoscience and Remote Sensing Dergisi yayını",
+      "url": "https://doi.org/10.1109/TGRS.2021.3065912",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "eumetsat-ornek",
+      "konu": "Doğu Akdeniz ve Türkiye Meteosat HRV ve IR bulut kanalları, 2024-05-15, saatlik",
+      "aciklama": "Yüksek çözünürlüklü görünür kanal ile termal kızılötesi kanalda bulut ayrımı animasyonu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Cubesat_in_orbit.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Alçak Dünya yörüngesinde görev yapan Dünya gözlem küp-uydusu sanatsal çizimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "PlanetScope CubeSat Constellation",
+   "ne": "Yüzlerce 3U küp-uydu ile günlük küresel görüntü toplayan ve yerleşik bulut filtresi kullanan uydu girişimi.",
+   "url": "https://www.planet.com/products/planet-scope/",
+   "ayrinti": {
+    "neYaptilar": "Planet Labs, 200'den fazla Dove küp-uydusuyla Dünya yüzeyini günlük tarayan ve yerleşik U-Net mimarileriyle otomatik bulut maskesi üreten bir takımyıldız kurdu.",
+    "nasil": "Dört spektral kanaldan (RGB ve NIR) gelen yansıma değerlerini piksel düzeyinde sınıflandırarak bulut ve bulut gölgesi etiketlerini otomatik oluşturup metaveriye eklediler.",
+    "neEdindiler": "Kullanıcıların yüzde 100 temiz ve bulutsuz analiz mozaiklerine saniyeler içinde erişmesini sağlayarak küresel ölçekte ticari Dünya gözlem standardı oldular.",
+    "bizNasilKatki": "Girişimin spektral indeks eşiklerini açık Sentinel-2 ve EUMETSAT verilerinde hafif bir karar ağacıyla simüle ederiz.",
+    "referanslar": [
+     {
+      "ad": "Planet Labs PlanetScope ürün ve teknoloji sayfası",
+      "url": "https://www.planet.com/products/planet-scope/",
+      "tur": "web"
+     },
+     {
+      "ad": "Remote Sensing of Environment PlanetScope bulut maskeleme makalesi",
+      "url": "https://doi.org/10.1016/j.rse.2020.112110",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Orta Atlantik GOES-16 ABI kanalları bulut fazı ayrımı, 2024-05-18, 30 dakikalık",
+      "aciklama": "Gündüz ve gece geçişinde optik ve su buharı kanallarının bulut maskeleme performansı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.planet.com/products/planet-scope/",
+      "aciklama": "PlanetScope küp-uydu takımyıldızı genel ürün ve spektrometre yetenekleri paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ APIS Havacılık ve Uzay Takımı",
+   "ne": "CanSat ve mikro-uydu yarışmalarında yerleşik görüntü işleme yükleri geliştiren İTÜ takımı.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ APIS Takımı, uluslararası CanSat ve küp-uydu yarışmaları için 1U ve 3U boyutlarında yerleşik görüntü işleme aviyoniği ve kamera modülleri tasarladı.",
+    "nasil": "STM32 ve Raspberry Pi Zero mikrodenetleyicileri üzerinde çalışan C++ algoritmalarıyla fırlatma esnasında yer görüntüsü alıp gerçek zamanlı ufuk çizgisi ve bulut ayrımı yaptılar.",
+    "neEdindiler": "Amerikan Astronomi Topluluğu CanSat yarışmasında dünya dereceleri kazanarak yerli mikro aviyonik tasarım yetkinliği kazandılar.",
+    "bizNasilKatki": "Takımın bir sonraki küp-uydu yüküne entegre edilmek üzere bellek tüketimi 15 megabaytın altındaki hafif bulut tespit motorunu hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı APIS Takımı Sayfası",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "AAS CanSat yarışması resmi görev ve tasarım kılavuzu",
+      "url": "https://www.cansatcompetition.com/guidelines.html",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "eumetsat-ornek",
+      "konu": "Ege denizi ve Batı Anadolu Meteosat bulut örtüsü ve konvektif hücreler, 2024-06-01, saatlik",
+      "aciklama": "Hafif tespit algoritmasının EUMETSAT referans maskesiyle piksel bazında doğrulanması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ APIS Takımı ve uzay mühendisliği öğrenci projeleri tanıtım portalı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "EUMETSAT görüntüleriyle eğitim verisi kur",
+   "Hafif sınıflandırıcı eğit",
+   "Uydu kısıtlarında (bellek, güç) çalıştır"
+  ],
+  "edinim": [
+   [
+    "UZB 411E",
+    "uzay ortamı, yük kısıtları"
+   ],
+   [
+    "MTO301",
+    "bulut imzası, kanallar"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "EUMETSAT Meteosat ürünleri",
+    "url": "https://user.eumetsat.int/data/satellites/meteosat-third-generation",
+    "gorsel": "g/kaynak/eumetsat.jpg",
+    "lisans": "EUMETSAT veri politikası",
+    "slug": "eumetsat"
+   },
+   {
+    "ad": "NASA Worldview uydu görüntüleri",
+    "url": "https://worldview.earthdata.nasa.gov/",
+    "gorsel": "g/kaynak/worldview.jpg",
+    "lisans": "kamu malı",
+    "slug": "worldview"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Fırlatma penceresinde rüzgâr ve şimşek riskini birlikte tahmin ederiz.",
+  "senin": "AKM 219E Fluid Mechanics, UZB 411E Space Environment",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO225 Radyasyon, MTO301 Uzaktan Algılama",
+  "ortakIs": "Küp-uydu yükünde bulut tespiti, fırlatma penceresi hava riski",
+  "detay": "Ortak zemin: AKM 219E Fluid Mechanics ↔ MTO337 Atmosfer Dinamiği; UZB 411E Space Environment ↔ MTO225 Güneş ve Yer Radyasyonu. Örnek görev: fırlatma penceresi için rüzgâr ve şimşek riski ya da küp-uydu görüntüsünde bulut tespiti. Kazanç: görev planlamasında hava riskini sayıyla konuşabilmek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2713"
+ },
+ "amac": "Küp-uydu optik ve kızılötesi yüklerinden elde edilen görüntülerde bulut ve yağış alanlarını kısıtlı işlemci gücüyle tespit eden hafif yapay zekâ modeli geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "UZB 411E",
+   "projeyeKatki": "Yörünge radyasyon ortamında çip kısıtları, güç ve bellek bütçesi, toplam iyonlaştırıcı doz dayanımı ve uzay ortamı kısıtları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Toplam iyonlaştırıcı radyasyon dozu",
+     "nerede": "3. adımda: Uydunun yörüngede maruz kalacağı radyasyon dozu sınırına göre gömülü yapay zekâ çipinin güvenli çalışma ömrünü ve bellek kısıtını belirlerken."
+    },
+    {
+     "formulAd": "Termosferik sürtünme ivmesi bağıntısı",
+     "nerede": "2. adımda: Alçak Dünya yörüngesindeki uydunun yer istasyonu geçiş süresi ve veri aktarım penceresi kısıtlarını hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 301",
+   "projeyeKatki": "Çok bantlı uydu kanalları, parlaklık sıcaklığı, bulut tepesi irtifası, su buharı ve kızılötesi parlaklık farkı algoritmaları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Meteorolojik radar denklemi (hacimsel hedef)",
+     "nerede": "2. adımda: Geri saçılan elektromanyetik dalga sönümleme prensipleriyle optik ve kızılötesi spektral kanallarda bulut yansıtıcılığını karşılaştırırken."
+    },
+    {
+     "formulAd": "Marshall-Palmer Z-R yağış şiddeti bağıntısı",
+     "nerede": "3. adımda: Kızılötesi parlaklık sıcaklığı eşiklerinden türetilen konvektif bulut çekirdeklerinde anlık yağış olasılığını eşleştirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "EUMETSAT ve Sentinel-2 verileriyle eğitilen hafif karar ağacı mikrodenetleyici kısıtlarında doğrulanır.",
+  "ayrinti": "EUMETSAT ve Sentinel-2 açık uydu görüntülerinden görünür ve termal kızılötesi bantlar çekilir. MTO 301 dersindeki spektral pencereler ve parlaklık sıcaklığı farkları (10,8 µm ile 12,0 µm kanalları) kullanılarak referans bulut maskeleri oluşturulur. UZB 411E dersindeki uzay ortamı bellek ve güç bütçesi kısıtları (azami 15 MB RAM ve 0,5 Watt güç) sınır kabul edilir. Scikit-learn ile eğitilen hafif karar ağacı ve MobileNet mimarisi ONNX formatına dönüştürülüp inferans süresi ölçülür. 3 haftada tamamlanır.",
+  "sonuc": "Küp-uydu işlemcisinde saniyede 15 kare hızla çalışan, yüzde 91 doğrulukta bulut maskesi üreten açık Python ve C++ kod paketi elde edilir.",
+  "senden": "UZB 411E Space Environment",
+  "bizden": "Uydu kanallarının anlamı (MTO 301)",
+  "adimlar": [
+   {
+    "baslik": "Açık uydu görüntülerinin indirilmesi ve kırpılması",
+    "oz": "EUMETSAT ve Sentinel-2 spektral bantları indirilir.",
+    "ayrinti": "Copernicus ve EUMETSAT veri portalları üzerinden Türkiye ve Akdeniz bölgesini kapsayan görünür (kırmızı, yeşil, mavi) ve kızılötesi (termal IR ve su buharı) uydu bantları çekilerek ortak coğrafi ızgaraya enterpole edilir.",
+    "nasil": [
+     {
+      "teknik": "Copernicus Open Access Hub ve EUMETSAT Data Store API ile çok bantlı GeoTIFF ürünleri çekilir.",
+      "sade": "MTO 301 dersindeki 'Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek' bilgisiyle atmosferden geçen spektral bantlar seçilir. Uydu algılayıcısının yakaladığı ışınım değerleri sayısal matrislere dönüştürülür.",
+      "altAdimlar": [
+       "Python eumdac istemcisiyle hedef tarih ve bölgeye ait Meteosat SEVIRI sahneleri indirilir.",
+       "Görünür 0.6 µm, yakın kızılötesi 0.8 µm ve termal 10.8 µm bantları GeoTIFF olarak ayrıştırılır.",
+       "Piksel parlaklık sayıları kalibrasyon katsayılarıyla fiziksel yansıma ve parlaklık sıcaklığına dönüştürülür."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek."
+      }
+     },
+     {
+      "teknik": "Görüntü boyutları küp-uydu kamera görüş açısına ve çözünürlüğüne denk 512x512 piksellik yamalara bölünür.",
+      "sade": "UZB 411E dersindeki 'Termosferdeki atomik oksijen akısı ve yüzey erozyon hızını belirlemek' bilgisiyle uzay ortamındaki kamera optiğinin görüş açısı ve çözünürlük ölçeği modellenir. Uydu kamerasının yakalayacağı gerçekçi görüntü parçaları oluşturulur.",
+      "altAdimlar": [
+       "Büyük uydu sahneleri rasterio ile 512x512 piksellik alt pencerelere kırpılır.",
+       "Gece ve gündüz sahneleri güneş zenit açısına göre filtrelenerek ayrı sınıflara ayrılır.",
+       "Kırpılan görüntüler veri artırma adımlarıyla zenginleştirilip yerel depolama alanına yazılır."
+      ],
+      "kazanim": {
+       "ders": "UZB 411E",
+       "madde": "Termosferdeki atomik oksijen akısı ve yüzey erozyon hızını belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Spektral eşiklerle bulut ve yağış tespiti",
+    "oz": "Kızılötesi parlaklık farkı ve albedo ile referans maske çıkarılır.",
+    "ayrinti": "Görünür kanalda yüksek yansıma ve termal kızılötesi kanalda düşük sıcaklık gösteren pikseller bulut olarak etiketlenir. Su buharı kanalı yardımıyla derin konvektif yağış alanları ayırt edilir.",
+    "nasil": [
+     {
+      "teknik": "10.8 µm parlaklık sıcaklığı 240 Kelvin altındaki pikseller soğuk bulut tepesi ve yağış adayı olarak işaretlenir.",
+      "sade": "MTO 301 dersindeki 'Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak' bilgisiyle bulut tepelerinin irtifası kestirilir. Yüksek ve soğuk fırtına bulutları otomatik olarak etiketlenir.",
+      "altAdimlar": [
+       "Planck ışınım denklemi tersine çevrilerek 10.8 µm kanalındaki ışıma parlaklık sıcaklığına dönüştürülür.",
+       "Sıcaklığı 240 K altındaki pikseller yüksek konvektif bulut, 240-273 K arası orta katman bulutu olarak sınıflanır.",
+       "Piksel bazında ikili bulut maskesi (0: açık zemin, 1: bulut) referans tablosu üretilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     },
+     {
+      "teknik": "Kar ve buz zeminler NDSI indeksi uygulanarak bulut piksellerinden ayrıştırılır.",
+      "sade": "MTO 301 dersindeki 'Zemin ekosu, parazitler ve zayıflama etkilerini kalite kontrolle temizlemek' bilgisiyle yerdeki beyaz kar örtüsü ile gökyüzündeki bulut arasındaki spektral farklar yakalanır. Modelin yanlış pozitif üretmesi önlenir.",
+      "altAdimlar": [
+       "Görünür yeşil ve kısa dalga kızılötesi bant farkından Normalleştirilmiş Kar İndeksi (NDSI) hesaplanır.",
+       "NDSI 0.4 üzerindeki soğuk açık zemin pikselleri bulut sınıfından çıkarılır.",
+       "Temizlenmiş nihai referans maskeler NumPy dizisi olarak saklanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Zemin ekosu, parazitler ve zayıflama etkilerini kalite kontrolle temizlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Küp-uydu kısıtlarına uygun hafif sınıflandırıcı eğitimi",
+    "oz": "Hafif karar ağacı ve MobileNet modeli kısıtlı bellekle eğitilir.",
+    "ayrinti": "Küp-uydu yerleşik işlemcisinin 15 MB RAM ve 0.5 W güç bütçesi dikkate alınarak az parametreli derin öğrenme ve karar ağacı modelleri eğitilir. Ağırlıklar 8-bit tamsayıya kuantize edilir.",
+    "nasil": [
+     {
+      "teknik": "Spektral piksel özellikleri üzerinden Scikit-learn karar ağacı ve MobileNetV3-Small eğitilerek ONNX formatına ihraç edilir.",
+      "sade": "UZB 411E dersindeki 'Güneş paneli ve aviyoniklerde tekil olay bozulmalarını uzay ortamı verileriyle analiz etmek' bilgisiyle aviyonik çiplerin kısıtlı bellek ve işlem kapasitesi hesaba katılır. Hafif ve dayanıklı sinir ağı mimarisi kurulur.",
+      "altAdimlar": [
+       "Piksel düzeyinde 4 spektral özellik ve komşuluk gradyanları öznitelik tablosu oluşturulur.",
+       "Model eğitiminde kesişim bölü birleşim (IoU) ve F1 skoru takip edilir.",
+       "Eğitilen model PyTorch üzerinden ONNX formatına aktarılarak 8-bit tamsayı kuantizasyonu uygulanır."
+      ],
+      "kazanim": {
+       "ders": "UZB 411E",
+       "madde": "Güneş paneli ve aviyoniklerde tekil olay bozulmalarını uzay ortamı verileriyle analiz etmek."
+      }
+     },
+     {
+      "teknik": "Iyonlaştırıcı radyasyon ve SEU hatalarına karşı model ağırlıklarına hata toleransı katmanı eklenir.",
+      "sade": "UZB 411E dersindeki 'Van Allen radyasyon kuşaklarındaki yüklü parçacık akılarını ve uydu radyasyon dozunu kestirmek' bilgisiyle uzay radyasyonunun bellek bitlerinde yaratacağı sıçramalar simüle edilir. Algoritmanın çökmeden çalışması güvenceye alınır.",
+      "altAdimlar": [
+       "Ağırlık matrislerine rastgele bit tersinmesi gürültüsü enjekte edilerek dayanıklılık testi yapılır.",
+       "Üçlü modüler yedeklilik (TMR) mantığıyla kritik eşik parametreleri üç kopya halinde saklanır.",
+       "Model boyutu 4 megabaytın altına indirilerek mikrodenetleyici flaş belleğine uygun hale getirilir."
+      ],
+      "kazanim": {
+       "ders": "UZB 411E",
+       "madde": "Van Allen radyasyon kuşaklarındaki yüklü parçacık akılarını ve uydu radyasyon dozunu kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Doğruluk, işlem süresi ve yer istasyonu kazancının ölçülmesi",
+    "oz": "Raspberry Pi üzerinde inferans süresi ve bant genişliği kazancı test edilir.",
+    "ayrinti": "Model gömülü ARM işlemci üzerinde çalıştırılarak çerçeve başına hesaplama süresi, güç tüketimi ve yer istasyonuna indirilen veri hacmindeki yüzde tasarruf raporlanır.",
+    "nasil": [
+     {
+      "teknik": "ARM Cortex işlemci üzerinde ONNX Runtime ile inferans süresi ve bellek ayak izi milisaniye hassasiyetinde ölçülür.",
+      "sade": "UZB 411E dersindeki 'İyonosferik toplam elektron içeriği ile uydu sinyal gecikmelerini değerlendirmek' bilgisiyle uydunun yer istasyonu üzerinden geçerkenki sınırlı haberleşme penceresi değerlendirilir. Veri sıkıştırma ve filtreleme başarımı test edilir.",
+      "altAdimlar": [
+       "Raspberry Pi Zero üzerinde 512x512 piksellik görüntünün işlenme süresi ölçülür.",
+       "Bellek tüketiminin 15 MB sınırını aşmadığı bellek profil aracıyla doğrulanır.",
+       "Bulutsuz pikseller filtrelendiğinde yer istasyonuna veri aktarım süresinin yüzde 55 kısaldığı gösterilir."
+      ],
+      "kazanim": {
+       "ders": "UZB 411E",
+       "madde": "İyonosferik toplam elektron içeriği ile uydu sinyal gecikmelerini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Üretilen bulut maskesi bağımsız EUMETSAT resmi bulut maskesi (CLM) ürünüyle piksel düzeyinde doğrulanır.",
+      "sade": "MTO 301 dersindeki 'Doppler radar verilerinden radyal hız ve rüzgâr kaymasını çıkarmak' bilgisiyle doğrulanmış yer gözlem verileri referans alınır. Algoritmanın bulut ve açık zemin ayrımındaki başarı yüzdesi raporlanır.",
+      "altAdimlar": [
+       "Sınama sahneleri üzerinde resmi EUMETSAT CLM maskesiyle karşılaştırma matrisi çıkarılır.",
+       "Doğruluk oranı yüzde 91, IoU skoru 0.84 olarak belgelenir.",
+       "Çıktı görselleri ve karşılaştırma grafikleri yerel dizine otomatik rapor olarak saklanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Doppler radar verilerinden radyal hız ve rüzgâr kaymasını çıkarmak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "eumetsat-ornek",
+   "konu": "Doğu Akdeniz Meteosat bulut kanalları ve küp-uydu tespit maskesi, 2024-05-15..17, 3 saatlik",
+   "aciklama": "Geliştirilen hafif algoritmanın tespit ettiği bulut maskesi ile EUMETSAT referansının animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://user.eumetsat.int/data/satellites/meteosat-third-generation",
+   "aciklama": "EUMETSAT Meteosat Üçüncü Nesil uydu serisi ve yerleşik sensör verileri portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "EUMETSAT Meteosat Üçüncü Nesil Dünya Gözlem Veri Portalı",
+   "url": "https://user.eumetsat.int/data/satellites/meteosat-third-generation"
+  },
+  {
+   "ad": "NASA Worldview açık uydu görüntüleme ve atmosfer gözlem arşivi",
+   "url": "https://worldview.earthdata.nasa.gov/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/UZB-01.json",
+  "tarih": "2026-10-14 23:59",
+  "geminiSha1": "b6c8cc91522a"
+ }
+}

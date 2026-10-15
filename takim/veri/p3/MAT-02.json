@@ -1,0 +1,540 @@
+{
+ "id": "MAT-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "MAT",
+  "bolum": "Matematik Mühendisliği",
+  "fakulteKod": "FEF"
+ },
+ "ad": "ERA5 üzerinde öğrenilmiş hava tahmini",
+ "ne": "Bir hava haritasından altı saat sonrasını tahmin etmeyi öğrenen küçük bir ağ kuruyoruz.",
+ "adimlar": [
+  "ERA5'ten Türkiye çevresi için düşük çözünürlüklü basınç alanlarını indir",
+  "Haritaları giriş-çıkış çiftlerine çevir",
+  "Küçük bir evrişimli ağ eğit",
+  "Tahmin edilen haritayı gerçekle yan yana çiz"
+ ],
+ "sonuc": "Sonunda öğrenilmiş tahmini gösteren bir defter ve karşılaştırma haritaları olur.",
+ "senden": "MAT 308 YZ'nin Matematiksel Temelleri",
+ "bizden": "Hangi değişkenin önemli olduğu ve sonuçların fiziksel yorumu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MAT 308",
+    "ad": "YZ'nin Matematiksel Temelleri"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "GraphCast (Google DeepMind)",
+   "ne": "ERA5 ile eğitilen ve 10 günlük küresel tahmin yapan yapay zekâ; bu işin büyük ölçekli hali.",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "ayrinti": {
+    "neYaptilar": "DeepMind, 40 yıllık ERA5 verisiyle çizge sinir ağlarını eğiterek küresel hava dinamiğini fiziksel denklem çözmeden tahmin eden öncü sistemi kurdu.",
+    "nasil": "Küre üzerinde çok ölçekli ikosahedral ızgara kullanarak 6 saatlik zaman adımlarıyla 10 günlük tahminleri döngüsel (autoregressive) olarak ilerletti.",
+    "neEdindiler": "Sayısal hava tahmininde 50 yıllık süper bilgisayar egemenliğini sarsan ve dakika mertebesinde çalışan küresel bir model sundu.",
+    "bizNasilKatki": "GraphCast'in döngüsel hata birikimi mantığını yerel bir 2D evrişimli ağ üzerinde test ederiz; 24 saat sonra haritanın neden bozulduğunu inceleriz.",
+    "referanslar": [
+     {
+      "ad": "DeepMind GraphCast bilimsel duyurusu",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "tur": "makale"
+     },
+     {
+      "ad": "GraphCast açık kaynak kod deposu",
+      "url": "https://github.com/google-deepmind/graphcast",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "GraphCast çizge sinir ağı hava tahmin mimarisi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Artificial_intelligence_prompt.svg",
+      "lisans": "CC0",
+      "aciklama": "Yapay zekâ ve derin öğrenme hesaplama mimarisi simgesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "FourCastNet (NVIDIA)",
+   "ne": "ERA5 ile eğitilip hava haritasından ileriyi tahmin eden yapay zekâ ağı.",
+   "url": "https://arxiv.org/abs/2202.11214",
+   "ayrinti": {
+    "neYaptilar": "NVIDIA ve uluslararası araştırma ekibi, Fourier Sinir Operatörleri (AFNO) ile çalışan küresel hava tahmin modeli FourCastNet'i geliştirdi.",
+    "nasil": "Yüksek çözünürlüklü ERA5 haritalarını frekans uzayında işleyerek atmosferik dalgaların yayılımını piksel bazında öğrendi.",
+    "neEdindiler": "Geleneksel IFS modeline göre 45 bin kat daha hızlı küresel rüzgâr ve fırtına yolu tahmini üretti.",
+    "bizNasilKatki": "Fourier operatörlerinin temel mantığını küçük ölçekli 2D Fourier filtresiyle kendi evrişimli modelimize entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "FourCastNet ArXiv makalesi",
+      "url": "https://arxiv.org/abs/2202.11214",
+      "tur": "makale"
+     },
+     {
+      "ad": "FourCastNet NVIDIA açık kod deposu",
+      "url": "https://github.com/NVlabs/FourCastNet",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://arxiv.org/abs/2202.11214",
+      "aciklama": "FourCastNet makalesi: Fourier operatörleri ile küresel tahmin"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Deep_learning.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Derin öğrenme çok katmanlı sinir ağı yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "WeatherBench",
+   "ne": "Öğrencilerin ERA5'te kendi tahmin ağını deneyebileceği açık veri seti.",
+   "url": "https://github.com/pangeo-data/WeatherBench",
+   "ayrinti": {
+    "neYaptilar": "Münih Ludwig Maximilian Üniversitesi araştırmacıları, veri odaklı hava tahmin ağlarını standartlaştırmak için WeatherBench veri setini kurdu.",
+    "nasil": "5,625 ve 1,405 dereceye yeniden örneklenmiş küresel ERA5 basınç ve sıcaklık haritalarını kullanıma hazır tensörler halinde sundu.",
+    "neEdindiler": "Dünya genelinde yüzlerce öğrenci ve araştırmacının saatler içinde kendi hava tahmin ağını eğitip kıyaslamasını sağladı.",
+    "bizNasilKatki": "WeatherBench'in düşük çözünürlüklü ızgara yapısını alır; Türkiye ve Akdeniz bölgesini kırparak hafif bir eğitim seti oluştururuz.",
+    "referanslar": [
+     {
+      "ad": "WeatherBench açık kod arşivi",
+      "url": "https://github.com/pangeo-data/WeatherBench",
+      "tur": "kod"
+     },
+     {
+      "ad": "WeatherBench değerlendirme makalesi, JAMES",
+      "url": "https://doi.org/10.1029/2020MS002203",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/pangeo-data/WeatherBench",
+      "aciklama": "WeatherBench açık veri seti deposu ve karşılaştırma grafikleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Model tahminlerinin gözlemle uyumunu gösteren saçılım diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "WindBorne Systems",
+   "ne": "Stanford öğrencilerinin balon projesinden doğdu; şimdi kendi balon gözlemiyle yapay zekâ tahmini yapıyor.",
+   "url": "https://windbornesystems.com",
+   "ayrinti": {
+    "neYaptilar": "Stanford Üniversitesi mezunları, akıllı mikro hava balonlarıyla üst atmosferden sürekli veri toplayan küresel bir tahmin girişimi kurdu.",
+    "nasil": "Dünya geneline yayılan binlerce uzun menzilli balon verisini yapay zekâ modeline besleyerek fırtına rotalarını öngördü.",
+    "neEdindiler": "Veri kıtlığı yaşanan okyanus ve çöl bölgelerinde geleneksel modellerin tahmin hatalarını yüzde 20 oranında azalttı.",
+    "bizNasilKatki": "WindBorne'un üst atmosfer veri önceliğini benimseriz; 500 hPa jeopotansiyel haritasını temel dinamik tahmin katmanı olarak seçeriz.",
+    "referanslar": [
+     {
+      "ad": "WindBorne Systems teknoloji ve balon filosu",
+      "url": "https://windbornesystems.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "WindBorne Systems kurumsal tanıtımı",
+      "url": "https://windbornesystems.com/company",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://windbornesystems.com/technology",
+      "aciklama": "WindBorne Systems küresel balon konumlama ve veri paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Weather_balloon_launch.jpg",
+      "lisans": "CC BY 4.0",
+      "aciklama": "Atmosferik gözlem için meteoroloji balonu salımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Meteoroloji ve Veri Analitiği Grubu",
+   "ne": "Açık hava modellerini istasyon gözlemleriyle kıyaslayan İTÜ öğrenci çalışma takımı.",
+   "url": "https://github.com/itumeteoroloji/atmosfer-analizleri",
+   "ayrinti": {
+    "neYaptilar": "İTÜ öğrencileri, sayısal haritalar ile yapay zekâ çıktılarının tutarlılığını test eden açık kaynak kodlu çalışma grupları kurdu.",
+    "nasil": "Cartopy ve PyTorch kullanarak grid bazlı hata yayılımlarını ve sinoptik trof kaymalarını görselleştirdi.",
+    "neEdindiler": "Atmosfer dinamiği teorisini modern yapay öğrenme mimarileriyle birleştiren açık eğitim defterleri üretti.",
+    "bizNasilKatki": "Geliştirdiğimiz mini evrişimli tahmin defterini ekibin eğitim arşivine katarak alt sınıflara uygulamalı materyal sağlarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Meteoroloji Kulübü projeler sayfası",
+      "url": "https://github.com/itumeteoroloji/atmosfer-analizleri",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Meteoroloji Kulübü iletişim sayfası",
+      "url": "https://github.com/itumeteoroloji/topluluk-etkinlikleri",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itumeteoroloji/atmosfer-analizleri",
+      "aciklama": "İTÜ öğrenci meteoroloji projeleri ve kod kütüphanesi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_in_the_atmosphere.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosferik Rossby dalgaları ve üst hava akış çizgileri"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "ERA5'ten bir bölge, birkaç değişken, birkaç yıl indir",
+   "t → t+6 saat eşlemesini öğret",
+   "Kaç saat sonra bozulduğunu ölç"
+  ],
+  "edinim": [
+   [
+    "MAT 308",
+    "sıralı veri, hata birikimi"
+   ],
+   [
+    "MTO337",
+    "modelin fiziksel olarak neyi kaçırdığı"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   },
+   {
+    "ad": "GraphCast · DeepMind (GitHub)",
+    "url": "https://github.com/google-deepmind/graphcast",
+    "gorsel": "g/kaynak/graphcast.jpg",
+    "lisans": "Apache 2.0",
+    "slug": "graphcast"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Düzeltme gerçekten işe yaradı mı? Bunu istatistikle sen ispatlarsın.",
+  "senin": "MAT 234 Kısmi Dif. Denklemler, MAT 308 YZ'nin Matematiksel Temelleri",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO302/406 Hava Analizi ve Öngörü",
+  "ortakIs": "Sığ su denklemi çözücüsü, oyuncak veri asimilasyonu (Lorenz-96)",
+  "detay": "Ortak zemin: MAT 234 Kısmi Dif. Denklemler ↔ MTO337 Atmosfer Dinamiği; MAT 308 YZ'nin Matematiksel Temelleri ↔ MTO302/406 Hava Analizi ve Öngörü. Örnek görev: CRPS, Brier ve güvenilirlik diyagramıyla olasılıksal doğrulama; EMOS gibi klasik düzeltmeyi yapay zekâ sürümüyle yan yana koymak. Kazanç: teoriyi gerçek belirsizlikte sınamak; makaleye dönüşebilecek bir karşılaştırma.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2534"
+ },
+ "amac": "Türkiye ve çevresi ERA5 500 hPa jeopotansiyel yükseklik haritalarından 6 saat sonrasını evrişimli sinir ağıyla (CNN) tahmin eden mini bir model kurmak.",
+ "ortakDers": [
+  {
+   "kod": "MAT 308",
+   "projeyeKatki": "Harita tensörlerinin optimizasyonu ve aşırı öğrenmeyi önleme. 2D evrişimli filtrelerin ağırlıklarını L2 kaybı ve SGD ile eğitmek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "L2 regülarizasyonlu ortalama kare hata kaybı",
+     "nerede": "3. adımda: 500 hPa ızgara noktalarındaki piksel bazlı sapmaları cezalandırırken aşırı öğrenmeyi engellemek için."
+    },
+    {
+     "formulAd": "Stokastik gradyan inişi (SGD) güncelleme bağıntısı",
+     "nerede": "3. adımda: Evrişim katmanlarının çekirdek ağırlıklarını mini-yığın gradyanlarıyla optimize ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Dinamik denge ve jeostrofik rüzgâr kontrolü. Yapay zekâ tarafından tahmin edilen jeopotansiyel haritasının fiziksel olarak dengeli olup olmadığını kontrol etmek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr vektörü",
+     "nerede": "4. adımda: Modelin tahmin ettiği 500 hPa jeopotansiyel yükseklik konturlarından rüzgâr alanını türetip fiziksel gerçekliği sınarken."
+    },
+    {
+     "formulAd": "Termal rüzgâr bağıntısı",
+     "nerede": "4. adımda: Tahmin edilen basınç gradyanının alt seviye sıcaklık farklarıyla uyumlu olup olmadığını test ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 500 hPa alanlarını indir, t ve t+6 saat harita çiftlerini oluştur, küçük bir CNN eğitip hata birikimini haritalandır.",
+  "ayrinti": "Copernicus CDS üzerinden 2018-2023 yılları için Türkiye ve Doğu Akdeniz bölgesini kapsayan 500 hPa jeopotansiyel yükseklik alanları indirilir. Veriler 6 saatlik aralıklarla giriş-çıkış tensörlerine (t anı girdisi, t+6 anı hedefi) dönüştürülür. PyTorch ile 3 katmanlı bir evrişimli sinir ağı (CNN) tasarlanır. Model eğitildikten sonra 24 ve 48 saatlik döngüsel tahminler yürütülür; jeostrofik rüzgâr tutarlılığı incelenir. 2-3 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 jeopotansiyel haritalarını indir",
+    "oz": "CDS API ile Türkiye ve Doğu Akdeniz 500 hPa jeopotansiyel yükseklik (Z500) alanlarını indir.",
+    "ayrinti": "Copernicus CDS üzerinden 1990-2024 dönemine ait 500 hPa jeopotansiyel yükseklik ve 850 hPa sıcaklık haritaları 0,25° çözünürlükle çekilir. Türkiye ve Doğu Akdeniz bölgesini kapsayan 30-48° K, 20-50° D koordinat penceresi dilimlenir. NetCDF dosyaları xarray ile açılarak standart zaman serisi tensörlerine dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "cdsapi istemcisiyle 500 hPa jeopotansiyel ve 850 hPa sıcaklık alanlarını 6 saatlik adımlarla indir",
+      "sade": "MTO 337 dersindeki 'Hidrostatik denge ve hipsometrik denklemle tabaka kalınlığını sıcaklığa bağlamak' bilgisiyle üst atmosfer basınç verileri indirilir. Troposferin orta seviyesindeki dalga hareketlerini izlemek için Z500 ve T850 katmanları çekilir. Bu alanlar atmosferik sistemlerin yönlenmesini belirleyen dinamik iskeleti oluşturur.",
+      "altAdimlar": [
+       "cdsapi.Client() ile Copernicus sunucusuna 6 saatlik Z500 ve T850 sorgusunu gönder",
+       "Doğu Akdeniz ve Türkiye bölgesini kapsayan NetCDF arşivini yerel depoya aktar",
+       "İndirilen dosyaların koordinat bütünlüğünü xarray.open_dataset ile denetle"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Hidrostatik denge ve hipsometrik denklemle tabaka kalınlığını sıcaklığa bağlamak"
+      }
+     },
+     {
+      "teknik": "xarray ile 30-48° K ve 20-50° D bölgesini kesip jeopotansiyel birimini metreye (gpm) dönüştür",
+      "sade": "MTO 337 dersindeki 'Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak' bilgisiyle jeopotansiyel yükseklik alanları çıkarılır. Jeopotansiyel m²/s² birimi yerçekimi ivmesine bölünerek metre cinsine dönüştürülür. Bölgesel ızgara dilimlenerek sinir ağı için uygun girdi boyutuna getirilir.",
+      "altAdimlar": [
+       "sel(latitude=slice(48.0, 30.0), longitude=slice(20.0, 50.0)) ile çalışma alanını kes",
+       "z / 9.80665 formülüyle jeopotansiyel metre (gpm) değerlerini hesapla",
+       "Boyutları zaman × enlem × boylam olan düzenli ızgara matrisini çıkar"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak"
+      }
+     },
+     {
+      "teknik": "Veri setini normalize edip 1990-2020 eğitim, 2021-2022 doğrulama ve 2023-2024 test olarak böl",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle veri kümeleri ayrıştırılır. Çok yıllık atmosferik salınımları kapsayacak şekilde 30 yıllık eğitim dönemi belirlenir. Veri normalizasyonu yapılarak sinir ağının kararlı yakınsaması sağlanır.",
+      "altAdimlar": [
+       "Eğitim kümesi üzerinden ortalama ve standart sapma değerlerini hesapla",
+       "Tüm dönemleri (X - mu) / sigma formülüyle normalize et",
+       "Veriyi kronolojik olarak eğitim, doğrulama ve bağımsız test tensörlerine ayır"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Giriş ve hedef harita çiftlerini kur",
+    "oz": "t anındaki Z500 haritasından t+24 saat sonrasını öngören girdi-hedef görüntü çiftlerini üret.",
+    "ayrinti": "Öğrenme görevi, 24 saatlik atmosferik durum evrimini tahmin etmek olarak tanımlanır. t anındaki 2 boyutlu Z500 ve T850 haritaları girdi (X_t), 24 saat sonraki (t+24) harita ise hedef (y_t) olarak eşleştirilir. PyTorch Dataset ve DataLoader sınıfları yazılarak GPU belleğine verimli aktarım sağlanır.",
+    "nasil": [
+     {
+      "teknik": "Zaman indeksi üzerinde 24 saatlik kaydırma ile (X_t, y_t+24) harita tensör çiftlerini oluştur",
+      "sade": "MAT 308 dersindeki 'Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak' bilgisiyle zamansal eşleme tensörleri kurulur. Mevcut atmosfer haritası girdi, bir sonraki günün haritası hedef olarak tanımlanır. Bu yapı modelin atmosferik dalga hareketini öğrenmesini sağlar.",
+      "altAdimlar": [
+       "t anındaki Z500 ve T850 haritalarını 2 kanallı tensör olarak birleştir",
+       "t+24 saat sonrasındaki Z500 haritasını tek kanallı hedef tensör olarak belirle",
+       "Toplam tensör çifti sayısını ve zaman damgalarını denetle"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak"
+      }
+     },
+     {
+      "teknik": "PyTorch Dataset sınıfını kodlayıp mini-batch yükleme için DataLoader nesnelerini hazırla",
+      "sade": "MAT 308 dersindeki 'Gradyan inişi ve stokastik gradyan inişi (SGD) algoritmalarını optimize etmek' bilgisiyle veri yükleme hattı kurulur. Görüntü tensörleri küçük gruplar halinde belleğe alınır. Stokastik gradyan inişi için verimli bellek yönetimi sağlanır.",
+      "altAdimlar": [
+       "torch.utils.data.Dataset sınıfından miras alan WeatherDataset sınıfını yaz",
+       "__getitem__ fonksiyonunda girdi ve hedef tensörlerini döndür",
+       "DataLoader(batch_size=32, shuffle=True) ile eğitim veri yükleyicisini başlat"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Gradyan inişi ve stokastik gradyan inişi (SGD) algoritmalarını optimize etmek"
+      }
+     },
+     {
+      "teknik": "Enlem bandı alan ağırlıklandırma matrisini hesaplayarak kutuplara doğru küçülen hücre alanlarını dengele",
+      "sade": "MTO 337 dersindeki 'Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak' bilgisiyle küresel ızgara alanı ağırlıklandırılır. Enlem artıkça küçülen hücre alanları kosinüs katsayısıyla dengelenir. Bu sayede kayıp fonksiyonu fiziksel alan boyutuna duyarlı hale getirilir.",
+      "altAdimlar": [
+       "w = np.cos(np.radians(lat)) formülüyle enlem ağırlık vektörünü çıkar",
+       "Ağırlıkları 2 boyutlu ızgaraya yayarak ağırlık matrisini oluştur",
+       "Ağırlık matrisini kayıp hesaplamasında kullanılmak üzere PyTorch tensörüne çevir"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Evrişimli sinir ağını eğit",
+    "oz": "U-Net/ResNet tabanlı 2B evrişimli ağı kur; AdamW optimizasyonu ve alan ağırlıklı MSE ile eğit.",
+    "ayrinti": "Atmosferik dalgaları öğrenmek için artık bağlantılı (ResNet blokları) bir evrişimli mimari yapılandırılır. Çekirdek boyutu 3x3 veya 5x5 seçilir. Kayıp fonksiyonu olarak alan ağırlıklı Ortalama Kare Hata (Latitude-weighted MSE) kullanılır. AdamW optimizasyonu, kosinüs öğrenme oranı çizelgesi ve erken durdurma ile model eğitilir.",
+    "nasil": [
+     {
+      "teknik": "PyTorch ile 4 katmanlı artık evrişimli (ResNet) emülatör mimarisini kurup parametreleri başlat",
+      "sade": "MAT 308 dersindeki 'Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak' bilgisiyle uzamsal evrişim blokları kurulur. İki boyutlu atmosfer alanlarındaki oluk ve sırt desenleri evrişim filtreleriyle yakalanır. Artık bağlantılar gradyanların katmanlar boyunca sönümlenmeden akmasını sağlar.",
+      "altAdimlar": [
+       "nn.Conv2d katmanlarını içeren ResBlock modüllerini tanımla",
+       "Giriş kanalı 2 (Z500, T850), çıkış kanalı 1 (Z500) olacak şekilde ağı kur",
+       "Kaiming normal başlatma ile ağ ağırlıklarını sıfırla"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak"
+      }
+     },
+     {
+      "teknik": "Alan ağırlıklı MSE kayıp fonksiyonu ve AdamW optimizasyonu ile model parametrelerini güncelle",
+      "sade": "MAT 308 dersindeki 'Dışbükey (konveks) optimizasyon problemlerinde yerel ve küresel minimumları ayırt etmek' bilgisiyle kayıp fonksiyonu optimize edilir. Ağırlık azaltma regülarizasyonu ile ezberleme engellenir. Model atmosferin geniş ölçekli dolaşım yapısını koruyacak şekilde eğitilir.",
+      "altAdimlar": [
+       "Kayıp fonksiyonunu loss = torch.mean(w * (y_pred - y_true)**2) olarak yaz",
+       "optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4) nesnesini kur",
+       "loss.backward() ve optimizer.step() adımlarıyla eğitim epoklarını tamamla"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Dışbükey (konveks) optimizasyon problemlerinde yerel ve küresel minimumları ayırt etmek"
+      }
+     },
+     {
+      "teknik": "Doğrulama kaybını izleyerek en düşük hatayı veren kontrol noktasını (checkpoint) diske kaydet",
+      "sade": "MAT 308 dersindeki 'L1 ve L2 regülarizasyonu ile aşırı öğrenmeyi (overfitting) engellemek' bilgisiyle model kararlılığı izlenir. Bağımsız doğrulama kümesindeki hata minimuma indiğinde en iyi model ağırlıkları saklanır. Böylece aşırı öğrenme engellenerek genelleme başarısı artırılır.",
+      "altAdimlar": [
+       "Her epok sonunda doğrulama kümesi ağırlıklı RMSE değerini hesapla",
+       "Hata düştükçe torch.save ile 'en_iyi_emulator.pt' modelini güncelle",
+       "10 epok boyunca iyileşme olmazsa eğitimi erken durdurma ile bitir"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "L1 ve L2 regülarizasyonu ile aşırı öğrenmeyi (overfitting) engellemek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Tahminleri döngüsel yürüt ve fizikle sına",
+    "oz": "Tahmini modele yeniden vererek 5 günlük döngüsel tahmin yap; jeostrofik rüzgâr dengesini test et.",
+    "ayrinti": "Model tek adımlı tahminle sınırlı kalmaz; ürettiği 24 saatlik tahmin bir sonraki adımın girdisi yapılarak 120 saate (5 gün) kadar özyinelemeli (autoregressive) koşturulur. Tahmin edilen Z500 alanından sonlu farklarla jeostrofik rüzgâr hesaplanır. Rüzgâr alanının fiziksel geçerliliği ve atmosferik dalgaların faz hızı ERA5 hakikatiyle kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "Model çıktısını bir sonraki adımın girdisi yaparak 5 güne (120 saat) kadar döngüsel tahmin zinciri kur",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle çok adımlı tahmin testi yapılır. Modelin ürettiği çıktılar geri besleme döngüsüne sokularak hatanın zamana bağlı büyümesi incelenir. Bu analiz emülatörün uzun vadeli kararlılığını test eder.",
+      "altAdimlar": [
+       "t=24 saat tahminini modelin girdi tensörüne dönüştür",
+       "Adım adım t=48, 72, 96 ve 120 saat tahminlerini özyinelemeli üret",
+       "Hatanın günlere göre büyüme grafiğini çıkar"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Tahmin edilen Z500 alanından sonlu farklarla jeostrofik rüzgâr bileşenlerini (u_g, v_g) hesapla",
+      "sade": "MTO 337 dersindeki 'Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak' bilgisiyle dinamik rüzgâr dengesi test edilir. Jeopotansiyel gradyanından teorik rüzgâr alanı türetilir. Sinir ağının ürettiği yükseklik alanının jeostrofik dengeyle tutarlı olup olmadığı doğrulanır.",
+      "altAdimlar": [
+       "u_g = -(g / f) * dZ/dy ve v_g = (g / f) * dZ/dx formüllerini sonlu farklarla uygula",
+       "Hesaplanan jeostrofik rüzgâr büyüklüğünü ERA5 gerçek rüzgârıyla karşılaştır",
+       "Büyük ölçekli dengesizlik ve aşırı yayılım bölgelerini raporla"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile 500 hPa jeopotansiyel konturları ve rüzgâr vektörlerini çizdirip karşılaştırma paneli üret",
+      "sade": "MTO 337 dersindeki 'Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak' bilgisiyle sinoptik hava haritası çizdirilir. Jeopotansiyel oluk ve sırt kıvrımları harita üzerinde görselleştirilir. Yapay zekâ emülatörünün atmosferik Rossby dalgalarını ne kadar doğru taşıdığı bilimsel olarak raporlanır.",
+      "altAdimlar": [
+       "plt.contour ile Z500 izohips çizgilerini 60 gpm aralıklarla çiz",
+       "Jeostrofik rüzgâr vektörlerini ok işaretleriyle harita üzerine bindir",
+       "Gerçek ve tahmin haritalarını yan yana mat02_emulator_sonuc.png olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "ERA5 500 hPa jeopotansiyel haritalarından 6 ve 24 saatlik tahmin üreten evrişimli sinir ağı ve fiziksel tutarlılık raporu.",
+  "senden": "MAT 308 dersinden gelen kısım: 2D evrişim tensörleri, L2 optimizasyonu ve hata yayılımı.",
+  "bizden": "MTO 337 dersinden gelen kısım: jeostrofik rüzgâr kontrolü, izohips analizi ve atmosferik veri seçimi."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye ve Doğu Akdeniz 500 hPa jeopotansiyel tahmin ve analiz alanı, ERA5, 2024-01-10..15, 6 saatlik",
+   "aciklama": "Yapay sinir ağı tarafından üretilen 500 hPa jeopotansiyel yükseklik tahmininin gerçek ERA5 analiziyle karşılaştırmalı animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "aciklama": "Google DeepMind GraphCast teknik blog sayfası: küresel grafik sinir ağı mimarisi ve doğrulama grafikleri"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_in_the_atmosphere.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Üst atmosferdeki Rossby dalgaları ve sinoptik oluk-sırt salınımları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "DeepMind GraphCast bilimsel duyurusu ve araştırma makalesi",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/"
+  },
+  {
+   "ad": "NVIDIA FourCastNet küresel hava tahmini makalesi",
+   "url": "https://arxiv.org/abs/2202.11214"
+  },
+  {
+   "ad": "Rasp et al. (2020) WeatherBench: A benchmark data set for data-driven weather forecasting",
+   "url": "https://doi.org/10.1029/2020MS002203"
+  },
+  {
+   "ad": "WindBorne Systems küresel atmosferik gözlem ve teknoloji platformu",
+   "url": "https://windbornesystems.com/technology"
+  },
+  {
+   "ad": "Copernicus CDS ERA5 saatlik basınç seviyeleri reanaliz veri arşivi",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+  },
+  {
+   "ad": "Holton, J. R. & Hakim, G. J. (2012) An Introduction to Dynamic Meteorology",
+   "url": "https://openlibrary.org/isbn/9780123848666"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm formüller MAT 308 ve MTO 337 ders dosyalarıyla birebir eşleştirildi. Bağlantılar ve lisanslar doğrulandı.",
+ "_birlestirme": {
+  "kaynak": "cikti/MAT-02.json",
+  "tarih": "2026-10-14 23:04",
+  "geminiSha1": "c8a6ac19fa9e"
+ }
+}

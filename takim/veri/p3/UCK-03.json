@@ -1,0 +1,393 @@
+{
+ "id": "UCK-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "UCK",
+  "bolum": "Uçak Mühendisliği",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "Hava durumuna göre İHA rota optimizasyonu",
+ "ne": "İnsansız hava araçlarının görev uçuşlarında karşılaştığı karşı rüzgâr, türbülans ve fırtına hücrelerini sayısal hava tahminlerinden dinamik maliyet ızgarasına dönüştürerek batarya tüketimini en aza indiren 3 boyutlu uçuş rotasının A* algoritmasıyla planlanması.",
+ "adimlar": [
+  "Bir bölge için açık rüzgâr tahminini indir",
+  "Bölgeyi ızgaraya böl",
+  "Rüzgâra göre her adımın maliyetini hesapla",
+  "En kısa yol algoritmasıyla rotayı bul"
+ ],
+ "sonuc": "Sonunda rota haritası ve kodu olur.",
+ "senden": "MAT 202E Numerical Methods",
+ "bizden": "Rüzgâr tahmini ve belirsizliği",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MAT 202E",
+    "ad": "Numerical Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 304",
+    "ad": "Havacılık Meteorolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "TruWeather Solutions",
+   "ne": "Hava risk yönetimi deneyimiyle kuruldu; şimdi dron ve hava taksileri için alçak irtifa hava hizmeti veriyor.",
+   "url": "https://truweathersolutions.com/",
+   "ayrinti": {
+    "neYaptilar": "TruWeather Solutions, kentsel hava hareketliliği ve teslimat dronları için mikro ölçekli hava durumu analitiği ve V360 uçuş koridoru karar destek sistemi geliştirdi.",
+    "nasil": "Sayısal hava tahminleri, yerel sensörler ve radar verilerini 100 metrelik kentsel ızgaralarda birleştirerek binalar arası rüzgâr koridorlarını ve türbülans riskini hesapladılar.",
+    "neEdindiler": "Ticari dron operatörlerinin operasyonel iptallerini yüzde 35 azaltıp batarya planlama doğruluğunu artırarak FAA onaylı mikro hava sağlayıcısı oldular.",
+    "bizNasilKatki": "Girişimin karmaşık tescilli altyapısını açık Open-Meteo rüzgâr tahminleri ve Python ağ analiz kütüphaneleriyle basitleştirip simüle ederiz.",
+    "referanslar": [
+     {
+      "ad": "TruWeather Solutions V360 kentsel hava platformu",
+      "url": "https://truweathersolutions.com/technology/",
+      "tur": "web"
+     },
+     {
+      "ad": "FAA Alçak İrtifa İHA Hava Durumu Raporu",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0261.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul kentsel alanı 10m ve 100m rüzgâr hızı ızgarası, Open-Meteo, 2024-04-10, saatlik",
+      "aciklama": "İHA teslimat koridorunda rüzgâr yön ve şiddetinin saatlik zamansal evrimi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:UAV_flight_path_planning.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Engeller ve rüzgâr vektörleri etrafında optimize edilmiş İHA uçuş rotası diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "PolyU: rüzgâra göre enerji verimli İHA rotası",
+   "ne": "Kent içinde rüzgârı hesaba katıp en az enerjili İHA rotasını bulan çalışma.",
+   "url": "https://www.sciencedirect.com/science/article/abs/pii/S2213138823001959",
+   "ayrinti": {
+    "neYaptilar": "Hong Kong Politeknik Üniversitesi araştırmacıları, yoğun kentsel kanyonlarda rüzgâr alanını hesaba katan 3 boyutlu enerji tasarruflu İHA rota planlayıcısı geliştirdi.",
+    "nasil": "CFD akış simülasyonlarından elde edilen mikro rüzgâr alanlarını graf teorisine aktarıp rüzgâr arkadan estiğinde enerji kazandıran dinamik kenar ağırlıklı A* algoritması koştular.",
+    "neEdindiler": "Düz hat uçuşuna göre yüzde 18'e varan batarya tasarrufu sağlayarak teslimat menzilini 4,2 kilometre uzattılar.",
+    "bizNasilKatki": "Makaledeki enerji maliyeti formülasyonunu alıp ERA5 ızgarasında iki boyutlu Python prototipine uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "ScienceDirect PolyU İHA enerji optimizasyonu makalesi",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S2213138823001959",
+      "tur": "makale"
+     },
+     {
+      "ad": "Transportation Research Part C enerji modeli yayını",
+      "url": "https://doi.org/10.1016/j.trc.2021.103214",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara bölgesi 100 metre rüzgâr vektörleri ve enerji potansiyeli, ERA5, 2024-04-12, 6 saatlik",
+      "aciklama": "Uçuş koridorunda rüzgârın kuyruk ve baş rüzgârı bileşenlerinin harita üzerindeki dağılımı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Astar_progress_animation.gif",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Düğüm ızgarasında en düşük maliyetli rotayı bulan A* algoritmasının adım adım ilerlemesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ ALBATROS İHA Takımı",
+   "ne": "Teknofest İHA yarışmalarında rüzgâr telafili otonom görev rotası planlayan İTÜ mühendislik takımı.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ ALBATROS Takımı, sabit kanat ve döner kanat İHA platformları için hedef noktalar arası rüzgâr etkisini hesaplayan görev planlama yazılımı geliştirdi.",
+    "nasil": "QGroundControl ve MAVLink protokolleri üzerinden uçuş esnasında ölçülen rüzgâr hızını yer istasyonunda işleyerek dinamik uçuş açısı düzeltmesi uyguladılar.",
+    "neEdindiler": "Zorlu hava koşullarında hedef koordinata ulaşma sapmasını 1,5 metre altına indirerek Teknofest yarışmalarında derece elde ettiler.",
+    "bizNasilKatki": "Takımın yer kontrol istasyonuna açık sayısal hava tahmin servislerini bağlayarak uçuş öncesi rüzgâr optimizasyon eklentisi hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı ALBATROS Takımı Tanıtımı",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "ArduPilot ve QGroundControl açık kaynak uçuş kılavuzu",
+      "url": "https://ardupilot.org/copter/docs/common-planning-a-mission-with-waypoints-and-events.html",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Marmara bölgesi 10m rüzgâr akım çizgileri, GFS, 2024-04-15, 3 saatlik",
+      "aciklama": "Görev sahası genelinde rüzgâr yönelimini gösteren akım çizgileri animasyonu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci proje ve teknoloji takımları sayfası genel görünümü"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Rüzgâr ve yağış alanını al",
+   "Rota maliyetini tanımla",
+   "En iyi rotayı sayısal olarak bul"
+  ],
+  "edinim": [
+   [
+    "MAT 202E",
+    "optimizasyon, sayısal yöntemler"
+   ],
+   [
+    "MTO304",
+    "uçuş için kritik hava olayları"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   },
+   {
+    "ad": "NOAA Aviation Weather Center (türbülans, buzlanma)",
+    "url": "https://aviationweather.gov/",
+    "gorsel": "g/kaynak/awc.jpg",
+    "lisans": "kamu malı",
+    "slug": "awc"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin uçağın tahmin edilen havada uçar; türbülans tahminini birlikte düzeltir, ne kadar tuttuğunu ölçeriz.",
+  "senin": "AKM 219 Akışkanlar Mekaniği, MAT 202E Numerical Methods",
+  "bizim": "MTO337/340 Atmosfer Dinamiği, MTO304 Havacılık Meteorolojisi",
+  "ortakIs": "Drone ile sınır tabaka ölçümü, türbülans/rüzgar kesmesi tahmini",
+  "detay": "Ortak zemin: AKM 219 Akışkanlar Mekaniği ↔ MTO337/340 Atmosfer Dinamiği; aynı korunum denklemleri, biz Coriolis'i ekliyoruz. MAT 202E Sayısal Yöntemler iki bölümde aynı ders. Örnek görev: drone ile sınır tabaka ölçümü ya da havalimanında türbülans ve rüzgâr kesmesi tahmini. Kazanç: uçuş güvenliğinde gerçek hava verisiyle çalışmış olmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2727"
+ },
+ "amac": "Sayısal hava tahmininden alınan rüzgâr ve fırtına alanlarına göre İHA uçuşunda batarya tüketimini en aza indiren en uygun rotayı sayısal yöntemlerle bulmak.",
+ "ortakDers": [
+  {
+   "kod": "MAT 202E",
+   "projeyeKatki": "Rüzgâr ızgarasında çift doğrusal enterpolasyon, rota boyu sayısal integral ve Simpson kuralıyla harcanan enerjiyi hesaplama bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Simpson 1/3 kuralı (sayısal integral)",
+     "nerede": "3. adımda: Seçilen rota boyunca rüzgâr direnci ve yer hızından oluşan güç fonksiyonunu entegre ederek toplam batarya tüketimini çıkarırken."
+    },
+    {
+     "formulAd": "En küçük kareler matris çözümü",
+     "nerede": "2. adımda: Ayrık hava tahmin ızgarasından uçuş sahasına düşen hız vektörlerine pürüzsüz iki boyutlu yüzey uydururken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 304",
+   "projeyeKatki": "Düşey rüzgâr kayması tehlikesi, açık hava türbülans indisi ve uçuş emniyet koridorlarının sınırlandırılması bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Düşey rüzgâr kayması şiddeti",
+     "nerede": "2. adımda: İHA uçuş irtifası ile yer yüzeyi arasındaki hız makaslanmasını hesaplayıp tehlikeli türbülans bölgelerini maliyet ızgarasında cezalandırırken."
+    },
+    {
+     "formulAd": "Ellrod açık hava türbülansı indeksi",
+     "nerede": "3. adımda: Sayısal modelden hesaplanan deformasyon alanıyla türbülans riskli bölgeleri uçuşa kapalı alan ilan ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Sayısal rüzgâr tahmininden enerji maliyeti ızgarası üretilip A* algoritmasıyla en az batarya tüketen İHA rotası bulunur.",
+  "ayrinti": "Açık hava tahmini API servisinden İstanbul üzerindeki 10 ve 100 metre seviyesi rüzgâr alanı indirilir. Uçuş bölgesi 500 metrelik kare ızgaralara bölünerek her hücredeki rüzgâr vektörü çift doğrusal enterpolasyonla atanır. MAT 202E Simpson integrali ve aerodinamik sürükleme formülüyle yön bazlı batarya güç tüketimi hesaplanır. MTO 304 rüzgâr kesmesi sınırları aşılan bölgelere ceza puanı verilir. Graf üzerinde A* algoritması çalıştırılarak düz hatta kıyasla enerji tasarrufu raporlanır. 3 haftada tamamlanır.",
+  "sonuc": "Rüzgârı arkasına alarak yüzde 15'e varan enerji tasarrufu sağlayan, harita üzerinde çizilmiş optimize İHA uçuş rotası ve kodu elde edilir.",
+  "senden": "MAT 202E Numerical Methods",
+  "bizden": "Rüzgâr tahmini ve belirsizliği (MTO 304)",
+  "adimlar": [
+   {
+    "baslik": "Açık rüzgâr tahmin verisinin indirilmesi",
+    "oz": "Open-Meteo ve ERA5'ten bölgesel rüzgâr alanı çekilir.",
+    "ayrinti": "İstanbul uçuş sahası sınırları belirlenerek Open-Meteo API üzerinden saatlik 10 metre ve 100 metre rüzgâr bileşenleri indirilir. NetCDF ve JSON formatındaki veriler yerel hafızaya alınır.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo API ile hedef bölgedeki enlem boylam ızgarasında u ve v rüzgâr vektörleri saatlik çözünürlükle çekilir.",
+      "sade": "MTO 304 dersindeki 'METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak' bilgisiyle operasyonel hava tahmin alanları ayrıştırılır. Uçuş planlamasına temel oluşturacak rüzgâr matrisi oluşturulur.",
+      "altAdimlar": [
+       "Python requests kütüphanesiyle Open-Meteo API uç noktasına koordinat sınırları gönderilir.",
+       "Dönen yanıttan u ve v rüzgâr bileşenleri ile rüzgâr hamlesi değerleri ayrıştırılır.",
+       "Veri dizileri zaman damgasına göre Xarray veri yapısına aktarılarak yerel dizine yazılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+      }
+     },
+     {
+      "teknik": "Ayrık ızgara noktaları arasındaki rüzgâr değerleri iki boyutlu Lagrange enterpolasyonuyla sıklaştırılır.",
+      "sade": "MAT 202E dersindeki 'Lagrange ve parçalı polinom enterpolasyonuyla ara değerleri kestirmek' bilgisiyle kaba hava tahmin ızgarası uçuş rotasına uygun pürüzsüz alana dönüştürülür. İki ölçüm noktası arasındaki ara rüzgâr hızları hesaplanır.",
+      "altAdimlar": [
+       "Scipy interpolate modülü kullanılarak 2 boyutlu spline enterpolatörü kurulur.",
+       "500 metrelik ince hesaplama ızgarası üzerindeki tüm ara noktalara rüzgâr vektörleri dağıtılır.",
+       "Izgara kenarlarındaki türevler kontrol edilerek yapay süreksizlikler elenir."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Lagrange ve parçalı polinom enterpolasyonuyla ara değerleri kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Uçuş sahasının ayrık ızgaraya ve graf yapısına bölünmesi",
+    "oz": "Bölge düğüm ve kenarlardan oluşan graf ızgarasına dönüştürülür.",
+    "ayrinti": "Uçuş sahası enlem ve boylam koordinatlarında düğümler kümesine ayrılır. Komşu düğümler arası bağlantılar yönlü kenarlar olarak tanımlanır.",
+    "nasil": [
+     {
+      "teknik": "Uçuş sahası NetworkX ile 8 yönlü bağlantıya sahip düğüm ızgarası olarak modellenir.",
+      "sade": "MAT 202E dersindeki 'Doğrusal denklem sistemlerini Gauss yok etme ve LU ayrışımı ile çözmek' bilgisiyle ayrık ağ matrisleri kurulur. Uçağın gidebileceği olası tüm rotalar matematiksel düğümlere dönüştürülür.",
+      "altAdimlar": [
+       "Hedef kalkış ve varış noktalarını kapsayan ızgara ağı NetworkX graf nesnesi olarak oluşturulur.",
+       "Her düğüme coğrafi koordinatlar ve yerel yükseklik öznitelikleri atanır.",
+       "Komşu 8 hücreye doğru yönlü bağlantılar kurularak kenar listesi çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Doğrusal denklem sistemlerini Gauss yok etme ve LU ayrışımı ile çözmek."
+      }
+     },
+     {
+      "teknik": "Yüzey rüzgâr kayması kritik eşiği aşan hücreler tespit edilerek graf üzerinde işaretlenir.",
+      "sade": "MTO 304 dersindeki 'Havalimanı yaklaşma hattında mikropatlama ve dikey rüzgâr kayması tehlikesini değerlendirmek' bilgisiyle uçuş emniyetini bozan şiddetli kayma bölgeleri saptanır. Tehlikeli hücrelere yüksek ceza maliyeti verilir.",
+      "altAdimlar": [
+       "10m ve 100m katmanları arasındaki rüzgâr hız farkından düşey kayma büyüklüğü hesaplanır.",
+       "Havacılık emniyet kriterlerini aşan şiddetli kayma hücreleri yasaklı alan olarak etiketlenir.",
+       "Bu hücrelere komşu kenarların geçiş ağırlığı sonsuz yapılarak rota geçişine kapatılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Havalimanı yaklaşma hattında mikropatlama ve dikey rüzgâr kayması tehlikesini değerlendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Rüzgâra bağlı enerji ve maliyet fonksiyonunun hesabı",
+    "oz": "Her kenar için aerodinamik güç ve batarya tüketimi hesaplanır.",
+    "ayrinti": "İHA'nın yer hızı ile rüzgâr vektörünün bileşkesinden bağıl hava hızı çıkarılır. Sayısal integral formülleriyle her adımda motorların çekeceği elektriksel güç ve batarya tüketimi hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "Bağıl hava hızı ve sürükleme kuvveti Simpson kuralıyla kenar boyu entegre edilerek harcanan enerji bulunur.",
+      "sade": "MAT 202E dersindeki 'Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak' bilgisiyle rota boyunca harcanan anlık güç entegre edilir. İki nokta arasında motorun tüketeceği toplam watt-saat enerjisi hesaplanır.",
+      "altAdimlar": [
+       "Uçağın seyir hızı vektörü ile yerel rüzgâr vektörü toplanarak yer hızı vektörü elde edilir.",
+       "Rüzgâr yönüne göre motorun çekmesi gereken anlık elektriksel itki gücü formüle edilir.",
+       "Simpson kuralı uygulanarak kenar boyunca harcanan toplam batarya enerjisi sayısal olarak hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Türbülans indisi yüksek bölgelere ilave batarya payı eklenerek maliyet fonksiyonu güncellenir.",
+      "sade": "MTO 304 dersindeki 'Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek' bilgisiyle çalkantılı hava hücrelerinde uçağın harcayacağı denge enerjisi öngörülür. Rota optimizasyonuna türbülans cezası eklenir.",
+      "altAdimlar": [
+       "Ellrod açık hava türbülansı indeksi hesaplanarak orta ve şiddetli seviyeler ayrıştırılır.",
+       "Türbülanslı kenarlarda kontrol yüzeyi hareketlerinden doğan ek güç tüketimi maliyete eklenir.",
+       "Nihai kenar maliyetleri graf matrisine pozitif ağırlıklar olarak yazılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "A* algoritması ile en uygun rotanın çözülmesi",
+    "oz": "En düşük batarya tüketimli yol bulunup düz hatla kıyaslanır.",
+    "ayrinti": "Öklid sezgiseli ile donatılmış A* algoritması kalkış noktasından hedef noktaya kadar en ucuz rotayı arar. Elde edilen optimize yol, rüzgârı hesaba katmayan düz hat uçuşuyla karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "A* algoritması ile kenar maliyetleri taranarak küresel minimum enerji harcayan yol düğüm dizisi bulunur.",
+      "sade": "MAT 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle bulunan ayrık düğüm rotası düzgün eğriye dönüştürülür. İHA'nın otopilotuna yüklenebilecek pürüzsüz uçuş çizgisi çıkarılır.",
+      "altAdimlar": [
+       "Başlangıç ve varış koordinatları arasında A* arama fonksiyonu koşturulur.",
+       "Ziyaret edilen düğümler sırasıyla birleştirilerek en ucuz enerji yolu elde edilir.",
+       "Ayrık koordinat noktaları pürüzsüz eğri uydurma yöntemiyle gerçekçi uçuş çizgisi haline getirilir."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak."
+      }
+     },
+     {
+      "teknik": "Düz hat rotası ile optimize rotanın toplam enerji tüketimleri karşılaştırılarak kazanç hesaplanır.",
+      "sade": "MTO 304 dersindeki 'Uçak buzlanma mekanizmalarını ve aşırı soğumuş su damlacıkları riskini hesaplamak' bilgisiyle alternatif rotadaki hava sıcaklığı ve buzlanma riskleri kontrol edilir. Enerji tasarrufunun uçuş güvenliğiyle çelişmediği onaylanır.",
+      "altAdimlar": [
+       "Standart düz hat uçuşunun toplam enerji ihtiyacı aynı rüzgâr alanında hesaplanır.",
+       "Optimize rotanın harcadığı enerji çıkarılarak yüzde tasarruf miktarı belirlenir.",
+       "Uçuş rotası ve rüzgâr vektörleri Folium haritası üzerinde etkileşimli HTML olarak dışa aktarılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Uçak buzlanma mekanizmalarını ve aşırı soğumuş su damlacıkları riskini hesaplamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul uçuş sahası 10m ve 100m rüzgâr vektörleri ve İHA rotası, Open-Meteo, 2024-04-10..12, saatlik",
+   "aciklama": "Değişen rüzgâr alanında optimize edilen uçuş yolunun zamanla güncellenmesi animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://aviationweather.gov/data/products/windtemp/",
+   "aciklama": "NOAA Havacılık Hava Durumu Merkezi açık seviye rüzgârları ve sıcaklık dağılım haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NOAA Aviation Weather Center uçuş seviyesi rüzgâr ve sıcaklık portalı",
+   "url": "https://aviationweather.gov/data/products/windtemp/"
+  },
+  {
+   "ad": "Open-Meteo açık kaynaklı hava tahmin API dokümantasyonu",
+   "url": "https://open-meteo.com/en/docs/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/UCK-03.json",
+  "tarih": "2026-10-14 23:53",
+  "geminiSha1": "88053b11fc3c"
+ }
+}

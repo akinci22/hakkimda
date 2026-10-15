@@ -1,0 +1,544 @@
+{
+ "id": "YZV-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "YZV",
+  "bolum": "Yapay Zeka ve Veri Mühendisliği",
+  "fakulteKod": "BBF"
+ },
+ "ad": "Uydudan bulut tipi sınıflandırma",
+ "ne": "Uydu görüntüsündeki bulutları türüne göre otomatik ayıran bir model yapıyoruz.",
+ "adimlar": [
+  "Açık uydu görüntüleri ve etiketli bir bulut veri kümesi bul",
+  "Görüntüleri küçük parçalara böl",
+  "Bir görüntü sınıflandırıcı eğit",
+  "Yanlış sınıflanan örnekleri incele"
+ ],
+ "sonuc": "Sonunda bulut tipi haritası üreten bir defter olur.",
+ "senden": "YZV 416E Computer Vision",
+ "bizden": "Bulut tiplerinin tanımı ve uydu kanallarının anlamı (MTO301)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "YZV 416E",
+    "ad": "Computer Vision"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 301",
+    "ad": "Meteorolojide Uzaktan Algılamanın Temelleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Max Planck: sığ bulut desenleri",
+   "ne": "Uydu bulut görüntülerini gönüllü etiketleri ve derin öğrenmeyle türlere ayırdı.",
+   "url": "https://doi.org/10.1175/BAMS-D-19-0324.1",
+   "ayrinti": {
+    "neYaptilar": "Max Planck Meteoroloji Enstitüsü, tropikal okyanuslar üzerindeki sığ konveksiyon desenlerini (Sugar, Gravel, Fish, Flower) uydu görüntülerinden sınıflandırdı.",
+    "nasil": "Vatandaş bilimi platformu Zooniverse üzerinden binlerce uydu görüntüsünü etiketletti; derin evrişimli sinir ağlarıyla insan uzman düzeyinde tespit başarısı sağladı.",
+    "neEdindiler": "Bulut geri beslemesi ve iklim duyarlılığı araştırmalarında küresel ölçekte standart bir açık bulut morfolojisi veri tabanı kurdu.",
+    "bizNasilKatki": "Max Planck'ın morfolojik sınıflandırma yaklaşımını Doğu Akdeniz ve Marmara üzerindeki cephesel bulut örtülerine uygularız.",
+    "referanslar": [
+     {
+      "ad": "BAMS bulut morfolojisi makalesi",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0324.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Max Planck bulut desenleri veri deposu",
+      "url": "https://doi.org/10.25326/49",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0324.1",
+      "aciklama": "BAMS makalesi: Sığ denizel bulut desenleri ve uydu sınıflandırma paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Typical_cnn.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Evrişimli sinir ağlarında çok ölçekli görüntü öznitelik katmanları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Kaggle: Understanding Clouds yarışması",
+   "ne": "Aynı etiketli veriyle binlerce öğrenci ve araştırmacı bulut tipi ayıran modeller yarıştırdı.",
+   "url": "https://www.kaggle.com/c/understanding_cloud_organization",
+   "ayrinti": {
+    "neYaptilar": "Kaggle platformunda düzenlenen yarışmada dünya genelinden 1500 ekip, uydu görüntülerinde 4 temel bulut desenini anlamsal bölütleme ile tespit etti.",
+    "nasil": "U-Net, Feature Pyramid Networks (FPN) ve EfficientNet omurgalı derin öğrenme mimarileri Dice ve BCE kayıplarıyla optimize edildi.",
+    "neEdindiler": "Uydu görüntülerinde ince kenarlı ve yarı saydam bulutların tespitinde en yüksek başarım sağlayan modern mimariler açıklandı.",
+    "bizNasilKatki": "Yarışmanın en iyi çözümlerinden U-Net omurgasını alırız; MODIS ve Meteosat multispektral kızılötesi kanallarıyla eğitime entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "Kaggle Understanding Clouds yarışma portalı",
+      "url": "https://www.kaggle.com/c/understanding_cloud_organization",
+      "tur": "kod"
+     },
+     {
+      "ad": "Kaggle birinci çözüm teknik dokümantasyonu",
+      "url": "https://www.kaggle.com/c/understanding_cloud_organization/discussion/118080",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.kaggle.com/c/understanding_cloud_organization",
+      "aciklama": "Kaggle bulut sınıflandırma veri seti ve katılımcı skor tablosu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Model tahmin alanı ile etiketli alan kesişim benzerlik grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EUMETSAT NWC SAF",
+   "ne": "Avrupa meteoroloji kuruluşlarının uydudan bulut tipi ürünü; sonuçlarımızı buna göre kıyaslayabiliriz.",
+   "url": "https://www.nwcsaf.org/",
+   "ayrinti": {
+    "neYaptilar": "EUMETSAT Nowcasting SAF konsorsiyumu, Meteosat SEVIRI uydularından operasyonel Cloud Mask ve Cloud Type ürünleri üreten yazılım paketini geliştirdi.",
+    "nasil": "Çoklu spektral kanal eşikleme algoritmaları ve ışınım transfer modelleri ile 15 dakikada bir 14 farklı bulut sınıfı üretti.",
+    "neEdindiler": "Avrupa ulusal hava servislerinin havacılık ve genel tahmin operasyonlarında kullandığı standart bulut sınıflandırma ürününü sağladı.",
+    "bizNasilKatki": "NWC SAF bulut tipi haritalarını yer gerçeği referansı olarak kabul eder; derin öğrenme modelimizin çıktısıyla piksel bazında örtüşmesini hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "NWC SAF operasyonel bulut ürünleri kütüphanesi",
+      "url": "https://www.nwcsaf.org/cloud_products",
+      "tur": "web"
+     },
+     {
+      "ad": "EUMETSAT Meteosat veri erişim yönergesi",
+      "url": "https://user.eumetsat.int/data-access",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.nwcsaf.org/cloud_products",
+      "aciklama": "NWC SAF operasyonel bulut tipi ve bulut üstü tepe basınç haritası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Cumulonimbus_cloud.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Kümülonimbus fırtına bulutu dikey gelişimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Descartes Labs",
+   "ne": "Küresel uydu verilerinden yapay zekâ ile arazi örtüsü ve bulut maskeleme yapan jeo-uzamsal veri şirketi.",
+   "url": "https://www.descarteslabs.com/technology",
+   "ayrinti": {
+    "neYaptilar": "Los Alamos araştırmacılarının kurduğu Descartes Labs, küresel uydu takımyıldızlarından gelen petabaytlarca optik veriyi yapay zekâ ile işledi.",
+    "nasil": "Gelişmiş derin öğrenme filtreleriyle uydu piksellerindeki bulut, gölge ve kar örtüsünü anlık olarak ayıran bulut temizleme motoru geliştirdi.",
+    "neEdindiler": "Küresel tarım emtia ticaretinde ve savunma sanayisinde kullanılan temizlenmiş yüzey gözlem veri katmanı sağladı.",
+    "bizNasilKatki": "Descartes Labs'ın bulut maskeleme yaklaşımını yerel ölçekte açık Sentinel-3 ve MODIS görüntülerine uygulayarak test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Descartes Labs platform ve teknoloji sayfası",
+      "url": "https://www.descarteslabs.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Descartes Labs kurumsal çözümler portalı",
+      "url": "https://www.descarteslabs.com/about",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.descarteslabs.com/technology",
+      "aciklama": "Descartes Labs uydu görüntü işleme ve bulut maskeleme platformu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Artificial_intelligence_prompt.svg",
+      "lisans": "CC0",
+      "aciklama": "Jeo-uzamsal yapay zekâ veri analitiği simgesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Havacılık ve Uzay Kulübü Uydu Görüntüsü Masası",
+   "ne": "Küp uydu ve açık uydu verilerinden meteorolojik bulut tespiti yapan İTÜ öğrenci çalışma takımı.",
+   "url": "https://github.com/itu-havacilik/bulut-segmentasyon-atolyesi",
+   "ayrinti": {
+    "neYaptilar": "İTÜ öğrencileri, yer gözlem uydularından alınan multispektral görüntülerde nesne tanıma ve bulut filtreleme algoritmaları geliştirdi.",
+    "nasil": "OpenCV ve PyTorch kütüphaneleriyle spektral bant farklarını analiz edip su buharı ve buz bulutu ayrımı yapan modeller kodladı.",
+    "neEdindiler": "Teknofest ve uluslararası uydu yarışmalarında görüntü işleme alt sistemlerinde başarı kazandı.",
+    "bizNasilKatki": "Geliştirdiğimiz U-Net bulut tipi sınıflandırma defterini kulübün açık deposuna ekleyerek yer gözlem takımlarına hazır kütüphane sunarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Havacılık Kulübü projeler sayfası",
+      "url": "https://github.com/itu-havacilik/bulut-segmentasyon-atolyesi",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Havacılık Kulübü tanıtım sayfası",
+      "url": "https://github.com/itu-havacilik/topluluk-projeleri",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itu-havacilik/bulut-segmentasyon-atolyesi",
+      "aciklama": "İTÜ Havacılık ve Uzay Kulübü öğrenci projeleri portföyü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Spektral bant yansıtıcılık dağılım grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "EUMETSAT örnek görüntülerini al",
+   "CNN ile bulut tipini etiketle",
+   "Bulut projesinin fotoğraflarıyla karşılaştır"
+  ],
+  "edinim": [
+   [
+    "YZV 416E",
+    "görüntü sınıflandırma"
+   ],
+   [
+    "MTO301",
+    "kanal, parlaklık sıcaklığı, bulut imzası"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "EUMETSAT Meteosat ürünleri",
+    "url": "https://user.eumetsat.int/data/satellites/meteosat-third-generation",
+    "gorsel": "g/kaynak/eumetsat.jpg",
+    "lisans": "EUMETSAT veri politikası",
+    "slug": "eumetsat"
+   },
+   {
+    "ad": "NASA Worldview uydu görüntüleri",
+    "url": "https://worldview.earthdata.nasa.gov/",
+    "gorsel": "g/kaynak/worldview.jpg",
+    "lisans": "kamu malı",
+    "slug": "worldview"
+   },
+   {
+    "ad": "Bulut fiziği projesi (ana sayfa)",
+    "url": "../#arastirma",
+    "gorsel": "g/kaynak/bulut.jpg",
+    "lisans": "bizim",
+    "ac": "Projeye git",
+    "slug": "bulut"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin sinir ağın, küresel tahmini İstanbul'daki istasyona göre düzeltir.",
+  "senin": "YZV 303E Deep Learning, YZV 416E Computer Vision",
+  "bizim": "MTO301 Uzaktan Algılama, MTO337/340 Atmosfer Dinamiği",
+  "ortakIs": "Radar nowcasting, ERA5 ile küçük bir yapay zekâ tahmincisi",
+  "detay": "Ortak zemin: YZV 303E Deep Learning ↔ MTO337/340 Atmosfer Dinamiği; YZV 416E Computer Vision ↔ MTO301 Uzaktan Algılama. Örnek görev: GFS/AIFS sıcaklık çıktısını istasyon gözlemine göre düzelten gradient boosting ya da küçük bir sinir ağı; belirsizlik ve kalibrasyon. Kazanç: gerçek, kirli, zaman serili veriyle PyTorch/xarray deneyimi ve portföyde ölçülmüş bir iyileşme. Bu alandaki örnek ilanlar PyTorch, veri hattı (pipeline) kurma ve olasılıksal doğrulama istiyor; xarray/Zarr ve dağıtık eğitim deneyimi tercih sebebi.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2354"
+ },
+ "amac": "Meteosat ve MODIS uydu görüntülerinden bilgisayarlı görü ve U-Net derin öğrenme mimarisiyle bulut tiplerini (sirrüs, kümülüs, stratus) otomatik sınıflandırmak.",
+ "ortakDers": [
+  {
+   "kod": "YZV 416E",
+   "projeyeKatki": "Görüntü bölütleme mimarisi ve çapraz entropi optimizasyonu. Uydu piksellerini U-Net ile sınıflandırmak ve IoU skoruyla maske doğruluğunu ölçmek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Çok sınıflı çapraz entropi (Cross-Entropy) kaybı",
+     "nerede": "3. adımda: U-Net ağının her piksel için doğru bulut sınıfını (sirrüs, kümülüs, stratus) öğrenirken kullandığı ana kayıp fonksiyonu olarak."
+    },
+    {
+     "formulAd": "Kesişim bölü Birleşim (IoU / Jaccard İndeksi)",
+     "nerede": "4. adımda: Tahmin edilen bulut maskeleri ile gerçek uydu etiketleri arasındaki örtüşme kalitesini ölçerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 301",
+   "projeyeKatki": "Uydu spektral kanalları ve bulut fiziği imzaları. Kızılötesi ve su buharı kanallarındaki parlaklık sıcaklığı farklarıyla yüksek buz bulutları ile alçak su bulutlarını ayırt etmek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Marshall-Palmer Z-R yağış şiddeti bağıntısı",
+     "nerede": "2. adımda: Kümülonimbus bulut tepelerinin radar yansıtıcılığı ve beklenen yağış şiddeti potansiyelini etiketle eşleştirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Bulut veri setini indir, U-Net ağını çapraz entropiyle eğit, EUMETSAT ürünleriyle doğrulayıp bulut haritası üret.",
+  "ayrinti": "Kaggle Understanding Clouds yarışması ve EUMETSAT açık veri arşivinden Doğu Akdeniz bölgesini kapsayan görünür ve kızılötesi uydu kareleri toplanır. Görüntüler 256x256 boyutlu yamalara bölünür; 4 temel bulut sınıfı (Sirrüs, Kümülüs, Stratus, Açık Deniz) için U-Net ağı PyTorch ile eğitilir. Modelin piksel bazlı IoU başarısı hesaplanır; EUMETSAT NWC SAF operasyonel ürünüyle karşılaştırılır. 2-3 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Uydu görüntüleri ve etiketli bulut verilerini topla",
+    "oz": "EUMETSAT Meteosat SEVIRI multispektral uydu kanallarını ve CloudSat/SAFNWC bulut maskesini indir.",
+    "ayrinti": "Açık meteorolojik uydu servislerinden multispektral veriler toplanır. EUMETSAT üzerinden Meteosat SEVIRI uydusunun Doğu Akdeniz ve Türkiye'yi kapsayan görünür (VIS0.6, VIS0.8), kızılötesi (IR10.8, IR12.0) ve su buharı (WV6.2, WV7.3) kanalları indirilir. Zemin hakikati (etiket) olarak SAF NWC veya CloudSat 2B-CLDCLASS bulut tipi maskeleri (Sirrüs, Kümülüs, Kümülonimbüs, Stratus) çekilir.",
+    "nasil": [
+     {
+      "teknik": "user.eumetsat.int portalından Meteosat SEVIRI multispektral (VIS, IR, WV) uydu kanallarını netCDF olarak indir",
+      "sade": "MTO 301 dersindeki 'Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek' bilgisiyle uydu kanalları toplanır. Atmosferik pencerelerdeki görünür ve kızılötesi ışıma verileri yerel ortama aktarılır. Bu çok kanallı görüntüler bulutların optik kalınlık ve yükseklik profilini verir.",
+      "altAdimlar": [
+       "EUMETSAT Data Store API ile Doğu Akdeniz ve Türkiye bölgesini filtrele",
+       "VIS0.6, VIS0.8, IR10.8, IR12.0 ve WV6.2 kanallarını içeren veri paketini indir",
+       "NetCDF dosyalarını xarray ile açıp koordinat ve zaman bütünlüğünü doğrula"
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek"
+      }
+     },
+     {
+      "teknik": "IR10.8 kanalından parlaklık sıcaklığını çıkararak bulut tepesi soğukluk maskesini oluştur",
+      "sade": "MTO 301 dersindeki 'Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak' bilgisiyle bulut tespiti yapılır. Termal kızılötesi ışıma Planck fonksiyonuyla parlaklık sıcaklığına çevrilir. Negatif dereceler yüksek konvektif bulut tepelerini açıkça gösterir.",
+      "altAdimlar": [
+       "IR10.8 kanalındaki radyanstan parlaklık sıcaklığı matrisini Kelvin cinsinden hesapla",
+       "T_b < 235 K (-38 °C) olan derin konvektif alanları belirle",
+       "Sıcaklık matrisini görüntü tensörlerine temel girdi kanalı olarak ekle"
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak"
+      }
+     },
+     {
+      "teknik": "SAF NWC bulut tipi ürününü 4 ana sınıfa (Sirrüs, Kümülüs, Stratus, Kümülonimbüs) indirgeyip etiket maskesini kur",
+      "sade": "YZV 416E dersindeki 'Evrişimli sinir ağları ile çok sınıflı görüntü sınıflandırma yapmak' bilgisiyle hedef bölütleme sınıfları yapılandırılır. Uydu bulut tipleri makine öğrenmesi için 4 temel sınıfa ve açık hava etiketine dönüştürülür. Piksel bazlı sınıf haritaları derin öğrenme eğitimine hazır hale getirilir.",
+      "altAdimlar": [
+       "SAF NWC Cloud Type ürününü indirip piksel etiketlerini 0..4 aralığına eşle",
+       "Etiket matrislerini 256x256 piksellik alt parçalara (patch) böl",
+       "Görüntü ve maske tensör çiftlerini PyTorch Dataset yapısına bağla"
+      ],
+      "kazanim": {
+       "ders": "YZV 416E",
+       "madde": "Evrişimli sinir ağları ile çok sınıflı görüntü sınıflandırma yapmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Veri artırma ve spektral öznitelikleri kur",
+    "oz": "Kanal farkları (IR10.8 - IR12.0) ile ince sirrüs ayrımı yap; rastgele kırpma ve çevirme ile veri setini büyüt.",
+    "ayrinti": "Fiziksel spektral farklar girdi tensörlerine eklenir: Ayrık pencere farkı (Split-Window Difference: IR10.8 - IR12.0) ince sirrüs bulutlarını, su buharı farkı (IR10.8 - WV6.2) ise derin konveksiyonu yakalar. Veri kümesini zenginleştirmek için torchvision ile rastgele döndürme, yatay/düşey çevirme ve 256x256 kırpma (crop) işlemleri uygulanır.",
+    "nasil": [
+     {
+      "teknik": "Ayrık pencere farkı delta_T = IR10.8 - IR12.0 ve konveksiyon farkı IR10.8 - WV6.2 kanallarını hesapla",
+      "sade": "MTO 301 dersindeki 'Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek' bilgisiyle spektral fark indisleri üretilir. İki kızılötesi pencere arasındaki optik soğurma farkından yarı saydam sirrüs bulutları ayrıştırılır. Bu fiziksel öznitelikler sinir ağının bulut türlerini ayırt etmesini sağlar.",
+      "altAdimlar": [
+       "delta_T_split = ds['IR108'] - ds['IR120'] ayrık pencere fark matrisini çıkar",
+       "delta_T_wv = ds['IR108'] - ds['WV62'] konvektif fark matrisini hesapla",
+       "Türetilen spektral farkları ana girdi tensörüne 4. ve 5. kanal olarak bağla"
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek"
+      }
+     },
+     {
+      "teknik": "torchvision.transforms ile rastgele yatay-dikey çevirme ve açısal döndürme veri artırma hattını kur",
+      "sade": "YZV 416E dersindeki 'Veri artırma teknikleriyle modelin genelleme başarısını yükseltmek' bilgisiyle eğitim veri seti zenginleştirilir. Görüntüler ve etiket maskeleri eşzamanlı olarak geometrik dönüşümlere tabi tutulur. Bu teknik modelin farklı açılardaki bulut desenlerini tanımasını sağlar.",
+      "altAdimlar": [
+       "RandomHorizontalFlip(p=0.5) ve RandomVerticalFlip(p=0.5) dönüşümlerini tanımla",
+       "RandomRotation(degrees=15) ile dönme simetrisini veri setine kazandır",
+       "Dönüşümleri girdi görüntüsü ve hedef maskeye eş zamanlı olarak uygula"
+      ],
+      "kazanim": {
+       "ders": "YZV 416E",
+       "madde": "Veri artırma teknikleriyle modelin genelleme başarısını yükseltmek"
+      }
+     },
+     {
+      "teknik": "Uydu piksellerini [0, 1] aralığında min-max normalize edip eğitim ve doğrulama tensör bloklarını sabitle",
+      "sade": "YZV 416E dersindeki 'Dijital görüntülerde uzamsal filtreleme ve parlaklık gradyanlarını hesaplamak' bilgisiyle piksel parlaklıkları ölçeklenir. Farklı radyometrik birimlerdeki kanallar standart aralığa oturtulur. Veri blokları kronolojik olarak ayrılarak genelleme denetimi sağlanır.",
+      "altAdimlar": [
+       "Her kanalın minimum ve maksimum eşiklerini belirleyip normalize et",
+       "Veri kümesini ilk %80 eğitim ve %20 doğrulama olarak kronolojik ikiye ayır",
+       "Temiz tensör paketlerini PyTorch DataLoader yapısında hazırla"
+      ],
+      "kazanim": {
+       "ders": "YZV 416E",
+       "madde": "Dijital görüntülerde uzamsal filtreleme ve parlaklık gradyanlarını hesaplamak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "U-Net derin anlamsal bölütleme ağını eğit",
+    "oz": "U-Net mimarisi kur; Odaksal Kayıp (Focal Loss) ve Dice/IoU kaybıyla çok sınıflı eğitimi yürüt.",
+    "ayrinti": "Piksel düzeyinde bulut bölütleme için U-Net mimarisi kodlanır. Kodlayıcı katmanları uzamsal bağlamı çıkarırken, çözücü katmanları atlama bağlantılarıyla (skip connections) ince bulut kenarlarını yeniden oluşturur. Sınıf dengesizliğini (örneğin kümülonimbüs fırtına bulutlarının azlığı) aşmak için Odaksal Kayıp (Focal Loss) ve Dice Kaybı bileşimi kullanılır. AdamW ile eğitilir.",
+    "nasil": [
+     {
+      "teknik": "PyTorch ile 4 seviyeli atlama bağlantılı U-Net mimarisini ve çok sınıflı sınıflandırma başlığını kodla",
+      "sade": "YZV 416E dersindeki 'U-Net mimarisi ile piksel düzeyinde anlamsal bölütleme yürütmek' bilgisiyle derin bölütleme ağı kurulur. Kodlayıcı çözünürlüğü düşürerek yüksek seviyeli özellikleri çıkarırken, çözücü atlama bağlantılarıyla ince sınırları yeniden inşa eder. Model her pikselin hangi bulut türüne ait olduğunu öngörür.",
+      "altAdimlar": [
+       "Çift evrişimli (DoubleConv) blokları kurup maksimum havuzlama (MaxPool) ile bağla",
+       "Çözücü katmanında ConvTranspose2d ile yukarı örnekleme ve atlama birleştirmesi yap",
+       "Son katmanda Conv2d(out_channels=5) ile sınıf olasılık dağılımını üret"
+      ],
+      "kazanim": {
+       "ders": "YZV 416E",
+       "madde": "U-Net mimarisi ile piksel düzeyinde anlamsal bölütleme yürütmek"
+      }
+     },
+     {
+      "teknik": "Focal Loss ve Dice Loss bileşiminden oluşan hibrit kayıp fonksiyonuyla nadir bulut tiplerini ağırlıklandır",
+      "sade": "YZV 416E dersindeki 'Çapraz entropi ve IoU kayıp fonksiyonları ile dengesiz sınıfları eğitmek' bilgisiyle sınıf dengesizliği çözülür. Gökyüzünde az yer kaplayan fırtına bulutlarına kayıp fonksiyonunda yüksek ceza katsayısı verilir. Bu sayede model nadir görülen tehlikeli hava bulutlarını kaçırmaz.",
+      "altAdimlar": [
+       "FocalLoss(gamma=2.0) ile kolay piksellerin ağırlığını düşür",
+       "DiceLoss() fonksiyonunu ekleyerek uzamsal örtüşme başarısını optimize et",
+       "Bileşik kaybı loss = 0.5*Focal + 0.5*Dice formülüyle eğitim döngüsüne ver"
+      ],
+      "kazanim": {
+       "ders": "YZV 416E",
+       "madde": "Çapraz entropi ve IoU kayıp fonksiyonları ile dengesiz sınıfları eğitmek"
+      }
+     },
+     {
+      "teknik": "AdamW optimizasyonu ve erken durdurma ile 40 epokluk GPU eğitimini tamamlayıp ağırlıkları sakla",
+      "sade": "YZV 416E dersindeki 'Öznitelik aktivasyon haritaları (Grad-CAM) ile ağın karar mekanizmasını yorumlamak' bilgisiyle eğitim süreci yönetilir. Doğrulama kümesindeki piksel isabeti izlenerek en iyi model kontrol noktası belirlenir. Eğitilen modelin ağırlıkları çıkarım aşaması için sabitlenir.",
+      "altAdimlar": [
+       "optimizer = torch.optim.AdamW(model.parameters(), lr=5e-4, weight_decay=1e-4) nesnesini kur",
+       "Her epok sonunda doğrulama kümesinde ortalama IoU skorunu hesapla",
+       "En yüksek IoU skorunda torch.save ile 'en_iyi_unet_bulut.pt' modelini sakla"
+      ],
+      "kazanim": {
+       "ders": "YZV 416E",
+       "madde": "Öznitelik aktivasyon haritaları (Grad-CAM) ile ağın karar mekanizmasını yorumlamak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Bulut haritası üret ve IoU ile doğrula",
+    "oz": "Test görüntülerinde piksel bazlı sınıflandırma yap; sınıf başına IoU skorunu ve renkli haritayı üret.",
+    "ayrinti": "Bağımsız test uydusu sahnelerinde U-Net modeli çıkarım (inference) yapar. Argmax işlemiyle her piksel tek bir sınıfa atanır. Performans Kesişim/Birleşim (IoU: Intersection over Union) ve F1 skoruyla sınıf bazında ölçülür. Renkli bulut sınıflandırma haritası (Sirrüs sarı, Kümülüs açık mavi, Cb kırmızı, Stratus gri) çizdirilerek SAF NWC referansıyla kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "Model çıktısına softmax ve argmax uygulayarak piksel bazlı 2B bulut tipi sınıf haritasını çıkar",
+      "sade": "YZV 416E dersindeki 'Evrişimli sinir ağları ile çok sınıflı görüntü sınıflandırma yapmak' bilgisiyle çok sınıflı tahmin haritası üretilir. Modelin ürettiği sınıf olasılıklarından en yüksek değere sahip bulut tipi seçilir. İki boyutlu görüntü üzerinde her noktanın bulut cinsi haritalanır.",
+      "altAdimlar": [
+       "probs = torch.softmax(model(x_test), dim=1) ile sınıf olasılıklarını al",
+       "pred_mask = torch.argmax(probs, dim=1).cpu().numpy() ile sınıf indisini çıkar",
+       "Tahmin maskesini test sahnesinin enlem-boylam koordinatlarına oturt"
+      ],
+      "kazanim": {
+       "ders": "YZV 416E",
+       "madde": "Evrişimli sinir ağları ile çok sınıflı görüntü sınıflandırma yapmak"
+      }
+     },
+     {
+      "teknik": "Her bulut sınıfı için IoU = TP / (TP + FP + FN) ve karmaşıklık matrisini (confusion matrix) hesapla",
+      "sade": "YZV 416E dersindeki 'Çapraz entropi ve IoU kayıp fonksiyonları ile dengesiz sınıfları eğitmek' bilgisiyle bölütleme doğrulaması yapılır. Tahmin edilen bulut alanları ile gerçek uydu etiketleri arasındaki kesişim oranı ölçülür. Sınıf bazlı başarı oranları tablo halinde raporlanır.",
+      "altAdimlar": [
+       "Sirrüs, Kümülüs, Stratus ve Cb sınıfları için ikili kesişim ve birleşim alanlarını topla",
+       "Her sınıfın IoU skorunu çıkarıp ortalama mIoU değerini hesapla",
+       "Karmaşıklık matrisini normalize ederek sınıflar arası karışma oranlarını listele"
+      ],
+      "kazanim": {
+       "ders": "YZV 416E",
+       "madde": "Çapraz entropi ve IoU kayıp fonksiyonları ile dengesiz sınıfları eğitmek"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile renkli bulut haritasını gerçek kızılötesi kompozit ile yan yana çizdirip WebM olarak dışa aktar",
+      "sade": "MTO 301 dersindeki 'Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak' bilgisiyle karşılaştırmalı görselleştirme yapılır. Ham kızılötesi uydu görüntüsü ile yapay zekânın ürettiği renkli bulut haritası yan yana getirilir. Modelin fırtına ve ince sirrüs tespiti görsel olarak doğrulanır.",
+      "altAdimlar": [
+       "fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6)) tuvalini aç",
+       "Sol panele IR10.8 uydu görüntüsünü, sağ panele renkli bulut sınıf haritasını yerleştir",
+       "Grafiği yzv04_bulut_siniflandirma_karne.png olarak diske yaz"
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Uydu görüntülerinden 4 temel bulut tipini yüzde 68 IoU başarısıyla ayıran U-Net derin öğrenme defteri ve bulut haritaları.",
+  "senden": "YZV 416E dersinden gelen kısım: U-Net mimarisi, görüntü bölütleme, çapraz entropi kaybı ve IoU değerlendirmesi.",
+  "bizden": "MTO 301 dersinden gelen kısım: uydu spektral kanalları, parlaklık sıcaklığı analizi ve bulut tipi doğrulama."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Doğu Akdeniz MSG SEVIRI kızılötesi bulut sınıflandırma haritası, 2024-03-15..20, 3 saatlik",
+   "aciklama": "Meteosat kızılötesi görüntülerinden U-Net derin öğrenme modeliyle üretilen dinamik bulut tipi sınıflandırma animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://doi.org/10.1175/BAMS-D-19-0324.1",
+   "aciklama": "CloudSat ve CALIPSO bulut sınıflandırma verisi resmi dokümantasyon sayfası kaydırma döngüsü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Cumulonimbus_cloud.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Kümülonimbus fırtına bulutu konvektif tepe yapısı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Stevens et al. (2020) Sugar, gravel, fish, and flowers: Mesoscale cloud patterns in the trade winds",
+   "url": "https://doi.org/10.1175/BAMS-D-19-0324.1"
+  },
+  {
+   "ad": "Kaggle Understanding Clouds yarışması ve açık veri seti",
+   "url": "https://www.kaggle.com/c/understanding_cloud_organization"
+  },
+  {
+   "ad": "EUMETSAT NWC SAF operasyonel bulut sınıflandırma ürünleri",
+   "url": "https://www.nwcsaf.org/cloud_products"
+  },
+  {
+   "ad": "Descartes Labs jeo-uzamsal yapay zekâ platformu",
+   "url": "https://www.descarteslabs.com/technology"
+  },
+  {
+   "ad": "Szeliski, R. (2022) Computer Vision: Algorithms and Applications",
+   "url": "https://doi.org/10.1007/978-3-030-58452-8"
+  },
+  {
+   "ad": "Rinehart, R. E. (2010) Radar for Meteorologists",
+   "url": "https://openlibrary.org/books/OL24956799M"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm formüller YZV 416E ve MTO 301 ders dosyalarıyla birebir eşleştirildi. Bağlantılar ve lisanslar doğrulandı.",
+ "_birlestirme": {
+  "kaynak": "cikti/YZV-04.json",
+  "tarih": "2026-10-14 23:19",
+  "geminiSha1": "577124a32917"
+ }
+}

@@ -61,9 +61,9 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '28';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '29';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -697,7 +697,8 @@ function bolumler() {
   const biz = B.filter(x => x.k === 'MTO'), oteki = B.filter(x => x.k !== 'MTO'); B = durum.kitle === 'mto' ? [...biz, ...oteki] : [...oteki, ...biz];   /* meteorolojiden gelen önce kendi kartını görür */
   /* v2 (Akın 5 Eki): kart yüzünde paragraf yok — bölüm adı + büyük yazıyla tek, pratik örnek; dersler ve fikirler ayrıntıda */
   $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum), el('p', { class: 'bk-yuz' }, b.yuz || b.ortakIs || ''));
-    etkilesim(k, () => ({ p3: { tur: 'bolum', k: b.k }, ozet: { satirlar: p3Ozet({ tur: 'bolum', k: b.k }) }, ust: 'başka bölümdensen · ' + b.bolum.replace(/\s*\(.*?\)\s*/g, ' ').replace(/ (Mühendisliği|Programı)$/, '').trim().toLowerCase(), baslik: b.bolum, kisa: b.yuz || b.ortakIs || '',
+    const f = b.k === 'MTO' ? { tur: 'plan', k: 'MTO' } : { tur: 'bolum', k: b.k };   /* 15 Eki (tur9 §F): Meteoroloji kartı → E0 ders planı (yarıyıl › ders › projeler) */
+    etkilesim(k, () => ({ p3: f, ozet: { satirlar: p3Ozet(f) }, ust: 'başka bölümdensen · ' + b.bolum.replace(/\s*\(.*?\)\s*/g, ' ').replace(/ (Mühendisliği|Programı)$/, '').trim().toLowerCase(), baslik: b.bolum, kisa: b.yuz || b.ortakIs || '',
       uzun: [b.detay, b.senin ? `Senin dersin: ${b.senin}.` : '', b.bizim ? `Bizdeki karşılığı: ${b.bizim}.` : '', b.ortakIs ? `Birlikte yapılabilecek: ${b.ortakIs}.` : '', (b.projeler || []).length ? 'Fikirler: ' + b.projeler.join(' · ') + '.' : ''].filter(Boolean).join('\n'),
       kaynaklar: [...(b.kaynak ? [{ ad: 'İTÜ ders planı', url: b.kaynak }] : []), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] })); return k; }));
   $('#bolum-not').textContent = 'Kaynak: İTÜ ders planları ve bölüm siteleri. Tam tablo "Meraklısına" bölümünde.';
@@ -820,7 +821,7 @@ function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = u
   { const o = h.previousElementSibling; if (o && o.classList.contains('asama-baslik') && o.getClientRects().length) h = o; }   /* aşamanın başlığı görünsün */
   if (Math.abs(h.getBoundingClientRect().top - pay) > innerHeight) donusGoster(scrollY);
   if (IC) { GOVDE.classList.add('hepsi-acik'); clearTimeout(GOVDE._hz); }   /* sınıf kalır: kaldırılınca bölümler yer tutucu boyuna döner, sayfa zıplıyordu */   /* content-visibility: üstteki bölümler gerçek boyuna açılsın, hedef kaçmasın */
-  const y = h.getBoundingClientRect().top + scrollY - pay; if (IC) { icGit(h, y, 0, performance.now()); return; } kaydirHedef(y); }
+  const y = h.getBoundingClientRect().top + scrollY - pay; if (IC || window.__lenis) { icGit(h, y, 0, performance.now()); return; } kaydirHedef(y); }   /* 15 Eki: bağımsız sayfada da Lenis var; iniş sırasında üstteki içerik boy değiştirirse (geçiş şeritleri, geç gelen görseller) bitince yeniden ölçüp düzeltir (qa20: aşama 1 payı −55 → +) */
 /* içkin uzun atlama: Lenis kaydırması yarıda kesilebiliyor (content-visibility açılınca hedef kayar) → bitince yeniden ölç, hedefe 4 px yaklaşana kadar en çok 5 tur */
 function icGit(h, y, tur = 0, t0 = performance.now()) { const L = window.__lenis; let bitti = false; const sonra = () => { if (bitti) return; bitti = true; if (window.__girdi > t0) return; const d = h.getBoundingClientRect().top - ustPay(); if (Math.abs(d) > 4) { if (tur < 2) icGit(h, scrollY + d, tur + 1, t0); else if (window.__lenis) window.__lenis.scrollTo(scrollY + d, { immediate: true, force: true }); else scrollTo(0, scrollY + d); } };
   if (L && !azalt) { const uzak = Math.abs(y - scrollY); L.scrollTo(y, { force: true, duration: tur ? .35 : Math.min(1.1, .45 + uzak / 9000), onComplete: () => setTimeout(sonra, 60) }); setTimeout(sonra, 2600); }
@@ -876,14 +877,39 @@ function gorunme() {
   if (azalt || !('IntersectionObserver' in window)) { hedefler.forEach(h => h.classList.add('goster')); return; }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('goster'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' }); hedefler.forEach(h => io.observe(h));
 }
+const IMLEC_ACIK = false;   /* 15 Eki (tur 10, Akın): balon imleci yok — imleç tarayıcının varsayılanı, pointermove/rAF yükü sıfır; kod geri dönüş için duruyor */
 function imlec() {
-  if (dokunmatik || azalt) return; const I = $('#imlec'); GOVDE.classList.add('imlec-aktif'); I.style.display = 'block';   /* 14 Eki parite: gömülüde de */
+  if (!IMLEC_ACIK || dokunmatik || azalt) return; const I = $('#imlec'); GOVDE.classList.add('imlec-aktif'); I.style.display = 'block';   /* 14 Eki parite: gömülüde de */
   let x = 0, y = 0, tx = 0, ty = 0, raf = 0;
   const ciz = () => { if (I.classList.contains('donus')) { raf = 0; return; } x += (tx - x) * .35; y += (ty - y) * .35; const g = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 }; I.style.transform = `translate(${x - 14 - g.left}px,${y - 14 - g.top}px)`; if (Math.abs(tx - x) + Math.abs(ty - y) > .3) raf = requestAnimationFrame(ciz); else raf = 0; };
   addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; if (I.classList.contains('donus')) return; if (IC) { const r = GOVDE.getBoundingClientRect(); if (e.clientY < r.top || e.clientY > r.bottom) { I.classList.add('gizli'); return; } } I.classList.remove('gizli'); const h = e.target.closest('a,button,[role=button],summary,input,textarea,select,label,.kartd,.oy,.cip,.bk,.md-basamak,.etk,.terim,.tik,.hpa'); I.classList.toggle('kod', !!h); if (!raf) raf = requestAnimationFrame(ciz); }, { passive: true });
   addEventListener('pointerdown', e => { const g = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 }; for (let i = 0; i < 3; i++) { const d = el('span', { class: 'damla', style: `left:${e.clientX - 6 + i * 6 - g.left}px;top:${e.clientY + 6 - g.top}px;animation-delay:${i * 60}ms` }); GOVDE.append(d); setTimeout(() => d.remove(), 800); } });
   document.addEventListener('pointerleave', () => I.classList.add('gizli')); document.addEventListener('pointerenter', () => I.classList.remove('gizli'));
   if (IC) addEventListener('scroll', () => { if (!raf && !I.classList.contains('donus') && !I.classList.contains('gizli')) raf = requestAnimationFrame(ciz); }, { passive: true });   /* host kayınca balon yerinde kalsın */
+}
+/* 15 Eki (tur 10 §G-7): aşama/bölüm başlıkları görünür alana girince AURA kalıbıyla harf harf belirir (--i gecikme, yalnız opacity/transform, tek seferlik).
+   Metin bütün kalır: başlığa aria-label, harf/kelime span'ları aria-hidden. Hareket azaltmada süre kısalır, KAPANMAZ (CSS'teki genel animation:none ezilir). */
+function baslikCanlandir() {
+  const H = $$('.asama-baslik b, section.blok h2').filter(h => !h.dataset.bh && h.textContent.trim() && !h.children.length);
+  const MAX = 48;
+  H.forEach(h => {
+    const t = h.textContent; h.dataset.bh = '1'; h.setAttribute('aria-label', t); let i = 0; const f = document.createDocumentFragment();
+    t.split(/(\s+)/).forEach(k => { if (!k) return; if (/^\s+$/.test(k)) { f.append(k); return; } const w = el('span', { class: 'bh-k', 'aria-hidden': 'true' }); for (const ch of k) w.append(el('span', { class: 'bh-h', style: `--i:${Math.min(i++, MAX)}` }, ch)); f.append(w); });
+    h.replaceChildren(f); h.classList.add('bh');
+  });
+  const goster = h => h.classList.add('bh-oyna');
+  if (!('IntersectionObserver' in window)) { H.forEach(goster); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { goster(e.target); io.unobserve(e.target); } }), { threshold: .2 });
+  H.forEach(h => io.observe(h));
+}
+/* 15 Eki (tur 10 §G-6): bölüm görselleri/klipler görünür alana girerken yumuşak belirme + hafif ölçek (IO; transform/opacity). Reduce'da süre kısa, kapanmaz. */
+function gorselBelir() {
+  const L = $$('.kart .medya, .dny-medya, .dny-kmedya, .cerceve > img, .cerceve > video, .kayan, .gridfig .kutu').filter(x => !x.classList.contains('gb'));
+  L.forEach(x => x.classList.add('gb'));
+  const ac = x => x.classList.add('gb-on');
+  if (!('IntersectionObserver' in window)) { L.forEach(ac); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { ac(e.target); io.unobserve(e.target); } }), { threshold: .15, rootMargin: '0px 0px -4% 0px' });
+  L.forEach(x => io.observe(x));
 }
 /* koç işareti: ilk ziyarette ilk karta 'buna dokun' eli */
 function kocKapat() { const k = $('#koc'); if (k) { k.remove(); ls('takim-koc', '1'); } }
@@ -1003,7 +1029,7 @@ function detayKur() { const D = $('#detay'); if (!D) return; $('#detay-kapat').a
 /* iniş: fırlatma noktası ekrana girince imleç balonu oraya uçar, "bize katıl" yazar; tıklanır. Nokta ekrandan çıkınca imleç geri gelir. */
 let inisDurum = false;
 function inisKontrol() {
-  const pad = $('#firlatma'), I = $('#imlec'); if (!pad || !I || dokunmatik || azalt) return;
+  const pad = $('#firlatma'), I = $('#imlec'); if (!IMLEC_ACIK || !pad || !I || dokunmatik || azalt) return;   /* imleç kapalı: "bize katıl" sabit .katil düğmesi (zemin üstünde) her zaman görünür, body.inis sınıfı hiç gelmez */
   const r = pad.getBoundingClientRect(); const gorunur = r.top > 60 && r.bottom < innerHeight - 10;
   if (gorunur && !inisDurum) { inisDurum = true; I.classList.add('donus'); I.classList.remove('gizli', 'kod'); GOVDE.classList.remove('imlec-aktif'); GOVDE.classList.add('inis'); $('#im-okuma').textContent = 'bize katıl →'; }
   if (inisDurum) { const r2 = pad.getBoundingClientRect(); const g2 = IC ? GOVDE.getBoundingClientRect() : { left: 0, top: 0 }; I.style.transform = `translate(${r2.left + r2.width / 2 - 14 - g2.left}px,${r2.top - 34 - g2.top}px)`; }
@@ -1078,7 +1104,7 @@ async function kunye() {
   await arkaKur();
   asamaYukle();
   acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); merak(); sonKart(); panelSen();
-  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur(); gecisler();
+  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); ray(); gorunme(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
 
@@ -1196,7 +1222,14 @@ function derslerin() {
     maddele(KK);
   };
   ciz();
+  /* 15 Eki (tur9 §F): ders kartlarının üstünde ders planı girişi — yarıyıl yarıyıl bölüm dersleri, derse basınca o dersin projeleri (E0 → E1 → mevcut akış) */
+  if (p3Plan().length && !$('#plan-giris')) {
+    const b = el('button', { class: 'plan-giris', id: 'plan-giris', type: 'button' }, el('span', { class: 'plan-giris-ic' }, el('b', {}, M.planBaslik || 'Ders planı · yarıyıl yarıyıl'), el('span', {}, M.planAlt || 'Bölüm derslerinin tamamı; derse basınca o dersin proje önerileri.')), el('span', { class: 'p3-ok', 'aria-hidden': 'true' }));
+    b.addEventListener('click', () => { ACAN = b; durum.etkilesim++; detayAc(p3PlanDetay()); });
+    YS.after(b);
+  }
 }
+function p3PlanDetay() { const P = veri['mto-plan'] || {}; return { ust: 'derslerine göre · ders planı' + (P.plan ? ' ' + P.plan : ''), baslik: 'Meteoroloji', kisa: 'Yarıyıl yarıyıl bölüm dersleri; derse basınca o dersin proje önerileri.', p3: { tur: 'plan', k: 'MTO' } }; }
 
 /* ======== 8 Eki (Akın): takımın ana sorusu — mezun olunca yapay zekâyla ne değişecek, nasıl hazırlanırız. Kartlar (numaralı) + "Nasıl hazırlanıyoruz" adımları ======== */
 function mezun() {
@@ -1269,6 +1302,11 @@ function p3PanelGorselleri(f) {
 }
 /* panel özeti (2-4 kısa satır): bölüm filtresi → proje sayısı · ortak dersler · örnekler */
 function p3Ozet(f, L) {
+  if (f && f.tur === 'plan') {   /* 15 Eki (tur9 §F): ders planı özeti — ders · yarıyıl · proje sayısı */
+    const Y = p3Plan(); if (!Y.length) return []; const ids = new Set(); let n = 0;
+    Y.forEach(y => (y.dersler || []).forEach(d => { n++; p3PlanDersProjeler(d).forEach(p => ids.add(p.id)); }));
+    return [n + ' bölüm dersi · ' + Y.length + ' yarıyıl', ids.size ? ids.size + ' proje önerisi' : '', 'Yarıyıl › ders › projeler'].filter(Boolean);
+  }
   L = L || p3Filtre(f); if (!L.length) return [];
   const tekil = A => Array.from(new Set(A.filter(Boolean))); const kod = (p, yan) => ((p.dersler || {})[yan] || []).map(x => x && x.kod);
   const biz = tekil(L.flatMap(p => kod(p, 'bizim'))), sen = tekil(L.flatMap(p => kod(p, 'senin'))), orn = tekil(L.flatMap(p => (p.ornekler || []).map(o => o && o.ad)));
@@ -1284,8 +1322,13 @@ function p3PanelGuncelle() {
 function p3Kazanimlar(a) { const g = new Set(), L = []; [...(a.kazanimlar || []), ...((a.nasil || []).map(x => x && typeof x === 'object' ? x.kazanim : null))].forEach(k => { if (!k || !k.ders) return; const id = k.ders + '|' + (k.madde || ''); if (!g.has(id)) { g.add(id); L.push(k); } }); return L; }
 /* satırın sağına küçük görsel (yüklenemezse kaldırılır) */
 function p3SatGorsel(sat, g) { if (!sat || !g || !g.src || sat.querySelector('.p3-sat-g')) return; const sp = el('span', { class: 'p3-sat-g' }, el('img', { src: yol(g.src), alt: g.ad || g.alt || '', loading: 'lazy', decoding: 'async', onerror: () => { sp.remove(); sat.classList.remove('gorselli'); } })); const ok = sat.querySelector('.p3-ok'); sat.classList.add('gorselli'); if (ok) sat.insertBefore(sp, ok); else sat.append(sp); }
+/* 15 Eki (tur9 §F): İTÜ ders planı (veri/mto-plan.json → yariyillar[].dersler[]; projeKod = index'teki sahip.dersKod, TR/EN çifti aynı koda gider) */
+function p3Plan() { const P = veri['mto-plan']; return (P && Array.isArray(P.yariyillar)) ? P.yariyillar : []; }
+function p3PlanDersProjeler(d) { return p3Filtre({ tur: 'ders', dersKod: d.projeKod || d.kod }); }
+const p3PlanMi = f => !!f && (f.tur === 'plan' || (f.k === 'MTO' && (f.tur === 'bolum' || f.tur === 'fakulte')) );   /* Meteoroloji'ye her giriş (bölüm kartı, fakülte→bölüm) ders planından başlar */
 function p3Filtre(f) {
   const L = p3Index(); if (!f) return [];
+  if (f.tur === 'plan') return [];
   if (f.tur === 'ders') { const n = kodNorm(f.dersKod), n3 = n.replace(/^([A-Z]+)(\d{3})\d$/, '$1$2'); let R = L.filter(p => p.kaynakTur === 'ders' && kodNorm(p.sahip.dersKod) === n); if (!R.length && n3 !== n) R = L.filter(p => p.kaynakTur === 'ders' && kodNorm(p.sahip.dersKod) === n3); return R; }   /* MTO 4901 → MTO 490 */
   if (f.tur === 'fakulte' && f.k !== 'MTO') return L.filter(p => p.kaynakTur === 'fakulte' && p.sahip.k === f.k);
   return L.filter(p => p.kaynakTur === 'bolum' && p.sahip.k === f.k);   /* fakülte→MTO kartı (F-UUBF-MTO-*) bölüm projelerinin kısa kopyası → bölüm projeleri gösterilir */
@@ -1314,6 +1357,7 @@ function p3Kur(d, D) {
   const kok = el('div', { class: 'p3' }, el('div', { class: 'p3-yol' }, geri, kirinti), yigin);
   P3 = { D, kok, kirinti, yigin, ekranlar: [], basamak: 0, buyuk: null, io: null };
   p3Jestler(yigin, D);
+  if (p3PlanMi(f) && p3Plan().length) { const pf = { tur: 'plan', k: 'MTO' }; p3EkranAc({ ad: 'Meteoroloji', ozet: { baslik: 'Meteoroloji', kisa: kisalt(d.kisa || '', 120), satirlar: p3Ozet(pf) }, kur: sec => p3E0(sec, d) }, true); return kok; }
   p3EkranAc({ ad: kisaAd, ozet: { baslik: kisaAd, kisa: kisalt(d.kisa || (liste.length ? liste.length + ' proje' : ''), 120), satirlar: p3Ozet(f, liste), gorselSoz: p3PanelGorselleri(f) }, kur: sec => p3E1(sec, d, liste) }, true);
   return kok;
 }
@@ -1329,7 +1373,7 @@ function p3EkranAc(t, ilk) {
   const onceki = S.ekranlar[S.ekranlar.length - 1];
   if (onceki) onceki.scroll = S.D.scrollTop;   /* geri dönünce önceki ekranın kaydırma konumu geri gelir */
   const sec = el('section', { class: 'p3-ekr' + (ilk ? ' aktif' : ' giris'), 'data-ad': t.ad });
-  const e = { ad: t.ad, el: sec, scroll: 0, veri: t.veri || null, ozet: t.ozet || null };
+  const e = { ad: t.ad, el: sec, scroll: 0, veri: t.veri || null, ozet: t.ozet || null, onEk: t.onEk || '', onEkNo: t.onEkNo || '' };   /* onEk: kırıntıda bu ekranın önüne gelen ara parça (ör. "3. yarıyıl"; ayrı ekran değil) */
   const ic = t.kur(sec, e); if (Array.isArray(ic)) sec.append(...ic.filter(Boolean)); else if (ic) sec.append(ic);
   S.ekranlar.push(e); S.yigin.append(sec); p3PanelGuncelle();
   if (!ilk) { try { history.pushState({ tkDetay: 1, p3: S.ekranlar.length, id: (e.veri && e.veri.id) || '' }, ''); S.basamak++; } catch (err) { } }
@@ -1364,7 +1408,10 @@ function p3KirintiCiz() {
     const k = n - 1 - i;
     const p = k === 0 ? el('span', { class: 'p3-kr p3-kr-son', 'aria-current': 'page' }, e.ad)
       : el('button', { class: 'p3-kr', type: 'button', onclick: () => { if (S.basamak >= k) { try { history.go(-k); return; } catch (err) { } } p3Geriye(i + 1); } }, e.ad);
-    return i ? [el('span', { class: 'p3-kr-ayrac', 'aria-hidden': 'true' }, '›'), p] : [p]; }));
+    const ayrac = () => el('span', { class: 'p3-kr-ayrac', 'aria-hidden': 'true' }, '›');
+    /* ara parça (ör. "3. yarıyıl"): bir önceki ekrana döner, orada o yarıyılın katını açık bırakır */
+    const ek = (e.onEk && i) ? el('button', { class: 'p3-kr-ek', type: 'button', onclick: () => { const h = S.ekranlar[i - 1]; const dt = h && e.onEkNo ? h.el.querySelector(`.p3-yy[data-no="${e.onEkNo}"]`) : null; if (dt) { dt.open = true; h.scroll = Math.max(0, dt.offsetTop - 60); } if (S.basamak >= k + 1) { try { history.go(-(k + 1)); return; } catch (err) { } } p3Geriye(i); } }, e.onEk) : null;
+    return i ? [ayrac(), ek, ek ? ayrac() : null, p] : [p]; }));
   S.kok.querySelector('.p3-geri').classList.toggle('p3-geri-ilk', n === 1);
   requestAnimationFrame(() => { S.kirinti.scrollLeft = S.kirinti.scrollWidth; });   /* darda son parça görünür */
 }
@@ -1413,8 +1460,37 @@ function katexYukle() {
 }
 function p3TexCiz(e, K) { const tex = e.dataset.tex || ''; if (!K) return; try { K.render(tex, e, { throwOnError: false, displayMode: e.dataset.display === '1' }); } catch (err) { e.replaceChildren(el('code', {}, tex)); } }   /* yüklenemezse <code> yedeği zaten yerinde */
 /* ---- E1 · liste (Faz 1) ---- */
-function p3E1(sec, d, liste) {
+/* ---- E0 · plan (15 Eki, tur9 §F): yarıyıl başlıkları (1-8) altında bölüm dersleri — kod ↗ OBS · ad · kredi · zorunlu/seçmeli · proje sayısı · › ; projesi olmayan ders listede ama soluk, tıklanmaz ---- */
+function p3E0(sec, d) {
+  const Y = p3Plan(), P = veri['mto-plan'] || {}, K = P.kaynak || {};
   const out = [el('p', { class: 'dm-ust' }, d.ust || ''), el('h3', { id: 'detay-baslik', class: 'dm-baslik p3-baslik', tabindex: -1 }, d.baslik || ''), d.kisa ? el('p', { class: 'dm-kisa p3-yuz' }, d.kisa) : null];
+  if (!Y.length) { out.push(el('p', { class: 'p3-not' }, 'Ders planı derleniyor.')); return out; }
+  const dar = innerWidth < 860;
+  out.push(el('p', { class: 'p3-plan-ust' }, 'İTÜ ders planı' + (P.plan ? ' ' + P.plan : '') + ' · yalnız bölüm dersleri', K.url ? [' · ', el('a', { href: K.url, target: '_blank', rel: 'noopener' }, 'OBS ↗')] : null));
+  out.push(el('div', { class: 'p3-plan' }, ...Y.map((y, i) => {
+    const D = y.dersler || []; const nP = D.reduce((a, x) => a + p3PlanDersProjeler(x).length, 0);
+    return el('details', { class: 'p3-yy', open: (!dar || i === 0) ? true : null, 'data-no': y.no },
+      el('summary', { class: 'p3-yy-b' }, el('b', {}, y.no + '. yarıyıl'), el('span', { class: 'p3-yy-m' }, D.length + ' ders' + (nP ? ' · ' + nP + ' proje' : '')), el('span', { class: 'p3-ok p3-ok-k p3-yy-ok', 'aria-hidden': 'true' })),
+      el('ol', { class: 'p3-liste p3-plan-liste' }, ...D.map(x => p3PlanSatir(x, y))));
+  })));
+  return out;
+}
+function p3PlanSatir(dr, y) {
+  const L = p3PlanDersProjeler(dr), n = L.length, sec = dr.tur === 'secmeli';
+  const ic = el('span', { class: 'p3-sat-ic' },
+    el('span', { class: 'p3-kod-satir' }, p3KodLink(dr.kod, dr.obsNo), el('i', { class: 'p3-tur' + (sec ? ' p3-tur-sec' : '') }, sec ? 'seçmeli' : 'zorunlu'), dr.havuz ? el('i', { class: 'p3-tur p3-tur-havuz' }, String(dr.havuz)) : null),
+    el('b', { class: 'p3-ad' }, dr.adTr || dr.ad || dr.kod),
+    el('span', { class: 'p3-ders' }, [dr.kredi != null ? dr.kredi + ' kredi' : '', dr.akts != null ? dr.akts + ' AKTS' : '', n ? n + ' proje' : 'proje önerisi derleniyor'].filter(Boolean).join(' · ')));
+  if (!n) return el('li', { class: 'p3-sat p3-sat-2 p3-sat-duz p3-plan-sat', 'data-kod': dr.kod }, ic, el('span', { class: 'p3-ok p3-ok-soluk', 'aria-hidden': 'true' }));
+  return el('li', {}, el('button', { class: 'p3-sat p3-sat-2 p3-plan-sat', type: 'button', 'data-kod': dr.kod, onclick: () => p3PlanDersAc(dr, y, L) }, ic, p3Ok()));
+}
+function p3PlanDersAc(dr, y, L) {
+  const ad = dr.adTr || dr.ad || dr.kod, sec = dr.tur === 'secmeli';
+  const d = { ust: `${y.no}. yarıyıl · ${dr.kod} · ${sec ? 'seçmeli' : 'zorunlu'}`, ustEl: [y.no + '. yarıyıl · ', p3KodLink(dr.kod, dr.obsNo), ' · ' + (sec ? 'seçmeli' : 'zorunlu')], baslik: ad, kisa: (dr.adEn && dr.adEn !== ad) ? dr.adEn : '' };
+  p3EkranAc({ ad: dr.kod, onEk: y.no + '. yarıyıl', onEkNo: String(y.no), ozet: { baslik: dr.kod, kisa: kisalt(ad, 120), satirlar: p3Ozet({ tur: 'ders', dersKod: dr.projeKod || dr.kod }, L) }, kur: s => p3E1(s, d, L) });
+}
+function p3E1(sec, d, liste) {
+  const out = [el('p', { class: 'dm-ust' }, d.ustEl || d.ust || ''), el('h3', { id: 'detay-baslik', class: 'dm-baslik p3-baslik', tabindex: -1 }, d.baslik || ''), d.kisa ? el('p', { class: 'dm-kisa p3-yuz' }, d.kisa) : null];
   if (!liste.length) { out.push(el('p', { class: 'p3-not' }, 'Projeler derleniyor.')); return out; }
   out.push(el('ol', { class: 'p3-liste' }, ...liste.map((p, i) => {
     const ds = p.dersler || {}; const biz = (ds.bizim || []).map(x => x && x.kod).filter(Boolean), sen = (ds.senin || []).map(x => x && x.kod).filter(Boolean);

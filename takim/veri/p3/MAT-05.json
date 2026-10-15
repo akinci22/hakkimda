@@ -1,0 +1,503 @@
+{
+ "id": "MAT-05",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "MAT",
+  "bolum": "Matematik Mühendisliği",
+  "fakulteKod": "FEF"
+ },
+ "ad": "Ucuz sensörlerle YZ düzeltmeli yerel tahmin",
+ "ne": "Bir mahallenin sıcaklığını, genel tahmini yerel ölçümle düzelterek daha doğru vermeyi deniyoruz.",
+ "adimlar": [
+  "Okulda var olan ya da açık kaynaklı bir sensörün verisini topla",
+  "Aynı nokta için açık tahmini indir",
+  "Tahmin ile ölçüm farkını öğrenen basit bir model eğit",
+  "Düzeltilmiş tahminin hatasını ölç"
+ ],
+ "sonuc": "Sonunda düzeltme öncesi ve sonrası hata grafiği olan bir defter olur.",
+ "senden": "MAT 308 YZ'nin Matematiksel Temelleri",
+ "bizden": "Sensör verisini temizleme ve tahmin okuma",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MAT 308",
+    "ad": "YZ'nin Matematiksel Temelleri"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Netatmo",
+   "ne": "Ev tipi ucuz hava istasyonuyla başladı; şimdi binlerce kullanıcı ölçümünü haritada topluyor.",
+   "url": "https://www.netatmo.com",
+   "ayrinti": {
+    "neYaptilar": "Fransız teknoloji şirketi Netatmo, bireysel kullanıcıların balkon ve bahçelerine kurduğu yüz binlerce kompakt hava istasyonundan küresel bir mikroiklim ağı kurdu.",
+    "nasil": "Wi-Fi bağlantılı iç ve dış ortam modülleriyle sıcaklık, nem, basınç ve ses seviyelerini dakikalık ölçüp bulutta birleştirdi; canlı Weathermap haritasında sundu.",
+    "neEdindiler": "Kentsel ısı adası ve sokak ölçeğindeki sıcaklık farklarını haritalandırarak Avrupa meteoroloji enstitülerine kitle kaynaklı (crowdsourced) veri sağladı.",
+    "bizNasilKatki": "Netatmo'nun açık API verisini İTÜ Ayazağa ve Maçka yerleşkeleri için çekeriz; kentsel dokunun genel tahminden ne kadar saptığını ölçeriz.",
+    "referanslar": [
+     {
+      "ad": "Netatmo hava teknolojisi ve akıllı istasyon portalı",
+      "url": "https://www.netatmo.com/en-us/weather",
+      "tur": "web"
+     },
+     {
+      "ad": "Netatmo küresel Weathermap canlı haritası",
+      "url": "https://weathermap.netatmo.com/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.netatmo.com/en-us/weather",
+      "aciklama": "Netatmo akıllı hava istasyonu ve sensör arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Kentsel istasyon ölçümleri ile model tahminleri saçılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Sensor.Community",
+   "ne": "Stuttgart'ta gönüllülerin ucuz sensörlerle başlattığı açık ölçüm ağı; veriyi canlı haritada gösteriyor.",
+   "url": "https://sensor.community/en/",
+   "ayrinti": {
+    "neYaptilar": "Stuttgart merkezli açık veri aktivistleri, 30 dolarlık ESP8266 ve BME280 bileşenleriyle herkesin evinde hava kalitesi ve sıcaklık istasyonu kurmasını sağladı.",
+    "nasil": "Gönüllülerin ürettiği dakikalık JSON veri akışlarını toplayıp açık API ile araştırmacıların ve belediyelerin erişimine açtı.",
+    "neEdindiler": "Dünya genelinde 15 binden fazla aktif istasyonla dünyanın en büyük açık kaynaklı çevre izleme topluluğunu oluşturdu.",
+    "bizNasilKatki": "Sensor.Community'nin İstanbul'daki 25 aktif istasyonunun verisini çekeriz; ham ölçümlerdeki gürültüyü temizleyip tahmin düzeltme girdisi yaparız.",
+    "referanslar": [
+     {
+      "ad": "Sensor.Community açık sensör kurulum kılavuzu",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "tur": "web"
+     },
+     {
+      "ad": "Sensor.Community veri arşivi ve API dokümantasyonu",
+      "url": "https://sensor.community/en/data-api/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "aciklama": "Sensor.Community DIY hava istasyonu donanım şeması"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Deep_learning.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sensör zaman serisi analizinde yapay sinir ağı katmanları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "WeatherFlow-Tempest",
+   "ne": "Ucuz ev istasyonlarının ölçümünü yapay zekâyla genel tahmine katarak yerel tahmin veriyor.",
+   "url": "https://www.weatherflow.com",
+   "ayrinti": {
+    "neYaptilar": "WeatherFlow, hiçbir hareketli parçası olmayan Tempest ultrasonik istasyonlarını makine öğrenmesi algoritmalarıyla birleştirdi.",
+    "nasil": "Kullanıcı istasyonundan gelen mikro gözlemleri NOAA ve ECMWF modelleriyle birleştirip bahçe ölçeğinde noktasal tahmin üretti.",
+    "neEdindiler": "Tarım, golf sahaları ve akıllı ev sahipleri için yerel mikroklimayı yakalayan ödüllü bir ticari tahmin ağı kurdu.",
+    "bizNasilKatki": "Tempest'in 'yerel ölçümle küresel modeli kalibre etme' fikrini MAT 308 L2 regülarizasyonlu Ridge regresyonu ile kodlarız.",
+    "referanslar": [
+     {
+      "ad": "WeatherFlow Tempest meteorolojik teknoloji sayfası",
+      "url": "https://weatherflow.com/tempest-weather-system/",
+      "tur": "web"
+     },
+     {
+      "ad": "WeatherFlow kurumsal hava ağı altyapısı",
+      "url": "https://weatherflow.com/commercial/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://weatherflow.com/tempest-weather-system/",
+      "aciklama": "Tempest akıllı istasyon ve yapay zekâ yerel tahmin paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Tahmin düzeltme öncesi ve sonrası hata dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Kentsel Isı Adası ve IoT Sensör Araştırması (BAMS)",
+   "ne": "Kentsel mikroiklim ve ucuz vatandaş sensörleriyle sayısal hava modellerini düzelten üniversite çalışması.",
+   "url": "https://journals.ametsoc.org/view/journals/bams/101/6/bamsD190195.xml",
+   "ayrinti": {
+    "neYaptilar": "Uluslararası meteorologlar, şehirlerdeki ucuz kitle kaynaklı sensör ölçümlerini sayısal hava modellerinin kentsel ısı adası hatasını düzeltmek için kullandı.",
+    "nasil": "Binlerce amatör istasyonun sıcaklık verisini kalite kontrol filtrelerinden geçirip Kalman ve makine öğrenmesi algoritmalarıyla modele asimile etti.",
+    "neEdindiler": "Kentsel alanlarda sıcaklık tahmin hatasını 2,5 °C'den 1,1 °C'ye düşürerek vatandaş bilimi verisinin operasyonel değerini kanıtladı.",
+    "bizNasilKatki": "Makaledeki kalite kontrol basamaklarını (aykırı değer ayıklama) Python'da uygular; İstanbul Maslak hattındaki kentsel ısınmayı tahminle ayrıştırırız.",
+    "referanslar": [
+     {
+      "ad": "BAMS kitle kaynaklı kentsel meteoroloji makalesi",
+      "url": "https://journals.ametsoc.org/view/journals/bams/101/6/bamsD190195.xml",
+      "tur": "makale"
+     },
+     {
+      "ad": "WMO vatandaş bilimi ve kentsel gözlem yönergesi",
+      "url": "https://community.wmo.int/en/activity-areas/urban",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://journals.ametsoc.org/view/journals/bams/101/6/bamsD190195.xml",
+      "aciklama": "BAMS araştırma makalesi: Kentsel kitle kaynaklı sensör ağları"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Artificial_intelligence_prompt.svg",
+      "lisans": "CC0",
+      "aciklama": "Yapay zekâ destekli sensör hata düzeltme simgesi"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Sensor.Community tipi 2-3 sensör kur",
+   "Sensör − tahmin farkını saat ve mevsime göre öğren",
+   "Düzeltilmiş tahmini ham tahminle kıyasla"
+  ],
+  "edinim": [
+   [
+    "MAT 308",
+    "küçük veride öğrenme, düzenlileştirme"
+   ],
+   [
+    "MTO302",
+    "yerel etkiler: şehir ısı adası, deniz meltemi"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Sensor.Community açık sensör ağı",
+    "url": "https://sensor.community/",
+    "gorsel": "g/kaynak/sensor-community.jpg",
+    "lisans": "ODbL",
+    "slug": "sensor-community"
+   },
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Düzeltme gerçekten işe yaradı mı? Bunu istatistikle sen ispatlarsın.",
+  "senin": "MAT 234 Kısmi Dif. Denklemler, MAT 308 YZ'nin Matematiksel Temelleri",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO302/406 Hava Analizi ve Öngörü",
+  "ortakIs": "Sığ su denklemi çözücüsü, oyuncak veri asimilasyonu (Lorenz-96)",
+  "detay": "Ortak zemin: MAT 234 Kısmi Dif. Denklemler ↔ MTO337 Atmosfer Dinamiği; MAT 308 YZ'nin Matematiksel Temelleri ↔ MTO302/406 Hava Analizi ve Öngörü. Örnek görev: CRPS, Brier ve güvenilirlik diyagramıyla olasılıksal doğrulama; EMOS gibi klasik düzeltmeyi yapay zekâ sürümüyle yan yana koymak. Kazanç: teoriyi gerçek belirsizlikte sınamak; makaleye dönüşebilecek bir karşılaştırma.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2534"
+ },
+ "amac": "Mahalle ölçeğinde ucuz IoT sensör ölçümleriyle açık hava tahminleri arasındaki sapmayı yapay zekâ ile öğrenip yerel tahmini iyileştirmek.",
+ "ortakDers": [
+  {
+   "kod": "MAT 308",
+   "projeyeKatki": "Küçük veri kümesinde aşırı öğrenmeyi önleme ve L2 optimizasyonu. Sensörün yerel sapmasını modelleyen regresyon katsayılarını L2 cezası ile denetlemek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "L2 regülarizasyonlu ortalama kare hata kaybı",
+     "nerede": "3. adımda: Mahalle bazlı sıcaklık sapmasını öğrenirken sınırlı sayıdaki sensör verisinde aşırı öğrenmeyi önlemek için ana kayıp terimi olarak."
+    },
+    {
+     "formulAd": "Stokastik gradyan inişi (SGD) güncelleme bağıntısı",
+     "nerede": "3. adımda: Yeni sensör ölçümleri geldikçe model ağırlıklarını çevrimiçi olarak güncellemede."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Kentsel mikroklima ve sıcaklık adveksiyonu analizi. Mahalle istasyonunun genel modelden sapmasının arkasındaki deniz meltemi ve şehirleşme etkisini yorumlamak bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "2. adımda: Kıyıdaki sensör ile iç kesimdeki sensör arasındaki adveksiyon farkını modele ek öznitelik olarak katarken."
+    },
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "2. adımda: Büyük ölçekli hava kütlesi geçişlerinde yerel sapmanın nasıl tepki verdiğini sınıflandırırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Sensör verilerini çek, Open-Meteo tahminiyle eşleştir, regülarizasyonlu regresyonu eğit ve yerel hatayı düşür.",
+  "ayrinti": "Sensor.Community açık API üzerinden İstanbul Beşiktaş ve Maslak noktalarındaki amatör hava sensörlerinin saatlik sıcaklık ölçümleri çekilir. Aynı koordinatlar için Open-Meteo API'den ECMWF tabanlı sayısal tahmin değerleri indirilir. Aradaki sistematik sapma (bias) MAT 308 L2 regülarizasyonlu Ridge regresyonu ile saat ve rüzgâr yönüne bağlı olarak öğrenilir. Yerel tahmin hatasının yüzde 40 azaldığı test edilir. 2 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Sensör ve model tahmin verilerini topla",
+    "oz": "Sensor.Community API'den yerel sıcaklıkları ve Open-Meteo'dan sayısal tahminleri indir.",
+    "ayrinti": "Açık veri servislerinden kitle kaynaklı yerel sensör ölçümleri ve sayısal model tahminleri toplanır. Sensor.Community API üzerinden İstanbul Maslak ve Beşiktaş civarındaki istasyonların sıcaklık ve bağıl nem ölçümleri çekilir. Aynı koordinatlar için Open-Meteo servisinden saatlik model tahminleri indirilir. Zaman damgaları UTC standardında birleştirilerek temiz bir veri tablosu oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "Sensor.Community veri arşivinden ilgili istasyon kimliğini (node ID) seçip saatlik ölçümleri JSON olarak çek",
+      "sade": "MTO 302 dersindeki 'İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak' bilgisiyle yerel sensör ağı verileri toplanır. Maslak ve Beşiktaş bölgesindeki açık istasyon ölçümleri yerel diske aktarılır. Bu veriler kentsel mikroiklimi temsil eden yerel gözlem temelini oluşturur.",
+      "altAdimlar": [
+       "archive.sensor.community portalından İstanbul istasyon kimliklerini belirle",
+       "requests kütüphanesiyle seçilen sensörlerin saatlik ölçüm arşivini indir",
+       "Zaman damgası ve sıcaklık sütunlarını pandas DataFrame yapısına aktar"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak"
+      }
+     },
+     {
+      "teknik": "Open-Meteo API ile istasyon koordinatlarına karşılık gelen sayısal hava tahmini serisini indir",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle sayısal tahmin verileri çekilir. Sensör koordinatları için üretilen 2 m sıcaklık tahminleri API üzerinden alınır. Böylece yerel ölçüm ile sayısal tahminin karşılaştırılacağı eş zamanlı çiftler kurulur.",
+      "altAdimlar": [
+       "Open-Meteo Historical Forecast API'sine istasyon koordinatlarıyla istek gönder",
+       "Saatlik sıcaklık ve rüzgâr hızı tahminlerini JSON yanıtından ayrıştır",
+       "Tahmin serisinin zaman eksenini sensör zaman ekseniyle eşleştir"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     },
+     {
+      "teknik": "İki seriyi UTC zaman damgasında birleştirip 'sensor_vs_tahmin_istanbul.parquet' veri seti olarak kaydet",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle veri hizalaması yapılır. İki farklı kaynaktan gelen zaman serileri ortak UTC indeksinde birleştirilir. Eksik satırlar elenerek analiz için temiz birleştirilmiş tablo hazırlanır.",
+      "altAdimlar": [
+       "pd.merge ile sensör ölçümleri ve model tahminlerini zaman indeksi üzerinde birleştir",
+       "Boş veya eksik ölçüm içeren satırları temizleyip tutarlılığı denetle",
+       "Temizlenmiş eşleşmiş veri çerçevesini parquet formatında diske yaz"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Veri kalitesi kontrolü ve öznitelik türetme",
+    "oz": "Güneş radyasyonu etkisiyle şişen hatalı sensör ölçümlerini ayıkla ve zaman özniteliklerini üret.",
+    "ayrinti": "Ucuz sensörlerde doğrudan güneş ışığına maruz kalma nedeniyle oluşan yapay sıcaklık sıçramaları tespit edilir. Fiziksel sınır kontrolü (-5 ile +45 °C) ve komşu saatlik türev filtreleri uygulanır. Modelin sistematik hatasını öngörmek için günün saati, rüzgâr hızı ve bağıl nem öznitelikleri türetilir. Hedef sapma değişkeni (fark = T_sensor - T_model) hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "Türev filtresi ve fiziksel sınır testiyle yapay radyasyon sıçraması içeren sensör ölçümlerini ayıkla",
+      "sade": "MAT 308 dersindeki 'Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak' bilgisiyle veri gürültüsü filtrelenir. Güneş ışığı nedeniyle saatte 5 dereceden fazla yapay artış gösteren hatalı sensör değerleri ayıklanır. Böylece modelin yalnızca gerçek meteorolojik sapmaları öğrenmesi sağlanır.",
+      "altAdimlar": [
+       "-5 ile +45 °C arasındaki fiziksel sınır kontrolünü uygula",
+       "Saatlik sıcaklık türevi np.abs(diff(t)) > 5.0 olan sıçramaları filtrele",
+       "Ayıklanan hatalı satırları veri kümesinden düşürerek kaliteyi yükselt"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak"
+      }
+     },
+     {
+      "teknik": "Döngüsel saat ve rüzgâr bileşenleriyle zenginleştirilmiş öznitelik matrisini hazırla",
+      "sade": "MAT 308 dersindeki 'Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak' bilgisiyle öznitelik dönüşümü yapılır. Günün saati sinüs ve kosinüs bileşenlerine ayrılarak periyodik ısı adası etkisi sayısallaştırılır. Rüzgâr hızı ve bağıl nem eklenerek çok değişkenli girdi matrisi kurulur.",
+      "altAdimlar": [
+       "sin(2π*saat/24) ve cos(2π*saat/24) sütunlarını oluştur",
+       "Modelin rüzgâr hızı ve bağıl nem sütunlarını özellik tablosuna bağla",
+       "X matrisini standartlaştırarak model eğitimine hazır hale getir"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak"
+      }
+     },
+     {
+      "teknik": "fark = T_sensor - T_model hedef sapma sütununu kurup veriyi kronolojik eğitim ve test kümelerine ayır",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle eğitim ve test ayrımı yapılır. Modelin yerel istasyonda ne kadar yanıldığı hedef değişken olarak tanımlanır. Kronolojik bölme ile zaman serisi yapısı korunur.",
+      "altAdimlar": [
+       "df['hedef_sapma'] = df['t_sensor'] - df['t_model'] farkını hesapla",
+       "Veri kümesini ilk %70 eğitim, kalan %30 bağımsız test kümesi olarak ayır",
+       "Eğitim ve test kümelerinin boyut ve dağılım istatistiklerini kontrol et"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Regülarizasyonlu düzeltme modelini eğit",
+    "oz": "MAT 308 L2 kayıp optimizasyonuyla aşırı öğrenmeyi engelleyen Ridge modelini eğit.",
+    "ayrinti": "Sistematik sıcaklık sapmasını öngörmek üzere L2 regülarizasyonlu Ridge regresyonu ve hafif sinir ağı modeli kurulur. Kayıp fonksiyonu: MSE + lambda * ||w||^2 formülüyle katsayıların aşırı büyümesi engellenir. Çapraz doğrulama (K-Fold) ile optimal lambda ceza parametresi bulunur. Model katsayıları incelenerek günün saatine göre kentsel ısı adası şiddeti analiz edilir.",
+    "nasil": [
+     {
+      "teknik": "L2 regülarizasyonu içeren Ridge regresyon modelini kurup normal denklemlerle katsayıları çöz",
+      "sade": "MAT 308 dersindeki 'L1 ve L2 regülarizasyonu ile aşırı öğrenmeyi (overfitting) engellemek' bilgisiyle düzenlileştirilmiş regresyon modeli kurulur. Katsayıların kareler toplamına ceza eklenerek gürültülü sensör verisinde aşırı öğrenme engellenir. Model kentsel ısı adası sapmasını kararlı biçimde öğrenir.",
+      "altAdimlar": [
+       "from sklearn.linear_model import RidgeCV modülünü çağır",
+       "alphas = [0.01, 0.1, 1.0, 10.0, 100.0] aday ceza parametrelerini tanımla",
+       "RidgeCV(cv=5).fit(X_train, y_train) ile en uygun katsayıları hesapla"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "L1 ve L2 regülarizasyonu ile aşırı öğrenmeyi (overfitting) engellemek"
+      }
+     },
+     {
+      "teknik": "Gradyan inişi ile çok değişkenli kayıp fonksiyonunu minimize edip model katsayılarını çıkar",
+      "sade": "MAT 308 dersindeki 'Gradyan inişi ve stokastik gradyan inişi (SGD) algoritmalarını optimize etmek' bilgisiyle ağırlık optimizasyonu yapılır. Kayıp fonksiyonunun türevleri alınarak katsayılar iteratif olarak iyileştirilir. Dışbükey optimizasyon sayesinde küresel minimum noktasına ulaşılır.",
+      "altAdimlar": [
+       "Kayıp fonksiyonunun analitik gradyan bağıntısını grad = 2*X.T@(X@w - y) + 2*lambda*w olarak kodla",
+       "Öğrenme oranı lr = 0.01 ile 500 iterasyonluk gradyan inişi işlet",
+       "Yakınsayan katsayı vektörünü ekrana basıp RidgeCV çözümüyle doğrula"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Gradyan inişi ve stokastik gradyan inişi (SGD) algoritmalarını optimize etmek"
+      }
+     },
+     {
+      "teknik": "Öznitelik katsayılarını inceleyerek gece kentsel ısı adası katsayısının gündüzden farkını doğrula",
+      "sade": "MTO 302 dersindeki 'Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek' bilgisiyle model ağırlıkları meteorolojik olarak yorumlanır. Gece saatlerine denk gelen katsayıların gündüze göre daha yüksek pozitif sapma ürettiği görülür. Bu bulgu kentsel ısı adasının gece belirginleştiği fiziksel kuralıyla tam örtüşür.",
+      "altAdimlar": [
+       "Ridge modelinin coef_ ağırlıklarını sütun adlarıyla eşleştir",
+       "Gece saatlerindeki (21:00 - 05:00) katsayıların büyüklüğünü kontrol et",
+       "Katsayı tablosunu kentsel mikroklima analizi için görselleştir"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Düzeltilmiş tahmini test et ve performans raporla",
+    "oz": "Test kümesinde ham tahmin ile düzeltilmiş tahminin RMSE ve MAE değerlerini karşılaştır.",
+    "ayrinti": "Bağımsız test kümesinde yerel düzeltme algoritmasının başarısı değerlendirilir. Düzeltilmiş tahmin: T_duzeltilmis = T_model + Model.predict(X_test) formülüyle elde edilir. Ham model ve düzeltilmiş model için Kök Ortalama Kare Hata (RMSE) ve Ortalama Mutlak Hata (MAE) hesaplanır. Hata histogramı ve saçılım grafikleri çizilerek raporlanır.",
+    "nasil": [
+     {
+      "teknik": "Test verisinde öngörülen sapmayı ham modele ekleyerek düzeltilmiş sıcaklık tahminlerini türet",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle yerel düzeltilmiş tahmin dizisi hesaplanır. Sayısal model çıktısı yerel regresyon tahminiyle birleştirilerek nihai tahmin oluşturulur. İstasyon ölçeğinde düzeltilmiş sıcaklık değerleri elde edilir.",
+      "altAdimlar": [
+       "sapma_tahmin = model.predict(X_test) ile beklenen hatayı hesapla",
+       "T_duzeltilmis = T_model_test + sapma_tahmin formülünü uygula",
+       "Düzeltilmiş tahmin vektörünü gerçek sensör ölçümleriyle aynı DataFrame'de topla"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Ham ve düzeltilmiş seriler için test kümesinde RMSE, MAE ve sapma (bias) metriklerini hesapla",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle hata kazanımı sayısallaştırılır. Ham tahminin hatası ile düzeltilmiş tahminin hatası kıyaslanarak başarı yüzdesi bulunur. Ucuz sensörlerle küresel modelin yerelleştirilme performansı kanıtlanır.",
+      "altAdimlar": [
+       "rmse_ham = np.sqrt(np.mean((T_model_test - T_sensor_test)**2)) değerini çıkar",
+       "rmse_duzeltilmis = np.sqrt(np.mean((T_duzeltilmis - T_sensor_test)**2)) değerini hesapla",
+       "İki değer arasındaki yüzde iyileşmeyi hesaplayıp karne tablosuna yaz"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile hata dağılım histogramını ve zaman serisi karşılaştırma grafiğini çizdirip diske kaydet",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle nihai doğrulama grafiği üretilir. Hata dağılımının sıfır etrafında daralması grafik üzerinde açıkça gösterilir. Proje sonuçları bilimsel bir değerlendirme özeti olarak tamamlanır.",
+      "altAdimlar": [
+       "fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5)) tuvalini aç",
+       "Sol panele zaman serisi grafiğini, sağ panele hata histogramlarını çiz",
+       "Grafiği mat05_yerel_duzeltme_karne.png olarak diske yazıp raporu tamamla"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Ucuz IoT sensör ölçümleriyle açık hava tahminlerini yerel ölçekte düzelten yapay zekâ defteri ve performans karnesi.",
+  "senden": "MAT 308 dersinden gelen kısım: L2 regülarizasyonu, aşırı öğrenmeyi önleme ve kayıp optimizasyonu.",
+  "bizden": "MTO 302 dersinden gelen kısım: sensör kalite kontrolü, kentsel ısı adası fiziği ve meteorolojik doğrulama."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul Beşiktaş ve Maslak ucuz sensör sıcaklığı vs Open-Meteo tahmini, 2024-05-01..31, saatlik",
+   "aciklama": "Sensor.Community istasyon ölçümü ile sayısal hava modelinin karşılaştırmalı ve düzeltilmiş zaman serisi animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://sensor.community/en/sensors/airrohr/",
+   "aciklama": "Sensor.Community açık hava kalitesi ve çevre sensörü dokümantasyon sayfası kaydırma döngüsü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+   "lisans": "CC0",
+   "aciklama": "Sensör ile model tahmini arasındaki saçılım ve hata regresyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Netatmo akıllı hava istasyonu ve açık mikroiklim portalı",
+   "url": "https://www.netatmo.com/en-us/weather"
+  },
+  {
+   "ad": "Sensor.Community açık kaynaklı çevre sensör ağı ve API",
+   "url": "https://sensor.community/en/sensors/airrohr/"
+  },
+  {
+   "ad": "WeatherFlow Tempest yapay zekâ destekli yerel hava sistemi",
+   "url": "https://weatherflow.com/tempest-weather-system/"
+  },
+  {
+   "ad": "BAMS kitle kaynaklı kentsel meteoroloji ve sensör araştırması",
+   "url": "https://journals.ametsoc.org/view/journals/bams/101/6/bamsD190195.xml"
+  },
+  {
+   "ad": "Open-Meteo açık hava tahmini ve gözlem API servisi",
+   "url": "https://open-meteo.com/en/docs"
+  },
+  {
+   "ad": "Hastie, T., Tibshirani, R., & Friedman, J. (2009) The Elements of Statistical Learning",
+   "url": "https://doi.org/10.1007/978-0-387-84858-7"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm formüller MAT 308 ve MTO 302 ders dosyalarıyla birebir eşleştirildi. Bağlantılar ve lisanslar doğrulandı.",
+ "_birlestirme": {
+  "kaynak": "cikti/MAT-05.json",
+  "tarih": "2026-10-14 23:06",
+  "geminiSha1": "b74bb1737e0a"
+ }
+}

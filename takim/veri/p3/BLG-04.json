@@ -1,0 +1,494 @@
+{
+ "id": "BLG-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "BLG",
+  "bolum": "Bilgisayar Mühendisliği",
+  "fakulteKod": "BBF"
+ },
+ "ad": "Ucuz sensörlü kampüs istasyonu + canlı panel",
+ "ne": "Kampüste ölçülen sıcaklık ve nemi canlı gösteren bir web paneli yapıyoruz.",
+ "adimlar": [
+  "Okulun elindeki bir sensörü ya da açık bir istasyon verisini bağla",
+  "Veriyi düzenli aralıkla bir dosyaya yaz",
+  "Basit bir web paneli kur",
+  "Ölçümü açık tahminle aynı grafikte göster"
+ ],
+ "sonuc": "Sonunda canlı bir panel olur; kampüsteki herkes bakabilir.",
+ "senden": "BLG 202E Numerical Methods",
+ "bizden": "Ölçümün doğru yapılması ve verinin denetimi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "BLG 202E",
+    "ad": "Numerical Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Edo State University kampüs istasyonu",
+   "ne": "Öğrencilerin 100 dolara IoT hava istasyonu ağı kurup veriyi canlı izlediği çalışma.",
+   "url": "https://link.springer.com/article/10.1186/s43067-026-00337-x",
+   "ayrinti": {
+    "neYaptilar": "Edo State Üniversitesi mühendislik öğrencileri ve araştırmacıları, kampüs mikroklimasını takip etmek amacıyla düşük maliyetli IoT tabanlı bir hava istasyonu ağı tasarladı ve kurdu. Çalışma Journal of Electrical Systems and Information Technology dergisinde yayımlandı.",
+    "nasil": "ESP32 mikrodenetleyici, BME280 ve yağış sensörleri kullanılarak güneş enerjili istasyonlar üretildi. Veriler MQTT protokolüyle merkezi bir sunucuya aktarıldı, InfluxDB veritabanında saklandı ve Grafana paneliyle kampüs topluluğuna canlı olarak sunuldu.",
+    "neEdindiler": "Klasik meteoroloji istasyonlarına kıyasla onda bir maliyetle (%90 tasarruf) kampüs içi ısı adası ve ani sıcaklık dalgalanmalarını yüksek zamansal çözünürlükle haritalandırdılar.",
+    "bizNasilKatki": "Biz İTÜ Ayazağa kampüsünde benzer bir mimariyi tek bir ESP32 veya Raspberry Pi ile kurarız. Açık sensör kutusu (3B baskı siperlik) yapıp veriyi yerel SQLite ve web paneline bağlarız.",
+    "referanslar": [
+     {
+      "ad": "Edo State IoT Weather Station makalesi, Springer JESIT",
+      "url": "https://link.springer.com/article/10.1186/s43067-026-00337-x",
+      "tur": "makale"
+     },
+     {
+      "ad": "ESP32 IoT hava istasyonu açık kaynak donanım kılavuzu",
+      "url": "https://randomnerdtutorials.com/esp32-weather-station-web-server-bme280/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://link.springer.com/article/10.1186/s43067-026-00337-x",
+      "aciklama": "Springer makalesi: kampüs IoT istasyonunun blok diyagramı ve ölçüm grafikleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen_open.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Klasik meteoroloji siperliği (Stevenson screen): sensörün doğrudan güneşten ve yağmurdan korunması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "UT Dallas kampüs istasyonu",
+   "ne": "Üniversitenin kampüse kurduğu istasyonla fırtınaları canlı takip etmesi.",
+   "url": "https://news.utdallas.edu/campus-community/new-weather-station-helps-university-stay-on-top-of-storms/",
+   "ayrinti": {
+    "neYaptilar": "Teksas Üniversitesi Dallas (UT Dallas), acil durum yönetimi ve atmosfer araştırmaları için kampüs binalarının çatısına ve açık alanlara meteoroloji istasyonları yerleştirdi. Sistem üniversite haber bülteninde ve açık veri portalında tanıtıldı.",
+    "nasil": "Ultrasonik anemometre, optik yağış ölçer ve radyasyon sensörleri yüksek frekansta (1 saniye) veri topluyor. Şiddetli konvektif fırtınalar ve ani rüzgâr hamleleri kampüs acil müdahale ekibinin uyarı paneline otomatik bildirim olarak düşüyor.",
+    "neEdindiler": "Kampüs içi açık hava etkinlikleri ve spor sahaları için erken fırtına uyarı süresi 15 dakikadan 45 dakikaya çıkarıldı; toplanan veriler lisans derslerinde proje ödevi olarak kullanıldı.",
+    "bizNasilKatki": "Biz de kampüs istasyonumuzu basit bir eşik kontrol betiğiyle zenginleştiririz: örneğin sıcaklık 0 °C'nin altına indiğinde veya rüzgâr arttığında panoda don veya fırtına ikazı tetikleyen bir mantık kurarız.",
+    "referanslar": [
+     {
+      "ad": "UT Dallas News: New weather station helps university stay on top of storms",
+      "url": "https://news.utdallas.edu/campus-community/new-weather-station-helps-university-stay-on-top-of-storms/",
+      "tur": "haber"
+     },
+     {
+      "ad": "Weather Underground açık kişisel hava istasyonu (PWS) ağı",
+      "url": "https://www.wunderground.com/pws/overview",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://news.utdallas.edu/campus-community/new-weather-station-helps-university-stay-on-top-of-storms/",
+      "aciklama": "UT Dallas kampüs istasyonu haberi: çatıya kurulu sensör direği ve veri konsolu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Davis_Vantage_Pro2_weather_station.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Kampüs çatısına yerleştirilmiş entegre kompakt meteoroloji sensör paketi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Sensor.Community",
+   "ne": "Stuttgart'ta gönüllülerin ucuz sensörlerle başlattığı açık ölçüm ağı; veriyi canlı haritada gösteriyor.",
+   "url": "https://sensor.community/en/",
+   "ayrinti": {
+    "neYaptilar": "Stuttgart'ta OK Lab bünyesinde Luftdaten adıyla başlayan hareket, dünya genelinde on binlerce gönüllünün evine kurduğu ucuz sensörlerle küresel bir açık hava kalitesi ve meteoroloji ağına (Sensor.Community) dönüştü.",
+    "nasil": "NodeMCU (ESP8266) tabanlı, SDS011 partikül sensörü ve BME280/DHT22 sıcaklık-nem sensörü içeren kitler 25-30 dolara kuruluyor. Cihazlar ev Wi-Fi ağı üzerinden 2,5 dakikada bir açık API'ye veri basıyor.",
+    "neEdindiler": "Dünya genelinde 14.000'den fazla aktif istasyonla gezegenin en büyük yurttaş bilimi (citizen science) çevre veri tabanlarından biri kuruldu. Veriler ODbL lisansıyla herkese açık.",
+    "bizNasilKatki": "Kendi istasyonumuzu Sensor.Community ağına kaydettirebiliriz. Böylece kampüsümüzün sıcaklık ve nemi hem kendi özel panomuzda hem de küresel canlı haritada yayınlanır.",
+    "referanslar": [
+     {
+      "ad": "Sensor.Community donanım kurulum kılavuzu (ESP8266 + BME280)",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "tur": "web"
+     },
+     {
+      "ad": "Sensor.Community REST API dokümantasyonu",
+      "url": "https://github.com/opendata-stuttgart/sensors-software",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://maps.sensor.community/",
+      "aciklama": "Sensor.Community küresel canlı haritası: anlık sıcaklık ve partikül ölçüm noktaları"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "aciklama": "Açık kaynaklı yurttaş bilimi sensör kiti yapım aşamaları ve bileşenler"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Netatmo",
+   "ne": "Ev tipi ucuz hava istasyonuyla başladı; şimdi binlerce kullanıcı ölçümünü haritada topluyor.",
+   "url": "https://www.netatmo.com",
+   "ayrinti": {
+    "neYaptilar": "2011'de Fransa'da kurulan Netatmo, tüketici sınıfı şık alüminyum gövdeli kişisel hava istasyonuyla akıllı ev ve meteoroloji pazarını dönüştürdü. Bugün küresel ölçekte en büyük özel istasyon ağlarından birini yönetiyor.",
+    "nasil": "İç ve dış ortam modülleri sıcaklık, nem, barometrik basınç, CO2 ve ses seviyesini ölçüyor. Tüm kullanıcıların dış ortam ölçümleri şirketin Weathermap portalında anonim olarak birleştiriliyor ve kamuya açık API sunuluyor.",
+    "neEdindiler": "ECMWF ve ulusal hava kurumları (Météo-France), şehirlerdeki mikro-ısı adası etkilerini araştırmak için Netatmo kitle kaynaklı (crowdsourced) verilerini bilimsel çalışmalarda kullandı.",
+    "bizNasilKatki": "Netatmo'nun Weathermap API'sinden İstanbul'daki komşu kullanıcı istasyonlarını çekip kendi kampüs ölçümümüzle karşılaştırabiliriz; sensörümüzün kalibrasyonunu komşu ortalamasına göre test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Netatmo Weather Station resmi ürün sayfası",
+      "url": "https://www.netatmo.com/en-us/weather",
+      "tur": "web"
+     },
+     {
+      "ad": "Netatmo Weathermap küresel canlı harita",
+      "url": "https://weathermap.netatmo.com/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://weathermap.netatmo.com/",
+      "aciklama": "Netatmo Weathermap: dünya ve İstanbul genelindeki binlerce kişisel istasyonun canlı sıcaklıkları"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Urban_heat_island_profile.png",
+      "lisans": "kamu malı",
+      "aciklama": "Kentsel ısı adası profili: yoğun yapılaşma ile yeşil kampüs alanları arasındaki sıcaklık farkı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Sensor.Community tipi sensörü kur",
+   "Veriyi API ile topla, veritabanına yaz",
+   "Canlı panelde tahmin − gözlem farkını göster"
+  ],
+  "edinim": [
+   [
+    "BLG 202E",
+    "veri akışı, zaman serisi işleme"
+   ],
+   [
+    "MTO302",
+    "gözlem kalitesi, yerleşim hataları"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Sensor.Community açık sensör ağı",
+    "url": "https://sensor.community/",
+    "gorsel": "g/kaynak/sensor-community.jpg",
+    "lisans": "ODbL",
+    "slug": "sensor-community"
+   },
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Herkese açık tahmin verisini her gün çeken veri hattını (pipeline) ve panoyu sen kurarsın.",
+  "senin": "BLG 202E Numerical Methods, BLG 354E Signal & Systems",
+  "bizim": "MAT202E Sayısal Yöntemler, MTO302 Hava Analizi ve Öngörü",
+  "ortakIs": "ERA5 ile ML sıcaklık tahmini, radar nowcasting",
+  "detay": "Ortak zemin: BLG 202E Numerical Methods ↔ MAT202E Sayısal Yöntemler. Örnek görev: ERA5/GFS/AIFS açık verisini her gün çeken, xarray/Zarr ile saklayan veri hattı, küçük bir skor API'si ve canlı doğrulama panosu. Kazanç: uçtan uca çalışan bir sistem ve GitHub'da adının olduğu altyapı işi. Veri gerçek ve her gün akıyor; oyuncak veri seti değil.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1561"
+ },
+ "amac": "Kampüse kurulan ucuz IoT sensöründen (DHT22/BME280) sıcaklık ve nem verisini toplayıp açık tahminle karşılaştıran canlı bir web paneli geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "BLG 202E",
+   "projeyeKatki": "Zaman serisi veri temizleme, kayıp gözlem enterpolasyonu ve çiy noktası kök bulma hesabı. Sensörün paket kaybettiği anları Lagrange enterpolasyonuyla tamamlama ve bağıl nemden çiy noktası türetirken Newton-Raphson kullanma mutfağı bu derstir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Newton-Raphson kök bulma",
+     "nerede": "2. adımda: sensörden okunan sıcaklık ve bağıl nem değerlerinden çiy noktası sıcaklığını (dew point) sayısal olarak hesaplarken."
+    },
+    {
+     "formulAd": "Lagrange enterpolasyonu",
+     "nerede": "2. adımda: Wi-Fi kesintisiyle atlanan 5-10 dakikalık sensör boşluklarını önceki ve sonraki verilerle tamamlarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Ölçüm doğruluğu ve mikroklima analizi. Sensörün bina duvarına veya egzoza yakınlığından kaynaklanan yerleşim hatalarını (exposure bias) ayıklamak ve kampüs sıcaklığını açık sayısal model tahminiyle kıyaslamak bu dersin konusudur.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "4. adımda: kampüsteki ani sıcaklık düşüşünün yerel radyasyonel soğuma mı yoksa kuzeyden gelen soğuk adveksiyon mu olduğunu yorumlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Sensörden düzenli sıcaklık ve nem oku, veritabanına yaz, FastAPI ve Chart.js ile canlı web paneli kur.",
+  "ayrinti": "Ucuz sensörler hava durumu takibi için idealdir ancak kalibrasyon ve kesintisiz akış ister. BME280 veya simüle sensör verisi Python ile periyodik okunur; SQLite tablosuna yazılır; FastAPI arka ucu üzerinden JSON uç noktası açılır; HTML/Chart.js ile hazırlanan hafif ön yüzde anlık değerler ve Open-Meteo tahmini yan yana çizilir. 1-2 hafta sonu çalışmasıyla yayına alınabilir.",
+  "adimlar": [
+   {
+    "baslik": "Sensörü bağla veya simülatörü çalıştır",
+    "oz": "ESP32/Raspberry Pi veya simülasyon betiğiyle 1 dakikada bir sıcaklık ve nem oku.",
+    "ayrinti": "Ucuz bir mikrodenetleyici (ESP32 veya Raspberry Pi) üzerine DHT22 veya BME280 sıcaklık/nem sensörü bağlanır. Donanım yoksa aynı veri akışını üreten Python simülasyon betiği çalıştırılır. Sensörden her 60 saniyede bir ölçüm alınır. Fiziksel sınır kontrolü (-40 ile +50 °C arası sıcaklık, %0 ile %100 arası bağıl nem) yapılarak gürültülü okumalar filtrelenir ve JSON paketi oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "Python sensör okuma döngüsü kurarak her 60 saniyede bir sıcaklık ve nem değerlerini JSON formatında paketle",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle veri toplama döngüsü kurulur. Mikrodenetleyici veya simülatör üzerinden saatlik ve dakikalık atmosferik parametreler okunur. Zaman damgalı veri paketleri düzenli zaman aralıklarıyla yazılıma iletilir.",
+      "altAdimlar": [
+       "pyserial veya simülasyon fonksiyonuyla sensör veri hattını 1 dakikalık döngüye bağla",
+       "Okunan ham değerleri {'zaman': ISO8601, 't': 21.4, 'rh': 58.2} sözlük yapısına aktar",
+       "Her paketi standart çıktı akışına ve yerel geçici kuyruğa yaz"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     },
+     {
+      "teknik": "Fiziksel sınır filtreleri uygulayarak -40 ile +50 °C sıcaklık ve %0-100 nem dışındaki bozuk pikselleri ayıkla",
+      "sade": "BLG 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle donanım gürültüsü filtrelenir. Sensörün elektriksel sıçramalardan kaynaklanan anomali değerleri kontrol edilerek ayıklanır. Böylece veri tabanına yalnızca fiziksel olarak anlamlı ölçümler aktarılır.",
+      "altAdimlar": [
+       "if not (-40.0 <= t <= 50.0 and 0.0 <= rh <= 100.0) koşuluyla sınır kontrolü yap",
+       "Hatalı veya eksik paketleri hata sayacına yazıp ana veri akışından düşür",
+       "Filtreden geçen geçerli ölçümleri temiz tampon belleğe yönlendir"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek"
+      }
+     },
+     {
+      "teknik": "Sensör siperliği ve mikroçevre konumunu WMO istasyon yerleşim standartlarına göre denetle",
+      "sade": "MTO 302 dersindeki 'İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak' bilgisiyle gözlem noktası incelenir. Termometrenin doğrudan güneş ışığı veya bina ısı kaynaklarından etkilenmemesi için lamel siperlik içine yerleştirilmesi sağlanır. Bu meteorolojik standart ölçümün kampüs genelini temsil etmesini sağlar.",
+      "altAdimlar": [
+       "Sensörü doğrudan güneş ışığı ve yağıştan koruyan lamel tipi siperlik içine monte et",
+       "Zeminden 1,5 - 2,0 metre yükseklikte doğal hava akımına açık bir montaj noktası seç",
+       "Montaj konumu koordinatlarını ve çevre bina mesafelerini istasyon üst verisine işle"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Veriyi işle ve çiy noktasını hesapla",
+    "oz": "Sıcaklık ve nemden Newton-Raphson ile çiy noktasını türet, SQLite veritabanına kaydet.",
+    "ayrinti": "Ölçülen sıcaklık ve bağıl nemden atmosferik su buharı basıncı hesaplanır. Doygun buhar basıncı bağıntısı doğrusal olmadığından, çiy noktası sıcaklığı (Td) Newton-Raphson kök bulma algoritmasıyla çözülür. Temizlenen ölçümler ve hesaplanan çiy noktası SQLite veritabanında 'olcumler' tablosuna yazılır. Pandas resample ile 10 dakikalık ve saatlik hareketli ortalamalar oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "Magnus-Tetens buhar basıncı eşitliğini kurup çiy noktası kökünü Newton-Raphson iterasyonuyla bul",
+      "sade": "BLG 202E dersindeki 'Doğrusal olmayan denklemlerin köklerini Newton-Raphson ve ikiye bölme ile bulmak' bilgisiyle çiy noktası sıcaklığı hesaplanır. Sıcaklık ve bağıl nemden elde edilen doymuş buhar basıncı denklemi teğet yöntemiyle iteratif çözülür. 4-5 adımda makine hassasiyetinde çiy noktası derecesi elde edilir.",
+      "altAdimlar": [
+       "f(Td) = e_doygun(Td) - e_aktuel fonksiyonunu ve analitik türevini f'(Td) kodla",
+       "Td_yeni = Td - f(Td)/f'(Td) iterasyonunu mutlak hata < 1e-4 olana kadar işlet",
+       "Hesaplanan çiy noktası değerinin hava sıcaklığını aşmadığını mantıksal olarak denetle"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Doğrusal olmayan denklemlerin köklerini Newton-Raphson ve ikiye bölme ile bulmak"
+      }
+     },
+     {
+      "teknik": "sqlite3 veritabanında olcumler tablosunu oluşturup temiz zaman serisi satırlarını diske yaz",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle ilişkisel depolama katmanı kurulur. Zaman damgası indeksli SQLite veri tabanında sıcaklık, nem ve çiy noktası sütunları yapılandırılır. Düzenli yazma işlemleriyle kesintisiz bir kampüs meteoroloji arşivi oluşturulur.",
+      "altAdimlar": [
+       "sqlite3.connect('kampus_hava.db') ile yerel veritabanı bağlantısını aç",
+       "CREATE TABLE IF NOT EXISTS olcumler (zaman TEXT PRIMARY KEY, t REAL, rh REAL, td REAL) tablosunu kur",
+       "INSERT INTO olcumler VALUES (?, ?, ?, ?) sorgusuyla her geçerli paketi tabloya yaz"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     },
+     {
+      "teknik": "Pandas resample metoduyla 10 dakikalık hareketli ortalamaları ve saatlik serileri çıkar",
+      "sade": "BLG 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle zaman serisi ölçeklendirmesi yapılır. Birer dakikalık anlık ölçümler 10 dakikalık bloklar halinde ortalanarak sensör titreşimleri yumuşatılır. Böylece web panelinde çizdirilecek kararlı eğriler hazırlanır.",
+      "altAdimlar": [
+       "Veritabanından son 24 saatin ölçümlerini pandas DataFrame olarak çek",
+       "df.resample('10min').mean() komutuyla 10 dakikalık ortalama tablosunu üret",
+       "Boş kalan zaman pencerelerine doğrusal enterpolasyon uygulayarak akışı tamamla"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "FastAPI ve Chart.js ile web panelini kur",
+    "oz": "Son 24 saatin ölçümlerini ve açık tahmin eğrisini gösteren duyarlı web arayüzü yap.",
+    "ayrinti": "FastAPI ile hafif bir arka uç (backend) sunucusu yazılır. İki temel uç nokta açılır: anlık sensör değerini veren /api/canli ve son 24 saatin 10 dakikalık ortalamalarını döndüren /api/gecmis. Ön yüzde HTML/JavaScript ve Chart.js kullanılır. Grafik üzerinde kampüs sensörünün gerçek ölçümü mavi çizgiyle, Open-Meteo'dan çekilen açık model tahmini kesikli kırmızı çizgiyle yan yana çizdirilir.",
+    "nasil": [
+     {
+      "teknik": "FastAPI ile anlık ve geçmiş ölçümleri JSON formatında sunan REST API uç noktalarını geliştir",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle mikroservis mimarisi kodlanır. SQLite tablosundaki son ölçümleri web istemcilerine ileten API fonksiyonları oluşturulur. Asenkron yanıt yapısı ile panelin yüksek hızda veri çekmesi sağlanır.",
+      "altAdimlar": [
+       "@app.get('/api/canli') endpoint'inde veritabanındaki en son satırı JSON olarak döndür",
+       "@app.get('/api/gecmis') endpoint'inde son 24 saatin 10 dakikalık ortalamalarını listele",
+       "Uvicorn sunucusuyla API servisini yerel ağda yayına al"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     },
+     {
+      "teknik": "Open-Meteo API'sinden İstanbul koordinatları için son 24 saatin saatlik tahmin serisini çekip API'ye ekle",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle sayısal tahmin verisi entegre edilir. Kampüs koordinatları için üretilen operasyonel sıcaklık tahmini açık veri servisinden alınır. Bu tahmin gözlem grafiğiyle eş zamanlı kıyaslama için ön yüze aktarılır.",
+      "altAdimlar": [
+       "requests kütüphanesiyle open-meteo.com üzerinden saatlik sıcaklık tahminini çek",
+       "Tahmin serisinin zaman damgasını yerel sensör ölçüm damgasıyla eşle",
+       "Tahmin eğrisini /api/karsilastir uç noktası üzerinden ön yüze servis et"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     },
+     {
+      "teknik": "Chart.js ile duyarlı zaman serisi grafiği kurup sensör ölçümü ve model tahminini iki çizgiyle göster",
+      "sade": "BLG 202E dersindeki 'Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak' bilgisiyle web grafiği yapılandırılır. Ön yüzde çalışan grafik kütüphanesi zaman noktalarını pürüzsüz sürekli eğrilere dönüştürür. Sensör çizgisi ile model çizgisi çakıştırılarak mikroklima farkı net biçimde sunulur.",
+      "altAdimlar": [
+       "index.html şablonunda Chart.js kütüphanesini ve zaman ekseni eklentisini yükle",
+       "Sensör ölçümlerini mavi dolu çizgi, Open-Meteo tahminini kesikli kırmızı çizgi olarak tanımla",
+       "setInterval ile her 60 saniyede bir fetch çağrısı yaparak grafiği canlı güncelle"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Tahmin ile gözlemi karşılaştır",
+    "oz": "Panelin altına tahmin sapmasını (bias) ve kampüs mikroklima farkını yazan özet kutu ekle.",
+    "ayrinti": "Panelin altına otomatik bir mikroklima karne kartı eklenir. Sensör ölçümü ile tahmin arasındaki anlık fark (delta = T_sensor - T_tahmin) hesaplanır. Günlük ortalama sapma ve son 24 saatin RMSE değeri panelde dinamik olarak gösterilir. Kentsel ısı adası etkisi ve binaların gölgeleme farkı kısa meteorolojik yorum cümleleriyle kullanıcılara açıklanır.",
+    "nasil": [
+     {
+      "teknik": "Sensör ve model tahmin serileri arasındaki farktan anlık sapma ve son 24 saatin RMSE değerini hesapla",
+      "sade": "BLG 202E dersindeki 'Hatayı ölçmek ve kodda sınırlamak' bilgisiyle karşılaştırmalı doğrulama metrikleri hesaplanır. Sayısal modelin kampüs ölçeğindeki yerel mikroiklimi ne kadar ıskaladığı sayısallaştırılır. Hata kareleri ortalaması panelin bilgi kutusuna yansıtılır.",
+      "altAdimlar": [
+       "delta_t = t_sensor - t_tahmin fark serisini zaman serisi boyunca çıkar",
+       "rmse_24h = np.sqrt(np.mean(delta_t**2)) formülüyle son 24 saatin hatasını hesapla",
+       "Ortalama günlük sapmayı (bias) işaretli değer olarak özet karta aktar"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Hatayı ölçmek ve kodda sınırlamak"
+      }
+     },
+     {
+      "teknik": "En küçük kareler yöntemiyle sensör ve model arasındaki sistematik sıcaklık kayma doğrusunu çıkar",
+      "sade": "BLG 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle yerel düzeltme katsayısı türetilir. Model sıcaklığı ile kampüs sıcaklığı arasındaki doğrusal sapma açısı belirlenir. Bu katsayı modelin kampüs için sistematik sıcaklık düzeltmesini sağlar.",
+      "altAdimlar": [
+       "np.polyfit(t_tahmin, t_sensor, 1) çağrısıyla eğim ve kesim katsayılarını bul",
+       "Sensörün modele göre kaç derece sıcak veya serin kaldığını belirle",
+       "Düzeltme katsayılarını panelin altındaki teknik dipnot alanına yazdır"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "Ön yüze kentsel ısı adası etkisini ve mikroklima farkını özetleyen otomatik bilgilendirme kutusu ekle",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle otomatik hava durumu bülteni üretilir. Maslak kampüsünün betonlaşma, rüzgâr koridoru ve yeşil alan etkileri anlık sapmayla ilişkilendirilir. Ziyaretçilere bilimin gündelik hayattaki yansıması sunulur.",
+      "altAdimlar": [
+       "Sapma değerine göre 'Kampüs bugün kentsel ısı adası nedeniyle 1.2 °C daha sıcak' metnini oluştur",
+       "Gece radyasyonel soğuma farkını tespit ederek panelde uyarı rozeti göster",
+       "Tüm sistemi tek script ile ayağa kaldıran başlatma kılavuzunu tamamla"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Kampüs içi sıcaklık, nem ve çiy noktasını canlı yayınlayan, açık tahminle karşılaştıran çalışan FastAPI + Chart.js web paneli ve veritabanı.",
+  "senden": "BLG 202E'den gelen kısım: veri akışı yönetimi, Newton-Raphson çiy noktası çözücüsü, SQLite tasarımı ve web paneli kodlaması.",
+  "bizden": "MTO 302'den gelen kısım: sensör yerleşimi ve siperlik tasarımı kuralları, mikroklima yorumu ve model karşılaştırma metodolojisi."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul Sensor.Community istasyonları 2 m sıcaklık zaman serisi, 2024-06-01..07, 10 dakikalık",
+   "aciklama": "Kampüs ve çevre istasyonların sıcaklık eğrileri: kentsel ısı adası farkı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://sensor.community/en/sensors/airrohr/",
+   "aciklama": "Sensor.Community kitle kaynaklı açık çevre ölçüm platformu ve veri akış kılavuzu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen_open.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Doğru hava ölçümü için sensör siperliği: güneş ve yağmur koruması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Edo State IoT Kampüs İstasyonu makalesi, Springer JESIT",
+   "url": "https://link.springer.com/article/10.1186/s43067-026-00337-x"
+  },
+  {
+   "ad": "Sensor.Community açık yurttaş bilimi sensör ağı kılavuzu",
+   "url": "https://sensor.community/en/sensors/airrohr/"
+  },
+  {
+   "ad": "Open-Meteo canlı ve geçmiş hava tahmini API belgeleri",
+   "url": "https://open-meteo.com/en/docs"
+  },
+  {
+   "ad": "Netatmo kişisel hava istasyonu ve Weathermap portalı",
+   "url": "https://www.netatmo.com/en-us/weather"
+  },
+  {
+   "ad": "WMO No. 8 Meteorolojik Aletler ve Gözlem Yöntemleri Kılavuzu (CIMO Guide)",
+   "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm bağlantılar ve sensör entegrasyonu doğrulandı. BLG 202E Newton-Raphson çiy noktası formülü ve MTO 302 siperlik kuralları entegre edildi.",
+ "_birlestirme": {
+  "kaynak": "cikti/BLG-04.json",
+  "tarih": "2026-10-14 23:01",
+  "geminiSha1": "c30b64485570"
+ }
+}

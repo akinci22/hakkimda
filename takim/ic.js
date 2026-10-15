@@ -55,9 +55,9 @@
 #donus{display:none!important}                                         /* dönüş için ana sitenin bulutu */
 .ilerleme{position:sticky;top:var(--tk-ust,52px);left:auto;right:auto;height:4px;margin-bottom:-4px}
 .ray{position:sticky;top:var(--tk-ust,52px);left:auto;bottom:auto;height:0;width:0;overflow:visible;border:0;background:none}
-.ray-ic{inset:auto;left:calc(-1 * var(--ray));top:0;width:var(--ray);height:calc(100vh - var(--tk-ust,52px));border-right:1px solid var(--cizgi-2);background:color-mix(in srgb,var(--kagit) 75%,transparent)}
+.ray-ic{inset:auto;left:calc(-1 * var(--ray));top:0;width:var(--ray);height:calc(100dvh - var(--tk-ust,52px));border-right:1px solid var(--cizgi-2);background:color-mix(in srgb,var(--kagit) 75%,transparent)}
 .panel{position:sticky;top:var(--tk-ust,52px);right:auto;bottom:auto;height:0;width:0;overflow:visible;margin-left:auto;border:0;background:none}
-.panel-ic{inset:auto;right:calc(-1 * var(--panel));top:0;width:var(--panel);height:calc(100vh - var(--tk-ust,52px));border-left:1px solid var(--cizgi-2);background:color-mix(in srgb,var(--kagit) 75%,transparent)}
+.panel-ic{inset:auto;right:calc(-1 * var(--panel));top:0;width:var(--panel);height:calc(100dvh - var(--tk-ust,52px));border-left:1px solid var(--cizgi-2);background:color-mix(in srgb,var(--kagit) 75%,transparent)}
 @media (max-width:999px){.ust{position:sticky;top:var(--tk-ust,52px);backdrop-filter:none;z-index:30} .ust-ic{display:none} .serit{border-top:0;padding-top:2px} .detay{border-radius:0}}   /* mobil: yalnız aşama şeridi yapışkan — nerede olduğunu anlama, tek dokunuşla yer değiştirme */
 /* sade: filigran rakamlar, 'radyosonde ▸' öneki ve test rozeti içkin görünümde yok */
 .blok[data-hpa]::after{display:none} .ust-ad .prompt{display:none} #mod-rozet{display:none!important}

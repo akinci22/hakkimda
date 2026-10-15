@@ -1,0 +1,385 @@
+{
+ "id": "UZB-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "UZB",
+  "bolum": "Uzay Mühendisliği",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "Uydu sürüklenmesi için üst atmosfer yoğunluğu öngörüsü",
+ "ne": "Güneş patlamaları ve koronal kütle atımlarının Dünya üst atmosferini ısıtıp genişletmesiyle termosfer yoğunluğunda yaşanan ani artışların, açık uzay havası verileri ve Jacchia-Roberts yoğunluk formülleriyle hesaplanarak alçak yörünge uydularının erken atmosfere giriş riskinin tahmin edilmesi.",
+ "adimlar": [
+  "Açık uzay havası verilerini indir",
+  "Basit bir yoğunluk formülünü kodla",
+  "Yoğunluğa göre sürüklenme kuvvetini hesapla",
+  "Farklı günler için yörünge alçalmasını karşılaştır"
+ ],
+ "sonuc": "Sonunda yoğunluk ve alçalma grafikleri olan bir defter olur.",
+ "senden": "UZB 411E Space Environment",
+ "bizden": "Atmosferin katmanları ve radyasyon bilgisi (MTO225)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "UZB 411E",
+    "ad": "Space Environment"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 225",
+    "ad": "Güneş ve Yer Radyasyonu"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "LeoLabs",
+   "ne": "SRI'daki radar araştırmasından doğdu; sürüklenmeyi de hesaba katarak uyduları izleyen şirket oldu.",
+   "url": "https://venturebeat.com/entrepreneur/sri-spin-out-leolabs-raises-4-million-to-monitor-space-debris",
+   "ayrinti": {
+    "neYaptilar": "SRI International radar araştırmacılarının kurduğu LeoLabs, küresel aşamalı dizi radarlarıyla alçak Dünya yörüngesindeki binlerce uydu ve uzay enkazını santimetre hassasiyetinde izledi.",
+    "nasil": "Radar telemetrisinden anlık yörünge elemanlarını türetip termosfer yoğunluk değişimlerini uyduların frenleme ivmelerinden tersine mühendislikle çıkardılar.",
+    "neEdindiler": "Uydu operatörlerine güneş fırtınası kaynaklı yörünge alçalmalarını ve çarpışma uyarılarını saatler öncesinden vererek ticari uzay trafik yönetiminde lider oldular.",
+    "bizNasilKatki": "LeoLabs yaklaşımını açık TLE yörünge verileri ve NOAA SWPC güneş akılarıyla birleştiren açık kaynak bir Python sürüklenme takipçisi geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "VentureBeat LeoLabs yatırım ve radar ağı haberi",
+      "url": "https://venturebeat.com/entrepreneur/sri-spin-out-leolabs-raises-4-million-to-monitor-space-debris",
+      "tur": "haber"
+     },
+     {
+      "ad": "Acta Astronautica LEO uydu sürüklenmesi ve çarpışma riski",
+      "url": "https://doi.org/10.1016/j.actaastro.2021.05.032",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Güneş 10.7 cm radyo akısı (F10.7) ve Kp jeomanyetik indisi, NOAA SWPC, 2024-05-10..15, saatlik",
+      "aciklama": "Mayıs 2024 jeomanyetik fırtınasında güneş aktivitesi ve termosfer yoğunluğu sıçraması"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_drag_on_satellite.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Alçak Dünya yörüngesindeki uydunun termosfer gazlarıyla etkileşimi ve yörünge küçülmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "YZ ile üst atmosfer yoğunluğu tahmini",
+   "ne": "Uydu sürüklenmesi için yoğunluğu YZ ile tahmin eden makale.",
+   "url": "https://arxiv.org/abs/2608.00352",
+   "ayrinti": {
+    "neYaptilar": "Araştırmacılar, karmaşık ampirik termosfer modelleri (NRLMSISE-00) yerine geçmiş güneş ve jeomanyetik indislerle eğitilen derin öğrenme mimarisi kurdu.",
+    "nasil": "GRACE ve CHAMP uydularının ivmeölçer verileriyle çok katmanlı LSTM ağlarını eğiterek 400 km irtifadaki nötr atmosfer yoğunluğunu 24 saat önceden tahmin ettiler.",
+    "neEdindiler": "Güneş fırtınaları esnasında klasik ampirik modellerin yaptığı yüzde 40'lık tahmin hatasını yüzde 12 seviyesine düşürdüler.",
+    "bizNasilKatki": "Makaledeki F10.7 ve Dst korelasyon mantığını alıp basit bir Scikit-learn regresyon modeliyle Jupyter defterinde canlandırırız.",
+    "referanslar": [
+     {
+      "ad": "arXiv Üst Atmosfer Yoğunluğu Yapay Zekâ Tahmini Makalesi",
+      "url": "https://arxiv.org/abs/2608.00352",
+      "tur": "makale"
+     },
+     {
+      "ad": "Space Weather Dergisi Termosfer Yoğunluk Analizi",
+      "url": "https://doi.org/10.1029/2020SW002664",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Termosfer 400 km nötr yoğunluk anomalisi ve uydu yörünge alçalması, 2024-05-11, 3 saatlik",
+      "aciklama": "Fırtına anında termosferik şişme ve uyduların günlük irtifa kaybı artışı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://arxiv.org/abs/2608.00352",
+      "aciklama": "arXiv üst atmosfer yoğunluk tahmini araştırma makalesi özet sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ UUBF Uzay Sistemleri Kulübü",
+   "ne": "Küp-uydu yörünge ömrü hesapları ve görev tasarımı yürüten İTÜ öğrenci çalışma grubu.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Uzay Sistemleri Kulübü öğrencileri, tasarladıkları 3U küp-uydunun 500 km yörüngede kalış süresini güneş döngüsü 25 senaryolarıyla hesapladı.",
+    "nasil": "Açık kaynaklı Orekit ve poliastro kütüphanelerini kullanarak termosferik sürtünme katsayısını ve güneş paneli oryantasyonuna bağlı kesit alanı değişimini simüle ettiler.",
+    "neEdindiler": "Güneş maksimumunda uydunun hedeflenen 2 yıllık görev ömrünü tamamlayabileceğini sayısal olarak kanıtlayıp fırlatma desteği aldılar.",
+    "bizNasilKatki": "Takımın görev planlama yazılımına NOAA SWPC canlı API bağlantısı ekleyerek dinamik yörünge bozunumu eklentisi sağlarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı Uzay Sistemleri Kulübü",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "ESA Debris Risk Assessment and Mitigation Analysis (DRAMA) Kılavuzu",
+      "url": "https://sdup.esoc.esa.int/drama/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "LEO 500 km irtifada güneş lekesi sayısı ve yörünge ömrü korelasyonu, 2024-05-15, saatlik",
+      "aciklama": "11 yıllık güneş lekesi döngüsünün termosfer yoğunluğu ve uydu ömrüne etkisi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci kulüpleri ve mühendislik takımları tanıtım sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "SWPC'den güneş aktivitesi al",
+   "Yoğunluk modeline bağla",
+   "Sürüklenme değişimini hesapla"
+  ],
+  "edinim": [
+   [
+    "UZB 411E",
+    "termosfer, uydu sürüklenmesi"
+   ],
+   [
+    "MTO225",
+    "radyasyon dengesi"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "NOAA Uzay Havası Tahmin Merkezi",
+    "url": "https://www.swpc.noaa.gov/",
+    "gorsel": "g/kaynak/swpc.jpg",
+    "lisans": "kamu malı",
+    "slug": "swpc"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Fırlatma penceresinde rüzgâr ve şimşek riskini birlikte tahmin ederiz.",
+  "senin": "AKM 219E Fluid Mechanics, UZB 411E Space Environment",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO225 Radyasyon, MTO301 Uzaktan Algılama",
+  "ortakIs": "Küp-uydu yükünde bulut tespiti, fırlatma penceresi hava riski",
+  "detay": "Ortak zemin: AKM 219E Fluid Mechanics ↔ MTO337 Atmosfer Dinamiği; UZB 411E Space Environment ↔ MTO225 Güneş ve Yer Radyasyonu. Örnek görev: fırlatma penceresi için rüzgâr ve şimşek riski ya da küp-uydu görüntüsünde bulut tespiti. Kazanç: görev planlamasında hava riskini sayıyla konuşabilmek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2713"
+ },
+ "amac": "Güneş fırtınaları ve uzay havası indislerinden termosfer yoğunluğunu öngörerek LEO uydularının aerodinamik sürtünme ve irtifa kaybını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "UZB 411E",
+   "projeyeKatki": "Termosferik atmosfer sürtünmesi, uydunun balistik katsayısı, F10.7 güneş akısı ve Kp/Ap jeomanyetik indisleri ile yörünge bozunumu bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Termosferik sürtünme ivmesi bağıntısı",
+     "nerede": "3. adımda: Güneş fırtınası sırasında artan termosfer yoğunluğundan uydunun maruz kaldığı aerodinamik frenleme ivmesini ve irtifa kaybını hesaplarken."
+    },
+    {
+     "formulAd": "İyonosferik sinyal gecikmesi bağıntısı",
+     "nerede": "2. adımda: Üst atmosferde güneş ekstrem ultraviyole ışımasıyla iyonlaşan elektron yoğunluğundaki sıçramaları takip ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 225",
+   "projeyeKatki": "Güneş spektral ışınımı, atmosferik absorpsiyon ve termosferik gazların güneş enerjisini soğurarak genleşmesi ve ısınma-soğuma dengesi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Beer-Lambert ışınım sönümleme bağıntısı",
+     "nerede": "2. adımda: Güneşten gelen aşırı morötesi fotonların üst atmosfer katmanlarında soğurularak termosferi ısıtma ve genleştirme miktarını hesaplarken."
+    },
+    {
+     "formulAd": "Stefan-Boltzmann toplam ışıma yasası",
+     "nerede": "3. adımda: Jeomanyetik fırtına sonrasında termosferik nitrik oksit salımıyla üst atmosferin kızılötesi soğuma dengesini analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "NOAA SWPC uzay havası verilerinden termosfer yoğunluğu hesaplanıp uydunun günlük yörünge irtifa kaybı çıkarılır.",
+  "ayrinti": "NOAA Uzay Havası Tahmin Merkezi (SWPC) üzerinden son 2 yılın günlük F10.7 güneş radyo akısı ve Kp/Ap jeomanyetik indisleri indirilir. MTO 225 ışınım soğurma ve üst atmosfer ısınma ilkeleriyle güneş enerjisi girdisi hesaplanır. UZB 411E dersindeki Jacchia-Roberts ve basitleştirilmiş üst atmosfer yoğunluk formülü 300-600 km irtifalar için kodlanır. 3U küp-uydu parametreleri için aerodinamik sürtünme ivmesi ve günlük irtifa kaybı hesaplanarak fırtına dönemleriyle sakin dönemler karşılaştırılır. 3 haftada tamamlanır.",
+  "sonuc": "Güneş fırtınalarının LEO uydularındaki irtifa kaybını 5 katına çıkardığını gösteren, interaktif grafiklere sahip açık Python defteri elde edilir.",
+  "senden": "UZB 411E Space Environment",
+  "bizden": "Atmosferin katmanları ve radyasyon bilgisi (MTO 225)",
+  "adimlar": [
+   {
+    "baslik": "Açık uzay havası ve güneş aktivitesi verisinin çekilmesi",
+    "oz": "NOAA SWPC'den F10.7 akısı ve Kp/Ap indisleri indirilir.",
+    "ayrinti": "NOAA SWPC FTP ve REST API servislerinden günlük F10.7 güneş radyo akısı, Dst indisi ve 3 saatlik gezegensel Kp jeomanyetik fırtına verileri çekilerek zaman serisi oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "NOAA SWPC API ile F10.7 cm radyo akısı ve Kp fırtına indisleri JSON ve CSV formatında çekilir.",
+      "sade": "UZB 411E dersindeki 'Güneş aktivitesi ve jeomanyetik fırtınaların üst atmosfer yoğunluğuna etkisini hesaplamak' bilgisiyle güneş patlamaları ve jeomanyetik fırtına şiddeti verileri ayrıştırılır. Üst atmosferi ısıtacak enerji girdileri toplanır.",
+      "altAdimlar": [
+       "Python requests kütüphanesiyle NOAA SWPC veri uç noktasına bağlanılır.",
+       "Günlük F10.7 akısı ve 3 saatlik Ap jeomanyetik endeksleri indirilir.",
+       "Tarih indeksli Pandas tablosu kurularak sakin ve fırtınalı günler etiketlenir."
+      ],
+      "kazanim": {
+       "ders": "UZB 411E",
+       "madde": "Güneş aktivitesi ve jeomanyetik fırtınaların üst atmosfer yoğunluğuna etkisini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Güneş ekstrem ultraviyole (EUV) ışımasının F10.7 akısıyla ampirik ölçekleme bağıntısı kurulur.",
+      "sade": "MTO 225 dersindeki 'Planck, Stefan-Boltzmann ve Wien yasalarıyla spektral ışıma akısını hesaplamak' bilgisiyle güneş spektrumunun yüksek enerjili kısa dalga bileşeni hesaplanır. Üst atmosferin en tepesine ulaşan radyasyon akısı bulunur.",
+      "altAdimlar": [
+       "F10.7 radyo akısından atmosferi ısıtan EUV foton akısı ampirik formülle türetilir.",
+       "Güneş patlaması anlarındaki ani ışıma sıçramaları tespit edilir.",
+       "Zaman serisindeki eksik günler kübik enterpolasyon ile tamamlanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Planck, Stefan-Boltzmann ve Wien yasalarıyla spektral ışıma akısını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Üst atmosfer yoğunluk denkleminin kodlanması",
+    "oz": "F10.7 ve Kp girdili basitleştirilmiş Jacchia modeli yazılır.",
+    "ayrinti": "400 km irtifada termosfer sıcaklığı ve nötr gaz yoğunluğunu güneş akısı ve jeomanyetik aktiviteye bağlayan basitleştirilmiş Jacchia-Roberts formülasyonu Python fonksiyonu olarak yazılır.",
+    "nasil": [
+     {
+      "teknik": "Eksosferik sıcaklık T_inf = 379 + 3.24*F10.7 + 65*Kp formülasyonu ile yoğunluk ölçek yüksekliği hesaplanır.",
+      "sade": "UZB 411E dersindeki 'Termosferdeki atomik oksijen akısı ve yüzey erozyon hızını belirlemek' bilgisiyle üst atmosferin güneş ısısıyla ne kadar şiştiği hesaplanır. Uydunun uçtuğu 400 km yükseklikteki gaz yoğunluğu bulunur.",
+      "altAdimlar": [
+       "Güneş ve jeomanyetik aktiviteye göre eksosfer sıcaklığı formüle edilir.",
+       "Barometrik ölçek yüksekliği H = R*T/(M*g) her irtifa için türetilir.",
+       "400 km irtifadaki atomik oksijen ve azot yoğunluğu kg/m³ biriminde çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "UZB 411E",
+       "madde": "Termosferdeki atomik oksijen akısı ve yüzey erozyon hızını belirlemek."
+      }
+     },
+     {
+      "teknik": "Beer-Lambert yasası ile morötesi ışınımın katman bazlı soğurulması ve yerel ısınma hızı hesaplanır.",
+      "sade": "MTO 225 dersindeki 'Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak' bilgisiyle güneş ışınlarının termosfer gazları tarafından emilme oranı incelenir. Isınan gaz tabakasının yoğunluk artışı doğrulanır.",
+      "altAdimlar": [
+       "Üst atmosfer katmanlarında optik derinlik hesabı yapılır.",
+       "Absorbe edilen foton enerjisi yerel ısı artış hızına (K/gün) dönüştürülür.",
+       "Model çıktıları NRLMSISE-00 referans atmosfer değerleriyle kıyaslanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Uydu sürtünme kuvveti ve yörünge alçalma hızının hesabı",
+    "oz": "Balistik katsayı ve hızdan frenleme ivmesi ve irtifa kaybı bulunur.",
+    "ayrinti": "Standart 3U küp-uydu geometrisi (m = 4 kg, A = 0.03 m², Cd = 2.2) tanımlanır. Aerodinamik sürtünme ivmesi ve bir tam yörüngedeki irtifa kaybı da/dt sayısal olarak hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "Aerodinamik sürtünme ivmesi a_d = -0.5*Cd*(A/m)*rho*v^2 bağıntısıyla hesaplanır.",
+      "sade": "UZB 411E dersindeki 'Termosferik sürtünme ivmesi bağıntısı' bilgisiyle uydunun seyrek hava moleküllerine çarpmasıyla oluşan frenleme kuvveti bulunur. Sürtünmenin uyduyu günde kaç metre aşağı çektiği hesaplanır.",
+      "altAdimlar": [
+       "400 km dairesel yörünge hızı v = sqrt(GM/r) yaklaşık 7660 m/s olarak atanır.",
+       "Uydunun balistik katsayısı BC = m / (Cd * A) hesaplanır.",
+       "Her zaman adımı için aerodinamik frenleme ivmesi ve günlük irtifa kaybı türetilir."
+      ],
+      "kazanim": {
+       "ders": "UZB 411E",
+       "madde": "Güneş aktivitesi ve jeomanyetik fırtınaların üst atmosfer yoğunluğuna etkisini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Jeomanyetik fırtına sonrasında atmosferik soğuma dengesi Stefan-Boltzmann bağıntısıyla incelenir.",
+      "sade": "MTO 225 dersindeki 'Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak' bilgisiyle fırtına bittikten sonra termosferin uzaya kızılötesi ışınım salarak sakinleşme süreci değerlendirilir. Yoğunluğun normale dönüş süresi bulunur.",
+      "altAdimlar": [
+       "Fırtına sonrası artan nitrik oksit uzun dalga salımıyla soğuma hızı formüle edilir.",
+       "Termosfer yoğunluğunun sakin duruma dönüş yarı ömrü 24 ila 48 saat olarak hesaplanır.",
+       "İrtifa kaybı zaman serisi kümülatif toplam olarak entegre edilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Farklı günler ve fırtına dönemleri için karşılaştırma",
+    "oz": "Sakin ve fırtınalı günlerde irtifa kaybı grafiğe dökülür.",
+    "ayrinti": "Mayıs 2024 büyük güneş fırtınası ile sakin kış günleri karşılaştırılır. Fırtına anında sürtünmenin 5 kata kadar çıktığı ve uydunun ömrünün nasıl kısaldığı görselleştirilir.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib ile sakin ve fırtınalı günler için günlük irtifa kaybı karşılaştırmalı grafik olarak çizilir.",
+      "sade": "UZB 411E dersindeki 'Van Allen radyasyon kuşaklarındaki yüklü parçacık akılarını ve uydu radyasyon dozunu kestirmek' bilgisiyle uzay havasının uydu operasyonlarına somut etkisi görselleştirilir. Güneş fırtınalarının uyduları nasıl yavaşlattığı gösterilir.",
+      "altAdimlar": [
+       "Mayıs 2024 fırtına haftası için günlük irtifa kaybı bar grafiği çizilir.",
+       "Sakin dönemde günde 15 metre olan kaybın fırtınada 85 metreye fırladığı belgelenir.",
+       "Grafikler ve analiz özetleri yerel dizine yüksek çözünürlüklü görsel çıktılar olarak aktarılır."
+      ],
+      "kazanim": {
+       "ders": "UZB 411E",
+       "madde": "Van Allen radyasyon kuşaklarındaki yüklü parçacık akılarını ve uydu radyasyon dozunu kestirmek."
+      }
+     },
+     {
+      "teknik": "Uzun vadeli yörünge ömrü tahmini yapılarak güneş döngüsünün küp-uydu görevine etkisi özetlenir.",
+      "sade": "MTO 225 dersindeki 'Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek' bilgisiyle atmosfer enerji dengesindeki küresel değişimlerin uydu ömrüne etkisi yorumlanır. Uzay mühendislerine görev tasarım tavsiyeleri sunulur.",
+      "altAdimlar": [
+       "Farklı başlangıç irtifaları (400, 500, 600 km) için toplam yörünge kalış süreleri hesaplanır.",
+       "Güneş maksimumu ve minimumu senaryoları karşılaştırmalı tabloya dökülür.",
+       "Elde edilen tüm analiz kodları açık kaynaklı bir Jupyter defterinde paylaşılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Güneş diski koronal delik ve jeomanyetik fırtına endeksleri, NOAA SWPC, 2024-05-10..15, 6 saatlik",
+   "aciklama": "Güneş patlaması esnasında F10.7 radyo akısı ve termosferik yoğunluk artışı animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.swpc.noaa.gov/products/solar-cycle-progression",
+   "aciklama": "NOAA Uzay Havası Tahmin Merkezi 25. güneş döngüsü ve radyo akısı ilerleme paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NOAA Space Weather Prediction Center (SWPC) resmi uzay havası veri portalı",
+   "url": "https://www.swpc.noaa.gov/products/solar-cycle-progression"
+  },
+  {
+   "ad": "NASA CelesTrak iki satırlı yörünge elemanları (TLE) ve uydu kataloğu",
+   "url": "https://celestrak.org/satcat/search.php"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/UZB-04.json",
+  "tarih": "2026-10-15 00:03",
+  "geminiSha1": "81bc395f42c3"
+ }
+}

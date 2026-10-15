@@ -1,0 +1,430 @@
+{
+ "id": "UCK-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "UCK",
+  "bolum": "Uçak Mühendisliği",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "Buzlanma riski haritası (YZ sınıflandırıcı)",
+ "ne": "Uçak ve insansız hava araçlarının emniyetini tehdit eden aşırı soğumuş su damlacıklarının kanat profiline çarpıp donmasıyla oluşan buzlanma tehlikesinin, çok katmanlı sayısal atmosfer verileri ve makine öğrenmesi sınıflandırıcısıyla 3 boyutlu haritalanması.",
+ "adimlar": [
+  "ERA5'ten sıcaklık ve nem verisini indir",
+  "Buzlanma koşullarını kurallarla etiketle",
+  "Bu koşulları tanıyan bir sınıflandırıcı eğit",
+  "Risk haritasını çiz"
+ ],
+ "sonuc": "Sonunda buzlanma risk haritası olur.",
+ "senden": "AKM 219 Akışkanlar Mekaniği",
+ "bizden": "Bulut fiziği ve havacılık meteorolojisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "AKM 219",
+    "ad": "Akışkanlar Mekaniği"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 304",
+    "ad": "Havacılık Meteorolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NCAR Current Icing Product (CIP)",
+   "ne": "NCAR'ın geliştirdiği, uçuşta buzlanma riskini saatlik haritalayan resmi ürün.",
+   "url": "https://ral.ucar.edu/solutions/benefits/accurate-predictions-of-in-flight-icing",
+   "ayrinti": {
+    "neYaptilar": "ABD Ulusal Atmosferik Araştırma Merkezi (NCAR), uydu, radar, yüzey gözlemleri ve sayısal hava tahmin modellerini birleştirerek saatlik CIP buzlanma teşhis sistemi kurdu.",
+    "nasil": "Farklı irtifa katmanlarındaki sıcaklık ve bulut sıvı su içeriğini bulanık mantık algoritmalarıyla birleştirip buzlanma şiddetini hafif, orta ve şiddetli olarak sınıflandırdılar.",
+    "neEdindiler": "Federal Havacılık İdaresi (FAA) ve havayolları tarafından operasyonel uçuş rotası planlamasında standart ürün olarak kullanılarak buzlanma kazalarını belirgin biçimde azalttılar.",
+    "bizNasilKatki": "CIP algoritmasının fiziksel karar ağacını ERA5 yeniden analiz verileri üzerinde açık kaynaklı Python kütüphaneleriyle basitleştirilmiş bir prototipe dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "NCAR CIP Uçuşta Buzlanma Teşhis Sistemi teknik özeti",
+      "url": "https://ral.ucar.edu/solutions/benefits/accurate-predictions-of-in-flight-icing",
+      "tur": "web"
+     },
+     {
+      "ad": "Bernstein vd. (2005) Current Icing Product mimarisi",
+      "url": "https://doi.org/10.1175/WAF878.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Balkanlar ve Türkiye 700 hPa sıcaklık ve bağıl nem alanı, ERA5, 2024-01-20, 6 saatlik",
+      "aciklama": "Sıfır derecenin altındaki aşırı soğumuş nemli bulut katmanlarının yatay dağılımı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Airframe_icing_types.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Uçak kanat profilinde rime ve glaze buz birikimi morfolojileri diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Ubiq Aerospace",
+   "ne": "NTNU'daki doktora çalışmasından doğdu; dronlar için buz önleme sistemi üreten şirkete dönüştü.",
+   "url": "https://www.ntnutto.no/prosjekter-items/d-ice/",
+   "ayrinti": {
+    "neYaptilar": "Norveç Bilim ve Teknoloji Üniversitesi (NTNU) araştırmacıları, insansız hava araçlarının kanatlarında buzlanmayı tespit eden ve termal olarak çözen D-ICE otonom koruma sistemini ticarileştirdi.",
+    "nasil": "Kanat hücum kenarına gömülü mikro sensörlerle buz birikimini anlık algılayıp karbon nanotüp ısıtıcı filmleri akıllı enerji yönetimiyle devreye soktular.",
+    "neEdindiler": "Arktik ve soğuk iklim koşullarında askeri ve sivil İHA'ların güvenle uçmasını sağlayarak savunma sanayiinden stratejik yatırım aldılar.",
+    "bizNasilKatki": "Girişimin donanım odaklı korumasını uçuş öncesi hava durumu optimizasyonuyla tamamlayarak uçağı buzlanma bölgesine sokmayan rota tavsiyesi üretiriz.",
+    "referanslar": [
+     {
+      "ad": "NTNU Teknoloji Transfer Ofisi D-ICE Proje Sayfası",
+      "url": "https://www.ntnutto.no/prosjekter-items/d-ice/",
+      "tur": "web"
+     },
+     {
+      "ad": "Hann vd. (2020) UAV icing effects and protection methods",
+      "url": "https://doi.org/10.4050/JAHS.66.022005",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Kuzey Ege ve Marmara 850 hPa donma seviyesi yüksekliği, GFS, 2024-01-22, 3 saatlik",
+      "aciklama": "Sıfır derece izoterminin alçak irtifaya indiği kış fırtınası koşullarının animasyonu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ntnutto.no/prosjekter-items/d-ice/",
+      "aciklama": "NTNU TTO İHA buz önleme teknolojisi tanıtım ve ürün vitrini"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NTNU UAV Icing Lab",
+   "ne": "Dron kanatlarında buz oluşumunu inceleyen üniversite laboratuvarı.",
+   "url": "https://uavicinglab.com/",
+   "ayrinti": {
+    "neYaptilar": "NTNU İHA Buzlanma Laboratuvarı, iklimlendirilmiş rüzgâr tünellerinde farklı kanat profilleri üzerinde aşırı soğumuş su damlacıklarının birikim dinamiklerini deneysel olarak haritaladı.",
+    "nasil": "Farklı damlacık çapı (MVD) ve sıvı su içeriği (LWC) değerlerinde kanat profilindeki kaldırma kuvveti kaybını ve sürükleme artışını yüksek hızlı kameralarla görüntülediler.",
+    "neEdindiler": "Açık veri tabanı ve İHA buzlanma simülasyon araçları yayımlayarak uluslararası havacılık standartlarına katkı sağladılar.",
+    "bizNasilKatki": "Laboratuvarın deneysel LWC ve MVD eşik değerlerini ERA5 katman verilerinden türettiğimiz meteorolojik parametrelerle eşleştiririz.",
+    "referanslar": [
+     {
+      "ad": "NTNU UAV Icing Lab araştırma grubu resmi portalı",
+      "url": "https://uavicinglab.com/research/",
+      "tur": "web"
+     },
+     {
+      "ad": "SAE Uluslararası Havacılık Standartları buzlanma bülteni",
+      "url": "https://doi.org/10.4271/2019-01-1972",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Havalimanı dikey sıcaklık profili ve donma seviyesi, 2024-01-25, saatlik",
+      "aciklama": "Farklı basınç katmanlarında donma noktası altındaki bulut kalınlığının değişimi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Wing_icing_wind_tunnel.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Buzlanma rüzgâr tünelinde kanat hücum kenarında oluşan buz kütlesi testi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ ARI İHA Takımı",
+   "ne": "Teknofest ve uluslararası yarışmalarda zorlu kış hava koşullarında görev uçuşu yapan İTÜ takımı.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ ARI İHA Takımı, kış aylarında gerçekleştirilen otonom arama kurtarma yarışmalarında kanat ve pitot tüpü buzlanmasına karşı telemetri uyarı sistemi tasarladı.",
+    "nasil": "Uçuş esnasında motor akım tüketimi ve hava hızı verilerini karşılaştırarak sürükleme kuvvetindeki anormal artıştan kanat buzlanmasını algıladılar.",
+    "neEdindiler": "Soğuk hava testlerinde motor aşırı yüklenmelerini önceden tespit ederek otonom iniş prosedürünü başarıyla devreye soktular.",
+    "bizNasilKatki": "Takımın telemetri yazılımına uçuş rotasındaki meteorolojik buzlanma olasılığı katmanını canlı overlay olarak entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı ARI İHA Sayfası",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "AIAA Havacılık ve Uzay Bilimleri Kongresi İHA buzlanma bildirisi",
+      "url": "https://doi.org/10.2514/6.2021-1250",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Türkiye geneli 850 hPa buzlanma potansiyeli indeksi, ERA5, 2024-01-26, 6 saatlik",
+      "aciklama": "Karadeniz kıyılarında deniz etkisiyle oluşan aşırı soğumuş bulut bantları"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci kulüpleri ve mühendislik takımları tanıtım sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Sıcaklık, nem, bulut katmanlarını al",
+   "Buzlanma eşiklerini uygula",
+   "Haritayı AWC ürünleriyle karşılaştır"
+  ],
+  "edinim": [
+   [
+    "AKM 219",
+    "akış içinde damlacık davranışı"
+   ],
+   [
+    "MTO304",
+    "buzlanma türleri ve koşulları"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "NOAA Aviation Weather Center (türbülans, buzlanma)",
+    "url": "https://aviationweather.gov/",
+    "gorsel": "g/kaynak/awc.jpg",
+    "lisans": "kamu malı",
+    "slug": "awc"
+   },
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin uçağın tahmin edilen havada uçar; türbülans tahminini birlikte düzeltir, ne kadar tuttuğunu ölçeriz.",
+  "senin": "AKM 219 Akışkanlar Mekaniği, MAT 202E Numerical Methods",
+  "bizim": "MTO337/340 Atmosfer Dinamiği, MTO304 Havacılık Meteorolojisi",
+  "ortakIs": "Drone ile sınır tabaka ölçümü, türbülans/rüzgar kesmesi tahmini",
+  "detay": "Ortak zemin: AKM 219 Akışkanlar Mekaniği ↔ MTO337/340 Atmosfer Dinamiği; aynı korunum denklemleri, biz Coriolis'i ekliyoruz. MAT 202E Sayısal Yöntemler iki bölümde aynı ders. Örnek görev: drone ile sınır tabaka ölçümü ya da havalimanında türbülans ve rüzgâr kesmesi tahmini. Kazanç: uçuş güvenliğinde gerçek hava verisiyle çalışmış olmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2727"
+ },
+ "amac": "Atmosferik sıcaklık, süper-soğumuş sıvı su içeriği ve bağıl nem katmanlarından makine öğrenmesiyle uçak kanadı buzlanma riskini 3 boyutlu haritalamak.",
+ "ortakDers": [
+  {
+   "kod": "AKM 219",
+   "projeyeKatki": "Akış içindeki damlacık kinematiği, aerodinamik yakalama verimi, kanat profilinde sınır tabaka kalınlaşması ve parazit sürükleme hesabı bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Reynolds sayısı benzerlik bağıntısı",
+     "nerede": "2. adımda: Kanat hücum kenarı çevresindeki hava akımında asılı kalan aşırı soğumuş su damlacıklarının yakalama katsayısını hesaplarken."
+    },
+    {
+     "formulAd": "Yüzey kayma gerilmesi ve sürtünme hızı",
+     "nerede": "3. adımda: Kanat yüzeyinde biriken pürüzlü rime buzunun sınır tabaka profilinde yarattığı sürtünme direncini kestirirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 304",
+   "projeyeKatki": "Uçak buzlanma mekanizmaları, aşırı soğumuş sıvı su içeriği, METAR ve pilot raporları doğrulaması ve uçuş seviyesi risk indisleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Düşey rüzgâr kayması şiddeti",
+     "nerede": "2. adımda: Donan yağmur koşullarını tetikleyen sıcak hava adveksiyonu tabakasındaki dikey makaslanmayı sınırlandırırken."
+    },
+    {
+     "formulAd": "Ellrod açık hava türbülansı indeksi",
+     "nerede": "3. adımda: Bulut içi konvektif türbülans ile birleşen şiddetli buzlanma bölgelerini bileşik risk katsayısıyla cezalandırırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 seviye verilerinden sıcaklık ve nem kurallarıyla buzlanma etiketlenip LightGBM ile risk haritası üretilir.",
+  "ayrinti": "Copernicus CDS üzerinden standart basınç katmanlarında sıcaklık, bağıl nem ve dikey hız verileri çekilir. MTO 304 aşırı soğumuş su damlacığı kriterleri (eksi 20 ile sıfır derece arası, nem yüzde 80 üstü) ile referans etiketler oluşturulur. AKM 219 aerodinamik yakalama formülleriyle damlacık çarpma şiddeti hesaplanır. Makine öğrenmesi modeli eğitilerek uçuş koridorlarında 3 boyutlu buzlanma olasılık haritaları üretilir. 3 haftada tamamlanır.",
+  "sonuc": "Uçuş rotalarında irtifa ve zamana bağlı buzlanma riskini 3 boyutlu katmanlar halinde gösteren açık Python defteri ve haritası elde edilir.",
+  "senden": "AKM 219 Akışkanlar Mekaniği",
+  "bizden": "Bulut fiziği ve havacılık meteorolojisi (MTO 304)",
+  "adimlar": [
+   {
+    "baslik": "ERA5 çok katmanlı atmosfer verisinin indirilmesi",
+    "oz": "Basınç seviyelerinde sıcaklık, nem ve geopotansiyel çekilir.",
+    "ayrinti": "Copernicus CDS API ile Türkiye hava sahasını kapsayan 1000, 925, 850, 700 ve 500 hPa katmanlarında sıcaklık, bağıl nem, bulut sıvı su içeriği ve dikey hız verileri indirilir.",
+    "nasil": [
+     {
+      "teknik": "CDS API ile kış dönemine ait standart izobarik katmanlar NetCDF formatında çekilerek Xarray ile dizinlenir.",
+      "sade": "MTO 304 dersindeki 'METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak' bilgisiyle uçuş seviyelerindeki atmosfer katmanları ayrıştırılır. İrtifaya göre değişen sıcaklık ve nem profilleri çıkarılır.",
+      "altAdimlar": [
+       "Python cdsapi istemcisiyle hedef coğrafi pencere ve izobarik seviyeler tanımlanır.",
+       "İndirilen NetCDF veri seti Xarray kütüphanesiyle bellek üzerinde çok boyutlu diziye açılır.",
+       "Sıcaklık Kelvin biriminden Santigrat dereceye dönüştürülerek yerel çalışma dizininde saklanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+      }
+     },
+     {
+      "teknik": "Her ızgara hücresinde hidrostatik denklemle basınç seviyeleri geometrik irtifaya dönüştürülür.",
+      "sade": "AKM 219 dersindeki 'Akışkan kinematiği ve hız alanının diferansiyel analizini yapmak' bilgisiyle basınç gradyanından irtifa koordinatları türetilir. Sayısal model çıktısı uçağın uçuş yüksekliğiyle hizalanır.",
+      "altAdimlar": [
+       "Jeopotansiyel yükseklik verileri yerçekimi ivmesine bölünerek geometrik metreye çevrilir.",
+       "Her enlem ve boylam noktası için dikey irtifa profili interpolasyon fonksiyonu kurulur.",
+       "Standart uçuş seviyeleri (FL050, FL100, FL150) koordinat sistemine entegre edilir."
+      ],
+      "kazanim": {
+       "ders": "AKM 219",
+       "madde": "Akışkan kinematiği ve hız alanının diferansiyel analizini yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Fiziksel kurallarla buzlanma koşullarının etiketlenmesi",
+    "oz": "Sıcaklık ve bağıl nem eşikleriyle buzlanma sınıfları türetilir.",
+    "ayrinti": "Aşırı soğumuş su damlacıklarının varlık koşulları olan sıcaklık ve nem eşikleri uygulanır. Rime buzlanma ve şeffaf glaze buzlanma potansiyeli ayrı sütunlarda işaretlenir.",
+    "nasil": [
+     {
+      "teknik": "Sıcaklığın -20 °C ile 0 °C arasında ve bağıl nemin %80 üzerinde olduğu hücreler buzlanma potansiyeli olarak etiketlenir.",
+      "sade": "MTO 304 dersindeki 'Uçak buzlanma mekanizmalarını ve aşırı soğumuş su damlacıkları riskini hesaplamak' bilgisiyle tehlikeli atmosfer katmanları belirlenir. Sıfır derecenin altındaki sıvı bulut damlacıkları risk sınıfına atanır.",
+      "altAdimlar": [
+       "Sıcaklık -20 °C ile 0 °C aralığında ve bağıl nem %80 üstü olan durumlar 1 olarak işaretlenir.",
+       "Sıcaklık -8 °C ile 0 °C arasında yüksek sıvı su içeriğinde glaze buz türü etiketlenir.",
+       "-20 °C ile -8 °C arasında ise donma anında hava hapseden pürüzlü rime buz sınıfı tanımlanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Uçak buzlanma mekanizmalarını ve aşırı soğumuş su damlacıkları riskini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Dikey hız ve damlacık büyüklüğü parametrelerinden aerodinamik çarpma indisi türetilir.",
+      "sade": "AKM 219 dersindeki 'Laminer ve türbülanslı akış koşullarını analiz etmek' bilgisiyle akış içindeki mikro damlacıkların kanada çarpma olasılığı hesaplanır. Aerodinamik kütle birikim oranı belirlenir.",
+      "altAdimlar": [
+       "Pozitif dikey hız bölgeleri bulut içi sıvı su beslemesini artırdığı için risk katsayısı yükseltilir.",
+       "Kanat hücum kenarı damlacık yakalama verimi ampirik Langmuir formülasyonuyla hesaplanır.",
+       "Elde edilen sürekli buzlanma şiddeti indisi hedef etiket olarak normalize edilir."
+      ],
+      "kazanim": {
+       "ders": "AKM 219",
+       "madde": "Laminer ve türbülanslı akış koşullarını analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Makine öğrenmesi sınıflandırıcısının eğitilmesi",
+    "oz": "LightGBM ile buzlanma olasılık sınıflandırıcısı kurulur.",
+    "ayrinti": "Öznitelik matrisi sıcaklık, çiğ noktası depresyonu, dikey hız ve rüzgâr kayması ile zenginleştirilir. LightGBM modeli eğitilerek çapraz doğrulamayla test edilir.",
+    "nasil": [
+     {
+      "teknik": "Türetilen termodinamik öznitelikler üzerinden LightGBM sınıflandırıcısı eğitilerek ROC-AUC skoru ölçülür.",
+      "sade": "AKM 219 dersindeki 'Boyut analizi ve benzerlik ilkelerini akış problemlerine uygulamak' bilgisiyle boyutsuz atmosfer değişkenleri makine öğrenmesi modeline beslenir. Algoritma buzlanma koşullarını tanımayı öğrenir.",
+      "altAdimlar": [
+       "Veri seti zamansal bloklar halinde yüzde 80 eğitim ve yüzde 20 sınama olarak ayrılır.",
+       "LightGBM gradyan artırma modeli hiperparametre aramasıyla optimize edilir.",
+       "Sınama seti üzerinde ROC-AUC ve F1 metrikleri hesaplanarak sınıflandırma başarısı belgelenir."
+      ],
+      "kazanim": {
+       "ders": "AKM 219",
+       "madde": "Boyut analizi ve benzerlik ilkelerini akış problemlerine uygulamak."
+      }
+     },
+     {
+      "teknik": "Düşey rüzgâr kayması ve türbülans alanları modele eklenerek donan yağmur cepleri tespit edilir.",
+      "sade": "MTO 304 dersindeki 'Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek' bilgisiyle sıcak hava inversiyonlarının altındaki aşırı tehlikeli donan yağmur zonları yakalanır. Modelin yanlış alarm oranı düşürülür.",
+      "altAdimlar": [
+       "Sıcaklık profilinde inversiyon katmanı tespiti yapılarak donan yağmur riski ayırt edilir.",
+       "Rüzgâr kesmesi olan bölgelerde buzlanma ciddiyeti bir üst risk derecesine yükseltilir.",
+       "Öznitelik önem sıralaması çıkarılarak en belirleyici değişkenlerin katkısı görselleştirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Üç boyutlu buzlanma risk haritasının çizilmesi",
+    "oz": "Farklı uçuş irtifalarında risk haritası çizilip doğrulanır.",
+    "ayrinti": "Eğitilen model tüm Türkiye hava sahası ızgarasına uygulanır. Belirlenen uçuş irtifalarında buzlanma olasılık haritaları üretilir ve NOAA AWC ürünleriyle karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "Tüm hava sahası ızgarasında model tahmin olasılıkları üretilip izobarik katmanlar halinde haritalanır.",
+      "sade": "MTO 304 dersindeki 'Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak' bilgisiyle pilotların ve rota planlayıcıların görebileceği riskli hava koridorları haritaya dökülür. Tehlikeli uçuş seviyeleri renklendirilir.",
+      "altAdimlar": [
+       "Her irtifa katmanı için modelden 0 ile 1 arasında buzlanma olasılık değerleri hesaplanır.",
+       "Matplotlib ve Cartopy ile coğrafi taban üzerinde renkli kontur risk katmanları çizilir.",
+       "Buzlanma risk haritaları yerel dizine yüksek çözünürlüklü görsel çıktılar olarak aktarılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     },
+     {
+      "teknik": "Üretilen harita eşzamanlı NOAA AWC CIP buzlanma ürünüyle piksel bazında karşılaştırılır.",
+      "sade": "AKM 219 dersindeki 'Laminer ve türbülanslı akış koşullarını analiz etmek' bilgisiyle uçağın aerodinamik emniyetini tehdit eden risk sınırları uluslararası resmi tahmin ürünleriyle doğrulanır. Modelin tutarlılık oranı ölçülür.",
+      "altAdimlar": [
+       "NOAA Aviation Weather Center CIP ürününden aynı günün referans analiz haritası indirilir.",
+       "İki harita arasındaki uzamsal örtüşme IoU (Kesişim Bölü Birleşim) metriğiyle hesaplanır.",
+       "Farklı eşiklerdeki tutarlılık oranları sayısal özet tablosu halinde sunulur."
+      ],
+      "kazanim": {
+       "ders": "AKM 219",
+       "madde": "Laminer ve türbülanslı akış koşullarını analiz etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye geneli 700 hPa buzlanma olasılık indeksi ve sıcaklık konturları, ERA5, 2024-01-20..22, 6 saatlik",
+   "aciklama": "Kış fırtınası geçişinde uçuş koridorlarındaki 3 boyutlu buzlanma potansiyelinin zamansal evrimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://aviationweather.gov/data/products/icing/",
+   "aciklama": "NOAA Havacılık Hava Durumu Merkezi açık uçuş seviyesi buzlanma risk haritası portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NOAA Aviation Weather Center (AWC) operasyonel buzlanma ürünleri",
+   "url": "https://aviationweather.gov/data/products/icing/"
+  },
+  {
+   "ad": "Copernicus İklim Değişikliği Servisi ERA5 basınç seviyeleri veri seti",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/UCK-04.json",
+  "tarih": "2026-10-14 23:53",
+  "geminiSha1": "4ace0351ca10"
+ }
+}

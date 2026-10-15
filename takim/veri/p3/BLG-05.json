@@ -1,0 +1,544 @@
+{
+ "id": "BLG-05",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "BLG",
+  "bolum": "Bilgisayar Mühendisliği",
+  "fakulteKod": "BBF"
+ },
+ "ad": "Açık YZ hava tahminini Türkiye için değerlendirme",
+ "ne": "Açık kaynaklı bir yapay zekâ tahmininin Türkiye'de ne kadar iyi çalıştığını ölçüyoruz.",
+ "adimlar": [
+  "Açık bir yapay zekâ tahmin çıktısını indir",
+  "Türkiye bölgesini kes",
+  "ERA5 ile karşılaştırıp hatayı hesapla",
+  "Hatanın büyük olduğu bölgeleri haritada göster"
+ ],
+ "sonuc": "Sonunda hata haritaları ve kısa bir rapor olur.",
+ "senden": "BLG 202E Numerical Methods",
+ "bizden": "Hataların hava olaylarıyla yorumlanması",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "BLG 202E",
+    "ad": "Numerical Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "WeatherBench 2 (Google)",
+   "ne": "Yapay zekâ ve klasik tahminleri aynı ölçütlerle yarıştıran açık bir karşılaştırma ortamı.",
+   "url": "https://github.com/google-research/weatherbench2",
+   "ayrinti": {
+    "neYaptilar": "Google Research ve ECMWF araştırmacıları, yapay zekâ tabanlı hava tahmin modellerini tarafsız değerlendirmek için küresel bir kıyaslama standardı kurdu. Makalesi 2024'te JAMES dergisinde yayımlandı (Rasp vd.).",
+    "nasil": "Tüm modeller aynı ERA5 başlangıç koşullarından koşturulur; Zarr formatındaki tahminler Z500, T850 ve 2 m sıcaklık için kök ortalama kare hata (RMSE) ve anomali korelasyon katsayısı (ACC) ile değerlendirilir.",
+    "neEdindiler": "AIFS, GraphCast, Pangu-Weather ve klasik IFS modellerini tek bir karne tablosunda topladı; veri bilimi camiasının hava tahminine katkısını şeffaflaştırdı.",
+    "bizNasilKatki": "WeatherBench'in küresel Zarr veri havuzundan Türkiye koordinatlarını (35-43°K, 25-45°D) dilimleyerek alırız. Küresel modellerin Türkiye'nin karmaşık coğrafyasında nasıl davrandığını yerel ölçekte ilk kez haritalandırırız.",
+    "referanslar": [
+     {
+      "ad": "Rasp vd. (2024) WeatherBench 2, JAMES · DOI 10.1029/2023MS004019",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     },
+     {
+      "ad": "WeatherBench 2 GitHub deposu ve veri erişim kodu",
+      "url": "https://github.com/google-research/weatherbench2",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://sites.research.google/weatherbench/",
+      "aciklama": "WeatherBench 2 karne sayfası: modellerin değişken ve güne göre hata matrisi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/google-research/weatherbench2",
+      "aciklama": "Veri indirme ve bölgesel değerlendirme Python defterleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF AIFS",
+   "ne": "ECMWF'nin kendi yapay zekâ tahmini; açık haritaları yapay zekâ ile fizik tabanlı tahmini yan yana koyuyor.",
+   "url": "https://charts.ecmwf.int/products/plwww_3m_fc_aifs_wp_mean",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Orta Vadeli Hava Tahminleri Merkezi (ECMWF), 2023 sonunda kendi yapay zekâ tahmin sistemi AIFS'i duyurdu ve açık veri lisansıyla günlük operasyonel bültenlere ekledi.",
+    "nasil": "Çizge sinir ağları (GNN) tabanlı mimari, 1979'dan bugüne ERA5 verisiyle eğitildi. 0,25° çözünürlükte günde dört kez 15 günlük tahmin üretiyor; fizik tabanlı IFS modeline kıyasla işlemci süresi dakikalar seviyesine indi.",
+    "neEdindiler": "AIFS, çoğu troposferik değişkende ECMWF'nin amiral gemisi HRES modelini geride bıraktı veya yakaladı. Tahminler Open Data lisansıyla her gün dünyaya açılıyor.",
+    "bizNasilKatki": "ecmwf-opendata kütüphanesini kullanarak her gün AIFS'in Türkiye ızgara hücrelerini çekeriz; klasik IFS tahminiyle yan yana koyup 'YZ bugün nerede daha iyi' sorusunu canlı takip ederiz.",
+    "referanslar": [
+     {
+      "ad": "Lang vd. (2024) AIFS: Towards a new ECMWF forecasting system, ECMWF Newsletter",
+      "url": "https://www.ecmwf.int/en/newsletter/178/news/aifs-towards-new-ecmwf-forecasting-system",
+      "tur": "rapor"
+     },
+     {
+      "ad": "ECMWF Open Data AIFS veri seti sayfası",
+      "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-single",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-single",
+      "aciklama": "ECMWF AIFS veri sayfası: açık GRIB2 dosyaları ve parametre listesi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "Türkiye ve çevre denizler 850 hPa sıcaklık alanı, AIFS, 0..120 saat adımları",
+      "aciklama": "AIFS modelinin 5 günlük sinoptik sıcaklık tahmini animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Earth2Studio (NVIDIA)",
+   "ne": "Açık yapay zekâ tahmin modellerini indirip bölgesel olarak değerlendirmeye yarayan araç.",
+   "url": "https://github.com/NVIDIA/earth2studio",
+   "ayrinti": {
+    "neYaptilar": "NVIDIA, küresel yapay zekâ iklim ve hava modellerini (FourCastNet, CorrDiff, GraphCast) çalıştırmak, bölgesel çıkarım yapmak ve doğrulamak için açık kaynaklı Earth2Studio kütüphanesini geliştirdi.",
+    "nasil": "Modüler Python kütüphanesi; veri kaynakları (CDS, GFS, Zarr), model ağırlıkları ve doğrulama metrikleri arasında standart bir boru hattı sunar. GPU hızlandırmasıyla bölgesel kırpma ve doğrulama işlemlerini saniyeler içinde tamamlar.",
+    "neEdindiler": "Atmosfer bilimcilerin karmaşık derin öğrenme modellerini sıfırdan kurmadan tek satırla Türkiye veya seçilen bir bölgeye uygulamasını sağladı.",
+    "bizNasilKatki": "Earth2Studio'nun doğrulama işlevlerini kullanarak Türkiye bölgesinde ERA5 ile açık modeller arasındaki grid-to-grid RMSE ve anomali korelasyonu hesaplarını otomatikleştirebiliriz.",
+    "referanslar": [
+     {
+      "ad": "NVIDIA Earth2Studio GitHub açık kaynak deposu",
+      "url": "https://github.com/NVIDIA/earth2studio",
+      "tur": "kod"
+     },
+     {
+      "ad": "Pathak vd. (2022) FourCastNet: A Global Data-driven High-resolution Weather Model, arXiv 2202.11214",
+      "url": "https://arxiv.org/abs/2202.11214",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/NVIDIA/earth2studio",
+      "aciklama": "NVIDIA Earth2Studio deposu: bölgesel model çıkarımı ve doğrulama boru hattı örnekleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:AtmosphericModelSchematic.png",
+      "lisans": "NOAA",
+      "aciklama": "Atmosferik sayısal model grid yapısı: ızgara hücrelerinde sayısal hesaplama"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Brightband",
+   "ne": "Açık kaynak yapay zekâ hava modelleri üzerine kuruldu; tahmin hatalarını ölçen araçlar da geliştiriyor.",
+   "url": "https://www.brightband.com",
+   "ayrinti": {
+    "neYaptilar": "Yapay zekâ meteorolojisinin öncü araştırmacıları tarafından kurulan Brightband, tamamen açık kaynaklı yapay zekâ hava tahmin modellerini ve operasyonel doğrulama araçlarını yaygınlaştırmak için kuruldu.",
+    "nasil": "Gelişmiş temel atmosfer modellerini topluluk odaklı eğitip ağırlıklarını açık olarak yayımlıyor; ekstrem hava olayları (fırtına, sıcak hava dalgaları) için yerel güvenilirlik analizleri ve hata metrikleri sunuyor.",
+    "neEdindiler": "Önde gelen teknoloji fonlarından yatırım aldı; kapalı şirket modellerine karşı açık bilimi ve şeffaf tahmin karnelerini savunan küresel bir hareket oluşturdu.",
+    "bizNasilKatki": "Brightband'in açık doğrulama vizyonunu Türkiye ölçeğine taşırız. Modellerin genel ortalamada başarılı olup Türkiye'deki cephe geçişlerinde neden yanıldığını gösteren şeffaf bir karne defteri yayımlarız.",
+    "referanslar": [
+     {
+      "ad": "Brightband resmi sitesi ve vizyon sayfası",
+      "url": "https://www.brightband.com/about",
+      "tur": "web"
+     },
+     {
+      "ad": "Brightband teknoloji manifestosu ve açık kaynak hedefleri",
+      "url": "https://www.brightband.com/about",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.brightband.com/about",
+      "aciklama": "Brightband kurumsal arayüzü: açık kaynaklı temel hava modelleri vizyonu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.brightband.com/about",
+      "aciklama": "Açık hava bilimi ve topluluk odaklı model geliştirme hedefleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AI Weather Quest (ECMWF yarışması)",
+   "ne": "ECMWF'nin açık yarışması: üniversite takımları dahil ekipler 3-4 hafta ilerisi için yapay zekâ tahmini yarıştırıyor.",
+   "url": "https://aiweatherquest.ecmwf.int/leaderboards/",
+   "ayrinti": {
+    "neYaptilar": "ECMWF'nin düzenlediği küresel açık yarışmada öğrenci ve araştırma takımları yapay zekâ modellerini operasyonel olarak yarıştırıyor. RPSS skoruyla modeller haftalık olarak sıralanıyor.",
+    "nasil": "Girdi olarak açık tahminler ve yeniden analizler alınıyor. Küresel ızgarada 19-32 gün ilerisi için sıcaklık ve basınç anomalileri olasılıklı dilimler halinde tahmin ediliyor.",
+    "neEdindiler": "Onlarca üniversite ekibi şeffaf bir liderlik tablosunda yerel ve küresel tahmin becerilerini sergiledi ve açık modellerin zayıf noktalarını belgeledi.",
+    "bizNasilKatki": "AURA takımı olarak benzer bir değerlendirme altyapısını Türkiye bölgesi için kurarız. Küresel modellerin Türkiye üzerindeki haftalık RPSS ve RMSE skorlarını açık karneye dökeriz.",
+    "referanslar": [
+     {
+      "ad": "AI Weather Quest yarışma liderlik tablosu",
+      "url": "https://aiweatherquest.ecmwf.int/leaderboards/",
+      "tur": "veri"
+     },
+     {
+      "ad": "ECMWF Newsletter yarışma katılım raporu",
+      "url": "https://www.ecmwf.int/en/newsletter/187/news/ai-weather-quest-mid-year-global-participation-and-first-insights",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://aiweatherquest.ecmwf.int/leaderboards/",
+      "aciklama": "AI Weather Quest liderlik tablosu ve takım puanları paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://aiweatherquest.ecmwf.int/leaderboards/",
+      "aciklama": "Yarışma değerlendirme kriterleri ve haftalık RPSS skor tabloları"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "AIFS ve IFS açık tahminlerini indir",
+   "Türkiye istasyonlarıyla doğrula",
+   "Bölge ve mevsime göre karne çıkar"
+  ],
+  "edinim": [
+   [
+    "BLG 202E",
+    "büyük grid verisini işlemek"
+   ],
+   [
+    "MTO302",
+    "doğrulama ölçütleri"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "ECMWF AIFS · yapay zekâ tahmin sistemi",
+    "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-single",
+    "gorsel": "g/kaynak/aifs.jpg",
+    "lisans": "ECMWF",
+    "slug": "aifs"
+   },
+   {
+    "ad": "GraphCast · DeepMind (GitHub)",
+    "url": "https://github.com/google-deepmind/graphcast",
+    "gorsel": "g/kaynak/graphcast.jpg",
+    "lisans": "Apache 2.0",
+    "slug": "graphcast"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Herkese açık tahmin verisini her gün çeken veri hattını (pipeline) ve panoyu sen kurarsın.",
+  "senin": "BLG 202E Numerical Methods, BLG 354E Signal & Systems",
+  "bizim": "MAT202E Sayısal Yöntemler, MTO302 Hava Analizi ve Öngörü",
+  "ortakIs": "ERA5 ile ML sıcaklık tahmini, radar nowcasting",
+  "detay": "Ortak zemin: BLG 202E Numerical Methods ↔ MAT202E Sayısal Yöntemler. Örnek görev: ERA5/GFS/AIFS açık verisini her gün çeken, xarray/Zarr ile saklayan veri hattı, küçük bir skor API'si ve canlı doğrulama panosu. Kazanç: uçtan uca çalışan bir sistem ve GitHub'da adının olduğu altyapı işi. Veri gerçek ve her gün akıyor; oyuncak veri seti değil.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1561"
+ },
+ "amac": "Açık yapay zekâ hava tahmin modellerinin (AIFS, GraphCast) Türkiye üzerindeki başarımını ERA5 doğrulamasıyla bölgesel hata haritalarına dönüştürmek.",
+ "ortakDers": [
+  {
+   "kod": "BLG 202E",
+   "projeyeKatki": "Büyük ızgara verisi (NetCDF/GRIB2) dilimleme, çok boyutlu matris operasyonları ve uzamsal RMSE hesaplama mutfağı. Türkiye bölgesindeki yüzlerce grid noktasında model-gözlem farkını vektörize hesaplama bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "RMSE (kök ortalama kare hata)",
+     "nerede": "3. adımda: Türkiye üzerindeki her 0,25° ızgara hücresi için AIFS ve IFS modellerinin sıcaklık RMSE değerini hesaplarken."
+    },
+    {
+     "formulAd": "Lagrange enterpolasyonu",
+     "nerede": "2. adımda: model ızgarası ile ERA5 yeniden analiz ızgarası arasındaki küçük koordinat kaymalarını iki boyutlu enterpolasyonla hizalarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Atmosfer dinamiği ve bölgesel sinoptik yorum. YZ modellerinin düz arazilerde iyi çalışıp Toros Dağları veya Karadeniz kıyılarında neden yüksek hata verdiğini orografik yükselme, fön rüzgârı ve jeostrofik dengeyle açıklamayı sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+     "nerede": "4. adımda: 500 hPa jeopotansiyel yükseklik alanından türetilen rüzgâr dengesinin YZ modelinde korunup korunmadığını kontrol ederken."
+    },
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "4. adımda: Türkiye'ye giren soğuk hava dalgalarında 1000-500 hPa tabaka kalınlığı hatasının sıcaklık hatasıyla örtüşmesini incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "AIFS ve IFS açık tahminlerini indir, Türkiye kutusunu kes, ERA5 ile karşılaştırıp bölgesel hata haritalarını üret.",
+  "ayrinti": "Yapay zekâ modelleri küresel ortalamada harikadır; ancak Türkiye gibi engebeli yarımadalarda orografiyi ve deniz etkisini kaçırabilirler. ecmwf-opendata ile AIFS ve IFS tahminleri çekilir; xarray ile Türkiye bölgesi (35-43°K, 25-45°D) kesilir; ERA5 doğrulamasıyla her ızgara hücresinin RMSE ve bias değerleri çıkarılır; Cartopy ile Türkiye hata haritası çizilir. 3-4 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Açık model tahminlerini indir",
+    "oz": "ecmwf-opendata ile AIFS ve klasik IFS 00 UTC tahminlerinin 24..120 saatlik adımlarını indir.",
+    "ayrinti": "ECMWF'nin açık veri portalından fizik temelli IFS ve veri güdümlü AIFS modellerinin eş zamanlı tahmin paketleri çekilir. Sabah 00 UTC çalıştırmasının 24, 48, 72, 96 ve 120 saatlik adımları (step parametresi) hedeflenir. İki metre sıcaklığı (2t) ve 500 hPa jeopotansiyel yükseklik (gh) parametreleri GRIB2 biçiminde indirilir. cfgrib motoruyla dosyalar xarray Dataset nesnesi olarak belleğe yüklenir.",
+    "nasil": [
+     {
+      "teknik": "ecmwf.opendata istemcisiyle IFS ve AIFS modellerinin 24..120 saatlik 2t ve gh tahminlerini GRIB2 olarak indir",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle küresel model tahminleri çekilir. ECMWF açık veri API'si üzerinden klasik fizik modeli ve yapay zekâ modeli çıktıları indirilir. Bu iki veri seti Türkiye üzerindeki performans kıyaslamasının temelini oluşturur.",
+      "altAdimlar": [
+       "ecmwf.opendata paketinden Client(model='ifs') ve Client(model='aifs-single') istemcilerini başlat",
+       "client.retrieve(time=0, step=[24, 48, 72, 96, 120], param=['2t', 'gh'], target='tahmin.grib2') çağrısını yap",
+       "İndirilen GRIB2 dosyalarının eksiksiz indiğini ve dosya boyutlarını doğrula"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     },
+     {
+      "teknik": "cfgrib motoru ile GRIB2 dosyalarını açarak çok boyutlu xarray Dataset nesnelerine dönüştür",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle çok boyutlu dizi yapıları kurulur. GRIB2 biçimindeki ham atmosferik katmanlar zaman, enlem ve boylam boyutlarına ayrıştırılır. xarray veri yapıları sayesinde koordinat tabanlı analizler hızlandırılır.",
+      "altAdimlar": [
+       "xarray.open_dataset('ifs.grib2', engine='cfgrib') komutuyla fiziksel model verisini aç",
+       "xarray.open_dataset('aifs.grib2', engine='cfgrib') ile yapay zekâ model verisini yükle",
+       "Veri kümelerinin koordinat adlarını ve geçerli zaman indekslerini standartlaştır"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     },
+     {
+      "teknik": "Model tahminlerinin sıcaklık birimini Kelvin'den Celsius'a çevirip eksik hücreleri denetle",
+      "sade": "BLG 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle birim dönüşümü ve hassasiyet kontrolü yapılır. 273,15 mutlak sıfır sabiti çıkarılarak meteorolojik sıcaklık değerleri oluşturulur. Kayan nokta hesaplama hataları sınırlandırılarak doğru karşılaştırma matrisleri hazırlanır.",
+      "altAdimlar": [
+       "ds['t2m_c'] = ds['t2m'] - 273.15 formülüyle derece Celsius serisini üret",
+       "Veri kümesinde tanımsız veya NaN içeren ızgara hücrelerini tara",
+       "Temizlenen tahmin tensörlerini sonraki uzamsal kesme adımı için sabitle"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Türkiye bölgesini dilimle ve hizala",
+    "oz": "35-43° Kuzey ve 25-45° Doğu koordinat kutusunu seç; ERA5 ızgarasıyla enterpole et.",
+    "ayrinti": "Küresel 0,25° ızgaradan Türkiye ve yakın çevresini kapsayan coğrafi pencere (35-43° K, 25-45° D) xarray.sel ile dilimlenir. Doğrulama referansı (hakikat) olarak aynı tarihlere ait ERA5 reanaliz sıcaklıkları Copernicus CDS veya Open-Meteo arşivinden çekilir. IFS, AIFS ve ERA5 ızgaraları aynı enlem-boylam koordinatlarında bire bir hizalanır.",
+    "nasil": [
+     {
+      "teknik": "xarray.sel yöntemiyle 35-43° K ve 25-45° D Türkiye koordinat penceresini dilimle",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle bölgesel alt küme oluşturulur. Küresel veri kümesinden Türkiye sınırları ve denizlerini kapsayan 33×81 hücrelik çalışma matrisi kesilir. Bu coğrafi odaklanma bellek kullanımını azaltıp analizi hızlandırır.",
+      "altAdimlar": [
+       "ds.sel(latitude=slice(43.0, 35.0), longitude=slice(25.0, 45.0)) komutuyla Türkiye bölgesini filtrele",
+       "Enlem ve boylam vektörlerinin boyutlarını (33 satır, 81 sütun) doğrula",
+       "Türkiye bölgesine ait alt veri kümesini ds_tr adıyla belleğe kaydet"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     },
+     {
+      "teknik": "Copernicus CDS üzerinden aynı tarihlere ait ERA5 reanaliz yer hakikati alanını indirip eşle",
+      "sade": "MTO 302 dersindeki 'İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak' bilgisiyle doğrulama referansı hazırlanır. ERA5 reanalizi gözlem kalitesinde zemin gerçeği kabul edilerek model tahminleriyle eşleştirilir. Böylece objektif değerlendirme için hakikat ızgarası elde edilir.",
+      "altAdimlar": [
+       "cdsapi ile Türkiye penceresi için aynı tarih ve saatlerdeki ERA5 2t alanını çek",
+       "ERA5 ızgarasını Kelvin biriminden Celsius değerine çevir",
+       "ERA5 zaman damgasını IFS ve AIFS hedef tahmin zamanlarıyla tam eşleştir"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak"
+      }
+     },
+     {
+      "teknik": "Izgara koordinatlarında Lagrange enterpolasyonu ile modeller arasındaki ufak çözünürlük farklarını gider",
+      "sade": "BLG 202E dersindeki 'Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak' bilgisiyle iki boyutlu ızgara enterpolasyonu yapılır. Farklı modellerin ızgara merkezleri arasındaki mikro kaymalar sürekli polinom uydurularak düzeltilir. Hücreler bire bir aynı koordinata oturtularak adil bir karşılaştırma zemini kurulur.",
+      "altAdimlar": [
+       "xarray.interp_like fonksiyonunu kullanarak AIFS ızgarasını ERA5 ızgarasına uydur",
+       "Enterpolasyon sonrası oluşan sınır piksellerini kontrol edip uç değerleri temizle",
+       "Üç modeli (ERA5, IFS, AIFS) tek bir xarray Dataset çatısı altında birleştir"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Dağınık noktalardan Lagrange/Newton enterpolasyonu ve eğri uydurmayla sürekli bir eğri çıkarmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hücre bazlı hata metriklerini hesapla",
+    "oz": "Her ızgara hücresi için RMSE, ortalama sapma (bias) ve korelasyon katsayılarını çıkar.",
+    "ayrinti": "Her coğrafi hücre için zamansal tahmin farkları (F - O) hesaplanır. İki temel metrik çıkarılır: Kök Ortalama Kare Hata (RMSE) ve Ortalama Sapma (bias). AIFS ve klasik IFS'in RMSE alanları birbirinden çıkarılarak fark haritası (Delta_RMSE = RMSE_AIFS - RMSE_IFS) elde edilir. Negatif değerler yapay zekâ modelinin klasik fizik modelinden daha başarılı olduğu coğrafyaları işaret eder.",
+    "nasil": [
+     {
+      "teknik": "Her ızgara hücresinde zaman boyutu üzerinden IFS ve AIFS için RMSE matrislerini hesapla",
+      "sade": "BLG 202E dersindeki 'Hatayı ölçmek ve kodda sınırlamak' bilgisiyle uzamsal hata matrisleri hesaplanır. Tahminlerin zemin gerçeğinden sapmalarının karesel ortalaması alınarak hata büyüklüğü belirlenir. Bu hesaplama modellerin Türkiye'nin farklı bölgelerindeki başarı düzeyini ortaya çıkarır.",
+      "altAdimlar": [
+       "diff_aifs = ds['t2m_aifs'] - ds['t2m_era5'] ile AIFS hata dizisini üret",
+       "rmse_aifs = np.sqrt((diff_aifs**2).mean(dim='time')) ile hücre bazlı RMSE çıkar",
+       "Aynı formülü klasik IFS için uygulayarak rmse_ifs matrisini hesapla"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Hatayı ölçmek ve kodda sınırlamak"
+      }
+     },
+     {
+      "teknik": "delta_rmse = rmse_aifs - rmse_ifs bağıntısıyla iki model arasındaki göreli performans fark matrisini türet",
+      "sade": "BLG 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle göreli model başarımı sayısallaştırılır. İki modelin hata farkları çıkarılarak yapay zekânın hangi coğrafi bölgelerde öne geçtiği bulunur. Pozitif ve negatif fark alanları iki model arasındaki rekabeti gösterir.",
+      "altAdimlar": [
+       "delta_rmse = rmse_aifs - rmse_ifs işlemini iki boyutlu ızgara üzerinde uygula",
+       "Negatif hücre sayısını toplam hücre sayısına oranlayarak AIFS üstünlük yüzdesini bul",
+       "Bölgesel ortalama hata farklarını Marmara, Ege, İç Anadolu ve Karadeniz için listele"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "Her ızgara hücresi için ortalama sapmayı (bias) çıkararak sistematik soğuk veya ılık eğilimleri tespit et",
+      "sade": "MTO 302 dersindeki 'Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek' bilgisiyle sistematik bölgesel sapmalar çözümlenir. Modellerin deniz kıyılarında veya dağlık arazilerde sürekli soğuk ya da sıcak kalma eğilimi incelenir. Bu analiz coğrafi topoğrafyanın tahmin üzerindeki etkisini açıklar.",
+      "altAdimlar": [
+       "bias_aifs = diff_aifs.mean(dim='time') formülüyle AIFS sapma matrisini çıkar",
+       "bias_ifs = diff_ifs.mean(dim='time') formülüyle klasik model sapmasını hesapla",
+       "Kıyı şeritlerinde ve dağlık Doğu Anadolu bölgesindeki sapma odaklarını tespit et"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Cartopy ile Türkiye hata haritası çiz ve yorumla",
+    "oz": "Türkiye sınırları ve topoğrafyası üzerinde hata haritasını görselleştir; meteorolojik nedenleri yaz.",
+    "ayrinti": "Cartopy ve Matplotlib kütüphaneleriyle Türkiye sınırları, kıyı çizgileri ve topoğrafya gölgelendirmesi içeren yüksek çözünürlüklü bir coğrafi karne üretilir. RdBu_r çift kutuplu renk skalası kullanılır: Mavi alanlar AIFS'in, kırmızı alanlar klasik IFS'in üstün olduğunu gösterir. Dağlık Doğu Anadolu, kıyı girintileri ve boğazlardaki yerel başarı farkları meteorolojik nedenleriyle raporlanır.",
+    "nasil": [
+     {
+      "teknik": "Cartopy kütüphanesiyle PlateCarree projeksiyonunda Türkiye sınırları ve kıyı çizgilerini tuvale ekle",
+      "sade": "MTO 302 dersindeki 'Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek' bilgisiyle coğrafi harita altlığı kurulur. Harita projeksiyonu üzerine Türkiye sınırları ve kıyı hatları işlenir. Bu profesyonel harita altlığı meteorolojik hata alanlarının doğru coğrafi konumlanmasını sağlar.",
+      "altAdimlar": [
+       "fig, ax = plt.subplots(figsize=(12, 6), subplot_kw={'projection': ccrs.PlateCarree()}) kur",
+       "ax.add_feature(cfeature.BORDERS, linestyle=':') ve ax.coastlines() ile sınırları çiz",
+       "ax.set_extent([25.0, 45.0, 35.0, 43.0]) ile Türkiye penceresini sabitle"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek"
+      }
+     },
+     {
+      "teknik": "ax.pcolormesh ile delta_rmse fark alanını RdBu_r renk skalasıyla harita üzerine giydir ve renk çubuğu koy",
+      "sade": "BLG 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle iki boyutlu hata yüzeyi görselleştirilir. Hata farkları renklendirilerek AIFS'in ve IFS'in coğrafi üstünlük alanları harita üzerinde belirginleştirilir. Mavi ve kırmızı tonlar tahmincilerin hangi bölgede hangi modele güveneceğini açıkça gösterir.",
+      "altAdimlar": [
+       "ax.pcolormesh(lon, lat, delta_rmse, cmap='RdBu_r', vmin=-1.5, vmax=1.5, transform=ccrs.PlateCarree()) çiz",
+       "plt.colorbar ile yanına 'Mavi: AIFS üstün, Kırmızı: IFS üstün' açıklamalı renk çubuğu ekle",
+       "Grafiği 300 DPI çözünürlükte turkiye_aifs_vs_ifs_karne.png olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "Topoğrafik karmaşıklık ve kıyı etkisi ile hata desenlerini bağdaştıran teknik meteorolojik değerlendirmeyi yaz",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle sentez rapor hazırlanır. Yapay zekâ modelinin düz arazilerde daha başarılı olduğu, engebeli Doğu Anadolu ve kıyı şeritlerinde ise klasik fiziğin tutarlılığını koruduğu ortaya konur. Bulgular operasyonel tahmin brifingi formatında özetlenir.",
+      "altAdimlar": [
+       "Dağlık Toroslar ve Doğu Anadolu bölgesindeki hata dağılımını topoğrafya ile ilişkilendir",
+       "Marmara ve Ege kıyılarında deniz-kara geçiş çözünürlüğünün etkilerini değerlendir",
+       "Tüm bulguları 3-4 paragraflık bilimsel proje raporuna dönüştürerek depoya ekle"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "AIFS ve IFS modellerinin Türkiye üzerindeki 2 m sıcaklık ve 500 hPa başarımını gösteren grid-seviyesinde karşılaştırmalı hata haritası ve Jupyter analiz defteri.",
+  "senden": "BLG 202E'den gelen kısım: büyük GRIB2/NetCDF veri hattı, xarray ile uzamsal dilimleme, enterpolasyon ve vektörize RMSE hesabı.",
+  "bizden": "MTO 302'den gelen kısım: orografik faktörlerin analizi, sinoptik hata kaynakları ve jeostrofik denge denetimi."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "Türkiye ve Doğu Akdeniz 2 m sıcaklık tahmini, AIFS, 2024-04-10..15, 6 saatlik",
+   "aciklama": "ECMWF AIFS yapay zekâ modelinin Türkiye üzerindeki 5 günlük sıcaklık tahmini akışı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-single",
+   "aciklama": "ECMWF AIFS açık veri sayfası: model ağırlıkları, 0,25 derece ızgara yapısı ve indirme kılavuzu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:AtmosphericModelSchematic.png",
+   "lisans": "NOAA",
+   "aciklama": "Sayısal atmosferik ızgara kutuları: küresel modellerin bölgesel ölçekte çözünürlük sınırları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Rasp vd. (2024) WeatherBench 2: A benchmark for next-generation weather forecasting, JAMES · DOI 10.1029/2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "Lang vd. (2024) AIFS: Towards a new ECMWF forecasting system, ECMWF Newsletter",
+   "url": "https://www.ecmwf.int/en/newsletter/178/news/aifs-towards-new-ecmwf-forecasting-system"
+  },
+  {
+   "ad": "ECMWF Open Data portalı (IFS ve AIFS açık tahminleri)",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  },
+  {
+   "ad": "NVIDIA Earth2Studio açık kaynak değerlendirme kütüphanesi",
+   "url": "https://github.com/NVIDIA/earth2studio"
+  },
+  {
+   "ad": "Brightband açık kaynak temel hava modelleri girişimi",
+   "url": "https://www.brightband.com/about"
+  },
+  {
+   "ad": "WMO WWRP JWGFVR uzamsal doğrulama teknikleri kılavuzu",
+   "url": "https://jwgfvr.github.io/forecastverification/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm bağlantılar ve DOI'ler doğrulandı. AIFS ve WeatherBench 2 referansları entegre edildi. Türkiye bölgesi grid analizi detaylandırıldı.",
+ "_birlestirme": {
+  "kaynak": "cikti/BLG-05.json",
+  "tarih": "2026-10-14 23:01",
+  "geminiSha1": "390ad961648d"
+ }
+}

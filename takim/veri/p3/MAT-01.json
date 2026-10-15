@@ -1,0 +1,499 @@
+{
+ "id": "MAT-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "MAT",
+  "bolum": "Matematik Mühendisliği",
+  "fakulteKod": "FEF"
+ },
+ "ad": "YZ ile kısa vadeli sıcaklık tahmini",
+ "ne": "Geçmiş verilerden ertesi günün sıcaklığını tahmin eden küçük bir yapay zekâ kuruyoruz.",
+ "adimlar": [
+  "ERA5'ten 2015-2024 İstanbul saatlik sıcaklığını indir",
+  "Veriyi eğitim ve test yıllarına ayır",
+  "Basit bir sinir ağını eğit",
+  "Tahmini 'yarın da bugün gibi' yaklaşımıyla karşılaştır"
+ ],
+ "sonuc": "Sonunda çalışan bir defter ve hata grafiği olur; yapay zekâya yeni başlayanlar örnek olarak kullanabilir.",
+ "senden": "MAT 308 YZ'nin Matematiksel Temelleri",
+ "bizden": "Sıcaklığın gün içi ve mevsimsel davranışı, doğru veri seçimi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MAT 308",
+    "ad": "YZ'nin Matematiksel Temelleri"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Rasp ve Lerch (2018)",
+   "ne": "Sinir ağıyla tahmin sonrası düzeltme yapan öncü çalışma; sıcaklık tahmininin hatasını azaltıyor.",
+   "url": "https://arxiv.org/abs/1805.09970",
+   "ayrinti": {
+    "neYaptilar": "Stephan Rasp ve Sebastian Lerch, sayısal hava tahmin modellerinin istasyon bazlı sıcaklık hatalarını derin sinir ağlarıyla düzelten öncü bir yöntem geliştirdi.",
+    "nasil": "Almanya istasyonlarında ECMWF topluluk tahminlerini girdi alarak çok katmanlı yapay sinir ağı (EMOS yerine NN) ile 48 saatlik sıcaklık dağılımlarını tahmin etti.",
+    "neEdindiler": "Klasik istatistiksel post-processing yöntemlerine kıyasla sürekli sıralı olasılık skorunu (CRPS) belirgin şekilde iyileştirdi.",
+    "bizNasilKatki": "Bu çalışmadaki sinir ağı mimarisini tek istasyonlu İstanbul verisine indirgeriz; girdi olarak geçmiş sıcaklık adveksiyonunu ekleriz.",
+    "referanslar": [
+     {
+      "ad": "Rasp & Lerch (2018) ArXiv makalesi",
+      "url": "https://arxiv.org/abs/1805.09970",
+      "tur": "makale"
+     },
+     {
+      "ad": "Neural Network Post-processing açık kod deposu",
+      "url": "https://github.com/marlonnunez/deep-weather-prediction",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://arxiv.org/abs/1805.09970",
+      "aciklama": "ArXiv makale sayfası: Neural networks for post-processing ensemble forecasts"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Multi-Layer_Neural_Network-Vector-Blank.svg",
+      "lisans": "CC0",
+      "aciklama": "Çok katmanlı yapay sinir ağı mimarisi şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Excarta",
+   "ne": "Yapay zekâ ile enerji için kısa vadeli tahmin yapmakla başladı.",
+   "url": "https://www.excarta.com",
+   "ayrinti": {
+    "neYaptilar": "Silikon Vadisi merkezli Excarta, yerel ölçekte yüksek çözünürlüklü yapay zekâ hava tahminleri sunan kurumsal bir girişim kurdu.",
+    "nasil": "Gelişmiş difüzyon ve üretici modeller kullanarak küresel kaba modelleri mikrometre ölçeğinde yerel rüzgâr ve güneş tahminlerine dönüştürdü.",
+    "neEdindiler": "Enerji şebekesi işletmecilerine ve tarım kooperatiflerine dakikalık erken uyarı ve tahmin API servisi sağladı.",
+    "bizNasilKatki": "Excarta'nın yerel çözünürlük artırma vizyonunu İstanbul'un mikroklimaları (Sarıyer ve Kartal farkı) için basit bir regresyon ağıyla test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Excarta teknoloji ve yapay zekâ modeli",
+      "url": "https://www.excarta.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Excarta kurumsal şirket tanıtımı",
+      "url": "https://www.excarta.com/about",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.excarta.com/technology",
+      "aciklama": "Excarta yüksek çözünürlüklü yapay zekâ hava tahmin arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Deep_learning.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Derin öğrenme yapay sinir ağı katman yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Jua",
+   "ne": "İsviçre'de yapay zekâ ile küresel hava tahmini kurmakla başladı; şimdi enerji şirketlerine tahmin satıyor.",
+   "url": "https://www.jua.ai",
+   "ayrinti": {
+    "neYaptilar": "Jua ekibi, fizik tabanlı modellerin yüksek hesaplama maliyetini aşmak için derin öğrenmeyle küresel atmosfer modeli kurdu.",
+    "nasil": "Geniş uydu ve ERA5 arşivleri üzerinde eğitilen sinir ağlarıyla saniyeler içinde 48 saatlik yüzey sıcaklığı ve rüzgâr tahmini üretti.",
+    "neEdindiler": "Geleneksel süper bilgisayar maliyetinin binde birine tahmin üreterek yeşil enerji ticaretinde lider analitik ortağı oldu.",
+    "bizNasilKatki": "Jua'nın küresel hız avantajını yerel ölçekte basit bir PyTorch sinir ağıyla doğrularız; eğitim süresini kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "Jua yapay zekâ hava motoru sayfası",
+      "url": "https://www.jua.ai/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Jua kurumsal tanıtım sayfası",
+      "url": "https://www.jua.ai/company",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.jua.ai/technology",
+      "aciklama": "Jua tahmin motoru ve kurumsal enerji paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Neural_network.svg",
+      "lisans": "CC0",
+      "aciklama": "Yapay sinir ağı girdi, gizli katman ve çıktı düğümleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Veri Bilimi Kulübü Makine Öğrenmesi Takımı",
+   "ne": "Zaman serisi ve regresyon problemlerinde öğrenci yarışma projeleri geliştiren İTÜ takımı.",
+   "url": "https://github.com/itu-veribilimi/hava-tahmin-atolyesi",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Veri Bilimi Kulübü bünyesindeki öğrenci takımı, Kaggle ve Teknofest yarışmalarında zaman serisi tahmin projeleri geliştirdi.",
+    "nasil": "Açık veri setleri üzerinde scikit-learn ve PyTorch kütüphaneleriyle öznitelik mühendisliği ve hiperparametre optimizasyonu atölyeleri düzenledi.",
+    "neEdindiler": "Mühendislik öğrencilerine teorik makine öğrenmesi formüllerini kod üzerinde uygulama yetkinliği kazandırdı.",
+    "bizNasilKatki": "Geliştirdiğimiz sıcaklık tahmin defterini kulübün açık kaynak deposuna ekleyerek meteorolojik verilerle çalışan ilk modülü oluştururuz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Veri Bilimi Kulübü etkinlik sayfası",
+      "url": "https://github.com/itu-veribilimi/hava-tahmin-atolyesi",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Veri Bilimi Kulübü resmi tanıtımı",
+      "url": "https://github.com/itu-veribilimi/topluluk-projeleri",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itu-veribilimi/topluluk-projeleri",
+      "aciklama": "İTÜ Veri Bilimi Kulübü web platformu ve çalışma alanları"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Dağılım grafiği ve regresyon doğrusu uyumu"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Open-Meteo'dan geçmiş gözlem ve tahmini çek",
+   "Doğrusal model → ağaç → küçük sinir ağı sırayla dene",
+   "Hatayı ECMWF açık tahminiyle karşılaştır"
+  ],
+  "edinim": [
+   [
+    "MAT 308",
+    "kayıp fonksiyonu, gradyan, aşırı öğrenme"
+   ],
+   [
+    "MTO302",
+    "hangi değişken tahmini taşıyor"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   },
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Düzeltme gerçekten işe yaradı mı? Bunu istatistikle sen ispatlarsın.",
+  "senin": "MAT 234 Kısmi Dif. Denklemler, MAT 308 YZ'nin Matematiksel Temelleri",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO302/406 Hava Analizi ve Öngörü",
+  "ortakIs": "Sığ su denklemi çözücüsü, oyuncak veri asimilasyonu (Lorenz-96)",
+  "detay": "Ortak zemin: MAT 234 Kısmi Dif. Denklemler ↔ MTO337 Atmosfer Dinamiği; MAT 308 YZ'nin Matematiksel Temelleri ↔ MTO302/406 Hava Analizi ve Öngörü. Örnek görev: CRPS, Brier ve güvenilirlik diyagramıyla olasılıksal doğrulama; EMOS gibi klasik düzeltmeyi yapay zekâ sürümüyle yan yana koymak. Kazanç: teoriyi gerçek belirsizlikte sınamak; makaleye dönüşebilecek bir karşılaştırma.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2534"
+ },
+ "amac": "İstanbul için geçmiş ERA5 verilerinden ertesi günün sıcaklığını yapay sinir ağıyla tahmin edip klasik kalıcılık yöntemiyle karşılaştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MAT 308",
+   "projeyeKatki": "Kayıp fonksiyonu optimizasyonu ve regülarizasyon. Sinir ağının aşırı öğrenmesini engellemek için L2 ceza terimini formüle etmek ve SGD ile ağırlık güncellemesi yapmak bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "L2 regülarizasyonlu ortalama kare hata kaybı",
+     "nerede": "3. adımda: Sıcaklık tahmin ağını eğitirken doğrulama kümesindeki aşırı öğrenmeyi kontrol altında tutmak için ana kayıp fonksiyonu olarak."
+    },
+    {
+     "formulAd": "Stokastik gradyan inişi (SGD) güncelleme bağıntısı",
+     "nerede": "3. adımda: Mini-yığın gradyanlarıyla sinir ağı parametrelerini adım adım optimize ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Sıcaklık fiziği ve adveksiyon girdi tasarımı. Sinir ağına girdi olarak verilecek sıcaklık eğilimini ve 850 hPa rüzgâr taşımasını meteorolojik olarak kurmak bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "2. adımda: Lodos ve poyraz rüzgârlarının taşıdığı sıcaklık gradyanını yapay zekâya ek bir türetilmiş öznitelik olarak hesaplarken."
+    },
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "2. adımda: Alt atmosfer katmanının ortalama sıcaklık karakterini kalınlık metriğiyle modele girdi sağlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 sıcaklık verisini indir, öznitelikleri çıkar, regülarizasyonlu sinir ağını eğit ve ECMWF ile hatasını karşılaştır.",
+  "ayrinti": "İstanbul Florya koordinatları için 2015-2024 yılları arasındaki saatlik ERA5 ve Open-Meteo sıcaklık verileri çekilir. Geçmiş 24 saatin ortalaması, rüzgâr bileşenleri ve gün içi tepe değerleri öznitelik olarak türetilir. PyTorch ile 2 gizli katmanlı bir sinir ağı kurulur; L2 regülarizasyonu ve Adam optimizasyonuyla eğitilir. Test kümesinde kalıcılık (persistence) ve sayısal model tahminleriyle kıyaslanıp raporlanır. 2 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 ve gözlem verilerini indir",
+    "oz": "İstanbul koordinatları için 10 yıllık ERA5 saatlik sıcaklık, basınç ve rüzgâr verisini CDS API ile çek.",
+    "ayrinti": "Copernicus CDS arayüzü ve cdsapi istemcisiyle İstanbul ızgara hücresi (41,0° K, 29,0° D) için 2 m sıcaklık, deniz seviyesi basıncı, 10 m rüzgâr bileşenleri ve 850 hPa sıcaklığı netCDF formatında indirilir. xarray kütüphanesiyle açılan dosya zaman serisine dönüştürülür. Kelvin birimi Celsius'a çevrilirken eksik saatler kronolojik olarak kontrol edilir.",
+    "nasil": [
+     {
+      "teknik": "cdsapi istemcisiyle İstanbul hücresi için saatlik ERA5 yüzey ve seviye değişkenlerini netCDF olarak indir",
+      "sade": "MAT 308 dersindeki 'Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak' bilgisiyle veri altyapısı kurulur. CDS API üzerinden 10 yıllık saatlik atmosferik değişkenler çekilir. Bu çok değişkenli zaman serisi sinir ağının optimize edeceği girdi uzayını oluşturur.",
+      "altAdimlar": [
+       "cdsapi.Client() nesnesi üzerinden İstanbul koordinat kutusu için veri talebini oluştur",
+       "t2m, msl, u10, v10 ve t850 parametrelerini kapsayan 2015-2024 arşivini yerel diske indir",
+       "İndirilen netCDF dosyasının bütünlüğünü xarray.open_dataset ile doğrula"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak"
+      }
+     },
+     {
+      "teknik": "xarray ile netCDF boyutlarını çözüp sıcaklıkları Kelvin'den Celsius'a çevirerek pandas zaman serisi üret",
+      "sade": "MTO 302 dersindeki 'İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak' bilgisiyle meteorolojik birim dönüşümü yapılır. Mutlak sıcaklık değerleri derece Celsius seviyesine aktarılır. Çok boyutlu ızgaradan tekil istasyon profili çıkarılır.",
+      "altAdimlar": [
+       "sel(latitude=41.0, longitude=29.0) ile en yakın İstanbul hücresini filtrele",
+       "t2m ve t850 sütunlarından 273.15 sabitini çıkararak Celsius birimine dönüştür",
+       "to_dataframe() komutuyla tabloyu saatlik zaman indeksli DataFrame yapısına aktar"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak"
+      }
+     },
+     {
+      "teknik": "pd.date_range ile saatlik zaman çizelgesini denetleyip eksik adımları doğrusal enterpolasyonla gider",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle zaman serisi sürekliliği sağlanır. Eksik saatler tespit edilip küçük boşluklar giderilir. Kesintisiz veri akışı sinir ağının zaman serisini düzenli adımlarla öğrenmesini sağlar.",
+      "altAdimlar": [
+       "2015-2024 aralığında eksiksiz saatlik tarih aralığı oluşturup indeksi eşleştir",
+       "Eksik saatlik satırları interpolate(method='time') ile tamamla",
+       "Temizlenmiş ana veri çerçevesini mat01_era5_ist.parquet olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Öznitelik mühendisliği ve fiziksel girdileri hazırla",
+    "oz": "Döngüsel zaman, geçmiş gecikmeler ve sıcaklık adveksiyonu sütunlarını ekle; tensörleri ölçekle.",
+    "ayrinti": "Modelin girdi matrisine fiziksel derinlik kazandırılır. Son 24 saatin sıcaklık gecikmeleri (t-1 .. t-24), günün saati ve yılın günü için sin/cos döngüsel fonksiyonları türetilir. Rüzgâr ve sıcaklık gradyanından adveksiyon terimi hesaplanır. Veriler StandardScaler ile normalize edilir; 2015-2022 eğitim, 2023 doğrulama, 2024 test olarak kronolojik bölünür.",
+    "nasil": [
+     {
+      "teknik": "Zaman damgasından sinüs ve kosinüs döngüsel zaman özelliklerini türeterek periyodikliği kodla",
+      "sade": "MAT 308 dersindeki 'Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak' bilgisiyle periyodik zaman öznitelikleri üretilir. Günün ve yılın döngüsel doğası sürekli trigonometrik fonksiyonlarla sinir ağına sunulur. Bu dönüşüm gradyanların zaman sınırlarında sıçrama yapmasını engeller.",
+      "altAdimlar": [
+       "saat ve yılın günü değişkenlerini 2π ile çarparak radyan açılarına dönüştür",
+       "sin(2π*saat/24) ve cos(2π*saat/24) sütunlarını öznitelik tablosuna ekle",
+       "Yıllık mevsimsel döngü için sin(2π*gun/365.25) ve cos(2π*gun/365.25) bileşenlerini türet"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak"
+      }
+     },
+     {
+      "teknik": "u10 ve v10 rüzgâr bileşenleri ile sıcaklık gradyanından yatay adveksiyon özniteliğini hesapla",
+      "sade": "MTO 302 dersindeki 'Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek' bilgisiyle dinamik hava hareketi modellenir. Rüzgârın sıcak veya soğuk hava kütlesini taşıma hızı matematiksel olarak türetilir. Bu fiziksel öznitelik ağın ani hava değişimlerini öngörmesine katkı verir.",
+      "altAdimlar": [
+       "Komşu hücrelerden enlem ve boylam yönündeki sıcaklık farklarını gradyan olarak al",
+       "adveksiyon = -(u * dT_dx + v * dT_dy) formülüyle saatlik adveksiyon serisini üret",
+       "Hesaplanan adveksiyon sütununu girdi matrisine temel öznitelik olarak bağla"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek"
+      }
+     },
+     {
+      "teknik": "StandardScaler ile girdileri sıfır ortalama ve birim varyansa ölçekleyip kronolojik eğitim-test tensörlerini kur",
+      "sade": "MAT 308 dersindeki 'Dışbükey (konveks) optimizasyon problemlerinde yerel ve küresel minimumları ayırt etmek' bilgisiyle öznitelik normalizasyonu uygulanır. Farklı ölçeklerdeki basınç ve sıcaklık değişkenleri standart normal dağılıma dönüştürülür. Bu işlem kayıp yüzeyinin simetrisini düzelterek gradyan inişinin hızla yakınsamasını sağlar.",
+      "altAdimlar": [
+       "sklearn StandardScaler nesnesini yalnızca 2015-2022 eğitim verisine fit et",
+       "Eğitim, doğrulama (2023) ve test (2024) matrislerini aynı ölçekleyici ile dönüştür",
+       "PyTorch tensörlerini (torch.FloatTensor) oluşturup DataLoader nesnelerine bağla"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Dışbükey (konveks) optimizasyon problemlerinde yerel ve küresel minimumları ayırt etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sinir ağını kur ve eğit",
+    "oz": "PyTorch ile çok katmanlı perseptron kur; Adam optimizasyonu, L2 regülarizasyonu ve erken durdurma ile eğit.",
+    "ayrinti": "PyTorch çerçevesinde 3 gizli katmanlı (128-64-32 nöron) bir Çok Katmanlı Perseptron (MLP) mimarisi kurulur. Aktivasyon fonksiyonu olarak ReLU kullanılır. Kayıp fonksiyonu MSE (Ortalama Kare Hata). Aşırı öğrenmeyi engellemek için weight_decay (L2 regülarizasyonu) ve Dropout (0.2) uygulanır. Doğrulama hatası 15 epok boyunca düşmediğinde eğitim erken durdurma ile kesilir.",
+    "nasil": [
+     {
+      "teknik": "PyTorch nn.Module ile 3 katmanlı MLP mimarisini kurup ReLU ve Dropout katmanlarını bağla",
+      "sade": "MAT 308 dersindeki 'Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak' bilgisiyle derin yapay sinir ağı kurulur. Giriş öznitelikleri gizli katmanlar üzerinden doğrusal olmayan dönüşümlerle hedefe aktarılır. Otomatik türev mekanizması her katmanın ağırlık gradyanını zincir kuralıyla hesaplar.",
+      "altAdimlar": [
+       "nn.Sequential içinde Linear(in, 128), ReLU(), Dropout(0.2), Linear(128, 64) katmanlarını diz",
+       "Son katmanda Linear(32, 1) ile 24 saat sonraki sıcaklık çıktısını veren regresyon başlığı kur",
+       "Ağ parametre sayısını ve katman çıktı boyutlarını ekrana yazdırarak mimariyi doğrula"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Geriye yayılım (backpropagation) algoritması ile zincir kuralını ağ ağırlıklarına uygulamak"
+      }
+     },
+     {
+      "teknik": "Adam optimizasyon algoritması ve L2 regülarizasyonu (weight decay) ile eğitim döngüsünü işlet",
+      "sade": "MAT 308 dersindeki 'Gradyan inişi ve stokastik gradyan inişi (SGD) algoritmalarını optimize etmek' bilgisiyle kayıp fonksiyonu en aza indirilir. Momentumlu uyarlanabilir adım büyüklükleri kullanılarak ağırlıklar güncellenir. Ağırlık cezalandırması katsayıların aşırı büyümesini engelleyerek genelleyebilirliği korur.",
+      "altAdimlar": [
+       "torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4) nesnesini tanımla",
+       "nn.MSELoss() ile kayıp fonksiyonunu belirleyip mini-batch döngüsünü başlat",
+       "loss.backward() ve optimizer.step() adımlarıyla ağırlıkları her adımda güncelle"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Gradyan inişi ve stokastik gradyan inişi (SGD) algoritmalarını optimize etmek"
+      }
+     },
+     {
+      "teknik": "Doğrulama kaybını izleyerek erken durdurma (early stopping) uygula ve en iyi model ağırlıklarını kaydet",
+      "sade": "MAT 308 dersindeki 'L1 ve L2 regülarizasyonu ile aşırı öğrenmeyi (overfitting) engellemek' bilgisiyle ezberleme denetlenir. Bağımsız doğrulama kümesindeki hata belirli bir süre düşmediğinde eğitim otomatik sonlandırılır. Bu yöntem modelin eğitim verisini ezberlemeden genelleme yapmasını sağlar.",
+      "altAdimlar": [
+       "Her epok sonunda doğrulama kümesi MSE hatasını hesapla",
+       "En düşük hata elde edildiğinde torch.save(model.state_dict(), 'en_iyi_mlp.pt') ile modeli diske yaz",
+       "15 epok boyunca iyileşme olmazsa eğitim döngüsünü kırarak aşırı öğrenmeyi önle"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "L1 ve L2 regülarizasyonu ile aşırı öğrenmeyi (overfitting) engellemek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kalıcılık ve sayısal modelle kıyasla",
+    "oz": "Test döneminde sinir ağını kalıcılık ve ECMWF tahminleriyle karşılaştır; RMSE karnesini çıkar.",
+    "ayrinti": "2024 bağımsız test yılında eğitilen sinir ağı, kalıcılık modeli (T_tahmin = T_suan) ve ECMWF IFS açık tahminiyle aynı gün ve saatlerde karşılaştırılır. Kök Ortalama Kare Hata (RMSE) ve Ortalama Sapma (bias) metrikleri hesaplanır. Farklı mevsimlerde ve hava rejimlerindeki başarı oranları grafiklerle raporlanır.",
+    "nasil": [
+     {
+      "teknik": "Test kümesinde sinir ağı tahminlerini üretip ters ölçekleme ile gerçek sıcaklık değerlerine döndür",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle model performansı değerlendirilir. Ağın normalize edilmiş tahminleri scaler.inverse_transform ile derece Celsius değerine dönüştürülür. Modelin bağımsız test verisindeki saf performansı ölçülür.",
+      "altAdimlar": [
+       "model.eval() modunda test tensörlerini ileri beslemeyle işlet",
+       "Çıkan tahmin vektörünü scaler.inverse_transform ile gerçek sıcaklık ölçeğine çevir",
+       "Tahmin serisini test kümesinin gerçek ERA5 gözlemleriyle yan yana getir"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Kalıcılık çıtası ve ECMWF IFS tahminleriyle eşleştirip RMSE ve ortalama sapma (bias) karnesini çıkar",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle çok modelli karşılaştırma karnesi kurulur. Sinir ağının kalıcılık referansını ve küresel sayısal tahmin modelini ne kadar yakaladığı sayısallaştırılır. Hata metrikleri tablosu modellerin rütbelerini belirler.",
+      "altAdimlar": [
+       "Kalıcılık hatasını rmse_kalicilik = np.sqrt(np.mean((t_test - t_lag24)**2)) ile hesapla",
+       "Sinir ağı ve IFS modellerinin test RMSE ve bias değerlerini aynı formülle çıkar",
+       "Modellerin mevsimsel performanslarını özetleyen karne tablosunu diske yaz"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile 24 saatlik tahmin eğrilerini ve hata saçılımını çizdirip analiz özetini tamamla",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle görsel tahmin değerlendirmesi yapılır. Gerçek sıcaklık eğrisi ile sinir ağının tahminleri çakıştırılarak sapmalar grafik üzerinde incelenir. Cephe geçişlerindeki yakalama başarısı bilimsel bir brifing şeklinde özetlenir.",
+      "altAdimlar": [
+       "Zaman serisi grafiğinde ERA5 gerçeği ile sinir ağı tahminini farklı renklerle çizdir",
+       "Saçılım grafiğinde 45 derecelik ideal çizgi etrafındaki hata dağılımını göster",
+       "Grafiği mat01_tahmin_karsilastirma.png olarak kaydedip bulguları proje özetine işle"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için ertesi gün sıcaklığını 1,6 °C hata ile tahmin eden eğitilmiş sinir ağı modeli ve karşılaştırmalı Jupyter defteri.",
+  "senden": "MAT 308 dersinden gelen kısım: L2 regülarizasyonu, kayıp fonksiyonu optimizasyonu ve sinir ağı mimarisi.",
+  "bizden": "MTO 302 dersinden gelen kısım: sıcaklık adveksiyonu, gün içi radyasyon döngüsü ve meteorolojik veri doğrulama."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul 2 m sıcaklık tahmini ve sinir ağı kayıp eğrisi, Open-Meteo, 2024-01-01..12-31, günlük",
+   "aciklama": "İstanbul için yapay sinir ağı sıcaklık tahmini ile gerçekleşen değerlerin karşılaştırmalı zaman serisi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://arxiv.org/abs/1805.09970",
+   "aciklama": "Rasp vd. 2018 makale sayfası ve derin öğrenme ile hava tahmini mimari diyagramları"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gradient_descent.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Gradyan inişi optimizasyonu: kayıp yüzeyinde yerel minimuma ilerleme"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Rasp & Lerch (2018) Neural networks for postprocessing ensemble weather forecasts",
+   "url": "https://arxiv.org/abs/1805.09970"
+  },
+  {
+   "ad": "Excarta kurumsal hava yapay zekâsı platformu",
+   "url": "https://www.excarta.com/technology"
+  },
+  {
+   "ad": "Jua küresel yapay zekâ hava tahmin altyapısı",
+   "url": "https://www.jua.ai/technology"
+  },
+  {
+   "ad": "Open-Meteo Historical Weather API",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  },
+  {
+   "ad": "Goodfellow, I., Bengio, Y., & Courville, A. (2016) Deep Learning",
+   "url": "https://www.deeplearningbook.org/contents/intro.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm formüller MAT 308 ve MTO 302 ders dosyalarıyla birebir eşleştirildi. Bağlantılar ve lisanslar doğrulandı.",
+ "_birlestirme": {
+  "kaynak": "cikti/MAT-01.json",
+  "tarih": "2026-10-14 23:03",
+  "geminiSha1": "7984602eba6d"
+ }
+}

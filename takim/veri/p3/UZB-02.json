@@ -1,0 +1,392 @@
+{
+ "id": "UZB-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "UZB",
+  "bolum": "Uzay Mühendisliği",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "Roket fırlatma penceresi rüzgar/şimşek riski",
+ "ne": "Uzay araçları ve fırlatma roketlerinin rampadan ayrılma ve tırmanma aşamasında maruz kaldığı yer seviyesi rüzgâr hamlesi, üst atmosfer dikey rüzgâr kayması ve doğal ya da tetiklenen şimşek risklerinin açık meteorolojik verilerle analiz edilerek operasyonel fırlatma takvimi üretilmesi.",
+ "adimlar": [
+  "ERA5'ten fırlatma alanının rüzgâr ve kararsızlık verisini indir",
+  "Güvenli fırlatma eşiklerini belirle",
+  "Her gün için uygun-uygun değil işaretle",
+  "Sonucu takvim grafiğine dök"
+ ],
+ "sonuc": "Sonunda uygun günleri gösteren bir takvim grafiği olur.",
+ "senden": "AKM 219E Fluid Mechanics",
+ "bizden": "Fırtına ve şimşek koşulları bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "AKM 219E",
+    "ad": "Fluid Mechanics"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "45. Hava Filosu fırlatma kuralları",
+   "ne": "Cape Canaveral'da rüzgâr ve şimşek kurallarına göre fırlatmaya karar veren birim.",
+   "url": "https://en.wikipedia.org/wiki/45th_Weather_Squadron",
+   "ayrinti": {
+    "neYaptilar": "ABD Uzay Kuvvetleri 45. Hava Filosu, Kennedy Uzay Merkezi ve Cape Canaveral fırlatma rampalarında roket fırlatmaları için 14 katı hava emniyet kuralı geliştirdi.",
+    "nasil": "Rampa rüzgâr sensörleri, elektrik alan değirmenleri ve Doppler radarlarıyla atmosferik yük birikimini ve irtifa rüzgâr kaymasını anlık takip ederek fırlatma karar matrisi uyguladılar.",
+    "neEdindiler": "Apollo 12 şimşek çarpması benzeri faciaların tekrarlanmasını önleyerek son otuz yılda yüzlerce başarılı fırlatmada sıfır meteorolojik kayıp sağladılar.",
+    "bizNasilKatki": "45. Filo kurallarının rampa rüzgârı ve bulut elektrik alanı eşiklerini Türkiye fırlatma üssü aday bölgesi için açık ERA5 verilerine uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Wikipedia 45. Hava Filosu organizasyon sayfası",
+      "url": "https://en.wikipedia.org/wiki/45th_Weather_Squadron",
+      "tur": "web"
+     },
+     {
+      "ad": "Roeder vd. (2014) Lightning launch commit criteria overview",
+      "url": "https://doi.org/10.1175/BAMS-D-13-00040.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Doğu Akdeniz kıyısı 10m ve 100m rüzgâr alanı ve konvektif kararsızlık, ERA5, 2024-05-20, 6 saatlik",
+      "aciklama": "Fırlatma sahasında rampa seviyesi rüzgârı ile CAPE konvektif enerji indeksinin değişimi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Falcon_9_launch_pad_weather.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Fırlatma rampasında bekleyen roket ve çevresindeki meteorolojik gözlem kuleleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Rocket Lab Launch Complex 1",
+   "ne": "Yeni Zelanda Mahia Yarımadası'nda otonom hava takip sistemleriyle fırlatma penceresi yöneten ticari roket şirketi.",
+   "url": "https://www.rocketlabusa.com/launch/launch-complex-1/",
+   "ayrinti": {
+    "neYaptilar": "Rocket Lab şirketi, Electron roketleri için özel meteoroloji radarı ve dikey rüzgâr profili ölçüm ağı kurarak hızlı fırlatma pencereleri açtı.",
+    "nasil": "Gelişmiş rüzgâr kayması emülasyonları ve mikro ölçekli sayısal hava tahmin modellerini uçuş bilgisayarı simülatörlerine anlık bağladılar.",
+    "neEdindiler": "Ticari fırlatmalarda meteorolojik bekleme sürelerini yüzde 40 kısaltarak yılda onlarca uyduyu yörüngeye taşıdılar.",
+    "bizNasilKatki": "Rocket Lab fırlatma penceresi karar mantığını açık kaynaklı Python kütüphaneleriyle interaktif bir takvim paneline dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Rocket Lab LC-1 resmi tesis ve fırlatma sayfası",
+      "url": "https://www.rocketlabusa.com/launch/launch-complex-1/",
+      "tur": "web"
+     },
+     {
+      "ad": "Electron roket görev planlama kılavuzu",
+      "url": "https://www.rocketlabusa.com/assets/Uploads/Rocket-Lab-Payload-Users-Guide-7.0.pdf",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Güney Ege ve Doğu Akdeniz 200 hPa jet akımı rüzgâr kayması, GFS, 2024-05-22, 3 saatlik",
+      "aciklama": "Maksimum dinamik basınç noktasında (Max Q) roketin karşılaşacağı irtifa rüzgâr makaslanması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.rocketlabusa.com/launch/launch-complex-1/",
+      "aciklama": "Rocket Lab LC-1 fırlatma kompleksi genel görünümü ve pist operasyonları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Pars Roket Takımı Aviyonik Grubu",
+   "ne": "Teknofest roket yarışmalarında atış öncesi meteorolojik güvenlik analizleri yapan İTÜ takımı.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Pars Roket Takımı, Aksaray Atış Alanı'nda gerçekleştirilen yüksek irtifa roket yarışmasında yer seviyesi ve irtifa rüzgârlarına göre fırlatma ray açısı optimizasyonu yaptı.",
+    "nasil": "Meteoroloji balonları ve yerel sensör kulesinden alınan rüzgâr profillerini OpenRocket simülatörüne besleyerek roketin rüzgâra yönelme (weather cocking) açısını hesapladılar.",
+    "neEdindiler": "Kurtarma paraşütlerinin güvenli bölgeye inmesini sağlayarak atış emniyeti ödülü ve roket kategorisinde birincilik kazandılar.",
+    "bizNasilKatki": "Takımın rampa operasyonuna açık ECMWF tahminlerini bağlayan otomatik bir GO/NO-GO hava durumu kontrol paneli sunarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı Pars Roket Takımı Sayfası",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "Teknofest Roket Yarışması Atış Emniyeti Kılavuzu",
+      "url": "https://www.teknofest.org/tr/yarismalar/roket-yarismasi/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İç Anadolu ve Aksaray atış alanı rüzgâr hamlesi ve yağış tahmini, 2024-05-25, saatlik",
+      "aciklama": "Fırlatma sahasında gün içi rampa rüzgârı sakinleşme pencerelerinin saatlik analizi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci kulüpleri ve mühendislik takımları tanıtım sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Açık tahminden rüzgâr ve kararsızlık al",
+   "Risk eşiklerini tanımla",
+   "Pencere takvimi üret"
+  ],
+  "edinim": [
+   [
+    "AKM 219E",
+    "rüzgâr yükü, akış"
+   ],
+   [
+    "MTO337",
+    "kararsızlık, konvektif risk"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "NOAA Aviation Weather Center (türbülans, buzlanma)",
+    "url": "https://aviationweather.gov/",
+    "gorsel": "g/kaynak/awc.jpg",
+    "lisans": "kamu malı",
+    "slug": "awc"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Fırlatma penceresinde rüzgâr ve şimşek riskini birlikte tahmin ederiz.",
+  "senin": "AKM 219E Fluid Mechanics, UZB 411E Space Environment",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO225 Radyasyon, MTO301 Uzaktan Algılama",
+  "ortakIs": "Küp-uydu yükünde bulut tespiti, fırlatma penceresi hava riski",
+  "detay": "Ortak zemin: AKM 219E Fluid Mechanics ↔ MTO337 Atmosfer Dinamiği; UZB 411E Space Environment ↔ MTO225 Güneş ve Yer Radyasyonu. Örnek görev: fırlatma penceresi için rüzgâr ve şimşek riski ya da küp-uydu görüntüsünde bulut tespiti. Kazanç: görev planlamasında hava riskini sayıyla konuşabilmek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2713"
+ },
+ "amac": "Roket fırlatma üssü için ERA5 ve şimşek verilerinden yararlanarak rüzgâr yükü ve konvektif kararsızlık kriterlerine göre güvenli fırlatma pencerelerini belirlemek.",
+ "ortakDers": [
+  {
+   "kod": "AKM 219E",
+   "projeyeKatki": "Fırlatma rampasındaki roket gövdesine etki eden dinamik rüzgâr yükü, sınır tabaka sürtünmesi ve hücum açısı aerodinamik kuvvetleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Prandtl logaritmik sınır tabaka hız profili",
+     "nerede": "2. adımda: Fırlatma kulesi yüksekliği boyunca rüzgâr hız artışını hesaplayarak roket rampası yapısal rüzgâr limitlerini denetlerken."
+    },
+    {
+     "formulAd": "Reynolds sayısı benzerlik bağıntısı",
+     "nerede": "3. adımda: Silindirik roket gövdesi çevresindeki girdap kopması frekansını ve aeroelastik titreşim eşiğini boyutlandırırken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Dikey rüzgâr kayması, jeostrofik denge, termal rüzgâr ilişkisi ve konvektif fırtına hücrelerinin sinoptik dinamik analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Termal rüzgâr bağıntısı",
+     "nerede": "2. adımda: Üst troposferde jet akımı eksenine yakın dikey rüzgâr kayması büyüklüğünü yatay sıcaklık gradyanından türetirken."
+    },
+    {
+     "formulAd": "İzobarik süreklilik denklemi",
+     "nerede": "3. adımda: Fırlatma sahası üzerindeki dikey hareket ve yakınsama alanlarını hesaplayarak şimşek üreten fırtına başlangıcını tespit ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 rüzgâr ve konvektif kararsızlık verilerinden fırlatma kriterleri taranarak takvim grafiği üretilir.",
+  "ayrinti": "Aday roket fırlatma sahası için ERA5 yeniden analiz arşivinden ve ECMWF açık tahminlerinden saatlik rampa rüzgârı (10m ve 100m), üst irtifa rüzgâr kayması (Max Q katmanı), CAPE konvektif potansiyel enerjisi ve şimşek potansiyel indisi çekilir. AKM 219E aerodinamik rüzgâr yükü sınırları ile MTO 337 konvektif kararsızlık eşikleri uygulanır. Her saat ve gün için GO veya NO-GO kararı üretilerek etkileşimli bir takvim ısı haritası ve karar destek defteri oluşturulur. 3 haftada tamamlanır.",
+  "sonuc": "Yıl boyu güvenli roket fırlatma pencerelerini saatlik bazda gösteren, fırtına ve rüzgâr engellerini ayrıştıran açık Python defteri ve takvim paneli elde edilir.",
+  "senden": "AKM 219E Fluid Mechanics",
+  "bizden": "Fırtına ve şimşek koşulları bilgisi (MTO 337)",
+  "adimlar": [
+   {
+    "baslik": "Fırlatma sahası meteorolojik verilerinin indirilmesi",
+    "oz": "Rampa rüzgârı, irtifa kayması ve CAPE verileri çekilir.",
+    "ayrinti": "Copernicus CDS ve ECMWF Open Data servislerinden fırlatma sahası koordinatında yer seviyesi rüzgâr hızları, 200 hPa seviyesine kadar olan dikey profil ve konvektif kararsızlık parametreleri indirilir.",
+    "nasil": [
+     {
+      "teknik": "CDS API ile yer seviyesi 10m rüzgâr bileşenleri, hamle hızı ve CAPE parametreleri saatlik olarak indirilir.",
+      "sade": "MTO 337 dersindeki 'Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak' bilgisiyle fırlatma sahası üzerindeki sinoptik basınç ve rüzgâr alanları ayrıştırılır. Rampa güvenliği için temel atmosfer verileri toplanır.",
+      "altAdimlar": [
+       "Fırlatma üssü koordinatları belirlenerek CDS API sorgusu oluşturulur.",
+       "10m u ve v rüzgâr bileşenleri, yüzey basıncı ve konvektif enerji (CAPE) indirilir.",
+       "İndirilen saatlik veriler zaman serisi tablosu halinde yerel dizinde saklanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Uçuş koridoru boyunca standart izobarik katmanlar çekilerek dikey hız profili oluşturulur.",
+      "sade": "AKM 219E dersindeki 'Kontrol hacmi analiziyle kütle ve momentum korunum denklemlerini uygulamak' bilgisiyle roketin tırmanacağı dikey hava koridoru dilimlere ayrılır. Roketin geçeceği atmosfer katmanları irtifaya göre sıralanır.",
+      "altAdimlar": [
+       "1000 hPa'dan 100 hPa'ya kadar olan katmanlarda rüzgâr hızları ve yönleri ayrıştırılır.",
+       "Yükseklik dönüşümü hidrostatik formülle yapılarak geometrik metreye çevrilir.",
+       "Dikey profil matrisi zaman ekseni boyunca tek bir veri tablosunda birleştirilir."
+      ],
+      "kazanim": {
+       "ders": "AKM 219E",
+       "madde": "Kontrol hacmi analiziyle kütle ve momentum korunum denklemlerini uygulamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Güvenli fırlatma eşiklerinin tanımlanması",
+    "oz": "Rampa rüzgârı, Max Q kayması ve şimşek limitleri kodlanır.",
+    "ayrinti": "NASA ve 45. Hava Filosu standartları referans alınarak rampa rüzgârı için 15 m/s, Max Q irtifasında 50 m/s dikey kayma ve şimşek riski için CAPE > 1000 J/kg eşikleri matematiksel kurallara dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "Rampa rüzgâr hızı ve hamlesi Prandtl logaritmik profiliyle roket kulesi tepesine ölçeklenir.",
+      "sade": "AKM 219E dersindeki 'Türbülanslı sınır tabakada logaritmik hız profili (Law of the Wall) bağıntısını kurmak' bilgisiyle yer rüzgârı roketin kule tepesindeki aerodinamik yüküne dönüştürülür. Roketin rampa üzerinde devrilme riski denetlenir.",
+      "altAdimlar": [
+       "10 metre rüzgâr hızı logaritmik profil ile 60 metrelik fırlatma kulesi tepesine taşınır.",
+       "Kule tepesi rüzgârı 15 m/s (30 knot) üzerinde ise rampa kuralı ihlali (NO-GO) verilir.",
+       "Rüzgâr hamlesi için yüzde 20 güvenlik payı eklenerek anlık yük kısıtları tanımlanır."
+      ],
+      "kazanim": {
+       "ders": "AKM 219E",
+       "madde": "Türbülanslı sınır tabakada logaritmik hız profili (Law of the Wall) bağıntısını kurmak."
+      }
+     },
+     {
+      "teknik": "Termal rüzgâr bağıntısıyla üst troposferdeki rüzgâr kayması roket yapısal sınırlarıyla kıyaslanır.",
+      "sade": "MTO 337 dersindeki 'Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek' bilgisiyle üst seviye jet akımlarındaki şiddetli rüzgâr makaslanması hesaplanır. Roket gövdesine etki edecek bükülme yükleri kontrol edilir.",
+      "altAdimlar": [
+       "8 ila 12 km irtifa aralığında dikey rüzgâr kayması gradyanı hesaplanır.",
+       "Maksimum dinamik basınç noktasındaki kayma 0.03 s⁻¹ üzerinde ise irtifa yasağı konur.",
+       "Sıcaklık gradyanından jet ekseni konumu doğrulanarak rüzgâr kayması riski belgelenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Her saat ve gün için uygunluk durumunun etiketlenmesi",
+    "oz": "Tüm kurallar taranarak ikili GO/NO-GO kararları üretilir.",
+    "ayrinti": "Tanımlanan rüzgâr, kayma ve konvektif şimşek kuralları geçmiş verideki tüm saatlik adımlara uygulanır. Tüm kuralların sağlandığı saatler fırlatma penceresi adayı kabul edilir.",
+    "nasil": [
+     {
+      "teknik": "Konvektif kararsızlık CAPE ve K indeksi sınırları uygulanarak şimşek risk pencereleri elenir.",
+      "sade": "MTO 337 dersindeki 'Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek' bilgisiyle dikey yükselici akımlar ve fırtına bulutu oluşumu saptanır. Roketin içinden geçmesi tehlikeli olan elektrik yüklü bulutlar elenir.",
+      "altAdimlar": [
+       "CAPE değeri 1000 J/kg veya K indeksi 30 üzeri olan saatler fırtına riskiyle işaretlenir.",
+       "Donma seviyesinin bulut içi konumu kontrol edilerek tetiklenen şimşek kriteri uygulanır.",
+       "Şimşek riski olan saatlerin çevresine 3 saatlik güvenlik tamponu eklenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+      }
+     },
+     {
+      "teknik": "Tüm fiziksel kuralların mantıksal AND kapısıyla birleştirilmesiyle fırlatma penceresi ikili dizisi çıkarılır.",
+      "sade": "AKM 219E dersindeki 'Navier-Stokes denklemlerini viskoz akışlar için ölçekleyip sadeleştirmek' bilgisiyle akışkan ortamının aerodinamik zorlayıcıları ortak bir emniyet kararında toplanır. Fırlatma için izin verilen saatler belirlenir.",
+      "altAdimlar": [
+       "Rampa rüzgârı, üst seviye rüzgâr kayması ve şimşek kuralları mantıksal olarak birleştirilir.",
+       "En az ardışık 2 saat aralıksız uygunluk sağlayan zaman pencereleri GO olarak seçilir.",
+       "İhlal edilen her kuralın sebebi (örneğin rüzgâr veya şimşek) ayrı ayrı etiketlenir."
+      ],
+      "kazanim": {
+       "ders": "AKM 219E",
+       "madde": "Navier-Stokes denklemlerini viskoz akışlar için ölçekleyip sadeleştirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Fırlatma penceresi takvim grafiğinin ve raporunun çizilmesi",
+    "oz": "Yıllık takvim ısı haritası ve istatistik özeti çizilir.",
+    "ayrinti": "Üretilen saatlik uygunluk dizileri yılın 365 günü için gün ve saat eksenlerinde renkli takvim ısı haritasına dökülür. En yüksek başarı oranına sahip aylar ve mevsimsel eğilimler raporlanır.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib ve Seaborn ile gün ve saat eksenlerinde fırlatma penceresi ısı haritası görselleştirilir.",
+      "sade": "MTO 337 dersindeki 'Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak' bilgisiyle mevsimsel sinoptik döngülerin fırlatma uygunluğuna etkisi görselleştirilir. Operasyon liderlerinin bakabileceği renkli bir takvim paneli oluşturulur.",
+      "altAdimlar": [
+       "Yılın günleri dikey eksende, günün 24 saati yatay eksende matris olarak düzenlenir.",
+       "Yeşil renk güvenli pencereleri, kırmızı rüzgâr engelini, mor şimşek engelini temsil eder.",
+       "Grafik yüksek çözünürlükte etkileşimli HTML ve görsel formatında dışa aktarılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak."
+      }
+     },
+     {
+      "teknik": "Mevsimsel ve aylık ortalama uygunluk yüzdeleri hesaplanarak roket görev takvimi optimizasyonu sunulur.",
+      "sade": "AKM 219E dersindeki 'Yüzey kayma gerilmesinden sürtünme hızını ve aerodinamik pürüzlülüğü bulmak' bilgisiyle mevsimsel rüzgâr ikliminin fırlatma başarı ihtimali üzerindeki kümülatif etkisi özetlenir. Roket fırlatması için en sakin aylar saptanır.",
+      "altAdimlar": [
+       "Her ay için fırlatma penceresi olasılık yüzdesi hesaplanır.",
+       "Sabah ve akşamüstü saatlerinin sakinlik avantajı sayısal olarak karşılaştırılır.",
+       "Bulgular Jupyter defterinde özet istatistik tablosu halinde sunulur."
+      ],
+      "kazanim": {
+       "ders": "AKM 219E",
+       "madde": "Yüzey kayma gerilmesinden sürtünme hızını ve aerodinamik pürüzlülüğü bulmak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Doğu Akdeniz fırlatma sahası rüzgâr hamlesi ve konvektif fırtına indeksi, ERA5, 2024-05-20..25, 6 saatlik",
+   "aciklama": "Fırlatma rampası çevresinde rüzgâr ve şimşek risk pencerelerinin gün içi zamansal değişimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+   "aciklama": "ECMWF açık veri portalı küresel sayısal hava tahmini veri kümeleri tanıtımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ECMWF Open Data küresel hava tahmin veri kümesi",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  },
+  {
+   "ad": "NASA Kennedy Uzay Merkezi fırlatma hava durumu kuralları dokümanı",
+   "url": "https://www.nasa.gov/centers-and-facilities/kennedy/launch-weather/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/UZB-02.json",
+  "tarih": "2026-10-14 23:59",
+  "geminiSha1": "68d61351d634"
+ }
+}

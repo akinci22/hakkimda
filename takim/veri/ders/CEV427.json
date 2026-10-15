@@ -1,0 +1,146 @@
+{
+ "kod": "CEV 427",
+ "ad": "Çevre Sistemleri Simülasyonu",
+ "bolum": "Çevre Mühendisliği",
+ "obsNo": "427",
+ "ozet": "Kentsel ve doğal çevre sistemlerinde su, kirletici ve madde taşınımının sayısal yöntemlerle incelenmesini öğretir. Kentsel drenaj ağları, nehir havzaları ve göllerde kütle korunumu ilkeleri, Streeter-Phelps çözünmüş oksijen bağıntıları, Manning yüzey akışı ve hidrolik yönlendirme hesapları ele alınır. Taşkın risk haritalama ve su kalitesi yönetiminde açık veri ile sayısal simülasyon adımları incelenir.",
+ "neOgrenirsin": [
+  "Kentsel havzalarda yağış-akış dönüşümünü ve hidrograf tepe debilerini hesaplamak.",
+  "Manning açık kanal hidrolik bağıntısıyla taşkın su seviyesi ve akış hızını bulmak.",
+  "Streeter-Phelps kütle denkliğiyle nehirlerde çözünmüş oksijen açığını analiz etmek.",
+  "Sürekli akışlı reaktör ve havuzlarda kütle korunum denklemlerini sayısal çözmek.",
+  "Yükseklik modelleriyle taşkın yayılım sınırlarını ve kritik su baskını alanlarını belirlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Manning açık kanal üniform akış debisi bağıntısı",
+   "tex": "Q = \\frac{1}{n} A R_h^{2/3} S^{1/2}",
+   "terimler": [
+    [
+     "Q",
+     "kanal debisi",
+     "m³/s"
+    ],
+    [
+     "n",
+     "Manning pürüzlülük katsayısı",
+     "s/m^{1/3}"
+    ],
+    [
+     "A",
+     "ıslak enkesit alanı",
+     "m²"
+    ],
+    [
+     "R_h",
+     "hidrolik yarıçap (A/P)",
+     "m"
+    ],
+    [
+     "S",
+     "kanal taban eğimi",
+     "m/m"
+    ]
+   ],
+   "sade": "Bir yağmur suyu kanalının veya nehir yatağının eğimine, kesitine ve yüzey pürüzlülüğüne bağlı olarak saniyede ne kadar taşkın suyu taşıyabileceğini hesaplar. Kapasite aşıldığında suyun taşkın yatağına taşacağını gösterir.",
+   "ornek": "Genişliği 4 m, derinliği 1,5 m olan beton bir kanalda n = 0,015 ve taban eğimi S = 0,002 iken taşınabilecek güvenli su debisi yaklaşık 13,2 m³/s olarak bulunur.",
+   "nerede": "Yoğun yağış anında kentsel drenaj hatlarının ve derelerin taşkın taşıma kapasitesini hesaplarken."
+  },
+  {
+   "ad": "Rasyonel yöntem kentsel pik taşkın debisi hesabı",
+   "tex": "Q_p = 0{,}278 \\, C \\, I \\, A",
+   "terimler": [
+    [
+     "Q_p",
+     "maksimum pik yüzey akış debisi",
+     "m³/s"
+    ],
+    [
+     "C",
+     "yüzey akış katsayısı",
+     "birimsiz"
+    ],
+    [
+     "I",
+     "yağış şiddeti",
+     "mm/saat"
+    ],
+    [
+     "A",
+     "drenaj havzası alanı",
+     "km²"
+    ]
+   ],
+   "sade": "Belli bir alana düşen sağanak yağışın ne kadarlık kısmının asfalt ve çatılardan hemen akışa geçerek tepe taşkın dalgası oluşturacağını hesaplar.",
+   "ornek": "Yüzey akış katsayısı C = 0,70 olan 2 km² büyüklüğündeki kentsel alana 60 mm/saat sağanak yağdığında pik taşkın debisi yaklaşık 23,3 m³/s seviyesine ulaşır.",
+   "nerede": "Kentsel taşkın erken uyarı eşikleri ve menfez boyutlandırma hesaplarında kullanılır."
+  },
+  {
+   "ad": "Streeter-Phelps nehir çözünmüş oksijen açığı bağıntısı",
+   "tex": "D(t) = \\frac{k_1 L_0}{k_2 - k_1} \\left( e^{-k_1 t} - e^{-k_2 t} \\right) + D_0 e^{-k_2 t}",
+   "terimler": [
+    [
+     "D(t)",
+     "t anındaki çözünmüş oksijen açığı",
+     "mg/L"
+    ],
+    [
+     "k_1",
+     "biyokimyasal oksitlenme hız katsayısı",
+     "1/gün"
+    ],
+    [
+     "k_2",
+     "yüzeyden yeniden havalanma hız katsayısı",
+     "1/gün"
+    ],
+    [
+     "L_0",
+     "başlangıç nihai biyokimyasal oksijen ihtiyacı",
+     "mg/L"
+    ],
+    [
+     "D_0",
+     "başlangıç oksijen açığı",
+     "mg/L"
+    ],
+    [
+     "t",
+     "akış boyunca geçen seyahat süresi",
+     "gün"
+    ]
+   ],
+   "sade": "Organik atık veya yağmur suyu akıntısı nehre karıştığında sudaki oksijenin önce nasıl hızla azaldığını, ardından havadan oksijen emilimiyle suyun kendini nasıl temizlediğini hesaplar.",
+   "ornek": "k1 = 0,2 /gün ve k2 = 0,5 /gün olan bir akarsuda başlangıç oksijen açığı 2 mg/L iken 1 gün sonraki kritik oksijen açığı yaklaşık 4,1 mg/L seviyesine çıkar.",
+   "nerede": "Taşkın ve kentsel deşarjların nehir ekosisteminde oluşturduğu kirlilik şokunu analiz ederken kullanılır."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Hydrograph.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Kentsel yağış-akış hidrografı ve taşkın pik debisi tepe noktası eğrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Kentsel drenaj havzalarında taşkın yayılım simülasyonu, saatlik su derinliği değişimi",
+   "aciklama": "Aşırı yağış anında sokak bazında su birikimi ve drenaj taşkın sınırları animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · CEV 427 (Çevre Sistemleri Simülasyonu)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CEV&dersNo=427"
+  },
+  {
+   "ad": "Chapra, S. C. (2008) Surface Water-Quality Modeling, Waveland Press · ISBN 978-1-57766-605-9",
+   "url": "https://openlibrary.org/isbn/9781577666059"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CEV&dersNo=427"
+}

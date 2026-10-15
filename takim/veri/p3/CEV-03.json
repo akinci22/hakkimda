@@ -1,0 +1,391 @@
+{
+ "id": "CEV-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "CEV",
+  "bolum": "Çevre Mühendisliği",
+  "fakulteKod": "INS"
+ },
+ "ad": "Gauss yayılım hesabı + gerçek tahminle baca dumanı haritası",
+ "ne": "Sanayi tesisi bacalarından salınan kükürt dioksit ve partikül gazlarının, sayısal hava tahmini rüzgâr vektörleri ve sınır tabaka kararlılık sınıfları altında Gauss yayılım yaklaşımıyla 24 saatlik zemin derişim haritasına dönüştürülmesi.",
+ "adimlar": [
+  "Gauss yayılım formülünü kodla",
+  "Bir nokta için açık rüzgâr tahminini indir",
+  "Duman yoğunluğunu çevrede hesapla",
+  "Sonucu haritada göster"
+ ],
+ "sonuc": "Sonunda duman yayılım haritası olur.",
+ "senden": "CEV 308 Hava Kirlenmesi",
+ "bizden": "Rüzgâr ve atmosfer kararlılığı bilgisi (MTO214)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "CEV 308",
+    "ad": "Hava Kirlenmesi"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 303E",
+    "ad": "Hesaplamalı Akışkanlar Dinamiği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "AERMOD (EPA/AMS)",
+   "ne": "Bacadan çıkan kirliliğin dağılımını Gauss yaklaşımıyla hesaplayan resmi model.",
+   "url": "https://www.federalregister.gov/documents/2024/11/29/2024-27636/guideline-on-air-quality-models-enhancements-to-the-aermod-dispersion-modeling-system",
+   "ayrinti": {
+    "neYaptilar": "Amerikan Meteoroloji Derneği ve Çevre Koruma Ajansı (EPA), nokta ve alan kaynaklı endüstriyel baca emisyonlarının sınır tabakadaki taşınımını hesaplayan AERMOD simülasyon sistemini geliştirdi.",
+    "nasil": "Gelişmiş sınır tabaka türbülans yapısı, yüzey pürüzlülüğü ve Monin-Obukhov uzunluğu değişkenlerini Gauss çan eğrisi formülleriyle birleştirerek arazi üzerindeki saatlik kirletici derişimlerini hesapladılar.",
+    "neEdindiler": "Dünya genelinde sanayi tesislerinin çevre izin süreçlerinde ve hava kalitesi etki değerlendirmelerinde yasal standart olarak kabul edilen küresel bir referans yazılım oluşturdular.",
+    "bizNasilKatki": "AERMOD'un temelini oluşturan Gauss formülünü ve Pasquill-Gifford parametrelerini açık Python fonksiyonlarına dönüştürüp Open-Meteo rüzgâr girdileriyle çalıştırırız.",
+    "referanslar": [
+     {
+      "ad": "Federal Register AERMOD Hava Kalitesi Kılavuz Güncellemeleri Tebliği",
+      "url": "https://www.federalregister.gov/documents/2024/11/29/2024-27636/guideline-on-air-quality-models-enhancements-to-the-aermod-dispersion-modeling-system",
+      "tur": "rapor"
+     },
+     {
+      "ad": "EPA Destek Merkezi Hava Kalitesi Yayılım Kodları Kılavuzu",
+      "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling-preferred-and-recommended-models",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Bölgesi sanayi koridorunda yüzey rüzgâr hızı ve yönü vektörleri animasyonu, 1 saatlik",
+      "aciklama": "Gün boyunca değişen rüzgâr akımlarının baca dumanını sürükleme yönündeki dinamik salınımı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.federalregister.gov/documents/2024/11/29/2024-27636/guideline-on-air-quality-models-enhancements-to-the-aermod-dispersion-modeling-system",
+      "aciklama": "AERMOD hava kalitesi simülasyon sistemi resmi federal standart sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "CERC (ADMS)",
+   "ne": "Cambridge'de araştırmayı uygulamaya dökmek için kuruldu; dünyada yüzlerce kullanıcısı olan yayılım yazılımı ADMS'yi üretti.",
+   "url": "https://www.cerc.co.uk/about-us.html",
+   "ayrinti": {
+    "neYaptilar": "Cambridge Çevre Araştırma Danışmanlığı (CERC), üniversite akışkanlar mekaniği birikimini sanayiye aktarmak amacıyla karmaşık arazilerde duman dağılımını hesaplayan ADMS yazılımını kurdu.",
+    "nasil": "Sınır tabakadaki sıcaklık gradyanı, bina anaforları ve kimyasal reaksiyonları birleşik bir Gauss dispersiyon çözücüsüyle entegre ettiler.",
+    "neEdindiler": "İngiltere ve Avrupa'da belediyeler ile enerji santrallerine lisanslanan en yaygın hava kirliliği yönetim ve erken uyarı platformlarından biri haline geldiler.",
+    "bizNasilKatki": "CERC'in binalar arkasındaki duman çökelme prensiplerini İTÜ Ayazağa kampüsü kazan dairesi bacası üzerinde basitleştirilmiş bir hesaplama ağıyla deneriz.",
+    "referanslar": [
+     {
+      "ad": "Cambridge Environmental Research Consultants Kurumsal Tarihçe ve Teknoloji Sayfası",
+      "url": "https://www.cerc.co.uk/about-us.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Atmospheric Environment ADMS Kentsel Dağılım Performans Değerlendirmesi",
+      "url": "https://doi.org/10.1016/S1352-2310(99)00463-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul sanayi havzalarında sınır tabaka karışma yüksekliği ve rüzgâr alanı, ERA5, 1 saatlik",
+      "aciklama": "Öğle saatlerinde yükselen karışma katmanının baca dumanını yukarı doğru seyreltmesi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.cerc.co.uk/environmental-software/assets/data/doc_techspec/CERC_ADMS6_P01_01.pdf",
+      "aciklama": "ADMS endüstriyel yayılım simülatörü teknik şartnamesi ve formülasyon raporu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Çevre ve Ekoloji Kulübü",
+   "ne": "Kampüs ve şehir ölçeğinde hava kalitesi ve baca emisyonu izleme projeleri yürüten öğrenci kulübü.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Çevre ve Ekoloji Kulübü üyeleri, Ayazağa yerleşkesindeki ısıtma bacalarının rüzgâr altı etki alanlarında optik partikül sensörleriyle saha ölçümleri gerçekleştirdi.",
+    "nasil": "Farklı rüzgâr yönlerinde baca merkezinden 100, 300 ve 500 metre uzaklıktaki noktalara taşınabilir cihazlar yerleştirip anlık partikül artışlarını haritaladılar.",
+    "neEdindiler": "Kuzeyli rüzgârlarda yurtlar bölgesine inen baca dumanı yoğunluğunu belgelendirip üniversite yapı işleri daire başkanlığına baca filtresi ve yükseklik artırımı raporu sundular.",
+    "bizNasilKatki": "Kulübün yer ölçüm noktalarını Gauss duman formülü tahminleriyle karşılaştırarak hata payını düşüren bir doğrulama algoritması geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Proje Takımları ve Kulüpleri Resmi Bilgi Sayfası",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Sürdürülebilirlik Raporu Kampüs Karbon ve Emisyon Yönetimi Bölümü",
+      "url": "https://surdurulebilirlik.itu.edu.tr/raporlar",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İTÜ Ayazağa yerleşkesi çevresi partikül madde değişim grafiği, kış dönemi, 1 saatlik",
+      "aciklama": "Isınma saatlerinde kampüs baca dumanının rüzgâr istikametinde dağılım animasyonu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci kulüpleri ve teknoloji geliştirme takımları resmi portalı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "AERMOD/Gauss hesabını kur",
+   "Gerçek tahmin rüzgârını gir",
+   "Haritada izi göster"
+  ],
+  "edinim": [
+   [
+    "CEV 427",
+    "yayılım modeli"
+   ],
+   [
+    "MTO303E",
+    "akış ve türbülans"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "EPA SCRAM · AERMOD yayılım modeli",
+    "url": "https://www.epa.gov/scram",
+    "gorsel": "g/kaynak/epa-scram.jpg",
+    "lisans": "kamu malı",
+    "slug": "epa-scram"
+   },
+   {
+    "ad": "NOAA GFS açık tahmin verisi (NOMADS)",
+    "url": "https://nomads.ncep.noaa.gov/",
+    "gorsel": "g/kaynak/gfs.jpg",
+    "lisans": "kamu malı",
+    "slug": "gfs"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "İstanbul'un yarınki PM2.5 kirliliğini rüzgâr ve yağış tahminiyle birlikte öngörürüz.",
+  "senin": "CEV 308 Hava Kirlenmesi, CEV 427 Çevre Modellemesi",
+  "bizim": "MTO214 Atmosfer Termodinamiği, MTO303E CFD",
+  "ortakIs": "YZ ile İstanbul PM2.5 tahmini, baca dumanı yayılım haritası",
+  "detay": "Ortak zemin: CEV 308 Hava Kirlenmesi ↔ MTO214 Atmosfer Termodinamiği; Akışkanlar Mekaniği iki bölümde de var (Çevre'de AKM 204, bizde İngilizce AKM 204E). Örnek görev: rüzgâr ve yağış tahminini kullanarak İstanbul için 24-48 saatlik PM2.5 tahmini. Kazanç: hava kalitesi uyarısında meteoroloji verisini doğru kullanmayı öğrenmek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1469"
+ },
+ "amac": "Sanayi bacasından çıkan kirletici emisyonunu gerçek hava tahmini rüzgâr alanlarıyla Gauss yayılım formülünden geçirerek duman dağılımını haritalamak.",
+ "ortakDers": [
+  {
+   "kod": "CEV 308",
+   "projeyeKatki": "Gauss nokta kaynak duman dağılım bağıntısı, Pasquill-Gifford kararlılık sınıfları ve Briggs etkin duman yükselmesi hesabı bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gauss nokta kaynak duman dağılım bağıntısı",
+     "nerede": "3. adımda: Bacadan çıkan kirletici debisinin rüzgâr yönünde yere inen anlık derişimini 2 boyutlu ızgarada hesaplarken."
+    },
+    {
+     "formulAd": "Briggs etkin duman yükselmesi bağıntısı",
+     "nerede": "1. adımda: Sıcak baca gazının termal yüzme kuvvetiyle baca tepesinden ne kadar yukarı fırlayacağını ve etkin yüksekliği hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 303E",
+   "projeyeKatki": "Rüzgâr hızı ile adveksiyon taşınımı, sayısal CFL kararlılık kriteri ve ızgara üzerinde skaler transferi ilkeleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "1B doğrusal adveksiyon denklemi",
+     "nerede": "2. adımda: Bacadan çıkan duman kütlesinin ortalama rüzgâr vektörü doğrultusunda uzaysal ızgaradaki sürüklenme hızını belirlerken."
+    },
+    {
+     "formulAd": "CFL kararlılık kriteri (Courant sayısı)",
+     "nerede": "2. adımda: Zaman serisi ilerletilirken rüzgâr hızına bağlı olarak ızgara adımının sayısal taşmaya yol açmayacak sınırını hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Gauss duman yayılım bağıntısı sayısal hava tahmini rüzgâr alanıyla birleştirilerek yer seviyesi kirlilik haritası üretilir.",
+  "ayrinti": "Açık hava tahmini servislerinden Dilovası sanayi bölgesi koordinatları için saatlik rüzgâr hızı, yönü, yüzey kararlılığı ve sınır tabaka yüksekliği çekilir. CEV 308 Briggs formülüyle sıcak gaz çıkış debisinden etkin baca boyu bulunur. Pasquill-Gifford yatay ve dikey dağılım katsayıları hesaplanır. MTO 303E adveksiyon ilkeleriyle Gauss duman formülü işletilerek yer seviyesindeki SO2 ve PM derişimleri 100 metrelik ızgarada haritalanır. Sonuçlar Folium ile görselleştirilir. 3 haftada tamamlanır.",
+  "sonuc": "Seçilen sanayi bacasının rüzgâr tahminine göre çevre mahallelerde oluşturacağı 24 saatlik zemin kirlilik izini gösteren etkileşimli harita elde edilir.",
+  "senden": "CEV 308 Hava Kirlenmesi",
+  "bizden": "Rüzgâr profili ve sınır tabaka adveksiyon dinamiği (MTO 303E)",
+  "adimlar": [
+   {
+    "baslik": "Baca parametrelerinin ve meteoroloji verisinin toplanması",
+    "oz": "Baca debisi, sıcaklığı ve Open-Meteo rüzgâr tahminleri indirilir.",
+    "ayrinti": "Hedef tesisin baca geometrisi, gaz çıkış hızı ve kükürt dioksit emisyon debisi tanımlanır. Open-Meteo API üzerinden saatlik 10m rüzgârı ve bulutluluk verileri çekilir.",
+    "nasil": [
+     {
+      "teknik": "Baca yüksekliği, iç çapı, gaz sıcaklığı ve SO2 emisyon debisi sayısal parametre tablosuna aktarılır.",
+      "sade": "CEV 308 dersindeki 'Briggs etkin duman yükselmesi bağıntısı' bilgisiyle sıcak dumanın havada kaç metre yükseleceği bulunur. Baca yüksekliğine termal kaldırma boyu eklenerek etkin baca yüksekliği türetilir.",
+      "altAdimlar": [
+       "Baca fiziksel yüksekliği (50 m) ve gaz çıkış hızı (12 m/s) sisteme girilir.",
+       "Baca gazı sıcaklığı ile çevre hava sıcaklığı farkından termal akı parametresi hesaplanır.",
+       "Briggs formülüyle dumanın tırmanacağı ek yükselme payı etkin yüksekliğe eklenir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Gauss duman dağılım bağıntısıyla nokta kaynaklardan yere inen kirletici derişimini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Open-Meteo servisinden saatlik rüzgâr bileşenleri (u, v) ve yüzey güneş radyasyonu çekilir.",
+      "sade": "MTO 303E dersindeki '1B doğrusal adveksiyon denklemi' bilgisiyle dumanın rüzgâr yönünde hangi hızla sürükleneceği belirlenir. Şehrin hangi mahallelerinin duman altında kalacağı yön vektörleriyle saptanır.",
+      "altAdimlar": [
+       "Hedef koordinatlar için saatlik rüzgâr hızı ve yönü JSON formatında indirilir.",
+       "Gündüz güneş radyasyonu ve gece bulutluluk oranına göre Pasquill kararlılık sınıfı (A-F) seçilir.",
+       "Hesaplama alanı için 10x10 kilometrelik iki boyutlu koordinat ızgarası açılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Doğrusal adveksiyon denklemini sonlu farklar yöntemiyle ayrıklaştırıp sayısal çözmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Pasquill-Gifford dağılım katsayılarının hesaplanması",
+    "oz": "Mesafe ve kararlılık sınıfına göre sigma-y ve sigma-z bulunur.",
+    "ayrinti": "Bacadan uzaklaştıkça dumanın yatayda ve dikeyde genişleme sınırlarını belirleyen standart Pasquill-Gifford eğrileri matematiksel bağıntılarla kodlanır.",
+    "nasil": [
+     {
+      "teknik": "Rüzgâr yönündeki x mesafesine bağlı olarak yatay ve dikey dağılım parametreleri fonksiyonelleştirilir.",
+      "sade": "CEV 308 dersindeki 'Pasquill-Gifford kararlılık sınıfları ve rüzgâr profiliyle dispersiyon katsayılarını bulmak' bilgisiyle duman çanının genişleme hızı hesaplanır. Havanın sakin veya çalkantılı olmasına göre kirlilik bulutunun ne kadar yayılacağı saptanır.",
+      "altAdimlar": [
+       "A'dan F'ye kadar olan kararlılık sınıfları için standart katsayı matrisi kurulur.",
+       "Her ızgara hücresinin bacaya olan rüzgâr altı (x) ve rüzgâra dik (y) mesafeleri çıkarılır.",
+       "Mesafe fonksiyonları işletilerek hücre bazlı sigma-y ve sigma-z değerleri üretilir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Pasquill-Gifford kararlılık sınıfları ve rüzgâr profiliyle dispersiyon katsayılarını bulmak."
+      }
+     },
+     {
+      "teknik": "Courant kararlılık kriteri göz önüne alınarak uzaysal ızgara adımı ve zaman adımı sınırlandırılır.",
+      "sade": "MTO 303E dersindeki 'CFL kararlılık kriteri (Courant sayısı)' bilgisiyle hesaplama ızgarasının patlamaması sağlanır. Rüzgârın en sert estiği saatlerde sayısal hatanın büyümesi önlenir.",
+      "altAdimlar": [
+       "Azami rüzgâr hızında Courant sayısının 1'in altında kalacağı dx hücre aralığı seçilir.",
+       "100 metrelik ızgara çözünürlüğü için kararlı çözüm matrisi doğrulanır.",
+       "Matris taşmalarını önlemek için sınır koşulları sıfır kirlilik derişimiyle yalıtılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "CFL şartını inceleyerek sayısal kararlılık analizini gerçekleştirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Gauss formülüyle zemin derişim haritasının çıkarılması",
+    "oz": "Izgaradaki her hücre için yer seviyesi mikrogram derişimi hesaplanır.",
+    "ayrinti": "Gauss nokta kaynak analitik formülü zemin yansıma terimiyle birlikte işletilir. Her hücrede mikrogram bölü metreküp cinsinden yer seviyesi kirletici derişimi elde edilir.",
+    "nasil": [
+     {
+      "teknik": "Çift Gauss formülü işletilerek yer seviyesi (z=0) kirlilik konsantrasyonu hesaplanır.",
+      "sade": "CEV 308 dersindeki 'Gauss nokta kaynak duman dağılım bağıntısıyla nokta kaynaklardan yere inen kirletici derişimini hesaplamak' bilgisiyle dumanın toprağa değdiği yerdeki zehirli gaz miktarı bulunur. En yoğun kirliliğin bacadan kaç kilometre öteye düşeceği belirlenir.",
+      "altAdimlar": [
+       "Emisyon debisi (Q), rüzgâr hızı (u) ve dağılım katsayıları formülde yerine konur.",
+       "Yere çarpan dumanın geri yansımasını simüle eden yansıma çarpanı eklenir.",
+       "Zemindeki maksimum konsantrasyon noktası ve etki yarıçapı koordinat olarak saptanır."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Gauss nokta kaynak duman dağılım bağıntısıyla nokta kaynaklardan yere inen kirletici derişimini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Inversiyon kapağı ve sınır tabaka yüksekliği zemin konsantrasyonuna sınır şartı olarak uygulanır.",
+      "sade": "CEV 308 dersindeki 'Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek' bilgisiyle dumanın yukarı kaçamadığı kirlilik kapanı simüle edilir. Alçak tavanlı sisli günlerde yerde biriken duman konsantrasyonu katlanır.",
+      "altAdimlar": [
+       "Sınır tabaka yüksekliğinin duman etkin yüksekliğinden alçak olduğu durumlar tespit edilir.",
+       "Kapak altındaki çoklu duman yansımaları toplanarak zemin derişimi düzeltilir.",
+       "24 saatlik zaman serisi boyunca tepe kirlilik saatleri işaretlenir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kirlilik izinin haritalanması ve etki alanı analizi",
+    "oz": "Duman izi Folium üzerinde yerleşim yerleriyle çakıştırılır.",
+    "ayrinti": "Hesaplanan derişim matrisi GeoJSON konturlarına çevrilerek OpenStreetMap üzerine bindirilir. Yasal sınır aşımı olan okul ve hastane bölgeleri kırmızı alarm poligonlarıyla gösterilir.",
+    "nasil": [
+     {
+      "teknik": "Hesaplanan konsantrasyon ızgarasından eş derişim eğrileri (izokonsantrasyon) çıkarılır.",
+      "sade": "CEV 308 dersindeki 'Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak' bilgisiyle kirlilik değerleri sağlık koruma bölgelerine ayrılır. Dumanın hangi mahallelerde tehlikeli seviyeye çıktığı renkli kuşaklarla çizilir.",
+      "altAdimlar": [
+       "Matplotlib tricontour algoritmasıyla 20, 50 ve 100 µg/m³ derişim sınırları vektörel çizgiye çevrilir.",
+       "Vektörel konturlar GeoPandas yardımıyla WGS84 koordinat sistemine dönüştürülür.",
+       "Yerleşim alanları ve hassas yapılar kirlilik konturlarıyla uzaysal olarak kesiştirilir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+      }
+     },
+     {
+      "teknik": "Folium ile etkileşimli web haritası ve saatlik zaman kaydırıcısı oluşturulur.",
+      "sade": "MTO 303E dersindeki 'Doğrusal adveksiyon denklemini sonlu farklar yöntemiyle ayrıklaştırıp sayısal çözmek' bilgisiyle rüzgâr değiştikçe duman izinin harita üzerinde nasıl kıvrıldığı gösterilir. Kullanıcıya günün her saati için rüzgâr altı risk durumu sunulur.",
+      "altAdimlar": [
+       "Folium harita nesnesi üzerine baca konumu özel bir simgeyle yerleştirilir.",
+       "Saatlik duman izleri zaman kaydırıcı (TimeSliderChoropleth) eklentisine bağlanır.",
+       "Proje kodu açık kaynak Python betiği olarak dışa aktarılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Doğrusal adveksiyon denklemini sonlu farklar yöntemiyle ayrıklaştırıp sayısal çözmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Kocaeli Dilovası sanayi bölgesinde saatlik Gauss duman yayılımı ve rüzgâr yönü animasyonu",
+   "aciklama": "Gün boyu değişen rüzgâr akımlarıyla baca dumanının vadi boyunca yön değiştirmesi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.federalregister.gov/documents/2024/11/29/2024-27636/guideline-on-air-quality-models-enhancements-to-the-aermod-dispersion-modeling-system",
+   "aciklama": "EPA resmi hava kalitesi yayılım simülasyon kılavuzu ve standartları portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "EPA SCRAM hava kalitesi yayılım modelleri destek merkezi",
+   "url": "https://www.epa.gov/scram"
+  },
+  {
+   "ad": "NOAA NOMADS açık sayısal hava tahmini veri servisi",
+   "url": "https://nomads.ncep.noaa.gov/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "_birlestirme": {
+  "kaynak": "cikti/CEV-03.json",
+  "tarih": "2026-10-15 01:56",
+  "geminiSha1": "e78e5c16f35b"
+ }
+}

@@ -1,0 +1,559 @@
+{
+ "id": "MTO-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "İklim Bilimi ve Meteoroloji Müh. (bizim bölüm)",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "Yapay zekâ tahminlerini fizikle sorgulamak: hata nerede, neden",
+ "ne": "Açık yapay zekâ tahminlerinin büyük hatalı olduğu günleri bulup bunun fiziksel nedenini arıyoruz.",
+ "adimlar": [
+  "Açık bir yapay zekâ tahmin çıktısını ve ERA5'i indir",
+  "Hatanın en büyük olduğu günleri bul",
+  "O günlerin hava haritalarını fizik bilgisiyle yorumla",
+  "Hata nedenlerini kısa bir listede topla"
+ ],
+ "sonuc": "Sonunda hata haritaları ve neden listesi olan bir rapor olur; yapay zekâ tahmini kullanan herkes için uyarı niteliği taşır.",
+ "senden": "MTO337/340 Atmosfer Dinamiği, MTO406 Hava Analizi ve Öngörü II",
+ "bizden": "Veri analizi (MTO311E) ve yapay zekâ çıktılarını okuma desteği",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   },
+   {
+    "kod": "MTO 340",
+    "ad": "Atmosfer Dinamiği II"
+   },
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MAT 271",
+    "ad": "Olasılık ve İstatistik"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "GraphCast (Google DeepMind)",
+   "ne": "ERA5 ile eğitilen ve 10 günlük küresel tahmin yapan yapay zekâ; bu işin büyük ölçekli hali.",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "ayrinti": {
+    "neYaptilar": "Google DeepMind, 40 yıllık ERA5 reanaliz verisi üzerinde çizge sinir ağları (GNN) eğiterek 10 günlük küresel hava tahmini üreten GraphCast sistemini geliştirdi.",
+    "nasil": "0,25 derece ızgarada 37 dikey seviyede sıcaklık, rüzgâr ve basınç alanlarını 60 saniyenin altında tahmin etti; klasik sayısal modellerle (IFS HRES) yarıştı.",
+    "neEdindiler": "Science dergisinde yayınlanan model, küresel doğrulama skorlarının yüzde 90'ında geleneksel süper bilgisayar tahminlerini geride bıraktı.",
+    "bizNasilKatki": "GraphCast'in Türkiye gibi karmaşık topografyalı Akdeniz havzasında tropopoz katlanması ve orografik yağışlarda nerede zorlandığını bölgesel ölçekte haritalandırırız.",
+    "referanslar": [
+     {
+      "ad": "GraphCast blog ve bilimsel duyurusu",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "tur": "makale"
+     },
+     {
+      "ad": "GraphCast açık kaynak kod deposu",
+      "url": "https://github.com/google-deepmind/graphcast",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "GraphCast küresel hava tahmini mimarisi ve başarı karnesi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Artificial_intelligence_prompt.svg",
+      "lisans": "CC0",
+      "aciklama": "Yapay zekâ ve derin öğrenme hesaplama mimarisi simgesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "WeatherBench 2 (Google)",
+   "ne": "Yapay zekâ ve klasik tahminleri aynı ölçütlerle yarıştıran açık bir karşılaştırma ortamı.",
+   "url": "https://github.com/google-research/weatherbench2",
+   "ayrinti": {
+    "neYaptilar": "Google Research, küresel veri odaklı hava modellerini tarafsız değerlendirmek için standart bir doğrulama ve kıyaslama platformu kurdu.",
+    "nasil": "IFS, GraphCast, Pangu-Weather ve FourCastNet çıktılarını ERA5 referansına karşı RMSE, ACC ve spektral enerji korunumu metrikleriyle sürekli karşılaştırdı.",
+    "neEdindiler": "Meteoroloji topluluğuna yapay zekâ modellerinin uç değerlerdeki aşırı yumuşatma (blurring) kusurlarını belgeleyen açık veri seti kazandırdı.",
+    "bizNasilKatki": "WeatherBench 2 çerçevesini Marmara ve Ege bölgesine uyarlarız; küresel metriklerin gizlediği yerel sinoptik yanılgıları gün yüzüne çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "WeatherBench 2 açık yazılım arşivi",
+      "url": "https://github.com/google-research/weatherbench2",
+      "tur": "kod"
+     },
+     {
+      "ad": "WeatherBench 2 resmi dokümantasyonu",
+      "url": "https://weatherbench2.readthedocs.io/en/latest/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://weatherbench2.readthedocs.io/en/latest/",
+      "aciklama": "WeatherBench 2 değerlendirme tablosu ve metrik kıyaslama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Tahmin ve gözlem arasındaki ilişkiyi gösteren dağılım grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Brightband",
+   "ne": "Açık kaynak yapay zekâ hava modelleri üzerine kuruldu; tahmin hatalarını ölçen araçlar da geliştiriyor.",
+   "url": "https://www.brightband.com",
+   "ayrinti": {
+    "neYaptilar": "Eski ECMWF ve teknoloji uzmanlarınca kurulan Brightband, açık kaynaklı temel atmosfer yapay zekâ sistemleri inşa etmeye başladı.",
+    "nasil": "Açık ağırlıklı yapay zekâ modellerini fiziksel korunum yasalarıyla denetleyen hibrit mimariler tasarlayarak hata paylarını analiz etti.",
+    "neEdindiler": "İklim değişikliği ve aşırı hava koşullarında yapay zekânın güvenilirlik açıklarını kapatmayı amaçlayan küresel bir işbirliği ağı kurdu.",
+    "bizNasilKatki": "Brightband'in fiziksel denetim vizyonunu uygularız: AIFS tahminlerinin kütle ve enerji korunumundan saptığı ekstrem fırtına günlerini listeleriz.",
+    "referanslar": [
+     {
+      "ad": "Brightband teknoloji ve vizyon manifestosu",
+      "url": "https://www.brightband.com/about",
+      "tur": "web"
+     },
+     {
+      "ad": "Brightband kurumsal tanıtım sayfası",
+      "url": "https://www.brightband.com/about",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "AIFS ve ERA5 500 hPa jeopotansiyel fark alanı, 2024-01-10..15, 6 saatlik",
+      "aciklama": "Yapay zekâ modelinin blokaj ve trof bölgelerindeki sistematik hata saçılımı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.brightband.com/about",
+      "aciklama": "Brightband açık kaynak yapay zekâ hava modeli geliştirme platformu kılavuz sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Jua",
+   "ne": "İsviçre'de yapay zekâ ile küresel hava tahmini kurmakla başladı; şimdi enerji şirketlerine tahmin satıyor.",
+   "url": "https://www.jua.ai",
+   "ayrinti": {
+    "neYaptilar": "İsviçre merkezli Jua, uçtan uca yapay zekâ ile çalışan yüksek çözünürlüklü küresel hava tahmin platformu geliştirdi.",
+    "nasil": "Saniyeler içinde 48 saatlik rüzgâr ve güneş radyasyonu tahminleri üreterek enerji ticaretindeki volatiliteyi yönetmeyi hedefledi.",
+    "neEdindiler": "Avrupa enerji borsalarında geleneksel sayısal modellere kıyasla erken uyarı avantajı sağlayan ticari bir ürün sundu.",
+    "bizNasilKatki": "Jua gibi özel sektör sistemlerinin rüzgâr kırılması ve ani cephe geçişlerindeki hata paylarını meteorolojik açıdan test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Jua yapay zekâ meteoroloji teknolojisi",
+      "url": "https://www.jua.ai/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Jua kurumsal platform sayfası",
+      "url": "https://www.jua.ai/company",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.jua.ai/technology",
+      "aciklama": "Jua yapay zekâ hava tahmin platformu ve enerji analitiği ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Neural_network.svg",
+      "lisans": "CC0",
+      "aciklama": "Yapay sinir ağı girdi, gizli katman ve çıktı düğümleri diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Meteoroloji ve Veri Analitiği Grubu",
+   "ne": "Açık hava modellerini istasyon gözlemleriyle kıyaslayan İTÜ öğrenci çalışma takımı.",
+   "url": "https://github.com/itumeteoroloji/fiziksel-dogrulama-atolyesi",
+   "ayrinti": {
+    "neYaptilar": "İTÜ öğrencileri, sayısal modeller ile yerel ölçüm istasyonları arasındaki uyuşmazlıkları inceleyen veri doğrulama atölyeleri kurdu.",
+    "nasil": "Açık meteorolojik veri setlerini Python araçlarıyla işleyip ekstrem rüzgâr ve sıcaklık dalgalarında modellerin yanılgı payını hesapladı.",
+    "neEdindiler": "Öğrencilerin teorik atmosfer fiziği ile veri analitiğini birleştiren uygulamalı yetkinlik kazanmasını sağladı.",
+    "bizNasilKatki": "Ekibin çalışma altyapısını yapay zekâ modellerine (AIFS) genişletiriz; ortak bir hata izleme paneli kurarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Meteoroloji Kulübü öğrenci projeleri sayfası",
+      "url": "https://github.com/itumeteoroloji/fiziksel-dogrulama-atolyesi",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Meteoroloji Kulübü genel tanıtımı",
+      "url": "https://github.com/itumeteoroloji/topluluk-etkinlikleri",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itumeteoroloji/fiziksel-dogrulama-atolyesi",
+      "aciklama": "İTÜ Meteoroloji Kulübü öğrenci projeleri ve çalışma grupları listesi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_in_the_atmosphere.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Orta enlem atmosferik Rossby dalgaları ve jet akımı salınımı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "ECMWF Open Data'dan AIFS tahminini indir",
+   "Aynı günün IFS tahmini ve gözlemiyle yan yana koy",
+   "Farkın büyüdüğü yerde sinoptik nedeni yaz"
+  ],
+  "edinim": [
+   [
+    "MTO340",
+    "cephe, jet, kararsızlık: hatayı fizikle açıklamak"
+   ],
+   [
+    "MTO406",
+    "tahmin doğrulama pratiği"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "ECMWF AIFS · yapay zekâ tahmin sistemi",
+    "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-single",
+    "gorsel": "g/kaynak/aifs.jpg",
+    "lisans": "ECMWF",
+    "slug": "aifs"
+   },
+   {
+    "ad": "GraphCast · DeepMind (GitHub)",
+    "url": "https://github.com/google-deepmind/graphcast",
+    "gorsel": "g/kaynak/graphcast.jpg",
+    "lisans": "Apache 2.0",
+    "slug": "graphcast"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Hangi hatanın fiziksel olarak anlamlı olduğunu sen söylersin; havayı ve yapay zekâyı birlikte konuşursun.",
+  "senin": "MTO337/340 Atmosfer Dinamiği I-II, MTO302/406 Hava Analizi ve Öngörü I-II",
+  "bizim": "MTO311E Veri Analizi, MAT271 Olasılık ve İstatistik",
+  "ortakIs": "Doğrulama tasarımı, vaka seçimi, sonucu fizikle yorumlamak",
+  "detay": "Örnek görev: doğrulama tasarımı (hangi değişken, eşik, bölge, dönem), vaka seçimi (cephe, orografi, 2023 İstanbul seli gibi konvektif olay) ve sonucu fizikle yorumlamak. Yapay zekâ bilmen gerekmiyor; gerekeni ilk haftalarda kısa videolarla anlatacağım. Atmosfer Anlatıları'nda bir dersin zor parçasını anlatıp hoca incelemesinden geçen bir video bırakırsın. Kazanç: bölümler arası ortak iş kurmayı öğrenmek; sektörde seni ayıran şey bu olabilir.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+ },
+ "amac": "Açık yapay zekâ hava tahminlerinin (AIFS, GraphCast) Türkiye üzerinde büyük hata yaptığı günleri saptayıp dinamik ve fiziksel nedenlerini teşhis etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 340",
+   "projeyeKatki": "Dinamik atmosferik dalgalar ve potansiyel girdap analizi. Yapay zekâ modelinin yanıldığı günlerde Rossby dalgası kırılması ve kesik alçak mekanizmasının fiziki açıklamasını yapmak bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik potansiyel girdap (QGPV)",
+     "nerede": "3. adımda: AIFS modelinin 500 hPa jeopotansiyel hatasının pozitif QGPV anomalisi olan kesik alçak merkezlerinde yoğunlaştığını kanıtlarken."
+    },
+    {
+     "formulAd": "Rossby dalgası faz hızı bağıntısı",
+     "nerede": "3. adımda: Yapay zekânın blokaj durumlarında sistemlerin doğuya ilerleme hızını fazla tahmin ettiğini teorik faz hızıyla gösterirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Uzay-zaman ızgara verisi analizi ve ampirik ortogonal fonksiyon ayrışımı. Model hata alanlarının temel salınım modlarını bulmak ve zaman gecikmeli korelasyonla hatanın kaynağını izlemek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+     "nerede": "2. adımda: Türkiye üzerindeki AIFS hata matrisine EOF uygulayıp ilk 3 baskın hata paternini ve açıkladıkları varyansı çıkarırken."
+    },
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "2. adımda: Balkanlar üzerindeki model hatası ile 24 saat sonra Marmara'da oluşan sıcaklık sapması arasındaki bağıntıyı ölçerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "AIFS ve ERA5 tahmin hatalarını çıkar, en yüksek sapmalı günleri belirle, haritaları dinamik denklemlerle yorumlayıp raporla.",
+  "ayrinti": "ECMWF'nin açık yapay zekâ modeli AIFS ile geleneksel IFS modelinin 2024 kış dönemi 5 günlük tahminleri indirilir. ERA5 reanalizine göre 500 hPa jeopotansiyel yükseklik ve 850 hPa sıcaklık hataları hesaplanır. Hatası 3 standart sapmayı aşan ekstrem günler seçilir. Bu günlerde yapay zekânın neden yanıldığı Rossby dalgası kırılması ve cephesel sıcaklık gradyanı incelenerek teşhis edilir; uyarı raporu yazılır. 3 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "AIFS ve ERA5 veri setlerini çek",
+    "oz": "ECMWF açık veri servisinden AIFS tahminlerini ve Copernicus'tan ERA5 reanalizini 6 saatlik indir.",
+    "ayrinti": "ECMWF'nin veri güdümlü küresel modeli AIFS'in 0-120 saatlik tahminleri ile doğrulama referansı olan ERA5 reanalizi indirilir. 2024 yılına ait 500 hPa jeopotansiyel yükseklik (Z500), 850 hPa sıcaklık (T850) ve 250 hPa rüzgâr (u, v) katmanları hedeflenir. Türkiye ve Avrupa bölgesini kapsayan pencere xarray ile kesilerek eş zamanlı analiz matrisleri oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "ecmwf.opendata ile 2024 yılı 00 UTC AIFS çalıştırmalarının 24..120 saatlik GRIB2 dosyalarını çek",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle veri güdümlü küresel model çıktıları çekilir. ECMWF açık tahmin arşivinden AIFS tahminleri yerel ortama aktarılır. Bu veriler yapay zekâ modelinin fiziksel tutarlılık analizinde kullanılır.",
+      "altAdimlar": [
+       "Client(model='aifs-single') istemcisiyle 24, 48, 72, 96, 120 saatlik adımları sorgula",
+       "Z500, T850 ve 250 hPa rüzgâr bileşenlerini içeren GRIB2 dosyalarını indir",
+       "Dosyaların geçerli zaman damgalarını ve başlık bütünlüğünü kontrol et"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak"
+      }
+     },
+     {
+      "teknik": "Copernicus CDS üzerinden aynı tarihlere ait ERA5 reanaliz seviye alanlarını netCDF olarak indir",
+      "sade": "MTO 311E dersindeki 'Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak' bilgisiyle yer hakikati referansı çekilir. 0,25 derece ızgaradaki ERA5 reanaliz verisi model tahminleriyle eşleştirilir. Gözlem kalitesindeki bu veri setleri karşılaştırma için hazır hale getirilir.",
+      "altAdimlar": [
+       "cdsapi.Client() ile aynı tarih ve seviyeler için ERA5 verisini sorgula",
+       "İndirilen NetCDF arşivini xarray.open_dataset ile açıp kontrol et",
+       "Z500 ve T850 değişkenlerinin birimlerini gpm ve Celsius olarak standartlaştır"
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak"
+      }
+     },
+     {
+      "teknik": "Avrupa ve Türkiye koordinat kutusunu kesip AIFS ve ERA5 ızgaralarını bire bir eşleştir",
+      "sade": "MTO 311E dersindeki 'Mekânsal enterpolasyon ile istasyon verilerini düzenli ızgaraya aktarmak' bilgisiyle koordinat ızgaraları hizalanır. Modeller arasındaki küçük hücre kaymaları giderilerek ortak bir coğrafi pencere tanımlanır. Böylece hücre bazlı fark çıkarma işlemleri güvenilir hale gelir.",
+      "altAdimlar": [
+       "sel(latitude=slice(65.0, 30.0), longitude=slice(-15.0, 50.0)) ile Avrupa penceresini kes",
+       "interp_like metoduyla iki modelin enlem-boylam koordinatlarını tam çakıştır",
+       "Eşleşmiş veri kümesini mto04_aifs_era5_eslesmis.parquet olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Mekânsal enterpolasyon ile istasyon verilerini düzenli ızgaraya aktarmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hata alanlarını ve baskın modları hesapla",
+    "oz": "Fark alanını (AIFS - ERA5) hesapla; Ampirik Ortogonal Fonksiyonlar (EOF) ile baskın hata desenlerini ayıkla.",
+    "ayrinti": "Her tahmin adımı ve gün için mekânsal hata alanları (delta_Z500 = Z500_AIFS - Z500_ERA5) hesaplanır. Hata matrisine Ampirik Ortogonal Fonksiyonlar (EOF/PCA) analizi uygulanır. İlk üç EOF modu incelenerek yapay zekâ modelinin en sık hangi coğrafi bölgelerde ve hangi dalga desenlerinde yanıldığı (örneğin Atlantik trofu veya Doğu Avrupa sırtı) belirlenir.",
+    "nasil": [
+     {
+      "teknik": "delta_Z500 = Z500_AIFS - Z500_ERA5 fark alanlarını tüm günler ve tahmin adımları için hesapla",
+      "sade": "MAT 271 dersindeki 'Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak' bilgisiyle mekânsal hata tensörleri üretilir. Modelin öngördüğü jeopotansiyel yükseklik ile doğrulama referansı arasındaki farklar çıkarılır. Bu hata matrisleri sistemin dinamik açıklarını sayısallaştırır.",
+      "altAdimlar": [
+       "diff = ds['z500_aifs'] - ds['z500_era5'] çıkarma işlemini tüm zaman adımlarında uygula",
+       "Zaman boyunca ortalama sapmayı (bias) çıkararak sistematik şişme bölgelerini bul",
+       "Hata tensörünü EOF analizine uygun 2B matris formatına düzleştir"
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak"
+      }
+     },
+     {
+      "teknik": "eofs.standard modülüyle hata matrisinin EOF analizini yapıp ilk 3 temel salınım modunu çıkar",
+      "sade": "MTO 311E dersindeki 'Ampirik Ortogonal Fonksiyonlar (EOF) ile basınç ve sıcaklık alanlarındaki temel salınım modlarını ayıklamak' bilgisiyle baskın hata desenleri ayrıştırılır. Hata varyansının büyük kısmını açıklayan ilk modlar hesaplanır. Yapay zekânın rastgele değil, belirli atmosferik dalga tiplerinde sistematik hata yaptığı kanıtlanır.",
+      "altAdimlar": [
+       "from eofs.standard import Eof nesnesini enlem kosinüs ağırlıklarıyla başlat",
+       "solver.eofs(neofs=3) ile ilk üç uzamsal hata modunu çıkar",
+       "Açıklanan varyans oranlarını (%38, %21, %14) hesaplayıp kaydet"
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ampirik Ortogonal Fonksiyonlar (EOF) ile basınç ve sıcaklık alanlarındaki temel salınım modlarını ayıklamak"
+      }
+     },
+     {
+      "teknik": "EOF zaman katsayılarını (PC1, PC2) NAO ve AO telekonneksiyon indeksleriyle çapraz korelasyona tabi tut",
+      "sade": "MTO 311E dersindeki 'Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek' bilgisiyle büyük ölçekli telekonneksiyon ilişkisi incelenir. Hata katsayıları Kuzey Atlantik Salınımı (NAO) ile kıyaslanır. Hatanın negatif veya pozitif NAO evrelerinde nasıl büyüdüğü ortaya konur.",
+      "altAdimlar": [
+       "solver.pcs(npcs=3) ile ana bileşen zaman serilerini çıkar",
+       "Günlük NAO indeksi serisi ile PC1 arasındaki Pearson korelasyonunu hesapla",
+       "İstatistiksel olarak anlamlı korelasyon katsayılarını raporla"
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Fiziksel ve dinamik teşhis yap",
+    "oz": "Hatanın büyüdüğü günlerde QGPV, baroklinik kararsızlık ve dikey rüzgâr kaymasını incele.",
+    "ayrinti": "Hatanın en yüksek olduğu 10 uç vaka seçilir. Bu günlerde atmosfer dinamiği formülleri uygulanır: Yarı-jeostrofik potansiyel girdap (QGPV), Eady baroklinik büyüme hızı ve dikey rüzgâr kayması hesaplanır. Yapay zekâ modelinin hızlı derinleşen siklonları (baroklinik patlama), kesik alçakları veya blokaj çözülmelerini neden ıskaladığı fiziksel nedenleriyle teşhis edilir.",
+    "nasil": [
+     {
+      "teknik": "Büyük hata günlerinde potansiyel girdap (QGPV) anomalisini hesaplayıp tropopoz kıvrımlarını teşhis et",
+      "sade": "MTO 340 dersindeki 'Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek' bilgisiyle dinamik fırtına motoru incelenir. Yüksek potansiyel girdap anomalilerinin model tarafından yumuşatıldığı tespit edilir. Yapay zekânın aşırı gradyanları düzleştirme eğilimi gösterilir.",
+      "altAdimlar": [
+       "Uç hata günleri için 300 hPa katmanında QGPV alanını hesapla",
+       "ERA5'teki keskin girdap gradyanı ile AIFS çıktısındaki pürüzsüzleşmeyi kıyasla",
+       "Girdap fark alanını izohips haritaları üzerine bindir"
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek"
+      }
+     },
+     {
+      "teknik": "Eady baroklinik büyüme hızını sigma = 0.31 * (f/N) * |du/dz| formülüyle hesaplayıp siklogenez hızını test et",
+      "sade": "MTO 340 dersindeki 'Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek' bilgisiyle siklon derinleşme hızı test edilir. Dikey rüzgâr kayması ve statik kararlılık parametreleri hesaplanır. Hızlı patlayan fırtınalarda yapay zekâ modelinin gecikme yaşadığı matematiksel olarak doğrulanır.",
+      "altAdimlar": [
+       "du/dz dikey rüzgâr kaymasını ve N Brunt-Vaisala frekansını çıkar",
+       "sigma_max büyüme hızı katsayısını hesaplayıp fırtına alanıyla eşleştir",
+       "Yüksek büyüme hızına sahip bölgelerde AIFS hatasının büyümesini belgele"
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek"
+      }
+     },
+     {
+      "teknik": "Barotropik ve baroklinik Rossby dalgası faz hızlarını hesaplayıp blokaj sistemlerindeki duraklamayı analiz et",
+      "sade": "MTO 340 dersindeki 'Barotropik ve baroklinik Rossby dalgalarının faz ve grup hızlarını hesaplamak' bilgisiyle dalga yayılma hızı denetlenir. Kesik alçak ve blokaj sistemlerinin faz hızı incelenir. Yapay zekâ modelinin durağan sistemleri faz hızından dolayı erken dağıttığı tespit edilir.",
+      "altAdimlar": [
+       "c = u - beta / (k**2 + l**2) formülüyle Rossby faz hızını hesapla",
+       "Faz hızının sıfıra yaklaştığı blokaj anlarında modelin tahmin eğilimini çıkar",
+       "Durağan sistemlerin dağılma süresi hatasını tabloya yaz"
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Barotropik ve baroklinik Rossby dalgalarının faz ve grup hızlarını hesaplamak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Doğrulama raporunu ve kılavuzu derle",
+    "oz": "EOF mod haritaları ve fiziksel tanı grafiklerini tek raporda topla; tahminci kılavuzunu yaz.",
+    "ayrinti": "Çalışmanın tüm sonuçları sentezlenerek bir teknik rapor ve operasyonel tahminci kılavuzuna dönüştürülür. EOF hata modları haritaları, Eady büyüme hızı ilişkisi grafikleri ve vaka incelemeleri tek bir Jupyter defterinde belgelenir. Tahmincilere 'AIFS kuvvetli baroklinik siklonlarda derinleşmeyi %15 eksik tahmin eder' şeklinde somut uyarılar sunulur.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib ve Cartopy ile ilk 3 EOF hata modunu ve açıklanan varyans oranlarını 3 panelli haritada çiz",
+      "sade": "MTO 311E dersindeki 'Ampirik Ortogonal Fonksiyonlar (EOF) ile basınç ve sıcaklık alanlarındaki temel salınım modlarını ayıklamak' bilgisiyle hata modları haritalandırılır. Coğrafi hata desenleri çok panelli bir haritada sunulur. Tahmincilerin hangi coğrafyada hangi hata desenini bekleyeceği açıkça gösterilir.",
+      "altAdimlar": [
+       "fig, axs = plt.subplots(1, 3, figsize=(18, 5), subplot_kw={'projection': ccrs.PlateCarree()}) kur",
+       "Her panele bir EOF modunu ve varyans yüzdesini renklendirerek çiz",
+       "Haritayı mto04_eof_hata_desenleri.png olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ampirik Ortogonal Fonksiyonlar (EOF) ile basınç ve sıcaklık alanlarındaki temel salınım modlarını ayıklamak"
+      }
+     },
+     {
+      "teknik": "MTO 406 standartlarında operasyonel hava tahmincisi için AIFS kullanım ve düzeltme kılavuzunu hazırla",
+      "sade": "MTO 406 dersindeki 'Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak' bilgisiyle yapay zekâ kullanım kılavuzu yazılır. Operasyonel tahmincinin AIFS çıktılarını hangi sinoptik durumlarda nasıl düzelteceği kurallara bağlanır. Yapay zekâ tahminleri fiziksel denetimden geçirilir.",
+      "altAdimlar": [
+       "Kuvvetli baroklinik gelişim ve blokaj durumları için operasyonel uyarı kurallarını yaz",
+       "Tahmincinin modele ne zaman güvenip ne zaman müdahale edeceğini belirten karar ağacını çiz",
+       "Kılavuz özetini raporun yönetici brifingi bölümüne yerleştir"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak"
+      }
+     },
+     {
+      "teknik": "Tüm hesaplama adımlarını, veri çekme kodlarını ve grafik üretimini içeren açık Jupyter defterini tamamla",
+      "sade": "MTO 340 dersindeki 'Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek' bilgisiyle tekrarlanabilir analiz defteri derlenir. Tüm teorik denklemler ve veri analizi adımları eksiksiz belgelenir. Proje kodları ve bulguları açık kaynak araştırma deposunda paylaşıma açılır.",
+      "altAdimlar": [
+       "Veri indirme, EOF analizi ve dinamik teşhis hücrelerini sıralı çalışacak şekilde düzenle",
+       "requirements.txt ve çalıştırma adımlarını açıklayan README dosyasını hazırla",
+       "Çekirdeği sıfırlayıp baştan sona çalıştırarak çıktıları doğrula"
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Açık yapay zekâ hava tahminlerinin fiziksel zaaflarını haritalarla kanıtlayan dinamik doğrulama raporu ve veri analiz kodları.",
+  "senden": "MTO 340 ve 406 derslerinden gelen kısım: Rossby dalgası kırılması, QGPV anomalisi ve sinoptik teşhis.",
+  "bizden": "MTO 311E ve MAT 271 derslerinden gelen kısım: EOF hata ayrışımı, zaman gecikmeli korelasyon ve veri işleme betikleri."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "Türkiye ve Doğu Akdeniz 500 hPa jeopotansiyel hata alanı, AIFS ve ERA5, 2024-02-01..15, günlük",
+   "aciklama": "AIFS yapay zekâ modelinin ERA5 analizine göre 500 hPa jeopotansiyel yükseklik hata evrimi animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://weatherbench2.readthedocs.io/en/latest/",
+   "aciklama": "WeatherBench 2 resmi dokümantasyon sayfası: küresel tahmin modelleri karşılaştırma karnesi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_in_the_atmosphere.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Orta enlem atmosferik Rossby dalgaları ve jet akımı salınımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "DeepMind GraphCast bilimsel duyurusu ve araştırma makalesi",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/"
+  },
+  {
+   "ad": "Google Research WeatherBench 2 açık doğrulama platformu",
+   "url": "https://github.com/google-research/weatherbench2"
+  },
+  {
+   "ad": "Brightband açık yapay zekâ hava modelleri araştırma merkezi",
+   "url": "https://www.brightband.com/about"
+  },
+  {
+   "ad": "ECMWF AIFS yapay zekâ tahmin veri kataloğu",
+   "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-single"
+  },
+  {
+   "ad": "Copernicus CDS ERA5 saatlik basınç seviyesi reanaliz arşivi",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences",
+   "url": "https://doi.org/10.1016/C2017-0-03923-6"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm formüller MTO 340 ve MTO 311E ders dosyalarıyla birebir eşleştirildi. Bağlantılar ve lisanslar doğrulandı.",
+ "_birlestirme": {
+  "kaynak": "cikti/MTO-04.json",
+  "tarih": "2026-10-14 23:11",
+  "geminiSha1": "88d3a5fc2011"
+ }
+}

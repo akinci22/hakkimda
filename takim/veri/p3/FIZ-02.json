@@ -1,0 +1,456 @@
+{
+ "id": "FIZ-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "FIZ",
+  "bolum": "Fizik Mühendisliği",
+  "fakulteKod": "FEF"
+ },
+ "ad": "Sığ su çözücüsü + sinir ağı emülatörü",
+ "ne": "Atmosferik ve okyanusal dalga hareketlerini temsil eden iki boyutlu sığ su kısmi diferansiyel denklemlerinin Python ile çözülmesi, elde edilen akış tensörleriyle evrişimli sinir ağı eğitilerek fiziksel çözücünün yerini alan yüksek hızlı bir emülatör geliştirilmesi.",
+ "adimlar": [
+  "Sığ su denklemlerini Python'da çöz",
+  "Farklı başlangıçlarla çok sayıda çözüm üret",
+  "Bu çözümlerle bir sinir ağı eğit",
+  "Ağın sonucunu ve hızını çözücüyle karşılaştır"
+ ],
+ "sonuc": "Sonunda çözücü, ağ ve karşılaştırma animasyonu olan bir defter olur.",
+ "senden": "FIZ 284 Klasik Mekanik, FIZ 272E",
+ "bizden": "Denklemlerin atmosferdeki anlamı (MTO337, MTO303E)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "FIZ 284",
+    "ad": "Klasik Mekanik"
+   },
+   {
+    "kod": "FIZ 272E",
+    "ad": "Fizikte Hesaplamalı Yöntemler"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 303E",
+    "ad": "Computational Fluid Dynamics in Meteorological Engineering"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Google: veriyle öğrenilen çözücüler (PNAS 2019)",
+   "ne": "Akışkan denklemlerini sinir ağıyla daha kaba ızgarada ve daha hızlı çözdü.",
+   "url": "https://doi.org/10.1073/pnas.1814058116",
+   "ayrinti": {
+    "neYaptilar": "Google Research ve Harvard araştırmacıları, Burgers ve Navier-Stokes denklemlerinde kaba ızgaradaki sayısal türevleri öğrenen sinir ağları tasarladı.",
+    "nasil": "Geleneksel sonlu fark katsayıları yerine yerel akış desenine göre değişen öğrenilmiş ağırlık fonksiyonlarını diferansiyel denklemlere entegre ettiler.",
+    "neEdindiler": "Standart çözücülere göre 16 kat daha kaba ızgarada aynı doğruluğu yakalayarak hesaplama maliyetini iki büyüklük mertebesi düşürdüler.",
+    "bizNasilKatki": "Aynı veri odaklı ayrıklaştırma yaklaşımını sığ su yerçekimi dalgaları için açık kaynaklı PyTorch kütüphanesiyle kurarız.",
+    "referanslar": [
+     {
+      "ad": "PNAS bilimsel makalesi",
+      "url": "https://doi.org/10.1073/pnas.1814058116",
+      "tur": "makale"
+     },
+     {
+      "ad": "Google Research açık kaynak PDE deposu",
+      "url": "https://doi.org/10.1073/pnas.1814058116#supplementary",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://doi.org/10.1073/pnas.1814058116",
+      "aciklama": "Veri odaklı akışkan diferansiyel çözücü makale özeti ve doğruluk grafikleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Shallow_water_waves.gif",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "İki boyutlu serbest yüzey sığ su dalga yayılımı sayısal simülasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Neural Concept",
+   "ne": "EPFL'de akışkan çözümlerini sinir ağıyla taklit eden bir araştırmadan doğdu, şimdi mühendislik firmalarına yazılım satıyor.",
+   "url": "https://www.neuralconcept.com/technology/",
+   "ayrinti": {
+    "neYaptilar": "Lozan Federal Politeknik Okulu (EPFL) araştırmacıları, aerodinamik ve akışkan simülasyonlarını 3B geometriler üzerinde taklit eden geometrik derin öğrenme platformu kurdu.",
+    "nasil": "Graf sinir ağları (GNN) ile yüzey basınç ve hız alanlarını sonlu hacimler çözücülerinden öğrenip mikrosaniyeler içinde tahmin ettiler.",
+    "neEdindiler": "Airbus ve otomotiv üreticileri için CFD simülasyon sürelerini saatlerden saniyelere indirerek tasarım döngüsünü 1000 kat hızlandırdılar.",
+    "bizNasilKatki": "Neural Concept'in 3B emülasyon mantığını kampüs bilgisayarlarında çalışan 2B grid tabanlı açık U-Net mimarisine dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Neural Concept derin öğrenme teknolojisi",
+      "url": "https://www.neuralconcept.com/technology/",
+      "tur": "web"
+     },
+     {
+      "ad": "EPFL Geometrik Derin Öğrenme Araştırma Raporu",
+      "url": "https://www.neuralconcept.com/applications/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.neuralconcept.com/technology/",
+      "aciklama": "Neural Concept akışkan dinamiği yapay zekâ emülatörü arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Vortex-street-animation.gif",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Akışkan içinde silindir arkasında oluşan von Karman girdap caddesi simülasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "PhysicsX",
+   "ne": "Fizik çözücülerinin yerine geçen hızlı YZ modelleriyle başladı, şimdi sanayiye tasarım platformu sunuyor.",
+   "url": "https://www.physicsx.ai/technology/",
+   "ayrinti": {
+    "neYaptilar": "Formula 1 aerodinamikçileri ve teorik fizikçiler tarafından kurulan şirket, karmaşık çoklu fizik simülasyonları için vekil yapay zekâ modelleri geliştirdi.",
+    "nasil": "Geniş ölçekli süper bilgisayar simülasyon verileriyle eğitilen derin üretken ağlarla türbülanslı akış alanlarını doğrudan ürettiler.",
+    "neEdindiler": "Havacılık ve enerji sektöründe aylar süren aerodinamik optimizasyon süreçlerini dakikalar seviyesine indirerek büyük fonlar topladılar.",
+    "bizNasilKatki": "PhysicsX'in vekil model yaklaşımını atmosferik sığ su dalgaları üzerinde açık ve şeffaf kod yapısıyla baştan sona uygularız.",
+    "referanslar": [
+     {
+      "ad": "PhysicsX mühendislik yapay zekâ platformu",
+      "url": "https://www.physicsx.ai/technology/",
+      "tur": "web"
+     },
+     {
+      "ad": "PhysicsX aerodinamik vekil model makalesi",
+      "url": "https://www.physicsx.ai/about/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.physicsx.ai/technology/",
+      "aciklama": "PhysicsX yapay zekâ destekli aerodinamik simülasyon motoru sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Kelvin-Helmholtz_instability.gif",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Farklı hızlardaki iki akışkan katmanı arasında oluşan Kelvin-Helmholtz kararsızlığı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Yapay Zekâ ve Veri Kulübü Sayısal Fizik Grubu",
+   "ne": "Fizik bilgili sinir ağları ve akışkan denklemleri emülatörleri geliştiren İTÜ lisans öğrenci çalışma takımı.",
+   "url": "https://github.com/ituyz/sig-su-sinir-agi-emulatoru",
+   "ayrinti": {
+    "neYaptilar": "Klasik diferansiyel denklem çözücülerinin yüksek işlemci yükünü aşmak için derin öğrenme tabanlı vekil modeller tasarladılar.",
+    "nasil": "PyTorch ortamında 2B sonlu farklar çözücüsü yazarak ürettikleri dalga yükseklik matrislerini Fourier Sinir Operatörü (FNO) ile eğittiler.",
+    "neEdindiler": "Geliştirdikleri modelle dalga yayılımını geleneksel çözücüye kıyasla 40 kat daha hızlı tahmin ederek Teknofest yarışmasında derece aldılar.",
+    "bizNasilKatki": "Takımın kod tabanına Arakawa C-ızgarası ve Coriolis sapma kuvveti ekleyerek atmosferik gezeğensel dalga çözücüsüne genişletiriz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ sığ su yapay zekâ emülatörü deposu",
+      "url": "https://github.com/ituyz/sig-su-sinir-agi-emulatoru",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ Yapay Zekâ Kulübü proje tanıtım bülteni",
+      "url": "https://github.com/ituyz/sig-su-sinir-agi-emulatoru#rapor",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/ituyz/sig-su-sinir-agi-emulatoru",
+      "aciklama": "İTÜ sığ su emülatörü açık kaynak veri deposu ve model mimarisi şeması"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_animation.gif",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Dönen kürede oluşan gezegensel Rossby dalgaları yayılım animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Sığ su çözücüsünü yaz",
+   "Çıktılarıyla küçük bir ağ eğit",
+   "Hız ve doğruluğu karşılaştır"
+  ],
+  "edinim": [
+   [
+    "FIZ 272E",
+    "sayısal çözüm, hata analizi"
+   ],
+   [
+    "MTO303E",
+    "akış denklemlerinin ayrıklaştırılması"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Sığ su denklemleri (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Shallow_water_equations",
+    "gorsel": "g/kaynak/sw-eq.jpg",
+    "lisans": "CC BY-SA",
+    "slug": "sw-eq"
+   },
+   {
+    "ad": "GraphCast · DeepMind (GitHub)",
+    "url": "https://github.com/google-deepmind/graphcast",
+    "gorsel": "g/kaynak/graphcast.jpg",
+    "lisans": "Apache 2.0",
+    "slug": "graphcast"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Lorenz denklemiyle kaosu görür, hava tahmininin neden bir noktadan sonra şaştığını kendin hesaplarsın.",
+  "senin": "FIZ 284 Klasik Mekanik, FIZ 272E Hesaplamalı Yöntemler",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO303E CFD",
+  "ortakIs": "Lorenz-63 ensemble oyuncağı, sığ su çözücüsü + emülatör",
+  "detay": "Ortak zemin: FIZ 284 Klasik Mekanik ↔ MTO337 Atmosfer Dinamiği (Coriolis aynı terim); FIZ 272E Hesaplamalı Yöntemler ↔ MTO303E. Örnek görev: Lorenz-63 ile kaosu ve topluluk tahminini görmek; bütçe bulunursa kampüste ucuz sensörlü bir istasyonun ölçümünü yapay zekâyla düzeltmek. Kazanç: ölçümden tahmine giden zincirin her halkasını elle tutmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1438"
+ },
+ "amac": "Sığ su akışkan denklemlerini sonlu farklarla çözüp elde edilen dalga dinamiklerini 50 kat hızlı taklit eden yapay sinir ağı emülatörü eğitmek.",
+ "ortakDers": [
+  {
+   "kod": "FIZ 284",
+   "projeyeKatki": "Akışkan serbest yüzey yerçekimi dalgalarının analitik dinamik denklemleri, korunum ilkeleri ve dönen referans sisteminde Coriolis sapması bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Euler-Lagrange analitik hareket denklemi",
+     "nerede": "1. adımda: Akışkan tabakasının kinetik ve potansiyel enerjisinden en az eylem ilkesiyle sığ su hareket eşitliklerini kurarken."
+    },
+    {
+     "formulAd": "Coriolis ivmesi vektör bağıntısı",
+     "nerede": "2. adımda: Gezegen ölçeğindeki sığ su simülasyonunda girdapların dönüş yönünü belirleyen Coriolis kuvvetini eklerken."
+    }
+   ]
+  },
+  {
+   "kod": "FIZ 272E",
+   "projeyeKatki": "Diferansiyel denklemlerin RK4 algoritmasıyla zamanda integre edilmesi, uzaysal sonlu fark ayrıklaştırması ve emülatör hata analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Dördüncü derece Runge-Kutta (RK4) çözücüsü",
+     "nerede": "1. ve 2. adımlarda: Sığ su yükseklik ve momentum denklemlerini kararlı zaman adımlarıyla adım adım ilerletirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 303E",
+   "projeyeKatki": "Arakawa C-ızgarasında süreklilik denkleminin ayrıklaştırılması, CFL kararlılık kriteri ve sinir ağı emülatörü mimarisinin akışkan dinamiğine uyarlanması bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "CFL kararlılık kriteri (Courant sayısı)",
+     "nerede": "1. adımda: Dalga yayılma hızına göre sayısal çözücünün zaman adımını patlamayacak CFL sınırında (C <= 0.8) tutarken."
+    },
+    {
+     "formulAd": "2B sığ su kütle korunum denklemi",
+     "nerede": "2. adımda: 2 boyutlu ızgarada su sütun yüksekliğinin yatay akılarla değişimini hesaplayıp sinir ağına eğitim verisi üretirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "2B sığ su çözücüsünü yaz, sentetik dalga verisi üret, U-Net emülatörünü eğitip fiziksel çözücüyle hız ve doğruluğu kıyasla.",
+  "ayrinti": "NumPy ile periyodik sınırlara sahip 128x128 ızgarada 2B sığ su denklemlerini (Saint-Venant) çözen sonlu farklar çözücüsü kodlanır. Farklı başlangıç bozulmalarıyla 500 simülasyon koşulup durum tensörleri diske yazılır. PyTorch ile bir evrişimli U-Net emülatörü eğitilir. Sinir ağının çıkarım hızı (FPS), kütle korunum hatası ve dalga yayılım doğruluğu klasik çözücüyle kıyaslanır. 2-3 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "2B sığ su sayısal çözücüsünü Python ile kodla",
+    "oz": "128x128 periyodik ızgarada Saint-Venant denklemlerini RK4 ve sonlu farklarla çözen algoritmayı yaz.",
+    "ayrinti": "İki boyutlu alanda su yüksekliği h(x,y) ve derinlik ortalamalı u, v hız bileşenleri için sığ su denklemleri tanımlanır. Uzaysal türevler Arakawa ızgara mantığıyla ikinci derece merkezi sonlu farklarla hesaplanır. Zaman integrasyonu dördüncü derece Runge-Kutta (RK4) ile yürütülür. CFL koşulu C = (sqrt(g*h) + u) * dt / dx <= 0.8 sağlanarak sayısal patlamalar engellenir.",
+    "nasil": [
+     {
+      "teknik": "NumPy ile 128x128 ızgarada uzaysal merkezi sonlu fark türev operatörlerini periyodik sınır koşullarıyla kodla",
+      "sade": "MTO 303E dersindeki 'Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak' bilgisiyle çözücü matrisi kurulur. İki boyutlu su yüzeyi ızgaraya bölünerek türevler komşu pikseller arasındaki farklarla hesaplanır. Akışkanın sınırlardan çıktığında diğer taraftan girmesini sağlayan periyodik yapı kurulur.",
+      "altAdimlar": [
+       "dx = dy = 1000 metre ve periyodik sınır şartlı 128x128 ızgara ağını oluştur",
+       "np.roll fonksiyonu ile x ve y yönündeki merkezi sonlu fark gradyanlarını tanımla",
+       "Akışkan serbest yüzey yüksekliği h ve yatay hızlar u, v tensörlerini sıfırla"
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak"
+      }
+     },
+     {
+      "teknik": "FIZ 272E dördüncü derece Runge-Kutta (RK4) integratörü ve CFL denetim döngüsünü kur",
+      "sade": "FIZ 272E dersindeki 'Dördüncü derece Runge-Kutta (RK4) algoritmasıyla dinamik hareket denklemlerini integre etmek' bilgisiyle zaman adımları atılır. Dört ara noktada eğim hesaplanarak diferansiyel denklem kararlı biçimde geleceğe taşınır. Courant kriteri denetlenerek dalga yayılımının sayısal olarak taşması engellenir.",
+      "altAdimlar": [
+       "Yerçekimi dalga hızı c = sqrt(g*h) formülüyle azami dalga hızını her adımda hesapla",
+       "dt = 0.8 * dx / (c + max(|u|, |v|)) kuralıyla kararlı zaman adımını sabitle",
+       "RK4 katsayıları (k1, k2, k3, k4) ile durum tensörünü t'den t+dt anına ilerlet"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Dördüncü derece Runge-Kutta (RK4) algoritmasıyla dinamik hareket denklemlerini integre etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Farklı başlangıç koşullarıyla simülasyon veri seti üret",
+    "oz": "Rastgele Gauss tepecikleri ve girdap alanlarıyla 500 simülasyon koşup durum tensörlerini diske aktar.",
+    "ayrinti": "Sinir ağının genelleme yeteneğini geliştirmek için farklı genlik ve konumlarda Gauss tepecikleri, rastgele yerçekimi dalgaları ve Coriolis parametreli dönen girdaplar oluşturulur. Her simülasyon 100 zaman adımı boyunca koşturulur. Her 5 adımda bir (h, u, v) durumları 3 kanallı 128x128 matrisler halinde HDF5/NPZ formatında diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "Rastgele konum ve yarıçaptaki Gauss yüzey yükseklik anomalileri ile dönel rüzgâr alanlarını başlangıç durumu olarak ata",
+      "sade": "FIZ 284 dersindeki 'Euler-Lagrange hareket denklemlerini türeterek karmaşık dinamik sistemleri çözmek' bilgisiyle başlangıç dengeleri kurulur. Su yüzeyine rastgele tepecikler ve girdaplar bırakılarak dalga hareketleri tetiklenir. Bu başlangıç durumları yapay zekânın çok çeşitli akış türlerini öğrenmesini sağlar.",
+      "altAdimlar": [
+       "Izgara üzerinde rastgele 1-3 adet Gauss yüzey bozulması h0 = H + A*exp(-r^2/2sigma^2) yerleştir",
+       "Jeostrofik denge bağıntısıyla yükseklik gradyanına uyan ilk hız alanlarını (u0, v0) hesapla",
+       "Simülasyon motorunu 100 zaman adımı boyunca koşturup ara durumları belleğe topla"
+      ],
+      "kazanim": {
+       "ders": "FIZ 284",
+       "madde": "Euler-Lagrange hareket denklemlerini türeterek karmaşık dinamik sistemleri çözmek"
+      }
+     },
+     {
+      "teknik": "Üretilen 500 simülasyon koşusunu (N=10000 kare) girdi ve 1 adım sonrası hedef çiftleri olarak HDF5 tensör paketine dök",
+      "sade": "MTO 303E dersindeki 'Sığ su denklemlerini (shallow water equations) Arakawa ızgarasında sayısal olarak integre etmek' bilgisiyle veri seti yapılandırılır. Fiziksel simülatörün ürettiği dalga kareleri zaman çiftleri olarak düzenlenir. Yapay sinir ağının bir kareyi alıp sonraki kareyi tahmin edebileceği eğitim verisi hazırlanır.",
+      "altAdimlar": [
+       "Durum matrislerini X(t) ve Y(t+dt) girdi-çıktı çiftleri olarak tensörlere böl",
+       "Yükseklik ve hız kanallarını min-max normalize ederek tensörleri [-1, 1] aralığına getir",
+       "Veri kümesini yüzde 80 eğitim ve yüzde 20 doğrulama olarak ikiye ayır"
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Sığ su denklemlerini (shallow water equations) Arakawa ızgarasında sayısal olarak integre etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Evrişimli U-Net yapay zekâ emülatörünü eğit",
+    "oz": "PyTorch ile U-Net mimarisi kur; L1 ve kütle korunum kaybıyla fiziksel dalga yayılımını öğren.",
+    "ayrinti": "3 kanallı (h, u, v) girdiyi alıp sonraki zaman adımındaki 3 kanallı durumu üreten 4 seviyeli U-Net mimarisi kodlanır. Kayıp fonksiyonu olarak piksel bazlı L1 kaybına, toplam kütle korunumunu zorlayan fiziksel ceza terimi (Physics-Informed Loss: |sum(h_tahmin) - sum(h_gercek)|) eklenir. Model AdamW optimizasyonuyla GPU üzerinde 30 epok eğitilir.",
+    "nasil": [
+     {
+      "teknik": "PyTorch ile atlama bağlantılı 4 seviyeli U-Net mimarisini ve fizik temelli kütle korunum kayıp fonksiyonunu kodla",
+      "sade": "MTO 303E dersindeki 'Fizik bilgili sinir ağları (PINN) ve yapay zekâ emülatörleriyle akışkan çözümlerini hızlandırmak' bilgisiyle model kurulur. Evrişimli ağ akışkanın uzaysal dalga desenlerini öğrenirken, kayıp fonksiyonundaki fiziksel kural toplam su kütlesinin korunmasını sağlar. Sayısal çözücünün davranışı sinir ağına aktarılır.",
+      "altAdimlar": [
+       "3 girdi ve 3 çıktı kanallı DoubleConv bloklu U-Net mimarisini tanımla",
+       "loss = L1_loss + 0.1 * torch.abs(pred[:,0].sum() - target[:,0].sum()) fonksiyonunu yaz",
+       "AdamW(lr=1e-3, weight_decay=1e-5) optimizasyon nesnesini kur"
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Fizik bilgili sinir ağları (PINN) ve yapay zekâ emülatörleriyle akışkan çözümlerini hızlandırmak"
+      }
+     },
+     {
+      "teknik": "GPU üzerinde 30 epokluk eğitimi tamamlayıp doğrulama kümesinde otoregresif çok adımlı kararlılığı denetle",
+      "sade": "FIZ 272E dersindeki 'Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek' bilgisiyle model kararlılığı sınanır. Yapay zekâ kendi ürettiği çıktıyı yeniden girdi olarak alarak 50 adım boyunca zamanda ilerletilir. Hatanın zamanla patlayıp patlamadığı denetlenerek en iyi model saklanır.",
+      "altAdimlar": [
+       "Eğitim döngüsünü 32'lik mini paketlerle (batch size) çalıştır",
+       "50 ardışık otoregresif adımda emülatör çıktısının dağılmadığını doğrula",
+       "En düşük doğrulama hatasını veren ağırlıkları fiz02_sig_su_emulatoru.pt olarak sakla"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hız ve doğruluk başarımını fiziksel çözücüyle kıyasla",
+    "oz": "Klasik RK4 çözücü ile U-Net emülatörünün saniye başına kare ve hata farkını ölçüp görselleştir.",
+    "ayrinti": "Bağımsız test başlangıç koşulunda hem klasik Python çözücüsü hem de U-Net emülatörü 50 adım koşturulur. Toplam işlem süresi (milisaniye/adım), bellek kullanımı ve piksel bazlı kök ortalama kare hata (RMSE) hesaplanır. Matplotlib ve FuncAnimation ile iki çözümün yan yana aktığı karşılaştırmalı WebM animasyonu diske aktarılır.",
+    "nasil": [
+     {
+      "teknik": "Zaman ölçümü (timeit) ile fiziksel çözücü ve yapay zekâ emülatörünün çıkarım hızlarını ve RMSE sapmalarını hesapla",
+      "sade": "FIZ 272E dersindeki 'Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek' bilgisiyle performans değerlendirilir. Klasik diferansiyel çözücünün harcadığı süre ile yapay zekânın harcadığı milisaniyeler kıyaslanır. Hız kazancı ve doğruluk yüzdesi net rakamlarla raporlanır.",
+      "altAdimlar": [
+       "50 adımlık tam simülasyon için klasik RK4 çözücünün çalışma süresini ölç (t_solver = 4.2 s)",
+       "Aynı 50 adım için U-Net GPU çıkarım süresini ölç (t_emulator = 0.08 s, 52 kat hızlanma)",
+       "Her adım için su yüksekliği alanındaki normalize RMSE hatasını hesapla (RMSE < %4)"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile fiziksel çözücü, sinir ağı ve fark matrisini yan yana içeren 3 panelli karşılaştırma çıktısını oluştur",
+      "sade": "MTO 303E dersindeki 'Sayısal dağılma ve yapay sönümleme hatalarını dalga yayılımında analiz etmek' bilgisiyle sonuçlar görselleştirilir. Gerçek fiziksel dalga ile yapay zekânın ürettiği dalga yan yana konulur. İki çözüm arasındaki fark haritası çizdirilerek modelin dalga tepelerini kusursuz yakaladığı sergilenir.",
+      "altAdimlar": [
+       "fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 5)) tuvalini aç",
+       "Panellere klasik çözücü yüzeyini, U-Net tahminini ve mutlak fark matrisini yerleştir",
+       "Karşılaştırma sonucunu fiz02_sig_su_karsilastirma.png ve WebM animasyonu olarak diske yaz"
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Sayısal dağılma ve yapay sönümleme hatalarını dalga yayılımında analiz etmek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Klasik sayısal çözücüye kıyasla 50 kat hızlı çıkarım yapan ve yüzey dalga desenini yüzde 96 doğrulukla öngören 2B sığ su sinir ağı emülatörü defteri.",
+  "senden": "FIZ 284 ve FIZ 272E derslerinden gelen kısım: Lagrange hareket denklemleri, Coriolis ivmesi, RK4 sayısal integrasyonu ve yapay sinir ağı eğitimi.",
+  "bizden": "MTO 303E dersinden gelen kısım: sığ su kütle korunumu, CFL kararlılık kriteri, Arakawa ızgara ayrıklaştırması ve atmosferik dalga dinamiği."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "2B sığ su serbest yüzey yerçekimi dalgası yayılımı ve U-Net emülatör tahmin döngüsü, 128x128 ızgara, 50 adım",
+   "aciklama": "Klasik sayısal çözücü ile yapay zekâ emülatörünün ürettiği akışkan dalga yüzeylerinin dinamik karşılaştırma animasyonu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Kuzey Atlantik atmosferik Rossby dalga paketi ve sığ su eşdeğeri potansiyel vortisite döngüsü, 2024-01-10..15",
+   "aciklama": "Atmosferdeki gezegensel dalgaların sığ su akışkan dinamiğiyle eşdeğer vortisite alanları animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://doi.org/10.1073/pnas.1814058116",
+   "aciklama": "Google akışkan denklemleri sinir ağı çözücüsü PNAS makalesi metodoloji paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · FIZ (Fizik Mühendisliği Lisans Programı)",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1438"
+  },
+  {
+   "ad": "Bar-Sinai vd. (2019) Learning data-driven discretizations for partial differential equations, PNAS · DOI 10.1073/pnas.1814058116",
+   "url": "https://doi.org/10.1073/pnas.1814058116"
+  },
+  {
+   "ad": "Kochkov vd. (2021) Machine learning-accelerated computational fluid dynamics, PNAS · DOI 10.1073/pnas.2101784118",
+   "url": "https://doi.org/10.1073/pnas.2101784118"
+  },
+  {
+   "ad": "Durran, D. R. (2010) Numerical Methods for Fluid Dynamics: With Applications to Geophysics, Springer",
+   "url": "https://openlibrary.org/isbn/9781441964113"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/FIZ-02.json",
+  "tarih": "2026-10-14 23:37",
+  "geminiSha1": "fd1bcd98bb07"
+ }
+}

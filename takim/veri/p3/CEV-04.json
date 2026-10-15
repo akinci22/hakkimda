@@ -1,0 +1,428 @@
+{
+ "id": "CEV-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "CEV",
+  "bolum": "Çevre Mühendisliği",
+  "fakulteKod": "INS"
+ },
+ "ad": "Ucuz hava kalitesi sensör ağı + YZ kalibrasyon",
+ "ne": "Düşük maliyetli optik partikül sensörlerinin havadaki bağıl nem artışıyla şişen su damlacıklarını toz zannederek hatalı ölçüm yapmasını, referans bakanlık istasyonları ve atmosferik nem değişkenleriyle eğiten makine öğrenmesi algoritmasıyla giderme sistemi.",
+ "adimlar": [
+  "Okulda bulunan ya da açık kaynaklı sensör verisini topla",
+  "Resmi istasyon verisiyle eşleştir",
+  "Nem etkisini de hesaba katan bir düzeltme modeli eğit",
+  "Düzeltilmiş ölçümün hatasını ölç"
+ ],
+ "sonuc": "Sonunda kalibrasyon kodu ve hata grafiği olur.",
+ "senden": "CEV 308 Hava Kirlenmesi",
+ "bizden": "Nemin ölçüme etkisi ve veri denetimi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "CEV 308",
+    "ad": "Hava Kirlenmesi"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 214",
+    "ad": "Atmosfer Termodinamiği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Clarity Movement",
+   "ne": "UC Berkeley öğrencilerinin kurduğu şirket; ucuz sensör ağlarını uzaktan kalibre ediyor.",
+   "url": "https://ipira.berkeley.edu/clarity-movement-co",
+   "ayrinti": {
+    "neYaptilar": "UC Berkeley mezunları, şehirlerde binlerce noktaya yerleştirilen düşük maliyetli hava kalitesi sensörlerinin ölçüm sapmalarını yapay zeka ile otomatik düzelten Clarity Movement girişimini hayata geçirdi.",
+    "nasil": "Bulut tabanlı kalibrasyon motorunda yerel sıcaklık, bağıl nem ve rüzgâr değişkenlerini referans izleme istasyonlarıyla eşleştirerek sensörlerin fabrikasyon sapmalarını anlık olarak güncellediler.",
+    "neEdindiler": "Dünya çapında 85'ten fazla ülkede belediyeler ve çevre ajanslarına hizmet veren küresel bir kentsel çevre sensör ağı şirketine dönüştüler.",
+    "bizNasilKatki": "Girişimin uzaktan nem düzeltme yaklaşımını İTÜ Ayazağa kampüsündeki Sensor.Community cihazları üzerinde açık kaynaklı bir Python boru hattına dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "UC Berkeley Fikri Mülkiyet ve Sanayi İttifakları Clarity Movement Şirket Profili",
+      "url": "https://ipira.berkeley.edu/clarity-movement-co",
+      "tur": "haber"
+     },
+     {
+      "ad": "Environmental Science and Technology Düşük Maliyetli Sensör Ağları Değerlendirmesi",
+      "url": "https://doi.org/10.1021/acs.est.0c03168",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul genelinde açık sensör ağı PM2.5 anlık ölçümleri ve zamansal sapmalar animasyonu, 1 saatlik",
+      "aciklama": "Gece saatlerinde nemin yüzde 90'ı aşmasıyla sensörlerin yapay olarak yüksek kirlilik göstermesi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://ipira.berkeley.edu/clarity-movement-co",
+      "aciklama": "UC Berkeley inovasyon portalı Clarity Movement hava kalitesi girişimi tanıtımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ABD EPA PurpleAir düzeltme denklemi",
+   "ne": "Ucuz sensör ölçümünü nemi de hesaba katarak düzelten çalışmanın değerlendirmesi.",
+   "url": "https://amt.copernicus.org/articles/16/1311/2023/",
+   "ayrinti": {
+    "neYaptilar": "ABD Çevre Koruma Ajansı (EPA) araştırmacıları, ülke çapındaki yüzlerce PurpleAir optik sensör ölçümünü federal referans istasyonlarıyla kıyaslayan ulusal kalibrasyon denklemini geliştirdi.",
+    "nasil": "Havadaki bağıl nem oranı yüzde 70'in üzerine çıktığında partiküllerin higroskopik büyüme katsayısını çok terimli regresyon formülüyle arındırıp gerçek PM2.5 derişimini hesapladılar.",
+    "neEdindiler": "Ulusal Hava Kalitesi İndeksi haritası olan AirNow platformuna vatandaş sensörlerinin resmi düzeyde entegre edilmesini sağladılar.",
+    "bizNasilKatki": "EPA ulusal düzeltme fonksiyonunu Marmara bölgesi iklim şartlarına ve yerel aerosol kimyasına göre yeniden kalibre ederiz.",
+    "referanslar": [
+     {
+      "ad": "Atmospheric Measurement Techniques EPA PurpleAir Kalibrasyon Makalesi",
+      "url": "https://amt.copernicus.org/articles/16/1311/2023/",
+      "tur": "makale"
+     },
+     {
+      "ad": "EPA AirNow Yangın ve Duman Haritası Sensör Düzeltme Metodolojisi",
+      "url": "https://www.airnow.gov/smoke-map-methodology/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Bölgesi bağıl nem doygunluğu ve sıcaklık ilişkisi, ERA5 kış dönemi, 1 saatlik",
+      "aciklama": "Gece soğumasıyla doygunluğa ulaşan su buharının optik partikül sensörlerini yanıltması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://amt.copernicus.org/articles/16/1311/2023/",
+      "aciklama": "Copernicus Atmospheric Measurement Techniques hakemli araştırma makalesi sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Yüksek nemde PurpleAir kalibrasyonu",
+   "ne": "Nem ve sıcaklıkla ucuz sensör hatasını azaltan makale.",
+   "url": "https://amt.copernicus.org/articles/17/6735/2024/",
+   "ayrinti": {
+    "neYaptilar": "Avrupalı atmosfer bilimcileri, kış aylarında sıkça görülen sisli ve aşırı nemli koşullarda optik partikül sayaçlarının sapma dinamiklerini derinlemesine inceledi.",
+    "nasil": "Bağıl nemin yüzde 85 üzerine çıktığı kış günlerinde standart doğrusal denklemlerin yetersiz kaldığını gösterip rastgele orman ve gradyan artırma algoritmalarıyla doğrusal olmayan kalibrasyon kurdular.",
+    "neEdindiler": "Aşırı sisli günlerde hatalı pozitif kirlilik uyarılarını yüzde 75 oranında azaltarak vatandaş sensörlerinin veri güvenilirliğini teyit ettiler.",
+    "bizNasilKatki": "Makaledeki nem düzeltme eşiklerini alıp İstanbul Sarıyer ve Kağıthane istasyonları verisiyle eğitilen bir Random Forest modeli kurarız.",
+    "referanslar": [
+     {
+      "ad": "Atmospheric Measurement Techniques Aşırı Nemde Sensör Kalibrasyonu Makalesi",
+      "url": "https://amt.copernicus.org/articles/17/6735/2024/",
+      "tur": "makale"
+     },
+     {
+      "ad": "Copernicus Yayınları Açık Erişim Atmosfer Araştırmaları Arşivi",
+      "url": "https://publications.copernicus.org/open-access-journals/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul kıyı şeridinde deniz sisi ve çiylenme esnasında nemlilik dalgalanması animasyonu",
+      "aciklama": "Kıyı istasyonlarında nem oranının yüzde 95 üzerine çıktığı sabah saatlerindeki sensör tepkisi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://amt.copernicus.org/articles/17/6735/2024/",
+      "aciklama": "Copernicus AMT dergisi 2024 yılı nem düzeltmeli sensör kalibrasyonu yayını"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Çevre ve Ekoloji Kulübü",
+   "ne": "Kampüs ve şehir ölçeğinde hava kalitesi ve sensör doğrulama projeleri yürüten öğrenci kulübü.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Çevre ve Ekoloji Kulübü öğrencileri, Ayazağa yerleşkesine yerleştirdikleri düşük maliyetli optik sensörlerin verilerini İTÜ Meteoroloji Rasathanesi ölçümleriyle karşılaştırdı.",
+    "nasil": "ESP8266 mikrodenetleyicili Nova SDS011 partikül sensörlerini rasathane bahçesindeki resmi istasyon kabini yanına yerleştirerek eşzamanlı veri topladılar.",
+    "neEdindiler": "Özellikle yağışlı ve sisli günlerde ucuz sensörün PM2.5 değerini gerçek değerin 2,5 katına kadar yüksek ölçtüğünü belgelendirdiler.",
+    "bizNasilKatki": "Kulübün elde ettiği eşzamanlı ölçüm tablosunu makine öğrenmesi algoritmamıza eğitim ve sınama veri seti olarak dahil ederiz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı Çevre Kulübü Faaliyetleri",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Uçak ve Uzay Bilimleri Fakültesi Meteoroloji Rasathanesi Veri Portalı",
+      "url": "https://uubf.itu.edu.tr/arastirma/laboratuvarlar/meteoroloji-laboratuvarlari",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İTÜ Ayazağa yerleşkesi sensör ve rasathane ölçümleri karşılaştırma animasyonu, 1 saatlik",
+      "aciklama": "Nem artışıyla ucuz sensör eğrisinin referans cihazdan koparak tepe yapması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci kulüpleri ve araştırma takımları resmi portalı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Sensörleri kur",
+   "Referansla eşleştir",
+   "Nem düzeltmeli kalibrasyon öğren"
+  ],
+  "edinim": [
+   [
+    "CEV 308",
+    "ölçüm, kalite güvence"
+   ],
+   [
+    "MTO214",
+    "nemin ölçüme etkisi"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Sensor.Community açık sensör ağı",
+    "url": "https://sensor.community/",
+    "gorsel": "g/kaynak/sensor-community.jpg",
+    "lisans": "ODbL",
+    "slug": "sensor-community"
+   },
+   {
+    "ad": "Copernicus CAMS hava kalitesi",
+    "url": "https://atmosphere.copernicus.eu/",
+    "gorsel": "g/kaynak/cams.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "cams"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "İstanbul'un yarınki PM2.5 kirliliğini rüzgâr ve yağış tahminiyle birlikte öngörürüz.",
+  "senin": "CEV 308 Hava Kirlenmesi, CEV 427 Çevre Modellemesi",
+  "bizim": "MTO214 Atmosfer Termodinamiği, MTO303E CFD",
+  "ortakIs": "YZ ile İstanbul PM2.5 tahmini, baca dumanı yayılım haritası",
+  "detay": "Ortak zemin: CEV 308 Hava Kirlenmesi ↔ MTO214 Atmosfer Termodinamiği; Akışkanlar Mekaniği iki bölümde de var (Çevre'de AKM 204, bizde İngilizce AKM 204E). Örnek görev: rüzgâr ve yağış tahminini kullanarak İstanbul için 24-48 saatlik PM2.5 tahmini. Kazanç: hava kalitesi uyarısında meteoroloji verisini doğru kullanmayı öğrenmek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1469"
+ },
+ "amac": "Düşük maliyetli optik partikül sensörlerinin yüksek bağıl nemdeki hatalı ölçümlerini, resmi istasyon verisi ve makine öğrenmesiyle kalibre etmek.",
+ "ortakDers": [
+  {
+   "kod": "CEV 308",
+   "projeyeKatki": "Partikül madde boyut dağılımı, aerosol optik özellikleri, Hava Kalitesi İndeksi sağlık eşikleri ve ölçüm kalite güvencesi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hava Kalitesi İndeksi parçalı doğrusal hesabı",
+     "nerede": "3. adımda: Kalibre edilmiş PM2.5 derişimini kamuoyu hava kalitesi indeksine ve sağlık uyarı kategorisine çevirirken."
+    },
+    {
+     "formulAd": "Gauss nokta kaynak duman dağılım bağıntısı",
+     "nerede": "1. adımda: Sensörün kurulu olduğu bölgede yerel emisyon kaynaklarının arka plan kirliliğine katkısını ayrıştırırken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 214",
+   "projeyeKatki": "Bağıl nem oranı, çiy noktası sıcaklığı, doymuş buhar basıncı ve higroskopik aerosol büyüme dinamikleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Clausius-Clapeyron doymuş buhar basıncı denklemi",
+     "nerede": "2. adımda: Sıcaklık değişimine bağlı olarak havanın doymuş su buharı kapasitesini ve nem açığını hesaplarken."
+    },
+    {
+     "formulAd": "Bağıl nem ve su buharı basıncı oranı",
+     "nerede": "2. adımda: Havadaki aktüel su buharı oranını bularak partiküllerin su damlacığı tutarak şişme katsayısını modellerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Ucuz partikül sensörlerinin nem kaynaklı ölçüm hataları, resmi istasyon verileriyle eğitilen makine öğrenmesiyle düzeltilir.",
+  "ayrinti": "Sensor.Community açık sensör ağından İstanbul'daki 30 ucuz cihazın saatlik PM2.5 ve PM10 verileri indirilir. En yakın Çevre Bakanlığı referans istasyonu ve ERA5 bağıl nem verileriyle zaman damgası üzerinden eşleştirilir. CEV 308 kalite güvence filtreleri uygulanır. MTO 214 Clausius-Clapeyron bağıntısıyla doymuş buhar basıncı ve nemlilik öznitelikleri türetilir. XGBoost algoritmasıyla nem sapması arındırılarak ölçüm doğruluğu yüzde 85 seviyesine çıkarılır. 3 haftada tamamlanır.",
+  "sonuc": "Düşük maliyetli hava sensörlerinin ölçümlerini bağıl neme göre düzelten açık kaynaklı Python kalibrasyon modülü elde edilir.",
+  "senden": "CEV 308 Hava Kirlenmesi",
+  "bizden": "Havadaki nemin ölçüm aletine etkisi bilgisi (MTO 214)",
+  "adimlar": [
+   {
+    "baslik": "Ucuz sensör ve referans istasyon verilerinin toplanması",
+    "oz": "Sensor.Community ve bakanlık istasyonlarından saatlik veriler çekilir.",
+    "ayrinti": "Açık sensör API servisleri ve Sürekli İzleme Merkezi üzerinden İstanbul'daki eşzamanlı PM2.5, PM10, sıcaklık ve bağıl nem ölçümleri toplanır.",
+    "nasil": [
+     {
+      "teknik": "Sensor.Community REST API üzerinden koordinat filtreli saatlik partikül zaman serileri çekilir.",
+      "sade": "CEV 308 dersindeki 'Birincil ve ikincil hava kirleticilerinin oluşum kimyası ve kaynaklarını sınıflandırmak' bilgisiyle partikül boyut fraksiyonları ayrıştırılır. Akciğere inen PM2.5 ile kaba toz PM10 ölçümleri ayrı sütunlara dizilir.",
+      "altAdimlar": [
+       "Python requests kütüphanesiyle İstanbul'daki aktif sensörlerin son 1 yıllık verisi indirilir.",
+       "Cihaz arızasından kaynaklanan sıfır veya negatif uç değerler maskelenir.",
+       "Sensör kimliği ve evrensel zaman damgası indeksli Pandas tablosu kurulur."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Birincil ve ikincil hava kirleticilerinin oluşum kimyası ve kaynaklarını sınıflandırmak."
+      }
+     },
+     {
+      "teknik": "En yakın Çevre Bakanlığı referans istasyon ölçümleriyle uzaysal ve zamansal eşleştirme yapılır.",
+      "sade": "CEV 308 dersindeki 'Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak' bilgisiyle altın standart referans veri belirlenir. Ucuz cihazın resmi onaylı cihazla aynı havadaki performansı yan yana konur.",
+      "altAdimlar": [
+       "Sensör ile referans istasyon arasındaki Öklid mesafesi hesaplanarak 3 km içi eşleşmeler seçilir.",
+       "Saat başı ortalamaları alınarak zaman dilimi farklılıkları UTC formatında eşitlenir.",
+       "Eksik ölçüm oranı yüzde 20'nin altında olan güvenilir veri çiftleri filtrelenir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Termodinamik nem ve sıcaklık özniteliklerinin türetilmesi",
+    "oz": "Bağıl nem ve Clausius-Clapeyron ile su buharı doygunluğu bulunur.",
+    "ayrinti": "Ölçüm anındaki sıcaklık ve bağıl nem verilerinden doymuş buhar basıncı ve çiylenme noktası hesaplanarak optik sensörün maruz kaldığı aerosol higroskopik büyüme faktörü türetilir.",
+    "nasil": [
+     {
+      "teknik": "Clausius-Clapeyron bağıntısıyla doymuş buhar basıncı ve aktüel su buharı basıncı hesaplanır.",
+      "sade": "MTO 214 dersindeki 'Clausius-Clapeyron doymuş buhar basıncı denklemi' bilgisiyle havanın su tutma kapasitesi bulunur. Soğuk kış günlerinde havanın suya ne kadar kolay doyduğu ve partiküller üzerinde sıvı film oluşturduğu hesaplanır.",
+      "altAdimlar": [
+       "Sıcaklık girdisi Kelvin birimine çevrilerek doymuş buhar basıncı (es) hesaplanır.",
+       "Bağıl nem yüzdesiyle çarpılarak aktüel buhar basıncı (e) ve çiy noktası açığı türetilir.",
+       "Buharlaşma gizli ısısı dikkate alınarak nem doygunluk indeksi oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Clausius-Clapeyron bağıntısıyla doymuş buhar basıncının sıcaklıkla değişimini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Bağıl nemin yüzde 70 üzerindeki değerleri için Kohler higroskopik büyüme çarpanı eklenir.",
+      "sade": "MTO 214 dersindeki 'Bağıl nem ve su buharı basıncı oranı' bilgisiyle partiküllerin nem emerek kaç kat büyüdüğü saptanır. Optik lazerin şişen su damlacığını dev bir toz tanesi sanması matematiksel olarak engellenir.",
+      "altAdimlar": [
+       "RH / (100 - RH) terimi oluşturularak nemlilik üstel büyüme faktörü çıkarılır.",
+       "Sıcaklık ve nem etkileşim terimleri (T * RH) regresyon matrisine eklenir.",
+       "Öznitelik tablosu min-max ölçekleme ile normalleştirilerek eğitim kümesine hazırlanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Nemlilik parametreleri ve sıcaklıkla ıslaklık süresi (TOW) potansiyelini belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Makine öğrenmesi kalibrasyon modelinin eğitilmesi",
+    "oz": "XGBoost algoritmasıyla nem sapması arındırılmış kalibrasyon kurulur.",
+    "ayrinti": "Girdi olarak ucuz sensör PM2.5 ölçümü, sıcaklık, bağıl nem ve türetilen doygunluk faktörleri verilir. Hedef değişken referans istasyon PM2.5 ölçümüdür. XGBoost ve Random Forest algoritmaları eğitilir.",
+    "nasil": [
+     {
+      "teknik": "XGBoost regresyon algoritması k-katlamalı çapraz doğrulama ile optimize edilir.",
+      "sade": "CEV 308 dersindeki 'Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak' bilgisiyle kalibrasyon hatası en aza indirilir. Yapay zeka modeli ucuz sensörün nemli havalardaki abartılı ölçümünü kırpar.",
+      "altAdimlar": [
+       "Veri seti yüzde 70 eğitim ve yüzde 30 test olarak zamansal sırayla bölünür.",
+       "XGBoost hiperparametreleri (ağaç derinliği, öğrenme oranı) Optuna ile optimize edilir.",
+       "Kayıp fonksiyonu olarak ortalama mutlak hata (MAE) minimize edilir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+      }
+     },
+     {
+      "teknik": "EPA doğrusal olmayan nem düzeltme denklemi ile makine öğrenmesi başarısı karşılaştırılır.",
+      "sade": "CEV 308 dersindeki 'Birincil ve ikincil hava kirleticilerinin oluşum kimyası ve kaynaklarını sınıflandırmak' bilgisiyle farklı düzeltme formülleri sınanır. Geliştirilen YZ modelinin uluslararası EPA standart formülünden daha yüksek doğruluk sağladığı kanıtlanır.",
+      "altAdimlar": [
+       "EPA ulusal PurpleAir düzeltme formülü test setine uygulanır.",
+       "XGBoost modeli ile EPA formülünün hata metrikleri karşılaştırmalı hesaplanır.",
+       "Model katsayıları ve öznitelik önem dereceleri (SHAP) görselleştirilir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Birincil ve ikincil hava kirleticilerinin oluşum kimyası ve kaynaklarını sınıflandırmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hata analizi ve açık kaynaklı kalibrasyon kütüphanesi",
+    "oz": "RMSE hatası yüzde 60 düşürülerek kalibrasyon fonksiyonu paketlenir.",
+    "ayrinti": "Bağıl nemin yüzde 85 üzerine çıktığı kritik sisli günlerde kalibre edilmiş sensör verilerinin referans istasyonla korelasyonu test edilir. Model hafif bir Python fonksiyonu olarak paketlenir.",
+    "nasil": [
+     {
+      "teknik": "Test veri seti üzerinde RMSE, MAE ve belirleme katsayısı (R2) hesaplanarak raporlanır.",
+      "sade": "CEV 308 dersindeki 'Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek' bilgisiyle en zorlu sisli günlerdeki başarı belgelenir. Ham sensörde 35 µg olan hata payının kalibrasyon sonrası 6 µg seviyesine düştüğü teyit edilir.",
+      "altAdimlar": [
+       "Ham sensör ile referans istasyon arasındaki R2 korelasyonu 0.61 olarak hesaplanır.",
+       "Kalibrasyon sonrası R2 değerinin 0.89 seviyesine çıktığı ve RMSE hatasının yarıya indiği gösterilir.",
+       "Dağılım grafiği (scatter plot) ve kalıntı dağılımı (residuals) çizilir."
+      ],
+      "kazanim": {
+       "ders": "CEV 308",
+       "madde": "Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Eğitilmiş model ONNX formatına dönüştürülerek mikrodenetleyici ve Python kullanımına sunulur.",
+      "sade": "MTO 214 dersindeki 'İzobar, izoterm ve adyabatlar üzerinde termodinamik süreçleri takip etmek' bilgisiyle gerçek zamanlı meteorolojik veri akışına entegrasyon sağlanır. İsteyen herkesin kendi evindeki ucuz hava sensörünü kalibre edebileceği açık kod üretilir.",
+      "altAdimlar": [
+       "Model ağırlıkları ONNX ve hafif pickle formatında diske yazılır.",
+       "Girdi olarak sıcaklık, nem ve ham PM2.5 alan tek satırlık tahmin fonksiyonu yazılır.",
+       "Örnek Jupyter defteri ve kullanım kılavuzu GitHub deposu formatında hazırlanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "İzobar, izoterm ve adyabatlar üzerinde termodinamik süreçleri takip etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul genelinde açık sensör ağı ham ve kalibre edilmiş PM2.5 karşılaştırması animasyonu",
+   "aciklama": "Nemli kış gecelerinde kalibrasyon algoritmasının hatalı partikül tepe noktalarını düzeltmesi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://amt.copernicus.org/articles/16/1311/2023/",
+   "aciklama": "Copernicus Atmospheric Measurement Techniques hakemli araştırma portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Sensor.Community açık kaynaklı hava sensörü donanım ve yazılım kılavuzu",
+   "url": "https://sensor.community/en/sensors/airrohr/"
+  },
+  {
+   "ad": "Copernicus Atmosphere Monitoring Service (CAMS) hava kalitesi verileri",
+   "url": "https://atmosphere.copernicus.eu/air-quality"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "_birlestirme": {
+  "kaynak": "cikti/CEV-04.json",
+  "tarih": "2026-10-15 01:57",
+  "geminiSha1": "ded087e17b42"
+ }
+}

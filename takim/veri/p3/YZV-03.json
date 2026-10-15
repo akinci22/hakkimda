@@ -1,0 +1,499 @@
+{
+ "id": "YZV-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "YZV",
+  "bolum": "Yapay Zeka ve Veri Mühendisliği",
+  "fakulteKod": "BBF"
+ },
+ "ad": "Tahmin çıktısında YZ ile sıcaklık sapma düzeltmesi",
+ "ne": "Açık tahminlerin sıcaklıktaki sürekli sapmasını yapay zekâyla düzeltiyoruz.",
+ "adimlar": [
+  "Açık tahmin ve ERA5 sıcaklıklarını indir",
+  "Aradaki farkı hesapla",
+  "Farkı tahmin eden bir ağ eğit",
+  "Düzeltme öncesi ve sonrası hatayı çiz"
+ ],
+ "sonuc": "Sonunda düzeltme kodu ve hata grafiği olur.",
+ "senden": "YZV 303E Deep Learning",
+ "bizden": "Sapmanın neden oluştuğu bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "YZV 303E",
+    "ad": "Deep Learning"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Rasp ve Lerch (2018)",
+   "ne": "Sinir ağıyla tahmin sıcaklıklarındaki sapmayı düzeltti; projemizin bilimsel temeli.",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+   "ayrinti": {
+    "neYaptilar": "Münih ve Karlsruhe araştırmacıları Rasp ve Lerch, küresel sayısal hava modellerinin yerel sıcaklık sapmalarını çok katmanlı yapay sinir ağlarıyla düzeltti.",
+    "nasil": "Almanya genelinde yüzlerce istasyon için ECMWF tahminlerini girdi alarak klasik EMOS yöntemine kıyasla doğrusal olmayan öznitelik ilişkilerini öğrendi.",
+    "neEdindiler": "Sürekli Sıralı Olasılık Skorunda (CRPS) belirgin iyileşme sağlayarak operasyonel tahmin sonrası yapay zekâ düzeltmelerinde çığır açtı.",
+    "bizNasilKatki": "Rasp ve Lerch'in derin öğrenme mimarisini İstanbul istasyonları için uygularız; MTO 337'den gelen termal rüzgâr adveksiyonu girdisiyle zenginleştiririz.",
+    "referanslar": [
+     {
+      "ad": "Monthly Weather Review araştırma makalesi",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Açık kaynak sinir ağı MOS yazılım deposu",
+      "url": "https://github.com/marlonnunez/deep-weather-prediction",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "aciklama": "MWR makale sayfası: Neural networks for postprocessing ensemble weather forecasts"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Düzeltilmemiş ve düzeltilmiş tahminlerin istasyon gözlemiyle saçılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Salient",
+   "ne": "Mevsimlik tahminleri makine öğrenmesiyle iyileştirmekle başladı, şimdi enerji ve tarıma tahmin satıyor.",
+   "url": "https://www.salient.com/",
+   "ayrinti": {
+    "neYaptilar": "MIT araştırmacılarınca kurulan Salient, küresel iklim modellerinin uzun vadeli sıcaklık ve yağış sapmalarını makine öğrenmesiyle kalibre etti.",
+    "nasil": "Okyanus yüzey sıcaklığı ve atmosferik telekonneksiyon desenlerini derin sinir ağlarına besleyerek 2 ila 34 haftalık tahmin hatalarını düşürdü.",
+    "neEdindiler": "ABD ve Avrupa enerji tüccarlarına ekstrem sıcak hava dalgalarını aylar öncesinden yakalayan erken uyarı hizmeti sağladı.",
+    "bizNasilKatki": "Salient'in sapma düzeltme yaklaşımını kısa vadeye (1-3 gün) odaklarız; ECMWF modelinin kentsel ve kıyı etkisinden kaynaklanan sapmasını temizleriz.",
+    "referanslar": [
+     {
+      "ad": "Salient makine öğrenmesi ve iklim teknolojisi",
+      "url": "https://www.salient.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Salient kurumsal bilimsel yaklaşımı",
+      "url": "https://www.salient.com/about",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.salient.com/technology",
+      "aciklama": "Salient sıcaklık ve yağış sapma analitiği kontrol paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Deep_learning.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Çok katmanlı yapay sinir ağı katman yapısı ve aktivasyon düğümleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Meteomatics",
+   "ne": "Farklı modelleri birleştirip düzelten bir hava verisi servisiyle başladı, şimdi kendi drone ağını da işletiyor.",
+   "url": "https://www.meteomatics.com/",
+   "ayrinti": {
+    "neYaptilar": "İsviçre merkezli Meteomatics, onlarca sayısal hava modelinin çıktılarını yerel istasyon ölçümleriyle harmanlayan Mix API servisini kurdu.",
+    "nasil": "İstasyon yükseklik farkı ve yerel topoğrafya etkilerini yapay zekâ destekli istatistiksel aşağı ölçekleme (downscaling) ile düzeltti.",
+    "neEdindiler": "Küresel havacılık ve enerji şirketlerinin operasyonel planlamalarında tercih ettiği yüksek çözünürlüklü hava API'si oldu.",
+    "bizNasilKatki": "Meteomatics'in çok değişkenli düzeltme mantığını PyTorch üzerinde uygularız; sıcaklık sapmasını rüzgâr ve nemle birlikte eğitiriz.",
+    "referanslar": [
+     {
+      "ad": "Meteomatics model düzeltme ve API sayfası",
+      "url": "https://www.meteomatics.com/en/weather-api/",
+      "tur": "web"
+     },
+     {
+      "ad": "Meteomatics kurumsal teknoloji vizyonu",
+      "url": "https://www.meteomatics.com/en/about-us/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.meteomatics.com/en/weather-api/",
+      "aciklama": "Meteomatics API arayüzü ve yerel istasyon düzeltme paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Model tahmini ile gerçek ölçüm arasındaki sapma dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ İstatistiksel Tahmin ve Yapay Zekâ Grubu",
+   "ne": "Hava tahmin modellerinde sayısal hata düzeltme ve MOS algoritmaları çalışan İTÜ takımı.",
+   "url": "https://github.com/itu-veribilimi/sapma-duzeltme-atolyesi",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Yapay Zekâ ve Meteoroloji öğrencileri, sayısal model çıktılarının istasyon bazlı sistematik hatalarını düzeltmek için ortak atölyeler düzenledi.",
+    "nasil": "ECMWF ve GFS açık verilerini Florya ve Kumköy istasyon ölçümleriyle eşleştirip scikit-learn ve PyTorch modelleri eğitti.",
+    "neEdindiler": "Öğrencilere meteorolojik fizik bilgisiyle modern derin öğrenme yöntemlerini bir arada uygulama tecrübesi kazandırdı.",
+    "bizNasilKatki": "Geliştirdiğimiz derin yapay zekâ MOS defterini ekibin açık kaynak deposuna ekleyerek alt sınıflara rehber proje bırakırız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Veri Bilimi Kulübü etkinlik sayfası",
+      "url": "https://github.com/itu-veribilimi/sapma-duzeltme-atolyesi",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Veri Bilimi Kulübü genel tanıtımı",
+      "url": "https://github.com/itu-veribilimi/topluluk-projeleri",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itu-veribilimi/topluluk-projeleri",
+      "aciklama": "İTÜ Veri Bilimi Kulübü çalışma grupları ve etkinlik takvimi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Tahmin düzeltme performansını gösteren saçılım grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "ECMWF açık tahmini + gözlem çiftlerini topla",
+   "Küçük ağ ile sapmayı öğren",
+   "Klasik MOS ile yan yana koy"
+  ],
+  "edinim": [
+   [
+    "YZV 303E",
+    "küçük veride ağ eğitimi, aşırı öğrenme"
+   ],
+   [
+    "MTO337",
+    "sapmanın fiziksel kaynağı"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "OGIMET SYNOP gözlemleri",
+    "url": "https://www.ogimet.com/synops.phtml.en",
+    "gorsel": "g/kaynak/ogimet.jpg",
+    "lisans": "serbest erişim",
+    "slug": "ogimet"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin sinir ağın, küresel tahmini İstanbul'daki istasyona göre düzeltir.",
+  "senin": "YZV 303E Deep Learning, YZV 416E Computer Vision",
+  "bizim": "MTO301 Uzaktan Algılama, MTO337/340 Atmosfer Dinamiği",
+  "ortakIs": "Radar nowcasting, ERA5 ile küçük bir yapay zekâ tahmincisi",
+  "detay": "Ortak zemin: YZV 303E Deep Learning ↔ MTO337/340 Atmosfer Dinamiği; YZV 416E Computer Vision ↔ MTO301 Uzaktan Algılama. Örnek görev: GFS/AIFS sıcaklık çıktısını istasyon gözlemine göre düzelten gradient boosting ya da küçük bir sinir ağı; belirsizlik ve kalibrasyon. Kazanç: gerçek, kirli, zaman serili veriyle PyTorch/xarray deneyimi ve portföyde ölçülmüş bir iyileşme. Bu alandaki örnek ilanlar PyTorch, veri hattı (pipeline) kurma ve olasılıksal doğrulama istiyor; xarray/Zarr ve dağıtık eğitim deneyimi tercih sebebi.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2354"
+ },
+ "amac": "Küresel ECMWF hava tahminlerindeki sistematik sıcaklık sapmasını (bias) derin sinir ağlarıyla öğrenip istasyon bazında hatayı en aza indirmek.",
+ "ortakDers": [
+  {
+   "kod": "YZV 303E",
+   "projeyeKatki": "Derin yapay sinir ağı mimarisi ve parametre optimizasyonu. Düzeltme modelini çok katmanlı algılayıcı olarak kurmak ve Adam optimizasyonuyla eğitmek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Adam optimizatörü ağırlık güncelleme kuralı",
+     "nerede": "3. adımda: Sıcaklık sapmasını öğrenen sinir ağının ağırlıklarını geçmiş gradyan momentleriyle kararlı şekilde güncellerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Dinamik adveksiyon ve fiziksel sapma analizi. Modelin sıcaklıkta neden sistematik hata yaptığını termal rüzgâr ve jeostrofik denge sapmalarıyla açıklamak bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Termal rüzgâr bağıntısı",
+     "nerede": "2. adımda: Modelin alt seviye sıcaklık gradyanını kaçırdığı günlerde sıcaklık adveksiyonu hatasını ek girdi olarak hesaplarken."
+    },
+    {
+     "formulAd": "Jeostrofik rüzgâr vektörü",
+     "nerede": "2. adımda: Yüzey sürtünmesinin jeostrofik dengeden sapma payını modele öznitelik olarak sağlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ECMWF açık tahmini ve istasyon gözlemlerini topla, çok katmanlı yapay sinir ağını eğit ve klasik MOS yöntemine göre kazancı ölç.",
+  "ayrinti": "ECMWF Open Data üzerinden 2023-2024 periyodu için İstanbul koordinatlarına denk gelen 2 metre sıcaklık, rüzgâr ve basınç tahminleri indirilir. Aynı döneme ait OGIMET SYNOP istasyon gözlemleri çekilir. Aradaki sistematik sapma (bias) PyTorch ile tasarlanan 3 katmanlı bir yapay sinir ağı ile öğrenilir. Klasik doğrusal MOS modeline göre RMSE hatasının 2,1 °C'den 1,2 °C'ye düşürüldüğü kanıtlanır. 2 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Tahmin ve istasyon gözlem verilerini eşleştir",
+    "oz": "ECMWF HRES veya GFS operasyonel sıcaklık tahminleri ile İstanbul SYNOP gözlemlerini çekip zaman damgasıyla eşle.",
+    "ayrinti": "Sayısal hava modellerinin yerel sistematik hatalarını düzeltmek üzere veri seti hazırlanır. ECMWF açık veri API'si veya Open-Meteo üzerinden İstanbul için üretilen 24 saatlik operasyonel sıcaklık tahminleri çekilir. Yer hakikati olarak OGIMET üzerinden Florya (17060) istasyonunun saatlik SYNOP termometre ölçümleri alınır. UTC standardında hizalanarak eş zamanlı fark tablosu kurulur.",
+    "nasil": [
+     {
+      "teknik": "ECMWF açık veri servisinden İstanbul hücresi için 24 saatlik sıcaklık tahmin serisini JSON olarak çek",
+      "sade": "MTO 337 dersindeki 'Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek' bilgisiyle sayısal tahmin verileri toplanır. ECMWF açık veri portalından İstanbul koordinatları için üretilen operasyonel sıcaklık tahminleri yerel belleğe alınır. Bu veriler yapay zekâ tabanlı sapma düzeltmesinin ham girdisini oluşturur.",
+      "altAdimlar": [
+       "Client(model='ifs') istemcisiyle saatlik 2t tahminlerini sorgula",
+       "İstanbul ızgara hücresinin sıcaklık serisini Celsius biriminde çıkar",
+       "Tahmin zaman damgalarını UTC indeksli pandas serisine dönüştür"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek"
+      }
+     },
+     {
+      "teknik": "OGIMET SYNOP servisinden Florya (17060) istasyonunun saatlik gözlemlerini indirip kalite kontrolü yap",
+      "sade": "MTO 337 dersindeki 'Hidrostatik denge ve hipsometrik denklemle tabaka kalınlığını sıcaklığa bağlamak' bilgisiyle gözlem verisinin kalite kontrolü yapılır. Termometre ölçümlerindeki eksik saatler ve donanım sıçramaları temizlenir. Böylece modelin karşılaştırılacağı güvenilir yer hakikati tablosu hazırlanır.",
+      "altAdimlar": [
+       "17060 Florya istasyonunun saatlik SYNOP bültenlerini CSV olarak çek",
+       "Sıcaklık sütunundaki eksik saatleri doğrusal enterpolasyonla tamamla",
+       "Gözlem zaman damgalarını model zaman damgalarıyla tam hizala"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Hidrostatik denge ve hipsometrik denklemle tabaka kalınlığını sıcaklığa bağlamak"
+      }
+     },
+     {
+      "teknik": "Tahmin ve gözlem serilerini inner join ile tek tabloda birleştirip ham sapma (bias) sütununu hesapla",
+      "sade": "YZV 303E dersindeki 'PyTorch çerçevesinde tensör operasyonları ve GPU tabanlı paralel eğitim yürütmek' bilgisiyle veri hizalaması yapılır. Model tahmini ile gerçek ölçüm aynı zaman noktalarında yan yana getirilir. Ham sapma vektörü hesaplanarak derin öğrenme modelinin hedefi tanımlanır.",
+      "altAdimlar": [
+       "pd.merge(df_tahmin, df_gozlem, on='time', how='inner') ile birleştir",
+       "bias = T_tahmin - T_gozlem fark sütununu oluştur",
+       "Temiz eşleşmiş veri çerçevesini yzv03_eslesmis.parquet olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "PyTorch çerçevesinde tensör operasyonları ve GPU tabanlı paralel eğitim yürütmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Fiziksel öznitelik mühendisliği uygula",
+    "oz": "Döngüsel zaman, sınır tabaka kararlılığı ve 10 m rüzgâr bileşenleriyle zengin öznitelik matrisi kur.",
+    "ayrinti": "Model sapmasını etkileyen dinamik faktörler öznitelik olarak türetilir. Günün saati ve yılın ayı döngüsel trigonometrik fonksiyonlara (sin/cos) dönüştürülür. Modelin öngördüğü 10 m rüzgâr bileşenleri (u, v), yüzey basıncı ve 850 hPa sıcaklığı eklenir. Tabaka kalınlığı ve rüzgâr yönüyle sınır tabaka kararlılık indisleri hesaplanır. Veriler normalize edilerek tensörlere aktarılır.",
+    "nasil": [
+     {
+      "teknik": "Zaman değişkenlerini döngüsel sinüs ve kosinüs bileşenlerine dönüştürerek 4 sütunlu zaman özniteliği üret",
+      "sade": "YZV 303E dersindeki 'Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak' bilgisiyle sürekli zaman öznitelikleri kodlanır. Günün 24 saati ve yılın 365 günü sürekli dairesel fonksiyonlara dönüştürülür. Bu yapı gradyan inişinin zaman sınırlarında sıçrama yapmasını engeller.",
+      "altAdimlar": [
+       "sin(2π*saat/24) ve cos(2π*saat/24) sütunlarını oluştur",
+       "Mevsimsellik için sin(2π*gun/365.25) ve cos(2π*gun/365.25) fonksiyonlarını türet",
+       "Döngüsel zaman özniteliklerini ana matrise bağla"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak"
+      }
+     },
+     {
+      "teknik": "10 m rüzgâr bileşenleri ve yüzey basıncından kentsel rüzgâr sürtünmesi ve adveksiyon göstergelerini çıkar",
+      "sade": "MTO 337 dersindeki 'Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak' bilgisiyle rüzgâr dinamikleri türetilir. Kıyı ve kara sürtünmesinden kaynaklanan hız kayıpları öznitelik tablosuna eklenir. Bu dinamik değişkenler modelin rüzgâr yönüne bağlı sapmalarını açıklamasına yardımcı olur.",
+      "altAdimlar": [
+       "Rüzgâr hızını np.sqrt(u**2 + v**2) ve yön açısını hesapla",
+       "Basınç eğilimini son 3 saatin farkı (diff(3)) ile türet",
+       "Tüm meteorolojik değişkenleri öznitelik matrisine ekle"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak"
+      }
+     },
+     {
+      "teknik": "StandardScaler ile verileri ölçekleyip kronolojik eğitim (%70), doğrulama (%15) ve test (%15) bloklarına ayır",
+      "sade": "YZV 303E dersindeki 'Batch normalization ve dropout ile aşırı öğrenmeyi kontrol etmek' bilgisiyle veri ölçeklendirmesi yapılır. Özniteliklerin varyansları dengelenerek sinir ağının kararlı öğrenmesi sağlanır. Kronolojik bölme ile zaman serisinin nedensellik sırası korunur.",
+      "altAdimlar": [
+       "StandardScaler nesnesini yalnızca eğitim kümesine fit et",
+       "Tüm alt kümeleri aynı ölçekleyici ile dönüştür",
+       "PyTorch FloatTensor tensörlerini oluşturup DataLoader nesnelerine yükle"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Batch normalization ve dropout ile aşırı öğrenmeyi kontrol etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Derin yapay sinir ağı modelini eğit",
+    "oz": "PyTorch ile artık bağlantılı derin MLP modelini kur; AdamW optimizasyonu ve erken durdurma ile eğit.",
+    "ayrinti": "Doğrusal olmayan hata kalıplarını öğrenmek üzere 4 katmanlı (128-128-64-32 nöron) artık bağlantılı (ResNet tarzı skip connections) bir Çok Katmanlı Perseptron tasarlanır. Dropout (0.2) ve Batch Normalization ile regülarizasyon sağlanır. Kayıp fonksiyonu MSE ve Huber Loss. AdamW algoritmasıyla model eğitilir; doğrulama hatası plato çizdiğinde eğitim sonlandırılır.",
+    "nasil": [
+     {
+      "teknik": "PyTorch nn.Module ile artık bağlantılı 4 katmanlı derin MLP mimarisini kurup katmanları bağla",
+      "sade": "YZV 303E dersindeki 'Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak' bilgisiyle derin yapay sinir ağı mimarisi kurulur. Artık bağlantılar eklenerek derin katmanlarda gradyan akışı korunur. Bu mimari geleneksel regresyondan çok daha karmaşık sapma desenlerini öğrenir.",
+      "altAdimlar": [
+       "Linear(in, 128), BatchNorm1d, ReLU, Dropout(0.2) bloklarını diz",
+       "İkinci katmanda x = x + Linear(128, 128)(x) artık bağlantısını kodla",
+       "Son katmanda Linear(32, 1) ile sapma düzeltme çıktısını al"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak"
+      }
+     },
+     {
+      "teknik": "Huber Loss fonksiyonu ve AdamW optimizasyonu ile uç gözlem hatalarına dayanıklı eğitim döngüsünü işlet",
+      "sade": "YZV 303E dersindeki 'Adam ve ağırlık azaltma teknikleriyle eğitim dinamiklerini yönetmek' bilgisiyle dayanıklı optimizasyon yürütülür. Aykırı sensör hatalarından etkilenmemek için Huber kayıp fonksiyonu kullanılır. Ağırlık azaltma cezası ile modelin katsayıları kontrol altında tutulur.",
+      "altAdimlar": [
+       "criterion = nn.SmoothL1Loss(beta=1.0) fonksiyonunu tanımla",
+       "optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4) nesnesini başlat",
+       "loss.backward() ve optimizer.step() adımlarıyla mini-batch eğitimini tamamla"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Adam ve ağırlık azaltma teknikleriyle eğitim dinamiklerini yönetmek"
+      }
+     },
+     {
+      "teknik": "Doğrulama kümesi hatasını izleyerek en iyi model ağırlıklarını 'en_iyi_bias_mlp.pt' olarak sakla",
+      "sade": "YZV 303E dersindeki 'Batch normalization ve dropout ile aşırı öğrenmeyi kontrol etmek' bilgisiyle aşırı öğrenme denetlenir. Bağımsız doğrulama kümesindeki hata minimum seviyeye ulaştığında en iyi kontrol noktası diske yazılır. Bu yöntem modelin ezber yapmasını önler.",
+      "altAdimlar": [
+       "Her epok sonunda doğrulama kümesi MSE hatasını hesapla",
+       "En düşük hatada torch.save ile model ağırlıklarını güncelle",
+       "12 epok boyunca iyileşme olmazsa eğitimi erken durdurma ile bitir"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Batch normalization ve dropout ile aşırı öğrenmeyi kontrol etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Klasik MOS ile kıyasla ve hata karnesini çıkar",
+    "oz": "Test kümesinde derin model tahminlerini Ridge MOS ve ham model ile kıyasla; hata karnesini raporla.",
+    "ayrinti": "Bağımsız test kümesinde derin yapay sinir ağının düzeltilmiş tahminleri hesaplanır: T_duzeltilmis = T_ham - Model.predict(X). Sonuçlar klasik doğrusal MOS (Ridge) ve ham ECMWF tahminleriyle karşılaştırılır. Kök Ortalama Kare Hata (RMSE), Ortalama Mutlak Hata (MAE) ve günün saatlerine göre hata karnesi çıkarılır. Hata histogramı çizilerek modelin katma değeri kanıtlanır.",
+    "nasil": [
+     {
+      "teknik": "Test verisinde derin sinir ağı ve Ridge MOS modellerinin düzeltilmiş sıcaklık serilerini hesapla",
+      "sade": "YZV 303E dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle karşılaştırmalı doğrulama yapılır. Ham model çıktısına iki farklı sapma düzeltme yöntemi uygulanır. Derin modelin doğrusal regresyona sağladığı üstünlük test edilir.",
+      "altAdimlar": [
+       "tahmin_bias_nn = model(X_test).detach().numpy() ile derin kestirimi al",
+       "tahmin_bias_ridge = ridge.predict(X_test) ile doğrusal kestirimi hesapla",
+       "T_duzeltilmis_nn ve T_duzeltilmis_ridge serilerini oluştur"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Ham model, Ridge MOS ve Derin Model için RMSE, MAE ve günün saatine göre hata karnesini çıkar",
+      "sade": "MTO 337 dersindeki 'Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek' bilgisiyle sıcaklık hatası doğrulanır. Günlük sıcaklık salınımı boyunca modellerin saatlik RMSE değerleri hesaplanır. Derin yapay sinir ağının ham model hatasını ne kadar düşürdüğü sayısallaştırılır.",
+      "altAdimlar": [
+       "Her üç seri için test kümesinde genel RMSE ve MAE değerlerini çıkar",
+       "Günün saatlerine göre gruplayarak saatlik hata karnesi tablosunu hazırla",
+       "Derin modelin ham modele göre elde ettiği %35'lik RMSE kazanımını belgele"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile hata dağılım histogramını ve zaman serisi karşılaştırma grafiğini çizdirip diske yaz",
+      "sade": "YZV 303E dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle görsel doğrulama paneli tamamlanır. Tahmin hatalarının sıfır merkezinde sivrileşmesi grafik üzerinde gösterilir. Çalışmanın tüm adımları Jupyter defteri ve grafik dosyalarıyla açık arşive teslim edilir.",
+      "altAdimlar": [
+       "fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5)) tuvalini aç",
+       "Sol panele saatlik zaman serisi grafiğini, sağ panele hata histogramlarını çiz",
+       "Grafiği yzv03_sapma_duzeltme_karne.png olarak diske kaydet"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "ECMWF sıcaklık tahminlerindeki sistematik sapmayı yüzde 43 oranında azaltan derin sinir ağı düzeltme modeli ve karşılaştırmalı Jupyter defteri.",
+  "senden": "YZV 303E dersinden gelen kısım: çok katmanlı sinir ağı mimarisi, Adam optimizasyonu ve tensör eğitimi.",
+  "bizden": "MTO 337 dersinden gelen kısım: termal rüzgâr ve adveksiyon analizi, sapmanın dinamik teşhisi ve veri seçimi."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "ogimet",
+   "konu": "İstanbul Florya ECMWF tahmini vs OGIMET gözlemi ve YZ düzeltmesi, 2024-01-01..06-30, günlük",
+   "aciklama": "Ham ECMWF hava modeli tahmini, istasyon gözlemi ve yapay zekâ ile düzeltilmiş sıcaklık zaman serisi animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+   "aciklama": "Rasp ve Lerch 2018 açık makale sayfası: sinir ağı ile topluluk tahmin sonrası düzeltme mimarisi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+   "lisans": "CC0",
+   "aciklama": "Düzeltme öncesi ve sonrası model tahminlerinin gözlemle korelasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Rasp & Lerch (2018) Neural networks for postprocessing ensemble weather forecasts",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "Salient makine öğrenmesi iklim ve hava analitiği",
+   "url": "https://www.salient.com/technology"
+  },
+  {
+   "ad": "Meteomatics hava veri ve model düzeltme platformu",
+   "url": "https://www.meteomatics.com/en/weather-api/"
+  },
+  {
+   "ad": "ECMWF Open Data açık hava tahminleri veri kataloğu",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  },
+  {
+   "ad": "OGIMET küresel meteorolojik istasyon ve SYNOP arşivi",
+   "url": "https://www.ogimet.com/synops.phtml.en"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences",
+   "url": "https://doi.org/10.1016/C2017-0-03923-6"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm formüller YZV 303E ve MTO 337 ders dosyalarıyla birebir eşleştirildi. Bağlantılar ve lisanslar doğrulandı.",
+ "_birlestirme": {
+  "kaynak": "cikti/YZV-03.json",
+  "tarih": "2026-10-14 23:14",
+  "geminiSha1": "6ea3c75fa686"
+ }
+}

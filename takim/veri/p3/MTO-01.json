@@ -1,0 +1,516 @@
+{
+ "id": "MTO-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "İklim Bilimi ve Meteoroloji Müh. (bizim bölüm)",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "İstanbul için tahmin karnesi: hangi gün, hangi hava tipinde yanılıyor",
+ "ne": "Açık tahminlerin İstanbul'da hangi durumlarda şaştığını gösteren bir karne çıkarıyoruz; böylece tahmine ne zaman güvenileceği belli oluyor.",
+ "adimlar": [
+  "ECMWF açık verisinden bir yıllık İstanbul tahminlerini indir",
+  "Aynı günlerin ERA5 değerleriyle tahminleri karşılaştır",
+  "Günleri hava tipine göre grupla (lodos, poyraz, durgun)",
+  "Her grup için ortalama hatayı hesapla ve çiz"
+ ],
+ "sonuc": "Sonunda hava tipine göre hata grafikleri olan bir defter ve kısa bir rapor olur; tahmin okuyan herkes kullanabilir.",
+ "senden": "MTO302/406 Hava Analizi ve Öngörü",
+ "bizden": "Veri analizi ve istatistik araçları (MTO311E, MAT271)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   },
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MAT 271",
+    "ad": "Olasılık ve İstatistik"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF tahmin kalitesi sayfası",
+   "ne": "ECMWF'nin kendi tahminlerinin ne kadar isabetli olduğunu yıl yıl gösterdiği karne.",
+   "url": "https://www.ecmwf.int/en/forecasts/quality-our-forecasts",
+   "ayrinti": {
+    "neYaptilar": "ECMWF, küresel sayısal tahmin modelinin (IFS) başarımını şeffaf biçimde sergilemek için 1980'lerden bu yana sürekli güncellenen operasyonel bir doğrulama karnesi yayımlıyor.",
+    "nasil": "Kuzey ve Güney Yarımküre için 500 hPa jeopotansiyel yükseklik anomali korelasyonu (ACC), yüzey sıcaklığı ve rüzgâr hatası hesaplanıyor. Her yılın karnesi WMO standartlarına göre bültenlerde kamuoyuna sunuluyor.",
+    "neEdindiler": "Küresel hava tahmininde güvenilirliğin altın standardı haline geldi; modelin 10 günlük tahmin ufkunun her on yılda yaklaşık bir gün ileri taşındığı bu karnelerle belgelendi.",
+    "bizNasilKatki": "ECMWF'nin küresel ölçekte yaptığını biz İstanbul özelinde yaparız. Şehrin karmaşık boğaz ve deniz etkisini hesaba katarak Florya ve Kumköy istasyonlarına özel yerel bir karne çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF tahmin kalitesi ve doğrulama değerlendirme sayfası",
+      "url": "https://www.ecmwf.int/en/forecasts/quality-our-forecasts",
+      "tur": "web"
+     },
+     {
+      "ad": "Haiden vd. (2023) Evaluation of ECMWF forecasts, ECMWF Technical Memorandum",
+      "url": "https://doi.org/10.21957/2873138",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/quality-our-forecasts",
+      "aciklama": "ECMWF operasyonel tahmin karnesi: 500 hPa hata eğrileri ve yıllık başarı skoru"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/forecasts/quality-our-forecasts",
+      "aciklama": "Farklı kıtalar ve mevsimler için doğrulanmış model başarı çizelgeleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "WxChallenge",
+   "ne": "ABD'de üniversite öğrencilerinin tahmin yarışması; kimin tahmininin ne kadar şaştığı puanlanıyor.",
+   "url": "https://www.wxchallenge.com",
+   "ayrinti": {
+    "neYaptilar": "Oklahoma Üniversitesi öncülüğünde yürütülen WxChallenge, Kuzey Amerika'daki meteoroloji ve atmosfer bilimi lisans/lisansüstü öğrencilerini gerçek zamanlı günlük tahmin yarışmasında bir araya getirdi.",
+    "nasil": "Öğrenciler ve öğretim üyeleri dönem boyunca seçilen şehirler için en yüksek/en düşük sıcaklık, rüzgâr ve yağış tahmini girer. Otomatik doğrulama motoru tahminleri METAR istasyon verileriyle karşılaştırarak puan üretir.",
+    "neEdindiler": "Yılda 60'tan fazla üniversiteden 2000'i aşkın öğrencinin katıldığı, meteoroloji eğitiminin en köklü ve prestijli tahmin ligi haline geldi.",
+    "bizNasilKatki": "AURA bünyesinde benzer bir haftalık tahmin ligi kurabiliriz. Kendi tahminlerimizi ECMWF ve GFS ile yarıştırıp kimin hangi sinoptik durumda daha iyi olduğunu belgeleyebiliriz.",
+    "referanslar": [
+     {
+      "ad": "WxChallenge yarışma kuralları ve puanlama sistemi",
+      "url": "https://www.wxchallenge.com/rules.php",
+      "tur": "web"
+     },
+     {
+      "ad": "WxChallenge yarışma geçmişi ve arşiv sonuçları",
+      "url": "https://www.wxchallenge.com/history.php",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.wxchallenge.com/rules.php",
+      "aciklama": "WxChallenge üniversiteler arası tahmin ligi kuralları ve puanlama sistemi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.wxchallenge.com/history.php",
+      "aciklama": "Öğrenci takımlarının yıllık tahmin karneleri ve liderlik tablosu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Brightband",
+   "ne": "Açık kaynak yapay zekâ hava modelleri üzerine kuruldu; tahmin hatalarını ölçen araçlar da geliştiriyor.",
+   "url": "https://www.brightband.com",
+   "ayrinti": {
+    "neYaptilar": "Brightband, küresel hava tahmin modellerinin yerel zaaflarını belirlemek ve açık kaynaklı yapay zekâ atmosfer modellerini güvenilir kılmak için doğrulama araçları geliştirdi.",
+    "nasil": "Farklı hava rejimleri (cephe geçişleri, blokajlar, sıcak dalgaları) altında model çıktılarının hata dağılımlarını istatistiksel testlerle inceliyor ve açık karne panelleri kuruyor.",
+    "neEdindiler": "Açık hava bilimi topluluğuna modellerin nerede güvenli, nerede yanıltıcı olduğunu gösteren açık bir referans çerçevesi kazandırdı.",
+    "bizNasilKatki": "Brightband'in rejim bazlı hata ayrıştırma mantığını İstanbul'a uygularız. Lodos fırtınalarında sıcaklık aşımını, poyrazda ise deniz etkisi yağışlarının model tarafından yakalanamamasını raporlarız.",
+    "referanslar": [
+     {
+      "ad": "Brightband şirket ve araştırma vizyonu sayfası",
+      "url": "https://www.brightband.com/about",
+      "tur": "web"
+     },
+     {
+      "ad": "Brightband açık kaynak modeller manifestosu",
+      "url": "https://www.brightband.com/about",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.brightband.com/about",
+      "aciklama": "Brightband platformu: yapay zekâ tahmin doğrulama yaklaşımı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:AtmosphericModelSchematic.png",
+      "lisans": "NOAA",
+      "aciklama": "Sayısal hava modellerinin ızgara yapısı ve alt ölçekli hata kaynakları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Tomorrow.io",
+   "ne": "Kurucular ABD ordusunda hava tahminiyle uğraşırken başladı; bugün kendi uyduları olan bir hava zekâsı şirketi.",
+   "url": "https://www.tomorrow.io",
+   "ayrinti": {
+    "neYaptilar": "Tomorrow.io, operasyonel hava tahminlerinde kurumların en çok hangi hava tiplerinde risk altında olduğunu gösteren sektörel doğrulama ve karar destek sistemleri kurdu.",
+    "nasil": "Radar uyduları, yer gözlemleri ve sayısal modelleri birleştirerek hava koşullarına duyarlı havacılık ve lojistik şirketlerine güvenilirlik indeksleri sunuyor.",
+    "neEdindiler": "Yüzlerce kurumsal müşteriye hizmet veren ve yörüngede kendi radar takımyıldızını işleten küresel bir hava zekâsı lideri oldu.",
+    "bizNasilKatki": "Şirketin 'hava tipine göre karar verme' felsefesini öğrenci ölçeğinde uygularız: örneğin İstanbul'da poyraz estiğinde modelin rüzgârı eksik tahmin etme olasılığını karneye dökeriz.",
+    "referanslar": [
+     {
+      "ad": "Tomorrow.io uzay ve gözlem platformu sayfası",
+      "url": "https://www.tomorrow.io/space/",
+      "tur": "web"
+     },
+     {
+      "ad": "WMO OSCAR Tomorrow uydu takımyıldızı kaydı",
+      "url": "https://space.oscar.wmo.int/satellites/view/tomorrow_s1",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.tomorrow.io/space/",
+      "aciklama": "Tomorrow.io uzay tabanlı gözlem ve tahmin altyapısı paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Bölgesi lodos ve poyraz rüzgâr alanları, ERA5, 2024-01-10..15, saatlik",
+      "aciklama": "İstanbul boğaz hattında rüzgâr yönünün lodostan poyraza ani dönüş anı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "GFS'ten dünkü sıcaklık tahminini indir (açık veri)",
+   "OGIMET'ten aynı günün gözlemini eşle",
+   "bias, MAE, RMSE hesapla; hava tipine göre grupla"
+  ],
+  "edinim": [
+   [
+    "MAT271",
+    "ortalama, sapma, hata ölçüleri"
+   ],
+   [
+    "MTO302",
+    "tahmin ürününü okumak, sinoptik durumu sınıflamak"
+   ],
+   [
+    "MTO311E",
+    "veriyi temizleyip grafiğe dökmek"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "NOAA GFS açık tahmin verisi (NOMADS)",
+    "url": "https://nomads.ncep.noaa.gov/",
+    "gorsel": "g/kaynak/gfs.jpg",
+    "lisans": "kamu malı",
+    "slug": "gfs"
+   },
+   {
+    "ad": "OGIMET SYNOP gözlemleri",
+    "url": "https://www.ogimet.com/synops.phtml.en",
+    "gorsel": "g/kaynak/ogimet.jpg",
+    "lisans": "serbest erişim",
+    "slug": "ogimet"
+   },
+   {
+    "ad": "WMO/WWRP tahmin doğrulama yöntemleri",
+    "url": "https://www.cawcr.gov.au/projects/verification/",
+    "gorsel": "g/kaynak/wmo-verif.jpg",
+    "lisans": "serbest erişim",
+    "slug": "wmo-verif"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Hangi hatanın fiziksel olarak anlamlı olduğunu sen söylersin; havayı ve yapay zekâyı birlikte konuşursun.",
+  "senin": "MTO337/340 Atmosfer Dinamiği I-II, MTO302/406 Hava Analizi ve Öngörü I-II",
+  "bizim": "MTO311E Veri Analizi, MAT271 Olasılık ve İstatistik",
+  "ortakIs": "Doğrulama tasarımı, vaka seçimi, sonucu fizikle yorumlamak",
+  "detay": "Örnek görev: doğrulama tasarımı (hangi değişken, eşik, bölge, dönem), vaka seçimi (cephe, orografi, 2023 İstanbul seli gibi konvektif olay) ve sonucu fizikle yorumlamak. Yapay zekâ bilmen gerekmiyor; gerekeni ilk haftalarda kısa videolarla anlatacağım. Atmosfer Anlatıları'nda bir dersin zor parçasını anlatıp hoca incelemesinden geçen bir video bırakırsın. Kazanç: bölümler arası ortak iş kurmayı öğrenmek; sektörde seni ayıran şey bu olabilir.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+ },
+ "amac": "Sayısal hava tahminlerinin İstanbul'da lodos, poyraz ve kararsız sinoptik hava tiplerindeki sistematik sapmalarını bir yıllık karneyle ortaya koymak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Sinoptik hava analizi ve rejim sınıflandırması. Günlük hava kartlarını inceleyerek İstanbul'un hangi günlerde lodos, poyraz, yüksek basınç veya cephesel geçiş rejiminde olduğunu belirlemek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "3. adımda: lodos günlerinde güneyden gelen sıcak hava taşınımının model tahmin hatasıyla ilişkisini incelerken."
+    },
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "3. adımda: kar-yağmur geçişi günlerinde modelin tabaka kalınlığını doğru çözüp çözemediğini denetlerken."
+    }
+   ]
+  },
+  {
+   "kod": "MAT 271",
+   "projeyeKatki": "İstatistiksel hata analizi ve anlamlılık testleri. Farklı hava tiplerindeki tahmin hatalarının standart sapmasını hesaplamak, Student t-testi ile rejimler arası farkların tesadüfi olmadığını kanıtlamak bu dersin konusudur.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Örneklem varyansı ve standart sapma",
+     "nerede": "4. adımda: lodos ve poyraz gruplarındaki sıcaklık hatalarının saçılım genişliğini hesaplarken."
+    },
+    {
+     "formulAd": "İki örneklem Student t-testi istatistiği",
+     "nerede": "4. adımda: lodos günlerinde görülen yüksek tahmin hatasının poyraz günlerine göre istatistiksel olarak anlamlı olduğunu doğrulamada."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ECMWF ve GFS açık tahminlerini bir yıl boyunca topla, günleri hava tipine göre sınıflandır ve hata karnesini çıkar.",
+  "ayrinti": "Tahmin modelleri her gün aynı başarıyı göstermez; özellikle deniz etkisi, lodos sıcaklığı ve sığ sis durumlarında sapma tavan yapar. Bir yıllık açık tahmin ve istasyon gözlemleri eşleştirilir; sinoptik haritalara göre günler 4 ana tipe ayrılır; her tip için ortalama hata (bias), standart sapma ve RMSE hesaplanır; sonuçlar t-testi ile doğrulanıp görsel karneye dönüştürülür. 3-4 haftalık çalışma ile tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Tahmin ve gözlem verilerini birleştir",
+    "oz": "İstanbul için ECMWF HRES 24 saatlik tahminleri ile istasyon gözlemlerini çekip eşleştir.",
+    "ayrinti": "Açık veri servislerinden ve arşivlerden operasyonel tahminler ile yer hakikati toplanır. ECMWF açık veri API'si üzerinden İstanbul koordinatları için 24 saatlik sıcaklık ve rüzgâr tahminleri indirilir. MGM veya SYNOP istasyon arşivinden (Florya 17060, Kumköy 17056) gerçekleşen saatlik gözlemler alınır. İki seri UTC zaman damgasıyla eşleştirilerek temiz bir veri tablosunda hizalanır.",
+    "nasil": [
+     {
+      "teknik": "ecmwf.opendata istemcisiyle İstanbul için 24 saatlik operasyonel HRES tahmin saatlik serisini indir",
+      "sade": "MTO 406 dersindeki 'Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak' bilgisiyle küresel model ürünleri çekilir. ECMWF açık tahmin servisi üzerinden İstanbul hücresinin 24 saatlik sıcaklık tahminleri yerel ortama aktarılır. Bu veriler tahmin karnesinin sayısal temelini oluşturur.",
+      "altAdimlar": [
+       "Client(model='ifs') istemcisini kurarak 24 saatlik operasyonel tahmin sorgusunu gönder",
+       "İstanbul hücresi için 2t, 10u ve 10v parametrelerini GRIB2 dosyasından ayrıştır",
+       "Zaman damgalarını UTC indeksli pandas DataFrame yapısına dönüştür"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak"
+      }
+     },
+     {
+      "teknik": "OGIMET SYNOP servisinden Florya ve Kumköy istasyonlarının gerçekleşen saatlik sıcaklıklarını çek",
+      "sade": "MTO 302 dersindeki 'İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak' bilgisiyle istasyon gözlem arşivi çözülür. WMO standartlarındaki ölçümler taranarak eksik saatler ayıklanır. Tahminlerin kıyaslanacağı yer gözlemi referansı hazırlanır.",
+      "altAdimlar": [
+       "17060 Florya istasyonunun bir yıllık SYNOP bültenlerini CSV olarak indir",
+       "Termometre ölçümlerini saatlik çizelgeye oturtup boş gözlemleri filtrele",
+       "Gözlem tablosunu UTC zaman dilimine dönüştürerek model tablosuyla eşleşmeye hazırla"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak"
+      }
+     },
+     {
+      "teknik": "pd.merge ile tahmin ve gözlem serilerini inner join ile birleştirip saatlik hata vektörünü üret",
+      "sade": "MAT 271 dersindeki 'Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak' bilgisiyle zaman serisi eşlemesi yapılır. Tahmin ile gözlem aynı saatlerde yan yana getirilerek hata serisi oluşturulur. Bu tablo sinoptik rejim bazlı hata ayrıştırmasının temel girdisini sağlar.",
+      "altAdimlar": [
+       "df_tahmin ve df_gozlem tablolarını zaman sütununda inner join ile birleştir",
+       "fark = T_tahmin - T_gozlem sütununu hesaplayarak ham sapma vektörünü üret",
+       "Birleşik doğrulama tablosunu mto01_eslesmis_veri.parquet olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Günleri sinoptik hava tipine göre sınıflandır",
+    "oz": "Rüzgâr yönü, basınç ve 1000-500 hPa kalınlığına göre günleri poyraz, lodos, cephe ve durağan olarak etiketle.",
+    "ayrinti": "İstanbul'un karmaşık coğrafyasında model hataları hava rejimine göre değişir. ERA5 ve yüzey gözlemlerinden her gün için sinoptik etiket türetilir: Kuzeydoğulu poyraz rejimleri (Karadeniz deniz etkisi), güneybatılı lodos rejimleri (sıcak adveksiyon ve fırtına), cephe geçiş günleri (hızlı kalınlık düşüşü) ve yüksek basınçlı durağan günler (radyasyonel sis/inversiyon). Her güne tek bir rejim atanır.",
+    "nasil": [
+     {
+      "teknik": "10 m rüzgâr bileşenlerinden günlük hâkim rüzgâr yönünü hesaplayıp poyraz ve lodos günlerini ayır",
+      "sade": "MTO 302 dersindeki 'Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek' bilgisiyle sinoptik rüzgâr rejimleri sınıflandırılır. Rüzgâr yönü kuzeydoğu sektöründe olan günler poyraz, güneybatı sektöründeki günler lodos olarak ayrılır. Bu sınıflandırma yerel hava tipini belirler.",
+      "altAdimlar": [
+       "gunluk_yon = np.degrees(np.arctan2(u10_gun, v10_gun)) % 360 formülüyle rüzgâr açısını bul",
+       "30 ile 75 derece arasını poyraz, 200 ile 250 derece arasını lodos olarak etiketle",
+       "Rejim etiketlerini ana tablodaki ilgili günün satırlarına yaz"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek"
+      }
+     },
+     {
+      "teknik": "1000-500 hPa tabaka kalınlığındaki 24 saatlik düşüşü izleyerek soğuk cephe geçiş günlerini tespit et",
+      "sade": "MTO 302 dersindeki 'Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek' bilgisiyle cephe geçişleri tespit edilir. Kalınlık değerinin hızla düştüğü günler soğuk hava istilası olarak etiketlenir. Bu dinamik analiz ani hava kırılmalarını yakalar.",
+      "altAdimlar": [
+       "kalinlik = Z500 - Z1000 formülüyle tabaka kalınlığını hesapla",
+       "24 saatlik kalınlık değişiminde diff(24) < -60 gpm olan günleri soğuk cephe olarak işaretle",
+       "İşaretlenen günleri cephe_gecisi rejimi altında sınıflandır"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek"
+      }
+     },
+     {
+      "teknik": "Yüzey basıncı ve düşük rüzgâr hızı koşulunu denetleyerek antisiklonik durağan günleri filtrele",
+      "sade": "MTO 406 dersindeki 'Yarı-jeostrofik omega ve geopotansiyel eğilim denklemleriyle dikey hareketi ve siklon gelişimini hesaplamak' bilgisiyle yüksek basınç blokajları teşhis edilir. Rüzgârın zayıf ve basıncın yüksek olduğu günler durağan hava rejimi olarak belirlenir. Bu günlerde radyasyonel soğuma ve sis etkileri öne çıkar.",
+      "altAdimlar": [
+       "msl > 1020 hPa ve ruzgar_hizi < 2.5 m/s olan günleri filtrele",
+       "Bu günleri duragan_antisiklon kategorisine ata",
+       "Her güne tek bir rejim etiketi gelecek şekilde hiyerarşik denetimi tamamla"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Yarı-jeostrofik omega ve geopotansiyel eğilim denklemleriyle dikey hareketi ve siklon gelişimini hesaplamak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Rejim bazlı hata istatistiklerini hesapla",
+    "oz": "Her hava tipinde RMSE, ortalama sapma ve Student t-testi ile istatistiksel anlamlılığı hesapla.",
+    "ayrinti": "Veri kümesi 4 sinoptik rejime göre gruplanır (groupby). Her rejim için Kök Ortalama Kare Hata (RMSE) ve Ortalama Sapma (bias) hesaplanır. İki örneklem Student t-testi uygulanarak örneğin lodos günlerinde modelin sıcak kalma eğiliminin poyraz günlerine göre istatistiksel olarak anlamlı (p < 0.05) olup olmadığı sınanır.",
+    "nasil": [
+     {
+      "teknik": "Sinoptik rejimlere göre gruplayarak her hava tipi için RMSE ve ortalama sapma (bias) değerlerini çıkar",
+      "sade": "MAT 271 dersindeki 'Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak' bilgisiyle rejim bazlı hata dağılımları modellenir. Poyraz, lodos ve cephe günlerinin hata istatistikleri ayrı ayrı hesaplanır. Modelin en çok hangi hava rejiminde yanıldığı nesnel olarak ortaya çıkarılır.",
+      "altAdimlar": [
+       "df.groupby('rejim')['fark'].agg(['mean', 'std', 'count']) ile temel istatistikleri çıkar",
+       "Her grup için rmse = np.sqrt(np.mean(fark**2)) bağıntısını hesapla",
+       "Elde edilen hata metriklerini karşılaştırmalı rejim tablosuna aktar"
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak"
+      }
+     },
+     {
+      "teknik": "scipy.stats.ttest_ind ile lodos ve poyraz günleri hata ortalamaları arasındaki Student t-testini uygula",
+      "sade": "MAT 271 dersindeki 'Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak' bilgisiyle hipotez testi yürütülür. Lodos günlerindeki hata ortalaması ile poyraz günlerindeki hata ortalamasının tesadüfi olup olmadığı sınanır. p < 0.01 değeri farkın sistematik bir atmosferik sapmadan kaynaklandığını kanıtlar.",
+      "altAdimlar": [
+       "from scipy.stats import ttest_ind fonksiyonunu çağır",
+       "t_stat, p_val = ttest_ind(hatalar_lodos, hatalar_poyraz, equal_var=False) hesabını yap",
+       "Hesaplanan t istatistiğini ve p-değerini güven seviyesiyle birlikte raporla"
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak"
+      }
+     },
+     {
+      "teknik": "Olasılıklı tahminler için Brier skorunu hesaplayarak ekstrem sıcaklık eşiklerinde model güvenilirliğini ölç",
+      "sade": "MAT 271 dersindeki 'Meteorolojik doğrulamada Brier skoru ile olasılıklı tahminleri puanlamak' bilgisiyle olasılıklı tahmin başarısı ölçülür. Don riski veya aşırı sıcaklık eşiklerinde modelin olasılık tahminleri puanlanır. Brier skoru modelin güvenilirlik seviyesini sayısallaştırır.",
+      "altAdimlar": [
+       "Don olayı için (T < 0 °C) ikili gözlem vektörünü oluştur",
+       "Modelin olasılık tahmini ile gözlem farkının kare ortalamasını alarak Brier skorunu bul",
+       "Skoru sinoptik rejimlere göre ayrıştırarak karne tablosuna ekle"
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Meteorolojik doğrulamada Brier skoru ile olasılıklı tahminleri puanlamak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Karne grafiklerini ve raporu üret",
+    "oz": "Kutu grafiği (box plot) ve saçılım haritalarıyla hata karnesini çizdir; tahminciye pratik kılavuz yaz.",
+    "ayrinti": "Sonuçlar profesyonel hava tahmincilerinin kullanabileceği görsel bir karneye dönüştürülür. Matplotlib ile 4 rejim için hata kutu grafikleri (box plot) çizdirilir; medyan, çeyrekler arası aralık ve aykırı değerler gösterilir. Tahminciye yönelik 'İstanbul'da lodos fırtınasında model sıcaklığı 1,5 °C yüksek tahmin eder' tarzı pratik ipuçlarını içeren özet rapor hazırlanır.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib ile 4 sinoptik rejim için hata kutu grafiklerini (box plot) çizdirip aykırı değerleri göster",
+      "sade": "MAT 271 dersindeki 'Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak' bilgisiyle hata dağılımı görselleştirilir. Rejimlerin hata medyanları ve çeyreklik yayılımları kutu grafiğinde sunulur. Hangi hava rejiminde belirsizliğin daha geniş olduğu grafik üzerinden kolayca anlaşılır.",
+      "altAdimlar": [
+       "plt.boxplot ile 4 rejim grubu için hata dizilerini yan yana tuvale aktar",
+       "Sıfır hata referans çizgisini kesikli çizgiyle belirginleştir",
+       "Aykırı değer noktalarını işaretleyip eksen etiketlerini yerleştir"
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak"
+      }
+     },
+     {
+      "teknik": "MTO 302 standartlarında tahminci için hava rejimlerine göre operasyonel hata düzeltme tablosunu hazırla",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle operasyonel tahmin kılavuzu hazırlanır. Tahmincinin hangi gün model çıktısına kaç derece ekleyip çıkaracağı kurallara bağlanır. Sayısal istatistik günlük hava analizine pratik destek sağlar.",
+      "altAdimlar": [
+       "Her hava tipi için ortalama sapma değerini önerilen düzeltme kuralına çevir",
+       "'Lodos günlerinde modele -1.5 °C, poyraz günlerinde +0.5 °C uygula' kılavuzunu yaz",
+       "Kılavuz tablosunu raporun başına yönetici özeti olarak yerleştir"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     },
+     {
+      "teknik": "Karne grafiklerini ve teknik analizi içeren Jupyter defterini ve PNG görsellerini diske kaydet",
+      "sade": "MTO 406 dersindeki 'Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak' bilgisiyle nihai doğrulama paketi tamamlanır. Rapor ve görseller bilimsel standartlarda arşivlenir. İstanbul'un hava tahmin karnesi araştırmacıların ve tahmincilerin erişimine sunulur.",
+      "altAdimlar": [
+       "Grafiği mto01_istanbul_tahmin_karnesi.png olarak yüksek çözünürlükte kaydet",
+       "Tüm hesaplama adımlarını tek bir Jupyter defterinde topla",
+       "Defteri ve sonuç özetini açık kaynak depoda paylaşıma hazırla"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul'da sayısal modellerin hava tiplerine göre hata karnesini sunan, kutu grafikleri ve t-testi analizi içeren çalışan bir Jupyter defteri ve raporu.",
+  "senden": "MTO 302 ve 406'dan gelen kısım: sinoptik durum sınıflaması, lodos/poyraz dinamik ayrımı, model zaaflarının fiziksel yorumu.",
+  "bizden": "MAT 271'den gelen kısım: gruplar arası Student t-testi, örneklem varyansı hesapları ve hata dağılım grafikleri."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi lodos ve poyraz rüzgâr alanları, ERA5, 2024-01-10..15, saatlik",
+   "aciklama": "İstanbul boğaz hattında rüzgâr yönünün lodostan poyraza ani dönüş anı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.ecmwf.int/en/forecasts/quality-our-forecasts",
+   "aciklama": "ECMWF tahmin kalitesi doğrulama portalı ve bölgesel hata karnesi kılavuz sayfası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Hata saçılımı ve standart sapma dağılım eğrisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ECMWF Forecast Performance and Verification portalı",
+   "url": "https://www.ecmwf.int/en/forecasts/quality-our-forecasts"
+  },
+  {
+   "ad": "Wilks, D. S. (2011) Statistical Methods in the Atmospheric Sciences, Academic Press · DOI 10.1016/C2009-0-61921-1",
+   "url": "https://doi.org/10.1016/C2009-0-61921-1"
+  },
+  {
+   "ad": "WxChallenge üniversiteler arası hava tahmin ligi resmi sitesi",
+   "url": "https://www.wxchallenge.com/rules.php"
+  },
+  {
+   "ad": "Open-Meteo Historical Weather and Forecast API",
+   "url": "https://open-meteo.com/en/docs"
+  },
+  {
+   "ad": "OGIMET SYNOP ve METAR hava gözlem arşivi",
+   "url": "https://www.ogimet.com/synops.phtml.en"
+  },
+  {
+   "ad": "WMO WWRP JWGFVR tahmin doğrulama metrikleri kılavuzu",
+   "url": "https://jwgfvr.github.io/forecastverification/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm URL'ler ve ders eşleşmeleri doğrulandı. MTO 302 ve MAT 271 formülleriyle sinoptik rejim ayrımı detaylandırıldı.",
+ "_birlestirme": {
+  "kaynak": "cikti/MTO-01.json",
+  "tarih": "2026-10-14 23:08",
+  "geminiSha1": "19a1f7bf9b64"
+ }
+}

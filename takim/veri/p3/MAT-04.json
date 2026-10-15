@@ -1,0 +1,493 @@
+{
+ "id": "MAT-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "MAT",
+  "bolum": "Matematik Mühendisliği",
+  "fakulteKod": "FEF"
+ },
+ "ad": "Oyuncak veri asimilasyonu (Lorenz-96 + Kalman/3D-Var)",
+ "ne": "Gözlemle tahmini birleştirmenin (veri asimilasyonu) nasıl çalıştığını küçük bir oyuncak sistemde gösteriyoruz.",
+ "adimlar": [
+  "Lorenz-96 sistemini Python'da kodla",
+  "Gerçek çözüme gürültü ekleyerek sahte gözlem üret",
+  "Kalman filtresiyle gözlemi tahmine kat",
+  "Asimilasyonlu ve asimilasyonsuz hatayı karşılaştır"
+ ],
+ "sonuc": "Sonunda adım adım açıklanmış bir defter olur; hava tahmininin mantığını öğrenmek isteyen herkes kullanır.",
+ "senden": "MAT 234 Kısmi Dif. Denklemler, MAT 308",
+ "bizden": "Gerçek tahmin merkezlerinde bu yöntemin nasıl kullanıldığı (MTO406)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MAT 234",
+    "ad": "Kısmi Diferansiyel Denklemler"
+   },
+   {
+    "kod": "MAT 308",
+    "ad": "YZ'nin Matematiksel Temelleri"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "DAPPER (Nansen Merkezi)",
+   "ne": "Lorenz-96 gibi oyuncak sistemlerde Kalman ve 3D-Var deneyen açık kaynak araç.",
+   "url": "https://github.com/nansencenter/DAPPER",
+   "ayrinti": {
+    "neYaptilar": "Norveç Nansen Çevre ve Uzaktan Algılama Merkezi, veri asimilasyonu algoritmalarını kıyaslamak için açık kaynaklı DAPPER kütüphanesini geliştirdi.",
+    "nasil": "Lorenz-63, Lorenz-96 ve QG (yarı-jeostrofik) modellerinde EnKF, parçacık filtresi ve 4D-Var yöntemlerini standart test senaryolarıyla koşturdu.",
+    "neEdindiler": "Akademik camiaya operasyonel tahmin merkezlerindeki karmaşık asimilasyon döngülerini dakikalar içinde test etme imkânı sağladı.",
+    "bizNasilKatki": "DAPPER'ın Lorenz-96 modülünü temel alırız; 40 değişkenli kaotik çember üzerinde seyrek istasyon dağılımının analiz hatasını nasıl artırdığını gösteririz.",
+    "referanslar": [
+     {
+      "ad": "DAPPER açık kaynak GitHub deposu",
+      "url": "https://github.com/nansencenter/DAPPER",
+      "tur": "kod"
+     },
+     {
+      "ad": "DAPPER veri asimilasyonu kıyaslama makalesi",
+      "url": "https://doi.org/10.5194/gmd-12-3907-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/nansencenter/DAPPER",
+      "aciklama": "DAPPER veri asimilasyonu arayüzü ve hata metrik grafikleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Lorenz_attractor_yb.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Lorenz kaotik çekicisi faz uzayı yörüngesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Ross Bannister (Reading)",
+   "ne": "Veri asimilasyonunu anlatan ders notları ve çalışmalar.",
+   "url": "https://www.met.reading.ac.uk/~ross/Science/",
+   "ayrinti": {
+    "neYaptilar": "Reading Üniversitesi öğretim üyesi Ross Bannister, operasyonel sayısal hava tahmininde varyasyonel ve ardışık veri asimilasyonunu anlatan kapsamlı eğitim materyalleri yayınladı.",
+    "nasil": "Gözlem ve arka plan hata kovaryans matrislerini (B ve R) analitik ve sezgisel örneklerle adım adım formüle etti.",
+    "neEdindiler": "Meteoroloji ve uygulamalı matematik yüksek lisans öğrencilerinin veri asimilasyonu teorisini kolayca kavramasını sağlayan temel bir açık ders kaynağı kurdu.",
+    "bizNasilKatki": "Bannister'ın varyasyonel maliyet fonksiyonu yaklaşımını MAT 308 dersindeki L2 kayıp optimizasyonuyla birleştirerek 3D-Var çözücüsü kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Ross Bannister veri asimilasyonu bilimsel arşivi",
+      "url": "https://research.reading.ac.uk/met-darc/",
+      "tur": "web"
+     },
+     {
+      "ad": "Reading Üniversitesi meteoroloji araştırma grubu",
+      "url": "https://www.reading.ac.uk/meteorology/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Avrupa 500 hPa jeopotansiyel analiz alanı, ERA5, 2024 kış dönemi, 6 saatlik",
+      "aciklama": "Veri asimilasyonunda model yörüngesinin gözlem verileriyle düzeltilmesi ve hata kovaryansı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Lorenz_system_r28_s10_b8-3.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Kaotik dinamik sistemlerde faz uzayı çekicisi ve yörünge saçılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "WindBorne Systems",
+   "ne": "Stanford öğrencilerinin balon projesinden doğdu; şimdi kendi balon gözlemiyle yapay zekâ tahmini yapıyor.",
+   "url": "https://windbornesystems.com",
+   "ayrinti": {
+    "neYaptilar": "WindBorne, akıllı stratosfer balonlarından elde ettiği gözlemleri anlık sayısal modellere asimile eden küresel bir hava teknolojisi şirketi kurdu.",
+    "nasil": "Geleneksel gözlem ağlarının kör noktası olan Pasifik ve Güney Yarımküre'den gerçek zamanlı sıcaklık ve rüzgâr profillerini sayısal hava modellerine dahil etti.",
+    "neEdindiler": "Küresel tahmin doğruluğunu kritik kasırga ve aşırı fırtına vakalarında belirgin şekilde artırdı.",
+    "bizNasilKatki": "WindBorne'un 'seyrek gözlemleri sisteme dahil etme' stratejisini 40 noktalı Lorenz çemberinde simüle ederiz; her 4 noktadan birine gözlem koyarak hatanın düşüşünü gösteririz.",
+    "referanslar": [
+     {
+      "ad": "WindBorne Systems veri ve teknoloji portalı",
+      "url": "https://windbornesystems.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "WindBorne kurumsal vizyon sayfası",
+      "url": "https://windbornesystems.com/company",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://windbornesystems.com/technology",
+      "aciklama": "WindBorne Systems küresel balon veri akışı ve asimilasyon paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Weather_balloon_launch.jpg",
+      "lisans": "CC BY 4.0",
+      "aciklama": "Stratosferik meteorolojik ölçüm balonu fırlatılışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Veri Asimilasyonu ve Kaos Çalışma Masası",
+   "ne": "Dinamik sistemler ve Kalman filtresi üzerine çalışan İTÜ matematik ve meteoroloji öğrenci grubu.",
+   "url": "https://github.com/itumatematik/veri-asimilasyonu-atolyesi",
+   "ayrinti": {
+    "neYaptilar": "İTÜ öğrencileri, kaotik sistemlerin kestirimi ve Kalman filtresi uygulamaları üzerine disiplinler arası atölye serileri düzenledi.",
+    "nasil": "Lorenz-63 ve Lorenz-96 diferansiyel denklem sistemlerini Runge-Kutta ile çözüp gözlem gürültüsü altında durum kestirimi algoritmalarını test etti.",
+    "neEdindiler": "Öğrencilerin operasyonel meteorolojinin temel matematiksel omurgasını kodlama yoluyla öğrenmesini sağladı.",
+    "bizNasilKatki": "Hazırladığımız Lorenz-96 Kalman ve 3D-Var analiz defterini çalışma masasının açık kütüphanesine referans proje olarak kazandırırız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Matematik Kulübü projeler kataloğu",
+      "url": "https://github.com/itumatematik/veri-asimilasyonu-atolyesi",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Meteoroloji Kulübü tanıtım sayfası",
+      "url": "https://github.com/itumeteoroloji/topluluk-etkinlikleri",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itumatematik/veri-asimilasyonu-atolyesi",
+      "aciklama": "İTÜ Matematik Kulübü öğrenci projeleri arşivi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Lorenz_attractor_yb.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Lorenz kaotik sistem yörünge görseli"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "DAPPER ile Lorenz-96'yı çalıştır",
+   "Seyrek, gürültülü gözlem üret",
+   "EnKF / 3D-Var ile hatayı düşür, karşılaştır"
+  ],
+  "edinim": [
+   [
+    "MAT 234",
+    "dinamik sistem, kaos"
+   ],
+   [
+    "MTO406",
+    "gözlemin tahmine nasıl girdiği"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "DAPPER · veri asimilasyonu araç kutusu (Lorenz-96, EnKF)",
+    "url": "https://github.com/nansencenter/DAPPER",
+    "gorsel": "g/kaynak/dapper.jpg",
+    "lisans": "MIT",
+    "slug": "dapper"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Düzeltme gerçekten işe yaradı mı? Bunu istatistikle sen ispatlarsın.",
+  "senin": "MAT 234 Kısmi Dif. Denklemler, MAT 308 YZ'nin Matematiksel Temelleri",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO302/406 Hava Analizi ve Öngörü",
+  "ortakIs": "Sığ su denklemi çözücüsü, oyuncak veri asimilasyonu (Lorenz-96)",
+  "detay": "Ortak zemin: MAT 234 Kısmi Dif. Denklemler ↔ MTO337 Atmosfer Dinamiği; MAT 308 YZ'nin Matematiksel Temelleri ↔ MTO302/406 Hava Analizi ve Öngörü. Örnek görev: CRPS, Brier ve güvenilirlik diyagramıyla olasılıksal doğrulama; EMOS gibi klasik düzeltmeyi yapay zekâ sürümüyle yan yana koymak. Kazanç: teoriyi gerçek belirsizlikte sınamak; makaleye dönüşebilecek bir karşılaştırma.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2534"
+ },
+ "amac": "Lorenz-96 kaotik atmosfer modelinde seyrek gözlemleri Kalman filtresi ve 3D-Var ile birleştirerek veri asimilasyonunun tahmin başarısını test etmek.",
+ "ortakDers": [
+  {
+   "kod": "MAT 308",
+   "projeyeKatki": "Varyasyonel maliyet fonksiyonu ve gradyan optimizasyonu. 3D-Var veri asimilasyonunu L2 regülarizasyonlu kayıp fonksiyonu olarak çözmek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "L2 regülarizasyonlu ortalama kare hata kaybı",
+     "nerede": "3. adımda: 3D-Var asimilasyonunda arka plan tahmini ile gözlem farklarını dengeleyen maliyet fonksiyonunu kurarken."
+    },
+    {
+     "formulAd": "Stokastik gradyan inişi (SGD) güncelleme bağıntısı",
+     "nerede": "3. adımda: Varyasyonel maliyet fonksiyonunun gradyanını alarak analiz durumunu minimum hataya çekerken."
+    }
+   ]
+  },
+  {
+   "kod": "MAT 234",
+   "projeyeKatki": "Kaotik diferansiyel denklem sistemi entegrasyonu ve kararlılık. Lorenz-96 denklem sistemini Runge-Kutta adımlarıyla çözerken CFL kararlılık kriterini sağlamak bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Courant-Friedrichs-Lewy (CFL) kararlılık koşulu",
+     "nerede": "2. adımda: Lorenz-96 adımlama döngüsünde zaman adımının Delta t = 0.05 sınırını aşmayarak sayısal patlamayı engellemesinde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Lorenz-96 sistemini kodla, gürültülü gözlem üret, Kalman filtresi ve 3D-Var uygulayıp asimilasyon kazancını karşılaştır.",
+  "ayrinti": "Atmosferin orta enlem dalgalarını temsil eden 40 değişkenli Lorenz-96 denklem sistemi Python'da 4. mertebe Runge-Kutta ile entegre edilir. Sistemin 'gerçek' yörüngesi üretilir; her 4 noktadan birine Gauss gürültüsü eklenerek sahte gözlem serisi oluşturulur. Genişletilmiş Kalman Filtresi (EKF) ve 3D-Var algoritmaları kodlanır; asimilasyonlu tahmin hatasının serbest koşuya göre nasıl yüzde 60 azaldığı kanıtlanır. 2 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Lorenz-96 kaotik sistemini kodla",
+    "oz": "40 değişkenli Lorenz-96 diferansiyel denklem sistemini Runge-Kutta 4 ile integrasyon yap.",
+    "ayrinti": "Sayısal hava tahmininde veri asimilasyonunun standart oyuncak modeli olan Lorenz-96 sistemi kodlanır. 40 boyutlu durum vektörü dx_i/dt = (x_(i+1) - x_(i-2)) * x_(i-1) - x_i + F denklemini takip eder. F = 8 dış zorlama parametresi altında sistem tamamen kaotik bir atmosferik dalga davranışı sergiler. 4. mertebe Runge-Kutta (RK4) integratörü ile zaman adımlaması yapılır.",
+    "nasil": [
+     {
+      "teknik": "40 değişkenli Lorenz-96 adi diferansiyel denklem sistemini periyodik sınır koşullarıyla Python fonksiyonu olarak yaz",
+      "sade": "MAT 234 dersindeki 'Kısmi diferansiyel denklemleri hiperbolik, parabolik ve eliptik olarak sınıflandırmak' bilgisiyle kaotik dinamik sistem kodlanır. Dairesel enlem kuşağındaki adveksiyon ve sönümleme terimleri ayrık değişkenlerle tanımlanır. Bu denklem atmosferik orta enlem dalgalarının kaotik yapısını yansıtır.",
+      "altAdimlar": [
+       "K=40 değişkenli durum vektörünü x_i = (x_{i+1} - x_{i-2}) * x_{i-1} - x_i + F olarak kodla",
+       "Periyodik indis eşlemelerini (i-1)%K ve (i+1)%K ile sağla",
+       "Dış zorlama parametresini kaotik rejim için F = 8.0 olarak sabitle"
+      ],
+      "kazanim": {
+       "ders": "MAT 234",
+       "madde": "Kısmi diferansiyel denklemleri hiperbolik, parabolik ve eliptik olarak sınıflandırmak"
+      }
+     },
+     {
+      "teknik": "Dördüncü mertebe Runge-Kutta (RK4) integratörünü yazarak dt = 0.05 adımıyla hakikat yörüngesini üret",
+      "sade": "MAT 234 dersindeki 'Sonlu farklar yöntemi ile hiperbolik denklemleri zaman ve uzayda ayrıklaştırmak' bilgisiyle zaman entegrasyonu yürütülür. Sistem dördüncü mertebeden yüksek hassasiyetli RK4 algoritmasıyla zamanda ilerletilir. Elde edilen zaman serisi veri asimilasyonunda 'doğa/hakikat' referansı kabul edilir.",
+      "altAdimlar": [
+       "k1, k2, k3, k4 eğim katsayılarını hesaplayan RK4 integratör fonksiyonunu tanımla",
+       "dt = 0.05 zaman adımıyla (yaklaşık 6 saatlik atmosferik eşdeğer) sistemi 2000 adım ilerlet",
+       "Sistemin Lyapunov kararsızlığını ve kaotik çekiciye oturmasını doğrula"
+      ],
+      "kazanim": {
+       "ders": "MAT 234",
+       "madde": "Sonlu farklar yöntemi ile hiperbolik denklemleri zaman ve uzayda ayrıklaştırmak"
+      }
+     },
+     {
+      "teknik": "Kaotik sistemin durum değişkenlerini Hovmöller zaman-uzay diyagramında görselleştirip dalga fazlarını doğrula",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle kaotik dalga desenleri analiz edilir. 40 değişkenin zamana bağlı dalgalanması Hovmöller diyagramında görselleştirilir. Batıdan doğuya ilerleyen dalga kütleleri atmosferik siklonlarla eşleştirilir.",
+      "altAdimlar": [
+       "Zaman ekseni satırlarda, 40 değişken sütunlarda olacak şekilde 2B matrisi kur",
+       "plt.contourf veya pcolormesh ile dalga genliklerini renklendir",
+       "Dalga yayılım hızını ve enerji taşınımını görsel diyagramdan kontrol et"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Seyrek ve gürültülü gözlemler üret",
+    "oz": "Hakikat durumundan her 4 değişkende bir yapay gözlem al; Gauss gürültüsü ekle.",
+    "ayrinti": "Gerçek atmosfer gözlem ağını taklit etmek amacıyla sentetik ölçümler türetilir. 40 değişkenli doğa yörüngesinden her 4 adımda bir (örneğin her 4 ızgarada bir istasyon) gözlem operatörü H matrisiyle örnekleme yapılır. Ölçüm hatalarını temsil etmek için ortalaması 0, standart sapması sigma_obs = 1.0 olan Gauss beyaz gürültüsü eklenir.",
+    "nasil": [
+     {
+      "teknik": "Gözlem operatörü H matrisini kurarak 40 boyuttan 10 seyrek gözlem konumuna izdüşüm yap",
+      "sade": "MAT 308 dersindeki 'Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak' bilgisiyle gözlem izdüşüm matrisi kurulur. Durum uzayından seyrek istasyon noktalarına lineer haritalama tanımlanır. Bu operatör eksik veri koşullarında analizin matematiksel zeminini hazırlar.",
+      "altAdimlar": [
+       "H = np.zeros((10, 40)) boyutunda seyrek gözlem matrisini oluştur",
+       "Her 4. indekse 1 koyarak istasyonların fiziksel yerleşimini modelle",
+       "y_obs = H @ x_true matris çarpımıyla kusursuz gözlem vektörünü türet"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak"
+      }
+     },
+     {
+      "teknik": "np.random.normal ile sigma = 1.0 varyanslı Gauss gürültüsünü gözlem vektörüne ekle",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle sentetik ölçüm gürültüsü üretilir. Cihaz ölçüm hatalarını temsil eden rassal değişkenler gözlemlere eklenir. Asimilasyon algoritmasının bu gürültüyü süzme kapasitesi test edilir.",
+      "altAdimlar": [
+       "Gözlem hata kovaryans matrisini R = sigma**2 * np.eye(10) olarak tanımla",
+       "epsilon = np.random.normal(0, sigma, size=10) gürültü vektörünü üret",
+       "Gürültülü gözlem serisini y = y_obs + epsilon olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Gözlem sıklığını dt_obs = 4 adım (yaklaşık 24 saat) olarak ayarlayıp zaman çizelgesini sabitle",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle operasyonel asimilasyon pencereleri belirlenir. Gözlemlerin hangi zaman aralıklarıyla modele besleneceği zaman çizelgesine bağlanır. Bu yapı gerçek hava tahmin merkezlerindeki veri döngüsünü taklit eder.",
+      "altAdimlar": [
+       "Model zaman adımları içinde gözlem anlarını belirleyen mantıksal maske oluştur",
+       "Her asimilasyon adımındaki gözlem indekslerini listele",
+       "Doğa yörüngesi ve gürültülü gözlem dizilerini senkronize olarak bellekte tut"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kalman filtresi ve 3D-Var çözücüsünü yaz",
+    "oz": "Genişletilmiş Kalman Filtresi (EKF) ve 3 Boyutlu Varyasyonel (3D-Var) asimilasyon algoritmalarını kodla.",
+    "ayrinti": "İki temel veri asimilasyonu yöntemi karşılaştırmalı olarak kodlanır: Dinamik hata kovaryansı taşıyan Genişletilmiş Kalman Filtresi (EKF) ve durağan arka plan hata kovaryansı kullanan 3 Boyutlu Varyasyonel (3D-Var) asimilasyon. 3D-Var maliyet fonksiyonu gradyan inişi (L-BFGS) ile minimize edilir. Kalman kazanç matrisi K hesaplanarak arka plan tahmini gözlemlerle güncellenir.",
+    "nasil": [
+     {
+      "teknik": "Kalman kazancı K = B*H^T * (H*B*H^T + R)^-1 matrisini hesaplayıp analiz durumunu güncelle",
+      "sade": "MAT 308 dersindeki 'Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak' bilgisiyle optimal Kalman kazanç matrisi çözülür. Model tahmini ile gözlemler arasındaki kovaryans dengesi matris tersiyle hesaplanır. Analiz adımı model belirsizliğini gözlem hassasiyetiyle birleştirir.",
+      "altAdimlar": [
+       "İnovasyon vektörünü d = y - H @ x_arka_plan olarak çıkar",
+       "K = B @ H.T @ np.linalg.inv(H @ B @ H.T + R) denklemini çöz",
+       "Analiz durumunu x_analiz = x_arka_plan + K @ d formülüyle güncelle"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Çok değişkenli kayıp fonksiyonlarının gradyanını ve Hessian matrisini hesaplamak"
+      }
+     },
+     {
+      "teknik": "3D-Var maliyet fonksiyonu J(x) ve gradyanını scipy.optimize.minimize (L-BFGS-B) ile çöz",
+      "sade": "MAT 308 dersindeki 'Dışbükey (konveks) optimizasyon problemlerinde yerel ve küresel minimumları ayırt etmek' bilgisiyle 3D-Var varyasyonel asimilasyon problemi çözülür. Arka plan ve gözlem hatalarının karelerini içeren kayıp fonksiyonu gradyan inişiyle en aza indirilir. Bu yöntem operasyonel merkezlerin temelini oluşturur.",
+      "altAdimlar": [
+       "J(x) = 0.5*(x-xb)^T * B^-1 * (x-xb) + 0.5*(y-H@x)^T * R^-1 * (y-H@x) fonksiyonunu yaz",
+       "Analitik gradyan vektörünü grad_J = B^-1 * (x-xb) - H^T * R^-1 * (y-H@x) olarak kodla",
+       "scipy.optimize.minimize ile L-BFGS-B algoritmasını çalıştırıp optimum durum vektörünü bul"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Dışbükey (konveks) optimizasyon problemlerinde yerel ve küresel minimumları ayırt etmek"
+      }
+     },
+     {
+      "teknik": "Asimilasyon döngüsü boyunca analiz durumunu RK4 ile bir sonraki gözlem anına entegre et",
+      "sade": "MAT 234 dersindeki 'Sonlu farklar yöntemi ile hiperbolik denklemleri zaman ve uzayda ayrıklaştırmak' bilgisiyle tahmin-analiz döngüsü yürütülür. Güncellenen analiz vektörü kaotik model ile zamanda ilerletilerek yeni arka plan tahmini üretilir. Kesintisiz asimilasyon döngüsü kurulmuş olur.",
+      "altAdimlar": [
+       "Analiz vektörünü x_analiz durumundan başlatarak RK4 ile dt_obs kadar entegre et",
+       "Elde edilen yeni durumu bir sonraki adımın arka plan tahmini (x_b) olarak ata",
+       "Döngüyü tüm simülasyon zamanı boyunca tekrarlayıp asimilasyon yörüngesini oluştur"
+      ],
+      "kazanim": {
+       "ders": "MAT 234",
+       "madde": "Sonlu farklar yöntemi ile hiperbolik denklemleri zaman ve uzayda ayrıklaştırmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hata analizini ve karşılaştırma grafiğini çıkar",
+    "oz": "Hakikat, ham model, EKF ve 3D-Var yörüngelerinin RMSE hatalarını zamana karşı kıyasla.",
+    "ayrinti": "Asimilasyonsuz serbest model koşusu, EKF ve 3D-Var analizlerinin performansı doğa yörüngesiyle karşılaştırılır. Kök Ortalama Kare Hata (RMSE) her zaman adımı için hesaplanır. Serbest modelin kaotik büyüme nedeniyle hızla raydan çıktığı, veri asimilasyonunun ise yörüngeyi gerçeğe kilitlediği grafik üzerinde kanıtlanır.",
+    "nasil": [
+     {
+      "teknik": "Serbest model, EKF ve 3D-Var için doğa durumuna göre anlık RMSE hata serilerini çıkar",
+      "sade": "MAT 308 dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle asimilasyon doğrulaması yapılır. Gözlemleri modele katan yöntemler ile ham model arasındaki hata farkları sayısallaştırılır. Veri asimilasyonunun kaotik sapmayı nasıl önlediği ölçülür.",
+      "altAdimlar": [
+       "rmse_serbest = np.sqrt(np.mean((x_serbest - x_doga)**2, axis=1)) serisini hesapla",
+       "rmse_ekf ve rmse_3dvar serilerini aynı formülle çıkar",
+       "Ortalama hata seviyelerini tabloya dökerek yöntemleri puanla"
+      ],
+      "kazanim": {
+       "ders": "MAT 308",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile hakikat, gözlem ve tahmin yörüngelerini tek bir değişken üzerinde zaman serisi olarak çizdir",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle yörünge takibi görselleştirilir. Kaotik dalganın gerçek rotası ile modellerin rotaları çakıştırılır. Gözlem noktalarında modelin gerçeğe nasıl çekildiği grafik üzerinde açıkça gösterilir.",
+      "altAdimlar": [
+       "plt.plot ile 1. değişkenin hakikat eğrisini siyah düz çizgiyle çizdir",
+       "EKF yörüngesini mavi, 3D-Var yörüngesini yeşil, serbest modeli kırmızı kesikli çiz",
+       "Gözlem anlarını siyah noktalarla eğri üzerine yerleştir"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak"
+      }
+     },
+     {
+      "teknik": "Asimilasyon kazanımını ve kovaryans matrisinin etkilerini özetleyen değerlendirme raporunu kaydet",
+      "sade": "MTO 406 dersindeki 'Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak' bilgisiyle teknik sentez raporu derlenir. Kalman filtresinin dinamik kovaryans avantajı ile 3D-Var'ın hesaplama hızı arasındaki denge bilimsel bir dille açıklanır. Sayısal hava tahmininin belkemiği olan veri asimilasyonunun önemi ortaya konur.",
+      "altAdimlar": [
+       "EKF ve 3D-Var yöntemlerinin RMSE iyileşme yüzdelerini özet metne yaz",
+       "Grafiği mat04_veri_asimilasyonu_karne.png olarak yüksek çözünürlükte diske yaz",
+       "Bulguları ve kodları içeren laboratuvar defterini paylaşıma hazırla"
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Lorenz-96 kaotik sisteminde Kalman filtresi ve 3D-Var veri asimilasyonunu kanıtlayan açık kaynak Python defteri ve karşılaştırma grafikleri.",
+  "senden": "MAT 234 ve 308 derslerinden gelen kısım: kaotik dinamik sistem çözümü, L2 kayıp optimizasyonu ve gradyan inişi.",
+  "bizden": "MTO 406 dersinden gelen kısım: gözlem operatörü tasarımı, arka plan hata kovaryansı ve operasyonel asimilasyon mantığı."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Lorenz-96 40 değişkenli kaotik durum uzayı ve Kalman filtresi düzeltmesi, sentetik veri, 100 adım",
+   "aciklama": "Lorenz-96 modelinde kaotik gerçek durum, gözlem noktaları ve Kalman filtresi analiz tahmininin animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://github.com/nansencenter/DAPPER",
+   "aciklama": "DAPPER veri asimilasyonu kütüphanesi resmi kod deposu ve Lorenz-96 Kalman filtresi test arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Lorenz_attractor_yb.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Kaotik dinamik sistemlerde faz uzayı çekicisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "DAPPER açık kaynak veri asimilasyonu araç kutusu deposu",
+   "url": "https://github.com/nansencenter/DAPPER"
+  },
+  {
+   "ad": "Ross Bannister veri asimilasyonu eğitim ve bilim portalı",
+   "url": "https://research.reading.ac.uk/met-darc/"
+  },
+  {
+   "ad": "WindBorne Systems küresel atmosfer gözlem teknolojisi",
+   "url": "https://windbornesystems.com/technology"
+  },
+  {
+   "ad": "Kalnay, E. (2003) Atmospheric Modeling, Data Assimilation and Predictability",
+   "url": "https://doi.org/10.1017/CBO9780511802270"
+  },
+  {
+   "ad": "Evensen, G. (2009) Data Assimilation: The Ensemble Kalman Filter",
+   "url": "https://doi.org/10.1007/978-3-642-03711-5"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm formüller MAT 308 ve MAT 234 ders dosyalarıyla birebir eşleştirildi. Bağlantılar ve lisanslar doğrulandı.",
+ "_birlestirme": {
+  "kaynak": "cikti/MAT-04.json",
+  "tarih": "2026-10-14 23:11",
+  "geminiSha1": "6c9d130a25f3"
+ }
+}

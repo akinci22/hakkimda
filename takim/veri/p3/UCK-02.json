@@ -1,0 +1,464 @@
+{
+ "id": "UCK-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "UCK",
+  "bolum": "Uçak Mühendisliği",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "YZ ile havalimanı türbülans/rüzgar kesmesi tahmini",
+ "ne": "Uçakların iniş ve kalkış hatlarında emniyet riski oluşturan alçak irtifa rüzgâr kesmesi ve türbülans olaylarını, açık atmosferik yeniden analiz verileri ile havalimanı ölçümlerini makine öğrenmesi algoritmalarıyla birleştirerek operasyonel tahmin indeksine dönüştürülmesi.",
+ "adimlar": [
+  "ERA5'ten havalimanı çevresi rüzgâr verisini indir",
+  "Rüzgârın yüksekliğe göre değişimini hesapla",
+  "Riskli durumları etiketle",
+  "Bu durumları tanıyan basit bir sınıflandırıcı eğit"
+ ],
+ "sonuc": "Sonunda risk günlerini gösteren bir defter olur.",
+ "senden": "AKM 219 Akışkanlar Mekaniği",
+ "bizden": "Havacılık meteorolojisi bilgisi (MTO304)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "AKM 219",
+    "ad": "Akışkanlar Mekaniği"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 304",
+    "ad": "Havacılık Meteorolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Hong Kong Gözlemevi LIDAR uyarı sistemi",
+   "ne": "Hong Kong Havalimanı yaklaşma hattında Doppler LIDAR ve rüzgâr profili verileriyle mikro rüzgâr kesmesi uyarı sistemi.",
+   "url": "https://www.hko.gov.hk/en/aviat/amt/lidar.htm",
+   "ayrinti": {
+    "neYaptilar": "Hong Kong Gözlemevi (HKO), ada topoğrafyasının havalimanı pistinde yarattığı mekanik türbülans ve rüzgâr kesmesini Doppler LIDAR sistemleriyle 3 boyutlu tarayarak gerçek zamanlı tespit etti.",
+    "nasil": "LIDAR geri saçılma sinyallerinden radyal rüzgâr hızlarını çıkarıp pilot raporlarıyla doğrulanmış rüzgâr kesmesi uyarı algoritmaları ve otomatik alarm eşikleri geliştirdiler.",
+    "neEdindiler": "Yaklaşma hattında pilotlara kalkış ve iniş öncesi kritik hız kaybı uyarıları vererek dünyada ICAO ödüllü bir havacılık meteorolojisi standardı kurdular.",
+    "bizNasilKatki": "Pahalı LIDAR donanımı yerine açık ERA5 ve METAR verisiyle benzer bir rüzgâr kayması sınıflandırıcısını İstanbul Havalimanı için prototipleriz.",
+    "referanslar": [
+     {
+      "ad": "HKO Havacılık Meteorolojisi LIDAR teknoloji dokümanı",
+      "url": "https://www.hko.gov.hk/en/aviat/amt/lidar.htm",
+      "tur": "web"
+     },
+     {
+      "ad": "Shun ve Chan (2008) Applications of Doppler LiDAR at HKIA",
+      "url": "https://doi.org/10.1175/2008MWR2497.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Windshear_downburst.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Havalimanı yaklaşma koridorunda alçak irtifa rüzgâr kesmesi ve iniş hattı dinamiği şeması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara bölgesi 925 hPa dikey rüzgâr kayması ve türbülans indeksi, ERA5, 2024-03-01..05, 6 saatlik",
+      "aciklama": "İstanbul Havalimanı çevresinde 925 hPa ve yüzey rüzgâr hız farkı gradyanının zamanla değişimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Jeju Havalimanı YZ rüzgâr kesmesi çalışması",
+   "ne": "Ağaç tabanlı YZ ile havalimanında rüzgâr kesmesini önceden tahmin eden makale.",
+   "url": "https://doi.org/10.3390/forecast8010004",
+   "ayrinti": {
+    "neYaptilar": "Güney Kore Jeju Uluslararası Havalimanı pistine monte LLWAS ve rüzgâr profili verilerini makine öğrenmesi modelleriyle analiz ederek alçak irtifa rüzgâr makaslanması tahmin sistemi kurdular.",
+    "nasil": "Rastgele orman ve LightGBM algoritmalarını geçmiş uçuş uyarıları ve yüzey rüzgâr hamlesi zaman serileriyle eğiterek fırtına öncesi rüzgâr kesmesi sinyallerini ayırt ettiler.",
+    "neEdindiler": "Geleneksel eşik yöntemlerine göre yanlış alarm oranını yüzde 28 azaltıp iniş güvenliği tahmin doğruluğunu yüzde 89 seviyesine çıkardılar.",
+    "bizNasilKatki": "Jeju çalışmasındaki ağaç tabanlı model yapısını referans alarak İstanbul Havalimanı METAR ve ERA5 verileri üzerinde açık kaynaklı benzer bir doğrulama defteri kurarız.",
+    "referanslar": [
+     {
+      "ad": "Jeju Havalimanı makine öğrenmesi rüzgâr kesmesi makalesi",
+      "url": "https://doi.org/10.3390/forecast8010004",
+      "tur": "makale"
+     },
+     {
+      "ad": "MDPI Forecasting dergisi özel sayısı sayfası",
+      "url": "https://www.mdpi.com/journal/forecast/special_issues/Aviation_Forecasting",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Jeju Havalimanı rüzgâr hamlesi ve 100m rüzgâr profili tahmini, Open-Meteo, 2024-04-01, saatlik",
+      "aciklama": "Kıyı havalimanında deniz meltemi ve topografik etkiyle oluşan rüzgâr kesmesi zaman serisi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Microburst_diagram.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Fırtına bulutundan kaynaklanan mikropatlama ve dikey rüzgâr ayrılması kesiti"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Hong Kong Havalimanı zaman serisi tahmini",
+   "ne": "Yoğun rüzgâr kesmesini YZ algoritmalarıyla tahmin eden makale.",
+   "url": "https://doi.org/10.3390/atmos14020268",
+   "ayrinti": {
+    "neYaptilar": "Hong Kong Havalimanı iniş koridorundaki şiddetli rüzgâr kesmesi vakalarını çok katmanlı yapay sinir ağları ve LSTM mimarileriyle zaman serisi olarak tahmin ettiler.",
+    "nasil": "Meteoroloji kulesi anemometreleri ile Doppler hava radarı verilerini 10 dakikalık kayar pencerelerle evrişimli sinir ağlarına besleyerek gelecekteki rüzgâr hız sıçramalarını modellediler.",
+    "neEdindiler": "Şiddetli rüzgâr kesmesi uyarılarında tespit olasılığını yüzde 86 düzeyine ulaştırarak pas geçme manevrası sayısını optimize ettiler.",
+    "bizNasilKatki": "Makaledeki zaman serisi pencereleme mantığını alıp ERA5 saatlik verilerinde geriye dönük 6 saatlik öznitelik gecikmeleri olarak uygularız.",
+    "referanslar": [
+     {
+      "ad": "MDPI Atmosphere Hong Kong rüzgâr kesmesi makalesi",
+      "url": "https://doi.org/10.3390/atmos14020268",
+      "tur": "makale"
+     },
+     {
+      "ad": "Chan (2017) Severe wind shear detection using LIDAR and radar",
+      "url": "https://doi.org/10.1002/asl.721",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Güney Çin Denizi ve Hong Kong 850 hPa rüzgâr alanı, GFS, 2024-05-15, 3 saatlik",
+      "aciklama": "Muson akışında Hong Kong civarındaki rüzgâr kayması alanının sinoptik animasyonu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Low_level_wind_shear.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Uçak yaklaşma süzülüş hattında karşılaşılan alçak irtifa rüzgâr makaslanması vektörleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Tomorrow.io Aviation Weather platformu",
+   "ne": "Havalimanı operasyonları ve havayolu filoları için uçuş hattı türbülans ve mikropatlama erken uyarı platformu.",
+   "url": "https://www.tomorrow.io/aviation/",
+   "ayrinti": {
+    "neYaptilar": "Tomorrow.io şirketi, sayısal hava tahmin modelleri, radar ve mikrodalga bağlantı verilerini makine öğrenmesiyle birleştirerek havalimanı bazlı türbülans tahmin platformu sundu.",
+    "nasil": "Uçak uçuş planları ile yüksek çözünürlüklü atmosferik sınır tabaka tahminlerini eşleyerek iniş kalkış pencerelerindeki rüzgâr kayması olasılığını hesapladılar.",
+    "neEdindiler": "Havayolu operasyon merkezlerinin pist yönü değişikliklerini ve bekleme paternlerini 4 saat önceden optimize etmesini sağlayarak yakıt tüketimini azalttılar.",
+    "bizNasilKatki": "Girişimin bulut altyapısını yerel Python kütüphaneleri ve açık meteoroloji kütüphanesi MetPy ile simüle ederek öğrenci dostu açık defter hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Tomorrow.io Havacılık platformu ürün sayfası",
+      "url": "https://www.tomorrow.io/aviation/",
+      "tur": "web"
+     },
+     {
+      "ad": "Aviation Today Tomorrow.io hava tahmin teknolojisi incelemesi",
+      "url": "https://www.aviationtoday.com/2021/04/15/weather-intelligence-aviation/",
+      "tur": "haber"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Havalimanı (LTFM) rüzgâr hamlesi ve 10m-100m rüzgâr kayması, 2024-03-10, 1 saatlik",
+      "aciklama": "Havalimanı koordinatında yüzey ile 100 metre seviyesi arasındaki rüzgâr makaslanması grafiği"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.tomorrow.io/aviation/",
+      "aciklama": "Tomorrow.io havacılık karar destek sistemi ve türbülans risk paneli genel görünümü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Vefa Havacılık Takımı",
+   "ne": "Teknofest yarışmalarında insansız hava araçları ve otonom görev uçuşlarında rüzgâr kesmesi telafisi geliştiren İTÜ takımı.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Vefa Havacılık Takımı, otonom İHA platformlarının iniş ve alçak irtifa görev uçuşlarında rüzgâr hamlelerine karşı uçuş kontrol algoritmaları geliştirdi.",
+    "nasil": "Pixhawk uçuş kontrol kartından gelen IMU ivme verileri ile pitot tüpü hava hızı ölçümlerini Kalman filtresiyle işleyerek ani rüzgâr kayması anlarını tespit ettiler.",
+    "neEdindiler": "Zorlu meteorolojik şartlarda stabil otonom iniş kalkış başarısı elde ederek ulusal yarışmalarda birincilik dereceleri kazandılar.",
+    "bizNasilKatki": "Takımın uçuş telemetri verilerine meteorolojik dikey rüzgâr profili parametrizasyonu ekleyerek rüzgâr kesmesi anında kontrolcü yanıtını güçlendiririz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı Vefa Havacılık Sayfası",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "Teknofest Savaşan İHA Yarışması teknik kurallar dokümanı",
+      "url": "https://www.teknofest.org/tr/yarismalar/savasan-iha-yarismasi/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Marmara bölgesi 850 hPa rüzgâr hızı ve yönü vektör alanı, GFS, 2024-03-12, 3 saatlik",
+      "aciklama": "Havalimanı yaklaşma sahasında sinoptik rüzgâr akışının yatay ve dikey yönde kayması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci kulüpleri ve teknoloji geliştirme takımları tanıtım sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Açık tahmin verisinden rüzgâr profili al",
+   "Türbülans göstergelerini hesapla",
+   "Sınıflandırıcı eğit, uyarıyla kıyasla"
+  ],
+  "edinim": [
+   [
+    "AKM 219",
+    "kayma gerilmesi, türbülans"
+   ],
+   [
+    "MTO304",
+    "havacılık uyarıları, rüzgâr kesmesi"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "NOAA Aviation Weather Center (türbülans, buzlanma)",
+    "url": "https://aviationweather.gov/",
+    "gorsel": "g/kaynak/awc.jpg",
+    "lisans": "kamu malı",
+    "slug": "awc"
+   },
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin uçağın tahmin edilen havada uçar; türbülans tahminini birlikte düzeltir, ne kadar tuttuğunu ölçeriz.",
+  "senin": "AKM 219 Akışkanlar Mekaniği, MAT 202E Numerical Methods",
+  "bizim": "MTO337/340 Atmosfer Dinamiği, MTO304 Havacılık Meteorolojisi",
+  "ortakIs": "Drone ile sınır tabaka ölçümü, türbülans/rüzgar kesmesi tahmini",
+  "detay": "Ortak zemin: AKM 219 Akışkanlar Mekaniği ↔ MTO337/340 Atmosfer Dinamiği; aynı korunum denklemleri, biz Coriolis'i ekliyoruz. MAT 202E Sayısal Yöntemler iki bölümde aynı ders. Örnek görev: drone ile sınır tabaka ölçümü ya da havalimanında türbülans ve rüzgâr kesmesi tahmini. Kazanç: uçuş güvenliğinde gerçek hava verisiyle çalışmış olmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2727"
+ },
+ "amac": "Havalimanı iniş kalkış koridorunda ERA5 ve METAR verilerinden makine öğrenmesiyle alçak irtifa rüzgâr kesmesi ve türbülans riskini önceden kestirmek.",
+ "ortakDers": [
+  {
+   "kod": "AKM 219",
+   "projeyeKatki": "Akışkan kinematiği, hız alanı diferansiyel analizi, dikey hız gradyanları ve laminer-türbülanslı akış rejimleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Prandtl logaritmik sınır tabaka hız profili",
+     "nerede": "2. adımda: Yüzey sürtünmesi ile 100 metre irtifa arasındaki hız değişimini logaritmik rüzgâr profiliyle modelleyip kayma hızını hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 304",
+   "projeyeKatki": "Havalimanı rüzgâr kesmesi, Ellrod türbülans indeksi, METAR rapor analizi ve yaklaşma hattı emniyet limitleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ellrod açık hava türbülansı indeksi",
+     "nerede": "2. adımda: Seviye rüzgârlarının deformasyon ve ıraksama bileşenlerini dikey rüzgâr kaymasıyla çarparak açık hava türbülans indeksi haritası üretirken."
+    },
+    {
+     "formulAd": "Düşey rüzgâr kayması şiddeti",
+     "nerede": "2. adımda: Havalimanı 10 metre rüzgârı ile 925 hPa seviyesi arasındaki hız farkını dikey mesafeye bölerek rüzgâr kesmesi şiddeti indisi hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 ve METAR verilerinden rüzgâr kesmesi indisleri hesaplanıp LightGBM sınıflandırıcısıyla risk tahmin edilir.",
+  "ayrinti": "İstanbul Havalimanı (LTFM) koordinatında son 2 yıla ait ERA5 çok katmanlı rüzgâr ve sıcaklık verileri CDS API üzerinden çekilir. Eşzamanlı IEM ASOS METAR arşivindeki rüzgâr hamlesi ve rüzgâr kesmesi bildirimleri ikili etiketlere dönüştürülür. AKM 219 ve MTO 304 formülleriyle dikey rüzgâr kayması, Richardson sayısı ve Ellrod türbülans indisi hesaplanır. LightGBM sınıflandırıcısı eğitilerek ROC-AUC ve Brier skorlarıyla operasyonel tahmin başarısı doğrulanır. 3 haftada tamamlanır.",
+  "sonuc": "İstanbul Havalimanı için saatlik rüzgâr kesmesi riskini tahmin eden, ROC-AUC ve Brier skoruyla doğrulanmış açık Python defteri elde edilir.",
+  "senden": "AKM 219 Akışkanlar Mekaniği",
+  "bizden": "Havacılık meteorolojisi bilgisi (MTO 304)",
+  "adimlar": [
+   {
+    "baslik": "Havalimanı rüzgâr ve basınç verilerinin toplanması",
+    "oz": "ERA5 seviye rüzgârları ile METAR gözlemleri çekilir.",
+    "ayrinti": "İstanbul Havalimanı koordinatına denk gelen ERA5 dikey rüzgâr ve sıcaklık katmanları CDS API ile çekilir. Eş zamanlı olarak son iki yılın LTFM METAR gözlem metinleri IEM ASOS arşivinden indirilerek zaman ekseninde birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "CDS API ile 1000, 950 ve 925 hPa seviyelerinde u ve v rüzgâr bileşenleri çekilerek LTFM METAR verileriyle birleştirilir.",
+      "sade": "MTO 304 dersindeki 'METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak' bilgisiyle havalimanı gözlem verileri ayrıştırılır. İki farklı veri tablosu ortak zaman ekseninde hizalanır.",
+      "altAdimlar": [
+       "CDS API ile İstanbul Havalimanı koordinatına denk gelen ERA5 dikey rüzgâr katmanları indirilir.",
+       "IEM ASOS arşivinden son iki yılın LTFM METAR metinleri çekilerek rüzgâr hamlesi ve hız değişimleri ayrıştırılır.",
+       "Pandas kütüphanesiyle iki veri seti saatlik zaman damgasına göre indekslenip tek bir tabloda birleştirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+      }
+     },
+     {
+      "teknik": "Ayrıştırılan METAR metinlerinden rüzgâr yönü, hızı, hamlesi ve tavan yüksekliği sayısal sütunlara dönüştürülür.",
+      "sade": "MTO 304 dersindeki 'Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak' bilgisiyle gözlem raporlarındaki kritik parametreler sayısal forma çevrilir. Model girdisi olacak temiz bir zaman serisi elde edilir.",
+      "altAdimlar": [
+       "Düzenli ifadeler ile METAR dizesindeki rüzgâr knot değerleri m/s birimine dönüştürülür.",
+       "Eksik veri içeren saatler doğrusal enterpolasyonla tamamlanır veya temizlenir.",
+       "Hazırlanan gözlem tablosu yerel parquet dosyasında saklanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Düşey rüzgâr kayması ve türbülans indisi hesabı",
+    "oz": "Katmanlar arası hız farkı ve Richardson sayısı türetilir.",
+    "ayrinti": "Yüzeyden 925 hPa seviyesine kadar olan dikey katmanlar arasında hız farkı vektörleri alınarak rüzgâr makaslanması şiddeti türetilir. Potansiyel sıcaklık gradyanından statik kararlılık hesaplanarak Richardson sayısı ve Ellrod indeksi çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "Yüzey ve 925 hPa seviyeleri arasındaki dikey hız farkından VWS ve potansiyel sıcaklık gradyanından Richardson sayısı hesaplanır.",
+      "sade": "AKM 219 dersindeki 'Akışkan kinematiği ve hız alanının diferansiyel analizini yapmak' bilgisiyle rüzgâr hız vektörünün dikey türevleri alınır. Hız makaslanmasının şiddeti sayısal olarak hesaplanır.",
+      "altAdimlar": [
+       "Alt ve üst katman yatay rüzgâr vektör farkının dikey mesafeye bölünmesiyle düşey rüzgâr kayması büyüklüğü türetilir.",
+       "Sıcaklık ve basınç verilerinden potansiyel sıcaklık profili çıkarılarak dikey kararlılık gradyanı bulunur.",
+       "Mekanik kayma ile statik kararlılık oranlanarak Richardson sayısının kritik eşik altındaki saatleri işaretlenir."
+      ],
+      "kazanim": {
+       "ders": "AKM 219",
+       "madde": "Akışkan kinematiği ve hız alanının diferansiyel analizini yapmak."
+      }
+     },
+     {
+      "teknik": "Ellrod açık hava türbülansı formülü uygulanarak deformasyon ve yakınsama terimlerinin katkısı hesaplanır.",
+      "sade": "MTO 304 dersindeki 'Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek' bilgisiyle operasyonel risk indisi türetilir. Uçakların yaklaşma hattında karşılaşacağı sarsıntı düzeyi ölçülür.",
+      "altAdimlar": [
+       "Rüzgâr alanının gerilme ve kesme deformasyon bileşenleri sonlu farklar yöntemiyle hesaplanır.",
+       "Yatay yakınsama terimi eklenerek dikey rüzgâr kayması büyüklüğüyle çarpılır ve Ellrod TI değeri bulunur.",
+       "Elde edilen sürekli indeks değerleri havacılık literatüründeki hafif, orta ve şiddetli eşiklerle eşleştirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Risk durumlarının etiketlenmesi ve veri hazırlığı",
+    "oz": "METAR raporlarındaki hamle ve kayma anları etiketlenir.",
+    "ayrinti": "METAR raporlarında rüzgâr hamlesi 15 knot üstünde olan veya rüzgâr kesmesi alarmı verilen saatler pozitif sınıf (1), sakin koşullar negatif sınıf (0) olarak etiketlenir. Dengesiz veri dağılımı için ağırlıklandırma katsayıları belirlenir.",
+    "nasil": [
+     {
+      "teknik": "METAR metnindeki WS ve gust bildirimleri ikili etiket (0/1) haline getirilip dengesiz veri seti düzenlenir.",
+      "sade": "MTO 304 dersindeki 'Havalimanı yaklaşma hattında mikropatlama ve dikey rüzgâr kayması tehlikesini değerlendirmek' bilgisiyle pilotların bildirdiği tehlike anları referans etiket kabul edilir. Modelin öğreneceği hedef sütun oluşturulur.",
+      "altAdimlar": [
+       "METAR raporlarında rüzgâr hamlesi 15 knot üstü veya rüzgâr kesmesi kodu geçen saatler 1 olarak etiketlenir.",
+       "Normal sakin hava koşulları 0 olarak işaretlenerek hedef risk değişkeni oluşturulur.",
+       "Eğitim ve sınama setleri zamansal bütünlüğü koruyacak biçimde kronolojik sırayla ikiye ayrılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Havalimanı yaklaşma hattında mikropatlama ve dikey rüzgâr kayması tehlikesini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Geçmiş 3 ve 6 saatlik gecikmeli rüzgâr öznitelikleri üretilerek zaman serisi hafızası eklenir.",
+      "sade": "AKM 219 dersindeki 'Laminer ve türbülanslı akış koşullarını analiz etmek' bilgisiyle akışın kararsızlığa geçiş dinamikleri zamansal gecikmelerle yakalanır. Ani rüzgâr sıçramalarının öncül işaretleri öznitelik tablosuna eklenir.",
+      "altAdimlar": [
+       "Pandas shift fonksiyonu ile rüzgâr hızı ve basınç değişimlerinin geriye dönük farkları hesaplanır.",
+       "Dengesiz etiket oranı hesaplanarak pozitif sınıf için kayıp fonksiyonu ağırlığı belirlenir.",
+       "Girdiler StandardScaler ile normalize edilerek eğitim setine aktarılır."
+      ],
+      "kazanim": {
+       "ders": "AKM 219",
+       "madde": "Laminer ve türbülanslı akış koşullarını analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Makine öğrenmesi modelinin eğitilmesi ve doğrulanması",
+    "oz": "LightGBM sınıflandırıcısı eğitilip ROC-AUC ile ölçülür.",
+    "ayrinti": "LightGBM gradyan artırma algoritması eğitim verisinde hiperparametre aramasıyla optimize edilir. Sınama verisi üzerinde olasılıksal tahminler üretilerek ROC-AUC, Brier skoru ve karmaşıklık matrisiyle model başarısı değerlendirilir.",
+    "nasil": [
+     {
+      "teknik": "Türetilen dinamik indisler ve seviye rüzgârlarıyla LightGBM modeli eğitilerek ROC-AUC ve Brier skoru ile doğrulanır.",
+      "sade": "AKM 219 dersindeki 'Laminer ve türbülanslı akış koşullarını analiz etmek' bilgisiyle akış rejimindeki ani bozulmalar sınıflandırılır. Algoritmanın tahmin başarısı olasılıksal metriklerle test edilir.",
+      "altAdimlar": [
+       "Scikit-learn ve LightGBM ile türetilen rüzgâr kayması ve kararlılık öznitelikleri üzerinden sınıflandırıcı kurulur.",
+       "Sınama verisi üzerinde olasılık çıktıları alınarak Brier skoru ve ROC eğrisi altındaki alan hesaplanır.",
+       "Öznitelik önem düzeyleri incelenerek modelin kararında en baskın fiziksel değişkenlerin grafiği çizilir."
+      ],
+      "kazanim": {
+       "ders": "AKM 219",
+       "madde": "Laminer ve türbülanslı akış koşullarını analiz etmek."
+      }
+     },
+     {
+      "teknik": "Farklı olasılık karar eşikleri için hassasiyet ve yakalama oranları taranarak operasyonel eşik saptanır.",
+      "sade": "MTO 304 dersindeki 'Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek' bilgisiyle havacılık güvenliği için en uygun alarm eşiği belirlenir. Yanlış alarmlar ile kaçırılan olaylar dengelenir.",
+      "altAdimlar": [
+       "Farklı karar eşiklerinde F1 skoru ve duyarlılık eğrileri hesaplanır.",
+       "Yanlış alarm oranını yüzde 15 altında tutan en uygun çalışma noktası seçilir.",
+       "Tahmin sonuçları ve risk grafikleri yerel dizine görsel rapor olarak saklanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara bölgesi 925 hPa ve yüzey rüzgâr kayması haritası, ERA5, 2024-03-01..05, 6 saatlik",
+   "aciklama": "İstanbul Havalimanı iniş koridorunda dikey rüzgâr makaslanması şiddetinin zamansal evrimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://aviationweather.gov/data/products/turbulence/",
+   "aciklama": "NOAA Havacılık Hava Durumu Merkezi açık türbülans ve rüzgâr kesmesi tahmin portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NOAA Aviation Weather Center (AWC) türbülans ve tehlikeli hava portalı",
+   "url": "https://aviationweather.gov/data/products/turbulence/"
+  },
+  {
+   "ad": "ECMWF Open Data küresel hava tahmin veri kümesi",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/UCK-02.json",
+  "tarih": "2026-10-14 23:49",
+  "geminiSha1": "5c9097eac7d9"
+ }
+}

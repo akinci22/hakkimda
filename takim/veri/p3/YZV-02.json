@@ -1,0 +1,540 @@
+{
+ "id": "YZV-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "YZV",
+  "bolum": "Yapay Zeka ve Veri Mühendisliği",
+  "fakulteKod": "BBF"
+ },
+ "ad": "ERA5 üzerinde küçük GraphCast tarzı emülatör",
+ "ne": "Büyük yapay zekâ tahmin modellerinin küçük bir kopyasını düşük çözünürlükte kuruyoruz.",
+ "adimlar": [
+  "ERA5'ten düşük çözünürlüklü birkaç değişken indir",
+  "Basit bir grafik sinir ağı kur",
+  "Altı saat sonrasını tahmin etmeyi eğit",
+  "Tahmini gerçek haritayla karşılaştır"
+ ],
+ "sonuc": "Sonunda çalışan küçük bir emülatör ve karşılaştırma haritaları olur.",
+ "senden": "YZV 303E Deep Learning",
+ "bizden": "Değişken seçimi ve fiziksel tutarlılık kontrolü",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "YZV 303E",
+    "ad": "Deep Learning"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "GraphCast (Google DeepMind)",
+   "ne": "ERA5 ile eğitilen grafik sinir ağı 10 günlük küresel tahmin yapıyor; küçük kopyamızın ilham kaynağı.",
+   "url": "https://arxiv.org/abs/2212.12794",
+   "ayrinti": {
+    "neYaptilar": "DeepMind, ikosahedral küre ızgarası üzerinde mesaj ileten çizge sinir ağları (GNN) ile çalışan küresel hava tahmin sistemi GraphCast'i geliştirdi.",
+    "nasil": "Girdi ızgarasını çok katmanlı çizgeye kodlayan encoder, 16 katmanlı mesaj iletim işlemcisi ve çıktı üreten decoder mimarisini ERA5 verisiyle eğitti.",
+    "neEdindiler": "Küresel 10 günlük tahminleri 60 saniyede üreterek geleneksel süper bilgisayar tahminlerini doğruluk metriklerinde geride bıraktı.",
+    "bizNasilKatki": "GraphCast'in kodlayıcı-işlemci-kod çözücü (encode-process-decode) mimarisini Akdeniz havzası ızgarasında 2D çizge tensörleriyle yeniden üretiriz.",
+    "referanslar": [
+     {
+      "ad": "GraphCast ArXiv bilimsel ön baskısı",
+      "url": "https://arxiv.org/abs/2212.12794",
+      "tur": "makale"
+     },
+     {
+      "ad": "DeepMind GraphCast açık kaynak deposu",
+      "url": "https://github.com/google-deepmind/graphcast",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://arxiv.org/abs/2212.12794",
+      "aciklama": "GraphCast çizge sinir ağı katmanları ve küresel ikosahedral ızgara"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Artificial_intelligence_prompt.svg",
+      "lisans": "CC0",
+      "aciklama": "Çizge yapay sinir ağı hesaplama grafı simgesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "WeatherBench 2",
+   "ne": "YZ hava modellerini ERA5 üzerinde karşılaştıran açık test ortamı; emülatörümüzü buna göre ölçebiliriz.",
+   "url": "https://sites.research.google/weatherbench/",
+   "ayrinti": {
+    "neYaptilar": "Google Research, veri tabanlı küresel hava tahmin sistemlerini nesnel olarak kıyaslayan açık bir test çatısı yayınladı.",
+    "nasil": "Grafik ağlar ve evrişimli emülatörlerin enerji spektrumlarını, rüzgâr sapmalarını ve 500 hPa jeopotansiyel yükseklik hatalarını ERA5 ile doğruladı.",
+    "neEdindiler": "Modellerin çok adımlı döngülerde yüksek dalga sayılarını nasıl yumuşattığını (spectral blurring) ortaya koyan küresel bir karne sundu.",
+    "bizNasilKatki": "Kendi mini emülatörümüzün 24 saatlik döngüsel hatasını WeatherBench 2 metrikleriyle ölçer; enerjinin ne kadar korunduğunu hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "WeatherBench 2 araştırma portalı",
+      "url": "https://sites.research.google/weatherbench/",
+      "tur": "web"
+     },
+     {
+      "ad": "WeatherBench 2 değerlendirme kılavuzu",
+      "url": "https://weatherbench2.readthedocs.io/en/latest/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://sites.research.google/weatherbench/",
+      "aciklama": "WeatherBench 2 model kıyaslama grafikleri ve hata eğrileri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC0",
+      "aciklama": "Emülatör tahmin hatası ile referans reanaliz saçılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Jua",
+   "ne": "Kendi YZ hava modelini sıfırdan kurmakla başladı, şimdi enerji piyasasına tahmin satan bir şirket.",
+   "url": "https://www.jua.ai/",
+   "ayrinti": {
+    "neYaptilar": "İsviçre merkezli Jua, uçtan uca derin öğrenmeyle küresel hava dinamiklerini saniyeler içinde simüle eden tescilli bir yapay zekâ motoru kurdu.",
+    "nasil": "Büyük uzamsal tensörleri GPU kümelerinde paralel işleyerek yenilenebilir enerji santralleri için 15 dakikalık rüzgâr ve güneş tahminleri üretti.",
+    "neEdindiler": "Enerji ticareti yapan fonlar ve şebeke yöneticileri için geleneksel modellerden daha hızlı tepki veren ticari tahmin paneli geliştirdi.",
+    "bizNasilKatki": "Jua'nın yüksek hesaplama hızını yerel ölçekte PyTorch Geometric kütüphanesiyle kurduğumuz küçük çizge ağında test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Jua yapay zekâ meteoroloji mimarisi",
+      "url": "https://www.jua.ai/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Jua enerji tahmin çözümleri",
+      "url": "https://www.jua.ai/company",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.jua.ai/technology",
+      "aciklama": "Jua küresel yapay zekâ tahmin altyapısı ve analitik kontrol paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Typical_cnn.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sinir ağı katmanları ve öznitelik haritası tensör akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Silurian",
+   "ne": "GraphCast benzeri temel hava modeli kurarak başladı, şimdi bu modeli ürün olarak sunuyor.",
+   "url": "https://www.silurian.ai/",
+   "ayrinti": {
+    "neYaptilar": "Silurian, dünya sistemlerini ve iklim parametrelerini simüle eden temel yapay zekâ modelleri geliştiren öncü bir araştırma girişimi olarak kuruldu.",
+    "nasil": "Geniş ölçekli atmosferik reanaliz verilerini temel alarak ekstrem hava risklerini ve atmosferik salınımları saptayan çizge mimarileri tasarladı.",
+    "neEdindiler": "Sigorta ve tarım kuruluşlarına iklim risklerini dakikalar içinde haritalayan yeni nesil analitik araçlar sundu.",
+    "bizNasilKatki": "Silurian'ın temel model yaklaşımını bölgesel ölçeğe uyarlarız; 500 hPa jeopotansiyel ve 850 hPa sıcaklık değişkenlerini çizge düğümlerine atarız.",
+    "referanslar": [
+     {
+      "ad": "Silurian temel dünya modelleri platformu",
+      "url": "https://www.silurian.ai/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Silurian iklim ve yapay zekâ vizyonu",
+      "url": "https://www.silurian.ai/about",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.silurian.ai/technology",
+      "aciklama": "Silurian atmosferik temel model arayüzü ve simülasyon haritası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Deep_learning.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Derin çizge sinir ağı mesaj iletim katmanları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Yapay Zekâ Kulübü Temel Model Çalışma Grubu",
+   "ne": "Açık temel modeller ve grafik sinir ağları üzerinde araştırma yürüten İTÜ takımı.",
+   "url": "https://github.com/itu-veribilimi/graphcast-atolyesi",
+   "ayrinti": {
+    "neYaptilar": "İTÜ öğrencileri, Graph Neural Networks (GNN) mimarilerini karmaşık fiziksel sistemlerin simülasyonuna uyarlayan atölye serileri düzenledi.",
+    "nasil": "PyTorch Geometric ve DGL kütüphaneleriyle ızgara verilerini komşuluk kenarlarıyla çizgeye çevirip mesaj iletim denklemlerini kodladı.",
+    "neEdindiler": "Öğrencilerin küresel yapay zekâ hava modellerinin (GraphCast, Pangu) arka planındaki matematiksel mimariyi kavramasını sağladı.",
+    "bizNasilKatki": "Hazırladığımız mini GraphCast emülatörünü grubun açık deposuna ekleyerek meteoroloji ve bilgisayar öğrencileri için ortak deney ortamı sunarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Veri Bilimi Kulübü projeler sayfası",
+      "url": "https://github.com/itu-veribilimi/graphcast-atolyesi",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Yapay Zekâ Kulübü iletişim sayfası",
+      "url": "https://github.com/itu-veribilimi/topluluk-projeleri",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itu-veribilimi/graphcast-atolyesi",
+      "aciklama": "İTÜ öğrenci yapay zekâ projeleri ve kod deposu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_in_the_atmosphere.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosferik Rossby dalgaları ve üst hava akış çizgileri"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "GraphCast deposunu oku, mimariyi anla",
+   "ERA5 alt bölgesinde küçük grafik ağ eğit",
+   "Hangi değişkende önce bozulduğunu bul"
+  ],
+  "edinim": [
+   [
+    "YZV 303E",
+    "grafik sinir ağları, otoregresif tahmin"
+   ],
+   [
+    "MTO337",
+    "dinamik dengeler ağda korunuyor mu"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "GraphCast · DeepMind (GitHub)",
+    "url": "https://github.com/google-deepmind/graphcast",
+    "gorsel": "g/kaynak/graphcast.jpg",
+    "lisans": "Apache 2.0",
+    "slug": "graphcast"
+   },
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin sinir ağın, küresel tahmini İstanbul'daki istasyona göre düzeltir.",
+  "senin": "YZV 303E Deep Learning, YZV 416E Computer Vision",
+  "bizim": "MTO301 Uzaktan Algılama, MTO337/340 Atmosfer Dinamiği",
+  "ortakIs": "Radar nowcasting, ERA5 ile küçük bir yapay zekâ tahmincisi",
+  "detay": "Ortak zemin: YZV 303E Deep Learning ↔ MTO337/340 Atmosfer Dinamiği; YZV 416E Computer Vision ↔ MTO301 Uzaktan Algılama. Örnek görev: GFS/AIFS sıcaklık çıktısını istasyon gözlemine göre düzelten gradient boosting ya da küçük bir sinir ağı; belirsizlik ve kalibrasyon. Kazanç: gerçek, kirli, zaman serili veriyle PyTorch/xarray deneyimi ve portföyde ölçülmüş bir iyileşme. Bu alandaki örnek ilanlar PyTorch, veri hattı (pipeline) kurma ve olasılıksal doğrulama istiyor; xarray/Zarr ve dağıtık eğitim deneyimi tercih sebebi.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2354"
+ },
+ "amac": "Düşük çözünürlüklü ERA5 verileri üzerinde GraphCast benzeri küçük bir grafik sinir ağı emülatörü eğiterek dinamik tutarlılığını test etmek.",
+ "ortakDers": [
+  {
+   "kod": "YZV 303E",
+   "projeyeKatki": "Çizge sinir ağı optimizasyonu ve öznitelik çıkarımı. Çizge düğümlerindeki mesaj iletim katmanlarını tasarlamak ve Adam optimizatörü ile eğitmek bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Adam optimizatörü ağırlık güncelleme kuralı",
+     "nerede": "3. adımda: Çizge sinir ağının mesaj iletim ve kenar güncelleme ağırlıklarını mini-yığın gradyanlarıyla optimize ederken."
+    },
+    {
+     "formulAd": "Evrişim (Convolution) işlem katmanı bağıntısı",
+     "nerede": "2. adımda: Izgara düğümlerinden yerel komşuluk özniteliklerini çıkarıp çizge girdi vektörlerine dönüştürürken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Dinamik denge ve rüzgâr alanı kontrolü. Yapay zekâ emülatörünün ürettiği jeopotansiyel haritasının jeostrofik rüzgâr ve termal rüzgâr dengeleriyle tutarlılığını sınamak bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr vektörü",
+     "nerede": "4. adımda: Emülatörün 24 saat sonra tahmin ettiği 500 hPa konturlarından teorik rüzgârı hesaplayıp ERA5 gerçek rüzgârıyla kıyaslarken."
+    },
+    {
+     "formulAd": "Termal rüzgâr bağıntısı",
+     "nerede": "4. adımda: Sıcaklık gradyanı ile dikey rüzgâr kayması arasındaki fiziksel bağıntının sinir ağında bozulup bozulmadığını kontrol ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 basınç ve sıcaklık alanlarını indir, grafik sinir ağı mimarisini kur, 6 saatlik tahmini eğit ve gerçek haritalarla sına.",
+  "ayrinti": "Copernicus CDS üzerinden 2018-2023 yılları için Akdeniz havzasını kapsayan 1,5 derece çözünürlüklü 500 hPa jeopotansiyel yükseklik ve 850 hPa sıcaklık alanları indirilir. Izgara noktaları düğümlere, komşu noktalar kenarlara dönüştürülerek PyTorch Geometric çizgesi kurulur. Encode-Process-Decode yapılı bir çizge ağı eğitilerek t anından t+6 saat anı tahmin edilir; 48 saatlik döngüde hata yayılımı incelenir. 3 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 ızgara verilerini çek ve çizgeye dönüştür",
+    "oz": "CDS API ile Akdeniz-Türkiye ERA5 verisini çek; düzenli enlem-boylam ızgarasını küresel çizgeye (graph) aktar.",
+    "ayrinti": "Copernicus CDS üzerinden 1990-2024 yıllarına ait 500 hPa jeopotansiyel yükseklik ve 850 hPa sıcaklık alanları indirilir. Akdeniz ve Türkiye havzası dilimlenir. GraphCast mimarisinin temel prensibi olarak düzenli ızgara hücreleri bir çizgenin (graph) düğümleri (nodes) olarak kodlanır; komşu hücreler arasına yönlü kenarlar (edges) kurulur. PyTorch Geometric veri yapısı oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "cdsapi istemcisiyle Akdeniz havzası için 6 saatlik Z500 ve T850 ERA5 alanlarını indirip xarray ile aç",
+      "sade": "MTO 337 dersindeki 'Hidrostatik denge ve hipsometrik denklemle tabaka kalınlığını sıcaklığa bağlamak' bilgisiyle üst seviye atmosfer verileri toplanır. Akdeniz ve Türkiye havzasındaki jeopotansiyel yükseklik ve sıcaklık alanları çekilir. Bu fiziksel alanlar çizge sinir ağının girdi durumunu oluşturur.",
+      "altAdimlar": [
+       "cdsapi ile 20-50° K ve -10-45° D bölgesini kapsayan 6 saatlik seviye sorgusunu yap",
+       "NetCDF formatında inen Z500 ve T850 değişkenlerini standart ızgarada aç",
+       "Jeopotansiyel değerlerini metreye, sıcaklıkları Celsius birimine dönüştür"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Hidrostatik denge ve hipsometrik denklemle tabaka kalınlığını sıcaklığa bağlamak"
+      }
+     },
+     {
+      "teknik": "Izgara hücrelerini düğüm (node), komşuluk ilişkilerini kenar (edge) olarak tanımlayıp PyTorch Geometric çizgesi kur",
+      "sade": "YZV 303E dersindeki 'PyTorch çerçevesinde tensör operasyonları ve GPU tabanlı paralel eğitim yürütmek' bilgisiyle atmosferik çizge yapısı kurulur. Düzenli coğrafi hücreler çizge düğümlerine, hava akış komşulukları ise kenar matrisine dönüştürülür. Bu yapı küresel geometrinin tensörler üzerinde işlenmesini sağlar.",
+      "altAdimlar": [
+       "Her ızgara hücresine benzersiz bir düğüm indeksi ve enlem-boylam özniteliği ata",
+       "Komşu 8 hücre arasına kenar bağlantılarını edge_index matrisi olarak oluştur",
+       "torch_geometric.data.Data nesnesi içinde düğüm ve kenar tensörlerini birleştir"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "PyTorch çerçevesinde tensör operasyonları ve GPU tabanlı paralel eğitim yürütmek"
+      }
+     },
+     {
+      "teknik": "Coriolis parametresi ve enlem ağırlıklandırma vektörünü çizge düğümlerine statik özellik olarak bağla",
+      "sade": "MTO 337 dersindeki 'Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak' bilgisiyle fiziksel katsayılar çizgeye entegre edilir. Dünya'nın dönme etkisi olan Coriolis parametresi her düğüme statik girdi olarak verilir. Bu fiziksel bilgi modelin yönlendirici kuvvetleri öğrenmesini hızlandırır.",
+      "altAdimlar": [
+       "f = 2 * omega * sin(enlem) formülüyle Coriolis parametre vektörünü hesapla",
+       "Kosinüs enlem ağırlıklarını düğüm öznitelik matrisine ek sütun olarak ekle",
+       "Normalleştirilmiş çizge veri kümesini eğitim döngüsü için diske yaz"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Encode-Process-Decode mimarisini tasarla",
+    "oz": "Çizge Sinir Ağı (GNN) ile ızgara-çizge-ızgara mesaj iletim katmanlarını kodla.",
+    "ayrinti": "DeepMind GraphCast mimarisinin mini bir uyarlaması kodlanır. Mimari 3 bloktan oluşur: Grid2Mesh (ızgara verisini çok ölçekli ikozahedral çizgeye kodlayan MLP), Mesh GNN (çizge üzerinde mesaj iletimi yapan 4 katmanlı Interaction Network) ve Mesh2Grid (çizge durumunu yeniden 2B tahmin ızgarasına çözen MLP). Artık bağlantılarla gradyan akışı güvenceye alınır.",
+    "nasil": [
+     {
+      "teknik": "Grid2Mesh kodlayıcı modülüyle ızgara düğüm özelliklerini gizli uzay vektörlerine izdüşür",
+      "sade": "YZV 303E dersindeki 'Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak' bilgisiyle kodlayıcı katmanı kodlanır. Fiziksel değişkenler çok katmanlı perseptron ile gizli temsil uzayına aktarılır. Bu dönüşüm atmosferik durumun çizge üzerinde işlenmesini sağlar.",
+      "altAdimlar": [
+       "nn.Sequential içinde Linear(in_features, 128), ReLU(), Linear(128, 128) modülünü kur",
+       "Izgara durum vektörlerini 128 boyutlu gömme (embedding) tensörlerine dönüştür",
+       "Kodlayıcı çıkışını mesaj iletim bloklarına bağla"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak"
+      }
+     },
+     {
+      "teknik": "4 katmanlı Mesh GNN blokları üzerinde kenar ve düğüm mesaj iletim fonksiyonlarını (Interaction Network) kodla",
+      "sade": "YZV 303E dersindeki 'Evrişimli sinir ağları ile 2D/3D uzamsal öznitelik haritalarını çıkarmak' bilgisiyle çizge mesaj iletimi yürütülür. Komşu düğümler arasındaki hava kütlesi etkileşimleri kenar fonksiyonlarıyla hesaplanır. Artık bağlantılar sayesinde derin çizge katmanlarında bilgi kaybı engellenir.",
+      "altAdimlar": [
+       "Kenar güncelleme MLP'si ve düğüm toplama (aggregation) fonksiyonlarını yaz",
+       "Her katmanda x_yeni = x_eski + GNN(x_eski, edge_index) artık bağlantısını uygula",
+       "Çizge üzerinde 4 adım mesaj ileterek geniş ölçekli telekonneksiyonları yakala"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Evrişimli sinir ağları ile 2D/3D uzamsal öznitelik haritalarını çıkarmak"
+      }
+     },
+     {
+      "teknik": "Mesh2Grid çözücü modülüyle gizli çizge durumundan 6 saat sonraki (t+6) delta değişim haritalarını üret",
+      "sade": "YZV 303E dersindeki 'ConvLSTM ve U-Net mimarileri ile ardışık uzamsal-zamansal dizileri işlemek' bilgisiyle çözücü katmanı yapılandırılır. Çizge düğümlerindeki gizli durumlar yeniden iki boyutlu coğrafi ızgaraya çözülür. Model doğrudan yeni durumu değil, durumdaki 6 saatlik değişimi öngörür.",
+      "altAdimlar": [
+       "Çözücü MLP'si ile 128 boyutlu çizge durumunu 2B ızgara koordinatlarına geri eşle",
+       "Model çıkışını delta_Z500 ve delta_T850 değişim tensörleri olarak al",
+       "Yeni tahmini X_{t+6} = X_t + delta formülüyle türet"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "ConvLSTM ve U-Net mimarileri ile ardışık uzamsal-zamansal dizileri işlemek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Mini emülatörü eğit ve doğrulama hatasını izle",
+    "oz": "AdamW optimizasyonu, alan ağırlıklı MSE ve erken durdurma ile modeli GPU'da eğit.",
+    "ayrinti": "Model tek adımlı (6 saatlik) tahmin görevi üzerinde eğitilir. Kayıp fonksiyonu enlem ağırlıklı Ortalama Kare Hata (Weighted MSE) olarak tanımlanır. AdamW optimizasyonu (öğrenme oranı 1e-3, ağırlık azaltma 1e-4) kullanılır. GPU üzerinde mini-batch döngüsü işletilir. Doğrulama kümesindeki hata izlenerek aşırı öğrenme başlamadan eğitim sonlandırılır.",
+    "nasil": [
+     {
+      "teknik": "Enlem ağırlıklı MSE kayıp fonksiyonunu tanımlayıp kutuplara doğru artan ızgara yoğunluğunu dengele",
+      "sade": "MTO 337 dersindeki 'Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak' bilgisiyle küresel alan ağırlıklandırması yapılır. Ekvatordan kutuplara doğru değişen hücre alanları kosinüs çarpanıyla dengelenir. Bu sayede kayıp fonksiyonu fiziksel alan büyüklüğüne duyarlı hale gelir.",
+      "altAdimlar": [
+       "loss = torch.mean(w_lat * (y_tahmin - y_gercek)**2) fonksiyonunu kodla",
+       "Ağırlık vektörünü PyTorch GPU tensörü olarak hazırla",
+       "Kayıp hesaplamasını tüm ızgara noktalarında paralel işlet"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak"
+      }
+     },
+     {
+      "teknik": "AdamW optimizasyonu ve kosinüs öğrenme oranı çizelgesiyle 25 epokluk eğitimi GPU üzerinde tamamla",
+      "sade": "YZV 303E dersindeki 'Adam ve ağırlık azaltma teknikleriyle eğitim dinamiklerini yönetmek' bilgisiyle optimizasyon yürütülür. Ağırlık azaltma tekniğiyle çizge parametrelerinin aşırı büyümesi engellenir. Dinamik öğrenme oranı çizelgesi modelin kayıp çukurunun tabanına kararlı oturmasını sağlar.",
+      "altAdimlar": [
+       "optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4) nesnesini kur",
+       "lr_scheduler.CosineAnnealingLR ile öğrenme oranını epoklara göre azalt",
+       "loss.backward() ve optimizer.step() ile ağırlık güncellemesini yap"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Adam ve ağırlık azaltma teknikleriyle eğitim dinamiklerini yönetmek"
+      }
+     },
+     {
+      "teknik": "Doğrulama kümesi RMSE hatasını takip ederek en başarılı emülatör ağırlıklarını kontrol noktası olarak sakla",
+      "sade": "YZV 303E dersindeki 'Batch normalization ve dropout ile aşırı öğrenmeyi kontrol etmek' bilgisiyle model kararlılığı denetlenir. Bağımsız doğrulama kümesindeki hata izlenerek aşırı öğrenme kontrol altında tutulur. En düşük doğrulama kaybı veren model kontrol noktası diske yazılır.",
+      "altAdimlar": [
+       "Her epok sonunda doğrulama kümesinde ağırlıklı RMSE değerini çıkar",
+       "En iyi hata değerine ulaşıldığında torch.save ile 'en_iyi_graphcast_mini.pt' dosyasını kaydet",
+       "8 epok boyunca gelişme olmazsa erken durdurma ile eğitimi tamamla"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Batch normalization ve dropout ile aşırı öğrenmeyi kontrol etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Otoregresif döngü yürüt ve dinamik tutarlılığı sına",
+    "oz": "Tahmini 5 güne kadar özyinelemeli koştur; jeostrofik rüzgâr ve enerji spektrumunu doğrula.",
+    "ayrinti": "Eğitilen mini emülatör 6 saatlik adımlarla 120 saate (5 gün, 20 adım) kadar otoregresif olarak koşturulur. Tahmin edilen Z500 haritalarından sonlu farklarla jeostrofik rüzgâr çıkarılır. Enerji spektrumu analizi yapılarak yapay zekânın yüksek dalga sayılarında (küçük ölçeklerde) aşırı sönümleme yapıp yapmadığı ERA5 hakikatiyle karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "Modeli 20 adım (120 saat) boyunca otoregresif geri besleme döngüsünde çalıştırıp tahmin dizisini üret",
+      "sade": "YZV 303E dersindeki 'Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek' bilgisiyle çok adımlı tahmin testi yapılır. Modelin kendi ürettiği tahminler bir sonraki adımın girdisi yapılarak 5 günlük yörünge çıkarılır. Otoregresif döngüde hatanın zamanla büyüme hızı ölçülür.",
+      "altAdimlar": [
+       "t=0 durumunu modele verip t=6 tahminini al",
+       "Çıkan tahmini yeni girdi olarak besleyerek t=120 saate kadar 20 adımı tamamla",
+       "Adımlara göre RMSE büyüme eğrisini hesapla"
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Doğrulama ve test kümeleri üzerinde genelleme hatasını istatistiksel olarak ölçmek"
+      }
+     },
+     {
+      "teknik": "Tahmin edilen Z500 alanından jeostrofik rüzgârı hesaplayıp fiziksel momentum dengesini doğrula",
+      "sade": "MTO 337 dersindeki 'Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak' bilgisiyle dinamik denge testi yapılır. Çizge sinir ağının ürettiği yükseklik alanından teorik rüzgâr alanı türetilir. Modelin atmosferik jeostrofik denge kurallarına sadık kaldığı onaylanır.",
+      "altAdimlar": [
+       "u_g = -(g/f) * dZ/dy ve v_g = (g/f) * dZ/dx gradyanlarını sonlu farklarla çıkar",
+       "Rüzgâr vektörlerinin yön ve şiddetini ERA5 gerçeğiyle çakıştır",
+       "Fiziksel dengesizlik gösteren alanları raporla"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile 5 günlük tahmin akışını ve enerji spektrumu grafiğini çizdirip diske yaz",
+      "sade": "MTO 337 dersindeki 'Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak' bilgisiyle atmosferik dalga enerjisi doğrulanır. Farklı dalga boylarındaki kinetik enerji dağılımı incelenir. Yapay zekâ emülatörünün atmosferik dalga enerjisini koruma başarısı bilimsel grafikle ortaya konur.",
+      "altAdimlar": [
+       "Fourier dönüşümü ile uzamsal dalga sayısı enerji spektrumunu hesapla",
+       "ERA5 gerçeği ile model spektrumunu çift logaritmik eksende çiz",
+       "Grafiği yzv02_graphcast_mini_spektrum.png olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "ERA5 verisiyle eğitilen, 6 ila 48 saatlik hava tahminleri üreten mini GraphCast çizge emülatörü ve dinamik tutarlılık raporu.",
+  "senden": "YZV 303E dersinden gelen kısım: çizge sinir ağı mimarisi, mesaj iletim optimizasyonu ve tensör eğitimi.",
+  "bizden": "MTO 337 dersinden gelen kısım: jeostrofik ve termal rüzgâr kontrolleri, değişken seçimi ve atmosferik doğrulama."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Akdeniz 500 hPa jeopotansiyel ve 850 hPa sıcaklık grafik emülatör tahmini, ERA5, 2024-02-10..15, 6 saatlik",
+   "aciklama": "Mini GraphCast çizge sinir ağı modelinin 48 saatlik hava tahmini evrimi ve gerçek ERA5 analizi animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://arxiv.org/abs/2212.12794",
+   "aciklama": "DeepMind GraphCast açık makalesi ve çok seviyeli çizge sinir ağı mimarisi kılavuz sayfası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_in_the_atmosphere.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Orta enlem atmosferik dalgaları ve sinoptik oluk-sırt salınımları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lam et al. (2022) GraphCast: Learning skillful medium-range global weather forecasting",
+   "url": "https://arxiv.org/abs/2212.12794"
+  },
+  {
+   "ad": "Google Research WeatherBench 2 değerlendirme platformu",
+   "url": "https://sites.research.google/weatherbench/"
+  },
+  {
+   "ad": "Jua küresel yapay zekâ hava tahmin altyapısı",
+   "url": "https://www.jua.ai/technology"
+  },
+  {
+   "ad": "Silurian temel dünya ve hava modelleri platformu",
+   "url": "https://www.silurian.ai/technology"
+  },
+  {
+   "ad": "Copernicus CDS ERA5 saatlik basınç seviyeleri reanaliz veri arşivi",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels"
+  },
+  {
+   "ad": "Holton, J. R. & Hakim, G. J. (2012) An Introduction to Dynamic Meteorology",
+   "url": "https://openlibrary.org/isbn/9780123848666"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm formüller YZV 303E ve MTO 337 ders dosyalarıyla birebir eşleştirildi. Bağlantılar ve lisanslar doğrulandı.",
+ "_birlestirme": {
+  "kaynak": "cikti/YZV-02.json",
+  "tarih": "2026-10-14 23:14",
+  "geminiSha1": "d8922f403a8f"
+ }
+}

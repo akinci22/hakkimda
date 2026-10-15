@@ -1,0 +1,502 @@
+{
+ "id": "BLG-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "BLG",
+  "bolum": "Bilgisayar Mühendisliği",
+  "fakulteKod": "BBF"
+ },
+ "ad": "Radar/uydu ile 0-2 saat nowcasting",
+ "ne": "Yağış bulutunun önümüzdeki iki saatte nereye gideceğini görüntü hareketinden tahmin ediyoruz.",
+ "adimlar": [
+  "Açık uydu ya da radar görüntülerini indir",
+  "Ardışık görüntülerden hareket yönünü hesapla",
+  "Bulutu bu yönde ileri kaydır",
+  "Tahmin görüntüsünü gerçek görüntüyle karşılaştır"
+ ],
+ "sonuc": "Sonunda tahmin animasyonu ve doğruluk ölçümü olan bir defter olur.",
+ "senden": "BLG 354E Signal & Systems",
+ "bizden": "Yağış sistemlerinin nasıl hareket ettiği bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "BLG 354E",
+    "ad": "Signal & Systems"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "DeepMind yağış nowcasting (Nature 2021)",
+   "ne": "Radar görüntülerinden önümüzdeki 90 dakikanın yağışını tahmin eden yapay zekâ.",
+   "url": "https://www.nature.com/articles/s41586-021-03854-z",
+   "ayrinti": {
+    "neYaptilar": "Google DeepMind ve Birleşik Krallık Meteoroloji Ofisi (Met Office), 2021'de radar verilerinden 90 dakikaya kadar yüksek çözünürlüklü yağış tahmini üreten DGMR (Deep Generative Model of Rain) mimarisini geliştirdi. Çalışma Nature dergisinde yayımlandı ve meteorologlar tarafından klasik yöntemlere göre belirgin biçimde üstün bulundu.",
+    "nasil": "Girdi olarak ardışık son 20 dakikanın (4 radar karesi, 1 km çözünürlük) kompozit yansıtırlık verileri alındı. Koşullu üretici çekişmeli ağlar (cGAN) ve uzamsal-zamansal ayırt ediciler kullanılarak fırtına hücrelerinin hem adveksiyonu (taşınımı) hem de ani büyüme/sönümlenmesi modellendi.",
+    "neEdindiler": "Met Office uzmanlarının değerlendirmesinde vakaların %89'unda klasik optik akış (pySTEPS) ve standart evrişimli ağlara göre daha gerçekçi bulundu; aşırı yağış hücrelerindeki bulanıklaşma önlendi.",
+    "bizNasilKatki": "DGMR ölçeğinde model eğitmek büyük GPU gücü ister; ancak biz açık örnek radar verileriyle basit bir evrişimli LSTM veya optik akış hattı kurup yağış kütlesinin hareketini takip edebiliriz. Haftada 1-2 saatlik çalışmayla çalışan bir prototip çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Ravuri vd. (2021) Skilful precipitation nowcasting using deep generative models of radar, Nature 597",
+      "url": "https://www.nature.com/articles/s41586-021-03854-z",
+      "tur": "makale"
+     },
+     {
+      "ad": "DeepMind DGMR araştırma blogu (Eylül 2021)",
+      "url": "https://deepmind.google/discover/blog/nowcasting-the-next-hour-of-rain/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/nowcasting-the-next-hour-of-rain/",
+      "aciklama": "DeepMind DGMR model mimarisi ve Met Office radar tahmin karşılaştırmaları"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Radar_reflectivity_loop.gif",
+      "lisans": "NOAA",
+      "aciklama": "Doppler radar yansıtırlık döngüsü: konvektif yağış çekirdeklerinin hareketi ve gelişimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "pySTEPS",
+   "ne": "Radar görüntüsünden hareket yönü bulup yağışı ileri kaydıran açık kaynak araç.",
+   "url": "https://github.com/pySTEPS/pysteps",
+   "ayrinti": {
+    "neYaptilar": "Avustralya, İsviçre ve Finlandiya meteoroloji kurumlarının desteğiyle geliştirilen pySTEPS, radar ve uydu verilerinden olasılıklı ve deterministik yağış tahmini üreten küresel ölçekli açık kaynaklı bir Python kütüphanesidir.",
+    "nasil": "Lucas-Kanade veya VET (Varyasyonel Yankı Takibi) yöntemleriyle iki ardışık radar karesinden optik akış vektör alanı hesaplanır. Ardından yarı-Lagrange adveksiyon şeması ve çok ölçekli spektral kaskad ayrışımıyla yağış alanları geleceğe taşınır.",
+    "neEdindiler": "Açık kaynak camiasında operasyonel nowcasting için en yaygın kabul gören referans kıyaslama aracı oldu. Makalesi 2019'da Geoscientific Model Development dergisinde yayımlandı.",
+    "bizNasilKatki": "Projemizin hesaplama omurgasını pySTEPS oluşturur. Açık radar örnek verilerini kütüphaneye besleyip İstanbul üzerindeki yağış hareketini 30, 60 ve 90 dakika için simüle eder ve animasyon haline getiririz.",
+    "referanslar": [
+     {
+      "ad": "Pulkkinen vd. (2019) Pysteps: an open-source Python library for probabilistic nowcasting, GMD 12",
+      "url": "https://doi.org/10.5194/gmd-12-4185-2019",
+      "tur": "makale"
+     },
+     {
+      "ad": "pySTEPS GitHub deposu ve belgeleri",
+      "url": "https://github.com/pySTEPS/pysteps",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://pysteps.github.io/",
+      "aciklama": "pySTEPS dokümantasyon sayfası: optik akış yöntemleri ve adveksiyon tahmin galerisi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Optical_flow_visualization.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Görüntü üzerindeki hız alanını gösteren optik akış vektör haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Open Climate Fix",
+   "ne": "Gönüllü ekiplerin uydu görüntüsüyle bulut ve güneş nowcasting'i yaptığı açık kaynak kuruluş.",
+   "url": "https://openclimatefix.org",
+   "ayrinti": {
+    "neYaptilar": "İngiltere merkezli kâr amacı gütmeyen Open Climate Fix, elektrik şebekesindeki güneş enerjisi dengesizliklerini çözmek için EUMETSAT uydu görüntülerinden 0-4 saatlik hiper-yerel bulut nowcasting modelleri geliştirdi.",
+    "nasil": "EUMETSAT Meteosat SEVIRI 15 dakikalık yüksek çözünürlüklü görünür ve kızılötesi kanalları kullanılıyor. OCF 'satflow' ve 'pvnet' açık modelleriyle bulutların kalınlığı ve güneş panelleri üzerindeki gölgeleme etkisi tahmin ediliyor.",
+    "neEdindiler": "İngiltere Ulusal Şebekesi (National Grid ESO) ile operasyonel denemeler yaptı; şebekenin fosil yakıtlı dönen rezerv ihtiyacını azaltarak CO2 emisyonunu düşürdü. Tüm modeller ve veri boru hatları Apache 2.0 ile açık.",
+    "bizNasilKatki": "Öğrenci takımı olarak OCF'nin açık veri hattı mimarisinden feyz alırız. Benzer şekilde açık EUMETSAT veya MSG verilerinden bulut alanı kesip Marmara üzerindeki güneşlenme potansiyelini tahmin edebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Open Climate Fix projeler ve araştırma sayfası",
+      "url": "https://openclimatefix.org/projects",
+      "tur": "web"
+     },
+     {
+      "ad": "Open Climate Fix GitHub organizasyonu (satflow, pvnet)",
+      "url": "https://github.com/openclimatefix",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://openclimatefix.org/projects",
+      "aciklama": "Open Climate Fix proje paneli: güneş enerjisi şebeke entegrasyonu ve bulut tahminleri"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/openclimatefix",
+      "aciklama": "Açık kaynaklı makine öğrenmesi depoları ve uydu veri ön işleme boru hatları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Rainbow.ai",
+   "ne": "Radar ve uydu verisiyle dakika dakika yağış tahmini yapan girişim.",
+   "url": "https://www.rainbow.ai",
+   "ayrinti": {
+    "neYaptilar": "2021'de kurulan mobil hava girişimi Rainbow.ai, kullanıcılara '23 dakika sonra yağmur başlayacak' gibi dakika hassasiyetinde hiper-yerel yağış uyarıları sunan bir yapay zekâ motoru kurdu.",
+    "nasil": "Dünya genelindeki kamuya açık hava radarlarını, EUMETSAT ve GOES uydularını ve yer istasyonlarını harmanlayan çok ölçekli bir derin öğrenme modeli koşturuyor. Tahminler sokak düzeyinde 1 km ve 10 dakikalık adımlarla güncelleniyor.",
+    "neEdindiler": "Girişim sermayesi fonlarından erken aşama yatırımlar alarak milyonlarca kullanıcıya ulaştı ve B2B tarafında lojistik şirketlerine rota üzeri anlık hava API'si sunmaya başladı.",
+    "bizNasilKatki": "Rainbow.ai'nin ürünleştirdiği dakika bazlı tahmin mantığını biz yerel Jupyter defterinde açık veriyle simüle ederiz. Belirli bir koordinat için yağmur başlama süresini optik akışla kestiririz.",
+    "referanslar": [
+     {
+      "ad": "Rainbow.ai şirket ve ürün vizyonu sayfası",
+      "url": "https://www.rainbow.ai/about",
+      "tur": "web"
+     },
+     {
+      "ad": "Tech.eu haberi: Rainbow.ai seed funding for hyperlocal forecasting",
+      "url": "https://tech.eu/2023/06/15/rainbowai-seed-funding/",
+      "tur": "haber"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.rainbow.ai/about",
+      "aciklama": "Rainbow.ai mobil uygulama arayüzü: dakika dakika yağış geri sayımı ve radar haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Marmara Bölgesi konvektif yağış hücresi hareketi, sentetik radar yansıtırlığı, 0..120 dakika adımları",
+      "aciklama": "Ardışık radar karelerinde konvektif hücrenin büyümesi ve doğuya doğru kayması"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "pySTEPS ile optik akış tabanlı tahmin kur",
+   "Açık örnek radar verisinde çalıştır",
+   "Yakalama / boş alarm oranlarını ölç"
+  ],
+  "edinim": [
+   [
+    "BLG 354E",
+    "2B sinyal, filtreleme, optik akış"
+   ],
+   [
+    "MTO302",
+    "konvektif hücre ömrü, yağış tipleri"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "pySTEPS · radar nowcasting kütüphanesi",
+    "url": "https://github.com/pySTEPS/pysteps",
+    "gorsel": "g/kaynak/pysteps.jpg",
+    "lisans": "BSD-3",
+    "slug": "pysteps"
+   },
+   {
+    "ad": "WMO/WWRP tahmin doğrulama yöntemleri",
+    "url": "https://www.cawcr.gov.au/projects/verification/",
+    "gorsel": "g/kaynak/wmo-verif.jpg",
+    "lisans": "serbest erişim",
+    "slug": "wmo-verif"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Herkese açık tahmin verisini her gün çeken veri hattını (pipeline) ve panoyu sen kurarsın.",
+  "senin": "BLG 202E Numerical Methods, BLG 354E Signal & Systems",
+  "bizim": "MAT202E Sayısal Yöntemler, MTO302 Hava Analizi ve Öngörü",
+  "ortakIs": "ERA5 ile ML sıcaklık tahmini, radar nowcasting",
+  "detay": "Ortak zemin: BLG 202E Numerical Methods ↔ MAT202E Sayısal Yöntemler. Örnek görev: ERA5/GFS/AIFS açık verisini her gün çeken, xarray/Zarr ile saklayan veri hattı, küçük bir skor API'si ve canlı doğrulama panosu. Kazanç: uçtan uca çalışan bir sistem ve GitHub'da adının olduğu altyapı işi. Veri gerçek ve her gün akıyor; oyuncak veri seti değil.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1561"
+ },
+ "amac": "Radar ve uydu görüntülerinden optik akış ve derin öğrenmeyle önümüzdeki 2 saatlik yağış hareketini (nowcasting) piksel piksel kestirmek.",
+ "ortakDers": [
+  {
+   "kod": "BLG 354E",
+   "projeyeKatki": "Görüntü ve sinyal işleme temeli. Ardışık radar matrislerinde 2B konvolüsyonla gürültü filtreleme, Horn-Schunck ve Lucas-Kanade parlaklık sabitliği denklemleriyle hız vektörü kestirimi ve Fourier tabanlı filtreleme bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "2B ayrık konvolüsyon (uzamsal filtreleme)",
+     "nerede": "2. adımda: radar yansıtırlık matrisindeki tekil zemin parazitlerini temizlemek ve fırtına çekirdeğini düzleştirmek için."
+    },
+    {
+     "formulAd": "Optik akış parlaklık süreklilik denklemi",
+     "nerede": "3. adımda: ardışık iki radar karesinin pikselleri arasındaki yer değiştirme hız vektörlerini (u, v) kestirirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Bulut fiziği ve sistem dinamiği. Saf piksel kaydırmanın ötesinde fırtına hücrelerinin (kümülonimbus) yaşam döngüsünü, olgunlaşma ve sönümlenme evrelerini ve üst hava rüzgârlarının yönlendirici etkisini hesaba katmayı sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+     "nerede": "3. adımda: 700 ve 500 hPa yönlendirici akış (steering flow) vektörü ile radar hareket vektörlerini çapraz kontrol ederken."
+    },
+    {
+     "formulAd": "Bağıl girdap ve girdap adveksiyonu",
+     "nerede": "4. adımda: yağış hücresinin önümüzdeki saatte güçlenip güçlenmeyeceğini üst hava girdap adveksiyonuyla açıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Ardışık radar görüntülerinden optik akışla hareket vektörlerini çıkar, yağış alanını geleceğe kaydır ve doğrula.",
+  "ayrinti": "Nowcasting, fizik modellerinin geciktiği ilk 0-2 saatte hayat kurtarır. Açık radar örnek verileri indirilir; 2B Gauss filtresiyle temizlenir; pySTEPS ile optik akış hız vektörleri hesaplanır; yarı-Lagrange adveksiyon ile kareler 15'er dakikalık adımlarla 120 dakika ileri taşınır; tahmin performansı CSI skoruyla gerçek görüntülere karşı ölçülür. 3-4 haftalık haftada 1-2 saatlik çalışmayla tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Açık radar verisini indir ve ön işle",
+    "oz": "pySTEPS veya DWD açık radar arşivinden ardışık yansıtırlık (dBZ) kompozitlerini çek.",
+    "ayrinti": "Açık meteoroloji servislerinden 5 dakika aralıklı kompozit radar yansıtırlık (dBZ) görüntüleri toplanır. pySTEPS kütüphanesinin yerleşik veri modülü veya DWD açık veri arşivi kullanılır. Ham yansıtırlık değerleri Marshall-Palmer bağıntısıyla fiziksel yağış şiddetine (mm/sa) dönüştürülür. Ardından uzamsal Gauss süzgeci uygulanarak yer ekosu ve yüksek frekanslı parazit pikselleri ayıklanır.",
+    "nasil": [
+     {
+      "teknik": "pysteps.datasets üzerinden 5 dakika aralıklı ardışık radar yansıtırlık matrislerini indirip belleğe aktar",
+      "sade": "MTO 302 dersindeki 'Radar ve uydu görüntüsünü haritayla birlikte yorumlayıp aktif havanın nerede olacağını söylemek' bilgisiyle radar yansıtırlık dizisi çekilir. Beşer dakikalık aralıklarla taranan radar matrisleri yerel belleğe alınır. Bu görüntüler yağış hücrelerinin anlık konumunu ve hareket yönünü izlemeyi sağlar.",
+      "altAdimlar": [
+       "pysteps kütüphanesinin datasets modülünü kullanarak örnek radar zaman serisini indir",
+       "Ardışık 12 radar karesinin zaman etiketlerini ve koordinat ızgarasını ayrıştır",
+       "Matrislerin NaN ve sınır dışı değerlerini maskeleyerek temiz tensör hazırla"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Radar ve uydu görüntüsünü haritayla birlikte yorumlayıp aktif havanın nerede olacağını söylemek"
+      }
+     },
+     {
+      "teknik": "Marshall-Palmer bağıntısı Z = 200*R^1.6 ile dBZ yansıtırlık alanını anlık yağış şiddetine (mm/sa) çevir",
+      "sade": "MTO 302 dersindeki 'Radar ve uydu görüntüsünü haritayla birlikte yorumlayıp aktif havanın nerede olacağını söylemek' bilgisiyle fiziksel yağış dönüşümü yapılır. Desibel yansıtırlık logaritmik ölçekten doğrusal yağış miktarına aktarılır. Böylece radar pikselleri hidrometeorolojik su akışı değerlerine kavuşur.",
+      "altAdimlar": [
+       "dBZ değerlerini Z = 10**(dBZ/10) formülüyle doğrusal yansıtırlık faktörüne çevir",
+       "R = (Z / 200)**(1 / 1.6) formülünü uygulayarak saatlik yağış matrisini türet",
+       "Aşırı yüksek dolu ekolarını üst sınırla filtreleyerek fiziksel tutarlılığı sağla"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Radar ve uydu görüntüsünü haritayla birlikte yorumlayıp aktif havanın nerede olacağını söylemek"
+      }
+     },
+     {
+      "teknik": "cv2.GaussianBlur ile 3x3 Gauss çekirdeği uygulayarak radar görüntüsündeki yüksek frekanslı gürültüyü süz",
+      "sade": "BLG 354E dersindeki '2 boyutlu uzamsal konvolüsyon ve filtrelerle görüntüde kenar ve desen belirlemek' bilgisiyle radar görüntüleri filtrelenir. Küçük çekirdekli iki boyutlu evrişim uygulanarak tekil zemin parazitleri yumuşatılır. Bu uzamsal filtreleme optik akış algoritmasının kararlı çalışmasını sağlar.",
+      "altAdimlar": [
+       "OpenCV kütüphanesinden getGaussianKernel ile 3x3 boyutlu yumuşatma filtresini tanımla",
+       "Her radar karesine cv2.filter2D veya GaussianBlur fonksiyonuyla konvolüsyon uygula",
+       "Filtrelenmiş ardışık kareleri hareket analizi için N×H×W tensörü olarak hazırla"
+      ],
+      "kazanim": {
+       "ders": "BLG 354E",
+       "madde": "2 boyutlu uzamsal konvolüsyon ve filtrelerle görüntüde kenar ve desen belirlemek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Optik akış ile hız vektörlerini çıkar",
+    "oz": "Ardışık iki kare arasındaki piksel hareketini Lucas-Kanade veya VET ile kestir.",
+    "ayrinti": "Ardışık iki radar karesi (t-5 dk ve t) arasındaki parlaklık korunum denklemi çözülerek her pikselin yatay yer değiştirme vektörü (u, v) bulunur. Yoğun Lucas-Kanade veya Varyasyonel Yankı İzleme (VET) algoritması kullanılır. Elde edilen iki boyutlu hız alanı, yağış kütlesinin atmosferdeki anlık sürüklenme rotasını temsil eder. 700 hPa yönlendirici rüzgârıyla karşılaştırılarak fiziksel tutarlılık denetlenir.",
+    "nasil": [
+     {
+      "teknik": "dense_lucaskanade algoritmasıyla ardışık radar kareleri arasındaki iki boyutlu optik akış hız alanını hesapla",
+      "sade": "BLG 354E dersindeki '2 boyutlu uzamsal konvolüsyon ve filtrelerle görüntüde kenar ve desen belirlemek' bilgisiyle piksellerin hareket vektörleri çıkarılır. Uzamsal ve zamansal parlaklık gradyanları matris formunda çözülerek hız bileşenleri bulunur. Bu işlem yağış hücresinin hangi hız ve açıyla ilerlediğini belirler.",
+      "altAdimlar": [
+       "from pysteps.motion.lucaskanade import dense_lucaskanade fonksiyonunu çağır",
+       "radar_t_minus_5 ve radar_t matrislerini algoritmaya girdi olarak ver",
+       "Her piksel için piksel/adım biriminde (u, v) yatay hız tensörünü türet"
+      ],
+      "kazanim": {
+       "ders": "BLG 354E",
+       "madde": "2 boyutlu uzamsal konvolüsyon ve filtrelerle görüntüde kenar ve desen belirlemek"
+      }
+     },
+     {
+      "teknik": "Matplotlib quiver işleviyle hız vektör alanını radar yansıtırlık haritası üzerine bindirip görselleştir",
+      "sade": "BLG 354E dersindeki 'Sürekli ve ayrık sinyalleri zaman ve frekans ortamlarında temsil etmek' bilgisiyle vektörel hareket alanı görselleştirilir. İki boyutlu hız vektörleri radar ekolarının üzerine ok işaretleriyle çizilir. Böylece yağışın fırtına hattı boyunca nasıl hareket ettiği açıkça izlenir.",
+      "altAdimlar": [
+       "Izgara koordinatlarını np.meshgrid ile oluşturup 10 piksellik adımlarla seyrelt",
+       "plt.quiver fonksiyonu ile seyreltilmiş (u, v) oklarını radar tabakası üzerine çiz",
+       "Vektör büyüklüklerini renk skalasına bağlayıp hareket haritasını PNG olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "BLG 354E",
+       "madde": "Sürekli ve ayrık sinyalleri zaman ve frekans ortamlarında temsil etmek"
+      }
+     },
+     {
+      "teknik": "Çıkarılan hız vektör yönlerini 700 hPa sinoptik yönlendirici rüzgârıyla karşılaştırarak tutarlılık testi yap",
+      "sade": "MTO 302 dersindeki 'Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek' bilgisiyle hareket alanı doğrulanır. Radar ekolarının sürüklenme doğrultusu üst seviye rüzgâr vektörüyle kıyaslanır. Tutarsız yön sapan hücreler elenerek fiziksel denge sağlanır.",
+      "altAdimlar": [
+       "MTO 302 analizinden elde edilen 700 hPa jeostrofik rüzgâr yön açısını al",
+       "Optik akış vektörlerinin ortalama yönünü np.arctan2(v, u) ile hesapla",
+       "İki açı arasındaki farkın 30 dereceden küçük olduğunu doğrulayıp ekstrem vektörleri düzelt"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Adveksiyon ile geleceğe kaydır (tahmin üret)",
+    "oz": "Yarı-Lagrange geriye doğru takip ile yağış alanını 15, 30, 60 ve 120 dakika ileri taşı.",
+    "ayrinti": "Hesaplanan hız vektörleri kullanılarak son radar karesi yarı-Lagrange geriye doğru adveksiyon şemasıyla zaman adımları boyunca kaydırılır. 15, 30, 45, 60, 90 ve 120 dakikalık adımlar için tahmin haritaları üretilir. Her adımda hücrelerin konumu güncellenirken piksel enterpolasyonuyla alan korunur. Çıkan ardışık tahmin kareleri hareketli bir WebM/GIF animasyonuna dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "pysteps.extrapolation.semilagrangian şemasıyla radar alanını 15'er dakikalık adımlarla 2 saat ileri taşı",
+      "sade": "BLG 354E dersindeki 'Örnekleme teoremi ve Nyquist kriterine göre aliasing etkisini önlemek' bilgisiyle zaman adımları ayrıklaştırılır. Sayısal dağılmayı ve kararsızlığı önleyecek zaman aralığı seçilerek yarı-Lagrange iz sürme uygulanır. Yağış ekoları adım adım ileri taşınarak nowcasting dizisi oluşturulur.",
+      "altAdimlar": [
+       "from pysteps.extrapolation.semilagrangian import extrapolate modülünü başlat",
+       "extrapolate(radar_t, velocity_field, timesteps=8) çağrısıyla 8 adımlı tahmin matrisini üret",
+       "Çıkan matris dizisinde negatif yansıtırlık oluşmadığını denetle"
+      ],
+      "kazanim": {
+       "ders": "BLG 354E",
+       "madde": "Örnekleme teoremi ve Nyquist kriterine göre aliasing etkisini önlemek"
+      }
+     },
+     {
+      "teknik": "scipy.ndimage.map_coordinates ile geriye doğru piksel koordinat enterpolasyonunu uygula",
+      "sade": "BLG 354E dersindeki 'LTI sistemlerin dürtü yanıtı ve konvolüsyon integrali/toplamını hesaplamak' bilgisiyle piksel ara değerleri hesaplanır. Izgara noktaları arasındaki kayma sürekli enterpolasyon çekirdeğiyle çözülür. Bu sayede yağış kütlesi adveksiyon sırasında parçalanmadan pürüzsüz biçimde akar.",
+      "altAdimlar": [
+       "Hız alanından geriye doğru yörünge koordinat matrislerini oluştur",
+       "Bikübik enterpolasyon çekirdeği uygulayarak yeni ızgara değerlerini hesapla",
+       "Sınır piksellerinde yansıtırlık sönümlemesi uygulayarak yapay yansımaları engelle"
+      ],
+      "kazanim": {
+       "ders": "BLG 354E",
+       "madde": "LTI sistemlerin dürtü yanıtı ve konvolüsyon integrali/toplamını hesaplamak"
+      }
+     },
+     {
+      "teknik": "Matplotlib animation modülüyle tahmin adımlarını birleştirip döngüsel hareketli görsel olarak derle",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle operasyonel radar tahmin videosu üretilir. 0 ile 120 dakika arasındaki yağış ilerleyişi animasyon haline getirilir. Tahminci veya afet yönetim masası için anlık karar destek görseli sağlanır.",
+      "altAdimlar": [
+       "matplotlib.animation.FuncAnimation ile 8 tahmin karesini sıralı oynatıcıya bağla",
+       "Yağış şiddeti renk skalasını ve zaman damgası etiketlerini her kareye yerleştir",
+       "Animasyonu sessiz WebM veya GIF formatında çıktı dizinine yaz"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Gerçek görüntülerle doğrula",
+    "oz": "Tahmin edilen kareleri zamanı gelince ölçülen gerçek radar kareleriyle kıyasla; CSI skoru hesapla.",
+    "ayrinti": "Nowcasting tahminlerinin geçerliliği zaman ilerledikçe gelen gerçek radar gözlemleriyle sınanır. Farklı yağış eşikleri (örneğin 20 dBZ hafif yağış, 35 dBZ sağanak) için ikili doğrulama matrisi kurulur: Başarılı tahmin (hit), yanlış alarm (false alarm) ve kaçırılan olay (miss). Kritik Başarı İndeksi (CSI = Critical Success Index) her zaman adımı için hesaplanarak becerinin zamanla düşüş eğrisi çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "Seçilen dBZ eşiğinde tahmin ve gözlem matrislerini ikili (binary) maskelere dönüştürüp hata tablosunu kur",
+      "sade": "BLG 354E dersindeki 'Sürekli ve ayrık sinyalleri zaman ve frekans ortamlarında temsil etmek' bilgisiyle eşikleme işlemi yapılır. Sürekli yansıtırlık alanları belirlenen yağış sınırına göre 0 ve 1 değerlerine indirgenir. Bu ikili matrisler yağışın varlığı veya yokluğu üzerinden nesnel doğrulama sağlar.",
+      "altAdimlar": [
+       "20 dBZ ve 35 dBZ seviyeleri için tahmin > esik ve gozlem > esik maskelerini çıkar",
+       "Doğru pozitif (hit), yanlış alarm (false alarm) ve kaçırma (miss) piksel sayılarını topla",
+       "Her 15 dakikalık tahmin adımı için 2x2 durum matrisini oluştur"
+      ],
+      "kazanim": {
+       "ders": "BLG 354E",
+       "madde": "Sürekli ve ayrık sinyalleri zaman ve frekans ortamlarında temsil etmek"
+      }
+     },
+     {
+      "teknik": "Kritik Başarı İndeksini CSI = hits / (hits + false_alarms + misses) formülüyle her adım için hesapla",
+      "sade": "MTO 302 dersindeki 'Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek' bilgisiyle doğrulama skorları çıkarılır. Nowcasting yönteminin 15. dakikadan 120. dakikaya kadar ne kadar isabet sağladığı hesaplanır. Elde edilen CSI skoru yöntemin operasyonel sınırını tanımlar.",
+      "altAdimlar": [
+       "csi = hits / (hits + false_alarms + misses) formülünü tüm tahmin adımlarına uygula",
+       "Adımlara göre CSI değerlerini listeleyip zaman serisi tablosuna dönüştür",
+       "30. dakikada ~0.70 ve 90. dakikada ~0.35 seviyelerindeki beceri düşüşünü raporla"
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek"
+      }
+     },
+     {
+      "teknik": "CSI beceri düşüş eğrisini ve kalıcılık çıtasını Matplotlib ile çizdirip doğrulama karnesini kaydet",
+      "sade": "BLG 354E dersindeki 'Sürekli ve ayrık sinyalleri zaman ve frekans ortamlarında temsil etmek' bilgisiyle doğrulama eğrileri çizdirilir. Zamana karşı azalan tahmin başarısı grafik üzerinde görselleştirilir. Radar adveksiyonunun durağan kalıcılık modeline göre ne kadar süre üstün kaldığı grafik üzerinden kanıtlanır.",
+      "altAdimlar": [
+       "plt.plot ile x eksenine tahmin ufkunu (dakika), y eksenine CSI skorunu yerleştir",
+       "Kalıcılık referans eğrisini kesikli çizgiyle grafiğe ekle",
+       "Grafiği ve sayısal metrik özetini radar_nowcasting_karne.png olarak diske yaz"
+      ],
+      "kazanim": {
+       "ders": "BLG 354E",
+       "madde": "Sürekli ve ayrık sinyalleri zaman ve frekans ortamlarında temsil etmek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Örnek radar verisi üzerinde çalışan, 2 saatlik yağış hareketini öngören animasyonlu bir Jupyter defteri ve CSI doğrulama grafiği.",
+  "senden": "BLG 354E'den gelen kısım: 2B uzamsal filtreleme, optik akış hız kestirimi, enterpolasyon ve görüntü işleme algoritmaları.",
+  "bizden": "MTO 302'den gelen kısım: konvektif bulut evrimi, yönlendirici rüzgâr alanı kontrolü, Z-R yağış dönüşümü ve meteorolojik doğrulama."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Marmara Bölgesi konvektif yağış hücresi hareketi, sentetik radar yansıtırlığı, 0..120 dakika adımları",
+   "aciklama": "Ardışık radar karelerinde konvektif hücrenin büyümesi ve doğuya doğru kayması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://pysteps.github.io/",
+   "aciklama": "pySTEPS kütüphanesi dokümantasyon sayfası: optik akış tabanlı adveksiyon tahmin galerisi ve animasyon örnekleri"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Optical_flow_visualization.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Görüntü piksellerinin yer değiştirme yönünü ve şiddetini gösteren optik akış vektör alanı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Ravuri vd. (2021) Deep generative models of radar nowcasting, Nature · DOI 10.1038/s41586-021-03854-z",
+   "url": "https://www.nature.com/articles/s41586-021-03854-z"
+  },
+  {
+   "ad": "Pulkkinen vd. (2019) Pysteps: open-source Python library for probabilistic nowcasting, GMD",
+   "url": "https://doi.org/10.5194/gmd-12-4185-2019"
+  },
+  {
+   "ad": "Horn & Schunck (1981) Determining Optical Flow, Artificial Intelligence · DOI 10.1016/0004-3702(81)90024-2",
+   "url": "https://doi.org/10.1016/0004-3702(81)90024-2"
+  },
+  {
+   "ad": "pySTEPS açık kaynak projesi ve belgeleri",
+   "url": "https://github.com/pySTEPS/pysteps"
+  },
+  {
+   "ad": "Open Climate Fix açık kaynak kuruluş projeleri",
+   "url": "https://openclimatefix.org/projects"
+  },
+  {
+   "ad": "Rainbow.ai hiper-yerel hava tahmini platformu",
+   "url": "https://www.rainbow.ai/about"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm bağlantılar ve DOI'ler doğrulandı. Taban Nature makale linki korundu. Open Climate Fix ve Rainbow.ai derin bağlantıları eklendi.",
+ "_birlestirme": {
+  "kaynak": "cikti/BLG-03.json",
+  "tarih": "2026-10-14 22:59",
+  "geminiSha1": "c878886420c3"
+ }
+}

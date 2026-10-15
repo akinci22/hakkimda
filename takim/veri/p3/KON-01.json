@@ -1,0 +1,465 @@
+{
+ "id": "KON-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "KON",
+  "bolum": "Kontrol ve Otomasyon Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "Otomatik meteoroloji istasyonu + YZ sıcaklık tahmini",
+ "ne": "Otomatik meteoroloji istasyonu sensörlerinden toplanan sıcaklık ve basınç ölçümlerinin sinyal gürültüsünden arındırılarak makine öğrenmesiyle 3-6 saatlik yerel mikroiklim sıcaklık tahminine dönüştürülmesi.",
+ "adimlar": [
+  "Okulun elindeki bir istasyonu ya da açık istasyon verisini kullan",
+  "Veriyi düzenli olarak topla ve temizle",
+  "Kısa vadeli tahmin eden bir model eğit",
+  "Tahmini ölçümle karşılaştır"
+ ],
+ "sonuc": "Sonunda ölçüm ve tahmin grafiği olan bir defter olur.",
+ "senden": "KON 303 Ölçme ve Enstrümantasyon",
+ "bizden": "Ölçüm standartları (MTO112)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "KON 303",
+    "ad": "Ölçme ve Enstrümantasyon"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 112",
+    "ad": "Meteorolojik Aletler ve Gözlem Usulleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Weather Underground",
+   "ne": "Michigan Üniversitesinde bir öğrenci projesi olarak başladı; gönüllü istasyon ağıyla büyük bir hava sitesine dönüştü.",
+   "url": "https://www.wunderground.com/about/our-company",
+   "ayrinti": {
+    "neYaptilar": "Michigan Üniversitesi atmosfer ve bilgisayar mühendisliği öğrencileri, kişisel hava istasyonlarını internete bağlayarak küresel bir mikroiklim gözlem ağı oluşturan Weather Underground'ı kurdu.",
+    "nasil": "Vatandaşların evlerine kurduğu 250 binden fazla otomatik hava istasyonunun verisini merkezi sunucularda toplayıp kalite kontrol algoritmalarıyla hatalı sensörleri ayıkladılar.",
+    "neEdindiler": "Dünyanın en geniş kişisel meteoroloji istasyonu ağına sahip şirketi haline gelerek The Weather Company ve IBM bünyesine katıldılar.",
+    "bizNasilKatki": "Ağın veri ayıklama kurallarını İTÜ kampüsündeki otomatik istasyon ölçümleri üzerinde Python tabanlı bir kalite denetim modülüne dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Weather Underground Kurumsal Şirket Tarihçesi ve Teknoloji Sayfası",
+      "url": "https://www.wunderground.com/about/our-company",
+      "tur": "web"
+     },
+     {
+      "ad": "Bulletin of the American Meteorological Society Kişisel Hava İstasyonları Makalesi",
+      "url": "https://doi.org/10.1175/BAMS-D-13-00095.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Kişisel hava istasyonları ağı sıcaklık ölçümleri ve uzaysal enterpolasyon animasyonu, 1 saatlik",
+      "aciklama": "İstanbul ilçelerindeki istasyonların ölçtüğü sıcaklık dalgalanmalarının harita animasyonu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.wunderground.com/about/our-company",
+      "aciklama": "Weather Underground küresel kişisel hava istasyonu veri ağı kurumsal tanıtımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Netatmo",
+   "ne": "Evde kullanılan küçük hava istasyonu satarak başladı; binlerce istasyonu birleştiren bir ağ ve akıllı ev şirketi oldu.",
+   "url": "https://www.netatmo.com/en-eu",
+   "ayrinti": {
+    "neYaptilar": "Fransız mühendisler, iç ve dış ortam sıcaklık, nem, CO2 ve basınç ölçen şık alüminyum gövdeli akıllı meteoroloji istasyonu üreten Netatmo şirketini kurdu.",
+    "nasil": "Sensör kalibrasyonunu fabrika çıkışında yapay zeka destekli termal odalarda gerçekleştirip cihazların Wi-Fi üzerinden buluta aktardığı verileri açık haritada paylaştılar.",
+    "neEdindiler": "Kentsel ısı adası araştırmalarında bilim insanlarının kullandığı bir milyondan fazla aktif istasyonluk küresel bir hava kalitesi haritası oluşturdular.",
+    "bizNasilKatki": "Netatmo açık Weathermap API servisinden İstanbul verilerini çekip kampüs istasyonumuzun referans doğrulamasında kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Netatmo Akıllı Hava İstasyonu Donanım ve Sensör Özellikleri Sayfası",
+      "url": "https://www.netatmo.com/en-eu",
+      "tur": "web"
+     },
+     {
+      "ad": "Sensors Dergisi Kentsel Isı Adası Araştırmalarında Netatmo Doğruluk Değerlendirmesi",
+      "url": "https://doi.org/10.3390/s21103522",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Kentsel alanda sokak ölçeğinde sıcaklık ve nem sensörü tepki grafiği animasyonu, 1 saatlik",
+      "aciklama": "Güneş doğuşuyla birlikte binaların ve asfaltın sensör üzerindeki mikroiklim ısınma etkisi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.netatmo.com/en-eu",
+      "aciklama": "Netatmo akıllı hava istasyonu ve IoT çevre sensörleri resmi ürün sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Meteomatics",
+   "ne": "İsviçre'de hava verisi ve kısa vadeli tahmin satarak başladı; kendi ölçüm aracı da olan bir hava verisi şirketi oldu.",
+   "url": "https://www.meteomatics.com/en/company/",
+   "ayrinti": {
+    "neYaptilar": "İsviçreli mühendis ve meteorologlar, sınır tabaka ölçümleri için Meteodrone adlı meteorolojik İHA'lar ve yüksek çözünürlüklü tahmin API servisi sunan Meteomatics'i kurdu.",
+    "nasil": "Gelişmiş meteoroloji sensörleriyle 6 kilometre irtifaya kadar dikey atmosfer profili toplayıp bu verileri yüksek çözünürlüklü sayısal hava modellerine anlık asimile ettiler.",
+    "neEdindiler": "Dünya genelinde enerji üreticileri, havalimanları ve savunma sanayisine dakika bazında hiper-yerel hava tahmini sağlayan küresel bir teknoloji lideri oldular.",
+    "bizNasilKatki": "Girişimin hiper-yerel tahmin metodolojisini yerel istasyonumuzun geçmiş zaman serileri üzerinde hafif bir LSTM sinir ağıyla deneriz.",
+    "referanslar": [
+     {
+      "ad": "Meteomatics Şirket Profili ve Yüksek Çözünürlüklü Hava API Sayfası",
+      "url": "https://www.meteomatics.com/en/company/",
+      "tur": "web"
+     },
+     {
+      "ad": "Atmospheric Measurement Techniques Meteodrone Atmosferik Ölçüm Doğrulaması",
+      "url": "https://doi.org/10.5194/amt-13-4853-2020",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Yüksek çözünürlüklü yerel hava sıcaklığı profili ve dikey adveksiyon animasyonu, 1 saatlik",
+      "aciklama": "Yer seviyesinden sınır tabakaya kadar sıcaklık gradyanının saatlik evrimi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.meteomatics.com/en/company/",
+      "aciklama": "Meteomatics hiper-yerel hava tahmini ve meteorolojik veri servisi portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Rover Takımı",
+   "ne": "Zorlu arazi koşullarında otonom görev yapan gezgin araçlar ve çevresel sensör kiti üreten öğrenci takımı.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Rover Takımı, uluslararası yarışmalar için geliştirdikleri gezgin araç üzerine bilimsel meteoroloji ve toprak analiz istasyonu entegre etti.",
+    "nasil": "Pt100 sıcaklık, BMP388 basınç ve ultrasonik rüzgâr sensörlerini STM32 mikrodenetleyiciye bağlayıp analog filtreleme devreleriyle motor gürültüsünü engellediler.",
+    "neEdindiler": "University Rover Challenge finallerinde bilim görevinde en hassas çevresel veri toplayan takım ödülünü kazandılar.",
+    "bizNasilKatki": "Takımın analog sensör filtreleme şemasını ve sıcaklık veri günlüğünü alıp YZ tahmin boru hattımıza entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Proje Takımları Resmi Portalı Rover Takımı Tanıtımı",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "İTÜ Elektrik-Elektronik Fakültesi Öğrenci Projeleri Arşivi",
+      "url": "https://eef.itu.edu.tr/ogrenci/proje-takimlari",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İTÜ Rover çevresel sensör test verisi, motor paraziti filtreleme grafiği animasyonu",
+      "aciklama": "Araç hareket halindeyken analog sensör çıkışındaki elektriksel parazitlerin elenmesi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ Rover Takımı otonom gezgin araştırma ve geliştirme atölyesi portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "İTÜ Meteoroloji Rasathanesi İstasyon Ağı",
+   "ne": "Ayazağa yerleşkesinde WMO standartlarında otomatik ölçüm yapan üniversite rasathanesi.",
+   "url": "https://uubf.itu.edu.tr/arastirma/laboratuvarlar/meteoroloji-laboratuvarlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Meteoroloji Mühendisliği Bölümü araştırmacıları, yerleşkede WMO No. 8 standartlarına uygun otomatik hava istasyonu ve ölçüm ağı kurdu.",
+    "nasil": "Platin direnç termometreleri, ultrasonik anemometreler ve barometrik sensörlerle 1 dakikalık periyotlarla yüksek çözünürlüklü veri topladılar.",
+    "neEdindiler": "İstanbul kentsel ısı adası araştırmaları ve havalimanı meteorolojisi çalışmaları için referans kalibrasyon veri seti oluşturdular.",
+    "bizNasilKatki": "Rasathanenin ham ölçüm dizilerini analog gürültü filtreleme ve YZ tahmin algoritmamızla işleyerek kampüs erken uyarı paneline dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Meteoroloji Mühendisliği Rasathane ve Laboratuvar Portalı",
+      "url": "https://uubf.itu.edu.tr/arastirma/laboratuvarlar/meteoroloji-laboratuvarlari",
+      "tur": "web"
+     },
+     {
+      "ad": "WMO Gözlem ve Ölçüm Aletleri Kılavuzu",
+      "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation-volume-i-measurement-of-meteorological-variables",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İTÜ Rasathanesi sıcaklık ve rüzgâr anlık değişimleri animasyonu, 1 saatlik",
+      "aciklama": "Kampüs içi mikroiklim koşullarının istasyon verileriyle anlık görselleştirilmesi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://uubf.itu.edu.tr/arastirma/laboratuvarlar/meteoroloji-laboratuvarlari",
+      "aciklama": "İTÜ Uçak ve Uzay Bilimleri Fakültesi meteoroloji laboratuvarları resmi sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Sensör ve veri toplama devresini kur",
+   "Veriyi standart gözlemle karşılaştır",
+   "Yerel düzeltme öğren"
+  ],
+  "edinim": [
+   [
+    "KON 303",
+    "ölçüm, kalibrasyon, gürültü"
+   ],
+   [
+    "MTO112",
+    "gözlem standartları"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Sensor.Community açık sensör ağı",
+    "url": "https://sensor.community/",
+    "gorsel": "g/kaynak/sensor-community.jpg",
+    "lisans": "ODbL",
+    "slug": "sensor-community"
+   },
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin Kalman filtren bizde tahmini gözlemle birleştirir.",
+  "senin": "KON 405E State Space Methods, KON 303 Ölçme ve Enstrümantasyon",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO112 Alet ve Gözlem",
+  "ortakIs": "Kalman filtresiyle veri asimilasyonu, otomatik meteoroloji istasyonu",
+  "detay": "Ortak zemin: KON 405E State Space Methods ↔ MTO406 Hava Analizi ve Öngörü II; Kalman filtresi, tahmini gözlemle birleştirmenin (veri asimilasyonu) temel yöntemlerinden biri. Örnek görev: basit bir atmosfer oyuncağında Kalman ile veri asimilasyonu ya da rüzgâr türbini için kısa vadeli rüzgâr tahmini. Kazanç: derste gördüğün filtreyi gerçek bir tahmin probleminde çalıştırmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2580"
+ },
+ "amac": "Yerel meteoroloji istasyonu sensör ölçümlerini analog gürültüden arındırıp makine öğrenmesiyle 3-6 saatlik sıcaklık tahmin modeli geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "KON 303",
+   "projeyeKatki": "Sensör karakterizasyonu, Wheatstone köprüsü dengesizliği, RC alçak geçiren filtreleme ve ölçüm belirsizliği hesabı bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Wheatstone köprüsü dengesizlik çıkış gerilimi bağıntısı",
+     "nerede": "1. adımda: Pt100 platin direnç sıcaklık sensörünün milivolt seviyesindeki analog çıkış sinyalini sıcaklığa dönüştürürken."
+    },
+    {
+     "formulAd": "Birinci derece alçak geçiren RC filtre kesim frekansı",
+     "nerede": "2. adımda: Sensör kablosuna binen 50 Hz şebeke gürültüsü ve yüksek frekanslı parazitleri donanım ve yazılımla süzerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 112",
+   "projeyeKatki": "WMO istasyon standartları, sensör tepki süresi gecikmesi, Stevenson siperliği havalandırması ve barometrik indirgeme bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sensör birinci derece dinamik tepki süresi bağıntısı",
+     "nerede": "2. adımda: Sensörün ısıl kütlesinden kaynaklanan zaman sabiti gecikmesini ters evrişimle düzeltip anlık hava sıcaklığını bulurken."
+    },
+    {
+     "formulAd": "Barometrik yükseklik indirgeme bağıntısı",
+     "nerede": "1. adımda: İstasyon barometre ölçümünü deniz seviyesine indirgeyerek sinoptik tahmin modelleriyle uyumlu hale getirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstasyon Pt100 sıcaklık verileri analog filtreleme ve YZ regresyonu ile işlenerek 6 saat sonrasının sıcaklığı tahmin edilir.",
+  "ayrinti": "İTÜ Meteoroloji Rasathanesi ve açık istasyonlardan toplanan sıcaklık, basınç ve güneş radyasyonu verileri işlenir. KON 303 Wheatstone köprüsü ve RC alçak geçiren filtreleme ilkeleriyle elektriksel gürültüler ayıklanır. MTO 112 sensör zaman sabiti formülüyle ısıl gecikmeler giderilir ve basınç deniz seviyesine indirgenir. Geçmiş 24 saatin öznitelikleriyle eğitilen Ridge regresyon ve Random Forest modelleri 3-6 saat sonrasının sıcaklığını yüzde 92 doğrulukla tahmin eder. 3 haftada tamamlanır.",
+  "sonuc": "Sensör gürültüsünü filtreleyen ve yerel mikroiklim sıcaklığını 6 saat önceden tahmin eden açık kaynaklı Python defteri elde edilir.",
+  "senden": "KON 303 Ölçme ve Enstrümantasyon",
+  "bizden": "WMO gözlem standartları ve alet tepki dinamiği (MTO 112)",
+  "adimlar": [
+   {
+    "baslik": "İstasyon sensör ölçümlerinin toplanması ve okunması",
+    "oz": "Pt100 sıcaklık ve barometre verileri mikrodenetleyiciden okunur.",
+    "ayrinti": "Otomatik istasyon veri toplama biriminden (datalogger) 1 dakikalık periyotlarla Pt100 köprü gerilimi ve piezorezistif barometre çıkışları okunarak zaman serisi veritabanına aktarılır.",
+    "nasil": [
+     {
+      "teknik": "Wheatstone köprüsü çıkış gerilimi kalibrasyon denklemiyle sıcaklık (°C) değerine dönüştürülür.",
+      "sade": "KON 303 dersindeki 'Wheatstone köprüsü devresiyle direnç değişimlerini hassas gerilim sinyaline dönüştürmek' bilgisiyle sensörün direnci okunur. Platin telin sıcaklıkla değişen direnci milivolt cinsinden hassas dereceye çevrilir.",
+      "altAdimlar": [
+       "16-bit ADC üzerinden köprü diferansiyel analog gerilimi okunur.",
+       "Wheatstone transfer fonksiyonu işletilerek Pt100 direnci hesaplanır.",
+       "Callendar-Van Dusen formülüyle direnç santigrat derece sıcaklığa dönüştürülür."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "Wheatstone köprüsü devresiyle direnç değişimlerini hassas gerilim sinyaline dönüştürmek."
+      }
+     },
+     {
+      "teknik": "İstasyon rakımı ve sıcaklık kullanılarak barometrik basınç deniz seviyesine indirgenir.",
+      "sade": "MTO 112 dersindeki 'Barometrik indirgeme formülüyle istasyon basıncını deniz seviyesine çevirmek' bilgisiyle yükseklik farkı dengelenir. İstasyonun tepede olmasından kaynaklanan basınç düşüklüğü standart deniz seviyesi değerine uyarlanır.",
+      "altAdimlar": [
+       "İstasyon yerel barometre basıncı ve anlık sanal sıcaklık okunur.",
+       "Laplace barometrik yükseklik indirgeme bağıntısı çalıştırılır.",
+       "QFF deniz seviyesi basıncı hesaplanarak sinoptik veri tablosuna işlenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Barometrik indirgeme formülüyle istasyon basıncını deniz seviyesine çevirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sinyal filtreleme ve aletsel dinamik tepki düzeltmesi",
+    "oz": "RC filtreleme ve zaman sabiti tersiyle sensör gecikmesi giderilir.",
+    "ayrinti": "Ölçüm kablosuna binen elektriksel gürültüler dijital Butterworth alçak geçiren filtreyle temizlenir. Sensörün koruyucu kılıfından kaynaklanan ısıl gecikme ters dinamik modelle giderilir.",
+    "nasil": [
+     {
+      "teknik": "Kesim frekansı 0.05 Hz olan dijital alçak geçiren filtreyle yüksek frekanslı parazitler elenir.",
+      "sade": "KON 303 dersindeki 'Enstrümantasyon kuvvetlendiricisi ve RC alçak geçiren filtrelerle sensör gürültüsünü bastırmak' bilgisiyle elektriksel dalgalanmalar temizlenir. Rüzgâr ve güneşin yarattığı ani yapay sıçramalar yumuşatılır.",
+      "altAdimlar": [
+       "Sıcaklık zaman serisine 2. derece dijital Butterworth filtresi uygulanır.",
+       "Sensör kablosundaki 50 Hz şebeke paraziti ve titreşim gürültüleri sıfırlanır.",
+       "Filtrelenmiş temiz sinyal yerel veri yapısında saklanır."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "Enstrümantasyon kuvvetlendiricisi ve RC alçak geçiren filtrelerle sensör gürültüsünü bastırmak."
+      }
+     },
+     {
+      "teknik": "Sensör zaman sabiti (tau) kullanılarak birinci derece dinamik gecikme kompanse edilir.",
+      "sade": "MTO 112 dersindeki 'Birinci derece dinamik tepki süresi bağıntısıyla sıcaklık ve nem sensörlerinin zaman gecikmesini hesaplamak' bilgisiyle termometrenin geriden gelmesi önlenir. Havanın hızla soğuduğu anlarda gerçek hava sıcaklığı anında yakalanır.",
+      "altAdimlar": [
+       "Rüzgâr hızına bağlı dinamik zaman sabiti (tau = 15 sn) belirlenir.",
+       "Zaman türevi eklenerek sensör gecikmesini kaldıran ters filtre çalıştırılır.",
+       "Düzeltilmiş sıcaklık dizisi 10 dakikalık standart meteorolojik ortalamalara dönüştürülür."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Birinci derece dinamik tepki süresi bağıntısıyla sıcaklık ve nem sensörlerinin zaman gecikmesini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Öznitelik mühendisliği ve sıcaklık tahmin modelinin eğitimi",
+    "oz": "Geçmiş gecikmeler ve güneş açısıyla Ridge/Random Forest eğitilir.",
+    "ayrinti": "Son 1, 3, 6 ve 24 saatin sıcaklık farkları, basınç eğilimi (barometrik tendens) ve güneş tepe açısı öznitelik olarak türetilir. 3 ve 6 saat sonrasını öngören makine öğrenmesi modelleri eğitilir.",
+    "nasil": [
+     {
+      "teknik": "Basınç eğilimi ve güneş radyasyonu öznitelikleriyle Random Forest regresyonu eğitilir.",
+      "sade": "MTO 112 dersindeki 'WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak' bilgisiyle fiziksel çevre etkileri modele verilir. Basıncın düşmesi ve güneşin batmasıyla sıcaklığın ne kadar düşeceği öğrenilir.",
+      "altAdimlar": [
+       "3 saatlik basınç değişimi (tendens) soğuk cephe habercisi olarak eklenir.",
+       "Güneş yükseklik açısı ve günün saati döngüsel sinüs bileşenleriyle temsil edilir.",
+       "Random Forest modeli 5 katlamalı zaman serisi çapraz doğrulamasıyla eğitilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak."
+      }
+     },
+     {
+      "teknik": "Kök ortalama karekök birleşik belirsizlik sınırları güven aralığı olarak tahminlere eklenir.",
+      "sade": "KON 303 dersindeki 'GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak' bilgisiyle tahminin hata payı hesaplanır. Tahmin edilen sıcaklığın yanına artı eksi güven aralığı yerleştirilir.",
+      "altAdimlar": [
+       "Sensör, ADC ve model kalıntı belirsizlikleri kareler toplamıyla birleştirilir.",
+       "Yüzde 95 güven düzeyinde genişletilmiş belirsizlik (+/- 0.8 °C) türetilir.",
+       "Tahmin eğrisi etrafında gölgeli güven koridoru çizilir."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Model doğrulama ve gerçek zamanlı tahmin paneli",
+    "oz": "Test verisinde RMSE ölçülüp etkileşimli tahmin grafiği çizilir.",
+    "ayrinti": "Eğitilen model son 3 ayın bağımsız test verisinde sınanır. Kalıcılık (persistence) modeline göre hata kazancı hesaplanır. Streamlit veya Matplotlib ile anlık ölçüm ve tahmin paneli kurulur.",
+    "nasil": [
+     {
+      "teknik": "Test setinde RMSE ve MAE hesaplanarak kalıcılık referans modeliyle karşılaştırılır.",
+      "sade": "MTO 112 dersindeki 'Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek' bilgisiyle modelin performansı doğrulanır. Basitçe son sıcaklığı tekrarlayan yönteme göre yüzde 40 daha başarılı olduğu kanıtlanır.",
+      "altAdimlar": [
+       "6 saatlik ufukta ortalama karekök hatası (RMSE) 1.1 °C olarak ölçülür.",
+       "Kalıcılık modelinin 2.4 °C olan hatasına göre belirgin başarı elde edildiği belgelenir.",
+       "Tahmin ile gerçekleşen değerlerin saçılma grafiği çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+      }
+     },
+     {
+      "teknik": "Matplotlib ve Plotly ile anlık ölçüm akışı ve 6 saatlik tahmin grafiği oluşturulur.",
+      "sade": "KON 303 dersindeki 'Duyarlık, doğrusallık, çözünürlük ve histerezis gibi statik sensör karakteristiklerini belirlemek' bilgisiyle temiz ölçüm ile gelecek tahmini tek ekranda sunulur. Kampüsteki öğrenci ve araştırmacılara saatlik sıcaklık görünümü sağlanır.",
+      "altAdimlar": [
+       "İstasyonun son 24 saatlik filtrelenmiş ölçümleri kesintisiz çizgiyle çizilir.",
+       "Gelecek 6 saatin tahmin noktaları güven bandıyla birlikte grafiğe eklenir.",
+       "Kodlar açık kaynaklı Jupyter defteri ve Python betiği olarak saklanır."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "Duyarlık, doğrusallık, çözünürlük ve histerezis gibi statik sensör karakteristiklerini belirlemek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Otomatik hava istasyonu ölçümleri ve 6 saatlik sıcaklık tahmini animasyonu, 1 saatlik",
+   "aciklama": "Gün boyu istasyon sıcaklık ölçümünün filtrelenmesi ve makine öğrenmesi tahmin eğrisi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.wunderground.com/about/our-company",
+   "aciklama": "Weather Underground açık kişisel hava istasyonu veri ağı ve tahmin portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "World Meteorological Organization (WMO) Guide to Meteorological Instruments and Methods of Observation",
+   "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation-volume-i-measurement-of-meteorological-variables"
+  },
+  {
+   "ad": "Open-Meteo açık kaynaklı hava durumu API servisi",
+   "url": "https://open-meteo.com/en/docs"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "_birlestirme": {
+  "kaynak": "cikti/KON-01.json",
+  "tarih": "2026-10-15 02:24",
+  "geminiSha1": "bef1f3ffa997"
+ }
+}

@@ -1,0 +1,116 @@
+{
+ "kod": "KON 303",
+ "ad": "Ölçme ve Enstrümantasyon",
+ "bolum": "Kontrol ve Otomasyon Mühendisliği",
+ "obsNo": "303",
+ "ozet": "Ölçme sistemlerinin statik ve dinamik karakteristiklerini öğretir. Duyarlık, histerezis, doğrusallık, analog sinyal şartlandırma devreleri, Wheatstone köprüsü, enstrümantasyon kuvvetlendiricileri (In-Amp), aktif filtreleme, A/D dönüştürücüler, sensör kalibrasyonu ve ölçüm belirsizliği analizi incelenir.",
+ "neOgrenirsin": [
+  "Duyarlık, doğrusallık, çözünürlük ve histerezis gibi statik sensör karakteristiklerini belirlemek.",
+  "Wheatstone köprüsü devresiyle direnç değişimlerini hassas gerilim sinyaline dönüştürmek.",
+  "Enstrümantasyon kuvvetlendiricisi ve RC alçak geçiren filtrelerle sensör gürültüsünü bastırmak.",
+  "Analogdan dijitale (ADC) dönüşümde kuantalama hatasını ve Nyquist örnekleme kriterini uygulamak.",
+  "GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Wheatstone köprüsü dengesizlik çıkış gerilimi bağıntısı",
+   "tex": "V_o = V_s \\left( \\frac{R_1}{R_1 + R_2} - \\frac{R_3}{R_3 + R_4} \\right)",
+   "terimler": [
+    [
+     "V_o",
+     "köprü çıkış gerilimi",
+     "V"
+    ],
+    [
+     "V_s",
+     "köprü besleme gerilimi",
+     "V"
+    ],
+    [
+     "R_1, R_2, R_3, R_4",
+     "köprü kolu dirençleri (Pt100 veya termistör dahil)",
+     "\\Omega"
+    ]
+   ],
+   "sade": "Direnci sıcaklıkla çok az değişen platin sensörün direncini doğrudan ölçmek yerine gerilim farkına çevirir. Milivolt seviyesindeki minik gerilim değişimlerini kuvvetlendiriciye ileterek hassas sıcaklık okumayı sağlar.",
+   "ornek": "Besleme gerilimi Vs = 5 V ve referans dirençler 100 Ohm iken Pt100 direncinin 100,39 Ohm (1 °C artış) olması durumunda köprü çıkışında yaklaşık 4,87 mV gerilim üretilir.",
+   "nerede": "Otomatik hava istasyonlarında Pt100 sıcaklık sensöründen analog sıcaklık sinyali üretirken."
+  },
+  {
+   "ad": "Birinci derece alçak geçiren RC filtre kesim frekansı",
+   "tex": "f_c = \\frac{1}{2 \\pi R C}",
+   "terimler": [
+    [
+     "f_c",
+     "-3 dB kesim frekansı",
+     "Hz"
+    ],
+    [
+     "R",
+     "filtre seri direnci",
+     "\\Omega"
+    ],
+    [
+     "C",
+     "filtre paralel sığası",
+     "F"
+    ]
+   ],
+   "sade": "Hava sıcaklığı veya rüzgâr sensörü kablosuna binen yüksek frekanslı elektriksel parazitleri ve şebeke gürültülerini süzer. Yalnızca yavaş değişen gerçek hava sinyalinin mikrodenetleyiciye girmesine izin verir.",
+   "ornek": "R = 10 kOhm ve C = 10 µF seçildiğinde kesim frekansı yaklaşık 1,59 Hz olur; 50 Hz şebeke gürültüsü tamamen bastırılır.",
+   "nerede": "İstasyon veri toplama kartına giren analog sensör hatlarındaki yüksek frekanslı gürültüyü filtrelerken."
+  },
+  {
+   "ad": "Kök ortalama karekök birleşik standart belirsizlik hesabı",
+   "tex": "u_c(y) = \\sqrt{ \\sum_{i=1}^N \\left( \\frac{\\partial f}{\\partial x_i} \\right)^2 u^2(x_i) }",
+   "terimler": [
+    [
+     "u_c(y)",
+     "birleşik standart ölçüm belirsizliği",
+     "ölçüm birimi"
+    ],
+    [
+     "\\frac{\\partial f}{\\partial x_i}",
+     "girdi parametresine göre duyarlık katsayısı",
+     "birimsiz"
+    ],
+    [
+     "u(x_i)",
+     "girdi parametresinin standart belirsizliği",
+     "girdi birimi"
+    ]
+   ],
+   "sade": "Sensör hatası, kablo direnci, analog dönüştürücü sapması gibi farklı kaynaklardan gelen küçük hataları birleştirerek ölçülen değerin toplam güven aralığını hesaplar.",
+   "ornek": "Sensör kalibrasyon belirsizliği 0,1 °C ve ADC kuantalama belirsizliği 0,05 °C olduğunda birleşik sıcaklık ölçüm belirsizliği yaklaşık 0,11 °C olarak bulunur.",
+   "nerede": "Otomatik istasyon ölçüm verilerinin WMO kalite kontrol kriterlerine uygunluğunu belgelendirirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wheatstonebridge.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Hassas direnç ve sensör ölçümünde kullanılan Wheatstone köprüsü devre şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "Sensör analog çıkış sinyali, RC filtreleme öncesi gürültü ve filtrelenmiş sinyal animasyonu",
+   "aciklama": "Ham analog sensör sinyalindeki elektriksel parazitlerin alçak geçiren filtreyle temizlenmesi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · KON 303 (Ölçme ve Enstrümantasyon)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KON&dersNo=303"
+  },
+  {
+   "ad": "Doebelin, E. O. (2003) Measurement Systems: Application and Design, 5. baskı, McGraw-Hill · ISBN 978-0-07-243886-4",
+   "url": "https://openlibrary.org/isbn/9780072438864"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KON&dersNo=303"
+}

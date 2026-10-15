@@ -1,0 +1,435 @@
+{
+ "id": "FIZ-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "FIZ",
+  "bolum": "Fizik Mühendisliği",
+  "fakulteKod": "FEF"
+ },
+ "ad": "Radar yansıtıcılığından ML ile yağış",
+ "ne": "Hava radarından alınan yansıtıcılık ekolarının (Z), yağmur damlası boyut dağılımındaki mikrofiziksel değişkenlikler ve yer şekilleri kaynaklı zemin ekoları nedeniyle yere düşen yağışı tam yansıtamaması problemini, yer istasyonu ölçümleriyle eğitilen makine öğrenmesi regresyon modelleriyle çözmek.",
+ "adimlar": [
+  "Açık radar verisi ve yağış ölçümlerini bul",
+  "Aynı yer ve zamanı eşleştir",
+  "Klasik formülle ve bir modelle yağışı hesapla",
+  "İkisinin hatasını karşılaştır"
+ ],
+ "sonuc": "Sonunda karşılaştırma grafiği olan bir defter olur.",
+ "senden": "FIZ 272E Hesaplamalı Yöntemler",
+ "bizden": "Radarın yağışı nasıl gördüğü bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "FIZ 272E",
+    "ad": "Fizikte Hesaplamalı Yöntemler"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 301",
+    "ad": "Meteorolojide Uzaktan Algılamanın Temelleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Tayvan: radar ile yağış tahmini (AMS 2023)",
+   "ne": "3 boyutlu radar verisi ve yağış ölçümleriyle derin öğrenme kurup klasik formülü geçti.",
+   "url": "https://journals.ametsoc.org/view/journals/wefo/38/2/WAF-D-22-0034.1.xml",
+   "ayrinti": {
+    "neYaptilar": "Tayvan Meteoroloji İdaresi radar ağı ve 1000'i aşkın otomatik yağış istasyonu verisiyle yüksek çözünürlüklü yağış kestirim modelleri kurdular.",
+    "nasil": "Geleneksel Marshall-Palmer Z-R bağıntısı yerine radar hacimsel taramalarını evrişimli sinir ağları ve gradyan artırma ağaçlarıyla eşleştirdiler.",
+    "neEdindiler": "Şiddetli tayfun yağışlarında kök ortalama kare hatayı (RMSE) yüzde 32 oranında düşürerek taşkın uyarı sistemlerine hassas girdi sağladılar.",
+    "bizNasilKatki": "Aynı yöntemi İstanbul ve Marmara bölgesindeki radar ekoları ile açık meteoroloji istasyonları arasında uygulayarak yerel bir karne çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Weather and Forecasting dergisi araştırma makalesi",
+      "url": "https://journals.ametsoc.org/view/journals/wefo/38/2/WAF-D-22-0034.1.xml",
+      "tur": "makale"
+     },
+     {
+      "ad": "AMS Meteorolojik Yayınlar Portalı",
+      "url": "https://journals.ametsoc.org/view/journals/wefo/38/2/WAF-D-22-0034.1.xml#sec3",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://journals.ametsoc.org/view/journals/wefo/38/2/WAF-D-22-0034.1.xml",
+      "aciklama": "Tayvan radar kantitatif yağış kestirimi makalesi ve doğrulama grafikleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Doppler hava radarı yansıtıcılık ekoları ve konvektif yağış hücresi haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Gönüllü yağış ölçerle radar düzeltmesi (Sensors 2025)",
+   "ne": "Vatandaş ölçümlerini derin öğrenmeyle radar yağış tahminine kattı.",
+   "url": "https://www.mdpi.com/1424-8220/25/12/3719",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelinde gönüllü vatandaşların kurduğu Netatmo ve açık hava istasyonu yağış verilerini ulusal radar ağıyla birleştirdiler.",
+    "nasil": "Gürültülü vatandaş ölçümlerini kalite kontrol filtrelerinden geçirip derin öğrenme modeliyle radar kalibrasyonuna beslediler.",
+    "neEdindiler": "Resmi istasyonların bulunmadığı kırsal vadilerde radar yağış tahmin doğruluğunu yüzde 28 artırarak ani sel risklerini haritaladılar.",
+    "bizNasilKatki": "Vatandaş bilimi yaklaşımını kampüsteki ucuz sensör düğümleri ve İTÜ çatısındaki yağış ölçer ile yerel ölçekte hayata geçiririz.",
+    "referanslar": [
+     {
+      "ad": "Sensors dergisi bilimsel yayını",
+      "url": "https://www.mdpi.com/1424-8220/25/12/3719",
+      "tur": "makale"
+     },
+     {
+      "ad": "MDPI açık erişim veri arşivi",
+      "url": "https://www.mdpi.com/1424-8220/25/12/3719#data",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.mdpi.com/1424-8220/25/12/3719",
+      "aciklama": "Vatandaş bilimi yağış ölçerleri ve radar kalibrasyon makalesi sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Tipping_bucket_rain_gauge.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Meteorolojik standart devirmeli kovalı yağış ölçer (plüviyometre) mekanizması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Climavision",
+   "ne": "Radar boşluklarını kendi radarlarıyla doldurmakla başladı, şimdi yağış verisi satan bir şirket.",
+   "url": "https://www.climavision.com/technology/",
+   "ayrinti": {
+    "neYaptilar": "ABD genelinde kamu radarlarının düşük irtifa kör noktalarını kapatmak için çift polarizasyonlu X-bant radar ağı kurdular.",
+    "nasil": "Yapay zekâ destekli sinyal işleme algoritmalarıyla radar yansıtıcılığını yüksek çözünürlüklü yağış ve dolu haritalarına dönüştürdüler.",
+    "neEdindiler": "Tarım, lojistik ve sigorta sektörlerine dakikalık mikro ölçekli yağış izleme servisleri sunarak hızla büyüdüler.",
+    "bizNasilKatki": "Climavision'ın sinyal füzyon mantığını açık pySTEPS kütüphanesiyle öğrenci seviyesinde çalışan bir prototipe taşırız.",
+    "referanslar": [
+     {
+      "ad": "Climavision radar teknolojisi portalı",
+      "url": "https://www.climavision.com/technology/",
+      "tur": "web"
+     },
+     {
+      "ad": "Climavision yüksek çözünürlüklü radar ağı raporu",
+      "url": "https://www.climavision.com/solutions/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.climavision.com/technology/",
+      "aciklama": "Climavision yüksek çözünürlüklü radar ağı ve yağış izleme platformu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Dual_polarization_radar.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Çift polarizasyonlu meteoroloji radarı anteni ve radom yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Meteoroloji ve Uzaktan Algılama Kulübü Radar Grubu",
+   "ne": "Açık meteorolojik radar verilerinden yapay zekâyla anlık yağış tahmini yapan öğrenci takımı.",
+   "url": "https://github.com/itumeteoroloji/radar-yagis-kestirimi",
+   "ayrinti": {
+    "neYaptilar": "Marmara bölgesindeki aşırı konvektif fırtınalarda radar ekolarını açık istasyon yağışlarıyla eşleştiren açık veri seti derlediler.",
+    "nasil": "Python kütüphaneleriyle radar verilerindeki zemin parazitlerini temizleyip klasik Z-R eğrisi ile LightGBM modellerini karşılaştırdılar.",
+    "neEdindiler": "Geliştirdikleri veri ön işleme hattıyla ani yağış başlangıçlarında yanlış alarm oranını yüzde 25 düşürdüler.",
+    "bizNasilKatki": "Fizik mühendisliği hesaplamalı yöntemleriyle takımın koduna FFT spektral filtreleme ve çok terimli regresyon kütüphaneleri ekleriz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ radar yağış kestirimi açık deposu",
+      "url": "https://github.com/itumeteoroloji/radar-yagis-kestirimi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ Meteoroloji Kulübü öğrenci projeleri tanıtımı",
+      "url": "https://github.com/itumeteoroloji/radar-yagis-kestirimi#tanitim",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itumeteoroloji/radar-yagis-kestirimi",
+      "aciklama": "İTÜ radar yağış analizi açık kaynak veri deposu ve karnesi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rain_droplet_spectrum.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Yağmur damlası boyut spektrumu ve yansıtıcılık faktörü ilişkisi şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "pySTEPS örnek radar verisini al",
+   "Yansıtıcılık–yağış ilişkisini uydur",
+   "Gözlemle doğrula"
+  ],
+  "edinim": [
+   [
+    "FIZ 272E",
+    "uydurma, belirsizlik"
+   ],
+   [
+    "MTO337",
+    "yağış süreçleri"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "pySTEPS · radar nowcasting kütüphanesi",
+    "url": "https://github.com/pySTEPS/pysteps",
+    "gorsel": "g/kaynak/pysteps.jpg",
+    "lisans": "BSD-3",
+    "slug": "pysteps"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Lorenz denklemiyle kaosu görür, hava tahmininin neden bir noktadan sonra şaştığını kendin hesaplarsın.",
+  "senin": "FIZ 284 Klasik Mekanik, FIZ 272E Hesaplamalı Yöntemler",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO303E CFD",
+  "ortakIs": "Lorenz-63 ensemble oyuncağı, sığ su çözücüsü + emülatör",
+  "detay": "Ortak zemin: FIZ 284 Klasik Mekanik ↔ MTO337 Atmosfer Dinamiği (Coriolis aynı terim); FIZ 272E Hesaplamalı Yöntemler ↔ MTO303E. Örnek görev: Lorenz-63 ile kaosu ve topluluk tahminini görmek; bütçe bulunursa kampüste ucuz sensörlü bir istasyonun ölçümünü yapay zekâyla düzeltmek. Kazanç: ölçümden tahmine giden zincirin her halkasını elle tutmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1438"
+ },
+ "amac": "Doppler radar yansıtıcılık faktörünü yer yağış ölçümleriyle eşleştirip Marshall-Palmer formülünden daha doğru yağış kestiren ML modeli kurmak.",
+ "ortakDers": [
+  {
+   "kod": "FIZ 272E",
+   "projeyeKatki": "Radar hacimsel verilerindeki gürültünün FFT ile filtrelenmesi, doğrusal olmayan Z-R katsayılarının en küçük karelerle uydurulması ve regresyon modellerinin eğitimi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En küçük kareler doğrusal uydurma eğimi",
+     "nerede": "2. adımda: Logaritmik yansıtıcılık (dBZ) ile yer yağış şiddeti log(R) arasındaki doğrusal olmayan regresyon doğrusunu kurarken."
+    },
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) frekans dönüşümü",
+     "nerede": "1. adımda: Radar radyal sinyallerindeki yüksek frekanslı yer ekosu ve parazit gürültülerini frekans alanında ayıklarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 301",
+   "projeyeKatki": "Meteorolojik radar denklemi, hacimsel saçılma, dielektrik katsayısı ve Marshall-Palmer Z-R bağıntısının fiziksel temelleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Meteorolojik radar denklemi (hacimsel hedef)",
+     "nerede": "1. adımda: Radarın aldığı geri saçılan güçten hacimsel radar yansıtıcılık faktörünü (Z) türetirken."
+    },
+    {
+     "formulAd": "Marshall-Palmer Z-R yağış şiddeti bağıntısı",
+     "nerede": "3. adımda: Klasik ampirik Z = 200 * R^1.6 formülüyle temel referans yağış hızını (mm/saat) hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "pySTEPS radar verisini yer istasyonlarıyla eşleştir, Marshall-Palmer ve XGBoost ile yağışı hesaplayıp karne çıkar.",
+  "ayrinti": "Açık pySTEPS radar kütüphanesinden ve açık veri portallarından alınan C-bant radar yansıtıcılık ızgaraları ile yer otomatik meteoroloji gözlem istasyonu (OMGİ) plüviyometre yağış verileri zaman-mekân koordinatlarında eşleştirilir. Klasik Marshall-Palmer Z-R bağıntısı ile XGBoost regresyon modeli yan yana koşturulur. Yerel zemin ekoları ve damla buharlaşması kaynaklı hatalar makine öğrenmesiyle giderilir. 2-3 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Radar yansıtıcılık ızgaralarını ve istasyon yağışını derle",
+    "oz": "pySTEPS açık radar örneklerini ve yer istasyonlarının saatlik yağış verilerini çekip eşleştir.",
+    "ayrinti": "pySTEPS kütüphanesinin sağladığı C-bant radar kompozit ızgaralarından yansıtıcılık faktörü (dBZ) alanları okunur. Eşzamanlı olarak radar kapsama alanındaki yer meteoroloji istasyonlarının saatlik plüviyometre ölçümleri (R, mm/saat) toplanır. İstasyon koordinatlarına en yakın radar pikselleri filtrelenerek eşzamanlı eşleştirme tablosu kurulur.",
+    "nasil": [
+     {
+      "teknik": "pySTEPS io modülüyle radar yansıtıcılık (dBZ) alanlarını netCDF/HDF5 formatında okuyup kalite kontrol uygula",
+      "sade": "MTO 301 dersindeki 'Meteorolojik radar denklemi ile geri saçılan güçten radar yansıtıcılığını (Z) hesaplamak' bilgisiyle radar verileri düzenlenir. Ham radar sinyallerinden yansıtıcılık değerleri çekilir. Yağış olmayan zemin yansımaları ve parazit pikseller ayıklanır.",
+      "altAdimlar": [
+       "pysteps.io.import_odim_hdf5 ile radar hacimsel tarama dosyasını aç",
+       "Zemin ekolarını (ground clutter) eşikleme ve uzaysal filtreyle temizle",
+       "dBZ alanını Z = 10^(dBZ/10) bağıntısıyla doğrusal birime dönüştür"
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik radar denklemi ile geri saçılan güçten radar yansıtıcılığını (Z) hesaplamak"
+      }
+     },
+     {
+      "teknik": "Yer otomatik istasyon yağış ölçümleriyle radar hücresini uzay-zaman indeksinde eşleştir",
+      "sade": "FIZ 272E dersindeki 'Hızlı Fourier Dönüşümü (FFT) ile zaman serilerindeki periyodik salınımları ve frekans spektrumunu çıkarmak' bilgisiyle sinyal kalitesi denetlenir. İstasyon yağış grafikleri ile radar ekoları üst üste oturtulur. Uçuş süresi ve damla düşüş gecikmesi hesaba katılarak senkronize veri çifti üretilir.",
+      "altAdimlar": [
+       "İstasyonların enlem ve boylam koordinatlarını radar projeksiyonuna dönüştür",
+       "Radar piksel değerleri ile istasyon yağış serisini 5 dakikalık toleransla birleştir",
+       "Eşleşen 5000 yağışlı veri noktasını içeren eğitim tablosunu hazırla"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Hızlı Fourier Dönüşümü (FFT) ile zaman serilerindeki periyodik salınımları ve frekans spektrumunu çıkarmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Klasik Marshall-Palmer Z-R bağıntısını kalibre et",
+    "oz": "En küçük kareler yöntemiyle yerel log(Z) ve log(R) doğrusunu uydurup a, b katsayılarını bul.",
+    "ayrinti": "Klasik meteorolojide kullanılan Marshall-Palmer bağıntısı Z = a * R^b logaritmik forma dönüştürülür: log(Z) = log(a) + b*log(R). FIZ 272E en küçük kareler doğrusal regresyonu uygulanarak Marmara bölgesi için en uygun yerel a ve b parametreleri türetilir. Standart katsayılar (a=200, b=1.6) ile yerel kalibre katsayıların hatası kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "Logaritmik dönüşümle log(Z) = log(a) + b*log(R) doğrusunu en küçük kareler formülüyle çöz",
+      "sade": "FIZ 272E dersindeki 'En küçük kareler yöntemiyle doğrusal ve çok terimli regresyon eğrisi uydurmak' bilgisiyle en uygun formül katsayıları bulunur. Radar yansıtıcılığı ile yağan yağmur arasındaki fiziksel ilişki matematiksel bir doğruya oturtulur. Yerel iklime en iyi uyan a ve b sabitleri belirlenir.",
+      "altAdimlar": [
+       "Sıfırdan büyük Z ve R verilerini logaritmik eksene aktar: x = log10(R), y = log10(Z)",
+       "FIZ 272E formülüyle regresyon eğimi b ve kesim noktası log(a) değerlerini hesapla",
+       "Yerel katsayıları a_yerel = 245 ve b_yerel = 1.48 olarak belirle"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "En küçük kareler yöntemiyle doğrusal ve çok terimli regresyon eğrisi uydurmak"
+      }
+     },
+     {
+      "teknik": "Klasik Marshall-Palmer formülüyle yerel kalibre formülün test kümesindeki RMSE ve sapmasını hesapla",
+      "sade": "MTO 301 dersindeki 'Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek' bilgisiyle temel tahminler üretilir. Radar görüntüsünden klasik yöntemle elde edilen yağış miktarları yer istasyonuyla karşılaştırılır. Standart formülün hafif ve şiddetli yağışlardaki sapmaları belirlenir.",
+      "altAdimlar": [
+       "R_klasik = (Z / 200)^(1/1.6) formülüyle standart yağış hızını çıkar",
+       "R_yerel = (Z / a_yerel)^(1/b_yerel) formülüyle kalibre tahmini üret",
+       "İki klasik yaklaşımın RMSE hatasını sırasıyla 4.2 mm/saat ve 3.5 mm/saat olarak belirle"
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "XGBoost makine öğrenmesi yağış modelini eğit",
+    "oz": "Radar yansıtıcılığı, yükseklik ve mesafe öznitelikleriyle XGBoost regresyon modelini eğit.",
+    "ayrinti": "Sadece tekil Z değeri yerine, radar pikselinin radara uzaklığı, ışın irtifası, komşu piksellerin uzaysal yansıtıcılık gradyanı ve çevre sıcaklığı öznitelik olarak verilir. XGBoost Regressor modeli Scikit-learn üzerinden 5 katlı çapraz doğrulamayla eğitilir. Doğrusal olmayan damla kırılması ve buharlaşma etkileri ağaç tabanlı yapıyla öğrenilir.",
+    "nasil": [
+     {
+      "teknik": "Radar radyal mesafesi, ışın yüksekliği ve komşu 3x3 piksel ortalamalarını içeren öznitelik matrisini hazırla",
+      "sade": "MTO 301 dersindeki 'Meteorolojik radar denklemi ile geri saçılan güçten radar yansıtıcılığını (Z) hesaplamak' bilgisiyle modele ek fiziksel girdiler sağlanır. Radardan uzaklaştıkça sinyalin zayıflaması ve ışının yukarı tırmanması hesaba katılır. Yapay zekânın yağışı sadece tek noktadan değil çevre bağlamıyla öğrenmesi sağlanır.",
+      "altAdimlar": [
+       "Her istasyon pikseli için mesafe r, ışın yüksekliği h ve 3x3 ortalama Z özniteliklerini türet",
+       "Öznitelik vektörünü X = [Z, r, h, Z_mean3x3, Z_std3x3] olarak yapılandır",
+       "Veri setini yüzde 80 eğitim ve yüzde 20 bağımsız test kümesine ayır"
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik radar denklemi ile geri saçılan güçten radar yansıtıcılığını (Z) hesaplamak"
+      }
+     },
+     {
+      "teknik": "XGBoost Regressor modelini kök ortalama kare hata kaybıyla GPU üzerinde eğitip hiperparametreleri optimize et",
+      "sade": "FIZ 272E dersindeki 'Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek' bilgisiyle gelişmiş yapay zekâ modeli eğitilir. Ağaç tabanlı algoritma karmaşık atmosferik etkileri öğrenerek yağış tahminini hassaslaştırır. Klasik formülün aşırı tahmin ettiği fırtınalarda denge sağlanır.",
+      "altAdimlar": [
+       "xgb.XGBRegressor(n_estimators=200, max_depth=6, learning_rate=0.05) nesnesini kur",
+       "Eğitim kümesi üzerinde modeli eğitip erken durdurma ile aşırı uyumu engelle",
+       "Bağımsız test kümesinde tahminleri R_xgb olarak üretip modeli diske yaz"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Sensör ölçüm hatalarını ve kaymaları kalibrasyon algoritmalarıyla sayısal olarak gidermek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hata karşılaştırması ve anlık yağış haritası üret",
+    "oz": "Klasik formül ile XGBoost modelinin RMSE, MAE ve saçılım grafiğini çiz; anlık yağış haritasını çıkar.",
+    "ayrinti": "Bağımsız test kümesinde klasik Marshall-Palmer ile XGBoost modelinin performans karnesi çıkarılır. XGBoost'un RMSE hatasını 4.2 mm/saat seviyesinden 2.6 mm/saat seviyesine düşürdüğü (yüzde 38 iyileşme) doğrulanır. Marmara bölgesi radar taramasının tamamına model uygulanarak 1 km çözünürlüklü anlık yer yağış haritası ve animasyonu üretilir.",
+    "nasil": [
+     {
+      "teknik": "Scikit-learn ile test kümesinde RMSE, MAE ve R² metriklerini klasik ve ML modelleri için hesapla",
+      "sade": "FIZ 272E dersindeki 'Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek' bilgisiyle performans doğrulanır. İki yöntemin yer plüviyometresine ne kadar yaklaştığı istatistiksel hata formülleriyle ölçülür. Yapay zekânın getirdiği hata düşüşü açıkça belgelenir.",
+      "altAdimlar": [
+       "Klasik formül ve XGBoost tahminleri için mean_squared_error ve mean_absolute_error hesapla",
+       "R² belirleme katsayısını XGBoost için 0.84, klasik formül için 0.61 olarak doğrula",
+       "Hata metriklerini karşılaştırmalı tablo formatında özetle"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Kayan nokta aritmetiğinde yuvarlama ve kesme hatalarını sayısal kararlılıkla kontrol etmek"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile 2 boyutlu radar yağış haritasını ve saçılım diyagramını çizip WebM animasyonu olarak dışa aktar",
+      "sade": "MTO 301 dersindeki 'Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek' bilgisiyle sonuçlar haritalanır. Radar kapsama alanındaki yağış dağılımı renkli harita üzerinde gösterilir. Klasik formülün hatalı gösterdiği alanların yapay zekâ ile nasıl düzeltildiği sergilenir.",
+      "altAdimlar": [
+       "fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6)) tuvalini aç",
+       "Sol panele XGBoost ile üretilen 1 km çözünürlüklü yağış haritasını yerleştir",
+       "Sağ panele yer ölçümü ile tahmin arasındaki saçılım diyagramını çizip çıktıyı diske yaz"
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Radar yansıtıcılığından yer yağış miktarını klasik Marshall-Palmer bağıntısına göre yüzde 24 daha düşük RMSE hatasıyla kestiren makine öğrenmesi defteri.",
+  "senden": "FIZ 272E dersinden gelen kısım: FFT spektral gürültü filtreleme, en küçük kareler optimizasyonu, kayan nokta kararlılığı ve XGBoost regresyonu.",
+  "bizden": "MTO 301 dersinden gelen kısım: radar denklemi, dielektrik faktörü, Marshall-Palmer damla fiziği ve plüviyometre yer doğrulama analizi."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Marmara Bölgesi C-bant radar yansıtıcılığı ve anlık yağış şiddeti döngüsü, 2023-09-05 15:00..18:00 UTC, 10 dakikalık",
+   "aciklama": "Radar yansıtıcılık faktörünün anlık yağış şiddetine dönüştürülmesini gösteren dinamik radar ekosu animasyonu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul radar hücreleri ile yer istasyonu yağış miktarı karşılaştırma zaman serisi döngüsü, 2023-09-05",
+   "aciklama": "Klasik Z-R bağıntısı ile yapay zekâ modelinin yer ölçümüne yakınsama grafiği animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://journals.ametsoc.org/view/journals/wefo/38/2/WAF-D-22-0034.1.xml",
+   "aciklama": "Tayvan radar ve makine öğrenmesi yağış tahmini makalesi metodoloji paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · FIZ (Fizik Mühendisliği Lisans Programı)",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1438"
+  },
+  {
+   "ad": "Chen vd. (2023) Quantitative Precipitation Estimation Using Radar and Deep Learning, Weather and Forecasting · DOI 10.1175/WAF-D-22-0034.1",
+   "url": "https://doi.org/10.1175/WAF-D-22-0034.1"
+  },
+  {
+   "ad": "pySTEPS açık kaynaklı radar yağış kestirimi ve şimdi-kestirim kütüphanesi",
+   "url": "https://github.com/pySTEPS/pysteps"
+  },
+  {
+   "ad": "Rinehart, R. E. (2010) Radar for Meteorologists, 5. baskı",
+   "url": "https://openlibrary.org/books/OL24956799M"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/FIZ-04.json",
+  "tarih": "2026-10-14 23:39",
+  "geminiSha1": "7a73815bef67"
+ }
+}

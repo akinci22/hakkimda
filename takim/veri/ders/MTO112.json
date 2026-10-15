@@ -1,0 +1,156 @@
+{
+ "kod": "MTO 112",
+ "ad": "Meteorolojik Aletler ve Gözlem Usulleri",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "112",
+ "ozet": "Dünya Meteoroloji Örgütü (WMO) standartlarında yüzey ve yüksek atmosfer gözlem aletlerinin çalışma prensiplerini öğretir. Sıcaklık, basınç, bağıl nem, rüzgâr hızı, rüzgâr yönü, güneş radyasyonu ve yağış sensörlerinin çalışma ilkeleri, siperlik havalandırması, aletsel tepki süresi, kalibrasyon süreçleri ve otomatik meteoroloji gözlem istasyonu (OMGİ) veri toplama mimarisi incelenir.",
+ "neOgrenirsin": [
+  "WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak.",
+  "Birinci derece dinamik tepki süresi bağıntısıyla sıcaklık ve nem sensörlerinin zaman gecikmesini hesaplamak.",
+  "Psikrometrik bağıntı ile kuru ve ıslak termometre sıcaklıklarından buhar basıncı ve bağıl nemi türetmek.",
+  "Barometrik indirgeme formülüyle istasyon basıncını deniz seviyesi basıncına çevirmek.",
+  "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Sensör birinci derece dinamik tepki süresi bağıntısı",
+   "tex": "T(t) = T_a + (T_0 - T_a) \\exp\\left(-\\frac{t}{\\tau}\\right)",
+   "terimler": [
+    [
+     "T(t)",
+     "t anındaki sensör gösterge sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_a",
+     "çevre hava ortamının gerçek sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_0",
+     "sensörün başlangıç sıcaklığı",
+     "°C"
+    ],
+    [
+     "t",
+     "geçen süre",
+     "s"
+    ],
+    [
+     "\\tau",
+     "sensörün zaman sabiti (tepki süresi)",
+     "s"
+    ]
+   ],
+   "sade": "Bir sıcaklık sensörünün aniden değişen hava sıcaklığına ne kadar sürede uyum sağlayacağını hesaplar. Zaman sabiti ne kadar küçükse sensör sıcaklık dalgalanmalarına o kadar hızlı tepki verir.",
+   "ornek": "Zaman sabiti tau = 20 saniye olan bir platin direnç termometresi, 10 °C'den 20 °C'ye sıçrayan havada 20 saniye sonra yaklaşık 16,3 °C değerini gösterir.",
+   "nerede": "Otomatik istasyonlarda hızlı sıcaklık değişimlerinin ve ani cephe geçişlerinin dinamik hatasını düzeltirken."
+  },
+  {
+   "ad": "Psikrometrik buhar basıncı bağıntısı",
+   "tex": "e = e_s(T_w) - A \\, P \\, (T_d - T_w)",
+   "terimler": [
+    [
+     "e",
+     "aktüel su buharı kısmi basıncı",
+     "hPa"
+    ],
+    [
+     "e_s(T_w)",
+     "ıslak termometre sıcaklığındaki doymuş buhar basıncı",
+     "hPa"
+    ],
+    [
+     "A",
+     "psikrometre alet katsayısı",
+     "1/°C"
+    ],
+    [
+     "P",
+     "istasyon hava basıncı",
+     "hPa"
+    ],
+    [
+     "T_d",
+     "kuru termometre sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_w",
+     "ıslak termometre sıcaklığı",
+     "°C"
+    ]
+   ],
+   "sade": "Kuru hava sıcaklığı ile ıslak fitilli termometrenin buharlaşmayla soğuma farkından yararlanarak havadaki gerçek su buharı miktarını hesaplar.",
+   "ornek": "Hava basıncı 1013 hPa, kuru sıcaklık 22 °C ve ıslak sıcaklık 16 °C iken psikrometrik katsayı A = 0,00066 ile havadaki buhar basıncı yaklaşık 14,2 hPa olarak bulunur.",
+   "nerede": "Klasik ve otomatik meteoroloji istasyonlarında higrometre doğrulaması ve nem tayininde kullanılır."
+  },
+  {
+   "ad": "Barometrik yükseklik indirgeme bağıntısı",
+   "tex": "P_0 = P \\, \\exp\\left( \\frac{g \\, h}{R_d \\, T_v} \\right)",
+   "terimler": [
+    [
+     "P_0",
+     "deniz seviyesine indirgenmiş hava basıncı (QFF)",
+     "hPa"
+    ],
+    [
+     "P",
+     "istasyon seviyesinde ölçülen barometrik basınç",
+     "hPa"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi (9,80665)",
+     "m/s²"
+    ],
+    [
+     "h",
+     "istasyonun deniz seviyesinden jeopotansiyel yüksekliği",
+     "m"
+    ],
+    [
+     "R_d",
+     "kuru hava gaz sabiti (287,05)",
+     "J/(kg·K)"
+    ],
+    [
+     "T_v",
+     "hava sütununun ortalama sanal sıcaklığı",
+     "K"
+    ]
+   ],
+   "sade": "Farklı rakımlardaki istasyonların ölçtüğü basınç değerlerini aynı deniz seviyesine çekerek haritada karşılaştırılabilir hale getirir. Fırtına ve alçak basınç merkezlerinin yerini doğru görmeyi sağlar.",
+   "ornek": "Rakımı 120 m olan İTÜ Ayazağa istasyonunda ölçülen 1002 hPa yerel basınç, ortalama 15 °C sanal sıcaklıkta deniz seviyesine yaklaşık 1016,3 hPa olarak indirgenir.",
+   "nerede": "Sinoptik harita çiziminde ve hava tahmini modellerine istasyon basıncı girerken kullanılır."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "WMO standartlarında panjurlu Stevenson meteoroloji siperliği ve sensör montajı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Otomatik meteoroloji istasyonu 2 m sıcaklık ve basınç anlık zaman serisi animasyonu, 1 saatlik",
+   "aciklama": "Cephe geçişi esnasında ani sıcaklık düşüşü ve basınç sıçramasının istasyon kaydı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 112 (Meteorolojik Aletler ve Gözlem Usulleri)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=112"
+  },
+  {
+   "ad": "WMO No. 8 Guide to Instruments and Methods of Observation, Cilt I, WMO · ISBN 978-92-63-10008-5",
+   "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation-volume-i-measurement-of-meteorological-variables"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=112"
+}

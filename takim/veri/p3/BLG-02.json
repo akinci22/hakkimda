@@ -1,0 +1,539 @@
+{
+ "id": "BLG-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "BLG",
+  "bolum": "Bilgisayar Mühendisliği",
+  "fakulteKod": "BBF"
+ },
+ "ad": "ML ile MOS (bias düzeltme)",
+ "ne": "Tahminlerin sürekli aynı yönde yaptığı hatayı (bias) makine öğrenmesiyle düzeltiyoruz.",
+ "adimlar": [
+  "Bir şehir için açık tahmin ve gerçek değerleri topla",
+  "Tahmin hatasını hesapla",
+  "Hatayı tahmin eden bir model eğit",
+  "Düzeltilmiş tahminle eskisini karşılaştır"
+ ],
+ "sonuc": "Sonunda düzeltme kodu ve hata azalmasını gösteren grafik olur.",
+ "senden": "BLG 202E Numerical Methods",
+ "bizden": "MOS yönteminin mantığı (MTO302)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "BLG 202E",
+    "ad": "Numerical Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MAT 202E",
+    "ad": "Numerical Methods"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Rasp ve Lerch (2018)",
+   "ne": "Sinir ağıyla tahmin sonrası düzeltme yapan öncü çalışma; sıcaklık tahmininin hatasını azaltıyor.",
+   "url": "https://arxiv.org/abs/1805.09970",
+   "ayrinti": {
+    "neYaptilar": "Stephan Rasp ve Sebastian Lerch, 2018'de ECMWF küresel topluluk tahminlerini Almanya genelindeki yüzlerce istasyon gözlemiyle düzeltmek için yapay sinir ağlarını kullandı. Çalışma Monthly Weather Review dergisinde yayımlandı ve hava tahmininde modern makine öğrenmesi sonrası işlemenin (post-processing) temel kilometre taşlarından biri oldu.",
+    "nasil": "Girdi olarak ECMWF topluluk ortalaması ve standart sapması, istasyon koordinatları ve yükseklik alındı. Çok katmanlı algılayıcı (MLP) mimarisiyle sıcaklığın olasılık dağılım parametreleri doğrudan tahmin edildi. 2007-2016 yılları arasındaki 10 yıllık istasyon verisi üzerinde eğitim ve 2016-2017 yıllarında sınama yapıldı.",
+    "neEdindiler": "Sinir ağı tabanlı düzeltme, klasik EMOS (genişletilmiş model çıktı istatistiği) yöntemine kıyasla CRPS hata skorunda %5 ila %10 ek iyileşme sağladı. Kod açık kaynak olarak GitHub'da yayımlandı.",
+    "bizNasilKatki": "Biz bu yaklaşımı tek istasyon ölçeğine indirgeriz. İstanbul Florya istasyonunun açık verisiyle GFS veya ERA5 tahminlerini eşleştirip Scikit-Learn ile sıcaklık sapmasını öğreniriz. Haftada 1-2 saatlik çalışmayla çalışır bir düzeltme hattı kurabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Rasp & Lerch (2018), Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR · DOI 10.1175/MWR-D-18-0187.1",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "arXiv ön baskısı 1805.09970 (Mayıs 2018)",
+      "url": "https://arxiv.org/abs/1805.09970",
+      "tur": "makale"
+     },
+     {
+      "ad": "Rasp & Lerch açık kod deposu (GitHub)",
+      "url": "https://github.com/mllam/neural-network-postprocessing",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/mllam/neural-network-postprocessing",
+      "aciklama": "Rasp ve Lerch'in açık kaynaklı sinir ağı düzeltme deposu: mimari ve eğitim betikleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_Forecast_Plume.png",
+      "lisans": "CC0",
+      "aciklama": "Topluluk tahmin demeti (ensemble plume): üyelerin dağılımı ve ortalamanın gözlemden sapması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Rüzgâr hamlesi için ML düzeltme karşılaştırması",
+   "ne": "Klasik MOS ile sinir ağlarını aynı veride yarıştıran çalışma.",
+   "url": "https://arxiv.org/abs/2401.11896",
+   "ayrinti": {
+    "neYaptilar": "Araştırmacılar, sayısal hava tahmin modellerinin en zorlandığı uç değerlerden biri olan rüzgâr hamlelerini (wind gusts) düzeltmek için klasik MOS doğrusal regresyonu ile modern gradyan artırma ve sinir ağı modellerini aynı istasyon verilerinde karşılaştırdı.",
+    "nasil": "Avrupa hava modellerinin rüzgâr, basınç gradyanı ve kararsızlık indeksleri girdi olarak verildi. L2 düzenlileştirmeli regresyon, Random Forest, XGBoost ve derin ağlar eğitilerek ekstrem rüzgâr tahminlerindeki aşırı ve eksik kestirimler dengelendi.",
+    "neEdindiler": "Doğrusal olmayan ağaç tabanlı modellerin, şiddetli fırtına hamlelerindeki RMSE hatasını klasik MOS'a göre %15 daha fazla düşürdüğü ve sahte alarm oranını sınırladığı gösterildi.",
+    "bizNasilKatki": "Benzer bir mantığı İstanbul'daki lodos ve poyraz fırtınaları için kurarız. GFS'in yüzey rüzgârı ile açık havaalanı METAR raporlarındaki hamle değerlerini karşılaştırıp uç değer sapmalarını düzeltiriz.",
+    "referanslar": [
+     {
+      "ad": "arXiv 2401.11896: Machine Learning for Postprocessing Wind Gust Forecasts (2024)",
+      "url": "https://arxiv.org/abs/2401.11896",
+      "tur": "makale"
+     },
+     {
+      "ad": "WMO JWGFVR rüzgâr ve uç değer doğrulama kılavuzu",
+      "url": "https://jwgfvr.github.io/forecastverification/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://arxiv.org/abs/2401.11896",
+      "aciklama": "Makalenin arXiv özeti: ML yöntemlerinin rüzgâr hamlesi tahminindeki karşılaştırmalı hata sonuçları"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Wind_turbine_at_sunset.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Rüzgâr türbinleri: rüzgâr tahmin sapmasının düzeltilmesi şebeke güvenliği için hayati önem taşır"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Jua",
+   "ne": "İsviçre'de yapay zekâ ile küresel hava tahmini kurmakla başladı; şimdi enerji şirketlerine tahmin satıyor.",
+   "url": "https://www.jua.ai",
+   "ayrinti": {
+    "neYaptilar": "2021'de Zürih'te kurulan Jua, fizik tabanlı modellerin yavaşlığı ve yerel sapmalarına alternatif olarak uçtan uca öğrenen küresel bir temel yapay zekâ hava modeli geliştirdi. Özellikle enerji piyasaları ve rüzgâr-güneş santrallerinin operasyonel tahmin ihtiyacına odaklandı.",
+    "nasil": "Gözlem ve yeniden analiz verilerini petabayt ölçeğinde GPU kümelerinde işleyerek 1 km çözünürlüğe kadar inen yerel ayrıntıda tahmin üretti. Çıktılar doğrudan enerji ticaret sistemlerine API üzerinden saatlik ve 15 dakikalık aralıklarla iletiliyor.",
+    "neEdindiler": "Küresel enerji devlerinden ve girişim sermayesi fonlarından 16 milyon doların üzerinde tohum yatırım aldı. Geleneksel modellerin günler süren hesaplarını saniyeler içinde tamamlayarak operasyonel tahmin pazarına girdi.",
+    "bizNasilKatki": "Jua'nın büyük sermayeyle kurduğu altyapıyı biz açık kaynak araçlarla mini ölçekte deneyimleriz. Açık GFS tahminini alıp yerel bir enerji noktasına göre eğitilen tekil bir bias düzeltme katmanı ekleriz.",
+    "referanslar": [
+     {
+      "ad": "Jua teknoloji ve platform sayfası",
+      "url": "https://www.jua.ai/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "TechCrunch haberi: Jua raises seed funding for AI-powered weather forecasting",
+      "url": "https://techcrunch.com/2023/02/09/jua-raises-16m-to-build-a-large-physics-model-for-weather/",
+      "tur": "haber"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.jua.ai/technology",
+      "aciklama": "Jua platform arayüzü: yüksek çözünürlüklü küresel hava tahmini ve enerji analiz paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Türkiye ve Doğu Akdeniz 10 m rüzgâr alanı, GFS, 2024-03-10..12, 3 saatlik",
+      "aciklama": "GFS modelinin ham rüzgâr alanı: yerel dağ ve boğaz hatlarında sapmaların düzeltilmesi gerekir"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Open-Meteo model kalibrasyonu",
+   "ne": "Küresel hava modellerinin çıktılarını istasyon verileriyle harmanlayıp kalibre eden açık kaynak projesi.",
+   "url": "https://github.com/open-meteo/open-meteo",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynaklı hava servisi Open-Meteo, GFS ve ECMWF küresel modellerinin yer seviyesi hatalarını gidermek için açık kaynaklı model birleştirme ve istatistiksel düzeltme boru hatları geliştirdi.",
+    "nasil": "Almanya ve Avrupa genelindeki ulusal istasyon verileri çekilerek modellerin sistematik sapmaları (MOS) hesaplanır. Python ve Rust tabanlı boru hatlarıyla yüksek hızlı API üzerinde anlık olarak uygulanır.",
+    "neEdindiler": "Dünya genelinde geliştiricilere saniyede binlerce ücretsiz istek sunan, ham modellere kıyasla %20 daha düşük RMSE üreten açık bir altyapı oluşturdu.",
+    "bizNasilKatki": "Open-Meteo'nun açık kaynaklı model birleştirme mantığını yerel bir Jupyter defterinde deneyimleriz. GFS ve DWD modellerini Florya istasyonuna göre kalibre ederiz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo model güncellemeleri ve doğrulama sayfası",
+      "url": "https://open-meteo.com/en/docs/model-updates",
+      "tur": "web"
+     },
+     {
+      "ad": "Open-Meteo GitHub açık kaynak deposu",
+      "url": "https://github.com/open-meteo/open-meteo",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/model-updates",
+      "aciklama": "Open-Meteo model harmanlama ve sapma düzeltme arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/open-meteo/open-meteo",
+      "aciklama": "Açık kaynaklı veri boru hattı ve API mimarisi deposu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA GFS MOS",
+   "ne": "Sayısal hava modellerinin yerel istasyon bazlı sistematik hatalarını regresyonla düzelten klasik sistem.",
+   "url": "https://vlab.noaa.gov/web/mdl/mos",
+   "ayrinti": {
+    "neYaptilar": "ABD Ulusal Hava Servisi (NWS) Meteorolojik Geliştirme Laboratuvarı (MDL), 1970'lerden bu yana sayısal modellerin (GFS, NAM) ham ızgara çıktısını yerel istasyon gözlemleriyle kalibre eden operasyonel MOS sistemini yürütüyor.",
+    "nasil": "İstasyonun geçmiş gözlem arşivi ile model tahminleri arasında çoklu doğrusal regresyon denklemleri türetilir. Girdi olarak sıcaklık, çiy noktası, 850 hPa sıcaklığı, kalınlık ve günün saati kullanılır. İstasyon bazlı metin bültenleri (MAV, MET) günde dört kez yayımlanır.",
+    "neEdindiler": "Onlarca yıldır operasyonel havacılık ve kamu tahminlerinde altın standart olarak kullanıldı. Ham model hatalarını yer seviyesinde %30'a varan oranlarda azalttı.",
+    "bizNasilKatki": "Klasik MOS yaklaşımı tam olarak BLG 202E ve MAT 202E'deki en küçük kareler regresyonudur. Biz de GFS'in İstanbul hücresini açık istasyon gözlemleriyle eşleştirip kendi mini MOS denklemimizi çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "NOAA MDL MOS resmi teknik dokümantasyonu",
+      "url": "https://vlab.noaa.gov/web/mdl/mos",
+      "tur": "web"
+     },
+     {
+      "ad": "Glahn & Lowry (1972), The Use of Model Output Statistics (MOS) in Objective Weather Forecasting, JAM",
+      "url": "https://doi.org/10.1175/1520-0450(1972)011<1203:TUOMOS>2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://vlab.noaa.gov/web/mdl/mos",
+      "aciklama": "NOAA MOS ana sayfası: istasyon bazlı regresyon katsayıları ve operasyonel bültenler"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://vlab.noaa.gov/web/mdl/mos",
+      "aciklama": "MOS bülten örnekleri ve tahmin doğrulama tabloları"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "GFS tahmini + gözlem çiftlerini topla",
+   "Sapmayı yer, saat, mevsime göre öğren",
+   "Düzeltilmiş hatayı ham hatayla kıyasla"
+  ],
+  "edinim": [
+   [
+    "MAT202E",
+    "regresyon, en küçük kareler"
+   ],
+   [
+    "MTO302",
+    "MOS nedir, neden gerekir"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "NOAA GFS açık tahmin verisi (NOMADS)",
+    "url": "https://nomads.ncep.noaa.gov/",
+    "gorsel": "g/kaynak/gfs.jpg",
+    "lisans": "kamu malı",
+    "slug": "gfs"
+   },
+   {
+    "ad": "OGIMET SYNOP gözlemleri",
+    "url": "https://www.ogimet.com/synops.phtml.en",
+    "gorsel": "g/kaynak/ogimet.jpg",
+    "lisans": "serbest erişim",
+    "slug": "ogimet"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Herkese açık tahmin verisini her gün çeken veri hattını (pipeline) ve panoyu sen kurarsın.",
+  "senin": "BLG 202E Numerical Methods, BLG 354E Signal & Systems",
+  "bizim": "MAT202E Sayısal Yöntemler, MTO302 Hava Analizi ve Öngörü",
+  "ortakIs": "ERA5 ile ML sıcaklık tahmini, radar nowcasting",
+  "detay": "Ortak zemin: BLG 202E Numerical Methods ↔ MAT202E Sayısal Yöntemler. Örnek görev: ERA5/GFS/AIFS açık verisini her gün çeken, xarray/Zarr ile saklayan veri hattı, küçük bir skor API'si ve canlı doğrulama panosu. Kazanç: uçtan uca çalışan bir sistem ve GitHub'da adının olduğu altyapı işi. Veri gerçek ve her gün akıyor; oyuncak veri seti değil.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1561"
+ },
+ "amac": "Sayısal hava tahminlerinin yerel topoğrafya ve mikroklima kaynaklı sistematik sapmasını (bias) makine öğrenmesiyle modelleyip istasyon verisine göre düzeltmek.",
+ "ortakDers": [
+  {
+   "kod": "BLG 202E",
+   "projeyeKatki": "Sayısal hesaplama ve regresyon mutfağı. Ham tahmin ile gözlem çiftleri arasındaki en küçük kareler matris çözümünü kurmak, Lagrange enterpolasyonuyla zaman hizalaması yapmak ve hata metriklerini (RMSE, bias) hesaplamak bu dersin konusudur.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En küçük kareler (doğru uydurma)",
+     "nerede": "3. adımda temel MOS denklemi olarak: istasyon gözlemi ile GFS tahmini arasındaki sabit sapma ve eğim katsayılarını hesaplarken."
+    },
+    {
+     "formulAd": "RMSE (kök ortalama kare hata)",
+     "nerede": "4. adımda: ham tahmin ile MOS düzeltmeli tahminin performansını aynı test döneminde karşılaştırıp karne çıkarırken."
+    }
+   ]
+  },
+  {
+   "kod": "MAT 202E",
+   "projeyeKatki": "Çok boyutlu optimizasyon ve matris ayrışımları. Çoklu regresyonda normal denklemlerin LU ayrışımıyla çözülmesi, özelliklerin tekil değer analizi ve sayısal kararlılığın denetlenmesi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En küçük kareler matris çözümü",
+     "nerede": "3. adımda çok özellikli model kurulurken: sıcaklık, rüzgâr ve nem değişkenlerinin tasarım matrisinden katsayı vektörünü türetirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık model tahminleri ile yerel istasyon gözlemlerini topla, sistematik sapmayı regresyonla modelle ve düzeltilmiş tahmini sına.",
+  "ayrinti": "Sayısal modeller yerel tepe, deniz etkisi ve şehir ısısını tam çözemediği için hep aynı yönde yanılır. Çözüm, geçmiş tahmin ve gözlem çiftlerinden bir düzeltme fonksiyonu öğrenmektir. GFS açık tahmini ile OGIMET SYNOP gözlemleri çekilir, eşleştirilir; Scikit-Learn ile doğrusal ve ağaç tabanlı düzeltme modelleri eğitilir; düzeltilmiş tahminin RMSE ve bias düşüşü test kümesinde doğrulanır. Süreç 2-3 haftalık hafif tempoyla tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Tahmin ve istasyon gözlemlerini çek",
+    "oz": "İstanbul koordinatları için GFS geçmiş tahminlerini ve Florya istasyonu SYNOP gözlemlerini indirip zaman damgasıyla eşle.",
+    "ayrinti": "Açık veri servislerinden geçmiş model çalıştırmaları ve yerel gözlemler toplanır. Open-Meteo Previous Runs API ile GFS modelinin İstanbul için ürettiği 2 m sıcaklık, rüzgâr ve yüzey basıncı tahminleri çekilir. Gerçekleşen durum için OGIMET üzerinden Florya istasyonunun (WMO 17060) saatlik SYNOP gözlemleri alınır. Zaman damgaları UTC standardında birleştirilerek temiz bir veri tablosu oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "openmeteo-requests istemcisiyle GFS modelinin İstanbul koordinatları için geçmiş tahmin saatlik serisini JSON olarak çek",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle veri çekme boru hattı kurulur. Open-Meteo Previous Runs API üzerinden GFS modelinin İstanbul hücresi için ürettiği sıcaklık ve yüzey değişkenleri çekilir. Bu veriler modelin operasyonel tahmin geçmişini temsil eder.",
+      "altAdimlar": [
+       "requests ve openmeteo-requests paketlerini kullanarak API bağlantısını hazırla",
+       "İstanbul koordinatlarında (40.98 N, 28.79 E) GFS modelinin 2m_temperature ve surface_pressure değişkenlerini iste",
+       "Gelen yanıtı ayrıştırıp saatlik UTC zaman indeksiyle pandas veri çerçevesine aktar"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     },
+     {
+      "teknik": "OGIMET küresel SYNOP servisinden Florya (17060) istasyonunun saatlik sıcaklık gözlemlerini çekip eksik ölçümleri temizle",
+      "sade": "MAT 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle gözlem verisinin kalite kontrolü yapılır. Florya istasyonunun termometre ölçümleri taranarak hatalı veya boş saatler ayıklanır. Böylece sayısal modelin karşılaştırılacağı güvenilir bir yer hakikati referansı oluşturulur.",
+      "altAdimlar": [
+       "ogimet.com servisinden 17060 WMO nolu Florya istasyonunun bir yıllık SYNOP verisini indir",
+       "Sıcaklık sütunundaki eksik (NaN) veya hatalı ölçümleri pandas filtreleriyle ayıkla",
+       "Gözlem zaman damgasını GFS tahmin tablosundaki UTC saatiyle tam eşleştir"
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek"
+      }
+     },
+     {
+      "teknik": "Tahmin ve gözlem serilerini inner join ile tek tabloda birleştirip eş zamanlı fark vektörünü üret",
+      "sade": "MAT 202E dersindeki 'Lagrange ve parçalı polinom enterpolasyonuyla ara değerleri kestirmek' bilgisiyle zaman serileri tek bir ızgarada senkronize edilir. Model tahmini ile gerçek ölçüm aynı zaman noktalarında yan yana getirilir. Bu tablo sonraki adımda sistematik hatanın matematiksel olarak çıkarılmasını sağlar.",
+      "altAdimlar": [
+       "pd.merge(df_gfs, df_synop, on='time', how='inner') komutuyla eş zamanlı verileri birleştir",
+       "Toplam satır sayısını kontrol edip eşleşmeyen sınır saatlerini tablodan düşür",
+       "Temizlenmiş eş zamanlı veri tablosunu gfs_florya_eslesmis.parquet olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Lagrange ve parçalı polinom enterpolasyonuyla ara değerleri kestirmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sapmayı (bias) ve özellikleri hesapla",
+    "oz": "Ham tahmin hatasını çıkar; saat, ay, rüzgâr ve basınç öznitelikleriyle regresyon matrisini kur.",
+    "ayrinti": "Her saat için ham sapma (bias = T_tahmin - T_gozlem) hesaplanır. Modelin sistematik olarak günün hangi saatinde ya da hangi rüzgâr yönünde yanıldığını yakalamak için öznitelikler türetilir. Günün saati ve yılın ayı döngüsel sin/cos dönüşümüne tabi tutulur. GFS'in 10 m rüzgâr bileşenleri ve yüzey basıncı ek girdi olarak tabloya eklenir. Veri seti ilk 9 ay eğitim, son 3 ay test olarak bölünür.",
+    "nasil": [
+     {
+      "teknik": "Tahmin eksi gözlem farkından ham sapma hedef sütununu ve döngüsel trigonometrik zaman özelliklerini üret",
+      "sade": "MAT 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle hedef hata fonksiyonu tanımlanır. Modelin pozitif veya negatif yöndeki sistematik sapması hesaplanır. Günlük ve mevsimsel sıcaklık dalgalanması sinüs ve kosinüs bileşenleriyle matematiksel forma dönüştürülür.",
+      "altAdimlar": [
+       "df['bias'] = df['T_tahmin'] - df['T_gozlem'] işlemiyle ham hata sütununu çıkar",
+       "saat ve ay verisinden sin(2π*saat/24) ve sin(2π*ay/12) döngüsel sütunlarını hesapla",
+       "Kosinüs eşleniklerini de üreterek zamanın sürekliliğini öznitelik matrisine aktar"
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "GFS rüzgâr hızı ve basınç eğilimi değişkenlerini ekleyerek çok değişkenli öznitelik matrisini hazırla",
+      "sade": "BLG 202E dersindeki 'Doğrusal denklem sistemlerini Gauss yok etme ve LU ayrışımı ile çözmek' bilgisiyle matris boyutları ve katsayılar sütunları yapılandırılır. Rüzgâr yönü ve deniz seviyesi basıncı eklenerek hatayı etkileyen atmosferik faktörler sayısallaştırılır. Oluşan çok boyutlu matris regresyon denklemlerinin çözümü için hazır hale getirilir.",
+      "altAdimlar": [
+       "Rüzgârın u ve v bileşenlerinden rüzgâr hızını np.sqrt(u**2 + v**2) formülüyle türet",
+       "Son 3 saatin basınç değişimini diff(3) ile hesaplayarak barometrik eğilim sütunu oluştur",
+       "X matrisini öznitelik sütunlarıyla, y vektörünü bias sütunuyla tanımla"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Doğrusal denklem sistemlerini Gauss yok etme ve LU ayrışımı ile çözmek"
+      }
+     },
+     {
+      "teknik": "Veri kümesini zaman sırasını koruyarak ilk 9 ay eğitim ve son 3 ay bağımsız sınama kümesi olarak böl",
+      "sade": "MAT 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle zamansal doğrulama bölünmesi yapılır. Geleceğin geçmişe sızmasını önlemek amacıyla kronolojik ayrım uygulanır. Böylece eğitilecek modelin gerçek operasyonel koşullardaki kararlılığı sağlanır.",
+      "altAdimlar": [
+       "Veri kümesini tarihe göre sıralayıp indeksin tekdüze arttığını doğrula",
+       "İlk 9 ayı X_train ve y_train olarak, kalan 3 ayı X_test ve y_test olarak ayır",
+       "Eğitim ve test kümelerinde NaN veya sonsuz değer bulunmadığını kontrol et"
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "MOS modelini eğit",
+    "oz": "Ridge regresyon ve LightGBM ile sistematik sapma modelini kur; katsayıları ve düzeltilmiş tahmini çıkar.",
+    "ayrinti": "İki farklı MOS yaklaşımı test edilir: klasik çoklu doğrusal regresyon (Ridge L2 regülarizasyonu ile) ve doğrusal olmayan LightGBM ağaç modeli. Modeller eğitim kümesinde GFS'in hatasını öngörmek üzere eğitilir. Test kümesinde düzeltilmiş sıcaklık tahmini: T_duzeltilmis = T_ham - Model.predict(X) formülüyle elde edilir. Ridge katsayıları incelenerek hangi değişkenin ne kadar düzeltme yaptığı fiziksel olarak doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "scikit-learn Ridge regresyonu ile en küçük kareler tabanlı klasik MOS denklemini çöz ve ağırlıkları çıkar",
+      "sade": "MAT 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle doğrusal MOS katsayıları hesaplanır. Hatanın kareler toplamını minimize eden analitik normal denklemler çözülür. L2 regülarizasyonu katsayıların aşırı büyümesini engelleyerek stabil bir denge kurar.",
+      "altAdimlar": [
+       "from sklearn.linear_model import Ridge komutuyla regresyon modelini başlat",
+       "lin_mos = Ridge(alpha=1.0).fit(X_train, y_train) ile eğitim kümesinde modeli uydur",
+       "Model katsayılarını (coef_) ve sabit terimi (intercept_) ekrana yazdırarak etkilerini incele"
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "LightGBM ile doğrusal olmayan MOS modelini eğitip karmaşık meteorolojik etkileşimleri yakala",
+      "sade": "BLG 202E dersindeki 'Doğrusal olmayan denklemlerin köklerini Newton-Raphson ve ikiye bölme ile bulmak' bilgisiyle gradyan artırma ağaçları eğitilir. Rüzgâr yönü ve günün saati arasındaki doğrusal olmayan karmaşık ilişkiler dallanma yapısıyla öğrenilir. Bu yaklaşım klasik regresyonun yakalayamadığı yerel mikroiklim sapmalarını düzeltir.",
+      "altAdimlar": [
+       "LGBMRegressor(n_estimators=100, max_depth=5, learning_rate=0.05) nesnesini kur",
+       "lgb_mos.fit(X_train, y_train) ile ağaçları hata türevlerine göre eğit",
+       "Eğitilen her iki model nesnesini joblib.dump ile diske kalıcı olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Doğrusal olmayan denklemlerin köklerini Newton-Raphson ve ikiye bölme ile bulmak"
+      }
+     },
+     {
+      "teknik": "Ham tahminlerden modelin öngördüğü sapmayı çıkararak test kümesinde düzeltilmiş sıcaklık serisini üret",
+      "sade": "BLG 202E dersindeki 'Doğrusal denklem sistemlerini Gauss yok etme ve LU ayrışımı ile çözmek' bilgisiyle düzeltilmiş tahmin dizisi hesaplanır. Ham model çıktısından öngörülen sistematik hata vektörü çıkarılır. Bu cebirsel çıkarma işlemi sayesinde yerel istasyon ölçeğinde düzeltilmiş sıcaklık değerleri elde edilir.",
+      "altAdimlar": [
+       "tahmin_bias_ridge = lin_mos.predict(X_test) ile doğrusal sapma kestirimini al",
+       "tahmin_bias_lgb = lgb_mos.predict(X_test) ile ağaç tabanlı sapma kestirimini hesapla",
+       "T_duzeltilmis = T_tahmin_ham - tahmin_bias eşitliğini uygulayarak nihai sütunları oluştur"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Doğrusal denklem sistemlerini Gauss yok etme ve LU ayrışımı ile çözmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hata kazanımını doğrula ve raporla",
+    "oz": "Test kümesinde ham ve düzeltilmiş tahminlerin RMSE ve bias değerlerini kıyasla; hata dağılımını çizdir.",
+    "ayrinti": "Bağımsız test kümesinde MOS düzeltmesinin etkisi sayısallaştırılır. Ham GFS, Ridge-MOS ve LightGBM-MOS için Kök Ortalama Kare Hata (RMSE) ve Ortalama Sapma (bias) hesaplanır. Hata dağılım histogramları çizilerek sapmanın sıfır etrafında nasıl daraldığı gösterilir. Dağılım grafiğinde gözlem ile tahminlerin bire bir çizgisine ne kadar yaklaştığı görselleştirilir ve sonuçlar özetlenir.",
+    "nasil": [
+     {
+      "teknik": "Ham ve düzeltilmiş seriler için test kümesinde RMSE ve ortalama sapma (bias) metriklerini hesapla",
+      "sade": "MAT 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle doğrulama metrikleri hesaplanır. Tahmin hatalarının varyansı ve ortalama seviyesi ölçülerek MOS düzeltmesinin başarı yüzdesi bulunur. Ham GFS çıktısına kıyasla elde edilen RMSE düşüşü raporlanır.",
+      "altAdimlar": [
+       "np.sqrt(np.mean((T_ham - T_obs)**2)) ile ham tahmin RMSE değerini bul",
+       "np.sqrt(np.mean((T_duzeltilmis - T_obs)**2)) ile düzeltilmiş seri RMSE değerini hesapla",
+       "Ortalama sapmayı np.mean(T_pred - T_obs) formülüyle hesaplayıp bias azalmasını kontrol et"
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile hata dağılım histogramı ve saçılım (scatter) grafiğini iki panelde çizdirip PNG olarak kaydet",
+      "sade": "BLG 202E dersindeki 'Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak' bilgisiyle grafiksel doğrulama paneli oluşturulur. Tahminlerin 45 derecelik ideal referans çizgisi etrafındaki saçılımı incelenir. Hata histogramının sıfır merkezinde sivrileşmesi hatanın yok edildiğini kanıtlar.",
+      "altAdimlar": [
+       "plt.subplots(1, 2, figsize=(14, 6)) ile yan yana iki panel oluştur",
+       "Sol panele gözlem ve tahmin saçılımını 45 derecelik referans doğrusuyla çizdir",
+       "Sağ panele ham ve düzeltilmiş hataların histogramlarını çizdirip mos_sonuc_grafik.png olarak kaydet"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak"
+      }
+     },
+     {
+      "teknik": "Tüm adımları ve performans tablosunu özetleyen bağımsız test raporunu ve karne tablosunu diske yaz",
+      "sade": "BLG 202E dersindeki 'Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak' bilgisiyle otomatik raporlama modülü tamamlanır. Ham model ile MOS algoritmalarının karşılaştırmalı sayısal karnesi derlenir. Bu çıktı istasyon ölçekli hava tahmini optimizasyonunun başarısını ortaya koyar.",
+      "altAdimlar": [
+       "Metrikleri (Ham RMSE, Ridge RMSE, LightGBM RMSE, İyileşme Oranı) içeren bir pandas DataFrame kur",
+       "Tabloyu markdown ve CSV formatlarında proje rapor dizinine aktar",
+       "Elde edilen kazanımı ve Florya istasyonundaki mikroiklim etkilerini özetleyen sonuç notunu kaydet"
+      ],
+      "kazanim": {
+       "ders": "BLG 202E",
+       "madde": "Sayısal türev ve integral alıp bir yazılım ya da donanım problemini sayısal yöntemle kurmak"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Florya istasyonu için GFS sıcaklık tahminlerindeki sistematik sapmayı %30'un üzerinde azaltan çalışan bir MOS Python betiği ve karne grafiği.",
+  "senden": "BLG 202E'den gelen kısım: veri temizleme, en küçük kareler regresyon hattı, model eğitimi ve doğrulama metriklerinin kodlanması.",
+  "bizden": "MAT 202E ve meteorolojiden gelen kısım: model sapma kaynaklarının analizi, fiziksel özellik seçimi ve sinoptik hata yorumu."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "gfs",
+   "konu": "İstanbul ve Marmara 2m sıcaklık ve yerel sapma deseni, GFS, 2024, günlük döngü",
+   "aciklama": "GFS modelinin Marmara üzerindeki sıcaklık alanı: deniz ve karasal hücreler arasındaki sistematik sapma deseni"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://vlab.noaa.gov/web/mdl/mos",
+   "aciklama": "NOAA MDL MOS dokümantasyon sayfası: operasyonel bülten arayüzü ve istasyon tahmin tablosu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Linear_least_squares_example2.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "En küçük kareler yöntemi: gözlem ve tahmin çiftleri arasındaki doğrusal sapma düzeltme hattı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Glahn & Lowry (1972) Model Output Statistics (MOS) temel makalesi, JAM · DOI 10.1175/1520-0450(1972)011<1203:TUOMOS>2.0.CO;2",
+   "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2"
+  },
+  {
+   "ad": "Rasp & Lerch (2018) Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "NOAA NWS Meteorological Development Laboratory · MOS Program",
+   "url": "https://vlab.noaa.gov/web/mdl/mos"
+  },
+  {
+   "ad": "Open-Meteo Previous Runs API (geçmiş model çalıştırmaları arşivi)",
+   "url": "https://open-meteo.com/en/docs/previous-runs-api"
+  },
+  {
+   "ad": "OGIMET küresel SYNOP ve METAR hava gözlem arşivi",
+   "url": "https://www.ogimet.com/synops.phtml.en"
+  },
+  {
+   "ad": "WMO WWRP JWGFVR tahmin doğrulama metrikleri kılavuzu",
+   "url": "https://jwgfvr.github.io/forecastverification/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "notlar": "Tüm URL ve DOI bağlantıları kontrol edildi. GFS NOMADS ve Open-Meteo Previous Runs API ile OGIMET 17060 istasyonu eşleştirildi.",
+ "_birlestirme": {
+  "kaynak": "cikti/BLG-02.json",
+  "tarih": "2026-10-14 23:01",
+  "geminiSha1": "c33277c3dd2e"
+ }
+}

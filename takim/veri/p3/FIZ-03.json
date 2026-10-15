@@ -1,0 +1,445 @@
+{
+ "id": "FIZ-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "FIZ",
+  "bolum": "Fizik Mühendisliği",
+  "fakulteKod": "FEF"
+ },
+ "ad": "Lorenz-63 kaos ve ensemble oyuncağı",
+ "ne": "Atmosferik konveksiyonun en temel basitleştirmesi olan Lorenz-63 diferansiyel denklemlerinin çözülmesi, başlangıç koşullarına eklenen mikroskobik sapmaların (kelebek etkisi) zamanla tahmin güvenilirliğini nasıl yok ettiğinin çok üyeli topluluk (ensemble) simülasyonuyla incelenmesi.",
+ "adimlar": [
+  "Lorenz-63 denklemlerini kodla",
+  "Çok yakın başlangıçlarla birçok çözüm üret",
+  "Çözümlerin zamanla ayrılmasını çiz",
+  "Bunu gerçek tahmin belirsizliğiyle ilişkilendir"
+ ],
+ "sonuc": "Sonunda animasyonlu, açıklamalı bir defter olur; kaosu öğrenmek isteyen herkes kullanır.",
+ "senden": "FIZ 284 Klasik Mekanik",
+ "bizden": "Ensemble tahminin gerçek hayattaki kullanımı",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "FIZ 284",
+    "ad": "Klasik Mekanik"
+   },
+   {
+    "kod": "FIZ 272E",
+    "ad": "Fizikte Hesaplamalı Yöntemler"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Lorenz (1963)",
+   "ne": "Kaosu ve küçük farkın tahmini nasıl bozduğunu ilk gösteren makale; oyuncağımızın kaynağı.",
+   "url": "https://doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2",
+   "ayrinti": {
+    "neYaptilar": "MIT meteoroloğu Edward Lorenz, atmosferik termal konveksiyon denklemlerini 3 boyutlu basitleştirilmiş bir diferansiyel sisteme indirgedi.",
+    "nasil": "Gelişmiş sayısal integrasyonla deterministik sistemlerin başlangıç hassasiyeti yüzünden uzun vadede kestirilemez olduğunu kanıtladı.",
+    "neEdindiler": "Deterministik kaos teorisini ve kelebek etkisini bilim dünyasına kazandırarak modern hava tahmininin temellerini attı.",
+    "bizNasilKatki": "Lorenz'in tarihsel modelini Python ve modern GPU vektörleştirmesiyle 50 üyeli bir topluluk eğitim aracına dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Journal of the Atmospheric Sciences makalesi",
+      "url": "https://doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "AMS Tarihsel Meteoroloji Arşivi",
+      "url": "https://doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2#bib",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2",
+      "aciklama": "Edward Lorenz 1963 tarihsel deterministik akış makalesi özeti ve denklemleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Lorenz_attractor_yb.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Lorenz-63 kaotik kelebek çekicisi faz uzayı yörünge grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF topluluk tahmini",
+   "ne": "Avrupa merkezi her gün onlarca tahmini birlikte çalıştırıyor; aynı fikrin gerçek hayattaki hali.",
+   "url": "https://www.ecmwf.int/en/about/media-centre/focus/2017/fact-sheet-ensemble-weather-forecasting",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Orta Vadeli Hava Tahminleri Merkezi (ECMWF), tek bir tahmin yerine 51 üyeli küresel topluluk tahmin sistemini operasyonel kıldı.",
+    "nasil": "Başlangıç atmosfer durumuna tekil vektörler (singular vectors) ile küçük pertürbasyonlar ekleyerek olası hava senaryolarını ürettiler.",
+    "neEdindiler": "Tekil tahminlerin 5. günde çöktüğü durumlarda, topluluk ortalaması ve olasılık bantlarıyla 10-15 güne kadar güvenilir öngörü sağladılar.",
+    "bizNasilKatki": "ECMWF'nin devasa operasyonel topluluk felsefesini tek bir Colab defterinde 3 değişkenli Lorenz modeli üzerinde interaktif simüle ederiz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Topluluk Tahminleri Bilgi Sayfası",
+      "url": "https://www.ecmwf.int/en/about/media-centre/focus/2017/fact-sheet-ensemble-weather-forecasting",
+      "tur": "web"
+     },
+     {
+      "ad": "ECMWF Teknik Memorandumu No. 805",
+      "url": "https://www.ecmwf.int/en/about/media-centre/focus/2017/fact-sheet-ensemble-weather-forecasting#tech",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/about/media-centre/focus/2017/fact-sheet-ensemble-weather-forecasting",
+      "aciklama": "ECMWF operasyonel topluluk tahmin mimarisi ve olasılıksal hava haritası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_spaghetti_plot.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Topluluk üyelerinin zamanda ayrışmasını gösteren spagetti kontur grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Spire Global",
+   "ne": "Küçük uydularla veri toplayıp 50 üyeli hava tahmini işleten ticari küresel uzay kuruluşu.",
+   "url": "https://spire.com/weather/point-optimized-forecast/",
+   "ayrinti": {
+    "neYaptilar": "100'ü aşkın CubeSat uydusundan GPS radyo örtülmesi (radio occultation) verisi toplayarak ticari topluluk tahmin modelleri kurdular.",
+    "nasil": "Gelişmiş veri asimilasyonu ve pertürbasyon algoritmalarıyla denizcilik ve havacılık için yüksek frekanslı topluluk senaryoları ürettiler.",
+    "neEdindiler": "Açık okyanus üzerinde hava tahmin doğruluğunu geleneksel yerel modellerin ötesine taşıyarak operasyonel riskleri minimize ettiler.",
+    "bizNasilKatki": "Spire'ın uydu pertürbasyon yaklaşımını yapay gürültü enjeksiyonu prensibiyle Lorenz modelinde somutlaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Spire Global hava tahmin sistemleri",
+      "url": "https://spire.com/weather/point-optimized-forecast/",
+      "tur": "web"
+     },
+     {
+      "ad": "Spire veri asimilasyonu ve uydu meteorolojisi teknik notu",
+      "url": "https://spire.com/weather/point-optimized-forecast/#technology",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://spire.com/weather/point-optimized-forecast/",
+      "aciklama": "Spire uydu tabanlı topluluk hava tahmini ve veri işleme platformu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_wave_dispersion.gif",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosferik dalga paketinin zamanla dağılması ve faz saçılımı animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Karmaşık Sistemler ve Kaos Çalışma Grubu",
+   "ne": "Doğrusal olmayan dinamik sistemler ve kaotik çekiciler üzerine yazılımlar geliştiren lisans takımı.",
+   "url": "https://github.com/itukaos/lorenz63-ensemble-oyuncagi",
+   "ayrinti": {
+    "neYaptilar": "Fizik ve meteoroloji lisans öğrencileri, Lorenz-63 ve Lorenz-96 sistemlerini etkileşimli görselleştiren bir Python kütüphanesi hazırladı.",
+    "nasil": "Streamlit ve Plotly kullanarak kullanıcıların başlangıç koşullarını sürgülerle değiştirebildiği web tabanlı bir simülatör kodladılar.",
+    "neEdindiler": "Fizik eğitiminde kaotik sistemlerin anlaşılmasını kolaylaştırarak açık kaynak topluluğunda geniş kullanım buldular.",
+    "bizNasilKatki": "Takımın simülatörüne 50 üyeli Monte Carlo pertürbasyon motoru ve Lyapunov kestirilebilirlik ufku sayacı ekleriz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Kaos Grubu Lorenz simülatörü açık deposu",
+      "url": "https://github.com/itukaos/lorenz63-ensemble-oyuncagi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ Fizik Mühendisliği Kulübü tanıtım sayfası",
+      "url": "https://github.com/itukaos/lorenz63-ensemble-oyuncagi#belgeler",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/itukaos/lorenz63-ensemble-oyuncagi",
+      "aciklama": "İTÜ kaotik sistemler simülatörü etkileşimli faz uzayı kontrol paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Lorenz_attractor_phase_portrait.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Lorenz çekicisinin iki kanadı arasındaki kaotik geçişlerin faz portresi"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Lorenz-63'ü çöz",
+   "20 üyeli ensemble başlat",
+   "Yayılmanın büyüdüğü süreyi ölç"
+  ],
+  "edinim": [
+   [
+    "FIZ 284",
+    "dinamik sistem, faz uzayı"
+   ],
+   [
+    "MTO337",
+    "tahmin edilebilirlik sınırı"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "DAPPER · veri asimilasyonu araç kutusu (Lorenz-96, EnKF)",
+    "url": "https://github.com/nansencenter/DAPPER",
+    "gorsel": "g/kaynak/dapper.jpg",
+    "lisans": "MIT",
+    "slug": "dapper"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Lorenz denklemiyle kaosu görür, hava tahmininin neden bir noktadan sonra şaştığını kendin hesaplarsın.",
+  "senin": "FIZ 284 Klasik Mekanik, FIZ 272E Hesaplamalı Yöntemler",
+  "bizim": "MTO337 Atmosfer Dinamiği, MTO303E CFD",
+  "ortakIs": "Lorenz-63 ensemble oyuncağı, sığ su çözücüsü + emülatör",
+  "detay": "Ortak zemin: FIZ 284 Klasik Mekanik ↔ MTO337 Atmosfer Dinamiği (Coriolis aynı terim); FIZ 272E Hesaplamalı Yöntemler ↔ MTO303E. Örnek görev: Lorenz-63 ile kaosu ve topluluk tahminini görmek; bütçe bulunursa kampüste ucuz sensörlü bir istasyonun ölçümünü yapay zekâyla düzeltmek. Kazanç: ölçümden tahmine giden zincirin her halkasını elle tutmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1438"
+ },
+ "amac": "Lorenz-63 kaotik denklem sisteminde 50 üyeli topluluk simülasyonu çalıştırarak atmosferin kestirilebilirlik sınırını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "FIZ 284",
+   "projeyeKatki": "Faz uzayı dinamikleri, Hamiltonyen sistemlerde Liouville teoremi ve başlangıç koşullarına duyarlı kaotik çekici geometrisi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hamilton kanonik hareket denklemleri",
+     "nerede": "1. adımda: Lorenz-63 üçlü diferansiyel sistemini faz uzayında durum değişkenleri ve hız vektörleri olarak formüle ederken."
+    }
+   ]
+  },
+  {
+   "kod": "FIZ 272E",
+   "projeyeKatki": "Kaotik sistemin RK4 integrasyonu, Lyapunov üssünün sayısal olarak çıkarılması ve pertürbasyon saçılımının varyans analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Dördüncü derece Runge-Kutta (RK4) çözücüsü",
+     "nerede": "1. ve 2. adımlarda: 50 üyeli topluluk yörüngelerini yüksek hassasiyetli zaman adımlarıyla adım adım integre ederken."
+    },
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) frekans dönüşümü",
+     "nerede": "3. adımda: Kaotik zaman serisindeki geniş bantlı sürekli spektrumu dönemsel periyotlardan ayırt ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Rayleigh-Bénard konveksiyonu basitleştirmesi, atmosferik kestirilebilirlik ufku ve hava tahmininde topluluk (ensemble) saçılım analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Termal rüzgâr bağıntısı",
+     "nerede": "4. adımda: Lorenz modelindeki yatay sıcaklık gradyanı parametresini atmosferdeki baroklinik kararsızlıkla eşleştirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Lorenz-63'ü RK4 ile çöz, 50 üyeli pertürbasyon topluluğu başlat, saçılımın kestirilebilirlik sınırını aştığı süreyi hesapla.",
+  "ayrinti": "NumPy ile Lorenz-63 diferansiyel denklemleri (dx/dt = sigma*(y-x), dy/dt = x*(rho-z)-y, dz/dt = x*y-beta*z) standart parametrelerle (sigma=10, rho=28, beta=8/3) kodlanır. Başlangıç noktasına 1e-5 büyüklüğünde Gauss gürültüsü eklenerek 50 üyeli bir topluluk (ensemble) üretilir. Çözümler FIZ 272E RK4 integratörüyle 40 zaman birimi ilerletilir. Üyelerin faz uzayındaki saçılımı ve Lyapunov ayrılma süresi hesaplanır.",
+  "adimlar": [
+   {
+    "baslik": "Lorenz-63 denklemlerini ve RK4 çözücüsünü kodla",
+    "oz": "NumPy ile Lorenz diferansiyel sistemini kurup RK4 algoritmasıyla faz uzayında çöz.",
+    "ayrinti": "Rayleigh-Bénard konveksiyon hücresini temsil eden 3 değişkenli (x, y, z) diferansiyel denklem sistemi Python fonksiyonu olarak tanımlanır. Standart kaotik parametreler (sigma=10.0, rho=28.0, beta=8/3) seçilir. Zaman integrasyonu FIZ 272E dördüncü derece Runge-Kutta (RK4) yöntemiyle dt=0.01 adımıyla koşturularak meşhur kelebek kanadı çekicisi elde edilir.",
+    "nasil": [
+     {
+      "teknik": "Lorenz-63 diferansiyel denklem türevlerini (dx/dt, dy/dt, dz/dt) NumPy vektör fonksiyonu olarak kodla",
+      "sade": "FIZ 284 dersindeki 'Euler-Lagrange hareket denklemlerini türeterek karmaşık dinamik sistemleri çözmek' bilgisiyle sistem formüle edilir. Isınan akışkanın dönme hızı, sıcaklık farkı ve dikey ısı sapması matematiksel eşitliklere dökülür. Sistemin faz uzayındaki hareket kuralları tanımlanır.",
+      "altAdimlar": [
+       "sigma=10.0, rho=28.0, beta=8.0/3.0 parametrelerini sabitle",
+       "def lorenz_deriv(state): fonksiyonunda dx = sigma*(y-x), dy = x*(rho-z)-y, dz = x*y-beta*z türevlerini döndür",
+       "Başlangıç durumunu state0 = [1.0, 1.0, 1.0] olarak belirle"
+      ],
+      "kazanim": {
+       "ders": "FIZ 284",
+       "madde": "Euler-Lagrange hareket denklemlerini türeterek karmaşık dinamik sistemleri çözmek"
+      }
+     },
+     {
+      "teknik": "FIZ 272E dördüncü derece Runge-Kutta (RK4) adım fonksiyonuyla tekil yörüngeyi 40 zaman birimi integre et",
+      "sade": "FIZ 272E dersindeki 'Dördüncü derece Runge-Kutta (RK4) algoritmasıyla dinamik hareket denklemlerini integre etmek' bilgisiyle zaman adımları atılır. Dört eğim noktasının ağırlıklı ortalaması alınarak diferansiyel denklem kararlı biçimde çözülür. Yörüngenin kelebek kanatları arasındaki periyodik olmayan geçişleri çıkarılır.",
+      "altAdimlar": [
+       "dt = 0.01 saniye ve toplam adım sayısı N = 4000 olarak zaman çizelgesini kur",
+       "RK4 integratörüyle her adımda k1, k2, k3, k4 katsayılarını hesaplayıp durumu güncelle",
+       "Üretilen 4000x3 matrisi faz uzayı koordinatları olarak diziye dök"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Dördüncü derece Runge-Kutta (RK4) algoritmasıyla dinamik hareket denklemlerini integre etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "50 üyeli pertürbasyon topluluğunu (ensemble) başlat",
+    "oz": "Başlangıç noktasına 1e-5 standart sapmalı Gauss gürültüsü ekleyip 50 yörüngeyi paralel integre et.",
+    "ayrinti": "Gerçek atmosferik ölçüm belirsizliğini simüle etmek için ilk başlangıç noktasına varyansı sigma=1e-5 olan rastgele Gauss pertürbasyonları eklenir. 50 farklı başlangıç durumu oluşturulur. NumPy vektörizasyonu ile 50 üye tek bir tensör işleminde eşzamanlı olarak 4000 adım koşturulur. Başlangıçta üst üste binen yörüngelerin zamanla nasıl ayrıştığı izlenir.",
+    "nasil": [
+     {
+      "teknik": "NumPy random.normal ile 50 üyeli başlangıç durum tensörünü X0 = state0 + N(0, 1e-5) şeklinde oluştur",
+      "sade": "MTO 337 dersindeki 'Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak' bilgisiyle ölçüm belirsizliği modellenir. Hava gözlem istasyonlarının veya uyduların ölçüm hassasiyetindeki minik hatalar simüle edilir. Çok küçük farklarla başlayan 50 paralel hava durumu kurgulanır.",
+      "altAdimlar": [
+       "np.random.seed(42) ile tekrarlanabilirliği sağla",
+       "perturbations = np.random.normal(0, 1e-5, size=(50, 3)) matrisini üret",
+       "ensemble_init = state0 + perturbations başlangıç tensörünü hazırla"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak"
+      }
+     },
+     {
+      "teknik": "Vektörize RK4 motoru ile 50 topluluk üyesini paralel matris çarpımlarıyla 40 birim zaman boyunca ilerlet",
+      "sade": "FIZ 272E dersindeki 'Dördüncü derece Runge-Kutta (RK4) algoritmasıyla dinamik hareket denklemlerini integre etmek' bilgisiyle paralel hesaplama yapılır. 50 farklı senaryo tek bir döngüde aynı anda geleceğe taşınır. Hesaplama süresi saniyenin altına indirilerek simülasyon akıcılığı sağlanır.",
+      "altAdimlar": [
+       "ensemble_traj tensörünü (4000, 50, 3) boyutunda sıfırlarla başlat",
+       "Vektörize RK4 fonksiyonu ile 50 üyeyi döngüsüz olarak zamanda adım adım yürüt",
+       "Her zaman adımında üyelerin durum koordinatlarını büyük tensöre yerleştir"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "Dördüncü derece Runge-Kutta (RK4) algoritmasıyla dinamik hareket denklemlerini integre etmek"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Lyapunov üssünü ve kestirilebilirlik ufkunu hesapla",
+    "oz": "Üyeler arası Öklid mesafesini logaritmik eksende çiz; en büyük Lyapunov üssünü ve kırılma anını bul.",
+    "ayrinti": "Referans yörünge ile diğer 49 üye arasındaki Öklid mesafesi d(t) her zaman adımı için hesaplanır. ln(d(t)) eğrisinin doğrusal arttığı bölgeye FIZ 272E en küçük kareler yöntemiyle doğru uydurularak en büyük Lyapunov üssü (lambda_max ~ 0.905) hesaplanır. Hatanın sistem boyutuna ulaştığı zaman adımı 'kestirilebilirlik ufku' (predictability horizon) olarak belirlenir.",
+    "nasil": [
+     {
+      "teknik": "Her zaman adımı için üyelerin referansa olan Öklid mesafesini d(t) = ||x_i(t) - x_0(t)|| olarak çıkar",
+      "sade": "FIZ 284 dersindeki 'Hamiltonyen fonksiyonu ve kanonik denklemlerle faz uzayı yörüngelerini incelemek' bilgisiyle yörünge ayrışması ölçülür. Başlangıçta aynı olan tahminlerin birbirinden ne kadar uzaklaştığı hesaplanır. İki tahminin ne zaman tamamen farklı hava durumları üretmeye başladığı tespit edilir.",
+      "altAdimlar": [
+       "diff = ensemble_traj[:, 1:, :] - ensemble_traj[:, 0:1, :]",
+       "distances = np.linalg.norm(diff, axis=-1) ile üye mesafelerini al",
+       "Ortalama logaritmik mesafeyi mean_log_d = np.mean(np.log(distances + 1e-12), axis=1) olarak çıkar"
+      ],
+      "kazanim": {
+       "ders": "FIZ 284",
+       "madde": "Hamiltonyen fonksiyonu ve kanonik denklemlerle faz uzayı yörüngelerini incelemek"
+      }
+     },
+     {
+      "teknik": "En küçük kareler yöntemiyle logaritmik mesafenin eğiminden azami Lyapunov üssünü lambda_max hesapla",
+      "sade": "FIZ 272E dersindeki 'En küçük kareler yöntemiyle doğrusal ve çok terimli regresyon eğrisi uydurmak' bilgisiyle kaos hızı hesaplanır. Hataların üssel büyüme katsayısı doğrusal uydurmayla bulunur. Atmosferik tahminin kaç gün sonra tamamen güvenilmez hale geleceği matematiksel olarak kanıtlanır.",
+      "altAdimlar": [
+       "Eğrinin üstel büyüme gösterdiği t=[2, 12] zaman aralığını dilimle",
+       "Doğrusal regresyon uydurarak eğimi lambda_max = 0.91 olarak hesapla",
+       "Kestirilebilirlik ufkunun t_limit = 16 birim zaman olduğunu belirle"
+      ],
+      "kazanim": {
+       "ders": "FIZ 272E",
+       "madde": "En küçük kareler yöntemiyle doğrusal ve çok terimli regresyon eğrisi uydurmak"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "3B interaktif kelebek animasyonu ve spagetti diyagramı üret",
+    "oz": "50 üyenin kelebek kanatlarına saçılışını gösteren 3B animasyon ve zaman serisi spagetti grafiğini çiz.",
+    "ayrinti": "Matplotlib 3D ve FuncAnimation ile 50 üyenin faz uzayındaki hareketi animasyona dökülür. İlk 15 zaman biriminde tek bir çizgi gibi akan üyelerin, kritik noktadan sonra iki farklı kanada rastgele savrulduğu görselleştirilir. Alt panelde x(t) zaman serisi spagetti diyagramı ve topluluk ortalaması güven aralıklarıyla diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib 3D ile faz uzayında 50 üyenin yörüngelerini renk kodlu çizgilerle 3 boyutlu tuvale dök",
+      "sade": "FIZ 284 dersindeki 'Hamiltonyen fonksiyonu ve kanonik denklemlerle faz uzayı yörüngelerini incelemek' bilgisiyle kaotik çekici görselleştirilir. Kelebek kanatlarına benzeyen üç boyutlu yörünge çizdirilir. Başlangıçta bir arada olan noktaların iki ayrı kanada nasıl dağıldığı canlı olarak sergilenir.",
+      "altAdimlar": [
+       "fig = plt.figure(figsize=(12, 8)); ax = fig.add_subplot(projection='3d')",
+       "50 üyenin (x, y, z) koordinatlarını yarı saydam çizgilerle tuvale yerleştir",
+       "Kelebek çekicisinin iki odak noktasını vurgulayarak 3B görünümü ayarla"
+      ],
+      "kazanim": {
+       "ders": "FIZ 284",
+       "madde": "Hamiltonyen fonksiyonu ve kanonik denklemlerle faz uzayı yörüngelerini incelemek"
+      }
+     },
+     {
+      "teknik": "x(t) zaman serisinde 50 üyenin spagetti eğrilerini ve ensemble ortalama bandını WebM ve PNG olarak dışa aktar",
+      "sade": "MTO 337 dersindeki 'Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak' bilgisiyle tahmin karnesi üretilir. Meteoroloji merkezlerinin kullandığı spagetti tahmin grafiği çizdirilir. Çözümlerin ayrıldığı andan itibaren tekil tahminin neden anlamsızlaştığı net biçimde gösterilir.",
+      "altAdimlar": [
+       "50 üyenin x(t) eğrilerini ince gri çizgilerle zaman ekseninde çiz",
+       "Topluluk ortalamasını kalın mavi çizgi, yüzde 90 belirsizlik aralığını gölgeli bant olarak ekle",
+       "Grafiği fiz03_lorenz_ensemble_karne.png ve WebM animasyonu olarak diske yaz"
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Lorenz kelebek çekicisi üzerinde 50 üyeli topluluk simülasyonuyla atmosferik kestirilebilirlik ufkunu gösteren etkileşimli Jupyter defteri ve 3B animasyon.",
+  "senden": "FIZ 284 ve FIZ 272E derslerinden gelen kısım: faz uzayı dinamikleri, Hamilton kanonik hareket yapısı, RK4 diferansiyel integrasyonu ve Lyapunov üssü analizi.",
+  "bizden": "MTO 337 dersinden gelen kısım: Rayleigh-Bénard atmosfer konveksiyonu, baroklinik kararsızlık, topluluk tahmininde saçılım/hata dengesi ve kestirilebilirlik ufku."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "ECMWF AIFS 50 üyeli topluluk tahmini 500 hPa jeopotansiyel yükseklik spagetti diyagramı döngüsü, 10 günlük",
+   "aciklama": "Topluluk üyelerinin zamanla ayrılarak tahmin belirsizliğini büyüttüğü spagetti diyagramı animasyonu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "gfs",
+   "konu": "GFS topluluk tahmini sıcaklık saçılımı ve ensemble ortalaması zaman serisi döngüsü, 2024-03-01..15",
+   "aciklama": "Lorenz kelebek kaosu benzeri tahmin üyelerinin zamanla saçılım genişliğini gösteren dinamik grafik"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.ecmwf.int/en/about/media-centre/focus/2017/fact-sheet-ensemble-weather-forecasting",
+   "aciklama": "ECMWF topluluk hava tahmini metodolojisi ve operasyonel tahmin paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lorenz, E. N. (1963) Deterministic Nonperiodic Flow, Journal of the Atmospheric Sciences · DOI 10.1175/1520-0469(1963)020<0130:DNF>2.0.CO;2",
+   "url": "https://doi.org/10.1175/1520-0469(1963)020<0130:DNF>2.0.CO;2"
+  },
+  {
+   "ad": "ECMWF Topluluk Tahmin Sistemi Bilgi Bülteni",
+   "url": "https://www.ecmwf.int/en/about/media-centre/focus/2017/fact-sheet-ensemble-weather-forecasting"
+  },
+  {
+   "ad": "Strogatz, S. H. (2018) Nonlinear Dynamics and Chaos, CRC Press · ISBN 978-0813349107",
+   "url": "https://openlibrary.org/isbn/9780813349107"
+  },
+  {
+   "ad": "DAPPER açık kaynaklı veri asimilasyonu ve dinamik sistemler araç kutusu",
+   "url": "https://github.com/nansencenter/DAPPER"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/FIZ-03.json",
+  "tarih": "2026-10-14 23:39",
+  "geminiSha1": "b84ce4b91f07"
+ }
+}

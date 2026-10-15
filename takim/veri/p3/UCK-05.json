@@ -1,0 +1,385 @@
+{
+ "id": "UCK-05",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "UCK",
+  "bolum": "Uçak Mühendisliği",
+  "fakulteKod": "UUBF"
+ },
+ "ad": "Ortak adveksiyon denklemi mini kütüphanesi",
+ "ne": "Uçak aerodinamiğindeki sınır tabaka akışları ile atmosferdeki sıcaklık ve kirletici taşınımının temelini oluşturan adveksiyon denklemini, kararlı sonlu fark şemalarıyla çözen ve iki bölüm öğrencilerinin ortak kullanabileceği açık Python kütüphanesinin kurulması.",
+ "adimlar": [
+  "Adveksiyon denklemini birkaç yöntemle kodla",
+  "Basit test durumları hazırla",
+  "Yöntemlerin doğruluğunu karşılaştır",
+  "Kodu açıklamalarla paylaş"
+ ],
+ "sonuc": "Sonunda iki bölümün de kullanabileceği küçük bir kod kütüphanesi olur.",
+ "senden": "MAT 202E Numerical Methods",
+ "bizden": "Atmosferdeki taşınım örnekleri",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MAT 202E",
+    "ad": "Numerical Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Clawpack / PyClaw",
+   "ne": "Washington Üniversitesi'nden, adveksiyon dahil taşınım denklemlerini çözen açık kaynak kütüphane.",
+   "url": "https://www.clawpack.org/v5.7.x/pyclaw/index.html",
+   "ayrinti": {
+    "neYaptilar": "Washington Üniversitesi Uygulamalı Matematik Bölümü, hiperbolik korunum yasaları ve dalga yayılım algoritmaları için açık kaynaklı Clawpack ve PyClaw paketlerini geliştirdi.",
+    "nasil": "Yüksek mertebeli sonlu hacim yöntemleri ve Reimann çözücülerini Python arayüzü ve Fortran çekirdeğiyle birleştirerek şok dalgaları ve adveksiyon problemlerini çözdüler.",
+    "neEdindiler": "Atmosferik dalgalar, tsunami simülasyonları ve aerodinamik akışlarda küresel ölçekte binlerce araştırmacının başvurduğu temel referans yazılım haline geldiler.",
+    "bizNasilKatki": "PyClaw yapısındaki karmaşık Fortran bağımlılıklarını arındırıp saf NumPy ve Numba ile hafif, 100 satırlık öğrenci kütüphanesi yazarız.",
+    "referanslar": [
+     {
+      "ad": "Clawpack PyClaw resmi dokümantasyon sayfası",
+      "url": "https://www.clawpack.org/v5.7.x/pyclaw/index.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Ketcheson vd. (2012) PyClaw: Accessible, Extensible, Parallel PDE Solving",
+      "url": "https://doi.org/10.1137/120875704",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Kuzey Atlantik 850 hPa potansiyel sıcaklık adveksiyonu alanı, ERA5, 2024-02-15, 6 saatlik",
+      "aciklama": "Sinoptik ölçekte soğuk ve sıcak hava adveksiyonunun dalga hareketi boyunca taşınımı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Advection_equation_solution.gif",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Bir boyutlu adveksiyon denkleminde dalga paketinin sabit hızla ötelenmesi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Devito Codes",
+   "ne": "Imperial College'daki açık kaynak sonlu fark kodundan doğdu; enerji sektörüne hizmet veren şirket oldu.",
+   "url": "https://www.devitocodes.com/about/",
+   "ayrinti": {
+    "neYaptilar": "Imperial College Londra araştırmacıları, sembolik kısmi diferansiyel denklemlerden optimize C/CUDA kodu üreten açık kaynak Devito projesini kurup ticarileştirdi.",
+    "nasil": "SymPy tabanlı sembolik gösterimleri otomatik olarak yüksek başarımlı sonlu fark algoritmalarına ve paralel GPU döngülerine dönüştürdüler.",
+    "neEdindiler": "Jeofizik dalga yayılımı, sismik ters analiz ve akışkanlar mekaniğinde enerji devlerine lisanslı hesaplama motoru sağlayan bir derin teknoloji şirketine dönüştüler.",
+    "bizNasilKatki": "Devito'nun sembolik ayrıklaştırma yaklaşımını ilham alıp adveksiyon şemalarını sembolik denklemden üreten basit bir Python sınıf yapısı kurarız.",
+    "referanslar": [
+     {
+      "ad": "Devito Codes kurumsal ve teknoloji sayfası",
+      "url": "https://www.devitocodes.com/about/",
+      "tur": "web"
+     },
+     {
+      "ad": "Luporini vd. (2020) Architecture of Devito DSL",
+      "url": "https://doi.org/10.1145/3374914",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara denizi rüzgâr akım çizgileri ve duman dağılım simülasyonu, 2024-03-01, saatlik",
+      "aciklama": "İki boyutlu hız alanında pasif skaler taşınımının adveksiyon çözücüyle yayılımı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.devitocodes.com/about/",
+      "aciklama": "Devito sonlu fark optimizasyon platformu mimarisi ve ekip tanıtımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "İTÜ Pars Roket Takımı",
+   "ne": "Teknofest roket yarışmalarında aerodinamik basınç ve sıcaklık taşınımı analizleri yürüten İTÜ takımı.",
+   "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Pars Roket Takımı, yüksek irtifa roket gövdesi ve kanatçıkları çevresindeki aerodinamik akış ve ısıl taşınımı sayısal araçlarla modelledi.",
+    "nasil": "Açık kaynaklı OpenFOAM çözücüleri ve yerel sonlu fark kodları kullanarak transonik uçuş rejiminde şok dalgası ve adveksiyon etkilerini simüle ettiler.",
+    "neEdindiler": "Gövde ısıl yüklerini doğru kestirerek burun konisi kompozit yapısını hafiflettiler ve Teknofest birinciliği kazandılar.",
+    "bizNasilKatki": "Takımın aerodinamik eğitiminde kullanılmak üzere adveksiyon ve şok yayılımını görselleştiren etkileşimli Jupyter modülleri sunarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Öğrenci Takımları Portalı Pars Roket Takımı Sayfası",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "tur": "web"
+     },
+     {
+      "ad": "OpenFOAM hesaplamalı akışkanlar dinamiği kılavuzu",
+      "url": "https://www.openfoam.com/documentation/user-guide",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Orta Doğu ve Doğu Akdeniz 500 hPa vortisite adveksiyonu alanı, GFS, 2024-03-05, 3 saatlik",
+      "aciklama": "Troposfer üst katmanında mutlak vortisite adveksiyonunun dalga sırtları boyunca akışı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.itu.edu.tr/arastirma/proje-ve-takimlar/ogrenci-takimlari",
+      "aciklama": "İTÜ öğrenci kulüpleri ve mühendislik takımları tanıtım sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "1B adveksiyonu ayrıkla",
+   "Şemaları karşılaştır",
+   "Paylaşılabilir kütüphane hâline getir"
+  ],
+  "edinim": [
+   [
+    "MAT 202E",
+    "ayrıklaştırma, kararlılık"
+   ],
+   [
+    "MTO337",
+    "adveksiyon ve taşınım"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Sığ su denklemleri (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Shallow_water_equations",
+    "gorsel": "g/kaynak/sw-eq.jpg",
+    "lisans": "CC BY-SA",
+    "slug": "sw-eq"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin uçağın tahmin edilen havada uçar; türbülans tahminini birlikte düzeltir, ne kadar tuttuğunu ölçeriz.",
+  "senin": "AKM 219 Akışkanlar Mekaniği, MAT 202E Numerical Methods",
+  "bizim": "MTO337/340 Atmosfer Dinamiği, MTO304 Havacılık Meteorolojisi",
+  "ortakIs": "Drone ile sınır tabaka ölçümü, türbülans/rüzgar kesmesi tahmini",
+  "detay": "Ortak zemin: AKM 219 Akışkanlar Mekaniği ↔ MTO337/340 Atmosfer Dinamiği; aynı korunum denklemleri, biz Coriolis'i ekliyoruz. MAT 202E Sayısal Yöntemler iki bölümde aynı ders. Örnek görev: drone ile sınır tabaka ölçümü ya da havalimanında türbülans ve rüzgâr kesmesi tahmini. Kazanç: uçuş güvenliğinde gerçek hava verisiyle çalışmış olmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2727"
+ },
+ "amac": "Aerodinamik ve atmosferik taşınım süreçlerini sonlu farklar ve akı sınırlayıcı şemalarla çözen, doğrulanmış açık kaynaklı Python mini kütüphanesi geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "MAT 202E",
+   "projeyeKatki": "Sonlu farklar ayrıklaştırması, CFL kararlılık kriteri, yapay difüzyon analizi ve Simpson integral doğrulaması bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Simpson 1/3 kuralı (sayısal integral)",
+     "nerede": "3. adımda: Adveksiyon alanının toplam kütle korunumunu her zaman adımında uzaysal integral alarak test ederken."
+    },
+    {
+     "formulAd": "Gauss-Seidel yinelemeli çözümü",
+     "nerede": "2. adımda: Örtük Crank-Nicolson adveksiyon ayrıklaştırmasından doğan üç köşegenli matris sistemini çözerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Sıcaklık ve girdap adveksiyonu, izobarik süreklilik denklemi, akışkan parçacığı türevi ve sayısal hava tahminindeki adveksiyon şemaları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "İzobarik süreklilik denklemi",
+     "nerede": "2. adımda: İki boyutlu sıkıştırılamaz adveksiyon akışında hız alanının ıraksamasızlık koşulunu denetlerken."
+    },
+    {
+     "formulAd": "Jeostrofik rüzgâr vektörü",
+     "nerede": "3. adımda: Dairesel izobar çevresindeki jeostrofik rüzgâr alanında pasif skaler taşınım test durumunu kurarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "1B ve 2B adveksiyon denklemi sonlu fark şemalarıyla kodlanıp kütle korunumu ve yapay difüzyon analizleriyle karşılaştırılır.",
+  "ayrinti": "Bir ve iki boyutlu lineer adveksiyon denklemi açık rüzgâr yönlü (Upwind), Lax-Wendroff ve akı sınırlayıcı van Leer şemalarıyla Python üzerinde nesne yönelimli sınıflar halinde kodlanır. MAT 202E dersindeki CFL kararlılık kriteri ve Taylor açılımı kesme hatası formülleri uygulanır. MTO 337 atmosferik sıcaklık cephesi ve dairesel vortisite test durumları üzerinde yapay difüzyon ve sayısal dağılma hataları ölçülür. Kütüphane GitHub üzerinde açık dokümantasyonla paylaşılır. 3 haftada tamamlanır.",
+  "sonuc": "Uçak ve meteoroloji öğrencilerinin ders ödevlerinde ve araştırma projelerinde kullanabileceği, birim testleri tamamlanmış açık Python mini kütüphanesi elde edilir.",
+  "senden": "MAT 202E Numerical Methods",
+  "bizden": "Atmosferdeki taşınım örnekleri (MTO 337)",
+  "adimlar": [
+   {
+    "baslik": "Adveksiyon denkleminin farklı şemalarla kodlanması",
+    "oz": "Upwind, Lax-Wendroff ve Crank-Nicolson şemaları kodlanır.",
+    "ayrinti": "Bir boyutlu skaler adveksiyon denklemi du/dt + c du/dx = 0 için birinci mertebe rüzgâr yönlü (Upwind), ikinci mertebe Lax-Wendroff ve örtük Crank-Nicolson sonlu fark ayrıklaştırmaları modüler fonksiyonlar halinde yazılır.",
+    "nasil": [
+     {
+      "teknik": "Birinci mertebe Upwind ve ikinci mertebe Lax-Wendroff şemaları NumPy dizi işlemleriyle vektörel olarak kodlanır.",
+      "sade": "MAT 202E dersindeki 'Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak' bilgisiyle kısmi türevler sonlu fark oranlarına dönüştürülür. Zaman ve uzay adımları matematiksel denklemlerle ilerletilir.",
+      "altAdimlar": [
+       "Uzaysal ızgara adımı dx ve zamansal adım dt kullanılarak ayrık hesaplama ekseni oluşturulur.",
+       "Rüzgâr yönlü Upwind şeması için hızın işaretine göre ileri veya geri fark seçimi uygulanır.",
+       "Lax-Wendroff şeması için Taylor açılımından gelen ikinci mertebe uzay ve zaman terimleri vektörel olarak kodlanır."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Akışkan süreklilik ilkesi gözetilerek akı sınırlayıcı van Leer fonksiyonu eklenir ve salınımlar önlenir.",
+      "sade": "MTO 337 dersindeki 'Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak' bilgisiyle süreklilik ve korunum yasaları korunur. Sayısal dalgalanmaların ve yapay patlamaların önüne geçilir.",
+      "altAdimlar": [
+       "Ardışık eğim oranları r = (u_i - u_{i-1}) / (u_{i+1} - u_i) tanımlanır.",
+       "Van Leer akı sınırlayıcı formülü phi(r) = (r + |r|) / (1 + |r|) hesaplanır.",
+       "Yüksek mertebeli akı ile düşük mertebeli akı harmanlanarak monoton taşınım sağlanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Basit test durumlarının ve analitik çözümlerin hazırlanması",
+    "oz": "Kare dalga, Gauss tepeciği ve dairesel vortisite testleri kurulur.",
+    "ayrinti": "Şemaların keskin süreksizliklerdeki ve pürüzsüz dalgalardaki davranışını ölçmek için analitik çözümü bilinen kare dalga, Gauss tepeciği ve iki boyutlu dairesel dönme test durumları tanımlanır.",
+    "nasil": [
+     {
+      "teknik": "Gauss çanı ve basamak fonksiyonu başlangıç koşulları periyodik sınır şartlarıyla tanımlanır.",
+      "sade": "MAT 202E dersindeki 'Lagrange ve parçalı polinom enterpolasyonuyla ara değerleri kestirmek' bilgisiyle analitik eğri ayrık ızgara düğümlerine aktarılır. Sayısal çözümün kıyaslanacağı kusursuz referans dalga oluşturulur.",
+      "altAdimlar": [
+       "Tanım aralığında standart sapması ve tepe değeri bilinen Gauss fonksiyonu üretilir.",
+       "Süreksizlik testi için genişliği 20 ızgara adımı olan basamak kare dalga kurulur.",
+       "Sınır düğümlerinde periyodik akış koşulu atanarak dalganın döngüsel geçişi sağlanır."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Lagrange ve parçalı polinom enterpolasyonuyla ara değerleri kestirmek."
+      }
+     },
+     {
+      "teknik": "İki boyutlu dairesel girdap akışında ıraksamasız hız alanı kurularak süreklilik şartı sağlanır.",
+      "sade": "MTO 337 dersindeki 'Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek' bilgisiyle iki boyutlu hız alanının diverjansı sıfır yapılır. Havanın yapay olarak sıkışması engellenir.",
+      "altAdimlar": [
+       "Akım fonksiyonu psi = sin(pi*x)*sin(pi*y) türevlerinden u ve v hız bileşenleri çıkarılır.",
+       "Hız alanının yatay ıraksaması sonlu farklarla kontrol edilerek sıfır olduğu doğrulanır.",
+       "Merkeze yerleştirilen skaler kirletici lekesinin dairesel yörüngede dönme testi başlatılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yöntemlerin doğruluğunun ve kararlılığının karşılaştırılması",
+    "oz": "CFL sayısı, L2 hata normu ve kütle korunumu ölçülür.",
+    "ayrinti": "Farklı CFL sayılarında (C = 0.5, 0.8, 1.2) şemaların kararlılığı sınanır. Analitik çözüm ile sayısal çözüm arasındaki L1 ve L2 norm hataları, Simpson kuralıyla toplam kütle korunum oranı hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "Farklı zaman adımlarında CFL kriteri denetlenerek L2 hata normu ve yapay yayınım miktarı çıkarılır.",
+      "sade": "MAT 202E dersindeki 'Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek' bilgisiyle algoritmanın patlama ve sönümleme davranışları incelenir. Kararlı çalışan en geniş zaman adımı saptanır.",
+      "altAdimlar": [
+       "CFL = c*dt/dx değeri 1.0 üzerine çıkarılarak açık şemalardaki sayısal kararsızlık gözlenir.",
+       "Analitik dalga şekli ile sayısal dalga şekli arasındaki L2 karekök ortalama hatası hesaplanır.",
+       "Upwind şemasının tepe yüksekliğini düşüren yapay sayısal difüzyon miktarı grafiğe dökülür."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     },
+     {
+      "teknik": "Simpson 1/3 kuralı ile alan integrali alınarak toplam skaler kütlenin korunum oranı hesaplanır.",
+      "sade": "MTO 337 dersindeki 'Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek' bilgisiyle taşınan skaler sıcaklık alanının toplam enerjisi denetlenir. Adveksiyon süresince madde kaybı olup olmadığı ölçülür.",
+      "altAdimlar": [
+       "Her zaman adımında çözüm alanının sayısal integrali Simpson kuralıyla hesaplanır.",
+       "Başlangıç kütlesi ile son adım kütlesi oranlanarak korunum yüzdesi bulunur.",
+       "Akı sınırlayıcı şemanın basamak dalgasında yapay tepe üretmediği doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kütüphanenin belgelenmesi ve açık paylaşıma sunulması",
+    "oz": "Modüler Python paketi ve Jupyter eğitim defterleri hazırlanır.",
+    "ayrinti": "Kod tabanı `pip` tarzı yerel kurulabilir temiz Python paketine dönüştürülür. İki bölüm öğrencileri için uçak aerodinamiği ve atmosfer cephe adveksiyonu örneklerini içeren etkileşimli Jupyter defterleri hazırlanır.",
+    "nasil": [
+     {
+      "teknik": "Modüler Python sınıf mimarisi, birim testleri ve tip ipuçları ile paket haline getirilir.",
+      "sade": "MAT 202E dersindeki 'Doğrusal denklem sistemlerini Gauss yok etme ve LU ayrışımı ile çözmek' bilgisiyle matris tabanlı çözücü modülleri bağımsız sınıflara ayrıştırılır. Diğer öğrencilerin kolayca çağırabileceği temiz fonksiyonlar oluşturulur.",
+      "altAdimlar": [
+       "Solver1D ve Solver2D sınıfları adveksiyon şemalarını yöntem parametresi olarak alacak biçimde düzenlenir.",
+       "Pytest ile analitik çözümleri doğrulayan otomatik birim testleri yazılır.",
+       "Fonksiyon girdileri ve çıktıları standart tip ipuçlarıyla belgelenir."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Doğrusal denklem sistemlerini Gauss yok etme ve LU ayrışımı ile çözmek."
+      }
+     },
+     {
+      "teknik": "Atmosferik sıcaklık adveksiyonu ve sınır tabaka taşınımı Jupyter defterinde canlandırma olarak sunulur.",
+      "sade": "MTO 337 dersindeki 'Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak' bilgisiyle hava haritalarındaki gerçek rüzgâr akışları mini kütüphaneye beslenir. İki bölümün ortak ders zeminini pekiştiren görsel eğitim materyali hazırlanır.",
+      "altAdimlar": [
+       "Matplotlib FuncAnimation ile dalga yayılımını gösteren etkileşimli animasyonlar üretilir.",
+       "Jupyter defterinde uçak kanadı akışı ve atmosferik soğuk cephe geçişi karşılaştırmalı açıklanır.",
+       "Proje kodu ve dokümantasyon dizine açık kaynaklı paket formatında yazılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Kuzey Atlantik 850 hPa sıcaklık adveksiyonu alanı, ERA5, 2024-02-15..18, 6 saatlik",
+   "aciklama": "Orta enlem siklonunda sıcak ve soğuk adveksiyon bantlarının sinoptik dalga hareketi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.clawpack.org/v5.7.x/pyclaw/index.html",
+   "aciklama": "Clawpack PyClaw açık kaynak hiperbolik denklem çözücü portalı ve eğitim kılavuzu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Clawpack açık kaynak korunum yasaları ve dalga çözücü kütüphanesi",
+   "url": "https://www.clawpack.org/v5.7.x/pyclaw/index.html"
+  },
+  {
+   "ad": "Wikipedia sığ su denklemleri ve hiperbolik taşınım kuramı",
+   "url": "https://en.wikipedia.org/wiki/Shallow_water_equations"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-14",
+ "_birlestirme": {
+  "kaynak": "cikti/UCK-05.json",
+  "tarih": "2026-10-14 23:55",
+  "geminiSha1": "943fdeab59bc"
+ }
+}
