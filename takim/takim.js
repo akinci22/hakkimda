@@ -191,7 +191,9 @@ function odakGizle() {
 }
 let odakKaydirMuaf = 0;   /* 7 Eki: hızlı kaydırıp hemen karta gelince Lenis'in sönümleme karesi (lerp) birkaç yüz ms daha 'scroll' ateşler; bu, daha yeni başlayan odağı anında iptal ediyordu (özellikle sayfanın altındaki SSS gibi uzun kaydırma gereken bölümlerde) → kart üstüne gelişten kısa bir süre sonrasına kadar kalıntı kaydırma odağı iptal etmez */
 /* 120fps (15 Eki): sayfadaki tek scroll dinleyicisi — passive, yalnız bayrak; işler kare başına bir kez rAF'ta */
-const KAYDIRMA = new Set(); let kayBusRaf = 0; addEventListener('scroll', () => { if (!kayBusRaf) kayBusRaf = requestAnimationFrame(() => { kayBusRaf = 0; KAYDIRMA.forEach(f => f()); }); }, { passive: true });
+const BOSTA = []; let bostaZ = 0; const bostaCalis = () => { bostaZ = 0; BOSTA.splice(0).forEach(f => f()); };
+function kaydirmaBitince(f) { BOSTA.push(f); if (!bostaZ) bostaZ = setTimeout(bostaCalis, 260); }   /* süs animasyonları (rozet sezdirme, başlık harfleri) kaydırma durunca başlar: kayarken kare bütçesi kaydırmanın */
+const KAYDIRMA = new Set(); let kayBusRaf = 0; addEventListener('scroll', () => { if (bostaZ) { clearTimeout(bostaZ); bostaZ = setTimeout(bostaCalis, 260); } if (!kayBusRaf) kayBusRaf = requestAnimationFrame(() => { kayBusRaf = 0; KAYDIRMA.forEach(f => f()); }); }, { passive: true });
 KAYDIRMA.add(() => { if (odakEl && performance.now() > odakKaydirMuaf) { GOVDE.classList.remove('odak', 'odak-son'); odakEl.classList.remove('odakli'); odakGizle(); } });   /* kaydırmada odak biter: tam ekran blur kaydırma karelerini yemesin */
 /* kart etkileşimi: üzerinde dur → kararır + arka plan bulanır + "ne öğrenirsin" satırı; tıkla → ayrıntı (sayfa gibi döner) */
 const kaynakAl = (...o) => { const g = new Set(); return o.flatMap(x => !x ? [] : [...(x.kaynaklar || []), ...(x.kaynakUrl ? [{ ad: x.kaynakAdi || 'kaynak', url: x.kaynakUrl }] : []), ...(typeof x.kaynak === 'string' && /^https?:/.test(x.kaynak) ? [{ ad: 'kaynak', url: x.kaynak }] : [])]).filter(k => k && k.url && !g.has(k.url) && g.add(k.url)); };   /* 8 Eki: her bilgi kaynağıyla */
@@ -217,7 +219,7 @@ function etkilesim(e, al) {
     e.addEventListener('pointerenter', () => { clearTimeout(notZ); const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true, d.ozet); if (d.p3) p3PanelGorselleri(d.p3).then(G => { if (G.length && e.matches(':hover') && !P3) panelGorselYaz(G); }); });
     e.addEventListener('pointerleave', () => { const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); });
   }
-  if (!azalt && 'IntersectionObserver' in window) { const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { e.classList.add('kesfet'); io.disconnect(); } }, { threshold: .6 }); io.observe(e); }
+  if (!azalt && 'IntersectionObserver' in window) { const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { io.disconnect(); kaydirmaBitince(() => e.classList.add('kesfet')); } }, { threshold: .6 }); io.observe(e); }
   e.addEventListener('click', ev => { if (ev.target.closest('a,input,select,textarea,.cip,.oy,.sec')) return; kocKapat(); ACAN = e; detayAc(al()); });
   e.addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target === e) { ACAN = e; detayAc(al()); } });
 }
@@ -830,7 +832,7 @@ function icGit(h, y, tur = 0, t0 = performance.now()) { const L = window.__lenis
   else { scrollTo({ top: y, behavior: azalt ? 'auto' : 'smooth' }); setTimeout(sonra, 900); } }
 function ilerleme() {
   const bar = $('#ilerleme-bar'), roz = $('#surpriz'), rm = $('#surpriz-metin'), balon = $('#ray-balon'), ybIc = $('#yan-balon .yb-ic'); const bloklar = $$('main > section[data-asama], .takim-main > section[data-asama]');
-  let yukSon = -1, pSon = '', rayH = 0; const ustte = new Set(), altta = new Set();
+  let yukSon = -1, pSon = '', rayH = 0, yukBekle = false; const yukYaz = () => { yukBekle = false; KOKEL.style.setProperty('--yuk', (yukSon / 100).toFixed(2)); KOKEL.style.setProperty('--yukp', yukSon + '%'); }; const ustte = new Set(), altta = new Set();
   if ('IntersectionObserver' in window) {   /* aktif aşama (üst %45 çizgisinin üstü) ve kalan (görünür alanın altı) → IO; geri çağrı her sınır geçişinde konumu verir */
     const io1 = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting || (e.boundingClientRect.height && e.boundingClientRect.top < 0)) ustte.add(e.target); else ustte.delete(e.target); }); gK(); }, { rootMargin: '0px 0px -55% 0px' });
     const io2 = new IntersectionObserver(es => { es.forEach(e => { if (!e.isIntersecting && e.boundingClientRect.height && e.boundingClientRect.top > 0) altta.add(e.target); else altta.delete(e.target); }); gK(); });
@@ -846,7 +848,7 @@ function ilerleme() {
     else { const d = document.documentElement; p = Math.min(1, Math.max(0, d.scrollTop / Math.max(1, d.scrollHeight - d.clientHeight))); }
     const pq = p.toFixed(3); if (bar && pq !== pSon) { pSon = pq; bar.style.transform = `scaleX(${pq})`; }
     const yuk = 1 - p;                                                   /* iniş: sayfa başı tropopoz (yuk=1), sonu yüzey (yuk=0) */
-    if (!IC && !PARITE) { const yq = Math.round(yuk * 100); if (yq !== yukSon) { yukSon = yq; h.style.setProperty('--yuk', (yq / 100).toFixed(2)); h.style.setProperty('--yukp', yq + '%'); } }   /* içkin: zemin sabit, değişken yazılmaz (yeniden boyama yok) */
+    if (!IC && !PARITE) { const yq = Math.round(yuk * 100); if (yq !== yukSon) { const ilk = yukSon < 0; yukSon = yq; if (ilk) yukYaz(); else if (!yukBekle) { yukBekle = true; kaydirmaBitince(yukYaz); } }   /* kök renk değişkeni kayarken yazılmaz (her yazım tüm sayfayı yeniden stiller + renk geçişlerini tetikler); kaydırma durunca son değer yazılır, geçişler rengi yumuşatır */ }   /* içkin: zemin sabit, değişken yazılmaz (yeniden boyama yok) */
     if (balon) { if (!rayH) rayH = balon.parentNode.clientHeight || 0; balon.style.setProperty('--by', (p * .72 * rayH).toFixed(1) + 'px'); }   /* top yerine translate: yerleşim yok, yalnız birleştirme */
     const P = basincTen(yuk * .7), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;   /* .7 → 1000…200 hPa aralığı */
     const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum && io.textContent !== ok) io.textContent = ok; const mb = $('#mb-okuma'); if (mb && mb.textContent !== ok) mb.textContent = ok; const bn = $('#bb-not'); if (bn) metinYaz(bn, `${km.toFixed(0)} km · ${Math.round(P)} hPa · ` + (p < .02 ? 'balon tam şişkin' : p < .5 ? 'balon küçülüyor' : 'balon neredeyse yerde'));
@@ -912,13 +914,14 @@ function imlec() {
    Metin bütün kalır: başlığa aria-label, harf/kelime span'ları aria-hidden. Hareket azaltmada süre kısalır, KAPANMAZ (CSS'teki genel animation:none ezilir). */
 function baslikCanlandir() {
   const H = $$('.asama-baslik b, section.blok h2').filter(h => !h.dataset.bh && h.textContent.trim() && !h.children.length);
-  const MAX = 48;
+  const MAX = 48, KELIME = matchMedia('(max-width:900px),(hover:none)').matches;
   H.forEach(h => {
     const t = h.textContent; h.dataset.bh = '1'; h.setAttribute('aria-label', t); let i = 0; const f = document.createDocumentFragment();
-    t.split(/(\s+)/).forEach(k => { if (!k) return; if (/^\s+$/.test(k)) { f.append(k); return; } const w = el('span', { class: 'bh-k', 'aria-hidden': 'true' }); for (const ch of k) w.append(el('span', { class: 'bh-h', style: `--i:${Math.min(i++, MAX)}` }, ch)); f.append(w); });
+    t.split(/(\s+)/).forEach(k => { if (!k) return; if (/^\s+$/.test(k)) { f.append(k); return; } if (KELIME) { f.append(el('span', { class: 'bh-k bh-h', 'aria-hidden': 'true', style: `--i:${Math.min(i, MAX)}` }, k)); i += k.length; return; }   /* dokunmatik/dar: kelime kelime (aynı zamanlama) — harf başına katman açılışı mobilde kareyi yiyordu */
+      const w = el('span', { class: 'bh-k', 'aria-hidden': 'true' }); for (const ch of k) w.append(el('span', { class: 'bh-h', style: `--i:${Math.min(i++, MAX)}` }, ch)); f.append(w); });
     h.replaceChildren(f); h.classList.add('bh');
   });
-  const goster = h => h.classList.add('bh-oyna');
+  const goster = h => kaydirmaBitince(() => h.classList.add('bh-oyna'));
   if (!('IntersectionObserver' in window)) { H.forEach(goster); return; }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { goster(e.target); io.unobserve(e.target); } }), { threshold: .2 });
   H.forEach(h => io.observe(h));
