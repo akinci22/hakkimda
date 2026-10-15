@@ -849,12 +849,12 @@ function ilerleme() {
     if (!IC && !PARITE) { const yq = Math.round(yuk * 100); if (yq !== yukSon) { yukSon = yq; h.style.setProperty('--yuk', (yq / 100).toFixed(2)); h.style.setProperty('--yukp', yq + '%'); } }   /* içkin: zemin sabit, değişken yazılmaz (yeniden boyama yok) */
     if (balon) { if (!rayH) rayH = balon.parentNode.clientHeight || 0; balon.style.setProperty('--by', (p * .72 * rayH).toFixed(1) + 'px'); }   /* top yerine translate: yerleşim yok, yalnız birleştirme */
     const P = basincTen(yuk * .7), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;   /* .7 → 1000…200 hPa aralığı */
-    const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum) io.textContent = ok; const mb = $('#mb-okuma'); if (mb) mb.textContent = ok; const bn = $('#bb-not'); if (bn) bn.textContent = `${km.toFixed(0)} km · ${Math.round(P)} hPa · ` + (p < .02 ? 'balon tam şişkin' : p < .5 ? 'balon küçülüyor' : 'balon neredeyse yerde');
-    const ph = $('#p-hpa'); if (ph) { ph.textContent = Math.round(P) + ' hPa'; $('#p-km').textContent = km.toFixed(1).replace('.', ',') + ' km'; $('#p-t').textContent = Math.round(T) + ' °C'; }
+    const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum && io.textContent !== ok) io.textContent = ok; const mb = $('#mb-okuma'); if (mb && mb.textContent !== ok) mb.textContent = ok; const bn = $('#bb-not'); if (bn) metinYaz(bn, `${km.toFixed(0)} km · ${Math.round(P)} hPa · ` + (p < .02 ? 'balon tam şişkin' : p < .5 ? 'balon küçülüyor' : 'balon neredeyse yerde'));
+    const ph = $('#p-hpa'); if (ph) { metinYaz(ph, Math.round(P) + ' hPa'); metinYaz($('#p-km'), km.toFixed(1).replace('.', ',') + ' km'); metinYaz($('#p-t'), Math.round(T) + ' °C'); }
     if (ybIc) { ybIc.style.transform = `translateY(-50%) scale(${(1 - p * .55).toFixed(3)})`; ybIc.style.opacity = p > .965 ? '0' : '1'; }   /* sağdaki balon: indikçe küçülür, yere yaklaşınca sahneyi zemindeki paraşüte bırakır */
     if (aktif !== durum.asama) { durum.asama = aktif; h.dataset.asama = aktif; const [ad, m] = ASAMA_ADI[aktif]; $('#p-asama').textContent = aktif; $('#p-ad').textContent = ad; $('#p-m').textContent = m; $$('#serit button').forEach(b => { const n = +b.dataset.asama; b.classList.toggle('aktif', n === aktif); b.classList.toggle('gecti', n < aktif); });
       const S = $('#serit'), ab = S && S.querySelector('button.aktif'); if (S && ab && S.scrollWidth > S.clientWidth + 4) S.scrollTo({ left: Math.max(0, ab.offsetLeft - S.clientWidth / 2 + ab.offsetWidth / 2), behavior: azalt ? 'auto' : 'smooth' }); }   /* mobil: yapışkan şeritte aktif aşama hep görünür (nerede olduğunu anlama) */
-    if (roz && rm) { if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Yerdesin: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🪂'; } else rm.textContent = `Yere inince: sana göre rol · ${kalan} seviye kaldı`; }
+    if (roz && rm) { if (kalan === 0) { roz.classList.add('acildi'); rm.textContent = 'Yerdesin: sana göre rol ↓'; roz.querySelector('.kilit').textContent = '🪂'; } else metinYaz(rm, `Yere inince: sana göre rol · ${kalan} seviye kaldı`); }
     };
   let gRaf = 0; const gK = () => { if (!gRaf) gRaf = requestAnimationFrame(() => { gRaf = 0; g(); }); };   /* kare başına en çok bir kez */
   KAYDIRMA.add(g); addEventListener('resize', () => { rayH = 0; gK(); }); g();
@@ -879,6 +879,14 @@ function yumusakKaydirma() {
     if (gomulu) { const enAlt = scrollY >= document.documentElement.scrollHeight - innerHeight - 2; if ((e.deltaY < 0 && scrollY <= 0 && hedefY == null) || (e.deltaY > 0 && enAlt)) return; }   /* iframe'de uçlardayken dış sayfa kaysın */
     e.preventDefault(); const adim = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 100) * 1.1; const taban = hedefY == null ? scrollY : hedefY; kaydirHedef(taban + adim); }, { passive: false });
   addEventListener('keydown', e => { if (e.target.matches('input,textarea,select')) return; const h = innerHeight; const m = { ArrowDown: 80, ArrowUp: -80, PageDown: h * .85, PageUp: -h * .85, ' ': h * .85 }; if (e.key in m && !e.shiftKey) { e.preventDefault(); kaydirHedef((hedefY == null ? scrollY : hedefY) + m[e.key]); } });
+}
+function metinYaz(e, t) { if (e && e.textContent !== t) e.textContent = t; }   /* değişmeyen metni yeniden yazma = kaydırma karesinde yerleşim yok */
+let KLIP_IO = null;
+function klipTembel(v) {   /* 120fps/yük (15 Eki): klip ve posteri ekrana yaklaşınca iner; sonra aynı davranış — autoplay muted loop, kontrolsüz */
+  v.muted = true; const yukle = () => { if (v.dataset.src) { if (v.dataset.poster) v.poster = v.dataset.poster; v.autoplay = true; v.src = v.dataset.src; delete v.dataset.src; const p = v.play(); if (p && p.catch) p.catch(() => { }); } };
+  if (!('IntersectionObserver' in window)) { yukle(); return v; }
+  if (!KLIP_IO) KLIP_IO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { KLIP_IO.unobserve(e.target); e.target._yukle && e.target._yukle(); } }), { rootMargin: '600px 0px' });
+  v._yukle = yukle; KLIP_IO.observe(v); return v;
 }
 function sonsuzDurdur() {   /* 120fps (15 Eki): görünür alandan uzak bölümlerde sonsuz animasyonlar paused (.gorunmuyor) — animasyon silinmez, görününce kaldığı yerden sürer */
   if (!('IntersectionObserver' in window)) return;
@@ -1060,7 +1068,7 @@ function inisKur() { const Z = $('#zemin svg'); if (Z) { const ayar = () => { Z.
 function medya(m, ek) {
   if (!m) return null;
   const sinif = 'medya' + (ek ? ' ' + ek : '');
-  if (m.tip === 'video') return el('div', { class: sinif }, el('video', { src: yol(m.src), poster: yol(m.poster), autoplay: true, muted: true, loop: true, playsinline: true, preload: 'metadata', 'aria-label': m.alt || '' }));
+  if (m.tip === 'video') return el('div', { class: sinif }, klipTembel(el('video', { 'data-src': yol(m.src), 'data-poster': yol(m.poster), muted: true, loop: true, playsinline: true, preload: 'none', 'aria-label': m.alt || '' })));
   if (m.tip === 'serit') return el('div', { class: sinif + ' serit' }, ...m.src.map(x => el('img', { src: yol(x), alt: '', loading: 'lazy', decoding: 'async' })));
   return el('div', { class: sinif }, el('img', { src: yol(m.src), alt: m.alt || '', loading: 'lazy', decoding: 'async' }));
 }

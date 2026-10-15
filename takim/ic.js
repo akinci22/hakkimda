@@ -4,6 +4,8 @@
 (async () => {
   const host = document.getElementById('takim-ic'); if (!host || host.shadowRoot) return;
   /* 120fps (15 Eki): ağır kurulum (fetch + gölge kök + takim.js) ana sayfanın ilk boyamasından sonra, boşta */
+  /* yük (15 Eki, e7 ölçümü): ~1,4 MB JSON + klipler ana sayfa açılışında inmesin → gövde #takim-ic'e ~2 ekran kala kurulur (hash ile gelindiyse hemen) */
+  if ('IntersectionObserver' in window && !/^#(takim|tk-)/.test(location.hash)) await new Promise(r => { const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); r(); } }, { rootMargin: '200% 0px' }); io.observe(host); });
   await new Promise(r => (window.requestIdleCallback ? requestIdleCallback(() => r(), { timeout: 1200 }) : setTimeout(r, 200)));
   const V = new URL(import.meta.url).searchParams.get('v') || '1';
   const al = async (u) => { const r = await fetch(u); if (!r.ok) throw new Error(u); return r.text(); };
