@@ -495,17 +495,28 @@ function kaydirDegis(k, src, yon) {
   // 14 Eki 2026 (Playwright QA): sayfa en üstteyken üst bant (.bant) başlık çubuğunu aşağı ittiği için bulut menünün üstüne biniyordu.
   // Bant görünür olduğu sürece bulut o kadar aşağıda durur; bant kayıp gidince CSS'teki tabana (56px / telefonda 50px) döner.
   var bant = document.querySelector(".bant"), bantH = 0, tabanTop = 56;
-  function bulutOlc() { bantH = bant ? bant.offsetHeight : 0; b.style.top = ""; tabanTop = parseFloat(getComputedStyle(b).top) || 56; }
+  function bulutOlc() { bantH = bant ? bant.offsetHeight : 0; b.style.top = ""; tabanTop = parseFloat(getComputedStyle(b).top) || 56; b.style.top = tabanTop + "px"; }
   bulutOlc(); addEventListener("resize", bulutOlc);
+  /* 15 Eki (120 fps): kaydırma karesinde layout okuması yok. Bölüm konumları (mutlak) yalnız sayfa boyu değişince ölçülür;
+     karede yalnız scrollY ile karşılaştırılır. Dikey kayma top yerine transform ile (yeniden yerleşim yok). */
+  var konum = null, takimK = null, sayfaTop = 0;
+  function olc() {
+    var y0 = scrollY; konum = sira.map(function (id) { var s = document.getElementById(id); return s ? s.getBoundingClientRect().top + y0 : Infinity; });
+    var tu = document.getElementById("takim"); takimK = tu ? (function (r) { return [r.top + y0, r.bottom + y0]; })(tu.getBoundingClientRect()) : null;
+    sayfaTop = kok.scrollHeight - innerHeight;
+  }
+  if ("ResizeObserver" in window) new ResizeObserver(function () { konum = null; if (!bk) { bk = true; requestAnimationFrame(ciz); } }).observe(document.body);
+  addEventListener("resize", function () { konum = null; });
   function ciz() {
     bk = false;
-    b.style.top = (tabanTop + Math.max(0, bantH - scrollY)) + "px";
-    var top = kok.scrollHeight - innerHeight, p = top > 0 ? Math.min(1, scrollY / top) : 0, ev = 0;
-    for (var i = 0; i < sira.length; i++) { var s = document.getElementById(sira[i]); if (s && s.getBoundingClientRect().top < innerHeight * .5) ev = i; }
+    if (!konum) olc();
+    var y = scrollY, top = sayfaTop, p = top > 0 ? Math.min(1, y / top) : 0, ev = 0, esik = y + innerHeight * .5;
+    for (var i = 0; i < konum.length; i++) if (konum[i] < esik) ev = i;
     if (p > .985) ev = 7;
-    var tu = document.getElementById("takim"), tr = tu && tu.getBoundingClientRect(); b.classList.toggle("hb-sakla", !!tr && tr.top < 90 && tr.bottom > 140); document.documentElement.classList.toggle("takimda", !!tr && tr.top < 90 && tr.bottom > 140);   /* 14 Eki (Akın): takım bölümündeyken üst menü yalnız ad, sağda; fare gelince bağlantılar açılır */   /* takım bölümünün kendi aşama çubuğu var: bulut onun üstüne binmesin */
+    var tk = !!takimK && takimK[0] - y < 90 && takimK[1] - y > 140;
+    b.classList.toggle("hb-sakla", tk); document.documentElement.classList.toggle("takimda", tk);   /* 14 Eki (Akın): takım bölümündeyken üst menü yalnız ad, sağda; fare gelince bağlantılar açılır */   /* takım bölümünün kendi aşama çubuğu var: bulut onun üstüne binmesin */
     if (b.dataset.evre != ev) { b.dataset.evre = ev; ad.textContent = adlar[ev]; }
-    b.style.transform = "translateX(" + (window.hizaX ? window.hizaX(p) - 61 : p * (innerWidth - 120)).toFixed(1) + "px)"; b.firstChild.style.transform = "scale(" + (.85 + p * .3).toFixed(3) + ")";
+    b.style.transform = "translate(" + (window.hizaX ? window.hizaX(p) - 61 : p * (innerWidth - 120)).toFixed(1) + "px," + Math.max(0, bantH - y) + "px)"; b.firstChild.style.transform = "scale(" + (.85 + p * .3).toFixed(3) + ")";
   }
   addEventListener("scroll", function () { if (!bk) { bk = true; requestAnimationFrame(ciz); } }, { passive: true });
   addEventListener("resize", ciz); ciz();
@@ -871,4 +882,12 @@ function kaydirDegis(k, src, yon) {
   // Emniyet: bağlantıyla atlayınca ya da çok hızlı kaydırınca ekranda görünür hiçbir şey saklı kalmasın
   function emniyet() { setTimeout(function () { gorseller.concat(basliklar).forEach(function (e) { var r = e.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) { e.classList.add(e.classList.contains("bh") ? "bh-oyna" : "var"); io.unobserve(e); } }); }, 400); }
   addEventListener("hashchange", emniyet); addEventListener("load", emniyet);
+})();
+
+/* 120 fps (15 Eki 2026): ekran dışındaki bölümlerde sonsuz döngülü süs animasyonları durur, bölüm yaklaşınca (400px önce) aynen sürer.
+   Hiçbir animasyon silinmez; yalnız görünmezken saat işlemez (ana iş parçacığında kare başına stil hesabı kalkar). */
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { g.target.classList.toggle("ekran-disi", !g.isIntersecting); }); }, { rootMargin: "400px 0px" });
+  document.querySelectorAll("main>section, header.hero, section.iletisim").forEach(function (s) { io.observe(s); });
 })();
