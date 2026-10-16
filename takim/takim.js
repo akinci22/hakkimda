@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '31';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '32';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -697,7 +697,7 @@ function ikon(k) { const t = document.createElement('template'); t.innerHTML = `
 function bolumler() {
   const M = veri.metinler.bolumler; $('#bolumler-baslik').textContent = M.baslik; $('#bolumler-alt').textContent = M.alt;
   let B = (veri.bolumler || []).slice();
-  if (!B.length) { $('#bolum-kartlar').replaceChildren(el('div', { class: 'bos' }, 'Bölümlerin ders planı karşılaştırması derleniyor.')); return; }
+  if (!B.length) { $('#bolum-kartlar').replaceChildren(el('div', { class: 'bos' }, 'Bölümlerin ders planı karşılaştırmasını hâlâ araştırıyoruz.')); return; }
   const biz = B.filter(x => x.k === 'MTO'), oteki = B.filter(x => x.k !== 'MTO'); B = durum.kitle === 'mto' ? [...biz, ...oteki] : [...oteki, ...biz];   /* meteorolojiden gelen önce kendi kartını görür */
   /* v2 (Akın 5 Eki): kart yüzünde paragraf yok — bölüm adı + büyük yazıyla tek, pratik örnek; dersler ve fikirler ayrıntıda */
   $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum), el('p', { class: 'bk-yuz' }, b.yuz || b.ortakIs || ''));
@@ -711,7 +711,7 @@ const ORNEK_TUR = { girisim: 'girişim', universite: 'üniversite', takim: 'öğ
 function gercek() {
   const M = veri.metinler.gercekcilik; $('#gercek-baslik').textContent = M.baslik; $('#gercek-alt').textContent = M.alt; $('#gercek-not').textContent = M.tablo_not;
   const G = veri.gercekcilik || []; const T = $('#gercek-tablo');
-  if (!G.length) { T.replaceWith(el('div', { class: 'bos', id: 'gercek-tablo' }, 'Takım yaşı ve bütçe tablosu kaynaklarıyla derleniyor.')); return; }
+  if (!G.length) { T.replaceWith(el('div', { class: 'bos', id: 'gercek-tablo' }, 'Takım yaşı ve bütçe tablosunu kaynaklarıyla hâlâ araştırıyoruz.')); return; }
   yasCubuklari(G);
   T.replaceChildren(el('thead', {}, el('tr', {}, ...['Takım', 'Kuruluş', 'Yaş', 'Bütçe (yıllık)', 'İlk büyük derece', 'Kaynak'].map(h => el('th', {}, h)))),
     el('tbody', {}, ...G.map(g => el('tr', { class: g.biz ? 'biz' : '' }, el('td', {}, (g.dogrulandi === false ? '⚠ ' : '') + g.takim), el('td', {}, g.kurulus || '—'), el('td', {}, g.yas || '—'), el('td', {}, g.butce || '—'), el('td', {}, g.ilkDerece || '—'), el('td', {}, g.kaynakUrl ? el('a', { href: g.kaynakUrl, target: '_blank', rel: 'noopener' }, g.kaynakAdi || 'kaynak') : '—')))));
@@ -778,7 +778,7 @@ function merak() {
   const T = veri.takimlar || [], B = veri.bolumler || [], S = veri.sayilar || [], G = veri.gercekcilik || [];
   const det = (b, ...c) => el('details', { class: 'merak' }, el('summary', {}, b), el('div', {}, ...c));
   $('#merak-icerik').replaceChildren(
-    det('İTÜ proje takımları ve amblemleri', T.length ? el('div', { class: 'amblemler' }, ...T.filter(t => t.logoUrl).map(t => el('a', { class: 'amblem', href: t.resmiSite || '#', target: '_blank', rel: 'noopener' }, el('img', { src: t.logoUrl, alt: t.takim + ' amblemi', loading: 'lazy', width: 56, height: 56 }), el('span', {}, t.takim)))) : el('p', { class: 'bos' }, 'Takım listesi derleniyor.'), T.length ? el('ul', { class: 'kaynaklar' }, ...T.map(t => el('li', {}, t.resmiSite ? el('a', { href: t.resmiSite, target: '_blank', rel: 'noopener' }, t.takim) : t.takim, t.tekSatir ? ' — ' + t.tekSatir : '', t.durum ? ` (${t.durum})` : ''))) : null, T.length ? el('p', { class: 'not' }, 'Amblemler tanıtım amaçlı, kaynak linkiyle; itiraz hâlinde kaldırılır.') : null),
+    det('İTÜ proje takımları ve amblemleri', T.length ? el('div', { class: 'amblemler' }, ...T.filter(t => t.logoUrl).map(t => el('a', { class: 'amblem', href: t.resmiSite || '#', target: '_blank', rel: 'noopener' }, el('img', { src: t.logoUrl, alt: t.takim + ' amblemi', loading: 'lazy', width: 56, height: 56 }), el('span', {}, t.takim)))) : el('p', { class: 'bos' }, 'Takım listesini hâlâ araştırıyoruz.'), T.length ? el('ul', { class: 'kaynaklar' }, ...T.map(t => el('li', {}, t.resmiSite ? el('a', { href: t.resmiSite, target: '_blank', rel: 'noopener' }, t.takim) : t.takim, t.tekSatir ? ' — ' + t.tekSatir : '', t.durum ? ` (${t.durum})` : ''))) : null, T.length ? el('p', { class: 'not' }, 'Amblemler tanıtım amaçlı, kaynak linkiyle; itiraz hâlinde kaldırılır.') : null),
     det('Bölüm bölüm ders karşılaştırması (tam)', B.length ? el('div', { class: 'tablo-sar' }, el('table', { class: 'tablo' }, el('thead', {}, el('tr', {}, ...['Bölüm', 'Senin dersin', 'Bizim dersimiz', 'Ortak iş', 'Hoca', 'Proje'].map(h => el('th', {}, h)))), el('tbody', {}, ...B.map(b => el('tr', {}, el('td', {}, b.bolum), el('td', {}, b.senin), el('td', {}, b.bizim), el('td', {}, b.ortakIs), el('td', {}, b.hocaSayisi ?? '—'), el('td', {}, b.projeSayisi ?? '—')))))) : el('p', { class: 'bos' }, 'Derleniyor.')),
     det('Kaynaklar', el('ul', { class: 'kaynaklar' }, ...[...S, ...G].filter(x => x.kaynakUrl).map(x => el('li', {}, el('a', { href: x.kaynakUrl, target: '_blank', rel: 'noopener' }, x.kaynakAdi || x.kaynakUrl), ' — ', x.etiket || x.takim || '')), ...(S.length + G.length ? [] : [el('li', {}, 'Derleniyor.')]))),
     det('Sözlük: altı noktalı terimler', el('ul', { class: 'kaynaklar' }, ...Object.values(veri.sozluk?.terimler || {}).map(t => el('li', {}, el('b', {}, t.ad + ': '), t.m)))),
@@ -1153,7 +1153,7 @@ function ikonGuvenli(k, ham) {   /* Gemini'den gelen SVG içi: yalnız izinli et
 function fakulteler() {
   const S = $('#fakulteler'); if (!S) return; const M = veri.metinler.fakulteler || {}; const F = (veri.fakulteler && veri.fakulteler.fakulteler) || [];
   $('#fak-baslik').textContent = M.baslik || 'Bütün fakülteler'; $('#fak-alt').textContent = M.alt || '';
-  if (!F.length) { $('#fak-izgara').replaceChildren(el('div', { class: 'bos' }, 'Fakülte kartları derleniyor.')); return; }
+  if (!F.length) { $('#fak-izgara').replaceChildren(el('div', { class: 'bos' }, 'Fakülte kartlarını hâlâ araştırıyoruz.')); return; }
   const IZ = $('#fak-izgara'), BL = $('#fak-bolumler'); let acik = ls('takim-fak') || '';
   const kartUzun = b => [
     (b.karsilastirma || []).length ? 'Senin dersin, bizdeki karşılığı: ' + b.karsilastirma.map(k => `${k.senin} → ${k.bizim} (${k.neden})`).join(' · ') : '',
@@ -1166,8 +1166,8 @@ function fakulteler() {
       el('div', { class: 'fak-ust' }, el('button', { type: 'button', class: 'fak-geri', onclick: () => { acik = ''; ls('takim-fak', ''); BL.hidden = true; IZ.hidden = false; $$('.fk', IZ).forEach(x => x.setAttribute('aria-pressed', 'false')); gitEl(IZ, 120); } }, M.geri || '‹ fakülteler'),
         el('h3', {}, ikonGuvenli(f.kod), f.ad), el('span', { class: 'fak-sayac' }, `${f.bolumler.length} bölüm · ${hazir} ${M.hazir || 'hazır'}`)),
       el('div', { class: 'bolum-kartlar fak-bk' }, ...f.bolumler.map(b => {
-        const tamam = b._durum === 'tamam' || b._durum === 'hatali'; const yuz = tamam ? (b.yuz || '') : (M.derleniyor || 'Hazırlanıyor.');
-        const k = el('button', { class: 'bk fb' + (tamam ? '' : ' bekliyor'), type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikonGuvenli(b.k, b.ikon), b.bolum, el('span', { class: 'bk-k' }, tamam ? (b.dogrulandi === false ? '⚠ ' : '') + b.k : (M.bekliyor || 'derleniyor'))), el('p', { class: 'bk-yuz' }, yuz));
+        const tamam = b._durum === 'tamam' || b._durum === 'hatali'; const yuz = tamam ? (b.yuz || '') : (M.derleniyor || 'Hâlâ araştırıyoruz.');
+        const k = el('button', { class: 'bk fb' + (tamam ? '' : ' bekliyor'), type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikonGuvenli(b.k, b.ikon), b.bolum, el('span', { class: 'bk-k' }, tamam ? (b.dogrulandi === false ? '⚠ ' : '') + b.k : (M.bekliyor || 'hâlâ araştırıyoruz'))), el('p', { class: 'bk-yuz' }, yuz));
         if (tamam) etkilesim(k, () => ({ ust: f.ad.toLowerCase() + ' · ' + b.bolum.toLowerCase(), baslik: b.bolum, kisa: b.yuz || '', uzun: kartUzun(b), p3: { tur: 'fakulte', fakulteKod: f.kod, k: b.k },
           kaynaklar: [...(b.guncelOrnek && b.guncelOrnek.kaynakUrl ? [{ ad: 'Güncel örnek: ' + (b.guncelOrnek.kaynakAdi || 'kaynak'), url: b.guncelOrnek.kaynakUrl }] : []), ...(b.kaynaklar || []).map(x => ({ ad: x.ad, url: x.url })), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] }));
         return k; })));
@@ -1232,7 +1232,7 @@ function derslerin() {
   const S = $('#derslerin'); if (!S) return; const M = veri.metinler.dersler || {}; const D = (veri.dersler && veri.dersler.dersler) || [];
   $('#ders-baslik').textContent = M.baslik || 'Derslerine göre projeler'; $('#ders-alt').textContent = M.alt || ''; $('#ders-not').textContent = M.not || '';
   const KK = $('#ders-kartlar'), YS = $('#yil-sec');
-  if (!D.length) { KK.replaceChildren(el('div', { class: 'bos' }, M.bos || 'Ders kartları hazırlanıyor.')); YS.replaceChildren(); return; }
+  if (!D.length) { KK.replaceChildren(el('div', { class: 'bos' }, M.bos || 'Ders kartlarını hâlâ araştırıyoruz.')); YS.replaceChildren(); return; }
   const adTr = d => { const m = String(d.ad || '').match(/^(.*?)\s*\(([^)]+)\)\s*$/); return m && !/^[A-Z]{2,4}\s?\d/.test(m[2]) ? m[2] : d.ad; };   /* "Physics of Clouds (Bulut ve Yağış Fiziği)" → Türkçe adı */
   const yillar = (M.yillar || []).filter(y => D.some(d => d.yil === y.id));
   let secili = ls('takim-yil'); if (!yillar.some(y => y.id === secili)) secili = (yillar.find(y => y.id === '3') || yillar[0]).id;
@@ -1508,7 +1508,7 @@ function p3PlanSatir(dr, y) {
   const ic = el('span', { class: 'p3-sat-ic' },
     el('span', { class: 'p3-kod-satir' }, p3KodLink(dr.kod, dr.obsNo), el('i', { class: 'p3-tur' + (sec ? ' p3-tur-sec' : '') }, sec ? 'seçmeli' : 'zorunlu'), dr.havuz ? el('i', { class: 'p3-tur p3-tur-havuz' }, String(dr.havuz)) : null),
     el('b', { class: 'p3-ad' }, dr.adTr || dr.ad || dr.kod),
-    el('span', { class: 'p3-ders' }, [dr.kredi != null ? dr.kredi + ' kredi' : '', dr.akts != null ? dr.akts + ' AKTS' : '', n ? n + ' proje' : 'proje önerisi derleniyor'].filter(Boolean).join(' · ')));
+    el('span', { class: 'p3-ders' }, [dr.kredi != null ? dr.kredi + ' kredi' : '', dr.akts != null ? dr.akts + ' AKTS' : '', n ? n + ' proje' : 'proje önerilerini hâlâ araştırıyoruz'].filter(Boolean).join(' · ')));
   if (!n) return el('li', { class: 'p3-sat p3-sat-2 p3-sat-duz p3-plan-sat', 'data-kod': dr.kod }, ic, el('span', { class: 'p3-ok p3-ok-soluk', 'aria-hidden': 'true' }));
   return el('li', {}, el('button', { class: 'p3-sat p3-sat-2 p3-plan-sat', type: 'button', 'data-kod': dr.kod, onclick: () => p3PlanDersAc(dr, y, L) }, ic, p3Ok()));
 }
@@ -1546,7 +1546,7 @@ function p3OzetE2(pr) { const k = p3DersListe(pr).map(x => x.kod); return { basl
 function p3OzetE3(pr) { return { baslik: 'Girişimler ve üniversiteler', kisa: pr.ornekler.length + ' örnek', satirlar: pr.ornekler.slice(0, 4).map(o => (ORNEK_TUR[o.tur] || o.tur || '') + ' · ' + o.ad) }; }
 function p3OzetE3b(pr, o) { const A = o.ayrinti || {}; const g = (P3_OG && p3OGBul(o.url) ? 1 : 0) + ((pr.ornekGorsel[o.ad] || []).length); return { baslik: kisalt(o.ad, 48), kisa: ORNEK_TUR[o.tur] || o.tur || '', satirlar: [kisalt(o.ne, 96), A.neYaptilar ? 'Ne yaptılar · Nasıl · Ne edindiler · Biz nasıl katkı sağlarız' : '', [(A.referanslar || []).length ? (A.referanslar || []).length + ' referans' : '', g ? g + ' görsel' : ''].filter(Boolean).join(' · ')].filter(Boolean) }; }
 function p3OzetE4(pr) { const L = p3DersListe(pr); return { baslik: 'Ortak dersler', kisa: L.length + ' ders', satirlar: L.slice(0, 4).map(d => d.kod + (d.ad ? ' · ' + d.ad : '')) }; }
-function p3OzetE4b(d, ders) { const F = ((ders && ders.formuller) || []).filter(f => f && f.ad); return { baslik: d.kod, kisa: (ders && ders.ad) || d.ad || '', satirlar: F.length ? F.slice(0, 4).map(f => f.ad) : [kisalt(d.katki, 96) || 'Ders ayrıntısı derleniyor'].filter(Boolean) }; }
+function p3OzetE4b(d, ders) { const F = ((ders && ders.formuller) || []).filter(f => f && f.ad); return { baslik: d.kod, kisa: (ders && ders.ad) || d.ad || '', satirlar: F.length ? F.slice(0, 4).map(f => f.ad) : [kisalt(d.katki, 96) || 'Ders ayrıntısını hâlâ araştırıyoruz'].filter(Boolean) }; }
 function p3OzetE5(pr) { const A = pr.yapilis.adimlar; const kaz = Array.from(new Set(A.flatMap(a => p3Kazanimlar(a).map(k => k.ders)))); return { baslik: 'Yapılış', kisa: A.length + ' adım', satirlar: [kisalt(pr.yapilis.oz, 96), ...A.slice(0, 2).map((a, i) => (i + 1) + '. ' + a.baslik), kaz.length ? 'Kazanımlar: ' + kaz.join(', ') : ''].filter(Boolean).slice(0, 4) }; }
 function p3OzetE5b(pr, i) { const A = pr.yapilis.adimlar, a = A[i] || {}; const b = Math.max(0, Math.min(i - 1, A.length - 4)); return { baslik: (i + 1) + '. ' + kisalt(a.baslik, 40), kisa: kisalt(a.oz, 120), satirlar: A.slice(b, b + 4).map((x, j) => (b + j === i ? '▸ ' : '') + (b + j + 1) + '. ' + x.baslik) }; }
 function p3OzetE6(L) { return { baslik: 'Görseller', kisa: L.length + ' görsel', satirlar: L.slice(0, 4).map(g => g.alt || g.src) }; }
@@ -1608,7 +1608,7 @@ async function p3DersAc(pr, d) {
 function p3E4b(sec, pr, d, ders) {
   const kod = (ders && ders.kod) || d.kod, ad = (ders && ders.ad) || d.ad;
   const out = [el('h3', { class: 'p3-baslik p3-baslik-ders', tabindex: -1 }, p3KodLink(kod, ders && ders.obsNo), el('span', {}, ad))];
-  if (!ders) { out.push(el('p', { class: 'p3-not' }, 'Ders ayrıntısı derleniyor.'), p3Blok('Bu projeye katkısı', d.katki)); return out; }   /* taban modu: kod ↗ + ad + tek küçük satır */
+  if (!ders) { out.push(el('p', { class: 'p3-not' }, 'Ders ayrıntısını hâlâ araştırıyoruz.'), p3Blok('Bu projeye katkısı', d.katki)); return out; }   /* taban modu: kod ↗ + ad + tek küçük satır */
   if (ders.ozet) out.push(el('p', { class: 'p3-amac-b' }, ders.ozet));
   if ((ders.neOgrenirsin || []).length) out.push(el('div', { class: 'p3-blok' }, el('span', { class: 'p3-etiket' }, 'Ne öğrenirsin'), el('ul', { class: 'p3-madde' }, ...ders.neOgrenirsin.map(m => el('li', {}, m)))));
   const F = (ders.formuller || []).filter(f => f && f.tex);
