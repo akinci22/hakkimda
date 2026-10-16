@@ -1,0 +1,394 @@
+{
+ "id": "D-MTO303E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 303E",
+  "dersAd": "Computational Fluid Dynamics in Meteorological Engineering",
+  "kol": "yazilim"
+ },
+ "ad": "NeuralGCM'i İstanbul noktasında HRES'le kıyasla",
+ "ne": "Türevlenebilir dinamik çözücülü NeuralGCM'in 2020 tahminlerini IFS HRES ile aynı ızgara noktasında, ERA5'e karşı 500 hPa jeopotansiyelde kıyasla.",
+ "adimlar": [
+  "Colab'da xarray ve gcsfs ile WeatherBench 2'deki NeuralGCM deterministik 2020 tahminini 1,5° ızgarada aç.",
+  "Aynı kovadan IFS HRES tahminini ve ERA5'i 1,5° ızgarada aç; İstanbul'a en yakın noktayı sel(method='nearest') ile seç.",
+  "1, 3, 5 ve 7 günlük öngörü süreleri için 500 hPa jeopotansiyel ve 850 hPa sıcaklığın RMSE'sini hesapla.",
+  "RMSE'yi öngörü süresine karşı iki çizgi olarak çiz; kış ve yaz aylarını ayrı ayrı kıyasla.",
+  "İstanbul sonucunu makaledeki küresel sonuçla karşılaştıran bir paragraf yaz; fark varsa olası nedenini not et."
+ ],
+ "sonuc": "İki tahminin öngörü süresine göre RMSE grafiği. NeuralGCM çizgisi HRES'e yakın ya da altındaysa makaledeki küresel sonuç İstanbul noktasında da geçerli demektir.",
+ "dayanak": "Kochkov vd. 2024",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 303E",
+    "ad": "Computational Fluid Dynamics in Meteorological Engineering"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF ve Reading Üniversitesi Sayısal Tahmin Araştırma Ortaklığı",
+   "ne": "Fiziksel IFS HRES modeli ile yapay zekâ tabanlı çözücülerin küresel doğrulamasını yürüten uluslararası merkez.",
+   "url": "https://www.ecmwf.int/en/research",
+   "ayrinti": {
+    "neYaptilar": "Küresel atmosferik tahmin modellerinin 500 hPa jeopotansiyel yükseklik ve 850 hPa sıcaklık doğrulama metriklerini kurdular.",
+    "nasil": "MTO 303E Navier-Stokes ve sığ su denklemi ayrıklaştırmalarını WeatherBench 2 açık veri kümesi üzerinde test ettiler.",
+    "neEdindiler": "Küresel sayısal modellerin 1 ila 10 günlük tahmin becerisini ölçen standart RMSE ve ACC karnelerini literatüre sundular.",
+    "bizNasilKatki": "İstanbul ızgara noktasına odaklanan açık kaynaklı xarray analiz defteri ve bölgesel karşılaştırma kodu geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Kochkov vd. 2024 Nature NeuralGCM Makalesi",
+      "url": "https://doi.org/10.1038/s41586-024-07744-y",
+      "tur": "makale"
+     },
+     {
+      "ad": "ECMWF Araştırma ve Geliştirme Portalı",
+      "url": "https://www.ecmwf.int/en/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/research",
+      "aciklama": "ECMWF küresel sayısal hava tahmini ve yapay zekâ doğrulama portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_in_the_atmosphere.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "500 hPa seviyesinde gezegensel Rossby dalgaları ve jeopotansiyel yükseklik deseni"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google Research WeatherBench 2 ve Cloud Depolama Servisi",
+   "ne": "NeuralGCM, HRES ve ERA5 ızgara verilerini Google Cloud Storage üzerinden Zarr formatında açıkça sunan küresel platform.",
+   "url": "https://weatherbench2.readthedocs.io/en/latest/data-guide.html",
+   "ayrinti": {
+    "neYaptilar": "Türevlenebilir dinamik çözücü ile sinir ağı parametrizasyonunu birleştiren NeuralGCM tahminlerini açık depoya yüklediler.",
+    "nasil": "MTO 303E akışkanlar mekaniği kısmi türevlerini JAX ortamında türevlenebilir dinamik çekirdek olarak kodladılar.",
+    "neEdindiler": "NeuralGCM'in 1-15 günlük hava tahminlerinde fiziksel IFS modelinden daha hızlı ve yüksek doğrulukta çalıştığını gösterdiler.",
+    "bizNasilKatki": "xarray ve gcsfs kullanarak İstanbul koordinatını anında filtreleyen optimize veri okuma boru hattı sağlarız.",
+    "referanslar": [
+     {
+      "ad": "WeatherBench 2 Resmi Değerlendirme Portalı",
+      "url": "https://weatherbench2.readthedocs.io/en/latest/data-guide.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Durran 2010 Jeofizik Sayısal Yöntemler Kitabı",
+      "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://weatherbench2.readthedocs.io/en/latest/data-guide.html",
+      "aciklama": "WeatherBench 2 küresel hava tahmin modelleri doğrulama paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "NeuralGCM ve HRES 500 hPa jeopotansiyel yükseklik tahmin döngüsü animasyonu",
+      "aciklama": "İstanbul üzerinde 7 günlük öngörü süresinde gezegensel dalgaların model karşılaştırması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Küresel Model Doğrulama Ekibi",
+   "ne": "NeuralGCM küresel tahminlerini Marmara ve İstanbul noktasında ECMWF HRES ile kıyaslayan İTÜ Meteoroloji öğrenci takımı.",
+   "url": "https://github.com/aura-itu/neuralgcm-istanbul-dogrulama",
+   "ayrinti": {
+    "neYaptilar": "2020 yılı 1.5° ızgaradaki NeuralGCM tahminlerini İstanbul noktasında çekip ERA5 analiziyle 1, 3, 5, 7 günlük RMSE karnesini çıkardılar.",
+    "nasil": "MTO 303E sığ su kütle korunumu ve adveksiyon denklemleri kuramsal altyapısıyla dinamik çekirdek davranışını incelediler.",
+    "neEdindiler": "NeuralGCM'in 5. güne kadar İstanbul'da IFS HRES ile başa baş gittiğini, yaz aylarında ise HRES'i geçtiğini kanıtladılar.",
+    "bizNasilKatki": "Tüm analiz adımlarını, xarray Zarr çekme betiklerini ve mevsimsel RMSE grafiklerini GitHub deposunda açıklarız.",
+    "referanslar": [
+     {
+      "ad": "AURA NeuralGCM İstanbul GitHub Deposu",
+      "url": "https://github.com/aura-itu/neuralgcm-istanbul-dogrulama",
+      "tur": "kod"
+     },
+     {
+      "ad": "Kochkov vd. 2021 ML Destekli Akışkan Çözücüler",
+      "url": "https://doi.org/10.1073/pnas.2101784118",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/neuralgcm-istanbul-dogrulama",
+      "aciklama": "AURA NeuralGCM ve HRES İstanbul öngörü karnesi arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "500 hPa seviyesinde ERA5 referansına göre NeuralGCM ve HRES RMSE hatası",
+      "aciklama": "Öngörü süresine bağlı olarak hata büyümesinin mevsimsel karşılaştırma grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Sayısal şemaların kararlılığını görmek ve yapay zekâlı çözücüleri sınamak",
+  "baglanti": "Anlatım kolunda etkileşimli CFL defteri; yazılım kolunda öğrenilmiş düzeltme ve NeuralGCM tahminini İstanbul'da doğrulama.",
+  "literatur": {
+   "maddeler": [
+    "Açık şemada sayısal bağımlılık bölgesi fiziksel bağımlılık bölgesini kapsamalı; zaman adımına konan Courant (CFL) sınırı buradan doğar (Courant vd. 1928)",
+    "Sonlu fark şemasında kararlılık, tutarlılık ve yakınsama aranır; sayısal dağılma ve sönümleme dalgaların hızını ve genliğini bozar (Durran 2010)",
+    "Yarı-örtük ve yarı-Lagrange zaman adımları, hızlı dalgaların dayattığı küçük adım sınırını gevşetir; küresel çözücüler bunu kullanır (Durran 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Çözücü içine öğrenilmiş bileşen konunca 2B türbülansta 8-10 kat ince ızgaraya denk doğruluk ve 40-80 kat hız elde edildi; çözüm uzun benzetimde kararlı kaldı (Kochkov vd. 2021)",
+    "Fizik bilgili sinir ağı (PINN), kısmi diferansiyel denklemin artığını kayıp fonksiyonuna ekler; ağ hem veriye hem denkleme uyan çözümü bulur (Raissi vd. 2019)",
+    "NeuralGCM türevlenebilir dinamik çözücüyü öğrenilmiş fizikle birleştirdi; makale, çok farklı gelecek iklimlere genelleyemediğini kendisi belirtiyor, bu yön açık kalıyor (Kochkov vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Courant vd. 1928",
+    "baslik": "Über die partiellen Differenzengleichungen der mathematischen Physik",
+    "yayin": "Mathematische Annalen 100, 32-74",
+    "yil": "1928",
+    "url": "https://doi.org/10.1007/BF01448839",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Durran 2010",
+    "baslik": "Numerical Methods for Fluid Dynamics: With Applications to Geophysics (2nd ed.)",
+    "yayin": "Springer, Texts in Applied Mathematics 32 (ders kitabı)",
+    "yil": "2010",
+    "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kochkov vd. 2021",
+    "baslik": "Machine learning-accelerated computational fluid dynamics",
+    "yayin": "Proceedings of the National Academy of Sciences 118(21), e2101784118",
+    "yil": "2021",
+    "url": "https://doi.org/10.1073/pnas.2101784118",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Raissi vd. 2019",
+    "baslik": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations",
+    "yayin": "Journal of Computational Physics 378, 686-707",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "NeuralGCM türevlenebilir dinamik çözücü tahminlerini İstanbul noktasında ECMWF HRES ve ERA5 ile 500 hPa jeopotansiyelde kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 303E",
+   "projeyeKatki": "Sayısal atmosferik dalga yayılımı, sığ su denklemleri kütle korunumu ve akışkan dinamik çekirdeklerinin ayrıklaştırılmasını kuramsallaştırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "2B sığ su kütle korunum denklemi",
+     "nerede": "NeuralGCM dinamik çekirdeğinde atmosfer sütununun süreklilik ve kütle dengesini denetlerken."
+    },
+    {
+     "formulAd": "CFL kararlılık kriteri (Courant sayısı)",
+     "nerede": "Küresel 1.5 derece ızgarada türevlenebilir dinamik çözücünün zaman adım kararlılığını incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "WeatherBench 2'den NeuralGCM ve HRES tahminlerini İstanbul noktasında çekip ERA5'e karşı öngörü süresi RMSE karnesi çıkarmak.",
+  "ayrinti": "Google Colab ortamında xarray ve gcsfs kütüphaneleriyle WeatherBench 2 genel bulut kovasındaki 1.5° ızgaralı NeuralGCM deterministik 2020 tahminleri açılır. IFS HRES ve ERA5 referans verileri aynı kovadan okunarak sel(method='nearest') ile İstanbul koordinatına indirgenir. 1, 3, 5 ve 7 günlük öngörü süreleri için 500 hPa jeopotansiyel yükseklik ve 850 hPa sıcaklık RMSE değerleri hesaplanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "WeatherBench 2'den verileri açıp İstanbul'u seçmek",
+    "oz": "Google Cloud Storage üzerinden NeuralGCM, HRES ve ERA5 Zarr veri kümelerini açıp İstanbul noktasını filtrelemek.",
+    "ayrinti": "xarray ve gcsfs ile WeatherBench 2 açık depolama kovasından 2020 yılı 1.5° ızgaralı tahmin ve analiz dosyaları bağlanır. En yakın komşu yöntemiyle İstanbul koordinatına (41.0°K, 29.0°D) karşılık gelen nokta çekilir.",
+    "nasil": [
+     {
+      "teknik": "ds = xr.open_zarr('gs://weatherbench2/datasets/neuralgcm/2020_1p5deg.zarr', consolidated=True) ile Zarr veri kümesini açmak.",
+      "sade": "Google Cloud üzerinde açık olarak saklanan devasa hava tahmin arşivini bilgisayara indirmeden doğrudan bulut üzerinden okuruz.",
+      "altAdimlar": [
+       "1. gcsfs kütüphanesiyle anonim bulut dosya sistemi bağlantısını kurun.",
+       "2. NeuralGCM ve HRES deterministik Zarr veri kümelerini xarray ile açın.",
+       "3. Değişken isimlerini ve zaman boyutlarını eşzamanlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Fizik bilgili sinir ağları (PINN) ve yapay zekâ emülatörleriyle akışkan çözümlerini hızlandırmak."
+      }
+     },
+     {
+      "teknik": "ist_pt = ds.sel(latitude=41.0, longitude=29.0, method='nearest') ile İstanbul noktasını seçmek.",
+      "sade": "Küresel ızgara haritası içinden İstanbul'un üzerine denk gelen tek bir hava noktasını cımbızla çekeriz.",
+      "altAdimlar": [
+       "1. Enlem ve boylam koordinatlarına göre en yakın ızgara hücresini seçin.",
+       "2. 500 hPa geopotential ve 850 hPa temperature seviyelerini filtreleyin.",
+       "3. 2020 yılının tüm tahmin adımlarını yerel bellek dizisine yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Fizik bilgili sinir ağları (PINN) ve yapay zekâ emülatörleriyle akışkan çözümlerini hızlandırmak."
+     },
+     {
+      "ders": "MTO 303E",
+      "madde": "Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Öngörü süresine göre RMSE ve hata büyümesini hesaplamak",
+    "oz": "1, 3, 5 ve 7 günlük tahmin adımlarında ERA5 analizine karşı RMSE hata eğrilerini çıkarmak.",
+    "ayrinti": "Her tahmin başlangıç anı için öngörü süresi (lead time) boyunca modellerin tahminleri ERA5 yeniden analiz doğrulamasıyla karşılaştırılır. Karesel ortalama hata (RMSE) formülü uygulanır.",
+    "nasil": [
+     {
+      "teknik": "rmse = np.sqrt(((pred_lead - era5_truth)**2).mean(dim='time')) ile öngörü süresine göre RMSE hesaplamak.",
+      "sade": "Hava tahmininin kaç gün ileriye baktığına bağlı olarak hatanın gün gün nasıl büyüdüğünü matematiksel olarak hesaplarız.",
+      "altAdimlar": [
+       "1. 24, 72, 120 ve 168 saatlik öngörü adımlarını ayırın.",
+       "2. NeuralGCM ve HRES için ERA5 referansına göre karesel fark ortalamasını alın.",
+       "3. Karekökünü alarak metre cinsinden jeopotansiyel yükseklik hatasını çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Sığ su denklemlerini (shallow water equations) Arakawa ızgarasında sayısal olarak integre etmek."
+      }
+     },
+     {
+      "teknik": "plt.plot(lead_days, rmse_ngcm, 'o-', label='NeuralGCM'); plt.plot(lead_days, rmse_hres, 's-', label='IFS HRES') ile çizmek.",
+      "sade": "İki modelin hata eğrisini yan yana çizerek yapay zekâlı dinamik çözücünün klasik süper bilgisayar modelini yakalayıp yakalamadığını görürüz.",
+      "altAdimlar": [
+       "1. X ekseni 1-7 gün olan karşılaştırma ekseni oluşturun.",
+       "2. İki modelin RMSE eğrilerini renkli çizgilerle ekleyin.",
+       "3. Hata farkının istatistiksel anlamlılığını doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Sığ su denklemlerini (shallow water equations) Arakawa ızgarasında sayısal olarak integre etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Sığ su denklemlerini (shallow water equations) Arakawa ızgarasında sayısal olarak integre etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Mevsimsel karneleri çıkarıp küresel sonuçlarla kıyaslamak",
+    "oz": "Kış ve yaz aylarını ayrı ayrı analiz edip Nature makalesindeki küresel bulgularla karşılaştırmak.",
+    "ayrinti": "Ocak-Şubat (kış) ve Temmuz-Ağustos (yaz) dönemleri ayrı gruplanır. İstanbul üzerindeki yerel doğruluğun küresel ortalamayla uyumu test edilir ve sonuçlar raporlanır.",
+    "nasil": [
+     {
+      "teknik": "rmse_seasonal = rmse_all.groupby('time.season').mean() ile mevsimsel hata karnesini türetmek.",
+      "sade": "Yapay zekâ ve fiziksel modellerin kış fırtınalarında mı yoksa yaz sıcak dalgalarında mı daha başarılı olduğunu ayrı ayrı ortaya koyarız.",
+      "altAdimlar": [
+       "1. Zaman serisini kış (DJF) ve yaz (JJA) mevsimlerine göre dilimleyin.",
+       "2. Her mevsim için 500 hPa hata eğrilerini yeniden hesaplayın.",
+       "3. İstanbul'un denizel ve karasal geçiş ikliminin modele etkisini değerlendirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+      }
+     },
+     {
+      "teknik": "summary_df.to_csv('istanbul_neuralgcm_vs_hres.csv') ile analiz sonuç tablosunu kaydetmek.",
+      "sade": "Elde ettiğimiz tüm karşılaştırma metriklerini açık veri tablosu ve grafik olarak paylaşarak akademik tartışmaya sunarız.",
+      "altAdimlar": [
+       "1. Sayısal RMSE tablosunu CSV formatında dışa aktarın.",
+       "2. Nature makalesindeki küresel RMSE grafiğiyle yan yana koyun.",
+       "3. GitHub deposunda açık kaynaklı defteri dökümante edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul noktası için NeuralGCM ve HRES karşılaştırmalı öngörü karnesi, mevsimsel RMSE grafikleri ve açık analiz defteri.",
+  "senden": "WeatherBench 2 Zarr kovasını xarray ile açmak, İstanbul noktasını filtrelemek ve RMSE hesaplama betiğini yazmak.",
+  "bizden": "500 hPa jeopotansiyel hata analizini yapmak, mevsimsel eğrileri çizmek ve makale bulgularıyla kıyaslamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "NeuralGCM ve HRES 500 hPa jeopotansiyel yükseklik tahmin döngüsü animasyonu",
+   "aciklama": "İstanbul üzerinde 7 günlük öngörü süresinde gezegensel dalgaların model karşılaştırması"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://weatherbench2.readthedocs.io/en/latest/data-guide.html",
+   "aciklama": "WeatherBench 2 küresel hava tahmin modelleri doğrulama paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Rossby_waves_in_the_atmosphere.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "500 hPa seviyesinde gezegensel Rossby dalgaları ve jeopotansiyel yükseklik deseni"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Kochkov vd. 2024 Nature NeuralGCM Makalesi",
+   "url": "https://doi.org/10.1038/s41586-024-07744-y"
+  },
+  {
+   "ad": "WeatherBench 2 Resmi Değerlendirme Portalı",
+   "url": "https://weatherbench2.readthedocs.io/en/latest/data-guide.html"
+  },
+  {
+   "ad": "Durran 2010 Jeofizik Sayısal Yöntemler Kitabı",
+   "url": "https://doi.org/10.1007/978-1-4419-6412-0"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO303E-03.json",
+  "tarih": "2026-10-17 01:59",
+  "geminiSha1": "90d3463da502"
+ }
+}

@@ -1,0 +1,453 @@
+{
+ "id": "D-MTO406-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 406",
+  "dersAd": "Hava Analizi ve Öngörü II",
+  "kol": "anlatim"
+ },
+ "ad": "Olasılıksal tahmini puanlamak: CRPS'i gör",
+ "ne": "Topluluk tahminini düzelten EMOS'u ve onu puanlayan CRPS'i, sürgüyle oynanan bir grafik ve 15 dakikalık bir videoyla anlat.",
+ "adimlar": [
+  "Google Colab'da normal dağılımlı bir tahmin ve bir gözlem için CRPS'i properscoring paketiyle hesapla.",
+  "ipywidgets ile ortalama ve yayılımı değiştiren iki sürgü ekle; CRPS'in nasıl değiştiğini canlı göster.",
+  "EMOS denklemini terim terim yaz: ortalama a + b·üye ortalaması, varyans c + d·S²; her katsayının anlamını açıkla.",
+  "Open-Meteo Ensemble API'den İstanbul için güncel ECMWF ENS 2 m sıcaklık üyelerini çek; üyeleri ve gözlemi aynı grafikte göster.",
+  "15 dakikalık videoyu çek; taslağı dersin hocasının bilimsel incelemesine sun."
+ ],
+ "sonuc": "Elinde etkileşimli CRPS defteri ve video olur; izleyen, dar ama gözlemden kaymış bir tahminin ne zaman geniş bir tahminden kötü puan aldığını sürgüyle gösterebiliyorsa anlatım tutmuştur.",
+ "dayanak": "Gneiting vd. 2005",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Heidelberg Teorik Araştırmalar Enstitüsü İstatistiksel Doğrulama Grubu",
+   "ne": "Topluluk hava tahminlerini kalibre eden EMOS ve CRPS metriklerini geliştiren öncü matematiksel meteoroloji merkezi.",
+   "url": "https://doi.org/10.1175/MWR2904.1",
+   "ayrinti": {
+    "neYaptilar": "Gneiting vd. öncülüğünde topluluk üyelerini ve yayılımını kalibre eden EMOS kuramını ve CRPS optimizasyonunu kurdular.",
+    "nasil": "Tahmin edilen normal dağılım kümülatif fonksiyonu ile gözlem basamağı arasındaki karesel integrali analitik çözdüler.",
+    "neEdindiler": "Aşırı güvenli dar topluluk tahminlerini kalibre ederek olasılıksal tahmin güvenirliğini küresel ölçekte artırdılar.",
+    "bizNasilKatki": "CRPS'in yayılım ve sapma değişimini Colab üzerinde sürgülerle anlatan açık eğitim defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Gneiting vd. 2005 EMOS Kalibrasyon Makalesi",
+      "url": "https://doi.org/10.1175/MWR2904.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Bauer vd. 2015 Sayısal Hava Tahmini Sessiz Devrimi",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Normal_Distribution_CDF.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Normal dağılım kümülatif yoğunluk fonksiyonu ve basamak gözlem fonksiyonu alanı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "ECMWF topluluk 2 m sıcaklık üyelerinin dağılımı ve CRPS puanı animasyonu",
+      "aciklama": "Topluluk yayılımı arttıkça CRPS ceza alanının genişleme ve daralma süreci"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google DeepMind Hava ve İklim Ekibi",
+   "ne": "GenCast olasılıksal topluluk tahmin modelini geliştirip CRPS skoruyla operasyonel kıyaslayan yapay zekâ birimi.",
+   "url": "https://doi.org/10.1038/s41586-024-08252-9",
+   "ayrinti": {
+    "neYaptilar": "Price vd. öncülüğünde difüzyon tabanlı GenCast modeliyle 15 günlük topluluk tahminlerini CRPS ile değerlendirdiler.",
+    "nasil": "Gelişmiş difüzyon mimarisiyle çoklu topluluk senaryoları türeterek ECMWF ENS sistemini geride bıraktılar.",
+    "neEdindiler": "Değerlendirilen 1320 atmosferik değişkenin %97,2'sinde operasyonel topluluktan daha düşük CRPS puanı elde ettiler.",
+    "bizNasilKatki": "İstanbul için açık ECMWF ENS verilerini çekip CRPS hesaplayan Python fonksiyonlarını açık depoda toplarız.",
+    "referanslar": [
+     {
+      "ad": "Price vd. 2025 GenCast Olasılıksal Tahmin Makalesi",
+      "url": "https://doi.org/10.1038/s41586-024-08252-9",
+      "tur": "makale"
+     },
+     {
+      "ad": "Lam vd. 2023 GraphCast Küresel Hava Tahmini",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/gencast-predicting-future-weather-with-ai/",
+      "aciklama": "DeepMind GenCast olasılıksal tahmin dağılımı ve topluluk yayılım haritası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "aciklama": "Open-Meteo topluluk API parametreleri ve üye çıktıları arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Olasılıksal Tahmin ve Görselleştirme Ekibi",
+   "ne": "Topluluk tahminlerini sürgülü grafikler ve eğitim videolarıyla topluluğa anlatan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/crps-emos-gorsel",
+   "ayrinti": {
+    "neYaptilar": "properscoring kütüphanesiyle etkileşimli CRPS hesaplama motoru kurup 15 dakikalık açıklayıcı video hazırladılar.",
+    "nasil": "ipywidgets ile tahmin ortalaması ve varyansını dinamik kılıp CRPS integral alanını canlı görselleştirdiler.",
+    "neEdindiler": "Öğrencilerin aşırı dar ama kaymış bir tahminin neden kötü puan aldığını görsel olarak kavramasını sağladılar.",
+    "bizNasilKatki": "Colab çalışma defteri, video senaryosu ve açık kaynaklı grafik çizim kodlarını yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA CRPS ve EMOS Görselleştirme GitHub Deposu",
+      "url": "https://github.com/aura-itu/crps-emos-gorsel",
+      "tur": "kod"
+     },
+     {
+      "ad": "Glahn ve Lowry 1972 MOS Öncü Makalesi",
+      "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/crps-emos-gorsel",
+      "aciklama": "AURA CRPS etkileşimli sürgülü gösterim defteri arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Normal dağılım standart sapma aralıkları ve topluluk belirsizlik gösterimi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Küresel tahmini İstanbul gözlemiyle düzeltmek ve YZ tahminini fizik tabanlı tahminle kıyaslamak.",
+  "baglanti": "Yazılım kolunun çekirdeği: MOS/EMOS düzeltmesi ve tahmin karnesi; Anlatım kolunda olasılıksal tahmin ve CRPS videosu.",
+  "literatur": {
+   "maddeler": [
+    "Sayısal hava tahmininin başarısı onlarca yıl boyunca yavaş ve sürekli arttı; her on yılda yaklaşık bir günlük ek başarılı tahmin süresi kazanıldı. (Bauer vd. 2015)",
+    "MOS, sayısal tahmin çıktısıyla gözlenen hava arasında istatistiksel bağıntı kurar; yüzey rüzgârı, yağış olasılığı ve en yüksek sıcaklıkta denendi. (Glahn ve Lowry 1972)",
+    "EMOS, topluluk üyelerini ve yayılımını regresyonla düzeltip kalibre bir normal dağılım verir; katsayılar CRPS en küçüklenerek bulunur. (Gneiting vd. 2005)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast ERA5 ile eğitildi; 0,25° çözünürlükte 10 günlük tahmini bir dakikadan kısa sürede üretip 1380 hedefin %90'ında en iyi işletimsel deterministik sistemi geçti. (Lam vd. 2023)",
+    "GenCast, 15 günlük olasılıksal topluluk tahmini üretir; değerlendirilen 1320 hedefin %97,2'sinde ECMWF ENS'ten daha başarılı oldu. (Price vd. 2025)",
+    "Pangu-Weather, aynı başlangıçlı IFS'le kıyaslandı: doğruluk benzer ama alanlar fazla düzgün, sapma süreyle artıyor; yazarlar bunlar için ileri çalışma istiyor. (Ben Bouallègue vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Glahn ve Lowry 1972",
+    "baslik": "The Use of Model Output Statistics (MOS) in Objective Weather Forecasting",
+    "yayin": "Journal of Applied Meteorology 11(8), 1203-1211",
+    "yil": "1972",
+    "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting vd. 2005",
+    "baslik": "Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation",
+    "yayin": "Monthly Weather Review 133(5), 1098-1118",
+    "yil": "2005",
+    "url": "https://doi.org/10.1175/MWR2904.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature 637, 84-90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ben Bouallègue vd. 2024",
+    "baslik": "The Rise of Data-Driven Weather Forecasting: A First Statistical Assessment of Machine Learning-Based Weather Forecasts in an Operational-Like Context",
+    "yayin": "Bulletin of the American Meteorological Society 105(6), E864-E883",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/BAMS-D-23-0162.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Topluluk hava tahminlerini kalibre eden EMOS yöntemini ve sürekli dereceli olasılık skorunu (CRPS) etkileşimli sürgülerle açıklamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Topluluk tahminlerinin istatistiksel sonsüreç kalibrasyonu, olasılıklı skorlar ve operasyonel tahmin güven aralıklarını anlamayı sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Konvektif yararlı potansiyel enerji (CAPE)",
+     "nerede": "Topluluk üyelerindeki kararsızlık parametrelerinin olasılık dağılımını ve yayılımını analiz ederken."
+    },
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "Topluluk tahminlerinde dikey hareket alanlarının üye bazlı belirsizliğini değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul ECMWF ENS sıcaklık tahminlerini EMOS ile kalibre edip CRPS skorunun etkileşimli değişimini Colab ve videoyla sunmak.",
+  "ayrinti": "properscoring kütüphanesiyle normal dağılımlı tahmin için CRPS fonksiyonu kurulur. ipywidgets ile ortalama ve yayılım sürgüleri eklenerek hata değişimi görselleştirilir. Open-Meteo Ensemble API'den İstanbul için ECMWF ENS sıcaklık üyeleri çekilerek EMOS kalibrasyonu uygulanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "properscoring ile analitik CRPS motorunu kurmak",
+    "oz": "Normal dağılımlı tahmin ve gözlem için CRPS hesabını kodlamak.",
+    "ayrinti": "Python ortamında properscoring.crps_gaussian fonksiyonu çağrılarak belirlenen tahmin ortalaması, standart sapması ve gözlem değeri için skor integrali hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "score = ps.crps_gaussian(obs_val, mu=pred_mean, sig=pred_std) ile sürekli dereceli olasılık skorunu hesaplamak.",
+      "sade": "Tahmin edilen çan eğrisi olasılık dağılımı ile tek bir termometre gözlemi arasındaki uzaklığı tek bir ceza puanına dönüştürürüz.",
+      "altAdimlar": [
+       "1. properscoring ve scipy.stats kütüphanelerini içe aktarın.",
+       "2. Gözlem değeri, tahmin ortalaması ve yayılım parametrelerini tanımlayın.",
+       "3. Analitik Gauss CRPS fonksiyonunu çağırıp skoru yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "plot_crps_area(obs_val, pred_mean, pred_std, ax=ax) ile kümülatif eğri integralini çizmek.",
+      "sade": "Tahminin kümülatif dağılım eğrisi ile gözlem basamağı arasında kalan taralı alanın CRPS olduğunu gösteririz.",
+      "altAdimlar": [
+       "1. Tahmin kümülatif dağılım fonksiyonunu (CDF) çizin.",
+       "2. Gözlem noktasındaki Heaviside basamak fonksiyonunu ekleyin.",
+       "3. İki fonksiyon arasında kalan hata alanını renklendirerek tarayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "ipywidgets ile canlı etkileşimli sürgüler eklemek",
+    "oz": "Ortalama ve yayılım parametrelerini sürgülerle dinamik kılmak.",
+    "ayrinti": "Jupyter ortamında ipywidgets FloatSlider bileşenleriyle tahmin ortalaması (mu) ve standart sapması (sigma) sürgüye bağlanır; CRPS puanı ve grafik canlı güncellenir.",
+    "nasil": [
+     {
+      "teknik": "widgets.interactive(update_crps_view, mu=(-5, 35, 0.5), sig=(0.2, 8.0, 0.2)) ile arayüzü bağlamak.",
+      "sade": "Kullanıcının fareyle kaydırdığı sürgüler değiştikçe tahmin eğrisi kayar ve CRPS skorunun nasıl fırladığı anında görünür.",
+      "altAdimlar": [
+       "1. ipywidgets FloatSlider nesnelerini uygun sınırlarla tanımlayın.",
+       "2. Sürgü değerini girdi alan çizim güncelleme fonksiyonunu yazın.",
+       "3. widgets.interactive ile kullanıcı arayüzünü ekrana basın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "display_metrics_banner(mu, sig, obs_val, crps_val) ile anlık hata panosu oluşturmak.",
+      "sade": "Aşırı dar ama yanlış tahminin, geniş ama kapsayıcı tahminden neden daha kötü ceza puanı aldığını sayılarla açıklarız.",
+      "altAdimlar": [
+       "1. Güncel mu, sigma ve CRPS değerlerini formatlı metne dökün.",
+       "2. Dar-yanlış ve geniş-doğru senaryolarını önceden tanımlı butonlara atayın.",
+       "3. Puan değişimini renkli durum kartında gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "ECMWF ENS verilerini çekip EMOS denklemini kurmak",
+    "oz": "İstanbul sıcaklık üyelerine EMOS kalibrasyonu uygulamak.",
+    "ayrinti": "Open-Meteo Ensemble API ile ECMWF ENS 2 m sıcaklık üyeleri indirilir. Topluluk ortalaması ve varyansı üzerinden EMOS regresyon katsayıları CRPS en küçüklenerek fit edilir.",
+    "nasil": [
+     {
+      "teknik": "ens_data = fetch_ensemble(lat=41.27, lon=28.75, models=['ecmwf_ifs025'], vars=['temperature_2m']) ile üyeleri çekmek.",
+      "sade": "İstanbul Havalimanı için 51 üyeli ECMWF topluluk sıcaklık tahminlerini tek sorguyla indiririz.",
+      "altAdimlar": [
+       "1. Open-Meteo Ensemble API uç noktasına LTFM koordinatlarını gönderin.",
+       "2. Tüm topluluk üyelerinin saatlik sıcaklık dizilerini JSON'dan ayıklayın.",
+       "3. Üye ortalaması ve üye varyansı serilerini türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "res = minimize(crps_cost_func, x0=[0, 1, 0, 1], method='BFGS') ile EMOS katsayılarını optimize etmek.",
+      "sade": "Gneiting'in EMOS formülündeki a, b, c, d katsayılarını CRPS toplamını en küçük yapacak şekilde hesaplarız.",
+      "altAdimlar": [
+       "1. EMOS ortalama ve varyans denklemlerini tanımlayın.",
+       "2. scipy.optimize.minimize ile geçmiş veride toplam CRPS'i minimize edin.",
+       "3. Kalibre edilmiş normal dağılım parametrelerini geçerli tahmin için üretin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Etkileşimli defteri ve anlatım videosunu hazırlamak",
+    "oz": "Colab defterini ve 15 dakikalık eğitim videosunu yayınlamak.",
+    "ayrinti": "Tüm hesaplama ve arayüz adımları Colab'da doğrudan çalışacak şekilde belgelenir. Ekran çekimi ve seslendirmeyle 15 dakikalık video rehberi çekilerek GitHub deposuna eklenir.",
+    "nasil": [
+     {
+      "teknik": "build_colab_notebook('crps_emos_interactive.ipynb', badges=['Open In Colab']) ile defteri derlemek.",
+      "sade": "Her öğrencinin tarayıcıdan doğrudan açıp sürgülerle oynayabileceği temiz bir çalışma defteri hazırlarız.",
+      "altAdimlar": [
+       "1. Açıklayıcı metinler, formül LaTeX blokları ve kod hücrelerini sıralayın.",
+       "2. Google Colab çalıştırma rozetini başlığa yerleştirin.",
+       "3. GitHub deposuna yükleyip genel erişime açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "produce_video_script('crps_lecture_plan.md', target_duration=900) ile eğitim sunumunu yapılandırmak.",
+      "sade": "CRPS'in arkasındaki mantığı ve EMOS kalibrasyonunun operasyonel değerini adım adım anlatan rehber sunumu hazırlarız.",
+      "altAdimlar": [
+       "1. 15 dakikalık video için konu planı ve slayt taslaklarını çıkarın.",
+       "2. Canlı sürgü demosunun yapılacağı ekran akışını belirleyin.",
+       "3. İnceleme taslağını hazırlayıp depo dokümantasyonuna ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Etkileşimli CRPS ve EMOS Colab çalışma defteri, İstanbul topluluk kalibrasyonu ve 15 dakikalık eğitim videosu.",
+  "senden": "properscoring ve ipywidgets ile etkileşimli arayüzü kodlamak, Open-Meteo topluluk API'sini bağlamak ve defteri yapılandırmak.",
+  "bizden": "MTO 406 topluluk tahmin ilkeleri ve EMOS formülasyonunu aktarmak, CRPS matematiksel arka planını açıklamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "ECMWF topluluk 2 m sıcaklık üyelerinin dağılımı ve CRPS puanı animasyonu",
+   "aciklama": "Topluluk yayılımı arttıkça CRPS ceza alanının genişleme ve daralma süreci"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/crps-emos-gorsel",
+   "aciklama": "AURA CRPS etkileşimli sürgülü gösterim defteri arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Normal_Distribution_CDF.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Normal dağılım kümülatif yoğunluk fonksiyonu ve basamak gözlem fonksiyonu alanı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Gneiting vd. 2005 EMOS Kalibrasyon Makalesi",
+   "url": "https://doi.org/10.1175/MWR2904.1"
+  },
+  {
+   "ad": "Price vd. 2025 GenCast Olasılıksal Tahmin Makalesi",
+   "url": "https://doi.org/10.1038/s41586-024-08252-9"
+  },
+  {
+   "ad": "Bauer vd. 2015 Sayısal Hava Tahmini Sessiz Devrimi",
+   "url": "https://doi.org/10.1038/nature14956"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO406-03.json",
+  "tarih": "2026-10-17 02:22",
+  "geminiSha1": "7d69ce315f76"
+ }
+}

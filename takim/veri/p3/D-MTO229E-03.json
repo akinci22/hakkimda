@@ -1,0 +1,402 @@
+{
+ "id": "D-MTO229E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 229E",
+  "dersAd": "Bulut ve Yağış Fiziği",
+  "kol": "ikisi"
+ },
+ "ad": "Yağmur oluşumunu sinir ağıyla taklit et",
+ "ne": "Seifert ve Rasp'ın bulgusunu küçük ölçekte gör: bulut suyunun yağmura dönüşme hızını iyi öğrenen ağ, zamanda ilerletince neden sapabilir?",
+ "adimlar": [
+  "Python'da Kessler tipi bağıntılarla bulut suyunun yağmura dönüşme (autoconversion) ve toplama (accretion) hızlarını üret.",
+  "Süperdamlacık verisindeki gibi hızlara rastgele gürültü ekle; scikit-learn MLPRegressor'ü bu hızları tahmin edecek biçimde eğit.",
+  "Test hatasını ölç; aynı başlangıçtan denklemleri iki kez zamanda ilerlet: bir kez bağıntıyla, bir kez ağla.",
+  "İki çözümün yağmur suyu eğrilerini aynı grafikte çiz; farkın zamanla büyüyüp büyümediğine bak.",
+  "Bulguyu makalenin sonucuyla karşılaştıran 5 dakikalık bir video hazırla."
+ ],
+ "sonuc": "Hız test hatası ve iki zaman çözümünün grafiği. Hız hatası küçük ama eğriler zamanla ayrılıyorsa makaledeki bulguyu kendin görmüşsündür: iyi hız kestirimi iyi zaman çözümü getirmeyebilir.",
+ "dayanak": "Seifert ve Rasp 2020",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 229E",
+    "ad": "Bulut ve Yağış Fiziği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Karlsruhe Teknoloji Enstitüsü Meteoroloji ve İklim Enstitüsü",
+   "ne": "Seifert ve Rasp öncülüğünde süperdamlacık simülasyonları ve sinir ağlarıyla ılık yağmur mikrofiziğini araştıran enstitü.",
+   "url": "https://www.imk-tro.kit.edu/english/research.php",
+   "ayrinti": {
+    "neYaptilar": "Süperdamlacık verisiyle eğitilen yapay sinir ağlarının ılık yağmur süreç hızlarını başarıyla öğrendiğini fakat zaman entegrasyonunda sapma gösterdiğini kanıtladılar.",
+    "nasil": "MTO 229E çarpışma-birleşme ve otokonversiyon denklemlerini derin sinir ağlarıyla taklit edip diferansiyel denklem çözücülerinde test ettiler.",
+    "neEdindiler": "Anlık hız kestirim hatası çok düşük olsa bile zaman içinde kümülatif hatanın büyüyebileceğini literatüre kazandırdılar.",
+    "bizNasilKatki": "Kessler formülasyonu üzerinde scikit-learn MLPRegressor ile aynı olguyu gösteren açık Colab defteri üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Seifert ve Rasp 2020 Mikrofizik Makale DOI Bağlantısı",
+      "url": "https://doi.org/10.1029/2020MS002301",
+      "tur": "makale"
+     },
+     {
+      "ad": "KIT IMK-TRO Araştırma Grubu Sayfası",
+      "url": "https://www.imk-tro.kit.edu/english/research.php",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.imk-tro.kit.edu/english/research.php",
+      "aciklama": "Karlsruhe Teknoloji Enstitüsü atmosfer fiziği araştırma laboratuvarı arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Raindrops_sizes_and_shapes.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Bulut ve yağmur damlacıklarının aerodinamik geometrisi ve büyüme şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "NCAR ve Gettelman Makine Öğrenmesi Bulut Fiziği Girişimi",
+   "ne": "Küresel iklim ve hava simülasyonlarında bin mikrofizik süreçlerini sinir ağı emülatörleriyle hızlandıran araştırma konsorsiyumu.",
+   "url": "https://ncar.ucar.edu/what-we-offer/models/community-earth-system-model-cesm",
+   "ayrinti": {
+    "neYaptilar": "Ağır sayısal hesaplama yükü getiren detaylı mikrofizik şemalarını yapay sinir ağlarıyla hızlandırarak küresel simülasyonlara entegre ettiler.",
+    "nasil": "MTO 229E bulut damlası yoğuşma ve süpürme büyüme denklemlerini çok katmanlı yapay sinir ağlarına öğreterek hesaplama süresini düşürdüler.",
+    "neEdindiler": "Aşırı uyum riskini kontrol ederek hesaplama maliyetini dört kat azaltan açık kaynaklı mikrofizik emülatörü geliştirdiler.",
+    "bizNasilKatki": "Emülatörün zaman integrasyonunda kararlılık sınırlarını inceleyen açık Python doğrulama kodu sağlarız.",
+    "referanslar": [
+     {
+      "ad": "Gettelman vd. 2021 JAMES Makalesi",
+      "url": "https://doi.org/10.1029/2020MS002268",
+      "tur": "makale"
+     },
+     {
+      "ad": "NCAR CESM Mikrofizik Emülatör Portalı",
+      "url": "https://ncar.ucar.edu/what-we-offer/models/community-earth-system-model-cesm",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ncar.ucar.edu/what-we-offer/models/community-earth-system-model-cesm",
+      "aciklama": "NCAR bulut mikrofiziği sayısal simülasyon arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Bulut sıvı suyunun zamana bağlı yağışa dönüşüm katsayıları değişimi",
+      "aciklama": "Mikrofiziksel süreç hızlarının zamansal dönüşüm eğrileri animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Mikrofizik Simülasyon ve Açık Eğitim Ekibi",
+   "ne": "Kessler mikrofiziği ile MLPRegressor sinir ağı zaman entegrasyonu karşılaştırmasını açık Colab defteri ve kısa eğitim videosuyla sunan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/bulut-yagmur-mikrofizigi-emulasyonu",
+   "ayrinti": {
+    "neYaptilar": "Bulut suyunun yağmura dönüşümünü hem analitik diferansiyel denklemle hem sinir ağıyla çözüp zaman grafiğinde karşılaştıran interaktif çalışma hazırladılar.",
+    "nasil": "MTO 229E süpürme ve otokonversiyon formüllerini Python'da kodlayıp scikit-learn MLPRegressor ile eğittiler.",
+    "neEdindiler": "Hız tahmin hatası çok küçük olsa dahi zaman entegrasyonunda diferansiyel sapmanın neden kaçınılmaz olduğunu somut deneyle kanıtladılar.",
+    "bizNasilKatki": "Açık kaynaklı simülasyon kodlarını ve 10 dakikalık Türkçe anlatım videosunu GitHub üzerinde yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Mikrofizik Emülatörü GitHub Deposu",
+      "url": "https://github.com/aura-itu/bulut-yagmur-mikrofizigi-emulasyonu",
+      "tur": "kod"
+     },
+     {
+      "ad": "Morrison vd. 2020 Mikrofizik Gelişmeleri İncelemesi",
+      "url": "https://doi.org/10.1029/2019MS001689",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/bulut-yagmur-mikrofizigi-emulasyonu",
+      "aciklama": "AURA mikrofizik yapay sinir ağı zaman entegrasyonu karşılaştırma paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Bulut içi sıvı su içeriğinin yağmura dönüşüm ve büyüme süreci simülasyonu",
+      "aciklama": "Kessler mikrofizik bağıntısı ve yapay sinir ağı zaman entegrasyonu karşılaştırması animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Damla boyundan radar yağışına; İstanbul yağış tahminini ölç, yağmur oluşumunu ağla taklit et.",
+  "baglanti": "Yazılımda günlük yağış tahmini doğrulaması; anlatımda damla boy dağılımı ve radar yağışı videosu.",
+  "literatur": {
+   "maddeler": [
+    "Bulut damlası önce yoğuşmayla büyür ama yağmur boyuna yoğuşma tek başına yetmez; ılık bulutta çarpışma–birleşme gerekir (Rogers ve Yau 1989)",
+    "Yağmur damlalarının boy dağılımı üstel bir yasayla yaklaşık temsil edilir; radar yağış kestirimindeki Z–R bağıntıları bu dağılıma dayanır (Marshall ve Palmer 1948)",
+    "Mikrofizik süreç hızlarındaki bilgi boşlukları, sayısal hava tahmini ve iklim benzetimlerinde önemli bir belirsizlik kaynağı (Morrison vd. 2020)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Süperdamlacık verisiyle eğitilen ağlar ılık yağmur süreç hızlarını iyi kestirdi ama zamanda ilerletince klasik şemayı geçemedi; yazarlar zaman türevli yöntem öneriyor (Seifert ve Rasp 2020)",
+    "Bin mikrofiziği iklim modelini %400 yavaşlattı; ağ öykünücüsü sonucu büyük ölçüde kontrol maliyetiyle verdi; yazarlar aşırı uyum ve ekstrapolasyon riskini tartışıyor (Gettelman vd. 2021)",
+    "Radar tabanlı üretken ağ DGMR 90 dakikaya kadar bulanıklaşmayan olasılıksal yağış tahmini verdi; 50'den fazla meteorolog %89 durumda onu ilk sıraya koydu (Ravuri vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Rogers ve Yau 1989",
+    "baslik": "A Short Course in Cloud Physics (3. baskı)",
+    "yayin": "Pergamon Press; Butterworth-Heinemann / Elsevier yeniden basımı (1996)",
+    "yil": "1989",
+    "url": "https://shop.elsevier.com/books/a-short-course-in-cloud-physics/yau/978-0-7506-3215-7",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Marshall ve Palmer 1948",
+    "baslik": "The distribution of raindrops with size",
+    "yayin": "Journal of Meteorology, 5, 165–166",
+    "yil": "1948",
+    "url": "https://doi.org/10.1175/1520-0469(1948)005<0165:TDORWS>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Morrison vd. 2020",
+    "baslik": "Confronting the Challenge of Modeling Cloud and Precipitation Microphysics",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2019MS001689",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Seifert ve Rasp 2020",
+    "baslik": "Potential and Limitations of Machine Learning for Modeling Warm-Rain Cloud Microphysical Processes",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2020MS002301",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Gettelman vd. 2021",
+    "baslik": "Machine Learning the Warm Rain Process",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 13",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2020MS002268",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597, 672–677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Kessler mikrofizik şemasıyla bulut suyunun yağmura dönüşüm hızlarını hesaplayıp yapay sinir ağıyla zamanda ilerleterek kümülatif sapmayı test etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 229E",
+   "projeyeKatki": "Bulut damlacıklarının çarpışma-birleşme yoluyla büyümesini ve Marshall-Palmer dağılımını temel alarak yapay sinir ağının mikrofiziksel süreç hızlarını taklit etmesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Çarpışma-birleşme damlacık süpürme büyüme denklemi",
+     "nerede": "Bulut suyunun yağmur suyuna dönüşümündeki süpürme (accretion) hızını formüle edip sinir ağına hedef veri üretirken."
+    },
+    {
+     "formulAd": "Marshall-Palmer yağmur damlası boyutu dağılımı",
+     "nerede": "Oluşan yağmur suyunun damla boyutu spektrumunu ve yeryüzüne düşüş şiddetini hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Kessler mikrofizik hızlarını yapay sinir ağıyla tahmin edip zaman integralinde analitik çözümle sapmayı karşılaştırmak.",
+  "ayrinti": "Kessler tipi otokonversiyon ve süpürme denklemleri Python'da fonksiyonlaştırılır. Farklı bulut suyu ve yağmur suyu değerleri için sentetik veri kümesi oluşturulur. scikit-learn MLPRegressor modeli hızları kestirmek üzere eğitilir. Ardından başlangıç koşulundan itibaren zaman adımlarında hem analitik formülle hem sinir ağı tahminleriyle entegrasyon yapılır. İki yöntemin kümülatif yağmur suyu eğrileri çizilip sapma irdelenir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Kessler mikrofizik hız bağıntılarını Python'da kurmak",
+    "oz": "Bulut suyunun yağmura dönüşme ve süpürme hızlarını hesaplayan fonksiyonları kodlamak.",
+    "ayrinti": "Kessler şemasına göre otokonversiyon hızı qc > qc0 eşiğinde başlar; süpürme hızı ise qc ve qr çarpımıyla orantılıdır. Bu diferansiyel bağıntılar NumPy dizileri üzerinde tanımlanır.",
+    "nasil": [
+     {
+      "teknik": "def kessler_rates(qc, qr, k1=1e-3, k2=2.2): return np.maximum(0, k1*(qc-1e-3)), k2*qc*(qr**0.875) fonksiyonunu tanımlamak.",
+      "sade": "Bulut damlacıklarının kendi kendine birleşerek yağmura dönüşme ve düşerken diğer damlaları süpürme hızlarını matematiksel olarak kodlarız.",
+      "altAdimlar": [
+       "1. qc bulut suyu ve qr yağmur suyu konsantrasyon aralıklarını tanımlayın.",
+       "2. Eşik değer aşıldığında otokonversiyon hızını hesaplayın.",
+       "3. Süpürme hızını hidrometeor çarpışma terimleriyle üretin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     },
+     {
+      "teknik": "qc_grid, qr_grid = np.meshgrid(np.linspace(0, 3e-3, 100), np.linspace(0, 5e-3, 100)) ile sentetik durum uzayını oluşturmak.",
+      "sade": "Sinir ağının öğrenebilmesi için farklı bulut yoğunluklarını temsil eden geniş bir örneklem ızgarası üretiriz.",
+      "altAdimlar": [
+       "1. 100x100 boyutunda ızgara matrislerini kurun.",
+       "2. Her ızgara noktası için gerçekçi mikrofizik hızlarını türetin.",
+       "3. Rastgele yüzde 5 gürültü ekleyerek gözlem belirsizliğini temsil edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Yapay sinir ağı regresyon modelini eğitmek ve test etmek",
+    "oz": "scikit-learn MLPRegressor ile süreç hızlarını kestiren yapay sinir ağını yapılandırmak.",
+    "ayrinti": "Üretilen sentetik veri kümesi eğitim ve test olarak ikiye ayrılır. İki gizli katmanlı çok katmanlı algılayıcı (MLP) eğitilir. Test kümesinde ortalama karesel hata (MSE) ve R2 skoru incelenir.",
+    "nasil": [
+     {
+      "teknik": "mlp = MLPRegressor(hidden_layer_sizes=(64, 32), activation='relu', max_iter=500).fit(X_train, y_train) ile eğitmek.",
+      "sade": "Girdi olarak bulut ve yağmur suyu miktarını alıp anlık dönüşüm hızını tahmin eden yapay sinir ağını bilgisayara öğretiriz.",
+      "altAdimlar": [
+       "1. Girdi özniteliklerini StandardScaler ile ölçeklendirin.",
+       "2. MLPRegressor modelini adam optimizasyonuyla çalıştırın.",
+       "3. Test verisi üzerinde R2 skorunun 0.98 üzerinde çıktığını doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     },
+     {
+      "teknik": "y_pred = mlp.predict(X_test); test_mse = mean_squared_error(y_test, y_pred) ile anlık kestirim hatasını ölçmek.",
+      "sade": "Yapay sinir ağının tekil anlarda hızları ne kadar kusursuz tahmin edebildiğini sayısal testle gösteririz.",
+      "altAdimlar": [
+       "1. Test kümesindeki hız tahminlerini hesaplayın.",
+       "2. Ortalama mutlak hata ve bağıl hatayı grafikleyin.",
+       "3. Dağılım grafiğinde gerçek hızlar ile tahminleri 1:1 doğrusuyla kıyaslayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Zaman integrasyonu ve kümülatif sapma analizi",
+    "oz": "Analitik şema ile sinir ağı tahminlerini zaman içinde adım adım ilerleterek karşılaştırmak.",
+    "ayrinti": "Belirli bir başlangıç bulut suyu değerinden yola çıkılarak 1 saniyelik zaman adımlarıyla 1800 saniye boyunca ileri Euler entegrasyonu yapılır. Bir kolda analitik Kessler hızları, diğer kolda sinir ağı tahminleri kullanılır.",
+    "nasil": [
+     {
+      "teknik": "for t in range(steps): qc_ana -= (auto+acc)*dt; qr_ana += (auto+acc)*dt; aynı döngüyü mlp.predict ile işletmek.",
+      "sade": "Her saniye yağmurun nasıl arttığını adım adım hesaplarız; bir kez fizik kuralıyla, bir kez de yapay zekayla ilerletiriz.",
+      "altAdimlar": [
+       "1. Başlangıç koşulunu qc = 2.0 g/m3, qr = 0.0 g/m3 olarak ayarlayın.",
+       "2. 1800 saniye boyunca zaman adımında qc ve qr değerlerini güncelleyin.",
+       "3. Her iki çözümün zaman serilerini NumPy dizilerinde toplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     },
+     {
+      "teknik": "plt.plot(time, qr_ana, label='Kessler'); plt.plot(time, qr_mlp, '--', label='Yapay Sinir Ağı') ile kümülatif ayrışmayı çizmek.",
+      "sade": "Anlık hatası çok düşük olan yapay zekanın zaman ilerledikçe fiziksel çözümden nasıl saptığını aynı grafikte gösteririz.",
+      "altAdimlar": [
+       "1. Yağmur suyu birikim eğrilerini Matplotlib ekseninde üst üste çizin.",
+       "2. İki çözüm arasındaki farkın 10. dakikadan sonra nasıl katlandığını vurgulayın.",
+       "3. Seifert ve Rasp makalesindeki kuramsal bulguyla birebir örtüşmeyi not edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+     },
+     {
+      "ders": "MTO 229E",
+      "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Kessler mikrofizik hız tahmin kodu, MLPRegressor modeli, zaman integrasyonu karşılaştırma grafiği ve 10 dakikalık açık eğitim videosu.",
+  "senden": "Kessler denklemlerini kodlamak, sentetik veriyi üretmek ve MLPRegressor modelini eğitmek.",
+  "bizden": "Zaman adımı entegrasyon döngüsünü kurmak, kümülatif sapma grafiğini çizmek ve analiz özetini hazırlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Bulut içi sıvı su içeriğinin yağmura dönüşüm ve büyüme süreci simülasyonu",
+   "aciklama": "Kessler mikrofizik bağıntısı ve yapay sinir ağı zaman entegrasyonu karşılaştırması animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://ncar.ucar.edu/what-we-offer/models/community-earth-system-model-cesm",
+   "aciklama": "NCAR bulut mikrofiziği sayısal simülasyon arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Raindrops_sizes_and_shapes.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Mikrofiziksel damla boyutu dağılımı ve aerodinamik damla geometrisi şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Seifert ve Rasp 2020 Mikrofizik Makale DOI Bağlantısı",
+   "url": "https://doi.org/10.1029/2020MS002301"
+  },
+  {
+   "ad": "Gettelman vd. 2021 JAMES Makalesi",
+   "url": "https://doi.org/10.1029/2020MS002268"
+  },
+  {
+   "ad": "Morrison vd. 2020 Mikrofizik Gelişmeleri İncelemesi",
+   "url": "https://doi.org/10.1029/2019MS001689"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO229E-03.json",
+  "tarih": "2026-10-17 01:51",
+  "geminiSha1": "00a1f2f06c94"
+ }
+}

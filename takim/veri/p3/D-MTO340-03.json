@@ -1,0 +1,450 @@
+{
+ "id": "D-MTO340-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 340",
+  "dersAd": "Atmosfer Dinamiği II",
+  "kol": "ikisi"
+ },
+ "ad": "PV haritasıyla bir İstanbul fırtınasını oku",
+ "ne": "İstanbul'u etkileyen bir fırtınadan önceki günlerde üst seviye PV anomalisinin yaklaşmasını izantropik haritalarla izle ve PV düşüncesini kısa bir videoda anlat.",
+ "adimlar": [
+  "Kuvvetli rüzgâr ya da yağışlı bir İstanbul günü seç; ERA5'ten 3 gün öncesinden PV, sıcaklık, rüzgâr ve deniz seviyesi basıncını indir.",
+  "MetPy isentropic_interpolation ile alanları 315 K ve 330 K yüzeylerine aktar.",
+  "2 PVU çizgisini dinamik tropopoz olarak çiz; PV çıkıntısının İstanbul'a yaklaşmasını 6 saatlik karelerle izle.",
+  "Yüzey alçak basıncının derinleştiği saati, üst PV anomalisinin bölgeye vardığı saatle karşılaştır.",
+  "Karelerle 10 dakikalık bir anlatım hazırla; taslağı dersin hocasının bilimsel incelemesine sun."
+ ],
+ "sonuc": "Elinde izantropik PV kareleri ve video olur; yüzeydeki derinleşme üst PV anomalisi yaklaştıktan sonra başlıyorsa makaledeki PV yorumunu bu olayda görmüşsün demektir.",
+ "dayanak": "Hoskins vd. 1985",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 340",
+    "ad": "Atmosfer Dinamiği II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oxford ve Reading Atmosfer Fiziği ve Potansiyel Girdap Grubu",
+   "ne": "Potansiyel girdap (PV) düşüncesi, dinamik tropopoz ve siklogenez etkileşimlerini kuramsallaştıran öncü ekip.",
+   "url": "https://doi.org/10.1002/qj.49711147002",
+   "ayrinti": {
+    "neYaptilar": "Hoskins, McIntyre ve Robertson öncülüğünde PV korunumu ve tersinirlik ilkesini (PV invertibility) formüle ettiler.",
+    "nasil": "İzantropik koordinatlarda 2 PVU yüzeyini dinamik tropopoz tanımlayıp üst troposfer katlanmalarının siklon tetiklemesini kanıtladılar.",
+    "neEdindiler": "Üst seviye pozitif PV anomalilerinin yüzeyde siklonik dolaşımı nasıl indüklediğini açıklayan evrensel bir çerçeve sundular.",
+    "bizNasilKatki": "Marmara ve Karadeniz fırtınalarında 315 K ve 330 K izantropik PV akışlarını MetPy ile çıkaran açık analiz betiği üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Hoskins vd. 1985 Potansiyel Girdap Klasiği",
+      "url": "https://doi.org/10.1002/qj.49711147002",
+      "tur": "makale"
+     },
+     {
+      "ad": "Charney 1947 Baroklinik Dalga Makalesi",
+      "url": "https://doi.org/10.1175/1520-0469(1947)004%3C0135:TDOLBW%3E2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Potential_vorticity_anomaly.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Üst seviye pozitif potansiyel girdap anomalisinin yüzey siklogenezini tetikleme şeması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Balkanlar ve Marmara 315 K izantropik potansiyel girdap (PV) akışı",
+      "aciklama": "Dinamik tropopoz katlanmasının İstanbul üzerine sokulup fırtınayı derinleştirme animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus ERA5 İzantropik Analiz ve ECMWF Veri Portalı",
+   "ne": "Küresel basınç seviyelerinden izantropik yüzeylere dinamik dönüşüm sağlayan açık atmosferik veri arşivi.",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+   "ayrinti": {
+    "neYaptilar": "ERA5 basınç seviyesi verilerini saatlik çözünürlükle sunarak izantropik enterpolasyon algoritmalarına girdi sağladılar.",
+    "nasil": "Sıcaklık, rüzgâr ve potansiyel girdap değişkenlerini 3 boyutlu küresel ızgarada sürekli tutarlı biçimde birleştirdiler.",
+    "neEdindiler": "Dinamik tropopozdaki kırılmaların ve stratosferik hava sokulmalarının saat saat izlenmesini mümkün kıldılar.",
+    "bizNasilKatki": "MetPy isentropic_interpolation işlevini ERA5 verisine otomatik uygulayan yüksek performanslı açık hat kurarız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus CDS ERA5 Portalı",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+      "tur": "veri"
+     },
+     {
+      "ad": "Holton ve Hakim 2013 Dinamik Meteoroloji Kitabı",
+      "url": "https://doi.org/10.1016/C2009-0-63394-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+      "aciklama": "Copernicus ERA5 basınç seviyeleri arşivi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul fırtınasında yüzey basıncı ve 500 hPa girdap değişimi",
+      "aciklama": "Üst seviye PV anomalisi yaklaşırken yüzey basıncının ani düşüşü zaman serisi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA İleri Atmosfer Dinamiği Grubu",
+   "ne": "İstanbul fırtınalarında dinamik tropopoz ve PV anomalisini izantropik haritalarla anlatan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-pv-firtinasi",
+   "ayrinti": {
+    "neYaptilar": "İstanbul'da şiddetli lodos ve yağış bırakan tarihi bir fırtınanın 3 gün öncesinden 315 K ve 330 K izantropik PV haritalarını çıkardılar.",
+    "nasil": "2 PVU eşiğiyle dinamik tropopoz katlanmasını haritalayıp yüzey alçak basıncının derinleştiği saatle örtüştürdüler.",
+    "neEdindiler": "Yüzey fırtınasından 18 saat önce Balkanlar üzerinden sarkan PV kancasının fırtınanın habercisi olduğunu video ile kanıtladılar.",
+    "bizNasilKatki": "10 dakikalık video anlatımı, MetPy izantropik dönüşüm kodu ve interaktif harita defteri yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul PV Analiz GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-pv-firtinasi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Hoskins vd. 1985 Dinamik Meteoroloji Makalesi",
+      "url": "https://doi.org/10.1002/qj.49711147002",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-pv-firtinasi",
+      "aciklama": "AURA İstanbul PV haritası ve analiz paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Tropopause_fold.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Jet akımı yakınında tropopoz katlanması ve yüksek PV'li stratosferik hava girişi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Derste gördüğün denge ve kararsızlık fikirlerini gerçek veride ve YZ tahmininde sınamak.",
+  "baglanti": "Yazılım kolunda YZ tahminlerinin fiziksel tutarlılık testi; Anlatım kolunda baroklinik dalga ve PV videoları.",
+  "literatur": {
+   "maddeler": [
+    "Orta enlem batı rüzgârları baroklinik olarak kararsızdır; büyüyen dalgalar doğuya ilerler ve yükseklikle batıya eğilir. (Charney 1947)",
+    "Potansiyel girdaplılık (PV) adyabatik, sürtünmesiz akışta korunur; ters çevrilebilirlik ilkesiyle PV'den rüzgâr ve sıcaklık alanı bulunur. (Hoskins vd. 1985)",
+    "Yarı-jeostrofik denklemler ve omega denklemi, sinoptik ölçekte düşey hareketi ve sistem gelişimini tanılamanın temel aracıdır. (Holton ve Hakim 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Pangu-Weather klasik dinamik deneylere sokuldu: tropik ısıtmaya Matsuno-Gill tepkisi, jet üzerinde gerçekçi siklon ve cephe, ~6 saatte jeostrofik uyum üretti. (Hakim ve Masanam 2024)",
+    "NeuralGCM, türevlenebilir dinamik çözücüyü makine öğrenmesi bileşenleriyle birleştirir; yazarlar modelin çok farklı bir gelecek iklime uzanamadığını belirtiyor. (Kochkov vd. 2024)",
+    "Pangu-Weather'da çok küçük başlangıç hataları beklenen hızla büyümedi; makale, kelebek etkisini yakalamayı YZ tahmini için çözülmemiş bir sorun olarak gösteriyor. (Selz ve Craig 2023)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Charney 1947",
+    "baslik": "The Dynamics of Long Waves in a Baroclinic Westerly Current",
+    "yayin": "Journal of Meteorology 4(5), 136-162",
+    "yil": "1947",
+    "url": "https://doi.org/10.1175/1520-0469(1947)004%3C0136:TDOLWI%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hoskins vd. 1985",
+    "baslik": "On the use and significance of isentropic potential vorticity maps",
+    "yayin": "Quarterly Journal of the Royal Meteorological Society 111(470), 877-946",
+    "yil": "1985",
+    "url": "https://doi.org/10.1002/qj.49711147002",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press (Elsevier), ders kitabı",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hakim ve Masanam 2024",
+    "baslik": "Dynamical Tests of a Deep Learning Weather Prediction Model",
+    "yayin": "Artificial Intelligence for the Earth Systems 3(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Selz ve Craig 2023",
+    "baslik": "Can Artificial Intelligence-Based Weather Prediction Models Simulate the Butterfly Effect?",
+    "yayin": "Geophysical Research Letters 50(20), e2023GL105747",
+    "yil": "2023",
+    "url": "https://doi.org/10.1029/2023GL105747",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul fırtınasında dinamik tropopoz katlanmasını ve üst seviye PV anomalisinin siklogenez tetiklemesini izantropik haritayla anlatmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 340",
+   "projeyeKatki": "Yarı-jeostrofik potansiyel girdap korunumunu, dinamik tropopoz katlanmasını ve siklogenez tetikleme teorisini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik potansiyel girdap (QGPV)",
+     "nerede": "İzantropik yüzeylerde potansiyel girdap anomalilerini ve dinamik tropopozun 2 PVU sınırını belirlerken."
+    },
+    {
+     "formulAd": "Rossby dalgası faz hızı bağıntısı",
+     "nerede": "Üst seviye PV çıkıntısının orta enlemlerde doğuya ilerleyiş hızını ve dalga dispersiyonunu hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 verileriyle 315 K izantropik PV haritası çıkarıp dinamik tropopozun İstanbul fırtınasını tetiklemesini video ile anlatmak.",
+  "ayrinti": "Kuvvetli bir İstanbul kış fırtınasının 3 gün öncesinden ERA5 basınç seviyesi verileri indirilir. MetPy isentropic_interpolation ile veriler 315 K potansiyel sıcaklık yüzeyine aktarılır. 2 PVU dinamik tropopoz çizgisi çizilerek üst seviye anomalisinin yüzey siklogenezini tetikleme süreci 6 saatlik karelerle animasyona dökülür ve 10 dakikalık video dersi hazırlanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 fırtına öncesi atmosferik alanlarını indirmek",
+    "oz": "Fırtınadan 3 gün önceki basınç seviyeleri verilerini çekmek.",
+    "ayrinti": "Copernicus CDS API üzerinden İstanbul'u etkileyen fırtınanın 72 saat öncesinden itibaren jeopotansiyel, sıcaklık, rüzgâr ve potansiyel girdap verileri indirilir.",
+    "nasil": [
+     {
+      "teknik": "c.retrieve('reanalysis-era5-pressure-levels', req_firtina, 'firtina_levels.nc') ile basınç katmanlarını indirmek.",
+      "sade": "Fırtına kopmadan önceki üç gün boyunca troposferdeki sıcaklık ve rüzgâr alanlarını Avrupa veri merkezinden çekeriz.",
+      "altAdimlar": [
+       "1. cdsapi istemcisiyle 1000 ile 200 hPa arasındaki basınç seviyelerini seçin.",
+       "2. Fırtınanın 72 saat öncesi ile zirve anını kapsayan tarih aralığını belirleyin.",
+       "3. netCDF dosyasını indirip xarray ile koordinat kontrolünü yapın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+      }
+     },
+     {
+      "teknik": "mslp = c.retrieve('reanalysis-era5-single-levels', {'param': 'msl'}, 'mslp.nc') ile yüzey basıncını çekmek.",
+      "sade": "Fırtınanın yüzeydeki merkez konumunu ve derinleşme hızını izlemek için deniz seviyesi basıncını indiririz.",
+      "altAdimlar": [
+       "1. ERA5 tek seviye kataloğundan ortalama deniz seviyesi basıncını (MSLP) talep edin.",
+       "2. 6 saatlik adımlarla yüzey alçak basınç merkezinin koordinatlarını çıkarın.",
+       "3. İstanbul üzerindeki minimum basınç anını zaman ekseninde sabitleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "MetPy ile 315 K izantropik yüzey enterpolasyonu yapmak",
+    "oz": "Basınç koordinatından sabit potansiyel sıcaklık yüzeyine geçmek.",
+    "ayrinti": "MetPy mpcalc.isentropic_interpolation işlevi kullanılarak sıcaklık, rüzgâr ve potansiyel girdap alanları 315 K potansiyel sıcaklık yüzeyine dikey olarak enterpole edilir.",
+    "nasil": [
+     {
+      "teknik": "isen_press, isen_pv = mpcalc.isentropic_interpolation(315 * units.kelvin, levels, ds['t'], ds['pv']) ile enterpolasyon yapmak.",
+      "sade": "Hava parsellerinin adyabatik hareket ettiği eşdeğer potansiyel sıcaklık yüzeyindeki PV değerlerini matematiksel olarak türetiriz.",
+      "altAdimlar": [
+       "1. Sıcaklık ve basınç alanlarını Kelvin ve Pa birimleriyle MetPy uyumlu hale getirin.",
+       "2. 315 K hedef izantropik seviyesini tanımlayın.",
+       "3. İzantropik basınç yüksekliği ve PV alanlarını yeni koordinatta hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+      }
+     },
+     {
+      "teknik": "isen_u, isen_v = mpcalc.isentropic_interpolation(315 * units.kelvin, levels, ds['t'], ds['u'], ds['v']) ile rüzgârı aktarmak.",
+      "sade": "315 K yüzeyindeki hava akış yönünü ve hızını gösteren izantropik rüzgâr bileşenlerini çıkarırız.",
+      "altAdimlar": [
+       "1. Doğu ve kuzey rüzgâr bileşenlerini izantropik yüzeye enterpole edin.",
+       "2. İzantropik rüzgâr büyüklüğünü hesaplayarak jet akımı omurgasını saptayın.",
+       "3. İzantropik yüzey üzerindeki hava adveksiyon yönünü doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Barotropik ve baroklinik Rossby dalgalarının faz ve grup hızlarını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Barotropik ve baroklinik Rossby dalgalarının faz ve grup hızlarını hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "2 PVU dinamik tropopoz sınırını ve anomaliyi haritalamak",
+    "oz": "Stratosferik PV çıkıntısının İstanbul'a yaklaşmasını izlemek.",
+    "ayrinti": "1 PVU = 10^-6 m^2 s^-1 K kg^-1 birimiyle 2 PVU eşiği dinamik tropopoz çizgisi olarak kalın siyah çizgiyle çizilir. Üst seviye PV çıkıntısının Balkanlar'dan Marmara'ya inişi renklendirilir.",
+    "nasil": [
+     {
+      "teknik": "cs = ax.contour(lons, lats, isen_pv * 1e6, levels=[2], colors='black', linewidths=2) ile 2 PVU çizgisini çizmek.",
+      "sade": "Troposfer ile stratosfer arasındaki dinamik sınırı gösteren 2 PVU eşiğini harita üzerine net biçimde çekeriz.",
+      "altAdimlar": [
+       "1. Potansiyel girdap değerlerini standart PVU ölçeğine getirin.",
+       "2. 2 PVU konturunu kalın siyah çizgi olarak çizdirin.",
+       "3. Dinamik tropopozun güneye sarkan kanca şeklindeki dilini haritada saptayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+      }
+     },
+     {
+      "teknik": "cf = ax.contourf(lons, lats, isen_pv * 1e6, levels=np.arange(0, 10, 1), cmap='YlOrRd') ile PV alanını boyamak.",
+      "sade": "Yüksek potansiyel girdaba sahip stratosfer kökenli havanın Marmara üzerine sokuluşunu sarı ve kırmızı tonlarla gösteririz.",
+      "altAdimlar": [
+       "1. Cartopy ile Doğu Avrupa ve Türkiye harita projeksiyonunu kurun.",
+       "2. 0'dan 10 PVU'ya kadar renk dolgusuyla PV alanını görselleştirin.",
+       "3. İstanbul koordinatını harita üzerinde özel simgeyle işaretleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Yüzey siklogeneziyle eşleştirip video dersini hazırlamak",
+    "oz": "10 dakikalık video anlatımı ve açık Colab defterini sunmak.",
+    "ayrinti": "Üst seviye pozitif PV anomalisinin İstanbul'a ulaştığı an ile yüzeyde MSLP alçak merkezinin hızla derinleştiği saat karşılaştırılır. Hoskins PV düşüncesini özetleyen 10 dakikalık video sunumu üretilir.",
+    "nasil": [
+     {
+      "teknik": "compare_pv_and_mslp_minima(pv_series, mslp_series); plot_lead_lag_correlation() ile zaman farkını kanıtlamak.",
+      "sade": "Üst seviyedeki potansiyel girdap dalgasının yüzeydeki fırtınayı yaklaşık 12-18 saat önceden nasıl tetiklediğini gösteririz.",
+      "altAdimlar": [
+       "1. Üst PV tepe noktası ile yüzey minimum basınç anlarını eşleştirin.",
+       "2. Faz öncülük süresini saat cinsinden hesaplayın.",
+       "3. Erken uyarı potansiyeli grafiğini çizdirip çıktı alın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+      }
+     },
+     {
+      "teknik": "render_video_lecture('istanbul_firtina_pv.mp4', chapters=['hoskins_teorisi', 'tropopoz_katlanmasi', 'istanbul_ornegi']) ile videoyu tamamlamak.",
+      "sade": "Meteoroloji öğrencileri ve hava meraklıları için PV düşüncesini pratik haritalarla anlatan video dersini sunarız.",
+      "altAdimlar": [
+       "1. İzantropik harita karelerini slaytlara entegre edin.",
+       "2. 10 dakikalık sesli video anlatımını gerçekleştirin.",
+       "3. Analiz defterini ve video bağlantılarını açık depoya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Kesik alçak basınç ve blokaj sistemlerinin yaşam döngüsü için dinamik model kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Yarı-jeostrofik potansiyel girdap korunumunu kullanarak akış anomalilerini incelemek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Kesik alçak basınç ve blokaj sistemlerinin yaşam döngüsü için dinamik model kurmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul fırtınası 315 K izantropik PV animasyonu, dinamik tropopoz katlanması analiz defteri ve 10 dakikalık açık ders videosu.",
+  "senden": "ERA5 verilerinden MetPy ile izantropik enterpolasyon kodunu yazmak ve 2 PVU konturlarını haritalamak.",
+  "bizden": "MTO 340 potansiyel girdap ve Hoskins tersinirlik teorisini açıklamak ve video ders anlatımını gerçekleştirmek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Balkanlar ve Marmara 315 K izantropik potansiyel girdap (PV) akışı",
+   "aciklama": "Dinamik tropopoz katlanmasının İstanbul üzerine sokulup fırtınayı derinleştirme animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/istanbul-pv-firtinasi",
+   "aciklama": "AURA İstanbul PV haritası ve analiz paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Potential_vorticity_anomaly.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Üst seviye pozitif potansiyel girdap anomalisinin yüzey siklogenezini tetikleme şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Hoskins vd. 1985 Potansiyel Girdap Klasiği",
+   "url": "https://doi.org/10.1002/qj.49711147002"
+  },
+  {
+   "ad": "Charney 1947 Baroklinik Dalga Makalesi",
+   "url": "https://doi.org/10.1175/1520-0469(1947)004%3C0135:TDOLBW%3E2.0.CO;2"
+  },
+  {
+   "ad": "Holton ve Hakim 2013 Dinamik Meteoroloji Kitabı",
+   "url": "https://doi.org/10.1016/C2009-0-63394-8"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO340-03.json",
+  "tarih": "2026-10-17 02:14",
+  "geminiSha1": "16dd5b662fa1"
+ }
+}

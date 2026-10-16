@@ -1,0 +1,402 @@
+{
+ "id": "D-MTO303E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 303E",
+  "dersAd": "Computational Fluid Dynamics in Meteorological Engineering",
+  "kol": "anlatim"
+ },
+ "ad": "CFL sınırını gözünle gör: 1B adveksiyon",
+ "ne": "Tek boyutlu adveksiyon denklemini Python'da çöz; Courant sayısını sürgüyle değiştirip çözümün nerede bozulduğunu gösteren etkileşimli defter ve kısa video hazırla.",
+ "adimlar": [
+  "Google Colab'da periyodik sınırlı bir ızgarada Gauss biçimli bir tepeyi sabit rüzgârla taşıyan 1B adveksiyon denklemini kur.",
+  "Akış yönlü (upwind) ve leapfrog şemalarını numpy ile yaz; ipywidgets sürgüsüyle Courant sayısını 0,1-1,5 arasında değiştir.",
+  "Courant sayısı 1'i geçince çözümün büyüyüp bozulduğunu, 1'in altında upwind'in tepeyi yaydığını (sayısal sönümleme) çiz.",
+  "Leapfrog'da tepenin arkasında beliren dalgacıkları sayısal dağılma olarak göster; ders kitabındaki kararlılık analiziyle eşleştir.",
+  "10-15 dakikalık anlatımı defter üzerinden çek; taslağı dersin hocasına bilimsel inceleme için gönder."
+ ],
+ "sonuc": "Sürgülü Colab defteri ve hoca incelemesinden geçmiş video. Defter kararsızlığın tam Courant sayısı 1'in üstünde başladığını gösteriyorsa şemalar doğru kurulmuştur.",
+ "dayanak": "Courant vd. 1928",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 303E",
+    "ad": "Computational Fluid Dynamics in Meteorological Engineering"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Washington Üniversitesi Atmosferik Sayısal Akışkanlar Grubu",
+   "ne": "Dale Durran öncülüğünde atmosferik sayısal dalga yayılımı ve CFL kararlılık kriterleri üzerine ders kitapları yazan öncü merkez.",
+   "url": "https://atmos.washington.edu/research",
+   "ayrinti": {
+    "neYaptilar": "Atmosfer dinamiğindeki adveksiyon denklemlerinde sonlu fark şemalarının sayısal dağılma ve yapay sönümleme davranışlarını kuramlaştırdılar.",
+    "nasil": "MTO 303E Courant-Friedrichs-Lewy kararlılık kriteri ve von Neumann analizlerini 1B ve 2B atmosfer dalgalarına uyguladılar.",
+    "neEdindiler": "Sayısal hava modellerinin zaman adımını belirleyen CFL sınır şartını ve dalga dispersiyonu analizini geofizik standart yaptı.",
+    "bizNasilKatki": "Colab üzerinde ipywidgets ile interaktif Courant sürgüsü sunan açık eğitim defteri ve simülasyon aracı geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Durran 2010 Jeofizik Sayısal Yöntemler Kitabı",
+      "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+      "tur": "makale"
+     },
+     {
+      "ad": "Washington Üniversitesi Atmosfer Bilimleri Bölümü",
+      "url": "https://atmos.washington.edu/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmos.washington.edu/research",
+      "aciklama": "Washington Üniversitesi atmosferik sayısal dinamik araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:CFL_condition_geometric_meaning.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Courant-Friedrichs-Lewy (CFL) kriterinin geometrik bağımlılık alanı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Project Jupyter ve Google Colab Ekosistemi",
+   "ne": "Sayısal akışkanlar mekaniği ve atmosfer diferansiyel denklemlerini tarayıcıda etkileşimli çözmeyi sağlayan açık hesaplama platformu.",
+   "url": "https://jupyter.org/try",
+   "ayrinti": {
+    "neYaptilar": "Python sayısal kütüphanelerini (numpy, matplotlib, ipywidgets) bulut üzerinde kurulumsuz çalıştıran açık defter ortamı kurdular.",
+    "nasil": "MTO 303E doğrusal adveksiyon ve diferansiyel denklem ayrıklaştırma kodlarını interaktif JavaScript arayüzlerine bağladılar.",
+    "neEdindiler": "Milyonlarca mühendislik öğrencisinin karmaşık kısmi diferansiyel denklem çözümlerini anlık sürgülerle görselleştirmesini sağladılar.",
+    "bizNasilKatki": "Doğrudan açılan, Courant sayısını değiştirince anlık patlamayı çizen optimize Colab defteri sunarız.",
+    "referanslar": [
+     {
+      "ad": "Courant vd. 1928 Kısmi Diferansiyel Denklemler Makalesi",
+      "url": "https://doi.org/10.1007/BF01448839",
+      "tur": "makale"
+     },
+     {
+      "ad": "Project Jupyter Resmi Web Portalı",
+      "url": "https://jupyter.org/try",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://jupyter.org/try",
+      "aciklama": "Project Jupyter tarayıcı tabanlı etkileşimli hesaplama çalışma ortamı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "1B adveksiyon dalga yayılımı ve Courant sayısına göre kararlılık grafiği",
+      "aciklama": "Farklı Courant değerlerinde taşınan Gauss dalgasının sayısal yayılma animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Hesaplamalı Atmosfer Dinamiği Ekibi",
+   "ne": "Courant sayısının sayısal patlama sınırını Türkçe video ve etkileşimli defterle anlatan İTÜ Meteoroloji öğrenci takımı.",
+   "url": "https://github.com/aura-itu/cfl-adveksiyon-simulasyonu",
+   "ayrinti": {
+    "neYaptilar": "1B doğrusal adveksiyon denklemini upwind ve leapfrog şemalarıyla kodlayıp Courant sayısının 1'i aştığı anı görselleştirdiler.",
+    "nasil": "MTO 303E sonlu farklar yaklaşımı ve CFL kararlılık kriterini numpy matris operasyonlarıyla etkileşimli hale getirdiler.",
+    "neEdindiler": "Upwind şemasının sayısal sönümlemesini ve leapfrog şemasının dağılma dalgacıklarını tek grafikte net biçimde kanıtladılar.",
+    "bizNasilKatki": "Sürgülü Jupyter defterini, 12 dakikalık video dersini ve çözüm kodlarını açık repoda yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA CFL Simülasyonu GitHub Deposu",
+      "url": "https://github.com/aura-itu/cfl-adveksiyon-simulasyonu",
+      "tur": "kod"
+     },
+     {
+      "ad": "Kochkov vd. 2021 Sayısal Akışkanlar Makalesi",
+      "url": "https://doi.org/10.1073/pnas.2101784118",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/cfl-adveksiyon-simulasyonu",
+      "aciklama": "AURA CFL etkileşimli simülasyon ve sayısal sönümleme analiz paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Courant sayısı 0.8 ve 1.2 için adveksiyon denklemi sayısal çözümü",
+      "aciklama": "Kararlı ve kararsız Courant şartlarında dalga genliğinin zamanla değişimi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Sayısal şemaların kararlılığını görmek ve yapay zekâlı çözücüleri sınamak",
+  "baglanti": "Anlatım kolunda etkileşimli CFL defteri; yazılım kolunda öğrenilmiş düzeltme ve NeuralGCM tahminini İstanbul'da doğrulama.",
+  "literatur": {
+   "maddeler": [
+    "Açık şemada sayısal bağımlılık bölgesi fiziksel bağımlılık bölgesini kapsamalı; zaman adımına konan Courant (CFL) sınırı buradan doğar (Courant vd. 1928)",
+    "Sonlu fark şemasında kararlılık, tutarlılık ve yakınsama aranır; sayısal dağılma ve sönümleme dalgaların hızını ve genliğini bozar (Durran 2010)",
+    "Yarı-örtük ve yarı-Lagrange zaman adımları, hızlı dalgaların dayattığı küçük adım sınırını gevşetir; küresel çözücüler bunu kullanır (Durran 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Çözücü içine öğrenilmiş bileşen konunca 2B türbülansta 8-10 kat ince ızgaraya denk doğruluk ve 40-80 kat hız elde edildi; çözüm uzun benzetimde kararlı kaldı (Kochkov vd. 2021)",
+    "Fizik bilgili sinir ağı (PINN), kısmi diferansiyel denklemin artığını kayıp fonksiyonuna ekler; ağ hem veriye hem denkleme uyan çözümü bulur (Raissi vd. 2019)",
+    "NeuralGCM türevlenebilir dinamik çözücüyü öğrenilmiş fizikle birleştirdi; makale, çok farklı gelecek iklimlere genelleyemediğini kendisi belirtiyor, bu yön açık kalıyor (Kochkov vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Courant vd. 1928",
+    "baslik": "Über die partiellen Differenzengleichungen der mathematischen Physik",
+    "yayin": "Mathematische Annalen 100, 32-74",
+    "yil": "1928",
+    "url": "https://doi.org/10.1007/BF01448839",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Durran 2010",
+    "baslik": "Numerical Methods for Fluid Dynamics: With Applications to Geophysics (2nd ed.)",
+    "yayin": "Springer, Texts in Applied Mathematics 32 (ders kitabı)",
+    "yil": "2010",
+    "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kochkov vd. 2021",
+    "baslik": "Machine learning-accelerated computational fluid dynamics",
+    "yayin": "Proceedings of the National Academy of Sciences 118(21), e2101784118",
+    "yil": "2021",
+    "url": "https://doi.org/10.1073/pnas.2101784118",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Raissi vd. 2019",
+    "baslik": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations",
+    "yayin": "Journal of Computational Physics 378, 686-707",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "1B adveksiyon denklemini upwind ve leapfrog şemalarıyla çözüp Courant sayısı 1'i aşınca oluşan sayısal patlamayı etkileşimli defterle göstermek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 303E",
+   "projeyeKatki": "Kısmi diferansiyel denklemlerin sonlu fark ayrıklaştırmasını, Courant-Friedrichs-Lewy kararlılık sınırını ve sayısal sönümleme analizini temellendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "CFL kararlılık kriteri (Courant sayısı)",
+     "nerede": "Simülasyonun patlamadan kararlı kalması için zaman adımını ızgara aralığı ve rüzgâr hızına göre sınırlandırırken."
+    },
+    {
+     "formulAd": "1B doğrusal adveksiyon denklemi",
+     "nerede": "Gauss dalga profilinin sabit rüzgâr hızı altında 1 boyutlu uzayda taşınmasını sayısal olarak çözümlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "1B adveksiyonu Python'da çözüp Courant sayısı 1'i geçince oluşan patlamayı gösteren sürgülü defter ve video hazırlamak.",
+  "ayrinti": "Google Colab ortamında periyodik sınır şartlarına sahip 1 boyutlu ızgarada Gauss dalga tepesi kurulur. Upwind ve leapfrog şemaları numpy ile yazılır. ipywidgets ile Courant sayısını 0.1 ile 1.5 arasında değiştiren kaydırıcı eklenir. C > 1 durumunda sonsuza patlayan çözümler ve C < 1 durumunda sayısal sönümleme ile dalga yayılması karşılaştırılır. 12 dakikalık video dersi çekilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "1B ızgarayı kurup başlangıç Gauss profilini oluşturmak",
+    "oz": "Periyodik sınırlı 100 noktalı ızgarada Gauss biçimli dalga tepesini tanımlamak.",
+    "ayrinti": "Numpy ile 0 ile L uzunluğundaki 1B uzaysal ızgara ayrıklaştırılır. Merkezinde standart sapması sigma olan Gauss dağılımı şeklinde bir skaler alan profili oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "x = np.linspace(0, 1000, 101); u0 = np.exp(-((x - 200)**2) / (2 * 50**2)) ile Gauss dalga profili üretmek.",
+      "sade": "Bir boyutlu çizgisel alan üzerinde simetrik ve pürüzsüz bir sıcaklık veya kütle tepesi tanımlar, rüzgârla taşınmaya hazır hale getiririz.",
+      "altAdimlar": [
+       "1. 1000 metrelik hat üzerinde dx = 10 m aralıklı ızgara vektörü tanımlayın.",
+       "2. 200. metreye ortalanmış bir Gauss fonksiyonu oluşturun.",
+       "3. Periyodik sınır koşulları için uç noktaları birbirine bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak."
+      }
+     },
+     {
+      "teknik": "dx = x[1] - x[0]; dt = cfl * dx / c_speed ile Courant sayısına bağlı zaman adımını belirlemek.",
+      "sade": "Akış hızını sabit kabul edip verilen Courant sayısına göre bilgisayarın zamanda kaç saniyelik adımlarla ilerleyeceğini türetiriz.",
+      "altAdimlar": [
+       "1. Uzaysal ızgara aralığını ve sabit rüzgâr hızını (u = 10 m/s) belirleyin.",
+       "2. Courant formülünden dt = C * dx / u değerini hesaplayın.",
+       "3. Toplam simülasyon süresi için gereken adım sayısını çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak."
+     },
+     {
+      "ders": "MTO 303E",
+      "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Upwind ve leapfrog sonlu fark şemalarını kodlamak",
+    "oz": "Akış yönlü (upwind) ve merkezi zaman-uzay (leapfrog) şemalarıyla integrasyonu yürütmek.",
+    "ayrinti": "1B adveksiyon denkleminde uzaysal türev birinci derece geriye fark (upwind) ve merkezi fark (leapfrog) şemalarıyla hesaplanır. Zaman döngüsü numpy dilimlemeleriyle optimize edilir.",
+    "nasil": [
+     {
+      "teknik": "u_new[1:] = u[1:] - C * (u[1:] - u[:-1]) ile birinci derece upwind adveksiyon şemasını işletmek.",
+      "sade": "Rüzgârın geldiği yönü dikkate alan akış yönlü şemayı kurarak dalganın ileri doğru taşınmasını sağlarız.",
+      "altAdimlar": [
+       "1. Uzaysal türevi geriye doğru farkla ayrıklaştırın.",
+       "2. Zaman adımını açık Euler yöntemiyle güncelleyin.",
+       "3. Dalganın sönümlenerek yassılaşmasını (yapay difüzyon) izleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Doğrusal adveksiyon denkleminde yukarı rüzgâr (upwind) ve leapfrog şemalarını kurmak."
+      }
+     },
+     {
+      "teknik": "u_next[1:-1] = u_prev[1:-1] - C * (u_curr[2:] - u_curr[:-2]) ile ikinci derece leapfrog şemasını kurmak.",
+      "sade": "Zaman ve uzayda merkezi farklar kullanarak daha hassas ama arkasında yapay dalgacıklar bırakan şemayı çalıştırırız.",
+      "altAdimlar": [
+       "1. Üç zaman seviyeli leapfrog algoritmasını kurun.",
+       "2. İlk zaman adımı için Forward Euler ile başlangıç yapın.",
+       "3. Dalganın arkasında oluşan sayısal dispersiyon dalgacıklarını kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Sayısal dağılma ve yapay sönümleme hatalarını dalga yayılımında analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Doğrusal adveksiyon denkleminde yukarı rüzgâr (upwind) ve leapfrog şemalarını kurmak."
+     },
+     {
+      "ders": "MTO 303E",
+      "madde": "Sayısal dağılma ve yapay sönümleme hatalarını dalga yayılımında analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Etkileşimli Courant sürgüsünü bağlayıp videoyu çekmek",
+    "oz": "ipywidgets ile canlı kararsızlık gösterimi kurup anlatım videosunu kaydetmek.",
+    "ayrinti": "Courant sayısı parametresini 0.1 ile 1.5 arasında canlı kaydıran bir ipywidgets sürgüsü oluşturulur. C > 1 seçildiğinde çözümün katlanarak patladığı an gösterilir. 12 dakikalık video anlatımı tamamlanır.",
+    "nasil": [
+     {
+      "teknik": "widgets.interact(run_advection, cfl=widgets.FloatSlider(min=0.1, max=1.5, step=0.1, value=0.8)) ile sürgü bağlamak.",
+      "sade": "Grafiğin hemen üzerine bir sürgü koyarak kullanıcının Courant sayısını değiştirdiğinde çözümün anında nasıl tepki verdiğini görmesini sağlarız.",
+      "altAdimlar": [
+       "1. ipywidgets kütüphanesiyle FloatSlider bileşenini tanımlayın.",
+       "2. Simülasyon fonksiyonunu kaydırıcı olayına bağlayın.",
+       "3. C = 1.05 olduğunda grafikteki genliğin sonsuza fırladığını gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+      }
+     },
+     {
+      "teknik": "plt.plot(x, u_upwind, label='Upwind'); plt.plot(x, u_leapfrog, label='Leapfrog'); plt.ylim(-0.5, 1.5) ile çizmek.",
+      "sade": "Upwind şemasının dalgayı nasıl yaydığını, leapfrog şemasının dalgacıklarını ve analitik tam çözümü tek ekranda kıyaslarız.",
+      "altAdimlar": [
+       "1. Analitik tam çözümü referans olarak siyah çizgiyle çizin.",
+       "2. Sayısal şema çıktılarını renkli çizgilerle üst üste ekleyin.",
+       "3. Sayısal dağılma ve sönümleme farklarını anlatan 12 dakikalık videoyu kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Sayısal dağılma ve yapay sönümleme hatalarını dalga yayılımında analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+     },
+     {
+      "ders": "MTO 303E",
+      "madde": "Sayısal dağılma ve yapay sönümleme hatalarını dalga yayılımında analiz etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Courant sayısını canlı değiştiren Colab defteri, sayısal sönümleme ve dağılma karşılaştırma grafikleri ve açık ders videosu.",
+  "senden": "Colab defterinde 1B ızgarayı kurmak, numpy matris vektörizasyonunu yapmak ve ipywidgets arayüzünü bağlamak.",
+  "bizden": "Upwind ve leapfrog matematiksel şemalarını yazmak, von Neumann kararlılık analizini türetmek ve video sunumunu yapmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "1B adveksiyon dalga yayılımı ve Courant sayısına göre kararlılık grafiği",
+   "aciklama": "Farklı Courant değerlerinde taşınan Gauss dalgasının sayısal yayılma animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://jupyter.org/try",
+   "aciklama": "Project Jupyter tarayıcı tabanlı etkileşimli hesaplama çalışma ortamı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:CFL_condition_geometric_meaning.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Courant-Friedrichs-Lewy (CFL) kriterinin geometrik bağımlılık alanı şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Courant vd. 1928 Kısmi Diferansiyel Denklemler Makalesi",
+   "url": "https://doi.org/10.1007/BF01448839"
+  },
+  {
+   "ad": "Durran 2010 Jeofizik Sayısal Yöntemler Kitabı",
+   "url": "https://doi.org/10.1007/978-1-4419-6412-0"
+  },
+  {
+   "ad": "Kochkov vd. 2021 Sayısal Akışkanlar Makalesi",
+   "url": "https://doi.org/10.1073/pnas.2101784118"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO303E-01.json",
+  "tarih": "2026-10-17 01:57",
+  "geminiSha1": "55670062f9dd"
+ }
+}

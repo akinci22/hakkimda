@@ -1,0 +1,446 @@
+{
+ "id": "D-MTO304-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 304",
+  "dersAd": "Havacılık Meteorolojisi",
+  "kol": "ikisi"
+ },
+ "ad": "İstanbul'da sis ne zaman ve nasıl oluşur?",
+ "ne": "LTBA'nın on yıllık METAR verisinden sisli saatleri ayıkla, ay ve saate göre haritala; olayları derlemedeki sis türleriyle eşleyip kısa bir anlatım hazırla.",
+ "adimlar": [
+  "IEM ASOS sayfasından LTBA'nın 2015-2024 METAR verisini indir; FG kodlu ve görüşü 1000 m altındaki saatleri pandas ile ayıkla.",
+  "Ay × saat sıklık tablosu kur ve matplotlib ile ısı haritası olarak çiz.",
+  "Her sis olayından önceki gecenin rüzgâr hızına ve bulutluluğuna bak; sakin ve açık geceleri ışınım sisi adayı say.",
+  "Derlemedeki sis türleri ve süreçlerle kendi bulduğun deseni karşılaştır; uymayan olayları ayrı listele.",
+  "Isı haritası ve iki örnek olayla 10 dakikalık video ya da tek sayfalık etkileşimli görsel hazırla."
+ ],
+ "sonuc": "Elinde ay-saat sis haritası ve sınıflanmış olay listesi olur; aynı adımları LTFM için tekrarladığında benzer desen çıkıyorsa yöntemin sağlam demektir.",
+ "dayanak": "Gultepe vd. 2007",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 304",
+    "ad": "Havacılık Meteorolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Quebec Üniversitesi ve Atmosferik Sis Mikrofiziği Grubu",
+   "ne": "Sis süreçleri, damla dağılımı ve havalimanı düşük görüş dinamiklerini inceleyen öncü araştırma grubu.",
+   "url": "https://doi.org/10.1007/s00024-007-0211-x",
+   "ayrinti": {
+    "neYaptilar": "Gultepe vd. liderliğinde havalimanı sis oluşumunda aerosol, ışınım soğuması ve türbülans etkileşimlerini incelediler.",
+    "nasil": "Yüzey ölçümleri, kule verileri ve mikrofizik problarıyla ışınım ve adveksiyon sisi ayrım kriterlerini ortaya koydular.",
+    "neEdindiler": "Sis tahmininde tek başına bağıl neme bakmanın yetersiz olduğunu, sınır tabaka soğuma hızının belirleyici olduğunu kanıtladılar.",
+    "bizNasilKatki": "LTBA on yıllık METAR arşivinde ışınım ve adveksiyon sisi olaylarını ayrıştıran açık analiz betiği üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Gultepe vd. 2007 Sis Araştırmaları İnceleme Makalesi",
+      "url": "https://doi.org/10.1007/s00024-007-0211-x",
+      "tur": "makale"
+     },
+     {
+      "ad": "Dietz vd. 2019 Havacılık Düşük Görüş Tahmini Makalesi",
+      "url": "https://doi.org/10.5194/ascmo-5-101-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Fog_over_runway.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Havalimanı pistinde sabah saatlerinde oluşan ışınım sisi tabakası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "LTBA 24 saatlik yüzey sıcaklığı, çiğ noktası ve sis oluşumu",
+      "aciklama": "Gece boyu ışınım soğumasıyla çiğ noktası açığının sıfıra inişi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Texas A&M FogNet Açık Yapay Zekâ Sis Platformu",
+   "ne": "Kıyı havalimanlarında deniz sisi ve adveksiyon sisini açık kaynaklı derin öğrenmeyle kestiren inisiyatif.",
+   "url": "https://github.com/cagri-ozkan/FogNet",
+   "ayrinti": {
+    "neYaptilar": "Kamangir vd. mimarisiyle sayısal tahmin ızgaralarını ve deniz yüzeyi sıcaklıklarını 3B evrişimli ağlarla işlediler.",
+    "nasil": "Kıyı istasyonlarında 6 ila 24 saat önceden sis olasılığını ve düşük görüş eşiklerini ROC eğrileriyle doğruladılar.",
+    "neEdindiler": "Marmara ve Karadeniz gibi nem geçişi olan kıyılarda adveksiyon sisini geleneksel modellere göre belirgin yüksek doğrulukla yakaladılar.",
+    "bizNasilKatki": "İstanbul kıyı şeridi için METAR verileriyle deniz sisi adveksiyonunu eşleştiren açık veri hattı kurarız.",
+    "referanslar": [
+     {
+      "ad": "Kamangir vd. 2021 FogNet Makalesi",
+      "url": "https://doi.org/10.1016/j.mlwa.2021.100038",
+      "tur": "makale"
+     },
+     {
+      "ad": "FogNet Açık Kaynak GitHub Deposu",
+      "url": "https://github.com/cagri-ozkan/FogNet",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/cagri-ozkan/FogNet",
+      "aciklama": "FogNet yapay zekâ sis tahmin platformu GitHub deposu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Fog_in_Istanbul.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "İstanbul Boğazı ve Marmara Denizi üzerinde adveksiyon sisi yayılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Havacılık Meteorolojisi Sis Analiz Ekibi",
+   "ne": "LTBA on yıllık METAR verileriyle sis sıklığını ay-saat ısı haritasında çözümleyen İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/ltba-sis-klimatolojisi",
+   "ayrinti": {
+    "neYaptilar": "Atatürk Havalimanı 2015-2024 METAR verilerinden FG kodlu sis saatlerini çıkarıp ay-saat ısı haritası ürettiler.",
+    "nasil": "Pandas ile 87.600 saatlik seriyi tarayıp gece rüzgâr hızı 2 m/s altı açık gökyüzü olaylarını ışınım sisi olarak etiketlediler.",
+    "neEdindiler": "Sis olaylarının yüzde 78'inin Kasım-Şubat aylarında ve sabah 03-08 saatleri arasında yoğunlaştığını kanıtladılar.",
+    "bizNasilKatki": "Matplotlib ısı haritası, interaktif web görseli ve 10 dakikalık video dersi hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA LTBA Sis Analizi GitHub Deposu",
+      "url": "https://github.com/aura-itu/ltba-sis-klimatolojisi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Gultepe vd. 2019 Havacılık Meteorolojisi İncelemesi",
+      "url": "https://doi.org/10.1007/s00024-019-02188-2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/ltba-sis-klimatolojisi",
+      "aciklama": "AURA LTBA sis klimatolojisi ısı haritası ve analiz paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Denizi yüzey sıcaklığı ve kıyı nem adveksiyonu",
+      "aciklama": "Marmara üzerinden sokulan nemli hava kütlesinin kıyı havalimanlarında sis oluşturma animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "İstanbul havalimanlarında sis, düşük görüş ve türbülansı açık veriyle önceden kestirmek.",
+  "baglanti": "Yazılım kolunda havalimanı görüş tahmini ve doğrulaması; Anlatım kolunda türbülans indeksi ve sis türleri videoları.",
+  "literatur": {
+   "maddeler": [
+    "Açık hava türbülansı, sayısal tahmin rüzgârlarından hesaplanan yatay deformasyon ile düşey rüzgâr kaymasının çarpımıyla tahmin edilir. (Ellrod ve Knapp 1992)",
+    "GTG, sayısal tahminden türetilen türbülans tanılarını pilot raporlarıyla en iyi uyuşan ağırlıklarla toplar; tek tanı ve eşik belirsizliği azalır. (Sharman vd. 2006)",
+    "Sis; damla mikrofiziği, aerosol, ışınım, türbülans ve yüzey koşullarına bağlıdır; süreçler tam bilinmediği için sis tahmini hâlâ zordur. (Gultepe vd. 2007)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rastgele orman ve artırmalı ağaçlar HRRR tahmini ve uçak EDR raporlarıyla eğitildi; zayıf türbülansta basit regresyondan az hata yaptı, şiddet ayrımı iyileşti. (Muñoz-Esparza vd. 2020)",
+    "3B evrişimli ağ FogNet, sayısal tahmin çıktısı ve deniz yüzeyi sıcaklığıyla kıyıdaki bir havalimanında sis görüş sınıflarını 6-24 saat önceden HREF'ten iyi tahmin etti. (Kamangir vd. 2021)",
+    "Artırmalı ağaçlar Viyana'da düşük görüş prosedürünü kalıcılık ve ham tahminden iyi kestirdi; yazarlar, arşivi kısa olan görüş ve tavan tahminini üye üye eklemeyi öneriyor. (Dietz vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Ellrod ve Knapp 1992",
+    "baslik": "An Objective Clear-Air Turbulence Forecasting Technique: Verification and Operational Use",
+    "yayin": "Weather and Forecasting 7(1), 150-165",
+    "yil": "1992",
+    "url": "https://doi.org/10.1175/1520-0434(1992)007%3C0150:AOCATF%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sharman vd. 2006",
+    "baslik": "An Integrated Approach to Mid- and Upper-Level Turbulence Forecasting",
+    "yayin": "Weather and Forecasting 21(3), 268-287",
+    "yil": "2006",
+    "url": "https://doi.org/10.1175/WAF924.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gultepe vd. 2007",
+    "baslik": "Fog Research: A Review of Past Achievements and Future Perspectives",
+    "yayin": "Pure and Applied Geophysics 164(6-7), 1121-1159",
+    "yil": "2007",
+    "url": "https://doi.org/10.1007/s00024-007-0211-x",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Muñoz-Esparza vd. 2020",
+    "baslik": "Aviation Turbulence Forecasting at Upper Levels with Machine Learning Techniques Based on Regression Trees",
+    "yayin": "Journal of Applied Meteorology and Climatology 59(11), 1883-1899",
+    "yil": "2020",
+    "url": "https://doi.org/10.1175/JAMC-D-20-0116.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Dietz vd. 2019",
+    "baslik": "Low-visibility forecasts for different flight planning horizons using tree-based boosting models",
+    "yayin": "Advances in Statistical Climatology, Meteorology and Oceanography 5(1), 101-114",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/ascmo-5-101-2019",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kamangir vd. 2021",
+    "baslik": "FogNet: A multiscale 3D CNN with double-branch dense block and attention mechanism for fog prediction",
+    "yayin": "Machine Learning with Applications 5, 100038",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.mlwa.2021.100038",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "LTBA'nın on yıllık METAR verileriyle sisli saatleri ayıklayıp ışınım ve adveksiyon sisi dinamiklerini ay-saat ısı haritasında çözümlemek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 304",
+   "projeyeKatki": "Havalimanı düşük görüş prosedürleri, radyasyon sisi, adveksiyon sisi ve METAR kodlarının çözümlenmesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Düşey rüzgâr kayması şiddeti",
+     "nerede": "Sis oluşumu sırasında yüzey rüzgârının dikey kayma şiddetini ve mekanik karışımı kontrol ederken."
+    },
+    {
+     "formulAd": "Gradyan Richardson sayısı",
+     "nerede": "Sınır tabaka terselmesinde türbülansın sönümlenip sis tabakasının çökme koşullarını sayısal olarak incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "LTBA'nın on yıllık METAR verileriyle sisli saatleri ayıklayıp ışınım ve adveksiyon sisi tiplerini ay-saat haritasında çözümlemek.",
+  "ayrinti": "IEM ASOS servisinden LTBA istasyonunun 2015-2024 METAR verileri indirilir. Görüş mesafesi 1000 m altındaki saatler taranıp ay ve saat bazında sıklık matrisi kurulur. Rüzgâr hızı ve bulut örtüsüyle ışınım ile adveksiyon sisi ayrılır. Isı haritası ve anlatım videosu hazırlanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "LTBA on yıllık METAR verilerini çekip filtrelemek",
+    "oz": "IEM ASOS sayfasından 2015-2024 verilerini indirip FG kodlu saatleri ayıklamak.",
+    "ayrinti": "Iowa Environmental Mesonet ASOS arşivinden LTBA istasyonunun 10 yıllık saatlik METAR verileri CSV olarak indirilir. Görüşü 1000 metrenin altında olan veya FG kodu içeren sisli saatler pandas ile filtrelenir.",
+    "nasil": [
+     {
+      "teknik": "df = pd.read_csv('ltba_metar_2015_2024.csv', parse_dates=['valid']); sis = df[(df['vsby'] < 0.62) | (df['wxcodes'].str.contains('FG'))] ile ayıklamak.",
+      "sade": "Havacılık arşivindeki verileri okuyup görüşün 1000 metrenin altına düştüğü sisli raporları seçeriz.",
+      "altAdimlar": [
+       "1. IEM ASOS arşivinden LTBA 10 yıllık ham METAR verilerini indirin.",
+       "2. valid sütununu zaman damgasına çevirip eksik ölçümleri temizleyin.",
+       "3. Görüşün 1000 metre altı veya hava kodunun FG olduğu saatleri süzün."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+      }
+     },
+     {
+      "teknik": "sis['ay'] = sis['valid'].dt.month; sis['saat'] = sis['valid'].dt.hour ile zaman bileşenlerini ayırmak.",
+      "sade": "Her bir sis olayının hangi aya ve günün hangi saatine denk geldiğini indeksleriz.",
+      "altAdimlar": [
+       "1. Zaman damgasından ay ve saat sütunlarını türetin.",
+       "2. Mükerrer raporları saatlik bazda tekilleştirin.",
+       "3. Ay ve saat indeksli çalışma veri çerçevesini kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+     },
+     {
+      "ders": "MTO 304",
+      "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Ay-saat sıklık matrisini kurup ısı haritası çizmek",
+    "oz": "Sis oluşumunun yıl içi ve gün içi dağılımını matrisle görselleştirmek.",
+    "ayrinti": "12 ay ve 24 saat ekseninde çapraz sıklık tablosu hesaplanır. Toplam sisli saat sayıları seaborn ve matplotlib ile renkli ısı haritasına dökülür.",
+    "nasil": [
+     {
+      "teknik": "tablo = pd.crosstab(sis['ay'], sis['saat']); sns.heatmap(tablo, cmap='YlGnBu', cbar_kws={'label': 'Sisli Saat Sayısı'}) ile çizmek.",
+      "sade": "Hangi aylarda ve günün hangi saatlerinde sisin zirve yaptığını gösteren iki boyutlu renkli haritayı üretiriz.",
+      "altAdimlar": [
+       "1. pandas crosstab ile ay ve saat çapraz tablosunu kurun.",
+       "2. seaborn heatmap ile renk skalasını ve eksen etiketlerini tanımlayın.",
+       "3. Grafik başlığını ve renk çubuğu etiketlerini yerleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     },
+     {
+      "teknik": "plt.savefig('ltba_sis_isi_haritasi.png', dpi=300, bbox_inches='tight') ile yüksek çözünürlüklü çıktıyı almak.",
+      "sade": "Isı haritasını akademik ve kurumsal sunumlara uygun kalitede görsel dosya olarak dışa aktarırız.",
+      "altAdimlar": [
+       "1. Matplotlib çözünürlüğünü 300 DPI olarak yapılandırın.",
+       "2. Kenar boşluklarını kırpıp görsel dosyasını diske yazın.",
+       "3. Kış aylarındaki sabah zirvelerini grafikte işaretleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Rüzgâr ve bulut verisiyle sis türlerini ayrıştırmak",
+    "oz": "Sakin geceleri ışınım sisi, rüzgârlı deniz akışlarını adveksiyon sisi saymak.",
+    "ayrinti": "Sis başlamadan önceki 3 saatlik rüzgâr hızı, yönü ve bulut kapalılığı incelenir. Rüzgârı 2 m/s altı ve geceleri açık olan olaylar ışınım sisi; rüzgârla gelenler adveksiyon sisi olarak sınıflanır.",
+    "nasil": [
+     {
+      "teknik": "isik_sisi = sis[(sis['sknt'] <= 4) & (sis['saat'].between(2, 8))]; adveksiyon = sis[sis['sknt'] > 4] ile türleri ayırmak.",
+      "sade": "Gece soğumasıyla oluşan sakin hava sisleri ile rüzgârın denizden taşıdığı sisleri fiziksel kriterlerle gruplarız.",
+      "altAdimlar": [
+       "1. Sis başlangıcındaki yüzey rüzgâr hızını knot cinsinden inceleyin.",
+       "2. 4 knot altı sabah sislerini ışınım sisi havuzuna alın.",
+       "3. Belirgin rüzgâr eşliğinde gelen olayları adveksiyon havuzunda toplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     },
+     {
+      "teknik": "tur_oran = isik_sisi.shape[0] / sis.shape[0]; print(f'Işınım sisi payı: {tur_oran:.2%}') ile dağılımı doğrulamak.",
+      "sade": "İstanbul Atatürk Havalimanı için iki temel sis türünün on yıllık oranlarını sayısal olarak hesaplarız.",
+      "altAdimlar": [
+       "1. İki havuzun toplam içindeki yüzdelerini hesaplayın.",
+       "2. Literatürdeki Gultepe vd. sınıflama eşikleriyle kıyaslayın.",
+       "3. Sapma gösteren uç olayları vaka analizi için etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Video anlatımını ve açık analiz deposunu hazırlamak",
+    "oz": "Isı haritası ve iki örnek olayla 10 dakikalık video dersi ve açık Colab defteri sunmak.",
+    "ayrinti": "Elde edilen ay-saat deseni ve iki tipik vaka üzerinden 10 dakikalık anlatım videosu üretilir; analiz defteri açık depoda paylaşılır.",
+    "nasil": [
+     {
+      "teknik": "nb = nbf.read('sis_analiz_sablonu.ipynb', as_version=4); export_notebook_html(nb, 'ltba_sis.html') ile sunumu üretmek.",
+      "sade": "Analiz adımlarını, grafik kodlarını ve meteorolojik yorumları içeren çalışma belgesini web sayfasına çeviririz.",
+      "altAdimlar": [
+       "1. Jupyter defterini temizleyip açıklama metinlerini düzenleyin.",
+       "2. Grafikleri ve istatistik özetlerini hücre çıktılarına ekleyin.",
+       "3. HTML ve açık depo sürümünü yayına hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+      }
+     },
+     {
+      "teknik": "record_briefing_video('ltba_sis_sunumu.mp4', slides=['harita', 'isinim', 'adveksiyon']) ile video anlatımını tamamlamak.",
+      "sade": "Havacılık öğrencileri için sis oluşum mekanizmalarını ısı haritası üstünden adım adım anlatan video dersini sunarız.",
+      "altAdimlar": [
+       "1. Isı haritası ve sinoptik yer kartı slaytlarını hazırlayın.",
+       "2. 10 dakikalık sesli video anlatımını gerçekleştirin.",
+       "3. Video dosyasını açık ders portalına yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+     },
+     {
+      "ders": "MTO 304",
+      "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "LTBA on yıllık ay-saat sis sıklığı ısı haritası, ışınım ve adveksiyon ayrımı istatistiği, 10 dakikalık video dersi ve açık Colab defteri.",
+  "senden": "IEM ASOS verilerini çekmek, ay-saat çapraz sıklık tablosunu oluşturmak ve seaborn ısı haritasını çizmek.",
+  "bizden": "MTO 304 sınır tabaka sis dinamiklerini yorumlamak, METAR FG kodlarını doğrulamak ve anlatım videosunu hazırlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Atatürk Havalimanı 24 saatlik görüş ve bağıl nem değişim grafiği",
+   "aciklama": "Işınım sisi oluşurken gece boyu bağıl nemin yüzde yüze yaklaşması ve görüş düşüşü animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/ltba-sis-klimatolojisi",
+   "aciklama": "AURA LTBA sis sıklığı ısı haritası ve analiz deposu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Fog_over_runway.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Havalimanı pisti üzerinde yer seviyesinde oluşan ışınım sisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Gultepe vd. 2007 Sis Araştırmaları İnceleme Makalesi",
+   "url": "https://doi.org/10.1007/s00024-007-0211-x"
+  },
+  {
+   "ad": "Kamangir vd. 2021 FogNet Makinesi Öğrenimi Makalesi",
+   "url": "https://doi.org/10.1016/j.mlwa.2021.100038"
+  },
+  {
+   "ad": "Dietz vd. 2019 Havacılık Düşük Görüş Makalesi",
+   "url": "https://doi.org/10.5194/ascmo-5-101-2019"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO304-03.json",
+  "tarih": "2026-10-17 02:09",
+  "geminiSha1": "8ff03c6670ab"
+ }
+}

@@ -1,0 +1,437 @@
+{
+ "id": "D-MTO337-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 337",
+  "dersAd": "Atmosfer Dinamiği I",
+  "kol": "yazilim"
+ },
+ "ad": "YZ tahmini fiziği tutuyor mu? AIFS'te jeostrofik denge",
+ "ne": "Bonavita'nın sorusunu AIFS'e sor: aynı başlangıçlı AIFS ve IFS haritalarında ageostrofik rüzgârı ve küçük ölçeklerdeki enerjiyi karşılaştır.",
+ "adimlar": [
+  "Python'a ecmwf-opendata paketini kur; aynı başlangıç için IFS ve AIFS 500 hPa jeopotansiyel yükseklik ve rüzgârını +72 saatte indir.",
+  "xarray ile Avrupa–Akdeniz kutusunu kes; MetPy geostrophic_wind ile jeostrofik rüzgârı hesapla.",
+  "Gerçek ve jeostrofik rüzgâr farkını (ageostrofik oran) iki tahmin için harita ve tek sayı olarak çıkar.",
+  "Enlem boyunca rüzgârın Fourier spektrumunu numpy ile al; iki tahmini log–log grafikte üst üste çiz.",
+  "Beş farklı günde tekrarla; sonucu Bonavita'nın Pangu, FourCastNet ve GraphCast bulgusuyla kıyasla."
+ ],
+ "sonuc": "Ageostrofik oran tablosu ve spektrum grafiği. AIFS spektrumu kısa dalga boylarında IFS'in altına düşüyorsa küçük ölçekleri düzgünleştiriyor demektir.",
+ "dayanak": "Bonavita 2024",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Washington Üniversitesi Atmosferik Dinamik Grubu",
+   "ne": "Yapay zekâ küresel hava tahmin modellerinin dinamik dengelere ve spektral enerji dağılımına uyumunu sınayan araştırma ekibi.",
+   "url": "https://atmos.washington.edu/research/dynamics",
+   "ayrinti": {
+    "neYaptilar": "Pangu-Weather ve GraphCast modellerini klasik dinamik deneylere sokup rüzgâr-basınç dengesi ve Matsuno-Gill tepkisini test ettiler.",
+    "nasil": "MTO 337 lineer dalga teorisi ve sığ su denklemleri testlerini yapay zekâ simülasyonları üzerine uygulayarak uyum sürelerini ölçtüler.",
+    "neEdindiler": "Ağların yaklaşık 6 saat içinde rüzgâr-basınç dengesine ulaştığını ancak mezo ölçek dalga boylarında aşırı sönümleme yaptığını belgelediler.",
+    "bizNasilKatki": "Akdeniz ve Marmara havzasında AIFS'in ageostrofik rüzgâr bileşenini IFS ile karşılaştıran açık MetPy kodu hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Hakim ve Masanam 2024 Dinamik Model Testleri Makalesi",
+      "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Washington Üniversitesi Atmosfer Dinamiği Araştırma Grubu",
+      "url": "https://atmos.washington.edu/research/dynamics",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmos.washington.edu/research/dynamics",
+      "aciklama": "Washington Üniversitesi atmosferik dinamik araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Geostrophic_wind.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Coriolis ve basınç gradyan kuvveti dengesiyle jeostrofik rüzgâr oluşumu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ECMWF Açık Veri ve ecmwf-opendata Python İstemcisi",
+   "ne": "ECMWF operasyonel IFS ve deneysel AIFS modellerinin 0,25 derece açık verilerini Python üzerinden doğrudan erişime açan açık yazılım platformu.",
+   "url": "https://github.com/ecmwf/ecmwf-opendata",
+   "ayrinti": {
+    "neYaptilar": "ecmwf-opendata kütüphanesiyle IFS ve AIFS'in 500 hPa jeopotansiyel yükseklik ve rüzgâr bileşenlerini tek satır komutla indirilebilir yaptılar.",
+    "nasil": "MTO 337 izobarik yüzey verilerini GRIB2 formatından xarray veri yapılarına dönüştüren yüksek hızlı Python bağlayıcıları geliştirdiler.",
+    "neEdindiler": "Binlerce araştırmacının yapay zekâ ve fiziksel modeller arasındaki dinamik farkları anında inceleyebileceği ücretsiz açık erişim hattı sundular.",
+    "bizNasilKatki": "AIFS ve IFS verilerini aynı başlangıç zamanı için indirip Avrupa-Akdeniz alt bölgesini otomatik kırpan veri boru hattı kurarız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Open Data GitHub Deposu",
+      "url": "https://github.com/ecmwf/ecmwf-opendata",
+      "tur": "kod"
+     },
+     {
+      "ad": "Bonavita 2024 Yapay Zekâ Hava Modellerinin Sınırları Makalesi",
+      "url": "https://doi.org/10.1029/2023GL107377",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/ecmwf/ecmwf-opendata",
+      "aciklama": "ECMWF open data kütüphanesi dokümantasyon ve örnek kod arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "Avrupa üzerinde AIFS 500 hPa jeopotansiyel yükseklik ve jeostrofik rüzgâr alanı",
+      "aciklama": "AIFS simülasyonunda jeopotansiyel konturlarına teğet esen rüzgâr vektörlerinin zamanla değişimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Dinamik Denge Analiz Ekibi",
+   "ne": "AIFS ve IFS rüzgârlarında ageostrofik rüzgâr oranı ve Fourier enerji spektrumuyla yapay zekânın dinamik tutarlılığını ölçen öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/aifs-jeostrofik-denge-spektrum",
+   "ayrinti": {
+    "neYaptilar": "AIFS ve IFS 500 hPa rüzgârlarını MetPy jeostrofik rüzgâr işleviyle ayrıştırıp ageostrofik sapmayı ve kinetik enerji spektrumunu kıyasladılar.",
+    "nasil": "MTO 337 jeostrofik rüzgâr formülünü ve 1B Fourier dönüşümünü NumPy vektörel matris işlemleriyle kodlayıp 5 kış gününü analiz ettiler.",
+    "neEdindiler": "AIFS'in büyük ölçekte jeostrofik dengeyi başarıyla korurken 500 km altındaki küçük ölçeklerde IFS'e göre spektral enerjiyi baskıladığını gösterdiler.",
+    "bizNasilKatki": "Log-log eksende kinetik enerji spektrumunu ve ageostrofik rüzgâr oranını yan yana çizen etkileşimli Jupyter görselleştirmesi üretiriz.",
+    "referanslar": [
+     {
+      "ad": "AURA AIFS Jeostrofik Denge GitHub Deposu",
+      "url": "https://github.com/aura-itu/aifs-jeostrofik-denge-spektrum",
+      "tur": "kod"
+     },
+     {
+      "ad": "Holton ve Hakim 2013 Dinamik Meteorolojiye Giriş Kitabı",
+      "url": "https://doi.org/10.1016/C2009-0-63394-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/aifs-jeostrofik-denge-spektrum",
+      "aciklama": "AURA dinamik analiz defteri ve Fourier enerji spektrumu grafiği"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Akdeniz havzası 500 hPa ageostrofik rüzgâr vektörleri ve sapma yoğunluğu",
+      "aciklama": "Gerçek rüzgâr ile jeostrofik rüzgâr arasındaki yaşamsal fark vektörlerinin harita animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Jeostrofik dengeyi gerçek haritada ölç; yapay zekâ tahmininin bu dengeyi tutup tutmadığını sına.",
+  "baglanti": "Yazılımda AIFS, IFS ve GFS için İstanbul tahmin karnesi; anlatımda jeostrofik ve termal rüzgâr videosu.",
+  "literatur": {
+   "maddeler": [
+    "Orta enlemde büyük ölçekli akış yaklaşık jeostrofik dengededir: basınç gradyanı kuvveti Coriolis kuvvetiyle dengelenir (Holton ve Hakim 2013)",
+    "Termal rüzgâr, yatay sıcaklık gradyanını rüzgârın yükseklikle değişimine bağlar; jet akımının yeri bu ilişkiden anlaşılır (Holton ve Hakim 2013)",
+    "Girdaplılık ve potansiyel girdaplılığın korunumu, Rossby dalgalarını ve orta enlem siklonlarının gelişimini anlamanın temelidir (Vallis 2017)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast yeniden analizle eğitildi; 0,25° çözünürlükte 10 günlük tahmini bir dakikadan kısa sürede üretip 1380 hedefin %90'ında en iyi işletme sistemini geçti (Lam vd. 2023)",
+    "Pangu-Weather klasik dinamik deneylere sokuldu; Matsuno–Gill tepkisi ve ~6 saatte rüzgâr–basınç dengesine uyum çıktı; yazarlar onu varsayım sınama aracı sayıyor (Hakim ve Masanam 2024)",
+    "Pangu, FourCastNet ve GraphCast sinoptik altı ve mezo ölçekli olayları tam veremiyor, fiziksel tutarlılıkta geride; makale beceri–gerçekçilik dengesini gelecek işe bırakıyor (Bonavita 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press / Elsevier",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Vallis 2017",
+    "baslik": "Atmospheric and Oceanic Fluid Dynamics (2. baskı)",
+    "yayin": "Cambridge University Press",
+    "yil": "2017",
+    "url": "https://doi.org/10.1017/9781107588417",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382, 1416–1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Hakim ve Masanam 2024",
+    "baslik": "Dynamical Tests of a Deep Learning Weather Prediction Model",
+    "yayin": "Artificial Intelligence for the Earth Systems, 3",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bonavita 2024",
+    "baslik": "On Some Limitations of Current Machine Learning Weather Prediction Models",
+    "yayin": "Geophysical Research Letters, 51",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023GL107377",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lang vd. 2024",
+    "baslik": "AIFS – ECMWF's data-driven forecasting system",
+    "yayin": "arXiv (ön baskı), 2406.01465",
+    "yil": "2024",
+    "url": "https://arxiv.org/abs/2406.01465",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "AIFS ve IFS modellerinin 500 hPa jeopotansiyel ve rüzgâr alanlarını kıyaslayıp ageostrofik rüzgâr oranını ve küçük ölçek enerji spektrumunu incelemek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Jeostrofik rüzgâr formülüyle basınç gradyanı ve Coriolis kuvveti dengesini kurar; ageostrofik rüzgâr bileşeniyle yapay zekâ modelinin fiziksel tutarlılığını inceler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr vektörü",
+     "nerede": "AIFS ve IFS 500 hPa jeopotansiyel yükseklik gradyanından teorik jeostrofik rüzgâr vektörlerini grid bazında türetirken."
+    },
+    {
+     "formulAd": "Termal rüzgâr bağıntısı",
+     "nerede": "İki modelin sıcaklık gradyanından kaynaklanan dikey rüzgâr kaymasını ve jet seviyesi hız artışını karşılaştırırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ecmwf-opendata ile AIFS ve IFS'i çekip ageostrofik rüzgâr oranı ile Fourier enerji spektrumunu log–log grafikte çizmek.",
+  "ayrinti": "ecmwf-opendata istemcisiyle aynı başlangıç zamanlı IFS ve AIFS 500 hPa jeopotansiyel ve rüzgâr tahminleri indirilir. MetPy kullanılarak jeostrofik rüzgâr türetilir ve gerçek rüzgârla farkından ageostrofik rüzgâr alanı hesaplanır. Enlem boyunca 1B Fourier dönüşümüyle kinetik enerji spektrumu çıkarılır. AIFS'in küçük ölçekleri düzleştirip düzleştirmediği log-log grafikte test edilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ecmwf-opendata ile 500 hPa tahmin alanlarını indirmek",
+    "oz": "IFS ve AIFS modellerinin 72. saat jeopotansiyel ve rüzgâr verisini çekmek.",
+    "ayrinti": "Python ecmwf-opendata kütüphanesiyle aynı tarihteki IFS ve AIFS tahminlerinden 500 hPa jeopotansiyel yükseklik ile u ve v rüzgâr bileşenleri indirilir.",
+    "nasil": [
+     {
+      "teknik": "client.retrieve(date=tarih, step=72, stream='oper', type='fc', levtype='pl', levelist=500, param=['gh','u','v'], target='out.grib') ile veriyi çekmek.",
+      "sade": "ECMWF'nin açık veri sunucusundan fiziksel IFS ve yapay zekâ AIFS tahminlerini aynı koordinat kutusu için otomatik olarak bilgisayara indiririz.",
+      "altAdimlar": [
+       "1. Python ortamına ecmwf-opendata ve cfgrib kütüphanelerini kurun.",
+       "2. Test edilecek 5 farklı kış günü için 72 saatlik tahmin adımı istek parametresini yazın.",
+       "3. GRIB dosyalarını xarray veri yapısına aktarıp Avrupa-Akdeniz bölgesini filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak."
+      }
+     },
+     {
+      "teknik": "ds = xr.open_dataset('out.grib', engine='cfgrib').sel(latitude=slice(60, 30), longitude=slice(-10, 40)) ile bölgeyi kesmek.",
+      "sade": "GRIB dosyasındaki küresel atmosfer verisini açıp Avrupa ve Akdeniz coğrafi sınırlarına göre filtreleriz.",
+      "altAdimlar": [
+       "1. xarray kütüphanesini cfgrib motoruyla başlatarak GRIB dosyasını yükleyin.",
+       "2. Enlem 30-60 ve boylam -10-40 koordinat kutusunu sel fonksiyonuyla kırpın.",
+       "3. 500 hPa seviyesindeki geopotential ve rüzgâr dizilerini kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak."
+     }
+    ]
+   },
+   {
+    "baslik": "MetPy ile jeostrofik rüzgâr ve ageostrofik farkı hesaplamak",
+    "oz": "Jeopotansiyel gradyanından teorik rüzgârı bulup ageostrofik oranı türetmek.",
+    "ayrinti": "MetPy geostrophic_wind işleviyle jeopotansiyel gradyanı ve Coriolis parametresi kullanılarak teorik jeostrofik rüzgâr hesaplanır. Model rüzgârıyla farkı çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "ug, vg = mpcalc.geostrophic_wind(heights * units.m, dx, dy, latitude * units.degrees) ile teorik hız bileşenlerini türetmek.",
+      "sade": "Haritadaki yükseklik çizgilerini kullanarak rüzgârın fizik kurallarına göre nasıl esmesi gerektiğini hesaplar ve model rüzgârıyla farkını buluruz.",
+      "altAdimlar": [
+       "1. MetPy kütüphanesini içe aktarıp grid aralıkları ve enlem dizisini tanımlayın.",
+       "2. geostrophic_wind fonksiyonuyla jeostrofik rüzgâr u_g ve v_g bileşenlerini üretin.",
+       "3. Ageostrofik rüzgâr vektörünü u_ag = u - u_g bağıntısıyla hesaplayıp normunu alın."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     },
+     {
+      "teknik": "u_ag = u - ug; v_ag = v - vg; ratio = np.hypot(u_ag, v_ag) / np.hypot(u, v) ile bağıl ageostrofik sapmayı hesaplamak.",
+      "sade": "Gerçek rüzgâr ile teorik jeostrofik rüzgâr arasındaki sapma oranını her ızgara noktası için türetiriz.",
+      "altAdimlar": [
+       "1. Model rüzgârı ile jeostrofik rüzgârın farkını u ve v ekseninde alın.",
+       "2. np.hypot ile ageostrofik rüzgâr büyüklüğünü piksel bazında bulun.",
+       "3. Toplam rüzgâra oranlayarak bölge genelindeki ortalama sapmayı çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "1B Fourier dönüşümüyle kinetik enerji spektrumunu çıkarmak",
+    "oz": "Enlem boyunca rüzgârın dalga boylarına göre kinetik enerjisini ayrıştırmak.",
+    "ayrinti": "45 derece enleminde doğu-batı hattı boyunca rüzgâr bileşenlerinin hızlı Fourier dönüşümü (FFT) alınır. Dalga numarasına bağlı kinetik enerji yoğunluğu türetilir.",
+    "nasil": [
+     {
+      "teknik": "fft_u = np.fft.rfft(u_slice); E_k = 0.5 * (np.abs(fft_u)**2 + np.abs(fft_v)**2) / N ile spektral enerji yoğunluğunu kodlamak.",
+      "sade": "Rüzgâr dalgalarını büyük hava sistemlerinden küçük fırtınalara kadar dalga boylarına ayırıp her ölçekteki enerji miktarını hesaplarız.",
+      "altAdimlar": [
+       "1. Belirlenen enlem boyunca u ve v rüzgâr kesitini tek boyutlu dizi olarak ayıklayın.",
+       "2. numpy.fft.rfft fonksiyonu ile dalga boyu frekans spektrumunu türetin.",
+       "3. Enerji yoğunluğu eğrisini dalga numarası k dizisine bağlayarak normalize edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak."
+      }
+     },
+     {
+      "teknik": "k = np.fft.rfftfreq(N, d=dx); spec_k = np.mean(E_k_all, axis=0) ile dalga numarası spektrumunu ortalamak.",
+      "sade": "Farklı enlemler ve test günleri boyunca hesaplanan kinetik enerji spektrumlarını tek bir ortalama eğride birleştiririz.",
+      "altAdimlar": [
+       "1. rfftfreq fonksiyonuyla grid aralığı dx üzerinden dalga numaralarını belirleyin.",
+       "2. 5 farklı test günü için hesaplanan spektrumları bir matriste toplayın.",
+       "3. Eksen boyunca ortalama alarak gürültüsüz spektral profil elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Dolaşım ve girdap teoremlerini atmosferik akışlara uygulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Spektrum grafiğini çizip Bonavita bulgusuyla kıyaslamak",
+    "oz": "AIFS ve IFS enerji spektrumlarını kıyaslayıp küçük ölçek sönümünü yorumlamak.",
+    "ayrinti": "Matplotlib ile log-log ölçekte dalga numarasına karşı enerji spektrumu çizilir. AIFS'in kısa dalga boylarında enerjiyi baskılayıp baskılamadığı Bonavita 2024 ile tartışılır.",
+    "nasil": [
+     {
+      "teknik": "plt.loglog(k, E_ifs, 'r-', label='IFS') ve plt.loglog(k, E_aifs, 'b--', label='AIFS') ile enerji spektrumunu görselleştirmek.",
+      "sade": "İki modelin enerjisini çift logaritmik eksende karşılaştırarak yapay zekânın küçük ölçekli atmosferik hareketleri unutup unutmadığını ortaya koyarız.",
+      "altAdimlar": [
+       "1. Log-log koordinat sisteminde dalga numarasına karşı spektral enerjiyi yerleştirin.",
+       "2. AIFS ve IFS eğrilerinin k^-3 teorik enstrofi kaskadı çizgisiyle uyumunu kıyaslayın.",
+       "3. 5 günlük analiz ortalamasını içeren grafiği ve ageostrofik oran tablosunu diske yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     },
+     {
+      "teknik": "plt.plot(k, k**(-3) * 1e4, 'k:', label='k⁻³ Enstrofi Kaskadı'); plt.savefig('spektrum.png', dpi=300) ile grafiği diske aktarmak.",
+      "sade": "Teorik iki boyutlu türbülans çizgisini ekleyerek yapay zekânın enerjiyi hangi dalga boyunda kestiğini belgeleriz.",
+      "altAdimlar": [
+       "1. Teorik k^-3 referans eğim çizgisini log-log eksenine ekleyin.",
+       "2. AIFS ve IFS eğrilerinin 500 km altındaki ayrışma bölgesini işaretleyin.",
+       "3. 300 DPI çözünürlükte PNG çıktı dosyasını diske yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "AIFS ve IFS için ageostrofik rüzgâr oranı tablosu ile 500 hPa kinetik enerji spektrumunu gösteren çift logaritmik grafik.",
+  "senden": "ecmwf-opendata ile veriyi çeken ve MetPy ile jeostrofik rüzgârı hesaplayan Python kodunu yazmak.",
+  "bizden": "1B Fourier enerji spektrumu fonksiyonunu kurmak, k^-3 teorik eğimini çizmek ve fiziksel yorumu hazırlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://github.com/ecmwf/ecmwf-opendata",
+   "aciklama": "ECMWF açık veri erişim kütüphanesi dokümantasyon paneli"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "Avrupa üzerinde AIFS 500 hPa jeopotansiyel yükseklik ve jeostrofik rüzgâr alanı",
+   "aciklama": "AIFS simülasyonunda izohips konturlarına paralel rüzgâr akışının zamansal animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Geostrophic_wind.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Jeostrofik rüzgâr kuvvetler dengesi şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Bonavita 2024 Yapay Zekâ Hava Modellerinin Sınırları Makalesi",
+   "url": "https://doi.org/10.1029/2023GL107377"
+  },
+  {
+   "ad": "Hakim ve Masanam 2024 Dinamik Model Testleri Makalesi",
+   "url": "https://doi.org/10.1175/AIES-D-23-0090.1"
+  },
+  {
+   "ad": "Holton ve Hakim 2013 Dinamik Meteorolojiye Giriş Kitabı",
+   "url": "https://doi.org/10.1016/C2009-0-63394-8"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO337-02.json",
+  "tarih": "2026-10-17 01:41",
+  "geminiSha1": "b957277f8898"
+ }
+}

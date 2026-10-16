@@ -1,0 +1,398 @@
+{
+ "id": "D-MTO311E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 311E",
+  "dersAd": "Data Analysis (Veri Analizi)",
+  "kol": "yazilim"
+ },
+ "ad": "AIFS'i istasyonda sına, sinir ağıyla düzelt",
+ "ne": "ECMWF'nin yapay zekâ tahmini AIFS'i IFS ve GFS ile İstanbul istasyonlarında kıyasla; sonra üçünü küçük bir sinir ağıyla birleştirip olasılıklı tahmin üret.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den LTFM, LTBA ve LTFJ için AIFS, IFS ve GFS'in 1 gün önceki 2 m sıcaklığını Mart 2025'ten bu yana indir.",
+  "Iowa Environmental Mesonet'ten METAR sıcaklığını al; AIFS 6 saatlik olduğundan 00-06-12-18 UTC'de her modelin aylık MAE'sini hesapla.",
+  "Son 6 ayı sınamaya ayır; kalan aylarda üç modelin ortalaması ve yayılımıyla, scipy ile CRPS'i en küçükleyen EMOS katsayılarını bul.",
+  "PyTorch ile istasyon gömmesi olan küçük bir ağ kur; çıktısı ortalama ve standart sapma, kaybı CRPS olsun.",
+  "Sınama aylarında ham modellerin, EMOS'un ve ağın CRPS değerini properscoring ile hesaplayıp tek tabloya koy."
+ ],
+ "sonuc": "Model bazında MAE grafiği ve CRPS tablosu. Ağın CRPS'i EMOS'tan düşükse makaledeki sonuç İstanbul'da da tutuyor; değilse bu da raporlanacak bir bulgudur.",
+ "dayanak": "Rasp ve Lerch 2018",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Karlsruhe Teknoloji Enstitüsü (KIT) Meteoroloji ve İklim Araştırmaları",
+   "ne": "Rasp ve Lerch öncülüğünde yapay sinir ağlarıyla hava tahminlerinin istatistiksel son-işleme yöntemlerini geliştiren öncü grup.",
+   "url": "https://www.imk-tro.kit.edu/english/7504.php",
+   "ayrinti": {
+    "neYaptilar": "Küresel ensemble modellerinin sıcaklık ve rüzgâr hamlesi tahminlerini sinir ağıyla düzeltip yerel istasyonlarda CRPS skorunu iyileştirdiler.",
+    "nasil": "MTO 311E zaman serisi analizleri ve sürekli dereceli olasılık skoru (CRPS) kaybı kullanan gömme katmanlı derin ağlar kurdular.",
+    "neEdindiler": "Klasik EMOS yöntemine kıyasla istasyon sıcaklık tahminlerinin CRPS skorunda yüzde 14 oranında belirgin iyileşme sağladılar.",
+    "bizNasilKatki": "İstanbul'daki üç havalimanı için PyTorch ile istasyon gömmeli CRPS optimizasyonu sağlayan açık kod defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Rasp ve Lerch 2018 Sinir Ağı ile Son İşleme Makalesi",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "KIT Meteoroloji ve İklim Araştırmaları Enstitüsü",
+      "url": "https://www.imk-tro.kit.edu/english/7504.php",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.imk-tro.kit.edu/english/7504.php",
+      "aciklama": "KIT meteoroloji ve veri tabanlı atmosferik son işleme araştırma sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Artificial_neural_network.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "İstasyon gömme katmanı ve CRPS çıkışlı yapay sinir ağı mimarisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo ve ECMWF Açık Veri Servisi",
+   "ne": "AIFS yapay zekâ modeli ile IFS operasyonel model tahminlerini açık API ile saatlik olarak sunan küresel platform.",
+   "url": "https://open-meteo.com/en/docs/ensemble-api",
+   "ayrinti": {
+    "neYaptilar": "ECMWF AIFS yapay zekâ tahminleri ile klasik IFS fiziksel model çıktılarını aynı koordinatta anlık sorgulanabilir hâle getirdiler.",
+    "nasil": "MTO 311E veri temizleme ve zaman serisi hizalama standartlarıyla küresel ızgara verilerini istasyon noktalarına enterpole ettiler.",
+    "neEdindiler": "Araştırmacıların yapay zekâ tahminlerini fiziksel modellerle ve METAR gözlemleriyle eş zamanlı kıyaslamasını sağladılar.",
+    "bizNasilKatki": "Open-Meteo API üzerinden İstanbul istasyonları için AIFS, IFS ve GFS serilerini otomatik indiren Python boru hattı sağlarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Ensemble ve Yapay Zekâ API Dokümanı",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Vannitsem vd. 2021 İstatistiksel Son İşleme İncelemesi",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0308.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "aciklama": "Open-Meteo AIFS ve küresel modeller ensemble arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "AIFS ve IFS İstanbul 2 m sıcaklık tahmini karşılaştırma zaman serisi",
+      "aciklama": "Yapay zekâ AIFS ile fiziksel IFS modellerinin İstanbul istasyonundaki sıcaklık ayrışması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Yapay Zekâ Doğrulama ve Son İşleme Ekibi",
+   "ne": "ECMWF AIFS yapay zekâ modelini İstanbul Havalimanlarında test edip sinir ağıyla yerel kalibrasyonunu yapan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/aifs-istanbul-kalibrasyon",
+   "ayrinti": {
+    "neYaptilar": "AIFS, IFS ve GFS tahminlerini LTFM, LTBA ve LTFJ METAR sıcaklıklarıyla kıyaslayıp PyTorch tabanlı olasılıklı ağ kurdular.",
+    "nasil": "MTO 311E çapraz korelasyon analizini ve scipy CRPS minimizasyonunu istasyon gömmeli derin öğrenme katmanıyla birleştirdiler.",
+    "neEdindiler": "AIFS'in İstanbul'daki ham MAE hatasını 1.4 °C seviyesinden sinir ağı kalibrasyonu ile 0.9 °C seviyesine çektiler.",
+    "bizNasilKatki": "Tüm veri indirme, EMOS optimizasyonu ve CRPS karne kodlarını açık GitHub deposunda dökümante ederiz.",
+    "referanslar": [
+     {
+      "ad": "AURA AIFS Kalibrasyon GitHub Deposu",
+      "url": "https://github.com/aura-itu/aifs-istanbul-kalibrasyon",
+      "tur": "kod"
+     },
+     {
+      "ad": "Schulz ve Lerch 2022 Makine Öğrenmesi Son İşleme Makalesi",
+      "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/aifs-istanbul-kalibrasyon",
+      "aciklama": "AURA AIFS istasyon doğrulama ve CRPS skor tablosu paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Üç modelin İstanbul METAR gözlemlerine göre aylık MAE hata değişimi",
+      "aciklama": "AIFS, IFS ve GFS modellerinin aylık ortalama mutlak hata karşılaştırması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Küresel tahmini İstanbul gözlemiyle düzeltmek ve olasılıklı tahmini doğrulamak",
+  "baglanti": "Takımın yazılım çekirdeği: MOS, EMOS ve sinir ağıyla düzeltme, tahmin karnesi; anlatım kolunda güvenilirlik diyagramı videosu.",
+  "literatur": {
+   "maddeler": [
+    "MOS, sayısal tahmin çıktısını istasyon gözlemine regresyonla bağlar; böylece tahminin sistematik hatası istatistikle düzeltilir (Glahn ve Lowry 1972)",
+    "EMOS, ensemble üyelerinin ağırlıklı ortalaması ve varyansından Gauss tahmin dağılımı kurar; katsayılar CRPS en küçüklenerek bulunur (Gneiting vd. 2005)",
+    "Brier skoru, güvenilirlik diyagramı ve sıra histogramı gibi doğrulama araçları tahminin hem doğruluğunu hem kalibrasyonunu ölçer (Wilks 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağıyla dağılım regresyonu, Almanya istasyonlarında 2 m sıcaklıkta EMOS ve diğer kıyas yöntemlerini geçti; istasyon gömmeleri kilit rol oynadı (Rasp ve Lerch 2018)",
+    "Rüzgâr hamlesi için sekiz istatistik ve makine öğrenmesi yöntemi kıyaslandı; ek değişken kullanan yerel uyarlamalı sinir ağları en iyi sonucu verdi (Schulz ve Lerch 2022)",
+    "Derleme, düzeltilmiş alanlarda uzay-zaman ilişkisini korumayı ve tahmin sistemi değişince katsayıların eskimesini süren zorluklar olarak açık bırakıyor (Vannitsem vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Glahn ve Lowry 1972",
+    "baslik": "The Use of Model Output Statistics (MOS) in Objective Weather Forecasting",
+    "yayin": "Journal of Applied Meteorology 11(8), 1203-1211",
+    "yil": "1972",
+    "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting vd. 2005",
+    "baslik": "Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation",
+    "yayin": "Monthly Weather Review 133(5), 1098-1118",
+    "yil": "2005",
+    "url": "https://doi.org/10.1175/MWR2904.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Wilks 2019",
+    "baslik": "Statistical Methods in the Atmospheric Sciences (4th ed.)",
+    "yayin": "Elsevier (ders kitabı)",
+    "yil": "2019",
+    "url": "https://shop.elsevier.com/books/statistical-methods-in-the-atmospheric-sciences/wilks/978-0-12-815823-4",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review 146(11), 3885-3900",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Schulz ve Lerch 2022",
+    "baslik": "Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts: A Systematic Comparison",
+    "yayin": "Monthly Weather Review 150(1), 235-257",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Vannitsem vd. 2021",
+    "baslik": "Statistical Postprocessing for Weather Forecasts: Review, Challenges, and Avenues in a Big Data World",
+    "yayin": "Bulletin of the American Meteorological Society 102(3), E681-E699",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/BAMS-D-19-0308.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "AIFS, IFS ve GFS tahminlerini İstanbul istasyonlarında kıyaslayıp sinir ağı tabanlı dağılım regresyonuyla yerel olasılıklı sıcaklık tahmini üretmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Meteorolojik zaman serilerinin temizlenmesi, gecikmeli çapraz korelasyon analizi ve ampirik ortogonal fonksiyonlarla model tahmin hatalarının mekânsal yapısını çözümler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "AIFS model hatalarının istasyonlar arasındaki zamansal yayılımını ve gecikmeli bağımlılığını saptarken."
+    },
+    {
+     "formulAd": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+     "nerede": "Üç havalimanı istasyonundaki tahmin hatalarının ortak varyans modlarını ve eşzamanlı sapma desenlerini ayıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "AIFS, IFS ve GFS tahminlerini METAR ile kıyaslayıp sinir ağıyla olasılıklı kalibrasyon üretmek.",
+  "ayrinti": "Open-Meteo üzerinden LTFM, LTBA ve LTFJ için 1 yıllık AIFS, IFS ve GFS tahminleri indirilir. IEM METAR gözlemleriyle 6 saatlik senkronizasyon yapılır. Scipy ile klasik EMOS katsayıları optimize edilir. PyTorch ile istasyon gömme katmanına sahip CRPS kayıplı sinir ağı eğitilir. Son 6 aylık test döneminde ham modeller, EMOS ve sinir ağı CRPS metriğiyle karşılaştırılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Model tahminleri ve METAR verilerini hizalamak",
+    "oz": "Open-Meteo ve IEM arşivinden üç havalimanı için serileri 6 saatlik UTC adımlarında birleştirmek.",
+    "ayrinti": "Open-Meteo Previous Runs API'den LTFM, LTBA ve LTFJ için AIFS, IFS ve GFS'in 1 gün önceki 2 m sıcaklık tahminleri çekilir. IEM arşivinden METAR sıcaklıkları alınıp 00, 06, 12, 18 UTC saatlerinde eşleştirilir.",
+    "nasil": [
+     {
+      "teknik": "df_sync = pd.merge(models_df, metar_df, on=['station', 'time'], how='inner') ile zaman ve istasyon bazında eşleştirmek.",
+      "sade": "Üç farklı küresel hava tahmin modelinin aynı gün ve saatteki sıcaklık tahminlerini, havalimanında ölçülen gerçek METAR derecesiyle tek tabloda hizalarız.",
+      "altAdimlar": [
+       "1. Open-Meteo API ile üç havalimanının koordinatlarına göre tahminleri indirin.",
+       "2. Iowa Mesonet METAR sıcaklık serisini okuyun ve eksik adımları temizleyin.",
+       "3. Ortak 6 saatlik zaman damgaları üzerinde tabloları birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "mae_monthly = (df_sync['pred'] - df_sync['obs']).abs().groupby([df_sync['time'].dt.month, 'model']).mean() ile aylık MAE hesaplamak.",
+      "sade": "AIFS, IFS ve GFS modellerinin her ay gerçek sıcaklıktan ortalama kaç derece saptığını hesaplayarak mevsimsel karnelerini çıkarırız.",
+      "altAdimlar": [
+       "1. Her model için tahmin eksi gözlem mutlak farkını hesaplayın.",
+       "2. Verileri aylara ve havalimanlarına göre gruplayın.",
+       "3. Modellerin mevsimsel hata karnesini çizgi grafik olarak kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Klasik EMOS optimizasyonunu scipy ile kurmak",
+    "oz": "Ensemble Model Output Statistics katsayılarını CRPS skorunu en küçükleyerek belirlemek.",
+    "ayrinti": "Üç modelin ortalaması ve yayılımı temel alınarak Gauss dağılımlı tahmin parametreleri tanımlanır. Scipy optimize kütüphanesiyle sürekli dereceli olasılık skorunu (CRPS) en küçükleyen katsayılar bulunur.",
+    "nasil": [
+     {
+      "teknik": "res = scipy.optimize.minimize(crps_cost_func, x0=[0, 1, 1], method='Nelder-Mead') ile optimal EMOS parametrelerini bulmak.",
+      "sade": "Modellerin tahmin ortalamasını ve varyansını birleştiren olasılık denkleminin katsayılarını, hata skorunu en aza indirecek şekilde matematiksel olarak optimize ederiz.",
+      "altAdimlar": [
+       "1. Gauss tahmin dağılımı için ortalama ve varyans denklemlerini kurun.",
+       "2. properscoring kütüphanesi ile CRPS maliyet fonksiyonunu yazın.",
+       "3. Nelder-Mead algoritması ile en iyi katsayı vektörünü çözün."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     },
+     {
+      "teknik": "crps_emos = ps.crps_gaussian(test_df['obs'], mu=pred_mean, sig=pred_std).mean() ile EMOS başarımını ölçmek.",
+      "sade": "Optimizasyonla bulunan katsayıları kullanarak test dönemindeki olasılıklı tahminlerin ne kadar güvenilir olduğunu skorlarız.",
+      "altAdimlar": [
+       "1. Test kümesinde her zaman adımı için Gauss parametrelerini üretin.",
+       "2. Gerçek METAR gözlemlerine karşı CRPS skorunu hesaplayın.",
+       "3. Klasik modellerle kıyaslamak üzere skorları tabloya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "PyTorch ile sinir ağı kalibrasyonu ve CRPS karnesi çıkarmak",
+    "oz": "İstasyon gömme katmanı ve CRPS kaybıyla derin regresyon ağını eğitip doğrulamak.",
+    "ayrinti": "PyTorch ile havalimanı kimliğini gömme vektörüne dönüştüren ve üç model çıktısını girdi alan çok katmanlı yapay sinir ağı kurulur. Çıktı olarak Gauss dağılımının ortalama ve standart sapmasını verir. CRPS kayıp fonksiyonuyla eğitilir.",
+    "nasil": [
+     {
+      "teknik": "class PostprocNN(nn.Module): def __init__(self): self.emb = nn.Embedding(3, 2); self.fc = nn.Linear(5, 2) ile mimariyi tanımlamak.",
+      "sade": "Havalimanının coğrafi konumunu temsil eden gömme katmanıyla üç modelin tahminlerini birleştiren küçük bir derin öğrenme ağı kurarız.",
+      "altAdimlar": [
+       "1. İstasyon ID'si için 2 boyutlu gömme katmanı tanımlayın.",
+       "2. Model tahminlerini gömme vektörüyle birleştiren lineer katmanları bağlayın.",
+       "3. Pozitif standart sapma için Softplus aktivasyon fonksiyonu ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ampirik Ortogonal Fonksiyonlar (EOF) ile basınç ve sıcaklık alanlarındaki temel salınım modlarını ayıklamak."
+      }
+     },
+     {
+      "teknik": "loss = crps_loss(y_pred_mu, torch.exp(y_pred_log_sig), y_true); loss.backward() ile sinir ağını eğitmek.",
+      "sade": "Ağın ürettiği olasılıklı tahminlerin gerçek hava gözlemleriyle örtüşmesini sağlayan CRPS kaybını geriye yayarak ağırlıkları güncelleriz.",
+      "altAdimlar": [
+       "1. PyTorch tensörleriyle sürekli CRPS analitik kayıp fonksiyonunu yazın.",
+       "2. Adam optimizasyon algoritması ile 50 dönem (epoch) eğitim yapın.",
+       "3. Son 6 aylık bağımsız test verisinde nihai skor karnesini üretin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ampirik Ortogonal Fonksiyonlar (EOF) ile basınç ve sıcaklık alanlarındaki temel salınım modlarını ayıklamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Ampirik Ortogonal Fonksiyonlar (EOF) ile basınç ve sıcaklık alanlarındaki temel salınım modlarını ayıklamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "AIFS, IFS ve GFS karşılaştırma karnesi, PyTorch olasılıklı son işleme modeli ve CRPS doğrulama tablosu.",
+  "senden": "Open-Meteo ve METAR verilerini çekmek, zaman serilerini temizlemek ve PyTorch eğitim döngüsünü kurmak.",
+  "bizden": "CRPS kayıp fonksiyonunu yazmak, EMOS katsayılarını optimize etmek ve model doğrulama analizini yürütmek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "AIFS ve IFS İstanbul 2 m sıcaklık tahmini karşılaştırma zaman serisi",
+   "aciklama": "Yapay zekâ AIFS ile fiziksel IFS modellerinin İstanbul istasyonundaki sıcaklık ayrışması"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs/ensemble-api",
+   "aciklama": "Open-Meteo AIFS ve küresel modeller ensemble arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Artificial_neural_network.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "İstasyon gömme katmanı ve CRPS çıkışlı yapay sinir ağı mimarisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Rasp ve Lerch 2018 Sinir Ağı ile Son İşleme Makalesi",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "Gneiting vd. 2005 EMOS Makalesi",
+   "url": "https://doi.org/10.1175/MWR2904.1"
+  },
+  {
+   "ad": "Vannitsem vd. 2021 İstatistiksel Son İşleme İncelemesi",
+   "url": "https://doi.org/10.1175/BAMS-D-19-0308.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO311E-02.json",
+  "tarih": "2026-10-17 01:53",
+  "geminiSha1": "fc8df1a09170"
+ }
+}

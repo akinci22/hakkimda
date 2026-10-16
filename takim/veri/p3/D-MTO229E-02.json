@@ -1,0 +1,437 @@
+{
+ "id": "D-MTO229E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 229E",
+  "dersAd": "Bulut ve Yağış Fiziği",
+  "kol": "anlatim"
+ },
+ "ad": "Damla boyundan radar yansıtıcılığına",
+ "ne": "Damla boy dağılımından radar yansıtıcılığını (Z) hesaplayan etkileşimli bir görselle, radarın yağışı nasıl kestirdiğini 10–15 dakikada anlat.",
+ "adimlar": [
+  "Marshall ve Palmer'ın üstel dağılımını N(D)=N0·exp(−ΛD) olarak yaz; Λ'nın yağış şiddetine bağlılığını makaleden al.",
+  "Python'da scipy ile Z=∫N(D)D⁶dD integralini sayısal hesapla; analitik sonuç 720·N0/Λ⁷ ile karşılaştır.",
+  "Farklı yağış şiddetleri için Z–R eğrisini log–log grafikte çiz.",
+  "N0'ı ipywidgets sürgüsüyle değiştirip aynı Z'nin neden farklı yağış şiddeti verebileceğini göster.",
+  "Videoyu çek, hoca incelemesine gönder."
+ ],
+ "sonuc": "Etkileşimli Z–R görseli ve 10–15 dakikalık video. Sayısal integral analitik sonuçla örtüşüyorsa hesap doğrudur; video radar kestiriminin belirsizliğini somut gösterir.",
+ "dayanak": "Marshall ve Palmer 1948",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 229E",
+    "ad": "Bulut ve Yağış Fiziği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "McGill Üniversitesi Radar Meteorolojisi Laboratuvarı",
+   "ne": "Marshall ve Palmer'ın öncülüğünde damla boyutu spektrumlarını ölçüp radar yansıtıcılık bağıntılarını (Z-R) geliştiren öncü araştırma enstitüsü.",
+   "url": "https://www.mcgill.ca/meteo/research/radar-meteorology",
+   "ayrinti": {
+    "neYaptilar": "Yağmur damlalarının boyut dağılımını disdrometre ölçümleriyle üstel fonksiyona bağlayıp Z = 200 R^1.6 standart radar formülünü geliştirdiler.",
+    "nasil": "MTO 229E Marshall-Palmer üstel dağılımı ve 6. moment integralini analitik çözerek yağış şiddeti ile yansıtıcılık ilişkisini kurdular.",
+    "neEdindiler": "Hava radarlarının bulutlardaki mikrofiziksel damla boyutundan yerdeki yağış miktarını kestirmesini sağlayan temel küresel standardı oluşturdular.",
+    "bizNasilKatki": "Z integralini scipy ile sayısal çözüp analitik gamma fonksiyonu çözümüyle karşılaştıran Python kodunu açık eğitime sunarız.",
+    "referanslar": [
+     {
+      "ad": "Marshall ve Palmer 1948 Yağmur Damlası Boyut Dağılımı Makalesi",
+      "url": "https://doi.org/10.1175/1520-0469(1948)005<0165:TDORWS>2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "McGill Radar Meteorolojisi Araştırma Merkezi",
+      "url": "https://www.mcgill.ca/meteo/research/radar-meteorology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.mcgill.ca/meteo/research/radar-meteorology",
+      "aciklama": "McGill Üniversitesi radar meteorolojisi araştırma arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Raindrops_sizes_and_shapes.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Damla boyutu dağılımı ve aerodinamik damla geometrisi şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo ve Ulusal Açık Radar Ağları Portalı",
+   "ne": "Meteoroloji radarlarının ham yansıtıcılık (dBZ) verilerini açık API üzerinden işleyip anlık yağış oranı çıktısına dönüştüren açık veri platformu.",
+   "url": "https://open-meteo.com/en/docs/radar-api",
+   "ayrinti": {
+    "neYaptilar": "Küresel hava radarlarının hacimsel tarama ekolarını Z-R dönüşüm algoritmalarıyla süzerek kullanıcılara anlık yağış haritası olarak sundular.",
+    "nasil": "MTO 229E Z = a R^b empirik katsayılarını stratiform ve konvektif yağış türlerine göre dinamik olarak optimize eden algoritmalar işlettiler.",
+    "neEdindiler": "Milyonlarca kullanıcıya radar yansıtıcılığından türetilmiş 15 dakikalık yüksek çözünürlüklü açık yağış verisi sağladılar.",
+    "bizNasilKatki": "Farklı N0 ve Lambda değerlerinin Z-R eğrisinde yarattığı belirsizlik aralığını hesaplayan açık Jupyter görseli hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Radar Veri Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/radar-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Rogers ve Yau 1989 Bulut Fiziği Kısa Ders Kitabı",
+      "url": "https://openlibrary.org/isbn/9780750632157",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/radar-api",
+      "aciklama": "Open-Meteo açık radar yansıtıcılığı ve yağış API paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "İstanbul radarı yansıtıcılık (dBZ) ve hesaplanan yağış şiddeti döngüsü",
+      "aciklama": "Radar yansıtıcılık ekolarının Z-R bağıntısıyla yağış oranına dönüştürülmesinin zamansal animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Radar Eğitimi ve İnteraktif Görselleştirme Ekibi",
+   "ne": "Damla boyu dağılımından radar yansıtıcılığına geçişi ipywidgets sürgüsü ve 10-15 dakikalık açık videoyla anlatan öğrenci takımı.",
+   "url": "https://github.com/aura-itu/damla-boyu-radar-yansiticilik",
+   "ayrinti": {
+    "neYaptilar": "Z = integral(N(D) D^6 dD) integralini sayısal hesaplayıp analitik 720 N0 / Lambda^7 formülüyle birebir doğrulayan etkileşimli görsel yaptılar.",
+    "nasil": "MTO 229E Marshall-Palmer denklemini NumPy ve SciPy ile kodlayıp N0 sürgüsüyle aynı yansıtıcılığın farklı yağış şiddeti verebileceğini gösterdiler.",
+    "neEdindiler": "Radar meteorolojisi dersi alan öğrencilere radarın neden bazen hafif yağmuru dolu, bazen sağanağı çisenti gibi gördüğünü somutça öğrettiler.",
+    "bizNasilKatki": "Etkileşimli matplotlib widget arayüzünü ve 10-15 dakikalık Türkçe eğitim videosunu GitHub açık eğitim deposunda paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA Damla Boyu ve Radar GitHub Deposu",
+      "url": "https://github.com/aura-itu/damla-boyu-radar-yansiticilik",
+      "tur": "kod"
+     },
+     {
+      "ad": "Pruppacher ve Klett 2010 Bulut ve Yağış Mikrofiziği Kitabı",
+      "url": "https://openlibrary.org/isbn/9780792344094",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/damla-boyu-radar-yansiticilik",
+      "aciklama": "AURA etkileşimli Z-R simülasyon arayüzü ve ipywidgets parametre sürgüleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Yağış şiddetine bağlı olarak Marshall-Palmer damla boyutu dağılımının değişimi",
+      "aciklama": "Yağış şiddeti 1'den 50 mm/saate çıktıkça damla boyutu spektrumunun logaritmik dönüşümü animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Damla boyundan radar yağışına; İstanbul yağış tahminini ölç, yağmur oluşumunu ağla taklit et.",
+  "baglanti": "Yazılımda günlük yağış tahmini doğrulaması; anlatımda damla boy dağılımı ve radar yağışı videosu.",
+  "literatur": {
+   "maddeler": [
+    "Bulut damlası önce yoğuşmayla büyür ama yağmur boyuna yoğuşma tek başına yetmez; ılık bulutta çarpışma–birleşme gerekir (Rogers ve Yau 1989)",
+    "Yağmur damlalarının boy dağılımı üstel bir yasayla yaklaşık temsil edilir; radar yağış kestirimindeki Z–R bağıntıları bu dağılıma dayanır (Marshall ve Palmer 1948)",
+    "Mikrofizik süreç hızlarındaki bilgi boşlukları, sayısal hava tahmini ve iklim benzetimlerinde önemli bir belirsizlik kaynağı (Morrison vd. 2020)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Süperdamlacık verisiyle eğitilen ağlar ılık yağmur süreç hızlarını iyi kestirdi ama zamanda ilerletince klasik şemayı geçemedi; yazarlar zaman türevli yöntem öneriyor (Seifert ve Rasp 2020)",
+    "Bin mikrofiziği iklim modelini %400 yavaşlattı; ağ öykünücüsü sonucu büyük ölçüde kontrol maliyetiyle verdi; yazarlar aşırı uyum ve ekstrapolasyon riskini tartışıyor (Gettelman vd. 2021)",
+    "Radar tabanlı üretken ağ DGMR 90 dakikaya kadar bulanıklaşmayan olasılıksal yağış tahmini verdi; 50'den fazla meteorolog %89 durumda onu ilk sıraya koydu (Ravuri vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Rogers ve Yau 1989",
+    "baslik": "A Short Course in Cloud Physics (3. baskı)",
+    "yayin": "Pergamon Press; Butterworth-Heinemann / Elsevier yeniden basımı (1996)",
+    "yil": "1989",
+    "url": "https://shop.elsevier.com/books/a-short-course-in-cloud-physics/yau/978-0-7506-3215-7",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Marshall ve Palmer 1948",
+    "baslik": "The distribution of raindrops with size",
+    "yayin": "Journal of Meteorology, 5, 165–166",
+    "yil": "1948",
+    "url": "https://doi.org/10.1175/1520-0469(1948)005<0165:TDORWS>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Morrison vd. 2020",
+    "baslik": "Confronting the Challenge of Modeling Cloud and Precipitation Microphysics",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2019MS001689",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Seifert ve Rasp 2020",
+    "baslik": "Potential and Limitations of Machine Learning for Modeling Warm-Rain Cloud Microphysical Processes",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2020MS002301",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Gettelman vd. 2021",
+    "baslik": "Machine Learning the Warm Rain Process",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 13",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2020MS002268",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597, 672–677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Marshall-Palmer damla boyu dağılımından radar yansıtıcılığını (Z) sayısal ve analitik hesaplayıp Z-R belirsizliğini anlatan etkileşimli eğitim videosu üretmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 229E",
+   "projeyeKatki": "Marshall-Palmer damla boyutu dağılımı ve Köhler kuramıyla mikro damlacıkların radar yansıtıcılık integrali ve yüzey ıslanmasına katkısını kuramsal olarak temellendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Marshall-Palmer yağmur damlası boyutu dağılımı",
+     "nerede": "N(D) = N0 exp(-Lambda D) dağılımını 6. kuvvetle çarparak radar yansıtıcılık faktörü Z integralini hesaplarken."
+    },
+    {
+     "formulAd": "Köhler eğrisi denklemi (aşırı doymuşluk ve damla çapı)",
+     "nerede": "Mikro damlacıkların aktivasyon çapını aşarak yağmur damlası boyut spektrumuna katılım sınırını açıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Marshall-Palmer dağılımından Z integralini sayısal ve analitik çözüp Z–R belirsizliğini 10-15 dakikalık açık videoda anlatmak.",
+  "ayrinti": "Marshall ve Palmer üstel damla boyutu dağılımı formüle edilir. SciPy integrate ile Z = integral N(D) D^6 dD sayısal olarak çözülür ve analitik 720 N0 / Lambda^7 bağıntısıyla doğrulanır. Farklı yağış şiddetleri için Z-R eğrisi çizilir. ipywidgets sürgüsüyle damla sayısı N0 değiştirilerek aynı dBZ değerinin farklı yağış şiddetlerine yol açabileceği gösterilir. 10-15 dakikalık eğitim videosu çekilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Marshall-Palmer üstel dağılımını Python'da kodlamak",
+    "oz": "N(D) = N0 exp(-Lambda D) fonksiyonunu ve parametrelerini tanımlamak.",
+    "ayrinti": "Marshall-Palmer formülasyonu yazılır. Lambda eğim parametresinin yağış şiddeti R'ye bağımlılığı Lambda = 4.1 R^(-0.21) olarak fonksiyonlaştırılır.",
+    "nasil": [
+     {
+      "teknik": "def n_d(D, R, N0=8000): lam = 4.1 * (R**(-0.21)); return N0 * np.exp(-lam * D) bağıntısını tanımlamak.",
+      "sade": "Yağmur damlalarının boyutlara göre havada kaç tane bulunduğunu veren temel fizik formülünü bilgisayarda çalıştırırız.",
+      "altAdimlar": [
+       "1. D damla çapı aralığını 0.1 mm'den 6.0 mm'ye kadar 1000 noktada oluşturun.",
+       "2. Farklı yağış şiddetleri (R = 1, 5, 20, 50 mm/saat) için Lambda değerlerini hesaplayın.",
+       "3. Her R için damla sayı yoğunluğu eğrisini yarı-logaritmik eksende önizleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "plt.semilogy(D, n_d(D, 5), label='R=5 mm/h'); plt.semilogy(D, n_d(D, 25), label='R=25 mm/h') ile spektrumu çizmek.",
+      "sade": "Şiddetli yağmurda büyük damlaların oranının nasıl arttığını yarı logaritmik eksende eğrilerle görselleştiririz.",
+      "altAdimlar": [
+       "1. Matplotlib yarı logaritmik grafik alanını eksen etiketleriyle kurun.",
+       "2. 1, 5, 25 mm/saat yağış şiddetleri için eğrileri üst üste çizin.",
+       "3. Eğim parametresi Lambda'nın şiddetli yağmurda yatıklaştığını gözlemleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Radar yansıtıcılık faktörü Z integralini çözmek ve sınamak",
+    "oz": "Sayısal integrali analitik 720 N0 / Lambda^7 sonucuyla karşılaştırmak.",
+    "ayrinti": "SciPy quad ile N(D)*D^6 integralinin sayısal integrali alınır. Analitik gamma fonksiyonu integrali sonucuyla farkın sıfıra yakın olduğu doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "z_num, _ = scipy.integrate.quad(lambda D: n_d(D, R) * (D**6), 0, np.inf); z_ana = 720 * N0 / (lam**7) ile doğrulamak.",
+      "sade": "Radarın gördüğü sinyali küçük parçaları toplayarak hesaplar ve kuramsal matematik çözümüyle yüzde yüz tuttuğunu kanıtlarız.",
+      "altAdimlar": [
+       "1. scipy.integrate kütüphanesini içe aktarıp integrasyon sınırlarını 0'dan sonsuza tanımlayın.",
+       "2. quad işleviyle sayısal yansıtıcılık Z değerini mm^6/m^3 biriminde hesaplayın.",
+       "3. Analitik kapalı formül ile sayısal sonucun göreli farkının %0.01 altında olduğunu test edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "dbz = 10 * np.log10(np.maximum(z_num, 1e-3)) formülüyle doğrusal yansıtıcılığı desibel yansıtıcılık ölçeğine çevirmek.",
+      "sade": "Hesaplanan çok büyük sayısal yansıtıcılık değerlerini meteoroloji radarlarında kullanılan standart dBZ birimine dönüştürürüz.",
+      "altAdimlar": [
+       "1. Sayısal integralden çıkan Z değerini 1 mm^6/m^3 referansına oranlayın.",
+       "2. On tabanlı logaritmasını alıp 10 katsayısıyla çarparak dBZ değerini bulun.",
+       "3. Çisenti için 20 dBZ, şiddetli sağanak için 45 dBZ değerleriyle tutarlılığı sınayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Z–R ilişkisi ve ipywidgets ile parametre sürgüsü kurmak",
+    "oz": "N0 ve Lambda sürgüleriyle aynı Z'nin farklı yağış vermesini göstermek.",
+    "ayrinti": "ipywidgets ile etkileşimli arayüz kurulur. N0 sabitinin denizel ve karasal bulutlara göre değişmesinin aynı yansıtıcılıkta farklı yağış şiddeti ürettiği sergilenir.",
+    "nasil": [
+     {
+      "teknik": "widgets.interact(update_plot, N0=(2000, 16000, 1000), R=(0.5, 60, 0.5)) ile etkileşimli Z-R eğrisi çizdirmek.",
+      "sade": "Kullanıcının kaydırabileceği sürgüler ekleyerek buluttaki damla sayısı değiştiğinde radarın yağmuru nasıl farklı tahmin edebileceğini gösteririz.",
+      "altAdimlar": [
+       "1. ipywidgets kütüphanesiyle N0 ve R için kaydırma çubuklarını (slider) tanımlayın.",
+       "2. Her sürgü hareketinde Z ve karşılık gelen dBZ değerini anlık güncelleyin.",
+       "3. Aynı 40 dBZ değerinin fırtına türüne göre 10 ile 30 mm/saat arasında değişebildiğini vurgulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Bulut yoğuşma çekirdekleri (CCN) üzerinde su buharı difüzyonuyla damla büyümesini hesaplamak."
+      }
+     },
+     {
+      "teknik": "fig, ax = plt.subplots(); @widgets.interact(N0=(2000, 16000, 1000)) def update(N0): ax.clear(); ax.plot(R, (z_func(R, N0))) ile güncellemek.",
+      "sade": "Kullanıcı damla sayısı sürgüsünü oynattıkça ekrandaki Z-R eğrisinin nasıl yukarı aşağı kaydığını canlı olarak gösteririz.",
+      "altAdimlar": [
+       "1. Etkileşimli Matplotlib çizim fonksiyonunu tanımlayın.",
+       "2. N0 sürgüsü değiştikçe yeni Z-R ilişkisini anında yeniden hesaplayın.",
+       "3. Standart Marshall-Palmer referans çizgisiyle anlık farkı ekranda gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Bulut yoğuşma çekirdekleri (CCN) üzerinde su buharı difüzyonuyla damla büyümesini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Bulut yoğuşma çekirdekleri (CCN) üzerinde su buharı difüzyonuyla damla büyümesini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Eğitim videosunu hazırlayıp açık erişimde yayınlamak",
+    "oz": "Z–R dönüşümünü ve radar belirsizliklerini anlatan 10–15 dakikalık video çekmek.",
+    "ayrinti": "Radar formüllerinin fiziksel anlamını ve hava durumu uygulamalarındaki belirsizlikleri adım adım açıklayan 10-15 dakikalık açık ders videosu çekilir.",
+    "nasil": [
+     {
+      "teknik": "OBS Studio ile 1080p video çekip matematiksel integrasyon adımları ve widget ekranını eşzamanlı sunmak.",
+      "sade": "Radar ekranlarındaki renklerin nereden geldiğini ve neden bazen yanıltıcı olabileceğini anlatan berrak bir eğitim videosu üretiriz.",
+      "altAdimlar": [
+       "1. Matematiksel adımları ve radar tarama geometrisini içeren sunum slaytlarını hazırlayın.",
+       "2. ipywidgets etkileşimli arayüzü canlı çalıştırarak sesli anlatımı gerçekleştirin.",
+       "3. Video ve kodları açık kaynaklı GitHub deposuna aktarıp erişime açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     },
+     {
+      "teknik": "plt.savefig('zr_belirsizlik_analizi.png', dpi=300); repo.push() ile eğitim materyallerini açık erişime aktarmak.",
+      "sade": "Radar yansıtıcılığındaki mikrofiziksel belirsizliği özetleyen karşılaştırma grafiğini ve video notlarını diske aktarırız.",
+      "altAdimlar": [
+       "1. Etkileşimli analiz ekranından 300 DPI netliğinde özet şekil üretin.",
+       "2. Ders videosunun konuşma metnini ve formül çıkarımlarını Markdown olarak derleyin.",
+       "3. Açık GitHub deposu üzerinden materyalleri kamuoyuyla paylaşın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Sayısal ve analitik Z integrali doğrulama kodu, etkileşimli ipywidgets Z-R simülasyonu ve 10–15 dakikalık açık eğitim videosu.",
+  "senden": "Marshall-Palmer dağılımını kodlayan ve SciPy ile Z integralini çözen Python fonksiyonlarını yazmak.",
+  "bizden": "ipywidgets sürgü arayüzünü tasarlamak, analitik ispatı hazırlamak ve eğitim videosunu seslendirmek."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs/radar-api",
+   "aciklama": "Open-Meteo açık hava radarı veri erişim paneli"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "İstanbul radarı yansıtıcılık (dBZ) ve hesaplanan yağış şiddeti döngüsü",
+   "aciklama": "Radar yansıtıcılık ekolarının Z-R bağıntısıyla yağış oranına dönüştürülmesinin zamansal animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Raindrops_sizes_and_shapes.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Damla boyutu dağılımı ve aerodinamik damla geometrisi şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Marshall ve Palmer 1948 Yağmur Damlası Boyut Dağılımı Makalesi",
+   "url": "https://doi.org/10.1175/1520-0469(1948)005<0165:TDORWS>2.0.CO;2"
+  },
+  {
+   "ad": "Rogers ve Yau 1989 Bulut Fiziği Kısa Ders Kitabı",
+   "url": "https://openlibrary.org/isbn/9780750632157"
+  },
+  {
+   "ad": "Pruppacher ve Klett 2010 Bulut ve Yağış Mikrofiziği Kitabı",
+   "url": "https://openlibrary.org/isbn/9780792344094"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO229E-02.json",
+  "tarih": "2026-10-17 01:45",
+  "geminiSha1": "e9b5bca365ff"
+ }
+}

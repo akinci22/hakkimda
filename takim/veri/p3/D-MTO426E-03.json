@@ -1,0 +1,449 @@
+{
+ "id": "D-MTO426E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 426E",
+  "dersAd": "Micrometeorology (Mikrometeoroloji)",
+  "kol": "ikisi"
+ },
+ "ad": "İstanbul'da kararlılığın gün içi dönüşü: kara ve deniz",
+ "ne": "ERA5'in sürtünme hızı ve duyulur ısı akısından Obukhov uzunluğunu hesapla; İstanbul'da bir kara ve bir Marmara noktasında z/L'nin gün ve mevsim içindeki değişimini göster.",
+ "adimlar": [
+  "Copernicus CDS'ten İstanbul çevresi için bir yıllık ERA5 sürtünme hızı, duyulur ısı akısı, 2 m sıcaklık ve yüzey basıncını indir.",
+  "Duyulur ısı akısını 3600'e bölüp W m⁻²'ye çevir; ECMWF'de akının aşağı yönde pozitif olduğunu unutmadan işaretini düzelt.",
+  "Obukhov uzunluğunu L = −u*³·θ·ρ·cp / (k·g·H) ile hesapla; 10 m için z/L'yi bul.",
+  "Bir kara ve bir deniz ızgara noktası için z/L'nin saat × ay ortalamasını ısı haritası olarak çiz.",
+  "Kara ile deniz arasındaki farkı kuramın beklentisiyle karşılaştır; 10 dakikalık videoda anlatıp hocanın incelemesine sun."
+ ],
+ "sonuc": "Elinde kara ve deniz için z/L ısı haritaları olur; karada gece pozitif, öğle negatif z/L çıkıyor ve deniz noktası daha az değişiyorsa hesabın fiziksel olarak tutarlıdır.",
+ "dayanak": "Stull 1988",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 426E",
+    "ad": "Micrometeorology (Mikrometeoroloji)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Utrecht Üniversitesi Deniz ve Kıyı Sınır Tabakası Araştırma Grubu",
+   "ne": "Kıyı bölgelerinde kara-deniz etkileşimini ve yüzey kararlılık döngülerini kule ve yeniden analizle çalışan enstitü.",
+   "url": "https://doi.org/10.1007/s10546-006-9048-6",
+   "ayrinti": {
+    "neYaptilar": "Foken ve kıyı meteorolojisi araştırmacıları deniz üzerindeki düşük pürüzlülük ve yüksek ısı kapasitesinin kararlılığa etkisini belgelediler.",
+    "nasil": "Kıyı şeridinde kara ve deniz noktalarında sürtünme hızı ve ısı akısı gradyanlarını saatlik çözünürlükte karşılaştırdılar.",
+    "neEdindiler": "Deniz üzerinde gün içi kararlılık değişiminin karaya göre çok daha zayıf kaldığını ve sonbaharda kararsızlığın uzadığını gösterdiler.",
+    "bizNasilKatki": "İstanbul çevresinde kara ve Marmara Denizi noktalarında saatlik z/L ısı haritası çıkaran analiz aracı kurarız.",
+    "referanslar": [
+     {
+      "ad": "Foken 2006 Monin-Obukhov Benzerlik Kuramının 50 Yılı",
+      "url": "https://doi.org/10.1007/s10546-006-9048-6",
+      "tur": "makale"
+     },
+     {
+      "ad": "Stull 1988 Sınır Tabaka Meteorolojisi Ders Kitabı",
+      "url": "https://doi.org/10.1007/978-94-009-3027-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kara ve su yüzeyi üzerinde sınır tabaka dikey yapısı ve termal tabakalaşma şeması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Denizi ve İstanbul karasında ERA5 10 m z/L kararlılık parametresi döngüsü",
+      "aciklama": "Gün ve gece boyunca kara ile deniz arasındaki Obukhov kararlılık rejiminin dönüşümü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus İklim Değişikliği Servisi (C3S) Açık Veri Portalı",
+   "ne": "ECMWF ERA5 yeniden analizinin saatlik küresel yüzey akılarını araştırmacılara sunan açık veri merkezi.",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+   "ayrinti": {
+    "neYaptilar": "0,25 derece ızgarada saatlik yüzey sürtünme hızı, duyulur ısı akısı ve 2 m sıcaklık verilerini küresel ölçekte sundular.",
+    "nasil": "Gelişmiş veri asimilasyonu ve 4D-Var yöntemiyle yer ve uydu gözlemlerini fiziksel sınır tabaka modelleriyle birleştirdiler.",
+    "neEdindiler": "1940'tan günümüze kadar kesintisiz ve tutarlı yüzey mikrometeoroloji arşivini araştırmacıların kullanımına açtılar.",
+    "bizNasilKatki": "CDS API üzerinden İstanbul kutusunu çeken ve birim dönüşümlerini otomatik yapan Python boru hattı geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Copernicus CDS ERA5 Tek Seviye Veri Seti Dokümantasyonu",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "tur": "web"
+     },
+     {
+      "ad": "Businger vd. 1971 Akı-Profil Bağıntıları",
+      "url": "https://doi.org/10.1175/1520-0469(1971)028%3C0181:FPRITA%3E2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "Copernicus İklim Veri Deposu ERA5 veri indirme ve değişken seçim arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "ERA5 yüzey akıları parametre açıklamaları ve birim tanımları tablosu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Mikrometeoroloji ve Sınır Tabaka Grubu",
+   "ne": "İstanbul'da kara ve deniz mikrometeorolojisini ERA5 akılarıyla çözümleyen İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-kara-deniz-kararlilik",
+   "ayrinti": {
+    "neYaptilar": "İstanbul Çatalca (kara) ve Marmara Denizi açıklarında birer ızgara noktası seçip saatlik z/L serisini hesapladılar.",
+    "nasil": "u*, H, theta ve hava yoğunluğundan Obukhov uzunluğu L'yi türeterek saat x ay matrislerini ısı haritasına dönüştürdüler.",
+    "neEdindiler": "Karada yaz öğlesinde z/L=-0,8'e varan güçlü konveksiyon görülürken Marmara'da z/L'nin sıfıra yakın nötr kaldığını saptadılar.",
+    "bizNasilKatki": "Açık kaynaklı veri çekme defteri, saat x ay ısı haritası çizim modülü ve 10 dakikalık video sunumu hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Kara Deniz Kararlılık GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-kara-deniz-kararlilik",
+      "tur": "kod"
+     },
+     {
+      "ad": "McCandless vd. 2022 Yüzey Akılarında Makine Öğrenmesi",
+      "url": "https://doi.org/10.1007/s10546-022-00727-4",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-kara-deniz-kararlilik",
+      "aciklama": "AURA kara ve deniz noktaları z/L saat x ay ısı haritaları paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Sea_breeze_diagram.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kara ve deniz arasındaki termal ısınma farkından doğan kıyı dolaşımı şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yüzey akılarını benzerlik kuramıyla ve makine öğrenmesiyle hesaplayıp gerçek kule ölçümüyle sınamak.",
+  "baglanti": "Yazılım kolunda yakın yüzey rüzgâr ve sıcaklık düzeltmesine fiziksel temel; Anlatım kolunda kararlılık ve rüzgâr profili videosu.",
+  "literatur": {
+   "maddeler": [
+    "Kansas deneyinde doğrudan ölçülen akılar ve profiller, Monin-Obukhov kuramındaki boyutsuz gradyan fonksiyonlarını z/L'ye göre belirledi. (Businger vd. 1971)",
+    "Monin-Obukhov kuramı Obukhov uzunluğuna dayanır; makale evrensel fonksiyonların doğruluğunu ve türbülans Prandtl sayısını güncel konular olarak ele alır. (Foken 2006)",
+    "Yüzey tabakasında akılar girdap kovaryansıyla ölçülür; sürtünme hızı u* ve sıcaklık ölçeği θ* akıları ölçeklemenin temelidir. (Stull 1988)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rastgele orman ve yapay sinir ağı, Cabauw ve Idaho kulelerinin çok yıllık gözlemiyle eğitilince momentum, ısı ve nem akısını MOST'tan daha doğru tahmin etti. (McCandless vd. 2022)",
+    "Tek gizli katmanlı sinir ağı yedi farklı yüzeyde u* ve θ*'yı yinelemesiz hesapladı; sonuç standart yönteme benzer, kimi durumda biraz daha iyiydi. (Leufen ve Schädler 2019)",
+    "Sinir ağı akı şeması LES içinde denendi; yazarlar fiziksel olmayan sonuçları önlemek ve evrensel bir şema kurmak için kalan sorunları açıkça sıralıyor. (Muñoz-Esparza vd. 2022)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Businger vd. 1971",
+    "baslik": "Flux-Profile Relationships in the Atmospheric Surface Layer",
+    "yayin": "Journal of the Atmospheric Sciences 28(2), 181-189",
+    "yil": "1971",
+    "url": "https://doi.org/10.1175/1520-0469(1971)028%3C0181:FPRITA%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Foken 2006",
+    "baslik": "50 Years of the Monin-Obukhov Similarity Theory",
+    "yayin": "Boundary-Layer Meteorology 119(3), 431-447",
+    "yil": "2006",
+    "url": "https://doi.org/10.1007/s10546-006-9048-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer Academic (Springer), ders kitabı",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "McCandless vd. 2022",
+    "baslik": "Machine Learning for Improving Surface-Layer-Flux Estimates",
+    "yayin": "Boundary-Layer Meteorology 185(2), 199-228",
+    "yil": "2022",
+    "url": "https://doi.org/10.1007/s10546-022-00727-4",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Leufen ve Schädler 2019",
+    "baslik": "Calculating the turbulent fluxes in the atmospheric surface layer with neural networks",
+    "yayin": "Geoscientific Model Development 12(5), 2033-2047",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/gmd-12-2033-2019",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Muñoz-Esparza vd. 2022",
+    "baslik": "On the Application of an Observations-Based Machine Learning Parameterization of Surface Layer Fluxes Within an Atmospheric Large-Eddy Simulation Model",
+    "yayin": "Journal of Geophysical Research: Atmospheres 127(16), e2021JD036214",
+    "yil": "2022",
+    "url": "https://doi.org/10.1029/2021JD036214",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ERA5 yüzey akılarıyla Obukhov uzunluğunu hesaplayıp İstanbul'da kara ve Marmara Denizi noktalarındaki kararlılık dönüşümünü haritalamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 426E",
+   "projeyeKatki": "Deniz ve kara yüzeyleri arasındaki termal atalet farkını, Obukhov uzunluğu ve gün içi kararlılık rejimlerini öğretir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Monin-Obukhov uzunluğu",
+     "nerede": "ERA5 sürtünme hızı ve yüzey duyulur ısı akısından kara ve deniz noktalarında saatlik L ve z/L değerlerini hesaplarken."
+    },
+    {
+     "formulAd": "Girdap kovaryansı ile duyulur ısı akısı",
+     "nerede": "ECMWF kümülatif ısı akısı verisini W/m² birimine dönüştürüp yüzey termal zorlamasını değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 akı verileriyle İstanbul kara ve Marmara Denizi noktalarında Obukhov uzunluğunu hesaplayıp saatlik ısı haritası çıkarmak.",
+  "ayrinti": "Copernicus CDS API üzerinden İstanbul için 1 yıllık ERA5 sürtünme hızı, yüzey duyulur ısı akısı ve sıcaklık çekilir. Akı birimi W/m²'ye dönüştürülüp işaret düzeltmesi yapılır. Obukhov formülüyle 10 m için z/L türetilir; kara ve deniz ızgara noktalarında saat × ay ısı haritaları çizilerek 10 dakikalık video hazırlanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 yüzey akılarını CDS API ile indirmek",
+    "oz": "İstanbul kutusu için 1 yıllık saatlik sürtünme hızı ve ısı akısını çekmek.",
+    "ayrinti": "Copernicus CDS API üzerinden 40.5-41.5K ve 28.0-29.5D koordinat kutusunda sürtünme hızı (zust), yüzey duyulur ısı akısı (sshf), 2 m sıcaklık (t2m) ve yüzey basıncı (sp) saatlik olarak indirilir.",
+    "nasil": [
+     {
+      "teknik": "c.retrieve('reanalysis-era5-single-levels', request_params, 'era5_ist_flux.nc') ile NetCDF veri dosyasını indirmek.",
+      "sade": "İstanbul kara ve deniz alanını kapsayan bir yıllık saatlik atmosferik akı verilerini Copernicus arşivinden çekeriz.",
+      "altAdimlar": [
+       "1. CDS API yapılandırma dosyasını erişim anahtarıyla doğrulayın.",
+       "2. İstanbul kutusu ve istenen yüzey akı değişkenlerini istek sözlüğüne ekleyin.",
+       "3. İndirilen NetCDF dosyasını yerel proje dizinine kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Girdap kovaryansı ölçümlerinden sürtünme hızı (u*) ve duyulur ısı akısını (H) türetmek."
+      }
+     },
+     {
+      "teknik": "ds['H'] = -ds['sshf'] / 3600.0 ile kümülatif akıyı W/m² anlık akıya çevirmek.",
+      "sade": "ECMWF'de aşağı yönlü kümülatif olarak verilen ısı akısını saniyede yukarı çıkan anlık watt birimine dönüştürürüz.",
+      "altAdimlar": [
+       "1. J/m² cinsinden verilen saatlik birikimli sshf verisini 3600 saniyeye bölün.",
+       "2. Yüzeyden atmosfere yukarı yönlü ısı akısını pozitif yapacak işaret dönüşümünü uygulayın.",
+       "3. xarray veri kümesine anlık H değişkeni olarak atayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 426E",
+      "madde": "Girdap kovaryansı ölçümlerinden sürtünme hızı (u*) ve duyulur ısı akısını (H) türetmek."
+     },
+     {
+      "ders": "MTO 426E",
+      "madde": "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Obukhov uzunluğu ve 10 m z/L parametresini hesaplamak",
+    "oz": "Formülle saatlik L değerini ve kararlılık rejimini türetmek.",
+    "ayrinti": "Her saat ve ızgara noktası için hava yoğunluğu (rho) ideal gaz yasasıyla, sanal potansiyel sıcaklık (theta_v) barometrik formülle hesaplanır; L = -(u*^3 * theta * rho * cp) / (kappa * g * H) ile z/L (z=10m) çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "calc_obukhov_length(ds['zust'], ds['H'], ds['t2m'], ds['sp']) ile saatlik L dizisini hesaplamak.",
+      "sade": "Rüzgâr sürtünmesi ile güneşin ısıtma gücünü dengeleyen atmosferik sınır tabaka uzunluk ölçeğini buluruz.",
+      "altAdimlar": [
+       "1. Yüzey basıncı ve sıcaklıktan kuru hava yoğunluğunu (rho) türetin.",
+       "2. von Kármán sabiti (0,40) ve yer çekimi ivmesiyle Obukhov pay ve paydasını oluşturun.",
+       "3. Paydanın sıfıra yaklaştığı nötr durumlarda sayısal taşmayı önleyen sınır koyun."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+      }
+     },
+     {
+      "teknik": "ds['z_L'] = np.clip(10.0 / ds['L'], -5.0, 5.0) ile 10 metre kararlılık oranını sınırlamak.",
+      "sade": "Hesaplanan değeri 10 metreye oranlayıp aşırı uç noktaları filtreleyerek kararlılık indeksini hazırlarız.",
+      "altAdimlar": [
+       "1. 10 metrelik standart anemometre yüksekliğini L'ye bölün.",
+       "2. Çok küçük rüzgârlardaki yapay uç değerleri [-5, 5] aralığına kırpın.",
+       "3. Pozitif değerleri kararlı gece, negatif değerleri kararsız gündüz olarak etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 426E",
+      "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kara ve deniz noktaları için saat x ay ısı haritaları çizmek",
+    "oz": "Çatalca ve Marmara noktalarında z/L döngüsünü karşılaştırmalı görselleştirmek.",
+    "ayrinti": "Çatalca (kara) ve Marmara Denizi açıklarındaki iki ızgara noktası seçilir. 24 saat x 12 ay matrisi oluşturularak seaborn ile iki panelli karşılaştırmalı ısı haritası çizilir.",
+    "nasil": [
+     {
+      "teknik": "matrix_land = ds_land.groupby(['time.month', 'time.hour'])['z_L'].mean().unstack() ile matris türetmek.",
+      "sade": "Yılın her ayı ve günün her saati için kararlılık ortalamasını 12x24 boyutlu tabloya dönüştürürüz.",
+      "altAdimlar": [
+       "1. Kara ve deniz koordinatlarındaki en yakın ızgara noktalarını seçin.",
+       "2. Ay ve saat bazında ortalama z/L matrisini oluşturun.",
+       "3. İki nokta için eksik verisi olmayan temiz tabloları hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak."
+      }
+     },
+     {
+      "teknik": "plot_comparative_heatmaps(matrix_land, matrix_sea, 'istanbul_stability_heatmaps.png') ile çizmek.",
+      "sade": "Karada gece ve gündüzün nasıl zıt renklere büründüğünü, denizin ise ne kadar durağan kaldığını yan yana sergileriz.",
+      "altAdimlar": [
+       "1. Çift panelli matplotlib figürü ve ayrık iki kutuplu renk paleti oluşturun.",
+       "2. Sol panelde Çatalca kara noktasını, sağ panelde Marmara deniz noktasını çizin.",
+       "3. Isı haritası üzerine ay ve saat etiketlerini ekleyip görseli kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 426E",
+      "madde": "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak."
+     },
+     {
+      "ders": "MTO 426E",
+      "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Analiz defterini ve 10 dakikalık videoyu yayınlamak",
+    "oz": "Colab defterini ve video anlatımını açık depoda erişime açmak.",
+    "ayrinti": "ERA5 veri işleme, Obukhov hesabı ve ısı haritası çizim kodları Colab defterinde toplanır. Deniz-kara farkını anlatan 10 dakikalık video sunumu hazırlanarak depoda paylaşılır.",
+    "nasil": [
+     {
+      "teknik": "publish_stability_toolkit('istanbul-kara-deniz-kararlilik', notebook='era5_stability_heatmaps.ipynb') ile depoyu derlemek.",
+      "sade": "Herkesin kendi şehri için kara ve deniz kararlılık analizi yapabileceği açık Jupyter defterini sunarız.",
+      "altAdimlar": [
+       "1. Tüm veri işleme ve görselleştirme adımlarını Colab defterinde birleştirin.",
+       "2. GitHub deposuna yükleyip README ve lisans dosyalarını ekleyin.",
+       "3. İnceleme taslağını oluşturup proje dokümantasyonuna bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak."
+      }
+     },
+     {
+      "teknik": "produce_sea_land_script('marmara_stability_script.md', target_duration=600) ile sunumu yapılandırmak.",
+      "sade": "Marmara'nın yüksek ısıl kapasitesinin gece soğumasını ve sis oluşumunu nasıl etkilediğini 10 dakikada anlatırız.",
+      "altAdimlar": [
+       "1. 10 dakikalık kıyı mikrometeorolojisi video senaryosunu hazırlayın.",
+       "2. Isı haritalarındaki mevsimsel dönüşüm noktalarını slaytlara yerleştirin.",
+       "3. Taslak sunumu video bağlantısıyla birlikte depoya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 426E",
+      "madde": "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak."
+     },
+     {
+      "ders": "MTO 426E",
+      "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul kara ve Marmara Denizi noktalarında z/L saatlik kararlılık ısı haritaları, Colab analiz defteri ve video sunumu.",
+  "senden": "Copernicus CDS API istemcisini kodlamak, ERA5 verilerini xarray ile ayıklamak ve saat x ay ısı haritası grafiklerini çizmek.",
+  "bizden": "MTO 426E Obukhov uzunluğu formülasyonunu aktarmak, deniz ve kara arasındaki termal faz farkını ve kararlılık rejimini yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Denizi ve İstanbul karasında ERA5 10 m z/L kararlılık parametresi döngüsü",
+   "aciklama": "Gün ve gece boyunca kara ile deniz arasındaki Obukhov kararlılık rejiminin dönüşümü"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/istanbul-kara-deniz-kararlilik",
+   "aciklama": "AURA kara ve deniz noktaları z/L saat x ay ısı haritaları paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Kara ve su yüzeyi üzerinde sınır tabaka dikey yapısı ve termal tabakalaşma şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Stull 1988 Sınır Tabaka Meteorolojisi Ders Kitabı",
+   "url": "https://doi.org/10.1007/978-94-009-3027-8"
+  },
+  {
+   "ad": "Foken 2006 Monin-Obukhov Benzerlik Kuramının 50 Yılı",
+   "url": "https://doi.org/10.1007/s10546-006-9048-6"
+  },
+  {
+   "ad": "Businger vd. 1971 Akı-Profil Bağıntıları",
+   "url": "https://doi.org/10.1175/1520-0469(1971)028%3C0181:FPRITA%3E2.0.CO;2"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO426E-03.json",
+  "tarih": "2026-10-17 02:21",
+  "geminiSha1": "eb9bb72a69b4"
+ }
+}

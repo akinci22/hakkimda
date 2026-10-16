@@ -1,0 +1,441 @@
+{
+ "id": "D-MTO304-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 304",
+  "dersAd": "Havacılık Meteorolojisi",
+  "kol": "anlatim"
+ },
+ "ad": "Açık hava türbülansı: deformasyon ve rüzgâr kayması",
+ "ne": "Açık hava türbülansının yatay deformasyon ile düşey rüzgâr kaymasının çarpımından nasıl kestirildiğini, gerçek bir günün haritasıyla 15 dakikada anlat.",
+ "adimlar": [
+  "Jet akımının Türkiye üzerinde güçlü olduğu bir kış günü seç; Copernicus CDS'ten ERA5 250 ve 300 hPa rüzgâr ve jeopotansiyelini indir.",
+  "xarray ve MetPy ile yatay deformasyonu ve iki seviye arası düşey rüzgâr kaymasını (rüzgâr farkı / kalınlık) hesapla.",
+  "İkisinin çarpımı olan TI1 indeksini haritala; 250 hPa rüzgâr hızı eş çizgileriyle üst üste koy.",
+  "Makalenin doğrulama bölümünü oku; indeksin pilot raporlarıyla nasıl sınandığını iki slaytta özetle.",
+  "Denklemi terim terim anlatan 15 dakikalık videoyu çek; taslağı dersin hocasının bilimsel incelemesine sun."
+ ],
+ "sonuc": "Elinde TI1 haritası ve 15 dakikalık video olur; izleyen bir arkadaşın indeksin jetin hangi kesiminde ve neden yükseldiğini haritaya bakıp söyleyebiliyorsa anlatım tutmuştur.",
+ "dayanak": "Ellrod ve Knapp 1992",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 304",
+    "ad": "Havacılık Meteorolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NCAR Araştırma Uygulamaları Laboratuvarı ve Havacılık Grubu",
+   "ne": "Açık hava türbülansı teşhisi için GTG (Graphical Turbulence Guidance) sistemini geliştiren dünya lideri araştırma merkezi.",
+   "url": "https://ral.ucar.edu/solutions/products/graphical-turbulence-guidance-gtg",
+   "ayrinti": {
+    "neYaptilar": "Sayısal tahmin rüzgârlarından hesaplanan Ellrod türbülans indeksi ile uçak EDR ivme raporlarını birleştirdiler.",
+    "nasil": "Sharman vd. mimarisiyle 250 ve 300 hPa katmanlarındaki dikey rüzgâr kayması ve akış deformasyonunu birleştirdiler.",
+    "neEdindiler": "Uçuş rotalarında ani irtifa kaybettiren açık hava türbülansını saatler öncesinden operasyonel tahmin edilebilir kıldılar.",
+    "bizNasilKatki": "Türkiye hava sahasındaki jet akımı geçişlerinde Ellrod TI1 indeksini hesaplayan açık Python şablonu üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Ellrod ve Knapp 1992 Açık Hava Türbülansı Makalesi",
+      "url": "https://doi.org/10.1175/1520-0434(1992)007%3C0150:AOCATF%3E2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "Sharman vd. 2006 GTG Türbülans Tahmin Sistemi",
+      "url": "https://doi.org/10.1175/WAF924.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ral.ucar.edu/solutions/products/graphical-turbulence-guidance-gtg",
+      "aciklama": "NCAR GTG havacılık açık hava türbülansı operasyonel tahmin paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Clear_Air_Turbulence.jpg",
+      "lisans": "kamu malı",
+      "aciklama": "Jet akımı kenarında açık hava türbülansını gösteren dalga bulutu formasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus İklim Değişikliği Servisi ve ECMWF Atmosfer Deposu",
+   "ne": "Üst troposfer rüzgâr profilleri ve jeopotansiyel yükseklik verilerini küresel ızgarada sunan iklim veri servisi.",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+   "ayrinti": {
+    "neYaptilar": "ERA5 saatlik basınç seviyesi verilerini 250 ve 300 hPa katmanlarında araştırmacılara açık API ile sundular.",
+    "nasil": "Gelişmiş 4D-Var veri asimilasyonuyla küresel uçak ve radiosonda ölçümlerini tek bir ızgarada birleştirdiler.",
+    "neEdindiler": "Havacılık meteorologlarının geçmiş türbülans olaylarını yüksek çözünürlükle geriye dönük incelemesini sağladılar.",
+    "bizNasilKatki": "Marmara ve Anadolu üzerindeki polar ve subtropikal jet kesişimlerini Cartopy ile çizen analiz defteri sunarız.",
+    "referanslar": [
+     {
+      "ad": "Muñoz-Esparza vd. 2020 Makine Öğrenimi ile Türbülans Tahmini",
+      "url": "https://doi.org/10.1175/JAMC-D-20-0116.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Copernicus CDS ERA5 Basınç Seviyeleri Portalı",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+      "aciklama": "Copernicus ERA5 üst atmosfer basınç seviyeleri arşivi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Türkiye 250 hPa jet akımı ve Ellrod türbülans indeksi haritası",
+      "aciklama": "Jet akımının hızı ve kenarlarındaki dikey rüzgâr kayması ile türbülans alanlarının animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Havacılık Meteorolojisi Dinamik Grubu",
+   "ne": "Ellrod açık hava türbülansı indeksini ERA5 verisiyle haritalayıp video derslerle anlatan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/acik-hava-turbulansi",
+   "ayrinti": {
+    "neYaptilar": "Kış aylarında Türkiye üzerinden geçen şiddetli jet akımı günlerinde 250-300 hPa Ellrod TI1 indeksini hesapladılar.",
+    "nasil": "MetPy ile rüzgâr deformasyonunu ve dikey rüzgâr kaymasını çıkarıp çarpım haritalarını oluşturdular.",
+    "neEdindiler": "Türbülans indeksinin jet çekirdeğinin içinde değil, rüzgâr kaymasının şiddetlendiği kuzey ve güney kenarlarında patladığını gösterdiler.",
+    "bizNasilKatki": "15 dakikalık video dersi, formül türetim slaytları ve açık Colab hesaplama defteri yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Açık Hava Türbülansı GitHub Deposu",
+      "url": "https://github.com/aura-itu/acik-hava-turbulansi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Gultepe vd. 2019 Havacılık Meteorolojisi İncelemesi",
+      "url": "https://doi.org/10.1007/s00024-019-02188-2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/acik-hava-turbulansi",
+      "aciklama": "AURA açık hava türbülansı indeks haritaları ve analiz paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Uçuş rotası boyunca dikey rüzgâr profili ve kayma şiddeti",
+      "aciklama": "İrtifaya bağlı rüzgâr hız değişimi ve türbülans risk grafiği animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "İstanbul havalimanlarında sis, düşük görüş ve türbülansı açık veriyle önceden kestirmek.",
+  "baglanti": "Yazılım kolunda havalimanı görüş tahmini ve doğrulaması; Anlatım kolunda türbülans indeksi ve sis türleri videoları.",
+  "literatur": {
+   "maddeler": [
+    "Açık hava türbülansı, sayısal tahmin rüzgârlarından hesaplanan yatay deformasyon ile düşey rüzgâr kaymasının çarpımıyla tahmin edilir. (Ellrod ve Knapp 1992)",
+    "GTG, sayısal tahminden türetilen türbülans tanılarını pilot raporlarıyla en iyi uyuşan ağırlıklarla toplar; tek tanı ve eşik belirsizliği azalır. (Sharman vd. 2006)",
+    "Sis; damla mikrofiziği, aerosol, ışınım, türbülans ve yüzey koşullarına bağlıdır; süreçler tam bilinmediği için sis tahmini hâlâ zordur. (Gultepe vd. 2007)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rastgele orman ve artırmalı ağaçlar HRRR tahmini ve uçak EDR raporlarıyla eğitildi; zayıf türbülansta basit regresyondan az hata yaptı, şiddet ayrımı iyileşti. (Muñoz-Esparza vd. 2020)",
+    "3B evrişimli ağ FogNet, sayısal tahmin çıktısı ve deniz yüzeyi sıcaklığıyla kıyıdaki bir havalimanında sis görüş sınıflarını 6-24 saat önceden HREF'ten iyi tahmin etti. (Kamangir vd. 2021)",
+    "Artırmalı ağaçlar Viyana'da düşük görüş prosedürünü kalıcılık ve ham tahminden iyi kestirdi; yazarlar, arşivi kısa olan görüş ve tavan tahminini üye üye eklemeyi öneriyor. (Dietz vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Ellrod ve Knapp 1992",
+    "baslik": "An Objective Clear-Air Turbulence Forecasting Technique: Verification and Operational Use",
+    "yayin": "Weather and Forecasting 7(1), 150-165",
+    "yil": "1992",
+    "url": "https://doi.org/10.1175/1520-0434(1992)007%3C0150:AOCATF%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sharman vd. 2006",
+    "baslik": "An Integrated Approach to Mid- and Upper-Level Turbulence Forecasting",
+    "yayin": "Weather and Forecasting 21(3), 268-287",
+    "yil": "2006",
+    "url": "https://doi.org/10.1175/WAF924.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gultepe vd. 2007",
+    "baslik": "Fog Research: A Review of Past Achievements and Future Perspectives",
+    "yayin": "Pure and Applied Geophysics 164(6-7), 1121-1159",
+    "yil": "2007",
+    "url": "https://doi.org/10.1007/s00024-007-0211-x",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Muñoz-Esparza vd. 2020",
+    "baslik": "Aviation Turbulence Forecasting at Upper Levels with Machine Learning Techniques Based on Regression Trees",
+    "yayin": "Journal of Applied Meteorology and Climatology 59(11), 1883-1899",
+    "yil": "2020",
+    "url": "https://doi.org/10.1175/JAMC-D-20-0116.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Dietz vd. 2019",
+    "baslik": "Low-visibility forecasts for different flight planning horizons using tree-based boosting models",
+    "yayin": "Advances in Statistical Climatology, Meteorology and Oceanography 5(1), 101-114",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/ascmo-5-101-2019",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kamangir vd. 2021",
+    "baslik": "FogNet: A multiscale 3D CNN with double-branch dense block and attention mechanism for fog prediction",
+    "yayin": "Machine Learning with Applications 5, 100038",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.mlwa.2021.100038",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Açık hava türbülansının yatay deformasyon ve düşey rüzgâr kaymasından nasıl kestirildiğini ERA5 haritasıyla anlatan video hazırlamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 304",
+   "projeyeKatki": "Ellrod türbülans indeksi, dikey rüzgâr kayması ve deformasyon dinamiğiyle uçuş rotası güvenlik değerlendirmesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ellrod açık hava türbülansı indeksi",
+     "nerede": "250 ve 300 hPa seviyelerinde rüzgâr kayması ve akış deformasyonunu çarparak uçuş rotasındaki türbülans riskini hesaplarken."
+    },
+    {
+     "formulAd": "Düşey rüzgâr kayması şiddeti",
+     "nerede": "İki basınç katmanı arasındaki rüzgâr hız ve yön farkını irtifa mesafesine bölerek kayma şiddetini türetirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 rüzgâr alanlarıyla Ellrod açık hava türbülansı indeksini haritalayıp jet dinamiklerini anlatan video hazırlamak.",
+  "ayrinti": "Jet akımının güçlü olduğu bir kış günü seçilerek Copernicus CDS'ten 250 ve 300 hPa rüzgâr bileşenleri indirilir. MetPy ile gerilme ve kesme deformasyonu ile düşey rüzgâr kayması hesaplanır. İkisinin çarpımı olan TI1 indeksi haritalanır ve 250 hPa rüzgâr konturlarıyla çakıştırılır. Pilot raporlama standartlarını ve formül dinamiklerini anlatan 15 dakikalık video çekilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "250 ve 300 hPa ERA5 rüzgâr verilerini indirmek",
+    "oz": "Jet akımının Türkiye üzerinde şiddetlendiği kış gününün üst hava verilerini çekmek.",
+    "ayrinti": "Copernicus CDS üzerinden 250 ve 300 hPa seviyelerinde u, v rüzgâr bileşenleri ve jeopotansiyel yükseklik alanları netCDF formatında indirilir.",
+    "nasil": [
+     {
+      "teknik": "c.retrieve('reanalysis-era5-pressure-levels', req_jet, 'jet_levels.nc') ile üst hava rüzgârını indirmek.",
+      "sade": "Uçakların seyir irtifası olan 9-10 km yükseklikteki rüzgâr hızlarını ve yönlerini Avrupa arşivinden çekeriz.",
+      "altAdimlar": [
+       "1. cdsapi ile 250 ve 300 hPa seviyelerini talep edin.",
+       "2. Jet rüzgârının 50 m/s hızı aştığı kış gününü seçin.",
+       "3. xarray ile indirilen netCDF dosyasını koordinatlarıyla açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     },
+     {
+      "teknik": "wspd250 = np.hypot(ds['u'].sel(level=250), ds['v'].sel(level=250)) ile jet hızını hesaplamak.",
+      "sade": "250 hPa seviyesindeki yatay rüzgâr hız büyüklüğünü çıkarıp jet akımının omurgasını saptarız.",
+      "altAdimlar": [
+       "1. Doğu ve kuzey rüzgâr bileşenlerinin kareler toplamının karekökünü alın.",
+       "2. 45 m/s üzerindeki jet çekirdeğini haritada işaretleyin.",
+       "3. Jet ekseninin Türkiye üzerindeki uzanış yönünü belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Yatay deformasyon ve düşey rüzgâr kaymasını hesaplamak",
+    "oz": "MetPy türev fonksiyonlarıyla gerilme, kesme ve dikey rüzgâr farkını türetmek.",
+    "ayrinti": "250 hPa'da gerilme deformasyonu (du/dx - dv/dy) ve kesme deformasyonu (dv/dx + du/dy) hesaplanır. 250 ve 300 hPa seviyeleri arasındaki dikey rüzgâr kayması (VWS) çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "def_total = np.sqrt(mpcalc.shearing_deformation(u, v)**2 + mpcalc.stretching_deformation(u, v)**2) ile deformasyonu bulmak.",
+      "sade": "Rüzgâr akışının hava parsellerini nasıl uzatıp büktüğünü gösteren toplam deformasyon büyüklüğünü hesaplarız.",
+      "altAdimlar": [
+       "1. MetPy ile 250 hPa rüzgârının yatay türevlerini alın.",
+       "2. Gerilme ve kesme deformasyonu bileşenlerini türetin.",
+       "3. Toplam deformasyonu skaler büyüklük olarak birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     },
+     {
+      "teknik": "vws = np.hypot(u250 - u300, v250 - v300) / (z250 - z300) ile dikey rüzgâr kaymasını çıkarmak.",
+      "sade": "İki katman arasındaki irtifa farkında rüzgârın ne kadar ani değiştiğini dikey türevle hesaplarız.",
+      "altAdimlar": [
+       "1. 250 ve 300 hPa katmanlarının jeopotansiyel yükseklik farkını bulun.",
+       "2. İki seviye arasındaki vektörel rüzgâr farkını hesaplayın.",
+       "3. Farkı metre cinsinden irtifaya bölerek düşey kayma şiddetini türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Havalimanı yaklaşma hattında mikropatlama ve dikey rüzgâr kayması tehlikesini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+     },
+     {
+      "ders": "MTO 304",
+      "madde": "Havalimanı yaklaşma hattında mikropatlama ve dikey rüzgâr kayması tehlikesini değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Ellrod TI1 indeksini haritalayıp jet ile çakıştırmak",
+    "oz": "Türbülans indeksi alanını jet rüzgâr konturlarıyla üst üste görselleştirmek.",
+    "ayrinti": "Deformasyon ile düşey rüzgâr kayması çarpılarak Ellrod TI1 indeksi elde edilir. İndeks haritası üzerine 250 hPa rüzgâr hızı eş çizgileri bindirilir.",
+    "nasil": [
+     {
+      "teknik": "ti1 = vws * def_total * 1e7 ile Ellrod indeksini standart birim ölçeğine getirmek.",
+      "sade": "İki fiziksel zorlamayı çarparak havacılık standartlarında türbülans risk indeksini çıkarırız.",
+      "altAdimlar": [
+       "1. Düşey kayma ve deformasyon matrislerini hücre hücre çarpın.",
+       "2. 10 üzeri 7 çarpanıyla havacılık indeks ölçeğine getirin.",
+       "3. Hafif, orta ve şiddetli türbülans eşiklerini (4, 8, 12) belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     },
+     {
+      "teknik": "ax.contourf(lons, lats, ti1, cmap='YlOrRd'); ax.contour(lons, lats, wspd250, levels=[40, 50, 60], colors='k') ile çizmek.",
+      "sade": "Türbülansın jet çekirdeğinin içinde değil, rüzgâr hızının hızla düştüğü yan kenarlarda oluştuğunu kanıtlarız.",
+      "altAdimlar": [
+       "1. Cartopy ile Türkiye ve Doğu Akdeniz haritasını çizin.",
+       "2. TI1 indeksini sarıdan kırmızıya renk dolgusuyla yerleştirin.",
+       "3. Jet çekirdeğini kalın siyah rüzgâr konturlarıyla belirginleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Pilot raporlama dinamiklerini anlatan videoyu çekmek",
+    "oz": "15 dakikalık açık ders sunumunu ve açık Colab analiz defterini paylaşmak.",
+    "ayrinti": "Açık hava türbülansı mekanizmasını, uçakların dikey ivmelenmesini (EDR) ve jet kenarı kayma dinamiklerini anlatan 15 dakikalık video dersi hazırlanır.",
+    "nasil": [
+     {
+      "teknik": "slides = generate_presentation_deck(ti_map, edr_schema); export_video(slides, 'cat_dersi.mp4') ile ders videosunu üretmek.",
+      "sade": "Haritaları, matematiksel formülleri ve uçuş güvenliği prosedürlerini anlatan video dersini sunarız.",
+      "altAdimlar": [
+       "1. Giriş, Kelvin-Helmholtz kararsızlığı ve Ellrod formülü slaytlarını hazırlayın.",
+       "2. Harita üzerinde jet akımı ve türbülans bölgelerini canlı göstererek anlatın.",
+       "3. Video dosyasını açık erişimli kanalda yayına hazır edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     },
+     {
+      "teknik": "save_notebook_with_widgets(nb, 'ellrod_cat_analizi.ipynb') ile interaktif defteri tamamlamak.",
+      "sade": "İsteyen her öğrencinin kendi seçtiği tarihte jet akımı türbülans haritası üretebileceği defteri GitHub'a koyarız.",
+      "altAdimlar": [
+       "1. Python hesaplama hücrelerini temizleyin ve yorum satırlarıyla zenginleştirin.",
+       "2. Tarih seçici sürgüsünü koda bağlayın.",
+       "3. GitHub deposuna yükleyip proje bağlantılarını güncelleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Ellrod türbülans indeksi ve rüzgâr kesmesi gradyanlarıyla uçuş rotası riskini kestirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Türkiye hava sahası Ellrod TI1 türbülans haritası, jet kenarı kayma grafikleri, 15 dakikalık video dersi ve açık Colab defteri.",
+  "senden": "ERA5 netCDF verisinden MetPy ile rüzgâr türevlerini ve akış deformasyonunu kodlamak, harita katmanlarını çizmek.",
+  "bizden": "MTO 304 açık hava türbülansı teorisini açıklamak, jet kenarı dinamiklerini yorumlamak ve video anlatımını gerçekleştirmek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye 250 hPa jet akımı ve Ellrod türbülans indeksi haritası",
+   "aciklama": "Jet akımının hızı ve kenarlarındaki dikey rüzgâr kayması ile türbülans alanlarının animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://ral.ucar.edu/solutions/products/graphical-turbulence-guidance-gtg",
+   "aciklama": "NCAR GTG havacılık açık hava türbülansı operasyonel tahmin paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Clear_Air_Turbulence.jpg",
+   "lisans": "kamu malı",
+   "aciklama": "Jet akımı kenarında açık hava türbülansını gösteren dalga bulutu formasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Ellrod ve Knapp 1992 Açık Hava Türbülansı Makalesi",
+   "url": "https://doi.org/10.1175/1520-0434(1992)007%3C0150:AOCATF%3E2.0.CO;2"
+  },
+  {
+   "ad": "Sharman vd. 2006 GTG Türbülans Tahmin Sistemi",
+   "url": "https://doi.org/10.1175/WAF924.1"
+  },
+  {
+   "ad": "Gultepe vd. 2019 Havacılık Meteorolojisi İncelemesi",
+   "url": "https://doi.org/10.1007/s00024-019-02188-2"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO304-02.json",
+  "tarih": "2026-10-17 02:14",
+  "geminiSha1": "9aca17d530c7"
+ }
+}

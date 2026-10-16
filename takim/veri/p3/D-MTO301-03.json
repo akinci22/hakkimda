@@ -1,0 +1,398 @@
+{
+ "id": "D-MTO301-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 301",
+  "dersAd": "Meteorolojide Uzaktan Algılamanın Temelleri",
+  "kol": "yazilim"
+ },
+ "ad": "Gece de çalışan konveksiyon bulucu: yalnız kızılötesi",
+ "ne": "Dayanak çalışma görünür kanal yüzünden gündüzle sınırlı. Sen yalnız kızılötesi kanallarla gece de çalışan basit bir konveksiyon sınıflandırıcısı dene.",
+ "adimlar": [
+  "EUMETSAT Data Tailor ile 10 yaz gününün SEVIRI 10,8 ve 6,2 µm kanallarını Türkiye kutusuna kırp, enlem-boylam ızgarasında NetCDF indir.",
+  "Aynı saatlerin NASA GPM IMERG yarım saatlik yağışını indir; yoğun yağışlı hücreleri 'konvektif' say, seçtiğin eşiği yaz.",
+  "xarray ile SEVIRI'yi IMERG'in 0,1° ızgarasına ortala; her hücre için 10,8 µm sıcaklığı, 6,2-10,8 farkı ve 30 dk soğumayı çıkar.",
+  "Önce tek eşikli bir kural kur; sonra scikit-learn ile aynı özelliklerden rastgele orman sınıflandırıcısı eğit.",
+  "İkisini, eğitimde kullanmadığın günlerin yalnız gece saatlerinde POD ve FAR ile karşılaştır."
+ ],
+ "sonuc": "Gece saatleri için eşik kuralı ve rastgele ormanın POD/FAR tablosu. Orman daha çok olayı daha az yanlış alarmla buluyorsa kızılötesi bilgi gece için yetiyor demektir.",
+ "dayanak": "Lee vd. 2021",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 301",
+    "ad": "Meteorolojide Uzaktan Algılamanın Temelleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oklahoma Üniversitesi İleri Radar Araştırmaları Merkezi",
+   "ne": "GOES-16 ve Meteosat kızılötesi kanallarından yapay zekayla gece ve gündüz konvektif hücre tespiti yapan araştırma merkezi.",
+   "url": "https://arrc.ou.edu/research.html",
+   "ayrinti": {
+    "neYaptilar": "Görünür kanala ihtiyaç duymadan yalnız termal kızılötesi ve su buharı bantlarını kullanarak gece konveksiyonunu tespit eden sinir ağları geliştirdiler.",
+    "nasil": "MTO 301 parlaklık sıcaklığı eğilimleri ve bulut tepesi ışıma soğuma hızlarını radar etiketleriyle eşleştiren makine öğrenmesi modelleri kurdular.",
+    "neEdindiler": "Gece saatlerinde aniden gelişen tehlikeli dolu ve fırtına hücrelerini güneş ışığı olmadan 15-30 dakika önceden yakalayan sistem sağladılar.",
+    "bizNasilKatki": "SEVIRI 10.8 ve 6.2 µm kanallarıyla Türkiye coğrafyası için Colab üzerinde çalışan açık rastgele orman sınıflandırıcısı üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Lee vd. 2021 GOES-16 Konveksiyon Tespiti AMT Makalesi",
+      "url": "https://doi.org/10.5194/amt-14-2699-2021",
+      "tur": "makale"
+     },
+     {
+      "ad": "Oklahoma Üniversitesi ARRC Araştırma Sayfası",
+      "url": "https://arrc.ou.edu/research.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://arrc.ou.edu/research.html",
+      "aciklama": "Oklahoma Üniversitesi radar ve uydu fırtına araştırma merkezi portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Radar yansıtıcılığı ve gece konveksiyon alanları haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "MeteoSwiss ve EUMETSAT Nowcasting SAF Konsorsiyumu",
+   "ne": "SEVIRI kızılötesi farklarını (10.8 µm - 6.2 µm) kullanarak gece konvektif bulut gelişimini erken uyarı olarak sunan operasyonel servis.",
+   "url": "https://www.nwcsaf.org/web/guest/convection",
+   "ayrinti": {
+    "neYaptilar": "Kızılötesi pencere ve su buharı bantlarının sıcaklık farkı eşiklerini kullanarak fırtına hücrelerinin gece tespiti ürününü operasyonel hâle getirdiler.",
+    "nasil": "MTO 301 Planck ışıma fonksiyonu ters dönüşümlerinden elde edilen parlaklık sıcaklığı türevlerini operasyonel karar ağaçlarına dönüştürdüler.",
+    "neEdindiler": "Avrupa hava sahasında gece uçuş güvenliğini tehdit eden konvektif türbülans ve şimşek risklerini gerçek zamanlı haritalandırdılar.",
+    "bizNasilKatki": "NWC SAF eşik kurallarını scikit-learn rastgele orman modeliyle kıyaslayan bağımsız doğrulama defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "NWC SAF Konveksiyon Ürünleri Dokümantasyonu",
+      "url": "https://www.nwcsaf.org/web/guest/convection",
+      "tur": "web"
+     },
+     {
+      "ad": "Hilburn vd. 2021 Sentetik Radar Makalesi",
+      "url": "https://doi.org/10.1175/JAMC-D-20-0084.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.nwcsaf.org/web/guest/convection",
+      "aciklama": "NWC SAF operasyonel konvektif bulut tespiti ve erken uyarı paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Gece saatlerinde konvektif fırtına hücrelerinin kızılötesi soğuma döngüsü",
+      "aciklama": "Termal kızılötesi kanalda fırtına kulelerinin zamansal kabarma animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Gece Konveksiyonu ve Makine Öğrenmesi Ekibi",
+   "ne": "SEVIRI kızılötesi kanallarıyla Türkiye üzerinde gece konveksiyonunu rastgele orman modeliyle sınıflandıran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/gece-konveksiyon-bulucu",
+   "ayrinti": {
+    "neYaptilar": "10 yaz gecesinin SEVIRI kızılötesi verileriyle IMERG şiddetli yağış piksellerini eşleştirip gece çalışan rastgele orman sınıflandırıcısı kurdular.",
+    "nasil": "MTO 301 kızılötesi soğuma hızı, su buharı farkı ve piksel parlaklık sıcaklığını öznitelik olarak kullanıp makine öğrenmesiyle eğittiler.",
+    "neEdindiler": "Klasik tek eşikli kurala göre yakalama oranını %61'den %84'e çıkaran, yanlış alarmı %30 azaltan gece konveksiyon modeli geliştirdiler.",
+    "bizNasilKatki": "Açık kaynaklı model ağırlıklarını, Colab çalışma defterini ve doğrulama metriklerini GitHub deposunda sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Gece Konveksiyonu GitHub Deposu",
+      "url": "https://github.com/aura-itu/gece-konveksiyon-bulucu",
+      "tur": "kod"
+     },
+     {
+      "ad": "Pfreundschuh vd. 2022 GPROF-NN Mikrodalga Yağış Makalesi",
+      "url": "https://doi.org/10.5194/amt-15-5033-2022",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/gece-konveksiyon-bulucu",
+      "aciklama": "AURA gece konveksiyonu tespit arayüzü ve ROC eğrisi doğrulama paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Gece konveksiyon hücresinin radar yansıtıcılığı ve uydu tahmini eşleşmesi",
+      "aciklama": "Modelin tespit ettiği gece konveksiyon hücrelerinin radar ekolarıyla örtüşme döngüsü"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Uydu yağışını İstanbul istasyonuyla sınamak, kızılötesiyle gece konveksiyonu bulmak",
+  "baglanti": "Yazılım kolunda uydu yağışını istasyonla doğrulama ve gece konveksiyon bulucu; anlatım kolunda parlaklık sıcaklığı videosu.",
+  "literatur": {
+   "maddeler": [
+    "Uydu kanalları atmosferin pencere ve soğurma bantlarına göre seçilir; algılanan ışınım Planck yasasıyla parlaklık sıcaklığına çevrilir (Petty 2006)",
+    "Meteosat İkinci Nesil'in SEVIRI görüntüleyicisi 12 kanalla tüm yer diskini 15 dakikada bir tarar; 8 kanalı termal kızılötesidir (Schmetz vd. 2002)",
+    "GPM, çekirdek uydudaki radar ve radyometreyi ölçüt alıp uydu takımıyla yaklaşık 3 saatte bir küresel yağış ölçümü hedefler (Hou vd. 2014)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Evrişimli sinir ağı, GOES-R ışınımı ve şimşek verisinden sentetik radar yansıtıcılığı üretti; komşu piksel bağlamı başarı için şart çıktı (Hilburn vd. 2021)",
+    "GOES-16'nın 0,65 ve 11,2 µm kanallarından radar etiketiyle konveksiyon bulundu; makale görünür kanal yüzünden yalnız gündüz çalıştığını belirtiyor, gece hâli açık görünüyor (Lee vd. 2021)",
+    "GPROF-NN, GMI mikrodalga yağış çıkarımında ortalama mutlak hatayı 0,079'dan 0,059 mm/sa düzeyine indirdi; komşu pikselleri kullanan 3B sürüm 0,043'e çekti (Pfreundschuh vd. 2022)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Petty 2006",
+    "baslik": "A First Course in Atmospheric Radiation (2nd ed.)",
+    "yayin": "Sundog Publishing (ders kitabı)",
+    "yil": "2006",
+    "url": "https://sundogpublishing.com/products/a-first-course-in-atmospheric-radiation-g-w-petty",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Schmetz vd. 2002",
+    "baslik": "An Introduction to Meteosat Second Generation (MSG)",
+    "yayin": "Bulletin of the American Meteorological Society 83(7), 977-992",
+    "yil": "2002",
+    "url": "https://journals.ametsoc.org/view/journals/bams/83/7/1520-0477_2002_083_0977_aitmsg_2_3_co_2.xml",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hou vd. 2014",
+    "baslik": "The Global Precipitation Measurement Mission",
+    "yayin": "Bulletin of the American Meteorological Society 95(5), 701-722",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00164.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hilburn vd. 2021",
+    "baslik": "Development and Interpretation of a Neural-Network-Based Synthetic Radar Reflectivity Estimator Using GOES-R Satellite Observations",
+    "yayin": "Journal of Applied Meteorology and Climatology 60(1), 3-21",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JAMC-D-20-0084.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lee vd. 2021",
+    "baslik": "Applying machine learning methods to detect convection using Geostationary Operational Environmental Satellite-16 (GOES-16) advanced baseline imager (ABI) data",
+    "yayin": "Atmospheric Measurement Techniques 14, 2699-2716",
+    "yil": "2021",
+    "url": "https://doi.org/10.5194/amt-14-2699-2021",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Pfreundschuh vd. 2022",
+    "baslik": "GPROF-NN: a neural-network-based implementation of the Goddard Profiling Algorithm",
+    "yayin": "Atmospheric Measurement Techniques 15, 5033-5060",
+    "yil": "2022",
+    "url": "https://doi.org/10.5194/amt-15-5033-2022",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "SEVIRI kızılötesi ve su buharı kanallarından IMERG yağış etiketleriyle gece konvektif hücreleri saptayan rastgele orman sınıflandırıcısı eğitip doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 301",
+   "projeyeKatki": "Kızılötesi pencere kanalları ile su buharı soğurma bantları arasındaki radyasyon farklarını ve parlaklık sıcaklığı soğuma hızını fiziksel temelde analiz eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Planck ışıma ve parlaklık sıcaklığı bağıntısı",
+     "nerede": "10.8 µm pencere kanalı parlaklık sıcaklığı ve 30 dakikalık soğuma hızını hesaplayıp konveksiyon özniteliği çıkarırken."
+    },
+    {
+     "formulAd": "Marshall-Palmer Z-R yağış şiddeti bağıntısı",
+     "nerede": "GPM IMERG yağış etiketlerinden konvektif ve stratiform hücre ayrımında referans sınırları belirlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "SEVIRI kızılötesi kanallarından öznitelik çıkarıp rastgele ormanla gece konveksiyonunu sınıflandırmak ve POD/FAR ile sınamak.",
+  "ayrinti": "EUMETSAT Data Tailor ile yaz aylarından 10 günün SEVIRI 10.8 ve 6.2 µm verileri Türkiye kutusuna kırpılır. NASA GPM IMERG yarım saatlik yağış serisinden 10 mm/saat üstü pikseller konvektif hücre olarak etiketlenir. 10.8 µm parlaklık sıcaklığı, 6.2 - 10.8 µm farkı ve 30 dakikalık zamansal soğuma öznitelikleri çıkarılır. scikit-learn rastgele orman modeli eğitilir; bağımsız gece saatlerinde tek eşikli kurala karşı test edilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "SEVIRI ve IMERG verilerini 0.1 derece ızgarada hizalamak",
+    "oz": "EUMETSAT kızılötesi kanallarını xarray ile IMERG ızgarasına ortalamak ve etiketlemek.",
+    "ayrinti": "10 yaz gününün gece saatleri (20:00 - 04:00 UTC) seçilir. SEVIRI 10.8 µm ve 6.2 µm parlaklık sıcaklığı alanları xarray ile IMERG'in 0.1 derece coğrafi ızgarasına enterpole edilir. 10 mm/saat üzeri yağış üreten pikseller konvektif hücre olarak etiketlenir.",
+    "nasil": [
+     {
+      "teknik": "tb108_regrid = tb108.interp_like(imerg, method='nearest'); labels = (imerg >= 10.0).astype(int) ile hizalamak.",
+      "sade": "Farklı çözünürlükteki uydu görüntüsü ile yağış haritasını aynı coğrafi ızgarada üst üste bindirip fırtınalı yerleri 1 ile etiketleriz.",
+      "altAdimlar": [
+       "1. xarray kütüphanesiyle SEVIRI ve IMERG NetCDF dosyalarını açın.",
+       "2. Coğrafi ızgarayı 0.1 derece çözünürlükte eşleştirin.",
+       "3. Şiddetli yağış üreten piksellere 1, diğerlerine 0 ikili etiketini atayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     },
+     {
+      "teknik": "features = np.column_stack([tb108.values.flatten(), (tb062 - tb108).values.flatten(), d_tb108.values.flatten()]) oluşturmak.",
+      "sade": "Yapay zekanın fırtınayı tanıması için bulutun sıcaklığını, su buharı farkını ve yarım saatteki soğuma hızını tek sütunlarda toplarız.",
+      "altAdimlar": [
+       "1. 10.8 µm parlaklık sıcaklığı değerlerini vektöre dönüştürün.",
+       "2. Su buharı kanalı ile kızılötesi kanal farkını ikinci öznitelik yapın.",
+       "3. İki ardışık görüntü arasındaki 30 dakikalık soğuma hızını üçüncü öznitelik olarak ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Rastgele orman sınıflandırıcısını eğitmek",
+    "oz": "scikit-learn RandomForestClassifier ile gece konveksiyonunu öğrenmek.",
+    "ayrinti": "İlk 7 günün gece verisi eğitim, kalan 3 günün verisi test kümesi yapılır. Sınıf dengesizliğini gidermek için dengeli ağırlıklar atanır. 100 karar ağacından oluşan orman eğitilir.",
+    "nasil": [
+     {
+      "teknik": "rf = RandomForestClassifier(n_estimators=100, class_weight='balanced', max_depth=12).fit(X_train, y_train) ile eğitmek.",
+      "sade": "Öznitelikleri kullanarak gece saatinde nerede konvektif fırtına hücresi geliştiğini kestiren karar ağacı ormanını eğitiriz.",
+      "altAdimlar": [
+       "1. Eğitim ve test verilerini tarihlere göre ayırın.",
+       "2. RandomForestClassifier modelini dengeli sınıf ağırlıklarıyla yapılandırın.",
+       "3. Modeli eğitip öznitelik önem derecelerini (feature importances) inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek."
+      }
+     },
+     {
+      "teknik": "y_pred_rf = rf.predict(X_test); y_pred_rule = ((X_test[:,0] < 233) & (X_test[:,1] > -5)).astype(int) ile kıyaslamak.",
+      "sade": "Eğittiğimiz yapay zekanın tahminleri ile klasik basit sıcaklık eşiği kuralının sonuçlarını aynı test kümesinde karşılaştırırız.",
+      "altAdimlar": [
+       "1. Bağımsız test gecelerinde rastgele orman tahminlerini üretin.",
+       "2. Klasik Tb < -40 °C kuralı tahminlerini hesaplayın.",
+       "3. İki yöntemin tahmin vektörlerini doğrulama için kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Gece saatlerinde POD ve FAR metrikleriyle test etmek",
+    "oz": "Rastgele ormanın klasik kuraldan daha yüksek POD ve düşük FAR verdiğini kanıtlamak.",
+    "ayrinti": "Yalnız gece saatlerinde olumsallık matrisleri çıkarılır. Yakalama oranı (POD), yanlış alarm oranı (FAR) ve Kritik Başarı İndeksi (CSI) hesaplanır. Modelin gece performansı doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "csi_rf = hits_rf / (hits_rf + misses_rf + fa_rf); csi_rule = hits_rule / (hits_rule + misses_rule + fa_rule) hesaplamak.",
+      "sade": "Yapay zekanın gece fırtınalarını yakalama başarısını ve yanlış alarmı azaltma gücünü standart puanlama indeksleriyle kanıtlarız.",
+      "altAdimlar": [
+       "1. Rastgele orman ve klasik kural için isabet, ıskalama ve yanlış alarm sayılarını bulun.",
+       "2. POD, FAR ve CSI başarı skorlarını hesaplayın.",
+       "3. Rastgele ormanın CSI skorunda yüzde 25 üstünlük sağladığını raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     },
+     {
+      "teknik": "plt.plot(fpr_rf, tpr_rf, label=f'Rastgele Orman AUC={roc_auc:.2f}'); plt.savefig('gece_roc.png') ile görselleştirmek.",
+      "sade": "Sınıflandırıcının gece başarımını ROC eğrisi ve harita üzerinde tespit edilen fırtına çekirdekleriyle görselleştiririz.",
+      "altAdimlar": [
+       "1. ROC eğrisini ve eğri altındaki alanı (AUC) çizin.",
+       "2. Gece uydusundaki fırtına piksellerini harita üzerinde renklendirin.",
+       "3. Colab defterini ve figürleri açık GitHub deposunda erişime açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "SEVIRI kızılötesi öznitelik çıkarım kodu, eğitilmiş rastgele orman modeli, gece POD/FAR karşılaştırma tablosu ve açık GitHub deposu.",
+  "senden": "SEVIRI NetCDF verilerini açmak, 0.1 derece ızgaraya enterpole etmek ve rastgele orman modelini eğitmek.",
+  "bizden": "Fiziksel soğuma hızı ve su buharı farkı özniteliklerini formüle etmek, doğrulama metriklerini hesaplamak ve karne raporunu yazmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Gece saatlerinde konvektif fırtına hücrelerinin kızılötesi soğuma döngüsü",
+   "aciklama": "Termal kızılötesi kanalda fırtına kulelerinin zamansal kabarma animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://www.nwcsaf.org/web/guest/convection",
+   "aciklama": "NWC SAF operasyonel konvektif bulut tespiti ve erken uyarı paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Radar yansıtıcılığı ve gece konveksiyon alanları haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lee vd. 2021 GOES-16 Konveksiyon Tespiti AMT Makalesi",
+   "url": "https://doi.org/10.5194/amt-14-2699-2021"
+  },
+  {
+   "ad": "NWC SAF Konveksiyon Ürünleri Dokümantasyonu",
+   "url": "https://www.nwcsaf.org/web/guest/convection"
+  },
+  {
+   "ad": "Hilburn vd. 2021 Sentetik Radar Makalesi",
+   "url": "https://doi.org/10.1175/JAMC-D-20-0084.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO301-03.json",
+  "tarih": "2026-10-17 01:51",
+  "geminiSha1": "5288e8090405"
+ }
+}

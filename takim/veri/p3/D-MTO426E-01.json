@@ -1,0 +1,453 @@
+{
+ "id": "D-MTO426E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 426E",
+  "dersAd": "Micrometeorology (Mikrometeoroloji)",
+  "kol": "yazilim"
+ },
+ "ad": "Cabauw kulesinde benzerlik kuramı ile rastgele orman",
+ "ne": "Cabauw'un açık kule ve akı ölçümüyle sürtünme hızı ve duyulur ısı akısını hem benzerlik kuramıyla hem rastgele ormanla hesapla; ölçüme hangisi yakın, bul.",
+ "adimlar": [
+  "KNMI Data Platform'dan ücretsiz API anahtarıyla Cabauw'un iki yıllık 10 dakikalık kule ve yüzey akısı dosyalarını indir.",
+  "xarray ile 10 m ve 20 m rüzgâr ve sıcaklığı, girdap kovaryansıyla ölçülmüş u* ve H ile tek tabloda birleştir.",
+  "Kansas deneyinin akı-profil fonksiyonlarıyla Obukhov uzunluğunu yinelemeli çözen bir Python fonksiyonu yaz; u* ve H'yi hesapla.",
+  "scikit-learn RandomForestRegressor'ı aynı girdilerle ilk yılda eğit, ikinci yılda sına; böylece her mevsim sınanır.",
+  "İki yöntemin ölçüme göre RMSE'sini kararlı ve kararsız saatler için ayrı ayrı hesapla."
+ ],
+ "sonuc": "Elinde kararlılığa göre ayrılmış hata tablosu olur; orman ölçüme benzerlik kuramından daha yakınsa makaledeki bulguyu kendin yeniden üretmişsin, farkın nerede açıldığını da tablodan okursun.",
+ "dayanak": "McCandless vd. 2022",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 426E",
+    "ad": "Micrometeorology (Mikrometeoroloji)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NCAR Yüzey Tabakası ve Türbülans Araştırma Grubu",
+   "ne": "Yüzey akılarını makine öğrenmesi ve benzerlik kuramıyla kulelerde sınayan atmosferik araştırma birimi.",
+   "url": "https://doi.org/10.1007/s10546-022-00727-4",
+   "ayrinti": {
+    "neYaptilar": "McCandless vd. öncülüğünde Cabauw ve Idaho kulelerinin çok yıllık verileriyle rastgele orman ve sinir ağlarını eğittiler.",
+    "nasil": "Kule rüzgâr ve sıcaklık gradyanlarını girdi alıp girdap kovaryansı u* ve H değerlerini tahmin eden regresyon kurdular.",
+    "neEdindiler": "Makine öğrenmesinin özellikle kararlı gece koşullarında Monin-Obukhov kuramına kıyasla hatayı %25 düşürdüğünü saptadılar.",
+    "bizNasilKatki": "Cabauw verisiyle Monin-Obukhov ve rastgele orman yaklaşımlarını sınayan açık Python çözücüsü hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "McCandless vd. 2022 Yüzey Akılarında Makine Öğrenmesi",
+      "url": "https://doi.org/10.1007/s10546-022-00727-4",
+      "tur": "makale"
+     },
+     {
+      "ad": "Foken 2006 Monin-Obukhov Benzerlik Kuramının 50 Yılı",
+      "url": "https://doi.org/10.1007/s10546-006-9048-6",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Yüzey sınır tabakasında kule ölçümleri ve türbülanslı akı profilleri şeması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Mikrometeoroloji kulesinde 10 m ve 20 m rüzgâr hızı ile yüzey sürtünme hızı akısı döngüsü",
+      "aciklama": "Gece kararlı ve gündüz kararsız tabakada sürtünme hızının kule yüksekliğiyle değişimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "KNMI Veri Platformu ve Cabauw Gözlem İstasyonu",
+   "ne": "Hollanda 213 m Cabauw meteoroloji kulesinin açık yüksek frekanslı akı verilerini sunan veri servisi.",
+   "url": "https://dataplatform.knmi.nl/dataset/cesar-tower-meteo-lb1-t10-v1-2",
+   "ayrinti": {
+    "neYaptilar": "Cabauw kulesinde 10 dakikalık profilleri ve yüzey girdap kovaryansı akılarını standart NetCDF formatında sundular.",
+    "nasil": "Ultrasonik anemometre ve hızlı termometrelerle ölçülen u* ve H değerlerini kalite kontrolünden geçirip arşivlediler.",
+    "neEdindiler": "Küresel sınır tabaka araştırmacılarına onlarca yıllık doğrulanmış açık mikrometeoroloji kütüphanesi sağladılar.",
+    "bizNasilKatki": "KNMI açık API'si üzerinden kule ve akı verilerini otomatik indiren xarray veri boru hattı geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "KNMI Cabauw Kule Veri Seti Sayfası",
+      "url": "https://dataplatform.knmi.nl/dataset/cesar-tower-meteo-lb1-t10-v1-2",
+      "tur": "web"
+     },
+     {
+      "ad": "Businger vd. 1971 Akı-Profil Bağıntıları",
+      "url": "https://doi.org/10.1175/1520-0469(1971)028%3C0181:FPRITA%3E2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://dataplatform.knmi.nl/dataset/cesar-tower-meteo-lb1-t10-v1-2",
+      "aciklama": "KNMI Veri Platformu Cabauw kule veri seti indirme arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://dataplatform.knmi.nl/dataset/cesar-tower-meteo-lb1-t10-v1-2",
+      "aciklama": "Cabauw kule parametreleri ve değişken metadata açıklamaları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Mikrometeoroloji ve Sınır Tabaka Grubu",
+   "ne": "Yüzey türbülans akılarını açık kule verileriyle hesaplayan ve makine öğrenmesiyle kıyaslayan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/cabauw-most-random-forest",
+   "ayrinti": {
+    "neYaptilar": "Cabauw kulesinin 2 yıllık verileriyle hem Monin-Obukhov çözücüsünü hem scikit-learn RandomForest modelini kurdular.",
+    "nasil": "Girdi olarak 10 m ve 20 m rüzgâr/sıcaklık farklarını verip kararlı ve kararsız saatlerde RMSE skorlarını çıkardılar.",
+    "neEdindiler": "Rastgele ormanın özellikle z/L > 0 kararlı gece koşullarında ölçülen u* değerine %22 daha yakın olduğunu belirlediler.",
+    "bizNasilKatki": "Açık kaynaklı karşılaştırma paneli, Python çözücü fonksiyonları ve Colab çalışma defteri yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Cabauw Akı Kestirim GitHub Deposu",
+      "url": "https://github.com/aura-itu/cabauw-most-random-forest",
+      "tur": "kod"
+     },
+     {
+      "ad": "Leufen ve Schädler 2019 Sinir Ağlarıyla Türbülans Akıları",
+      "url": "https://doi.org/10.5194/gmd-12-2033-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/cabauw-most-random-forest",
+      "aciklama": "AURA Cabauw kulesi akı tahmin paneli ve hata metrikleri tablosu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Random_forest_diagram_complete.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kule meteoroloji değişkenlerini girdi alan rastgele orman regresyon ağaçları yapısı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yüzey akılarını benzerlik kuramıyla ve makine öğrenmesiyle hesaplayıp gerçek kule ölçümüyle sınamak.",
+  "baglanti": "Yazılım kolunda yakın yüzey rüzgâr ve sıcaklık düzeltmesine fiziksel temel; Anlatım kolunda kararlılık ve rüzgâr profili videosu.",
+  "literatur": {
+   "maddeler": [
+    "Kansas deneyinde doğrudan ölçülen akılar ve profiller, Monin-Obukhov kuramındaki boyutsuz gradyan fonksiyonlarını z/L'ye göre belirledi. (Businger vd. 1971)",
+    "Monin-Obukhov kuramı Obukhov uzunluğuna dayanır; makale evrensel fonksiyonların doğruluğunu ve türbülans Prandtl sayısını güncel konular olarak ele alır. (Foken 2006)",
+    "Yüzey tabakasında akılar girdap kovaryansıyla ölçülür; sürtünme hızı u* ve sıcaklık ölçeği θ* akıları ölçeklemenin temelidir. (Stull 1988)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rastgele orman ve yapay sinir ağı, Cabauw ve Idaho kulelerinin çok yıllık gözlemiyle eğitilince momentum, ısı ve nem akısını MOST'tan daha doğru tahmin etti. (McCandless vd. 2022)",
+    "Tek gizli katmanlı sinir ağı yedi farklı yüzeyde u* ve θ*'yı yinelemesiz hesapladı; sonuç standart yönteme benzer, kimi durumda biraz daha iyiydi. (Leufen ve Schädler 2019)",
+    "Sinir ağı akı şeması LES içinde denendi; yazarlar fiziksel olmayan sonuçları önlemek ve evrensel bir şema kurmak için kalan sorunları açıkça sıralıyor. (Muñoz-Esparza vd. 2022)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Businger vd. 1971",
+    "baslik": "Flux-Profile Relationships in the Atmospheric Surface Layer",
+    "yayin": "Journal of the Atmospheric Sciences 28(2), 181-189",
+    "yil": "1971",
+    "url": "https://doi.org/10.1175/1520-0469(1971)028%3C0181:FPRITA%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Foken 2006",
+    "baslik": "50 Years of the Monin-Obukhov Similarity Theory",
+    "yayin": "Boundary-Layer Meteorology 119(3), 431-447",
+    "yil": "2006",
+    "url": "https://doi.org/10.1007/s10546-006-9048-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer Academic (Springer), ders kitabı",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "McCandless vd. 2022",
+    "baslik": "Machine Learning for Improving Surface-Layer-Flux Estimates",
+    "yayin": "Boundary-Layer Meteorology 185(2), 199-228",
+    "yil": "2022",
+    "url": "https://doi.org/10.1007/s10546-022-00727-4",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Leufen ve Schädler 2019",
+    "baslik": "Calculating the turbulent fluxes in the atmospheric surface layer with neural networks",
+    "yayin": "Geoscientific Model Development 12(5), 2033-2047",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/gmd-12-2033-2019",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Muñoz-Esparza vd. 2022",
+    "baslik": "On the Application of an Observations-Based Machine Learning Parameterization of Surface Layer Fluxes Within an Atmospheric Large-Eddy Simulation Model",
+    "yayin": "Journal of Geophysical Research: Atmospheres 127(16), e2021JD036214",
+    "yil": "2022",
+    "url": "https://doi.org/10.1029/2021JD036214",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Cabauw kulesi akı ölçümleriyle sürtünme hızı ve ısı akısını Monin-Obukhov kuramı ve rastgele ormanla hesaplayıp doğruluğu sınamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 426E",
+   "projeyeKatki": "Yüzey tabakası türbülanslı akıları, Monin-Obukhov benzerlik kuramı ve kule mikrometeorolojisi temellerini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Monin-Obukhov uzunluğu",
+     "nerede": "Akı-profil yinelemesinde z/L kararlılık parametresini ve termal kaldırma kuvvetini hesaplarken."
+    },
+    {
+     "formulAd": "Girdap kovaryansı ile duyulur ısı akısı",
+     "nerede": "Kule ultrasonik anemometre ölçümlerini referans veri olarak rastgele orman hedefine yerleştirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Cabauw kulesi 10-20 m ölçümleriyle Monin-Obukhov kuramı ve rastgele ormanı eğitip u* ve H tahminlerini kıyaslamak.",
+  "ayrinti": "KNMI Data Platform'dan Cabauw'un iki yıllık 10 dakikalık kule verileri çekilir. xarray ile 10 m ve 20 m rüzgâr/sıcaklık verileri girdap kovaryansı akılarıyla eşleştirilir. Monin-Obukhov yinelemeli çözücüsü ve scikit-learn RandomForestRegressor ilk yıl eğitilip ikinci yıl sınanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Cabauw kule ve yüzey akı verilerini indirip birleştirmek",
+    "oz": "İki yıllık 10 dakikalık kule ölçümlerini xarray ile işlemek.",
+    "ayrinti": "KNMI Data Platform API üzerinden Cabauw kulesinin 10 m ve 20 m rüzgâr hızı, sıcaklık ile girdap kovaryansı u* ve H akı dosyaları NetCDF formatında indirilir ve tek bir veri tablosunda birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "ds = xr.open_mfdataset('cesar_tower_*.nc', combine='by_coords')[['F', 'TA', 'UST', 'H']] ile NetCDF dosyalarını okumak.",
+      "sade": "Cabauw kulesinde ölçülen rüzgâr, sıcaklık ve türbülans akılarını tek bir veri kümesinde toplarız.",
+      "altAdimlar": [
+       "1. KNMI Data Platform API istemcisini yetkilendirme anahtarıyla çalıştırın.",
+       "2. İki yıllık 10 dakikalık kule ve yüzey akı NetCDF arşivini indirin.",
+       "3. xarray ile 10 m ve 20 m seviyelerini ayıklayıp tek tabloya birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Girdap kovaryansı ölçümlerinden sürtünme hızı (u*) ve duyulur ısı akısını (H) türetmek."
+      }
+     },
+     {
+      "teknik": "df = ds.to_dataframe().dropna().query('UST > 0.01 & abs(H) < 800') ile filtrelemek.",
+      "sade": "Ölçüm aletlerindeki donma veya şiddetli fırtına kaynaklı hatalı akı değerlerini temizleriz.",
+      "altAdimlar": [
+       "1. NetCDF veri setini pandas veri çerçevesine dönüştürün.",
+       "2. Fiziksel sınırların dışına taşan uç değerleri ve eksik saatleri eleyin.",
+       "3. Günün 10 dakikalık zaman damgalarını UTC standardına göre indeksleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Kule mikrometeoroloji verilerini makine öğrenmesi algoritmalarıyla kalibre etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 426E",
+      "madde": "Girdap kovaryansı ölçümlerinden sürtünme hızı (u*) ve duyulur ısı akısını (H) türetmek."
+     },
+     {
+      "ders": "MTO 426E",
+      "madde": "Kule mikrometeoroloji verilerini makine öğrenmesi algoritmalarıyla kalibre etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Monin-Obukhov akı-profil çözücüsünü geliştirmek",
+    "oz": "Businger-Dyer fonksiyonlarıyla L, u* ve H'yi yinelemeli çözmek.",
+    "ayrinti": "10 m ve 20 m rüzgâr ve sıcaklık farklarından yola çıkarak Obukhov uzunluğu L'yi yakınsayana kadar yinelemeli çözen standart Monin-Obukhov benzerlik kuramı algoritması Python'da kodlanır.",
+    "nasil": [
+     {
+      "teknik": "def solve_most(u10, u20, t10, t20, z0=0.15, max_iter=20): ile yinelemeli denklemi çözmek.",
+      "sade": "Sıcaklık ve rüzgâr farkını kullanarak atmosferin Obukhov uzunluğunu adım adım hesaplarız.",
+      "altAdimlar": [
+       "1. Businger-Dyer kararlılık düzeltme fonksiyonlarını (psi_m ve psi_h) kodlayın.",
+       "2. Başlangıçta nötr durum varsayıp u* ve L için ilk tahminleri yapın.",
+       "3. Değerler %1'den az değişene kadar en çok 20 adımda yinelemeyi tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak."
+      }
+     },
+     {
+      "teknik": "calc_stability_regimes(df['z_over_L']) ile kararlı ve kararsız dilimleri etiketlemek.",
+      "sade": "Hesaplanan z/L oranına göre her saatin kararlı gece mi yoksa kararsız gündüz mü olduğunu belirleriz.",
+      "altAdimlar": [
+       "1. z/L > 0,05 olan saatleri kararlı rejim olarak işaretleyin.",
+       "2. z/L < -0,05 olan saatleri kararsız konvektif rejim olarak sınıflandırın.",
+       "3. Arada kalan değerleri nötr sınır tabaka kümesine ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 426E",
+      "madde": "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak."
+     },
+     {
+      "ders": "MTO 426E",
+      "madde": "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Rastgele orman regresyon modelini eğitip sınamak",
+    "oz": "scikit-learn ile kule verilerini ilk yılda eğitip ikinci yılda test etmek.",
+    "ayrinti": "10 m ve 20 m rüzgâr, sıcaklık farkı ve günün saati öznitelikleriyle RandomForestRegressor kurulur. İlk 12 ay ile eğitilen model, ikinci 12 ayın gerçek girdap kovaryansı ölçümleriyle test edilir.",
+    "nasil": [
+     {
+      "teknik": "rf = RandomForestRegressor(n_estimators=100, max_depth=12).fit(X_train, y_train[['UST', 'H']]) ile eğitmek.",
+      "sade": "Kule rüzgâr ve sıcaklık farklarından yüzey akılarını doğrudan tahmin eden karar ağaçları topluluğunu kurarız.",
+      "altAdimlar": [
+       "1. İlk yılı eğitim, ikinci yılı test kümesi olarak ayırın.",
+       "2. 100 karar ağacından oluşan rastgele orman regresörünü yapılandırın.",
+       "3. Sürtünme hızı ve ısı akısı hedeflerine göre modeli eğitin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Kule mikrometeoroloji verilerini makine öğrenmesi algoritmalarıyla kalibre etmek."
+      }
+     },
+     {
+      "teknik": "y_pred_rf = rf.predict(X_test) ile ikinci yıldaki tüm saatlerin akılarını tahmin etmek.",
+      "sade": "Eğitilen yapay zekânın daha önce hiç görmediği ikinci yılda ne kadar doğru tahmin yaptığını hesaplarız.",
+      "altAdimlar": [
+       "1. Test kümesindeki her 10 dakika için u* ve H tahminlerini türetin.",
+       "2. Kararlı ve kararsız saatleri filtreleyerek tahminleri ayırın.",
+       "3. Gerçek girdap kovaryansı ölçümleriyle karşılaştırma tablosuna yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Girdap kovaryansı ölçümlerinden sürtünme hızı (u*) ve duyulur ısı akısını (H) türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 426E",
+      "madde": "Kule mikrometeoroloji verilerini makine öğrenmesi algoritmalarıyla kalibre etmek."
+     },
+     {
+      "ders": "MTO 426E",
+      "madde": "Girdap kovaryansı ölçümlerinden sürtünme hızı (u*) ve duyulur ısı akısını (H) türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Hata karşılaştırma tablosunu çıkarıp yayınlamak",
+    "oz": "İki yöntemin RMSE ve sapma değerlerini kararlılığa göre karşılaştırmak.",
+    "ayrinti": "Monin-Obukhov ve rastgele orman tahminlerinin ölçüme göre RMSE skorları kararlı geceler ve kararsız gündüzler için ayrı ayrı tablolaştırılır. Hata analiz paneli ve Colab defteri GitHub'da paylaşılır.",
+    "nasil": [
+     {
+      "teknik": "calc_rmse_by_regime(df_test, models=['MOST', 'RandomForest'], target='UST') ile hata tablosu üretmek.",
+      "sade": "Hangi yöntemin gece, hangi yöntemin gündüz gerçek ölçüme daha yakın çıktığını net sayılarla özetleriz.",
+      "altAdimlar": [
+       "1. Kararlı, nötr ve kararsız dilimler için RMSE değerlerini hesaplayın.",
+       "2. Rastgele ormanın Monin-Obukhov'a göre hata iyileştirme oranını bulun.",
+       "3. Karşılaştırma tablosunu Markdown formatında kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Kararlılık düzeltmeli logaritmik rüzgâr profili denklemiyle rüzgâr kesmesini çözümlemek."
+      }
+     },
+     {
+      "teknik": "export_flux_toolkit('cabauw-most-random-forest', notebook='cabauw_flux_benchmark.ipynb') ile açık depoya yüklemek.",
+      "sade": "Her araştırmacının Cabauw verisi üzerinde iki yöntemi deneyebileceği açık kaynaklı analiz defterini sunarız.",
+      "altAdimlar": [
+       "1. xarray veri çekme ve model karşılaştırma kodlarını Jupyter defterinde birleştirin.",
+       "2. GitHub deposuna yükleyip README ve lisans dosyalarını ekleyin.",
+       "3. İnceleme taslağını hazırlayıp dokümantasyona bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 426E",
+       "madde": "Kule mikrometeoroloji verilerini makine öğrenmesi algoritmalarıyla kalibre etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 426E",
+      "madde": "Kararlılık düzeltmeli logaritmik rüzgâr profili denklemiyle rüzgâr kesmesini çözümlemek."
+     },
+     {
+      "ders": "MTO 426E",
+      "madde": "Kule mikrometeoroloji verilerini makine öğrenmesi algoritmalarıyla kalibre etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Cabauw kulesi akı kestiriminde Monin-Obukhov ve rastgele orman hata karşılaştırma tablosu ve açık GitHub deposu.",
+  "senden": "KNMI API ile NetCDF kule verilerini indirmek, xarray ile temizleyip rastgele orman ve fiziksel yinelemeli algoritmayı kodlamak.",
+  "bizden": "MTO 426E Monin-Obukhov benzerlik kuramı ve Businger-Dyer fonksiyonlarını uygulamak, kararlılık rejimlerini yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "Mikrometeoroloji kulesinde 10 m ve 20 m rüzgâr hızı ile yüzey sürtünme hızı akısı döngüsü",
+   "aciklama": "Gece kararlı ve gündüz kararsız tabakada sürtünme hızının kule yüksekliğiyle değişimi"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/cabauw-most-random-forest",
+   "aciklama": "AURA Cabauw kulesi akı tahmin paneli ve hata metrikleri tablosu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yüzey sınır tabakasında kule ölçümleri ve türbülanslı akı profilleri şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "McCandless vd. 2022 Yüzey Akılarında Makine Öğrenmesi",
+   "url": "https://doi.org/10.1007/s10546-022-00727-4"
+  },
+  {
+   "ad": "Foken 2006 Monin-Obukhov Benzerlik Kuramının 50 Yılı",
+   "url": "https://doi.org/10.1007/s10546-006-9048-6"
+  },
+  {
+   "ad": "Businger vd. 1971 Akı-Profil Bağıntıları",
+   "url": "https://doi.org/10.1175/1520-0469(1971)028%3C0181:FPRITA%3E2.0.CO;2"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO426E-01.json",
+  "tarih": "2026-10-17 02:20",
+  "geminiSha1": "6b1f41b459af"
+ }
+}

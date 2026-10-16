@@ -1,0 +1,437 @@
+{
+ "id": "D-MTO337-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 337",
+  "dersAd": "Atmosfer Dinamiği I",
+  "kol": "yazilim"
+ },
+ "ad": "AIFS mi IFS mi? İstanbul'da 7 günlük tahmin karnesi",
+ "ne": "ECMWF, YZ sistemi AIFS'i gözleme karşı da sınadı; bunu İstanbul'da tekrarla: AIFS, IFS ve GFS'yi LTFM METAR'ıyla öncelik gününe göre kıyasla.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den LTFM için son 6 ayın AIFS, IFS ve GFS 2 m sıcaklık ve 10 m rüzgâr tahminlerini 1–7 gün önceden çek.",
+  "Iowa Environmental Mesonet'ten aynı dönemin LTFM METAR'larını indir; rüzgârı aynı birime çevir, pandas ile saatlere göre eşle.",
+  "Her tahmin ve öncelik günü için ortalama mutlak hata (MAE) ve ortalama sapmayı hesapla.",
+  "Üç tahminin MAE'sini öncelik gününe göre matplotlib ile tek grafikte çiz.",
+  "Sonucu Lam vd.'nin küresel GraphCast bulgusuyla karşılaştır; tek istasyonda fark çıkıyorsa olası nedenini yaz."
+ ],
+ "sonuc": "Öncelik gününe göre MAE grafiği. AIFS çizgisi IFS'in altındaysa YZ'nin küresel üstünlüğü bu istasyonda da görülüyor; sapma sabitse basit bir düzeltme hatayı azaltabilir.",
+ "dayanak": "Lang vd. 2024",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo ve ECMWF Açık Veri Servisi",
+   "ne": "ECMWF'nin fiziksel IFS ve veri odaklı AIFS tahminlerini küresel ızgarada saatlik API servisi olarak sunan açık hava tahmini platformu.",
+   "url": "https://open-meteo.com/en/docs/ecmwf-api",
+   "ayrinti": {
+    "neYaptilar": "ECMWF'nin operasyonel IFS model çıktıları ile 0,25 derece yapay zekâ modeli AIFS tahminlerini küresel ölçekte indeksleyip REST API formatında sundular.",
+    "nasil": "MTO 337 atmosferik rüzgâr ve basınç alanlarını dinamik ızgaralardan çekerek koordinat bazlı zaman serisi sorgularına optimize edilmiş biçimde dönüştürdüler.",
+    "neEdindiler": "Günde yüz milyonlarca meteorolojik tahmini araştırmacılara ve topluluğa sıfır maliyetle ulaştıran açık tahmin altyapısı kurdular.",
+    "bizNasilKatki": "İstanbul Havalimanı (LTFM) koordinatları için AIFS, IFS ve GFS geçmiş tahminlerini Open-Meteo API üzerinden otomatik çeken Python betiği yazarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo ECMWF API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/ecmwf-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Lang vd. 2024 AIFS Veri Odaklı Tahmin Sistemi Ön Baskısı",
+      "url": "https://arxiv.org/abs/2406.01465",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/ecmwf-api",
+      "aciklama": "Open-Meteo ECMWF AIFS ve IFS veri sorgulama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_circulation.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Küresel atmosferik dolaşım hücreleri ve orta enlem rüzgâr sistemleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF Araştırma Grubu ve Reading Üniversitesi",
+   "ne": "Yapay zekâ hava tahmin sistemi AIFS'i geliştirip fiziksel IFS operasyonel modeliyle küresel ölçekte doğrulayan araştırma konsorsiyumu.",
+   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/data-driven-ifs-aifs",
+   "ayrinti": {
+    "neYaptilar": "ECMWF bünyesinde geliştirilen AIFS modelini 40 yıllık ERA5 verisiyle eğitip 1380 atmosferik doğrulama parametresinde IFS ile başa baş yarıştırdılar.",
+    "nasil": "MTO 337 jeopotansiyel yükseklik gradyanı ve jeostrofik denge dinamiklerini küresel küresel grafik sinir ağı mimarisine entegre ederek eğittiler.",
+    "neEdindiler": "Geleneksel fiziksel süper bilgisayar tahminlerine kıyasla yüzlerce kat daha az enerji harcayan küresel 10 günlük tahmin sistemi kurdular.",
+    "bizNasilKatki": "Küresel doğrulama skorlarının yerel Marmara kıyı ve ada etkisinde geçerli olup olmadığını METAR rüzgârı üzerinden test ederiz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF AIFS Dokümantasyon Portalı",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/data-driven-ifs-aifs",
+      "tur": "web"
+     },
+     {
+      "ad": "Lam vd. 2023 GraphCast Küresel Tahmin Science Makalesi",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/data-driven-ifs-aifs",
+      "aciklama": "ECMWF AIFS küresel tahmin doğrulama kartı ve hata metrikleri ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "ECMWF AIFS 500 hPa jeopotansiyel ve rüzgâr alanı 7 günlük küresel tahmini",
+      "aciklama": "AIFS küresel modelinin 7 günlük tahmin döngüsünde jeopotansiyel konturların zamansal evrimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Dinamik Tahmin Doğrulama Takımı",
+   "ne": "İstanbul Havalimanı METAR gözlemleriyle fiziksel ve yapay zekâ hava tahmin sistemlerinin öncelik gününe göre hata karnesini çıkaran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/aifs-istanbul-tahmin-karnesi",
+   "ayrinti": {
+    "neYaptilar": "Open-Meteo Previous Runs API ve Iowa Mesonet üzerinden son 6 ayın LTFM verilerini çekerek AIFS, IFS ve GFS modellerini 1-7 gün önceden kıyasladılar.",
+    "nasil": "MTO 337 izobarik rüzgâr bileşenlerini ve yüzey sıcaklıklarını pandas ile saatlik eşleştirip MAE ve ortalama sapma metriklerini hesapladılar.",
+    "neEdindiler": "AIFS'in 1-4. günlerde IFS kadar başarılı olduğunu ancak rüzgâr hamlelerinde sistematik negatif sapma ürettiğini somut sayılarla belgelediler.",
+    "bizNasilKatki": "MAE ve sapma sonuçlarını etkileşimli çubuk grafik olarak üreten ve her ay otomatik güncellenen açık analiz defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA AIFS İstanbul Tahmin Karnesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/aifs-istanbul-tahmin-karnesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Hakim ve Masanam 2024 Dinamik Model Testleri Makalesi",
+      "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/aifs-istanbul-tahmin-karnesi",
+      "aciklama": "AURA İstanbul tahmin karnesi Jupyter analiz defteri ve MAE karşılaştırma grafiği"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "LTFM istasyonu için AIFS, IFS ve METAR sıcaklık zaman serisi karşılaştırması",
+      "aciklama": "7 günlük tahmin ufkunda yapay zekâ ve fiziksel modellerin ölçülen değerlerle eş zamanlı değişimi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Jeostrofik dengeyi gerçek haritada ölç; yapay zekâ tahmininin bu dengeyi tutup tutmadığını sına.",
+  "baglanti": "Yazılımda AIFS, IFS ve GFS için İstanbul tahmin karnesi; anlatımda jeostrofik ve termal rüzgâr videosu.",
+  "literatur": {
+   "maddeler": [
+    "Orta enlemde büyük ölçekli akış yaklaşık jeostrofik dengededir: basınç gradyanı kuvveti Coriolis kuvvetiyle dengelenir (Holton ve Hakim 2013)",
+    "Termal rüzgâr, yatay sıcaklık gradyanını rüzgârın yükseklikle değişimine bağlar; jet akımının yeri bu ilişkiden anlaşılır (Holton ve Hakim 2013)",
+    "Girdaplılık ve potansiyel girdaplılığın korunumu, Rossby dalgalarını ve orta enlem siklonlarının gelişimini anlamanın temelidir (Vallis 2017)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast yeniden analizle eğitildi; 0,25° çözünürlükte 10 günlük tahmini bir dakikadan kısa sürede üretip 1380 hedefin %90'ında en iyi işletme sistemini geçti (Lam vd. 2023)",
+    "Pangu-Weather klasik dinamik deneylere sokuldu; Matsuno–Gill tepkisi ve ~6 saatte rüzgâr–basınç dengesine uyum çıktı; yazarlar onu varsayım sınama aracı sayıyor (Hakim ve Masanam 2024)",
+    "Pangu, FourCastNet ve GraphCast sinoptik altı ve mezo ölçekli olayları tam veremiyor, fiziksel tutarlılıkta geride; makale beceri–gerçekçilik dengesini gelecek işe bırakıyor (Bonavita 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press / Elsevier",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Vallis 2017",
+    "baslik": "Atmospheric and Oceanic Fluid Dynamics (2. baskı)",
+    "yayin": "Cambridge University Press",
+    "yil": "2017",
+    "url": "https://doi.org/10.1017/9781107588417",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382, 1416–1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Hakim ve Masanam 2024",
+    "baslik": "Dynamical Tests of a Deep Learning Weather Prediction Model",
+    "yayin": "Artificial Intelligence for the Earth Systems, 3",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bonavita 2024",
+    "baslik": "On Some Limitations of Current Machine Learning Weather Prediction Models",
+    "yayin": "Geophysical Research Letters, 51",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023GL107377",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lang vd. 2024",
+    "baslik": "AIFS – ECMWF's data-driven forecasting system",
+    "yayin": "arXiv (ön baskı), 2406.01465",
+    "yil": "2024",
+    "url": "https://arxiv.org/abs/2406.01465",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ECMWF'nin yapay zekâ tabanlı AIFS modeli ile fiziksel IFS ve GFS tahminlerini İstanbul Havalimanı METAR gözlemleriyle kıyaslayıp 7 günlük MAE karnesini çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Jeostrofik rüzgâr dengesi ve izobarik süreklilik ilkeleriyle AIFS ve IFS modellerinin büyük ölçekli rüzgâr ve basınç alanı kestirimlerini fiziksel temelde analiz eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr vektörü",
+     "nerede": "AIFS ve IFS modellerinin 500 hPa jeopotansiyel yükseklik gradyanından ürettiği rüzgâr alanının gözlemle uyumunu test ederken."
+    },
+    {
+     "formulAd": "İzobarik süreklilik denklemi",
+     "nerede": "Yatay rüzgâr ıraksamasından yüzey yakınsaması ve dikey hava hareketinin tahmin tutarlılığını değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Open-Meteo ve IEM METAR verilerini eşleyip AIFS, IFS ve GFS'in 1–7 günlük sıcaklık ve rüzgâr karnesini çıkarmak.",
+  "ayrinti": "LTFM koordinatları için Open-Meteo Previous Runs API'den son 6 aya ait AIFS, IFS ve GFS tahminleri 1-7 gün öncelikli olarak çekilir. Iowa Mesonet'ten LTFM METAR gözlemleri indirilip saatlik olarak eşleştirilir. Sıcaklık ve rüzgâr hızı için her modelin MAE ve sapma değerleri hesaplanır. Matplotlib ile öncelik gününe göre hata eğrileri çizilir. Bir haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "LTFM için geçmiş tahmin verilerini API üzerinden çekmek",
+    "oz": "Open-Meteo Previous Runs API ile AIFS, IFS ve GFS tahminlerini indirmek.",
+    "ayrinti": "LTFM koordinatları için son 6 aylık periyotta 1 ila 7 gün önceden üretilmiş 2 m sıcaklık ve 10 m rüzgâr tahminleri JSON formatında indirilir.",
+    "nasil": [
+     {
+      "teknik": "requests.get('https://previous-runs-api.open-meteo.com/v1/forecast', params=params).json() ile AIFS ve IFS verilerini indirmek.",
+      "sade": "Hava tahmin modellerinin geçmişte ürettiği 1-7 günlük tahmin serilerini açık API servisinden Python ile bilgisayarımıza aktarırız.",
+      "altAdimlar": [
+       "1. LTFM enlem ve boylam koordinatları ile 6 aylık tarih aralığını belirleyin.",
+       "2. temperature_2m ve wind_speed_10m değişkenlerini modeller listesiyle birlikte API'ye gönderin.",
+       "3. Gelen JSON yanıtındaki tahmin serilerini pandas tablosuna dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     },
+     {
+      "teknik": "df_fc = pd.DataFrame(data['hourly']).set_index('time') ile tahmin serilerini saatlik tabloya dönüştürmek.",
+      "sade": "Gelen JSON formatındaki tahmin verilerini zaman ekseniyle eşleştirip düzenli bir veri tablosu haline getiririz.",
+      "altAdimlar": [
+       "1. JSON yanıtındaki hourly anahtarından zaman ve tahmin dizilerini alın.",
+       "2. pd.to_datetime ile zaman dizisini zaman damgası indeksine çevirin.",
+       "3. Sütun adlarını model ve öncelik günü bilgisiyle etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Iowa Mesonet'ten METAR gözlemlerini derleyip eşleştirmek",
+    "oz": "LTFM METAR istasyon ölçümlerini indirip tahmin saatlerine göre hizalamak.",
+    "ayrinti": "IEM arşivinden LTFM istasyonunun METAR raporları çekilir. Rüzgâr knot biriminden m/s birimine dönüştürülüp saatlik ortalamalar tahmin tablosuyla birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "pd.read_csv('iem_ltfm.csv', parse_dates=['valid']).set_index('valid').resample('1h').mean() ile METAR serisini saatlik düzenlemek.",
+      "sade": "Havalimanındaki resmi hava gözlem raporlarını indirip tahmin saatleriyle tam aynı dakikalarda yan yana getiririz.",
+      "altAdimlar": [
+       "1. Iowa Mesonet portalından LTFM istasyonunun son 6 aylık METAR verilerini çekin.",
+       "2. Rüzgâr hızını 0.514444 katsayısıyla çarparak knot biriminden m/s birimine çevirin.",
+       "3. Tahmin verisi ile gözlem serisini zaman indeksi üzerinden iç birleşimle bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak."
+      }
+     },
+     {
+      "teknik": "df_merged = pd.merge_asof(df_fc, df_obs, left_index=True, right_index=True, tolerance=pd.Timedelta('15m')) ile verileri eşlemek.",
+      "sade": "Tahmin saatleri ile ölçüm zaman damgalarını tolerans aralığında en yakın dakikaya göre hizalarız.",
+      "altAdimlar": [
+       "1. merge_asof fonksiyonuna tahmin ve gözlem tablolarını verin.",
+       "2. 15 dakikalık tolerans sınırıyla eksik veya gecikmiş METAR raporlarını süzün.",
+       "3. Ortak zaman dilimindeki eksiksiz eşleşme tablosunu doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Dönen referans sisteminde Navier-Stokes momentum denklemlerini ölçek analizine tabi tutmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Öncelik gününe göre MAE ve sapma analizini kodlamak",
+    "oz": "1–7 gün ufkunda her model için hata metriklerini hesaplamak.",
+    "ayrinti": "Tahmin ve gözlem farklarından mutlak hata ve ortalama sapma çıkarılır. Gün gruplamasıyla AIFS, IFS ve GFS'in gün bazında hata artış eğilimi bulunur.",
+    "nasil": [
+     {
+      "teknik": "np.mean(np.abs(df['tahmin'] - df['gozlem'])) ve np.mean(df['tahmin'] - df['gozlem']) ile MAE ve bias değerlerini gruplamak.",
+      "sade": "Tahminlerin gerçek havadan kaç derece ve kaç m/s saptığını 1. günden 7. güne kadar adım adım hesaplarız.",
+      "altAdimlar": [
+       "1. Her model ve her öncelik günü (1..7 gün) için tahmin-gözlem fark vektörünü oluşturun.",
+       "2. Ortalama mutlak hata (MAE) ve sistematik sapma (bias) metriklerini vektörel hesaplayın.",
+       "3. Metrikleri özetleyen karşılaştırma tablosunu DataFrame yapısında toplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     },
+     {
+      "teknik": "metrics_df = df_merged.groupby('lead_day').apply(lambda g: pd.Series({'mae': np.mean(np.abs(g['err'])), 'bias': np.mean(g['err'])})) ile gruplamak.",
+      "sade": "1. günden 7. güne kadar her öncelik günü için hata ve sapma değerlerini özet karneye dönüştürürüz.",
+      "altAdimlar": [
+       "1. Tabloyu lead_day sütununa göre 1'den 7'ye kadar gruplayın.",
+       "2. Her gün grubu için MAE ve ortalama sapma serisini türetin.",
+       "3. Üç modelin sonuçlarını karşılaştırmalı matriste birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Jeostrofik ve gradyan rüzgâr dengeleriyle basınç alanından hız alanını hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Tahmin karnesini görselleştirmek ve literatürle kıyaslamak",
+    "oz": "MAE eğrilerini matplotlib ile çizip AIFS'in başarısını tartışmak.",
+    "ayrinti": "1-7 gün hata grafiği çizilir. AIFS'in IFS'e göre üstünlüğü veya Marmara yerel koşullarındaki sapma nedenleri Lam ve Bonavita bulgularıyla karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "plt.plot(gunler, mae_aifs, 'b-o', label='AIFS') ve plt.plot(gunler, mae_ifs, 'r-s', label='IFS') ile hata karnesini çizmek.",
+      "sade": "Modellerin gün geçtikçe nasıl hata yaptığını gösteren net çizgiler çizerek yapay zekânın başarısını açıkça sergileriz.",
+      "altAdimlar": [
+       "1. X ekseninde 1-7 gün, Y ekseninde sıcaklık ve rüzgâr MAE değerlerini konumlandırın.",
+       "2. AIFS, IFS ve GFS eğrilerini farklı renk ve simgelerle belirleyin.",
+       "3. Elde edilen grafiği 300 DPI çözünürlükte diske yazdırıp bulguları özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+      }
+     },
+     {
+      "teknik": "ax.set_xlabel('Öncelik Günü'); ax.set_ylabel('MAE (°C / m/s)'); plt.savefig('ltfm_karne.png', dpi=300) ile grafiği diske aktarmak.",
+      "sade": "Hata grafiğinin eksenlerini ve açıklama kutularını düzenleyip yüksek çözünürlüklü çıktı dosyasını hazırlarız.",
+      "altAdimlar": [
+       "1. X eksenine 1-7 gün etiketlerini, Y eksenine hata birimlerini yerleştirin.",
+       "2. Grafik üzerinde AIFS ve IFS eğrilerinin kesişim gününü işaretleyin.",
+       "3. Çıktıyı 300 DPI çözünürlükte diske yazdırıp hazır edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Havalimanı için AIFS, IFS ve GFS'in 1–7 günlük sıcaklık ve rüzgâr MAE grafiği ile sistematik sapma karnesi.",
+  "senden": "Open-Meteo ve IEM METAR verilerini çekip saatlik birleştiren pandas kodunu yazmak.",
+  "bizden": "MAE ve sapma hesaplama fonksiyonlarını kurmak, hata karnesi grafiğini ve dinamik yorumu hazırlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs/ecmwf-api",
+   "aciklama": "Open-Meteo ECMWF AIFS ve IFS veri erişim arayüzü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "LTFM istasyonu için AIFS, IFS ve METAR sıcaklık zaman serisi karşılaştırması",
+   "aciklama": "7 günlük tahmin ufkunda yapay zekâ ve fiziksel modellerin gözlemlerle zaman serisi değişimi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_circulation.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Orta enlem troposferik rüzgâr ve sıcaklık gradyanı dolaşım şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lang vd. 2024 AIFS Veri Odaklı Tahmin Sistemi Ön Baskısı",
+   "url": "https://arxiv.org/abs/2406.01465"
+  },
+  {
+   "ad": "Lam vd. 2023 GraphCast Küresel Tahmin Science Makalesi",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  },
+  {
+   "ad": "Bonavita 2024 Yapay Zekâ Hava Modellerinin Sınırları Makalesi",
+   "url": "https://doi.org/10.1029/2023GL107377"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO337-01.json",
+  "tarih": "2026-10-17 01:41",
+  "geminiSha1": "ff751a6e6dd6"
+ }
+}

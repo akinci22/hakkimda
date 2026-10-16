@@ -1,0 +1,180 @@
+{
+ "kod": "MTO 426E",
+ "ad": "Micrometeorology (Mikrometeoroloji)",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "426",
+ "ozet": "Atmosferik sınır tabakanın en alt dilimi olan yüzey tabakasında türbülanslı momentum, ısı ve kütle taşınımını öğretir. Monin-Obukhov benzerlik kuramı, girdap kovaryans yöntemi, pürüzlülük alt tabakası ve rüzgâr profilleri incelenir. Kara ve deniz yüzeylerinin atmosferle etkileşimini kule ve açık veri setleriyle sayısal olarak çözümler.",
+ "neOgrenirsin": [
+  "Monin-Obukhov benzerlik kuramıyla boyutsuz rüzgâr ve sıcaklık gradyanlarını hesaplamak.",
+  "Obukhov uzunluğu (L) ve z/L parametresiyle yüzey tabakası kararlılık rejimlerini belirlemek.",
+  "Girdap kovaryansı ölçümlerinden sürtünme hızı (u*) ve duyulur ısı akısını (H) türetmek.",
+  "Kararlılık düzeltmeli logaritmik rüzgâr profili denklemiyle rüzgâr kesmesini çözümlemek.",
+  "Kule mikrometeoroloji verilerini makine öğrenmesi algoritmalarıyla kalibre etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Monin-Obukhov uzunluğu",
+   "tex": "L = -\\frac{u_*^3 \\theta_v \\rho c_p}{\\kappa g H}",
+   "terimler": [
+    [
+     "L",
+     "Obukhov uzunluğu",
+     "m"
+    ],
+    [
+     "u_*",
+     "sürtünme hızı",
+     "m/s"
+    ],
+    [
+     "\\theta_v",
+     "sanal potansiyel sıcaklık",
+     "K"
+    ],
+    [
+     "\\rho",
+     "hava yoğunluğu",
+     "kg/m^3"
+    ],
+    [
+     "c_p",
+     "kuru havanın sabit basınçtaki özgül ısısı (1005 J/(kg·K))",
+     "J/(kg·K)"
+    ],
+    [
+     "\\kappa",
+     "von Kármán sabiti (yaklaşık 0,40)",
+     "boyutsuz"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "m/s^2"
+    ],
+    [
+     "H",
+     "yüzey duyulur ısı akısı",
+     "W/m^2"
+    ]
+   ],
+   "sade": "Türbülans üretiminde mekanik rüzgâr kesmesi ile ısıl kaldırma kuvvetinin göreli büyüklüğünü dengeler. Negatif değerler kararsız gündüzü, pozitif değerler kararlı geceyi temsil eder.",
+   "ornek": "Yaz öğlesinde u*=0,35 m/s ve H=150 W/m² iken L ≈ -28 m hesaplanır; negatif ve küçük L değeri kuvvetli serbest konveksiyonu ve kararsız yüzey tabakasını doğrular.",
+   "nerede": "D-MTO426E-01 ve D-MTO426E-03 projelerinde yüzey akılarından kararlılık parametresini (z/L) hesaplarken kullanılır."
+  },
+  {
+   "ad": "Kararlılık düzeltmeli logaritmik rüzgâr profili",
+   "tex": "u(z) = \\frac{u_*}{\\kappa} \\left[ \\ln\\left(\\frac{z}{z_0}\\right) - \\psi_m\\left(\\frac{z}{L}\\right) \\right]",
+   "terimler": [
+    [
+     "u(z)",
+     "z yüksekliğindeki ortalama rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "u_*",
+     "sürtünme hızı",
+     "m/s"
+    ],
+    [
+     "\\kappa",
+     "von Kármán sabiti (0,40)",
+     "boyutsuz"
+    ],
+    [
+     "z",
+     "yüzeyden itibaren dikey yükseklik",
+     "m"
+    ],
+    [
+     "z_0",
+     "aerodinamik pürüzlülük uzunluğu",
+     "m"
+    ],
+    [
+     "\\psi_m",
+     "momentum kararlılık düzeltme fonksiyonu",
+     "boyutsuz"
+    ],
+    [
+     "L",
+     "Obukhov uzunluğu",
+     "m"
+    ]
+   ],
+   "sade": "Nötr olmayan atmosferik tabakada rüzgâr profilinin logaritmik çizgiden sapmasını açıklar. Kararlı gecelerde rüzgâr hızla artarken, gündüz kararsız tabakada profil daha dikleşir.",
+   "ornek": "z0=0,05 m çayır zemininde z=20 m ve u*=0,4 m/s iken, nötr durumda hız 5,99 m/s iken kararsız gündüzde kararlılık düzeltmesiyle 5,19 m/s olarak hesaplanır.",
+   "nerede": "D-MTO426E-02 projesinde kule rüzgâr ölçümlerini kararlılık eğrileriyle eşleştirirken kullanılır."
+  },
+  {
+   "ad": "Girdap kovaryansı ile duyulur ısı akısı",
+   "tex": "H = \\rho c_p \\overline{w' \\theta'}",
+   "terimler": [
+    [
+     "H",
+     "yüzey duyulur ısı akısı",
+     "W/m^2"
+    ],
+    [
+     "\\rho",
+     "hava yoğunluğu",
+     "kg/m^3"
+    ],
+    [
+     "c_p",
+     "kuru havanın özgül ısısı (1005 J/(kg·K))",
+     "J/(kg·K)"
+    ],
+    [
+     "w'",
+     "dikey rüzgâr hızındaki türbülans dalgalanması",
+     "m/s"
+    ],
+    [
+     "\\theta'",
+     "potansiyel sıcaklıktaki türbülans dalgalanması",
+     "K"
+    ],
+    [
+     "\\overline{w' \\theta'}",
+     "dikey hız ve sıcaklık dalgalanmalarının zaman ortalamalı kovaryansı",
+     "K·m/s"
+    ]
+   ],
+   "sade": "Dikey rüzgâr türbülansı ile sıcaklık dalgalanmalarının ortak çarpımıdır; yüzeyden atmosfere saniyede ne kadar termal enerji aktarıldığını doğrudan hesaplar.",
+   "ornek": "Kulede 20 Hz ultrasonik anemometre ölçümüyle dikey hız ve sıcaklık kovaryansı 0,12 K·m/s ve rho=1,22 kg/m³ için H ≈ 147 W/m² olarak bulunur.",
+   "nerede": "D-MTO426E-01 projesinde mikrometeorolojik kule akı verilerini makine öğrenmesi tahminleriyle kıyaslarken kullanılır."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yüzey tabakasında türbülanslı akı profilleri ve atmosferik sınır tabaka yapısı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara ve Batı Karadeniz yüzey duyulur ısı akısı ve Obukhov uzunluğu saatlik döngüsü",
+   "aciklama": "Kara ve deniz üzerindeki yüzey akılarının ve kararlılık rejimlerinin gün içi dönüşüm haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 426E (Micrometeorology)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=426"
+  },
+  {
+   "ad": "Stull, R. B. (1988) An Introduction to Boundary Layer Meteorology, Springer · DOI 10.1007/978-94-009-3027-8",
+   "url": "https://doi.org/10.1007/978-94-009-3027-8"
+  },
+  {
+   "ad": "Foken, T. (2006) 50 Years of the Monin-Obukhov Similarity Theory, Boundary-Layer Meteorol 119:431-447",
+   "url": "https://doi.org/10.1007/s10546-006-9048-6"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=426"
+}

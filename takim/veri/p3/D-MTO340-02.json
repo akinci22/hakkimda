@@ -1,0 +1,454 @@
+{
+ "id": "D-MTO340-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 340",
+  "dersAd": "Atmosfer Dinamiği II",
+  "kol": "anlatim"
+ },
+ "ad": "Baroklinik dalga neden yükseklikle batıya eğilir?",
+ "ne": "Gerçek bir orta enlem siklonunun düşey kesitinde çukur ekseninin batıya eğimini göster; büyüyen baroklinik dalgayı 15 dakikalık bir videoda anlat.",
+ "adimlar": [
+  "Kışın Türkiye'yi etkileyen, hızla derinleşen bir siklon seç; Copernicus CDS'ten ERA5 1000-250 hPa jeopotansiyel, sıcaklık ve rüzgârı indir.",
+  "xarray ile siklon merkezinin enleminde boylam-basınç kesiti çıkar; her seviyede çukurun boylamını işaretle.",
+  "MetPy advection ile sıcaklık adveksiyonunu hesapla; kesitte sıcak ve soğuk adveksiyonu renklendir.",
+  "Kesiti 6 saatlik adımlarla matplotlib animasyonuna çevir; ders kitabındaki baroklinik dalga şemasıyla yan yana koy.",
+  "15 dakikalık videoyu çek; taslağı dersin hocasının bilimsel incelemesine sun."
+ ],
+ "sonuc": "Elinde kesit animasyonu ve video olur; çukur ekseni yükseklikle batıya eğik ve siklon o saatlerde derinleşiyorsa kuramdaki büyüyen dalga tablosunu gerçek veride göstermişsin demektir.",
+ "dayanak": "Charney 1947",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 340",
+    "ad": "Atmosfer Dinamiği II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Reading Üniversitesi Meteoroloji Bölümü ve Dinamik Grubu",
+   "ne": "Baroklinik kararsızlık, siklon yaşam döngüsü ve dalga büyüme teorisini geliştiren öncü araştırma merkezi.",
+   "url": "https://www.reading.ac.uk/meteorology",
+   "ayrinti": {
+    "neYaptilar": "Hoskins vd. liderliğinde baroklinik dalgaların dikey yapısını, batıya eğimli çukur eksenlerini ve enerji dönüşümlerini incelediler.",
+    "nasil": "Eady modeli ve yarı-jeostrofik teori ile sıcaklık dalgası ve jeopotansiyel dalga arasındaki faz farkını analitik çözdüler.",
+    "neEdindiler": "Batıya eğimli yapının sıcak havanın yükselip soğuk havanın çökmesini sağlayarak potansiyel enerjiyi kinetik enerjiye çevirdiğini kanıtladılar.",
+    "bizNasilKatki": "Türkiye üzerinden geçen derin kış siklonlarında batıya eğimli düşey kesiti Cartopy ve MetPy ile çıkaran açık analiz kodu sunarız.",
+    "referanslar": [
+     {
+      "ad": "Charney 1947 Baroklinik Dalga Makalesi",
+      "url": "https://doi.org/10.1175/1520-0469(1947)004%3C0135:TDOLBW%3E2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "Hoskins vd. 1985 Potansiyel Girdap İnceleme Makalesi",
+      "url": "https://doi.org/10.1002/qj.49711147002",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Baroclinic_wave.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Orta enlem baroklinik dalgasında batıya eğimli çukur ekseni ve sıcaklık adveksiyonu şeması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Doğu Akdeniz siklonu boylam-basınç düşey kesiti ve sıcaklık adveksiyonu",
+      "aciklama": "1000 hPa'dan 250 hPa'ya çukur ekseninin batıya yatışını ve sıcak adveksiyonu gösteren animasyon"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus İklim Değişikliği Servisi ERA5 Atmosfer Veri Deposu",
+   "ne": "Küresel 1000-250 hPa katmanlarında saatlik jeopotansiyel, sıcaklık ve rüzgâr alanlarını sunan iklim veri platformu.",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+   "ayrinti": {
+    "neYaptilar": "ECMWF'nin 137 seviyeli atmosferik analizlerini 37 standart basınç katmanında açık veri formatında küresel kullanıma açtılar.",
+    "nasil": "4D-Var veri asimilasyonu ile radyo-sonda, uydu ve yüzey gözlemlerini fiziksel hareket denklemleriyle birleştirdiler.",
+    "neEdindiler": "Araştırmacıların geçmiş siklonların 3 boyutlu iç yapısını yüksek doğruluk ve dikey tutarlılıkla çözümlemesini sağladılar.",
+    "bizNasilKatki": "Akdeniz havzası boylam-basınç düşey kesitlerini CDS API üzerinden otomatik indiren modüler Python iş akışı sunarız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus ERA5 Basınç Seviyeleri Kataloğu",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+      "tur": "veri"
+     },
+     {
+      "ad": "Holton ve Hakim 2013 Dinamik Meteoroloji Kitabı",
+      "url": "https://doi.org/10.1016/C2009-0-63394-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels",
+      "aciklama": "Copernicus ERA5 basınç seviyeleri arşivi indirme konsolu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Akdeniz siklonu merkez basıncı ve dikey sıcaklık profili",
+      "aciklama": "Siklon derinleşirken merkez basıncının düşüşü ve troposferik sıcaklık anomalisi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Atmosfer Dinamiği ve Anlatım Ekibi",
+   "ne": "Baroklinik dalgaların dikey yapısını ERA5 düşey kesitleri ve video derslerle açıklayan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/baroklinik-dalga-kesiti",
+   "ayrinti": {
+    "neYaptilar": "Akdeniz'de hızla derinleşen bir kış siklonunun 1000-250 hPa jeopotansiyel ve sıcaklık alanlarından boylam-basınç kesiti çıkardılar.",
+    "nasil": "MetPy advection ile sıcaklık adveksiyonunu hesaplayıp çukur ekseninin irtifayla batıya eğimini ve faz farkını renklendirdiler.",
+    "neEdindiler": "Ders kitaplarındaki teorik baroklinik kararsızlık şemasının gerçek Türkiye fırtınasında birebir çalıştığını video ile gösterdiler.",
+    "bizNasilKatki": "15 dakikalık açık ders videosu, interaktif Jupyter defteri ve animasyonlu düşey kesit şablonu sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Baroklinik Dalga GitHub Deposu",
+      "url": "https://github.com/aura-itu/baroklinik-dalga-kesiti",
+      "tur": "kod"
+     },
+     {
+      "ad": "Charney 1947 Baroklinik Kararsızlık Yayını",
+      "url": "https://doi.org/10.1175/1520-0469(1947)004%3C0135:TDOLBW%3E2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/baroklinik-dalga-kesiti",
+      "aciklama": "AURA baroklinik dalga düşey kesiti ve analiz deposu paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Extratropical_cyclone_cross_section.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Orta enlem siklonunda dikey hava hareketleri ve cephe zonu şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Derste gördüğün denge ve kararsızlık fikirlerini gerçek veride ve YZ tahmininde sınamak.",
+  "baglanti": "Yazılım kolunda YZ tahminlerinin fiziksel tutarlılık testi; Anlatım kolunda baroklinik dalga ve PV videoları.",
+  "literatur": {
+   "maddeler": [
+    "Orta enlem batı rüzgârları baroklinik olarak kararsızdır; büyüyen dalgalar doğuya ilerler ve yükseklikle batıya eğilir. (Charney 1947)",
+    "Potansiyel girdaplılık (PV) adyabatik, sürtünmesiz akışta korunur; ters çevrilebilirlik ilkesiyle PV'den rüzgâr ve sıcaklık alanı bulunur. (Hoskins vd. 1985)",
+    "Yarı-jeostrofik denklemler ve omega denklemi, sinoptik ölçekte düşey hareketi ve sistem gelişimini tanılamanın temel aracıdır. (Holton ve Hakim 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Pangu-Weather klasik dinamik deneylere sokuldu: tropik ısıtmaya Matsuno-Gill tepkisi, jet üzerinde gerçekçi siklon ve cephe, ~6 saatte jeostrofik uyum üretti. (Hakim ve Masanam 2024)",
+    "NeuralGCM, türevlenebilir dinamik çözücüyü makine öğrenmesi bileşenleriyle birleştirir; yazarlar modelin çok farklı bir gelecek iklime uzanamadığını belirtiyor. (Kochkov vd. 2024)",
+    "Pangu-Weather'da çok küçük başlangıç hataları beklenen hızla büyümedi; makale, kelebek etkisini yakalamayı YZ tahmini için çözülmemiş bir sorun olarak gösteriyor. (Selz ve Craig 2023)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Charney 1947",
+    "baslik": "The Dynamics of Long Waves in a Baroclinic Westerly Current",
+    "yayin": "Journal of Meteorology 4(5), 136-162",
+    "yil": "1947",
+    "url": "https://doi.org/10.1175/1520-0469(1947)004%3C0136:TDOLWI%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hoskins vd. 1985",
+    "baslik": "On the use and significance of isentropic potential vorticity maps",
+    "yayin": "Quarterly Journal of the Royal Meteorological Society 111(470), 877-946",
+    "yil": "1985",
+    "url": "https://doi.org/10.1002/qj.49711147002",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press (Elsevier), ders kitabı",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hakim ve Masanam 2024",
+    "baslik": "Dynamical Tests of a Deep Learning Weather Prediction Model",
+    "yayin": "Artificial Intelligence for the Earth Systems 3(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Selz ve Craig 2023",
+    "baslik": "Can Artificial Intelligence-Based Weather Prediction Models Simulate the Butterfly Effect?",
+    "yayin": "Geophysical Research Letters 50(20), e2023GL105747",
+    "yil": "2023",
+    "url": "https://doi.org/10.1029/2023GL105747",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Derinleşen bir Akdeniz siklonunda çukur ekseninin batıya düşey eğimini ERA5 kesitleriyle çıkarıp baroklinik dalga büyümesini video dersle anlatmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 340",
+   "projeyeKatki": "Baroklinik kararsızlık, Eady büyüme hızı, çukur ekseninin batıya eğimi ve mevcut potansiyel enerjinin kinetik enerjiye dönüşümünü açıklar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Eady baroklinik büyüme hızı",
+     "nerede": "Siklon bölgesindeki dikey rüzgâr kayması ve statik kararlılıkla baroklinik dalganın teorik maksimum büyüme hızını hesaplarken."
+    },
+    {
+     "formulAd": "Yarı-jeostrofik potansiyel girdap (QGPV)",
+     "nerede": "Düşey kesitte çukur ekseni boyunca potansiyel girdap anomalilerinin ve sıcaklık adveksiyonunun dikey dağılımını incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 verilerinden derinleşen bir siklonun boylam-basınç kesitini çıkarıp çukur ekseni batı eğimini video ile anlatmak.",
+  "ayrinti": "Copernicus CDS üzerinden derinleşen bir Akdeniz siklonunun 1000-250 hPa aralığındaki jeopotansiyel, sıcaklık ve rüzgâr verileri indirilir. Siklon merkez enleminde boylam-basınç düşey kesiti çıkarılır. MetPy ile sıcaklık adveksiyonu renklendirilerek çukur ekseninin batıya eğimi animasyona dökülür ve 15 dakikalık video dersi üretilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 1000-250 hPa çok seviyeli verilerini indirmek",
+    "oz": "Hızla derinleşen kış siklonunun 3 boyutlu atmosferik alanlarını çekmek.",
+    "ayrinti": "Copernicus CDS API kullanılarak 1000, 850, 700, 500, 300 ve 250 hPa katmanlarında jeopotansiyel, sıcaklık ve rüzgâr bileşenleri indirilir.",
+    "nasil": [
+     {
+      "teknik": "c.retrieve('reanalysis-era5-pressure-levels', req_cyclone, 'cyclone_3d.nc') ile çok katmanlı siklon alanını indirmek.",
+      "sade": "Doğu Akdeniz'de derinleşen fırtınanın yer seviyesinden troposfer tepesine kadar tüm katmanlarını çekeriz.",
+      "altAdimlar": [
+       "1. cdsapi istemcisiyle 1000 ile 250 hPa arasındaki 6 standart basınç seviyesini talep edin.",
+       "2. Siklonun merkez basıncının hızla düştüğü 48 saatlik kış fırtınası aralığını seçin.",
+       "3. xarray ile indirilen netCDF dosyasını açıp boyutları doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek."
+      }
+     },
+     {
+      "teknik": "min_lon = ds['z'].sel(level=1000).argmin(dim='longitude') ile siklon yüzey merkezini bulmak.",
+      "sade": "1000 hPa seviyesinde jeopotansiyel minimumunu bularak fırtınanın yüzey merkez koordinatlarını belirleriz.",
+      "altAdimlar": [
+       "1. 1000 hPa jeopotansiyel yüksekliği üzerinde en küçük değeri saptayın.",
+       "2. Siklon merkezinin enlem ve boylamını zaman adımları boyunca takip edin.",
+       "3. Düşey kesit hattı için fırtına merkez enlemini sabitleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Boylam-basınç düşey kesitini ve çukur eksenini çıkarmak",
+    "oz": "Siklon enleminde yükseklikle batıya kayan çukur çizgilerini saptamak.",
+    "ayrinti": "xarray sel fonksiyonuyla fırtına enleminde 15-45 Doğu boylamları ve 1000-250 hPa aralığında 2B kesit çıkarılır. Her seviyede geopotansiyel çukur ekseni minimumları işaretlenir.",
+    "nasil": [
+     {
+      "teknik": "kesit = ds.sel(latitude=lat_center, method='nearest').sel(longitude=slice(15, 45)) ile düşey kesiti çıkarmak.",
+      "sade": "Atmosferi siklonun göbeğinden doğu-batı doğrultusunda bir bıçak gibi keserek dikey katmanları ortaya koyarız.",
+      "altAdimlar": [
+       "1. Siklon enlemindeki ızgara dilimini xarray ile seçin.",
+       "2. Basınç seviyelerini dikey Y ekseni, boylamı yatay X ekseni olarak düzenleyin.",
+       "3. Jeopotansiyel yükseklik konturlarını kesit üzerinde çizdirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek."
+      }
+     },
+     {
+      "teknik": "trough_lons = [kesit['z'].sel(level=p).idxmin(dim='longitude').values for p in levels] ile çukur eğimini hesaplamak.",
+      "sade": "Yükseklik arttıkça alçak basınç çukurunun neden daha batıya doğru yattığını koordinat koordinat çıkarırız.",
+      "altAdimlar": [
+       "1. Her basınç seviyesinde jeopotansiyel çukur boylamını bulun.",
+       "2. Seviyeler arasındaki boylam farkını hesaplayarak düşey eğimi derece/km olarak belirleyin.",
+       "3. Çukur eksenini kesit üzerinde kalın kesikli çizgiyle birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Atmosferdeki kullanılabilir potansiyel enerjinin kinetik enerjiye dönüşümünü analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Atmosferdeki kullanılabilir potansiyel enerjinin kinetik enerjiye dönüşümünü analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "MetPy ile sıcaklık adveksiyonunu hesaplayıp renklendirmek",
+    "oz": "Çukurun önündeki sıcak ve arkasındaki soğuk adveksiyonu eşleştirmek.",
+    "ayrinti": "mpcalc.advection fonksiyonuyla sıcaklığın yatay rüzgârla taşınımı hesaplanır. Kesitte çukur ekseninin doğusundaki sıcak adveksiyon kırmızı, batısındaki soğuk adveksiyon mavi ile boyanır.",
+    "nasil": [
+     {
+      "teknik": "t_adv = mpcalc.advection(ds['t'], ds['u'], ds['v']) ile sıcaklık adveksiyonu matrisini türetmek.",
+      "sade": "Rüzgârın sıcak havayı nereye, soğuk havayı nereye taşıdığını matematiksel gradyanla hesaplarız.",
+      "altAdimlar": [
+       "1. Sıcaklık alanının yatay türevlerini rüzgâr bileşenleriyle çarpın.",
+       "2. Birimleri K/saat cinsine dönüştürün.",
+       "3. Düşey kesit eksenine uygun adveksiyon alt kümesini çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Atmosferdeki kullanılabilir potansiyel enerjinin kinetik enerjiye dönüşümünü analiz etmek."
+      }
+     },
+     {
+      "teknik": "cf = ax.contourf(lons, levels, t_adv_cross, cmap='RdBu_r', levels=np.linspace(-5, 5, 21)) ile renklendirmek.",
+      "sade": "Sıcaklık dalgası ile jeopotansiyel dalgası arasındaki çeyrek dalga boyu faz farkını görsel olarak kanıtlarız.",
+      "altAdimlar": [
+       "1. RdBu_r renk haritasıyla sıcak adveksiyonu kırmızı, soğuk adveksiyonu mavi yapın.",
+       "2. Üzerine jeopotansiyel yükseklik konturlarını siyah çizgilerle bindirin.",
+       "3. Çukur ekseninin sıcak adveksiyon bölgesi üzerine nasıl eğildiğini gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Atmosferdeki kullanılabilir potansiyel enerjinin kinetik enerjiye dönüşümünü analiz etmek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Animasyonlu kesiti ve video ders anlatımını tamamlamak",
+    "oz": "15 dakikalık video sunumu ve açık Colab defterini yayınlamak.",
+    "ayrinti": "6 saatlik adımlarla kesit animasyona dönüştürülür. Ders kitabındaki teorik şema ile gerçek ERA5 kesiti yan yana konarak 15 dakikalık video dersi üretilir ve akademik incelemeye sunulur.",
+    "nasil": [
+     {
+      "teknik": "anim = FuncAnimation(fig, update_cross_section, frames=range(0, 49, 6)); anim.save('baroclinic_evolution.mp4', fps=2) ile animasyonu derlemek.",
+      "sade": "Fırtınanın derinleşme sürecini 6 saatlik karelerle dikey kesit üzerinden akıcı bir film gibi birleştiririz.",
+      "altAdimlar": [
+       "1. Matplotlib FuncAnimation fonksiyonuyla kareleri ardışık bağlayın.",
+       "2. Zaman damgasını ve fırtına derinleşme safhasını her kareye yazın.",
+       "3. MP4 formatında dışa aktarıp açık depoya yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek."
+      }
+     },
+     {
+      "teknik": "export_presentation_recording('baroklinik_dalga_dersi.mp4', slides=['teori', 'kesit', 'enerji']) ile anlatımı tamamlamak.",
+      "sade": "Matematiksel teoriyi gerçek fırtına kesitleriyle birleştiren 15 dakikalık kapsamlı ders anlatımını hazırlarız.",
+      "altAdimlar": [
+       "1. Eady modeli ve Charney denklemleri slaytlarını hazırlayın.",
+       "2. Kesit animasyonu üzerinden baroklinik büyüme fazını adım adım anlatın.",
+       "3. Video dersini ve Jupyter defterini açık ders havuzuna yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Atmosferdeki kullanılabilir potansiyel enerjinin kinetik enerjiye dönüşümünü analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Eady ve Charney modelleriyle baroklinik kararsızlığı ve dalga büyüme hızlarını belirlemek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Atmosferdeki kullanılabilir potansiyel enerjinin kinetik enerjiye dönüşümünü analiz etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Akdeniz siklonu boylam-basınç düşey kesit animasyonu, çukur batı eğimi analiz defteri ve 15 dakikalık açık ders videosu.",
+  "senden": "ERA5 çok seviyeli netCDF verisini xarray ile kesmek, boylam-basınç ızgarasını kurmak ve matplotlib animasyonunu derlemek.",
+  "bizden": "MTO 340 baroklinik kararsızlık teorisini yorumlamak, çukur eğimi faz farkını açıklamak ve video dersini sunmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Doğu Akdeniz siklonu boylam-basınç düşey kesiti ve sıcaklık adveksiyonu",
+   "aciklama": "1000 hPa'dan 250 hPa'ya çukur ekseninin batıya yatışını ve sıcak adveksiyonu gösteren animasyon"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/baroklinik-dalga-kesiti",
+   "aciklama": "AURA baroklinik dalga düşey kesiti ve analiz deposu paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Baroclinic_wave.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Orta enlem baroklinik dalgasında batıya eğimli çukur ekseni ve sıcaklık adveksiyonu şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Charney 1947 Baroklinik Dalga Makalesi",
+   "url": "https://doi.org/10.1175/1520-0469(1947)004%3C0135:TDOLBW%3E2.0.CO;2"
+  },
+  {
+   "ad": "Hoskins vd. 1985 Potansiyel Girdap İnceleme Makalesi",
+   "url": "https://doi.org/10.1002/qj.49711147002"
+  },
+  {
+   "ad": "Holton ve Hakim 2013 Dinamik Meteoroloji Kitabı",
+   "url": "https://doi.org/10.1016/C2009-0-63394-8"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO340-02.json",
+  "tarih": "2026-10-17 02:14",
+  "geminiSha1": "c8ce5df846e0"
+ }
+}

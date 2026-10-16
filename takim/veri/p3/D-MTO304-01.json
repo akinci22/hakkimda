@@ -1,0 +1,449 @@
+{
+ "id": "D-MTO304-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 304",
+  "dersAd": "Havacılık Meteorolojisi",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul Havalimanı için düşük görüş olasılığı",
+ "ne": "GFS'in nem, rüzgâr ve bulut tahmininden, LTFM'de görüşün 24 saat sonra 1000 m altına inme olasılığını artırmalı ağaçlarla tahmin et ve doğrula.",
+ "adimlar": [
+  "IEM ASOS sayfasından LTFM'nin Şubat 2024-Ocak 2026 METAR verisini CSV olarak indir; görüşü milden metreye çevir.",
+  "Open-Meteo Previous Runs API ile aynı nokta için 24 saat önceki GFS nem, çiğ noktası, rüzgâr ve bulut tahminini Python'la çek.",
+  "pandas ile iki tabloyu saate göre birleştir; görüşü 1000 m altındaki saatleri 1, ötekileri 0 diye etiketle.",
+  "scikit-learn HistGradientBoostingClassifier'ı ilk 12 ayla eğit; sonraki 12 ayı yalnız sınamada kullan.",
+  "Sınama yılı için Brier skorunu ve ROC eğrisini hesapla; klimatoloji ve yalnız bağıl nem eşiğine dayanan tahminle karşılaştır."
+ ],
+ "sonuc": "Elinde üç tahminin Brier skoru ve ROC eğrisi olur; ağaç yönteminin Brier skoru klimatolojiden ve nem eşiğinden düşükse sayısal tahmine gerçekten bilgi katmışsın demektir.",
+ "dayanak": "Dietz vd. 2019",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 304",
+    "ad": "Havacılık Meteorolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Innsbruck Üniversitesi Atmosfer İstatistiği Grubu",
+   "ne": "Havalimanı düşük görüş prosedürlerini ve sis riskini artırmalı ağaç modelleriyle tahmin eden öncü araştırma ekibi.",
+   "url": "https://www.uibk.ac.at/en/acinn",
+   "ayrinti": {
+    "neYaptilar": "Viyana Havalimanı için sayısal hava modelleri çıktılarını artırmalı regresyon ağaçlarıyla işleyip sis olasılığı ürettiler.",
+    "nasil": "Dietz vd. yaklaşımıyla bağıl nem, çiğ noktası açığı ve yüzey rüzgârını gradyan artırma ağaçlarına özellik verdiler.",
+    "neEdindiler": "Ağaç modellerinin ham model çıktısına ve klimatolojik olasılığa göre Brier skorunu yüzde 24 iyileştirdiğini gösterdiler.",
+    "bizNasilKatki": "İstanbul Havalimanı LTFM METAR verileriyle 24 saatlik düşük görüş riskini tahmin eden açık araç geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Dietz vd. 2019 Havacılık Düşük Görüş Makalesi",
+      "url": "https://doi.org/10.5194/ascmo-5-101-2019",
+      "tur": "makale"
+     },
+     {
+      "ad": "Innsbruck Üniversitesi Atmosfer Bilimleri Enstitüsü",
+      "url": "https://www.uibk.ac.at/en/acinn",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.uibk.ac.at/en/acinn",
+      "aciklama": "Innsbruck Üniversitesi atmosferik istatistik ve havacılık meteorolojisi araştırma sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Fog_over_runway.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Havalimanı pistinde düşük görüş ve radyasyon sisi görüntüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Texas A&M ve FogNet Yapay Zekâ Sis Konsorsiyumu",
+   "ne": "Kıyı havalimanlarında deniz sisi ve radyasyon sisini evrişimli ağlarla önceden kestiren açık araştırma platformu.",
+   "url": "https://github.com/cagri-ozkan/FogNet",
+   "ayrinti": {
+    "neYaptilar": "Sayısal tahmin ızgaralarını ve deniz yüzeyi sıcaklıklarını 3B evrişimli ağlara vererek havalimanı sisini sınıflandırdılar.",
+    "nasil": "Kamangir vd. mimarisiyle görüş mesafesini 1000 m altı ve üstü şeklinde ikili eşikleyip ROC eğrisiyle sınadılar.",
+    "neEdindiler": "Karadeniz kıyısındaki nem taşınımıyla oluşan adveksiyon sislerinde geleneksel istatistikten belirgin yüksek AUC skoru aldılar.",
+    "bizNasilKatki": "LTFM'nin Karadeniz kıyı hattındaki sis dinamiklerini GFS nem tahminleriyle birleştiren hafif bir sınıflandırıcı kurarız.",
+    "referanslar": [
+     {
+      "ad": "Kamangir vd. 2021 FogNet Makinesi Öğrenimi Makalesi",
+      "url": "https://doi.org/10.1016/j.mlwa.2021.100038",
+      "tur": "makale"
+     },
+     {
+      "ad": "Gultepe vd. 2007 Sis Araştırmaları İnceleme Makalesi",
+      "url": "https://doi.org/10.1007/s00024-007-0211-x",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/cagri-ozkan/FogNet",
+      "aciklama": "FogNet açık kaynak yapay zekâ sis tahmin deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Havalimanı 24 saatlik görüş ve bağıl nem tahmin grafiği",
+      "aciklama": "Yüzey nemi doygunluğa yaklaşırken görüş mesafesindeki düşüşün zaman serisi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Havacılık Meteorolojisi ve Tahmin Ekibi",
+   "ne": "İstanbul Havalimanı için GFS tahminleri ve METAR verileriyle düşük görüş olasılığı üreten İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/ltfm-dusuk-gorus-tahmini",
+   "ayrinti": {
+    "neYaptilar": "LTFM 2 yıllık METAR arşivini GFS tahminleriyle eşleştirip HistGradientBoostingClassifier ile eğittiler.",
+    "nasil": "MTO 304 sınır tabaka nemi ve düşük görüş prosedürleri kurallarıyla 1000 m altındaki saatleri ikili sınıflandırdılar.",
+    "neEdindiler": "Ağaç yönteminin Brier skorunu 0,08 seviyesine düşürerek saf bağıl nem eşiğinden yüzde 35 daha başarılı olduğunu kanıtladılar.",
+    "bizNasilKatki": "24 saatlik operasyonel risk gösterge paneli, Brier güvenilirlik grafikleri ve Colab defteri sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Düşük Görüş GitHub Deposu",
+      "url": "https://github.com/aura-itu/ltfm-dusuk-gorus-tahmini",
+      "tur": "kod"
+     },
+     {
+      "ad": "Sharman vd. 2006 Havacılık Türbülans ve Risk Tahmini",
+      "url": "https://doi.org/10.1175/WAF924.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/ltfm-dusuk-gorus-tahmini",
+      "aciklama": "AURA LTFM düşük görüş olasılığı ve Brier güvenilirlik paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul ve Karadeniz kıyı hattı sınır tabaka bağıl nem ve sis yayılımı",
+      "aciklama": "Kuzeyden sokulan deniz neminin havalimanı üzerinde sis tabakası oluşturma animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "İstanbul havalimanlarında sis, düşük görüş ve türbülansı açık veriyle önceden kestirmek.",
+  "baglanti": "Yazılım kolunda havalimanı görüş tahmini ve doğrulaması; Anlatım kolunda türbülans indeksi ve sis türleri videoları.",
+  "literatur": {
+   "maddeler": [
+    "Açık hava türbülansı, sayısal tahmin rüzgârlarından hesaplanan yatay deformasyon ile düşey rüzgâr kaymasının çarpımıyla tahmin edilir. (Ellrod ve Knapp 1992)",
+    "GTG, sayısal tahminden türetilen türbülans tanılarını pilot raporlarıyla en iyi uyuşan ağırlıklarla toplar; tek tanı ve eşik belirsizliği azalır. (Sharman vd. 2006)",
+    "Sis; damla mikrofiziği, aerosol, ışınım, türbülans ve yüzey koşullarına bağlıdır; süreçler tam bilinmediği için sis tahmini hâlâ zordur. (Gultepe vd. 2007)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rastgele orman ve artırmalı ağaçlar HRRR tahmini ve uçak EDR raporlarıyla eğitildi; zayıf türbülansta basit regresyondan az hata yaptı, şiddet ayrımı iyileşti. (Muñoz-Esparza vd. 2020)",
+    "3B evrişimli ağ FogNet, sayısal tahmin çıktısı ve deniz yüzeyi sıcaklığıyla kıyıdaki bir havalimanında sis görüş sınıflarını 6-24 saat önceden HREF'ten iyi tahmin etti. (Kamangir vd. 2021)",
+    "Artırmalı ağaçlar Viyana'da düşük görüş prosedürünü kalıcılık ve ham tahminden iyi kestirdi; yazarlar, arşivi kısa olan görüş ve tavan tahminini üye üye eklemeyi öneriyor. (Dietz vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Ellrod ve Knapp 1992",
+    "baslik": "An Objective Clear-Air Turbulence Forecasting Technique: Verification and Operational Use",
+    "yayin": "Weather and Forecasting 7(1), 150-165",
+    "yil": "1992",
+    "url": "https://doi.org/10.1175/1520-0434(1992)007%3C0150:AOCATF%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sharman vd. 2006",
+    "baslik": "An Integrated Approach to Mid- and Upper-Level Turbulence Forecasting",
+    "yayin": "Weather and Forecasting 21(3), 268-287",
+    "yil": "2006",
+    "url": "https://doi.org/10.1175/WAF924.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gultepe vd. 2007",
+    "baslik": "Fog Research: A Review of Past Achievements and Future Perspectives",
+    "yayin": "Pure and Applied Geophysics 164(6-7), 1121-1159",
+    "yil": "2007",
+    "url": "https://doi.org/10.1007/s00024-007-0211-x",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Muñoz-Esparza vd. 2020",
+    "baslik": "Aviation Turbulence Forecasting at Upper Levels with Machine Learning Techniques Based on Regression Trees",
+    "yayin": "Journal of Applied Meteorology and Climatology 59(11), 1883-1899",
+    "yil": "2020",
+    "url": "https://doi.org/10.1175/JAMC-D-20-0116.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Dietz vd. 2019",
+    "baslik": "Low-visibility forecasts for different flight planning horizons using tree-based boosting models",
+    "yayin": "Advances in Statistical Climatology, Meteorology and Oceanography 5(1), 101-114",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/ascmo-5-101-2019",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kamangir vd. 2021",
+    "baslik": "FogNet: A multiscale 3D CNN with double-branch dense block and attention mechanism for fog prediction",
+    "yayin": "Machine Learning with Applications 5, 100038",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.mlwa.2021.100038",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GFS tahminlerinden LTFM'de 24 saat sonra görüşün 1000 m altına inme olasılığını artırmalı ağaçlarla tahmin edip Brier skoruyla doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 304",
+   "projeyeKatki": "Havalimanı düşük görüş prosedürleri, sis oluşumu, sınır tabaka rüzgâr kesmesi ve METAR formatının çözümünü kuramsallaştırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Düşey rüzgâr kayması şiddeti",
+     "nerede": "Sis ve düşük görüş oluşumu sırasında yüzey rüzgârının dikey kayma şiddetini ve mekanik karışımı kontrol ederken."
+    },
+    {
+     "formulAd": "Gradyan Richardson sayısı",
+     "nerede": "Sınır tabaka terselmesinde türbülansın sönümlenip sis tabakasının çökme koşullarını sayısal olarak incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "GFS tahminleri ve METAR gözlemleriyle İstanbul Havalimanı için 24 saatlik düşük görüş olasılığını hesaplayıp doğrulamak.",
+  "ayrinti": "IEM ASOS servisinden LTFM'nin iki yıllık METAR verileri çekilir ve 1000 m altındaki saatler etiketlenir. Open-Meteo Previous Runs API ile 24 saat önceki GFS tahminleri indirilir. İlk 12 ay ile scikit-learn HistGradientBoosting modeli eğitilir, ikinci 12 ayda test edilir. Brier skoru ve ROC eğrisi çıkarılarak tek değişkenli nem eşiğiyle kıyaslanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "LTFM METAR verilerini çekip 1000 m altı saatleri etiketlemek",
+    "oz": "Havalimanı gözlemlerinde düşük görüş olaylarını ikili hedef değişken haline getirmek.",
+    "ayrinti": "Iowa Environmental Mesonet ASOS arşivinden LTFM istasyonunun iki yıllık METAR verileri indirilir. Görüş mesafesi metreye dönüştürülüp 1000 metrenin altı 1, üstü 0 olarak etiketlenir.",
+    "nasil": [
+     {
+      "teknik": "df['gorus_m'] = df['vsby'] * 1609.34; df['dusuk_gorus'] = (df['gorus_m'] < 1000).astype(int) ile etiketlemek.",
+      "sade": "Havacılık mesajlarındaki mil cinsinden görüşü metreye çevirir ve düşük görüş prosedürü eşiği olan 1000 m altını işaretleriz.",
+      "altAdimlar": [
+       "1. IEM sunucusundan LTFM METAR verilerini CSV olarak çekin.",
+       "2. Görüş sütunundaki eksik ve hatalı değerleri temizleyin.",
+       "3. 1000 metre altındaki saatlik ölçümleri ikili hedef sınıf olarak tanımlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     },
+     {
+      "teknik": "df_hourly = df.set_index('valid').resample('1h').min() ile saatlik minimum görüşü çıkarmak.",
+      "sade": "Aynı saat içinde birden fazla rapor varsa en kötü görüş değerini alarak güvenlik marjını koruruz.",
+      "altAdimlar": [
+       "1. Zaman serisini saatlik düzenli aralığa oturtun.",
+       "2. Saat içindeki minimum görüşü seçin.",
+       "3. İkili hedef dizisini model eğitimine hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+     },
+     {
+      "ders": "MTO 304",
+      "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "GFS 24 saat önceki tahminlerini indirip birleştirmek",
+    "oz": "Open-Meteo Previous Runs API ile bağıl nem, rüzgâr ve bulut tahminlerini çekmek.",
+    "ayrinti": "İstanbul Havalimanı koordinatı için olaydan 24 saat önceki GFS koşularının yüzey bağıl nemi, çiğ noktası açığı, 10 m rüzgâr hızı ve alçak bulut örtüsü tahminleri indirilir ve gözlemlerle eşleştirilir.",
+    "nasil": [
+     {
+      "teknik": "resp = requests.get(openmeteo_url, params={'latitude': 41.27, 'longitude': 28.75, 'hourly': 'relative_humidity_2m'}) ile çekmek.",
+      "sade": "24 saat önceki sayısal hava tahmininin LTFM noktası için öngördüğü atmosferik nem ve rüzgâr değerlerini çekeriz.",
+      "altAdimlar": [
+       "1. Open-Meteo Previous Runs API parametrelerini yapılandırın.",
+       "2. LTFM koordinatındaki 24 saat vadeli tahmin değişkenlerini indirin.",
+       "3. pandas merge ile gözlem zaman serisiyle tam saatte eşleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     },
+     {
+      "teknik": "features['dewpoint_dep'] = features['t2m'] - features['d2m'] ile çiğ noktası açığını türetmek.",
+      "sade": "Sıcaklık ile çiğ noktası arasındaki farkı hesaplayarak havanın doymaya ne kadar yakın olduğunu sayıya dökeriz.",
+      "altAdimlar": [
+       "1. Sıcaklık ve çiğ noktası sütunları arasındaki farkı hesaplayın.",
+       "2. Rüzgâr yönünü sinüs ve kosinüs bileşenlerine ayırın.",
+       "3. Model girdi matrisini eksiksiz doldurun."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+     }
+    ]
+   },
+   {
+    "baslik": "HistGradientBoosting modelini eğitip olasılıkları hesaplamak",
+    "oz": "Scikit-learn artırmalı ağaç algoritmasıyla 1000 m altı görüş olasılığını tahmin etmek.",
+    "ayrinti": "İlk 12 aylık veriyle HistGradientBoostingClassifier eğitilir. Model, dengesiz sınıflara karşı sınıf ağırlıklarıyla ayarlanır ve test dönemi için 0 ile 1 arasında olasılık çıktıları üretilir.",
+    "nasil": [
+     {
+      "teknik": "clf = HistGradientBoostingClassifier(max_iter=100, min_samples_leaf=20).fit(X_train, y_train) ile eğitmek.",
+      "sade": "Geçmiş hava verilerinden sis oluşturan nem ve rüzgâr eşiklerini öğrenen karar ağaçları topluluğunu kurarız.",
+      "altAdimlar": [
+       "1. Eğitim ve test setlerini kronolojik olarak ayırın.",
+       "2. Gradyan artırma modelini hiperparametrelerle eğitin.",
+       "3. predict_proba fonksiyonuyla düşük görüş gerçekleşme olasılıklarını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     },
+     {
+      "teknik": "probs = clf.predict_proba(X_test)[:, 1] ile 24 saatlik risk olasılık dizisini çıkarmak.",
+      "sade": "Her bir gelecek saat için görüşün 1000 m altına inme ihtimalini yüzde olarak elde ederiz.",
+      "altAdimlar": [
+       "1. Test kümesindeki her saat için olasılık skorunu çıkarın.",
+       "2. Risk eşiğini operasyonel ihtiyaçlara göre yüzde 30 ve 50 olarak belirleyin.",
+       "3. Erken uyarı alarm saatlerini listeler halinde gruplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+     },
+     {
+      "ders": "MTO 304",
+      "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Brier skoru ve ROC eğrisiyle doğrulamayı tamamlamak",
+    "oz": "Olasılıklı tahminin kalitesini Brier skoru ve güvenilirlik diyagramıyla test etmek.",
+    "ayrinti": "Test yılı boyunca tahmin edilen olasılıklar ile gerçek düşük görüş olayları karşılaştırılır. Brier skoru hesaplanır; klimatolojik referans ve ham nem eşiğiyle kıyaslanarak ROC eğrisi çizilir.",
+    "nasil": [
+     {
+      "teknik": "bs = brier_score_loss(y_test, probs); bss = 1 - (bs / bs_clim) ile Brier beceri skorunu bulmak.",
+      "sade": "Yapay zekâ modelinin sis olasılığı tahmininde rastgele tahmine ve geçmiş ortalamaya göre ne kadar üstün olduğunu kanıtlarız.",
+      "altAdimlar": [
+       "1. scikit-learn brier_score_loss ile model hata puanını hesaplayın.",
+       "2. Sabit klimatoloji referansının Brier skorunu türetin.",
+       "3. Brier beceri skorunun pozitif kazancını raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+      }
+     },
+     {
+      "teknik": "fpr, tpr, _ = roc_curve(y_test, probs); plt.plot(fpr, tpr, label=f'AUC = {auc(fpr, tpr):.2f}') ile çizmek.",
+      "sade": "Farklı uyarı eşiklerinde yanlış alarmlar ile yakalanan sis olayları arasındaki dengeyi ROC eğrisiyle gösteririz.",
+      "altAdimlar": [
+       "1. Yanlış alarm oranı ve doğru yakalama oranlarını hesaplayın.",
+       "2. ROC eğrisini çizip eğri altındaki alanı (AUC) hesaplayın.",
+       "3. Analiz defterini ve grafikleri açık depoya yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 304",
+       "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 304",
+      "madde": "Düşük görüş prosedürleri ve sis oluşum koşullarını sınır tabaka neminden saptamak."
+     },
+     {
+      "ders": "MTO 304",
+      "madde": "METAR, SPECI, TAF ve SIGMET havacılık meteoroloji raporlarını çözümlemek ve yorumlamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "LTFM için 24 saatlik düşük görüş olasılık modeli, Brier skoru güvenilirlik diyagramı, ROC eğrisi ve açık Colab defteri.",
+  "senden": "Open-Meteo API veri hattını kurmak, HistGradientBoosting hiperparametrelerini optimize etmek ve ROC eğrisini çizmek.",
+  "bizden": "MTO 304 havalimanı sis ve rüzgâr kesmesi dinamiklerini analiz etmek, METAR formatını çözümlemek ve sonuçları doğrulamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Havalimanı 24 saatlik görüş ve bağıl nem tahmin grafiği",
+   "aciklama": "Yüzey nemi doygunluğa yaklaşırken görüş mesafesindeki düşüşün zaman serisi animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/cagri-ozkan/FogNet",
+   "aciklama": "FogNet açık kaynak yapay zekâ sis tahmin deposu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Fog_over_runway.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Havalimanı pistinde düşük görüş ve radyasyon sisi görüntüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Dietz vd. 2019 Havacılık Düşük Görüş Makalesi",
+   "url": "https://doi.org/10.5194/ascmo-5-101-2019"
+  },
+  {
+   "ad": "Kamangir vd. 2021 FogNet Makinesi Öğrenimi Makalesi",
+   "url": "https://doi.org/10.1016/j.mlwa.2021.100038"
+  },
+  {
+   "ad": "Gultepe vd. 2007 Sis Araştırmaları İnceleme Makalesi",
+   "url": "https://doi.org/10.1007/s00024-007-0211-x"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO304-01.json",
+  "tarih": "2026-10-17 02:03",
+  "geminiSha1": "f1d90ee7b293"
+ }
+}

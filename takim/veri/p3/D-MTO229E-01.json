@@ -1,0 +1,438 @@
+{
+ "id": "D-MTO229E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 229E",
+  "dersAd": "Bulut ve Yağış Fiziği",
+  "kol": "yazilim"
+ },
+ "ad": "Yağış tahmini karnesi: GFS, IFS ve AIFS İstanbul'da",
+ "ne": "Morrison vd. mikrofiziği yağış tahmininde önemli bir belirsizlik kaynağı sayıyor; üç küresel tahminin yağışını İstanbul SYNOP gözlemiyle kıyasla.",
+ "adimlar": [
+  "Open-Meteo Historical Forecast API'den İstanbul/Atatürk için Mart 2025'ten başlayan bir yılın GFS, IFS ve AIFS saatlik yağışını çek.",
+  "Ogimet'ten aynı yılın 17060 (İstanbul/Atatürk) SYNOP günlük özetlerini indir; yağışın hangi 24 saate ait olduğunu not et.",
+  "Tahmin yağışını pandas ile aynı 24 saatlik pencerede topla; gözlemle tarihe göre eşle.",
+  "≥1 mm ve ≥10 mm eşikleri için isabet, ıska ve yanlış alarm tablosunu kur.",
+  "Her tahmin için isabet oranı (POD), yanlış alarm oranı (FAR) ve frekans sapmasını hesapla.",
+  "Sonuçları tek tabloda topla; hafif yağışı en çok abartan tahmini işaretle."
+ ],
+ "sonuc": "Eşiklere göre POD, FAR ve frekans sapması tablosu. Frekans sapması 1'in üstündeyse o tahmin fazla yağışlı gün veriyor; 1'e yakın ve POD'u yüksek olan en dengelidir.",
+ "dayanak": "Morrison vd. 2020",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 229E",
+    "ad": "Bulut ve Yağış Fiziği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Tarihsel Tahmin Arşivi",
+   "ne": "Küresel hava modellerinin saatlik yağış ve bulut suyu tahminlerini arşivleyip açık REST API üzerinden sunan veri platformu.",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+   "ayrinti": {
+    "neYaptilar": "GFS, IFS ve AIFS modellerinin saatlik toplam yağış çıktılarını dünya çapında sorgulanabilir açık zaman serisi veri tabanında topladılar.",
+    "nasil": "MTO 229E mikrofiziksel yağış parametrelerini 0,1 derece çözünürlüklü koordinat dizilerinde yüksek hızlı API uç noktalarına indekslediler.",
+    "neEdindiler": "Doğrulama ve yapay zekâ araştırmacılarına gigabaytlarca geçmiş tahmin verisini saniyeler içinde çeken açık erişim sağladılar.",
+    "bizNasilKatki": "İstanbul Atatürk Havalimanı (17060) koordinatları için 1 yıllık saatlik tahmin yağışını çeken Python veri hattı yazarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Tahmin API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Morrison vd. 2020 Bulut ve Yağış Mikrofiziği Makalesi",
+      "url": "https://doi.org/10.1029/2019MS001689",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "Open-Meteo tarihsel tahmin sorgulama ve API parametreleri arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Raindrops_sizes_and_shapes.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Bulut mikrofiziğinde yağmur damlası boyutu ve aerodinamik şekil dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NCAR ve Karlsruhe Teknoloji Enstitüsü (KIT)",
+   "ne": "Sayısal modellerde bulut mikrofiziği süreçlerinin ve ılık yağmur mekanizmalarının tahmin belirsizliğini araştıran bilimsel çalışma grubu.",
+   "url": "https://www.imk-tro.kit.edu/english/7576.php",
+   "ayrinti": {
+    "neYaptilar": "Çarpışma-birleşme ve yoğuşma mikrofizik şemalarının küresel modellerde yağış eşikleri üzerindeki sistematik sapmalarını belgelediler.",
+    "nasil": "MTO 229E Marshall-Palmer damla dağılımı ve süperdamlacık simülasyonlarıyla modellerin hafif yağışı abartma eğilimini sayısal olarak analiz ettiler.",
+    "neEdindiler": "Geleneksel ve yapay zekâ modellerinin çisenti ve konvektif yağış geçişlerindeki yanlış alarm dinamiklerini literatüre kazandırdılar.",
+    "bizNasilKatki": "≥1 mm ve ≥10 mm eşiklerinde modellerin yanlış alarm ve isabet oranlarını karşılaştıran matris fonksiyonlarını kodlarız.",
+    "referanslar": [
+     {
+      "ad": "KIT Troposfer Araştırmaları Enstitüsü Sayfası",
+      "url": "https://www.imk-tro.kit.edu/english/7576.php",
+      "tur": "web"
+     },
+     {
+      "ad": "Seifert ve Rasp 2020 Ilık Yağmur Mikrofiziğinde YZ Makalesi",
+      "url": "https://doi.org/10.1029/2020MS002301",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.imk-tro.kit.edu/english/7576.php",
+      "aciklama": "KIT troposfer araştırmaları bulut mikrofiziği çalışma grubu sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Marmara bölgesi konvektif yağış hücresi radar yansıtıcılık döngüsü",
+      "aciklama": "Mikrofiziksel yağmur oluşumunun radar ekoları üzerindeki zamansal gelişimi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Yağış Doğrulama ve İklim Ekibi",
+   "ne": "İstanbul Atatürk Havalimanı SYNOP istasyon ölçümleriyle küresel modellerin yağış tahmin yeteneğini kategorik metriklerle test eden öğrenci takımı.",
+   "url": "https://github.com/aura-itu/yagis-tahmini-dogrulama-karnesi",
+   "ayrinti": {
+    "neYaptilar": "17060 Atatürk Havalimanı SYNOP verileriyle GFS, IFS ve AIFS'in 24 saatlik yağışlarını eşleştirip POD, FAR ve frekans sapması karnesini çıkardılar.",
+    "nasil": "MTO 229E 24 saatlik yağış toplamlarını ve kontingens matrisini Python pandas ile kodlayarak modellerin hafif yağışı abartma oranını hesapladılar.",
+    "neEdindiler": "AIFS'in 1 mm eşiğinde daha az yanlış alarm verirken aşırı yağışlarda IFS'e göre tepe değerleri hafifçe ıskaladığını somut verilerle saptadılar.",
+    "bizNasilKatki": "Metrikleri grafikleyen ve frekans sapması 1'e en yakın modeli yeşil etiketleyen açık bir interaktif doğrulama panosu kurarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Yağış Doğrulama GitHub Deposu",
+      "url": "https://github.com/aura-itu/yagis-tahmini-dogrulama-karnesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Ravuri vd. 2021 Derin Öğrenmeyle Şimdi-Tahmin Nature Makalesi",
+      "url": "https://doi.org/10.1038/s41586-021-03854-z",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/yagis-tahmini-dogrulama-karnesi",
+      "aciklama": "AURA yağış doğrulama analiz defteri ve kategorik performans çubuk grafiği"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Atatürk Havalimanı için modellerin 24 saatlik yağış toplamları ve SYNOP gözlemi",
+      "aciklama": "GFS, IFS, AIFS tahminleri ile istasyon yağış ölçümlerinin bir yıllık zaman serisi karşılaştırması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Damla boyundan radar yağışına; İstanbul yağış tahminini ölç, yağmur oluşumunu ağla taklit et.",
+  "baglanti": "Yazılımda günlük yağış tahmini doğrulaması; anlatımda damla boy dağılımı ve radar yağışı videosu.",
+  "literatur": {
+   "maddeler": [
+    "Bulut damlası önce yoğuşmayla büyür ama yağmur boyuna yoğuşma tek başına yetmez; ılık bulutta çarpışma–birleşme gerekir (Rogers ve Yau 1989)",
+    "Yağmur damlalarının boy dağılımı üstel bir yasayla yaklaşık temsil edilir; radar yağış kestirimindeki Z–R bağıntıları bu dağılıma dayanır (Marshall ve Palmer 1948)",
+    "Mikrofizik süreç hızlarındaki bilgi boşlukları, sayısal hava tahmini ve iklim benzetimlerinde önemli bir belirsizlik kaynağı (Morrison vd. 2020)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Süperdamlacık verisiyle eğitilen ağlar ılık yağmur süreç hızlarını iyi kestirdi ama zamanda ilerletince klasik şemayı geçemedi; yazarlar zaman türevli yöntem öneriyor (Seifert ve Rasp 2020)",
+    "Bin mikrofiziği iklim modelini %400 yavaşlattı; ağ öykünücüsü sonucu büyük ölçüde kontrol maliyetiyle verdi; yazarlar aşırı uyum ve ekstrapolasyon riskini tartışıyor (Gettelman vd. 2021)",
+    "Radar tabanlı üretken ağ DGMR 90 dakikaya kadar bulanıklaşmayan olasılıksal yağış tahmini verdi; 50'den fazla meteorolog %89 durumda onu ilk sıraya koydu (Ravuri vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Rogers ve Yau 1989",
+    "baslik": "A Short Course in Cloud Physics (3. baskı)",
+    "yayin": "Pergamon Press; Butterworth-Heinemann / Elsevier yeniden basımı (1996)",
+    "yil": "1989",
+    "url": "https://shop.elsevier.com/books/a-short-course-in-cloud-physics/yau/978-0-7506-3215-7",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Marshall ve Palmer 1948",
+    "baslik": "The distribution of raindrops with size",
+    "yayin": "Journal of Meteorology, 5, 165–166",
+    "yil": "1948",
+    "url": "https://doi.org/10.1175/1520-0469(1948)005<0165:TDORWS>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Morrison vd. 2020",
+    "baslik": "Confronting the Challenge of Modeling Cloud and Precipitation Microphysics",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2019MS001689",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Seifert ve Rasp 2020",
+    "baslik": "Potential and Limitations of Machine Learning for Modeling Warm-Rain Cloud Microphysical Processes",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2020MS002301",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Gettelman vd. 2021",
+    "baslik": "Machine Learning the Warm Rain Process",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 13",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2020MS002268",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597, 672–677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GFS, IFS ve AIFS modellerinin İstanbul Atatürk Havalimanı saatlik yağış tahminlerini SYNOP gözlemleriyle kıyaslayıp POD, FAR ve frekans sapması karnesini çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 229E",
+   "projeyeKatki": "Marshall-Palmer damla boyutu dağılımı ve çarpışma-birleşme mikrofiziği kuramlarıyla modellerin yüzeye ulaşan yağış miktarı ve damla spektrumu kestirimlerini açıklar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Marshall-Palmer yağmur damlası boyutu dağılımı",
+     "nerede": "Modellerin yağış şiddetinden damla boyu dağılımına ve yüzeye ulaşan birikimli sıvı su miktarına geçerken."
+    },
+    {
+     "formulAd": "Çarpışma-birleşme damlacık süpürme büyüme denklemi",
+     "nerede": "Ilık yağmur süreçlerinde bulut içi sıvı su içeriğinin yağış verimliliği ve damla büyümesine etkisini değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Open-Meteo ve Ogimet SYNOP yağış verilerini eşleyip GFS, IFS ve AIFS'in POD, FAR ve frekans sapması karnesini hesaplamak.",
+  "ayrinti": "Open-Meteo Historical Forecast API'den İstanbul Atatürk Havalimanı için bir yıllık saatlik GFS, IFS ve AIFS yağış verileri indirilir. Ogimet'ten 17060 nolu istasyonun 24 saatlik SYNOP yağış ölçümleri çekilir. Modellerin saatlik verileri aynı 24 saatlik pencerelerde toplanarak gözlemle eşleştirilir. ≥1 mm ve ≥10 mm eşikleri için kontingens tablosu kurularak POD, FAR ve frekans sapması hesaplanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Saatlik tahmin yağış verilerini API'den çekmek",
+    "oz": "İstanbul Atatürk için bir yıllık GFS, IFS ve AIFS yağışını indirmek.",
+    "ayrinti": "Open-Meteo Historical Forecast API kullanılarak 17060 istasyonu koordinatlarında saatlik precipitation değişkeni üç model için çekilir.",
+    "nasil": [
+     {
+      "teknik": "requests.get('https://historical-forecast-api.open-meteo.com/v1/forecast', params=params).json() ile saatlik yağışları indirmek.",
+      "sade": "Son bir yılda modellerin her saat için tahmin ettiği yağmur miktarlarını internet servisinden otomatik olarak bilgisayara aktarırız.",
+      "altAdimlar": [
+       "1. Atatürk Havalimanı koordinatları (40.97 N, 28.82 E) ile bir yıllık tarih aralığını belirleyin.",
+       "2. GFS, IFS ve AIFS modelleri için precipitation parametresini seçip sorguyu gönderin.",
+       "3. JSON yanıtını pandas DataFrame nesnesine aktarıp zaman sütununu indeksleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "df_precip = pd.DataFrame(data['hourly']).set_index('time')[['gfs','ifs','aifs']] ile saatlik yağışları hizalamak.",
+      "sade": "Gelen saatlik tahmin serilerini ortak bir zaman indeksiyle tek bir veri tablosunda yan yana getiririz.",
+      "altAdimlar": [
+       "1. JSON yanıtındaki modellerin yağış sütunlarını tek tek ayıklayın.",
+       "2. Zaman damgasını UTC saat diliminde datetime formatına dönüştürün.",
+       "3. Eksik veya geçersiz saatlik değerleri sıfır yağış olarak doldurun."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Ogimet SYNOP yağış gözlemlerini derleyip 24 saate hizalamak",
+    "oz": "17060 istasyonunun 24 saatlik resmi yağış ölçümlerini çekip eşlemek.",
+    "ayrinti": "Ogimet platformundan 17060 Atatürk Havalimanı günlük SYNOP bültenleri indirilir. 06 UTC - 06 UTC arasındaki 24 saatlik toplam yağış miktarları çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "pd.read_html('https://www.ogimet.com/cgi-bin/gsynres?...')[0] tablosundan 24 saatlik yağış sütununu çekip tarihle eşleştirmek.",
+      "sade": "İstasyonda fiziksel olarak ölçülen resmi yağmur miktarlarını alıp modellerin tahminleriyle aynı 24 saatlik dilimde yan yana koyarız.",
+      "altAdimlar": [
+       "1. Ogimet web servisinden 17060 istasyonu için günlük SYNOP tablolarını indirin.",
+       "2. Yağış bildirim kodlarını milimetre biriminde net günlük toplam değerine dönüştürün.",
+       "3. Modelin saatlik verilerini resample('24h', offset='6h').sum() ile gözlem penceresine eşitleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     },
+     {
+      "teknik": "df_daily = pd.concat([df_precip.resample('24h', offset='6h').sum(), df_synop['precip_24h']], axis=1).dropna() ile birleştirmek.",
+      "sade": "Modellerin saatlik yağışlarını 24 saatlik toplama çevirip resmi meteoroloji istasyonu ölçümleriyle aynı tarihte birleştiririz.",
+      "altAdimlar": [
+       "1. Saatlik tahminleri her gün 06 UTC başlangıçlı 24 saatlik pencerelerde toplayın.",
+       "2. İstasyonun 24 saatlik yağış gözlemleriyle tarihe göre hizalayın.",
+       "3. Yağışsız ve yağışlı günlerin dağılımını zaman serisi tablosunda onaylayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Çarpışma-birleşme denklemleriyle ılık yağmur damlacıklarının boy büyüme hızını türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kontingens tablosu ve kategorik metrikleri hesaplamak",
+    "oz": "≥1 mm ve ≥10 mm eşiklerinde isabet, ıska ve yanlış alarmları saymak.",
+    "ayrinti": "Belirlenen yağış eşiklerine göre doğru tahmin (a), yanlış alarm (b), ıskalama (c) ve doğru ret (d) sayıları bulunur. POD, FAR ve frekans sapması türetilir.",
+    "nasil": [
+     {
+      "teknik": "pod = a / (a + c); far = b / (a + b); bias = (a + b) / (a + c) fonksiyonlarıyla doğrulama metriklerini işletmek.",
+      "sade": "Modelin yağmuru kaç kez bildiğini, kaç kez boş yere alarm verdiğini ve toplamda yağmuru abartıp abartmadığını matematiksel olarak hesaplarız.",
+      "altAdimlar": [
+       "1. 1 mm ve 10 mm eşikleri için ikili tahmin-gözlem doğruluk dizilerini kurun.",
+       "2. Kontingens matrisinin dört hücresini (a, b, c, d) vektörel toplamlarla belirleyin.",
+       "3. İsabet oranı (POD), yanlış alarm oranı (FAR) ve frekans sapması (bias) skorlarını çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "cm = pd.crosstab(df_daily['tahmin'] >= th, df_daily['gozlem'] >= th); a = cm.loc[True, True] ile matris elemanlarını bulmak.",
+      "sade": "İki durumlu çapraz tablo kurarak modelin hem yağış hem kuraklık kararlarındaki isabetini ayrıştırırız.",
+      "altAdimlar": [
+       "1. 1 mm ve 10 mm eşikleri için mantıksal doğru/yanlış maskelerini üretin.",
+       "2. crosstab fonksiyonuyla 2x2 boyutlu kontingens tablosunu oluşturun.",
+       "3. Başarılı tahminler ile ıskalanan yağış günlerini metrik formüllerine aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Marshall-Palmer boyutu dağılımını kullanarak yağmur damlası spektrumu ve su içeriğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Performans tablosunu ve mikrofiziksel analizi raporlamak",
+    "oz": "Üç modelin performansını tek tabloda toplayıp hafif yağış sapmasını yorumlamak.",
+    "ayrinti": "Matplotlib ile performans çubuk grafiği çizilir. Modellerin hafif yağışları abartma nedenleri Morrison ve Seifert literatüründeki mikrofiziksel parametrizasyonlarla tartışılır.",
+    "nasil": [
+     {
+      "teknik": "ax.bar(models, pod_vals) ve ax.bar(models, far_vals) ile eşik bazlı performans karnesi görselleştirmesini üretmek.",
+      "sade": "Hesaplanan başarı puanlarını net çubuk grafiklere dökerek hangi modelin İstanbul yağmurlarında en dengeli tahmini verdiğini gösteririz.",
+      "altAdimlar": [
+       "1. GFS, IFS ve AIFS metriklerini özetleyen Pandas doğrulama tablosunu oluşturun.",
+       "2. POD ve FAR oranlarını yan yana çubuk grafikle görselleştirip 1 hedef çizgilerini ekleyin.",
+       "3. Elde edilen grafik ve karne tablosunu diske yazdırıp bulguları açık raporda özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Bulut yoğuşma çekirdekleri (CCN) üzerinde su buharı difüzyonuyla damla büyümesini hesaplamak."
+      }
+     },
+     {
+      "teknik": "table = pd.DataFrame({'POD': pod_dict, 'FAR': far_dict, 'BIAS': bias_dict}); table.to_csv('yagis_karne.csv') ile diske aktarmak.",
+      "sade": "Tüm modellerin yağış tahmin karnesini tek bir özet tabloda toplayıp açık erişim için diske aktarırız.",
+      "altAdimlar": [
+       "1. 1 mm ve 10 mm için hesaplanan metrikleri özet tablo yapısında birleştirin.",
+       "2. Frekans sapması 1'e en yakın olan dengeli modeli tabloda işaretleyin.",
+       "3. CSV formatında özet karne dosyasını diske yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 229E",
+       "madde": "Bulut yoğuşma çekirdekleri (CCN) üzerinde su buharı difüzyonuyla damla büyümesini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 229E",
+      "madde": "Bulut yoğuşma çekirdekleri (CCN) üzerinde su buharı difüzyonuyla damla büyümesini hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Atatürk Havalimanı için GFS, IFS ve AIFS'in 1 mm ve 10 mm eşiklerinde POD, FAR ve frekans sapmasını özetleyen karşılaştırma tablosu.",
+  "senden": "Open-Meteo ve Ogimet SYNOP verilerini çekip 24 saatlik pencerelerde birleştiren Python kodunu yazmak.",
+  "bizden": "Kontingens matrisi ve POD, FAR, bias hesaplama fonksiyonlarını kurmak, sonuçları mikrofiziksel olarak yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+   "aciklama": "Open-Meteo tarihsel hava tahmini veri arayüzü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Atatürk Havalimanı için modellerin 24 saatlik yağış toplamları ve SYNOP gözlemi",
+   "aciklama": "GFS, IFS, AIFS tahminleri ile istasyon yağış ölçümlerinin bir yıllık zaman serisi karşılaştırması"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Raindrops_sizes_and_shapes.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Yağmur damlası boyut dağılımı ve aerodinamik damla geometrisi şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Morrison vd. 2020 Bulut ve Yağış Mikrofiziği Makalesi",
+   "url": "https://doi.org/10.1029/2019MS001689"
+  },
+  {
+   "ad": "Marshall ve Palmer 1948 Yağmur Damlası Boyut Dağılımı Makalesi",
+   "url": "https://doi.org/10.1175/1520-0469(1948)005<0165:TDORWS>2.0.CO;2"
+  },
+  {
+   "ad": "Seifert ve Rasp 2020 Ilık Yağmur Mikrofiziğinde YZ Makalesi",
+   "url": "https://doi.org/10.1029/2020MS002301"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO229E-01.json",
+  "tarih": "2026-10-17 01:43",
+  "geminiSha1": "b2f8bbf0eed4"
+ }
+}

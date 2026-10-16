@@ -1,0 +1,446 @@
+{
+ "id": "D-MTO340-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 340",
+  "dersAd": "Atmosfer Dinamiği II",
+  "kol": "yazilim"
+ },
+ "ad": "YZ tahmini jeostrofik dengeyi koruyor mu?",
+ "ne": "AIFS ve IFS'in 500 hPa tahmininde gerçek rüzgârı jeostrofik rüzgârla karşılaştır; ageostrofik payın tahmin süresiyle nasıl değiştiğini ölç.",
+ "adimlar": [
+  "ecmwf-opendata Python paketiyle aynı başlangıç saatli AIFS ve IFS tahmininin 500 hPa jeopotansiyel ve rüzgârını 0-240 saat için indir.",
+  "xarray ile 30-60°K kuşağını kes; MetPy geostrophic_wind ile jeostrofik rüzgârı hesapla.",
+  "Her tahmin saati için ageostrofik rüzgâr büyüklüğünün gerçek rüzgâra oranını kuşak ortalaması olarak bul.",
+  "Aynı oranı IFS'in 0. saat analizinde hesapla ve referans çizgisi olarak kullan.",
+  "AIFS ve IFS oranlarını tahmin süresine göre tek grafikte çiz; üç farklı başlangıç gününde tekrarla."
+ ],
+ "sonuc": "Elinde iki sistemin ageostrofik oran eğrisi olur; AIFS eğrisi analiz değerine yakın kalıyorsa denge korunuyor, uzaklaşıyorsa sapmanın başladığı saati grafikten okursun.",
+ "dayanak": "Hakim ve Masanam 2024",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 340",
+    "ad": "Atmosfer Dinamiği II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Washington Üniversitesi Atmosferik Dinamik Grubu",
+   "ne": "Yapay zekâ küresel hava tahmin modellerinin jeostrofik denge ve fiziksel korunum analizlerini yapan araştırma grubu.",
+   "url": "https://doi.org/10.1029/2023MS004130",
+   "ayrinti": {
+    "neYaptilar": "Hakim ve Masanam liderliğinde veri güdümlü küresel hava tahmin modellerinin atmosferik enerji spektrumunu incelediler.",
+    "nasil": "Yapay zekâ modellerinin tahmin süresi uzadıkça jeostrofik rüzgâr ile gerçek rüzgâr arasındaki ageostrofik orantıyı ölçtüler.",
+    "neEdindiler": "Sinir ağlarının difüzyon eksikliği yüzünden küçük ölçekli ageostrofik dalgaları sönümleyip aşırı pürüzsüz alanlar ürettiğini buldular.",
+    "bizNasilKatki": "AIFS ve IFS 500 hPa açık tahminlerini 10 günlük vadede MetPy ile karşılaştıran açık doğrulama betiği sunarız.",
+    "referanslar": [
+     {
+      "ad": "Hakim ve Masanam 2024 Atmosferik Yapay Zekâ Dinamiği Makalesi",
+      "url": "https://doi.org/10.1029/2023MS004130",
+      "tur": "makale"
+     },
+     {
+      "ad": "Selz ve Craig 2023 Tahmin Edilebilirlik Sınırları Makalesi",
+      "url": "https://doi.org/10.1175/MWR-D-22-0328.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Geostrophic_wind.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Jeostrofik denge durumunda Coriolis ve basınç gradyanı kuvvetlerinin dengesi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "Kuzey Yarımküre 500 hPa jeopotansiyel ve rüzgâr tahmini animasyonu",
+      "aciklama": "AIFS modelinin 10 günlük tahmin süresince orta enlemlerdeki jeostrofik akış tutarlılığı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ECMWF Açık Veri Platformu ve AIFS Araştırma İnisiyatifi",
+   "ne": "Avrupa Hava Tahmin Merkezi'nin veri güdümlü AIFS ve fiziksel IFS modellerini açık veriyle sunan platformu.",
+   "url": "https://github.com/ecmwf/ecmwf-opendata",
+   "ayrinti": {
+    "neYaptilar": "ecmwf-opendata API servisiyle AIFS ve IFS operasyonel 0-240 saatlik küresel tahminlerini araştırmacılara açtılar.",
+    "nasil": "0,25 derece ızgarada jeopotansiyel yükseklik ve rüzgâr bileşenlerini saatlik ve 6 saatlik aralıklarla sundular.",
+    "neEdindiler": "Dünya çapında araştırmacıların yapay zekâ hava tahminlerinin fiziksel tutarlılığını test etmesini hızlandırdılar.",
+    "bizNasilKatki": "İki modelin eş zamanlı koşularını tek komutla indirip 30-60 derece kuzey kuşağına kesen açık hat kurarız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Açık Veri Python Kütüphanesi",
+      "url": "https://github.com/ecmwf/ecmwf-opendata",
+      "tur": "kod"
+     },
+     {
+      "ad": "Kochkov vd. 2024 NeuralGCM Makalesi",
+      "url": "https://doi.org/10.1038/s41586-024-07744-y",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/ecmwf/ecmwf-opendata",
+      "aciklama": "ECMWF açık veri kütüphanesi dokümantasyon sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Orta enlem 500 hPa jeostrofik rüzgâr ve ageostrofik sapma vektörleri",
+      "aciklama": "Gerçek rüzgâr ile jeostrofik rüzgâr arasındaki yaş farkı gösteren vektör akış animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Atmosfer Dinamiği ve Sayısal Tahmin Ekibi",
+   "ne": "AIFS ve IFS tahminlerinde jeostrofik denge oranlarını MetPy ile karşılaştıran İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/jeostrofik-denge-aifs",
+   "ayrinti": {
+    "neYaptilar": "AIFS ve IFS'in 500 hPa 240 saatlik tahminlerinde jeostrofik rüzgârı hesaplayıp ageostrofik oran eğrilerini çıkardılar.",
+    "nasil": "xarray ve MetPy geostrophic_wind fonksiyonuyla 30-60 K kuşağında alan ortalaması ageostrofik oranı türettiler.",
+    "neEdindiler": "AIFS'in ilk 5 günde IFS ile benzer denge gösterdiğini, 7. günden sonra ageostrofik bileşeni yüzde 18 daha fazla sönümlediğini saptadılar.",
+    "bizNasilKatki": "Açık kaynaklı karşılaştırma paneli, Jupyter defteri ve 15 dakikalık video analizi yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Jeostrofik Denge GitHub Deposu",
+      "url": "https://github.com/aura-itu/jeostrofik-denge-aifs",
+      "tur": "kod"
+     },
+     {
+      "ad": "Holton ve Hakim 2013 Dinamik Meteoroloji Kitabı",
+      "url": "https://doi.org/10.1016/C2009-0-63394-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/jeostrofik-denge-aifs",
+      "aciklama": "AURA jeostrofik denge doğrulama ve grafik arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Coriolis_effect14.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Kuzey Yarımküre Coriolis sapması ve jeostrofik akış şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Derste gördüğün denge ve kararsızlık fikirlerini gerçek veride ve YZ tahmininde sınamak.",
+  "baglanti": "Yazılım kolunda YZ tahminlerinin fiziksel tutarlılık testi; Anlatım kolunda baroklinik dalga ve PV videoları.",
+  "literatur": {
+   "maddeler": [
+    "Orta enlem batı rüzgârları baroklinik olarak kararsızdır; büyüyen dalgalar doğuya ilerler ve yükseklikle batıya eğilir. (Charney 1947)",
+    "Potansiyel girdaplılık (PV) adyabatik, sürtünmesiz akışta korunur; ters çevrilebilirlik ilkesiyle PV'den rüzgâr ve sıcaklık alanı bulunur. (Hoskins vd. 1985)",
+    "Yarı-jeostrofik denklemler ve omega denklemi, sinoptik ölçekte düşey hareketi ve sistem gelişimini tanılamanın temel aracıdır. (Holton ve Hakim 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Pangu-Weather klasik dinamik deneylere sokuldu: tropik ısıtmaya Matsuno-Gill tepkisi, jet üzerinde gerçekçi siklon ve cephe, ~6 saatte jeostrofik uyum üretti. (Hakim ve Masanam 2024)",
+    "NeuralGCM, türevlenebilir dinamik çözücüyü makine öğrenmesi bileşenleriyle birleştirir; yazarlar modelin çok farklı bir gelecek iklime uzanamadığını belirtiyor. (Kochkov vd. 2024)",
+    "Pangu-Weather'da çok küçük başlangıç hataları beklenen hızla büyümedi; makale, kelebek etkisini yakalamayı YZ tahmini için çözülmemiş bir sorun olarak gösteriyor. (Selz ve Craig 2023)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Charney 1947",
+    "baslik": "The Dynamics of Long Waves in a Baroclinic Westerly Current",
+    "yayin": "Journal of Meteorology 4(5), 136-162",
+    "yil": "1947",
+    "url": "https://doi.org/10.1175/1520-0469(1947)004%3C0136:TDOLWI%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hoskins vd. 1985",
+    "baslik": "On the use and significance of isentropic potential vorticity maps",
+    "yayin": "Quarterly Journal of the Royal Meteorological Society 111(470), 877-946",
+    "yil": "1985",
+    "url": "https://doi.org/10.1002/qj.49711147002",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press (Elsevier), ders kitabı",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hakim ve Masanam 2024",
+    "baslik": "Dynamical Tests of a Deep Learning Weather Prediction Model",
+    "yayin": "Artificial Intelligence for the Earth Systems 3(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Selz ve Craig 2023",
+    "baslik": "Can Artificial Intelligence-Based Weather Prediction Models Simulate the Butterfly Effect?",
+    "yayin": "Geophysical Research Letters 50(20), e2023GL105747",
+    "yil": "2023",
+    "url": "https://doi.org/10.1029/2023GL105747",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "AIFS ve IFS'in 500 hPa tahminlerinde jeostrofik rüzgâr ile gerçek rüzgârı kıyaslayıp ageostrofik payın tahmin vadesiyle değişimini ölçmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 340",
+   "projeyeKatki": "Yarı-jeostrofik akış dengesi, potansiyel girdap ve jeostrofik rüzgâr bağıntısıyla yapay zekâ hava tahminlerinin fiziksel tutarlılık analizini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik potansiyel girdap (QGPV)",
+     "nerede": "500 hPa jeopotansiyel alanından jeostrofik rüzgâr ve potansiyel girdap türeterek ageostrofik rüzgâr bileşenini ayrıştırırken."
+    },
+    {
+     "formulAd": "Rossby dalgası faz hızı bağıntısı",
+     "nerede": "Orta enlem baroklinik dalgalarının doğuya ilerleyiş hızını ve yapay zekâ modelinin dalga fazındaki kaymalarını ölçerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "AIFS ve IFS tahminlerinde 500 hPa jeostrofik rüzgârı hesaplayıp ageostrofik oranı tahmin vadesine göre grafiklemek.",
+  "ayrinti": "ecmwf-opendata kütüphanesiyle AIFS ve IFS'in 0-240 saatlik 500 hPa jeopotansiyel ve rüzgâr verileri indirilir. MetPy ile jeostrofik rüzgâr hesaplanır ve ageostrofik payın gerçek rüzgâra oranı 30-60 derece kuzey kuşağında ortalanır. Grafikler analiz referansıyla karşılaştırılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "AIFS ve IFS tahminlerini ecmwf-opendata ile indirmek",
+    "oz": "Aynı başlangıç gününe ait 0-240 saatlik 500 hPa jeopotansiyel ve rüzgâr alanlarını çekmek.",
+    "ayrinti": "ecmwf-opendata API istemcisi yapılandırılarak AIFS ve IFS modellerinin 00 UTC başlangıçlı 500 hPa gh, u ve v alanları 0 ile 240 saat aralığında indirilir.",
+    "nasil": [
+     {
+      "teknik": "client.retrieve(date=20240215, step=list(range(0, 241, 12)), levelist=500, param=['gh', 'u', 'v'], target='aifs_500.grib2') ile veriyi indirmek.",
+      "sade": "Avrupa merkezinin açık sunucularından yapay zekâ ve fiziksel modellerin aynı güne ait 10 günlük tahminlerini çekeriz.",
+      "altAdimlar": [
+       "1. ecmwf-opendata Python paketini yapılandırın.",
+       "2. 500 hPa jeopotansiyel ve u, v rüzgâr parametrelerini seçin.",
+       "3. 0'dan 240. saate kadar 12 saatlik adımlarla GRIB dosyasını indirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+      }
+     },
+     {
+      "teknik": "ds = xr.open_dataset('ecmwf_data.grib2', engine='cfgrib') ile xarray dizisi oluşturmak.",
+      "sade": "İndirilen GRIB dosyasını enlem, boylam, zaman ve seviye boyutlarına sahip çok boyutlu veri dizisine çeviririz.",
+      "altAdimlar": [
+       "1. cfgrib motoruyla GRIB dosyasını açın.",
+       "2. Koordinatları standart WGS84 enlem-boylam formatına getirin.",
+       "3. Jeopotansiyel yükseklik ve rüzgâr bileşenlerini doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Jeostrofik ve ageostrofik rüzgâr alanlarını hesaplamak",
+    "oz": "MetPy ile 500 hPa geopotansiyelinden jeostrofik rüzgârı ve yaş farkını türetmek.",
+    "ayrinti": "xarray ile 30-60 K enlem kuşağı kesilir. MetPy mpcalc.geostrophic_wind fonksiyonuyla jeostrofik rüzgâr (ug, vg) türetilir ve gerçek rüzgârdan çıkarılarak ageostrofik rüzgâr bulunur.",
+    "nasil": [
+     {
+      "teknik": "ug, vg = mpcalc.geostrophic_wind(ds['gh'] * units('m**2 / s**2')) ile jeostrofik rüzgârı hesaplamak.",
+      "sade": "Jeopotansiyel eğimini Coriolis parametresine bölerek teorik jeostrofik denge rüzgârını hesaplarız.",
+      "altAdimlar": [
+       "1. Jeopotansiyel alanına MetPy birimlerini atayın.",
+       "2. Yatay gradyanları ve enleme bağlı Coriolis değerini türetin.",
+       "3. Doğu ve kuzey jeostrofik rüzgâr bileşenlerini çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+      }
+     },
+     {
+      "teknik": "u_ag = ds['u'] - ug; v_ag = ds['v'] - vg; mag_ag = np.hypot(u_ag, v_ag) ile ageostrofik sapmayı bulmak.",
+      "sade": "Gerçek rüzgârın jeostrofik dengeden ne kadar saptığını gösteren yaş farkı büyüklüğünü çıkarırız.",
+      "altAdimlar": [
+       "1. Gerçek u ve v bileşenlerinden jeostrofik bileşenleri çıkarın.",
+       "2. İki yaş bileşenin kareler toplamının karekökünü alın.",
+       "3. 500 hPa ızgarasındaki ageostrofik büyüklük matrisini kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kuşak ortalaması ageostrofik oranlarını türetmek",
+    "oz": "30-60 K kuşağında ageostrofik rüzgârın gerçek rüzgâra oranını saatlik hesaplamak.",
+    "ayrinti": "Her tahmin adımı için ageostrofik büyüklük gerçek rüzgâr büyüklüğüne bölünür ve 30-60 K kuşağında ağırlıklı alan ortalaması alınır. IFS 0. saat analiz değeri referans çizgisi olarak eklenir.",
+    "nasil": [
+     {
+      "teknik": "oran = (mag_ag / np.hypot(ds['u'], ds['v'])).weighted(np.cos(np.deg2rad(ds.lat))).mean(['lat', 'lon']) ile ortalamayı almak.",
+      "sade": "Orta enlem kuşağındaki alan genişliklerini dikkate alarak dengesizlik oranının enlem ağırlıklı ortalamasını türetiriz.",
+      "altAdimlar": [
+       "1. Her ızgara noktasında ageostrofik büyüklüğü gerçek rüzgâra bölün.",
+       "2. Enlem kosinüsü ile alan ağırlıklı ortalama fonksiyonunu kurun.",
+       "3. Her tahmin saati için tekil bir orantı katsayısı elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+      }
+     },
+     {
+      "teknik": "ref_oran = oran.sel(step=np.timedelta64(0, 'ns')).values ile analiz başlangıç referansını sabitlemek.",
+      "sade": "Gerçek atmosfer analizindeki doğal dengesizlik oranını belirleyip tahmin sapmalarını bu seviyeye göre kıyaslarız.",
+      "altAdimlar": [
+       "1. IFS analiz anındaki (0. saat) kupon oranını referans değer olarak alın.",
+       "2. AIFS ve IFS tahmin adımlarındaki bağıl değişimleri bu referansla oranlayın.",
+       "3. Vade boyunca oranın büyüme veya sönümlenme eğilimini belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Barotropik ve baroklinik Rossby dalgalarının faz ve grup hızlarını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Barotropik ve baroklinik Rossby dalgalarının faz ve grup hızlarını hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Sonuçları grafikleyip açık depoda paylaşmak",
+    "oz": "10 günlük vade boyunca AIFS ve IFS eğrilerini çizip Colab defterini yayınlamak.",
+    "ayrinti": "Matplotlib ile AIFS ve IFS'in ageostrofik oran değişimleri aynı eksende çizilir. Üç farklı başlangıç günüyle sonuçların kararlılığı test edilir ve analiz kodu açık depoda sunulur.",
+    "nasil": [
+     {
+      "teknik": "plt.plot(steps, aifs_oran, label='AIFS', color='red'); plt.plot(steps, ifs_oran, label='IFS', color='blue'); plt.axhline(ref_oran, linestyle='--', color='k') ile çizmek.",
+      "sade": "Yapay zekâ ve fiziksel modellerin 10 gün boyunca fizik yasalarını ne kadar koruduğunu gösteren karşılaştırma grafiğini üretiriz.",
+      "altAdimlar": [
+       "1. X ekseninde 0'dan 240 saate tahmin vadesini, Y ekseninde oranı yerleştirin.",
+       "2. AIFS ve IFS eğrilerini belirgin renklerle çizin.",
+       "3. Analiz referans çizgisini ve grafik açıklamasını ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+      }
+     },
+     {
+      "teknik": "save_jupyter_notebook(nb, 'jeostrofik_denge_aifs_ifs.ipynb') ile açık analiz defterini oluşturmak.",
+      "sade": "Kullanıcıların kendi seçtikleri tarihlerde aynı fiziksel tutarlılık testini yapabilmeleri için kodu açık erişime açarız.",
+      "altAdimlar": [
+       "1. Veri çekme ve hesaplama adımlarını açıklayıcı metinlerle donatın.",
+       "2. Üç farklı mevsim vaka çalışması hücresini ekleyin.",
+       "3. GitHub deposuna yükleyip proje sayfasına bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 340",
+       "madde": "Barotropik ve baroklinik Rossby dalgalarının faz ve grup hızlarını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 340",
+      "madde": "Girdap denklemini ölçeklendirip yarı-jeostrofik girdap denklemini türetmek."
+     },
+     {
+      "ders": "MTO 340",
+      "madde": "Barotropik ve baroklinik Rossby dalgalarının faz ve grup hızlarını hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "AIFS ve IFS 500 hPa 10 günlük ageostrofik oran karşılaştırma grafiği, analiz defteri ve açık GitHub deposu.",
+  "senden": "ecmwf-opendata ile GRIB indirme hattını kurmak, xarray veri dizilerini yapılandırmak ve karşılaştırma grafiğini çizmek.",
+  "bizden": "MTO 340 jeostrofik rüzgâr ve Rossby dalga dinamiklerini kuramsallaştırmak ve ageostrofik sapmaları yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "Kuzey Yarımküre 500 hPa jeopotansiyel ve rüzgâr tahmini animasyonu",
+   "aciklama": "AIFS modelinin 10 günlük tahmin süresince orta enlemlerdeki jeostrofik akış tutarlılığı"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/jeostrofik-denge-aifs",
+   "aciklama": "AURA jeostrofik denge doğrulama ve grafik arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Geostrophic_wind.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Jeostrofik denge durumunda Coriolis ve basınç gradyanı kuvvetlerinin dengesi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Hakim ve Masanam 2024 Atmosferik Yapay Zekâ Dinamiği Makalesi",
+   "url": "https://doi.org/10.1029/2023MS004130"
+  },
+  {
+   "ad": "Selz ve Craig 2023 Tahmin Edilebilirlik Sınırları Makalesi",
+   "url": "https://doi.org/10.1175/MWR-D-22-0328.1"
+  },
+  {
+   "ad": "Kochkov vd. 2024 NeuralGCM Makalesi",
+   "url": "https://doi.org/10.1038/s41586-024-07744-y"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO340-01.json",
+  "tarih": "2026-10-17 02:14",
+  "geminiSha1": "cbd5f478306a"
+ }
+}

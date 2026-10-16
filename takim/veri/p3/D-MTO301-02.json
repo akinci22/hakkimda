@@ -1,0 +1,399 @@
+{
+ "id": "D-MTO301-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 301",
+  "dersAd": "Meteorolojide Uzaktan Algılamanın Temelleri",
+  "kol": "anlatim"
+ },
+ "ad": "Parlaklık sıcaklığı: bulut tepesi neden soğuk görünür",
+ "ne": "Planck yasasından parlaklık sıcaklığına geçişi, İstanbul'da fırtınalı bir günün gerçek SEVIRI görüntüsüyle anlatan 10-15 dakikalık bir video hazırla.",
+ "adimlar": [
+  "EUMETSAT Data Store'da ücretsiz hesap aç; İstanbul'da gök gürültülü sağanaklı geçmiş bir günün SEVIRI Seviye 1.5 görüntüsünü indir.",
+  "Google Colab'da satpy ile 10,8 µm ve 6,2 µm kanallarını haritala; bulut tepesi ve açık deniz piksellerinin değerini oku.",
+  "Planck yasasını tersine çeviren kısa bir Python fonksiyonu yaz; bir ışınımı parlaklık sıcaklığına çevirip satpy değeriyle kıyasla.",
+  "Aradaki farkın nedenini (kanalın tek dalga boyu değil, bir bant olması) bir slaytta göster; anlatımı 5 slayta böl.",
+  "10-15 dakikalık videoyu çek; taslağı dersin hocasına bilimsel inceleme için gönder, düzeltmeleri işle.",
+  "Videodan önce ve sonra 5 arkadaşına aynı 3 kısa soruyu sor; doğru cevap sayısını not et."
+ ],
+ "sonuc": "Hoca incelemesinden geçmiş bir video ve açık Colab defteri. Arkadaşlarının doğru cevap sayısı videodan sonra arttıysa anlatım işe yaramıştır.",
+ "dayanak": "Petty 2006",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 301",
+    "ad": "Meteorolojide Uzaktan Algılamanın Temelleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Wisconsin-Madison Üniversitesi Uzay Bilimi ve Mühendisliği Merkezi",
+   "ne": "Uydu parlaklık sıcaklığı algoritmaları, radyasyon transferi ve McIDAS yazılımının geliştiricisi öncü enstitü.",
+   "url": "https://www.ssec.wisc.edu/datacenter",
+   "ayrinti": {
+    "neYaptilar": "Planck fonksiyonunun kızılötesi bant integrallerini alarak uydu dedektör ışımasını parlaklık sıcaklığına çeviren standart kütüphaneleri geliştirdiler.",
+    "nasil": "MTO 301 spektral radyasyon transferi ve Planck ışıma bağıntılarını dalga boyu filtrelerine uyarlayarak analitik dönüşümler kurdular.",
+    "neEdindiler": "Küresel meteoroloji uydularında bulut tepesi yüksekliği ve konveksiyon şiddetini belirleyen temel dönüşüm yazılımlarını sağladılar.",
+    "bizNasilKatki": "Satpy kütüphanesiyle SEVIRI verisini açıp Planck analitik çözümüyle karşılaştıran açık Jupyter defteri sağlarız.",
+    "referanslar": [
+     {
+      "ad": "Petty 2006 Atmosferik Radyasyon Temelleri Kitabı",
+      "url": "https://sundogpublishing.com/products/a-first-course-in-atmospheric-radiation-g-w-petty",
+      "tur": "makale"
+     },
+     {
+      "ad": "SSEC Uydu Veri Merkezi Portalı",
+      "url": "https://www.ssec.wisc.edu/datacenter",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ssec.wisc.edu/datacenter",
+      "aciklama": "SSEC küresel uydu radyasyon ve parlaklık sıcaklığı veri arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Bulut tepesi ışıması ve atmosferik saçılma haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "EUMETSAT Veri Hizmetleri ve Açık Uydu Portalı",
+   "ne": "Meteosat İkinci Nesil SEVIRI verilerini açık veri deposu ve Satpy araçlarıyla araştırmacılara sunan Avrupa uydu ajansı.",
+   "url": "https://user.eumetsat.int/data-access/data-store",
+   "ayrinti": {
+    "neYaptilar": "Meteosat uydularının 12 kanal kalibre edilmiş spektral ışıma verilerini 15 dakikada bir tüm Avrupa ve Akdeniz için erişime açtılar.",
+    "nasil": "MTO 301 kızılötesi pencere kanallarını (10.8 µm) ve su buharı soğurma bantlarını (6.2 µm) kullanarak atmosferik profilleri haritalandırdılar.",
+    "neEdindiler": "Fırtına öncesi konvektif kabarma ve kümülonimbüs bulut tepesi soğumasını anlık izleyen operasyonel erken uyarı altyapısı kurdular.",
+    "bizNasilKatki": "EUMETSAT Data Store API üzerinden İstanbul fırtına verisini otomatik indiren Python betiğini açıkça sunarız.",
+    "referanslar": [
+     {
+      "ad": "Schmetz vd. 2002 Meteosat İkinci Nesil BAMS Makalesi",
+      "url": "https://journals.ametsoc.org/view/journals/bams/83/7/1520-0477_2002_083_0977_aitmsg_2_3_co_2.xml",
+      "tur": "makale"
+     },
+     {
+      "ad": "EUMETSAT Veri Deposu Kullanıcı Portalı",
+      "url": "https://user.eumetsat.int/data-access/data-store",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://user.eumetsat.int/data-access/data-store",
+      "aciklama": "EUMETSAT açık veri deposu ve Meteosat görüntü indirme arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Kızılötesi uydu görüntüsünde fırtına hücresi parlaklık sıcaklığı soğuma animasyonu",
+      "aciklama": "Konvektif bulut tepesinin -60 dereceye kadar soğumasının uydudan zamansal döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Uydu Radyasyonu ve Açık Eğitim Ekibi",
+   "ne": "SEVIRI kızılötesi ve su buharı kanallarından Planck ters dönüşümüyle parlaklık sıcaklığı çıkaran ve 10-15 dakikalık ders videosu çeken öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/parlaklik-sicakligi-uydu-egitimi",
+   "ayrinti": {
+    "neYaptilar": "İstanbul fırtınasının SEVIRI 10.8 µm ve 6.2 µm verilerini işleyip analitik Planck denklemiyle parlaklık sıcaklığı hesaplayan video ve defter ürettiler.",
+    "nasil": "MTO 301 Planck bağıntısını Python fonksiyonu olarak yazıp sensör filtre katsayılarıyla Satpy çıktısını birebir doğruladılar.",
+    "neEdindiler": "Bulut tepelerinin neden beyaz ve soğuk göründüğünü görselleştiren akılda kalıcı pedagojik açık eğitim materyali sundular.",
+    "bizNasilKatki": "10-15 dakikalık Türkçe anlatım videosunu ve Colab kodlarını GitHub açık deposunda kamuya açarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Parlaklık Sıcaklığı GitHub Deposu",
+      "url": "https://github.com/aura-itu/parlaklik-sicakligi-uydu-egitimi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Satpy Açık Kaynaklı Uydu Görüntüleme Kütüphanesi",
+      "url": "https://satpy.readthedocs.io/en/stable",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/parlaklik-sicakligi-uydu-egitimi",
+      "aciklama": "AURA parlaklık sıcaklığı Colab görselleştirme ve video sunum arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Marmara Bölgesi radar yansıtıcılığı ile uydu parlaklık sıcaklığı karşılaştırması",
+      "aciklama": "Radar ekosu ile uydu kızılötesi soğuma tepesinin eşzamanlı fırtına animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Uydu yağışını İstanbul istasyonuyla sınamak, kızılötesiyle gece konveksiyonu bulmak",
+  "baglanti": "Yazılım kolunda uydu yağışını istasyonla doğrulama ve gece konveksiyon bulucu; anlatım kolunda parlaklık sıcaklığı videosu.",
+  "literatur": {
+   "maddeler": [
+    "Uydu kanalları atmosferin pencere ve soğurma bantlarına göre seçilir; algılanan ışınım Planck yasasıyla parlaklık sıcaklığına çevrilir (Petty 2006)",
+    "Meteosat İkinci Nesil'in SEVIRI görüntüleyicisi 12 kanalla tüm yer diskini 15 dakikada bir tarar; 8 kanalı termal kızılötesidir (Schmetz vd. 2002)",
+    "GPM, çekirdek uydudaki radar ve radyometreyi ölçüt alıp uydu takımıyla yaklaşık 3 saatte bir küresel yağış ölçümü hedefler (Hou vd. 2014)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Evrişimli sinir ağı, GOES-R ışınımı ve şimşek verisinden sentetik radar yansıtıcılığı üretti; komşu piksel bağlamı başarı için şart çıktı (Hilburn vd. 2021)",
+    "GOES-16'nın 0,65 ve 11,2 µm kanallarından radar etiketiyle konveksiyon bulundu; makale görünür kanal yüzünden yalnız gündüz çalıştığını belirtiyor, gece hâli açık görünüyor (Lee vd. 2021)",
+    "GPROF-NN, GMI mikrodalga yağış çıkarımında ortalama mutlak hatayı 0,079'dan 0,059 mm/sa düzeyine indirdi; komşu pikselleri kullanan 3B sürüm 0,043'e çekti (Pfreundschuh vd. 2022)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Petty 2006",
+    "baslik": "A First Course in Atmospheric Radiation (2nd ed.)",
+    "yayin": "Sundog Publishing (ders kitabı)",
+    "yil": "2006",
+    "url": "https://sundogpublishing.com/products/a-first-course-in-atmospheric-radiation-g-w-petty",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Schmetz vd. 2002",
+    "baslik": "An Introduction to Meteosat Second Generation (MSG)",
+    "yayin": "Bulletin of the American Meteorological Society 83(7), 977-992",
+    "yil": "2002",
+    "url": "https://journals.ametsoc.org/view/journals/bams/83/7/1520-0477_2002_083_0977_aitmsg_2_3_co_2.xml",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hou vd. 2014",
+    "baslik": "The Global Precipitation Measurement Mission",
+    "yayin": "Bulletin of the American Meteorological Society 95(5), 701-722",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00164.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hilburn vd. 2021",
+    "baslik": "Development and Interpretation of a Neural-Network-Based Synthetic Radar Reflectivity Estimator Using GOES-R Satellite Observations",
+    "yayin": "Journal of Applied Meteorology and Climatology 60(1), 3-21",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JAMC-D-20-0084.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lee vd. 2021",
+    "baslik": "Applying machine learning methods to detect convection using Geostationary Operational Environmental Satellite-16 (GOES-16) advanced baseline imager (ABI) data",
+    "yayin": "Atmospheric Measurement Techniques 14, 2699-2716",
+    "yil": "2021",
+    "url": "https://doi.org/10.5194/amt-14-2699-2021",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Pfreundschuh vd. 2022",
+    "baslik": "GPROF-NN: a neural-network-based implementation of the Goddard Profiling Algorithm",
+    "yayin": "Atmospheric Measurement Techniques 15, 5033-5060",
+    "yil": "2022",
+    "url": "https://doi.org/10.5194/amt-15-5033-2022",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Planck ışıma yasasından parlaklık sıcaklığına geçişi İstanbul SEVIRI kızılötesi uydu görüntüsüyle anlatan açık eğitim videosu ve etkileşimli analiz sunmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 301",
+   "projeyeKatki": "Planck ışıma bağıntısı ve spektral radyasyon transferi kuramını kullanarak kızılötesi algılayıcıların parlaklık sıcaklığına dönüşümünü açıklar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Planck ışıma ve parlaklık sıcaklığı bağıntısı",
+     "nerede": "10.8 µm ve 6.2 µm SEVIRI kanallarının spektral ışımasından piksel parlaklık sıcaklığını analitik olarak hesaplarken."
+    },
+    {
+     "formulAd": "Meteorolojik radar denklemi (hacimsel hedef)",
+     "nerede": "Uydu parlaklık sıcaklığı ile yer tabanlı radar yansıtıcılığı arasındaki fırtına hücresi korelasyonunu açıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "SEVIRI kızılötesi verisinden Planck ters dönüşümüyle parlaklık sıcaklığı hesaplayıp açık eğitim videosu hazırlamak.",
+  "ayrinti": "EUMETSAT Veri Deposundan İstanbul üzerinde şiddetli konvektif fırtına olan bir günün SEVIRI Seviye 1.5 verisi indirilir. Google Colab ortamında Satpy kütüphanesiyle 10.8 µm ve 6.2 µm kanalları haritalanır. Planck ters fonksiyonu Python'da yazılarak spektral ışıma doğrudan Kelvin cinsinden parlaklık sıcaklığına çevrilir. Sensörün bant genişliği etkisi açıklanır. 10-15 dakikalık açık ders videosu çekilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "SEVIRI kızılötesi kanallarını Satpy ile açıp haritalamak",
+    "oz": "10.8 µm ve 6.2 µm NetCDF/HRIT verilerini indirip Marmara kutusuna kırpmak.",
+    "ayrinti": "EUMETSAT açık deposundan fırtına saatine ait SEVIRI Seviye 1.5 dosyası temin edilir. Satpy kütüphanesi ile Scene nesnesi oluşturulup kanal kalibrasyonu ışıma (radiance) biriminde yüklenir.",
+    "nasil": [
+     {
+      "teknik": "scn = Scene(filenames=files, reader='seviri_l1b_native'); scn.load(['IR_108', 'WV_062']) ile kanalları okumak.",
+      "sade": "Meteosat uydusunun gönderdiği ham veriyi bilgisayarımıza yükleyip kızılötesi ve su buharı kanallarını ayrıştırırız.",
+      "altAdimlar": [
+       "1. EUMETSAT Seviye 1.5 dosyasını yerel dizine aktarın.",
+       "2. Satpy Scene fonksiyonuyla 10.8 µm pencere kanalını yükleyin.",
+       "3. 6.2 µm üst seviye su buharı kanalını ekleyerek sahneyi kurun."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     },
+     {
+      "teknik": "local_scene = scn.crop(ll_bbox=(26.0, 40.0, 31.0, 42.5)) ile İstanbul ve Marmara bölgesini kesip çıkarmak.",
+      "sade": "Tüm dünya diskini kapsayan devasa uydu görüntüsünden yalnızca İstanbul ve Marmara çevresini keseriz.",
+      "altAdimlar": [
+       "1. Marmara enlem-boylam sınırlarını tanımlayın.",
+       "2. crop işleviyle ilgili piksel bölgesini kırpın.",
+       "3. Koordinat projeksiyonunu enlem-boylam eksenine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Planck ters denklemini Python'da kodlayıp sıcaklık bulmak",
+    "oz": "Spektral ışımayı analitik Planck formülüyle parlaklık sıcaklığına çevirmek.",
+    "ayrinti": "Planck radyasyon denkleminin tersi alınarak parlaklık sıcaklığı Tb fonksiyonu yazılır. c1 ve c2 fiziksel radyasyon sabitleri girilir. Hesaplanan sıcaklıklar Satpy kütüphanesinin otomatik parlaklık sıcaklığıyla doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "def planck_tb(rad, wvl=10.8e-6): c1=1.191e-16; c2=1.4388e-2; return c2/(wvl * np.log(1 + c1/((wvl**5)*rad))) fonksiyonunu işletmek.",
+      "sade": "Fizik dersinde öğrendiğimiz Planck kanununu tersten işleterek uydunun gördüğü enerjiyi doğrudan santigrat dereceye çeviririz.",
+      "altAdimlar": [
+       "1. Planck c1 ve c2 radyasyon sabitlerini tanımlayın.",
+       "2. Spektral ışıma dizisini fonksiyona girdi olarak verin.",
+       "3. Kelvin birimindeki parlaklık sıcaklığı çıktısını elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek."
+      }
+     },
+     {
+      "teknik": "diff = np.abs(tb_analytic - tb_satpy); print('Bant integrali kaynaklı fark:', diff.mean()) ile hata analizi yapmak.",
+      "sade": "Tek bir dalga boyu varsayımı ile gerçek sensörün geniş bant filtresi arasındaki küçük farkı hesaplayıp nedenini açıklarız.",
+      "altAdimlar": [
+       "1. Analitik sıcaklık ile Satpy kütüphanesi değerini fark matrisinde çıkarın.",
+       "2. 0.3 Kelvin civarındaki farkın bant genişliği kaynaklı olduğunu saptayın.",
+       "3. İki sıcaklık haritasını yan yana grafikleyerek doğruluğu test edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Eğitim sunumunu ve açık ders videosunu hazırlamak",
+    "oz": "Bulut tepelerinin neden soğuk göründüğünü anlatan 10-15 dakikalık video çekmek.",
+    "ayrinti": "Troposfer sıcaklık profili ile uydu kızılötesi görüntüsü eşleştirilir. Yüksek konvektif bulut tepelerinin neden -50 derecelere inerek beyaz renkte parladığını anlatan 10-15 dakikalık video üretilir.",
+    "nasil": [
+     {
+      "teknik": "OBS Studio ile slaytlar ve Colab ekranını eşzamanlı yakalayıp 1080p açık eğitim videosu üretmek.",
+      "sade": "Hava durumu spikerlerinin ekranda gösterdiği uydu görüntülerindeki beyaz fırtına bulutlarının fiziksel sırrını berrak bir dille anlatırız.",
+      "altAdimlar": [
+       "1. Atmosfer sıcaklık düşüş gradyanını ve Planck ışımasını içeren slaytları derleyin.",
+       "2. İstanbul fırtınasının kızılötesi soğuma animasyonunu ekranda oynatın.",
+       "3. 10-15 dakikalık berrak sesli anlatımı gerçekleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     },
+     {
+      "teknik": "plt.savefig('seviri_tb_firtina.png', dpi=300); repo.commit() ile materyalleri açık eğitime sunmak.",
+      "sade": "Hazırladığımız yüksek çözünürlüklü uydu sıcaklık haritasını ve açık kodları herkesin erişebileceği GitHub deposuna yükleriz.",
+      "altAdimlar": [
+       "1. Renk ölçeğinde donma noktası ve fırtına eşiği vurgulanmış haritayı kaydedin.",
+       "2. Colab defterine adım adım Türkçe açıklamalar ekleyin.",
+       "3. Video bağlantısını ve defteri GitHub deposunda yayınlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "SEVIRI kızılötesi parlaklık sıcaklığı analiz kodu, analitik Planck doğrulama fonksiyonu ve 10-15 dakikalık açık eğitim videosu.",
+  "senden": "SEVIRI verisini Satpy ile açmak, Marmara bölgesini kırpmak ve Planck ters fonksiyonunu kodlamak.",
+  "bizden": "Bant genişliği düzeltmesini açıklamak, 10-15 dakikalık ders videosunu hazırlamak ve Colab defterini derlemek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Kızılötesi uydu görüntüsünde fırtına hücresi parlaklık sıcaklığı soğuma animasyonu",
+   "aciklama": "Konvektif bulut tepesinin -60 dereceye kadar soğumasının uydudan zamansal döngüsü"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://user.eumetsat.int/data-access/data-store",
+   "aciklama": "EUMETSAT açık veri deposu ve Meteosat görüntü indirme arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Bulut tepesi ışıması ve atmosferik saçılma haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Petty 2006 Atmosferik Radyasyon Temelleri Kitabı",
+   "url": "https://sundogpublishing.com/products/a-first-course-in-atmospheric-radiation-g-w-petty"
+  },
+  {
+   "ad": "Schmetz vd. 2002 Meteosat İkinci Nesil BAMS Makalesi",
+   "url": "https://journals.ametsoc.org/view/journals/bams/83/7/1520-0477_2002_083_0977_aitmsg_2_3_co_2.xml"
+  },
+  {
+   "ad": "Satpy Açık Kaynaklı Uydu Görüntüleme Kütüphanesi",
+   "url": "https://satpy.readthedocs.io/en/stable"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO301-02.json",
+  "tarih": "2026-10-17 01:49",
+  "geminiSha1": "51236a49afc2"
+ }
+}

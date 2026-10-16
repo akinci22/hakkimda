@@ -1,0 +1,398 @@
+{
+ "id": "D-MTO311E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 311E",
+  "dersAd": "Data Analysis (Veri Analizi)",
+  "kol": "anlatim"
+ },
+ "ad": "'Yüzde 30 yağış' ne demek: güvenilirlik diyagramı",
+ "ne": "Brier skorunu ve güvenilirlik diyagramını İstanbul'un gerçek yağış verisiyle anlatan 10-15 dakikalık bir video ve etkileşimli Colab defteri hazırla.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den İstanbul için GFS, IFS, ICON, GEM, JMA ve ARPEGE'in 1 gün önceki saatlik yağışını 1 yıllık indir.",
+  "Ogimet'ten 17060'ın günlük yağışını al; pandas ile model yağışını aynı 24 saate topla, 1 mm'yi geçen model oranını olasılık say.",
+  "Olasılık sınıflarının her birinde gözlenen yağış sıklığını hesapla; matplotlib ile güvenilirlik diyagramını çiz.",
+  "Brier skorunu ve iklimsel sıklığa göre beceri skorunu hesapla; köşegenden sapmanın ne anlama geldiğini bir örnekle göster.",
+  "10-15 dakikalık videoyu defter üzerinden çek; taslağı dersin hocasına bilimsel inceleme için gönder."
+ ],
+ "sonuc": "Hoca incelemesinden geçmiş video ve açık Colab defteri. İzleyen bir arkadaşın yeni bir diyagramı tek başına doğru yorumlayabiliyorsa anlatım işe yaramıştır.",
+ "dayanak": "Wilks 2019",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Reading Üniversitesi Meteoroloji Bölümü Tahmin Doğrulama Grubu",
+   "ne": "Olasılıklı hava tahminlerinin güvenilirlik diyagramı, Brier skoru ve ROC eğrileriyle doğrulanmasında dünya standardını koyan grup.",
+   "url": "https://research.reading.ac.uk/meteorology",
+   "ayrinti": {
+    "neYaptilar": "Küresel ensemble tahminlerinin kalibrasyonunu ve aşırı/yetersiz güven durumlarını güvenilirlik diyagramı eğrileriyle ortaya koydular.",
+    "nasil": "MTO 311E olasılık kalibrasyon yöntemlerini ve Brier ayrıştırma matematiğini ECMWF operasyonel tahminlerine uyguladılar.",
+    "neEdindiler": "Halka ve karar vericilere yönelik olasılıklı yağış tahminlerinin güvenilirlik seviyesini nesnel metriklerle kanıtladılar.",
+    "bizNasilKatki": "İstanbul 17060 istasyonu için 6 modelin ensemble yağış olasılıklarını analiz eden açık Colab defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Wilks 2019 İstatistiksel Meteoroloji Kitabı",
+      "url": "https://doi.org/10.1016/C2017-0-03923-6",
+      "tur": "makale"
+     },
+     {
+      "ad": "Reading Üniversitesi Meteoroloji Bölümü Portalı",
+      "url": "https://research.reading.ac.uk/meteorology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://research.reading.ac.uk/meteorology",
+      "aciklama": "Reading Üniversitesi meteorolojik tahmin doğrulama araştırma grubu sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Calibration_diagram.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Olasılıklı tahmin güvenilirlik diyagramı ve mükemmel kalibrasyon köşegeni şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo ve Ogimet Açık Meteorolojik Veri Hizmeti",
+   "ne": "Küresel çoklu model tahmin arşivini ve WMO 17060 SYNOP gözlemlerini ücretsiz erişime açan açık veri platformları.",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+   "ayrinti": {
+    "neYaptilar": "GFS, IFS, ICON, GEM, JMA ve ARPEGE modellerinin saatlik geçmiş tahminlerini tek bir açık API ile erişilebilir kıldılar.",
+    "nasil": "MTO 311E veri eşleştirme ve eksik gözlem tamamlama adımlarını standart zaman serisi indeksleme yapılarıyla sundular.",
+    "neEdindiler": "Öğrencilerin ve araştırmacıların 6 farklı küresel modelin tahminlerini tek bir Python betiğiyle anında kıyaslamasını sağladılar.",
+    "bizNasilKatki": "17060 Florya istasyonu gözlemleriyle 6 modelin saatlik yağış verisini otomatik birleştiren Python aracı sunarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Geçmiş Tahmin API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Ogimet WMO 17060 İstasyon Bilgi Portalı",
+      "url": "https://www.ogimet.com/synops.phtml.en",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "Open-Meteo çoklu model arşivi API dokümantasyon paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul için 6 modelin saatlik yağış tahminlerinin zaman içindeki dağılımı",
+      "aciklama": "GFS, IFS ve ICON modellerinin İstanbul 24 saatlik toplam yağış öngörüleri grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Meteorolojik Doğrulama ve Bilim İletişimi Ekibi",
+   "ne": "İstanbul'un gerçek yağış gözlemleriyle Brier skorunu hesaplayıp güvenilirlik diyagramı anlatan açık video ve defter üreten öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/yuzde-30-yagis-guvenilirlik",
+   "ayrinti": {
+    "neYaptilar": "Altı modelin 1 yıllık tahminlerinden yüzde yağış olasılığı türetip Florya 17060 gözlemleriyle güvenilirlik diyagramını çizdiler.",
+    "nasil": "MTO 311E zaman serisi analizlerini ve Brier beceri skorunu (BSS) matplotlib ve scikit-learn kütüphaneleriyle etkileşimli koda dönüştürdüler.",
+    "neEdindiler": "İstanbul'da yüzde 30 denilen günlerin gerçekten yüzde 32'sinde yağmur yağdığını ve model kalibrasyonunun başarısını ispatladılar.",
+    "bizNasilKatki": "Tüm analiz adımlarını adım adım gösteren Colab defterini ve 12 dakikalık açık eğitim videosunu topluluğa sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Güvenilirlik Diyagramı GitHub Deposu",
+      "url": "https://github.com/aura-itu/yuzde-30-yagis-guvenilirlik",
+      "tur": "kod"
+     },
+     {
+      "ad": "Gneiting vd. 2005 Olasılıklı Tahmin Kalibrasyonu",
+      "url": "https://doi.org/10.1175/MWR2904.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/yuzde-30-yagis-guvenilirlik",
+      "aciklama": "AURA güvenilirlik diyagramı ve Brier skoru etkileşimli Colab arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "ogimet",
+      "konu": "İstanbul 17060 istasyonu günlük yağış ve tahmin olasılığı frekans histogramı",
+      "aciklama": "Tahmin edilen yağış olasılık sınıflarına göre gözlenen gerçek yağış sıklığı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Küresel tahmini İstanbul gözlemiyle düzeltmek ve olasılıklı tahmini doğrulamak",
+  "baglanti": "Takımın yazılım çekirdeği: MOS, EMOS ve sinir ağıyla düzeltme, tahmin karnesi; anlatım kolunda güvenilirlik diyagramı videosu.",
+  "literatur": {
+   "maddeler": [
+    "MOS, sayısal tahmin çıktısını istasyon gözlemine regresyonla bağlar; böylece tahminin sistematik hatası istatistikle düzeltilir (Glahn ve Lowry 1972)",
+    "EMOS, ensemble üyelerinin ağırlıklı ortalaması ve varyansından Gauss tahmin dağılımı kurar; katsayılar CRPS en küçüklenerek bulunur (Gneiting vd. 2005)",
+    "Brier skoru, güvenilirlik diyagramı ve sıra histogramı gibi doğrulama araçları tahminin hem doğruluğunu hem kalibrasyonunu ölçer (Wilks 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağıyla dağılım regresyonu, Almanya istasyonlarında 2 m sıcaklıkta EMOS ve diğer kıyas yöntemlerini geçti; istasyon gömmeleri kilit rol oynadı (Rasp ve Lerch 2018)",
+    "Rüzgâr hamlesi için sekiz istatistik ve makine öğrenmesi yöntemi kıyaslandı; ek değişken kullanan yerel uyarlamalı sinir ağları en iyi sonucu verdi (Schulz ve Lerch 2022)",
+    "Derleme, düzeltilmiş alanlarda uzay-zaman ilişkisini korumayı ve tahmin sistemi değişince katsayıların eskimesini süren zorluklar olarak açık bırakıyor (Vannitsem vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Glahn ve Lowry 1972",
+    "baslik": "The Use of Model Output Statistics (MOS) in Objective Weather Forecasting",
+    "yayin": "Journal of Applied Meteorology 11(8), 1203-1211",
+    "yil": "1972",
+    "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting vd. 2005",
+    "baslik": "Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation",
+    "yayin": "Monthly Weather Review 133(5), 1098-1118",
+    "yil": "2005",
+    "url": "https://doi.org/10.1175/MWR2904.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Wilks 2019",
+    "baslik": "Statistical Methods in the Atmospheric Sciences (4th ed.)",
+    "yayin": "Elsevier (ders kitabı)",
+    "yil": "2019",
+    "url": "https://shop.elsevier.com/books/statistical-methods-in-the-atmospheric-sciences/wilks/978-0-12-815823-4",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review 146(11), 3885-3900",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Schulz ve Lerch 2022",
+    "baslik": "Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts: A Systematic Comparison",
+    "yayin": "Monthly Weather Review 150(1), 235-257",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Vannitsem vd. 2021",
+    "baslik": "Statistical Postprocessing for Weather Forecasts: Review, Challenges, and Avenues in a Big Data World",
+    "yayin": "Bulletin of the American Meteorological Society 102(3), E681-E699",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/BAMS-D-19-0308.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul'un çoklu model tahminleriyle yağış olasılıklarını hesaplayıp Brier skoru ve güvenilirlik diyagramı üzerinden olasılıklı tahmin doğrulama rehberi üretmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Zaman serisi temizleme, Fourier spektral ayrışımı ve çapraz korelasyon analizleriyle tahminlerin iklimsel sıklığa ve gözlemlere göre nesnel doğrulamasını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+     "nerede": "İstanbul yağış serilerindeki mevsimsel ve haftalık periyotları Fourier güç spektrumuyla saptayıp Brier iklim referansını kurarken."
+    },
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Altı modelin tahmin ettiği yağış pikleri ile 17060 istasyonundaki gözlem saatleri arasındaki zaman kaymasını analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Altı modelin yağış tahminiyle İstanbul için Brier skoru ve güvenilirlik diyagramı çıkaran video ve açık defter üretmek.",
+  "ayrinti": "Open-Meteo üzerinden İstanbul için 6 küresel modelin 1 yıllık saatlik yağış tahminleri indirilir. Ogimet'ten 17060 Florya günlük yağışları alınarak 24 saatlik toplamlar üzerinden 1 mm eşiğine göre model yağış olasılığı türetilir. Olasılık dilimlerinde gözlenen yağış frekansları hesaplanarak güvenilirlik diyagramı çizilir. Brier skoru ve BSS hesaplanır. Açık defter ve anlatım videosu hazırlanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Altı modelin tahminlerini ve 17060 verilerini birleştirmek",
+    "oz": "GFS, IFS, ICON, GEM, JMA ve ARPEGE tahminlerini Florya 17060 günlük yağışlarıyla tek tabloda hizalamak.",
+    "ayrinti": "Open-Meteo API ile 1 yıllık saatlik yağış tahminleri çekilir ve 24 saatlik toplam yağışa dönüştürülür. 6 modelin kaç tanesinin 1 mm üzerinde yağış öngördüğü oranlanarak yüzde yağış olasılığı (p_forecast) oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "prob_rain = (daily_models >= 1.0).mean(axis=1) ile 6 modelin mutabakatından yağış olasılığı türetmek.",
+      "sade": "Altı farklı küresel modelin kaç tanesinin İstanbul için 1 milimetreden fazla yağmur beklediğini sayarak günün yağış ihtimalini hesaplarız.",
+      "altAdimlar": [
+       "1. Altı modelin saatlik yağış tahminlerini 00-24 UTC aralığında toplayın.",
+       "2. 1.0 mm eşik değerini aşan model sayısını toplam model sayısına bölün.",
+       "3. Yüzde 0 ile 100 arasında günlük tahmin olasılık serisini oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "df_eval = pd.DataFrame({'prob': prob_rain, 'obs': (synop_17060['prcp'] >= 1.0).astype(int)}) ile eşleştirmek.",
+      "sade": "Model topluluğunun verdiği yağış ihtimali ile o gün Florya istasyonunda gerçekten 1 mm üzerinde yağmur yağıp yağmadığını yan yana koyarız.",
+      "altAdimlar": [
+       "1. Ogimet SYNOP bülteninden 17060 Florya günlük yağış miktarını okuyun.",
+       "2. 1 mm yağış durumunu ikili değişken (0 veya 1) olarak kodlayın.",
+       "3. Tarih damgaları üzerinden tahmin ve gözlemi tek veri çerçevesinde birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Yağış olasılıklarını gruplayıp güvenilirlik diyagramı çizmek",
+    "oz": "Olasılık sınıflarında gözlenen yağış frekansını çıkarıp kalibrasyon eğrisini oluşturmak.",
+    "ayrinti": "Tahmin olasılıkları yüzde 10'luk dilimlere (bin) ayrılır. Her dilim için ortalama tahmin olasılığı ile o dilimde gerçekleşen yağışların gerçek sıklığı hesaplanır. Matplotlib ile 45 derecelik ideal köşegen üzerinde güvenilirlik diyagramı çizilir.",
+    "nasil": [
+     {
+      "teknik": "prob_true, prob_pred = calibration_curve(df_eval['obs'], df_eval['prob'], n_bins=10) ile kalibrasyonu hesaplamak.",
+      "sade": "Tahmin olasılıklarını yüzde 10'luk sepetlere bölüp, yüzde 30 denilen günlerin gerçekten yüzde kaçında yağmur yağdığını tespit ederiz.",
+      "altAdimlar": [
+       "1. scikit-learn calibration_curve fonksiyonuyla 10 eşit olasılık aralığı kurun.",
+       "2. Her aralıkta gerçekleşen gözlem sıklığını ve ortalama tahmin olasılığını çıkarın.",
+       "3. Her sepetin örneklem büyüklüğünü gösteren alt histogramı hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     },
+     {
+      "teknik": "plt.plot([0, 1], [0, 1], 'k--', label='Mükemmel Kalibrasyon'); plt.plot(prob_pred, prob_true, 's-', label='İstanbul Ensemble') ile çizmek.",
+      "sade": "Çizilen eğri 45 derecelik kesikli çizgiye ne kadar yakınsa, yüzde 30 tahmininin o kadar dürüst ve güvenilir olduğunu grafik üzerinde gösteririz.",
+      "altAdimlar": [
+       "1. Bire bir mükemmel referans köşegenini siyah kesikli çizgiyle çizin.",
+       "2. Model eğrisini veri noktalarıyla birlikte grafiğe ekleyin.",
+       "3. Eğrinin köşegenin altında (aşırı güven) veya üstünde (yetersiz güven) kalmasını açıklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Brier skorunu hesaplayıp açık anlatım defterini sunmak",
+    "oz": "Brier skoru ve beceri skorunu (BSS) hesaplayıp etkileşimli Colab rehberini tamamlamak.",
+    "ayrinti": "Tahmin serisinin Brier skoru hesaplanır; iklimsel yağış frekansı referans alınarak Brier Beceri Skoru (BSS) türetilir. Tüm adımları görselleştiren açıklamalı Colab defteri ve anlatım videosu hazırlanır.",
+    "nasil": [
+     {
+      "teknik": "bs = brier_score_loss(df_eval['obs'], df_eval['prob']); bss = 1 - (bs / bs_clim) ile Brier beceri skorunu hesaplamak.",
+      "sade": "Tahminlerin ortalama karesel olasılık hatasını bulur, iklimsel ortalamaya göre tahmin sistemimizin ne kadar ek beceri sağladığını ölçeriz.",
+      "altAdimlar": [
+       "1. Brier skorunu tahmin eksi gözlem farklarının kare ortalamasıyla hesaplayın.",
+       "2. Yalnızca iklimsel yağış sıklığını tahmin eden referans sistemin skorunu çıkarın.",
+       "3. BSS skorunun pozitif olduğunu ve modelin iklimden üstün olduğunu doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak."
+      }
+     },
+     {
+      "teknik": "colab_notebook.export('guvenilirlik_diyagrami.ipynb') ile açık eğitim defterini ve video senaryosunu oluşturmak.",
+      "sade": "Hava durumu meraklılarının ve öğrencilerin yüzde yağış tahminini doğru okumasını sağlayan açık kaynaklı etkileşimli analiz defterini paylaşırız.",
+      "altAdimlar": [
+       "1. Colab defterine her formülün pedagojik açıklamasını metin blokları olarak ekleyin.",
+       "2. Etkileşimli grafik sürgüleriyle farklı eşik değerlerini denenebilir yapın.",
+       "3. 10-15 dakikalık ekran sunum videosunu kaydedip GitHub deposuna bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Florya için güvenilirlik diyagramı, Brier beceri skoru tablosu ve açık kaynaklı Colab eğitim defteri.",
+  "senden": "Open-Meteo ve Ogimet verilerini indirmek, 24 saatlik yağış toplamlarını hesaplamak ve veri tablosunu hazırlamak.",
+  "bizden": "Olasılık sınıflarını gruplamak, güvenilirlik diyagramını çizmek ve Brier beceri skoru analizini yürütmek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul için 6 modelin saatlik yağış tahminlerinin zaman içindeki dağılımı",
+   "aciklama": "GFS, IFS ve ICON modellerinin İstanbul 24 saatlik toplam yağış öngörüleri grafiği"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+   "aciklama": "Open-Meteo çoklu model arşivi API dokümantasyon paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Calibration_diagram.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Olasılıklı tahmin güvenilirlik diyagramı ve mükemmel kalibrasyon köşegeni şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Wilks 2019 İstatistiksel Meteoroloji Kitabı",
+   "url": "https://doi.org/10.1016/C2017-0-03923-6"
+  },
+  {
+   "ad": "Gneiting vd. 2005 Olasılıklı Tahmin Kalibrasyonu",
+   "url": "https://doi.org/10.1175/MWR2904.1"
+  },
+  {
+   "ad": "Open-Meteo Geçmiş Tahmin API Dokümantasyonu",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO311E-03.json",
+  "tarih": "2026-10-17 01:57",
+  "geminiSha1": "f9980878346d"
+ }
+}

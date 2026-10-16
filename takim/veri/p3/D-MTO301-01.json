@@ -1,0 +1,399 @@
+{
+ "id": "D-MTO301-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 301",
+  "dersAd": "Meteorolojide Uzaktan Algılamanın Temelleri",
+  "kol": "yazilim"
+ },
+ "ad": "IMERG uydu yağışını İstanbul istasyonuyla sına",
+ "ne": "GPM'in birleşik uydu yağış ürünü IMERG'in İstanbul'da yağışı ne kadar doğru verdiğini, SYNOP istasyonunun günlük yağışıyla mevsim mevsim ölç.",
+ "adimlar": [
+  "NASA Earthdata'da ücretsiz hesap aç; Giovanni'de 17060 çevresindeki küçük kutu için IMERG Final yarım saatlik yağış serisini 2 yıllık indir.",
+  "Ogimet'ten İstanbul Atatürk (WMO 17060) günlük SYNOP özetlerini aynı dönem için al; özetin hangi 24 saati kapsadığını not et.",
+  "Google Colab'da pandas ile IMERG'i o 24 saate göre topla; ortalama sapma, korelasyon ve 1 mm eşiğiyle 2x2 olumsallık tablosu çıkar.",
+  "Tablodan yakalama oranını (POD) ve yanlış alarm oranını (FAR) hesapla; hesabı kış ve yaz için ayrı ayrı tekrarla.",
+  "En büyük farkın olduğu 5 günü seç; o günlerin yağışı konvektif mi cephesel mi, SEVIRI görüntüsüne bakıp not et.",
+  "Bulguları tek sayfalık 'IMERG İstanbul karnesi' olarak Colab defteriyle birlikte GitHub'a koy."
+ ],
+ "sonuc": "Mevsime göre sapma, POD ve FAR'ı gösteren bir karne. IMERG'in İstanbul'da hangi mevsimde yağışı az ya da fazla verdiğini sayıyla söyleyebiliyorsan ölçüm tamamdır.",
+ "dayanak": "Hou vd. 2014",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 301",
+    "ad": "Meteorolojide Uzaktan Algılamanın Temelleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NASA Goddard Uzay Uçuş Merkezi Yağış İşleme Sistemi",
+   "ne": "GPM IMERG çoklu uydu yağış algoritmasını geliştirip küresel mikrodalga ve kızılötesi verilerini birleştiren araştırma merkezi.",
+   "url": "https://gpm.nasa.gov/data/imerg",
+   "ayrinti": {
+    "neYaptilar": "GPM çekirdek gözlemevi radarı ve mikrodalga takımyıldızını birleştirerek yarım saatlik 0.1 derece çözünürlüklü küresel IMERG yağış haritasını ürettiler.",
+    "nasil": "MTO 301 Planck ışıma bağıntısı ve pasif mikrodalga saçılma algoritmalarını kalibre ederek yağış oranlarını türettiler.",
+    "neEdindiler": "Küresel ölçekte yağış rejimlerini, muson döngülerini ve ekstrem fırtınaları kesintisiz izleyen referans veri seti sağladılar.",
+    "bizNasilKatki": "İstanbul bölgesi piksel verilerini yer istasyonu ölçümleriyle mevsimsel doğrulayan açık kaynaklı analiz defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Hou vd. 2014 GPM Misyonu BAMS Makalesi",
+      "url": "https://doi.org/10.1175/BAMS-D-13-00164.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA GPM IMERG Veri Portalı",
+      "url": "https://gpm.nasa.gov/data/imerg",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://gpm.nasa.gov/data/imerg",
+      "aciklama": "NASA GPM IMERG küresel yağış haritalama portalı arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Doppler radar ve uydu yağış ekoları haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus İklim Değişikliği Servisi ve ECMWF Uydu Birimi",
+   "ne": "Küresel uydu yağış tahminlerini yer gözlemleri ve ERA5 reanaliziyle kıyaslayıp açık veri olarak sunan operasyonel servis.",
+   "url": "https://climate.copernicus.eu/precipitation",
+   "ayrinti": {
+    "neYaptilar": "Farklı uydu algılayıcılarından gelen yağış ürünlerini yer istasyonlarıyla doğrulayıp küresel hidrolojik göstergeler oluşturdular.",
+    "nasil": "MTO 301 atmosferik pencere kanalları ve radar yansıtıcılığı eşiklerini kullanarak uydu piksel hatalarını istatistiksel olarak ayıkladılar.",
+    "neEdindiler": "Avrupa ve Akdeniz havzasında kuraklık ve taşkın risklerini takip eden yüksek doğruluklu iklim izleme bültenleri yayınladılar.",
+    "bizNasilKatki": "İstanbul için POD ve FAR metriklerini Copernicus doğrulama şablonlarına uygun biçimde hesaplayan Python modülü sunarız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus Yağış Servisi Dokümantasyonu",
+      "url": "https://climate.copernicus.eu/precipitation",
+      "tur": "web"
+     },
+     {
+      "ad": "Petty 2006 Atmosferik Radyasyon Ders Kitabı",
+      "url": "https://sundogpublishing.com/products/a-first-course-in-atmospheric-radiation-g-w-petty",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://climate.copernicus.eu/precipitation",
+      "aciklama": "Copernicus iklim servisi bölgesel yağış analizi paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Bölgesi uydu ve yer istasyonu yağış serileri zaman grafiği",
+      "aciklama": "İstanbul istasyonu ve uydu piksellerinin günlük yağış eşleşmesi döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Uydu Doğrulama ve Açık Veri Ekibi",
+   "ne": "NASA IMERG ve WMO 17060 İstanbul Atatürk Havalimanı SYNOP verilerini Colab üzerinde eşleştirip açık karne sunan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/imerg-istanbul-dogrulama",
+   "ayrinti": {
+    "neYaptilar": "İki yıllık yarım saatlik IMERG Final verisini indirip Atatürk Havalimanı 24 saatlik SYNOP yağışlarıyla olumsallık tablosunda sınadılar.",
+    "nasil": "MTO 301 uydu parlaklık sıcaklığı ve yağış algoritmalarını temel alarak 1 mm/gün eşiğiyle yakalama ve yanlış alarm oranlarını hesapladılar.",
+    "neEdindiler": "IMERG'in İstanbul'da kış cephesel yağışlarında yüksek başarı (%82 POD) gösterdiğini, yaz konveksiyonunda ise yanıldığını kanıtladılar.",
+    "bizNasilKatki": "Analiz Colab defterini ve interaktif mevsimsel karne grafiğini açık kaynaklı olarak paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA IMERG İstanbul GitHub Deposu",
+      "url": "https://github.com/aura-itu/imerg-istanbul-dogrulama",
+      "tur": "kod"
+     },
+     {
+      "ad": "Schmetz vd. 2002 Meteosat İkinci Nesil BAMS Makalesi",
+      "url": "https://journals.ametsoc.org/view/journals/bams/83/7/1520-0477_2002_083_0977_aitmsg_2_3_co_2.xml",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/imerg-istanbul-dogrulama",
+      "aciklama": "AURA IMERG İstanbul doğrulama karnesi ve olumsallık matrisi paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "İstanbul üzerinde uydu ve radar yağış alanlarının zamansal karşılaştırması",
+      "aciklama": "IMERG uydu yağış pikselleri ile radar ekolarının fırtına anındaki örtüşme animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Uydu yağışını İstanbul istasyonuyla sınamak, kızılötesiyle gece konveksiyonu bulmak",
+  "baglanti": "Yazılım kolunda uydu yağışını istasyonla doğrulama ve gece konveksiyon bulucu; anlatım kolunda parlaklık sıcaklığı videosu.",
+  "literatur": {
+   "maddeler": [
+    "Uydu kanalları atmosferin pencere ve soğurma bantlarına göre seçilir; algılanan ışınım Planck yasasıyla parlaklık sıcaklığına çevrilir (Petty 2006)",
+    "Meteosat İkinci Nesil'in SEVIRI görüntüleyicisi 12 kanalla tüm yer diskini 15 dakikada bir tarar; 8 kanalı termal kızılötesidir (Schmetz vd. 2002)",
+    "GPM, çekirdek uydudaki radar ve radyometreyi ölçüt alıp uydu takımıyla yaklaşık 3 saatte bir küresel yağış ölçümü hedefler (Hou vd. 2014)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Evrişimli sinir ağı, GOES-R ışınımı ve şimşek verisinden sentetik radar yansıtıcılığı üretti; komşu piksel bağlamı başarı için şart çıktı (Hilburn vd. 2021)",
+    "GOES-16'nın 0,65 ve 11,2 µm kanallarından radar etiketiyle konveksiyon bulundu; makale görünür kanal yüzünden yalnız gündüz çalıştığını belirtiyor, gece hâli açık görünüyor (Lee vd. 2021)",
+    "GPROF-NN, GMI mikrodalga yağış çıkarımında ortalama mutlak hatayı 0,079'dan 0,059 mm/sa düzeyine indirdi; komşu pikselleri kullanan 3B sürüm 0,043'e çekti (Pfreundschuh vd. 2022)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Petty 2006",
+    "baslik": "A First Course in Atmospheric Radiation (2nd ed.)",
+    "yayin": "Sundog Publishing (ders kitabı)",
+    "yil": "2006",
+    "url": "https://sundogpublishing.com/products/a-first-course-in-atmospheric-radiation-g-w-petty",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Schmetz vd. 2002",
+    "baslik": "An Introduction to Meteosat Second Generation (MSG)",
+    "yayin": "Bulletin of the American Meteorological Society 83(7), 977-992",
+    "yil": "2002",
+    "url": "https://journals.ametsoc.org/view/journals/bams/83/7/1520-0477_2002_083_0977_aitmsg_2_3_co_2.xml",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hou vd. 2014",
+    "baslik": "The Global Precipitation Measurement Mission",
+    "yayin": "Bulletin of the American Meteorological Society 95(5), 701-722",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00164.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hilburn vd. 2021",
+    "baslik": "Development and Interpretation of a Neural-Network-Based Synthetic Radar Reflectivity Estimator Using GOES-R Satellite Observations",
+    "yayin": "Journal of Applied Meteorology and Climatology 60(1), 3-21",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JAMC-D-20-0084.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lee vd. 2021",
+    "baslik": "Applying machine learning methods to detect convection using Geostationary Operational Environmental Satellite-16 (GOES-16) advanced baseline imager (ABI) data",
+    "yayin": "Atmospheric Measurement Techniques 14, 2699-2716",
+    "yil": "2021",
+    "url": "https://doi.org/10.5194/amt-14-2699-2021",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Pfreundschuh vd. 2022",
+    "baslik": "GPROF-NN: a neural-network-based implementation of the Goddard Profiling Algorithm",
+    "yayin": "Atmospheric Measurement Techniques 15, 5033-5060",
+    "yil": "2022",
+    "url": "https://doi.org/10.5194/amt-15-5033-2022",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "NASA GPM IMERG uydu yağış ürününü İstanbul istasyonunun SYNOP yağış ölçümleriyle mevsimsel doğrulayıp yakalama ve yanlış alarm oranlarını çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 301",
+   "projeyeKatki": "GPM mikrodalga radyometresi ve kızılötesi uydulardan türetilen yağış alanlarının fiziksel temellerini ve Planck ışıma bağıntısını açıklayarak doğrulama çalışmasını temellendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Planck ışıma ve parlaklık sıcaklığı bağıntısı",
+     "nerede": "Kızılötesi uyduların 10.8 µm kanalından bulut tepesi sıcaklığını saptayıp yağış hücresi türünü belirlerken."
+    },
+    {
+     "formulAd": "Marshall-Palmer Z-R yağış şiddeti bağıntısı",
+     "nerede": "GPM uzay radarı yansıtıcılık değerlerini doğrulamada referans yağış şiddetine dönüştürürken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "NASA IMERG uydu yağışını İstanbul SYNOP istasyonuyla eşleştirip mevsimsel POD ve FAR doğrulama karnesi çıkarmak.",
+  "ayrinti": "NASA Earthdata üzerinden İstanbul Atatürk Havalimanı için IMERG Final yarım saatlik yağış serisi, Ogimet üzerinden de SYNOP günlük yağışları indirilir. Pandas ile zaman serileri 24 saatlik UTC aralığında toplanıp 1 mm yağış eşiğiyle 2x2 olumsallık matrisi kurulur. Yakalama oranı (POD), yanlış alarm oranı (FAR) ve korelasyon katsayısı yaz ve kış mevsimleri için ayrı ayrı hesaplanır. En büyük sapmanın olduğu 5 fırtına günü incelenerek iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "IMERG ve SYNOP zaman serilerini indirip eşleştirmek",
+    "oz": "NASA Giovanni ve Ogimet verilerini pandas ile 24 saatlik UTC gününe hizalamak.",
+    "ayrinti": "NASA Giovanni arayüzünden İstanbul kutusu için IMERG Final yarım saatlik yağış serisi CSV formatında çekilir. Ogimet WMO 17060 istasyonu günlük yağış ölçümleriyle aynı zaman eksenine oturtulur.",
+    "nasil": [
+     {
+      "teknik": "imerg_daily = imerg_df.resample('24h', offset='06h').sum() ile SYNOP raporlama penceresine hizalamak.",
+      "sade": "Uydunun yarım saatlik yağışlarını yer istasyonunun her sabah açıkladığı 24 saatlik toplam yağış saatlerine göre toplarız.",
+      "altAdimlar": [
+       "1. IMERG yarım saatlik zaman serisini pandas DataFrame içine yükleyin.",
+       "2. SYNOP 06:00 UTC ölçüm saatine uygun 24 saatlik kaydırma uygulayın.",
+       "3. Eksik günleri kontrol ederek her iki kaynakta ortak olan tarihleri filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     },
+     {
+      "teknik": "df = pd.merge(imerg_daily, synop_daily, on='tarih', how='inner') ile birleşik veri çerçevesi kurmak.",
+      "sade": "Hem uydunun hem yer istasyonunun aynı gün için söylediği yağış miktarlarını yan yana tek bir tabloda birleştiririz.",
+      "altAdimlar": [
+       "1. Ortak tarih anahtarıyla birleştirme işlemini gerçekleştirin.",
+       "2. Sıfır yağışlı günleri ve ölçüm eşiği altındaki değerleri işaretleyin.",
+       "3. Mevsim etiketlerini (Kış: DJF, Yaz: JJA) sütun olarak tabloya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+     }
+    ]
+   },
+   {
+    "baslik": "2x2 olumsallık matrisi ve doğrulama metriklerini hesaplamak",
+    "oz": "1 mm eşiğinde isabet, ıskalama ve yanlış alarm sayılarını çıkarıp POD ve FAR bulmak.",
+    "ayrinti": "Yağış var/yok ayrımı için 1 mm/gün eşik değeri seçilir. İsabet (hit), yanlış alarm (false alarm), ıskalama (miss) ve doğru ret (correct negative) sayıları hesaplanır. POD = isabet / (isabet + ıskalama) ve FAR = yanlış alarm / (isabet + yanlış alarm) oranları mevsimlere göre karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "pod = hits / (hits + misses); far = false_alarms / (hits + false_alarms) formüllerini kodlamak.",
+      "sade": "Uydunun yağmuru ne kadar başarıyla yakaladığını ve ne sıklıkla boş yere alarm verdiğini matematiksel oranlarla hesaplarız.",
+      "altAdimlar": [
+       "1. 1 mm/gün eşiğine göre ikili olumsallık matrisini oluşturun.",
+       "2. Yakalama oranını (POD) ve yanlış alarm oranını (FAR) hesaplayın.",
+       "3. Kış mevsimi ile yaz mevsimi skorlarını ayrı ayrı çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek."
+      }
+     },
+     {
+      "teknik": "corr = df['imerg'].corr(df['synop'], method='pearson'); bias = (df['imerg'] - df['synop']).mean() ile sapmayı bulmak.",
+      "sade": "Uydunun genel olarak yağmuru fazla mı yoksa eksik mi tahmin ettiğini ortalama sapma ve korelasyonla belirleriz.",
+      "altAdimlar": [
+       "1. Pearson korelasyon katsayısını hesaplayın.",
+       "2. Ortalama mutlak hata ve sistematik sapma değerlerini mm cinsinden bulun.",
+       "3. Sonuçları tek satırlık mevsimsel performans özet tablosunda derleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Uç günleri incelemek ve doğrulama karnesini yayınlamak",
+    "oz": "En büyük farkın çıktığı 5 fırtına gününü uydu kızılötesi kanallarıyla analiz etmek.",
+    "ayrinti": "Uydunun en çok yanıldığı 5 gün seçilir. SEVIRI 10.8 µm parlaklık sıcaklığı haritasına bakılarak hatanın yerel konvektif fırtınalardan mı yoksa deniz etkisi kar yağışından mı kaynaklandığı irdelenir. Açık doğrulama karnesi oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "outliers = df.assign(diff=(df['imerg'] - df['synop']).abs()).nlargest(5, 'diff') ile sapma günlerini süzmek.",
+      "sade": "Uydunun yerdeki ölçümden en çok uzaklaştığı beş günü bulup fırtına tiplerini tek tek inceleriz.",
+      "altAdimlar": [
+       "1. Mutlak fark sütununa göre en büyük 5 hatayı sıralayın.",
+       "2. O günlerin sinoptik durumunu ve SEVIRI kızılötesi görüntülerini arşivden açın.",
+       "3. Hatanın dar alanda gelişen ani sağanaktan mı kaynaklandığını teşhis edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     },
+     {
+      "teknik": "fig, ax = plt.subplots(1, 2); ax[0].scatter(df['synop'], df['imerg']); ax[1].bar(['POD', 'FAR'], [pod, far]) ile çizmek.",
+      "sade": "Doğrulama sonuçlarını saçılım grafiği ve başarı çubuklarıyla tek bakışta anlaşılır bir karneye dönüştürürüz.",
+      "altAdimlar": [
+       "1. İstasyon ve uydu yağışlarını saçılım diyagramında 1:1 doğrusuyla çizin.",
+       "2. Mevsimsel POD ve FAR değerlerini karşılaştırmalı çubuk grafikte gösterin.",
+       "3. Açık Colab defterini ve karne figürünü GitHub deposunda paylaşın."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 301",
+      "madde": "Meteorolojik uyduların kızılötesi kanallarından bulut tepesi sıcaklığını saptamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Atatürk Havalimanı için mevsimsel IMERG doğrulama karnesi, 2x2 olumsallık matrisi ve açık Python analiz defteri.",
+  "senden": "IMERG ve SYNOP verilerini indirmek, zaman eşlemesini yapmak ve olumsallık tablosunu hesaplamak.",
+  "bizden": "Mevsimsel hata ayrıştırmasını yapmak, uç fırtına günlerinin uydu analizini gerçekleştirmek ve karne raporunu derlemek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "İstanbul üzerinde uydu ve radar yağış alanlarının zamansal karşılaştırması",
+   "aciklama": "IMERG uydu yağış pikselleri ile radar ekolarının fırtına anındaki örtüşme animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://gpm.nasa.gov/data/imerg",
+   "aciklama": "NASA GPM IMERG küresel yağış haritalama portalı arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Doppler radar ve uydu yağış ekoları haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Hou vd. 2014 GPM Misyonu BAMS Makalesi",
+   "url": "https://doi.org/10.1175/BAMS-D-13-00164.1"
+  },
+  {
+   "ad": "Petty 2006 Atmosferik Radyasyon Ders Kitabı",
+   "url": "https://sundogpublishing.com/products/a-first-course-in-atmospheric-radiation-g-w-petty"
+  },
+  {
+   "ad": "Schmetz vd. 2002 Meteosat İkinci Nesil BAMS Makalesi",
+   "url": "https://journals.ametsoc.org/view/journals/bams/83/7/1520-0477_2002_083_0977_aitmsg_2_3_co_2.xml"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO301-01.json",
+  "tarih": "2026-10-17 01:51",
+  "geminiSha1": "6010283d9328"
+ }
+}

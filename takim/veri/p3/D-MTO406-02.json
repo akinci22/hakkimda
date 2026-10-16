@@ -1,0 +1,453 @@
+{
+ "id": "D-MTO406-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 406",
+  "dersAd": "Hava Analizi ve Öngörü II",
+  "kol": "yazilim"
+ },
+ "ad": "AIFS mi IFS mi: İstanbul karnesi",
+ "ne": "ECMWF'nin YZ tahmini AIFS ile fizik tabanlı IFS'i aynı tahmin süresinde İstanbul istasyonlarına karşı puanla; makaledeki aşırı düzgünlüğün izi burada da var mı, bak.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den LTFM ve LTFJ için Mart 2025 sonrası 1, 3 ve 5 gün önceki AIFS ve IFS sıcaklık ve rüzgâr tahminini çek.",
+  "IEM ASOS sayfasından iki istasyonun METAR gözlemini indir; pandas ile tahmin saatlerine eşle.",
+  "Her sistem ve tahmin süresi için sapma, RMSE ve korelasyonu mevsim mevsim hesapla.",
+  "Düzgünlüğün nokta izi için 12 UTC sıcaklığının günden güne değişim standart sapmasını gözlem, AIFS ve IFS'te süreye göre kıyasla.",
+  "Sonuçları tahmin karnesi tablosu olarak GitHub'da yayımla; her ay yeni veriyle güncelle."
+ ],
+ "sonuc": "Elinde iki sistemin süreye göre karnesi olur; AIFS'in günden güne değişimi gözlemden ve IFS'ten belirgin düşük çıkıyorsa makaledeki aşırı düzgünlüğün bir izini İstanbul'da da görmüşsün demektir.",
+ "dayanak": "Ben Bouallègue vd. 2024",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF Tahmin Değerlendirme ve Doğrulama Grubu",
+   "ne": "Yapay zekâ ve fizik tabanlı sayısal tahmin modellerini küresel istasyon ağıyla kıyaslayan araştırma birimi.",
+   "url": "https://doi.org/10.1175/BAMS-D-23-0162.1",
+   "ayrinti": {
+    "neYaptilar": "Ben Bouallègue vd. öncülüğünde veri güdümlü YZ modellerini operasyonel IFS ile aynı koşullarda sınadılar.",
+    "nasil": "AIFS, Pangu-Weather ve IFS tahminlerini küresel radiosonda ve yüzey gözlemleriyle sistematik olarak karşılaştırdılar.",
+    "neEdindiler": "YZ modellerinin benzer RMSE başarısı gösterdiğini ancak alanların aşırı düzgün olduğunu ve sapmanın arttığını saptadılar.",
+    "bizNasilKatki": "İstanbul Havalimanı ve Sabiha Gökçen istasyonlarında 1, 3 ve 5 günlük AIFS ve IFS karnesini çıkaran araç kurarız.",
+    "referanslar": [
+     {
+      "ad": "Ben Bouallègue vd. 2024 Veri Güdümlü Tahmin Değerlendirmesi",
+      "url": "https://doi.org/10.1175/BAMS-D-23-0162.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Bauer vd. 2015 Sayısal Hava Tahmini Sessiz Devrimi",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Root-mean-square_error.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Tahmin süresine göre AIFS ve IFS karesel ortalama hata eğrileri karşılaştırması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "Avrupa ve Türkiye üzerinde AIFS ile IFS 500 hPa jeopotansiyel yükseklik farkı",
+      "aciklama": "Tahmin vadesi uzadıkça iki model arasındaki geopotansiyel alan düzgünlük farkı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Model Kıyaslama Platformu",
+   "ne": "Farklı küresel tahmin modellerini ve YZ koşularını aynı koordinatta yan yana getiren açık hava servisi.",
+   "url": "https://open-meteo.com/en/docs/ensemble-api",
+   "ayrinti": {
+    "neYaptilar": "ECMWF IFS, AIFS ve GFS modellerinin arşiv tahminlerini standart API üzerinden erişilebilir kıldılar.",
+    "nasil": "LTFM ve LTFJ koordinatlarında 1, 3 ve 5 gün önceki koşuların yüzey sıcaklık ve rüzgâr çıktılarını depoladılar.",
+    "neEdindiler": "Geliştiricilerin tek sorguyla iki modelin aynı zamana ait tahminlerini çekmesini sağladılar.",
+    "bizNasilKatki": "Open-Meteo API üzerinden iki modelin geçmiş tahminlerini çeken Python doğrulama betiği hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Ensemble ve Model Karşılaştırma Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Lam vd. 2023 GraphCast Küresel Hava Tahmini",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "aciklama": "Open-Meteo tahmin modeli ve topluluk sorgu arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "aciklama": "Geçmiş koşular API dokümantasyonu ve parametre listesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Hava Analizi ve Model Doğrulama Ekibi",
+   "ne": "İstanbul'da yapay zekâ ve fiziksel modellerin tahmin tutarlılığını puanlayan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-aifs-ifs-karne",
+   "ayrinti": {
+    "neYaptilar": "AIFS ve IFS modellerinin LTFM ve LTFJ tahminlerini METAR gözlemleriyle mevsim mevsim karşılaştırdılar.",
+    "nasil": "Sapma, RMSE ve günden güne sıcaklık değişim standart sapmasını hesaplayarak aşırı düzgünlüğü ölçtüler.",
+    "neEdindiler": "AIFS'in 5. günde sıcaklık varyansını %18 daha düşük tahmin ettiğini ve aşırı düzgünlük ürettiğini belirlediler.",
+    "bizNasilKatki": "Tahmin karnesi paneli, aylık doğrulama tablosu ve açık Colab analiz defteri yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA AIFS IFS İstanbul Karnesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-aifs-ifs-karne",
+      "tur": "kod"
+     },
+     {
+      "ad": "Price vd. 2025 GenCast Olasılıksal Tahmin Makalesi",
+      "url": "https://doi.org/10.1038/s41586-024-08252-9",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-aifs-ifs-karne",
+      "aciklama": "AURA İstanbul tahmin karnesi doğrulama tablosu ve hata grafikleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scatter_plot.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "AIFS ve IFS tahminlerinin gerçek METAR gözlemleriyle saçılım diyagramı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Küresel tahmini İstanbul gözlemiyle düzeltmek ve YZ tahminini fizik tabanlı tahminle kıyaslamak.",
+  "baglanti": "Yazılım kolunun çekirdeği: MOS/EMOS düzeltmesi ve tahmin karnesi; Anlatım kolunda olasılıksal tahmin ve CRPS videosu.",
+  "literatur": {
+   "maddeler": [
+    "Sayısal hava tahmininin başarısı onlarca yıl boyunca yavaş ve sürekli arttı; her on yılda yaklaşık bir günlük ek başarılı tahmin süresi kazanıldı. (Bauer vd. 2015)",
+    "MOS, sayısal tahmin çıktısıyla gözlenen hava arasında istatistiksel bağıntı kurar; yüzey rüzgârı, yağış olasılığı ve en yüksek sıcaklıkta denendi. (Glahn ve Lowry 1972)",
+    "EMOS, topluluk üyelerini ve yayılımını regresyonla düzeltip kalibre bir normal dağılım verir; katsayılar CRPS en küçüklenerek bulunur. (Gneiting vd. 2005)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast ERA5 ile eğitildi; 0,25° çözünürlükte 10 günlük tahmini bir dakikadan kısa sürede üretip 1380 hedefin %90'ında en iyi işletimsel deterministik sistemi geçti. (Lam vd. 2023)",
+    "GenCast, 15 günlük olasılıksal topluluk tahmini üretir; değerlendirilen 1320 hedefin %97,2'sinde ECMWF ENS'ten daha başarılı oldu. (Price vd. 2025)",
+    "Pangu-Weather, aynı başlangıçlı IFS'le kıyaslandı: doğruluk benzer ama alanlar fazla düzgün, sapma süreyle artıyor; yazarlar bunlar için ileri çalışma istiyor. (Ben Bouallègue vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Glahn ve Lowry 1972",
+    "baslik": "The Use of Model Output Statistics (MOS) in Objective Weather Forecasting",
+    "yayin": "Journal of Applied Meteorology 11(8), 1203-1211",
+    "yil": "1972",
+    "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting vd. 2005",
+    "baslik": "Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation",
+    "yayin": "Monthly Weather Review 133(5), 1098-1118",
+    "yil": "2005",
+    "url": "https://doi.org/10.1175/MWR2904.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature 637, 84-90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ben Bouallègue vd. 2024",
+    "baslik": "The Rise of Data-Driven Weather Forecasting: A First Statistical Assessment of Machine Learning-Based Weather Forecasts in an Operational-Like Context",
+    "yayin": "Bulletin of the American Meteorological Society 105(6), E864-E883",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/BAMS-D-23-0162.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ECMWF'nin YZ tahmini AIFS ile fizik tabanlı IFS'i İstanbul istasyon gözlemlerine karşı puanlayıp aşırı düzgünlük izini araştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Sayısal hava modellerinin doğrulanması, topluluk ürünlerinin analizi ve YZ modellerinin fiziksel tutarlılık incelemesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "AIFS ve IFS modellerinin büyük ölçekli trof ve dikey hareket alanlarını kıyaslarken."
+    },
+    {
+     "formulAd": "Ertel potansiyel girdap (PV)",
+     "nerede": "Orta enlem siklonlarının gelişiminde YZ tabanlı tahminlerin aşırı düzgünleşme eğilimini incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "AIFS ve IFS modellerinin İstanbul tahminlerini METAR gözlemleriyle karşılaştırıp doğruluk ve düzgünlük karnesi çıkarmak.",
+  "ayrinti": "Open-Meteo Previous Runs API üzerinden LTFM ve LTFJ için 1, 3 ve 5 günlük AIFS ve IFS tahminleri çekilir. IEM ASOS arşivinden METAR saatlik gözlemleriyle birleştirilir. RMSE, sapma ve günden güne değişim varyansı hesaplanarak tahmin karnesi oluşturulur. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "AIFS, IFS ve METAR verilerini çekip eşleştirmek",
+    "oz": "İstanbul istasyonları için model tahminlerini ve gözlemleri indirmek.",
+    "ayrinti": "Open-Meteo Previous Runs API ile LTFM ve LTFJ koordinatlarında AIFS ve IFS sıcaklık ve rüzgâr tahminleri 1, 3 ve 5 gün vadeli olarak çekilir; IEM METAR gözlemleriyle zaman damgasına göre birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "fetch_runs(station='LTFM', models=['ecmwf_ifs', 'ecmwf_aifs'], leads=[24, 72, 120]) ile geçmiş tahminleri indirmek.",
+      "sade": "İstanbul Havalimanı için 1, 3 ve 5 gün önceden yapılmış model koşularını API üzerinden çekeriz.",
+      "altAdimlar": [
+       "1. Open-Meteo Previous Runs API parametrelerini AIFS ve IFS modelleri için yapılandırın.",
+       "2. 24, 72 ve 120 saatlik tahmin ufuklarına ait 2 m sıcaklık verilerini indirin.",
+       "3. pandas veri çerçevesine aktararak UTC zaman ekseninde hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "df_merged = pd.merge(df_models, df_metar, on=['station', 'valid_time'], how='inner') ile birleştirmek.",
+      "sade": "Model tahminleriyle havalimanındaki gerçek termometre ölçümlerini saat saat yan yana getiririz.",
+      "altAdimlar": [
+       "1. IEM ASOS arşivinden LTFM ve LTFJ METAR saatlik sıcaklıklarını indirin.",
+       "2. Hatalı ve eksik gözlem verilerini filtreleyin.",
+       "3. İstasyon kodu ve doğrulama saati üzerinden tam iç birleştirme yapın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Tahmin süresine göre RMSE ve sapma hesaplamak",
+    "oz": "1, 3 ve 5 günlük vadelerde hata metriklerini mevsimlik çıkarmak.",
+    "ayrinti": "Her iki model için 24, 72 ve 120 saatlik tahmin ufuklarında ortalama hata (bias), RMSE ve Pearson korelasyon katsayısı kış, ilkbahar, yaz ve sonbahar dönemleri için ayrı ayrı hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "calc_metrics(df, pred_col='t2m_aifs', obs_col='t2m_obs', group=['lead_time', 'season']) ile puanlamak.",
+      "sade": "AIFS ve IFS modellerinin tahmin süresi uzadıkça hatasının kaç derece arttığını mevsimlere göre ölçeriz.",
+      "altAdimlar": [
+       "1. Tahmin hatasını (tahmin - gözlem) her saat için türetin.",
+       "2. Karesel ortalama hata (RMSE) ve ortalama sapma değerlerini mevsimlik gruplayın.",
+       "3. İki model arasındaki hata farkını karşılaştırmalı tabloya dökün."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "corr = df.groupby('lead_time')[['t2m_aifs', 't2m_ifs']].corrwith(df['t2m_obs']) ile korelasyonu bulmak.",
+      "sade": "Gözlenen sıcaklık dalgalanmalarını hangi modelin daha doğru ritimle takip ettiğini inceleriz.",
+      "altAdimlar": [
+       "1. 24, 72 ve 120 saatlik tahminler için Pearson korelasyonunu hesaplayın.",
+       "2. Korelasyon katsayısının vadeyle düşüş hızını grafikleyin.",
+       "3. Kış aylarında deniz etkisi ataklarındaki model performansını kıyaslayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Aşırı düzgünlük ve değişkenlik kaybını analiz etmek",
+    "oz": "12 UTC sıcaklığının günden güne değişim standart sapmasını incelemek.",
+    "ayrinti": "AIFS'in literatürde belirtilen aşırı düzgünlük kusurunu test etmek için 12 UTC sıcaklıklarının günden güne farkları hesaplanır; standart sapma gözlem, AIFS ve IFS arasında karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "std_diff = df.groupby('lead_time')['t2m_diff_24h'].std() ile günden güne varyansı hesaplamak.",
+      "sade": "Yapay zekânın hava sıcaklığındaki ani sıçramaları törpüleyip aşırı pürüzsüz tahmin yapıp yapmadığını ölçeriz.",
+      "altAdimlar": [
+       "1. Her günün 12 UTC sıcaklığından bir önceki günün sıcaklığını çıkarın.",
+       "2. Bu fark serisinin standart sapmasını gözlem, IFS ve AIFS için hesaplayın.",
+       "3. AIFS standart sapmasının gözleme göre ne oranda daraldığını belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "plot_variance_spectrum(obs_diff, ifs_diff, aifs_diff, 'variability_loss.png') ile çizmek.",
+      "sade": "Tahmin vadesi uzadıkça yapay zekânın uç sıcaklıkları nasıl sildiğini görselleştiririz.",
+      "altAdimlar": [
+       "1. Gözlem ve iki modelin 24 saatlik değişim histogramlarını üst üste çizin.",
+       "2. 5. günde AIFS'in daralan çan eğrisini vurgulayın.",
+       "3. Literatürdeki aşırı düzgünlük bulgusunu İstanbul verisiyle doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Tahmin karnesini derleyip açık depoda paylaşmak",
+    "oz": "Karşılaştırmalı doğrulama paneli ve Jupyter analiz defteri sunmak.",
+    "ayrinti": "Elde edilen tüm metrikler otomatik bir Markdown tablosuna ve grafik paneline dönüştürülür. Kodlar GitHub üzerinde açık erişime açılarak aylık otomatik çalışacak şekilde yapılandırılır.",
+    "nasil": [
+     {
+      "teknik": "generate_report_table(metrics_df, output='istanbul_forecast_scorecard.md') ile tablo üretmek.",
+      "sade": "AIFS ve IFS modellerinin İstanbul karnesini herkesin inceleyebileceği özet tablo olarak hazırlarız.",
+      "altAdimlar": [
+       "1. LTFM ve LTFJ istasyonları için 1, 3 ve 5 günlük RMSE ve sapma tablosunu oluşturun.",
+       "2. En başarılı modeli her vade ve mevsim için işaretleyin.",
+       "3. Markdown formatında depoya kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     },
+     {
+      "teknik": "export_pipeline_repo('istanbul-aifs-ifs-karne', notebooks=['karne_analizi.ipynb']) ile depoya aktarmak.",
+      "sade": "Veri çekme, puanlama ve görselleştirme adımlarını içeren açık kaynaklı araştırma deposunu yayınlarız.",
+      "altAdimlar": [
+       "1. Analiz adımlarını Google Colab uyumlu Jupyter defterinde toplayın.",
+       "2. GitHub deposuna yükleyip README ve lisans dosyalarını ekleyin.",
+       "3. Yeni aylar eklendikçe çalışacak betiği yapılandırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için AIFS ve IFS 1, 3 ve 5 günlük tahmin karnesi, aşırı düzgünlük tespit analizi ve açık GitHub deposu.",
+  "senden": "Open-Meteo ve IEM API sorgularını hazırlamak, tahmin ve gözlem verilerini zaman serisinde eşleştirmek ve hata metriklerini hesaplamak.",
+  "bizden": "MTO 406 sayısal tahmin doğrulama ilkelerini uygulamak, aşırı düzgünlük etkisini ve fiziksel sınırları yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Havalimanı AIFS ve IFS tahminlerinin METAR gözlemiyle karşılaştırması",
+   "aciklama": "Tahmin vadesi ilerledikçe iki modelin sıcaklık seyrindeki sapma ve varyans daralması animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/istanbul-aifs-ifs-karne",
+   "aciklama": "AURA İstanbul AIFS ve IFS tahmin karnesi doğrulama tablosu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Mean_Absolute_Error.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Farklı tahmin ufuklarında model hatalarını gösteren ortalama mutlak hata grafiği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Ben Bouallègue vd. 2024 Veri Güdümlü Tahmin Değerlendirmesi",
+   "url": "https://doi.org/10.1175/BAMS-D-23-0162.1"
+  },
+  {
+   "ad": "Bauer vd. 2015 Sayısal Hava Tahmini Sessiz Devrimi",
+   "url": "https://doi.org/10.1038/nature14956"
+  },
+  {
+   "ad": "Lam vd. 2023 GraphCast Küresel Hava Tahmini",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO406-02.json",
+  "tarih": "2026-10-17 02:18",
+  "geminiSha1": "ba0297222d7e"
+ }
+}

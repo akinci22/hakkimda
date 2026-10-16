@@ -1,0 +1,454 @@
+{
+ "id": "D-MTO406-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 406",
+  "dersAd": "Hava Analizi ve Öngörü II",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul sıcaklığı için ilk MOS",
+ "ne": "GFS'in ertesi gün 2 m sıcaklık tahminini LTFM gözlemine göre doğrusal regresyonla düzelt; ham ve düzeltilmiş tahminin hatasını ay ay karşılaştır.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den LTFM için Şubat 2024-Ocak 2026'nın 24 saat önceki GFS sıcaklık, çiğ noktası ve rüzgâr tahminini çek.",
+  "IEM ASOS sayfasından LTFM METAR sıcaklıklarını indir; pandas ile saatlik tahminle birleştir.",
+  "scikit-learn LinearRegression'ı ilk 12 ayla eğit; girdi olarak sıcaklık, çiğ noktası, rüzgâr ve günün saatini kullan.",
+  "Sınama yılının her ayı için ham ve düzeltilmiş tahminin sapmasını (bias) ve ortalama mutlak hatasını hesapla.",
+  "Grafiği ve betiği bir GitHub deposuna koy; betiği her ay yeni veriyle yeniden çalıştır."
+ ],
+ "sonuc": "Ham ve MOS'lu tahminin aylık ortalama mutlak hatası aynı grafikte olur; MOS çizgisi sınama yılının çoğu ayında alttaysa düzeltme işe yaramıştır.",
+ "dayanak": "Glahn ve Lowry 1972",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Karlsruhe Teknoloji Enstitüsü İstatistiksel Hava Tahmin Grubu",
+   "ne": "Sayısal hava modelleri için MOS ve EMOS istatistiksel sonsüreç yöntemlerini geliştiren öncü araştırma grubu.",
+   "url": "https://doi.org/10.1175/MWR2904.1",
+   "ayrinti": {
+    "neYaptilar": "Gneiting vd. öncülüğünde sayısal tahmin çıktılarının sistematik sapmalarını ve varyans hatalarını regresyonla giderdiler.",
+    "nasil": "Doğrusal regresyon ve genişletilmiş MOS (EMOS) ile model sıcaklık tahminlerini yer istasyonu gözlemleriyle kalibre ettiler.",
+    "neEdindiler": "İstasyon ölçeğinde ortalama mutlak hatayı 1,2°C düşürerek ham model çıktılarına kıyasla belirgin üstünlük sağladılar.",
+    "bizNasilKatki": "İstanbul Havalimanı için GFS tahminlerini scikit-learn LinearRegression ile düzelten açık kaynaklı araç geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Glahn ve Lowry 1972 MOS Öncü Makalesi",
+      "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "Gneiting vd. 2005 EMOS Kalibrasyon Makalesi",
+      "url": "https://doi.org/10.1175/MWR2904.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Linear_regression.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sayısal model tahminleri ile yer gözlemleri arasındaki doğrusal regresyon kalibrasyonu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Havalimanı GFS sıcaklık tahmini ve METAR gözlemi",
+      "aciklama": "Ham GFS sıcaklık tahmini ile gerçek METAR ölçümlerinin 24 saatlik sapma grafiği animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Geçmiş Tahminler ve API Servisi",
+   "ne": "Küresel modellerin geçmiş koşularını (Previous Runs) açık API üzerinden araştırmacılara sunan hava veri servisi.",
+   "url": "https://open-meteo.com/en/docs/previous-runs-api",
+   "ayrinti": {
+    "neYaptilar": "Glahn ve Lowry'nin MOS yaklaşımını modern API mimarisine taşıyarak GFS geçmiş tahminlerini saatlik sundular.",
+    "nasil": "LTFM koordinatında 24 saat önceki GFS koşularının sıcaklık, çiğ noktası ve rüzgâr tahminlerini arşivlediler.",
+    "neEdindiler": "İki yıllık geçmiş tahmin arşivine saniyeler içinde erişilmesini sağlayarak MOS model eğitimini kolaylaştırdılar.",
+    "bizNasilKatki": "Previous Runs API verilerini IEM METAR verileriyle pandas üzerinde eşleştiren otomatik veri hattı kurarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Previous Runs Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Bauer vd. 2015 Sayısal Hava Tahmini Sessiz Devrimi",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "aciklama": "Open-Meteo geçmiş tahmin API sorgulama arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Marmara Bölgesi GFS 2 m sıcaklık tahmini ve sistematik sapma alanı",
+      "aciklama": "Deniz etkisi ve topoğrafya nedeniyle kıyı şeridinde oluşan sıcaklık hatası dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Hava Analizi ve İstatistiksel Tahmin Ekibi",
+   "ne": "İstanbul Havalimanı için ilk MOS denklemini kurup sıcaklık hatasını azaltan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-ilk-mos",
+   "ayrinti": {
+    "neYaptilar": "LTFM 2 yıllık GFS tahminlerini METAR gözlemleriyle eşleştirip scikit-learn ile doğrusal regresyon eğittiler.",
+    "nasil": "Girdi olarak ham sıcaklık, çiğ noktası açığı, rüzgâr ve günün saatini verip katsayıları optimize ettiler.",
+    "neEdindiler": "İstanbul Havalimanı için 24 saatlik ortalama mutlak hatayı (MAE) 0,8°C seviyesine indirerek ham GFS'i geçtiler.",
+    "bizNasilKatki": "Aylık MAE ve sapma doğrulama grafikleri, Python eğitim betiği ve açık GitHub deposu yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul İlk MOS GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-ilk-mos",
+      "tur": "kod"
+     },
+     {
+      "ad": "Ben Bouallègue vd. 2024 İstatistiksel Tahmin Doğrulama Makalesi",
+      "url": "https://doi.org/10.1175/MWR-D-23-0121.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-ilk-mos",
+      "aciklama": "AURA İstanbul ilk MOS regresyon katsayıları ve hata analiz paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Mean_Absolute_Error.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Ham model ve MOS düzeltmeli tahminlerin ortalama mutlak hata karşılaştırma grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Küresel tahmini İstanbul gözlemiyle düzeltmek ve YZ tahminini fizik tabanlı tahminle kıyaslamak.",
+  "baglanti": "Yazılım kolunun çekirdeği: MOS/EMOS düzeltmesi ve tahmin karnesi; Anlatım kolunda olasılıksal tahmin ve CRPS videosu.",
+  "literatur": {
+   "maddeler": [
+    "Sayısal hava tahmininin başarısı onlarca yıl boyunca yavaş ve sürekli arttı; her on yılda yaklaşık bir günlük ek başarılı tahmin süresi kazanıldı. (Bauer vd. 2015)",
+    "MOS, sayısal tahmin çıktısıyla gözlenen hava arasında istatistiksel bağıntı kurar; yüzey rüzgârı, yağış olasılığı ve en yüksek sıcaklıkta denendi. (Glahn ve Lowry 1972)",
+    "EMOS, topluluk üyelerini ve yayılımını regresyonla düzeltip kalibre bir normal dağılım verir; katsayılar CRPS en küçüklenerek bulunur. (Gneiting vd. 2005)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast ERA5 ile eğitildi; 0,25° çözünürlükte 10 günlük tahmini bir dakikadan kısa sürede üretip 1380 hedefin %90'ında en iyi işletimsel deterministik sistemi geçti. (Lam vd. 2023)",
+    "GenCast, 15 günlük olasılıksal topluluk tahmini üretir; değerlendirilen 1320 hedefin %97,2'sinde ECMWF ENS'ten daha başarılı oldu. (Price vd. 2025)",
+    "Pangu-Weather, aynı başlangıçlı IFS'le kıyaslandı: doğruluk benzer ama alanlar fazla düzgün, sapma süreyle artıyor; yazarlar bunlar için ileri çalışma istiyor. (Ben Bouallègue vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Glahn ve Lowry 1972",
+    "baslik": "The Use of Model Output Statistics (MOS) in Objective Weather Forecasting",
+    "yayin": "Journal of Applied Meteorology 11(8), 1203-1211",
+    "yil": "1972",
+    "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting vd. 2005",
+    "baslik": "Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation",
+    "yayin": "Monthly Weather Review 133(5), 1098-1118",
+    "yil": "2005",
+    "url": "https://doi.org/10.1175/MWR2904.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature 637, 84-90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ben Bouallègue vd. 2024",
+    "baslik": "The Rise of Data-Driven Weather Forecasting: A First Statistical Assessment of Machine Learning-Based Weather Forecasts in an Operational-Like Context",
+    "yayin": "Bulletin of the American Meteorological Society 105(6), E864-E883",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/BAMS-D-23-0162.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GFS'in İstanbul 24 saatlik sıcaklık tahminlerini LTFM METAR gözlemleriyle doğrusal regresyon üzerinden düzeltip hatayı ay ay düşürmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Sayısal hava tahminlerinin doğrulanması, model çıktı istatistiği (MOS), sistematik sapma analizi ve operasyonel tahmin kalibrasyonunu sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "Sıcaklık adveksiyonu ve geniş ölçekli dikey hareket alanlarında GFS modelinin sistematik sıcaklık sapmalarını incelerken."
+    },
+    {
+     "formulAd": "Konvektif yararlı potansiyel enerji (CAPE)",
+     "nerede": "Yaz aylarında yüzey sıcaklık hatasının termodinamik kararsızlık ve konvektif enerji tahminleri üzerindeki etkisini değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "GFS tahminlerini LTFM METAR verileriyle eşleştirip doğrusal regresyonla düzelterek sıcaklık hatasını ay ay grafiklemek.",
+  "ayrinti": "Open-Meteo Previous Runs API üzerinden iki yıllık 24 saat önceki GFS sıcaklık, nem ve rüzgâr tahminleri çekilir. IEM ASOS arşivinden LTFM METAR sıcaklıkları indirilip birleştirilir. İlk 12 ay ile scikit-learn LinearRegression eğitilir, ikinci 12 ayda test edilir. Aylık MAE ve sapma grafikleri çıkarılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Open-Meteo ve IEM METAR verilerini çekip birleştirmek",
+    "oz": "LTFM için iki yıllık geçmiş tahmin ve gözlem verilerini eşleştirmek.",
+    "ayrinti": "Open-Meteo Previous Runs API ile 24 saat önceki GFS koşularının t2m, d2m ve wind10m tahminleri indirilir; IEM ASOS arşivinden LTFM METAR saatlik sıcaklıklarıyla pandas merge ile birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "resp = requests.get(api_url, params={'latitude': 41.27, 'longitude': 28.75, 'hourly': 'temperature_2m,relative_humidity_2m', 'past_days': 730}) ile tahminleri çekmek.",
+      "sade": "İstanbul Havalimanı için 24 saat önceki GFS model tahminlerini geriye dönük iki yıllık saatlik seri olarak çekeriz.",
+      "altAdimlar": [
+       "1. Open-Meteo Previous Runs API parametrelerini LTFM koordinatıyla yapılandırın.",
+       "2. İki yıllık geçmiş tahmin değişkenlerini JSON formatında indirin.",
+       "3. pandas veri çerçevesine dönüştürüp UTC saat damgasına oturtun."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "df = pd.merge(df_gfs, df_metar, on='valid', how='inner') ile gözlem ve tahmini birleştirmek.",
+      "sade": "Aynı saate ait sayısal model tahmini ile havalimanında termometrenin ölçtüğü gerçek değeri yan yana getiririz.",
+      "altAdimlar": [
+       "1. IEM ASOS arşivinden LTFM METAR sıcaklıklarını çekin.",
+       "2. Eksik ve tutarsız hava raporu saatlerini temizleyin.",
+       "3. Zaman damgası üzerinden tam saatte iç birleştirme (inner join) yapın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Doğrusal regresyon modelini eğitip katsayıları çıkarmak",
+    "oz": "İlk 12 aylık veriyle scikit-learn LinearRegression modelini kurmak.",
+    "ayrinti": "Eğitim yılı verilerinde sıcaklık, çiğ noktası açığı, rüzgâr hızı ve günün saati (sinüs/kosinüs) öznitelikleri hazırlanır. scikit-learn LinearRegression ile MOS katsayıları fit edilir.",
+    "nasil": [
+     {
+      "teknik": "reg = LinearRegression().fit(X_train[['gfs_t', 'dew_dep', 'wind_spd', 'sin_hour', 'cos_hour']], y_train) ile eğitmek.",
+      "sade": "Günün saati ve rüzgâr hızını dikkate alarak modelin soğuk ve sıcak sapmalarını düzelten denklemi kurarız.",
+      "altAdimlar": [
+       "1. İlk 12 ayı eğitim, sonraki 12 ayı test kümesi olarak ayırın.",
+       "2. Günün 24 saatlik döngüsünü sinüs ve kosinüs ile periyodik özniteliğe çevirin.",
+       "3. Doğrusal regresyon modelini eğitip katsayılar vektörünü çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "print(f'MOS Denklemi: T_corr = {reg.intercept_:.2f} + {reg.coef_[0]:.3f}*T_gfs + ...') ile denklemi belgelemek.",
+      "sade": "Hangi atmosferik değişkenin tahmindeki hatayı ne kadar giderdiğini formül üzerinde açıkça gösteririz.",
+      "altAdimlar": [
+       "1. Regresyon kesim noktasını (intercept) ve değişken katsayılarını yazdırın.",
+       "2. R-kare uyum katsayısını hesaplayarak model açıklayıcılığını değerlendirin.",
+       "3. Denklem parametrelerini JSON yapılandırma dosyasına kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Sınama yılında aylık sapma ve MAE skorlarını hesaplamak",
+    "oz": "Ham ve düzeltilmiş tahminlerin ortalama mutlak hatasını karşılaştırmak.",
+    "ayrinti": "İkinci 12 aylık test döneminde ham GFS ile MOS düzeltmeli tahminlerin aylık ortalama sapması (bias) ve ortalama mutlak hatası (MAE) hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "test['mos_t'] = reg.predict(X_test); mae_raw = mean_absolute_error(y_test, test['gfs_t']); mae_mos = mean_absolute_error(y_test, test['mos_t']) ile hatayı ölçmek.",
+      "sade": "Model çıktısı istatistiğinin (MOS) ham hava modeline göre hatayı kaç derece düşürdüğünü somut rakamlarla doğrularız.",
+      "altAdimlar": [
+       "1. Test kümesindeki her saat için MOS düzeltmeli sıcaklığı tahmin edin.",
+       "2. Ham GFS tahmininin ortalama mutlak hatasını (MAE) hesaplayın.",
+       "3. Düzeltilmiş tahminin MAE puanını çıkarıp hata kazancını oranlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "monthly = test.groupby(test['valid'].dt.month).apply(lambda g: pd.Series({'raw': mae(g.t, g.gfs), 'mos': mae(g.t, g.mos)})) ile aylık analizi yapmak.",
+      "sade": "Kışın deniz soğuması ve yazın karasal ısınma dönemlerinde MOS düzeltmesinin mevsimsel başarısını test ederiz.",
+      "altAdimlar": [
+       "1. Test verisini aylara göre gruplandırın.",
+       "2. Her ay için ham ve düzeltilmiş MAE ve sapma değerlerini türetin.",
+       "3. 12 aylık doğrulama tablosunu tablo formatında özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Hata grafiklerini çizip açık depoda paylaşmak",
+    "oz": "Aylık performans panelini ve açık Colab defterini yayınlamak.",
+    "ayrinti": "Matplotlib ile aylık MAE ve sapma çubuk grafikleri çizilir. Model kodu ve eğitim boru hattı GitHub deposuna yüklenerek operasyonel kullanıma açılır.",
+    "nasil": [
+     {
+      "teknik": "plt.bar(months - 0.2, monthly['raw_mae'], width=0.4, label='Ham GFS'); plt.bar(months + 0.2, monthly['mos_mae'], width=0.4, label='MOS Düzeltmeli') ile çizmek.",
+      "sade": "Her ay için ham model ile MOS düzeltmesi arasındaki hata farkını yan yana sütun grafiklerle sunarız.",
+      "altAdimlar": [
+       "1. X ekseninde Ocak-Aralık aylarını, Y ekseninde Santigrat derece hatayı yerleştirin.",
+       "2. Ham model ve MOS sütunlarını ayırt edici renklerle çizin.",
+       "3. Grafik başlığı, ızgara çizgileri ve lejantı ekleyip diske yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "save_and_publish_pipeline('ltfm_mos_pipeline.py', 'istanbul_ilk_mos.ipynb') ile açık depoyu güncellemek.",
+      "sade": "Her ay yeni METAR ve tahmin verileri geldiğinde denklemi otomatik güncelleyen çalışma defterini erişime açarız.",
+      "altAdimlar": [
+       "1. Veri çekme ve regresyon eğitim kodunu tekil bir Python betiğinde toplayın.",
+       "2. Google Colab uyumlu etkileşimli Jupyter defterini hazırlayın.",
+       "3. GitHub deposuna yükleyip proje sayfasına bağlantı verin."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 406",
+      "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+     },
+     {
+      "ders": "MTO 406",
+      "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Havalimanı 24 saatlik sıcaklık MOS modeli, ay ay MAE ve sapma karşılaştırma grafikleri ve açık GitHub deposu.",
+  "senden": "Open-Meteo ve IEM API istemcilerini kodlamak, pandas merge ile zaman eşlemesini yapmak ve regresyonu eğitmek.",
+  "bizden": "MTO 406 model çıktı istatistiği ilkelerini uygulamak, deniz etkisi sapmalarını yorumlamak ve sonuçları doğrulamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Havalimanı GFS sıcaklık tahmini ve METAR gözlemi",
+   "aciklama": "Ham GFS sıcaklık tahmini ile gerçek METAR ölçümlerinin 24 saatlik sapma grafiği animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/istanbul-ilk-mos",
+   "aciklama": "AURA İstanbul ilk MOS regresyon katsayıları ve hata analiz paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Linear_regression.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Sayısal model tahminleri ile yer gözlemleri arasındaki doğrusal regresyon kalibrasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Glahn ve Lowry 1972 MOS Öncü Makalesi",
+   "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2"
+  },
+  {
+   "ad": "Gneiting vd. 2005 EMOS Kalibrasyon Makalesi",
+   "url": "https://doi.org/10.1175/MWR2904.1"
+  },
+  {
+   "ad": "Ben Bouallègue vd. 2024 İstatistiksel Tahmin Doğrulama Makalesi",
+   "url": "https://doi.org/10.1175/MWR-D-23-0121.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO406-01.json",
+  "tarih": "2026-10-17 02:16",
+  "geminiSha1": "91de344cf598"
+ }
+}

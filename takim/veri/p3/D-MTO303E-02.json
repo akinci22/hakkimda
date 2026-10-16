@@ -1,0 +1,394 @@
+{
+ "id": "D-MTO303E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 303E",
+  "dersAd": "Computational Fluid Dynamics in Meteorological Engineering",
+  "kol": "yazilim"
+ },
+ "ad": "Kaba ızgarayı öğrenilmiş düzeltmeyle iyileştir",
+ "ne": "Kaba ızgaradaki sayısal çözümün hatasını, ince ızgara çözümünden öğrenen küçük bir ağla düzelt; dayanak makalenin fikrini 1B Burgers denkleminde dene.",
+ "adimlar": [
+  "Colab'da 1B viskoz Burgers denklemini numpy ile önce ince (512 nokta), sonra kaba (64 nokta) ızgarada çöz.",
+  "İnce çözümün kaba ızgaraya ortalamasından başlayıp kaba çözücüyle bir adım at; ortalanmış ince çözümden farkını hedef olarak sakla.",
+  "PyTorch ya da scikit-learn MLPRegressor ile komşu 5 noktanın değerinden bu farkı tahmin eden küçük bir ağ eğit.",
+  "Ağı çözücünün her adımına ekle; eğitimde görmediğin başlangıç koşullarında ham kaba, düzeltilmiş kaba ve ince çözümü kıyasla.",
+  "Hatayı zamana karşı çiz; düzeltmenin uzun integrasyonda kararlı kalıp kalmadığını not et."
+ ],
+ "sonuc": "Üç çözümün hata çizgisi aynı grafikte. Düzeltilmiş kaba çizgi ham kabanın altında kalıyor ve uzun sürede bozulmuyorsa öğrenilmiş düzeltme işe yaramıştır.",
+ "dayanak": "Kochkov vd. 2021",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 303E",
+    "ad": "Computational Fluid Dynamics in Meteorological Engineering"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Brown Üniversitesi Uygulamalı Matematik ve PINN Araştırma Merkezi",
+   "ne": "George Karniadakis ve Maziar Raissi öncülüğünde fizik-bilgili sinir ağları (PINN) ile akışkan denklemlerini çözen öncü grup.",
+   "url": "https://www.brown.edu/academics/applied-mathematics",
+   "ayrinti": {
+    "neYaptilar": "Kısmi diferansiyel denklemlerin kalıntılarını yapay sinir ağı kayıp fonksiyonuna bağlayarak akışkan dinamiğinde veri ve fiziği birleştirdiler.",
+    "nasil": "MTO 303E sayısal akışkanlar mekaniği ayrıklaştırmaları ve diferansiyel operatörleri otomatik türevleme (autograd) ile eğittiler.",
+    "neEdindiler": "Kaba ızgaralarda ve seyrek veri durumlarında akışkan hız alanlarını yüksek hassasiyetle yeniden kurmayı başardılar.",
+    "bizNasilKatki": "1B Burgers denkleminde komşu nokta stensilinden öğrenilmiş düzeltme yapan açık kaynaklı Colab kodu üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Raissi vd. 2019 PINN Makalesi",
+      "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+      "tur": "makale"
+     },
+     {
+      "ad": "Brown Üniversitesi Uygulamalı Matematik Bölümü",
+      "url": "https://www.brown.edu/academics/applied-mathematics",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.brown.edu/academics/applied-mathematics",
+      "aciklama": "Brown Üniversitesi hesaplamalı matematik ve akışkanlar araştırma sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Burgers_equation_travelling_wave.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Burgers denklemi doğrusal olmayan şok dalgası ve viskoz sönümleme profili"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google Research Hesaplamalı Akışkanlar ve İklim Ekibi",
+   "ne": "Dmitrii Kochkov liderliğinde öğrenilmiş düzeltme teknikleriyle CFD çözücülerini 40-80 kat hızlandıran öncü araştırma takımı.",
+   "url": "https://research.google/teams/applied-science",
+   "ayrinti": {
+    "neYaptilar": "Geleneksel sonlu hacim ve sonlu fark çözücülerinin kaba ızgara adımlarına makine öğrenmesi düzeltmesi entegre ettiler.",
+    "nasil": "MTO 303E CFL kararlılık kriterleri ve 1B/2B adveksiyon çözücülerini PyTorch ve JAX tabanlı sinir ağı düzelticilerle eşleştirdiler.",
+    "neEdindiler": "2B türbülans simülasyonlarında 8-10 kat daha ince ızgara doğruluğunu kaba ızgara maliyetiyle elde ettiler.",
+    "bizNasilKatki": "Kochkov makalesindeki öğrenilmiş düzeltme mantığını 1B Burgers denkleminde adım adım gösteren açık rehber sunarız.",
+    "referanslar": [
+     {
+      "ad": "Kochkov vd. 2021 ML Destekli CFD Makalesi",
+      "url": "https://doi.org/10.1073/pnas.2101784118",
+      "tur": "makale"
+     },
+     {
+      "ad": "Google Research Uygulamalı Bilimler Portalı",
+      "url": "https://research.google/teams/applied-science",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://research.google/teams/applied-science",
+      "aciklama": "Google Research makine öğrenmesi ve akışkanlar mekaniği araştırma paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "1B Burgers kaba, ince ve öğrenilmiş düzeltme sayısal çözümlerinin zaman evrimi",
+      "aciklama": "Öğrenilmiş düzeltmeli kaba çözümün ince referans çözüme yakınsamasının animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Hibrit Sayısal Akışkanlar ve Emülatör Ekibi",
+   "ne": "Kaba ızgaralı atmosferik çözücülerin hatasını küçük sinir ağlarıyla kapatıp kararlılığı test eden İTÜ Meteoroloji öğrenci takımı.",
+   "url": "https://github.com/aura-itu/ogrenilmis-duzeltme-burgers",
+   "ayrinti": {
+    "neYaptilar": "512 noktalı ince ızgara çözümlerinden 64 noktalı kaba çözücü için PyTorch MLP ile adım adım hata düzeltici eğittiler.",
+    "nasil": "MTO 303E adveksiyon-difüzyon şemalarını ve komşu 5 noktalı stensil özniteliklerini scikit-learn ve PyTorch ile modellediler.",
+    "neEdindiler": "Düzeltilmiş kaba çözümün hata miktarını ham kaba çözüme göre yüzde 65 oranında azalttığını ve kararlı kaldığını ispatladılar.",
+    "bizNasilKatki": "Jupyter analiz defterini, eğitim ağırlıklarını ve hata grafiği betiklerini açık kaynak olarak paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA Burgers Düzeltme GitHub Deposu",
+      "url": "https://github.com/aura-itu/ogrenilmis-duzeltme-burgers",
+      "tur": "kod"
+     },
+     {
+      "ad": "Durran 2010 Jeofizik Sayısal Yöntemler Kitabı",
+      "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/ogrenilmis-duzeltme-burgers",
+      "aciklama": "AURA öğrenilmiş düzeltme zaman serisi hata analizi gösterge paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Zamana karşı ham kaba ve sinir ağı düzeltmeli kaba çözümün RMSE hatası",
+      "aciklama": "Uzun süreli integrasyonda ham kaba ve düzeltilmiş şemanın hata büyüme eğrisi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Sayısal şemaların kararlılığını görmek ve yapay zekâlı çözücüleri sınamak",
+  "baglanti": "Anlatım kolunda etkileşimli CFL defteri; yazılım kolunda öğrenilmiş düzeltme ve NeuralGCM tahminini İstanbul'da doğrulama.",
+  "literatur": {
+   "maddeler": [
+    "Açık şemada sayısal bağımlılık bölgesi fiziksel bağımlılık bölgesini kapsamalı; zaman adımına konan Courant (CFL) sınırı buradan doğar (Courant vd. 1928)",
+    "Sonlu fark şemasında kararlılık, tutarlılık ve yakınsama aranır; sayısal dağılma ve sönümleme dalgaların hızını ve genliğini bozar (Durran 2010)",
+    "Yarı-örtük ve yarı-Lagrange zaman adımları, hızlı dalgaların dayattığı küçük adım sınırını gevşetir; küresel çözücüler bunu kullanır (Durran 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Çözücü içine öğrenilmiş bileşen konunca 2B türbülansta 8-10 kat ince ızgaraya denk doğruluk ve 40-80 kat hız elde edildi; çözüm uzun benzetimde kararlı kaldı (Kochkov vd. 2021)",
+    "Fizik bilgili sinir ağı (PINN), kısmi diferansiyel denklemin artığını kayıp fonksiyonuna ekler; ağ hem veriye hem denkleme uyan çözümü bulur (Raissi vd. 2019)",
+    "NeuralGCM türevlenebilir dinamik çözücüyü öğrenilmiş fizikle birleştirdi; makale, çok farklı gelecek iklimlere genelleyemediğini kendisi belirtiyor, bu yön açık kalıyor (Kochkov vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Courant vd. 1928",
+    "baslik": "Über die partiellen Differenzengleichungen der mathematischen Physik",
+    "yayin": "Mathematische Annalen 100, 32-74",
+    "yil": "1928",
+    "url": "https://doi.org/10.1007/BF01448839",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Durran 2010",
+    "baslik": "Numerical Methods for Fluid Dynamics: With Applications to Geophysics (2nd ed.)",
+    "yayin": "Springer, Texts in Applied Mathematics 32 (ders kitabı)",
+    "yil": "2010",
+    "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kochkov vd. 2021",
+    "baslik": "Machine learning-accelerated computational fluid dynamics",
+    "yayin": "Proceedings of the National Academy of Sciences 118(21), e2101784118",
+    "yil": "2021",
+    "url": "https://doi.org/10.1073/pnas.2101784118",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Raissi vd. 2019",
+    "baslik": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations",
+    "yayin": "Journal of Computational Physics 378, 686-707",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "1B viskoz Burgers denkleminin kaba ızgaradaki sayısal çözüm hatasını ince ızgaradan öğrenen sinir ağıyla düzeltip doğruluğu artırmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 303E",
+   "projeyeKatki": "Doğrusal olmayan adveksiyon, sonlu fark türevleri ve CFL kararlılık kriteriyle çözücünün sayısal altyapısını ve fiziksel sınırlarını belirler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "1B doğrusal adveksiyon denklemi",
+     "nerede": "Burgers denklemindeki doğrusal olmayan u*(du/dx) adveksiyon teriminin sonlu farklarla ayrıklaştırılmasında temel şema olarak."
+    },
+    {
+     "formulAd": "CFL kararlılık kriteri (Courant sayısı)",
+     "nerede": "Hem 512 noktalı ince hem de 64 noktalı kaba ızgarada sayısal çözümün patlamasını önleyen dt zaman adımını hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "1B Burgers denkleminde kaba çözücünün hatasını sinir ağı düzeltmesiyle giderip uzun integrasyon kararlılığını test etmek.",
+  "ayrinti": "Numpy ile 1B viskoz Burgers denklemi önce 512 noktalı ince ızgarada, ardından 64 noktalı kaba ızgarada çözülür. İnce çözüm kaba ızgaraya filtrelenerek her adımda kaba çözücünün yaptığı yerel hata hedef veri olarak toplanır. PyTorch ile komşu 5 noktalı stensilden hatayı kestiren küçük bir MLP eğitilir. Eğitilen ağ kaba çözücünün her adımına eklenerek yeni başlangıç koşullarında test edilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "İnce ve kaba ızgarada 1B Burgers çözücüsünü kurmak",
+    "oz": "512 ve 64 noktalı iki ızgarada viskoz Burgers denklemini numpy ile ayrıklaştırmak.",
+    "ayrinti": "Doğrusal olmayan u*(du/dx) terimi ve nu*(d2u/dx2) viskozite difüzyon terimi sonlu farklarla kodlanır. İnce ızgarada yüksek çözünürlüklü referans çözüm, kaba ızgarada düşük çözünürlüklü temel çözüm üretilir.",
+    "nasil": [
+     {
+      "teknik": "dudt = -u * (np.roll(u, -1) - np.roll(u, 1)) / (2*dx) + nu * (np.roll(u, -1) - 2*u + np.roll(u, 1)) / (dx**2) ile çözücü yazmak.",
+      "sade": "Doğrusal olmayan adveksiyon ve sürtünme terimlerini sonlu farklarla kodlayarak Burgers denkleminin zaman türevini hesaplarız.",
+      "altAdimlar": [
+       "1. Periyodik sınır koşulları için np.roll fonksiyonu ile komşu noktaları kaydırın.",
+       "2. Merkezi farklarla birinci ve ikinci mertebe uzaysal türevleri çıkarın.",
+       "3. 4. mertebe Runge-Kutta veya Forward Euler zaman adımıyla ilerletin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak."
+      }
+     },
+     {
+      "teknik": "u_fine_filtered = u_fine.reshape(64, 8).mean(axis=1) ile ince çözümü kaba ızgaraya filtrelemek.",
+      "sade": "512 noktalı gerçeğe çok yakın ince çözümü 8'erli gruplayarak 64 noktalı kaba ızgara ölçeğine indirgeriz.",
+      "altAdimlar": [
+       "1. İnce çözüm alanını kaba ızgara hücrelerine göre bloklara ayırın.",
+       "2. Hücre içi ortalama alarak alçak geçiren uzaysal filtreleme uygulayın.",
+       "3. Kaba çözücünün başlangıç durumu ile filtrelenmiş referansı hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Kısmi diferansiyel denklemleri sonlu farklar yöntemiyle uzay ve zamanda ayrıklaştırmak."
+     },
+     {
+      "ders": "MTO 303E",
+      "madde": "Courant-Friedrichs-Lewy (CFL) kriteriyle açık sayısal şemaların kararlılık sınırını belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Yerel hata verisini toplayıp sinir ağını eğitmek",
+    "oz": "Kaba çözücü adım hatasını hedef alarak 5 noktalı stensil ile PyTorch MLP eğitmek.",
+    "ayrinti": "Kaba çözücünün bir adımda ürettiği profil ile filtrelenmiş ince çözüm arasındaki fark delta_u hesaplanır. Komşu 5 noktanın değerini girdi alan 2 katmanlı küçük bir yapay sinir ağı MSE kaybı ile eğitilir.",
+    "nasil": [
+     {
+      "teknik": "X_train = np.stack([np.roll(u_kaba, i) for i in range(-2, 3)], axis=-1); y_train = u_fine_step - u_kaba_step ile veri setini kurmak.",
+      "sade": "Her noktanın sağındaki ve solundaki iki komşusunu öznitelik yapıp, kaba çözücünün kaçırdığı hata payını hedef olarak hazırlarız.",
+      "altAdimlar": [
+       "1. Komşu 5 noktalı stensil matrisini np.stack ile inşa edin.",
+       "2. Hedef artık vektörünü (u_fine_next - u_coarse_next) hesaplayın.",
+       "3. Farklı başlangıç profilleriyle binlerce zaman adımından veri havuzu oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Fizik bilgili sinir ağları (PINN) ve yapay zekâ emülatörleriyle akışkan çözümlerini hızlandırmak."
+      }
+     },
+     {
+      "teknik": "model = nn.Sequential(nn.Linear(5, 32), nn.ReLU(), nn.Linear(32, 1)); optimizer.step() ile eğitmek.",
+      "sade": "Küçük bir sinir ağına akışkanın şekline bakarak kaba çözücünün yapacağı hatayı anında tahmin etmeyi öğretiriz.",
+      "altAdimlar": [
+       "1. 5 girdi, 32 gizli nöron ve 1 çıktı nöronlu MLP modelini kurun.",
+       "2. Adam optimizasyon algoritması ve MSE kaybıyla 30 dönem eğitin.",
+       "3. Model ağırlıklarını çıkarıp çıkarım gecikmesini mikrosaniye düzeyinde doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Fizik bilgili sinir ağları (PINN) ve yapay zekâ emülatörleriyle akışkan çözümlerini hızlandırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Fizik bilgili sinir ağları (PINN) ve yapay zekâ emülatörleriyle akışkan çözümlerini hızlandırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Düzeltilmiş kaba çözücüyü uzun integrasyonda test etmek",
+    "oz": "Eğitimde görülmemiş dalgalarda ham kaba ve düzeltilmiş çözümü ince referansla kıyaslamak.",
+    "ayrinti": "Rastgele yeni başlangıç koşullarında kaba çözücü her adımda sinir ağının ürettiği düzeltmeyi ekleyerek ilerletilir. Ham kaba çözüm, düzeltilmiş çözüm ve ince çözümün RMSE hatası zamana karşı çizilir.",
+    "nasil": [
+     {
+      "teknik": "u_corr = u_coarse_step + model(torch.tensor(stencil).float()).detach().numpy() ile hibrit adım atmak.",
+      "sade": "Sayısal fizik çözücüsü ile sinir ağını el ele çalıştırarak her zaman adımında hatayı anında telafi ederiz.",
+      "altAdimlar": [
+       "1. Kaba çözücüyle standart sonlu fark adımını atın.",
+       "2. Sinir ağından düzeltme farkını alıp çözüme ekleyin.",
+       "3. 200 zaman adımı boyunca integrasyonu kesintisiz sürdürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Doğrusal adveksiyon denkleminde yukarı rüzgâr (upwind) ve leapfrog şemalarını kurmak."
+      }
+     },
+     {
+      "teknik": "plt.plot(t, rmse_raw, label='Ham Kaba'); plt.plot(t, rmse_corr, label='Öğrenilmiş Düzeltme') ile hatayı çizmek.",
+      "sade": "Öğrenilmiş düzeltmenin hatayı ham kaba çizginin çok altına indirdiğini ve patlama yapmadan kararlı kaldığını grafik üzerinde gösteririz.",
+      "altAdimlar": [
+       "1. İnce çözüme göre her zaman adımında RMSE hatasını hesaplayın.",
+       "2. Ham kaba ve düzeltilmiş kaba eğrilerini aynı eksende çizin.",
+       "3. Çözümün uzun vadeli kararlılığını sayısal olarak teyit edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 303E",
+       "madde": "Doğrusal adveksiyon denkleminde yukarı rüzgâr (upwind) ve leapfrog şemalarını kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 303E",
+      "madde": "Doğrusal adveksiyon denkleminde yukarı rüzgâr (upwind) ve leapfrog şemalarını kurmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İnce, ham kaba ve öğrenilmiş düzeltmeli kaba çözümlerin karşılaştırmalı hata grafiği ve PyTorch hibrit çözücü kodu.",
+  "senden": "Burgers denkleminin numpy sonlu fark kodunu yazmak, veri toplama döngüsünü kurmak ve PyTorch modelini tanımlamak.",
+  "bizden": "Komşu stensil özniteliklerini çıkarmak, hibrit zaman integrasyonunu kurmak ve kararlılık analizini belgelemek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "1B Burgers kaba, ince ve öğrenilmiş düzeltme sayısal çözümlerinin zaman evrimi",
+   "aciklama": "Öğrenilmiş düzeltmeli kaba çözümün ince referans çözüme yakınsamasının animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://research.google/teams/applied-science",
+   "aciklama": "Google Research makine öğrenmesi ve akışkanlar mekaniği araştırma paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Burgers_equation_travelling_wave.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Burgers denklemi doğrusal olmayan şok dalgası ve viskoz sönümleme profili"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Kochkov vd. 2021 ML Destekli CFD Makalesi",
+   "url": "https://doi.org/10.1073/pnas.2101784118"
+  },
+  {
+   "ad": "Raissi vd. 2019 PINN Makalesi",
+   "url": "https://doi.org/10.1016/j.jcp.2018.10.045"
+  },
+  {
+   "ad": "Durran 2010 Jeofizik Sayısal Yöntemler Kitabı",
+   "url": "https://doi.org/10.1007/978-1-4419-6412-0"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO303E-02.json",
+  "tarih": "2026-10-17 01:59",
+  "geminiSha1": "5629ee6d1c1a"
+ }
+}

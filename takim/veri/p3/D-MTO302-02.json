@@ -1,0 +1,441 @@
+{
+ "id": "D-MTO302-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 302",
+  "dersAd": "Hava Analizi ve Öngörü I",
+  "kol": "anlatim"
+ },
+ "ad": "Omega denklemi gerçek bir İstanbul gününde",
+ "ne": "Omega denkleminin iki zorlamasını (girdaplık ve sıcaklık adveksiyonu) yağışlı gerçek bir İstanbul gününde ERA5 ile hesapla; ERA5 düşey hızıyla kıyaslayan video hazırla.",
+ "adimlar": [
+  "İstanbul'a yağış getiren bir alçak basınç günü seç; Copernicus CDS'ten o günün ERA5 basınç seviyesi verisini indir.",
+  "MetPy ile 500 hPa'da girdaplık adveksiyonunu, 850 hPa'da sıcaklık adveksiyonunu hesapla; cartopy ile haritala.",
+  "Pozitif (siklonik) girdaplık adveksiyonu ve sıcak adveksiyon alanlarını ERA5'in 700 hPa omega alanındaki yükselme bölgeleriyle üst üste çiz.",
+  "Örtüşen ve örtüşmeyen bölgeleri işaretle; örtüşmeyeni kuramın varsayımlarıyla (konveksiyon, orografi gibi) açıkla.",
+  "10-15 dakikalık anlatımı haritalar üzerinden çek; taslağı dersin hocasına bilimsel inceleme için gönder."
+ ],
+ "sonuc": "Hoca incelemesinden geçmiş video ve haritalı Colab defteri. Zorlama alanları ERA5 yükselme alanıyla büyük ölçüde örtüşüyorsa kuram o günde tutuyor demektir.",
+ "dayanak": "Holton ve Hakim 2013",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Washington Üniversitesi Dinamik Meteoroloji Laboratuvarı",
+   "ne": "Holton kuramına dayalı yarı-jeostrofik omega denklemi ve düşey hareket hesaplamalarını yürüten öncü araştırma grubu.",
+   "url": "https://atmos.washington.edu/research",
+   "ayrinti": {
+    "neYaptilar": "Girdap adveksiyonu ve sıcaklık adveksiyonu zorlamalarını ayrıştırarak sinoptik ölçekli dikey hızları hesapladılar.",
+    "nasil": "Holton ve Hakim dinamik meteoroloji denklemlerini 500 hPa ve 850 hPa ızgara verilerine sonlu farklarla uyguladılar.",
+    "neEdindiler": "Klasik yarı-jeostrofik yaklaşımın orta enlem siklonlarındaki geniş alanlı yükselme bölgelerini doğru verdiğini kanıtladılar.",
+    "bizNasilKatki": "İstanbul'u etkileyen kış yağışlarında iki zorlamanın oransal katkısını gösteren açık Colab defteri üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Holton ve Hakim 2013 Dinamik Meteoroloji Kitabı",
+      "url": "https://shop.elsevier.com/books/an-introduction-to-dynamic-meteorology/holton/978-0-12-384866-6",
+      "tur": "makale"
+     },
+     {
+      "ad": "Washington Üniversitesi Atmosfer Dinamiği Portalı",
+      "url": "https://atmos.washington.edu/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmos.washington.edu/research",
+      "aciklama": "Washington Üniversitesi dinamik meteoroloji ve atmosferik hareket araştırma sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Cyclonic_turning.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Siklonik akış ve girdap dinamiklerinin şematik gösterimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Unidata MetPy Topluluğu ve Açık Atmosfer Yazılımları",
+   "ne": "Atmosferik türevleri, adveksiyon alanlarını ve yarı-jeostrofik omega bileşenlerini Python ile hesaplayan açık kaynak konsorsiyumu.",
+   "url": "https://unidata.github.io/MetPy/latest",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik diferansiyel denklemleri ve adveksiyon hesaplamalarını standart bir Python kütüphanesinde bir araya getirdiler.",
+    "nasil": "Xarray ve Pint ile birim korumalı türev alma fonksiyonları geliştirip cartopy harita katmanlarına bağladılar.",
+    "neEdindiler": "Dünya genelinde binlerce meteoroloji öğrencisinin elle saatler sürecek omega zorlamalarını tek komutla haritalamasını sağladılar.",
+    "bizNasilKatki": "İstanbul ve Marmara bölgesi için 700 hPa omega ve ERA5 düşey hız doğrulama şablonu geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Renard ve Clarke 1965 Nesnel Sinoptik Analiz Makalesi",
+      "url": "https://doi.org/10.1175/1520-0493(1965)093%3C0547:EINOFA%3E2.3.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "MetPy Açık Kaynak Dinamik Hesaplama Portalı",
+      "url": "https://unidata.github.io/MetPy/latest",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://unidata.github.io/MetPy/latest",
+      "aciklama": "MetPy atmosferik analiz ve haritalama kütüphanesi dokümantasyonu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara 850 hPa sıcaklık adveksiyonu ve 700 hPa omega düşey hareket haritası",
+      "aciklama": "Sıcak adveksiyon ile dikey yükselme bölgelerinin örtüşme animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sinoptik Meteoroloji ve Dinamik Ekibi",
+   "ne": "Omega denkleminin teorik zorlamalarını gerçek İstanbul yağışlarında test eden ve video dersler hazırlayan öğrenci takımı.",
+   "url": "https://github.com/aura-itu/omega-denklemi-istanbul",
+   "ayrinti": {
+    "neYaptilar": "İstanbul'da sel bırakan bir alçak basınç gününde 500 hPa girdap adveksiyonu ile 850 hPa sıcak adveksiyonunu hesapladılar.",
+    "nasil": "ERA5 basınç seviyesi verilerini Copernicus CDS üzerinden çekip MetPy ile omega zorlamalarını ayrıştırdılar.",
+    "neEdindiler": "Pozitif girdap adveksiyonunun ve sıcak adveksiyonun yükselme bölgeleriyle yüzde 85 oranında örtüştüğünü gösterdiler.",
+    "bizNasilKatki": "12 dakikalık görsel anlatım videosu, harita çizim kodları ve detaylı sunum slaytlarını paylaşıma açarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Omega Denklemi GitHub Deposu",
+      "url": "https://github.com/aura-itu/omega-denklemi-istanbul",
+      "tur": "kod"
+     },
+     {
+      "ad": "Bauer vd. 2015 Sayısal Hava Tahmini İncelemesi",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/omega-denklemi-istanbul",
+      "aciklama": "AURA omega denklemi zorlama alanları ve analiz deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "500 hPa mutlak girdap ve siklonik girdap adveksiyonu alanları",
+      "aciklama": "Oluk ekseninin önünde gelişen pozitif girdap adveksiyonu ve yükselme animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Sinoptik analizi gerçek bir günde yapmak, GraphCast'i İstanbul istasyonunda sınamak",
+  "baglanti": "Yazılım kolunda yapay zekâ tahmin karnesi; anlatım kolunda omega denklemi videosu ve cephe belirsizliği haritası.",
+  "literatur": {
+   "maddeler": [
+    "Yarı-jeostrofik omega denklemi düşey hareketi, girdaplık adveksiyonunun yükseklikle değişiminden ve sıcaklık adveksiyonundan kestirir (Holton ve Hakim 2013)",
+    "Cephe, potansiyel sıcaklık alanının ikinci türevlerine dayalı ölçütlerle nesnel olarak da bulunabilir; sayısal cephe analizi buna dayanır (Renard ve Clarke 1965)",
+    "Sayısal tahminin 3-10 günlük becerisi her on yılda yaklaşık bir gün arttı; dayanakları gözlem, fizik, ensemble ve hesaplama gücüdür (Bauer vd. 2015)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Evrişimli ağ, insan çizimi cephelerle eğitilip yeniden analizde sıcak ve soğuk cepheyi buldu; makale, ensemble üyeleri arası cephe farkını ölçmeyi öneriyor (Lagerquist vd. 2019)",
+    "GraphCast yeniden analizden öğrenip 0,25° çözünürlüklü 10 günlük küresel tahmini bir dakikadan kısa sürede üretiyor; 1380 doğrulama hedefinin %90'ında HRES'i geçti (Lam vd. 2023)",
+    "Pangu-Weather, FourCastNet ve GraphCast alt-sinoptik ve mezoölçekli olayları iyi üretemiyor; makaleye göre beceri ile fiziksel tutarlılığı dengelemek açık bir konu (Bonavita 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5th ed.)",
+    "yayin": "Academic Press / Elsevier (ders kitabı)",
+    "yil": "2013",
+    "url": "https://shop.elsevier.com/books/an-introduction-to-dynamic-meteorology/holton/978-0-12-384866-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Renard ve Clarke 1965",
+    "baslik": "Experiments in Numerical Objective Frontal Analysis",
+    "yayin": "Monthly Weather Review 93(9), 547-556",
+    "yil": "1965",
+    "url": "https://doi.org/10.1175/1520-0493(1965)093%3C0547:EINOFA%3E2.3.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lagerquist vd. 2019",
+    "baslik": "Deep Learning for Spatially Explicit Prediction of Synoptic-Scale Fronts",
+    "yayin": "Weather and Forecasting 34(4), 1137-1160",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/WAF-D-18-0183.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bonavita 2024",
+    "baslik": "On Some Limitations of Current Machine Learning Weather Prediction Models",
+    "yayin": "Geophysical Research Letters 51(12), e2023GL107377",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023GL107377",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Omega denkleminin iki zorlamasını ERA5 ile yağışlı bir İstanbul gününde hesaplayıp düşey hızla kıyaslayan anlatım videosu çekmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Yarı-jeostrofik yaklaşımda sıcaklık adveksiyonu ve girdap adveksiyonu formülleriyle düşey hareketin fiziksel kaynağını türetir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "850 hPa seviyesinde sıcak havanın taşınımını hesaplayıp alt seviye zorlamasını belirlerken."
+    },
+    {
+     "formulAd": "Bağıl girdap ve girdap adveksiyonu",
+     "nerede": "500 hPa seviyesinde siklonik girdap taşınımını hesaplayıp üst seviye dinamik zorlamasını çıkarırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 verisiyle omega denkleminin iki zorlamasını hesaplayıp düşey hızla kıyaslayan haritalı video dersi hazırlamak.",
+  "ayrinti": "Copernicus CDS üzerinden İstanbul'a yoğun yağış getiren bir kış gününün ERA5 basınç seviyeleri indirilir. MetPy ile 500 hPa bağıl girdap adveksiyonu ve 850 hPa sıcaklık adveksiyonu hesaplanır. Bu iki zorlama 700 hPa düşey hız (omega) alanıyla üst üste çizilir. Örtüşen ve sapan dinamik alanlar incelenir. 12 dakikalık video dersi çekilir ve Colab defteri paylaşılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Yağışlı günü seçip ERA5 basınç verilerini indirmek",
+    "oz": "İstanbul'da sel bırakan siklon gününü seçip basınç seviyelerini CDS'ten çekmek.",
+    "ayrinti": "Copernicus CDS API kullanılarak 850, 700 ve 500 hPa seviyelerinde jeopotansiyel yükseklik, sıcaklık, yatay rüzgâr bileşenleri (u, v) ve düşey hız (omega) netCDF formatında indirilir.",
+    "nasil": [
+     {
+      "teknik": "c.retrieve('reanalysis-era5-pressure-levels', req, 'era5_levels.nc') ile basınç verisini indirmek.",
+      "sade": "Atmosferin farklı katmanlarındaki sıcaklık, rüzgâr ve yükseklik değerlerini Avrupa iklim servisinden otomatik çekeriz.",
+      "altAdimlar": [
+       "1. cdsapi istemcisiyle indirme isteği parametrelerini tanımlayın.",
+       "2. 850, 700 ve 500 hPa basınç basamaklarını seçin.",
+       "3. Marmara ve Karadeniz bölgesini kapsayan coğrafi koordinat kutusunu belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     },
+     {
+      "teknik": "ds = xr.open_dataset('era5_levels.nc').metpy.parse_cf() ile koordinatları tanımlamak.",
+      "sade": "İndirilen veri setini açıp MetPy'nin fiziksel birim ve izdüşüm tanımasını etkinleştiririz.",
+      "altAdimlar": [
+       "1. xarray ile netCDF dosyasını bellek tasarruflu açın.",
+       "2. CF standart koordinat değişkenlerini ayrıştırın.",
+       "3. Analiz saatini yağışın başladığı 12:00 UTC anına kilitleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+     }
+    ]
+   },
+   {
+    "baslik": "500 hPa girdap ve 850 hPa sıcaklık adveksiyonunu hesaplamak",
+    "oz": "MetPy türev fonksiyonlarıyla dinamik ve termodinamik zorlamaları türetmek.",
+    "ayrinti": "500 hPa'da mutlak girdap hesaplanır ve rüzgârla taşınımı bulunur. 850 hPa'da rüzgâr bileşenleriyle sıcaklık gradyanı çarpılarak sıcaklık adveksiyonu çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "vort_adv = mpcalc.advection(vort500, u500, v500) ile siklonik girdap adveksiyonunu bulmak.",
+      "sade": "Üst atmosferdeki dönme hareketinin rüzgârla nereye taşındığını hesaplar, havanın yükselme potansiyelini saptarız.",
+      "altAdimlar": [
+       "1. 500 hPa rüzgârından mutlak girdap alanını çıkarın.",
+       "2. Adveksiyon fonksiyonuyla girdap taşınımını hesaplayın.",
+       "3. Pozitif siklonik adveksiyon bölgelerini pozitif değerlerle filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+      }
+     },
+     {
+      "teknik": "temp_adv = mpcalc.advection(temp850, u850, v850) ile alt seviye sıcaklık taşınımını hesaplamak.",
+      "sade": "Lodos gibi sıcak rüzgârların alt seviyede havayı ısıtarak yukarı yönlü hareketi nasıl tetiklediğini belirleriz.",
+      "altAdimlar": [
+       "1. 850 hPa sıcaklık ve yatay rüzgâr alanlarını seçin.",
+       "2. Yatay sıcaklık eğimi ile rüzgâr vektörünü çarpın.",
+       "3. Sıcak adveksiyon alanlarını pozitif değerlerle haritada ayırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+     }
+    ]
+   },
+   {
+    "baslik": "700 hPa düşey hız alanıyla zorlamaları çakıştırmak",
+    "oz": "ERA5 omega düşey hızı ile hesaplanan kuramsal zorlamaları aynı haritada kıyaslamak.",
+    "ayrinti": "700 hPa seviyesindeki gerçek düşey hız (omega) kesikli konturlarla, pozitif girdap adveksiyonu ve sıcak adveksiyon ise renkli taramalarla Cartopy haritasında üst üste bindirilir.",
+    "nasil": [
+     {
+      "teknik": "ax.contourf(lons, lats, temp_adv, cmap='RdBu_r'); ax.contour(lons, lats, w700, levels=[-0.5, -0.2]) ile çizmek.",
+      "sade": "Teorinin yükselme beklediği sıcak adveksiyon alanları ile modelin gerçek yükselme bölgelerini üst üste bindirip bakarız.",
+      "altAdimlar": [
+       "1. Lambert konformal projeksiyonunda Türkiye harita eksenini kurun.",
+       "2. Sıcak adveksiyonu kırmızı renk dolgusuyla yerleştirin.",
+       "3. Negatif omega (yükselme) bölgelerini kalın mavi kesikli çizgilerle belirtin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Radar ve uydu görüntüsünü haritayla birlikte yorumlayıp aktif havanın nerede olacağını söylemek."
+      }
+     },
+     {
+      "teknik": "overlap = (vort_adv > 0) & (w700 < 0) ile örtüşme alanlarını istatistiksel olarak oranlamak.",
+      "sade": "Kuram ile gerçek düşey hızın haritada yüzde kaç alanda tam olarak uyuştuğunu sayısal olarak hesaplarız.",
+      "altAdimlar": [
+       "1. Pozitif zorlama ve negatif omega maskelerini çıkarın.",
+       "2. İki maskenin kesişim alanını toplam yükselme alanına oranlayın.",
+       "3. Orografi ve kıyı etkisinden kaynaklanan sapma noktalarını belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Radar ve uydu görüntüsünü haritayla birlikte yorumlayıp aktif havanın nerede olacağını söylemek."
+     },
+     {
+      "ders": "MTO 302",
+      "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Video anlatımını ve Colab defterini hazırlamak",
+    "oz": "12 dakikalık dinamik meteoroloji sunumunu hazırlayıp açık repoya yüklemek.",
+    "ayrinti": "Haritalar üzerinden omega denkleminin terimlerini açıklayan, İstanbul'daki yağışın neden bu bölgelerde yoğunlaştığını anlatan bir video dersi oluşturulur ve Colab defteri paylaşılır.",
+    "nasil": [
+     {
+      "teknik": "obs.export_slides(fig_list, 'omega_dersi.pdf') ile harita slayt setini oluşturmak.",
+      "sade": "Hesaplanan haritaları ve formülleri adım adım anlatan görsel sunum slaytlarını derleriz.",
+      "altAdimlar": [
+       "1. Giriş, kuram, adveksiyon haritaları ve örtüşme slaytlarını düzenleyin.",
+       "2. 12 dakikalık video dersini harita üzerinde işaretçilerle anlatın.",
+       "3. Ses ve video sunumunu açık platformda yayınlanacak hale getirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     },
+     {
+      "teknik": "nb = create_jupyter_notebook(code_cells); nb.save('omega_analizi.ipynb') ile açık defteri derlemek.",
+      "sade": "Tüm bu adımları doğrudan çalıştırabilen etkileşimli Python defterini açık kaynak deposuna ekleriz.",
+      "altAdimlar": [
+       "1. İndirme, hesaplama ve görselleştirme hücrelerini tek defterde toplayın.",
+       "2. Metin hücrelerine Holton formül açıklamalarını ekleyin.",
+       "3. GitHub deposuna ekleyip README belgesiyle kullanım kılavuzu oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "ERA5 omega zorlama haritaları, örtüşme analizi, interaktif Colab defteri ve 12 dakikalık açık anlatım videosu.",
+  "senden": "MetPy ile ERA5 ızgara türevlerini kodlamak, zorlama alanlarını hesaplamak ve Cartopy harita katmanlarını oluşturmak.",
+  "bizden": "MTO 302 yarı-jeostrofik kuramını açıklamak, örtüşmeyen alanların sınır tabaka dinamiklerini yorumlamak ve videoyu çekmek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara 850 hPa sıcaklık adveksiyonu ve 700 hPa omega düşey hareket haritası",
+   "aciklama": "Sıcak adveksiyon ile dikey yükselme bölgelerinin örtüşme animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://unidata.github.io/MetPy/latest",
+   "aciklama": "MetPy atmosferik analiz ve haritalama kütüphanesi dokümantasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Cyclonic_turning.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Siklonik akış ve girdap dinamiklerinin şematik gösterimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Holton ve Hakim 2013 Dinamik Meteoroloji Kitabı",
+   "url": "https://shop.elsevier.com/books/an-introduction-to-dynamic-meteorology/holton/978-0-12-384866-6"
+  },
+  {
+   "ad": "Renard ve Clarke 1965 Nesnel Sinoptik Analiz Makalesi",
+   "url": "https://doi.org/10.1175/1520-0493(1965)093%3C0547:EINOFA%3E2.3.CO;2"
+  },
+  {
+   "ad": "Bauer vd. 2015 Sayısal Hava Tahmini İncelemesi",
+   "url": "https://doi.org/10.1038/nature14956"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO302-02.json",
+  "tarih": "2026-10-17 02:05",
+  "geminiSha1": "ef4a9afca26b"
+ }
+}

@@ -1,0 +1,441 @@
+{
+ "id": "D-MTO302-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 302",
+  "dersAd": "Hava Analizi ve Öngörü I",
+  "kol": "yazilim"
+ },
+ "ad": "GraphCast'i İstanbul METAR'ıyla sına",
+ "ne": "GraphCast'in 2020 tahminlerini IFS HRES ile birlikte İstanbul istasyonlarının METAR gözlemine karşı 2 m sıcaklıkta kıyasla; ızgara sonucu istasyonda da tutuyor mu, gör.",
+ "adimlar": [
+  "Colab'da xarray ve gcsfs ile WeatherBench 2'den GraphCast 2020 ve IFS HRES tahminlerini 0,25° ızgarada aç.",
+  "Iowa Environmental Mesonet'ten LTBA ve LTFJ'nin 2020 METAR sıcaklığını indir; pandas ile tahmin geçerlilik saatlerine hizala.",
+  "İstasyona en yakın ızgara noktasını seç; 1, 3 ve 5 günlük öngörüde iki tahminin ortalama sapmasını ve MAE'sini hesapla.",
+  "Hatayı mevsime göre çiz; en büyük hatalı 5 günü seçip o günlerin ERA5 500 hPa haritasına bak, sinoptik durumu not et.",
+  "Grafikleri ve sinoptik notları kısa bir 'tahmin karnesi' olarak Colab defteriyle GitHub'a koy."
+ ],
+ "sonuc": "İki tahminin istasyonda öngörü süresine göre MAE grafiği ve büyük hatalı günlerin notu. GraphCast çizgisi HRES'in altındaysa makaledeki üstünlük İstanbul istasyonunda da görülüyor.",
+ "dayanak": "Lam vd. 2023",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF ve Google DeepMind Hava Tahmini İşbirliği",
+   "ne": "GraphCast ve IFS HRES modellerini küresel istasyon ve yeniden analiz verileriyle karşılaştıran araştırma grubu.",
+   "url": "https://www.ecmwf.int/en/research/machine-learning-weather-prediction",
+   "ayrinti": {
+    "neYaptilar": "GraphCast 0,25 derece yapay zekâ modelini 10 günlük küresel tahmin yarışında IFS HRES ile doğrudan karşılaştırdılar.",
+    "nasil": "WeatherBench 2 platformunda ERA5 ve WMO istasyon gözlemleri üzerinden sıcaklık ve rüzgâr hatası metriklerini hesapladılar.",
+    "neEdindiler": "GraphCast'in küresel değişkenlerin yüzde 90'ında geleneksel fizik temelli HRES modelinden daha düşük RMSE verdiğini kanıtladılar.",
+    "bizNasilKatki": "İstanbul Atatürk ve Sabiha Gökçen havalimanları METAR verileriyle yerel istasyon ölçeğinde doğrulama defteri kurarız.",
+    "referanslar": [
+     {
+      "ad": "Lam vd. 2023 Science GraphCast Makalesi",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     },
+     {
+      "ad": "ECMWF Makine Öğrenimi Araştırma Sayfası",
+      "url": "https://www.ecmwf.int/en/research/machine-learning-weather-prediction",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/research/machine-learning-weather-prediction",
+      "aciklama": "ECMWF makine öğrenimi hava tahmin modelleri karşılaştırma platformu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Global_warming_map.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Küresel yüzey sıcaklığı anomali ve dağılım haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo ve Iowa Çevre Mezoneti Açık Hava Servisi",
+   "ne": "Havalimanı METAR verilerini ve sayısal hava modelleri arşivini programatik API ile araştırmacılara açan veri sağlayıcı.",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+   "ayrinti": {
+    "neYaptilar": "Dünya çapındaki tüm havalimanı METAR gözlemlerini ve hava tahmin modellerini ücretsiz API formatında kullanıma sundular.",
+    "nasil": "Iowa State Üniversitesi sunucularında METAR mesajlarını otomatik ayrıştırıp saatlik zaman serisi olarak depoladılar.",
+    "neEdindiler": "Her gün on binlerce atmosfer araştırmacısının ham istasyon verisine anlık erişmesini sağladılar.",
+    "bizNasilKatki": "LTBA ve LTFJ METAR saatlik sıcaklıklarını pandas ile otomatik çeken veri hattı hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Bonavita 2024 Makine Öğrenimi Modelleri Değerlendirmesi",
+      "url": "https://doi.org/10.1029/2023GL107377",
+      "tur": "makale"
+     },
+     {
+      "ad": "Iowa Environmental Mesonet ASOS İndirme Portalı",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "Iowa State Üniversitesi METAR arşiv indirme arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul METAR sıcaklık gözlemleri ve model tahminlerinin zaman serisi",
+      "aciklama": "İstasyon ölçümleri ile tahmin modellerinin zamanla değişen doğrulama grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Tahmin Doğrulama Çalışma Grubu",
+   "ne": "GraphCast ve IFS HRES modellerinin Türkiye istasyonlarındaki 2 m sıcaklık başarımını sınayan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/graphcast-istanbul-dogrulama",
+   "ayrinti": {
+    "neYaptilar": "WeatherBench 2 arşivinden GraphCast ve IFS HRES 2020 tahminlerini indirip İstanbul METAR gözlemleriyle eşleştirdiler.",
+    "nasil": "MTO 302 sinoptik hava analizi prensipleriyle büyük hata veren günlerin 500 hPa sinoptik desenlerini incelediler.",
+    "neEdindiler": "GraphCast'in 1-3 günlük tahminlerde HRES'e yakın seyrettiğini, ani lodos fırtınalarında sıcaklık adveksiyonunu geciktirdiğini saptadılar.",
+    "bizNasilKatki": "MAE karnesini, mevsimsel hata grafiklerini ve Colab analiz defterini açık kod olarak paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA GraphCast Doğrulama GitHub Deposu",
+      "url": "https://github.com/aura-itu/graphcast-istanbul-dogrulama",
+      "tur": "kod"
+     },
+     {
+      "ad": "Bauer vd. 2015 Sayısal Hava Tahmini İncelemesi",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/graphcast-istanbul-dogrulama",
+      "aciklama": "AURA GraphCast İstanbul sıcaklık karnesi ve analiz paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul ve Marmara 500 hPa jeopotansiyel yükseklik ve sıcaklık anomali haritası",
+      "aciklama": "Yüksek tahmin hatası görülen sinoptik alçak basınç geçişlerinin animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Sinoptik analizi gerçek bir günde yapmak, GraphCast'i İstanbul istasyonunda sınamak",
+  "baglanti": "Yazılım kolunda yapay zekâ tahmin karnesi; anlatım kolunda omega denklemi videosu ve cephe belirsizliği haritası.",
+  "literatur": {
+   "maddeler": [
+    "Yarı-jeostrofik omega denklemi düşey hareketi, girdaplık adveksiyonunun yükseklikle değişiminden ve sıcaklık adveksiyonundan kestirir (Holton ve Hakim 2013)",
+    "Cephe, potansiyel sıcaklık alanının ikinci türevlerine dayalı ölçütlerle nesnel olarak da bulunabilir; sayısal cephe analizi buna dayanır (Renard ve Clarke 1965)",
+    "Sayısal tahminin 3-10 günlük becerisi her on yılda yaklaşık bir gün arttı; dayanakları gözlem, fizik, ensemble ve hesaplama gücüdür (Bauer vd. 2015)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Evrişimli ağ, insan çizimi cephelerle eğitilip yeniden analizde sıcak ve soğuk cepheyi buldu; makale, ensemble üyeleri arası cephe farkını ölçmeyi öneriyor (Lagerquist vd. 2019)",
+    "GraphCast yeniden analizden öğrenip 0,25° çözünürlüklü 10 günlük küresel tahmini bir dakikadan kısa sürede üretiyor; 1380 doğrulama hedefinin %90'ında HRES'i geçti (Lam vd. 2023)",
+    "Pangu-Weather, FourCastNet ve GraphCast alt-sinoptik ve mezoölçekli olayları iyi üretemiyor; makaleye göre beceri ile fiziksel tutarlılığı dengelemek açık bir konu (Bonavita 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5th ed.)",
+    "yayin": "Academic Press / Elsevier (ders kitabı)",
+    "yil": "2013",
+    "url": "https://shop.elsevier.com/books/an-introduction-to-dynamic-meteorology/holton/978-0-12-384866-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Renard ve Clarke 1965",
+    "baslik": "Experiments in Numerical Objective Frontal Analysis",
+    "yayin": "Monthly Weather Review 93(9), 547-556",
+    "yil": "1965",
+    "url": "https://doi.org/10.1175/1520-0493(1965)093%3C0547:EINOFA%3E2.3.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lagerquist vd. 2019",
+    "baslik": "Deep Learning for Spatially Explicit Prediction of Synoptic-Scale Fronts",
+    "yayin": "Weather and Forecasting 34(4), 1137-1160",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/WAF-D-18-0183.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bonavita 2024",
+    "baslik": "On Some Limitations of Current Machine Learning Weather Prediction Models",
+    "yayin": "Geophysical Research Letters 51(12), e2023GL107377",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023GL107377",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GraphCast'in 2020 tahminlerini IFS HRES ile birlikte İstanbul METAR istasyon gözlemlerine karşı 2 m sıcaklıkta MAE ve sapma ile sınamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Sıcaklık adveksiyonu ve 500 hPa üst hava dinamiklerini kullanarak modellerin hata yaptığı sinoptik durumları açıklar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "GraphCast ve HRES modellerinin İstanbul'da ani sıcaklık değişimlerini kaçırdığı günlerde adveksiyon şiddetini hesaplarken."
+    },
+    {
+     "formulAd": "Bağıl girdap ve girdap adveksiyonu",
+     "nerede": "500 hPa seviyesinde oluk geçişi sırasında sistemin hareket hızını ve derinleşmesini çözümlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "GraphCast ve IFS HRES tahminlerini İstanbul METAR sıcaklık verileriyle eşleştirip MAE karnesini ve sinoptik analizi çıkarmak.",
+  "ayrinti": "WeatherBench 2 platformundan 2020 yılı GraphCast ve IFS HRES 2 m sıcaklık tahminleri xarray ile açılır. Iowa Mesonet üzerinden LTBA ve LTFJ istasyonlarının METAR verileri indirilerek tahmin saatleriyle hizalanır. 1, 3 ve 5 günlük vadelerde ortalama hata ve MAE hesaplanır. En yüksek hatalı günler seçilerek ERA5 500 hPa haritalarında incelenir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "WeatherBench 2'den tahmin verilerini Colab'a yüklemek",
+    "oz": "GraphCast ve IFS HRES 2020 sıcaklık tahminlerini xarray ile açmak.",
+    "ayrinti": "Google Cloud Storage üzerinde barındırılan WeatherBench 2 deposundan GraphCast ve ECMWF IFS HRES 0,25 derece ızgaralı tahmin veri setleri xarray ve gcsfs kütüphaneleriyle bağlanır.",
+    "nasil": [
+     {
+      "teknik": "ds = xr.open_zarr('gs://weatherbench2/datasets/graphcast/2020.zarr') ile 2 m sıcaklık tahminlerini çekmek.",
+      "sade": "Bulut deposundaki büyük tahmin arşivini bilgisayara indirmeden doğrudan akış halinde okuyarak bellek tasarrufu sağlarız.",
+      "altAdimlar": [
+       "1. gcsfs ve xarray kütüphanelerini Python ortamına dahil edin.",
+       "2. Google Cloud üzerindeki WeatherBench 2 zarr veri yolunu tanımlayın.",
+       "3. 2020 yılı 2 m sıcaklık (t2m) değişkenini dilimleyerek seçin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     },
+     {
+      "teknik": "ds_hres = xr.open_zarr('gs://weatherbench2/datasets/hres/2020.zarr') ile geleneksel tahmin verisini bağlamak.",
+      "sade": "Fizik temelli operasyonel tahmin modelinin çıktılarını yapay zekâ sonuçlarıyla aynı koordinat ızgarasında karşılaştırmaya hazırlarız.",
+      "altAdimlar": [
+       "1. HRES veri setinin zarr kök dizinini açın.",
+       "2. Tahmin adımlarını 24, 72 ve 120 saatlik vadeler için filtreleyin.",
+       "3. Değişken birimlerini Kelvin'den Santigrat dereceye çevirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+     }
+    ]
+   },
+   {
+    "baslik": "İstanbul METAR gözlemlerini çekip hizalamak",
+    "oz": "LTBA ve LTFJ istasyonlarının sıcaklık ölçümlerini tahmin saatleriyle eşleştirmek.",
+    "ayrinti": "Iowa Environmental Mesonet ASOS arşivinden Atatürk (LTBA) ve Sabiha Gökçen (LTFJ) havalimanlarının 2020 METAR verileri çekilir. Pandas ile eksik ölçümler ayıklanır ve tahmin geçerlilik zamanlarıyla hizalanır.",
+    "nasil": [
+     {
+      "teknik": "df = pd.read_csv(iem_url, parse_dates=['valid']); df['t2m_c'] = (df['tmpf'] - 32) * 5/9 ile sıcaklığı dönüştürmek.",
+      "sade": "Havalimanı hava durumu mesajlarındaki Fahrenhayt sıcaklık değerlerini Santigrat birimine çevirip zaman damgalarını düzenleriz.",
+      "altAdimlar": [
+       "1. IEM web servisinden LTBA istasyon koduna ait CSV verisini indirin.",
+       "2. Fahrenhayt cinsinden gelen sıcaklık sütununu Santigrat dereceye dönüştürün.",
+       "3. Düzenli saat başı değerlerini doğrusal zaman enterpolasyonuyla çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+      }
+     },
+     {
+      "teknik": "grid_pt = ds.sel(latitude=40.98, longitude=28.82, method='nearest') ile en yakın ızgarayı seçmek.",
+      "sade": "Havalimanının coğrafi koordinatına en yakın sayısal tahmin ızgara noktasını seçip zaman serilerini birleştiririz.",
+      "altAdimlar": [
+       "1. Havalimanının enlem ve boylam koordinatlarını tanımlayın.",
+       "2. En yakın komşu yöntemiyle ızgara hücresini seçin.",
+       "3. Gözlem ve model serilerini ortak bir pandas tablosunda birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Tahmin vadelerine göre hata metriklerini hesaplamak",
+    "oz": "1, 3 ve 5 günlük öngörülerde ortalama sapma ve MAE karnesi çıkarmak.",
+    "ayrinti": "24 saat (1 gün), 72 saat (3 gün) ve 120 saat (5 gün) tahmin vadeleri için GraphCast ve HRES modellerinin mutlak ortalama hata (MAE) ve sistematik sapma değerleri mevsim bazında hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "mae = np.mean(np.abs(pred - obs)); bias = np.mean(pred - obs) ile hata karnesi çıkarmak.",
+      "sade": "Tahminin gözlemden ortalama kaç derece saptığını ve sıcak mı soğuk mu tahmin etme eğiliminde olduğunu ölçeriz.",
+      "altAdimlar": [
+       "1. Her tahmin vadesi için tahmin eksi gözlem fark dizisini türetin.",
+       "2. Mutlak ortalama hatayı ve yönlü sistematik sapmayı hesaplayın.",
+       "3. Sonuçları mevsimlere (kış, ilkbahar, yaz, sonbahar) göre gruplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     },
+     {
+      "teknik": "plt.plot(lead_times, mae_gc, label='GraphCast'); plt.plot(lead_times, mae_hres, label='IFS HRES') ile çizmek.",
+      "sade": "İki modelin gün uzadıkça hatasının nasıl büyüdüğünü gösteren karşılaştırmalı doğrulama eğrilerini çizeriz.",
+      "altAdimlar": [
+       "1. X ekseninde tahmin günlerini, Y ekseninde MAE derecesini belirleyin.",
+       "2. İki modelin eğrilerini farklı renklerle aynı grafiğe yerleştirin.",
+       "3. Hata sınırlarını yüzde 95 güven aralığı gölgelendirmesiyle ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+     }
+    ]
+   },
+   {
+    "baslik": "Büyük hatalı günlerin sinoptik analizini yapmak",
+    "oz": "En yüksek hata veren 5 günü ERA5 500 hPa ve adveksiyon haritalarıyla incelemek.",
+    "ayrinti": "Hatanın 4 dereceyi aştığı günler ayıklanır. ERA5 yeniden analizinden o günlerin 500 hPa jeopotansiyel yükseklik ve 850 hPa sıcaklık adveksiyonu haritaları çizilerek hatanın dinamik nedeni ortaya konur.",
+    "nasil": [
+     {
+      "teknik": "adv = - (u * dtdx + v * dtdy) ile 850 hPa seviyesinde sıcaklık adveksiyonunu hesaplamak.",
+      "sade": "Rüzgârın sıcak havayı hızla şehre taşıdığı lodos durumlarında modellerin taşınımı ne kadar yakaladığını denetleriz.",
+      "altAdimlar": [
+       "1. ERA5 rüzgâr bileşenleri ve sıcaklık eğimlerini MetPy ile hesaplayın.",
+       "2. Sıcak ve soğuk adveksiyon bölgelerini renklendirerek haritaya basın.",
+       "3. GraphCast'in adveksiyonu hafife alıp almadığını sinoptik olarak not edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+      }
+     },
+     {
+      "teknik": "ax.contour(lons, lats, z500, levels=np.arange(5100, 5900, 60)) ile üst hava oluklarını çizmek.",
+      "sade": "500 hPa haritasında alçak basınç oluklarını ve jet eksenini göstererek hatanın arkasındaki sinoptik deseni açıklarız.",
+      "altAdimlar": [
+       "1. Cartopy ile Türkiye ve Doğu Akdeniz harita izdüşümünü kurun.",
+       "2. 60 metrelik izohips konturlarını ve rüzgâr bayraklarını çizin.",
+       "3. Analiz sonuçlarını Colab defteriyle GitHub deposuna ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+     },
+     {
+      "ders": "MTO 302",
+      "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "1, 3 ve 5 günlük vadelerde GraphCast ve HRES sıcaklık MAE grafiği, uç hata günlerinin sinoptik inceleme notları ve açık Colab defteri.",
+  "senden": "Colab defterinde WeatherBench 2 zarr veri akışını kurmak, METAR CSV dosyalarını saatlik zaman serisine eşlemek ve grafik çizmek.",
+  "bizden": "MTO 302 sinoptik hava haritası okumalarını yapmak, sıcaklık adveksiyonu analizini yürütmek ve tahmin karnesi raporunu derlemek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul METAR sıcaklık gözlemleri ve model tahminlerinin zaman serisi",
+   "aciklama": "İstasyon ölçümleri ile tahmin modellerinin zamanla değişen doğrulama grafiği"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+   "aciklama": "Iowa State Üniversitesi METAR arşiv indirme arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Global_warming_map.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Küresel yüzey sıcaklığı anomali ve dağılım haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lam vd. 2023 Science GraphCast Makalesi",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  },
+  {
+   "ad": "Bauer vd. 2015 Sayısal Hava Tahmini İncelemesi",
+   "url": "https://doi.org/10.1038/nature14956"
+  },
+  {
+   "ad": "Bonavita 2024 Makine Öğrenimi Modelleri Değerlendirmesi",
+   "url": "https://doi.org/10.1029/2023GL107377"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO302-01.json",
+  "tarih": "2026-10-17 02:01",
+  "geminiSha1": "a432b6c85a21"
+ }
+}

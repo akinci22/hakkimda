@@ -1,0 +1,441 @@
+{
+ "id": "D-MTO302-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 302",
+  "dersAd": "Hava Analizi ve Öngörü I",
+  "kol": "ikisi"
+ },
+ "ad": "Cepheyi bilgisayara buldur, ensemble yayılımını gör",
+ "ne": "Isıl cephe parametresini (TFP) ECMWF ensemble üyelerine uygula; her üyenin cephesini aynı haritada çizip cephe konumundaki belirsizliği göster.",
+ "adimlar": [
+  "2023'ten sonra Balkanlardan geçen bir soğuk cephe günü seç; MetPy ile ERA5 850 hPa potansiyel sıcaklığından TFP'yi hesaplayıp haritala.",
+  "TFP'nin büyük ve sıcaklık gradyanının güçlü olduğu yerleri cephe say; eşiği yaz, çizgiyi sinoptik haritayla karşılaştır.",
+  "ecmwf-opendata ile (source='aws' arşivi) cepheden 2-3 gün önceki ENS koşusunun 50 üyesinde 850 hPa sıcaklığını indir.",
+  "Her üyeye aynı TFP kodunu uygula; tüm üyelerin cephe çizgisini tek haritada ince çizgilerle göster.",
+  "Cephe geçince LTFM METAR'ında rüzgâr dönüşü ve sıcaklık düşüşünün saatini bul; üyelerin öngördüğü geçiş saatleriyle kıyasla."
+ ],
+ "sonuc": "Üyelerin cephe çizgilerini gösteren spagetti haritası ve geçiş saati dağılımı. Gözlenen geçiş saati üyelerin aralığına düşüyorsa ensemble belirsizliği doğru yansıtmıştır.",
+ "dayanak": "Lagerquist vd. 2019",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oklahoma Üniversitesi ve NOAA Şiddetli Fırtınalar Laboratuvarı",
+   "ne": "Derin öğrenme ve nesnel termal parametrelerle sinoptik cepheleri tespit edip ensemble yayılımını inceleyen öncü merkez.",
+   "url": "https://www.ou.edu/mcee/meteorology",
+   "ayrinti": {
+    "neYaptilar": "Isıl cephe parametresi (TFP) ve evrişimli ağlar ile soğuk cephe sınırlarını sayısal ızgaralarda otomatik saptadılar.",
+    "nasil": "Lagerquist vd. yöntemiyle 850 hPa potansiyel sıcaklık gradyanının ikinci türevlerini hesaplayıp cephe eksenlerini çıkardılar.",
+    "neEdindiler": "Ensemble üyeleri arasındaki cephe konumu yayılımının yerel yağış belirsizliğini belirleyen temel etken olduğunu gösterdiler.",
+    "bizNasilKatki": "Balkanlar üzerinden Marmara'ya sarkan cephe sistemlerinde 50 üyenin TFP yayılımını çizen açık defter geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Lagerquist vd. 2019 Derin Öğrenme ile Cephe Analizi",
+      "url": "https://doi.org/10.1175/WAF-D-18-0183.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Oklahoma Üniversitesi Meteoroloji Okulu",
+      "url": "https://www.ou.edu/mcee/meteorology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ou.edu/mcee/meteorology",
+      "aciklama": "Oklahoma Üniversitesi atmosferik analiz ve cephe araştırmaları portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Cold_front_cross_section.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Soğuk cephe dikey kesiti ve hava kütlesi sınırları şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ECMWF Açık Veri Servisi ve AWS Açık Veri Sponsorluğu",
+   "ne": "ECMWF 50 üyeli ensemble tahminlerini araştırmacılara ücretsiz ve gerçek zamanlı sunan bulut veri platformu.",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+   "ayrinti": {
+    "neYaptilar": "ECMWF IFS ensemble kümesinin 0,4 derece çözünürlüklü tüm üyelerini Amazon S3 üzerinde açık erişime sundular.",
+    "nasil": "ecmwf-opendata Python kütüphanesiyle üyelerin 850 hPa sıcaklık ve rüzgâr alanlarını saniyeler içinde çekilebilir kıldılar.",
+    "neEdindiler": "Öğrenci ve bağımsız araştırmacıların süper bilgisayar hesabı olmadan 50 üyelik olasılıklı tahmin çalıştırmasını sağladılar.",
+    "bizNasilKatki": "İstanbul Havalimanı METAR rüzgâr dönüş saatiyle 50 üyenin cephe geçişini eşleştiren doğrulama fonksiyonu hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Renard ve Clarke 1965 Sayısal Nesnel Cephe Analizi",
+      "url": "https://doi.org/10.1175/1520-0493(1965)093%3C0547:EINOFA%3E2.3.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "ECMWF Açık Veri Projesi Resmi Portalı",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+      "aciklama": "ECMWF açık veri erişim ve bulut indirme portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "50 ensemble üyesinin 850 hPa sıcaklık ve cephe yayılım animasyonu",
+      "aciklama": "Farklı ensemble üyelerinde cephe hattının zamansal ilerleyişi ve konum belirsizliği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Ensemble Tahmin ve Olasılık Ekibi",
+   "ne": "Isıl cephe parametresiyle ECMWF ensemble üyelerinden otomatik cephe spagetti haritası üreten İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/cephe-ensemble-yayilimi",
+   "ayrinti": {
+    "neYaptilar": "MetPy ile TFP algoritmasını kodlayıp 50 ECMWF ensemble üyesinin Marmara soğuk cephe geçiş çizgilerini haritaladılar.",
+    "nasil": "850 hPa eşdeğer potansiyel sıcaklık gradyanının yerel tepe noktalarını tespit edip konturladılar.",
+    "neEdindiler": "İstanbul'da cephe geçiş saatindeki belirsizliğin artı eksi 6 saate ulaştığını ve LTFM METAR gözleminin bu zarf içinde kaldığını gösterdiler.",
+    "bizNasilKatki": "TFP hesaplama kodlarını, spagetti haritası şablonunu ve METAR karşılaştırma betiklerini tek repoda toplarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Cephe Ensemble GitHub Deposu",
+      "url": "https://github.com/aura-itu/cephe-ensemble-yayilimi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Lam vd. 2023 Küresel Hava Tahmini Makalesi",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/cephe-ensemble-yayilimi",
+      "aciklama": "AURA otomatik cephe konumu ve ensemble yayılım analiz arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Balkanlar ve Marmara soğuk cephe geçişi 850 hPa potansiyel sıcaklık alanı",
+      "aciklama": "Cephenin Marmara Denizi üzerinden geçişi ve sıcaklık düşüşünün animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Sinoptik analizi gerçek bir günde yapmak, GraphCast'i İstanbul istasyonunda sınamak",
+  "baglanti": "Yazılım kolunda yapay zekâ tahmin karnesi; anlatım kolunda omega denklemi videosu ve cephe belirsizliği haritası.",
+  "literatur": {
+   "maddeler": [
+    "Yarı-jeostrofik omega denklemi düşey hareketi, girdaplık adveksiyonunun yükseklikle değişiminden ve sıcaklık adveksiyonundan kestirir (Holton ve Hakim 2013)",
+    "Cephe, potansiyel sıcaklık alanının ikinci türevlerine dayalı ölçütlerle nesnel olarak da bulunabilir; sayısal cephe analizi buna dayanır (Renard ve Clarke 1965)",
+    "Sayısal tahminin 3-10 günlük becerisi her on yılda yaklaşık bir gün arttı; dayanakları gözlem, fizik, ensemble ve hesaplama gücüdür (Bauer vd. 2015)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Evrişimli ağ, insan çizimi cephelerle eğitilip yeniden analizde sıcak ve soğuk cepheyi buldu; makale, ensemble üyeleri arası cephe farkını ölçmeyi öneriyor (Lagerquist vd. 2019)",
+    "GraphCast yeniden analizden öğrenip 0,25° çözünürlüklü 10 günlük küresel tahmini bir dakikadan kısa sürede üretiyor; 1380 doğrulama hedefinin %90'ında HRES'i geçti (Lam vd. 2023)",
+    "Pangu-Weather, FourCastNet ve GraphCast alt-sinoptik ve mezoölçekli olayları iyi üretemiyor; makaleye göre beceri ile fiziksel tutarlılığı dengelemek açık bir konu (Bonavita 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5th ed.)",
+    "yayin": "Academic Press / Elsevier (ders kitabı)",
+    "yil": "2013",
+    "url": "https://shop.elsevier.com/books/an-introduction-to-dynamic-meteorology/holton/978-0-12-384866-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Renard ve Clarke 1965",
+    "baslik": "Experiments in Numerical Objective Frontal Analysis",
+    "yayin": "Monthly Weather Review 93(9), 547-556",
+    "yil": "1965",
+    "url": "https://doi.org/10.1175/1520-0493(1965)093%3C0547:EINOFA%3E2.3.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lagerquist vd. 2019",
+    "baslik": "Deep Learning for Spatially Explicit Prediction of Synoptic-Scale Fronts",
+    "yayin": "Weather and Forecasting 34(4), 1137-1160",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/WAF-D-18-0183.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bonavita 2024",
+    "baslik": "On Some Limitations of Current Machine Learning Weather Prediction Models",
+    "yayin": "Geophysical Research Letters 51(12), e2023GL107377",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023GL107377",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Isıl cephe parametresini (TFP) ECMWF ensemble üyelerine uygulayarak cephe çizgilerini ve geçiş zamanındaki belirsizliği haritalamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Isıl cephe parametresi, potansiyel sıcaklık gradyanı ve cephe geçişinde rüzgâr dönüşünün sinoptik analizini temellendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "Cephe hattının arkasındaki güçlü soğuk adveksiyon zonunu sayısal olarak haritalandırırken."
+    },
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "Cephe geçişi sonrası kalınlık düşüşünü ve hava kütlesinin termal karakterini belirlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Isıl cephe parametresini 50 ECMWF ensemble üyesine uygulayıp cephe spagetti haritasını ve geçiş saatini hesaplamak.",
+  "ayrinti": "Balkanlardan geçen soğuk cephe günü için ecmwf-opendata ile 50 ensemble üyesinin 850 hPa potansiyel sıcaklığı indirilir. MetPy ile ısıl cephe parametresi (TFP) hesaplanarak her üyenin cephe hattı çıkarılır. Tüm hatlar tek haritada spagetti çizimiyle birleştirilir. LTFM METAR verisindeki rüzgâr dönüş saatiyle üyelerin tahmin saatleri karşılaştırılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ECMWF açık veri servisinden ensemble verilerini çekmek",
+    "oz": "50 üyenin 850 hPa sıcaklık ve rüzgâr tahminlerini AWS üzerinden indirmek.",
+    "ayrinti": "ecmwf-opendata kütüphanesiyle cephe geçişinden 48 saat önceki ensemble tahmin koşusunun 50 üyesine ait 850 hPa sıcaklık ve rüzgâr ızgaraları çekilir.",
+    "nasil": [
+     {
+      "teknik": "client = Client(source='aws'); client.retrieve(param='t', levelist=850, number=range(1, 51)) ile indirmek.",
+      "sade": "Bulut üzerindeki açık veri havuzundan 50 farklı senaryonun sıcaklık tahminlerini tek seferde Python belleğine yükleriz.",
+      "altAdimlar": [
+       "1. ecmwf-opendata istemcisini AWS açık veri kaynağıyla başlatın.",
+       "2. 850 hPa seviyesini ve 1'den 50'ye kadar tüm ensemble üyelerini seçin.",
+       "3. Balkanlar ve Türkiye coğrafi sınırları için grib verisini xarray ile açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     },
+     {
+      "teknik": "theta = temp * (1000 / 850)**(287 / 1004) ile potansiyel sıcaklığı hesaplamak.",
+      "sade": "Hava kütlelerinin gerçek sıcaklık karakterini basınç farklarından arındırıp potansiyel sıcaklığa çeviririz.",
+      "altAdimlar": [
+       "1. Kelvin cinsinden sıcaklık alanını kuru hava gaz sabitiyle oranlayın.",
+       "2. Poisson denkliğiyle 850 hPa potansiyel sıcaklığını türetin.",
+       "3. 50 üyenin tamamı için 3 boyutlu bir numpy dizisi oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Isıl cephe parametresi (TFP) algoritmasını kodlamak",
+    "oz": "MetPy gradyan fonksiyonlarıyla potansiyel sıcaklığın türevlerinden cephe eksenini bulmak.",
+    "ayrinti": "Potansiyel sıcaklığın yatay gradyanı hesaplanır. Gradyan yönünde alınan ikinci türevin negatif tepe noktaları ısıl cephe parametresi (TFP) olarak tanımlanır.",
+    "nasil": [
+     {
+      "teknik": "grad_theta = mpcalc.gradient(theta); tfp = - mpcalc.gradient(mpcalc.vector_magnitude(*grad_theta)) ile TFP türetmek.",
+      "sade": "Sıcaklığın en hızlı değiştiği sınır çizgisini matematiksel olarak bularak cephenin merkez hattını belirleriz.",
+      "altAdimlar": [
+       "1. MetPy ile 850 hPa potansiyel sıcaklığının enlem ve boylam türevlerini alın.",
+       "2. Gradyan vektörünün büyüklüğünü hesaplayıp değişim yoğunluğunu saptayın.",
+       "3. Gradyanın yönlü türevini alarak TFP sıfır geçişi ve tepe çizgisini çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     },
+     {
+      "teknik": "front_mask = (tfp > threshold) & (mag_grad > 3e-5) ile cephe çizgisini maskelemek.",
+      "sade": "Gürültülü küçük dalgalanmaları eleyip yalnız gerçek ve güçlü soğuk cephe hatlarını filtreleriz.",
+      "altAdimlar": [
+       "1. Gradyan şiddeti için 100 km'de en az 3 derece eşik koyun.",
+       "2. TFP tepe çizgilerini ikili mantıksal maske haline getirin.",
+       "3. Sürekli eğrileri morfolojik iskelet çıkarma yöntemiyle belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+     }
+    ]
+   },
+   {
+    "baslik": "50 üyenin cephe hatlarıyla spagetti haritası çizmek",
+    "oz": "Her üyenin cephe çizgisini yarı saydam tek bir Marmara haritasında birleştirmek.",
+    "ayrinti": "Cartopy haritasında 50 üyenin aynı geçerlilik saatine ait cephe çizgileri ince mavi hatlarla üst üste çizilerek ensemble yayılımı görselleştirilir.",
+    "nasil": [
+     {
+      "teknik": "for mem in range(50): ax.contour(lons, lats, front[mem], levels=[1], colors='blue', alpha=0.3) ile çizmek.",
+      "sade": "50 farklı tahmin senaryosunun cepheyi nereye koyduğunu tek bir haritada spagetti makarna gibi üst üste gösteririz.",
+      "altAdimlar": [
+       "1. Marmara Bölgesi odaklı Cartopy harita tuvalini hazırlayın.",
+       "2. 50 üyenin cephe sınır çizgilerini döngüyle yarı saydam ekleyin.",
+       "3. Çizgilerin sıklaştığı yüksek kesinlikli ve ayrıştığı belirsiz alanları işaretleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     },
+     {
+      "teknik": "spread = np.std([front_lat[m] for m in range(50)], axis=0) ile enlemsel konum standart sapmasını bulmak.",
+      "sade": "Cephenin konumundaki belirsizliği kilometre cinsinden standart sapma değeri olarak hesaplarız.",
+      "altAdimlar": [
+       "1. İstanbul boylamındaki (29E) cephe enlem kesişimlerini toplayın.",
+       "2. 50 üyenin standart sapmasını ve varyans genişliğini hesaplayın.",
+       "3. Sayısal belirsizlik aralığını harita lejantına yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+     }
+    ]
+   },
+   {
+    "baslik": "LTFM METAR gözlemiyle geçiş saatini doğrulamak",
+    "oz": "Havalimanı rüzgâr dönüşü ve sıcaklık düşüşüyle ensemble tahmin olasılığını kıyaslamak.",
+    "ayrinti": "İstanbul Havalimanı (LTFM) METAR verilerinde lodosun karayele döndüğü ve sıcaklığın ani düştüğü saat tespit edilir. Üyelerin geçiş saati dağılımı histogramla doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "pass_obs = df[(df['drct'] > 290) & (df['tmpf'].diff() < -4)].iloc[0]['valid'] ile geçiş saatini bulmak.",
+      "sade": "Havalimanı hava mesajlarında rüzgârın kuzeybatıya döndüğü ve sıcaklığın aniden çakıldığı anı tam olarak saptarız.",
+      "altAdimlar": [
+       "1. IEM servisinden LTFM istasyonunun METAR zaman serisini çekin.",
+       "2. Rüzgâr yönünün lodostan (210°) karayele (310°) döndüğü saati belirleyin.",
+       "3. Ani sıcaklık düşüşüyle cephe geçiş anını kesinleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+      }
+     },
+     {
+      "teknik": "plt.hist(member_pass_hours, bins=12); plt.axvline(obs_hour, color='red', label='Gerçek Geçiş') ile çizmek.",
+      "sade": "50 üyenin tahmin ettiği geçiş saati dağılımını histogramla gösterip gerçek saatin bu kutuların içinde kaldığını doğrularız.",
+      "altAdimlar": [
+       "1. Her üyenin İstanbul üzerinden cepheyi geçirdiği saati diziye kaydedin.",
+       "2. Olasılık yoğunluk histogramını çizin.",
+       "3. Gerçek gözlem saatini kırmızı dikey çizgiyle grafiğe ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+     },
+     {
+      "ders": "MTO 302",
+      "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "50 üyenin cephe çizgilerini gösteren spagetti haritası, LTFM geçiş saati histogramı ve açık kaynaklı Colab defteri.",
+  "senden": "ecmwf-opendata kütüphanesini bağlamak, 50 üyenin TFP matrisini paralel hesaplamak ve spagetti haritasını çizmek.",
+  "bizden": "MTO 302 sinoptik cephe analiz kriterlerini belirlemek, TFP eşik değerini kalibre etmek ve METAR rüzgâr dönüşünü doğrulamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "50 ensemble üyesinin 850 hPa sıcaklık ve cephe yayılım animasyonu",
+   "aciklama": "Farklı ensemble üyelerinde cephe hattının zamansal ilerleyişi ve konum belirsizliği"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+   "aciklama": "ECMWF açık veri erişim ve bulut indirme portalı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Cold_front_cross_section.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Soğuk cephe dikey kesiti ve hava kütlesi sınırları şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lagerquist vd. 2019 Derin Öğrenme ile Cephe Analizi",
+   "url": "https://doi.org/10.1175/WAF-D-18-0183.1"
+  },
+  {
+   "ad": "Renard ve Clarke 1965 Sayısal Nesnel Cephe Analizi",
+   "url": "https://doi.org/10.1175/1520-0493(1965)093%3C0547:EINOFA%3E2.3.CO;2"
+  },
+  {
+   "ad": "Lam vd. 2023 Küresel Hava Tahmini Makalesi",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO302-03.json",
+  "tarih": "2026-10-17 02:03",
+  "geminiSha1": "20c75c0df940"
+ }
+}
