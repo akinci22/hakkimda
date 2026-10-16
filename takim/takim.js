@@ -200,7 +200,7 @@ const kaynakAl = (...o) => { const g = new Set(); return o.flatMap(x => !x ? [] 
 const kaynakMini = (L, on = 'Kaynak: ') => { L = (L || []).filter(k => k && k.url); return L.length ? el('span', { class: 'kaynak-mini' }, on, ...L.flatMap((k, i) => [i ? ' · ' : '', el('a', { href: k.url, target: '_blank', rel: 'noopener' }, k.ad || 'kaynak')])) : null; };
 let odakZ, odakZ2, odakBirak, sonKapanis = -1e9; const ISRAR_SN = 3;   /* 8 Eki: son kapanıştan 3 sn içinde yeni kart → 3 sn ısrar */
 function etkilesim(e, al) {
-  e.classList.add('etk'); if (!e.querySelector('.etk-ipucu')) e.append(el('span', { class: 'etk-ipucu' }, dokunmatik ? 'Dokun · ayrıntı ›' : 'Tıkla · ayrıntı ›')); if (!e.querySelector('.etk-roz')) e.append(el('span', { class: 'etk-roz', 'aria-hidden': 'true' }));   /* sözsüz işaret: köşede açılır-ok (›), yazı yok */
+  e.classList.add('etk'); if (!e.querySelector('.etk-roz')) e.append(el('span', { class: 'etk-roz', 'aria-hidden': 'true' }));   /* sözsüz işaret: köşede açılır-ok (›), yazı yok */
   if (dokunmatik && !e.querySelector('.etk-on')) { try { const d = al(); const ilk = cumleler(String(d.uzun || '').replace(/\n+/g, ' ')).find(c => !/^(Kaynak|Güven)\s*:/i.test(c)) || ''; const cek = ilk.replace(/^[^:]{0,24}:\s*/, '').slice(0, 30); if (ilk && ilk !== d.kisa && !e.textContent.includes(cek)) e.append(el('span', { class: 'etk-on' }, ilk.length > 120 ? ilk.slice(0, 117).replace(/\s\S*$/, '') + '…' : ilk)); } catch (err) { } }   /* dokunmadan bilgi: ayrıntının ilk cümlesi kartta */
   if (!dokunmatik && !azalt) {
     /* Akın 8 Eki: imleç gelince HEMEN açılır; karttan çıkınca HEMEN kapanır. Az önce (3 sn içinde) bir kart kapandıysa yeni kart 3 sn ısrar ister:
