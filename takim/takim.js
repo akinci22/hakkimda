@@ -1403,6 +1403,7 @@ async function p3Proje(p) {
     yapilis: { oz: (Y && Y.oz) || '', ayrinti: (Y && Y.ayrinti) || '', adimlar, hazir: !!Y },
     sonuc: (Y && Y.sonuc) || T.sonuc || '', senden: (Y && Y.senden) || T.senden || '', bizden: (Y && Y.bizden) || T.bizden || '',
     gorseller: (g && g.gorseller) || [], ornekGorsel: (g && g.ornekler) || {}, adimGorsel: (g && g.adimlar) || {},
+    bolumBaglam: (tam && tam.bolumBaglam) || p.bolumBaglam || null,   /* D10: projeye özgü bölüm bağlamı (yuz/detay) */
     dersHazir: (p.dersHazir || []).map(kodNorm) };
 }
 /* ---- yığın çekirdeği ---- */
@@ -1469,7 +1470,7 @@ function p3KirintiCiz() {
     const ayrac = () => el('span', { class: 'p3-kr-ayrac', 'aria-hidden': 'true' }, '›');
     /* ara parça (ör. "3. yarıyıl"): bir önceki ekrana döner, orada o yarıyılın katını açık bırakır */
     const ek = (e.onEk && i) ? el('button', { class: 'p3-kr-ek', type: 'button', onclick: () => { const h = S.ekranlar[i - 1]; const dt = h && e.onEkNo ? h.el.querySelector(`.p3-yy[data-no="${e.onEkNo}"]`) : null; if (dt) { dt.open = true; h.scroll = Math.max(0, dt.offsetTop - 60); } if (S.basamak >= k + 1) { try { history.go(-(k + 1)); return; } catch (err) { } } p3Geriye(i); } }, e.onEk) : null;
-    return i ? [ayrac(), ek, ek ? ayrac() : null, p] : [p]; }));
+    return (i ? [ayrac(), ek, ek ? ayrac() : null, p] : [p]).filter(Boolean); }));   /* null → replaceChildren'da "null" yazısı olarak basılıyordu */
   S.kok.querySelector('.p3-geri').classList.toggle('p3-geri-ilk', n === 1);
   requestAnimationFrame(() => { S.kirinti.scrollLeft = S.kirinti.scrollWidth; });   /* darda son parça görünür */
 }
@@ -1595,6 +1596,7 @@ function p3E2(sec, pr) {
       kodlar.length ? parca('Ortak dersler', kodlar.join(' · '), () => p3EkranAc({ ad: 'Ortak dersler', veri: pr, ozet: p3OzetE4(pr), kur: s => p3E4(s, pr) })) : null,
       (oz3 || pr.yapilis.adimlar.length) ? parca('Yapılış', oz3, () => p3EkranAc({ ad: 'Yapılış', veri: pr, ozet: p3OzetE5(pr), kur: s => p3E5(s, pr) })) : null),
     pr.sonuc ? el('p', { class: 'p3-sonuc' }, el('span', { class: 'p3-etiket' }, 'Elde kalan'), pr.sonuc) : null,
+    (pr.bolumBaglam && pr.bolumBaglam.yuz) ? el('div', { class: 'p3-baglam' }, el('p', { class: 'p3-sonuc' }, el('span', { class: 'p3-etiket' }, 'Bölümünle bağı'), pr.bolumBaglam.yuz), pr.bolumBaglam.detay ? el('p', { class: 'p3-baglam-d' }, pr.bolumBaglam.detay) : null) : null,
     (pr.senden || pr.bizden) ? el('div', { class: 'p3-cipler' }, pr.senden ? el('span', { class: 'p3-cip' }, el('i', {}, 'senden'), pr.senden) : null, pr.bizden ? el('span', { class: 'p3-cip' }, el('i', {}, 'bizden'), pr.bizden) : null) : null,
     pr.taban ? el('p', { class: 'p3-not' }, 'Ayrıntılar derleniyor.') : null];
 }
