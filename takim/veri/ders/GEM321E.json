@@ -1,0 +1,145 @@
+{
+ "kod": "GEM 321E",
+ "ad": "Ship Theory",
+ "bolum": "Gemi İnşaatı ve Gemi Makineleri Mühendisliği",
+ "obsNo": "321",
+ "ozet": "Gemi geometrisi, yüzme dengesi, hidrostatik eğriler, enine ve boyuna stabilite kurallarını öğretir. Geminin dalgalar ve yük kayması altındaki doğrultucu momentini (GZ kolu), metasentrik yüksekliğini (GM) ve fırtınada batmazlık kriterlerini inceler.",
+ "neOgrenirsin": [
+  "Gemi form planını okuyup hidrostatik integrallerle batma hacmi ve su hattı alanını hesaplamak.",
+  "Metasentrik yükseklik (GM) bağıntısıyla geminin başlangıç yalpa stabilitesini tayin etmek.",
+  "Büyük yalpa açılarında doğrultucu kol (GZ) eğrisi çizerek dinamik stabilite limitlerini bulmak.",
+  "Serbest sıvı yüzeyi etkisinin ve rüzgâr devirme momentinin emniyet kriterlerine etkisini analiz etmek.",
+  "Boyuna ağırlık ve batma merkezleri farkından gemi trimini ve su çekimlerini hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Metasentrik yükseklik bağıntısı (GM)",
+   "tex": "\\mathrm{GM} = \\mathrm{KB} + \\frac{I_T}{\\nabla} - \\mathrm{KG}",
+   "terimler": [
+    [
+     "\\mathrm{GM}",
+     "enine metasentrik yükseklik",
+     "m"
+    ],
+    [
+     "\\mathrm{KB}",
+     "batma merkezinin omurgadan yüksekliği",
+     "m"
+    ],
+    [
+     "I_T",
+     "su hattı alanının enine atalet momenti",
+     "m⁴"
+    ],
+    [
+     "\\nabla",
+     "geminin su altında kalan batma hacmi",
+     "m³"
+    ],
+    [
+     "\\mathrm{KG}",
+     "gemi ağırlık merkezinin omurgadan yüksekliği",
+     "m"
+    ]
+   ],
+   "sade": "Geminin su üstünde dik durma direncini belirleyen temel ölçüttür. Ağırlık merkezi omurgadan ne kadar alçakta ve gövde ne kadar genişse gemi o kadar dengeli olur.",
+   "ornek": "KB = 4,2 m, BM = 6,8 m ve KG = 9,5 m olan bir konteyner gemisinde GM = 4,2 + 6,8 - 9,5 = 1,5 m çıkar; bu değer fırtınada güvenli seyir için yeterli pozitif kararlılığı sağlar.",
+   "nerede": "F-GIDB-GEM-03 açık dersinde fırtına dalgalarında rezonans yalpasını ve devrilme emniyetini anlatırken."
+  },
+  {
+   "ad": "Gemi doğrultucu kolu (GZ) bağıntısı",
+   "tex": "\\mathrm{GZ}(\\theta) = \\mathrm{GM} \\sin\\theta + \\frac{1}{2}\\mathrm{BM}\\tan^2\\theta\\sin\\theta",
+   "terimler": [
+    [
+     "\\mathrm{GZ}(\\theta)",
+     "yalpa açısındaki doğrultucu moment kolu",
+     "m"
+    ],
+    [
+     "\\theta",
+     "gemi yalpa açısı",
+     "radyan veya derece"
+    ],
+    [
+     "\\mathrm{GM}",
+     "metasentrik yükseklik",
+     "m"
+    ],
+    [
+     "\\mathrm{BM}",
+     "metasantır yarıçapı (I_T / \\nabla)",
+     "m"
+    ]
+   ],
+   "sade": "Gemi dalga veya rüzgârla yana yattığında onu tekrar doğrultmaya çalışan kuvvetin moment koludur. Açı büyüdükçe doğrultucu kol önce artar, kritik açıdan sonra azalarak devrilme tehlikesi doğurur.",
+   "ornek": "GM = 1,2 m ve BM = 5,0 m olan bir gemi theta = 15 derece (0,26 rad) yattığında GZ yaklaşık 0,33 m olur; yer çekimiyle çarpıldığında gemiyi hızla doğrultan kuvvet momenti oluşur.",
+   "nerede": "F-GIDB-GEM-03 açık dersinde dalga spektrumundan gelen zorlamalara karşı geminin dinamik doğrultma yeteneğini gösterirken."
+  },
+  {
+   "ad": "Boyuna trim ve su çekimi değişimi bağıntısı",
+   "tex": "\\Delta t = \\frac{\\Delta \\cdot (\\mathrm{LCG} - \\mathrm{LCB})}{\\mathrm{MTC}}",
+   "terimler": [
+    [
+     "\\Delta t",
+     "baş ve kıç su çekimi farkı değişimi (trim)",
+     "cm"
+    ],
+    [
+     "\\Delta",
+     "gemi deplasman ağırlığı",
+     "ton"
+    ],
+    [
+     "\\mathrm{LCG}",
+     "gemi ağırlık merkezinin boyuna konumu",
+     "m"
+    ],
+    [
+     "\\mathrm{LCB}",
+     "batma hacim merkezinin boyuna konumu",
+     "m"
+    ],
+    [
+     "\\mathrm{MTC}",
+     "gemiyi 1 cm trim yaptırmak için gereken moment",
+     "ton·m/cm"
+    ]
+   ],
+   "sade": "Geminin başının mı yoksa kıçının mı suya daha çok batacağını belirler. Ağırlık dağılımı ile batma geometrisi arasındaki boyuna fark trim açısını belirler.",
+   "ornek": "12000 tonluk bir gemide LCG - LCB = 0,25 m ve MTC = 150 ton·m/cm ise trim delta t = 12000 * 0,25 / 150 = 20 cm başa veya kıça eğim verir.",
+   "nerede": "F-GIDB-GEM-03 açık dersinde baş-kıç vurma hareketinin hidrostatik denge eksenini açıklarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Metacentric_height.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Gemi enine stabilitesi: Metasantır noktası M, ağırlık merkezi G ve doğrultucu kol GZ"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ship_stability_curve.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Farklı yalpa açılarında doğrultucu kol GZ kararlılık eğrisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEM 321E (Ship Theory)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEM&dersNo=321E"
+  },
+  {
+   "ad": "Rawson, K. J. & Tupper, E. C. (2001) Basic Ship Theory, Butterworth-Heinemann · ISBN 978-0750653961",
+   "url": "https://openlibrary.org/isbn/9780750653961"
+  },
+  {
+   "ad": "Biran, A. & López-Pulido, R. (2013) Ship Hydrostatics and Stability, Butterworth-Heinemann",
+   "url": "https://openlibrary.org/isbn/9780080982878"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEM&dersNo=321"
+}

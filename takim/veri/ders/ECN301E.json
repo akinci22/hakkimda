@@ -1,0 +1,134 @@
+{
+ "kod": "ECN 301E",
+ "ad": "Econometrics I",
+ "bolum": "Ekonomi",
+ "obsNo": "301",
+ "ozet": "Klasik doğrusal regresyon modeli, en küçük kareler yöntemi (OLS), hipotez testleri, çoklu doğrusal bağlantı, değişen varyans ve otokorelasyon sorunlarını öğretir. Ekonomik zaman serileri ve kesit verilerinde değişkenler arası ilişkilerin ekonometrik analizi yapılır.",
+ "neOgrenirsin": [
+  "Klasik doğrusal regresyon varsayımlarını ve en küçük kareler (OLS) tahmincisini türetmek.",
+  "Regresyon katsayıları için t ve F istatistikleriyle hipotez testleri ve güven aralıkları kurmak.",
+  "Değişen varyans ve otokorelasyon durumlarını test edip dirençli standart hatalarla düzeltmek.",
+  "Çoklu doğrusal bağlantı ve model kurma hatalarını ekonometrik testlerle tespit etmek.",
+  "Zaman serilerinde durağanlık, gecikmeli değişkenler ve otoregresif hata modellerini analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "En Küçük Kareler (OLS) matris tahmincisi",
+   "tex": "\\hat{\\boldsymbol{\\beta}} = (\\mathbf{X}^T \\mathbf{X})^{-1} \\mathbf{X}^T \\mathbf{y}",
+   "terimler": [
+    [
+     "\\hat{\\boldsymbol{\\beta}}",
+     "tahmin edilen regresyon katsayıları vektörü",
+     "TL/MWh başına birim veya birimsiz"
+    ],
+    [
+     "\\mathbf{X}",
+     "bağımsız değişkenler gözlem matrisi (sıcaklık anomalisi, talep, tatil kukla değişkeni)",
+     "karma birimler"
+    ],
+    [
+     "\\mathbf{y}",
+     "bağımlı değişken gözlem vektörü (spot elektrik fiyatı veya enerji tüketimi)",
+     "TL/MWh veya MWh"
+    ]
+   ],
+   "sade": "Gözlemlenen veriler arasındaki hata kareleri toplamını en aza indirerek bağımsız değişkenlerin bağımlı değişken üzerindeki marjinal etkisini veren katsayıları hesaplar.",
+   "ornek": "İstanbul'da yaz aylarında hava sıcaklığı 1 °C arttığında klima kullanımına bağlı olarak spot elektrik fiyatının kaç TL/MWh yükseldiğini OLS katsayısıyla buluruz.",
+   "nerede": "F-ISL-EKO-01 projesinde spot elektrik fiyatı ile sıcaklık sapması arasındaki temel elastikiyet katsayılarını türetirken."
+  },
+  {
+   "ad": "Otokorelasyon için Durbin-Watson istatistiği",
+   "tex": "d = \\frac{\\sum_{t=2}^T (e_t - e_{t-1})^2}{\\sum_{t=1}^T e_t^2}",
+   "terimler": [
+    [
+     "d",
+     "Durbin-Watson test istatistiği",
+     "birimsiz"
+    ],
+    [
+     "e_t",
+     "t zamanındaki regresyon hata terimi ve kalıntısı",
+     "TL/MWh"
+    ],
+    [
+     "e_{t-1}",
+     "bir önceki t-1 anındaki regresyon hata terimi",
+     "TL/MWh"
+    ],
+    [
+     "T",
+     "toplam gözlem sayısı (zaman serisi periyodu)",
+     "saat veya gün"
+    ]
+   ],
+   "sade": "Zaman serisi regresyonunda ardışık günlerin kalıntıları arasında ilişki olup olmadığını ölçer. Değerin 2 civarında olması ardışık günlerin hata terimleri arasında birinci dereceden otokorelasyon olmadığını gösterir.",
+   "ornek": "60 günlük elektrik fiyat serisinde d = 1.95 bulunarak hata terimlerinin birbirinden bağımsız olduğu doğrulanır ve katsayı testlerinin güvenilirliği teyit edilir.",
+   "nerede": "F-ISL-EKO-01 projesinde sıcaklık-fiyat regresyon kalıntılarında otokorelasyon testi yaparken."
+  },
+  {
+   "ad": "Dışsal değişkenli otoregresif model (ARMAX)",
+   "tex": "y_t = c + \\sum_{i=1}^p \\phi_i y_{t-i} + \\sum_{j=1}^k \\beta_j x_{j,t} + \\epsilon_t",
+   "terimler": [
+    [
+     "y_t",
+     "t anındaki bağımlı değişken (spot elektrik fiyatı)",
+     "TL/MWh"
+    ],
+    [
+     "\\phi_i",
+     "i gecikmeli otoregresif dinamik katsayı",
+     "birimsiz"
+    ],
+    [
+     "x_{j,t}",
+     "t anındaki j inci dışsal değişken (sıcaklık anomalisi veya rüzgâr üretimi)",
+     "derece C veya MW"
+    ],
+    [
+     "\\beta_j",
+     "dışsal değişkenin spot fiyata marjinal etki katsayısı",
+     "TL/MWh/derece C"
+    ],
+    [
+     "\\epsilon_t",
+     "sıfır ortalamalı ak gürültü hata terimi",
+     "TL/MWh"
+    ]
+   ],
+   "sade": "Elektrik fiyatının geçmiş fiyat hafızasını ve anlık hava sıcaklığı dışsal şokunu aynı anda dinamik bir regresyon denkleminde birleştirir.",
+   "ornek": "Önceki günün elektrik fiyatı 2400 TL/MWh ve anlık sıcaklık tahmini 3 °C sapma gösterdiğinde ertesi günün spot takas fiyatı ARMAX katsayılarıyla 2680 TL/MWh olarak tahmin edilir.",
+   "nerede": "F-ISL-EKO-01 projesinde sıcaklık sapmalarını dışsal şok olarak elektrik fiyat serisine entegre ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Linear_regression.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "En küçük kareler yöntemi ile doğrusal regresyon ve artık kareleri minimizasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.statsmodels.org/stable/index.html",
+   "aciklama": "Python statsmodels zaman serisi ve ekonometri kütüphanesi dokümantasyon sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · ECN 301E (Econometrics I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ECN&dersNo=301"
+  },
+  {
+   "ad": "Wooldridge, J. M. (2019) Introductory Econometrics: A Modern Approach, 7. baskı, Cengage Learning · ISBN 978-1337558860",
+   "url": "https://openlibrary.org/isbn/9781337558860"
+  },
+  {
+   "ad": "Gujarati, D. N. & Porter, D. C. (2009) Basic Econometrics, 5. baskı, McGraw-Hill · ISBN 978-0073375779",
+   "url": "https://openlibrary.org/isbn/9780073375779"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ECN&dersNo=301"
+}

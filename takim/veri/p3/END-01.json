@@ -1,0 +1,391 @@
+{
+ "id": "END-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "END",
+  "bolum": "Endüstri Mühendisliği",
+  "fakulteKod": "ISL"
+ },
+ "ad": "Kar ve fırtına tahminiyle dağıtım rotası ve stok planı",
+ "ne": "Kar ve fırtına tahminlerini doğrusal programlama yapılarına katarak lojistik rota ve depo stok seviyelerini dinamik optimize eden sistem.",
+ "adimlar": [
+  "Bir bölge için açık kar ve rüzgâr tahminini indir",
+  "Riskli yolları ve günleri belirle",
+  "Rota ve stok için basit bir optimizasyon kur",
+  "Tahminli ve tahminsiz planı karşılaştır"
+ ],
+ "sonuc": "Sonunda plan karşılaştırma tablosu olur; lojistik planlayanlar kullanabilir.",
+ "senden": "END 331 Yöneylem Araştırması I, END 421",
+ "bizden": "Kar ve fırtına tahminini okuma",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "END 331",
+    "ad": "Yöneylem Araştırması I"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Tomorrow.io",
+   "ne": "Hava verisini şirket kararlarına bağlayarak başladı; bugün lojistik ve dağıtım için hava riski uyarısı veren bir platform.",
+   "url": "https://www.tomorrow.io",
+   "ayrinti": {
+    "neYaptilar": "Boston merkezli Tomorrow.io, hava tahminlerini kurumsal lojistik ve tedarik zinciri karar motorlarına bağlayan hava zekâsı platformu kurdu.",
+    "nasil": "Kendi radar ve uydu takımyıldızlarından gelen verileri tescilli sayısal hava analizleriyle işleyip yol bazlı risk skorları ürettiler.",
+    "neEdindiler": "Uber, Delta ve Amazon gibi dev filolara hava kaynaklı gecikmeleri ve kaza risklerini yüzde 30'a varan oranda azaltan SaaS servisi sundular.",
+    "bizNasilKatki": "Açık Open-Meteo yol boyu hava tahmini API'si ile fırtınalı saatlerde maliyet matrisini güncelleyen bir Python fonksiyonu kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Tomorrow.io Supply Chain and Logistics Weather Intelligence",
+      "url": "https://www.tomorrow.io/solutions/supply-chain/",
+      "tur": "web"
+     },
+     {
+      "ad": "Tomorrow.io Radar and Satellite Constellation Mission Overview",
+      "url": "https://www.tomorrow.io/space/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.tomorrow.io/solutions/supply-chain/",
+      "aciklama": "Tomorrow.io tedarik zinciri ve filo hava riski yönetim panosu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara otoyol hatları boyunca kar ve rüzgâr hamlesi risk animasyonu",
+      "aciklama": "Fırtına hattının ilerleyişi sırasında ana dağıtım koridorlarında oluşan seyahat süresi gecikmeleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Planalytics",
+   "ne": "Havanın satışa etkisini ölçerek başladı; perakendecilere hava kaynaklı talep ve stok tahmini sunan bir şirkete dönüştü.",
+   "url": "https://www.planalytics.com",
+   "ayrinti": {
+    "neYaptilar": "Planalytics, geçmiş hava anomalileri ile perakende tüketim verilerini eşleştirerek hava duyarlı talep ve stok optimizasyonu geliştirdi.",
+    "nasil": "Hava değişkenliğinin kategori bazlı satış dalgalanmalarını ayrıştıran ekonometrik modeller ve stok tükenme simülasyonları uyguladılar.",
+    "neEdindiler": "Dünya çapında yüzlerce süpermarket ve hazır giyim zincirinde gereksiz stok maliyetlerini azaltıp ciro kaybını engellediler.",
+    "bizNasilKatki": "Kar tahmini öncesinde kışlık ürünlerin bölgesel talep artış katsayısını hesaplayan doğrusal optimizasyon senaryosu kurarız.",
+    "referanslar": [
+     {
+      "ad": "Planalytics Weather-Driven Demand Analytics for Retail and Logistics",
+      "url": "https://www.planalytics.com/retail-analytics/",
+      "tur": "web"
+     },
+     {
+      "ad": "Planalytics Supply Chain Inventory Optimization Whitepaper",
+      "url": "https://www.planalytics.com/supply-chain/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.planalytics.com/retail-analytics/",
+      "aciklama": "Planalytics hava kaynaklı talep dalgalanması ve stok optimizasyonu arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Bölgesel soğuk hava dalgası yayılımı ve talep yoğunlaşma haritası",
+      "aciklama": "Hava sıcaklığının aniden sıfırın altına inmesiyle değişen lojistik talep baskısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "MIT Megacity Logistics Takımı",
+   "ne": "Aşırı hava koşullarında kentsel lojistik rota optimizasyonu geliştiren araştırma takımı.",
+   "url": "https://megacitylab.mit.edu",
+   "ayrinti": {
+    "neYaptilar": "MIT araştırmacıları, yoğun metropollerde aşırı hava koşulları ve trafik kısıtları altında kentsel lojistik rota optimizasyonları geliştirdi.",
+    "nasil": "GPS filo izleme verileri, sokak topoğrafyası ve saatlik hava tahminlerini karma tamsayılı doğrusal programlama (MILP) ile çözdüler.",
+    "neEdindiler": "Şehir içi e-ticaret dağıtımlarında teslimat gecikmelerini ve yakıt tüketimini zorlu kış günlerinde optimize eden algoritmalar yayınladılar.",
+    "bizNasilKatki": "MIT'nin ulaştırma formülasyonunu PuLP kütüphanesiyle kurup İstanbul ilçeleri arası karlı gün dağıtım rotasını çözeriz.",
+    "referanslar": [
+     {
+      "ad": "MIT Megacity Logistics Lab Research Projects and Publications",
+      "url": "https://megacitylab.mit.edu/research",
+      "tur": "web"
+     },
+     {
+      "ad": "Merchán et al. (2020) Evaluating the impact of traffic and weather on last-mile delivery, Transportation Research Part E",
+      "url": "https://doi.org/10.1016/j.tre.2020.102028",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://megacitylab.mit.edu/research",
+      "aciklama": "MIT Megacity Logistics Lab kentsel dağıtım ve rota optimizasyonu portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul ilçeleri kar yağışı şiddet haritası ve optimal dağıtım ağı",
+      "aciklama": "Kar yağışının başladığı saatlerde lojistik araç rotalarının riskli köprü ve rampalardan kaçınma dinamiği"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Tahmin riskini al",
+   "Rota modelini kur",
+   "Riskli günleri planla"
+  ],
+  "edinim": [
+   [
+    "END 331",
+    "optimizasyon, ulaştırma"
+   ],
+   [
+    "MTO302",
+    "tahmin ürünü, uyarı"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Fırtına tedarik zincirini aksatır; hava tahminini lojistik ve talep planına sen katarsın.",
+  "senin": "END 421 Üretim Planlama ve Kontrol, END 331 Yöneylem Araştırması I",
+  "bizim": "MTO302 Hava Analizi ve Öngörü I, MTO311E Veri Analizi",
+  "ortakIs": "Hava riskini hesaba katan lojistik planı, havaya duyarlı talep tahmini",
+  "detay": "Ortak zemin: END 421 Üretim Planlama ve Kontrol ve END 331 Yöneylem Araştırması I ↔ MTO302 Hava Analizi ve Öngörü I. Örnek görev: kar, fırtına ya da sıcak hava dalgası tahminini bir dağıtım planına risk olarak eklemek; sıcaklık tahmininden enerji ya da perakende talebini tahmin etmek. Kazanç: belirsiz bir girdiyle karar vermeyi gerçek veriyle denemek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1510"
+ },
+ "amac": "Kar ve fırtına tahminini yöneylem optimizasyonuna katarak riskli yollardan kaçınan dağıtım rotası ve güvenli stok planı çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "END 331",
+   "projeyeKatki": "Dağıtım ağındaki araç kapasitesi ve yol risk katsayılarını doğrusal programlama matrislerine dökerek ulaştırma maliyetini en aza indirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ulaştırma problemi dengeli maliyet optimizasyonu",
+     "nerede": "3. adımda: Lojistik depolarından ilçelere sevkiyat rotalarını fırtına risk katsayılarıyla optimize ederken."
+    },
+    {
+     "formulAd": "Doğrusal programlama standart matris formu",
+     "nerede": "2. adımda: Rota kısıtları ve minimum maliyet amaç fonksiyonunu standart matris cebriyle kurarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "1000-500 hPa tabaka kalınlığı ve sinoptik cephe analizleriyle kar-yağmur geçiş çizgisi ile fırtınalı saatler önceden teşhis edilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "1. adımda: 540 dam kalınlık sınırını kullanarak kar yağışı beklenen gün ve ilçeleri önceden tespit ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık kar tahminiyle yolların risk katsayıları çıkarılır; PuLP ile doğrusal programlama çözülüp rotalar optimize edilir.",
+  "ayrinti": "ECMWF ve Open-Meteo üzerinden 48 saatlik kar kalınlığı ve rüzgâr hamlesi tahminleri çekilir. MTO 302 kalınlık analiziyle kar-yağmur sınırı çizilir. END 331 ulaştırma modeli Python PuLP kütüphanesiyle kurularak riskli yollara ceza puanı verilir. Fırtına öncesi erken sevkiyat ve alternatif rotalar karşılaştırılır. 2 haftada tamamlanır.",
+  "sonuc": "Hava riskini maliyet matrisine yansıtarak karlı günlerde rota ve stok maliyetini düşüren Python karar aracı.",
+  "senden": "END 331 Yöneylem Araştırması I (doğrusal programlama, ulaştırma problemi formülasyonu ve PuLP optimizasyon çözücüsü)",
+  "bizden": "MTO 302 Hava Analizi (1000-500 hPa hipsometrik kalınlık hesabı, kar sınırı tespiti ve fırtına zamanlaması)",
+  "adimlar": [
+   {
+    "baslik": "Kar yağışı ve fırtına tahmin verilerinin toplanması",
+    "oz": "Marmara Bölgesi için saatlik kar, sıcaklık ve rüzgâr hamlesi indirilir.",
+    "ayrinti": "Open-Meteo API üzerinden rota güzergâhındaki ilçe koordinatları için 48 saatlik kar yağışı miktarı (cm) ve rüzgâr hızı çekilir.",
+    "nasil": [
+     {
+      "teknik": "openmeteo_requests ile snowfall ve wind_gusts_10m değişkenleri DataFrame formatında çekilir.",
+      "sade": "MTO 302 dersindeki 'Tahmin ürünlerini yorumlamak' bilgisiyle veriler indirilir. Önümüzdeki 2 gün boyunca hangi saatlerde kar fırtınası çıkacağı ve rüzgârın şiddeti belirlenir.",
+      "altAdimlar": [
+       "Dağıtım merkezleri ve teslimat noktalarının enlem/boylamları API'ye iletilir.",
+       "Saatlik kar kalınlığı tahmini (cm) diziye dönüştürülür.",
+       "Rüzgâr hamlesi 50 km/s üzerindeki riskli zaman pencereleri etiketlenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     },
+     {
+      "teknik": "1000-500 hPa hipsometrik kalınlığı hesaplanarak 540 dam altındaki kar riski doğrulanır.",
+      "sade": "MTO 302 dersindeki 'Hipsometrik denklem (1000-500 hPa kalınlığı)' bilgisiyle kar sınırı bulunur. Havanın kuru soğuk mu yoksa sulu sepken mi yapacağı tabaka kalınlığından kesinleştirilir.",
+      "altAdimlar": [
+       "Sayısal modelden 1000 hPa ve 500 hPa jeopotansiyel yükseklikleri alınır.",
+       "İki seviye arasındaki kalınlık dam biriminde çıkarılır.",
+       "535 dam altındaki alanlar kar örtüsü bölgesi olarak sınıflandırılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Skew-T diyagramından kararsızlığı, bulut tabanını ve yağış türünü kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yol ağı gecikme matrisi ve ceza katsayılarının hesabı",
+    "oz": "Normal seyahat süreleri kar ve rüzgâr şiddetine göre dinamik artırılır.",
+    "ayrinti": "İlçeler arası standart mesafe matrisine, beklenen kar kalınlığı ve eğimli yollara bağlı olarak dinamik gecikme çarpanları eklenir.",
+    "nasil": [
+     {
+      "teknik": "C_ij = d_ij * (1 + alpha * kar_ij + beta * ruzgar_ij) ceza fonksiyonuyla maliyet matrisi güncellenir.",
+      "sade": "END 331 dersindeki 'Doğrusal programlama standart matris formu' bilgisiyle maliyet matrisi kurulur. Karlı ve kaygan yollardan gidecek araçların harcayacağı ilave zaman ve yakıt maliyete eklenir.",
+      "altAdimlar": [
+       "İlçeler arası temel mesafe matrisi d_ij yüklenir.",
+       "Kar birikimi 5 cm'yi aşan güzergâhlara yüzde 40 gecikme cezası atanır.",
+       "Yüksek viyadük ve köprü geçişlerine şiddetli rüzgâr riski katsayısı eklenir."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Gerçek hayat karar problemlerini doğrusal programlama yapılarıyla matematiksel formüle etmek."
+      }
+     },
+     {
+      "teknik": "Kritik eğimli yollar için kapanma olasılığı eşiği belirlenerek ikili geçiş kısıtı tanımlanır.",
+      "sade": "END 331 dersindeki 'Tamsayılı programlama ve kesikli kararlar' bilgisiyle geçitler denetlenir. Ağır tırların kayıp yolu tamamen tıkama ihtimali olan dik rampalar rota dışı bırakılır.",
+      "altAdimlar": [
+       "Yol eğimi yüzde 8'den büyük olan ve kar beklenen segmentler taranır.",
+       "Bu yollar için karar değişkeni x_ij = 0 kısıtı atanır.",
+       "Alternatif otoyol tünel ve çevre yolu güzergâhları aktif edilir."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Tamsayılı programlama ve dal-sınır yöntemiyle kesikli lojistik kararlarını optimize etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "PuLP ile ulaştırma ve rota optimizasyonunun çözülmesi",
+    "oz": "Depolardan müşterilere en düşük maliyetli araç ataması matematiksel olarak çözülür.",
+    "ayrinti": "Depo kapasiteleri, ilçe talepleri ve güncellenen hava maliyet matrisi kullanılarak dengeli ulaştırma problemi çözülür.",
+    "nasil": [
+     {
+      "teknik": "pulp.LpProblem('Lojistik_Dagitim', pulp.LpMinimize) nesnesi oluşturulup kısıtlar eklenir.",
+      "sade": "END 331 dersindeki 'Ulaştırma problemi dengeli maliyet optimizasyonu' bilgisiyle en iyi plan bulunur. Hangi deponun hangi markete hangi yoldan sevkiyat yapacağı bilgisayara çözdürülür.",
+      "altAdimlar": [
+       "Karar değişkenleri x_ij (taşınan palet sayısı) tanımlanır.",
+       "Her deponun toplam çıkışının kapasiteyi aşmama kısıtı eklenir.",
+       "Her ilçenin teslimat talebinin tam karşılanma kısıtı bağlanır."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Ulaştırma, aktarma ve atama problemlerini özel ağ algoritmalarıyla en düşük maliyetle çözmek."
+      }
+     },
+     {
+      "teknik": "problem.solve(pulp.PULP_CBC_CMD()) komutuyla optimal sefer sayıları elde edilir.",
+      "sade": "END 331 dersindeki 'Simpleks algoritmasıyla optimum çözümü bulmak' bilgisiyle hesaplama biter. Fırtınada yolda kalmadan tüm ilçelere zamanında ulaşan en ucuz sevkiyat planı çıkar.",
+      "altAdimlar": [
+       "CBC açık kaynak çözücüsü çalıştırılır ve LpStatus 'Optimal' teyit edilir.",
+       "Seçilen rotaların toplam seyahat süresi ve yakıt tüketimi hesaplanır.",
+       "Her araç için saat saat teslimat listesi çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Simpleks algoritması ve iki fazlı yöntemle optimum çözüm noktalarını ve gölge fiyatları bulmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Fırtına öncesi stok aktarımı ve sonuç karşılaştırması",
+    "oz": "Hava tahmini dikkate alınarak yapılan erken plan ile normal plan kıyaslanır.",
+    "ayrinti": "Kar yağmadan 12 saat önce yapılan ön stok transferi senaryosu ile fırtına anındaki plansız dağıtım maliyeti ve gecikmeleri karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "Erken sevkiyat senaryosunda yol ceza katsayıları sıfırlanarak toplam maliyet tasarrufu ölçülür.",
+      "sade": "END 331 dersindeki 'Duyarlılık analizi ve gölge fiyatlar' bilgisiyle strateji değerlendirilir. Fırtına kopmadan bir gün önce depoları doldurmanın şirkete ne kadar tasarruf sağladığı kanıtlanır.",
+      "altAdimlar": [
+       "Fırtına öncesi kuru hava maliyetleriyle ikinci bir optimizasyon koşulur.",
+       "İki plan arasındaki toplam kilometre ve sefer maliyeti farkı çıkarılır.",
+       "Gecikme riskinin yüzde 65 oranında azaldığı sayısal olarak gösterilir."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Dualite teorisi ve duyarlılık analiziyle parametre değişimlerinin optimum karara etkisini incelemek."
+      }
+     },
+     {
+      "teknik": "pandas ve matplotlib ile rota karşılaştırma tablosu ve dağıtım haritası raporlanır.",
+      "sade": "MTO 302 dersindeki 'Tahmin brifingi ve karar desteği' bilgisiyle yöneticilere sunulacak özet hazırlanır. Karlı günlerde hangi güzergâhın neden seçildiği harita üzerinde renkli çizgilerle anlatılır.",
+      "altAdimlar": [
+       "Sonuçlar DataFrame üzerinde ilçe ilçe özetlenir.",
+       "Geleneksel rota ile fırtınaya duyarlı rotanın harita çizimleri karşılaştırılır.",
+       "Lojistik ekiplerinin kullanabileceği CSV dağıtım çizelgesi diske yazılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi kar yağışı birikimi ve yol ağı kapanma riski döngüsü",
+   "aciklama": "Kar fırtınasının yaklaştığı saatlerde ana arterlerde oluşan ulaşım riski ve alternatif koridorlar"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.tomorrow.io/solutions/supply-chain/",
+   "aciklama": "Tomorrow.io lojistik hava riski erken uyarı ve karar destek platformu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Hillier, F. S. & Lieberman, G. J. (2021) Introduction to Operations Research, 11. baskı, McGraw-Hill",
+   "url": "https://openlibrary.org/isbn/9781259872990"
+  },
+  {
+   "ad": "Merchán, D. et al. (2020) Evaluating the impact of traffic and weather on last-mile delivery, Transportation Research Part E",
+   "url": "https://doi.org/10.1016/j.tre.2020.102028"
+  },
+  {
+   "ad": "ECMWF Open Data IFS Numerical Weather Prediction Dataset",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/END-01.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "6042f02ed83f"
+ }
+}

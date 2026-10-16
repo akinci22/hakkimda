@@ -1,0 +1,154 @@
+{
+ "kod": "DEN 448E",
+ "ad": "Mechanics of Mooring Lines",
+ "bolum": "Gemi ve Deniz Teknolojisi Mühendisliği",
+ "obsNo": "448",
+ "ozet": "Açık deniz platformları, şamandıralar ve yüzer yapıların demirleme zincir ve halatlarındaki statik ve dinamik gerilmeleri öğretir. Katener zincir eğrisi teorisi, Morison denklemiyle dalga ve akıntı kuvvetleri, tepe çekme gerilmesi ve fırtınada kopma emniyeti analizlerini kapsar.",
+ "neOgrenirsin": [
+  "Katener denklemleriyle demirleme halatının asılı profilini ve taban temas uzunluğunu hesaplamak.",
+  "Morison denklemiyle silindirik platform ayaklarına binen atalet ve sürüklenme dalga kuvvetlerini türetmek.",
+  "Rüzgâr, akıntı ve dalga bileşkesi altında halatlardaki tepe çekme gerilmesini ve emniyet katsayısını bulmak.",
+  "Fırtına dalga spektrumundan kaynaklanan döngüsel yüklerle demirleme hattı yorulma riskini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Katener (zincir eğrisi) profil bağıntısı",
+   "tex": "z = \\frac{T_H}{w} \\left[ \\cosh\\left(\\frac{w x}{T_H}\\right) - 1 \\right]",
+   "terimler": [
+    [
+     "z",
+     "halat noktasının deniz tabanından dikey yüksekliği",
+     "m"
+    ],
+    [
+     "T_H",
+     "demirleme hattı yatay çekme gerilmesi bileşeni",
+     "N"
+    ],
+    [
+     "w",
+     "halatın su altındaki batık birim boy ağırlığı",
+     "N/m"
+    ],
+    [
+     "x",
+     "deniz tabanı temas noktasından yatay mesafe",
+     "m"
+    ],
+    [
+     "\\cosh",
+     "hiperbolik kosinüs fonksiyonu",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Ağır bir zincirin deniz tabanıyla platform arasında asılı kaldığında aldığı yay profilini verir. Platform dalgayla sürüklendikçe yatay gerilme artar ve tabandaki zincir yukarı kalkarak esneklik sağlar.",
+   "ornek": "Su derinliği h = 60 m, batık birim ağırlık w = 1200 N/m ve yatay gerilme T_H = 350 kN ise tabandan kalkan asılı zincir boyu 85 m hesaplanır.",
+   "nerede": "F-GIDB-GMD-02 projesinde fırtına dalgaları altında yüzer platformun yatay ötelenme miktarını ve zincir kalkma boyunu hesaplarken."
+  },
+  {
+   "ad": "Morison denklemi (toplam hidrodinamik dalga kuvveti)",
+   "tex": "F = \\frac{1}{2} C_D \\rho D |u| u + C_M \\rho \\frac{\\pi D^2}{4} \\frac{\\partial u}{\\partial t}",
+   "terimler": [
+    [
+     "F",
+     "yapı elemanı birim boyuna etkiyen toplam hidrodinamik dalga kuvveti",
+     "N/m"
+    ],
+    [
+     "C_D",
+     "hidrodinamik sürüklenme katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\rho",
+     "deniz suyu yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "D",
+     "silindirik platform elemanı çapı",
+     "m"
+    ],
+    [
+     "u",
+     "su parçacığının yatay dalga hızı",
+     "m/s"
+    ],
+    [
+     "C_M",
+     "hidrodinamik atalet katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\partial u / \\partial t",
+     "su parçacığının yatay dalga ivmesi",
+     "m/s²"
+    ]
+   ],
+   "sade": "Dalgaların platform kolonlarına ve halatlarına uyguladığı sürtünme ve ivme kuvvetlerinin toplamıdır. Dalga tepesi geçerken sürüklenme kuvveti, dalga düğüm noktasında ise ivmelenme kuvveti zirveye çıkar.",
+   "ornek": "D = 8 m çapında yüzer türbin kolonuna çarpan 4 m dalgada u = 2,5 m/s ve ivme 1,8 m/s² ise birim boya binen toplam tepe kuvvet F = 165 kN/m seviyesine ulaşır.",
+   "nerede": "F-GIDB-GMD-02 projesinde fırtına dalga serilerinden platform ayaklarına binen anlık çekme kuvvetlerini türetirken."
+  },
+  {
+   "ad": "Demirleme hattı maksimum tepe çekme gerilmesi",
+   "tex": "T_{\\max} = T_H + w h",
+   "terimler": [
+    [
+     "T_{\\max}",
+     "platform bağlantı noktasındaki toplam maksimum tepe çekme gerilmesi",
+     "N"
+    ],
+    [
+     "T_H",
+     "demirleme hattı yatay çekme gerilmesi bileşeni",
+     "N"
+    ],
+    [
+     "w",
+     "halatın su altındaki batık birim boy ağırlığı",
+     "N/m"
+    ],
+    [
+     "h",
+     "su derinliği (platform bağlantı irtifası)",
+     "m"
+    ]
+   ],
+   "sade": "Demirleme halatının kilitlendiği platform köşe noktasında maruz kaldığı en yüksek bileşke gerilmedir. Yatay fırtına itkisi ile asılı zincirin tüm ağırlığı bu noktada birleşir.",
+   "ornek": "h = 75 m derinlikte T_H = 450 kN ve w = 1100 N/m ise en üst halkadaki tepe gerilme T_max = 450 + 82,5 = 532,5 kN olarak bulunur; kopma emniyet katsayısı en az 2 olmalıdır.",
+   "nerede": "F-GIDB-GMD-02 projesinde ekstrem fırtına günlerinde demirleme zincirinin kopma emniyeti risk puanını hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Catenary_curve.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Katener (zincir eğrisi) geometrisi ve asılı gerilme vektörleri"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Offshore_wind_turbine_types.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yüzer açık deniz platformları ve demirleme hattı konfigürasyonları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · DEN 448E (Mechanics of Mooring Lines)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=DEN&dersNo=448"
+  },
+  {
+   "ad": "Faltinsen, O. M. (1990) Sea Loads on Ships and Offshore Structures, Cambridge University Press · ISBN 978-0521458702",
+   "url": "https://openlibrary.org/isbn/9780521458702"
+  },
+  {
+   "ad": "Chakrabarti, S. K. (2005) Handbook of Offshore Engineering, Elsevier · ISBN 978-0080443812",
+   "url": "https://openlibrary.org/isbn/9780080443812"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=DEN&dersNo=448"
+}

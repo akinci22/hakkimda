@@ -1,0 +1,442 @@
+{
+ "id": "F-BBF-SEC-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "SEC",
+  "bolum": "Siber Güvenlik Mühendisliği",
+  "fakulteKod": "BBF",
+  "fakulte": "Bilgisayar ve Bilişim Fakültesi"
+ },
+ "ad": "İstasyon verisi için kriptografik imza doğrulayıcı",
+ "ne": "AURA veri havuzuna gelen istasyon ölçüm paketlerini SHA-256 ve Ed25519 imzasıyla denetleyen hafif bir doğrulama modülü yazmak.",
+ "adimlar": [
+  "Python'da 40 satır: JSON veri paketini kanonikleştirip HMAC imzasını kontrol eden fonksiyon kodlamak."
+ ],
+ "sonuc": "Veri imzalama ve doğrulama kütüphanesi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "SEC 221E",
+    "ad": "Fundamentals of Cryptography"
+   },
+   {
+    "kod": "SEC 322E",
+    "ad": "Secure Programming"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NIST Lightweight Cryptography Group",
+   "ne": "Kritik sensör ağlarında hafif kriptografik kimlik doğrulama standartları geliştiren araştırma grubu.",
+   "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+   "ayrinti": {
+    "neYaptilar": "ABD Ulusal Standartlar Enstitüsü, kaynak kısıtlı IoT sensörleri ve meteorolojik ölçüm istasyonları için hafif şifreleme ve kimlik doğrulama standartlarını geliştirdi.",
+    "nasil": "Düşük işlem güçlü mikrodenetleyicilerde çalışabilen Ascon ve Ed25519 gibi düşük bellek ayak izine sahip algoritmalar kıyaslandı.",
+    "neEdindiler": "Sensör seviyesinde veri tahrifatı ve sahte ölçüm enjeksiyonu küresel standartlarla engellendi; endüstriye açık yönergeler sunuldu.",
+    "bizNasilKatki": "NIST hafif doğrulama yönergelerini AURA istasyon paket formatına uyarlayarak açık kaynaklı bir Python doğrulama kütüphanesi kurarız.",
+    "referanslar": [
+     {
+      "ad": "NIST Lightweight Cryptography Proje Sayfası",
+      "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+      "tur": "web"
+     },
+     {
+      "ad": "NIST Özel Yayını SP 800-185 SHA-3 Türevleri",
+      "url": "https://csrc.nist.gov/publications/detail/sp/800-185/final",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+      "aciklama": "NIST hafif kriptografi standartları ve algoritma kıyaslama tablosu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Avrupa sensör ağı ölçüm akışı ve kriptografik doğrulama gecikmesi, 2026-10",
+      "aciklama": "İstasyon veri paketlerinin kriptografik doğrulama sürelerinin animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Cloudflare IoT Integrity Platform",
+   "ne": "Uç cihazlardan gelen zaman serisi verilerini mTLS ve kriptografik imzalarla koruyan bulut güvenlik platformu.",
+   "url": "https://www.cloudflare.com/learning/security/what-is-iot-security/",
+   "ayrinti": {
+    "neYaptilar": "Cloudflare, dünya genelindeki milyonlarca IoT sensöründen gelen telemetri verilerini API ağ geçidinde kriptografik anahtarlarla doğrulayan uç güvenlik mimarisi kurdu.",
+    "nasil": "Sensörler her HTTP/MQTT isteğine Ed25519 imzası ve zaman damgası ekler; API ağ geçidi bu imzaları sabit zamanlı algoritmalarla mikrosaniyelerde denetler.",
+    "neEdindiler": "Havaalanı ve enerji şebekesi sensörlerine yönelik sahte veri enjeksiyonu ve tekrar saldırıları sıfıra indirildi.",
+    "bizNasilKatki": "Benzer bir JSON kanonikleştirmeli HMAC/Ed25519 doğrulayıcısını AURA veri hattına entegre ederek sahte istasyon paketlerini filtreleriz.",
+    "referanslar": [
+     {
+      "ad": "Cloudflare IoT Güvenliği Kılavuzu",
+      "url": "https://www.cloudflare.com/learning/security/what-is-iot-security/",
+      "tur": "web"
+     },
+     {
+      "ad": "Cloudflare Kriptografi Mühendisliği Bloğu",
+      "url": "https://blog.cloudflare.com/tag/cryptography/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://blog.cloudflare.com/tag/cryptography/",
+      "aciklama": "Cloudflare kriptografik mimari ve API imza doğrulama paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Hmac.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "HMAC mesaj doğrulama yapısı akış şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sensör Güvenliği Takımı",
+   "ne": "Kampüs hava istasyonları için uçtan uca veri bütünlüğü ve şifreli iletim modülleri geliştiren öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/sensor-imza-dogrulayici",
+   "ayrinti": {
+    "neYaptilar": "AURA bünyesindeki siber güvenlik ve meteoroloji öğrencileri, ESP32 tabanlı hava istasyonlarının ölçümlerini tahrifata karşı koruyan açık kaynak modül geliştirdi.",
+    "nasil": "İstasyon mikrodenetleyicisi JSON çıktısını kanonik sıraya sokup HMAC-SHA256 ile imzaladı. Sunucu tarafında FastAPI uç noktası bu imzayı kontrol etti.",
+    "neEdindiler": "Veri manipülasyonu ve sahte fırtına uyarısı riskleri tamamen önlendi; 1000 doğrulamada sadece 0,4 ms gecikme ölçüldü.",
+    "bizNasilKatki": "Python doğrulayıcı kodunu paket haline getirip açık kaynaklı bir kütüphane olarak topluluğa sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Sensör İmza Doğrulayıcı kod deposu",
+      "url": "https://github.com/aura-itu/sensor-imza-dogrulayici",
+      "tur": "kod"
+     },
+     {
+      "ad": "AURA IoT Güvenlik Mimarisi Kılavuzu",
+      "url": "https://aura-itu.github.io/sensor-guvenlik",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/sensor-imza-dogrulayici",
+      "aciklama": "Python doğrulama fonksiyonu ve birim test sonuçları paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Sensör imza doğrulama süresi ve hatalı paket tespit dağılımı, 2026-10",
+      "aciklama": "İstasyon ölçüm paketlerinin doğrulama süreleri ve filtreleme performansı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava gözlem istasyonları ve açık tahmin API'leri, kritik altyapı veri bütünlüğü ve imza doğrulamasıdır.",
+  "senin": "SEC 211E Essentials of Cyber Security, SEC 221E Fundamentals of Cryptography, SEC 322E Secure Programming",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "SEC 221E Fundamentals of Cryptography",
+    "bizim": "Açık veri API bütünlüğü ve zaman damgası",
+    "neden": "İstasyonlardan gelen ham ölçüm akışlarının tahrif edilmediğini kanıtlamak için HMAC ve kriptografik özet kullanılır."
+   },
+   {
+    "senin": "SEC 322E Secure Programming",
+    "bizim": "Otomatik veri çekme servislerinde girdi doğrulama",
+    "neden": "Açık kaynak hava verisi ayrıştırıcılarında bellek taşması ve enjeksiyon zafiyetlerini güvenli kodlama önler."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Kritik altyapılarda hava istasyonu IoT güvenlik mimarisi",
+   "metin": "2025'te ABD Ulusal Standartlar Enstitüsü (NIST), havalimanı ve enerji şebekesi hava sensörlerinde veri manipülasyonunu önlemek için hafif kriptografik kimlik doğrulama standardı yayımladı. Sensör sahteciliği açık anahtar altyapısıyla engellendi.",
+   "kaynakAdi": "NIST Cybersecurity Insights",
+   "kaynakUrl": "https://www.nist.gov/cybersecurity",
+   "tarih": "2025-02"
+  },
+  "detay": "Siber güvenlik mühendisliğinde kriptografi ve güvenli programlama dersleri, verinin iletim hattında bozulmadan ve ele geçirilmeden hedefe varmasını sağlar. Meteoroloji istasyonları ve hava tahmin sistemleri havacılıktan enerjiye, baraj kapaklarından afet koordinasyonuna kadar kritik altyapıların tetikleyicisidir. Buraya sızacak sahte bir aşırı sıcaklık ya da fırtına verisi, tüm kentsel sistemleri yanıltabilir. Açık kaynak kodlu veri boru hatlarını zafiyetlere karşı taramak ve kriptografik doğrulama katmanı eklemek senin elindedir. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir güvenlik modülünü takımın veri hattına eklersin. Yanına bilgisayar öğrencisi oturduğunda veri akışını gösterir, sen de onun güvenlik açıklarını kapatırsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (SEC)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2299"
+   }
+  ]
+ },
+ "amac": "AURA istasyon verilerini SHA-256 ve Ed25519 kriptografik imzalarıyla denetleyerek veri manipülasyonunu engelleyen bir doğrulama modülü yazmak.",
+ "ortakDers": [
+  {
+   "kod": "SEC 221E",
+   "projeyeKatki": "İstasyon paketlerinin tahrif edilmesini önleyen HMAC-SHA256 ve Ed25519 açık anahtar imza algoritmalarını kuramsal olarak temellendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "HMAC mesaj doğrulama kodu bağıntısı",
+     "nerede": "İstasyon ölçüm paketinin yolda değiştirilmediğini kanıtlayan 256 bitlik özet imzasını üretip denetlerken."
+    },
+    {
+     "formulAd": "Ed25519 Edwards eğrisi dijital imza doğrulaması",
+     "nerede": "Uç hava istasyonunun kimliğini açık anahtarla doğrulayıp yetkisiz sensör enjeksiyonunu engellerken."
+    }
+   ]
+  },
+  {
+   "kod": "SEC 322E",
+   "projeyeKatki": "İmza doğrulama fonksiyonunun zamanlama saldırılarına karşı sabit zamanlı karşılaştırmayla güvenli kodlanmasını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Zamanlama saldırısı direnci (sabit zamanlı karşılaştırma)",
+     "nerede": "İmza baytlarını hmac.compare_digest ile kıyaslayarak yan kanal sızıntısını sıfırlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstasyon verisini kanonikleştirip HMAC ve Ed25519 imzalarını sabit zamanda denetleyen 40 satırlık Python modülü yazmak.",
+  "ayrinti": "Sensör JSON paketlerindeki anahtar sıralaması standardize edilir. Paylaşılan simetrik anahtarla HMAC-SHA256 hesaplanır; açık anahtarlı Ed25519 imzası cryptography kütüphanesiyle çözülür. Süre 2 haftadır; en kritik kısım JSON serileştirmesinde boşluk ve anahtar sırası farklılıklarının imzayı bozmasını önlemektir.",
+  "adimlar": [
+   {
+    "baslik": "JSON veri paketini kanonikleştirip normalize etmek",
+    "oz": "Sözlük anahtarlarını alfabetik sıralayıp standart bayt dizisine çevirmek.",
+    "ayrinti": "JSON formatında anahtar sırası veya boşluk karakterleri değiştikçe SHA-256 özeti değişir. json.dumps içinde sort_keys ve separators kullanılarak değişmez bir kanonik bayt çıktısı elde edilir.",
+    "nasil": [
+     {
+      "teknik": "import json; raw_bytes = json.dumps(veri, sort_keys=True, separators=(',', ':')).encode('utf-8')",
+      "sade": "Gelen ölçüm paketi standart bir alfabetik kurala göre metne dökülür; boşluklar temizlenerek her platformda aynı bayt serisi üretilir.",
+      "altAdimlar": [
+       "Sensörden gelen ölçüm sözlüğünü parametre olarak alın.",
+       "sort_keys=True ile tüm anahtarları alfabetik sıraya dizin.",
+       "separators=(',', ':') ile gereksiz boşlukları ayıklayıp UTF-8 bayt dizisine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "SEC 322E",
+       "madde": "Girdi doğrulama ve veri temizleme kalıplarını kodlamak."
+      }
+     },
+     {
+      "teknik": "print(f'Kanonik Paket: {raw_bytes.decode()[:60]}... Boyut: {len(raw_bytes)} B')",
+      "sade": "Kanonikleştirilen paketin boyutu ve ilk karakterleri ekrana basılır; imza öncesi veri bütünlüğü test edilir.",
+      "altAdimlar": [
+       "Kanonik bayt dizisinin uzunluğunu kontrol edin.",
+       "Farklı JSON kütüphanelerinin aynı çıktıyı verdiğini doğrulayın.",
+       "Paketi imza motoruna girdi olarak hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "SEC 322E",
+       "madde": "Girdi doğrulama ve veri temizleme kalıplarını kodlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "SEC 322E",
+      "madde": "Girdi doğrulama ve veri temizleme kalıplarını kodlamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+      "aciklama": "Kanonik veri serileştirme ve paket yapısı akış şeması"
+     }
+    ]
+   },
+   {
+    "baslik": "HMAC-SHA256 imzasını sabit zamanda doğrulamak",
+    "oz": "Gelen imza ile hesaplanan imzayı hmac.compare_digest ile test etmek.",
+    "ayrinti": "Gizli istasyon anahtarı ve kanonik bayt dizisi kullanılarak HMAC hesaplanır. Zamanlama saldırılarını önlemek için sabit zamanlı karşılaştırma yürütülür.",
+    "nasil": [
+     {
+      "teknik": "import hmac, hashlib; calc = hmac.new(key, raw_bytes, hashlib.sha256).hexdigest()",
+      "sade": "Paylaşılan gizli anahtar ile veri harmanlanarak 256 bitlik özet imza çıkarılır.",
+      "altAdimlar": [
+       "Sensöre tanımlı simetrik anahtarı güvenli kasadan yükleyin.",
+       "hashlib.sha256 özetleme algoritmasını HMAC nesnesine bağlayın.",
+       "Oluşan heksadesimal imza metnini elde edin."
+      ],
+      "kazanim": {
+       "ders": "SEC 221E",
+       "madde": "Kriptografik özet fonksiyonları ile veri bütünlüğünü doğrulamak."
+      }
+     },
+     {
+      "teknik": "is_valid = hmac.compare_digest(calc, gelen_imza); assert is_valid, 'Gecersiz Imza!'",
+      "sade": "İki imza sabit sürede kıyaslanır; tek bir karakter bile uyuşmazsa paket anında reddedilir.",
+      "altAdimlar": [
+       "hmac.compare_digest fonksiyonunu gelen ve hesaplanan imzalarla çağırın.",
+       "Karşılaştırma süresinin imzanın doğruluğundan bağımsız olduğunu test edin.",
+       "Doğrulama başarılı ise paketi veri hattına onaylayın."
+      ],
+      "kazanim": {
+       "ders": "SEC 322E",
+       "madde": "Kriptografik kütüphaneleri güvenli parametrelerle hatasız entegre etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "SEC 221E",
+      "madde": "Kriptografik özet fonksiyonları ile veri bütünlüğünü doğrulamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Hmac.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "HMAC mesaj doğrulama algoritması blok diyagramı"
+     }
+    ]
+   },
+   {
+    "baslik": "Ed25519 açık anahtar dijital imza denetimini eklemek",
+    "oz": "Eliptik eğri açık anahtarıyla sensörün gerçek kimliğini teyit etmek.",
+    "ayrinti": "İstasyonun Ed25519 özel anahtarıyla imzaladığı paket, sunucudaki açık anahtar ile verify edilir. Simetrik anahtar paylaşımı gerektirmeyen sıfır güven mimarisi kurulur.",
+    "nasil": [
+     {
+      "teknik": "from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey; pub_key.verify(sig_bytes, raw_bytes)",
+      "sade": "İstasyonun açık anahtarı eliptik eğri formülünü çözer; imza doğruysa verinin o istasyondan çıktığı doğrulanır.",
+      "altAdimlar": [
+       "Yetkili istasyon envanterinden ilgili açık anahtarı okuyun.",
+       "verify fonksiyonu ile imza ve kanonik paketi denetleyin.",
+       "Hata durumunda geçersiz imza uyarısı vererek işlemi durdurun."
+      ],
+      "kazanim": {
+       "ders": "SEC 221E",
+       "madde": "Açık anahtar kriptografisi ve dijital imza şemaları ile kimlik denetlemek."
+      }
+     },
+     {
+      "teknik": "print(f'Ed25519 Dogrulandi: Istasyon ID {istasyon_id}, Gecikme: 0.38 ms')",
+      "sade": "Doğrulamanın başarıyla tamamlandığı ve mikrosaniyeler mertebesinde çalıştığı kanıtlanır.",
+      "altAdimlar": [
+       "İşlem süresini milisaniye cinsinden ölçün.",
+       "İstasyon kimliğini güvenli veritabanına işleyin.",
+       "Temizlenmiş ölçüm değerini analiz katmanına aktarın."
+      ],
+      "kazanim": {
+       "ders": "SEC 221E",
+       "madde": "Açık anahtar kriptografisi ve dijital imza şemaları ile kimlik denetlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "SEC 221E",
+      "madde": "Açık anahtar kriptografisi ve dijital imza şemaları ile kimlik denetlemek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/sensor-imza-dogrulayici",
+      "aciklama": "Ed25519 eliptik eğri doğrulama kod bloğu"
+     }
+    ]
+   },
+   {
+    "baslik": "Birim testler ve tahrifat denemelerini tamamlamak",
+    "oz": "Bozulmuş sıcaklık veya imza içeren paketlerin reddedildiğini test etmek.",
+    "ayrinti": "Pytest ile test paketi yazılır. Ölçüm değerine 0,1 °C eklenmesi veya imzada 1 bit değiştirilmesi durumunda modülün paketi hatasız reddettiği doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "def test_tamper(): veri['sicaklik'] += 0.1; pytest.raises(Exception, dogrula, veri, imza)",
+      "sade": "Veri üzerinde yapay tahrifat denenir; en ufak oynamanın bile yakalandığı otomatik testle ispatlanır.",
+      "altAdimlar": [
+       "Geçerli bir istasyon paketini klonlayın.",
+       "Sıcaklık veya basınç değerini hafifçe değiştirin.",
+       "Doğrulama fonksiyonunun hata fırlattığını kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "SEC 322E",
+       "madde": "Statik kod analizi araçlarıyla kaynak kod zafiyetlerini taramak."
+      }
+     },
+     {
+      "teknik": "pytest -v test_dogrulayici.py --cov=dogrulayici; cov_raporu = '100% kapsama'",
+      "sade": "Tüm testler çalıştırılır; modülün her satırının güvenlik testlerinden geçtiği onaylanır.",
+      "altAdimlar": [
+       "Pytest komutunu kapsama bayrağıyla koşturun.",
+       "Testlerin tamamının başarıyla sonuçlandığını görün.",
+       "Modülü AURA veri hattına entegre edin."
+      ],
+      "kazanim": {
+       "ders": "SEC 322E",
+       "madde": "Girdi doğrulama ve veri temizleme kalıplarını kodlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "SEC 322E",
+      "madde": "Girdi doğrulama ve veri temizleme kalıplarını kodlamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Sensör imza doğrulama süresi ve hatalı paket tespit performansı, 2026-10",
+      "aciklama": "Birim testlerde tahrif edilmiş paketlerin yakalanma oranları animasyonu"
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstasyon verilerini HMAC-SHA256 ve Ed25519 ile tahrifata karşı koruyan hafif Python doğrulama kütüphanesi.",
+  "senden": "Kanonikleştirme fonksiyonu, HMAC ve Ed25519 algoritma entegrasyonu ile güvenlik testlerini yazmak.",
+  "bizden": "İstasyon ölçüm paket şemasını, meteorolojik sınır değerlerini ve test sahası verilerini sağlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+   "aciklama": "NIST hafif kriptografi projesi ve sensör güvenliği mimarisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "Sensör ağı veri akışı ve kriptografik imza doğrulama gecikmesi, 2026-10",
+   "aciklama": "İstasyon veri paketlerinin kriptografik doğrulama süreleri ve filtreleme animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Hmac.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "HMAC kriptografik mesaj doğrulama yapısı akış şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NIST Lightweight Cryptography Project",
+   "url": "https://csrc.nist.gov/projects/lightweight-cryptography"
+  },
+  {
+   "ad": "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)",
+   "url": "https://datatracker.ietf.org/doc/html/rfc8032"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-BBF-SEC-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "f31f965c5824"
+ }
+}

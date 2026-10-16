@@ -1,0 +1,424 @@
+{
+ "id": "GEO-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "GEO",
+  "bolum": "Geomatik (Harita) Mühendisliği",
+  "fakulteKod": "INS"
+ },
+ "ad": "Sel/taşkın risk panosu",
+ "ne": "Açık sayısal hava tahmini yağış alanları ile sayısal yükseklik modelini harita tabanlı taşkın risk panosunda birleştiren sistem.",
+ "adimlar": [
+  "Açık yağış tahminini indir",
+  "Yükseklik ve eğim haritasını hazırla",
+  "Basit bir risk puanı hesapla",
+  "Sonucu etkileşimli haritaya koy"
+ ],
+ "sonuc": "Sonunda bir web risk panosu olur.",
+ "senden": "GEO 313E Digital Image Processing",
+ "bizden": "Yağış tahmini ve belirsizliği",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "GEO 313E",
+    "ad": "Digital Image Processing"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Fathom",
+   "ne": "Bristol Üniversitesindeki taşkın araştırmasından doğdu; küresel taşkın risk haritası satan bir şirket oldu.",
+   "url": "https://www.fathom.global",
+   "ayrinti": {
+    "neYaptilar": "Bristol Üniversitesi araştırmacıları tarafından kurulan Fathom, küresel ölçekte hidrodinamik taşkın simülasyonları geliştirdi.",
+    "nasil": "Yüksek çözünürlüklü uydu yükseklik verileri (FABDEM) ve küresel iklim yağış alanlarını 2B sığ su denklemleriyle GPU üzerinde simüle ettiler.",
+    "neEdindiler": "Dünya Bankası ve küresel reasürans şirketleri için 10 metrelik taşkın tehlike haritaları ve risk analizi platformu kurdular.",
+    "bizNasilKatki": "Açık DEM verisi ve ECMWF yağış tahminini raster tabanlı akış yönü algoritmalarıyla birleştiren mini web panosu kurarız.",
+    "referanslar": [
+     {
+      "ad": "Fathom Global Flood Map Methodology and Validation",
+      "url": "https://www.fathom.global/solutions/flood-risk/",
+      "tur": "rapor"
+     },
+     {
+      "ad": "Sampson et al. (2015) A high-resolution global flood hazard model, Water Resources Research",
+      "url": "https://doi.org/10.1002/2015WR016954",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.fathom.global/solutions/flood-risk/",
+      "aciklama": "Fathom taşkın tehlike haritalama ve risk simülasyon portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Yoğun yağış anında havza birikimli yüzey akışı ve taşkın yayılım animasyonu",
+      "aciklama": "Şiddetli yağışın sayısal arazi üzerinde drenaj hatları boyunca göllenme simülasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Floodbase",
+   "ne": "Uydudan taşkın haritalayan bir girişim olarak başladı; taşkın sigortası için veri sunuyor.",
+   "url": "https://www.floodbase.com",
+   "ayrinti": {
+    "neYaptilar": "Floodbase, SAR ve optik uydu görüntülerini makine öğrenmesiyle işleyerek anlık taşkın yayılımını tespit eden platform kurdu.",
+    "nasil": "Sentinel-1 radar ve Sentinel-2 optik verilerini konvolüsyonel sinir ağlarıyla piksel piksel sınıflandırıp su yüzeylerini çıkardılar.",
+    "neEdindiler": "Gelişmekte olan ülkeler ve tarım sektörü için parametrik taşkın sigortası ödemelerini tetikleyen operasyonel izleme servisi sundular.",
+    "bizNasilKatki": "Taşkın öncesi ve sonrası Sentinel-1 radar görüntülerinden eşikleme yöntemiyle su basan alanları çıkaran Python kodu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Floodbase Satellite Flood Tracking Technology",
+      "url": "https://www.floodbase.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Tellman et al. (2021) Satellite imaging reveals increased proportion of population exposed to floods, Nature",
+      "url": "https://doi.org/10.1038/s41586-021-03695-w",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.floodbase.com/technology",
+      "aciklama": "Floodbase uydu tabanlı taşkın haritalama ve izleme teknolojisi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Konvektif fırtına hücresi radar yansıtıcılığı ve ani su baskını gelişimi",
+      "aciklama": "Radar yansıtıcılık döngüsü ile yerdeki ani su baskını risk alanlarının karşılaştırması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Google Flood Hub",
+   "ne": "Taşkın tahminini etkileşimli haritada herkese açık gösteriyor.",
+   "url": "https://sites.research.google/floodforecasting/",
+   "ayrinti": {
+    "neYaptilar": "Google Research ekibi, 80'den fazla ülkede nehir taşkınlarını 7 gün önceden öngören açık yapay zekâ servisi kurdu.",
+    "nasil": "ECMWF hidrolojik tahminleri, küresel nehir ölçüm istasyonları ve DEM verilerini LSTM sinir ağlarıyla birleştirip taşkın haritası çizdiler.",
+    "neEdindiler": "460 milyondan fazla insanın yaşadığı nehir havzalarında erken uyarı bildirimleri sağlayarak can kayıplarını azalttılar.",
+    "bizNasilKatki": "Açık Leaflet harita kütüphanesini kullanarak nehir taşma eşikleri ve renkli taşkın uyarı katmanları oluşturan arayüz kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Google Flood Forecasting Initiative Technical Report",
+      "url": "https://sites.research.google/floodforecasting/",
+      "tur": "web"
+     },
+     {
+      "ad": "Nearing et al. (2024) Global prediction of extreme floods in ungauged watersheds, Nature",
+      "url": "https://doi.org/10.1038/s41586-024-07145-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://sites.research.google/floodforecasting/",
+      "aciklama": "Google Flood Hub küresel nehir taşkını erken uyarı arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Havza 7 günlük birikimli yağış anomalisi ve debi pik simülasyonu",
+      "aciklama": "ECMWF tabanlı havza yağış serisinin zamansal akış birikimi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Afet ve Taşkın Takımı",
+   "ne": "Açık uydu ve yükseklik verileriyle öğrenci ölçeğinde taşkın risk haritası çıkaran çalışma grubu.",
+   "url": "https://rasterio.readthedocs.io/en/stable/",
+   "ayrinti": {
+    "neYaptilar": "Öğrenci çalışma takımı, açık DEM ve ECMWF yağış verileriyle yerel havzalar için açık kaynaklı taşkın risk katmanları geliştirdi.",
+    "nasil": "Python GeoPandas ve Rasterio kütüphaneleriyle eğim ve akış doğrultusu algoritmalarını Jupyter ortamında çalıştırdılar.",
+    "neEdindiler": "Yerel yönetimler ve sivil savunma için 30 metrelik açık taşkın tehlike prototipi sundular.",
+    "bizNasilKatki": "Takımın açık kaynaklı havza sınırlandırma ve eğim filtreleme fonksiyonlarını web arayüzümüze bağlarız.",
+    "referanslar": [
+     {
+      "ad": "OGC Open Geospatial Consortium Disaster Pilot Report",
+      "url": "https://www.ogc.org/initiatives/disaster-pilot-2023/",
+      "tur": "rapor"
+     },
+     {
+      "ad": "Open Source Geospatial Python Rasterio Documentation",
+      "url": "https://rasterio.readthedocs.io/en/stable/",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://rasterio.readthedocs.io/en/stable/",
+      "aciklama": "Rasterio açık kaynak mekânsal veri işleme kütüphanesi dokümantasyonu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Öğrenci takımı Marmara havzası taşkın akış yolu hesaplama döngüsü",
+      "aciklama": "Açık DEM verisi üzerinden drenaj hatlarının ve su toplama çukurlarının çıkarılma simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Yağış tahminini al",
+   "Eğim ve akış yönünü hesapla",
+   "Risk panosunu yayınla"
+  ],
+  "edinim": [
+   [
+    "GEO 313E",
+    "CBS, arazi analizi"
+   ],
+   [
+    "MTO406",
+    "yağış tahmini okuma"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "NASA Worldview uydu görüntüleri",
+    "url": "https://worldview.earthdata.nasa.gov/",
+    "gorsel": "g/kaynak/worldview.jpg",
+    "lisans": "kamu malı",
+    "slug": "worldview"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Uydu görüntüsünden sis haritası çıkarır, GNSS sinyalinden havadaki su buharını kestirirsin.",
+  "senin": "GEO 204 Hata Teorisi ve Dengeleme, GEO 313E Digital Image Processing",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO301 Uzaktan Algılama",
+  "ortakIs": "Uydudan YZ ile sis haritası, GNSS ile su buharı",
+  "detay": "Ortak zemin: GEO 204 Hata Teorisi ve Dengeleme ↔ MTO406; en küçük kareler veri asimilasyonunun matematiği. GEO 313E Digital Image Processing ↔ MTO301 Uzaktan Algılama. Örnek görev: uydudan sis ve alçak bulut haritası ya da GNSS ile su buharı karşılaştırması. Kazanç: görüntü işlemeyi havacılık ve ulaşım için anlamlı bir işte kullanmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2294"
+ },
+ "amac": "Açık sayısal hava tahmini yağış alanları ile sayısal yükseklik modelini harita tabanlı taşkın risk panosunda birleştirmek.",
+ "ortakDers": [
+  {
+   "kod": "GEO 313E",
+   "projeyeKatki": "Sayısal yükseklik modeli üzerinden 2B konvolüsyonel filtreleme ile eğim ve akış doğrultuları türetilir; su yüzeyleri spektral indekslerle ayıklanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "2B Sayısal konvolüsyon ve uzaysal filtreleme bağıntısı",
+     "nerede": "2. adımda: DEM ızgarasından Sobel çekirdekleriyle eğim ve vadi drenaj hatlarını hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Sayısal hava tahmin modellerinden saatlik ve birikimli yağış alanları çekilir; konvektif kararsızlık (CAPE) ile ani sel riski taşıyan fırtınalar teşhis edilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Konvektif yararlı potansiyel enerji (CAPE)",
+     "nerede": "1. adımda: Sayısal model atmosfer profilinden ani sağanak ve sel potansiyelini değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık yağış tahmini ile sayısal yükseklik modelinden eğim ve drenaj çıkarılıp Leaflet ile web risk panosu yapılır.",
+  "ayrinti": "Open-Meteo veya ECMWF API üzerinden saatlik yağış tahminleri alınır. NASA SRTM 30 m sayısal yükseklik modelinden GEO 313E konvolüsyon filtreleriyle eğim ve akış doğrultusu hesaplanır. MTO 406 yağış birikimi ve CAPE kararsızlığıyla piksel bazlı sel risk skoru türetilir. Sonuçlar Leaflet tabanlı web haritasında görselleştirilir. 3 haftada tamamlanır.",
+  "sonuc": "Yağış tahminiyle birleşen arazi eğiminden anlık sel risk puanı haritası üreten etkileşimli web panosu.",
+  "senden": "GEO 313E Digital Image Processing (sayısal yükseklik matrisi işleme, konvolüsyon eğim hesabı ve web harita katmanı)",
+  "bizden": "MTO 406 Hava Analizi (sayısal hava tahmini yağış alanları, CAPE kararsızlık analizi ve sel eşikleri)",
+  "adimlar": [
+   {
+    "baslik": "Sayısal hava tahmini yağış ve kararsızlık verisi çekme",
+    "oz": "ECMWF ve Open-Meteo üzerinden saatlik yağış ve CAPE değerleri indirilir.",
+    "ayrinti": "API üzerinden çalışma havzası için 24-72 saatlik toplam yağış miktarı, yağış şiddeti ve atmosferik konvektif kararsızlık (CAPE) verisi çekilir.",
+    "nasil": [
+     {
+      "teknik": "openmeteo_requests ile saatlik precipitation ve cape değişkenleri JSON olarak sorgulanır.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin ürünlerini yorumlamak' bilgisiyle tahmin çekilir. Önümüzdeki günlerde hangi saatlerde aşırı yağmur yağacağı ve fırtına riski indirilir.",
+      "altAdimlar": [
+       "Hedef havzanın koordinat kutusu (enlem/boylam) API sorgusuna girilir.",
+       "Saatlik yağış miktarları NumPy dizisine dönüştürülür.",
+       "24 saatlik kümülatif yağış toplamı hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "CAPE değerleri 1000 J/kg eşiğiyle taranarak konvektif ani sağanak fırtına alanları maskelenir.",
+      "sade": "MTO 406 dersindeki 'Konvektif yararlı potansiyel enerji (CAPE)' bilgisiyle şiddetli yağış belirlenir. Havanın ani ve çok kuvvetli fırtına çıkarma potansiyeli sayısallaştırılır.",
+      "altAdimlar": [
+       "Grid piksellerindeki CAPE değerleri taranır.",
+       "1500 J/kg üzerindeki alanlara yüksek konvektif fırtına ağırlığı atanır.",
+       "Ani taşkın riski için dinamik katsayı katmanı oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Konvektif yararlı potansiyel enerji (CAPE) ve rüzgâr kayması ile süperhücre ve fırtına potansiyelini değerlendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yükseklik modeliyle eğim ve drenaj haritası çıkarma",
+    "oz": "SRTM DEM verisi konvolüsyon filtreleriyle işlenip eğim ve akış yolları çıkarılır.",
+    "ayrinti": "NASA SRTM 30 m çözünürlüklü raster verisi yüklenir; GEO 313E 2B filtreleme yöntemleriyle her pikselin eğim açısı ve çukur alanları belirlenir.",
+    "nasil": [
+     {
+      "teknik": "scipy.signal.convolve2d ile 3x3 Sobel çekirdeği işletilerek arazi eğim matrisi çıkarılır.",
+      "sade": "GEO 313E dersindeki '2B Sayısal konvolüsyon ve uzaysal filtreleme bağıntısı' bilgisiyle dağ yamaçları bulunur. Suyun nerelerden hızla akıp nerelerde birikeceği arazinin eğiminden hesaplanır.",
+      "altAdimlar": [
+       "SRTM rasterı GeoTIFF olarak projeye aktarılır.",
+       "Sobel konvolüsyon matrisleriyle dZ/dx ve dZ/dy eğimleri çıkarılır.",
+       "Derece cinsinden eğim haritası raster olarak diske yazılır."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Uzaysal filtreleme ve konvolüsyon çekirdekleri ile görüntü yumuşatma ve kenar sezme yapmak."
+      }
+     },
+     {
+      "teknik": "D8 akış yönü algoritmasıyla her pikselin suyu en dik komşusuna boşaltma doğrultusu hesaplanır.",
+      "sade": "GEO 313E dersindeki 'Uzaktan algılama görüntülerinde morfolojik analiz' bilgisiyle drenaj ağı kurulur. Yağmur damlalarının dere yataklarına ve vadi tabanlarına doğru akış rotası çizilir.",
+      "altAdimlar": [
+       "Piksel komşuluk kot farkları hesaplanır.",
+       "En düşük koda sahip komşuya doğru akış kodu (1, 2, 4..128) verilir.",
+       "Birikimli akış alanı (flow accumulation) matrisi türetilir."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Çok bantlı spektral indeksler ve bant oranlaması ile yüzey özelliklerini ayıklamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yağış ve arazi parametreleriyle taşkın riski hesabı",
+    "oz": "Tahmini yağış yükü ile arazi birikim potansiyeli çarpılarak risk skoru türetilir.",
+    "ayrinti": "Yağış miktarı, toprak doygunluğu ve birikimli yüzey eğimi normalleştirilerek 0 ile 100 arasında taşkın tehlike puanı hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "NumPy matris işlemleriyle Yağış × Birikim / Eğim bağıntısı üzerinden taşkın indeksi normalize edilir.",
+      "sade": "GEO 313E dersindeki 'Görüntü sınıflandırma ve tematik katman üretimi' bilgisiyle risk haritası oluşturulur. Çok yağış alan ve suyu tahliye edemeyen çukur alanlar yüksek risk bölgesi olarak işaretlenir.",
+      "altAdimlar": [
+       "Yağış rasterı ve arazi drenaj katmanı aynı çözünürlükte hizalanır.",
+       "Piksel düzeyinde taşkın risk formülü hesaplanır.",
+       "0-100 ölçeğinde normalize edilmiş risk rasterı oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Denetimli ve denetimsiz makine öğrenmesi algoritmalarıyla piksel bazlı görüntü sınıflandırma yapmak."
+      }
+     },
+     {
+      "teknik": "Risk skoru 70'in üzerindeki alanlar poligonlaştırılarak GeoJSON taşkın uyarı katmanına dönüştürülür.",
+      "sade": "GEO 313E dersindeki 'Tematik harita analizi' bilgisiyle riskli bölgeler çizilir. Su basma ihtimali yüksek olan mahalle ve vadilerin sınırları belirlenir.",
+      "altAdimlar": [
+       "Risk rasterına 70 eşik değeri uygulanarak ikili maske çıkarılır.",
+       "Rasterio.features.shapes ile maske vektör poligonlara dönüştürülür.",
+       "Taşkın alarm poligonları GeoJSON dosyası olarak diske yazılır."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Hata matrisi ve Kappa katsayısı ile tematik harita doğruluk analizini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Etkileşimli Leaflet harita panosu ve risk katmanı gösterimi",
+    "oz": "Tarayıcıda çalışan web harita arayüzü kurulup taşkın risk poligonları görselleştirilir.",
+    "ayrinti": "Leaflet.js kütüphanesiyle etkileşimli altlık harita açılır; Open-Meteo tahmin zaman çubuğu ile taşkın risk poligonları saat saat oynatılır.",
+    "nasil": [
+     {
+      "teknik": "L.geoJSON ve OpenStreetMap altlığıyla taşkın risk poligonları web haritasına basılır.",
+      "sade": "GEO 313E dersindeki 'Sayısal harita görselleştirme' bilgisiyle pano hazırlanır. Kullanıcının mahallesini yakınlaştırıp taşkın uyarısını renklerle görebileceği bir web sayfası kurulur.",
+      "altAdimlar": [
+       "Leaflet harita konteyneri HTML sayfasına eklenir.",
+       "GeoJSON taşkın poligonları renk skalasına (sarı-turuncu-kırmızı) göre boyanır.",
+       "Riskli poligonlara tıklandığında beklenen su birikimini gösteren açılır pencere bağlanır."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Hata matrisi ve Kappa katsayısı ile tematik harita doğruluk analizini hesaplamak."
+      }
+     },
+     {
+      "teknik": "JavaScript zaman kaydırıcısı ile saatlik tahminler arası animasyonlu geçiş sağlanır.",
+      "sade": "MTO 406 dersindeki 'Hava brifingi ve erken uyarı bülteni' bilgisiyle zaman akışı kurulur. Gece ve gündüz saatlerinde taşkın riskinin nasıl ilerleyeceği saat saat canlandırılır.",
+      "altAdimlar": [
+       "Zaman kaydırma çubuğu olay dinleyicisi tanımlanır.",
+       "Seçilen saat adımına ait GeoJSON katmanı haritada aktif edilir.",
+       "Maksimum risk saatini özetleyen uyarı kutusu güncellenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi saatlik şiddetli yağış tahmini ve taşkın risk indeksi animasyonu",
+   "aciklama": "Kısa vadeli sayısal tahmin yağış birikiminin arazi eğimiyle birleşerek oluşturduğu taşkın risk alanı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://sites.research.google/floodforecasting/",
+   "aciklama": "Google Flood Hub etkileşimli taşkın harita panosu ve erken uyarı katmanları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Sampson, C. C. et al. (2015) A high-resolution global flood hazard model, Water Resources Research",
+   "url": "https://doi.org/10.1002/2015WR016954"
+  },
+  {
+   "ad": "Open-Meteo Flood and Weather API Documentation",
+   "url": "https://open-meteo.com/en/docs/flood-api"
+  },
+  {
+   "ad": "NASA Shuttle Radar Topography Mission (SRTM) Global 30m Elevation Data",
+   "url": "https://www.earthdata.nasa.gov/sensors/srtm"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/GEO-04.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "0afbab7a92d3"
+ }
+}

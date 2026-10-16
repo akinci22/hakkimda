@@ -1,0 +1,150 @@
+{
+ "kod": "KON 405E",
+ "ad": "State Space Methods",
+ "bolum": "Kontrol ve Otomasyon Mühendisliği",
+ "obsNo": "405",
+ "ozet": "Dinamik sistemlerin durum uzayı gösterimini, durum geçiş matrisini, kontrol edilebilirlik ve gözlenebilirlik analizini öğretir. Durum geri beslemeli kutup atama, Luenberger durum gözlemcisi tasarımı, ayrık zamanlı durum denklemleri ve stokastik gürültülü sistemlerde Kalman filtresi ile durum kestirimi incelenir.",
+ "neOgrenirsin": [
+  "Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek.",
+  "Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek.",
+  "Kontrol edilebilirlik ve gözlenebilirlik matrisleri üzerinden sistemin yapısal özelliklerini belirlemek.",
+  "Luenberger durum gözlemcisi tasarlayarak ölçülemeyen durum değişkenlerini kestirmek.",
+  "Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Ayrık zamanlı Kalman kazancı ve durum güncelleme denklemi",
+   "tex": "\\hat{\\mathbf{x}}_k = \\hat{\\mathbf{x}}_k^- + \\mathbf{K}_k (\\mathbf{y}_k - \\mathbf{C} \\hat{\\mathbf{x}}_k^-)",
+   "terimler": [
+    [
+     "\\hat{\\mathbf{x}}_k",
+     "güncellenmiş durum kestirim vektörü",
+     "durum birimi"
+    ],
+    [
+     "\\hat{\\mathbf{x}}_k^-",
+     "öncül durum kestirim vektörü",
+     "durum birimi"
+    ],
+    [
+     "\\mathbf{K}_k",
+     "Kalman kazanç matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{y}_k",
+     "gürültülü gözlem vektörü",
+     "gözlem birimi"
+    ],
+    [
+     "\\mathbf{C}",
+     "gözlem matrisi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Model tahmini ile gerçek sensör gözlemini karşılaştırır. Modelin ve gözlemin hata paylarına göre ağırlıklandırılan Kalman kazancını kullanarak yeni durumu günceller ve kestirim hatasını en aza indirir.",
+   "ornek": "Lorenz-63 atmosfer sisteminde x konveksiyon durumunun öncül tahmini 12,4 ve sensör gözlemi 13,0 iken Kalman kazancı K = 0,60 hesaplanır; güncellenmiş durum 12,4 + 0,60*(13,0 - 12,4) = 12,76 olarak kestirilir.",
+   "nerede": "KON-02'de Lorenz sisteminde gürültülü gözlemlerle atmosfer durumunu düzeltip asimile ederken."
+  },
+  {
+   "ad": "Ayrık zamanlı Kalman hata kovaryans matrisi güncellemesi",
+   "tex": "\\mathbf{P}_k = (\\mathbf{I} - \\mathbf{K}_k \\mathbf{C}) \\mathbf{P}_k^-",
+   "terimler": [
+    [
+     "\\mathbf{P}_k",
+     "güncellenmiş durum hata kovaryans matrisi",
+     "durum birimi karesi"
+    ],
+    [
+     "\\mathbf{I}",
+     "birim matris",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{K}_k",
+     "Kalman kazanç matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{C}",
+     "gözlem matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{P}_k^-",
+     "öncül durum hata kovaryans matrisi",
+     "durum birimi karesi"
+    ]
+   ],
+   "sade": "Gözlem alındıktan sonra sistem durumuna duyulan güvenin ne kadar arttığını gösterir. Gözlem geldikçe kestirim belirsizliğini küçülterek kovaryans matrisini günceller.",
+   "ornek": "Başlangıç varyansı 2,50 ve Kalman kazancı K = 0,60 iken tek boyutlu gözlem sonrası güncellenmiş varyans (1 - 0,60)*2,50 = 1,00 değerine düşer; belirsizlik yüzde 60 azalır.",
+   "nerede": "KON-02'de veri asimilasyonu adımlarında hata kovaryansının zamanla yakınsamasını izlerken."
+  },
+  {
+   "ad": "Sürekli zamanlı durum uzayı durum denklemi",
+   "tex": "\\dot{\\mathbf{x}}(t) = \\mathbf{A} \\mathbf{x}(t) + \\mathbf{B} \\mathbf{u}(t)",
+   "terimler": [
+    [
+     "\\dot{\\mathbf{x}}(t)",
+     "durum değişkenlerinin zamana göre türev vektörü",
+     "durum birimi / s"
+    ],
+    [
+     "\\mathbf{x}(t)",
+     "durum değişkenleri vektörü",
+     "durum birimi"
+    ],
+    [
+     "\\mathbf{A}",
+     "sistem dinamiği durum matrisi",
+     "s⁻¹"
+    ],
+    [
+     "\\mathbf{B}",
+     "girdi matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{u}(t)",
+     "kontrol veya dış zorlama vektörü",
+     "girdi birimi"
+    ]
+   ],
+   "sade": "Çok değişkenli dinamik sistemlerin gelecekteki davranışını tek bir matris denklemiyle ifade eder. Sistemin iç durumlarının zamanla nasıl evrildiğini ve dış kuvvetlere nasıl tepki verdiğini tanımlar.",
+   "ornek": "Atmosferik konveksiyon hücresinde hız ve sıcaklık gradyanı durum değişkenleri olarak tanımlandığında, A matrisinin özdeğerleri sistemin kararsızlığını ve kaos eşiğini belirler.",
+   "nerede": "KON-02'de Lorenz atmosfer sisteminin yerel doğrusallaştırılmış durum matrisini kurarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Basic_concept_of_Kalman_filtering.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Öngörü ve ölçüm güncelleme döngüsünü gösteren Kalman filtresi durum akış şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Lorenz kaotik atmosfer çekicisi faz uzayı yörüngesi ve durum kestirimi animasyonu",
+   "aciklama": "Kaotik atmosfer dinamiğinde durum değişkenlerinin zaman serisi ve faz uzayındaki evrimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · KON 405E (State Space Methods)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KON&dersNo=405"
+  },
+  {
+   "ad": "Chen, C. T. (1999) Linear System Theory and Design, 3. baskı, Oxford University Press · ISBN 978-0-19-511777-6",
+   "url": "https://openlibrary.org/isbn/9780195117776"
+  },
+  {
+   "ad": "Brown, R. G. & Hwang, P. Y. (2012) Introduction to Random Signals and Applied Kalman Filtering, 4. baskı, Wiley · ISBN 978-0-470-60969-9",
+   "url": "https://openlibrary.org/isbn/9780470609699"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KON&dersNo=405"
+}

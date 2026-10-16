@@ -1,0 +1,432 @@
+{
+ "id": "END-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "END",
+  "bolum": "Endüstri Mühendisliği",
+  "fakulteKod": "ISL"
+ },
+ "ad": "Sıcaklık tahmininden elektrik talebi tahmini",
+ "ne": "Sıcaklık tahminleri ile geçmiş EPİAŞ elektrik tüketim verilerini makine öğrenmesi ve zaman serisi yöntemleriyle birleştirip şebeke yükünü öngören sistem.",
+ "adimlar": [
+  "Açık elektrik tüketim verisini indir",
+  "Aynı günlerin sıcaklığını ERA5'ten ekle",
+  "Tüketim ile sıcaklık ilişkisini çıkar",
+  "Sıcaklık tahminiyle ertesi günün talebini tahmin et"
+ ],
+ "sonuc": "Sonunda talep tahmin grafiği olan bir defter olur.",
+ "senden": "END 421 Üretim Planlama ve Kontrol",
+ "bizden": "Sıcaklık tahmini ve hatası (MTO302)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "END 421",
+    "ad": "Üretim Planlama ve Kontrol"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Amperon",
+   "ne": "Hava tahminini kullanarak elektrik talebini tahmin etmekle başladı; enerji şirketlerine tahmin satan bir girişim oldu.",
+   "url": "https://www.amperon.co",
+   "ayrinti": {
+    "neYaptilar": "Houston merkezli Amperon, hava tahminlerini yapay zekâ ile işleyerek şebeke operatörleri için yüksek doğruluklu elektrik talebi tahmini kurdu.",
+    "nasil": "Gerçek zamanlı akıllı sayaç verileri ve sayısal hava modellerini birleştiren derin öğrenme ve doğrusal olmayan regresyon algoritmaları kullandılar.",
+    "neEdindiler": "Kuzey Amerika ve Avrupa enerji piyasalarında yüzlerce kamu hizmeti şirketine şebeke dengesizliği maliyetlerini düşüren SaaS sundular.",
+    "bizNasilKatki": "Açık EPİAŞ saatlik elektrik tüketim verisi ile ERA5 sıcaklık serisini eşleştiren çoklu regresyon tahmin algoritması kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Amperon AI-Powered Demand Forecasting Platform",
+      "url": "https://www.amperon.co/solutions/demand-forecasting",
+      "tur": "web"
+     },
+     {
+      "ad": "Amperon Energy Market Weather Analytics Whitepaper",
+      "url": "https://www.amperon.co/resources",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.amperon.co/solutions/demand-forecasting",
+      "aciklama": "Amperon yapay zekâ destekli elektrik yükü ve tepe talep tahmin arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Türkiye 2 m sıcaklık döngüsü ile ulusal elektrik tüketim eğrisi eşleşmesi",
+      "aciklama": "Gündüz ve gece saatlerinde sıcaklık düşüşünün elektrikli ısıtıcı ve klima kullanımına yansıması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open Climate Fix",
+   "ne": "Hava ve uydu verisinden güneş enerjisi üretimini tahmin eden kâr amacı gütmeyen bir girişim; elektrik şebekesine destek veriyor.",
+   "url": "https://openclimatefix.org",
+   "ayrinti": {
+    "neYaptilar": "Open Climate Fix, Birleşik Krallık Ulusal Şebekesi için uydu ve hava tahminlerinden fotovoltayik güneş üretimi öngören açık modeller kurdu.",
+    "nasil": "EUMETSAT uydu görüntülerini ve sayısal hava modellerini Nowcasting sinir ağları ve transformatör mimarileriyle işlediler.",
+    "neEdindiler": "Şebeke operatörünün yedek fosil yakıtlı santralleri devrede tutma ihtiyacını azaltarak yılda milyonlarca ton karbon salımını önlediler.",
+    "bizNasilKatki": "Açık güneşlenme ve sıcaklık tahminlerini birleştirerek bölgesel net elektrik yük profilini simüle eden Python kodu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Open Climate Fix Solar Nowcasting Project Documentation",
+      "url": "https://openclimatefix.org/projects/solar-nowcasting",
+      "tur": "web"
+     },
+     {
+      "ad": "Open Climate Fix Quartz Solar Forecast GitHub Repository",
+      "url": "https://github.com/openclimatefix/quartz-solar-forecast",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://openclimatefix.org/projects/solar-nowcasting",
+      "aciklama": "Open Climate Fix güneş enerjisi ve şebeke yükü tahmin platformu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "eumetsat-ornek",
+      "konu": "Bulut örtüsü hareketi ve anlık güneş enerjisi üretim dalgalanması",
+      "aciklama": "Güneş tarlaları üzerindeki bulut gölgelenmesinin elektrik şebekesi yük talebine etkisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Tao Hong – UNC Charlotte",
+   "ne": "Sıcaklık ile elektrik yükü tahmini üzerine çalışan, küresel tahmin yarışmaları (GEFCom) düzenleyen bir akademisyen.",
+   "url": "https://www.drhongtao.com",
+   "ayrinti": {
+    "neYaptilar": "Kuzey Karolina Üniversitesi'nden Prof. Tao Hong, enerji sektöründe elektrik yükü ve sıcaklık ilişkisi üzerine küresel tahmin yarışmaları kurdu.",
+    "nasil": "Yarı-parametrik toplamsal modeller ve sıcaklık derecesi (heating/cooling degree days) formülleriyle çoklu bölge yük tahmin metodolojisi sundu.",
+    "neEdindiler": "IEEE Working Group on Energy Forecasting başkanlığını yürüterek GEFCom yarışmalarıyla elektrik tahmininde dünya standardı belirledi.",
+    "bizNasilKatki": "Tao Hong'un derece-gün (HDD/CDD) doğrusal regresyon formülünü Türkiye elektrik tüketim verisine uygulayan bir model kurarız.",
+    "referanslar": [
+     {
+      "ad": "Global Energy Forecasting Competition (GEFCom) Overview",
+      "url": "https://www.drhongtao.com/gefcom",
+      "tur": "web"
+     },
+     {
+      "ad": "Hong et al. (2016) Global energy forecasting competition 2014, International Journal of Forecasting",
+      "url": "https://doi.org/10.1016/j.ijforecast.2016.02.001",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.drhongtao.com/gefcom",
+      "aciklama": "GEFCom küresel enerji ve elektrik yükü tahmin yarışması portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Isıtma ve soğutma derece-günleri (HDD/CDD) ile Türkiye elektrik yükü korelasyonu",
+      "aciklama": "Sıcaklığın 18 derece konfor bandından uzaklaşmasıyla elektrik talebinin U şeklindeki artış eğrisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "GEFCom Öğrenci Tahmin Takımı",
+   "ne": "Küresel enerji tahmin yarışmasında hava ve yük serileriyle yarışan lisans öğrenci takımı.",
+   "url": "https://www.drhongtao.com/gefcom/gefcom2014",
+   "ayrinti": {
+    "neYaptilar": "Üniversite öğrenci takımı, GEFCom elektrik yükü yarışmasında hava sıcaklığı girdilerini gradyan artırma yöntemleriyle modelledi.",
+    "nasil": "Gecikmeli sıcaklık serileri, derece-gün metrikleri ve takvimsel döngüleri LightGBM kütüphanesiyle optimize ettiler.",
+    "neEdindiler": "Küresel yarışmada öğrenci liginde ilk 5 dereceye girerek açık kaynaklı yük tahmin defteri yayınladılar.",
+    "bizNasilKatki": "Takımın açık kaynaklı öznitelik mühendisliği ve gecikme fonksiyonlarını EPİAŞ veri akışımıza uygularız.",
+    "referanslar": [
+     {
+      "ad": "IEEE PES Working Group on Energy Forecasting Competition",
+      "url": "https://www.drhongtao.com/gefcom/gefcom2014",
+      "tur": "web"
+     },
+     {
+      "ad": "Hong et al. (2016) GEFCom2014 Probabilistic Electric Load Forecasting",
+      "url": "https://doi.org/10.1016/j.ijforecast.2016.02.001",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.drhongtao.com/gefcom/gefcom2014",
+      "aciklama": "GEFCom öğrenci tahmin takımı yarışma sıralaması ve metodolojisi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Öğrenci takımı 24 saatlik elektrik yükü tahmin ve hata bandı döngüsü",
+      "aciklama": "Sıcaklık şoklarında model tahmininin gerçek elektrik tüketimini yakalama başarısı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "EPİAŞ tüketim verisini al",
+   "Sıcaklıkla ilişkiyi öğren",
+   "Tahminle talep öngör"
+  ],
+  "edinim": [
+   [
+    "END 421",
+    "talep tahmini"
+   ],
+   [
+    "MTO311E",
+    "regresyon, zaman serisi"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "EPİAŞ Şeffaflık · elektrik tüketimi",
+    "url": "https://seffaflik.epias.com.tr/",
+    "gorsel": "g/kaynak/epias.jpg",
+    "lisans": "açık veri",
+    "slug": "epias"
+   },
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Fırtına tedarik zincirini aksatır; hava tahminini lojistik ve talep planına sen katarsın.",
+  "senin": "END 421 Üretim Planlama ve Kontrol, END 331 Yöneylem Araştırması I",
+  "bizim": "MTO302 Hava Analizi ve Öngörü I, MTO311E Veri Analizi",
+  "ortakIs": "Hava riskini hesaba katan lojistik planı, havaya duyarlı talep tahmini",
+  "detay": "Ortak zemin: END 421 Üretim Planlama ve Kontrol ve END 331 Yöneylem Araştırması I ↔ MTO302 Hava Analizi ve Öngörü I. Örnek görev: kar, fırtına ya da sıcak hava dalgası tahminini bir dağıtım planına risk olarak eklemek; sıcaklık tahmininden enerji ya da perakende talebini tahmin etmek. Kazanç: belirsiz bir girdiyle karar vermeyi gerçek veriyle denemek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1510"
+ },
+ "amac": "Hava sıcaklığı ve aşırı soğuma/ısınma tahminlerini EPİAŞ elektrik tüketim verileriyle eşleştirerek ertesi günün yük talebini tahmin etmek.",
+ "ortakDers": [
+  {
+   "kod": "END 421",
+   "projeyeKatki": "Talep tahmini yöntemleri, mevsimsel ve trendli üstel düzeltme teknikleri ile ani hava şoklarına karşı emniyet stoku yönetimi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Üstel düzeltme ile trendli talep tahmini (Holt yöntemi)",
+     "nerede": "3. adımda: Sıcaklık düşüşünün elektrik tüketim seviyesi ve trendi üzerindeki etkisini ayrıştırıp ertesi gün yükünü tahmin ederken."
+    },
+    {
+     "formulAd": "Emniyet stoku ve yeniden sipariş noktası (ROP)",
+     "nerede": "4. adımda: Şebeke operatörü için aşırı soğuk dalgalarında oluşabilecek tepe yük belirsizliğine karşı yedek kapasite marjı hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Atmosferik zaman serisi analizi, gecikmeli çapraz korelasyon ve sıcaklık dalgalanmalarının periyodik döngüleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "2. adımda: Sıcaklık anomalileri ile elektrik talebi arasındaki gecikme (lag) süresini ve korelasyon gücünü hesaplarken."
+    },
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+     "nerede": "1. adımda: Elektrik tüketim serisindeki 24 saatlik günlük ve 7 günlük haftalık periyodik döngüleri ayıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "EPİAŞ elektrik tüketimi ile ERA5 sıcaklığı eşleştirilir, MTO 311E korelasyonuyla END 421 talep tahmini modeli kurulur.",
+  "ayrinti": "EPİAŞ Şeffaflık Platformu'ndan saatlik gerçek zamanlı elektrik tüketimi çekilir. Copernicus CDS üzerinden aynı döneme ait ERA5 yüzey sıcaklığı indirilir. MTO 311E Fourier ve çapraz korelasyon yöntemleriyle sıcaklık-talep gecikmesi hesaplanır. END 421 üstel düzeltme ve regresyon ile ertesi gün elektrik yükü tahmin edilir. 2 haftada tamamlanır.",
+  "sonuc": "Sıcaklık tahmininden ertesi gün elektrik tüketim eğrisini ve tepe yük saatlerini çıkaran açık Python defteri.",
+  "senden": "END 421 Üretim Planlama ve Kontrol (talep tahmini, Holt üstel düzeltme yöntemi ve emniyet kapasitesi hesabı)",
+  "bizden": "MTO 311E Veri Analizi (ERA5 sıcaklık serisi, spektral analiz, gecikmeli çapraz korelasyon ve sıcaklık tahmini)",
+  "adimlar": [
+   {
+    "baslik": "EPİAŞ tüketim ve ERA5 sıcaklık zaman serilerinin çekilmesi",
+    "oz": "Ulusal elektrik tüketimi ile nüfus ağırlıklı ortalama sıcaklık indirilir.",
+    "ayrinti": "EPİAŞ API ile Türkiye geneli saatlik elektrik tüketimi (MWh) çekilir; Copernicus CDS üzerinden Türkiye 2 metre sıcaklık alanı indirilir.",
+    "nasil": [
+     {
+      "teknik": "requests.post ile EPİAŞ Şeffaflık API'sinden Gerçek Zamanlı Tüketim (GZT) JSON verisi çekilir.",
+      "sade": "END 421 dersindeki 'Talep verilerini toplamak ve temizlemek' bilgisiyle veriler alınır. Türkiye genelinde her saat ne kadar elektrik harcandığı resmi kaynaktan indirilir.",
+      "altAdimlar": [
+       "EPİAŞ API erişim parametreleri ve tarih aralığı tanımlanır.",
+       "Saatlik tüketim değerleri pandas DataFrame serisine aktarılır.",
+       "Eksik saatler doğrusal enterpolasyonla tamamlanır."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Zaman serisi ve nedensel regresyon yöntemleriyle talep tahmini yapmak."
+      }
+     },
+     {
+      "teknik": "scipy.fft.fft ile tüketim serisine DFT uygulanarak 24 saatlik ve haftalık periyotlar ayrıştırılır.",
+      "sade": "MTO 311E dersindeki 'Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu' bilgisiyle döngüler bulunur. İnsanların gündüz işte, gece uykuda olmasından kaynaklanan doğal tüketim ritmi ayrılır.",
+      "altAdimlar": [
+       "Tüketim serisi Fourier spektrumuna dönüştürülür.",
+       "24 saatlik ve 168 saatlik (haftalık) güç tepe noktaları belirlenir.",
+       "Mevsimsel ve takvimsel baz döngü bileşeni filtrelenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sıcaklık ve elektrik talebi gecikmeli korelasyon analizi",
+    "oz": "Sıcaklık dalgalanması ile tüketim tepkisi arasındaki zaman gecikmesi bulunur.",
+    "ayrinti": "Aşırı sıcaklık değişimlerinin binalara ve şebekeye kaç saat sonra tepe yük olarak yansıdığı çapraz korelasyon formülüyle hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "MTO 311E formülü r_k ile sıcaklık anomalisi ve talep anomalisinin gecikmeli korelasyonu hesaplanır.",
+      "sade": "MTO 311E dersindeki 'Gecikmeli çapraz korelasyon katsayısı' bilgisiyle zaman gecikmesi bulunur. Dışarıdaki soğuk havanın binaları soğutup kombi ve elektrikli ısıtıcıları ne zaman açtırdığı ölçülür.",
+      "altAdimlar": [
+       "Saatlik sıcaklık ve elektrik tüketim anomalileri normalize edilir.",
+       "-24 saat ile +24 saat aralığında gecikme (lag) korelasyon grafiği çizilir.",
+       "En yüksek korelasyonun 2-4 saatlik gecikmeyle oluştuğu saptanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     },
+     {
+      "teknik": "Isıtma Derece-Gün (HDD) ve Soğutma Derece-Gün (CDD) değişkenleri 18 °C baz alınarak türetilir.",
+      "sade": "END 421 dersindeki 'Nedensel talep tahmini modelleri' bilgisiyle derece-gün hesaplanır. Hava 18 derecenin altına indikçe ısıtma, üstüne çıktıkça klima ihtiyacının nasıl fırladığı sayısallaştırılır.",
+      "altAdimlar": [
+       "HDD = max(0, 18 - T) ve CDD = max(0, T - 22) fonksiyonları işletilir.",
+       "Derece-gün serileri günlük toplam olarak toplanır.",
+       "Elektrik talebinin U şeklindeki doğrusal olmayan tepki eğrisi çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Zaman serisi ve nedensel regresyon yöntemleriyle talep tahmini yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Holt üstel düzeltme ve regresyon ile talep tahmini",
+    "oz": "Sıcaklık tahmini modele beslenerek ertesi günün saatlik yük eğrisi öngörülür.",
+    "ayrinti": "Sayısal hava tahmininden gelen 24-48 saatlik sıcaklık değerleri, Holt üstel düzeltme seviye ve trend denklemleriyle birleştirilerek elektrik yükü tahmin edilir.",
+    "nasil": [
+     {
+      "teknik": "F_{t+m} = L_t + m * T_t Holt formülasyonu sıcaklık regresyon düzeltmesiyle çalıştırılır.",
+      "sade": "END 421 dersindeki 'Üstel düzeltme ile trendli talep tahmini' bilgisiyle tahmin üretilir. Dünkü tüketim seviyesi, bugünkü artış hızı ve yarınki hava sıcaklığı harmanlanarak yarının elektrik ihtiyacı bulunur.",
+      "altAdimlar": [
+       "Seviye (alpha) ve trend (beta) düzeltme katsayıları optimize edilir.",
+       "Sıcaklık katsayısı regresyon terimi olarak tahmin formülüne eklenir.",
+       "Ertesi günün 24 saatlik elektrik yük eğrisi çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Zaman serisi ve nedensel regresyon yöntemleriyle talep tahmini yapmak."
+      }
+     },
+     {
+      "teknik": "sklearn.metrics.mean_absolute_percentage_error ile modelin MAPE hata payı test edilir.",
+      "sade": "END 421 dersindeki 'Tahmin performans ölçütleri' bilgisiyle doğruluk ölçülür. Tahminimizin gerçek elektrik tüketiminden yüzde kaç saptığı test edilir.",
+      "altAdimlar": [
+       "Test dönemindeki gerçek EPİAŞ verisi ile model tahminleri karşılaştırılır.",
+       "Hava düzeltmeli modelin MAPE oranının yüzde 2.8'in altına indiği doğrulanır.",
+       "Salt takvimsel modele göre elde edilen hata düşüşü raporlanır."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Hizmet düzeyi ve stok tükenme olasılıklarını istatistiksel dağılımlarla yönetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Tepe yük belirsizliği ve emniyet kapasitesi analizi",
+    "oz": "Aşırı soğuma riskine karşı şebeke operatörü için güvenli rezerv marjı hesaplanır.",
+    "ayrinti": "Hava tahminindeki belirsizlik payı (sigma), END 421 emniyet stoku mantığıyla yedek elektrik üretim kapasitesi marjına dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "ROP formülündeki z * sigma * sqrt(L) terimiyle yüzde 99 hizmet düzeyinde rezerv kapasite marjı bulunur.",
+      "sade": "END 421 dersindeki 'Belirsiz talep altında emniyet stoku ve yeniden sipariş noktası' bilgisiyle güvenlik marjı hesaplanır. Hava beklenenden daha da soğursa elektrik kesintisi olmaması için santrallerin ne kadar hazırda beklemesi gerektiği bulunur.",
+      "altAdimlar": [
+       "Sıcaklık tahmin hatasından kaynaklanan talep varyansı sigma_d çıkarılır.",
+       "Yüzde 99 kesintisiz elektrik sağlama için z = 2.33 katsayısı uygulanır.",
+       "Şebekenin hazır tutması gereken megavat cinsinden emniyet rezervi hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Ekonomik sipariş miktarı (EOQ) ve emniyet stoku formülleriyle envanter seviyelerini optimize etmek."
+      }
+     },
+     {
+      "teknik": "matplotlib ile ertesi gün yük eğrisi ve yüzde 95 güven aralığı bantları çizdirilir.",
+      "sade": "MTO 311E dersindeki 'Zaman serisi görselleştirme' bilgisiyle karar panosu oluşturulur. Enerji tüccarlarının ve santral müdürlerinin bakıp yarınki üretimi planlayacağı grafik hazırlanır.",
+      "altAdimlar": [
+       "Saatlik baz tahmin eğrisi ana çizgi olarak basılır.",
+       "Hava belirsizliğini temsil eden güven aralığı gölgelendirmesi eklenir.",
+       "Tepe tüketim saati (peak hour) uyarı bayrağı grafiğe işlenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Sayısal filtreler uygulayarak yüksek frekanslı gürültüyü sinoptik dalgalardan ayırmak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye sıcaklık anomalisi ile saatlik elektrik tüketim profili eşzamanlı döngüsü",
+   "aciklama": "Kışın dondurucu soğuklarda ve yazın aşırı sıcak dalgalarında elektrik tüketiminin tepe noktalara tırmanışı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://seffaflik.epias.com.tr/",
+   "aciklama": "EPİAŞ Şeffaflık Platformu elektrik piyasası tüketim ve üretim verileri arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Hong, T. et al. (2016) Global energy forecasting competition 2014, International Journal of Forecasting",
+   "url": "https://doi.org/10.1016/j.ijforecast.2016.02.001"
+  },
+  {
+   "ad": "EPİAŞ Şeffaflık Platformu Gerçek Zamanlı Elektrik Tüketim İstatistikleri",
+   "url": "https://seffaflik.epias.com.tr/"
+  },
+  {
+   "ad": "Copernicus CDS ERA5 Hourly Data on Single Levels from 1940 to Present",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/END-02.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "727a0c5f148d"
+ }
+}

@@ -1,0 +1,97 @@
+{
+ "kod": "EUT 272E",
+ "ad": "Human Factors inProduct Design",
+ "bolum": "Endüstriyel Tasarım",
+ "obsNo": "272E",
+ "ozet": "Ürün ve arayüz tasarımında insan faktörlerini, bilişsel ergonomiyi, kullanıcı tepki sürelerini, algısal renk kontrastını ve görsel hiyerarşiyi öğretir. Aşırı hava uyarı panolarında bilgi yoğunluğunu yönetme, hata önleme ve karar verme süreçlerini optimize etme irdelenir.",
+ "neOgrenirsin": [
+  "Bilişsel ergonomi ve Fitts kanunu ile mobil arayüz etkileşim sürelerini optimize etmek.",
+  "Hick-Hyman kanunu ile kullanıcı karar verme süresi ve menü karmaşıklığını hesaplamak.",
+  "WCAG erişilebilirlik ve Weber-Fechner algısal kontrast oranlarını uygulamak.",
+  "Aşırı hava ve fırtına uyarılarında renk kodlama hiyerarşisi oluşturmak.",
+  "Kullanıcı deneyimi (UX) testleri ile bilişsel yükü en aza indiren bilgi panoları tasarlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Hick-Hyman kanunu ve bilişsel karar verme süresi bağıntısı",
+   "tex": "T_{\\mathrm{karar}} = b \\cdot \\log_2(n_{\\mathrm{secenek}} + 1)",
+   "terimler": [
+    [
+     "T_{\\mathrm{karar}}",
+     "kullanıcının arayüzde doğru seçeneğe karar verme süresi",
+     "\\mathrm{s}"
+    ],
+    [
+     "b",
+     "bilişsel bilgi işleme katsayısı (tipik 0.15 - 0.20)",
+     "\\mathrm{s/bit}"
+    ],
+    [
+     "n_{\\mathrm{secenek}}",
+     "ekranda sunulan ayrık seçenek veya uyarı kartı sayısı",
+     "adet"
+    ]
+   ],
+   "sade": "Bir ekranda kullanıcıya ne kadar çok seçenek veya buton gösterilirse, kullanıcının ne yapacağına karar vermesinin o kadar uzayacağını hesaplar. Acil fırtına uyarısında kart sayısını azaltarak saniyeler kazandırır.",
+   "ornek": "Ekranda 15 ayrı meteorolojik parametre varken b = 0,18 s/bit ile karar süresi T = 0,18 x log2(16) = 0,72 s iken, gruplanmış 3 ana karta düşürüldüğünde T = 0,18 x log2(4) = 0,36 saniye olur ve karar süresi yarıya iner.",
+   "nerede": "F-MIM-EUT-02 projesinde fırtına alarmı ekranında bilgi kartı sayısını ve bilişsel karmaşıklığı optimize ederken."
+  },
+  {
+   "ad": "Fitts kanunu ve hedef tıklama süresi denklemi",
+   "tex": "T_{\\mathrm{hareket}} = a + b \\cdot \\log_2\\left(\\frac{2 D}{W}\\right)",
+   "terimler": [
+    [
+     "T_{\\mathrm{hareket}}",
+     "parmağın veya imlecin hedef butona ulaşma süresi",
+     "\\mathrm{s}"
+    ],
+    [
+     "a, b",
+     "cihaz ve kullanıcı ampirik ergonomi katsayıları",
+     "\\mathrm{s}"
+    ],
+    [
+     "D",
+     "başlangıç noktasından butona olan mesafe",
+     "\\mathrm{mm}"
+    ],
+    [
+     "W",
+     "hedef butonun dokunmatik genişliği veya yüksekliği",
+     "\\mathrm{mm}"
+    ]
+   ],
+   "sade": "Telefonda tek elle tutuşta acil durum veya ilçe değiştirme butonuna parmağın ne kadar sürede basabileceğini hesaplar. Buton büyüdükçe ve başparmağa yaklaştıkça tıklama süresi hızlanır.",
+   "ornek": "Mesafe D = 80 mm ve buton boyutu W = 48 mm iken (a = 0,2 s, b = 0,1 s), hareket süresi T = 0,2 + 0,1 x log2(160/48) ≈ 0,37 saniyede gerçekleşir ve ergonomik sınır sağlanır.",
+   "nerede": "F-MIM-EUT-02 projesinde mobil tahmin panosunda saatlik tahmin kartlarının dokunmatik temas boyutunu optimize ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Visual_hierarchy_diagram.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Arayüz tasarımında görsel hiyerarşi, renk kontrastı ve bilgi ergonomisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul 39 ilçe saatlik yağış ihtimali ve fırtına hamlesi uyarı matrisi, 2026",
+   "aciklama": "İlçeler bazında eşik değerleri aşan aşırı hava alarmlarının anlık dağılımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · EUT 272E (Human Factors inProduct Design)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EUT&dersNo=272E"
+  },
+  {
+   "ad": "Norman, D. (2013) The Design of Everyday Things, Basic Books · ISBN 978-0465050659",
+   "url": "https://www.basicbooks.com/titles/don-norman/the-design-of-everyday-things/9780465050659/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EUT&dersNo=272E"
+}

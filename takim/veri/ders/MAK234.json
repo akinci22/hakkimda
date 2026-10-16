@@ -1,0 +1,122 @@
+{
+ "kod": "MAK 234",
+ "ad": "Akışkanlar Mekaniği I",
+ "bolum": "Makina Mühendisliği",
+ "obsNo": "234",
+ "ozet": "Akışkan statiği, kütle, momentum ve enerji korunum yasalarını öğretir. Navier-Stokes hareket denklemleri, Reynolds taşınım teoremi, sınır tabaka teorisi, boru içi viskoz akışlar, yerel rüzgâr kesmesi ve dönen makinelerdeki aerodinamik kuvvetler incelenir. Rüzgâr enerjisi ve aerodinamik tork hesaplarının temelini oluşturur.",
+ "neOgrenirsin": [
+  "Reynolds taşınım teoremi ile kontrol hacimlerinde kütle ve momentum dengesini kurmak.",
+  "Navier-Stokes hareket denklemlerini laminer ve türbülanslı akışlara uygulamak.",
+  "Logaritmik sınır tabaka hız profili ile yüzey pürüzlülüğüne bağlı hız kesmesini hesaplamak.",
+  "Dönen kanat profillerinde kaldırma ve sürükleme kuvvetleri ile aerodinamik torku kestirmek.",
+  "Boyut analizi ve Buckingham Pi teoremi ile ölçek katsayılarını belirlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Logaritmik rüzgâr hızı profili ve yüzey kesmesi",
+   "tex": "u(z) = \\frac{u_*}{\\kappa} \\ln\\left( \\frac{z}{z_0} \\right)",
+   "terimler": [
+    [
+     "u(z)",
+     "z yüksekliğindeki ortalama rüzgâr hızı",
+     "\\mathrm{m}/\\mathrm{s}"
+    ],
+    [
+     "u_*",
+     "sürtünme hızı (yüzey kayma gerilmesine bağlı)",
+     "\\mathrm{m}/\\mathrm{s}"
+    ],
+    [
+     "\\kappa",
+     "von Kármán sabiti (yaklaşık 0,40)",
+     "birimsiz"
+    ],
+    [
+     "z",
+     "yeryüzünden itibaren yükseklik",
+     "\\mathrm{m}"
+    ],
+    [
+     "z_0",
+     "aerodinamik yüzey pürüzlülük uzunluğu",
+     "\\mathrm{m}"
+    ]
+   ],
+   "sade": "Yere yakın hava akışının sürtünme yüzünden yavaşladığını, yukarı çıkıldıkça hızlandığını logaritmik olarak açıklar. 10 metredeki standart ölçümden 100 metredeki rüzgâr türbini göbeğindeki hızı bulmayı sağlar.",
+   "ornek": "z_0 = 0,05 m (açık tarım arazisi) ve u_* = 0,45 m/s olan bir rüzgâr sahasında, 10 metredeki rüzgâr hızı 5,95 m/s iken, 100 metre göbek yüksekliğindeki rüzgâr hızı 8,55 m/s olarak hesaplanır.",
+   "nerede": "F-MKF-MAK-02 projesinde 10 m istasyon rüzgâr tahminini 100 m türbin rotoru göbek yüksekliğine taşırken."
+  },
+  {
+   "ad": "Türbin rotoru mekanik güç ve aerodinamik tork bağıntısı",
+   "tex": "P = \\frac{1}{2} \\rho A v^3 C_p, \\qquad T = \\frac{P}{\\omega}",
+   "terimler": [
+    [
+     "P",
+     "rotordan elde edilen aerodinamik mekanik güç",
+     "\\mathrm{W}"
+    ],
+    [
+     "\\rho",
+     "nem ve sıcaklığa bağlı hava yoğunluğu",
+     "\\mathrm{kg}/\\mathrm{m}^3"
+    ],
+    [
+     "A",
+     "rotor kanat süpürme alanı (\\pi R^2)",
+     "\\mathrm{m}^2"
+    ],
+    [
+     "v",
+     "rotora gelen efektif rüzgâr hızı",
+     "\\mathrm{m}/\\mathrm{s}"
+    ],
+    [
+     "C_p",
+     "güç katsayısı (Betz limiti en fazla 0,593)",
+     "birimsiz"
+    ],
+    [
+     "T",
+     "rotor şaftına aktarılan aerodinamik tork",
+     "\\mathrm{N} \\cdot \\mathrm{m}"
+    ],
+    [
+     "\\omega",
+     "rotor açısal dönüş hızı",
+     "\\mathrm{rad}/\\mathrm{s}"
+    ]
+   ],
+   "sade": "Rüzgârın taşıdığı kinetik enerjinin dönen kanatlar tarafından mekanik torka ve elektriğe nasıl dönüştürüldüğünü hesaplar. Rüzgâr hızının küpüyle orantılı olduğu için hızdaki küçük bir tahmin hatası güçte büyük sapma yaratır.",
+   "ornek": "Kanat yarıçapı R = 50 m (alan A = 7854 m²), hava yoğunluğu 1,225 kg/m³ ve Cp = 0,44 olan bir türbinde rüzgâr 8 m/s iken mekanik güç 1,08 MW olur; rüzgâr hızı 10 m/s'ye çıktığında güç 2,11 MW'a fırlar.",
+   "nerede": "F-MKF-MAK-02 projesinde rüzgâr profili kesmesinden türbin rotoru aerodinamik torkunu ve güç çıktısı sapmasını hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wind_profile_power_law.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Atmosferik sınır tabakada logaritmik ve güç yasası rüzgâr hızı dikey profilleri"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara ve Ege rüzgâr sahaları 100 metre rüzgâr hızı ve yoğunluk alanı, ERA5",
+   "aciklama": "Türbin irtifasında saatlik rüzgâr hızları ve rüzgâr enerjisi yoğunluk haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MAK 234 (Akışkanlar Mekaniği I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAK&dersNo=234"
+  },
+  {
+   "ad": "White, F. M. (2015) Fluid Mechanics, 8. baskı, McGraw-Hill · ISBN 978-9814729529",
+   "url": "https://www.mheducation.com/highered/product/fluid-mechanics-white/M9780073398273.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAK&dersNo=234"
+}

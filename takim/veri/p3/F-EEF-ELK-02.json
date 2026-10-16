@@ -1,0 +1,392 @@
+{
+ "id": "F-EEF-ELK-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "ELK",
+  "bolum": "Elektrik Mühendisliği",
+  "fakulteKod": "EEF",
+  "fakulte": "Elektrik-Elektronik Fakültesi"
+ },
+ "ad": "Güneş paneli yüzey sıcaklığı ve verim kaybı",
+ "ne": "Hava sıcaklığı ve rüzgâr tahmininden fotovoltaik panel hücre sıcaklığını ve %/°C verim kaybını hesaplamak.",
+ "adimlar": [
+  "Basit King hücre sıcaklığı formülüyle 1 haftalık verim kaybı zaman serisi üretmek."
+ ],
+ "sonuc": "PV verim kaybı hesaplama modülü",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "ELK 331",
+    "ad": "Güç Elektroniği Devreleri"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NREL Photovoltaic Materials and Systems",
+   "ne": "Güneş paneli termal ısınmasını ve rüzgâr soğutma dinamiklerini araştıran ulusal yenilenebilir enerji laboratuvarı.",
+   "url": "https://www.nrel.gov/solar/pvwatts.html",
+   "ayrinti": {
+    "neYaptilar": "Ulusal Yenilenebilir Enerji Laboratuvarı (NREL), King ve Sandia termal denklemlerini geliştirerek hava tahminleriyle panel hücre sıcaklığını hesaplayan PVWatts motorunu kurdu.",
+    "nasil": "Ortam sıcaklığı, yüzey rüzgârı ve küresel yatay ışıma verileri açık montajlı panel ısı transfer bağıntılarıyla simüle edildi.",
+    "neEdindiler": "Aşırı sıcak yaz günlerinde panel sıcaklığının 65 °C'ye ulaştığı ve nominal güçte yüzde 16'ya varan kayıplar yaşandığı doğrulandı.",
+    "bizNasilKatki": "NREL'in açık kaynaklı termal denklemlerini Türkiye güneş santralleri için hafif ve bağımsız bir Python kütüphanesine dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "NREL PVWatts Hesaplama Metodolojisi",
+      "url": "https://www.nrel.gov/solar/pvwatts.html",
+      "tur": "web"
+     },
+     {
+      "ad": "NREL PV Panel Sıcaklık Katsayıları Dokümantasyonu",
+      "url": "https://www.nrel.gov/docs/fy14osti/60272.pdf",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.nrel.gov/solar/pvwatts.html",
+      "aciklama": "NREL PVWatts güneş paneli verim ve üretim hesaplama arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Konya Ovası saatlik güneş ışınımı ve panel hücresi sıcaklık alanı, 2026-10",
+      "aciklama": "Panel ısınması ve anlık güç kaybı harita animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "SolarGIS Resource Assessment",
+   "ne": "Büyük ölçekli güneş santralleri için uydu tabanlı ışıma ve panel sıcaklık karnesi sağlayan güneş enerjisi platformu.",
+   "url": "https://solargis.com/products/evaluate",
+   "ayrinti": {
+    "neYaptilar": "SolarGIS, meteoroloji uyduları ve sayısal hava tahmin modellerini birleştirerek fotovoltaik santrallerin gerçek çalışma sıcaklıklarını izledi.",
+    "nasil": "Saatlik hava sıcaklığı ve rüzgâr vektörleri yüksek çözünürlüklü yüzey ışımasıyla eşleştirilerek evirici giriş gerilimleri kestirildi.",
+    "neEdindiler": "Santral işletmecilerine sıcaklık kaynaklı kayıpları önceden bildirerek evirici aşırı ısınma arızalarını yüzde 30 azalttılar.",
+    "bizNasilKatki": "Açık meteoroloji tahminleriyle çalışan benzer bir PV hücre sıcaklığı ve kayıp hesaplama scriptini açık kodla doğrularız.",
+    "referanslar": [
+     {
+      "ad": "SolarGIS Güneş Enerjisi Değerlendirme Çözümleri",
+      "url": "https://solargis.com/products/evaluate",
+      "tur": "web"
+     },
+     {
+      "ad": "SolarGIS Fotovoltaik Verim ve Sıcaklık Metodolojisi",
+      "url": "https://solargis.com/resources/methodology",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://solargis.com/products/evaluate",
+      "aciklama": "SolarGIS santral performans ve hücre sıcaklığı izleme paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Boost_conve_diagram.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Fotovoltaik MPPT DC-DC kıyıcı devresi şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Güneş Enerjisi ve Termal Analiz Ekibi",
+   "ne": "Hava tahminlerinden fotovoltaik hücre sıcaklığı ve güç kaybı zaman serisi çıkaran açık kaynaklı yazılım takımı.",
+   "url": "https://github.com/aura-itu/gunes-hucre-sicakligi",
+   "ayrinti": {
+    "neYaptilar": "Elektrik ve meteoroloji öğrencileri, hava sıcaklığı ve rüzgâr hızını King modelinden geçirerek panel verim kaybını hesaplayan araç geliştirdi.",
+    "nasil": "Open-Meteo API'sinden saatlik hava sıcaklığı, rüzgâr hızı ve direkt güneş ışınımı çekildi; silikon panel sıcaklık katsayısı uygulanarak kayıp profili çıkarıldı.",
+    "neEdindiler": "Hafif rüzgârlı sıcak günlerde hücre sıcaklığının 58 °C'ye çıkıp çıkış gücünü 400 W'tan 347 W'a düşürdüğü hesaplandı.",
+    "bizNasilKatki": "Hesaplama motorunu modüler fonksiyonlarla zenginleştirip güneş mühendisliği dersi öğrencilerine açık laboratuvar aracı olarak sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Güneş Hücre Sıcaklığı kod deposu",
+      "url": "https://github.com/aura-itu/gunes-hucre-sicakligi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Güneş Paneli Termal Kayıp Rehberi",
+      "url": "https://aura-itu.github.io/gunes-rehber",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/gunes-hucre-sicakligi",
+      "aciklama": "Python güneş paneli hücre sıcaklığı ve verim analiz arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İç Anadolu güneş santrali saatlik hava sıcaklığı, güneş ışınımı ve hücre verim kaybı, 2026-10",
+      "aciklama": "Saatlik güneş ışınımı ve panel hücre verim kaybı değişim animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Rüzgâr ve güneş santrallerinin şebeke dengesi, 24 saatlik yerel hava tahmininin isabetine bağlıdır.",
+  "senin": "ELK 421 Elektrik Enerjisi Üretimi, ELK 322 Power Transmission Systems, ELK 331 Güç Elektroniği Devreleri",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "ELK 421 Elektrik Enerjisi Üretimi",
+    "bizim": "Rüzgâr hızı ve güneş ışıması tahmin karnesi",
+    "neden": "Yenilenebilir enerji santralinin üreteceği megavat gücü doğrudan sınır tabaka rüzgâr profilinden hesaplanır."
+   },
+   {
+    "senin": "ELK 322 Power Transmission Systems",
+    "bizim": "Ekstrem hava olayları ve hat yüklenme kapasitesi",
+    "neden": "Aşırı sıcak dalgaları veya fırtınalarda iletim hatlarının dinamik hat derecelendirmesi (DLR) hava verisiyle belirlenir."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Yenilenebilir şebeke entegrasyonunda anlık hava tahmini",
+   "metin": "2025'te TEİAŞ ve EPİAŞ piyasa analizlerinde, rüzgâr ve güneş enerjisi dengesizlik maliyetlerini düşürmek için 15 dakikalık yerel tahmin düzeltme algoritmaları devreye alındı. Şebeke frekans kararlılığı yüksek isabetli hava kestirimiyle korundu.",
+   "kaynakAdi": "EPİAŞ Şeffaflık Bülteni",
+   "kaynakUrl": "https://seffaflik.epias.com.tr/elektrik/uretim/ruzgar-gunes-tahmini",
+   "tarih": "2025-02"
+  },
+  "detay": "Elektrik mühendisliğinde şebeke analizi ve enerji üretimi dersleri, yenilenebilir enerjinin yaygınlaşmasıyla doğrudan hava durumuna bağlandı. Bir rüzgâr türbininin veya güneş sahasının kaç megavat üreteceği ya da iletim hattının ne kadar akım taşıyabileceği tamamen ortamın termal ve aerodinamik koşullarıyla belirlenir. Derste gördüğün güç akışı ve şebeke dengesi problemleri, küresel modellerin yerel rüzgâr ve ışıma sapmalarını düzeltince doğrudan piyasa değerine dönüşür. Sınav haftalarında işe ara verirken, dönem boyunca kendi seçeceğin bir santral verisinde tahmin düzeltme yaparsın. Yanına meteoroloji öğrencisi oturduğunda rüzgâr kesme katsayısını hesaplar, sen de onu şebeke frekans dengesine bağlarsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (ELK)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1456"
+   }
+  ]
+ },
+ "amac": "Hava sıcaklığı, rüzgâr ve güneş ışınımı tahminlerinden fotovoltaik panel hücre sıcaklığını ve yüzde verim kaybını hesaplayan analiz modülü geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "ELK 331",
+   "projeyeKatki": "Fotovoltaik hücrenin sıcaklık-güç karakteristik eğrisini, yarı iletken verim kaybı bağıntısını ve MPPT DC-DC kıyıcı gerilim oranını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "PV panel hücresi çalışma sıcaklığı denklemi",
+     "nerede": "Hava sıcaklığı, ışınım ve rüzgâr hızından panelin gerçek çalışma sıcaklığını kestirirken."
+    },
+    {
+     "formulAd": "Fotovoltaik sıcaklık verim kaybı ve güç bağıntısı",
+     "nerede": "Standart 25 °C test sıcaklığından sapmanın yarattığı net güç kaybı yüzdesini ve çıkış gücünü hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Sıcak hava dalgalarında yüzey sıcaklık adveksiyonunu ve yerel rüzgâr alanı tahminlerini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "Santral sahasına doğru ilerleyen sıcak hava cephelerinin yerel panel soğumasını nasıl etkileyeceğini analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Hava sıcaklığı ve rüzgâr tahminlerini King hücre modeliyle birleştirip fotovoltaik verim kaybı serisi çıkaran Python kodu.",
+  "ayrinti": "Hava tahmin servisinden saatlik 2 m sıcaklığı, yüzey rüzgâr hızı ve direkt güneş ışınımı indirilir. King termal ısı dengesi formülüyle panel hücresi çalışma sıcaklığı dizisi türetilir. Silikon fotovoltaik modüllerin sıcaklık katsayısı uygulanarak saatlik verim kaybı ve üretilen net güç hesaplanıp grafik olarak diske yazılır.",
+  "adimlar": [
+   {
+    "baslik": "Santral için saatlik sıcaklık, rüzgâr ve ışınım indirmek",
+    "oz": "Güneş santrali koordinatlarında 7 günlük saatlik hava verisi çekmek.",
+    "ayrinti": "Open-Meteo güneş API'sinden 2 m hava sıcaklığı, 10 m rüzgâr hızı ve direkt normal ışıma (DNI) değerleri sorgulanır.",
+    "nasil": [
+     {
+      "teknik": "res = requests.get('https://api.open-meteo.com/v1/forecast?latitude=37.8&longitude=32.4&hourly=temperature_2m,wind_speed_10m,direct_normal_irradiance').json()",
+      "sade": "Konya güneş santrali koordinatları için meteoroloji servisinden saatlik sıcaklık, rüzgâr hızı ve güneş ışıması çekilir.",
+      "altAdimlar": [
+       "Santralin enlem ve boylam koordinatlarını belirleyin.",
+       "API sorgusuna sıcaklık, rüzgâr ve ışıma değişkenlerini ekleyin.",
+       "Dönen saatlik verileri Python sözlüğüne aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+      }
+     },
+     {
+      "teknik": "T_air = np.array(res['hourly']['temperature_2m']); G = np.array(res['hourly']['direct_normal_irradiance']); v_wind = np.array(res['hourly']['wind_speed_10m']) / 3.6",
+      "sade": "İndirilen değerler sayısal hesaplamaya uygun NumPy dizilerine dönüştürülür ve rüzgâr hızı m/s birimine çevrilir.",
+      "altAdimlar": [
+       "Sıcaklık ve ışıma dizilerini oluşturun.",
+       "Rüzgâr hızını m/s birimine dönüştürün.",
+       "Gece saatlerindeki sıfır ışıma değerlerini doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "ELK 331",
+       "madde": "Yarı iletken güç anahtarlarının çalışma karakteristiklerini ve kayıplarını analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ELK 331",
+      "madde": "Yarı iletken güç anahtarlarının çalışma karakteristiklerini ve kayıplarını analiz etmek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.nrel.gov/solar/pvwatts.html",
+      "aciklama": "Saatlik güneş ışınımı ve çevre sıcaklığı veri paneli"
+     }
+    ]
+   },
+   {
+    "baslik": "King modeliyle panel hücresi sıcaklığını hesaplamak",
+    "oz": "Güneş ışıması ve rüzgâr hızını hücre sıcaklığına dönüştürmek.",
+    "ayrinti": "King açık montaj parametreleri (a=-3.56, b=-0.075) uygulanarak her saat için panel hücresinin gerçek sıcaklığı hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "a, b = -3.56, -0.075; T_cell = np.where(G > 10, T_air + G * np.exp(a + b * v_wind), T_air)",
+      "sade": "Güneş olan saatlerde ışınım ısınması ve rüzgâr soğutması birleştirilerek panel hücre sıcaklığı bulunur.",
+      "altAdimlar": [
+       "Montaj türüne uygun King termal katsayılarını belirleyin.",
+       "Işınım eşiği üstündeki gündüz saatlerini filtreleyin.",
+       "Hücre sıcaklığı dizisini hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "ELK 331",
+       "madde": "Yenilenebilir enerji sistemlerinde MPPT algoritmasıyla güç aktarımını optimize etmek."
+      }
+     },
+     {
+      "teknik": "print(f'Maksimum Hücre Sıcaklığı: {T_cell.max():.1f} °C, Ortam Sıcaklığı: {T_air[np.argmax(T_cell)]:.1f} °C')",
+      "sade": "Günün en sıcak saatinde panel hücresinin çevre havasından kaç derece daha sıcak olduğu ekrana yazdırılır.",
+      "altAdimlar": [
+       "En yüksek hücre sıcaklığı değerini bulun.",
+       "Aynı andaki çevre hava sıcaklığıyla farkı karşılaştırın.",
+       "Aşırı ısınma yaşanan kritik saatleri listeleyin."
+      ],
+      "kazanim": {
+       "ders": "ELK 331",
+       "madde": "Yarı iletken güç anahtarlarının çalışma karakteristiklerini ve kayıplarını analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ELK 331",
+      "madde": "Yenilenebilir enerji sistemlerinde MPPT algoritmasıyla güç aktarımını optimize etmek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Boost_conve_diagram.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Fotovoltaik MPPT DC-DC kıyıcı devresi şeması"
+     }
+    ]
+   },
+   {
+    "baslik": "Sıcaklık verim kaybını hesaplayıp analiz raporunu oluşturmak",
+    "oz": "Yüzde verim kaybı ve anlık güç çıkışını JSON dosyasına yazmak.",
+    "ayrinti": "Standart 25 °C referansına göre her derece artış için yüzde 0,4 güç kaybı uygulanır; üretilen anlık megavat saat karnesi çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "gamma = -0.004; loss_pct = np.maximum(0, (T_cell - 25.0) * (-gamma) * 100); P_out = 400.0 * (G / 1000.0) * (1.0 + gamma * (T_cell - 25.0))",
+      "sade": "Hücre sıcaklığının 25 °C'yi aştığı durumlarda güç kaybı yüzdesi ve panelin anlık çıkış gücü hesaplanır.",
+      "altAdimlar": [
+       "Panel sıcaklık güç katsayısını tanımlayın.",
+       "Yüzde verim kaybı dizisini oluşturun.",
+       "Panelin ürettiği anlık watt gücünü hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "ELK 331",
+       "madde": "Yenilenebilir enerji sistemlerinde MPPT algoritmasıyla güç aktarımını optimize etmek."
+      }
+     },
+     {
+      "teknik": "import json; json.dump({'maks_sicaklik_c': float(T_cell.max()), 'ort_kayip_yuzde': float(loss_pct[G > 100].mean())}, open('pv_verim_karne.json', 'w'), indent=2)",
+      "sade": "Güneş santrali işletmecisi için hazırlanan termal verim karnesi JSON raporu olarak diske yazılır.",
+      "altAdimlar": [
+       "Gündüz saatlerindeki ortalama verim kaybını hesaplayın.",
+       "Sonuç metriklerini JSON sözlüğüne yerleştirin.",
+       "Karne dosyasını diske yazarak doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "ELK 331",
+       "madde": "Doğru akım kıyıcı (buck, boost) devrelerini tasarlamak ve gerilim regülasyonu sağlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ELK 331",
+      "madde": "Doğru akım kıyıcı (buck, boost) devrelerini tasarlamak ve gerilim regülasyonu sağlamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İç Anadolu güneş santrali saatlik hava sıcaklığı, güneş ışınımı ve hücre verim kaybı, 2026-10",
+      "aciklama": "Saatlik güneş ışınımı ve panel hücre verim kaybı değişim animasyonu"
+     }
+    ]
+   }
+  ],
+  "sonuc": "Hava sıcaklığı ve rüzgâr tahminlerini King modeliyle birleştirip fotovoltaik panel hücre sıcaklığı ve verim kaybı zaman serisi çıkaran Python analiz modülü.",
+  "senden": "Fotovoltaik hücre termal denklemini ve yarı iletken verim kaybı fonksiyonunu kodlamak.",
+  "bizden": "Santral konumu için saatlik yüzey hava sıcaklığı, rüzgâr hızı ve direkt güneş ışınımı tahmin serilerini sağlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İç Anadolu güneş santrali saatlik hava sıcaklığı, güneş ışınımı ve hücre verim kaybı, 2026-10",
+   "aciklama": "Panel hücre sıcaklığına bağlı anlık fotovoltaik verim kaybı animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://solargis.com/products/evaluate",
+   "aciklama": "SolarGIS santral performans ve hücre sıcaklığı izleme paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Boost_conve_diagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Fotovoltaik MPPT DC-DC kıyıcı devresi şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NREL PVWatts Research Methodology",
+   "url": "https://www.nrel.gov/solar/pvwatts.html"
+  },
+  {
+   "ad": "SolarGIS Resource Assessment and PV Monitoring",
+   "url": "https://solargis.com/products/evaluate"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-EEF-ELK-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "5a1c1c4d2bd2"
+ }
+}

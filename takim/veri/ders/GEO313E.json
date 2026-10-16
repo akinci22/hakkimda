@@ -1,0 +1,124 @@
+{
+ "kod": "GEO 313E",
+ "ad": "Digital Image Processing",
+ "bolum": "Geomatik Mühendisliği",
+ "obsNo": "313",
+ "ozet": "Sayısal uydu ve hava fotoğraflarının radyometrik ve geometrik düzeltmelerini, filtreleme tekniklerini, spektral indeks hesaplamalarını ve görüntü sınıflandırma yöntemlerini öğretir. Çok bantlı uzaktan algılama görüntülerinden arazi örtüsü, bulut ve sis maskeleri ile konvolüsyonel öznitelik haritalarının çıkarılmasını hedefler.",
+ "neOgrenirsin": [
+  "Uzaktan algılama görüntülerine radyometrik kalibrasyon ve atmosferik düzeltme uygulamak.",
+  "Uzaysal filtreleme ve konvolüsyon çekirdekleri ile görüntü yumuşatma ve kenar sezme yapmak.",
+  "Çok bantlı spektral indeksler (NDVI, NDSI) ve bant oranlaması ile yüzey özelliklerini ayıklamak.",
+  "Denetimli ve denetimsiz makine öğrenmesi algoritmalarıyla piksel bazlı görüntü sınıflandırma yapmak.",
+  "Hata matrisi ve Kappa katsayısı ile tematik harita doğruluk analizini hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Normalize Edilmiş Fark Kar ve Sis İndeksi (NDSI)",
+   "tex": "\\mathrm{NDSI} = \\frac{\\rho_{\\mathrm{vis}} - \\rho_{\\mathrm{swir}}}{\\rho_{\\mathrm{vis}} + \\rho_{\\mathrm{swir}}}",
+   "terimler": [
+    [
+     "\\mathrm{NDSI}",
+     "normalize edilmiş fark indeksi",
+     "birimsiz (-1 ile +1 arası)"
+    ],
+    [
+     "\\rho_{\\mathrm{vis}}",
+     "görünür bölge yansıtma değeri",
+     "birimsiz"
+    ],
+    [
+     "\\rho_{\\mathrm{swir}}",
+     "kısa dalga kızılötesi bölge yansıtma değeri",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Görünür ışık ve kızılötesi yansımalar arasındaki farkı oranlayarak bulut, kar ve sis piksellerini diğer yüzeylerden ayırır. Sis ve alçak bulutlar görünür dalga boyunda yüksek, kızılötesinde düşük yansıma verir.",
+   "ornek": "Görünür yansıma 0,65 ve kısa dalga kızılötesi yansıma 0,15 ölçüldüğünde NDSI = (0,65 - 0,15)/(0,65 + 0,15) = 0,625 bulunur; bu yüksek değer yoğun sis veya alçak bulut varlığını doğrular.",
+   "nerede": "GEO-01 projesinde uydu görüntülerinden gündüz sis ve alçak bulut maskesi çıkarırken."
+  },
+  {
+   "ad": "2B Sayısal konvolüsyon ve uzaysal filtreleme bağıntısı",
+   "tex": "g(x, y) = \\sum_{s=-a}^{a} \\sum_{t=-b}^{b} w(s, t) \\, f(x + s, y + t)",
+   "terimler": [
+    [
+     "g(x, y)",
+     "filtrelenmiş çıkış görüntüsü piksel değeri",
+     "sayısal değer (DN)"
+    ],
+    [
+     "w(s, t)",
+     "konvolüsyon filtre çekirdeği ağırlıkları",
+     "birimsiz"
+    ],
+    [
+     "f(x+s, y+t)",
+     "giriş uydu görüntüsü piksel değeri",
+     "sayısal değer (DN)"
+    ],
+    [
+     "a, b",
+     "filtre çekirdeğinin yarı boyutları",
+     "piksel"
+    ]
+   ],
+   "sade": "Görüntü üzerindeki her pikseli komşu piksellerin ağırlıklı toplamıyla günceller. Gürültüleri temizlemek veya sis sınırlarını belirginleştirmek için kullanılır.",
+   "ornek": "3x3 boyutundaki bir Gauss yumuşatma filtresi uydu görüntüsündeki tek piksellik sensör parazitlerini çevre piksellerin ortalamasıyla giderir.",
+   "nerede": "GEO-01 ve GEO-03'te raster verilerin gürültüsünü filtrelerken ve kenarları belirlerken."
+  },
+  {
+   "ad": "İki kanallı parlaklık sıcaklığı farkı (BTD) sis bağıntısı",
+   "tex": "\\Delta T_b = T_{b,11\\mu\\mathrm{m}} - T_{b,3.9\\mu\\mathrm{m}}",
+   "terimler": [
+    [
+     "\\Delta T_b",
+     "parlaklık sıcaklığı farkı",
+     "K"
+    ],
+    [
+     "T_{b,11\\mu\\mathrm{m}}",
+     "11 mikron termal kızılötesi parlaklık sıcaklığı",
+     "K"
+    ],
+    [
+     "T_{b,3.9\\mu\\mathrm{m}}",
+     "3.9 mikron orta kızılötesi parlaklık sıcaklığı",
+     "K"
+    ]
+   ],
+   "sade": "Gece saatlerinde sis damlacıklarının farklı dalga boylarındaki ışıma özelliklerinden yararlanır. 3.9 ve 11 mikron kanallarının sıcaklık farkı sis tabakasını gece karanlığında net bir şekilde ortaya çıkarır.",
+   "ornek": "Gece uydusunda 11 mikron kanalı 278 K ve 3.9 mikron kanalı 282 K ölçtüğünde fark Delta Tb = -4 K olur; bu negatif fark yüzeye yakın su damlacıklarından oluşan radyasyon sisini gösterir.",
+   "nerede": "GEO-01'de gece sis tespiti için kızılötesi bant farkı eşikleme algoritmasında."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "eumetsat-ornek",
+   "konu": "Meteosat SEVIRI çift kanal parlaklık sıcaklığı farkı ile sis döngüsü",
+   "aciklama": "Avrupa ve Türkiye üzerinde gece oluşan sis ve alçak bulut tabakasının zamansal dağılımı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://user.eumetsat.int/data/satellites/meteosat-third-generation",
+   "aciklama": "EUMETSAT Meteosat Üçüncü Nesil uydu verileri ve ürün kataloğu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEO 313E (Digital Image Processing)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=313"
+  },
+  {
+   "ad": "Gonzalez, R. C. & Woods, R. E. (2018) Digital Image Processing, 4. baskı, Pearson · ISBN 978-0133356724",
+   "url": "https://openlibrary.org/isbn/9780133356724"
+  },
+  {
+   "ad": "Lillesand, T. M., Kiefer, R. W. & Chipman, J. W. (2015) Remote Sensing and Image Interpretation, Wiley · ISBN 978-1118343289",
+   "url": "https://openlibrary.org/isbn/9781118343289"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=313"
+}

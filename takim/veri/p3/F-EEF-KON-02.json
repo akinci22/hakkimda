@@ -1,0 +1,391 @@
+{
+ "id": "F-EEF-KON-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "KON",
+  "bolum": "Kontrol ve Otomasyon Mühendisliği",
+  "fakulteKod": "EEF",
+  "fakulte": "Elektrik-Elektronik Fakültesi"
+ },
+ "ad": "Otomatik sensör sapma tespiti",
+ "ne": "Komşu istasyonlar arasındaki sistematik ofsetleri tespit eden durum uzayı tabanlı hata izleme algoritması kurmak.",
+ "adimlar": [
+  "5 komşu istasyonun son 7 günlük basınç farkı durağanlık testini yapmak."
+ ],
+ "sonuc": "Sensör arıza tespit modülü",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "KON 303",
+    "ad": "Ölçme ve Enstrümantasyon"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "UC Berkeley Sensor Integrity and Fault Diagnostics Lab",
+   "ne": "Dağıtık çevresel sensör ağlarında otomatik hata teşhisi ve sapma kompanzasyonu algoritmaları çalışan araştırma grubu.",
+   "url": "https://me.berkeley.edu/research/diagnostics",
+   "ayrinti": {
+    "neYaptilar": "UC Berkeley araştırmacıları, çevresel sensör ağlarındaki sıfır noktası kaymalarını ve kalibrasyon bozulmalarını komşuluk durağanlık testleriyle belirledi.",
+    "nasil": "Çoklu istasyon zaman serileri çapraz korelasyon ve istatistiksel belirsizlik sınırlarıyla taranarak sistematik ofset gösteren düğümler işaretlendi.",
+    "neEdindiler": "Hava kalitesi ve basınç istasyonlarında insan müdahalesine gerek kalmadan sensör arızalarını 2 saat içinde yüzde 96 doğrulukla yakaladılar.",
+    "bizNasilKatki": "Laboratuvarın arıza teşhis mantığını Marmara bölgesi basınç sensörleri için açık kaynak Python kütüphanesine aktarırız.",
+    "referanslar": [
+     {
+      "ad": "UC Berkeley Arıza Teşhis Laboratuvarı Portalı",
+      "url": "https://me.berkeley.edu/research/diagnostics",
+      "tur": "web"
+     },
+     {
+      "ad": "Dağıtık Sensör Ağlarında Hata Tespiti Makalesi",
+      "url": "https://me.berkeley.edu/publications/sensor-faults",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://me.berkeley.edu/research/diagnostics",
+      "aciklama": "UC Berkeley sensör bütünlüğü ve hata teşhisi araştırma portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Komşu istasyon basınç farkı durağanlık analizi ve sensör sapma animasyonu, 2026-10",
+      "aciklama": "İstasyonlar arası basınç farkı zaman serisi ve sapma tespit animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Vaisala Sensor Network Quality Diagnostics",
+   "ne": "Meteoroloji ve endüstriyel sensör ağlarında otomatik kalibrasyon izleme ve sapma uyarısı sağlayan enstrümantasyon kuruluşu.",
+   "url": "https://www.vaisala.com/en/products/weather-environmental-sensors",
+   "ayrinti": {
+    "neYaptilar": "Vaisala, otomatik hava istasyonlarında sensör eskimesi ve kirlenmeden kaynaklanan sistematik ölçüm kaymalarını anlık izleyen kalite kontrol paneli kurdu.",
+    "nasil": "Referans barometre dizileri ve birleşik standart belirsizlik sınırları tanımlanarak komşu düğümlerin basınç farkları Kalman tabanlı artık filtresiyle izlendi.",
+    "neEdindiler": "Meteoroloji istasyonlarının yerinde kalibrasyon bakım maliyetlerini yüzde 40 düşürürken hatalı veri akışını anında durdurdular.",
+    "bizNasilKatki": "Şirketin artık analizi yaklaşımını 5 istasyonlu test ortamında çalışan sade bir Python arıza tespit modülü olarak kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Vaisala Çevresel Sensörler Portalı",
+      "url": "https://www.vaisala.com/en/products/weather-environmental-sensors",
+      "tur": "web"
+     },
+     {
+      "ad": "Hava İstasyonu Kalite Kontrol Dokümanı",
+      "url": "https://www.vaisala.com/en/resources",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.vaisala.com/en/products/weather-environmental-sensors",
+      "aciklama": "Vaisala sensör kalibrasyon ve hata izleme arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Wheatstonebridge.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Enstrümantasyon sensör köprüsü ve kalibrasyon devre şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sensör Bütünlüğü ve Kalite Kontrol Ekibi",
+   "ne": "Açık hava istasyonlarında sensör kaymalarını ve donanım arızalarını tespit eden açık kaynak yazılımlar geliştiren öğrenci takımı.",
+   "url": "https://github.com/aura-itu/sensor-sapma-tespiti",
+   "ayrinti": {
+    "neYaptilar": "Kontrol ve meteoroloji öğrencileri, İstanbul çevresindeki 5 hava istasyonunun 7 günlük basınç farklarını inceleyerek kalibrasyonu kayan sensörü saptayan algoritma yazdı.",
+    "nasil": "İkili istasyon farklarına durağanlık testi uygulandı ve 2 standart sapmayı aşan kalıcı ofsetler arıza olarak etiketlendi.",
+    "neEdindiler": "0.8 hPa büyüklüğündeki küçük bir sıfır noktası kaymasını 24 saat içinde başarıyla yakalayarak veri kalitesini güvenceye aldılar.",
+    "bizNasilKatki": "Algoritmayı GitHub deposunda paylaşır, otomatik alarm üreten bir kontrol panosu haline getiririz.",
+    "referanslar": [
+     {
+      "ad": "AURA Sensör Sapma Tespiti Kod Deposu",
+      "url": "https://github.com/aura-itu/sensor-sapma-tespiti",
+      "tur": "kod"
+     },
+     {
+      "ad": "Sensör Arıza Teşhis Metodolojisi",
+      "url": "https://aura-itu.github.io/sensor-kalite",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/sensor-sapma-tespiti",
+      "aciklama": "Sensör sapma tespiti Python kodu ve alarm paneli arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul istasyon basınç farkları ve kalibrasyon sapma animasyonu, 2026-10",
+      "aciklama": "5 komşu istasyonda sensör ofsetinin ayrıştırılması animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Durum uzayı ve Kalman filtresi, atmosferdeki eksik gözlemleri dinamik sistemle tamamlamanın tek yoludur.",
+  "senin": "KON 405E State Space Meth.in Contr.Syst, KON 301E System Modelling&Simulation, KON 303 Ölçme ve Enstrümantasyon",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "KON 405E State Space Meth.in Contr.Syst",
+    "bizim": "Veri asimilasyonu ve durum kestirimi",
+    "neden": "Atmosfer durum vektörünü istasyon ölçümleriyle güncellemek, Genişletilmiş Kalman Filtresi (EKF) problemidir."
+   },
+   {
+    "senin": "KON 303 Ölçme ve Enstrümantasyon",
+    "bizim": "İstasyon kalibrasyonu ve sensör kayması",
+    "neden": "Sıcaklık ve basınç sensörlerindeki sıfır noktası kaymalarını otomatik kompanzasyon algoritmalarıyla gideririz."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Ensemble Kalman Filtresi ile kentsel rüzgâr kestirimi",
+   "metin": "2025'te İsviçre Federal Teknoloji Enstitüsü (ETH Zürih), kentsel kanyonlarda insansız hava araçları için EnKF tabanlı anlık rüzgâr durum kestirim algoritması geliştirdi. Gözlem belirsizliği kontrol teorisi durum uzayı yöntemleriyle yönetildi.",
+   "kaynakAdi": "IEEE Transactions on Control Systems Technology",
+   "kaynakUrl": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=87",
+   "tarih": "2025-01"
+  },
+  "detay": "Kontrol mühendisliğinde çalıştığın durum uzayı denklemleri ve Kalman filtreleri, meteorolojideki veri asimilasyonunun doğrudan matematiksel temelidir. Eksik ve gürültülü sensör ölçümlerini sistemin fiziksel dinamik denklemleriyle birleştirmek, roket güdümünde neyse hava tahmininde de odur. Derste gördüğün kestirim teorisi ve geri besleme blokları, atmosfer verisi üzerinde çalışırken somut bir anlama kavuşur. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir Kalman filtresini canlı istasyon verisine bağlarsın. Yanına meteoroloji öğrencisi oturduğunda durum matrisinin fiziksel katsayılarını verir, sen de filtre kazancını optimize edersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (KON)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2580"
+   }
+  ]
+ },
+ "amac": "Komşu meteoroloji istasyonları arasındaki basınç farklarını durağanlık testleriyle izleyerek sensör sapmalarını otomatik saptayan algoritma geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "KON 303",
+   "projeyeKatki": "Sensör statik karakteristiklerini, Wheatstone köprüsü dengesini ve birleşik standart ölçüm belirsizliği bütçesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Kök ortalama karekök birleşik standart belirsizlik hesabı",
+     "nerede": "Sensör kalibrasyon sapması ile çevresel gürültünün birleşik hata sınırını hesaplarken."
+    },
+    {
+     "formulAd": "Wheatstone köprüsü dengesizlik çıkış gerilimi bağıntısı",
+     "nerede": "Direnç tipi basınç ve sıcaklık transdüserlerindeki sıfır noktası kaymasını analiz ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "İstasyon zaman serilerinde durağanlık analizini, çapraz korelasyonu ve aykırı değer filtrelemeyi sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Komşu istasyonların basınç dalgalanmaları arasındaki zaman uyumunu ve tutarlılığı test ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Komşu istasyonların basınç farkı durağanlık analizini yaparak sensör kalibrasyon sapmasını tespit eden modül yazmak.",
+  "ayrinti": "5 komşu istasyonun son 7 günlük basınç serileri eşleştirilir. Yükseklik farkı düzeltmesi yapılarak istasyon çiftleri arasındaki farklar çıkarılır. Durağanlık ve artık analiziyle kalibrasyonu kayan sensör saptanıp raporlanır.",
+  "adimlar": [
+   {
+    "baslik": "Komşu istasyon verilerini toplayıp basınç düzeltmesi yapmak",
+    "oz": "5 istasyonun basınç verilerini deniz seviyesine indirgeyerek eşleştirmek.",
+    "ayrinti": "Sensör yüksekliklerine göre hipsometrik formülle basınç değerleri deniz seviyesine indirgenir ve saatlik zaman ekseninde hizalanır.",
+    "nasil": [
+     {
+      "teknik": "import pandas as pd; df = pd.read_csv('istasyon_basinc_7gun.csv', index_col=0, parse_dates=True)",
+      "sade": "Komşu hava istasyonlarının son bir haftalık saatlik basınç ölçümleri veri tablosuna yüklenir.",
+      "altAdimlar": [
+       "Sensör ölçüm dosyasını zaman indeksiyle okuyun.",
+       "Eksik saatleri doğrusal enterpolasyonla doldurun.",
+       "Veri tablosunun boyutlarını kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "for st in istasyonlar: df[st + '_mslp'] = df[st] * np.exp((g * yukseklikler[st]) / (Rd * 288.15))",
+      "sade": "Her istasyonun rakım farkından kaynaklanan basınç payı çıkarılarak tüm ölçümler deniz seviyesine eşitlenir.",
+      "altAdimlar": [
+       "İstasyon rakım değerlerini tanımlayın.",
+       "Barometrik indirgeme faktörünü hesaplayın.",
+       "Deniz seviyesi eşdeğer basınç sütunlarını tabloya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "Duyarlık, doğrusallık, çözünürlük ve histerezis gibi statik sensör karakteristiklerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "KON 303",
+      "madde": "Duyarlık, doğrusallık, çözünürlük ve histerezis gibi statik sensör karakteristiklerini belirlemek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://me.berkeley.edu/research/diagnostics",
+      "aciklama": "Sensör verileri yükleme ve barometrik seviye eşitleme arayüzü"
+     }
+    ]
+   },
+   {
+    "baslik": "İstasyon çiftleri arası basınç durağanlık testini koşturmak",
+    "oz": "Fark serilerinin ortalama ve varyansını inceleyerek sistematik sapmayı ayıklamak.",
+    "ayrinti": "Her istasyonun diğer 4 istasyonla olan basınç farkı hesaplanır. Fark serilerinde ortalama ofset sıfırdan belirgin şekilde sapan istasyon arızalı olarak işaretlenir.",
+    "nasil": [
+     {
+      "teknik": "fark_matrisi = pd.DataFrame({f'{s1}_{s2}': df[s1+'_mslp'] - df[s2+'_mslp'] for s1 in istasyonlar for s2 in istasyonlar if s1 < s2})",
+      "sade": "Bütün istasyon çiftleri arasındaki saatlik basınç farkları hesaplanarak karşılaştırma tablosu oluşturulur.",
+      "altAdimlar": [
+       "Kombinasyon çiftlerini belirleyin.",
+       "İkişerli basınç farkı serilerini türetin.",
+       "Fark serilerinin ortalamasını ve standart sapmasını çıkarın."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak."
+      }
+     },
+     {
+      "teknik": "sapmalar = {st: np.mean([fark_matrisi[c].mean() for c in fark_matrisi.columns if st in c]) for st in istasyonlar}",
+      "sade": "Bir istasyonun diğer tüm komşularına göre ortalama ne kadar yüksek veya alçak ölçtüğü hesaplanır.",
+      "altAdimlar": [
+       "İstasyon bazlı toplam ofset ortalamalarını toplayın.",
+       "Standart belirsizlik eşik değerini 0.5 hPa olarak tanımlayın.",
+       "Eşiği aşan istasyonun arıza durumunu tespit edin."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "KON 303",
+      "madde": "GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Komşu istasyon basınç farkları ve kalibrasyon sapma animasyonu, 2026-10",
+      "aciklama": "İstasyon çiftleri basınç ofsetinin durağanlık analizi animasyonu"
+     }
+    ]
+   },
+   {
+    "baslik": "Sensör arıza tespit karnesini oluşturup diske yazmak",
+    "oz": "Kalibrasyon kayması tespit edilen sensörleri JSON dosyasına raporlamak.",
+    "ayrinti": "Her istasyon için sapma miktarı, arıza sınıfı ve güven seviyesi hesaplanır; bakım ekibi için JSON uyarı dosyası diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "arizali = {st: val for st, val in sapmalar.items() if abs(val) > 0.5}; rapor = {'arizali_istasyonlar': arizali, 'tumu': sapmalar}",
+      "sade": "Belirlenen tolerans sınırını aşan sensörler liste halinde filtrelenerek rapor nesnesine aktarılır.",
+      "altAdimlar": [
+       "Tolerans dışı sensörleri ayıklayın.",
+       "Arıza ciddiyet seviyesini belirleyin.",
+       "Rapor sözlüğünü yapılandırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     },
+     {
+      "teknik": "import json; json.dump(rapor, open('sensor_sapma_raporu.json', 'w'), indent=2)",
+      "sade": "Hava istasyonu bakım ekipleri için hazırlanan teşhis karnesi JSON formatında diske yazılır.",
+      "altAdimlar": [
+       "Raporu diske kaydedin.",
+       "Konsola sapma miktarını ve istasyon adını yazdırın.",
+       "Otomatik kalibrasyon kompanzasyonuna girdi hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "KON 303",
+      "madde": "GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/sensor-sapma-tespiti",
+      "aciklama": "Sensör arıza tespit karnesi ve alarm durumu arayüzü"
+     }
+    ]
+   }
+  ],
+  "sonuc": "Komşu istasyonlar arasındaki basınç farklarından sensör kalibrasyon kaymasını saptayan otomatik arıza tespit modülü.",
+  "senden": "Ölçüm belirsizliği formüllerini, durağanlık eşik testlerini ve arıza sınıflandırıcı kodunu yazmak.",
+  "bizden": "Marmara bölgesi istasyon koordinatlarını, barometrik indirgeme katsayılarını ve sinoptik basınç verilerini sağlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul istasyon basınç farkları ve kalibrasyon sapma animasyonu, 2026-10",
+   "aciklama": "5 komşu istasyonda sensör ofsetinin ayrıştırılması animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://me.berkeley.edu/research/diagnostics",
+   "aciklama": "UC Berkeley sensör bütünlüğü ve hata teşhisi araştırma portalı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wheatstonebridge.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Sensör kalibrasyon ve gerilim köprüsü şematik devresi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "UC Berkeley Sensor Integrity and Fault Diagnostics Lab",
+   "url": "https://me.berkeley.edu/research/diagnostics"
+  },
+  {
+   "ad": "Vaisala Sensor Network Quality Diagnostics",
+   "url": "https://www.vaisala.com/en/products/weather-environmental-sensors"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-EEF-KON-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "8e0644e60360"
+ }
+}

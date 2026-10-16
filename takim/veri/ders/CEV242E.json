@@ -1,0 +1,140 @@
+{
+ "kod": "CEV 242E",
+ "ad": "Çevre Müh. İçin Hidroloji",
+ "bolum": "Çevre Mühendisliği",
+ "obsNo": "242",
+ "ozet": "Hidrolojik döngünün temel bileşenlerini, havza su bütçesini, buharlaşma-terleme hesaplarını ve yağış-akış ilişkilerini öğretir. Kümülatif yağış analizi, sızma kapasitesi, yüzey akış katsayıları, Rasyonel Metot, birim hidrograf prensipleri ve rezervuar su dengesi simülasyonları incelenir.",
+ "neOgrenirsin": [
+  "Havza yağış ve buharlaşma verilerini kullanarak kümülatif su bütçesi denklemini kurmak.",
+  "Toprak nemi ve sızma kapasitesine göre net yüzey akış katsayısını hesaplamak.",
+  "SCS Eğri Numarası (SCS-CN) yöntemiyle havzaya düşen yağıştan net akış derinliğini bulmak.",
+  "Rezervuar ve baraj göllerinde su seviyesi-hacim ilişkisiyle depolama değişimini kestirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Havza su bütçesi süreklilik denklemi",
+   "tex": "\\Delta S = P - E - Q - G",
+   "terimler": [
+    [
+     "\\Delta S",
+     "havza depolama hacmi değişimi",
+     "mm"
+    ],
+    [
+     "P",
+     "kümülatif havza yağışı",
+     "mm"
+    ],
+    [
+     "E",
+     "buharlaşma ve terleme kaybı",
+     "mm"
+    ],
+    [
+     "Q",
+     "yüzey akışı ve baraj giriş debisi",
+     "mm"
+    ],
+    [
+     "G",
+     "derin yeraltı suyu sızması",
+     "mm"
+    ]
+   ],
+   "sade": "Bir havzaya gökten düşen yağıştan buharlaşan su, derelerle baraja akan miktar ve toprağa sızan kayıplar çıkarıldığında baraj gölünde kalan net su artışını verir.",
+   "ornek": "Ömerli havzasında 14 günlük toplam P = 65 mm yağışta, E = 12 mm buharlaşma ve G = 8 mm derin sızma varken net yüzey akışı ve depolama artışı Delta S ≈ 45 mm derinliğe karşılık gelir.",
+   "nerede": "Baraj havzasına düşen 14 günlük ızgara yağış toplamını İSKİ rezervuar doluluk yüzdesiyle kıyaslarken."
+  },
+  {
+   "ad": "SCS-CN net yüzey akışı bağıntısı",
+   "tex": "P_e = \\frac{(P - 0{,}2 \\, S)^2}{P + 0{,}8 \\, S}, \\qquad S = \\frac{25400}{\\mathrm{CN}} - 254",
+   "terimler": [
+    [
+     "P_e",
+     "net yüzey akış derinliği",
+     "mm"
+    ],
+    [
+     "P",
+     "toplam fırtına yağışı",
+     "mm"
+    ],
+    [
+     "S",
+     "havza maksimum potansiyel su tutma kapasitesi",
+     "mm"
+    ],
+    [
+     "\\mathrm{CN}",
+     "arazi örtüsü ve toprak eğri numarası",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Toprağın kuru ya da doymuş olmasına ve bitki örtüsüne göre düşen yağmurun ne kadarının derelere akacağını hesaplar. Toprak neme doydukça akış katlanarak artar.",
+   "ornek": "Terkos havzasında CN = 75 için maksimum tutma S = 84,7 mm bulunur; 70 mm'lik bir fırtınada ilk kayıplar düşüldükten sonra net akış Pe ≈ 20,4 mm olarak hesaplanır.",
+   "nerede": "Kuru toprak döneminden sonra gelen ilk sonbahar yağışlarında baraj gölüne ulaşacak efektif su miktarını hesaplarken."
+  },
+  {
+   "ad": "Buharlaşma kütle transferi bağıntısı",
+   "tex": "E = K_e \\cdot u_2 \\cdot (e_s - e_a)",
+   "terimler": [
+    [
+     "E",
+     "açık su yüzeyi buharlaşma hızı",
+     "mm/gün"
+    ],
+    [
+     "K_e",
+     "buharlaşma transfer katsayısı",
+     "\\mathrm{mm/(gün \\cdot (m/s) \\cdot hPa)}"
+    ],
+    [
+     "u_2",
+     "2 metre yükseklikteki rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "e_s",
+     "su yüzeyi sıcaklığındaki doymuş buhar basıncı",
+     "hPa"
+    ],
+    [
+     "e_a",
+     "havadaki anlık aktüel buhar basıncı",
+     "hPa"
+    ]
+   ],
+   "sade": "Rüzgâr ne kadar sert eserse ve hava suya ne kadar kuruysa, baraj gölünün yüzeyinden atmosfere kaçan su kaybı o kadar şiddetli olur.",
+   "ornek": "Ömerli Barajı üzerinde su sıcaklığı 20 °C (es = 23,4 hPa), hava buhar basıncı ea = 15 hPa ve rüzgâr u2 = 4 m/s iken günlük göl yüzeyinden buharlaşma kaybı yaklaşık 4,2 mm olur.",
+   "nerede": "Sıcak ve rüzgârlı yaz dönemlerinde baraj doluluk düşüşünü yağışsızlık ve buharlaşma bileşenlerine ayırırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Hydrological_cycle.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Havza hidrolojik döngüsü ve su bütçesi bileşenleri şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara baraj havzaları kümülatif yağış ve yüzey buharlaşması, ERA5, 2026-10",
+   "aciklama": "Ömerli ve Terkos havzalarında kümülatif su bütçesi döngüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · CEV 242E (Hydrology for Environmental Eng.)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CEV&dersNo=242"
+  },
+  {
+   "ad": "Chow, V. T., Maidment, D. R. ve Mays, L. W. (1988) Applied Hydrology, McGraw-Hill · ISBN 978-0070108103",
+   "url": "https://openlibrary.org/isbn/9780070108103"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CEV&dersNo=242"
+}

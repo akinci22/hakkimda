@@ -1,0 +1,112 @@
+{
+ "kod": "IML 337",
+ "ad": "İmalat Planlama ve Kontrol",
+ "bolum": "İmalat Mühendisliği",
+ "obsNo": "337",
+ "ozet": "Üretim sistemlerinin kapasite planlamasını, malzeme ihtiyaç planlamasını (MRP), çizelgelemeyi ve süreç kontrolünü öğretir. Kritik üretim adımlarında ortam nemi ve sıcaklığı gibi çevresel kısıtların üretim akışına, parti büyüklüklerine ve kompozit kürleme fırınlarının doluluk oranlarına etkileri analiz edilir. Üretim verimliliği ve termin yönetiminin temel dersidir.",
+ "neOgrenirsin": [
+  "Üretim süreçlerinde kapasite kısıtlarını ve çevresel faktörlere duyarlı iş çizelgelemesini kurmak.",
+  "Bağıl nem ve sıcaklıktan su buharı kısmi basıncını hesaplayarak üretim kalite eşiklerini belirlemek.",
+  "Malzeme İhtiyaç Planlaması (MRP) çizelgelerine iklimsel risk faktörlerini entegre etmek.",
+  "Kompozit otoklav ve fırın operasyonlarında parti büyüklüğü optimizasyonu yapmak.",
+  "Süreç akışında darboğaz analizi ve çevrim süresi kestirimi gerçekleştirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Tetens formülü ile doymuş su buharı basıncı ve mutlak nem",
+   "tex": "e_s(T) = 0{,}61078 \\exp\\left( \\frac{17{,}27 T}{T + 237{,}3} \\right), \\qquad \\rho_v = \\frac{e}{R_v (T + 273{,}15)}",
+   "terimler": [
+    [
+     "e_s(T)",
+     "T sıcaklığındaki doymuş su buharı kısmi basıncı",
+     "\\mathrm{kPa}"
+    ],
+    [
+     "T",
+     "ortam kuru termometre sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "\\rho_v",
+     "havadaki mutlak su buharı yoğunluğu (mutlak nem)",
+     "\\mathrm{g}/\\mathrm{m}^3"
+    ],
+    [
+     "e",
+     "kısmi su buharı basıncı (\\mathrm{RH} \\cdot e_s)",
+     "\\mathrm{kPa}"
+    ],
+    [
+     "R_v",
+     "su buharı spesifik gaz sabiti (461,5 J/(kg·K))",
+     "\\mathrm{J}/(\\mathrm{kg} \\cdot \\mathrm{K})"
+    ]
+   ],
+   "sade": "Sıcaklık ve bağıl nem verildiğinde bir metreküp havanın içinde tam olarak kaç gram su buharı bulunduğunu hesaplar. Kompozit vakum torbalamada reçinenin neme doymaması ve gözenek oluşmaması için izin verilen üst nem sınırını denetler.",
+   "ornek": "Atölye sıcaklığı 25 °C ve bağıl nem %75 iken, Tetens formülüyle e_s = 3,17 kPa, kısmi basınç e = 2,38 kPa ve mutlak nem rho_v = 17,25 g/m³ bulunur; bu değer havacılık kompozit kürleme üst kritik sınırı olan 14 g/m³'ü aşar.",
+   "nerede": "F-MKF-IML-02 projesinde açık hava tahminlerinden atölye mutlak nemini ve kompozit otoklav uygunluk indeksini hesaplarken."
+  },
+  {
+   "ad": "Çevresel kısıtlı parti çizelgeleme ve çevrim süresi",
+   "tex": "C_{\\mathrm{toplam}} = \\sum_{i=1}^M \\left( t_{s,i} + q_i \\cdot t_{p,i} + \\Delta t_{\\mathrm{nem},i} \\right)",
+   "terimler": [
+    [
+     "C_{\\mathrm{toplam}}",
+     "toplam üretim akış çevrim süresi",
+     "\\mathrm{saat}"
+    ],
+    [
+     "t_{s,i}",
+     "i operasyonu hazırlık ve kurulum süresi",
+     "\\mathrm{saat}"
+    ],
+    [
+     "q_i",
+     "üretilen parça parti büyüklüğü",
+     "\\mathrm{adet}"
+    ],
+    [
+     "t_{p,i}",
+     "parça başına birim işleme süresi",
+     "\\mathrm{saat}/\\mathrm{adet}"
+    ],
+    [
+     "\\Delta t_{\\mathrm{nem},i}",
+     "nem sınırı aşımında zorunlu bekleme veya nem alma süresi",
+     "\\mathrm{saat}"
+    ]
+   ],
+   "sade": "Kritik operasyonların yüksek nemli saatlere denk gelmesi durumunda nem alma veya bekleme yüzünden toplam üretim süresinin ne kadar uzayacağını hesaplar. Nemli saatleri atlayarak fırın yükleme takvimini optimize etmeyi sağlar.",
+   "ornek": "50 parçalık bir kompozit kanatçık partisinde birim infüzyon süresi 0,5 saat iken, aşırı nemli lodos dalgası yüzünden 12 saatlik nem alma gecikmesi eklendiğinde parti tamamlama süresi 37 saatten 49 saate çıkar.",
+   "nerede": "F-MKF-IML-02 projesinde havadaki nem değişiminin kompozit üretim takvimine ve fırın doluluk planlamasına etkisini kestirirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:PsychrometricChart.SeaLevel.SI.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Psikrometrik diyagram: sıcaklık, bağıl nem ve mutlak nem termodinamik bağıntıları"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul sanayi bölgeleri 2 metre bağıl nem ve sıcaklık zaman serisi, 2026",
+   "aciklama": "Nemli hava dalgası sırasında bağıl nem artışı ve mutlak su buharı yoğunluğu seyri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · IML 337 (İmalat Planlama ve Kontrol)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=IML&dersNo=337"
+  },
+  {
+   "ad": "Vollmann, T. E. et al. (2004) Manufacturing Planning and Control for Supply Chain Management, McGraw-Hill · ISBN 978-0072299908",
+   "url": "https://www.mheducation.com/highered/product/manufacturing-planning-control-supply-chain-management-jacobs-berry/M9780073377827.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=IML&dersNo=337"
+}

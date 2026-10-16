@@ -1,0 +1,122 @@
+{
+ "kod": "ROS 303E",
+ "ad": "Robot Kinematics and Dynamics",
+ "bolum": "Robotik ve Otonom Sistemler Mühendisliği",
+ "obsNo": "303",
+ "ozet": "Robotik manipülatörler ve mobil robotlar için ileri ve ters kinematik, diferansiyel kinematik, Jakoben matrisleri ve Newton-Euler ile Lagrange dinamik formülasyonlarını öğretir. Rüzgâr ve dış kuvvetler altında otonom platformların hareket denklemleri ve yörünge izleme tepkileri incelenir.",
+ "neOgrenirsin": [
+  "Robot gövdesi ve eklemleri için Denavit-Hartenberg parametreleriyle ileri kinematik dönüşümleri kurmak.",
+  "Jakoben matrisi ile robotik sistemlerin hız uzayı ve tekillik analizini gerçekleştirmek.",
+  "Newton-Euler ve Lagrange-Euler yaklaşımlarıyla dış aerodinamik kuvvetler altında dinamik hareket denklemlerini türetmek.",
+  "Rüzgâr direnci ve yerçekimi etkisinde manipülatör ve mobil otonom araçların tork ve itki gereksinimlerini hesaplamak.",
+  "Ters dinamik yöntemleri ile yörünge takip kontrolü için gerekli kontrol kuvvetlerini belirlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Lagrange hareket denklemi ve dış aerodinamik kuvvet",
+   "tex": "\\mathbf{M}(\\mathbf{q})\\ddot{\\mathbf{q}} + \\mathbf{C}(\\mathbf{q}, \\dot{\\mathbf{q}})\\dot{\\mathbf{q}} + \\mathbf{g}(\\mathbf{q}) = \\boldsymbol{\\tau} + \\mathbf{J}^T(\\mathbf{q})\\mathbf{F}_{ruzgar}",
+   "terimler": [
+    [
+     "\\mathbf{M}(\\mathbf{q})",
+     "sistem kütle ve eylemsizlik matrisi",
+     "kg·m²"
+    ],
+    [
+     "\\ddot{\\mathbf{q}}",
+     "genelleştirilmiş eklem veya konum ivme vektörü",
+     "m/s²"
+    ],
+    [
+     "\\mathbf{C}(\\mathbf{q}, \\dot{\\mathbf{q}})\\dot{\\mathbf{q}}",
+     "Coriolis ve merkezkaç kuvvetleri vektörü",
+     "N"
+    ],
+    [
+     "\\mathbf{g}(\\mathbf{q})",
+     "yerçekimi kuvveti vektörü",
+     "N"
+    ],
+    [
+     "\\boldsymbol{\\tau}",
+     "motor kontrol tork veya itki vektörü",
+     "N"
+    ],
+    [
+     "\\mathbf{J}^T(\\mathbf{q})",
+     "geometrik Jakoben matrisinin devriği",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{F}_{ruzgar}",
+     "araca etki eden dış rüzgâr aerodinamik sürükleme kuvveti",
+     "N"
+    ]
+   ],
+   "sade": "Robotun kütlesini, hızını ve yerçekimini dışarıdan esen rüzgâr kuvvetiyle birleştirerek hedeflenen rotada kalabilmesi için motorların ne kadar itki üretmesi gerektiğini belirler.",
+   "ornek": "2 kg ağırlığındaki bir İHA'ya 12 m/s karşı rüzgârda 6 N sürükleme kuvveti etki ettiğinde, irtifa kaybetmeden rotada kalmak için motorların toplam itkiyi 19,6 N'dan 25,6 N seviyesine çıkarması gerekir.",
+   "nerede": "Rüzgâr kuvveti altında rota simülasyonunda aracın harcayacağı ek enerji ve itki maliyetini her yol segmentinde hesaplarken."
+  },
+  {
+   "ad": "Aerodinamik sürükleme kuvveti bağıntısı",
+   "tex": "\\mathbf{F}_d = \\frac{1}{2} \\rho C_d A \\|\\mathbf{v}_r\\| \\mathbf{v}_r",
+   "terimler": [
+    [
+     "\\mathbf{F}_d",
+     "aerodinamik sürükleme kuvveti vektörü",
+     "N"
+    ],
+    [
+     "\\rho",
+     "hava yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "C_d",
+     "aracın aerodinamik sürükleme katsayısı",
+     "birimsiz"
+    ],
+    [
+     "A",
+     "aracın rüzgâra dik kesit alanı",
+     "m²"
+    ],
+    [
+     "\\mathbf{v}_r",
+     "aracın havaya göre bağıl hız vektörü",
+     "m/s"
+    ]
+   ],
+   "sade": "Hareket eden robota veya İHA'ya havanın uyguladığı karşı direnç kuvvetini hesaplar. Bağıl rüzgâr hızı iki katına çıktığında direnç dört katına çıkar.",
+   "ornek": "Deniz seviyesinde hava yoğunluğu 1,225 kg/m³ ve kesit alanı 0,08 m² olan bir İHA, 10 m/s bağıl rüzgârda Cd = 0,8 için yaklaşık 3,92 N sürükleme kuvvetine maruz kalır.",
+   "nerede": "Rüzgâr vektörlerinin harita ızgarasındaki her kenara ekleyeceği aerodinamik maliyeti ve batarya tüketimini türetirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul rüzgâr alanı ve otonom araç aerodinamik sürükleme kuvveti animasyonu",
+   "aciklama": "İTÜ Ayazağa rüzgâr hızına bağlı aerodinamik direnç kuvveti değişimi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:RRT_algorithm.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Robotik hareket planlamasında kullanılan RRT arama ağacı diyagramı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · ROS 303E (Robot Kinematics and Dynamics)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ROS&dersNo=303"
+  },
+  {
+   "ad": "Craig, J. J. (2005) Introduction to Robotics: Mechanics and Control, Pearson · ISBN 978-0201543612",
+   "url": "https://openlibrary.org/isbn/9780201543612"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ROS&dersNo=303"
+}

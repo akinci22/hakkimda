@@ -1,0 +1,106 @@
+{
+ "kod": "PET 440E",
+ "ad": "Geostatistics",
+ "bolum": "Petrol ve Doğal Gaz Mühendisliği",
+ "obsNo": "440E",
+ "ozet": "Uzamsal verilerin istatistiksel analizi, semivaryogram hesabı ve kriging enterpolasyon tekniklerini öğretir. Petrol ve doğal gaz rezervuarlarında gözeneklilik ve geçirgenlik dağılımının kestirimi, uzamsal otokorelasyon, anizotropi ve hata varyansının minimize edilmesi incelenir. Meteorolojik istasyon verilerinin uzamsal haritalanmasına doğrudan aktarılabilir matematiksel temel sunar.",
+ "neOgrenirsin": [
+  "Deneysel semivaryogram hesaplayarak uzamsal otokorelasyon ve etki mesafesini belirlemek.",
+  "Sıradan kriging (Ordinary Kriging) ağırlıklarını hesaplayarak en iyi doğrusal yansız kestirim (BLUE) yapmak.",
+  "Kriging kestirim varyansı ile mekânsal belirsizlik ve gözlem ağı eksikliklerini değerlendirmek.",
+  "Uzamsal anizotropi ve yön bağımlı korelasyon yapılarını analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Deneysel semivaryogram denklemi",
+   "tex": "\\gamma(h) = \\frac{1}{2 N(h)} \\sum_{i=1}^{N(h)} \\left[ Z(x_i) - Z(x_i + h) \\right]^2",
+   "terimler": [
+    [
+     "\\gamma(h)",
+     "h mesafesindeki semivaryans değeri",
+     "(\\mathrm{mm})^2"
+    ],
+    [
+     "h",
+     "iki gözlem noktası arasındaki uzamsal mesafe vektörü",
+     "\\mathrm{km}"
+    ],
+    [
+     "N(h)",
+     "h mesafesi aralığındaki nokta çifti sayısı",
+     "birimsiz"
+    ],
+    [
+     "Z(x_i)",
+     "x_i noktasındaki ölçülen değer",
+     "\\mathrm{mm}"
+    ],
+    [
+     "Z(x_i + h)",
+     "x_i + h noktasındaki ölçülen değer",
+     "\\mathrm{mm}"
+    ]
+   ],
+   "sade": "Noktalar birbirinden uzaklaştıkça ölçülen değerlerin birbirine benzeme oranının nasıl azaldığını hesaplar. İstasyonlar arasındaki mesafe arttıkça yağış veya gözeneklilik farkının karesini ortalar.",
+   "ornek": "İstanbul'daki 20 meteoroloji istasyonunda h = 15 km aralıktaki N(h) = 28 istasyon çiftinde ölçülen yağış farklarından semivaryans gama(15) = 14,2 mm² olarak hesaplanır.",
+   "nerede": "F-MDF-PET-02 projesinde istasyon yağışlarının uzamsal otokorelasyon yapısını ve etki menzilini belirlerken."
+  },
+  {
+   "ad": "Sıradan kriging (Ordinary Kriging) kestirim denklemi",
+   "tex": "Z^*(x_0) = \\sum_{i=1}^{n} \\lambda_i Z(x_i)",
+   "terimler": [
+    [
+     "Z^*(x_0)",
+     "hedef x_0 noktasındaki kestirilen değer",
+     "\\mathrm{mm}"
+    ],
+    [
+     "\\lambda_i",
+     "i'inci gözlem istasyonuna verilen kriging ağırlığı",
+     "birimsiz"
+    ],
+    [
+     "Z(x_i)",
+     "i'inci istasyonda ölçülen gerçek değer",
+     "\\mathrm{mm}"
+    ],
+    [
+     "n",
+     "kestirimde kullanılan komşu istasyon sayısı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Ölçüm yapılmayan bir noktadaki değeri, çevre istasyonlardaki ölçümlerin mesafeye ve semivaryograma göre ağırlıklı ortalamasını alarak en düşük hatayla tahmin eder.",
+   "ornek": "Kadıköy noktasında ölçüm yokken Üsküdar (lambda_1 = 0,45, Z = 22 mm), Ümraniye (lambda_2 = 0,35, Z = 18 mm) ve Kartal (lambda_3 = 0,20, Z = 25 mm) verileriyle kestirilen yağış Z^* = 21,2 mm bulunur.",
+   "nerede": "F-MDF-PET-02 projesinde noktasal istasyon yağışlarını kesintisiz ızgara haritasına dönüştürürken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Kriging_example.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Noktasal gözlemlerden jeoistatistiksel kriging ile üretilen kesintisiz uzamsal dağılım yüzeyi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi istasyon yağış anomalileri ve kriging yüzeyi, 2026",
+   "aciklama": "İstasyon yağış verilerinin uzamsal semivaryogram ile enterpolasyonu ve haritalanması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · PET 440E (Geostatistics)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=PET&dersNo=440E"
+  },
+  {
+   "ad": "Isaaks, E. H. & Srivastava, R. M. (1989) An Introduction to Applied Geostatistics, Oxford University Press · ISBN 978-0195050134",
+   "url": "https://global.oup.com/academic/product/an-introduction-to-applied-geostatistics-9780195050134"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=PET&dersNo=440E"
+}

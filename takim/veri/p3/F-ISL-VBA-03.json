@@ -1,0 +1,380 @@
+{
+ "id": "F-ISL-VBA-03",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "VBA",
+  "bolum": "Veri Bilimi ve Analitiği",
+  "fakulteKod": "ISL",
+  "fakulte": "İşletme Fakültesi"
+ },
+ "ad": "Büyük İklim Verisi Analitiği: açık ders",
+ "ne": "Parquet ve DuckDB ile petabaytlık iklim verilerinin saniyeler içinde nasıl sorgulandığını anlatan 15 dakikalık video çekmek.",
+ "adimlar": [
+  "Sütun bazlı veritabanı kıyas slaytlarını hazırlamak."
+ ],
+ "sonuc": "15 dakikalık açık ders videosu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "VBA 326E",
+    "ad": "Big Data and Analytics"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Columbia Üniversitesi Lamont-Doherty Pangeo Girişimi",
+   "ne": "Büyük iklim ve okyanus verilerini bulutta açık kaynak araçlarla işleyen üniversite araştırma konsorsiyumu.",
+   "url": "https://pangeo.io/architecture.html",
+   "ayrinti": {
+    "neYaptilar": "Lamont-Doherty araştırmacıları, petabaytlık iklim modeli çıktılarını analiz etmek için Xarray ve Parquet tabanlı bulut analitik altyapısı kurdu.",
+    "nasil": "Geleneksel NetCDF dosyalarını bulut uyumlu Zarr ve Parquet formatlarına dönüştürüp dağıtık Python kütüphaneleriyle saniyeler içinde sorguladılar.",
+    "neEdindiler": "Veri indirme darboğazını ortadan kaldırarak küresel iklim analizi sürelerini günlerden saniyelere indiren açık ekosistem oluşturdular.",
+    "bizNasilKatki": "Pangeo'nun veri mimarisini yerel DuckDB ve Parquet sorgularıyla Colab üzerinde 15 dakikalık açık derse dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Pangeo Projesi Mimari Kılavuzu",
+      "url": "https://pangeo.io/architecture.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Bulut Bilişimde Büyük İklim Verisi Analitiği",
+      "url": "https://pangeo.io/catalog.html",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://pangeo.io/architecture.html",
+      "aciklama": "Pangeo açık kaynak büyük iklim verisi bulut mimarisi şeması"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Row_vs_column_storage.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Büyük veri analitiğinde sütunsal depolama blokları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "MotherDuck ve DuckDB Labs Bulut Analitiği",
+   "ne": "Sunucusuz mimaride DuckDB motoruyla büyük veri analitiğini tarayıcı ve dizüstü bilgisayarlara taşıyan veri girişimi.",
+   "url": "https://motherduck.com/product/",
+   "ayrinti": {
+    "neYaptilar": "MotherDuck ekibi, DuckDB motorunu web montajı (WASM) ve bulut depolamayla birleştirerek sunucu kurmadan petabaytlık veriyi sorgulanabilir kıldı.",
+    "nasil": "S3 ve yerel diskteki Parquet dosyalarını doğrudan SQL sorgularıyla birleştirip vektörize yürütme motoruyla mikro saniyelerde işlediler.",
+    "neEdindiler": "Geleneksel veri ambarlarına göre maliyetleri yüzde 80 azaltan ve analistlere anlık sorgu yanıtı veren bulut platformu geliştirdiler.",
+    "bizNasilKatki": "DuckDB Python arayüzünü kullanarak Türkiye sıcaklık serilerinden 5 SQL analitik sorgusu çıkarıp derste sunarız.",
+    "referanslar": [
+     {
+      "ad": "MotherDuck Bulut Analitiği Mimarisi",
+      "url": "https://motherduck.com/product/",
+      "tur": "web"
+     },
+     {
+      "ad": "DuckDB Vektörize Yürütme Kılavuzu",
+      "url": "https://duckdb.org/why_duckdb",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://motherduck.com/product/",
+      "aciklama": "MotherDuck gömülü SQL ve sütunsal analitik platform arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Türkiye geneli saatlik sıcaklık ızgarası DuckDB sorgu hızı karşılaştırması, 2026-01",
+      "aciklama": "DuckDB ile 10 yıllık ERA5 sıcaklık serisinden yaz mevsimi anomalilerinin 0.4 saniyede filtrelenmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Büyük Veri ve İklim Analitiği Çalışma Grubu",
+   "ne": "Açık meteoroloji verilerini Parquet ve DuckDB ile analiz edip eğitim içerikleri üreten öğrenci ekibi.",
+   "url": "https://github.com/aura-met/climate-data-analytics-duckdb",
+   "ayrinti": {
+    "neYaptilar": "AURA Takımı, 10 yıllık saatlik meteoroloji istasyon ölçümlerini tek Parquet dosyasına sıkıştırıp DuckDB ile 15 dakikalık açık ders kurguladı.",
+    "nasil": "Öğrenciler Jupyter Notebook üzerinde CSV ve Parquet okuma sürelerini kıyasladı; OBS kazanımlarını slayt ve ekran videosuyla eşleştirdi.",
+    "neEdindiler": "Geleneksel CSV sorgusuna göre 18 kat hızlı çalışan ve YouTube üzerinde yayınlanmaya hazır 15 dakikalık eğitim modülü tamamladılar.",
+    "bizNasilKatki": "Öğrenci ölçeğinde slayt tasarımını ve 35 satırlık Python sorgu kodunu haftada 1 saatte tamamlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA DuckDB İklim Analitiği Deposu",
+      "url": "https://github.com/aura-met/climate-data-analytics-duckdb",
+      "tur": "kod"
+     },
+     {
+      "ad": "Açık Ders Sunum Planı ve Kod Defteri",
+      "url": "https://github.com/aura-met/climate-data-analytics-duckdb/blob/main/README.md",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Row_vs_column_storage.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Sütun bazlı veri sıkıştırma ve disk blokları"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Bölgesi saatlik rüzgâr ve sıcaklık zaman serisi Parquet filtreleme döngüsü, 2026-02",
+      "aciklama": "DuckDB ile 50 istasyonluk Marmara rüzgâr ölçümlerinde ekstrem günlerin anlık ayıklanması"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Büyük iklim verisini istasyon bazlı metriklerle özetleyip canlı panolara dökmek veri analitiğinin kalbidir.",
+  "senin": "VBA 213E Data Visualization, VBA 315E Machine Learning, VBA 326E Big Data and Analytics",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "VBA 213E Data Visualization",
+    "bizim": "İstasyon tahmin karnesi ve hata panosu",
+    "neden": "Kullanıcının bir bakışta model sapmasını ve güven aralığını kavramasını sağlayan interaktif görselleştirme tasarlarız."
+   },
+   {
+    "senin": "VBA 315E Machine Learning",
+    "bizim": "Sayısal hava tahmini düzeltme algoritmaları",
+    "neden": "Gradient boosting ve regresyon ağaçlarıyla yerel topoğrafya kaynaklı sıcaklık ve rüzgâr sapmalarını gideririz."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Hava tahmini doğrulamasında açık veri analitiği panoları",
+   "metin": "2025'te ECMWF ve Açık Veri Enstitüsü, küresel tahmin modellerinin yerel istasyonlarla anlık doğrulama metriklerini (RMSE, CRPS, bias) interaktif açık analitik panolarıyla kamuoyuna sundu. Model şeffaflığı veri bilimi görselleştirmeleriyle sağlandı.",
+   "kaynakAdi": "ECMWF Open Data Insights",
+   "kaynakUrl": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+   "tarih": "2025-02"
+  },
+  "detay": "Veri bilimi ve analitiği bölümünde makine öğrenmesi ve veri görselleştirme dersleri, ham veri denizinden anlamlı içgörüler çıkarmayı hedefler. Küresel hava tahmin modelleri her gün gigabaytlarca ızgara verisi akıtırken, asıl marifet bu veriyi yerel istasyon ölçümleriyle kıyaslayıp hangi günlerde saptığını net metriklerle ortaya koymaktır. Gradient boosting algoritmalarıyla tahmin düzeltmesi yapmak ve karmaşık hata analizlerini sade gösterge panellerine dönüştürmek senin alanındır. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde gerçek zaman serileri üzerinde çalışan analitik araçlar geliştirirsin. Yanına meteoroloji öğrencisi oturduğunda fırtınanın fiziksel göstergelerini anlatır, sen de onu en isabetli makine öğrenmesi özniteliğine çevirirsin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (VBA)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2293"
+   }
+  ]
+ },
+ "amac": "Parquet ve DuckDB ile petabaytlık iklim ızgara verilerini saniyeler içinde sorgulayıp açık ders eğitim videosu hazırlamak.",
+ "ortakDers": [
+  {
+   "kod": "VBA 326E",
+   "projeyeKatki": "VBA 326E dersindeki sütunsal depolama formatları ve paralel sorgulama prensipleri, gigabaytlarca iklim verisini bellek sınırlarını aşmadan saniyeler içinde işlemeyi sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sütunsal sıkıştırma ve depolama kazanç oranı",
+     "nerede": "İklim istasyon ölçümlerini CSV formatından Parquet formatına dönüştürüp depolama ve aktarım kazancını hesaplarken."
+    },
+    {
+     "formulAd": "Dağıtık sorgu hızlanma katsayısı (Amdahl yasası)",
+     "nerede": "DuckDB sorgusunun çok çekirdekli CPU üzerinde paralelleşme verimini açık derste izleyicilere açıklarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "MTO 311E dersindeki zaman serisi filtreleme ve mekânsal enterpolasyon bilgisi, DuckDB sorgusundan çıkan meteorolojik çıktının fiziksel doğruluğunu sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Büyük iklim veri tabanında farklı şehirlerin sıcaklık serileri arasındaki zaman gecikmeli ilişkileri SQL ile sorgularken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "MTO 302 dersindeki sinoptik analiz ve kalınlık ilkeleri, sorgulanacak hava verilerinde aranacak ekstrem olay kriterlerini belirler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "DuckDB SQL sorgusuyla kar potansiyeli taşıyan 540 dam altındaki günleri binlerce ızgara noktasında anında filtrelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Parquet sütunsal depolama ve DuckDB sorgularıyla büyük iklim veri analitiğini 15 dakikalık videoda anlatmak.",
+  "ayrinti": "İTÜ açık iklim verileri ve ERA5 zaman serileri Parquet formatına dönüştürülür. DuckDB SQL motoruyla bellek içi filtreleme ve özetleme sorguları yazılır. Kod adımları, teorik mimari ve performans testleri 15 dakikalık açık ders videosu ve slayt seti olarak derlenir.",
+  "adimlar": [
+   {
+    "baslik": "Sütun Bazlı Veritabanı ve Parquet Mimarisi",
+    "oz": "CSV ve Parquet formatları arasındaki farkları açıklayıp veri dönüşümünü gerçekleştirmek.",
+    "ayrinti": "Satır bazlı CSV dosyalarının disk okuma darboğazları incelenir. Pandas ve PyArrow ile iklim zaman serileri Snappy sıkıştırmalı Parquet dosyasına yazılır. Sıkıştırma oranı ve okuma hızları ölçülür.",
+    "nasil": [
+     {
+      "teknik": "df.to_parquet('iklim_verisi.parquet', engine='pyarrow', compression='snappy') ile veriyi diske yazmak.",
+      "sade": "Geleneksel metin formatındaki büyük iklim ölçümleri sütun bazlı sıkıştırılarak disk alanı ve okuma süresi en aza indirilir.",
+      "altAdimlar": [
+       "1. Saatlik istasyon ölçümlerini Pandas veri çerçevesine yükle.",
+       "2. Sütun tiplerini sayısal formatlara sabitle.",
+       "3. PyArrow motoruyla Parquet olarak diske yaz."
+      ],
+      "kazanim": {
+       "ders": "VBA 326E",
+       "madde": "Sütun bazlı dosya formatlarıyla (Parquet, Arrow) veri depolama ve sıkıştırma mimarisi tasarlamak."
+      }
+     },
+     {
+      "teknik": "cr = 1 - (os.path.getsize('iklim_verisi.parquet') / os.path.getsize('iklim_verisi.csv')) ile sıkıştırma oranını hesaplamak.",
+      "sade": "Sütunsal formata geçişin veri boyutunda sağladığı yüzde tasarruf hesaplanarak video slaytına eklenir.",
+      "altAdimlar": [
+       "1. CSV ve Parquet dosya boyutlarını bayt cinsinden al.",
+       "2. Sıkıştırma kazanç oranını hesapla.",
+       "3. Performans tablosuna işle."
+      ],
+      "kazanim": {
+       "ders": "VBA 326E",
+       "madde": "Sütun bazlı dosya formatlarıyla (Parquet, Arrow) veri depolama ve sıkıştırma mimarisi tasarlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "VBA 326E",
+      "madde": "Sütun bazlı dosya formatlarıyla (Parquet, Arrow) veri depolama ve sıkıştırma mimarisi tasarlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "DuckDB ile Bellek İçi SQL Analitiği",
+    "oz": "Parquet dosyasını DuckDB SQL motoruyla saniyeler içinde sorgulayıp ekstrem değerleri bulmak.",
+    "ayrinti": "DuckDB bağlantısı açılır. SQL sorgusuyla 10 yıllık seride yaz sıcaklık dalgaları ve kış don günleri taranır. Vektörize sorgu motorunun tek ve çok çekirdekli CPU kullanım oranları kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "con.execute(\"SELECT istasyon, MAX(t2m) FROM 'iklim_verisi.parquet' GROUP BY istasyon\").df() çalıştırmak.",
+      "sade": "DuckDB dosyanın tamamını RAM'e yüklemeden doğrudan diskteki Parquet sütunlarını okuyup istasyon tepe değerlerini döker.",
+      "altAdimlar": [
+       "1. DuckDB bellek içi bağlantısını başlat.",
+       "2. Parquet dosyasını doğrudan SQL FROM ifadesine ver.",
+       "3. Sonuçları Pandas veri çerçevesi olarak al."
+      ],
+      "kazanim": {
+       "ders": "VBA 326E",
+       "madde": "DuckDB gibi gömülü analitik SQL motorlarıyla büyük veri serilerini bellek içinde sorgulamak."
+      }
+     },
+     {
+      "teknik": "con.execute(\"PRAGMA threads=8;\") ile çok çekirdekli paralel yürütmeyi etkinleştirmek.",
+      "sade": "Bilgisayardaki tüm işlemci çekirdekleri devreye sokularak analitik sorgunun Amdahl yasasına uygun hızlanması sağlanır.",
+      "altAdimlar": [
+       "1. İşlemci çekirdek sayısını tespit et.",
+       "2. DuckDB paralel iş parçacığı parametresini ayarla.",
+       "3. Sorgu çalışma süresini kronometre ile ölç."
+      ],
+      "kazanim": {
+       "ders": "VBA 326E",
+       "madde": "Büyük veri kümelerinde dağıtık işlem ilkeleri ve paralel hesaplama akışları kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "VBA 326E",
+      "madde": "DuckDB gibi gömülü analitik SQL motorlarıyla büyük veri serilerini bellek içinde sorgulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Açık Ders Sunumu ve Video Yayını",
+    "oz": "15 dakikalık açık ders slaytlarını ve canlı kod ekran görüntülerini videoda birleştirmek.",
+    "ayrinti": "Sütun mimarisi, DuckDB optimizasyonu ve meteorolojik veri analitiği adımları pedagojik bir dille video akışına dökülür. OBS Studio ile ekran videosu çekilir ve GitHub deposunda açık ders notları paylaşılır.",
+    "nasil": [
+     {
+      "teknik": "obs_script.render_presentation('iklim_analitigi_ders.mp4', resolution='1080p') ile videoyu derlemek.",
+      "sade": "Hazırlanan sunum slaytları ve canlı kod çalıştırma çıktıları 15 dakikalık anlaşılır bir açık ders videosu haline getirilir.",
+      "altAdimlar": [
+       "1. Slayt akışını 15 dakikalık zaman dilimlerine böl.",
+       "2. Canlı kod çalıştırma ekranını video olarak çek.",
+       "3. Slaytlar ve kod anlatımını birleştir."
+      ],
+      "kazanim": {
+       "ders": "VBA 326E",
+       "madde": "Zaman serisi ve coğrafi ızgara verilerini verimli şemalarla dönüştürmek."
+      }
+     },
+     {
+      "teknik": "notebook.export_html('acik_ders_notlari.html') ile eğitim dokümanını üretmek.",
+      "sade": "Videoyu izleyen öğrencilerin kendi bilgisayarlarında kodu deneyebilmeleri için etkileşimli not defteri çıktısı alınır.",
+      "altAdimlar": [
+       "1. Jupyter not defterine açıklayıcı metinleri ekle.",
+       "2. Kod bloklarını çalıştırıp çıktıları doğrula.",
+       "3. Açık ders dokümanını HTML olarak diske yaz."
+      ],
+      "kazanim": {
+       "ders": "VBA 326E",
+       "madde": "Zaman serisi ve coğrafi ızgara verilerini verimli şemalarla dönüştürmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "VBA 326E",
+      "madde": "Zaman serisi ve coğrafi ızgara verilerini verimli şemalarla dönüştürmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "15 dakikalık açık ders videosu, DuckDB benchmark kod defteri ve slayt seti.",
+  "senden": "Parquet sıkıştırma kodları, DuckDB SQL sorguları ve video anlatım kurgusu.",
+  "bizden": "Açık meteoroloji veri setleri, ERA5 zaman serileri ve ekstrem iklim kriterleri."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://motherduck.com/product/",
+   "aciklama": "MotherDuck ve DuckDB bulut analitik platformu arayüzü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi saatlik rüzgâr ve sıcaklık zaman serisi Parquet filtreleme döngüsü, 2026-02",
+   "aciklama": "DuckDB ile 50 istasyonluk Marmara rüzgâr ölçümlerinde ekstrem günlerin anlık ayıklanması"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Row_vs_column_storage.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Satır ve sütun bazlı veritabanı depolama mimarilerinin karşılaştırması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · VBA 326E",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=VBA&dersNo=326"
+  },
+  {
+   "ad": "DuckDB Açık Kaynak Analitik Veritabanı Dokümantasyonu",
+   "url": "https://duckdb.org/why_duckdb"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-ISL-VBA-03.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "dfc9d97c0ec8"
+ }
+}

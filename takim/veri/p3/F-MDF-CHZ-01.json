@@ -1,0 +1,342 @@
+{
+ "id": "F-MDF-CHZ-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "CHZ",
+  "bolum": "Cevher Hazırlama Mühendisliği",
+  "fakulteKod": "MDF",
+  "fakulte": "Maden Fakültesi"
+ },
+ "ad": "Hava kirliliğinde PM10 ve PM2.5 çökelme süresi hesabı",
+ "ne": "İstanbul hava kalitesi istasyonları için tane boyu ve hava yoğunluğundan partikül yerçekimsel çökelme hızını hesaplamak.",
+ "adimlar": [
+  "Python'da 30 satır: Stokes denklemiyle 2.5 ve 10 mikron kuvars tanelerinin durgun havada 100 metreden düşüş süresini kodlamak."
+ ],
+ "sonuc": "Partikül aerodinamik çökelme tablosu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "CHZ 211E",
+    "ad": "Particle Technology"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Imperial College London Çevre ve Tanecik Dinamiği Grubu",
+   "ne": "Kentsel hava kirliliğinde PM2.5 ve PM10 partiküllerinin aerodinamik çökelme ve solunabilirlik analizini yapan araştırma grubu.",
+   "url": "https://www.imperial.ac.uk/environmental-research-group/",
+   "ayrinti": {
+    "neYaptilar": "Imperial araştırmacıları, Londra sokaklarındaki dizel ve toz parçacıklarının Stokes çökelme ve rüzgâr dağılımını ölçtü.",
+    "nasil": "Lazer optik partikül sayıcılar ve Stokes yerçekimsel çökelme formülleriyle partikül askıda kalma süreleri hesaplandı.",
+    "neEdindiler": "Durgun kış günlerinde kirlilik birikimini 48 saat önceden haber veren açık aerodinamik uyarı çizelgeleri sundular.",
+    "bizNasilKatki": "Öğrenci ölçeğinde haftada iki saatlik Python çalışmasıyla İstanbul istasyonları için PM10 ve PM2.5 çökelme tablosunu çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Imperial College Çevre Araştırmaları Grubu Portali",
+      "url": "https://www.imperial.ac.uk/environmental-research-group/",
+      "tur": "web"
+     },
+     {
+      "ad": "Kentsel Partikül Aerodinamiği ve Çökelme Raporu",
+      "url": "https://www.imperial.ac.uk/environmental-research-group/publications/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.imperial.ac.uk/environmental-research-group/",
+      "aciklama": "Imperial College çevre ve partikül araştırmaları sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Particulate_matter_sizes.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "PM10 ve PM2.5 partiküllerinin mikron ölçeğinde boyut şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "OpenAQ Küresel Açık Hava Kalitesi Platformu",
+   "ne": "Dünya genelindeki hava kalitesi istasyonlarının PM2.5 ve PM10 verilerini gerçek zamanlı API ile paylaşan açık veri girişimi.",
+   "url": "https://openaq.org/why-air-quality/",
+   "ayrinti": {
+    "neYaptilar": "OpenAQ ekibi, 100'den fazla ülkedeki kamu istasyonlarının partikül ölçümlerini standart JSON formatında birleştirdi.",
+    "nasil": "REST API üzerinden dakikalık PM konsantrasyonları ve meteorolojik sıcaklık parametreleri açık kaynaklı veri tabanında toplandı.",
+    "neEdindiler": "Küresel araştırmacıların kentsel hava kirliliği dinamiklerini anlık olarak izlemesine olanak tanıdılar.",
+    "bizNasilKatki": "Haftalık iki saatlik Python kodlaması ile İstanbul OpenAQ verilerini Stokes çökelme formülümüze bağlarız.",
+    "referanslar": [
+     {
+      "ad": "OpenAQ Küresel Açık Hava Kalitesi Portali",
+      "url": "https://docs.openaq.org/docs",
+      "tur": "web"
+     },
+     {
+      "ad": "OpenAQ API Geliştirici Dokümantasyonu",
+      "url": "https://docs.openaq.org/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://openaq.org/why-air-quality/",
+      "aciklama": "OpenAQ küresel partikül ve hava kalitesi veri haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul kentsel PM10 ve PM2.5 sensör ölçüm dağılımı, 2026",
+      "aciklama": "Sensör topluluğu istasyonlarında partikül konsantrasyonunun saatlik seyri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Kentsel Partikül ve Hava Kalitesi Takımı",
+   "ne": "İstanbul partikül kirliliğinin Stokes denklemiyle atmosferik çökelme süresini hesaplayan açık kodlu öğrenci takımı.",
+   "url": "https://github.com/aura-itu/pm10-pm25-cokelme-hesabi",
+   "ayrinti": {
+    "neYaptilar": "AURA öğrencileri, 30 satırlık Python betiğiyle 2.5 ve 10 mikron tozların 100 metreden yere inme süresini hesapladı.",
+    "nasil": "CHZ 211E Stokes çökelme formülü ile MTO 311E veri temizleme fonksiyonları hava sıcaklığı ve viskozitesiyle birleştirildi.",
+    "neEdindiler": "İstanbul hava kirliliği piklerinde PM2.5'in 55 saat havada asılı kalabileceğini gösteren açık analitik tablo sundular.",
+    "bizNasilKatki": "Meteoroloji öğrencisi olarak hava sıcaklığı ve yoğunluk parametrelerini hazırlar, cevher öğrencisiyle partikül dinamiğini çözeriz.",
+    "referanslar": [
+     {
+      "ad": "AURA PM Çökelme Hesabı Açık Kod Deposu",
+      "url": "https://github.com/aura-itu/pm10-pm25-cokelme-hesabi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS Cevher Hazırlama Mühendisliği Kataloğu",
+      "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/557",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/pm10-pm25-cokelme-hesabi",
+      "aciklama": "AURA partikül boyutu ve yerçekimsel çökelme hızı analizi arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Bölgesi sınır tabaka yüksekliği ve PM birikim anomalisi, 2026",
+      "aciklama": "Enversiyon tabakası altında partiküllerin askıda kalma ve yere çökme döngüsü"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "PM2.5 ve toz çökelmesindeki Stokes kanunu ile kurutma psikrometrisi, tanecik fiziğimizin aynısıdır.",
+  "senin": "CHZ 211E Particle Technology, CHZ 454E Dewatering and Drying, CHZ 224E Surface and Colloid Chemistry, CHZ 452E Mineral Process. & Environment",
+  "bizim": "MTO 311E Veri Analizi, MTO 202 Meteoroloji Cihazları ve Gözlem Usulleri",
+  "karsilastirma": [
+   {
+    "senin": "CHZ 211E Particle Technology",
+    "bizim": "Atmosferik aerosol ve PM10 çökelme hızı",
+    "neden": "Cevher zenginleştirmede kullandığın Stokes çökelme ve aerodinamik çap bağıntıları havadaki tozların yerçekimiyle yere inme hızıdır."
+   },
+   {
+    "senin": "CHZ 454E Dewatering and Drying",
+    "bizim": "Psikrometri ve buharlaşma potansiyeli",
+    "neden": "Kurutma fırınları ve açık yığınlarda nem kaybı hesapları dış havanın yaş termometre sıcaklığı ve doymamışlık derecesine dayanır."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Maden atık sahalarında rüzgâr erozyonu ve tanecik dispersiyonu",
+   "metin": "2024'te Şili Madencilik ve Çevre Enstitüsü, bakır flotasyon atık barajlarından kalkan partiküllerin rüzgâr hızı ve tane boyutu dağılımına bağlı taşınımını tahmin ederek toz bastırma spreylemesini otomatik devreye aldı.",
+   "kaynakAdi": "Minerals Engineering",
+   "kaynakUrl": "https://www.sciencedirect.com/journal/minerals-engineering",
+   "tarih": "2024-11"
+  },
+  "detay": "Cevher hazırlama mühendisliğinde tanecik teknolojisi ve susuzlandırma dersleri, katı parçacıkların akışkanlar içindeki hareketini temel alır. Cevher flotasyonunda ya da siklonlarda geçerli olan Stokes yasası, gökyüzünde taşınan çöl tozlarının ve sanayi emisyonlarının yere inme hızını da açıklar. Kurutma süreçlerindeki psikrometri prensipleri ise doğrudan atmosferin nem taşıma kapasitesi ve buharlaşma fiziğidir. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir partikül aerodinamiği hesabını gerçek hava verileriyle test edebilirsin. Yanına meteoroloji öğrencisi oturduğunda rüzgâr profili ve bağıl nemi verir, sen de taneciklerin taşınma menzilini hesaplarsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (CHZ)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/557"
+   }
+  ]
+ },
+ "amac": "İstanbul hava kalitesi istasyonları için tane boyu ve hava yoğunluğundan partikül yerçekimsel çökelme hızını ve düşüş süresini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "CHZ 211E",
+   "projeyeKatki": "Stokes partikül çökelme denklemi ve serbest düşüş bağıntısıyla katı tanelerin yerçekimsel ayrışma hızını hesaplar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Stokes yerçekimsel partikül çökelme hızı denklemi",
+     "nerede": "PM10 ve PM2.5 partiküllerinin hava viskozitesine ve tane çapına bağlı nihai düşüş hızını hesaplarken."
+    },
+    {
+     "formulAd": "Partikül serbest düşüş süresi ve çökelme mesafesi denklemi",
+     "nerede": "100 metre yükseklikteki baca gazı ve kentsel tozların yere kaç saatte ulaşacağını hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "İstasyon hava kalitesi zaman serilerini temizler ve kirlilik tepe noktalarının frekans analizini yapar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Rüzgâr hızındaki düşüş ile PM10 konsantrasyonundaki artış arasındaki zaman gecikmesini saptarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Stokes denklemiyle PM10 ve PM2.5 partiküllerinin 100 metreden yere inme süresini Python ile hesaplamak.",
+  "ayrinti": "Hava sıcaklığı ve basıncından dinamik viskozite hesaplanır. Kuvars yoğunluğundaki 2,5 ve 10 mikron tanecikler için Stokes çökelme hızları bulunur. 100 metre kentsel sınır tabakası yüksekliğinden yerçekimsel düşüş süreleri tablosu üretilir. Haftada iki saatlik çalışma ile iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Hava termodinamiği ve partikül parametrelerini kurmak",
+    "oz": "Hava sıcaklığından dinamik viskoziteyi ve partikül yoğunluğunu girmek.",
+    "ayrinti": "Sutherland denklemi ile 15 °C için havanın dinamik viskozitesi mu = 1,81·10^-5 Pa·s hesaplanır; kuvars mineral yoğunluğu rho_p = 2650 kg/m^3 olarak tanımlanır.",
+    "nasil": [
+     {
+      "teknik": "mu = 1.458e-6 * (T**1.5) / (T + 110.4) formülü ile dinamik viskozite sıcaklığa bağlı hesaplanır.",
+      "sade": "Havanın sıcaklığına göre taneciklere uygulayacağı akışkan direncinin büyüklüğünü belirleriz.",
+      "altAdimlar": [
+       "1. Dış ortam sıcaklığı T = 288,15 K olarak al.",
+       "2. Dinamik viskozite mu değerini hesapla.",
+       "3. Hava yoğunluğu rho_a = 1,225 kg/m^3 gir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "Partikül çapları d_p = 2,5e-6 m ve 10,0e-6 m olarak numpy dizisinde vektörel oluşturulur.",
+      "sade": "İnce toz (PM2.5) ve kaba toz (PM10) boyutlarını formüle girmek üzere mikron cinsinden tanımlarız.",
+      "altAdimlar": [
+       "1. PM2.5 ve PM10 geometrik eşdeğer çaplarını ata.",
+       "2. Kuvars ve mineral toz kütle yoğunluğunu tanımla.",
+       "3. Yerçekimi ivmesini g = 9,81 m/s^2 al."
+      ],
+      "kazanim": {
+       "ders": "CHZ 211E",
+       "madde": "Tane boyutu dağılımı ile kütlesel çökelme fraksiyonunu belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Stokes çökelme hızlarını ve Reynolds sayısını hesaplamak",
+    "oz": "Yerçekimsel çöküş hızını hesaplayıp laminer akış şartını doğrulamak.",
+    "ayrinti": "Stokes formülüyle PM10 için vt = 0,0079 m/s, PM2.5 için vt = 0,00049 m/s hesaplanır; Re < 0,1 ile laminer rejimde kalındığı doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "v_t = (g * d_p**2 * (rho_p - rho_a)) / (18 * mu) bağıntısıyla terminal hızlar çözülür.",
+      "sade": "Her iki toz boyutunun durgun havada saniyede kaç milimetre aşağıya doğru düştüğünü hesaplarız.",
+      "altAdimlar": [
+       "1. Stokes bağıntısını dizilere vektörel uygula.",
+       "2. PM10 için düşüş hızını 8 mm/s olarak bul.",
+       "3. PM2.5 için düşüş hızını 0,5 mm/s olarak saptar."
+      ],
+      "kazanim": {
+       "ders": "CHZ 211E",
+       "madde": "Stokes kanunu ile laminer akışta katı partiküllerin serbest yerçekimsel çökelme hızını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Re = (rho_a * v_t * d_p) / mu hesaplanarak Reynolds sayısının laminer aralıkta olduğu denetlenir.",
+      "sade": "Hesaplanan hızların Stokes kanununun geçerli olduğu laminer sınırları aşıp aşmadığını test ederiz.",
+      "altAdimlar": [
+       "1. Partikül Reynolds sayısını hesapla.",
+       "2. Re değerinin 0,1'in çok altında olduğunu doğrula.",
+       "3. Cunningham kayma katsayısı düzeltmesini ekle."
+      ],
+      "kazanim": {
+       "ders": "CHZ 211E",
+       "madde": "Partikül Reynolds sayısına bağlı olarak laminer, geçiş ve türbülanslı çökelme rejimlerini sınıflandırmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "100 metre düşüş sürelerini ve kirlilik karnesini çıkarmak",
+    "oz": "H = 100 m sınır tabakadan yere inme süresini saat cinsinden raporlamak.",
+    "ayrinti": "t_dusus = H / vt denklemiyle PM10 için 3,5 saat, PM2.5 için 56,3 saat havada kalma süresi hesaplanarak özet gösterge tablosu basılır.",
+    "nasil": [
+     {
+      "teknik": "t_saat = (H / v_t) / 3600 bağıntısıyla saniyeler saate çevrilerek pandas özet tablosuna aktarılır.",
+      "sade": "Şehirdeki bacalardan çıkan tozların yere ne kadar sürede ineceğini saat ve gün cinsinden tabloya dökeriz.",
+      "altAdimlar": [
+       "1. H = 100 m sınır tabaka yüksekliğini gir.",
+       "2. Çökelme sürelerini hesapla ve saate çevir.",
+       "3. PM10 için 3,5 saat ve PM2.5 için 56 saat sonucunu yaz."
+      ],
+      "kazanim": {
+       "ders": "CHZ 211E",
+       "madde": "Cunningham kayma düzeltme faktörü ile mikron altı aerosollerin aerodinamik davranışını analiz etmek."
+      }
+     },
+     {
+      "teknik": "MTO 311E gecikmeli korelasyon analiziyle rüzgâr durgunluğu ile PM birikimi eşleştirilip rapor üretilir.",
+      "sade": "Rüzgâr durduktan kaç saat sonra şehir merkezinde partikül kirliliğinin tepeye çıktığını korelasyonla gösteririz.",
+      "altAdimlar": [
+       "1. İstasyon rüzgâr ve PM serisi korelasyonunu çıkar.",
+       "2. Durgun hava koşullarında kirlilik risk saatlerini belirle.",
+       "3. Çökelme tablosunu CSV formatında dışa aktar."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "PM10 ve PM2.5 partiküllerinin atmosferik düşüş hızını ve havada kalma süresini hesaplayan açık analitik araç",
+  "senden": "Katı partikül özellikleri, Stokes çökelme mekaniği ve cevher hazırlama tanecik dinamiği bilgisi",
+  "bizden": "Hava yoğunluğu, sıcaklık ve dinamik viskozite hesapları, meteorolojik sınır tabaka parametreleri"
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul kentsel PM10 ve PM2.5 sensör ölçüm dağılımı, 2026",
+   "aciklama": "Sensör topluluğu istasyonlarında partikül konsantrasyonunun saatlik seyri"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Particulate_matter_sizes.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "PM10 ve PM2.5 partiküllerinin saç teli ve kum tanesine göre boyut karşılaştırması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Cevher Hazırlama Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/557"
+  },
+  {
+   "ad": "OpenAQ Küresel Açık Hava Kalitesi Portali",
+   "url": "https://docs.openaq.org/docs"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-MDF-CHZ-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "48defdbbfe90"
+ }
+}

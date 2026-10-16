@@ -1,0 +1,110 @@
+{
+ "kod": "GEO 315E",
+ "ad": "Fund. of Geographic Inf. Sys.",
+ "bolum": "Geomatik Mühendisliği",
+ "obsNo": "315E",
+ "ozet": "Coğrafi bilgi sistemlerinin temel bileşenlerini, vektör ve raster veri yapılarını öğretir. Harita projeksiyonları, koordinat dönüşümleri, sayısal yükseklik haritaları (DEM), mekânsal sorgulamalar, katman bindirme analizleri ve ters mesafe ağırlıklı (IDW) enterpolasyon ile mekânsal karar destek sistemleri incelenir.",
+ "neOgrenirsin": [
+  "Vektör ve raster mekânsal veri modellerini CBS ortamında oluşturmak ve topolojik ilişkileri kurmak.",
+  "Farklı koordinat ve projeksiyon sistemleri arasında hassas mekânsal dönüşümler yapmak.",
+  "Ters Mesafe Ağırlıklı (IDW) enterpolasyon algoritmasıyla nokta gözlemlerinden raster yüzey üretmek.",
+  "Sayısal yükseklik haritalarından (DEM) eğim, bakı ve topoğrafik kot profili analizleri çıkarmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Ters mesafe ağırlıklı enterpolasyon (IDW) formülü",
+   "tex": "\\hat{Z}(x_0) = \\frac{\\sum_{i=1}^{n} d_i^{-p} \\, Z(x_i)}{\\sum_{i=1}^{n} d_i^{-p}}",
+   "terimler": [
+    [
+     "\\hat{Z}(x_0)",
+     "hedef noktadaki kestirilen değer",
+     "°C veya mm"
+    ],
+    [
+     "Z(x_i)",
+     "i numaralı istasyonda ölçülen değer",
+     "°C veya mm"
+    ],
+    [
+     "d_i",
+     "istasyon ile hedef nokta arasındaki Öklid mesafesi",
+     "m"
+    ],
+    [
+     "p",
+     "mesafe güç parametresi (genelde p=2)",
+     "birimsiz"
+    ],
+    [
+     "\\sum d_i^{-p}",
+     "ağırlıkların normalizasyon toplamı",
+     "m^{-p}"
+    ]
+   ],
+   "sade": "Yakındaki istasyonun uzaktaki istasyona göre tahmin edilen noktayı daha fazla etkilemesi kuralına dayanır. Mesafe arttıkça etkinin karesi oranında ağırlık azalır.",
+   "ornek": "d1 = 2 km (Z1 = 15 °C) ve d2 = 4 km (Z2 = 18 °C) olan iki istasyon için p = 2 alındığında w1 = 0,25 ve w2 = 0,0625 olur; kestirim tam 15,6 °C olarak bulunur.",
+   "nerede": "İstasyon sıcaklıklarını hızlı ve deterministik bir şekilde raster ızgaraya enterpole ederken."
+  },
+  {
+   "ad": "Topoğrafik yükseklik lapse-rate düzeltme bağıntısı",
+   "tex": "T_{\\mathrm{corr}} = T_{\\mathrm{raw}} - \\Gamma \\cdot (z_{\\mathrm{istasyon}} - z_{\\mathrm{grid}})",
+   "terimler": [
+    [
+     "T_{\\mathrm{corr}}",
+     "topoğrafik kot düzeltmesi yapılmış sıcaklık",
+     "°C"
+    ],
+    [
+     "T_{\\mathrm{raw}}",
+     "istasyon veya model ham sıcaklığı",
+     "°C"
+    ],
+    [
+     "\\Gamma",
+     "çevre lapse-rate değeri (tipik 0,0065 °C/m)",
+     "°C/m"
+    ],
+    [
+     "z_{\\mathrm{istasyon}}",
+     "ölçüm yapılan istasyon kotu",
+     "m"
+    ],
+    [
+     "z_{\\mathrm{grid}}",
+     "sayısal yükseklik haritasındaki hücre kotu",
+     "m"
+    ]
+   ],
+   "sade": "Yükseklere çıkıldıkça havanın her 100 metrede yaklaşık 0,65 derece soğuması prensibiyle sıcaklığı gerçek arazi yükseltisine uyarlar. Vadi ve tepe arasındaki sıcaklık farkını düzeltir.",
+   "ornek": "Deniz seviyesindeki istasyonda (z = 10 m) sıcaklık 20 °C iken Çamlıca Tepesi'ndeki (z = 260 m) bir raster pikseli için düzeltilmiş sıcaklık Tcorr = 20 - 0,0065 × (10 - 260) ≈ 18,38 °C çıkar.",
+   "nerede": "DEM raster verisiyle küresel model ve istasyon sıcaklıkları arasındaki kot farkı hatasını giderirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Inverse_distance_weighting.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Ters mesafe ağırlıklı (IDW) mekânsal enterpolasyon yüzeyi şeması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://qgis.org/en/site/",
+   "aciklama": "QGIS açık kaynak coğrafi bilgi sistemleri mekânsal analiz platformu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEO 315E (Fund. of Geographic Inf. Sys.)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=315E"
+  },
+  {
+   "ad": "Longley, P. A., Goodchild, M. F., Maguire, D. J. ve Rhind, D. W. (2015) Geographic Information Science and Systems, Wiley · ISBN 978-1118676950",
+   "url": "https://openlibrary.org/isbn/9781118676950"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=315E"
+}

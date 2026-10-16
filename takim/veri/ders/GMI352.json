@@ -1,0 +1,115 @@
+{
+ "kod": "GMI 352",
+ "ad": "Isı Geçişi",
+ "bolum": "Gemi Makineleri İşletme Mühendisliği",
+ "obsNo": "352",
+ "ozet": "İletim, taşınım ve ışınım ile ısı transferi mekanizmalarını, ısı değiştiricilerin (kondenser, evaporatör, kuler) tasarımını ve deniz suyu soğutma devrelerindeki termal verim analizlerini öğretir. Gemi yardımcı makinelerinin termal dengesi incelenir.",
+ "neOgrenirsin": [
+  "Gemi ısı değiştiricilerinde logaritmik ortalama sıcaklık farkı (LMTD) yöntemini uygulamak.",
+  "Deniz suyu soğutmalı kondenserlerde toplam ısı geçiş katsayısını (U) hesaplamak.",
+  "Boru içi ve dışı akışlarda Nusselt ve Reynolds sayılarıyla ısı transferini hesaplamak.",
+  "Deniz suyu sıcaklık anomalilerinin kuler ve evaporatör kapasitesine etkisini analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "LMTD ve ısı aktarım denklemi",
+   "tex": "\\dot{Q} = U \\cdot A \\cdot \\Delta T_{lm}, \\qquad \\Delta T_{lm} = \\frac{\\Delta T_1 - \\Delta T_2}{\\ln(\\Delta T_1 / \\Delta T_2)}",
+   "terimler": [
+    [
+     "\\dot{Q}",
+     "toplam aktarılan ısı debisi",
+     "W"
+    ],
+    [
+     "U",
+     "toplam ısı geçiş katsayısı",
+     "W/(m²·K)"
+    ],
+    [
+     "A",
+     "etkin ısı transfer yüzey alanı",
+     "m²"
+    ],
+    [
+     "\\Delta T_{lm}",
+     "logaritmik ortalama sıcaklık farkı",
+     "K"
+    ],
+    [
+     "\\Delta T_1, \\Delta T_2",
+     "giriş ve çıkış sıcaklık farkları",
+     "K"
+    ]
+   ],
+   "sade": "Eşanjörün birim zamanda ne kadar ısı aktarabileceğini hesaplar. Deniz suyu sıcaklığı arttığında sıcaklık farkı küçülür ve soğutma kapasitesi ciddi şekilde düşer.",
+   "ornek": "Ana kondenserde buhar 45 °C iken deniz suyu 18 °C girdiğinde LMTD = 22 K çıkarak 12 MW ısı atılır; deniz suyu 28 °C'ye çıktığında LMTD = 13 K'ye düşer ve vakum kaybı oluşur.",
+   "nerede": "F-DEF-GMI-02'de Akdeniz ve Karadeniz yüzey suyu sıcaklık tahminlerinin kondenser soğutma kapasitesine etkisini hesaplarken."
+  },
+  {
+   "ad": "Toplam ısı geçiş katsayısı ve kirlenme direnci denklemi",
+   "tex": "\\frac{1}{U} = \\frac{1}{h_i} + \\frac{R_{f,i}}{A_i/A} + \\frac{\\ln(r_o/r_i)}{2\\pi k L/A} + R_{f,o} + \\frac{1}{h_o}",
+   "terimler": [
+    [
+     "U",
+     "toplam ısı geçiş katsayısı",
+     "W/(m²·K)"
+    ],
+    [
+     "h_i, h_o",
+     "iç ve dış taşınım katsayıları",
+     "W/(m²·K)"
+    ],
+    [
+     "R_{f,i}, R_{f,o}",
+     "iç ve dış kirlenme dirençleri",
+     "m²·K/W"
+    ],
+    [
+     "k",
+     "boru malzemesi ısı iletim katsayısı",
+     "W/(m·K)"
+    ],
+    [
+     "r_i, r_o",
+     "borunun iç ve dış yarıçapları",
+     "m"
+    ]
+   ],
+   "sade": "Boruların içindeki deniz suyu tortusu ve biyolojik kirlilik ısı geçişine ek direnç koyar. Sıcak deniz suyunda biyolojik üreme kirlenme direncini hızla artırır.",
+   "ornek": "Temiz boruda U = 2800 W/(m²·K) iken sıcak deniz suyunda kirlenme direncinin eklenmesiyle U katsayısı 1950 W/(m²·K) değerine düşer ve eşanjör verimi yüzde 30 azalır.",
+   "nerede": "F-DEF-GMI-02'de yüksek deniz suyu sıcaklıklarında kirlenme payı ile eşanjör darboğazını analiz ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Shell_and_tube_heat_exchanger.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Gövde-boru tipi deniz suyu kondenseri ısı transfer şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Akdeniz ve Karadeniz deniz yüzeyi sıcaklığı (SST) alanı, 2026-10",
+   "aciklama": "Deniz suyu sıcaklık anomalileri ve eşanjör ısı aktarım animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GMI 352 (Isı Geçişi)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GMI&dersNo=352"
+  },
+  {
+   "ad": "Incropera & DeWitt (2011) Fundamentals of Heat and Mass Transfer · ISBN 978-0-470-50197-9",
+   "url": "https://openlibrary.org/isbn/9780470501979"
+  },
+  {
+   "ad": "Taylor, D. A. (1996) Introduction to Marine Engineering · DOI 10.1016/B978-0-7506-2530-2.50004-9",
+   "url": "https://doi.org/10.1016/B978-0-7506-2530-2.50004-9"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GMI&dersNo=352"
+}

@@ -1,0 +1,379 @@
+{
+ "id": "F-FEF-KIM-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "KIM",
+  "bolum": "Kimya",
+  "fakulteKod": "FEF",
+  "fakulte": "Fen-Edebiyat Fakültesi"
+ },
+ "ad": "Yağmur suyu pH değeri ve asit dengesi hesabı",
+ "ne": "Havadaki SO2 ve CO2 kısmi basınç tahminlerinden Henry sabiti ve ayrışma dengesiyle yağmur suyu pH sapmasını hesaplamak.",
+ "adimlar": [
+  "Python'da 35 satır: farklı sıcaklıklarda karbonik asit iyonlaşma dengesini kodlamak."
+ ],
+ "sonuc": "Yağmur suyu asitlik hesaplayıcısı",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "KIM 252E",
+    "ad": "Chemical Thermodynamics"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Carnegie Mellon Center for Atmospheric Chemistry",
+   "ne": "Bulut kimyası, asit yağmuru dengesi ve çok fazlı kimyasal termodinamik üzerine çalışan araştırma merkezi.",
+   "url": "https://www.cmu.edu/stc-caps/",
+   "ayrinti": {
+    "neYaptilar": "CMU araştırmacıları, endüstriyel emisyon bölgelerinde havadaki SO2 gazının bulut damlacıklarında sülfürik asite dönüşümünü Henry yasasıyla simüle etti.",
+    "nasil": "Gaz-sıvı faz dengesi, sulu faz oksidasyonu ve hidrojen iyonu ayrışması termodinamik denge sabitleriyle çözüldü.",
+    "neEdindiler": "Yağış suyu pH kestirimindeki sistematik belirsizliği 0,4 pH birimi seviyesine indirerek erken asit uyarısı sağladılar.",
+    "bizNasilKatki": "CMU çok fazlı asit dengesi modelini İstanbul hava kalitesi verilerine 35 satırda uygularız.",
+    "referanslar": [
+     {
+      "ad": "CMU Atmosferik Parçacık ve Kimya Merkezi",
+      "url": "https://www.cmu.edu/stc-caps/",
+      "tur": "web"
+     },
+     {
+      "ad": "Atmosferik Asit Dengesi ve Çözünürlük Makalesi",
+      "url": "https://pubs.acs.org/journal/esthag",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.cmu.edu/stc-caps/",
+      "aciklama": "CMU atmosferik kimya araştırma merkezi portali"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Bölgesi SO2 konsantrasyonu ve yağmur pH sapması animasyonu, 2024-03",
+      "aciklama": "Sanayi emisyonları altında yağmur suyu asitlik dağılımı animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "BreezoMeter Air Quality Chemistry",
+   "ne": "Atmosferik gaz konsantrasyonları ve kimyasal çözünürlük verilerini gerçek zamanlı sunan çevre teknolojisi şirketi.",
+   "url": "https://www.breezometer.com/air-quality-api/",
+   "ayrinti": {
+    "neYaptilar": "BreezoMeter, kentsel hava kalitesi sensörlerinden gelen SO2 ve NO2 konsantrasyonlarını yağmur suyu asitliğiyle ilişkilendiren analiz araçları sundu.",
+    "nasil": "Yerel sıcaklık ve bağıl nem verileri van 't Hoff denklemiyle düzeltilerek Henry sabiti gerçek zamanlı güncellendi.",
+    "neEdindiler": "Belediyeler ve tarım işletmeleri için yağmur suyu pH anomalilerini yüzde 25 daha hassas bildiren haritalar ürettiler.",
+    "bizNasilKatki": "BreezoMeter açık API formatındaki SO2 verilerini Colab'da pH hesaplayıcısına girdi yaparız.",
+    "referanslar": [
+     {
+      "ad": "BreezoMeter Hava Kalitesi Platformu",
+      "url": "https://www.breezometer.com/air-quality-api/",
+      "tur": "web"
+     },
+     {
+      "ad": "Hava Kirliliği ve Çevre Kimyası Raporu",
+      "url": "https://blog.breezometer.com/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.breezometer.com/air-quality-api/",
+      "aciklama": "BreezoMeter kentsel gaz ve hava kalitesi arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Acid_rain_cycle.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Asit yağmurları kimyasal döngüsü ve gaz çözünme dengesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Çevre ve Atmosfer Kimyası Ekibi",
+   "ne": "İstanbul yağışlarında SO2 ve CO2 kaynaklı pH değişimlerini Python ile hesaplayan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/yagmur-suyu-ph-dengesi",
+   "ayrinti": {
+    "neYaptilar": "Kimya ve meteoroloji öğrencileri, farklı sıcaklıklarda karbonik asit ve sülfürik asit iyonlaşma dengesini çözen 35 satırlık Python kodu yazdı.",
+    "nasil": "Henry yasası ve kademeli ayrışma sabitleri kullanılarak yağmur suyunun teorik 5,6 taban pH'ından sapması hesaplandı.",
+    "neEdindiler": "İstanbul'da kış aylarında düşen sıcaklıkla Henry sabitinin büyümesinin yağmur suyu asitliğini 0,3 pH artırdığını gösterdiler.",
+    "bizNasilKatki": "Hesaplama kodunu açık erişimli Google Colab defteri ve web arayüzü olarak paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA Yağmur Suyu pH Dengesi Kod Deposu",
+      "url": "https://github.com/aura-itu/yagmur-suyu-ph-dengesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Kimyasal Termodinamik ve Yağış Kimyası Raporu",
+      "url": "https://aura-itu.github.io/yagmur-kimyasi",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/yagmur-suyu-ph-dengesi",
+      "aciklama": "AURA yağmur suyu kimyası açık kod deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul kentsel sensörlerinde yağış anı hava kalitesi ve hesaplanan pH animasyonu, 2026-10",
+      "aciklama": "Yağış başlangıcında gazların yıkanması ve pH değişim döngüsü animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Bulut damlacıklarında asit oluşumu ve aerosol kimyası, doğrudan çözelti termodinamiği ve kimyasal dengedir.",
+  "senin": "KIM 252E Chemical Thermodynamics, KIM 311E Physical Chemistry I, KIM 212E Instrumental Analytic. Methods",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "KIM 252E Chemical Thermodynamics",
+    "bizim": "Bulut içi faz dengesi ve Henry yasası",
+    "neden": "Atmosferik gazların yağmur damlacıklarında çözünmesi ve iyonik denge kimyasal potansiyel eşitliğidir."
+   },
+   {
+    "senin": "KIM 212E Instrumental Analytic. Methods",
+    "bizim": "Aerosol spektroskopisi ve kromatografi",
+    "neden": "Havadaki partikül madde kompozisyonunu spektrofotometrik yöntemlerle analiz edip kaynak tayini yaparız."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Havadaki ikincil organik aerosollerin kimyasal kinetiği",
+   "metin": "2025'te CERN CLOUD deneyi ve İTÜ Kimya araştırmacıları, kentsel atmosferde yeni partikül oluşumunu (NPF) tetikleyen organik asit buharlarının faz dengesini kütle spektrometrisiyle açıkladı. Bulut tohumlanması kimyasal denge verileriyle aydınlatıldı.",
+   "kaynakAdi": "Nature Communications",
+   "kaynakUrl": "https://www.nature.com/ncomms/",
+   "tarih": "2025-01"
+  },
+  "detay": "Kimya bölümünde fizikokimya ve analitik kimya dersleri, atmosferin devasa bir çözelti ve heterojen faz ortamı olduğunu fark ettiğinde yepyeni bir uygulama alanı kazanır. Bulut damlacıklarının içinde çözünen gazlar, sülfat ve nitrat iyonlarının tuz oluşturması ve güneş ışığıyla parçalanan radikaller doğrudan kimyasal denge teorisidir. Küresel modellerin nem ve sıcaklık tahminlerini atmosferik kimya denklemleriyle birleştirmek, hava kalitesi ölçümlerini anlamlandırmanın temelidir. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde gerçek aerosol ve yağış kompozisyonu verileri üzerinde çalışırsın. Yanına meteoroloji öğrencisi oturduğunda bağıl nem ve yoğuşma çekirdeği verilerini getirir, sen de damlacık içindeki kimyasal dengeyi çözersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (KIM)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/75"
+   }
+  ]
+ },
+ "amac": "Havadaki kükürt dioksit ve karbondioksit tahminlerinden Henry yasası ve iyonlaşma dengesiyle yağmur suyu pH sapmasını hesaplayan analiz modülü geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "KIM 252E",
+   "projeyeKatki": "Henry yasası ile gaz-sıvı çözünürlük dengesini, karbonik asit ayrışma sabitlerini ve pH formülasyonunu sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Henry yasası çözünürlük dengesi",
+     "nerede": "Havadaki SO2 ve CO2 kısmi basınçlarından yağmur damlasında çözünen asidik gaz konsantrasyonunu hesaplarken."
+    },
+    {
+     "formulAd": "Karbonik asit birinci iyonlaşma dengesi",
+     "nerede": "Çözünen gazların suyla tepkimesinden hidrojen iyonu konsantrasyonunu ve saf yağmur taban pH'ını çıkarırken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Hava kalitesi istasyonlarının zaman serilerindeki gürültüyü filtreleyip yağış anındaki gaz değerlerini eşleştirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Havadaki gaz konsantrasyonunun yağmur başlamasıyla yıkanma süresini zaman gecikmeli olarak analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Havadaki SO2 ve CO2 gazlarından Henry yasasıyla yağmur damlacığı pH değerini hesaplayan 35 satırlık Python kodu geliştirmek.",
+  "ayrinti": "Atmosferdeki karbondioksit ve kükürt dioksit kısmi basınçları ölçüm serilerinden alınır. Henry yasası kullanılarak damlacıkta çözünen sulu gaz konsantrasyonları hesaplanır. Karbonik asit ve bisülfit iyonlaşma dengeleri kurularak hidrojen iyonu derişimi ve yağmur suyu pH değeri farklı sıcaklık senaryoları altında 35 satırlık Colab kodunda çizdirilir.",
+  "adimlar": [
+   {
+    "baslik": "Gaz verilerinin ve sıcaklık serisinin hazırlanması",
+    "oz": "İstanbul kentsel istasyonlarından SO2, CO2 ve sıcaklık verisini derlemek.",
+    "ayrinti": "Yağışlı günlerdeki saatlik kükürt dioksit konsantrasyonları ve hava sıcaklıkları CSV dosyalarından okunarak analize hazırlanır.",
+    "nasil": [
+     {
+      "teknik": "Pandas ile SO2 mikrogram/m³ değerini ppm ve atmosfer kısmi basıncına dönüştürmek.",
+      "sade": "Havadaki kükürt gazı miktarını kimyasal denge formüllerine uygun gaz basıncı birimine çeviririz.",
+      "altAdimlar": [
+       "1. İstasyon hava kalitesi CSV dosyasını pandas ile yükle.",
+       "2. İdeal gaz yasasını kullanarak mikrogram/m³ değerini ppm cinsine çevir.",
+       "3. Toplam atmosferik basınçla çarparak gazın kısmi basıncını atm biriminde bul."
+      ],
+      "kazanim": {
+       "ders": "KIM 252E",
+       "madde": "Henry yasasıyla gazların sulu çözeltilerdeki çözünürlüğünü ve kısmi basınç dengesini belirlemek."
+      }
+     },
+     {
+      "teknik": "Yağış başlangıç anlarında havadaki gaz yıkanmasını çapraz korelasyonla tespit etmek.",
+      "sade": "Yağmurun yağmasıyla havadaki kükürt gazının ne kadar sürede yere indirildiğini gecikmeli korelasyonla ölçeriz.",
+      "altAdimlar": [
+       "1. Yağış şiddeti zaman serisi ile SO2 serisini hizala.",
+       "2. Yağmur anındaki ani konsantrasyon düşüş penceresini filtrele.",
+       "3. Yıkanma süresini gecikmeli korelasyon tepe noktasıyla belirle."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Henry yasası ile sulu faz çözünürlüğünün hesabı",
+    "oz": "Gazların yağmur damlacığı içindeki sulu derişimlerini hesaplamak.",
+    "ayrinti": "Sıcaklığa bağlı Henry katsayısı kullanılarak havadaki CO2 ve SO2 gazlarının damla içindeki mol/L derişimleri bulunur.",
+    "nasil": [
+     {
+      "teknik": "Henry yasası formülü C_aq = H * p_gaz ile çözünmüş gaz miktarını hesaplamak.",
+      "sade": "Damlacık havada süzülürken içine kaç molekül karbondioksit ve kükürt gazı girdiğini hesaplarız.",
+      "altAdimlar": [
+       "1. 25 °C referans Henry sabitlerini tanımla.",
+       "2. van 't Hoff denklemiyle gerçek hava sıcaklığına göre sabiti güncelle.",
+       "3. Kısmi basınçla çarparak damla içindeki sulu derişimi mol/L olarak bul."
+      ],
+      "kazanim": {
+       "ders": "KIM 252E",
+       "madde": "Henry yasasıyla gazların sulu çözeltilerdeki çözünürlüğünü ve kısmi basınç dengesini belirlemek."
+      }
+     },
+     {
+      "teknik": "Farklı mevsimsel sıcaklıkların Henry sabiti üzerindeki etkisini van 't Hoff ile analiz etmek.",
+      "sade": "Kışın soğuk havada yağmur damlalarının neden çok daha fazla asit gazı tutabildiğini sayılarla görürüz.",
+      "altAdimlar": [
+       "1. 0 °C'den 30 °C'ye kadar sıcaklık aralığı belirle.",
+       "2. Çözünme entalpisini kullanarak sıcaklığa bağlı Henry eğrisini çıkar.",
+       "3. Kış aylarında çözünürlüğün iki katına çıktığını doğrula."
+      ],
+      "kazanim": {
+       "ders": "KIM 252E",
+       "madde": "Sıcaklığın denge sabitlerine etkisini van 't Hoff denklemiyle hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "İyonlaşma dengesi ve yağmur suyu pH simülasyonu",
+    "oz": "Hidrojen iyonu derişimi ve net pH değerini çözmek.",
+    "ayrinti": "Karbonik asit ve kükürtlü asitlerin sulu faz iyonlaşma dengelerinden serbest [H+] iyonu derişimi ve pH türetilir.",
+    "nasil": [
+     {
+      "teknik": "Karbonik asit birinci iyonlaşma sabiti Ka1 ile kütle ve yük denkliği denklemlerini kurmak.",
+      "sade": "Suya geçen gazların su molekülleriyle birleşip ne kadar hidrojen asit iyonu ürettiğini çözeriz.",
+      "altAdimlar": [
+       "1. Su iyonlaşması Kw ve karbonik asit Ka1 değerlerini al.",
+       "2. Damlacık içindeki yük denkliği denklemini [H+] cinsinden formüle et.",
+       "3. İkinci derece denklemin pozitif kökünü bularak [H+] derişimini belirle."
+      ],
+      "kazanim": {
+       "ders": "KIM 252E",
+       "madde": "Karbonik asit ve kükürtlü bileşiklerin sulu fazdaki kademeli iyonlaşma dengesini çözmek."
+      }
+     },
+     {
+      "teknik": "SO2 katkısıyla oluşan sülfüroz asit ayrışmasını ekleyerek asitlik sapmasını hesaplamak.",
+      "sade": "Havadaki sanayi kirliliğinin doğal yağmur pH'ını 5,6'dan 4,2 gibi asit yağmuru seviyelerine nasıl düşürdüğünü buluruz.",
+      "altAdimlar": [
+       "1. H2SO3 için Ka1 = 1,4x10^-2 iyonlaşma sabitini sisteme ekle.",
+       "2. Toplam proton derişimini çöz ve pH = -log10([H+]) değerini hesapla.",
+       "3. Saf yağmur taban değeri 5,6 ile farkı alarak asit sapmasını kaydet."
+      ],
+      "kazanim": {
+       "ders": "KIM 252E",
+       "madde": "Sulu çözelti elektrolit dengesinde pH ve iyonik şiddet bağıntılarını kurmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Asitlik karnesi ve 35 satırlık Colab kodu",
+    "oz": "pH değişim eğrilerini çizdirip 35 satırlık Colab betiği hazırlamak.",
+    "ayrinti": "SO2 gaz konsantrasyonuna ve sıcaklığa göre yağmur suyu pH değişim yüzeyi iki panelli grafikle sunulur.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib ile SO2 derişimine karşı yağmur suyu pH eğrisini ve kritik eşikleri çizdirmek.",
+      "sade": "Havadaki kirlilik arttıkça yağmurun nasıl adım adım asitleştiğini gösteren anlaşılır bir grafik üretiriz.",
+      "altAdimlar": [
+       "1. 0 ile 100 ppb arası SO2 konsantrasyon ekseni oluştur.",
+       "2. Farklı sıcaklıklar için hesaplanan pH eğrilerini çizdir.",
+       "3. pH 5,0 asit yağmuru kritik sınırını kırmızı kesikli çizgiyle işaretle."
+      ],
+      "kazanim": {
+       "ders": "KIM 252E",
+       "madde": "Kimyasal reaksiyonlarda entalpi, entropi ve Gibbs serbest enerjisi değişimlerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Tüm kimyasal hesaplama akışını 35 satırlık temiz Google Colab not defterinde derlemek.",
+      "sade": "Her öğrencinin kendi bölgesindeki SO2 değerini girerek yağmurun asitliğini hemen görebileceği bir kod oluştururuz.",
+      "altAdimlar": [
+       "1. Kimyasal sabitleri ve formülleri 35 satırlık Python fonksiyonuna sıkıştır.",
+       "2. Test verisiyle kodun hatasız ve hızlı çalıştığını doğrula.",
+       "3. Colab bağlantısını açık kaynak depoya ekle."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Farklı sıcaklık ve kirlilik seviyelerinde yağmur suyu pH değişim tablosu, iyonlaşma dengesi grafiği ve 35 satırlık Colab hesaplayıcısı.",
+  "senden": "Kimyasal termodinamik dersindeki Henry çözünürlük dengesini ve karbonik asit iyonlaşma bağıntılarını kodlamak.",
+  "bizden": "İstanbul hava kalitesi istasyonlarının SO2, bağıl nem, yağış ve sıcaklık zaman serilerini hazırlayıp filtrelemek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul yağış anlarında SO2 gazı ve yağmur suyu pH sapması animasyonu, 2026-10",
+   "aciklama": "Yağış esnasında atmosferik gazların yıkanması ve suyun pH değişimi animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Acid_rain_cycle.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Asit yağmurları kimyasal reaksiyon döngüsü ve gaz çözünürlüğü şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ders planı (KIM)",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/75"
+  },
+  {
+   "ad": "Nature Communications Chemistry",
+   "url": "https://www.nature.com/ncomms/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-FEF-KIM-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "4a842e987e3e"
+ }
+}

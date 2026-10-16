@@ -1,0 +1,111 @@
+{
+ "kod": "GEO 312E",
+ "ad": "Spatial Analy. and Alg.in GIS",
+ "bolum": "Geomatik Mühendisliği",
+ "obsNo": "312E",
+ "ozet": "Coğrafi bilgi sistemlerinde mekânsal veri analizi algoritmalarını ve jeoistatistiksel yöntemleri öğretir. Nokta paterni analizi, mekânsal otokorelasyon, Moran's I indeksi, yarı-varyogram analizi ve sıradan kriging enterpolasyonu ile çevresel ve meteorolojik gözlemlerin sürekli yüzeylere dönüştürülmesi incelenir.",
+ "neOgrenirsin": [
+  "Mekânsal otokorelasyon ve Moran's I katsayısı ile nokta dağılımlarının kümelenme yapısını analiz etmek.",
+  "Deneysel yarı-varyogram çıkarıp teorik varyogram eğrisi ile mekânsal bağımlılığı hesaplamak.",
+  "Sıradan kriging (Ordinary Kriging) algoritmasıyla noktasal ölçümleri sürekli raster yüzeye dönüştürmek.",
+  "Kriging kestirim varyansı haritası üreterek istasyon ağının mekânsal belirsizliğini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Deneysel yarı-varyogram bağıntısı",
+   "tex": "\\gamma(h) = \\frac{1}{2 \\, N(h)} \\sum_{i=1}^{N(h)} [Z(x_i) - Z(x_i + h)]^2",
+   "terimler": [
+    [
+     "\\gamma(h)",
+     "h mesafesindeki yarı-varyans değeri",
+     "birim²"
+    ],
+    [
+     "N(h)",
+     "aralarında h mesafesi bulunan nokta çifti sayısı",
+     "birimsiz"
+    ],
+    [
+     "Z(x_i)",
+     "x_i noktasında ölçülen meteorolojik değer",
+     "°C veya mm"
+    ],
+    [
+     "Z(x_i + h)",
+     "x_i'den h kadar uzaktaki noktada ölçülen değer",
+     "°C veya mm"
+    ],
+    [
+     "h",
+     "noktalar arasındaki ayrım mesafesi (lag)",
+     "m veya km"
+    ]
+   ],
+   "sade": "İki istasyon birbirine ne kadar yakınsa ölçtükleri sıcaklıkların o kadar benzer olacağını matematiksel olarak kanıtlar. İstasyonlar uzaklaştıkça farkın karesi büyür ve mekânsal bağımlılık sınırı (range) bulunur.",
+   "ornek": "İstanbul'da aralarında h = 5 km mesafe olan 12 istasyon çiftinde ortalama sıcaklık farkı karesi toplamı üzerinden yarı-varyans gamma(5 km) ≈ 0,42 °C² olarak hesaplanır.",
+   "nerede": "Sıcaklık istasyonları arasındaki mekânsal korelasyonu ve kriging ağırlıklarını belirlerken."
+  },
+  {
+   "ad": "Sıradan kriging kestirim formülü",
+   "tex": "\\hat{Z}(x_0) = \\sum_{i=1}^{n} \\lambda_i \\, Z(x_i), \\qquad \\sum_{i=1}^{n} \\lambda_i = 1",
+   "terimler": [
+    [
+     "\\hat{Z}(x_0)",
+     "x_0 hedef koordinatındaki kestirilen sıcaklık",
+     "°C"
+    ],
+    [
+     "Z(x_i)",
+     "i numaralı istasyonda ölçülen sıcaklık",
+     "°C"
+    ],
+    [
+     "\\lambda_i",
+     "i numaralı istasyona verilen jeoistatistiksel ağırlık",
+     "birimsiz"
+    ],
+    [
+     "n",
+     "kestirime dahil edilen komşu istasyon sayısı",
+     "birimsiz"
+    ],
+    [
+     "\\sum \\lambda_i = 1",
+     "tarafsızlık (unbiased) koşulu",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Ölçüm yapılmayan herhangi bir mahallenin sıcaklığını en yakın istasyonların ağırlıklı ortalamasıyla bulur. Sıradan ortalamadan farkı, ağırlıkların istasyon mesafesine ve varyograma göre en az hatayı verecek şekilde seçilmesidir.",
+   "ornek": "Üç komşu istasyonun sıcaklıkları 18,5 °C, 19,2 °C ve 20,1 °C iken varyogramdan bulunan ağırlıklar lambda = [0,52, 0,33, 0,15] ise kestirilen sıcaklık tam 18,97 °C çıkar.",
+   "nerede": "40 istasyonun noktasal sıcaklık ölçümlerini İstanbul genelinde 100 metrelik raster sıcaklık yüzeyine çevirirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Kriging_surface_sample.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Noktasal istasyon verilerinden kriging yöntemiyle türetilen sürekli mekânsal yüzey"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul kentsel sıcaklık ve hava kalitesi istasyonları mekânsal kriging yüzeyi, 2026-10",
+   "aciklama": "İstasyon sıcaklıklarının kriging enterpolasyonuyla sürekli raster haritaya dönüşümü animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEO 312E (Spatial Analy. and Alg.in GIS)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=312E"
+  },
+  {
+   "ad": "Cressie, N. (1993) Statistics for Spatial Data, Wiley · ISBN 978-0471002550",
+   "url": "https://openlibrary.org/isbn/9780471002550"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=312E"
+}

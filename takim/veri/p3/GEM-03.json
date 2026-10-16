@@ -1,0 +1,376 @@
+{
+ "id": "GEM-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "GEM",
+  "bolum": "Gemi İnşaatı ve Deniz Bilimleri Fak. (Gemi ve Deniz Teknolojisi · Gemi İnşaatı ve Gemi Makinaları)",
+  "fakulteKod": "GIDB"
+ },
+ "ad": "Boğaz'da sis ve görüş mesafesi tahmini",
+ "ne": "İstanbul Boğazı'nda deniz yüzeyi sıcaklığı, bağıl nem ve rüzgâr durgunluğunu inceleyerek görüş mesafesini ve sis riskini tahmin etmek.",
+ "adimlar": [
+  "ERA5'ten Boğaz çevresi sıcaklık, nem ve rüzgâr verisini indir",
+  "Sis koşullarını tanımla",
+  "Sisli günleri tanıyan basit bir model eğit",
+  "Modeli sonraki yıllarda test et"
+ ],
+ "sonuc": "Sonunda sis riski grafiği olan bir defter olur.",
+ "senden": "DEN 304E Oceanography",
+ "bizden": "Sisin oluşum koşulları bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "DEN 304E",
+    "ad": "Oceanography"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "C-FOG – Notre Dame",
+   "ne": "Kıyı sisinin oluşup dağılmasını ölçüp tahmini iyileştiren üniversite araştırma projesi.",
+   "url": "https://efmlab.nd.edu/research/c-fog/",
+   "ayrinti": {
+    "neYaptilar": "Notre Dame Üniversitesi Çevre Akışkanlar Mekaniği Laboratuvarı, kıyı sisinin oluşum ve dağılma mekanizmalarını araştıran C-FOG projesini yürüttü.",
+    "nasil": "Kıyı şeridine yerleştirilen lidar, mikrodalga radyometre ve şamandıra sensörleriyle adveksiyon sisinde türbülanslı ısı akılarını ölçtüler.",
+    "neEdindiler": "Deniz-kara sınır tabakasında sisin başlamasını 6 saat önceden haber veren fiziksel eşik kriterlerini belirlediler.",
+    "bizNasilKatki": "Boğaz çevresi ERA5 deniz-hava sıcaklık farkını C-FOG buharlaşma kriterleriyle karşılaştıran açık analiz kodu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Notre Dame Environmental Fluid Dynamics Lab - C-FOG Research Project",
+      "url": "https://efmlab.nd.edu/research/c-fog/",
+      "tur": "web"
+     },
+     {
+      "ad": "Fernando, H. J. S. et al. (2021) The C-FOG Field Project: Studying Coastal Fog with Advanced Profiling",
+      "url": "https://journals.ametsoc.org/abstract/journals/bams/102/2/BAMS-D-19-0070.1.xml",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://efmlab.nd.edu/research/c-fog/",
+      "aciklama": "Notre Dame C-FOG araştırma projesi ve kıyı sis sensörleri ağı portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul Boğazı deniz-hava sıcaklık farkı ve bağıl nem döngüsü animasyonu",
+      "aciklama": "Sonbaharda deniz suyunun havadan 4 derece sıcak olduğu günlerde sis yoğunlaşma alanı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "C-FOG makalesi (BAMS)",
+   "ne": "Kıyı sisinin tahmin modellerindeki eksiklerini gösteren makale; Boğaz sisi için yol gösterici.",
+   "url": "https://journals.ametsoc.org/abstract/journals/bams/102/2/BAMS-D-19-0070.1.xml",
+   "ayrinti": {
+    "neYaptilar": "BAMS dergisinde yayınlanan konsorsiyum çalışmasında, sayısal hava modellerinin kıyı sisini yakalamadaki zayıf noktalarını tespit ettiler.",
+    "nasil": "Gözlenen mikrofiziksel damlacık çapı dağılımlarını sayısal simülasyonların yüzey nem akısı parametrizasyonlarıyla kıyasladılar.",
+    "neEdindiler": "Rüzgâr hızı 3 m/s altına düştüğünde ve deniz-hava sıcaklık farkı kritik eşiği aştığında sis tahmin doğruluğunu yüzde 35 artırdılar.",
+    "bizNasilKatki": "Boğaz SYNOP istasyonlarının geçmiş sis raporlarıyla ERA5 nem parametrelerini çapraz doğrulayan analiz betiği üretiriz.",
+    "referanslar": [
+     {
+      "ad": "BAMS - The C-FOG Project: Studying Coastal Fog with High-Resolution Platforms",
+      "url": "https://journals.ametsoc.org/abstract/journals/bams/102/2/BAMS-D-19-0070.1.xml",
+      "tur": "makale"
+     },
+     {
+      "ad": "Gultepe, I. et al. (2007) Fog Research: A Review of Past Characteristics and Future Needs",
+      "url": "https://doi.org/10.1007/s00024-007-0211-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://journals.ametsoc.org/abstract/journals/bams/102/2/BAMS-D-19-0070.1.xml",
+      "aciklama": "BAMS C-FOG kıyı sisi makalesi ve dikey profil ölçüm diyagramları"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Boğaz çevresi 2 m sıcaklık ile çiy noktası farkının sıfıra yaklaşma döngüsü",
+      "aciklama": "Gece saatlerinde doygunluğa ulaşan havada görüş mesafesinin 500 metrenin altına inişi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Marmara Boğaz Trafik Operasyonları",
+   "ne": "Kıyı Emniyeti bünyesinde Boğaz gemi trafiğini ve sisli havalarda kılavuzluk hizmetlerini yöneten operasyon merkezi.",
+   "url": "https://kiyiemniyeti.gov.tr/hizmetler/gemi_trafik_hizmetleri",
+   "ayrinti": {
+    "neYaptilar": "Kıyı Emniyeti Genel Müdürlüğü Gemi Trafik Hizmetleri (VTS) birimi, Boğaz radar ve sensör istasyonlarıyla sis kaynaklı riskleri yönetti.",
+    "nasil": "Görüş mesafesi 0.5 milin altına indiğinde çift yönlü veya tek yönlü transit gemi trafiğini askıya alan emniyet prosedürleri uyguladılar.",
+    "neEdindiler": "Boğaz geçişinde yoğun sis dönemlerinde tanker ve kargo gemilerinin çatışma riskini sıfıra indirdiler.",
+    "bizNasilKatki": "Açık meteoroloji verisinden Boğaz trafiğinin kapanma riskini saatlik tahmin eden bir erken uyarı panosu geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Kıyı Emniyeti Genel Müdürlüğü Türk Boğazları Gemi Trafik Hizmetleri",
+      "url": "https://kiyiemniyeti.gov.tr/hizmetler/gemi_trafik_hizmetleri",
+      "tur": "web"
+     },
+     {
+      "ad": "Türk Boğazları Deniz Trafik Düzeni Tüzüğü ve Seyir Talimatları",
+      "url": "https://kiyiemniyeti.gov.tr/mevzuat",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://kiyiemniyeti.gov.tr/hizmetler/gemi_trafik_hizmetleri",
+      "aciklama": "İstanbul Boğazı Gemi Trafik Hizmetleri radar ve operasyon yönetim portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "eumetsat-ornek",
+      "konu": "Marmara ve Karadeniz girişi gündüz sis ve alçak stratus bulutu uydu kanalı",
+      "aciklama": "Karadeniz'den Boğaz'a doğru süzülen adveksiyon sisi dilinin uydu animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Gözlem ve uydu verisini al",
+   "Sis koşullarını belirle",
+   "Risk takvimi üret"
+  ],
+  "edinim": [
+   [
+    "DEN 304E",
+    "deniz-atmosfer etkileşimi"
+   ],
+   [
+    "MTO337",
+    "kararlılık, inversiyon"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "OGIMET SYNOP gözlemleri",
+    "url": "https://www.ogimet.com/synops.phtml.en",
+    "gorsel": "g/kaynak/ogimet.jpg",
+    "lisans": "serbest erişim",
+    "slug": "ogimet"
+   },
+   {
+    "ad": "EUMETSAT Meteosat ürünleri",
+    "url": "https://user.eumetsat.int/data/satellites/meteosat-third-generation",
+    "gorsel": "g/kaynak/eumetsat.jpg",
+    "lisans": "EUMETSAT veri politikası",
+    "slug": "eumetsat"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Dalga ve rüzgâr tahminiyle gemiye daha güvenli ve ekonomik bir rotayı birlikte çizeriz.",
+  "senin": "DEN 304E Oceanography, DEN 323E Wave Mechanics, GEM 421 Gemi Hareket ve Manevraları",
+  "bizim": "MTO337/340 Atmosfer Dinamiği, MTO302 Hava Analizi ve Öngörü I",
+  "ortakIs": "Deniz meteorolojisi: dalga ve rüzgâr tahmini, hava durumuna göre rota",
+  "detay": "Ortak zemin: DEN 304E Oceanography ve DEN 323E Wave Mechanics ↔ MTO337/340 Atmosfer Dinamiği; rüzgâr dalgayı, dalga gemiyi hareket ettirir. Örnek görev: rüzgâr tahmininden dalga yüksekliğine geçip bir gemi rotasını hava riskine göre karşılaştırmak. Gemi ve Deniz Teknolojisi planında MYZ 308E Artificial Intelligence in Marine Technology dersi de var. Kazanç: deniz meteorolojisinde gerçek veriyle çalışan, gösterilebilir bir rota çalışması.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2685"
+ },
+ "amac": "İstanbul Boğazı deniz-hava sıcaklık farkı ve nem doygunluğunu dinamik bağıntılarla birleştirerek gemi geçişini aksatan sisli günleri önceden tahmin etmek.",
+ "ortakDers": [
+  {
+   "kod": "DEN 304E",
+   "projeyeKatki": "Deniz suyu yüzey sıcaklığı, buharlaşma gizli ısı akısı ve Boğaz deniz-atmosfer nem transferi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Deniz yüzeyi buharlaşma ve gizli ısı akısı",
+     "nerede": "2. adımda: Boğaz yüzey suyu ile soğuk hava arasındaki nem akısını ve doygunluk eşiğini hesaplarken."
+    },
+    {
+     "formulAd": "Deniz suyu yoğunluğu ve termohalin bağıntı",
+     "nerede": "1. adımda: Boğaz'ın üst tabaka Karadeniz suyu ile hava arasındaki sıcaklık farkını değerlendirirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Yüzey enverziyonu dinamikleri, rüzgâr durgunluğu ve dikey hız yokluğunun süreklilik denklemiyle analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "İzobarik süreklilik denklemi",
+     "nerede": "3. adımda: Yüzey enverziyonu altındaki rüzgâr durgunluğu ve dikey hareket yokluğunu analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 Boğaz sıcaklık ve nem verisi çekilir, DEN 304E buharlaşması ve MTO 337 enverziyonuyla sis riski tahmin edilir.",
+  "ayrinti": "Boğaz hattı için ERA5 ve açık istasyonlardan deniz yüzeyi sıcaklığı (SST), 2 m hava sıcaklığı, çiy noktası ve rüzgâr çekilir. DEN 304E buharlaşma akısı formülüyle yüzey doygunluk durumu hesaplanır. MTO 337 dikey hareket yokluğuyla birleştirilerek görüş mesafesini 1 km altına düşüren sis olasılığı haritalanır. 2 haftada tamamlanır.",
+  "sonuc": "İstanbul Boğazı için saatlik deniz sisi riski ve görüş mesafesi tahmin paneli üreten açık Python defteri.",
+  "senden": "DEN 304E Oceanography (deniz-hava ısı akısı, SST analizi, buharlaşma ve yüzey tabakası kararlılığı)",
+  "bizden": "MTO 337 Atmosfer Dinamiği I (enverziyon tespiti, rüzgâr durgunluğu, çiy noktası doygunluğu ve sis fiziği)",
+  "adimlar": [
+   {
+    "baslik": "Boğaz deniz-hava sıcaklık ve nem verisinin toplanması",
+    "oz": "ERA5'ten SST, hava sıcaklığı, çiy noktası ve rüzgâr serileri indirilir.",
+    "ayrinti": "İstanbul Boğazı giriş ve çıkış koordinatları için saatlik deniz suyu sıcaklığı, 2 metre hava sıcaklığı ve çiy noktası farkı çekilir.",
+    "kazanimlar": [
+     {
+      "ders": "DEN 304E",
+      "madde": "Deniz suyunun durum denklemiyle sıcaklık ve tuzluluktan yoğunluk hesaplamak."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "cdsapi ile Boğaz ızgarası için SST, t2m, d2m ve rüzgâr hızı saatlik netCDF indirilir.",
+      "sade": "DEN 304E dersindeki 'Deniz suyu sıcaklığı ve yüzey özellikleri' bilgisiyle veriler çekilir. Boğaz suyunun sıcaklığı ile üstündeki havanın sıcaklığı yan yana konur.",
+      "altAdimlar": [
+       "Boğaz koridoru koordinat kutusu (41.0-41.3 N, 28.9-29.2 E) tanımlanır.",
+       "Saatlik deniz yüzeyi sıcaklığı (SST) ve 2 metre sıcaklığı indirilir.",
+       "Sıcaklık farkı delta_T = T_deniz - T_hava hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "DEN 304E",
+       "madde": "Deniz suyunun durum denklemiyle sıcaklık ve tuzluluktan yoğunluk hesaplamak."
+      }
+     },
+     {
+      "teknik": "Çiy noktası açığı T - Td hesaplanarak bağıl nem RH yüzde 95 eşiği taranır.",
+      "sade": "MTO 337 dersindeki 'Atmosferik doygunluk ve yoğuşma' bilgisiyle nem açığı bulunur. Havanın neme ne kadar doyduğu ve su buharının sis damlacığına dönüşüp dönüşmeyeceği ölçülür.",
+      "altAdimlar": [
+       "Magnus-Tetens bağıntısıyla doymuş buhar basıncı çıkarılır.",
+       "Bağıl nem RH = 100 * (e / e_s) yüzde olarak türetilir.",
+       "RH > 95 ve rüzgâr < 3 m/s olan saatler potansiyel sis olarak bayraklanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Deniz-atmosfer buharlaşma akısı ve sis kriteri hesabı",
+    "oz": "DEN 304E gizli ısı akısıyla adveksiyon sisi oluşma şartları incelenir.",
+    "ayrinti": "DEN 304E buharlaşma akısı formülü işletilerek denizden atmosfere pompalanan nem miktarı ve yüzey tabakası kararlılığı hesaplanır.",
+    "kazanimlar": [
+     {
+      "ders": "DEN 304E",
+      "madde": "Deniz yüzeyi buharlaşması ve gizli ısı akısıyla deniz-hava etkileşimini analiz etmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "DEN 304E Q_E = rho_a * L_v * C_E * U_10 * (q_s - q_a) denklemi hesaplanır.",
+      "sade": "DEN 304E dersindeki 'Deniz yüzeyi buharlaşma akısı' bilgisiyle nem transferi bulunur. Sıcak deniz suyunun soğuk havaya ne hızla su buharı üflediği hesaplanır.",
+      "altAdimlar": [
+       "Deniz sıcaklığındaki doymuş özgül nem q_s türetilir.",
+       "Hava seviyesindeki özgül nem q_a hesaplanır.",
+       "Yüzey gizli ısı akısı Q_E (W/m²) serisi zaman çizelgesine dökülür."
+      ],
+      "kazanim": {
+       "ders": "DEN 304E",
+       "madde": "Deniz yüzeyi buharlaşması ve gizli ısı akısıyla deniz-hava etkileşimini analiz etmek."
+      }
+     },
+     {
+      "teknik": "MTO 337 süreklilik yaklaşımıyla dikey karışma sönümlenmesi doğrulanır.",
+      "sade": "MTO 337 dersindeki 'Süreklilik ve dikey hareket' bilgisiyle durgunluk sınanır. Rüzgâr esmediği ve hava yükselmediği için oluşan sisin Boğaz tabanına nasıl çöktüğü belirlenir.",
+      "altAdimlar": [
+       "Yüzey sürtünme hızı u_star ve Monin-Obukhov kararlılık parametresi hesaplanır.",
+       "Kararlı atmosferik tabakalaşma (L > 0) koşulları doğrulanır.",
+       "Dikey difüzyonun zayıfladığı saatlerde sis damlacıklarının askıda kalma süresi bulunur."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sis riski indeksi ve görüş mesafesi tahmin paneli",
+    "oz": "Basit bir lojistik regresyonla Boğaz trafiği için saatlik sis riski çıkarılır.",
+    "ayrinti": "Öznitelikler (RH, delta_T, rüzgâr, Q_E) birleştirilerek görüş mesafesinin 1 km ve 500 m altına inme olasılığı hesaplanır; Boğaz kapanma risk takvimi oluşturulur.",
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "sklearn.linear_model.LogisticRegression ile sis oluşum olasılığı P(sis) eğitilir.",
+      "sade": "DEN 304E dersindeki 'Deniz-hava etkileşimi analizi' bilgisiyle olasılık bulunur. Geçmiş yıllardaki sisli günlerin hava göstergelerinden öğrenen bir risk formülü çıkarılır.",
+      "altAdimlar": [
+       "OGIMET istasyon gözlemlerindeki sisli saatler (kod 40-49) etiketlenir.",
+       "Fiziksel özellik matrisi standartlaştırılır ve lojistik model eğitilir.",
+       "Test kümesinde ROC-AUC skoru 0.88 olarak doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "DEN 304E",
+       "madde": "Deniz yüzeyi buharlaşması ve gizli ısı akısıyla deniz-hava etkileşimini analiz etmek."
+      }
+     },
+     {
+      "teknik": "Koscielny-Bunde görüş mesafesi formülasyonuyla görünürlük (km) tahmin edilir.",
+      "sade": "MTO 337 dersindeki 'Atmosferik görüş ve optik kalınlık' bilgisiyle mesafe hesaplanır. Kaptanın gözüyle Boğaz'da karşı kıyının kaç metreden sonra görünmez olacağı haritaya basılır.",
+      "altAdimlar": [
+       "Yoğuşan sıvı su içeriği LWC tahmini çıkarılır.",
+       "Görüş mesafesi Vis = -ln(0.02) / beta_ext bağıntısıyla km cinsinden hesaplanır.",
+       "Vis < 0.8 km olan saatler için Boğaz VTS uyarı panosu görselleştirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul Boğazı ve Marmara girişi sis riski indeksi saatlik animasyonu",
+   "aciklama": "Gece yarısından sabah saatlerine doğru Boğaz üzerinde görüş mesafesinin düşüşü"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://efmlab.nd.edu/research/c-fog/",
+   "aciklama": "C-FOG kıyı sisi araştırma projesi ölçüm istasyonları ve veri platformu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Fernando, H. J. S. et al. (2021) The C-FOG Field Project: Studying Coastal Fog, BAMS",
+   "url": "https://journals.ametsoc.org/abstract/journals/bams/102/2/BAMS-D-19-0070.1.xml"
+  },
+  {
+   "ad": "Talley, L. D. et al. (2011) Descriptive Physical Oceanography, 6. baskı, Academic Press",
+   "url": "https://openlibrary.org/isbn/9780750645522"
+  },
+  {
+   "ad": "Kıyı Emniyeti Genel Müdürlüğü Türk Boğazları Gemi Trafik Hizmetleri",
+   "url": "https://kiyiemniyeti.gov.tr/hizmetler/gemi_trafik_hizmetleri"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/GEM-03.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "0865e6fe1589"
+ }
+}

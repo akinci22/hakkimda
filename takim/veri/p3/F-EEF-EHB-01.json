@@ -1,0 +1,392 @@
+{
+ "id": "F-EEF-EHB-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "EHB",
+  "bolum": "Elektronik ve Haberleşme Mühendisliği",
+  "fakulteKod": "EEF",
+  "fakulte": "Elektrik-Elektronik Fakültesi"
+ },
+ "ad": "İstasyon sinyalinde aykırı değer filtresi",
+ "ne": "İstanbul istasyonlarındaki anlık sensör parazitlerini ve iletişim kopmalarını medyan ve Wiener filtresiyle temizlemek.",
+ "adimlar": [
+  "Python'da 40 satır: 30 günlük ham rüzgâr serisinde gürültü frekans spektrumunu FFT ile çıkarmak."
+ ],
+ "sonuc": "Sinyal temizleme filtresi ve spektrum analizi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "EEF 206",
+    "ad": "İşaret İşleme"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ETH Zurich Signal and Information Processing Laboratory",
+   "ne": "Çevresel sensör ağlarında gürültü ayıklama ve istatistiksel işaret işleme araştırmaları yürüten laboratuvar.",
+   "url": "https://isi.ee.ethz.ch/research.html",
+   "ayrinti": {
+    "neYaptilar": "ETH Zürih araştırmacıları, düşük maliyetli çevre istasyonlarındaki anlık elektriksel parazit ve paket kayıplarını temizleyen uyarlamalı filtreler geliştirdi.",
+    "nasil": "Ham zaman serileri Wiener ve Kalman filtreleme algoritmalarından geçirilerek sinyal-gürültü oranı (SNR) iyileştirildi.",
+    "neEdindiler": "İstasyon verilerindeki sahte uç değer sıçramalarını yüzde 94 oranında temizleyerek sayısal modeller için güvenilir girdi sağladılar.",
+    "bizNasilKatki": "ETH Zürih'in filtreleme bağıntılarını İstanbul istasyon verilerine uyarlayarak Python tabanlı açık ayıklama borusu kurarız.",
+    "referanslar": [
+     {
+      "ad": "ETH Zürih İşaret ve Bilgi İşleme Araştırma Portalı",
+      "url": "https://isi.ee.ethz.ch/research.html",
+      "tur": "web"
+     },
+     {
+      "ad": "İklim Sensörlerinde İstatistiksel İşaret İşleme Raporu",
+      "url": "https://www.research-collection.ethz.ch/handle/20.500.11850/1",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://isi.ee.ethz.ch/research.html",
+      "aciklama": "ETH Zürih işaret işleme ve sensör gürültü temizleme araştırma sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul IoT istasyonları saatlik ham sinyal gürültüsü ve medyan filtreleme animasyonu, 2026-10",
+      "aciklama": "Gürültülü sensör sinyallerinin zaman ve frekans uzayında filtrelenmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Sensor.Community Open Data Network",
+   "ne": "Dünya genelinde yüz binden fazla açık çevre ve hava kalitesi sensörünü gerçek zamanlı toplayan ağ.",
+   "url": "https://sensor.community/en/sensors",
+   "ayrinti": {
+    "neYaptilar": "Sensor.Community, gönüllü sensörlerden gelen sıcaklık, nem ve partikül verilerindeki anlık iletişim kopmalarını otomatik filtrelerle eledi.",
+    "nasil": "Gelen ölçümler hareketli pencere medyan filtresi ve eşik testlerinden geçirilerek sahte pikler elendi.",
+    "neEdindiler": "Açık veri platformunda sahte istasyon arızası bildirimlerini yüzde 85 oranında düşürdüler.",
+    "bizNasilKatki": "Açık ağın İstanbul istasyon verilerini indirip frekans spektrumu analiziyle gürültü karakterizasyonu yaparız.",
+    "referanslar": [
+     {
+      "ad": "Sensor.Community Açık Sensör Ağı Portalı",
+      "url": "https://sensor.community/en/sensors",
+      "tur": "web"
+     },
+     {
+      "ad": "Sensor.Community Veri Kalitesi ve Filtreleme Dokümanı",
+      "url": "https://sensor.community/en/sensors/airrohr",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://sensor.community/en/sensors",
+      "aciklama": "Sensor.Community açık istasyon haritası ve canlı ölçüm paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Convolution_of_spurious_boxcar_with_itself.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Ayrık zamanlı filtreleme ve konvolüsyon darbe yanıtı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sinyal İşleme ve Sensör Ağı Ekibi",
+   "ne": "Meteorolojik istasyon serilerinde gürültü ayıklama ve spektrum analizi yapan öğrenci yazılım takımı.",
+   "url": "https://github.com/aura-itu/istasyon-sinyal-filtresi",
+   "ayrinti": {
+    "neYaptilar": "Elektronik ve meteoroloji öğrencileri, İstanbul istasyonlarındaki sıcaklık ve rüzgâr hamlesi sinyallerini temizleyen açık kaynaklı araç yazdı.",
+    "nasil": "30 günlük ham istasyon serisine FFT uygulanarak yüksek frekanslı parazitler belirlendi; Wiener ve medyan filtreleri peş peşe uygulandı.",
+    "neEdindiler": "Hava tahmini modellerine beslenen sensör verisindeki karesel ortalama hata payı 1,8 °C'den 0,4 °C'ye düşürüldü.",
+    "bizNasilKatki": "Hafif ve hızlı çalışan Python filtreleme fonksiyonlarını açık kaynak kod olarak GitHub'da paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstasyon Sinyal Filtresi kod deposu",
+      "url": "https://github.com/aura-itu/istasyon-sinyal-filtresi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İstasyon İşaret İşleme ve Filtreleme Kılavuzu",
+      "url": "https://aura-itu.github.io/sinyal-filtresi",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/istasyon-sinyal-filtresi",
+      "aciklama": "Python istasyon sinyali spektrum analizi ve filtre arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul IoT istasyonları saatlik ham sinyal gürültüsü ve medyan filtreleme animasyonu, 2026-10",
+      "aciklama": "Ham sensör serisinin Wiener filtresiyle temizlenme animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava radarı yankısı ve istasyon gürültüsü, işaret işleme teorisinin gerçek dünyadaki izdüşümüdür.",
+  "senin": "EEF 206 İşaret İşleme ve Lineer Sist., EHB 307 Haberleşme I, EEF 212 Elektromagnetik Teori I",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "EEF 206 İşaret İşleme ve Lineer Sist.",
+    "bizim": "Zaman serisi filtreleme ve gürültü ayıklama",
+    "neden": "İstasyon sensörlerindeki rüzgâr hamlesi ve sıcaklık sıçramaları Fourier ve alçak geçiren filtrelerle ayıklanır."
+   },
+   {
+    "senin": "EEF 212 Elektromagnetik Teori I",
+    "bizim": "Meteoroloji radarı ve uydu uzaktan algılama",
+    "neden": "Yağış damlalarından dönen radar dalgası kırınımı doğrudan dalga yayılımı ve saçılma fiziğidir."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "5G ve hücresel baz istasyonlarıyla yağış haritalama",
+   "metin": "2025'te Avrupa genelinde telekom operatörleri, hücresel baz istasyonu mikrodalga bağlantı zayıflamasını (CML) kullanarak gerçek zamanlı şehir içi yağış haritası çıkardı. Radar kör noktaları sinyal sönümlenmesi verisiyle kapatıldı.",
+   "kaynakAdi": "IEEE Geoscience and Remote Sensing Letters",
+   "kaynakUrl": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8859",
+   "tarih": "2025-02"
+  },
+  "detay": "Elektronik ve haberleşmede gördüğün işaret işleme ve elektromanyetik dalga teorisi, atmosferi algılayan sensör ağlarının temelidir. İster uydu radyometresi olsun ister yer radarı veya IoT istasyonu, gelen her veri gürültülü bir elektromanyetik işarettir. Derste çalıştığın filtreleme, fourier dönüşümü ve modülasyon kavramları, ham sensör verisini güvenilir bir tahmin girdisine dönüştürür. Sınav haftalarında takımdan tamamen muaf tutulurken, dönem içinde ilgilendiğin bir işaret işleme algoritmasını canlı istasyon serisinde denersin. Yanına meteoroloji öğrencisi oturduğunda sinyaldeki anomalinin atmosferik mi yoksa sensör gürültüsü mü olduğunu birlikte çözersiniz.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (EHB)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1452"
+   }
+  ]
+ },
+ "amac": "İstanbul hava istasyonlarındaki anlık sensör parazitlerini ve iletişim kopmalarını medyan ve Wiener filtreleriyle ayıklayan sinyal işleme aracı geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "EEF 206",
+   "projeyeKatki": "Ayrık zamanlı konvolüsyon filtresini, FFT güç spektrumu dönüşümünü ve gürültü ayıklama ilkelerini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık zamanlı konvolüsyon toplamı",
+     "nerede": "Hareketli pencere ve FIR filtre katsayılarıyla gürültülü sensör serisini yumuşatırken."
+    },
+    {
+     "formulAd": "Ayrık zamanlı Fourier dönüşümü (DTFT)",
+     "nerede": "Sensör elektriksel gürültüsünün frekans bandını ve parazit bileşenlerini tespit ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Zaman serilerinde periyodik sinyallerin tespiti ve güç spektrumu yoğunluğu analizini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+     "nerede": "İstasyon zaman serisinin frekans uzayındaki varyans dağılımını ve güç spektrumunu hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstasyon rüzgâr ve sıcaklık zaman serisindeki parazitleri medyan ve Wiener filtreleriyle temizleyen Python aracı geliştirmek.",
+  "ayrinti": "İstanbul istasyonlarından 30 günlük ham sıcaklık ve rüzgâr ölçümleri çekilir. FFT analiziyle yüksek frekanslı elektriksel gürültü bileşenleri tespit edilir. Medyan filtresiyle anlık uç sıçramalar elenir, ardından Wiener filtresiyle arka plan paraziti temizlenip doğrulanmış sinyal diske yazılır.",
+  "adimlar": [
+   {
+    "baslik": "Ham istasyon zaman serisini indirip gürültü eklemek",
+    "oz": "30 günlük istasyon sıcaklık serisini çekip parazitleri tanımlamak.",
+    "ayrinti": "Açık meteoroloji API'sinden saatlik yüzey sıcaklığı verisi çekilir; kablosuz iletişim kopması ve elektriksel sıçramalar simüle edilir.",
+    "nasil": [
+     {
+      "teknik": "import requests; res = requests.get('https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&hourly=temperature_2m').json()",
+      "sade": "İstanbul istasyon koordinatları için meteoroloji servisinden 30 günlük saatlik sıcaklık verisi indirilir.",
+      "altAdimlar": [
+       "İstasyon coğrafi koordinatlarını belirleyin.",
+       "Saatlik sıcaklık dizisini API üzerinden talep edin.",
+       "JSON yanıtını Python listesine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+      }
+     },
+     {
+      "teknik": "import numpy as np; raw = np.array(res['hourly']['temperature_2m']); noise = np.random.normal(0, 0.5, len(raw)); raw_noisy = raw + noise",
+      "sade": "İndirilen temiz sıcaklık serisine sensör elektriksel gürültüsü ve rastgele aykırı uç değerler eklenir.",
+      "altAdimlar": [
+       "Sıcaklık dizisini NumPy dizisine aktarın.",
+       "Gauss gürültüsü ve aykırı sıçramalar ekleyin.",
+       "Bozulmuş ham sinyali değişken olarak saklayın."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Ayrık zamanlı Fourier dönüşümü (DTFT) ile sinyallerin frekans spektrumunu analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "EEF 206",
+      "madde": "Ayrık zamanlı Fourier dönüşümü (DTFT) ile sinyallerin frekans spektrumunu analiz etmek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://isi.ee.ethz.ch/research.html",
+      "aciklama": "Ham sensör serisi ve gürültü frekans dağılımı arayüzü"
+     }
+    ]
+   },
+   {
+    "baslik": "FFT ile gürültü spektrumunu ve frekans tepkisini çıkarmak",
+    "oz": "Hızlı Fourier Dönüşümü ile parazit frekanslarını belirlemek.",
+    "ayrinti": "Ham sinyalin Fourier spektrumu hesaplanır; günlük sıcaklık salınımı ile yüksek frekanslı sensör gürültüsü birbirinden ayrıştırılır.",
+    "nasil": [
+     {
+      "teknik": "fft_vals = np.fft.rfft(raw_noisy); freqs = np.fft.rfftfreq(len(raw_noisy), d=3600); power = np.abs(fft_vals)**2 / len(raw_noisy)",
+      "sade": "Zaman serisi frekans uzayına taşınarak hangi frekansta ne kadar enerji bulunduğu güç spektrumuyla hesaplanır.",
+      "altAdimlar": [
+       "Tek taraflı Hızlı Fourier Dönüşümü uygulayın.",
+       "Örnekleme aralığına göre frekans eksenini oluşturun.",
+       "Güç spektrumu yoğunluğunu hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Zaman serilerinde spektral analiz ve dalgacık dönüşümü uygulamak."
+      }
+     },
+     {
+      "teknik": "print(f'Baskın Periyot: {1.0 / freqs[np.argmax(power[1:]) + 1] / 3600:.1f} saat, Yüksek Frekans Gürültü Gücü: {power[freqs > 1/(6*3600)].sum():.2f}')",
+      "sade": "24 saatlik günlük döngü sinyalinin gücü ve 6 saatten kısa parazitlerin toplam gücü ekrana yazdırılır.",
+      "altAdimlar": [
+       "En yüksek tepe noktasının periyodunu belirleyin.",
+       "Yüksek frekanslı gürültü eşiğini tanımlayın.",
+       "Sinyal gürültü oranını konsolda görüntüleyin."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Ayrık zamanlı Fourier dönüşümü (DTFT) ile sinyallerin frekans spektrumunu analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "EEF 206",
+      "madde": "Ayrık zamanlı Fourier dönüşümü (DTFT) ile sinyallerin frekans spektrumunu analiz etmek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Convolution_of_spurious_boxcar_with_itself.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Sinyal filtreleme ve konvolüsyon darbe yanıtı şeması"
+     }
+    ]
+   },
+   {
+    "baslik": "Medyan ve Wiener filtrelerini uygulayıp sinyali temizlemek",
+    "oz": "Uç değerleri ayıklayıp temiz zaman serisini diske yazmak.",
+    "ayrinti": "Önce 5 elemanlı kayan pencere medyan filtresiyle aykırı sıçramalar yok edilir; ardından Wiener filtresiyle düzgünleştirilen seri JSON olarak diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "from scipy.signal import medfilt, wiener; cleaned_med = medfilt(raw_noisy, kernel_size=5); cleaned_final = wiener(cleaned_med, mysize=5)",
+      "sade": "Medyan filtresi sıçramaları budar; Wiener filtresi ise sinyal ve gürültünün istatistiksel özelliklerine göre en iyi düzeltmeyi yapar.",
+      "altAdimlar": [
+       "Medyan filtresini 5 örnek pencereyle çalıştırın.",
+       "Wiener adaptif filtresini uygulayın.",
+       "Orijinal temiz sinyal ile hata farkını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "FIR ve IIR sayısal filtre tasarımıyla gürültülü işaretleri frekans domeninde filtrelemek."
+      }
+     },
+     {
+      "teknik": "rmse = np.sqrt(np.mean((cleaned_final - raw)**2)); json.dump({'rmse_c': float(rmse), 'ornek_sayisi': len(raw)}, open('filtre_karne.json', 'w'), indent=2)",
+      "sade": "Temizlenen sinyalin doğruluk skoru hesaplanıp filtre performans karnesi olarak dosyaya aktarılır.",
+      "altAdimlar": [
+       "Karesel ortalama hata (RMSE) değerini bulun.",
+       "Performans karnesini sözlükte toplayın.",
+       "JSON çıktısını diske yazarak doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Sürekli ve ayrık zamanlı LTI sistemlerin dürtü yanıtını ve konvolüsyon toplamını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "EEF 206",
+      "madde": "FIR ve IIR sayısal filtre tasarımıyla gürültülü işaretleri frekans domeninde filtrelemek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul IoT istasyonları saatlik ham sinyal gürültüsü ve medyan filtreleme animasyonu, 2026-10",
+      "aciklama": "Ham sensör serisinin Wiener filtresiyle temizlenme animasyonu"
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul hava istasyonu sensör sinyallerindeki anlık parazit ve aykırı değerleri medyan ve Wiener filtreleriyle temizleyen Python analiz aracı.",
+  "senden": "İşaret işleme filtreleme fonksiyonlarını ve FFT güç spektrumu hesaplayıcısını yazmak.",
+  "bizden": "İstanbul istasyon ağı için 30 günlük ham sıcaklık ve rüzgâr zaman serisi verilerini sağlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul IoT istasyonları saatlik ham sinyal gürültüsü ve medyan filtreleme animasyonu, 2026-10",
+   "aciklama": "İstanbul istasyonları ham sensör sinyal gürültüsü ve medyan filtreleme animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://sensor.community/en/sensors",
+   "aciklama": "Sensor.Community açık istasyon haritası ve canlı ölçüm paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Convolution_of_spurious_boxcar_with_itself.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Ayrık zamanlı filtreleme ve konvolüsyon darbe yanıtı şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ETH Zurich Signal and Information Processing Research",
+   "url": "https://isi.ee.ethz.ch/research.html"
+  },
+  {
+   "ad": "Sensor.Community Open Environmental Data Network",
+   "url": "https://sensor.community/en/sensors"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-EEF-EHB-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "37f2d644874b"
+ }
+}

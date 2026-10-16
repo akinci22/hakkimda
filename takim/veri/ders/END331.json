@@ -1,0 +1,158 @@
+{
+ "kod": "END 331",
+ "ad": "Yöneylem Araştırması I",
+ "bolum": "Endüstri Mühendisliği",
+ "obsNo": "331",
+ "ozet": "Doğrusal programlama, simpleks algoritması, dualite teorisi, duyarlılık analizi ve ulaştırma/atama problemlerini öğretir. Karar verme süreçlerinde kısıtlı kaynakların (zaman, bütçe, rota) optimum dağıtımı ve maliyet minimizasyonu matematiksel denklemlerle ele alınır.",
+ "neOgrenirsin": [
+  "Gerçek hayat karar problemlerini doğrusal programlama yapılarıyla matematiksel formüle etmek.",
+  "Simpleks algoritması ve iki fazlı yöntemle optimum çözüm noktalarını ve gölge fiyatları bulmak.",
+  "Dualite teorisi ve duyarlılık analiziyle parametre değişimlerinin optimum karara etkisini incelemek.",
+  "Ulaştırma, aktarma ve atama problemlerini özel ağ algoritmalarıyla en düşük maliyetle çözmek.",
+  "Tamsayılı programlama ve dal-sınır yöntemiyle kesikli lojistik kararlarını optimize etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Doğrusal programlama standart matris formu",
+   "tex": "\\min \\mathbf{c}^T \\mathbf{x} \\quad \\mathrm{s.t.} \\quad \\mathbf{A} \\mathbf{x} \\ge \\mathbf{b}, \\quad \\mathbf{x} \\ge \\mathbf{0}",
+   "terimler": [
+    [
+     "\\mathbf{c}",
+     "maliyet veya mesafe katsayıları vektörü",
+     "TL veya km"
+    ],
+    [
+     "\\mathbf{x}",
+     "karar değişkenleri vektörü (taşınan miktar veya seçilen rota)",
+     "adet veya sefer"
+    ],
+    [
+     "\\mathbf{A}",
+     "teknolojik katsayılar ve kaynak tüketim matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{b}",
+     "talep ve kapasite kısıtları sınır vektörü",
+     "adet veya ton"
+    ]
+   ],
+   "sade": "Belirli kısıtlar (örneğin araç kapasitesi ve zaman) altında toplam maliyeti en aza indiren en iyi karar değişkeni değerlerini bulur.",
+   "ornek": "Fırtına gününde 5 dağıtım noktasına toplam 12 ton yük taşınırken araç kapasitesi ve yol risk katsayıları girilerek toplam sefer mesafesi en aza indirilir.",
+   "nerede": "END-01 projesinde kar ve fırtına öncesi lojistik rotalama ve acil stok sevkiyatı optimizasyonunda."
+  },
+  {
+   "ad": "Ulaştırma problemi dengeli maliyet optimizasyonu",
+   "tex": "\\min \\sum_{i=1}^m \\sum_{j=1}^n c_{ij} x_{ij} \\quad \\mathrm{s.t.} \\quad \\sum_{j=1}^n x_{ij} \\le s_i, \\quad \\sum_{i=1}^m x_{ij} \\ge d_j",
+   "terimler": [
+    [
+     "c_{ij}",
+     "i kaynağından j hedefine birim taşıma maliyeti veya seyahat süresi",
+     "TL/adet veya saat"
+    ],
+    [
+     "x_{ij}",
+     "i kaynağından j hedefine sevk edilen ürün miktarı",
+     "adet"
+    ],
+    [
+     "s_i",
+     "i deposunun mevcut arz kapasitesi",
+     "adet"
+    ],
+    [
+     "d_j",
+     "j bölgesinin beklenen ürün talebi",
+     "adet"
+    ]
+   ],
+   "sade": "Birden fazla depodan birden fazla mağazaya ürün dağıtırken hangi deponun nereyi besleyeceğini toplam sevkiyat masrafını en küçük yapacak şekilde belirler.",
+   "ornek": "İstanbul'daki 2 ana lojistik merkezinden kar fırtınası beklenen 8 ilçeye 5000 koli gıda sevkiyatı yapılırken yol kapanma risklerine göre maliyet matrisi güncellenip optimal sevkiyat planı çıkarılır.",
+   "nerede": "END-01'de kar fırtınası öncesi lojistik merkezlerinden riskli ilçelere ön stok aktarımında."
+  },
+  {
+   "ad": "Dualite ve gölge fiyat (fırsat maliyeti) bağıntısı",
+   "tex": "\\max \\mathbf{b}^T \\mathbf{y} \\quad \\mathrm{s.t.} \\quad \\mathbf{A}^T \\mathbf{y} \\le \\mathbf{c}, \\quad \\mathbf{y} \\ge \\mathbf{0}",
+   "terimler": [
+    [
+     "\\mathbf{y}",
+     "dual karar değişkenleri (gölge fiyatlar vektörü)",
+     "TL/birim kaynak"
+    ],
+    [
+     "\\mathbf{b}",
+     "primal problemdeki sağ taraf kısıt değerleri",
+     "adet veya saat"
+    ],
+    [
+     "\\mathbf{c}",
+     "primal amaç fonksiyonu maliyet katsayıları",
+     "TL"
+    ],
+    [
+     "\\mathbf{A}",
+     "kısıt katsayıları matrisi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Bir kısıtın bir birim gevşetilmesinin toplam maliyete ne kadar kazanç sağlayacağını hesaplar. Hangi depoya ilave tır koymanın sistemi en çok rahatlatacağını gösterir.",
+   "ornek": "Fırtına nedeniyle kapanma riski taşıyan bir köprünün kapasite kısıtına ait gölge fiyat 450 TL/saat olarak bulunur; bu değer o yolu açık tutmak için yapılacak kar küreme harcamasının üst sınırını verir.",
+   "nerede": "END-01'de riskli güzergâhlara alternatif tahsis yaparken kısıtların sistem üzerindeki maliyet baskısını ölçerken."
+  },
+  {
+   "ad": "Beklenen parasal değer (EMV) ve karar matrisi",
+   "tex": "\\mathrm{EMV}(d_i) = \\sum_{j=1}^k p_j \\cdot v(d_i, \\theta_j)",
+   "terimler": [
+    [
+     "\\mathrm{EMV}(d_i)",
+     "d_i karar alternatifinin beklenen parasal değeri veya beklenen maliyeti",
+     "TL"
+    ],
+    [
+     "p_j",
+     "theta_j doğal atmosferik durumun veya fırtınanın gerçekleşme olasılığı",
+     "birimsiz"
+    ],
+    [
+     "v(d_i, \\theta_j)",
+     "d_i kararı ve theta_j hava durumu kombinasyonundaki net maliyet veya kayıp",
+     "TL"
+    ]
+   ],
+   "sade": "Farklı hava senaryolarının olasılıklarıyla bu senaryolardaki operasyonel maliyetleri çarparak toplarız. Böylece tek bir deterministik tahmin yerine riski en aza indiren en akılcı kararı seçeriz.",
+   "ornek": "Açık hava etkinliğinde yağış ihtimali p = 0.35 iken önlem alma maliyeti 40 bin TL, önlemsiz yağış zararı 150 bin TL ise beklenen kayıp 0.35 * 150 bin = 52.5 bin TL olur ve önlem almak karlı çıkar.",
+   "nerede": "END-04 projesinde ensemble tahmin olasılıklarıyla maliyet-kayıp tablosu kurup optimum karar eşiğini hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Simplex-method-3-dimensions.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Simpleks algoritması: 3 boyutlu çokyüzlü üzerinde köşe noktaları dolaşarak optimum çözüm arayışı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.coin-or.org/PuLP/",
+   "aciklama": "PuLP Python doğrusal optimizasyon ve çözücü kütüphanesi dokümantasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · END 331 (Yöneylem Araştırması I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=END&dersNo=331"
+  },
+  {
+   "ad": "Hillier, F. S. & Lieberman, G. J. (2021) Introduction to Operations Research, 11. baskı, McGraw-Hill · ISBN 978-1259872990",
+   "url": "https://openlibrary.org/isbn/9781259872990"
+  },
+  {
+   "ad": "Taha, H. A. (2017) Operations Research: An Introduction, 10. baskı, Pearson · ISBN 978-0134444017",
+   "url": "https://openlibrary.org/isbn/9780134444017"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=END&dersNo=331"
+}

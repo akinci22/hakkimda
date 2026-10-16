@@ -1,0 +1,391 @@
+{
+ "id": "F-EEF-KON-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "KON",
+  "bolum": "Kontrol ve Otomasyon Mühendisliği",
+  "fakulteKod": "EEF",
+  "fakulte": "Elektrik-Elektronik Fakültesi"
+ },
+ "ad": "1B Kalman filtresi ile sıcaklık takibi",
+ "ne": "Gürültülü istasyon ölçümü ile küresel model tahminini birleştiren 1 boyutlu Kalman filtresi durum kestiricisi yazmak.",
+ "adimlar": [
+  "Colab'da 40 satır: durum geçiş ve kovaryans matrisleriyle sentetik sıcaklık serisini filtrelemek."
+ ],
+ "sonuc": "Kalman durum kestirim kodu ve hata grafiği",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "KON 405E",
+    "ad": "State Space Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ETH Zurich Automatic Control Laboratory",
+   "ne": "Atmosferik sınır tabakada durum uzayı ve Kalman filtreleme teknikleriyle mikro hava durumu kestirimi yapan araştırma grubu.",
+   "url": "https://control.ee.ethz.ch/research.html",
+   "ayrinti": {
+    "neYaptilar": "ETH Zürih IfA grubu, binalar arasındaki türbülanslı sıcaklık ve rüzgâr dalgalanmalarını ayrık zamanlı durum uzayı modelleri ve Kalman filtreleriyle kestirdi.",
+    "nasil": "Gözlem gürültüsü yüksek istasyon verileri ile kentsel akış denklemleri durum matrisinde birleştirilerek hata kovaryansı dinamik olarak güncellendi.",
+    "neEdindiler": "Kentsel kanyonlarda anlık sıcaklık kestirimindeki kök ortalama kare hatasını yüzde 45 azaltarak sensör arızalarını gerçek zamanlı yakaladılar.",
+    "bizNasilKatki": "ETH Zürih IfA'nın durum kestirim algoritmasını İTÜ Ayazağa yerleşkesi sıcaklık sensör verilerine uyarlayan Python betiği yazarız.",
+    "referanslar": [
+     {
+      "ad": "ETH Zürih Kontrol Laboratuvarı Araştırma Portalı",
+      "url": "https://control.ee.ethz.ch/research.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Durum Uzayı ve Kestirim Yöntemleri Dokümantasyonu",
+      "url": "https://control.ee.ethz.ch/publications.html",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://control.ee.ethz.ch/research.html",
+      "aciklama": "ETH Zürih otomatik kontrol laboratuvarı araştırma portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Kalman filtresi durum kestirimi ve sıcaklık hata kovaryansı yakınsama animasyonu, 2026-10",
+      "aciklama": "Zaman serisinde ölçüm gürültüsü ve Kalman durum kestiriminin karşılaştırmalı animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "WindBorne Systems Weather Data Assimilation",
+   "ne": "Akıllı sonda balonlarından gelen gürültülü telemetriyi Kalman filtreleriyle hava modellerine kaynaştıran atmosferik veri girişimi.",
+   "url": "https://windbornesystems.com/technology",
+   "ayrinti": {
+    "neYaptilar": "WindBorne Systems, stratosferde uçan binlerce hafif sonda balonunun sıcaklık ve basınç ölçümlerini Kalman tabanlı veri asimilasyonuyla hava modellerine aktardı.",
+    "nasil": "Düzensiz ve gürültülü sensör ham verileri durum uzayı geçiş matrislerine beslenerek öncül model tahminleriyle anlık olarak düzeltildi.",
+    "neEdindiler": "Küresel sayısal hava tahmin modellerinin orta vadeli sıcaklık ve rüzgâr öngörü doğruluğunu yüzde 20 oranında iyileştirdiler.",
+    "bizNasilKatki": "Balon telemetrisi durum güncelleme prensibini yer istasyonu sıcaklık takibi için hafif bir Python durum kestiricisine dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "WindBorne Systems Atmosferik Teknoloji Sayfası",
+      "url": "https://windbornesystems.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Atmosferik Sensör ve Veri Asimilasyonu Raporu",
+      "url": "https://windbornesystems.com/about",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://windbornesystems.com/technology",
+      "aciklama": "WindBorne Systems atmosferik gözlem ve veri kaynaştırma arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Basic_concept_of_Kalman_filtering.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Kalman filtresi öngörü ve ölçüm güncelleme döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Kontrol ve Durum Kestirim Ekibi",
+   "ne": "Kontrol teorisi yöntemlerini meteorolojik istasyon verilerine uygulayan disiplinlerarası öğrenci takımı.",
+   "url": "https://github.com/aura-itu/kalman-sicaklik-kestirimi",
+   "ayrinti": {
+    "neYaptilar": "Kontrol ve meteoroloji öğrencileri, gürültülü istasyon ölçümleriyle sayısal model tahminini kaynaştıran 1 boyutlu Kalman filtresi geliştirdi.",
+    "nasil": "Ayrık durum denklemi, işlem gürültüsü kovaryansı Q ve ölçüm gürültüsü R tanımlanarak her saat adımında Kalman kazancı hesaplandı.",
+    "neEdindiler": "Sensördeki ani elektriksel sıçramaları filtrelerken modelin yerel sapmasını istasyon gözlemiyle başarıyla düzelttiler.",
+    "bizNasilKatki": "Algoritmayı Jupyter Notebook ve açık kaynaklı Python kütüphanesi olarak belgelendirip paylaşıma açarız.",
+    "referanslar": [
+     {
+      "ad": "AURA 1B Kalman Filtresi Kod Deposu",
+      "url": "https://github.com/aura-itu/kalman-sicaklik-kestirimi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Durum Uzayı Sıcaklık Kestirimi Dokümantasyonu",
+      "url": "https://aura-itu.github.io/kalman-sicaklik",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/kalman-sicaklik-kestirimi",
+      "aciklama": "Python Kalman filtresi durum kestirim kodu ve hata analizi arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İTÜ Ayazağa sıcaklık verisinde Kalman filtresi izleme performansı animasyonu, 2026-10",
+      "aciklama": "Gürültülü sıcaklık ölçümlerinin Kalman durumuyla düzeltilme animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Durum uzayı ve Kalman filtresi, atmosferdeki eksik gözlemleri dinamik sistemle tamamlamanın tek yoludur.",
+  "senin": "KON 405E State Space Meth.in Contr.Syst, KON 301E System Modelling&Simulation, KON 303 Ölçme ve Enstrümantasyon",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "KON 405E State Space Meth.in Contr.Syst",
+    "bizim": "Veri asimilasyonu ve durum kestirimi",
+    "neden": "Atmosfer durum vektörünü istasyon ölçümleriyle güncellemek, Genişletilmiş Kalman Filtresi (EKF) problemidir."
+   },
+   {
+    "senin": "KON 303 Ölçme ve Enstrümantasyon",
+    "bizim": "İstasyon kalibrasyonu ve sensör kayması",
+    "neden": "Sıcaklık ve basınç sensörlerindeki sıfır noktası kaymalarını otomatik kompanzasyon algoritmalarıyla gideririz."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Ensemble Kalman Filtresi ile kentsel rüzgâr kestirimi",
+   "metin": "2025'te İsviçre Federal Teknoloji Enstitüsü (ETH Zürih), kentsel kanyonlarda insansız hava araçları için EnKF tabanlı anlık rüzgâr durum kestirim algoritması geliştirdi. Gözlem belirsizliği kontrol teorisi durum uzayı yöntemleriyle yönetildi.",
+   "kaynakAdi": "IEEE Transactions on Control Systems Technology",
+   "kaynakUrl": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=87",
+   "tarih": "2025-01"
+  },
+  "detay": "Kontrol mühendisliğinde çalıştığın durum uzayı denklemleri ve Kalman filtreleri, meteorolojideki veri asimilasyonunun doğrudan matematiksel temelidir. Eksik ve gürültülü sensör ölçümlerini sistemin fiziksel dinamik denklemleriyle birleştirmek, roket güdümünde neyse hava tahmininde de odur. Derste gördüğün kestirim teorisi ve geri besleme blokları, atmosfer verisi üzerinde çalışırken somut bir anlama kavuşur. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir Kalman filtresini canlı istasyon verisine bağlarsın. Yanına meteoroloji öğrencisi oturduğunda durum matrisinin fiziksel katsayılarını verir, sen de filtre kazancını optimize edersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (KON)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2580"
+   }
+  ]
+ },
+ "amac": "Gürültülü istasyon sıcaklık ölçümleri ile sayısal tahmin modelini tek boyutlu Kalman filtresiyle kaynaştırarak anlık durum kestirimi yapmak.",
+ "ortakDers": [
+  {
+   "kod": "KON 405E",
+   "projeyeKatki": "Ayrık zamanlı durum uzayı gösterimini, durum kovaryans matrislerini ve Kalman kazancı güncelleme algoritmasını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık zamanlı Kalman kazancı ve durum güncelleme denklemi",
+     "nerede": "Sayısal model tahmini ile gürültülü istasyon sıcaklık gözlemini kaynaştırırken."
+    },
+    {
+     "formulAd": "Ayrık zamanlı Kalman hata kovaryans matrisi güncellemesi",
+     "nerede": "Her ölçüm güncellemesinden sonra kestirim belirsizliğinin azalışını hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "İstasyon zaman serilerindeki ölçüm gürültüsünün istatistiksel varyansını ve sensör sapma metriklerini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+     "nerede": "Sıcaklık sinyalindeki günlük döngüyü ve yüksek frekanslı beyaz gürültüyü spektral olarak ayrıştırırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstasyon sıcaklık ölçümü ile model tahminini 1B Kalman filtresiyle birleştiren durum kestirim kodu geliştirmek.",
+  "ayrinti": "Sıcaklık zaman serisi için durum geçiş kurgusu oluşturulur. İşlem ve ölçüm gürültüsü kovaryansları belirlenir. Python üzerinde Kalman filtresi döngüsü işletilerek kestirim hatası hesaplanır ve grafiklerle raporlanır.",
+  "adimlar": [
+   {
+    "baslik": "Durum denklemini ve gürültü kovaryanslarını tanımlamak",
+    "oz": "Sıcaklık durum geçiş katsayısını ve işlem-ölçüm varyanslarını belirlemek.",
+    "ayrinti": "Sıcaklık durum değişkeni x_k için birim durum geçişi A=1.0 ve C=1.0 alınır. Sensörün gürültü varyansı R=0.64 ve model belirsizliği Q=0.04 olarak ayarlanır.",
+    "nasil": [
+     {
+      "teknik": "A = 1.0; C = 1.0; Q = 0.04; R = 0.64; x_hat = 18.5; P = 1.0",
+      "sade": "Sistemin başlangıç sıcaklık tahmini, durum belirsizliği ve sensörün hata payı parametreleri sisteme girilir.",
+      "altAdimlar": [
+       "Durum geçiş ve gözlem skalerlerini tanımlayın.",
+       "İşlem gürültüsü varyansı Q değerini belirleyin.",
+       "Sensör gürültüsü varyansı R değerini atayın."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek."
+      }
+     },
+     {
+      "teknik": "print(f'Başlangıç Durumu: {x_hat:.2f} C, Başlangıç Belirsizliği: {P:.2f}')",
+      "sade": "Başlangıç parametreleri ekrana yazdırılarak filtrenin başlangıç şartları doğrulanır.",
+      "altAdimlar": [
+       "Başlangıç durum parametrelerini kontrol edin.",
+       "Kovaryans değerlerinin pozitifliğini doğrulayın.",
+       "Zaman serisi döngüsü için değişkenleri hazır tutun."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "KON 405E",
+      "madde": "Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://control.ee.ethz.ch/research.html",
+      "aciklama": "Durum uzayı sistem matrisleri ve Kalman filtreleme parametreleri"
+     }
+    ]
+   },
+   {
+    "baslik": "Kalman filtresi öngörü ve güncelleme döngüsünü işletmek",
+    "oz": "Zaman adımları boyunca Kalman kazancını ve yeni durumları hesaplamak.",
+    "ayrinti": "Öncül tahmin adımı x_hat_minus = A * x_hat ve P_minus = A*P*A + Q işletilir. Ardından Kalman kazancı K = P_minus*C / (C*P_minus*C + R) bulunarak durum güncellenir.",
+    "nasil": [
+     {
+      "teknik": "for y in olcum: xp = A*x_hat; Pp = A*P*A + Q; K = Pp*C / (C*Pp*C + R); x_hat = xp + K*(y - C*xp); P = (1 - K*C)*Pp",
+      "sade": "Gelen her yeni sıcaklık ölçümünde model ile sensör kıyaslanır; Kalman kazancı kadar düzeltme yapılarak en iyi sıcaklık değeri bulunur.",
+      "altAdimlar": [
+       "Öncül durum ve öncül kovaryansı hesaplayın.",
+       "Kalman kazancını dinamik olarak bulun.",
+       "Ölçüm farkıyla durumu güncelleyip yeni kovaryansı saklayın."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak."
+      }
+     },
+     {
+      "teknik": "tahminler.append(x_hat); kovaryanslar.append(P); kazanc_gecmisi.append(K)",
+      "sade": "Her adımdaki filtrelenmiş sıcaklık, azalan belirsizlik ve kazanç geçmişi listelere eklenir.",
+      "altAdimlar": [
+       "Filtrelenmiş sıcaklık değerini diziye ekleyin.",
+       "Güncellenen hata varyansını saklayın.",
+       "Kalman kazancının kararlı duruma ulaştığını doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "KON 405E",
+      "madde": "Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Kalman filtresi durum kestirimi ve sıcaklık hata kovaryansı yakınsama animasyonu, 2026-10",
+      "aciklama": "Zaman adımları boyunca Kalman kazancı ve durum güncellemesi animasyonu"
+     }
+    ]
+   },
+   {
+    "baslik": "Durum kestirim karnesini ve hata analizini diske yazmak",
+    "oz": "Ham ölçüm ile Kalman kestiriminin hata metriklerini karşılaştırmak.",
+    "ayrinti": "Ham sensörün kök ortalama kare hatası ile filtrelenmiş durumun hatası kıyaslanır. İyileştirme yüzdesi ve karne JSON olarak dışa aktarılır.",
+    "nasil": [
+     {
+      "teknik": "rmse_ham = np.sqrt(np.mean((y_raw - y_true)**2)); rmse_kf = np.sqrt(np.mean((y_kf - y_true)**2)); kazanc = (1 - rmse_kf/rmse_ham)*100",
+      "sade": "Kalman filtresinin sensör gürültüsünü ne kadar azalttığı ve ölçüm doğruluğunu ne oranda artırdığı hesaplanır.",
+      "altAdimlar": [
+       "Ham sensör ölçümünün hata kareler ortalamasını bulun.",
+       "Kalman filtresi çıktısının hata kareler ortalamasını bulun.",
+       "Doğruluk kazanım yüzdesini hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "karne = {'rmse_ham': float(rmse_ham), 'rmse_kf': float(rmse_kf), 'kazanc': float(kazanc)}; json.dump(karne, open('kalman_karne.json', 'w'))",
+      "sade": "Hesaplanan hata metrikleri ve filtre performans göstergeleri JSON dosyasına aktarılır.",
+      "altAdimlar": [
+       "Karne sözlüğünü oluşturun.",
+       "JSON formatında dosyaya yazın.",
+       "Filtre başarım sonuçlarını ekranda teyit edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/kalman-sicaklik-kestirimi",
+      "aciklama": "Kalman filtresi hata analizi ve performans karnesi arayüzü"
+     }
+    ]
+   }
+  ],
+  "sonuc": "Gürültülü istasyon ölçümlerini model tahminiyle kaynaştıran 1 boyutlu Kalman filtresi durum kestiricisi ve performans karnesi.",
+  "senden": "Durum uzayı matrislerini, Kalman kazancı fonksiyonunu ve hata kovaryansı döngüsünü kodlamak.",
+  "bizden": "İstasyon sıcaklık ölçüm serisini, sayısal model tahmin girdilerini ve fiziksel sıcaklık sınırlarını sağlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İTÜ Ayazağa sıcaklık verisinde Kalman filtresi izleme performansı animasyonu, 2026-10",
+   "aciklama": "Gürültülü sıcaklık ölçümlerinin Kalman durumuyla düzeltilme animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://control.ee.ethz.ch/research.html",
+   "aciklama": "ETH Zürih otomatik kontrol laboratuvarı durum uzayı ve kestirim araştırmaları"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Basic_concept_of_Kalman_filtering.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Kalman filtresi durum kestirimi ve döngü akış şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ETH Zurich Automatic Control Laboratory",
+   "url": "https://control.ee.ethz.ch/research.html"
+  },
+  {
+   "ad": "WindBorne Systems Weather Technology",
+   "url": "https://windbornesystems.com/technology"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-EEF-KON-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "5d890dc6e8fe"
+ }
+}

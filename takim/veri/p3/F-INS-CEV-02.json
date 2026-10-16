@@ -1,0 +1,419 @@
+{
+ "id": "F-INS-CEV-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "CEV",
+  "bolum": "Çevre Mühendisliği",
+  "fakulteKod": "INS",
+  "fakulte": "İnşaat Fakültesi"
+ },
+ "ad": "Baraj havzaları kümülatif yağış karnesi",
+ "ne": "Ömerli ve Terkos havzalarına düşen tahmin yağışları ile İSKİ baraj doluluk değişimini karşılaştırmak.",
+ "adimlar": [
+  "Son 14 günün havza ızgara yağış toplamını hesaplamak."
+ ],
+ "sonuc": "Havza su bütçesi tablosu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "CEV 242E",
+    "ad": "Çevre Müh. İçin Hidroloji"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Boğaziçi Kandilli İklim Araştırmaları Merkezi",
+   "ne": "Marmara ve İstanbul baraj havzaları hidrolojik su bütçesi ve yağış analizleri yürüten araştırma enstitüsü.",
+   "url": "https://climatechange.boun.edu.tr/arastirma/",
+   "ayrinti": {
+    "neYaptilar": "Kandilli İklim Merkezi, İstanbul'un ana içme suyu havzalarında (Ömerli, Darlık, Terkos) radar ve istasyon yağışlarını hidrograf eğrileriyle birleştirdi.",
+    "nasil": "ERA5 ve WRF ızgara yağış toplamları ile İSKİ baraj seviyesi ölçümleri su bütçesi süreklilik denklemiyle entegre edildi.",
+    "neEdindiler": "İstanbul barajlarında mevsimsel doluluk oranı tahmininde hata payını yüzde 15 azaltan bilimsel raporlar ve açık veri setleri sundular.",
+    "bizNasilKatki": "Araştırma merkezinin su bütçesi yaklaşımını son 14 günlük açık ECMWF ve ERA5 yağış verisiyle çalışan pratik Python modülüne uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Boğaziçi İklim Değişikliği ve Havza Araştırmaları Portali",
+      "url": "https://climatechange.boun.edu.tr/arastirma/",
+      "tur": "web"
+     },
+     {
+      "ad": "İstanbul Havzaları Su Dengesi Teknik Değerlendirmesi",
+      "url": "https://climatechange.boun.edu.tr/yayinlar/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://climatechange.boun.edu.tr/arastirma/",
+      "aciklama": "Boğaziçi Üniversitesi havza hidrolojisi ve iklim araştırma sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Hydrological_cycle.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Havza su bütçesi bileşenleri ve depolama değişimi şematik akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "HydroMetrica Su ve Baraj Analitiği Çözümleri",
+   "ne": "Belediyeler ve su idareleri için havza ızgara yağış toplamından baraj doluluğu kestiren yazılım şirketi.",
+   "url": "https://www.hydrometrica.com/solutions/reservoir-inflow",
+   "ayrinti": {
+    "neYaptilar": "HydroMetrica, baraj rezervuarlarına beslenen derelerin su toplama alanlarında kümülatif yağış ve buharlaşma analitiği platformu kurdu.",
+    "nasil": "Sentinel uydu su yüzeyi maskeleme, radar yağış kestirimi ve SCS-CN akış algoritmalarıyla günlük baraj giriş debisi tahmin edildi.",
+    "neEdindiler": "Avrupa genelinde 40'tan fazla baraj gölünde su yönetim idarelerine operasyonel doluluk erken uyarı panelleri sağladılar.",
+    "bizNasilKatki": "Girişimin kümülatif havza su bütçesi özet mantığını İSKİ açık doluluk bülteni verileriyle 35 satırlık Python scriptine taşırız.",
+    "referanslar": [
+     {
+      "ad": "HydroMetrica Rezervuar Giriş Analitiği Sayfası",
+      "url": "https://www.hydrometrica.com/solutions/reservoir-inflow",
+      "tur": "web"
+     },
+     {
+      "ad": "Rezervuar Yönetimi ve Sayısal Su Dengesi Raporu",
+      "url": "https://www.hydrometrica.com/whitepapers",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.hydrometrica.com/solutions/reservoir-inflow",
+      "aciklama": "HydroMetrica rezervuar su bütçesi ve doluluk analiz paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Ömerli ve Terkos havzalarında 14 günlük kümülatif yağış akışı, ERA5, 2026-10",
+      "aciklama": "Baraj havzasına düşen yağmur suyunun gün bazında akışa ve depolamaya dönüşme animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Su Kaynakları ve Havza Hidrolojisi Ekibi",
+   "ne": "İstanbul baraj havzalarına düşen yağış ile doluluk değişimini açık kaynak kodla eşleştiren öğrenci ekibi.",
+   "url": "https://github.com/aura-team/baraj-havza-karnesi",
+   "ayrinti": {
+    "neYaptilar": "Ekip, Açık Veri İstanbul İSKİ baraj doluluk verisi ile Open-Meteo havza yağışlarını eşleştiren otomatik su bütçesi karnesi geliştirdi.",
+    "nasil": "Ömerli ve Terkos havza poligonları GeoPandas ile maskelendi, 14 günlük toplam milimetre yağış hacme (milyon m³) çevrildi.",
+    "neEdindiler": "Haftalık 1-2 saatlik çalışmayla havza yağışlarının baraj doluluğuna yansıma gecikmesini (2-4 gün) gösteren interaktif karne tablosu ürettiler.",
+    "bizNasilKatki": "Havza poligonlarının hazırlanması, Python hesaplama scripti ve otomatik tablo çıktısı üretimini üstleniriz.",
+    "referanslar": [
+     {
+      "ad": "AURA Baraj Havzaları Analiz Deposu",
+      "url": "https://github.com/aura-team/baraj-havza-karnesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İSKİ Baraj Doluluk Oranları Açık Veri Portali",
+      "url": "https://data.ibb.gov.tr/dataset/iski-baraj-doluluk-oranlari",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Ömerli Baraj havzası kümülatif yağış eğrisi, 2026-10",
+      "aciklama": "Yağışlı sistemler boyunca Ömerli su toplama havzasında biriken yağış miktarı döngüsü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Reservoir_water_balance.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Baraj gölü su dengesi, giriş-çıkış debileri ve depolama şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava kalitesi indeksi ve kirlilik dağılımı, atmosferik sınır tabakanın inversiyon dinamiklerine bağlıdır.",
+  "senin": "CEV 308E Hava Kirlenmesi, CEV 242E Çevre Müh. İçin Hidroloji, CEV 211E Çevre Kimyası I",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "CEV 308E Hava Kirlenmesi",
+    "bizim": "Sıcaklık terselmesi (inversiyon) ve karışım yüksekliği",
+    "neden": "Partikül madde (PM2.5) konsantrasyonunu hapseden dikey atmosferik kararlılık doğrudan sınır tabaka fiziğidir."
+   },
+   {
+    "senin": "CEV 242E Çevre Müh. İçin Hidroloji",
+    "bizim": "Havza yağış-akış ve buharlaşma dengesi",
+    "neden": "Kentsel su kaynaklarının doluluk hesabı sayısal hava tahmininden gelen alansal yağış ve buharlaşma girdilerine dayanır."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "İstanbul'da kış aylarında inversiyon ve hava kalitesi erken uyarısı",
+   "metin": "2025'te Marmara Belediyeler Birliği ve İTÜ Çevre Mühendisliği, sınır tabaka meteorolojisi verilerini kullanarak kentsel hava kirliliği erken uyarı sistemi geliştirdi. İnversiyon günlerinde PM10 pikleri başarıyla öngörüldü.",
+   "kaynakAdi": "Atmospheric Environment",
+   "kaynakUrl": "https://www.sciencedirect.com/journal/atmospheric-environment",
+   "tarih": "2025-01"
+  },
+  "detay": "Çevre mühendisliğinde hava kirliliği ve hidroloji dersleri, atmosferin dinamik koşullarını doğrudan birer sınır koşulu olarak kullanır. Bacalardan ve egzozlardan çıkan kirleticilerin havada nasıl dağılacağı veya yer seviyesinde hapsolup kalacağı tamamen meteorolojik sınır tabaka hareketlerine bağlıdır. İstasyon hava kalitesi verileri ile küresel tahminlerin rüzgâr ve inversiyon parametrelerini eşleştirmek, kentsel halk sağlığı için somut bir değer üretir. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde İstanbul'un kirlilik ve havza yağış verileri üzerinde çalışırsın. Yanına meteoroloji öğrencisi oturduğunda atmosferik türbülans katsayılarını çıkarır, sen de kirletici konsantrasyonu dağılımını hesaplarsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (CEV)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1469"
+   }
+  ]
+ },
+ "amac": "Ömerli ve Terkos baraj havzalarına düşen 14 günlük tahmin yağışları ile İSKİ baraj doluluk değişimini karşılaştıran su bütçesi karnesi hazırlamak.",
+ "ortakDers": [
+  {
+   "kod": "CEV 242E",
+   "projeyeKatki": "CEV 242E dersindeki havza su bütçesi ve SCS-CN akış bağıntıları, havzaya düşen milimetre cinsinden yağışın toprak tutma kapasitesi sonrasında baraja akacak net hacmini hesaplar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Havza su bütçesi süreklilik denklemi",
+     "nerede": "14 günlük kümülatif yağıştan buharlaşma ve sızma kayıplarını düşerek net baraj depolama hacmi artışını hesaplarken."
+    },
+    {
+     "formulAd": "SCS-CN net yüzey akışı bağıntısı",
+     "nerede": "Ömerli ve Terkos havza topraklarının doymuşluk durumuna göre fırtına yağışının göle ulaşan net akış payını belirlerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "MTO 311E dersindeki zaman serisi analizi ve gecikmeli çapraz korelasyon, havza yağışı tepe noktası ile baraj seviyesindeki yükselme arasındaki zaman farkını tespit eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Havzaya düşen yağış piki ile baraj doluluk oranındaki net artış arasındaki 48-72 saatlik akış gecikmesini saptarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "MTO 337 dersindeki kütle sürekliliği ve izobarik süreklilik, fırtına sistemlerinde hava kütlesinin getirdiği nem akısını ve havza ölçeğinde yağış yoğunlaşmasını açıklar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "İzobarik süreklilik denklemi",
+     "nerede": "Havza üzerinde atmosferik yakınsama ve dikey hava hareketinin yağış üretme potansiyelini değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Ömerli ve Terkos havzalarının 14 günlük yağış toplamını hesaplayıp İSKİ doluluk değişimiyle karşılaştıran su karnesi üretmek.",
+  "ayrinti": "İstanbul su toplama havzaları GeoPandas ile sınırlandırılır. Open-Meteo ve ERA5 ızgara yağış toplamları çekilerek havza alanıyla çarpılır ve metreküp cinsinden brüt su girişi bulunur. İSKİ günlük baraj doluluk farklarıyla karşılaştırılarak sızma ve buharlaşma kayıpları düşülür; 14 günlük havza su bütçesi tablosu oluşturulur.",
+  "adimlar": [
+   {
+    "baslik": "Havza Poligonları ve Coğrafi Maskeleme",
+    "oz": "Ömerli ve Terkos su toplama sınırlarını Shapefile formatında yüklemek.",
+    "ayrinti": "İSKİ açık havza sınırları GeoPandas ile okunur. Ömerli (621 km²) ve Terkos (736 km²) poligonları tanımlanarak hava tahmin ızgarasındaki piksel koordinatları havza içine düşen noktalarla filtrelenir.",
+    "nasil": [
+     {
+      "teknik": "geopandas.read_file('havzalar.geojson') ile havza sınırlarını yükleyip ızgara noktalarıyla uzamsal kesişim almak.",
+      "sade": "Ömerli ve Terkos göllerine su taşıyan dere havzalarının sınırları haritada çizilir. Tahmin ızgarasındaki hangi noktaların baraj havzasına ait olduğu belirlenir.",
+      "altAdimlar": [
+       "1. Baraj havzaları vektör sınır dosyasını GeoPandas ile aç.",
+       "2. Hava tahmin ızgarası koordinatlarını nokta geometrisine çevir.",
+       "3. Havza poligonu içine düşen ızgara piksellerini maskele."
+      ],
+      "kazanim": {
+       "ders": "CEV 242E",
+       "madde": "Havza yağış ve buharlaşma verilerini kullanarak kümülatif su bütçesi denklemini kurmak."
+      }
+     },
+     {
+      "teknik": "shapely.geometry.Point ile ızgara koordinatlarını havza poligonu içine göre sorgulamak.",
+      "sade": "Hava tahmin modelinin ızgara noktaları ile baraj su toplama havzası sınırları uzamsal olarak eşleştirilir.",
+      "altAdimlar": [
+       "1. Izgara noktalarından nokta geometrisi listesi oluştur.",
+       "2. Havza poligonu ile contains sorgusunu koştur.",
+       "3. Havza dahilindeki piksel indekslerini diziye kaydet."
+      ],
+      "kazanim": {
+       "ders": "CEV 242E",
+       "madde": "Havza yağış ve buharlaşma verilerini kullanarak kümülatif su bütçesi denklemini kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "CEV 242E",
+      "madde": "Havza yağış ve buharlaşma verilerini kullanarak kümülatif su bütçesi denklemini kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "14 Günlük Kümülatif Izgara Yağış Toplamı",
+    "oz": "Maskelenen piksellerde 14 günlük saatlik yağışları toplayıp hacme dönüştürmek.",
+    "ayrinti": "Open-Meteo arşiv API'sinden havza piksellerinin son 14 günlük saatlik yağış verisi çekilir. Piksel ortalaması alınarak havza alanı (A) ile çarpılır; milimetre cinsinden toplam yağış milyon metreküp su hacmine dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "df_yagis.groupby('tarih')['yagis_mm'].mean().cumsum() ile havza kümülatif milimetre serisini türetmek.",
+      "sade": "Son iki haftada havzanın her noktasına düşen yağmurlar toplanır. Milimetre cinsinden ölçülen su derinliği havza yüzölçümüyle çarpılarak göle inen toplam ton cinsinden su hacmi bulunur.",
+      "altAdimlar": [
+       "1. Havza piksellerinin saatlik yağış serilerini API ile çek.",
+       "2. İstasyon ve ızgara noktalarının alan ağırlıklı ortalamasını al.",
+       "3. 14 günlük kümülatif yağış toplamını metreküp hacme çevir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "numpy.trapz(yagis_mm, dx=1) * alan_km2 * 1000 ile havzaya düşen toplam su hacmini (m³) hesaplamak.",
+      "sade": "Milimetre cinsinden ölçülen havza yağış derinliği havza yüzölçümüyle çarpılarak metreküp hacme çevrilir.",
+      "altAdimlar": [
+       "1. Günlük havza ortalama yağış dizisini al.",
+       "2. Havza alanı katsayısıyla çarparak metreküp su hacmini bul.",
+       "3. Kümülatif hacim toplamını milyon metreküp sütununa aktar."
+      ],
+      "kazanim": {
+       "ders": "CEV 242E",
+       "madde": "SCS Eğri Numarası (SCS-CN) yöntemiyle havzaya düşen yağıştan net akış derinliğini bulmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "İSKİ Baraj Doluluk Verisi ile Eşleştirme",
+    "oz": "İBB Açık Veri Portalı'ndan günlük rezervuar hacim değişimlerini çekmek.",
+    "ayrinti": "İSKİ günlük baraj doluluk oranları ve aktif depolama hacmi zaman serisi indirilir. Son 14 günlük net depolama artışı Delta S hesaplanır; kümülatif yağış hacmi ile karşılaştırılarak akış katsayısı çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "pandas.read_json('iski_doluluk.json') ile günlük aktif hacim farkı delta_V serisini hesaplamak.",
+      "sade": "Baraj kapaklarındaki resmi ölçümler tabloya eklenir. Yağan yağmurun yüzde kaçının baraj gölüne ulaştığı, ne kadarının toprakta kaldığı hesaplanır.",
+      "altAdimlar": [
+       "1. İSKİ açık veri servisinden günlük baraj doluluk serisini oku.",
+       "2. Ömerli ve Terkos için günlük hacim değişimini (m³) türet.",
+       "3. Havzaya düşen toplam yağış ile rezervuar artışını oranla."
+      ],
+      "kazanim": {
+       "ders": "CEV 242E",
+       "madde": "Rezervuar ve baraj göllerinde su seviyesi-hacim ilişkisiyle depolama değişimini kestirmek."
+      }
+     },
+     {
+      "teknik": "scipy.stats.linregress(yagis_hacmi, rezervuar_artisi) ile havza net akış katsayısını belirlemek.",
+      "sade": "Yağan yağmur hacmi ile barajdaki su artışı arasındaki doğrusal ilişki çözülerek akış katsayısı bulunur.",
+      "altAdimlar": [
+       "1. Havza yağış hacmi ve baraj net artış serilerini hazırla.",
+       "2. Regresyon analiziyle doğrunun eğimini (akış katsayısı C) hesapla.",
+       "3. Sızma ve buharlaşma nedeniyle göle ulaşmayan su payını tespit et."
+      ],
+      "kazanim": {
+       "ders": "CEV 242E",
+       "madde": "Toprak nemi ve sızma kapasitesine göre net yüzey akış katsayısını hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "CEV 242E",
+      "madde": "Rezervuar ve baraj göllerinde su seviyesi-hacim ilişkisiyle depolama değişimini kestirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Havza Su Bütçesi Tablosu ve Karne Raporu",
+    "oz": "Karşılaştırmalı su dengesi tablosunu ve zaman grafiğini oluşturmak.",
+    "ayrinti": "Kümülatif yağış, tahmini buharlaşma, gözlenen rezervuar artışı ve kayıp-kaçak dengesi tek bir özet karnede birleştirilir. Matplotlib ile çift eksenli grafik çizdirilerek PNG tablosu diske aktarılır.",
+    "nasil": [
+     {
+      "teknik": "matplotlib.pyplot.subplots() ile kümülatif yağış ve doluluk eğrilerini çizip karne tablosunu diske aktarmak.",
+      "sade": "Elde edilen sonuçlar sade bir su bütçesi karnesine dönüştürülür. Yağışın baraja doluluk olarak yansıdığı grafik diske yazılarak açık kaynak depoya eklenir.",
+      "altAdimlar": [
+       "1. Çift eksenli zaman serisi grafiğinde yağış ve hacmi eşle.",
+       "2. Havza su dengesi metriklerini özet tablo haline getir.",
+       "3. Karne grafiğini ve analiz tablosunu PNG olarak diske aktar."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+      }
+     },
+     {
+      "teknik": "pandas.DataFrame.to_csv('havza_su_butcesi_karnesi.csv') ile karne tablosunu diske aktarmak.",
+      "sade": "14 günlük karşılaştırmalı su bütçesi tablosu CSV ve PNG formatlarında diske yazılarak arşivlenir.",
+      "altAdimlar": [
+       "1. Kümülatif yağış, buharlaşma ve rezervuar artışı sütunlarını birleştir.",
+       "2. Özet karne tablosunu CSV formatında diske yaz.",
+       "3. Analiz sonuçlarını GitHub veri havuzuna ekle."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Kütle süreklilik denklemiyle yatay ıraksama ve dikey hızı kestirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Ömerli ve Terkos baraj havzaları için 14 günlük kümülatif su bütçesi tablosu ve analiz scripti.",
+  "senden": "Havza hidrolojisi prensipleri, SCS-CN katsayıları ve İSKİ baraj rezervuar kapasitesi doğrulama.",
+  "bizden": "Izgara yağış verisi maskeleme, kümülatif meteorolojik hesaplama ve otomatik Python analiz scripti."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://climatechange.boun.edu.tr/arastirma/",
+   "aciklama": "Boğaziçi Kandilli havza hidrolojisi ve iklim araştırma sayfası"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Ömerli ve Terkos havzalarında 14 günlük kümülatif yağış akışı, ERA5, 2026-10",
+   "aciklama": "Baraj havzasına düşen yağmur suyunun gün bazında akışa ve depolamaya dönüşme animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Hydrological_cycle.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Havza hidrolojik döngüsü ve su bütçesi bileşenleri şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS CEV 242E Ders Katalog Formu",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CEV&dersNo=242"
+  },
+  {
+   "ad": "İBB İSKİ Baraj Doluluk Oranları Açık Veri Portali",
+   "url": "https://data.ibb.gov.tr/dataset/iski-baraj-doluluk-oranlari"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-INS-CEV-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "1d7e349f80e3"
+ }
+}

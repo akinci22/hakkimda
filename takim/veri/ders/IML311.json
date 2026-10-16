@@ -1,0 +1,122 @@
+{
+ "kod": "IML 311",
+ "ad": "İmal Usülleri I",
+ "bolum": "İmalat Mühendisliği",
+ "obsNo": "311",
+ "ozet": "Talaşlı imalat, döküm, plastik şekil verme ve metroloji temellerini öğretir. Takım makinelerinde kesme kuvvetleri, sıcaklık artışı, lineer termal genleşme katsayıları, mikron seviyesindeki toleranslar, mastar ölçümleri ve çevre sıcaklığının boyutsal kararlılığa etkileri ele alınır. Hassas parça üretimi ve kalite kontrolünün temel dersidir.",
+ "neOgrenirsin": [
+  "Lineer termal genleşme bağıntısıyla malzeme boyutlarındaki sıcaklığa bağlı mikron sapmaları hesaplamak.",
+  "Talaşlı imalat operasyonlarında kesme kuvveti ve takım ömrü parametrelerini belirlemek.",
+  "Tolerans ve alıştırma standartları (ISO/DIN) çerçevesinde ölçü kararlılığını denetlemek.",
+  "İmalat atölyelerinde ortam sıcaklık salınımlarına karşı kompanzasyon stratejileri geliştirmek.",
+  "Boyutsal metroloji ve koordinat ölçüm cihazlarında referans sıcaklık düzeltmesi yapmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Lineer termal genleşme ve mikron boyutsal sapma formülü",
+   "tex": "\\Delta L = L_0 \\cdot \\alpha_L \\cdot (T - T_{\\mathrm{ref}})",
+   "terimler": [
+    [
+     "\\Delta L",
+     "parçadaki boyutsal uzama veya kısalma sapması",
+     "\\mu\\mathrm{m}"
+    ],
+    [
+     "L_0",
+     "parçanın referans sıcaklıktaki nominal boyutu",
+     "\\mathrm{m}"
+    ],
+    [
+     "\\alpha_L",
+     "malzemenin lineer termal genleşme katsayısı",
+     "\\mu\\mathrm{m}/(\\mathrm{m} \\cdot ^\\circ\\mathrm{C})"
+    ],
+    [
+     "T",
+     "atölye içi güncel ortam sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "T_{\\mathrm{ref}}",
+     "uluslararası metroloji referans sıcaklığı (20 °C)",
+     "^\\circ\\mathrm{C}"
+    ]
+   ],
+   "sade": "Atölye sıcaklığı standart 20 dereceden uzaklaştıkça metal parçaların genleşerek veya büzülerek kaç mikron boy değiştirdiğini hesaplar. Hassas havacılık ve otomotiv parçalarında tolerans dışına çıkmayı önler.",
+   "ornek": "Nominal uzunluğu L_0 = 1 metre olan çelik bir mastarda (alfa_L = 11,5 µm/(m·°C)), yaz günü atölye sıcaklığı 32 °C'ye çıktığında uzama Delta L = 1 × 11,5 × (32 - 20) = 138 µm olur; bu da h7 tolerans aralığının (35 µm) neredeyse 4 katıdır.",
+   "nerede": "F-MKF-IML-01 projesinde dış ortam sıcaklık tahminlerinden fabrika içi çelik ve alüminyum parçaların mikron genleşmesini hesaplarken."
+  },
+  {
+   "ad": "Taylor takım ömrü ve kesme sıcaklığı bağıntısı",
+   "tex": "V \\cdot T_t^n = C, \\qquad \\theta_c = K \\cdot V^a f^b",
+   "terimler": [
+    [
+     "V",
+     "takım kesme hızı",
+     "\\mathrm{m}/\\mathrm{dak}"
+    ],
+    [
+     "T_t",
+     "takım kullanım ömrü süresi",
+     "\\mathrm{dak}"
+    ],
+    [
+     "n",
+     "takım ve malzeme çiftine bağlı Taylor üssü",
+     "birimsiz"
+    ],
+    [
+     "C",
+     "kesme hızı sabiti",
+     "\\mathrm{m}/\\mathrm{dak}"
+    ],
+    [
+     "\\theta_c",
+     "kesme bölgesindeki ortalama arayüz sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "f",
+     "ilerleme miktarı",
+     "\\mathrm{mm}/\\mathrm{devir}"
+    ],
+    [
+     "K, a, b",
+     "deneysel malzeme ve kesme katsayıları",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Talaş kaldırma sırasında takım ile iş parçası arasındaki aşırı sürtünme ısınmasını ve bu ısının kesici takım ömrünü nasıl kısalttığını açıklar. Ortam sıcaklığı yüksek olduğunda soğutma sıvısının verimi düşer.",
+   "ornek": "Karbür takım ile çelik işlenirken kesme hızı V = 180 m/dak ve n = 0,25 iken takım ömrü T_t = 60 dakika olarak hesaplanır; aşırı sıcak günlerde kesme bölgesi sıcaklığı 750 °C'yi aştığında takım aşınması hızlanır.",
+   "nerede": "F-MKF-IML-01 projesinde ortam sıcaklığının takım makinesi ısıl dengesi ve işleme hassasiyetine etkisini incelerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Thermal_expansion_model.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Metallerde kristal kafes titreşimi ve lineer termal genleşme prensibi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul sanayi bölgeleri 2 metre sıcaklık salınımı ve termal genleşme sapması, 2026",
+   "aciklama": "Gün içi sıcaklık dalgalanması sırasında 1 metrelik çelik parçadaki mikron uzama seyri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · IML 311 (İmal Usülleri I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=IML&dersNo=311"
+  },
+  {
+   "ad": "Groover, M. P. (2020) Fundamentals of Modern Manufacturing, 7. baskı, Wiley · ISBN 978-1119706427",
+   "url": "https://www.wiley.com/en-us/Fundamentals+of+Modern+Manufacturing%3A+Materials%2C+Processes%2C+and+Systems%2C+7th+Edition-p-9781119706427"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=IML&dersNo=311"
+}

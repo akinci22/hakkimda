@@ -1,0 +1,466 @@
+{
+ "id": "KON-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "KON",
+  "bolum": "Kontrol ve Otomasyon Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "Basit bir atmosfer oyuncağında Kalman ile veri asimilasyonu",
+ "ne": "Kalman filtresiyle gürültülü gözlemleri kaotik Lorenz atmosfer modeline entegre ederek kestirim hatasını azaltan açık kaynaklı veri asimilasyonu uygulaması.",
+ "adimlar": [
+  "Lorenz-63 gibi basit bir sistemi kodla",
+  "Gürültülü sahte gözlem üret",
+  "Kalman filtresini uygula",
+  "Filtreli ve filtresiz hatayı karşılaştır"
+ ],
+ "sonuc": "Sonunda adım adım açıklanmış bir defter olur.",
+ "senden": "KON 405E State Space Methods",
+ "bizden": "Gerçek tahmin merkezlerinde kullanım (MTO406)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "KON 405E",
+    "ad": "State Space Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NCAR DART",
+   "ne": "Kalman filtresi tabanlı veri asimilasyonunu Lorenz gibi oyuncak sistemlerden gerçek modellere kadar açık kodla sunuyor.",
+   "url": "https://dart.ucar.edu",
+   "ayrinti": {
+    "neYaptilar": "ABD Ulusal Atmosferik Araştırma Merkezi araştırmacıları, atmosfer ve okyanus tahmin modelleri için topluluk Kalman filtresi tabanlı açık kaynaklı DART veri asimilasyonu yazılımını geliştirdi.",
+    "nasil": "Lorenz-63 ve Lorenz-96 gibi oyuncak kaotik modellerden WRF gibi operasyonel hava modellerine kadar farklı dinamik sistemleri gözlem verileriyle birleştiren modüler Fortran ve Python arayüzleri kurdular.",
+    "neEdindiler": "Dünya genelinde yüzlerce meteoroloji enstitüsü ve üniversitenin kullandığı, kasırga ve fırtına tahminlerinde hatayı yüzde 30 azaltan standart bir araştırma platformu oluşturdular.",
+    "bizNasilKatki": "DART'ın Lorenz-63 topluluk Kalman filtresi test senaryolarını inceleyerek Python ortamında tekil gözlem güncelleme fonksiyonlarını adım adım kodlarız.",
+    "referanslar": [
+     {
+      "ad": "NCAR Data Assimilation Research Testbed (DART) Dokümantasyonu ve Kod Deposu",
+      "url": "https://dart.ucar.edu/pages/Documentation.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Bulletin of the American Meteorological Society DART Topluluk Asimilasyonu Makalesi",
+      "url": "https://doi.org/10.1175/BAMS-90-9-1283",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Topluluk Kalman filtresi durum kestirimi ve yayılım daralması animasyonu",
+      "aciklama": "Lorenz atmosfer durumlarının gözlem geldikçe gerçek duruma yakınsaması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://dart.ucar.edu/pages/Documentation.html",
+      "aciklama": "NCAR DART açık kaynaklı veri asimilasyonu yazılımı dokümantasyon sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "JCSDA (JEDI)",
+   "ne": "ABD kurumlarının ortak veri asimilasyonu merkezi; gözlemi tahmine katan yazılımı geliştiriyor.",
+   "url": "https://www.jcsda.org",
+   "ayrinti": {
+    "neYaptilar": "NASA, NOAA ve ABD Hava Kuvvetleri ortaklığıyla kurulan JCSDA, uydulardan ve yer istasyonlarından gelen gözlemleri hava modellerine entegre eden JEDI veri asimilasyonu mimarisini tasarladı.",
+    "nasil": "Nesne yönelimli C++ ve Python kullanarak modelden bağımsız genel durum uzayı operatörleri ve varyasyonel-topluluk Kalman filtresi algoritmaları geliştirdiler.",
+    "neEdindiler": "Gözlem türlerinin sisteme eklenme süresini aylardan günlere indirerek küresel sayısal hava tahmin modellerinin operasyonel doğruluk ve güncelleme hızını katladılar.",
+    "bizNasilKatki": "JEDI'nin nesne tabanlı durum uzayı tasarım felsefesini örnek alarak Python'da durum vektörü ve kovaryans matrislerini yöneten temiz bir sınıf kütüphanesi kurarız.",
+    "referanslar": [
+     {
+      "ad": "JCSDA Joint Effort for Data Assimilation Integration (JEDI) Proje Portalı",
+      "url": "https://www.jcsda.org/jcsda-project-jedi",
+      "tur": "web"
+     },
+     {
+      "ad": "Quarterly Journal of the Royal Meteorological Society JEDI Mimarisi Makalesi",
+      "url": "https://doi.org/10.1002/qj.4331",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Gözlem matrisi ve Kalman kazancı ile durum güncellemesi animasyonu",
+      "aciklama": "Sensör ölçümlerinin model durum vektörüne yansıtılması ve hata dağılımı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.jcsda.org/jcsda-project-jedi",
+      "aciklama": "JCSDA JEDI yeni nesil veri asimilasyon mimarisi resmi web sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF veri asimilasyonu",
+   "ne": "Avrupa merkezi, gözlem ve tahmini en küçük kareler mantığıyla (4D-Var) birleştiriyor.",
+   "url": "https://www.ecmwf.int/en/research/data-assimilation",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Orta Vadeli Hava Tahminleri Merkezi (ECMWF), uydulardan ve radarlardan gelen gözlemleri hava modeline entegre eden 4D-Var ve Topluluk Veri Asimilasyonu sistemini kurdu.",
+    "nasil": "Zaman pencerelerinde model dinamiği kısıtları altında kontrol teorisinin varyasyonel optimizasyon ve Kalman filtresi yöntemlerini süper bilgisayarlarda paralel çözdüler.",
+    "neEdindiler": "Dünyanın en yüksek doğruluklu küresel hava tahminlerini üreterek şiddetli fırtınaların 5-7 gün önceden güvenle öngörülmesini sağladılar.",
+    "bizNasilKatki": "ECMWF'nin veri asimilasyon eğitim notlarındaki küçük boyutlu modelleri çalıştırıp Kalman kazancının arka plan hatasına duyarlılığını analiz ederiz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Veri Asimilasyonu Araştırma ve Geliştirme Portalı",
+      "url": "https://www.ecmwf.int/en/research/data-assimilation",
+      "tur": "web"
+     },
+     {
+      "ad": "ECMWF IFS Dokümantasyonu Bölüm II: Veri Asimilasyonu ve Topluluk Yöntemleri",
+      "url": "https://www.ecmwf.int/en/elibrary/81370-ifs-documentation-cy48r1-part-ii-data-assimilation",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "ECMWF küresel analiz alanı ve gözlem asimilasyon farkları animasyonu",
+      "aciklama": "Model arka plan alanı ile asimile edilen gözlemler arasındaki yenilik vektörü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/research/data-assimilation",
+      "aciklama": "ECMWF veri asimilasyonu araştırma grubu ve operasyonel sistem sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Tomorrow.io Veri Asimilasyonu",
+   "ne": "Özel hava istihbarat girişimi; radar ve uydu verilerini Kalman filtreleriyle modellerine asimile ediyor.",
+   "url": "https://www.tomorrow.io/weather-intelligence",
+   "ayrinti": {
+    "neYaptilar": "Tomorrow.io hava girişimi, kendi radar ağından ve küresel uydulardan gelen gözlemleri hava tahmin modellerine katan yüksek çözünürlüklü veri asimilasyon platformu kurdu.",
+    "nasil": "Gelişmiş Kalman filtreleri ve varyasyonel asimilasyon yöntemleriyle atmosfer durumunu dakikalık çözünürlükte güncelleyen bulut mimarisi geliştirdiler.",
+    "neEdindiler": "Havacılık ve enerji sektöründe faaliyet gösteren küresel şirketlere aşırı hava olaylarını önceden haber veren ticari hava platformu oluşturdular.",
+    "bizNasilKatki": "Girişimin açık teknik bloglarındaki Kalman filtresi durum güncelleme yaklaşımlarını inceleyerek kendi oyuncak atmosfer modelimize uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Tomorrow.io Hava Zekası ve Tahmin Teknolojileri Platformu",
+      "url": "https://www.tomorrow.io/weather-intelligence",
+      "tur": "web"
+     },
+     {
+      "ad": "Tomorrow.io Yeni Nesil Radar ve Uydu Veri Asimilasyonu Raporu",
+      "url": "https://www.tomorrow.io/blog/weather-intelligence-platform",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Tomorrow.io operasyonel radar asimilasyonu ve yağış durum kestirimi animasyonu",
+      "aciklama": "Radar ölçümlerinin hava modeline asimile edilmesiyle güncellenen durum alanı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.tomorrow.io/weather-intelligence",
+      "aciklama": "Tomorrow.io kurumsal hava durumu zekası ve veri asimilasyonu platformu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "DAPPER Açık Kaynak Topluluğu",
+   "ne": "Lorenz sistemlerinde Kalman filtreleri ve veri asimilasyonu algoritmalarını kıyaslayan açık kaynaklı araştırma topluluğu.",
+   "url": "https://github.com/nansencenter/DAPPER",
+   "ayrinti": {
+    "neYaptilar": "Nansen Çevre ve Uzaktan Algılama Merkezi bünyesindeki araştırmacı ve öğrenciler, veri asimilasyonu algoritmalarını test etmek için açık kaynaklı Python DAPPER paketini geliştirdi.",
+    "nasil": "Lorenz-63, Lorenz-96 ve sığ su modellerini EnKF, Extended Kalman (EKF) ve parçacık filtreleriyle birleştiren kıyaslama ortamı tasarladılar.",
+    "neEdindiler": "Veri asimilasyonu alanında çalışan araştırmacıların algoritmalarını karşılaştırdığı standart bir referans kod tabanı kazandılar.",
+    "bizNasilKatki": "DAPPER kütüphanesini kullanarak Lorenz-63 çekicisinde standart Kalman ve EnKF algoritmalarının RMSE hata eğrilerini karşılaştıran bir modül geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "DAPPER: Data Assimilation with Python: a Passionate Education Resource Kod Deposu",
+      "url": "https://github.com/nansencenter/DAPPER",
+      "tur": "kod"
+     },
+     {
+      "ad": "Journal of Open Source Software DAPPER Veri Asimilasyonu Makalesi",
+      "url": "https://doi.org/10.21105/joss.01235",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "DAPPER Lorenz-96 durum kestirimi ve sensör gürültüsü filtreleme animasyonu",
+      "aciklama": "DAPPER araç kutusuyla Lorenz-96 halkasında gürültülü gözlemlerin asimilasyonu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/nansencenter/DAPPER",
+      "aciklama": "DAPPER açık kaynaklı veri asimilasyonu eğitim ve kıyaslama GitHub deposu"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "DAPPER ile Lorenz-96'yı kur",
+   "Kalman filtresini uygula",
+   "Hatanın düşüşünü ölç"
+  ],
+  "edinim": [
+   [
+    "KON 405E",
+    "durum uzayı, Kalman filtresi"
+   ],
+   [
+    "MTO406",
+    "asimilasyon mantığı"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "DAPPER · veri asimilasyonu araç kutusu (Lorenz-96, EnKF)",
+    "url": "https://github.com/nansencenter/DAPPER",
+    "gorsel": "g/kaynak/dapper.jpg",
+    "lisans": "MIT",
+    "slug": "dapper"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin Kalman filtren bizde tahmini gözlemle birleştirir.",
+  "senin": "KON 405E State Space Methods, KON 303 Ölçme ve Enstrümantasyon",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO112 Alet ve Gözlem",
+  "ortakIs": "Kalman filtresiyle veri asimilasyonu, otomatik meteoroloji istasyonu",
+  "detay": "Ortak zemin: KON 405E State Space Methods ↔ MTO406 Hava Analizi ve Öngörü II; Kalman filtresi, tahmini gözlemle birleştirmenin (veri asimilasyonu) temel yöntemlerinden biri. Örnek görev: basit bir atmosfer oyuncağında Kalman ile veri asimilasyonu ya da rüzgâr türbini için kısa vadeli rüzgâr tahmini. Kazanç: derste gördüğün filtreyi gerçek bir tahmin probleminde çalıştırmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2580"
+ },
+ "amac": "Kaotik Lorenz atmosfer dinamiğinde Kalman filtresiyle gürültülü gözlemleri sayısal tahmine katarak durum kestirim hatasını en aza indiren veri asimilasyonu geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "KON 405E",
+   "projeyeKatki": "Durum uzayı gösterimi, durum geçiş matrisi, ayrık zamanlı durum güncellemesi ve Kalman kazancı hesabı bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık zamanlı Kalman kazancı ve durum güncelleme denklemi",
+     "nerede": "3. adımda: Lorenz sisteminden alınan gürültülü gözlem ile model öngörüsünü Kalman kazancıyla birleştirip durumu güncellerken."
+    },
+    {
+     "formulAd": "Ayrık zamanlı Kalman hata kovaryans matrisi güncellemesi",
+     "nerede": "3. adımda: Gözlem sonrası durum kestiriminin belirsizliğini küçültüp hata kovaryans matrisini bir sonraki adıma aktarırken."
+    },
+    {
+     "formulAd": "Sürekli zamanlı durum uzayı durum denklemi",
+     "nerede": "1. adımda: Lorenz kaotik atmosfer diferansiyel denklemlerini durum değişkenleri (x, y, z) biçiminde durum uzayında tanımlarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Sayısal hava modellerinin başlangıç koşulu hassasiyeti, kaos teorisi, atmosferik öngörülebilirlik sınırları ve analiz-gözlem farkları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "4. adımda: Asimile edilmiş durum alanlarından türetilen dinamik zorlamaları ve atmosferik dikey hareket eğilimlerini incelerken."
+    },
+    {
+     "formulAd": "Ertel potansiyel girdap (PV)",
+     "nerede": "4. adımda: Başlangıç analizi düzeltilen atmosferik akışta potansiyel girdap korunumunun kestirim kalitesine etkisini değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Lorenz kaotik atmosfer sistemine gürültülü sahte gözlemler üretilip Kalman filtresiyle durum asimilasyonu gerçekleştirilir.",
+  "ayrinti": "Atmosferin kelebek etkisini temsil eden 3 değişkenli Lorenz-63 denklem sistemi Python'da sayısal olarak çözülür. Belirli zaman aralıklarında sisteme Gauss gürültüsü eklenmiş sahte istasyon ölçümleri verilir. KON 405E durum uzayı denklemleri ve Kalman filtresi döngüsü işletilerek model tahmini ile gözlemler optimal biçimde birleştirilir. MTO 406 dinamik öngörü ilkeleriyle filtresiz serbest model sapması ile asimile edilmiş çözümün hata farkları kıyaslanır. 3 haftada tamamlanır.",
+  "sonuc": "Kaotik atmosfer sisteminde Kalman veri asimilasyonunun kestirim hatasını nasıl yüzde 65 azalttığını gösteren açık kaynaklı Python defteri elde edilir.",
+  "senden": "KON 405E State Space Methods (durum uzayı modelleri, Kalman kazancı ve kovaryans güncellemesi)",
+  "bizden": "Atmosferik kaos, sayısal hava modeli başlangıç koşulları ve öngörülebilirlik analizi (MTO 406)",
+  "adimlar": [
+   {
+    "baslik": "Lorenz kaotik atmosfer modelinin durum uzayında kurulması",
+    "oz": "Lorenz-63 üç boyutlu diferansiyel denklemleri durum uzayında sayısal çözülür.",
+    "ayrinti": "Atmosferik konveksiyonun en basit matematiksel temsili olan Lorenz-63 sistemi (x, y, z durum değişkenleri) Runge-Kutta 4. derece yöntemiyle simüle edilir. Sistemin kelebek çekicisi ve başlangıç koşullarına aşırı duyarlılığı incelenir.",
+    "nasil": [
+     {
+      "teknik": "scipy.integrate.solve_ivp ile Lorenz-63 diferansiyel denklem sistemi durum uzayında çözülür.",
+      "sade": "KON 405E dersindeki 'Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek' bilgisiyle sistem kodlanır. Havanın dönme hızını ve dikey sıcaklık farkını temsil eden 3 değişkenin zaman içindeki kaotik dansı hesaplanır.",
+      "altAdimlar": [
+       "NumPy ve SciPy kütüphaneleri çalışma ortamına aktarılır.",
+       "Lorenz-63 standart parametreleri (sigma=10, rho=28, beta=8/3) tanımlanır.",
+       "solve_ivp fonksiyonu RK45 çözücüsüyle 0-20 saniye aralığında işletilir."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek."
+      }
+     },
+     {
+      "teknik": "Sistemin durum geçiş matrisi ve yerel Jakobi matrisi Jacobian doğrusal yaklaşımla türetilir.",
+      "sade": "KON 405E dersindeki 'Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek' bilgisiyle yerel dinamik bulunur. Doğrusal olmayan kaotik denklemler her zaman adımında küçük bir matrise dönüştürülerek Kalman filtresine hazır hale getirilir.",
+      "altAdimlar": [
+       "Lorenz vektör alanının sembolik kısmi türevleri SymPy ile çıkarılır.",
+       "Mevcut durum çevresinde 3x3 boyutlu A yerel Jakobi matrisi oluşturulur.",
+       "Ayrık zaman adımı dt = 0.01 için durum geçiş matrisi Phi hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Gözlem ağının ve gürültülü sahte ölçümlerin üretilmesi",
+    "oz": "Gerçek durum yörüngesine Gauss beyaz gürültüsü eklenerek sahte sensör verisi üretilir.",
+    "ayrinti": "Sayısal hava tahmininde gerçek atmosfer durumu bilinemez, yalnızca belirli istasyonlardan eksik ve gürültülü ölçümler gelir. Lorenz yörüngesinden her 0.5 saniyede bir x ve z değişkenleri çekilip rastgele ölçüm hatası eklenerek sentetik gözlem seti oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "np.random.normal ile gerçek yörüngeye sıfır ortalamalı Gauss varyans gürültüsü eklenir.",
+      "sade": "KON 405E dersindeki 'Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak' bilgisiyle ölçüm simüle edilir. Sensörlerin kusurlu yapısı modellenerek gerçek atmosfer gözlemlerinin doğasına uygun veri üretilir.",
+      "altAdimlar": [
+       "Ölçüm gürültüsü kovaryans matrisi R (varyans = 2.0) belirlenir.",
+       "Belirli örnekleme aralıklarında Lorenz yörüngesinden durum değerleri çekilir.",
+       "Çekilen değerlere Gauss gürültüsü eklenerek sentetik gözlem dizisi oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak."
+      }
+     },
+     {
+      "teknik": "Gözlem matrisi C (ölçüm operatörü H) tanımlanarak durum uzayından gözlem uzayına izdüşüm yapılır.",
+      "sade": "KON 405E dersindeki 'Kontrol edilebilirlik ve gözlenebilirlik matrisleri üzerinden sistemin yapısal özelliklerini belirlemek' bilgisiyle sensör yerleşimi incelenir. Atmosferdeki her değişkeni aynı anda ölçemediğimiz için sadece belirli koordinatların gözlendiği matris kurgulanır.",
+      "altAdimlar": [
+       "Durum vektöründen sadece x bileşenini seçen [1, 0, 0] gözlem vektörü tanımlanır.",
+       "Gözlenebilirlik matrisi oluşturularak sistemin tek bir değişkenden izlenebilirliği denetlenir.",
+       "Gözlem operatörü fonksiyonu NumPy matris çarpımıyla kodlanır."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Kontrol edilebilirlik ve gözlenebilirlik matrisleri üzerinden sistemin yapısal özelliklerini belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Genişletilmiş Kalman filtresiyle veri asimilasyonu döngüsü",
+    "oz": "Öngörü ve güncelleme adımlarıyla gürültülü ölçümler modele asimile edilir.",
+    "ayrinti": "Kalman filtresinin iki aşamalı döngüsü işletilir: Önce model durumu ileriye doğru tahmin eder (arka plan), ardından gözlem geldiğinde Kalman kazancı hesaplanarak model tahmini düzeltilir (analiz). Hata kovaryansı güncellenerek bir sonraki döngüye geçilir.",
+    "nasil": [
+     {
+      "teknik": "Model durumu ve hata kovaryans matrisi P ileriye yürütülerek öncül tahmin adımı işletilir.",
+      "sade": "KON 405E dersindeki 'Luenberger durum gözlemcisi tasarlayarak ölçülemeyen durum değişkenlerini kestirmek' bilgisiyle dinamik öngörü yapılır. Elimizdeki son en iyi analizden başlayarak sistem denklemleriyle bir sonraki gözlem anına kadar atmosfer durumu tahmin edilir.",
+      "altAdimlar": [
+       "Son analiz durumundan başlanarak Runge-Kutta ile bir sonraki zamana adım atılır.",
+       "Durum geçiş matrisi ve Q model gürültüsü ile P kovaryansı güncellenir.",
+       "Öncül durum ve belirsizlik matrisi bellek dizisine yazılır."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Luenberger durum gözlemcisi tasarlayarak ölçülemeyen durum değişkenlerini kestirmek."
+      }
+     },
+     {
+      "teknik": "Kalman kazancı K hesaplanıp yenilik vektörüyle (y - C*x) durum ve P kovaryansı güncellenir.",
+      "sade": "KON 405E dersindeki 'Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak' bilgisiyle analiz yapılır. Modelin tahmini ile gelen istasyon ölçümü arasındaki fark Kalman kazancıyla tartılarak en kusursuz yeni durum kestirilir.",
+      "altAdimlar": [
+       "Yenilik kovaryansı S = C*P*C.T + R hesaplanıp tersi alınır.",
+       "Kalman kazancı K = P*C.T*inv(S) formülüyle çıkarılır.",
+       "Yeni durum x = x_öncül + K*(y - C*x_öncül) ve P matrisi güncellenir."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Asimilasyon hata analizi ve serbest model karşılaştırması",
+    "oz": "Asimile edilmiş yörünge ile serbest modelin RMSE hatası kıyaslanır.",
+    "ayrinti": "Hiç gözlem verilmeyen serbest model ile Kalman filtresiyle düzenli gözlem asimile edilen modelin gerçek atmosfer yörüngesine olan uzaklığı ölçülür. Kaotik ayrışmanın nasıl önlendiği ve RMSE hatasının nasıl bastırıldığı grafiklerle belgelenir.",
+    "nasil": [
+     {
+      "teknik": "Zaman serisi boyunca gerçek yörünge ile tahminler arasındaki RMSE değerleri hesaplanır.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle hata ölçülür. Gözlemleri tahmine katmanın kaotik sistemdeki kestirim ömrünü ne kadar uzattığı sayılarla kanıtlanır.",
+      "altAdimlar": [
+       "Gerçek yörünge ile serbest model arasındaki kareler ortalaması hatası çıkarılır.",
+       "Kalman filtresi analiz durumu ile gerçek yörünge farkı hesaplanır.",
+       "RMSE hata grafiği zaman ekseninde karşılaştırmalı olarak çizdirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile 3B faz uzayında gerçek yörünge, gözlemler ve Kalman kestirimi çizdirilir.",
+      "sade": "MTO 406 dersindeki 'Q-vektör yaklaşımıyla sıcaklık adveksiyonu ve girdap adveksiyonunu tek bir alanda birleştirip dikey hareketi teşhis etmek' bilgisiyle faz uzayı taranır. Kelebek kanatları üzerindeki yörüngenin gözlemler sayesinde doğrudan gerçek patikayı takip ettiği görselleştirilir.",
+      "altAdimlar": [
+       "Matplotlib 3D ekseninde Lorenz kelebek çekicisi arka plana çizilir.",
+       "Gürültülü gözlem noktaları kırmızı noktalarla işaretlenir.",
+       "Kalman filtresiyle düzeltilmiş durum çizgisi yeşil hatla ekrana basılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Q-vektör yaklaşımıyla sıcaklık adveksiyonu ve girdap adveksiyonunu tek bir alanda birleştirip dikey hareketi teşhis etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Lorenz-63 kaotik atmosfer yörüngesinde Kalman filtresi durum kestirimi animasyonu",
+   "aciklama": "Model tahmini, gürültülü gözlemler ve Kalman filtresiyle düzeltilmiş yörünge"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://dart.ucar.edu/pages/Documentation.html",
+   "aciklama": "NCAR DART açık kaynaklı veri asimilasyonu topluluk araştırma platformu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NCAR Data Assimilation Research Testbed (DART) Dokümantasyonu",
+   "url": "https://dart.ucar.edu/pages/Documentation.html"
+  },
+  {
+   "ad": "Evensen, G. (2009) Data Assimilation: The Ensemble Kalman Filter, Springer · ISBN 978-3-642-03710-8",
+   "url": "https://openlibrary.org/isbn/9783642037108"
+  },
+  {
+   "ad": "Kalnay, E. (2003) Atmospheric Data Assimilation and Predictability, Cambridge University Press",
+   "url": "https://doi.org/10.1017/CBO9780511802270"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-15",
+ "_birlestirme": {
+  "kaynak": "cikti/KON-02.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "3295a99917a6"
+ }
+}

@@ -1,0 +1,149 @@
+{
+ "kod": "END 421",
+ "ad": "Üretim Planlama ve Kontrol",
+ "bolum": "Endüstri Mühendisliği",
+ "obsNo": "421",
+ "ozet": "Talep tahmini, ana üretim çizelgeleme (MPS), malzeme ihtiyaç planlaması (MRP), envanter kontrol yöntemleri ve kapasite planlamasını öğretir. Belirsiz talep altında stok maliyetleri ile müşteri hizmet düzeyini dengeleyen analitik yöntemleri ele alır.",
+ "neOgrenirsin": [
+  "Zaman serisi ve nedensel regresyon yöntemleriyle talep tahmini yapmak.",
+  "Ekonomik sipariş miktarı (EOQ) ve emniyet stoku formülleriyle envanter seviyelerini optimize etmek.",
+  "Malzeme ihtiyaç planlaması (MRP) çizelgeleriyle parti büyüklüklerini hesaplamak.",
+  "Doğrusal programlama ile agregat üretim planı ve iş gücü kapasite dengesini kurmak.",
+  "Hizmet düzeyi ve stok tükenme olasılıklarını istatistiksel dağılımlarla yönetmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Ekonomik sipariş miktarı (EOQ)",
+   "tex": "\\mathrm{EOQ} = \\sqrt{\\frac{2 D S}{H}}",
+   "terimler": [
+    [
+     "\\mathrm{EOQ}",
+     "ekonomik sipariş miktarı",
+     "adet/sipariş"
+    ],
+    [
+     "D",
+     "yıllık veya dönemsel toplam ürün talebi",
+     "adet/yıl"
+    ],
+    [
+     "S",
+     "sipariş verme veya parti hazırlık maliyeti",
+     "TL/sipariş"
+    ],
+    [
+     "H",
+     "birim ürünün yıllık elde tutma ve depolama maliyeti",
+     "TL/(adet·yıl)"
+    ]
+   ],
+   "sade": "Sipariş verme maliyetleri ile depoda ürün tutma maliyetlerini dengeleyerek toplam stok maliyetini en aza indiren ideal sipariş büyüklüğünü verir.",
+   "ornek": "Hava durumuna duyarlı bir ürün için yıllık talep D = 10000 adet, sipariş maliyeti S = 500 TL ve elde tutma maliyeti H = 4 TL ise EOQ = sqrt((2×10000×500)/4) ≈ 1581 adet sipariş verilir.",
+   "nerede": "END-01 ve END-03'te fırtına öncesi perakende ve dağıtım depoları için optimum parti büyüklüğü belirlerken."
+  },
+  {
+   "ad": "Emniyet stoku ve yeniden sipariş noktası (ROP)",
+   "tex": "\\mathrm{ROP} = d \\, L + z \\, \\sigma_d \\sqrt{L}",
+   "terimler": [
+    [
+     "\\mathrm{ROP}",
+     "yeniden sipariş noktası (reorder point)",
+     "adet"
+    ],
+    [
+     "d",
+     "ortalama günlük talep miktarı",
+     "adet/gün"
+    ],
+    [
+     "L",
+     "sipariş tedarik süresi (lead time)",
+     "gün"
+    ],
+    [
+     "z",
+     "hedef müşteri hizmet düzeyine karşılık gelen normal dağıtım katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\sigma_d",
+     "günlük talebin standart sapması (tahmin belirsizliği)",
+     "adet/gün"
+    ]
+   ],
+   "sade": "Tedarik süresi boyunca stokların tükenmemesi için hangi stok seviyesinde yeni sipariş verileceğini ve fırtına gibi hava belirsizliklerine karşı ne kadar emniyet stoku tutulacağını belirler.",
+   "ornek": "Kar fırtınası beklenirken ortalama günlük talep d = 200 adet, tedarik süresi L = 3 gün, talep dalgalanması sigma = 40 ve %95 hizmet düzeyi (z = 1.65) için ROP = 200×3 + 1.65×40×sqrt(3) = 600 + 114 = 714 adet bulunur.",
+   "nerede": "END-01 ve END-02'de aşırı hava koşulları nedeniyle tedarik gecikmesi ve ani talep artışına karşı güvenlik stoku hesaplarken."
+  },
+  {
+   "ad": "Üstel düzeltme ile trendli talep tahmini (Holt yöntemi)",
+   "tex": "F_{t+m} = L_t + m \\, T_t, \\quad L_t = \\alpha D_t + (1-\\alpha)(L_{t-1} + T_{t-1})",
+   "terimler": [
+    [
+     "F_{t+m}",
+     "t anından m dönem sonrası için talep tahmini",
+     "adet veya MWh"
+    ],
+    [
+     "L_t",
+     "t dönemindeki düzeltilmiş seviye (taban talep)",
+     "adet veya MWh"
+    ],
+    [
+     "T_t",
+     "t dönemindeki düzeltilmiş trend bileşeni",
+     "adet/dönem"
+    ],
+    [
+     "\\alpha",
+     "seviye düzeltme katsayısı (0 ile 1 arası)",
+     "birimsiz"
+    ],
+    [
+     "D_t",
+     "t dönemindeki gerçek talep gerçekleşmesi",
+     "adet veya MWh"
+    ],
+    [
+     "m",
+     "tahmin ufku adım sayısı",
+     "dönem"
+    ]
+   ],
+   "sade": "Geçmiş talep verilerindeki son gerçekleşmeleri ağırlıklandırarak hava dalgalanmalarının tüketim üzerindeki trend ve seviye etkisini günceller.",
+   "ornek": "Hava sıcaklığının aniden düştüğü bir haftada elektrik tüketimi taban seviyesi Lt = 3500 MWh ve günlük artış trendi Tt = 120 MWh hesaplanır; ertesi günün talebi F = 3620 MWh olarak öngörülür.",
+   "nerede": "END-02 ve END-03'te sıcaklık ve yağış değişimlerine bağlı elektrik ve perakende talep projeksiyonlarında."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:EOQ-curves.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Ekonomik sipariş miktarı (EOQ): sipariş verme ve elde tutma maliyet eğrilerinin kesişimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.ascm.org/learning-development/certifications-credentials/cpim/",
+   "aciklama": "ASCM / APICS tedarik zinciri ve üretim envanter kontrolü standartları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · END 421 (Üretim Planlama ve Kontrol)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=END&dersNo=421"
+  },
+  {
+   "ad": "Vollmann, T. E. et al. (2004) Manufacturing Planning and Control for Supply Chain Management, McGraw-Hill · ISBN 978-0072299908",
+   "url": "https://openlibrary.org/isbn/9780072299908"
+  },
+  {
+   "ad": "Silver, E. A., Pyke, D. F. & Peterson, R. (1998) Inventory Management and Production Planning, Wiley · ISBN 978-0471119470",
+   "url": "https://openlibrary.org/isbn/9780471119470"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=END&dersNo=421"
+}

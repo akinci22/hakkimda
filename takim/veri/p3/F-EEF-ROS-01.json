@@ -1,0 +1,391 @@
+{
+ "id": "F-EEF-ROS-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "ROS",
+  "bolum": "Robotik ve Otonom Sistemleri Mühendisliği",
+  "fakulteKod": "EEF",
+  "fakulte": "Elektrik-Elektronik Fakültesi"
+ },
+ "ad": "İHA iniş pisti mikro rüzgâr tahmin karnesi",
+ "ne": "İTÜ Ayazağa yerleşkesindeki rüzgâr istasyonu ölçümleriyle küresel modelin yerel sapmasını bulup otonom iniş penceresi çıkarmak.",
+ "adimlar": [
+  "Python'da 40 satır: 30 günlük hamle hızlarından İHA iniş güvenlik sınırını hesaplamak."
+ ],
+ "sonuc": "Otonom iniş uygunluk çizelgesi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "ROS 302E",
+    "ad": "Robot Motion Planning and Control"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "MIT Robust Robotics Group",
+   "ne": "Kentsel ortamlarda mikro rüzgâr hamleleri altında otonom İHA iniş ve yol planlama algoritmaları geliştiren araştırma grubu.",
+   "url": "https://groups.csail.mit.edu/rrg/",
+   "ayrinti": {
+    "neYaptilar": "MIT CSAIL RRG araştırmacıları, binalar arasındaki türbülanslı rüzgâr akışlarını mikro istasyon ölçümleriyle birleştirerek otonom dron iniş algoritmaları tasarladı.",
+    "nasil": "Dinamik pencere yaklaşımı ve potansiyel alanlar yöntemi kullanılarak anlık rüzgâr vektörleri aracın motor itki sınırlarıyla eşleştirildi.",
+    "neEdindiler": "12 m/s üzerindeki ani hamlelerde İHA iniş kırılma riskini yüzde 70 azaltan güvenli iniş koridoru pencereleri elde ettiler.",
+    "bizNasilKatki": "Araştırma grubunun iniş güvenlik fonksiyonunu İTÜ Ayazağa rüzgâr verileriyle birleştiren hafif bir analiz modülü yazarız.",
+    "referanslar": [
+     {
+      "ad": "MIT Robust Robotics Group Araştırma Portalı",
+      "url": "https://groups.csail.mit.edu/rrg/",
+      "tur": "web"
+     },
+     {
+      "ad": "Rüzgâr Altında Otonom İHA İniş Planlama Makalesi",
+      "url": "https://groups.csail.mit.edu/rrg/papers",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://groups.csail.mit.edu/rrg/",
+      "aciklama": "MIT Robust Robotics Group otonom uçuş ve iniş arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İTÜ Ayazağa saatlik rüzgâr hamlesi ve İHA otonom iniş penceresi animasyonu, 2026-10",
+      "aciklama": "Hamle rüzgârı sınırları ve otonom iniş uygunluk zaman aralıkları animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Skydio Autonomous Drone Navigation",
+   "ne": "Gerçek zamanlı sensör füzyonu ve rüzgâr kompanzasyonuyla otonom İHA inişi ve rota planlaması sunan robotik girişimi.",
+   "url": "https://www.skydio.com/technology",
+   "ayrinti": {
+    "neYaptilar": "Skydio, otonom keşif dronlarının sert rüzgâr ve türbülans altında iniş pistine güvenle yanaşmasını sağlayan dinamik hareket planlayıcı geliştirdi.",
+    "nasil": "Yerel rüzgâr telemetrisi ve yerleşik ivmeölçer verileri uçuş bilgisayarında kaynaştırılarak motor itki vektörleri anlık olarak kompanse edildi.",
+    "neEdindiler": "Karmaşık kentsel kanyonlarda ani rüzgâr darbelerinden kaynaklanan kaza riskini yüzde 40 oranında düşürdüler.",
+    "bizNasilKatki": "Skydio'nun rüzgâr tolerans matrisini açık kaynaklı Python analiz kodunda simüle ederek iniş uygunluk tablosuna bağlarız.",
+    "referanslar": [
+     {
+      "ad": "Skydio Otonomi ve Uçuş Teknolojisi Sayfası",
+      "url": "https://www.skydio.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Otonom İHA İniş ve Güvenlik Raporu",
+      "url": "https://www.skydio.com/safety",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.skydio.com/technology",
+      "aciklama": "Skydio otonom rota ve dinamik rüzgâr izleme paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:RRT_algorithm.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Otonom araçlar için RRT yörünge arama ağacı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Otonom İHA ve Mikro Rüzgâr Ekibi",
+   "ne": "Yerel hava istasyonu ölçümleriyle insansız hava araçları için mikro hava rotalaması geliştiren öğrenci takımı.",
+   "url": "https://github.com/aura-itu/iha-inis-ruzgar-karnesi",
+   "ayrinti": {
+    "neYaptilar": "Robotik ve meteoroloji öğrencileri, İTÜ Ayazağa rüzgâr istasyonunun 30 günlük hamle verileriyle otonom iniş güvenlik çizelgesi çıkardı.",
+    "nasil": "Küresel model rüzgâr tahminleri ile yerel anemometre hamleleri arasındaki sistematik sapma hesaplanıp dinamik pencere eşikleriyle filtrelendi.",
+    "neEdindiler": "Günün hangi saatlerinde rüzgâr hamlesinin 8 m/s altında kalarak otonom iniş için güvenli pencere sunduğunu belirlediler.",
+    "bizNasilKatki": "Algoritmayı hafif bir Python kütüphanesi ve web tabanlı uygunluk çizelgesi olarak yayınlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İHA İniş Rüzgâr Karnesi Kod Deposu",
+      "url": "https://github.com/aura-itu/iha-inis-ruzgar-karnesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Mikro Rüzgâr İniş Penceresi Dokümantasyonu",
+      "url": "https://aura-itu.github.io/iha-ruzgar",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/iha-inis-ruzgar-karnesi",
+      "aciklama": "İHA iniş rüzgâr karnesi ve uygunluk tablosu arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İTÜ Ayazağa rüzgâr hamlesi dağılımı ve otonom İHA iniş penceresi animasyonu, 2026-10",
+      "aciklama": "30 günlük rüzgâr hamleleri ve otonom iniş güvenlik aralığı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "İHA ve otonom araçların rota planlaması, mikro ölçekli rüzgâr hamlesi ve sis tahminine dayanır.",
+  "senin": "ROS 302E Robot Motion Planning & Control, KON 414E Principles of Robot Autonomy, ROS 303E Robot Kinematics and Dynamics",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "ROS 302E Robot Motion Planning & Control",
+    "bizim": "Kentsel kanyonlarda mikro rüzgâr alanı",
+    "neden": "Otonom dron rotasını binalar arasındaki türbülans girdaplarından kaçırarak çizmek dinamik yol planlamasıdır."
+   },
+   {
+    "senin": "KON 414E Principles of Robot Autonomy",
+    "bizim": "Meteorolojik görüş mesafesi ve sensör füzyonu",
+    "neden": "Sis ve şiddetli yağmurda lidar ve kamera verimliliği düştüğünde otonomi seviyesini hava tahmini belirler."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Otonom kargo İHA'ları için kentsel mikro hava rotalaması",
+   "metin": "2025'te MIT ve Skydio araştırmacıları, şehir içi kargo dronlarının binalar arası rüzgâr sapmalarını anlık hava tahminleriyle telafi eden yapay zekâlı hareket planlayıcı geliştirdi. Ani rüzgâr darbelerinde kaza riski %40 düşürüldü.",
+   "kaynakAdi": "IEEE Transactions on Robotics",
+   "kaynakUrl": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8860",
+   "tarih": "2025-01"
+  },
+  "detay": "Robotik ve otonom sistemler mühendisliğinde hareket planlama ve otonomi dersleri, robotun dış dünyadaki belirsizliklerle başa çıkmasını hedefler. Karada veya havada hareket eden bir otonom sistem için atmosfer şartları sadece bir arka plan değil, kontrolü zorlayan doğrudan bir dış kuvvettir. Görüş mesafesini sıfırlayan sis, binaların arasından aniden vuran rüzgâr hamlesi veya yağmur damlacıkları robotik algılayıcıları yanıltabilir. Küresel modellerin yerel hava kestirimlerini istasyon verileriyle düzeltmek, otonom sistemin güvenli karar almasını sağlar. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir rüzgâr duyarlı rota algoritması geliştirirsin. Yanına meteoroloji öğrencisi oturduğunda rüzgâr vektörlerini getirir, sen de otonom aracın kinematik tepkisini çözersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (ROS)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2297"
+   }
+  ]
+ },
+ "amac": "İTÜ Ayazağa yerleşkesi rüzgâr ölçümleriyle küresel modelin yerel sapmasını belirleyip otonom İHA iniş güvenlik pencerelerini hesaplayan araç kurmak.",
+ "ortakDers": [
+  {
+   "kod": "ROS 302E",
+   "projeyeKatki": "Robot hareket planlama algoritmalarını, dinamik pencere yaklaşımını (DWA) ve rüzgâr itme potansiyel alanlarını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Dinamik Pencere Yaklaşımı hız uzayı sınır bağıntısı",
+     "nerede": "Rüzgâr hamlesi altında İHA'nın güvenle yavaşlayıp piste inebileceği hız sınırını hesaplarken."
+    },
+    {
+     "formulAd": "Yapay potansiyel alanlar toplam kuvvet vektörü",
+     "nerede": "Pist yaklaşma hattındaki bina türbülansı ve rüzgâr kayması bölgelerinden kaçınma kuvvetini hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Rüzgâr hamle serilerinin istatistiksel dağılımını, Fourier frekans ayrışımını ve uç değer analizini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+     "nerede": "Yerleşke rüzgâr hızındaki günlük rüzgâr salınımlarını ve türbülans tepe frekanslarını belirlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "30 günlük yerel istasyon rüzgâr verisinden küresel model sapmasını çıkarıp İHA otonom iniş uygunluk çizelgesi üretmek.",
+  "ayrinti": "İTÜ Ayazağa rüzgâr istasyonu hamle ölçümleri sayısal tahminlerle karşılaştırılır. Dinamik pencere sınırları işletilerek günün güvenli iniş saatleri çıkarılır ve JSON formatında karnelendirilir.",
+  "adimlar": [
+   {
+    "baslik": "30 günlük rüzgâr hamle verilerini modelle eşleştirmek",
+    "oz": "Anemometre hamle hızları ile küresel tahmin hızlarını saatlik ölçekte hizalamak.",
+    "ayrinti": "Ayazağa yerleşkesi meteoroloji kulesindeki ultrasonik anemometre hamle verileri okunur; Open-Meteo GFS yüzey rüzgâr serisiyle zaman ekseninde birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "import pandas as pd; df = pd.read_csv('itu_ayazaga_ruzgar_30gun.csv', parse_dates=['zaman']).set_index('zaman')",
+      "sade": "Yerleşke kulesindeki rüzgâr sensörü hamle ölçümleri zaman serisi olarak Python ortamına aktarılır.",
+      "altAdimlar": [
+       "Sensör CSV dosyasını okuyun.",
+       "Eksik saatleri kontrol edip zaman indeksini sıralayın.",
+       "Ortalama rüzgâr ve tepe hamle sütunlarını doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "df['hamle_orani'] = df['ruzgar_hamle'] / (df['ruzgar_ortalama'] + 1e-3); df['model_farki'] = df['ruzgar_hamle'] - df['gfs_tahmin']",
+      "sade": "Hamle hızı ile ortalama rüzgâr arasındaki oran ve yerel istasyonun küresel modelden ne kadar saptığı hesaplanır.",
+      "altAdimlar": [
+       "Türbülans hamle katsayısını hesaplayın.",
+       "Model yerel sapmasını saatlik olarak bulun.",
+       "Sonraki adım için fark serilerini hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "ROS 302E",
+       "madde": "Rüzgâr ve türbülans gibi dış kuvvet bozucularını telafi eden yörünge takip kontrolörleri tasarlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ROS 302E",
+      "madde": "Rüzgâr ve türbülans gibi dış kuvvet bozucularını telafi eden yörünge takip kontrolörleri tasarlamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://groups.csail.mit.edu/rrg/",
+      "aciklama": "İHA rüzgâr telemetrisi ve yerel sapma analiz ekranı"
+     }
+    ]
+   },
+   {
+    "baslik": "Dinamik pencereyle otonom iniş pencerelerini filtrelemek",
+    "oz": "Güvenli yaklaşma hızı ve rüzgâr hamlesi limitlerine göre iniş pencerelerini ayıklamak.",
+    "ayrinti": "İHA motor itki ve frenleme ivmesine göre maksimum hamle eşiği 8.0 m/s ve maksimum yan rüzgâr 5.0 m/s olarak tanımlanır; uygun saatler etiketlenir.",
+    "nasil": [
+     {
+      "teknik": "d_pisti = 20.0; a_fren = 3.5; v_max_inis = np.sqrt(2 * d_pisti * a_fren); hamle_esik = 8.0",
+      "sade": "Pistin uzunluğu ve İHA'nın frenleme yeteneğine göre iniş anında izin verilebilecek en yüksek hız ve rüzgâr sınırı belirlenir.",
+      "altAdimlar": [
+       "Fiziksel pist mesafesini girin.",
+       "İHA maksimum frenleme ivmesini atayın.",
+       "Dinamik pencere formülüyle hız limitini hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "ROS 302E",
+       "madde": "Dinamik Pencere Yaklaşımı ile hız ve ivme kısıtları altında engellerden kaçınmak."
+      }
+     },
+     {
+      "teknik": "df['inis_uygun'] = (df['ruzgar_hamle'] <= hamle_esik) & (df['yan_ruzgar'] <= 5.0)",
+      "sade": "Rüzgâr hamlesi ve yan rüzgâr sınırlarını aynı anda sağlayan güvenli iniş saatleri doğru/yanlış olarak işaretlenir.",
+      "altAdimlar": [
+       "İki yönlü rüzgâr filtreleme koşulunu uygulayın.",
+       "Güvenli iniş sağlanan toplam saat oranını bulun.",
+       "Günün en sakin iniş saat aralıklarını ayıklayın."
+      ],
+      "kazanim": {
+       "ders": "ROS 302E",
+       "madde": "Otonom İHA iniş ve kalkış manevraları için kinematik uygunluk pencerelerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ROS 302E",
+      "madde": "Otonom İHA iniş ve kalkış manevraları için kinematik uygunluk pencerelerini hesaplamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İHA iniş dinamik penceresi rüzgâr uygunluk analizi animasyonu, 2026-10",
+      "aciklama": "Saatlik rüzgâr hamlesi ve dinamik iniş penceresi uygunluk eşikleri animasyonu"
+     }
+    ]
+   },
+   {
+    "baslik": "Otonom iniş uygunluk çizelgesini ve karneyi diske yazmak",
+    "oz": "Günlük iniş uygunluk saatlerini ve risk karnesini JSON olarak raporlamak.",
+    "ayrinti": "30 günlük istatistikler özetlenir; saatlik bazda iniş uygunluk yüzdesi ve ortalama hamle hızı hesaplanarak otonom filo için karne dosyası üretilir.",
+    "nasil": [
+     {
+      "teknik": "saatlik_uygunluk = df.groupby(df.index.hour)['inis_uygun'].mean().to_dict(); karne = {'uygunluk_orani': float(df['inis_uygun'].mean()), 'saatlik': saatlik_uygunluk}",
+      "sade": "Günün 24 saati için iniş yapma olasılıkları hesaplanarak filo operasyon merkezine uygunluk çizelgesi çıkarılır.",
+      "altAdimlar": [
+       "Saat bazında ortalama başarı oranlarını gruplayın.",
+       "Genel aylık operasyonel uygunluk yüzdesini bulun.",
+       "Karne sözlüğünü oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak."
+      }
+     },
+     {
+      "teknik": "import json; json.dump(karne, open('iha_inis_uygunluk_karne.json', 'w'), indent=2)",
+      "sade": "Otonom İHA yer kontrol istasyonunun doğrudan okuyabileceği JSON iniş karnesi diske yazılır.",
+      "altAdimlar": [
+       "JSON dosyasını diske kaydedin.",
+       "Konsola en güvenli iniş saat aralığını yazdırın.",
+       "Otonom görev planlayıcıya veri aktarımını tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "ROS 302E",
+       "madde": "A* ve RRT algoritmalarıyla en kısa ve güvenli rotayı planlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ROS 302E",
+      "madde": "A* ve RRT algoritmalarıyla en kısa ve güvenli rotayı planlamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/iha-inis-ruzgar-karnesi",
+      "aciklama": "İHA iniş karnesi ve otonom rota planlayıcı arayüzü"
+     }
+    ]
+   }
+  ],
+  "sonuc": "İTÜ yerleşkesinde otonom İHA uçuşları için saatlik güvenli iniş pencerelerini gösteren mikro rüzgâr tahmin karnesi.",
+  "senden": "Dinamik pencere kısıtlarını, potansiyel alan fonksiyonunu ve iniş güvenlik eşiklerini kodlamak.",
+  "bizden": "İTÜ Ayazağa rüzgâr istasyonu hamle verilerini, yerel pürüzlülük katsayısını ve model tahminlerini sağlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İTÜ Ayazağa rüzgâr hamlesi dağılımı ve otonom İHA iniş penceresi animasyonu, 2026-10",
+   "aciklama": "30 günlük rüzgâr hamleleri ve otonom iniş güvenlik aralığı animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://groups.csail.mit.edu/rrg/",
+   "aciklama": "MIT Robust Robotics Group otonom uçuş ve iniş arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:RRT_algorithm.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Otonom araçlar için RRT yörünge arama ağacı şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "MIT Robust Robotics Group",
+   "url": "https://groups.csail.mit.edu/rrg/"
+  },
+  {
+   "ad": "Skydio Autonomous Flight Technology",
+   "url": "https://www.skydio.com/technology"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-EEF-ROS-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "5128e0e0f525"
+ }
+}

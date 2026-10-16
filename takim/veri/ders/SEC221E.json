@@ -1,0 +1,125 @@
+{
+ "kod": "SEC 221E",
+ "ad": "Fundamentals of Cryptography",
+ "bolum": "Siber Güvenlik Mühendisliği",
+ "obsNo": "221E",
+ "ozet": "Kriptografinin temel matematiksel prensiplerini, simetrik ve asimetrik şifrelemeyi, özetleme fonksiyonlarını ve dijital imzaları öğretir. Veri gizliliği, veri bütünlüğü ve kimlik doğrulama algoritmaları pratik uygulamalarla ele alınır.",
+ "neOgrenirsin": [
+  "Simetrik blok şifreleyiciler ve çalışma modları ile gizlilik sağlamak.",
+  "Kriptografik özet fonksiyonları ile veri bütünlüğünü doğrulamak.",
+  "Açık anahtar kriptografisi ve dijital imza şemaları ile kimlik denetlemek.",
+  "Anahtar değişim protokolleri ve rastgele sayı üreteçlerini analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "HMAC mesaj doğrulama kodu bağıntısı",
+   "tex": "\\mathrm{HMAC}(K, m) = H\\big((K \\oplus opad) \\parallel H((K \\oplus ipad) \\parallel m)\\big)",
+   "terimler": [
+    [
+     "\\mathrm{HMAC}",
+     "anahtarlı mesaj doğrulama kodu çıktısı",
+     "bayt dizisi"
+    ],
+    [
+     "K",
+     "paylaşılan gizli simetrik anahtar",
+     "bayt dizisi"
+    ],
+    [
+     "m",
+     "doğrulanacak istasyon ölçüm paketi",
+     "bayt dizisi"
+    ],
+    [
+     "H",
+     "kriptografik özet fonksiyonu (SHA-256)",
+     "birimsiz"
+    ],
+    [
+     "ipad, opad",
+     "iç ve dış doldurma sabitleri",
+     "sabit bayt"
+    ],
+    [
+     "\\oplus",
+     "bit düzeyinde XOR işlemi",
+     "birimsiz"
+    ],
+    [
+     "\\parallel",
+     "bayt dizisi bitiştirme işlemi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Gizli bir anahtarla mesajı iki kademeli özetleme işleminden geçirerek tahrifatı imkânsız bir imza üretir. Mesajdaki tek bir bit değişse bile imza tamamen farklı çıkar.",
+   "ornek": "İstanbul istasyonunun 32 baytlık sıcaklık paketi gizli anahtarla HMAC-SHA256 işleminden geçtiğinde 256 bitlik tekil bir doğrulama özeti üretilir; veri yolda değiştirilirse sunucu paketi anında reddeder.",
+   "nerede": "F-BBF-SEC-01 istasyon doğrulama modülünde ölçüm paketinin tahrif edilmediğini denetlerken."
+  },
+  {
+   "ad": "Ed25519 Edwards eğrisi dijital imza doğrulaması",
+   "tex": "2^c \\, S \\, B = 2^c \\, R + 2^c \\, H(R, A, m) \\, A",
+   "terimler": [
+    [
+     "S",
+     "üretilen dijital imza skaler bileşeni",
+     "skaler"
+    ],
+    [
+     "B",
+     "Twisted Edwards eğrisi taban noktası",
+     "nokta koordinatı"
+    ],
+    [
+     "R",
+     "geçici imza noktası",
+     "nokta koordinatı"
+    ],
+    [
+     "H",
+     "SHA-512 kriptografik özet fonksiyonu",
+     "skaler"
+    ],
+    [
+     "A",
+     "istasyonun açık anahtarı",
+     "nokta koordinatı"
+    ],
+    [
+     "m",
+     "imzalanan meteorolojik veri paketi",
+     "bayt dizisi"
+    ],
+    [
+     "c",
+     "küçük grup saldırılarını önleyen kofaktör üssü (c=3)",
+     "tamsayı"
+    ]
+   ],
+   "sade": "Açık anahtarlı eliptik eğri matematiğiyle veriyi imzalayanın kimliğini doğrular. İstasyon kendi gizli anahtarıyla imzalar; merkezi sunucu sadece açık anahtarla veriyi teyit eder.",
+   "ornek": "Kandilli rasathanesinin açık anahtarı ile doğrulanan 64 baytlık Ed25519 imzası, milisaniyeler içinde matematiksel denkliği sağlayarak ölçümün gerçek istasyondan geldiğini kanıtlar.",
+   "nerede": "F-BBF-SEC-01'de uç istasyonların kimlik sahteciliğine karşı açık anahtarla doğrulanmasında."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Hmac.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "HMAC kriptografik mesaj doğrulama yapısı akış şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · SEC 221E (Fundamentals of Cryptography)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=SEC&dersNo=221E"
+  },
+  {
+   "ad": "Katz, J., & Lindell, Y. (2020) Introduction to Modern Cryptography, CRC Press",
+   "url": "https://www.cs.umd.edu/~jkatz/imc.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=SEC&dersNo=221E"
+}

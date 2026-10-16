@@ -1,0 +1,132 @@
+{
+ "kod": "PET 431E",
+ "ad": "Natural Gas Systems Engineering",
+ "bolum": "Petrol ve Doğal Gaz Mühendisliği",
+ "obsNo": "431E",
+ "ozet": "Doğal gazın rezervuardan çıkarılmasından iletim, dağıtım ve depolama aşamalarına kadar olan mühendislik süreçlerini öğretir. Boru hatlarında akışkan dinamiği, sıkıştırılabilirlik faktörü, Weymouth ve Panhandle akış formülleri, şebeke basınç kayıpları ve kış aylarında sıcaklığa bağlı talep dalgalanmaları incelenir. Enerji planlaması ve şebeke optimizasyonuna temel oluşturur.",
+ "neOgrenirsin": [
+  "Isıtma derece günleri (HDD) ile kış mevsimi şehir doğal gaz tüketim piklerini hesaplamak.",
+  "Weymouth boru hattı denklemiyle basınç düşüşü ve hacimsel akış debisini kestirmek.",
+  "Doğal gaz sıkıştırılabilirlik faktörünü (Z) durum denklemleriyle belirlemek.",
+  "Şebeke yük dengeleme ve yeraltı gaz depolama çekiş gereksinimlerini analiz etmek.",
+  "Rüzgâr üşümesi ve ani sıcaklık düşüşlerinde iletim hattı hidrolik kararlılığını korumak."
+ ],
+ "formuller": [
+  {
+   "ad": "Isıtma Derece Günü (HDD) tabanlı doğal gaz talep debisi",
+   "tex": "Q_{\\mathrm{talep}} = Q_{\\mathrm{baz}} + \\alpha \\cdot \\max(0, T_{\\mathrm{ref}} - T_{\\mathrm{ort}})",
+   "terimler": [
+    [
+     "Q_{\\mathrm{talep}}",
+     "günlük toplam doğal gaz talep debisi",
+     "\\mathrm{Sm}^3/\\mathrm{gün}"
+    ],
+    [
+     "Q_{\\mathrm{baz}}",
+     "sıcaklıktan bağımsız baz tüketim debisi (sanayi ve sıcak su)",
+     "\\mathrm{Sm}^3/\\mathrm{gün}"
+    ],
+    [
+     "\\alpha",
+     "sıcaklık duyarlılık tüketim katsayısı",
+     "\\mathrm{Sm}^3/(\\mathrm{gün} \\cdot ^\\circ\\mathrm{C})"
+    ],
+    [
+     "T_{\\mathrm{ref}}",
+     "ısıtma eşik referans sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "T_{\\mathrm{ort}}",
+     "günlük ortalama dış ortam sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ]
+   ],
+   "sade": "Hava soğudukça şehirdeki konutların ısınmak için şebekeden ne kadar fazladan doğal gaz çekeceğini hesaplar. Sıcaklık eşik değerinin altına indikçe her bir derece düşüş tüketimi doğrudan katlar.",
+   "ornek": "İstanbul için Q_baz = 15 milyon Sm³/gün, duyarlılık katsayısı alfa = 1,8 milyon Sm³/(gün·°C) ve T_ref = 15,5 °C iken kış günü sıcaklık 2,5 °C'ye indiğinde talep 38,4 milyon Sm³/güne çıkarak şebeke çekiş rekoru kırar.",
+   "nerede": "F-MDF-PET-01 projesinde meteorolojik sıcaklık tahmin anomalilerinden İGDAŞ/BOTAŞ şebeke kış çekiş pikini kestirirken."
+  },
+  {
+   "ad": "Weymouth yüksek basınçlı doğal gaz boru hattı akış formülü",
+   "tex": "Q = C \\left[ \\frac{P_1^2 - P_2^2}{G \\cdot T_{\\mathrm{ort}} \\cdot L \\cdot Z} \\right]^{0{,}5} D^{2{,}667}",
+   "terimler": [
+    [
+     "Q",
+     "standart şartlarda hacimsel gaz akış debisi",
+     "\\mathrm{Sm}^3/\\mathrm{saat}"
+    ],
+    [
+     "C",
+     "boru akış katsayısı sabiti",
+     "birimsiz"
+    ],
+    [
+     "P_1",
+     "boru hattı giriş mutlak basıncı",
+     "\\mathrm{kPa}"
+    ],
+    [
+     "P_2",
+     "boru hattı çıkış mutlak basıncı",
+     "\\mathrm{kPa}"
+    ],
+    [
+     "G",
+     "gazın havaya göre bağıl yoğunluğu",
+     "birimsiz"
+    ],
+    [
+     "T_{\\mathrm{ort}}",
+     "hat içi ortalama gaz sıcaklığı",
+     "\\mathrm{K}"
+    ],
+    [
+     "L",
+     "boru hattı iletim uzunluğu",
+     "\\mathrm{km}"
+    ],
+    [
+     "Z",
+     "ortalama gaz sıkıştırılabilirlik faktörü",
+     "birimsiz"
+    ],
+    [
+     "D",
+     "boru iç çapı",
+     "\\mathrm{mm}"
+    ]
+   ],
+   "sade": "Soğuk havada artan gaz çekişinin boru hattı giriş ve çıkışındaki basınçları nasıl düşürdüğünü hesaplar. Çıkış basıncının kritik eşiğin altına düşmemesi için kompresörlerin devreye girme zamanını belirler.",
+   "ornek": "Giriş basıncı P_1 = 70 bar, boru uzunluğu L = 85 km ve çap D = 600 mm olan ana iletim hattında kış pik çekişi Q = 250.000 Sm³/saate çıktığında çıkış basıncı P_2 = 42 bara düşerek kompresör takviyesi gerektirir.",
+   "nerede": "F-MDF-PET-01 projesinde talep artışının BOTAŞ iletim hattı basınç düşüşüne etkisini hidrolik olarak hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gas_pipeline_construction.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yüksek basınçlı doğal gaz çelik boru hattı iletim altyapısı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul kış dönemi 2 metre sıcaklığı ve rüzgâr üşümesi faktörü, 2026",
+   "aciklama": "Soğuk hava dalgası sırasında saatlik sıcaklık düşüşü ve ısıtma derece günleri seyri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · PET 431E (Natural Gas Systems Engineering)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=PET&dersNo=431E"
+  },
+  {
+   "ad": "Ikoku, C. U. (1992) Natural Gas Production Engineering, Krieger Publishing · ISBN 978-0894646393",
+   "url": "https://www.wiley.com/en-us/Natural+Gas+Production+Engineering-p-9780471894841"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=PET&dersNo=431E"
+}

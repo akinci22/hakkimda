@@ -1,0 +1,399 @@
+{
+ "id": "KON-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "KON",
+  "bolum": "Kontrol ve Otomasyon Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "ERA5 ile sinir ağı yağış/rüzgâr tahmini",
+ "ne": "ERA5 yeniden analiz verilerini kullanarak yerel rüzgâr hızı ve yağış miktarını öngören açık kaynaklı yapay sinir ağı uygulaması.",
+ "adimlar": [
+  "ERA5'ten bir şehrin saatlik rüzgâr ve yağışını indir",
+  "Veriyi eğitim ve test yıllarına ayır",
+  "Küçük bir sinir ağı eğit",
+  "Sonucu basit yöntemlerle karşılaştır"
+ ],
+ "sonuc": "Sonunda tahmin grafiği olan bir defter olur.",
+ "senden": "KON 405E State Space Methods",
+ "bizden": "Değişken seçimi ve sonuç yorumu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "KON 405E",
+    "ad": "State Space Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Google DeepMind GraphCast",
+   "ne": "ERA5 geçmiş verisiyle eğitilen sinir ağı, küresel tahmini klasik modellerden hızlı yapıyor.",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+   "ayrinti": {
+    "neYaptilar": "Google DeepMind ekibi, 40 yıllık küresel ERA5 atmosfer verisini kullanarak gezegen ölçeğinde 10 günlük hava tahmini üreten GraphCast yapay zekâ sistemini kurdu.",
+    "nasil": "Küre üzerinde çizge sinir ağları (GNN) mimarisini TPUsüper bilgisayarlarında eğiterek ECMWF sayısal hava tahminlerinden daha yüksek doğruluk ve yüzlerce kat hız elde ettiler.",
+    "neEdindiler": "Science dergisinde yayımlanan çalışma ile küresel siklon ve aşırı sıcak dalgası tahminlerinde operasyonel tahmin merkezlerini geride bırakan bir devrim başlattılar.",
+    "bizNasilKatki": "GraphCast'in açık kaynak ağırlıklarını ve ERA5 girdi formatını inceleyerek Marmara Bölgesi ölçeğinde küçük bir yerel tahmin alt kümesi oluştururuz.",
+    "referanslar": [
+     {
+      "ad": "GraphCast: AI model for faster and more accurate global weather forecasting",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+      "tur": "web"
+     },
+     {
+      "ad": "Science Dergisi GraphCast Küresel Hava Tahmini Makalesi",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "GraphCast ERA5 rüzgâr ve sıcaklık küresel tahmin animasyonu",
+      "aciklama": "Çizge sinir ağıyla 10 günlük atmosferik dolaşımın hızlı zaman evrimi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+      "aciklama": "DeepMind GraphCast yapay zekâ hava tahmin araştırma sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Jua",
+   "ne": "Sinir ağıyla hava tahmini yapan küçük bir ekip olarak başladı; enerji piyasasına tahmin satan bir şirket oldu.",
+   "url": "https://www.jua.ai",
+   "ayrinti": {
+    "neYaptilar": "Zürih merkezli Jua girişimi, atmosferik fizik prensipleriyle derin öğrenmeyi birleştirerek küresel ölçekte kilometre altı çözünürlüklü hava tahmin motoru geliştirdi.",
+    "nasil": "Geniş ölçekli ERA5 ve uydu gözlem kümelerini derin dönüştürücü (transformer) sinir ağlarında eğitip yenilenebilir enerji santralleri için güç tahminlerine dönüştürdüler.",
+    "neEdindiler": "Milyonlarca dolar risk sermayesi fonu alarak Avrupa enerji borsalarında rüzgâr ve güneş santrallerine saatlik hassas tahmin sağlayan lider platform oldular.",
+    "bizNasilKatki": "Jua'nın rüzgâr türbinleri için geliştirdiği yerel rüzgâr kesmesi kestirim yaklaşımını PyTorch ile basitleştirilmiş bir sinir ağına aktarırız.",
+    "referanslar": [
+     {
+      "ad": "Jua Yapay Zekâ Hava ve Enerji Tahmin Platformu",
+      "url": "https://www.jua.ai/solutions",
+      "tur": "web"
+     },
+     {
+      "ad": "Jua Yüksek Çözünürlüklü Atmosferik Derin Öğrenme Mimarisi",
+      "url": "https://www.jua.ai/technology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Jua yerel rüzgâr hızı ve türbin güç tahmini zaman serisi",
+      "aciklama": "Sinir ağı rüzgâr tahmininin gerçek üretim verileriyle doğrulanması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.jua.ai/technology",
+      "aciklama": "Jua kurumsal yapay zekâ meteoroloji platformu teknoloji sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "UC Berkeley & NVIDIA FourCastNet",
+   "ne": "Atmosfer dinamiklerini Fourier sinir operatörüyle çözen açık kaynaklı küresel tahmin sistemi.",
+   "url": "https://arxiv.org/abs/2202.11214",
+   "ayrinti": {
+    "neYaptilar": "UC Berkeley ve NVIDIA araştırmacıları, ERA5 veri seti üzerinde Adaptive Fourier Neural Operator (AFNO) mimarisiyle çalışan FourCastNet modelini inşa etti.",
+    "nasil": "Spektral uzayda yüksek çözünürlüklü küresel atmosfer alanlarını işleyerek kasırgaların rotasını ve ekstrem rüzgâr hızlarını saniyeler içinde hesapladılar.",
+    "neEdindiler": "Geleneksel sayısal tahmin çözücülerine kıyasla 45.000 kat daha hızlı tahmin üreten ve açık kodla paylaşılan devrimci bir sistem ortaya koydular.",
+    "bizNasilKatki": "FourCastNet kod deposundaki veri ön işleme adımlarını inceleyerek Marmara Bölgesi ERA5 rüzgâr tensörlerini tensör formatına dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "FourCastNet: A Global Data-driven High-resolution Weather Model Makalesi",
+      "url": "https://arxiv.org/abs/2202.11214",
+      "tur": "makale"
+     },
+     {
+      "ad": "NVIDIA Modulus FourCastNet Açık Kaynak Kod Deposu",
+      "url": "https://github.com/NVIDIA/modulus",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "FourCastNet küresel rüzgâr hızı ve trof yayılımı animasyonu",
+      "aciklama": "Fourier sinir operatörüyle hesaplanan 10 metre rüzgâr alanı evrimi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/NVIDIA/modulus",
+      "aciklama": "NVIDIA Modulus açık kaynaklı fizik destekli sinir ağı platformu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Weather4cast Öğrenci Araştırma Topluluğu",
+   "ne": "Uydu ve radar verilerinden aşırı yağış kestirimi yapan küresel öğrenci ve araştırmacı yarışması.",
+   "url": "https://www.iarai.ac.at/weather4cast",
+   "ayrinti": {
+    "neYaptilar": "IARAI enstitüsü ve üniversite öğrencileri, çok kanallı uydu ve yer tabanlı yağış ölçümlerinden gelecekteki yağışı tahmin eden açık kıyaslama yarışması başlattı.",
+    "nasil": "U-Net, ConvLSTM ve derin dönüştürücü ağları kullanarak yağışın mekânsal dağılımını piksel bazında sınıflandıran modeller eğittiler.",
+    "neEdindiler": "Onlarca üniversite takımının katılımıyla aşırı yağış erken uyarısında klasik radar ekstrapolasyonunu geçen açık modeller derlediler.",
+    "bizNasilKatki": "Weather4cast yarışmasının veri besleme boru hattını örnek alarak ERA5 yağış alanlarını 2 boyutlu harita dizisi olarak işleyen mini bir model kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Weather4cast Yarışma Portalı ve Açık Görev Dokümanı",
+      "url": "https://www.iarai.ac.at/weather4cast",
+      "tur": "web"
+     },
+     {
+      "ad": "NeurIPS Weather4cast Kıyaslama Makalesi",
+      "url": "https://doi.org/10.1007/978-3-031-15037-1_1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Konvolüsyonel sinir ağıyla 2 saatlik yağış yansıtıcılığı tahmini",
+      "aciklama": "Radar ve uydu dizilerinden türetilen ani yağış yayılım tahmini"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.iarai.ac.at/weather4cast",
+      "aciklama": "Weather4cast küresel veri bilimi ve hava tahmini yarışması sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "ERA5 verisini hazırla",
+   "Ağ eğit",
+   "ECMWF ile kıyasla"
+  ],
+  "edinim": [
+   [
+    "KON 405E",
+    "sistem tanılama"
+   ],
+   [
+    "MTO406",
+    "tahmin doğrulama"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   },
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin Kalman filtren bizde tahmini gözlemle birleştirir.",
+  "senin": "KON 405E State Space Methods, KON 303 Ölçme ve Enstrümantasyon",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO112 Alet ve Gözlem",
+  "ortakIs": "Kalman filtresiyle veri asimilasyonu, otomatik meteoroloji istasyonu",
+  "detay": "Ortak zemin: KON 405E State Space Methods ↔ MTO406 Hava Analizi ve Öngörü II; Kalman filtresi, tahmini gözlemle birleştirmenin (veri asimilasyonu) temel yöntemlerinden biri. Örnek görev: basit bir atmosfer oyuncağında Kalman ile veri asimilasyonu ya da rüzgâr türbini için kısa vadeli rüzgâr tahmini. Kazanç: derste gördüğün filtreyi gerçek bir tahmin probleminde çalıştırmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2580"
+ },
+ "amac": "ERA5 atmosfer yeniden analiz verileriyle eğitilen yapay sinir ağı üzerinden yerel rüzgâr ve yağış durumunu hızlı sayısal kestirimle öngörmek.",
+ "ortakDers": [
+  {
+   "kod": "KON 405E",
+   "projeyeKatki": "Dinamik sistemlerin durum uzayı gösterimi, girdi-çıktı durum geçiş matrisleri ve sistem tanılama ilkeleri sinir ağı mimarisinin omurgasını oluşturur.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sürekli zamanlı durum uzayı durum denklemi",
+     "nerede": "2. adımda: Atmosfer durum değişkenlerinin (rüzgâr bileşenleri u, v ve sıcaklık) sinir ağı durum katmanına eşlenmesinde."
+    },
+    {
+     "formulAd": "Ayrık zamanlı Kalman kazancı ve durum güncelleme denklemi",
+     "nerede": "4. adımda: Sinir ağından çıkan kaba tahminin gerçek istasyon ölçümüyle birleştirilip düzeltilmesinde."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Rüzgâr alanlarının dinamik zorlaması, yarı-jeostrofik dikey hareket, kararsızlık indeksleri ve tahmin doğrulama metrikleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "3. adımda: Sinir ağı tahmin çıktılarının fiziksel tutarlılığını ve dikey hareket uyumunu test ederken."
+    },
+    {
+     "formulAd": "Konvektif yararlı potansiyel enerji (CAPE)",
+     "nerede": "3. adımda: Yağış tahmininde aşırı konvektif kararsızlık olaylarının sinir ağı tarafından yakalanma başarısını ölçerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 saatlik atmosferik verileri indirilerek PyTorch ile çok katmanlı sinir ağı eğitilir ve klasik istatistikle karşılaştırılır.",
+  "ayrinti": "Copernicus İklim Veri Servisi (CDS) üzerinden İstanbul için 10 yıllık saatlik rüzgâr hızı, yönü, sıcaklık ve yağış verisi çekilir. KON 405E durum uzayı ilkeleri doğrultusunda veriler zaman serisi durum tensörlerine dönüştürülür. PyTorch ile geçmiş 24 saatlik durumdan sonraki 6 saati kestiren çok katmanlı yapay sinir ağı kurulur. MTO 406 tahmin doğrulama ilkeleriyle kalıcılık (persistence) ve sayısal model çıktılarıyla kıyaslama yapılır. 3 haftada tamamlanır.",
+  "sonuc": "ERA5 verisiyle eğitilmiş, 6 saatlik rüzgâr ve yağış eğilimini RMSE hatasıyla sunan açık kaynaklı Python analiz defteri.",
+  "senden": "KON 405E State Space Methods (durum geçiş mantığı, sistem tanılama ve regresyon ağları)",
+  "bizden": "ERA5 atmosferik parametre seçimi, Q-vektör fiziksel doğrulama ve meteorolojik analiz (MTO 406)",
+  "adimlar": [
+   {
+    "baslik": "ERA5 saatlik atmosferik verilerin çekilmesi ve filtrelenmesi",
+    "oz": "Copernicus CDS API ile İstanbul koordinatları için 10 yıllık saatlik rüzgâr ve yağış verisi indirilir.",
+    "ayrinti": "Copernicus CDS API istemcisi kullanılarak tek seviye ERA5 yeniden analiz arşivinden u10, v10 rüzgâr bileşenleri, 2 metre sıcaklığı ve toplam yağış alanları NetCDF formatında çekilir. Hatalı ve eksik değerler ayıklanır.",
+    "nasil": [
+     {
+      "teknik": "cdsapi.Client() ile reanalysis-era5-single-levels veri kümesinden İstanbul kutusu indirilir.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle veri çekilir. Avrupa merkezinin kaliteli arşivinden son 10 yılın saatlik hava durumu verisi alınır.",
+      "altAdimlar": [
+       "Copernicus CDS hesabı ve API anahtarı sisteme tanımlanır.",
+       "cdsapi kütüphanesiyle enlem-boylam kutusu belirlenip istek gönderilir.",
+       "İndirilen NetCDF dosyası xarray kütüphanesiyle açılıp doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "xarray ve pandas ile zaman serisi temizlenip kayan pencere özellikleri türetilir.",
+      "sade": "KON 405E dersindeki 'Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek' bilgisiyle veriler düzenlenir. Geçmiş saatlerdeki rüzgâr ve basınç değişimleri durum değişkeni olarak matrislere dönüştürülür.",
+      "altAdimlar": [
+       "NetCDF verisi pandas DataFrame yapısına dönüştürülür.",
+       "Geçmiş 24 saatlik kayan pencereler (t-24 ... t) girdi tensörü yapılır.",
+       "Standart Normal Dağılım ölçekleyicisi (StandardScaler) uygulanır."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Durum uzayı yapısında sinir ağı mimarisinin kodlanması",
+    "oz": "PyTorch ile geçmiş atmosfer durumunu geleceğe aktaran sinir ağı kurulur.",
+    "ayrinti": "Zaman serisi dinamiğini öğrenmek için PyTorch kütüphanesinde çok katmanlı yapay sinir ağı ve GRU (Gated Recurrent Unit) katmanları tanımlanır. Giriş durum vektörü gelecekteki rüzgâr hızı ve yağış miktarına eşlenir.",
+    "nasil": [
+     {
+      "teknik": "torch.nn.Module türetilerek GRU ve tam bağlantılı regresyon katmanları oluşturulur.",
+      "sade": "KON 405E dersindeki 'Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek' bilgisiyle ağ tasarlanır. Sistemin geçmiş durumunu dahili bir gizli vektörde saklayarak geleceği kestiren dinamik bir yapı kurulur.",
+      "altAdimlar": [
+       "Girdi boyutu, gizli durum boyutu ve çıktı katmanları tanımlanır.",
+       "İleri besleme (forward) fonksiyonu durum tensörleriyle yazılır.",
+       "Aşırı öğrenmeyi engellemek için Dropout katmanı eklenir."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek."
+      }
+     },
+     {
+      "teknik": "Adam optimizasyon algoritması ve Huber kayıp fonksiyonu ile eğitim döngüsü başlatılır.",
+      "sade": "KON 405E dersindeki 'Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak' bilgisiyle ağırlıklar güncellenir. Ağın tahmin hataları adım adım küçültülerek en dengeli ağırlıklar bulunur.",
+      "altAdimlar": [
+       "Veri seti yüzde 80 eğitim ve yüzde 20 test olarak bölünür.",
+       "DataLoader ile 64'lük mini-yığınlar oluşturulur.",
+       "50 dönem (epoch) boyunca kayıp değeri izlenerek ağırlıklar saklanır."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Meteorolojik doğrulama ve fiziksel tutarlılık analizi",
+    "oz": "Sinir ağı tahminleri Q-vektör dinamikleri ve istasyon verileriyle karşılaştırılır.",
+    "ayrinti": "Test veri kümesinde elde edilen rüzgâr ve yağış tahminleri klasik kalıcılık yöntemi ve ECMWF operasyonel tahminleriyle kıyaslanır. Q-vektör yakınsaması ile yağış arasındaki fiziksel bağ denetlenir.",
+    "nasil": [
+     {
+      "teknik": "scikit-learn ile RMSE, MAE ve korelasyon katsayıları zaman ufkuna göre hesaplanır.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle başarım ölçülür. 1 saatten 6 saate kadar tahminlerin ne kadar güvenilir olduğu sayılarla raporlanır.",
+      "altAdimlar": [
+       "Test verisi üzerinde modelden tahmin çıktıları alınır.",
+       "RMSE ve MAE metrikleri saat bazında hesaplanır.",
+       "Kalıcılık modeliyle kıyaslama yapılarak beceri skoru çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile rüzgâr gülü ve yağış zaman serisi karşılaştırma grafikleri üretilir.",
+      "sade": "MTO 406 dersindeki 'Q-vektör yaklaşımıyla sıcaklık adveksiyonu ve girdap adveksiyonunu tek bir alanda birleştirip dikey hareketi teşhis etmek' bilgisiyle grafikler çizilir. Tahmin edilen rüzgâr yönünün cephesel geçişlerle uyumu görselleştirilir.",
+      "altAdimlar": [
+       "Gerçekleşen ve tahmin edilen rüzgâr yönleri polar grafikte eşleştirilir.",
+       "Aşırı yağış anları kırmızı uyarı bantlarıyla vurgulanır.",
+       "Tüm grafikler interaktif Jupyter defterinde bir araya getirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Q-vektör yaklaşımıyla sıcaklık adveksiyonu ve girdap adveksiyonunu tek bir alanda birleştirip dikey hareketi teşhis etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul ERA5 10 metre rüzgâr hızı ve yönü zaman serisi animasyonu",
+   "aciklama": "Sinir ağı tarafından tahmin edilen rüzgâr vektörlerinin saatlik değişimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+   "aciklama": "DeepMind GraphCast atmosferik yapay zekâ tahmin sistemi tanıtımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Copernicus İklim Veri Servisi (CDS) ERA5 Tek Seviye Yeniden Analiz Veri Seti",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+  },
+  {
+   "ad": "Lam, R. et al. (2023) Learning skillful medium-range global weather forecasting, Science",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  },
+  {
+   "ad": "ECMWF Open Data API ve AIFS Veri Dokümantasyonu",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/KON-03.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "c43bf8523b82"
+ }
+}

@@ -1,0 +1,117 @@
+{
+ "kod": "SBP 126E",
+ "ad": "GIS and Planning",
+ "bolum": "Şehir ve Bölge Planlama",
+ "obsNo": "126E",
+ "ozet": "Şehir ve bölge planlamada coğrafi bilgi sistemleri (CBS) kuramını, mekânsal veri analizini, raster-vektör katman sentezini ve çok kriterli karar verme yöntemlerini öğretir. Kentsel ısı adası, geçirimsiz yüzey oranları, bina yoğunluğu ve kentsel kırılganlık indeksleri haritalama ve mekânsal istatistik araçlarıyla incelenir.",
+ "neOgrenirsin": [
+  "CBS ortamında vektör ve raster tabanlı kentsel veri katmanlarını bütünleştirmek.",
+  "Geçirimsiz yüzey ve bina yoğunluğu indeksleriyle kentsel ısı adası şiddetini hesaplamak.",
+  "Mekânsal ağırlıklı çok kriterli karar verme analizi ile iklim kırılganlık atlası üretmek.",
+  "Moran's I mekânsal otokorelasyon analizi ile kentsel sıcak nokta alanlarını tespit etmek.",
+  "Mahalle ölçeğinde iklim dirençli arazi kullanım ve yeşil altyapı planları geliştirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Kentsel ısı adası yüzey sıcaklığı anomali bağıntısı",
+   "tex": "\\Delta T_{\\mathrm{UHI}} = T_{\\mathrm{kent}} - T_{\\mathrm{kir}} = a \\cdot I_{\\mathrm{gecirimsiz}} + b \\cdot (1 - \\mathrm{NDVI})",
+   "terimler": [
+    [
+     "\\Delta T_{\\mathrm{UHI}}",
+     "kentsel ısı adası sıcaklık farkı şiddeti",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "T_{\\mathrm{kent}}",
+     "yoğun yapılaşmış kentsel mahalle yüzey sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "T_{\\mathrm{kir}}",
+     "kırsal veya ormanlık referans yüzey sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "I_{\\mathrm{gecirimsiz}}",
+     "mahalledeki geçirimsiz yapay yüzey alanı oranı",
+     "birimsiz (0 ile 1 arası)"
+    ],
+    [
+     "\\mathrm{NDVI}",
+     "normalize edilmiş bitki örtüsü indeksi",
+     "birimsiz (-1 ile +1 arası)"
+    ],
+    [
+     "a, b",
+     "kentsel doku ampirik regresyon katsayıları",
+     "^\\circ\\mathrm{C}"
+    ]
+   ],
+   "sade": "Yoğun betonlaşmış ve asfaltla kaplı mahallelerin kırsal orman alanlarına göre yaz aylarında kaç derece daha sıcak olduğunu hesaplar. Geçirimsiz yüzeyler arttıkça ve yeşil alanlar azaldıkça kentsel ısı adası etkisinin ne kadar büyüyeceğini gösterir.",
+   "ornek": "Fatih ilçesinde geçirimsiz yüzey oranı I = 0,85 ve NDVI = 0,10 iken, Belgrad Ormanı kırsal referansına göre sıcaklık farkı Delta T = 4,2 x 0,85 + 2,1 x 0,90 ≈ 5,5 °C bulunur; bu durum aşırı sıcak hava dalgalarında ciddi termal stres yaratır.",
+   "nerede": "F-MIM-SBP-01 projesinde İstanbul'un Fatih ve Kadıköy mahallelerinde kentsel ısı adası sıcaklık anomalisi şiddetini hesaplarken."
+  },
+  {
+   "ad": "Mekânsal ağırlıklı kentsel iklim kırılganlık indeksi",
+   "tex": "V_{\\mathrm{iklim}} = w_T \\cdot T^* + w_b \\cdot B^* + w_y \\cdot (1 - Y^*)",
+   "terimler": [
+    [
+     "V_{\\mathrm{iklim}}",
+     "mahalle ölçeğinde kentsel ısı kırılganlık skoru",
+     "birimsiz (0 ile 1 arası)"
+    ],
+    [
+     "w_T, w_b, w_y",
+     "sırasıyla sıcaklık, bina yoğunluğu ve yeşil alan ağırlık katsayıları",
+     "birimsiz (toplamı 1)"
+    ],
+    [
+     "T^*",
+     "normalize edilmiş mahalle sıcaklık anomalisi",
+     "birimsiz (0 ile 1 arası)"
+    ],
+    [
+     "B^*",
+     "mahalledeki bina taban alanı yoğunluğu",
+     "birimsiz (0 ile 1 arası)"
+    ],
+    [
+     "Y^*",
+     "mahalledeki kişi başına düşen normalize yeşil alan oranı",
+     "birimsiz (0 ile 1 arası)"
+    ]
+   ],
+   "sade": "Sıcaklık artışı, bina sıklığı ve park eksikliğini tek bir kırılganlık puanında birleştirir. Hangi mahallelerin aşırı sıcak dalgalarında en çok risk altında olduğunu belirleyerek acil yeşil koridor ve serin çatı önlemleri için öncelik sıralaması sunar.",
+   "ornek": "T* = 0,90, bina yoğunluğu B* = 0,80 ve yeşil alan Y* = 0,15 olan bir mahallede eşit ağırlıklarla (w = 0,333) kırılganlık skoru V = 0,333 x (0,90 + 0,80 + 0,85) = 0,85 çıkar ve en yüksek risk kategorisinde işaretlenir.",
+   "nerede": "F-MIM-SBP-01 projesinde mahalle bazlı kentsel ısı kırılganlık atlası ve CBS risk katmanlarını üretirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Urban_heat_island.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Kentsel ısı adası profili: kırsal, banliyö, şehir merkezi ve park sıcaklık eğrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul ilçeleri yaz dönemi saatlik 2 metre sıcaklık anomalisi, 2026",
+   "aciklama": "Şehir merkezi ile kırsal istasyonlar arasındaki gece ve gündüz sıcaklık farkı seyri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · SBP 126E (GIS and Planning)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=SBP&dersNo=126E"
+  },
+  {
+   "ad": "Oke, T. R. et al. (2017) Urban Climates, Cambridge University Press · ISBN 978-1107429536",
+   "url": "https://www.cambridge.org/core/books/urban-climates/85918EB28DE7F50AD8D92B65BF82E113"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=SBP&dersNo=126E"
+}

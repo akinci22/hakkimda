@@ -1,0 +1,465 @@
+{
+ "id": "GEO-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "GEO",
+  "bolum": "Geomatik (Harita) Mühendisliği",
+  "fakulteKod": "INS"
+ },
+ "ad": "GNSS ile su buharı ve tahmin karşılaştırması",
+ "ne": "Yer sabit GNSS alıcılarının sinyal gecikmesini hata dengelemesiyle troposferik su buharına çevirip sayısal hava tahmin modelleriyle doğrulayan açık sistem.",
+ "adimlar": [
+  "Açık GNSS istasyon verisini indir",
+  "Sinyal gecikmesinden su buharını hesapla",
+  "Aynı yer için ERA5 su buharını indir",
+  "İkisini aynı grafikte karşılaştır"
+ ],
+ "sonuc": "Sonunda karşılaştırma grafiği olan kısa bir rapor olur.",
+ "senden": "GEO 204 Hata Teorisi ve Dengeleme",
+ "bizden": "Su buharının hava tahminindeki önemi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "GEO 204",
+    "ad": "Hata Teorisi ve Dengeleme"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Bevis ve ark.: GPS meteorolojisi",
+   "ne": "GPS sinyal gecikmesinden su buharı hesaplamayı ilk gösteren öncü bilimsel çalışma.",
+   "url": "https://doi.org/10.1029/92JD01517",
+   "ayrinti": {
+    "neYaptilar": "Michael Bevis ve araştırma ekibi, jeodezik GPS alıcılarının ölçtüğü troposferik gecikmeden atmosferdeki toplam su buharının çıkarılabileceğini kanıtladı.",
+    "nasil": "Zenit toplam gecikmesinden kuru hava hidrostatik bileşenini çıkarıp kalan ıslak gecikmeyi ortalama sıcaklık bağıntısıyla milimetre su sütununa dönüştürdüler.",
+    "neEdindiler": "Radyosonda balon ölçümleriyle 1 mm hassasiyetle örtüşen, meteorolojide çığır açan sürekli ve ucuz bir su buharı izleme metodolojisi kurdular.",
+    "bizNasilKatki": "Bevis dönüşüm formülünü ve Saastamoinen hidrostatik gecikme modelini Python fonksiyonu olarak yazıp açık GNSS istasyon verisinde deneriz.",
+    "referanslar": [
+     {
+      "ad": "Journal of Geophysical Research: GPS Meteorology - Remote Sensing of Atmospheric Water Vapor",
+      "url": "https://doi.org/10.1029/92JD01517",
+      "tur": "makale"
+     },
+     {
+      "ad": "Bevis vd. GPS Su Buharı Araştırma Notları",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/92JD01517",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://doi.org/10.1029/92JD01517",
+      "aciklama": "JGR GPS meteorolojisi ve su buharı kestirimi makalesi yayını"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "GNSS istasyonu zenit ıslak gecikmesi ile ERA5 su buharı zaman serisi",
+      "aciklama": "İstanbul GNSS alıcısından hesaplanan su buharı sütununun reanaliz nem alanıyla örtüşmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "E-GVAP",
+   "ne": "Avrupa'daki GNSS istasyonlarından su buharını hesaplayıp tahmin merkezlerine veren ağ.",
+   "url": "https://egvap.dmi.dk/data/format",
+   "ayrinti": {
+    "neYaptilar": "Danimarka Meteoroloji Enstitüsü (DMI) liderliğindeki E-GVAP konsorsiyumu, Avrupa genelindeki 3500'den fazla GNSS istasyonundan gerçek zamanlı su buharı ağı kurdu.",
+    "nasil": "Jeodezik ağlardaki zenit toplam gecikme (ZTD) parametrelerini toplayıp kalite kontrolünden geçirerek ECMWF ve Météo-France sayısal modellerine asimile ettiler.",
+    "neEdindiler": "Kısa vadeli şiddetli yağış ve fırtına tahminlerinin isabet oranını artıran operasyonel meteorolojik veri akışı sağladılar.",
+    "bizNasilKatki": "E-GVAP açık veri formatındaki ZTD zaman serilerini okuyarak Marmara Bölgesi istasyonlarının su buharı anomalilerini çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "E-GVAP Avrupa GNSS Su Buharı Ağı Teknik Dokümantasyonu",
+      "url": "https://egvap.dmi.dk/data/format",
+      "tur": "web"
+     },
+     {
+      "ad": "EUMETNET E-GVAP Operasyonel Meteoroloji Programı",
+      "url": "https://www.eumetnet.eu/activities/observations-programme/current-activities/e-gvap/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://egvap.dmi.dk/data/format",
+      "aciklama": "E-GVAP veri formatları ve istasyon gecikme bültenleri portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Avrupa ve Türkiye GNSS ağı zenit gecikmeleri ve PWV dağılım animasyonu",
+      "aciklama": "Kıta genelinde GNSS istasyonlarından türetilen su buharı akısının zaman evrimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Spire",
+   "ne": "Küçük uydularla GNSS sinyalinden atmosfer ölçümü yaparak büyüdü; hava verisi satan bir şirket oldu.",
+   "url": "https://spire.com/weather-climate/",
+   "ayrinti": {
+    "neYaptilar": "Spire Global, yüzlerce küp-uydu (LEMUR) takımyıldızı fırlatarak GNSS radyo okültasyonu (GNSS-RO) yöntemiyle küresel dikey atmosfer profilleri topladı.",
+    "nasil": "GPS sinyallerinin atmosferin yoğun tabakalarından geçerken bükülme açısını ve faz gecikmesini ölçüp sıcaklık, basınç ve nem profillerini çıkardılar.",
+    "neEdindiler": "Geleneksel hava balonlarının ulaşamadığı okyanuslar üzerinde günde 20 binden fazla profil toplayarak hava tahmin doğruluğunu katladılar.",
+    "bizNasilKatki": "Spire'ın GNSS sinyal bükülmesinden nem çıkarma mantığını yer tabanlı istasyon gecikmeleriyle kıyaslayıp inceleriz.",
+    "referanslar": [
+     {
+      "ad": "Spire Weather & Climate Hava Zekâsı Çözümleri",
+      "url": "https://spire.com/weather-climate/",
+      "tur": "web"
+     },
+     {
+      "ad": "Spire Küp-Uydu GNSS Radyo Okültasyonu Teknolojisi",
+      "url": "https://spire.com/space-services/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://spire.com/weather-climate/",
+      "aciklama": "Spire Global uydu hava tahmin ve GNSS-RO ürün sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "GNSS radyo okültasyon profilleri ile GFS nem alanı karşılaştırma animasyonu",
+      "aciklama": "Uydu okültasyonundan elde edilen dikey nem profillerinin model ızgarasıyla eşleşmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "PlanetiQ",
+   "ne": "GNSS sinyalinin atmosferde bükülmesinden sıcaklık ve nem ölçen uydular kuran girişim.",
+   "url": "https://www.planetiq.com/gnss-ro",
+   "ayrinti": {
+    "neYaptilar": "PlanetiQ girişimi, ticari hava tahmini için özel tasarlanmış dördüncü nesil GNSS-RO alıcılarıyla donatılmış mikro-uydu filosu kurdu.",
+    "nasil": "GPS, GLONASS, Galileo ve BeiDou uydularının çoklu frekanslı sinyallerini yüksek sinyal-gürültü oranıyla izleyip alt troposfer nemini çıkardılar.",
+    "neEdindiler": "Ulusal hava merkezlerine ve enerji piyasalarına hiper-doğru troposferik su buharı ve sıcaklık profilleri sağladılar.",
+    "bizNasilKatki": "Çoklu GNSS takımyıldızlarının troposferik gecikme kestirimindeki sinyal avantajlarını yer verilerimizde analiz ederiz.",
+    "referanslar": [
+     {
+      "ad": "PlanetiQ GNSS Radyo Okültasyonu Veri Portalı",
+      "url": "https://www.planetiq.com/gnss-ro",
+      "tur": "web"
+     },
+     {
+      "ad": "PlanetiQ Yüksek Çözünürlüklü Atmosferik Sondaj Teknolojisi",
+      "url": "https://www.planetiq.com/technology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.planetiq.com/gnss-ro",
+      "aciklama": "PlanetiQ kurumsal GNSS radyo okültasyonu ve hava sensörü sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Troposferik su buharı sütununun konvektif fırtına öncesi artışı",
+      "aciklama": "Şiddetli cephe geçişinden 6 saat önce GNSS su buharı değerlerindeki ani sıçrama döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "RTKLIB Açık Kaynak GNSS Topluluğu",
+   "ne": "GNSS konumlandırma ve troposferik gecikme kestirimi için açık kaynak kod kütüphanesi geliştiren gönüllü topluluk.",
+   "url": "https://github.com/rtklibexplorer/RTKLIB",
+   "ayrinti": {
+    "neYaptilar": "Tomoji Takasu ve açık kaynak GNSS topluluğu, uydu ham faz verilerinden troposferik parametreleri çözen RTKLIB paketini geliştirdi.",
+    "nasil": "Hassas nokta konumlandırma (PPP) ve diferansiyel GNSS algoritmalarıyla sinyal gecikmelerini santimetre altı doğrulukla kestirdiler.",
+    "neEdindiler": "Jeodezi ve meteoroloji alanında binlerce araştırmacının kullandığı küresel standart açık kaynak konum ve atmosfer analiz kütüphanesi oldular.",
+    "bizNasilKatki": "RTKLIB'in troposferik Saastamoinen ve Niell eşleme fonksiyonlarını Python ortamına aktararak kullanırız.",
+    "referanslar": [
+     {
+      "ad": "RTKLIB Açık Kaynak GNSS Kod Deposu",
+      "url": "https://github.com/rtklibexplorer/RTKLIB",
+      "tur": "kod"
+     },
+     {
+      "ad": "RTKLIB Açık Kaynak Konumlandırma Dokümantasyonu",
+      "url": "http://www.rtklib.com/rtklib_document.htm",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/rtklibexplorer/RTKLIB",
+      "aciklama": "RTKLIB açık kaynaklı hassas GNSS işleme deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "RTKLIB ile kestirilen ZTD zaman serisi ve ERA5 nem analizi",
+      "aciklama": "Açık kaynak kütüphane ile çözülen GNSS gecikmelerinin model doğrulaması"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "E-GVAP verisini al",
+   "ERA5 su buharıyla karşılaştır",
+   "Farkı haritala"
+  ],
+  "edinim": [
+   [
+    "GEO 204",
+    "hata teorisi, dengeleme"
+   ],
+   [
+    "MTO406",
+    "nem alanı okuma"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "E-GVAP · GNSS su buharı",
+    "url": "https://egvap.dmi.dk/",
+    "gorsel": "g/kaynak/egvap.jpg",
+    "lisans": "serbest erişim",
+    "slug": "egvap"
+   },
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Uydu görüntüsünden sis haritası çıkarır, GNSS sinyalinden havadaki su buharını kestirirsin.",
+  "senin": "GEO 204 Hata Teorisi ve Dengeleme, GEO 313E Digital Image Processing",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO301 Uzaktan Algılama",
+  "ortakIs": "Uydudan YZ ile sis haritası, GNSS ile su buharı",
+  "detay": "Ortak zemin: GEO 204 Hata Teorisi ve Dengeleme ↔ MTO406; en küçük kareler veri asimilasyonunun matematiği. GEO 313E Digital Image Processing ↔ MTO301 Uzaktan Algılama. Örnek görev: uydudan sis ve alçak bulut haritası ya da GNSS ile su buharı karşılaştırması. Kazanç: görüntü işlemeyi havacılık ve ulaşım için anlamlı bir işte kullanmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2294"
+ },
+ "amac": "Sabit GNSS istasyonu uydu sinyal gecikmelerinden troposferik su buharı sütununu kestirip ERA5 ve sayısal hava tahmin modelleriyle karşılaştırmak.",
+ "ortakDers": [
+  {
+   "kod": "GEO 204",
+   "projeyeKatki": "GNSS sinyal gecikmelerinden parametrik en küçük kareler dengelemesiyle troposferik zenit gecikmesi kestirimi ve hata yayılımı hesabı bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En küçük kareler parametrik dengeleme normal denklemleri",
+     "nerede": "1. adımda: Sabit GNSS alıcısının çoklu uydu izleme verilerinden zenit toplam gecikmesini (ZTD) kestirirken."
+    },
+    {
+     "formulAd": "Zenit ıslak gecikmesinden çökelen su buharı bağıntısı",
+     "nerede": "2. adımda: Zenit ıslak gecikmesini milimetre cinsinden çökelen su buharına (PWV) dönüştürürken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Troposferik nem birikimi, CAPE kararsızlık indeksi hesabı ve sayısal hava tahmin modeli nem alanlarının analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Konvektif yararlı potansiyel enerji (CAPE)",
+     "nerede": "4. adımda: GNSS ile ölçülen ani su buharı artışının yerel atmosferik kararsızlık ve fırtına potansiyeliyle ilişkisini incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "E-GVAP GNSS zenit gecikmeleri çekilip hata dengelemesiyle su buharına çevrilerek ERA5 nem alanıyla doğrulanır.",
+  "ayrinti": "E-GVAP veya TUSAGA-Aktif açık istasyonlarından zenit toplam gecikme (ZTD) serileri alınır. GEO 204 Saastamoinen denklemiyle kuru gecikme çıkarılarak zenit ıslak gecikmesi (ZWD) elde edilir. Bevis formülüyle milimetre cinsinden çökelen su buharı (PWV) hesaplanır. Copernicus CDS üzerinden aynı zaman aralığındaki ERA5 toplam sütun su buharı (TCWV) çekilir. İki bağımsız veri eşleştirilip saçılım ve korelasyon grafikleri çıkarılır. 2 haftada tamamlanır.",
+  "sonuc": "GNSS sinyal gecikmelerinden su buharı sütunu hesaplayan ve ERA5 ile doğrulayan açık Python defteri.",
+  "senden": "GEO 204 Hata Teorisi ve Dengeleme (en küçük kareler kestirimi, hata yayılımı ve GNSS gecikme analizi)",
+  "bizden": "MTO 406 Hava Analizi (troposferik su buharı dinamiği, CAPE kararsızlığı ve ERA5 nem analizi)",
+  "adimlar": [
+   {
+    "baslik": "GNSS zenit toplam gecikme verilerinin çekilmesi",
+    "oz": "E-GVAP açık veri servisinden istasyon ZTD zaman serileri indirilir.",
+    "ayrinti": "Marmara Bölgesi'ndeki kalıcı GNSS istasyonuna ait saatlik zenit toplam gecikmesi (ZTD) ve standart sapma değerleri ayrıştırılır.",
+    "nasil": [
+     {
+      "teknik": "urllib.request ile E-GVAP veri havuzundan SINEX formatındaki troposfer gecikme dosyası indirilir.",
+      "sade": "GEO 204 dersindeki 'Rastlantısal ve sistematik ölçme hatalarını ayırt etmek' bilgisiyle veri çekilir. Sabit GPS anteninin gökyüzündeki uyduları dinlerken kaydettiği sinyal gecikmeleri belleğe alınır.",
+      "altAdimlar": [
+       "E-GVAP FTP/HTTP sunucusundan İstanbul istasyonu dosyaları sorgulanır.",
+       "SINEX formatındaki metin bloğundan TROP_DRY ve TROP_TOT sütunları ayıklanır.",
+       "Zaman etiketleri UTC saatine dönüştürülerek pandas tablosuna yazılır."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Rastlantısal ve sistematik ölçme hatalarını istatistiksel modellerle ayırt etmek."
+      }
+     },
+     {
+      "teknik": "En küçük kareler normal denklemleriyle kestirilen ZTD parametreleri ve ağırlık matrisi kontrol edilir.",
+      "sade": "GEO 204 dersindeki 'En küçük kareler parametrik dengeleme normal denklemleri' bilgisiyle çözüm güvenliği denetlenir. Uydulardan gelen sinyallerin dengeleme hesabındaki hata payı kontrol edilir.",
+      "altAdimlar": [
+       "Her zaman adımı için ölçü sayısı ve serbestlik derecesi kontrol edilir.",
+       "Standart sapması 5 mm'nin üzerindeki güvensiz ZTD ölçümleri maskelenir.",
+       "Temizlenmiş ZTD zaman serisi diziye aktarılır."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Parametrik dengeleme modelini matris gösterimiyle kurup en küçük kareler çözümünü bulmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Zenit ıslak gecikmesinden su buharına dönüşüm",
+    "oz": "Saastamoinen hidrostatik gecikmesi çıkarılıp Bevis bağıntısıyla PWV hesaplanır.",
+    "ayrinti": "Yüzey basıncı kullanılarak kuru gecikme (ZHD) hesaplanır ve ZTD'den düşülür. Kalan zenit ıslak gecikmesi (ZWD) su buharı sütununa dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "ZHD = 0.0022768 * P_s / (1 - 0.00266 * cos(2*phi) - 0.00028 * H) Saastamoinen formülü işletilir.",
+      "sade": "GEO 204 dersindeki 'Hata yayılma genel matris bağıntısı' bilgisiyle kuru hava etkisi çıkarılır. Havanın ağırlığından kaynaklanan gecikme silinerek geriye sadece su buharının yaptığı gecikme bırakılır.",
+      "altAdimlar": [
+       "İstasyon irtifası H ve enlemi phi parametreleri girilir.",
+       "İstasyonda ölçülen zemin yüzey basıncı hPa cinsinden formüle beslenir.",
+       "Hesaplanan ZHD milimetre cinsinden ZTD değerinden çıkarılarak ZWD bulunur."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Hata yayılma yasasını uygulayarak fonksiyonel büyüklüklerin varyansını hesaplamak."
+      }
+     },
+     {
+      "teknik": "PWV = Pi * ZWD bağıntısıyla milimetre su sütunu çökelen su buharı hesaplanır.",
+      "sade": "GEO 204 dersindeki 'Zenit ıslak gecikmesinden çökelen su buharı bağıntısı' bilgisiyle dönüşüm yapılır. Sinyalin mikrosaniyelik gecikmesi gökyüzündeki toplam su buharı milimetresine çevrilir.",
+      "altAdimlar": [
+       "Yüzey sıcaklığından troposfer ortalama sıcaklığı Tm = 70.2 + 0.72*Ts bağıntısıyla kestirilir.",
+       "Boyutsuz dönüşüm katsayısı Pi hesaplanır.",
+       "PWV = Pi * ZWD işlemiyle saatlik su buharı sütun serisi elde edilir."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Parametrik dengeleme modelini matris gösterimiyle kurup en küçük kareler çözümünü bulmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "ERA5 reanaliz su buharı verilerinin çekilmesi ve hizalanması",
+    "oz": "Copernicus CDS üzerinden aynı koordinat ve saatler için ERA5 TCWV indirilir.",
+    "ayrinti": "Copernicus İklim Veri Servisi (CDS) API ile istasyon koordinatına en yakın ızgara noktasındaki toplam sütun su buharı (TCWV) zaman serisi çekilir.",
+    "nasil": [
+     {
+      "teknik": "cdsapi.Client().retrieve ile total_column_water_vapour değişkeni NetCDF olarak indirilir.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava modellerinin ürünlerini yorumlamak' bilgisiyle reanaliz verisi çekilir. Dünya genelinde atmosfer modellerinin ürettiği nem değerleri diske yazılır.",
+      "altAdimlar": [
+       "CDS API anahtarı yapılandırılır.",
+       "İstasyon koordinatını içeren 0.25 derecelik ERA5 ızgara kutusu sorgulanır.",
+       "İndirilen NetCDF dosyası xarray ile açılarak istasyon noktasına bilineer enterpole edilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "xarray.interp ile ERA5 ızgarasından GNSS istasyonunun enlem ve boylamına çift doğrusal enterpolasyon yapılır.",
+      "sade": "MTO 406 dersindeki 'Mekânsal ızgara analizi' bilgisiyle model verisi istasyon noktasına indirgenir. Modelin çevreleyen 4 ızgara noktası ağırlıklandırılarak anten konumundaki nem sütunu hesaplanır.",
+      "altAdimlar": [
+       "İstasyonun WGS84 enlem ve boylam koordinatları tanımlanır.",
+       "xarray interp işleviyle bilineer mekânsal enterpolasyon çalıştırılır.",
+       "Çıkarılan saatlik TCWV zaman serisi pandas veri çerçevesine yazılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "İstatistiksel karşılaştırma ve CAPE kararsızlık ilişkisi",
+    "oz": "GNSS ve ERA5 su buharı serileri karşılaştırılır, fırtına anlarındaki nem sıçraması incelenir.",
+    "ayrinti": "İki seri arasındaki Pearson korelasyonu, ortalama sapma (bias) ve RMSE hesaplanır. Fırtına öncesi nem artışının CAPE indeksine etkisi değerlendirilir.",
+    "nasil": [
+     {
+      "teknik": "scipy.stats.pearsonr ile korelasyon ve sklearn.metrics ile RMSE hatası hesaplanır.",
+      "sade": "MTO 406 dersindeki 'Hava brifingi ve doğrulama' bilgisiyle sonuçlar karşılaştırılır. Uydu sinyalinden çıkan su buharı ile küresel hava modelinin ne kadar uyumlu olduğu grafiklerle gösterilir.",
+      "altAdimlar": [
+       "GNSS PWV ve ERA5 TCWV zaman serileri ortak zaman ekseninde birleştirilir.",
+       "Korelasyon katsayısı r, sistematik sapma ve RMSE skorları hesaplanır.",
+       "Zaman serisi ve saçılım diyagramı oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     },
+     {
+      "teknik": "Nem artışı anları ile ERA5 CAPE değerleri çakıştırılarak konvektif kararsızlık ilişkisi incelenir.",
+      "sade": "MTO 406 dersindeki 'Konvektif yararlı potansiyel enerji (CAPE) ile fırtına potansiyelini değerlendirmek' bilgisiyle nem analizi yapılır. Havadaki su buharının aniden yükseldiği günlerde fırtına enerjisinin nasıl patladığı gösterilir.",
+      "altAdimlar": [
+       "PWV değerinin 30 mm üzerine çıktığı ani yükselme vakaları filtrelenir.",
+       "Aynı saatlerdeki CAPE değerleri grafiğin ikinci eksenine çizdirilir.",
+       "Su buharı birikiminin fırtına başlangıcından kaç saat önce tepe yaptığı hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Konvektif yararlı potansiyel enerji (CAPE) ve rüzgâr kayması ile süperhücre ve fırtına potansiyelini değerlendirmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi GNSS su buharı ölçümleri ile ERA5 nem alanı döngüsü",
+   "aciklama": "Yer istasyonu GNSS gecikmelerinden çıkarılan su buharının sayısal model nemiyle karşılaştırması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://egvap.dmi.dk/data/format",
+   "aciklama": "E-GVAP Avrupa GNSS Su Buharı Ağı veri portali sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Bevis, M. et al. (1992) GPS Meteorology: Remote Sensing of Atmospheric Water Vapor, JGR",
+   "url": "https://doi.org/10.1029/92JD01517"
+  },
+  {
+   "ad": "E-GVAP: The EUMETNET GNSS Water Vapour Programme Documentation",
+   "url": "https://egvap.dmi.dk/data/format"
+  },
+  {
+   "ad": "Saastamoinen, J. (1972) Atmospheric correction for the troposphere and stratosphere in radio ranging of satellites, AGU",
+   "url": "https://doi.org/10.1029/GM015p0247"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/GEO-02.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "e144d35216d5"
+ }
+}

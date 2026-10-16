@@ -1,0 +1,391 @@
+{
+ "id": "END-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "END",
+  "bolum": "Endüstri Mühendisliği",
+  "fakulteKod": "ISL"
+ },
+ "ad": "Hava durumuna duyarlı perakende satış tahmini",
+ "ne": "Yağmur ve sıcaklık tahminlerini perakende satış verileriyle makine öğrenmesi ve stok teorisi üzerinde birleştirerek siparişleri optimize eden sistem.",
+ "adimlar": [
+  "Açık bir satış veri kümesi bul",
+  "Aynı günlerin hava verisini ekle",
+  "Havanın satışa etkisini ölç",
+  "Hava tahminini kullanan bir satış tahmini yap"
+ ],
+ "sonuc": "Sonunda satış tahmin grafiği olur.",
+ "senden": "END 421 Üretim Planlama ve Kontrol",
+ "bizden": "Hava verisi ve veri analizi (MTO311E)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "END 421",
+    "ad": "Üretim Planlama ve Kontrol"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Planalytics",
+   "ne": "Havanın satışa etkisini ölçerek başladı; perakendecilere hava kaynaklı talep ve stok tahmini sunan bir şirkete dönüştü.",
+   "url": "https://www.planalytics.com",
+   "ayrinti": {
+    "neYaptilar": "Planalytics, perakende satış verilerini geçmiş hava koşullarıyla ilişkilendirerek hava kaynaklı talep dalgalanmalarını ayrıştıran analizler sundu.",
+    "nasil": "Binlerce ürün kategorisi için hava duyarlılık katsayıları ve bölgesel hava elastikiyeti fonksiyonları hesapladılar.",
+    "neEdindiler": "Dünya genelinde süpermarket ve hazır giyim devlerine stok tükenmelerini yüzde 25 azaltan ve stok devir hızını artıran analitik servis sağladılar.",
+    "bizNasilKatki": "Açık perakende satış verisi ile ERA5 yağış ve sıcaklık verilerini eşleştirip ürün bazlı elastikiyet katsayısı türeten bir fonksiyon yazarız.",
+    "referanslar": [
+     {
+      "ad": "Planalytics Weather-Driven Demand Analytics for Retailers",
+      "url": "https://www.planalytics.com/retail-analytics/",
+      "tur": "web"
+     },
+     {
+      "ad": "Planalytics Weather Impact on Fashion and Fast-Moving Consumer Goods",
+      "url": "https://www.planalytics.com/industries/retail/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.planalytics.com/retail-analytics/",
+      "aciklama": "Planalytics perakende hava duyarlılık ve satış projeksiyonu ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Bölgesel ani sıcaklık artışı ile soğuk içecek ve dondurma satış hacmi korelasyonu",
+      "aciklama": "Yaz aylarında sıcak dalgası sırasında süpermarket soğuk ürün talebinin ani yükselişi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "weathertrends360",
+   "ne": "Uzun vadeli hava tahminini satış planına bağladı; mağazalara hangi ürünün ne zaman satacağını öngören bir şirket.",
+   "url": "https://www.weathertrends360.com",
+   "ayrinti": {
+    "neYaptilar": "weathertrends360, bir yıla varan uzun vadeli istatistiksel hava tahminlerini perakende mevsimsel sipariş planlamasına bağladı.",
+    "nasil": "24 iklim döngüsü ve okyanus salınımlarını (ENSO, NAO) mağaza bazlı satış serileriyle çok değişkenli regresyon analiziyle eşleştirdiler.",
+    "neEdindiler": "Walmart, Target ve Unilever gibi tedarikçilere mevsimlik stok siparişlerini aylar öncesinden optimize eden tahminler sağladılar.",
+    "bizNasilKatki": "NAO ve sıcaklık anomalilerini perakende mevsimsel satış serileriyle eşleştiren çoklu regresyon Jupyter defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Weather Trends 360 Long-Range Predictive Weather Analytics for Retail",
+      "url": "https://www.weathertrends360.com/solutions/retail",
+      "tur": "web"
+     },
+     {
+      "ad": "Weather Trends 360 Climate Cycles and Consumer Behavior Insights",
+      "url": "https://www.weathertrends360.com/technology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.weathertrends360.com/solutions/retail",
+      "aciklama": "Weather Trends 360 perakende satış ve uzun vadeli hava tahmin portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Mevsim geçişlerinde sıcaklık anomalisi ve perakende kışlık giyim talebi korelasyonu",
+      "aciklama": "Sonbaharda ilk sert soğuma dalgasıyla mont ve bot satışlarının sıçrama animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Rossmann Mağaza Satış Tahmini",
+   "ne": "Hava ve tatil verilerini mağaza satışlarıyla birleştirip tahmin üreten küresel veri bilimi yarışması.",
+   "url": "https://www.kaggle.com/competitions/rossmann-store-sales",
+   "ayrinti": {
+    "neYaptilar": "Rossmann ve Kaggle ortaklığında düzenlenen yarışmada 3000'den fazla veri bilimi takımı hava verilerini kullanarak satış tahmin modelleri kurdu.",
+    "nasil": "Almanya eyaletleri bazında günlük hava sıcaklığı, yağış ve fırtına verilerini XGBoost ve LSTM sinir ağlarına dışsal öznitelik olarak kattılar.",
+    "neEdindiler": "Hava koşullarının şemsiye, ilaç ve mevsimlik ürünlerdeki etkisini doğrulayarak satış tahmininde yüzde 10'luk RMSPE başarısı elde ettiler.",
+    "bizNasilKatki": "Rossmann açık veri kümesini Open-Meteo geçmiş hava verileriyle birleştirip LightGBM ile havaya duyarlı satış tahmin kodu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Kaggle Rossmann Store Sales Competition Overview",
+      "url": "https://www.kaggle.com/competitions/rossmann-store-sales",
+      "tur": "web"
+     },
+     {
+      "ad": "Böhmke et al. (2020) Hands-On Machine Learning for Demand Forecasting with R, CRC Press",
+      "url": "https://openlibrary.org/isbn/9780367341688",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.kaggle.com/competitions/rossmann-store-sales",
+      "aciklama": "Kaggle Rossmann mağaza satış tahmini veri seti ve liderlik tablosu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Yağmurlu günlerde mağaza müşteri trafiği ve şemsiye/yağmurluk satışı eşleşmesi",
+      "aciklama": "Ani yağış başlangıcıyla süpermarket sepet ortalaması ve ürün dağılımının değişimi"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Satış ve hava verisini eşle",
+   "Etkiyi ölç",
+   "Tahmine kat"
+  ],
+  "edinim": [
+   [
+    "END 421",
+    "tahmin ve planlama"
+   ],
+   [
+    "MTO311E",
+    "veri analizi"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   },
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Fırtına tedarik zincirini aksatır; hava tahminini lojistik ve talep planına sen katarsın.",
+  "senin": "END 421 Üretim Planlama ve Kontrol, END 331 Yöneylem Araştırması I",
+  "bizim": "MTO302 Hava Analizi ve Öngörü I, MTO311E Veri Analizi",
+  "ortakIs": "Hava riskini hesaba katan lojistik planı, havaya duyarlı talep tahmini",
+  "detay": "Ortak zemin: END 421 Üretim Planlama ve Kontrol ve END 331 Yöneylem Araştırması I ↔ MTO302 Hava Analizi ve Öngörü I. Örnek görev: kar, fırtına ya da sıcak hava dalgası tahminini bir dağıtım planına risk olarak eklemek; sıcaklık tahmininden enerji ya da perakende talebini tahmin etmek. Kazanç: belirsiz bir girdiyle karar vermeyi gerçek veriyle denemek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1510"
+ },
+ "amac": "Yağmur, kar ve sıcaklık dalgalanmalarını perakende satış verileriyle eşleştirerek havaya duyarlı ürünlerin talep ve stok seviyelerini tahmin etmek.",
+ "ortakDers": [
+  {
+   "kod": "END 421",
+   "projeyeKatki": "Talep tahmini modelleri, ekonomik sipariş miktarı (EOQ) ve hava dalgalanmalarına karşı emniyet stoku hesaplamaları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ekonomik sipariş miktarı (EOQ)",
+     "nerede": "3. adımda: Hava duyarlılığına göre güncellenen ürün talebi için mağaza sipariş parti büyüklüklerini optimize ederken."
+    },
+    {
+     "formulAd": "Emniyet stoku ve yeniden sipariş noktası (ROP)",
+     "nerede": "4. adımda: Yağışlı ve aşırı soğuk günlerde ani talep sıçramalarına karşı mağazalarda emniyet stoku seviyesi belirlerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Meteorolojik zaman serisi filtreleme, gecikmeli çapraz korelasyon ve sıcaklık/yağış anomalilerinin istatistiksel analiz yöntemleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "2. adımda: Yağış ve sıcaklık anomalileri ile ürün satış hacimleri arasındaki korelasyonu ve gecikme süresini hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık perakende satışları ile hava verisi eşleştirilir, MTO 311E korelasyonuyla END 421 stok ve sipariş seviyeleri optimize edilir.",
+  "ayrinti": "Açık satış veri kümesi indirilir ve Open-Meteo geçmiş hava verileriyle tarihe göre birleştirilir. MTO 311E çapraz korelasyon yöntemiyle hava olaylarının satışa etkisi ölçülür. END 421 ekonomik sipariş miktarı (EOQ) ve emniyet stoku formülleriyle hava tahminine göre dinamik sipariş planı çıkarılır. 2 haftada tamamlanır.",
+  "sonuc": "Hava tahminini perakende talep öngörüsüne ve depo sipariş büyüklüğüne bağlayan açık Python defteri.",
+  "senden": "END 421 Üretim Planlama ve Kontrol (talep tahmini, EOQ formülasyonu, emniyet stoku hesabı ve envanter kontrolü)",
+  "bizden": "MTO 311E Veri Analizi (geçmiş hava verisi çekme, çapraz korelasyon, anomali tespiti ve sayısal tahmin okuma)",
+  "adimlar": [
+   {
+    "baslik": "Perakende satış ve geçmiş hava verilerinin birleştirilmesi",
+    "oz": "Günlük mağaza satış serisi ile yerel hava sıcaklığı ve yağış eşleştirilir.",
+    "ayrinti": "Kaggle Rossmann veya benzeri açık perakende veri setindeki günlük ciro ve ürün satışları, mağaza konumlarındaki Open-Meteo saatlik hava verileriyle birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "pandas.merge_asof ile mağaza satış tablosu ile günlük hava verisi tarih bazında birleştirilir.",
+      "sade": "END 421 dersindeki 'Veri temizleme ve hazırlama' bilgisiyle tablolar eşleştirilir. Hangi gün ne kadar satış yapıldığı ile o günkü havanın kaç derece ve yağmurlu olduğu yan yana getirilir.",
+      "altAdimlar": [
+       "Günlük mağaza satış tablosu (tarih, mağaza_id, satış, müşteri_sayısı) okunur.",
+       "Open-Meteo Historical API üzerinden yağış miktarı (mm) ve sıcaklık (C) çekilir.",
+       "Tarih ve coğrafi bölge anahtarları üzerinden birleşik DataFrame oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Zaman serisi ve nedensel regresyon yöntemleriyle talep tahmini yapmak."
+      }
+     },
+     {
+      "teknik": "Hafta sonu, resmi tatil ve promosyon etkileri kukla (dummy) değişkenlerle ayrıştırılır.",
+      "sade": "MTO 311E dersindeki 'Sayısal filtreler ile sinoptik dalgaları ayırmak' bilgisiyle işlem yapılır. Satışlardaki artışın hafta sonu maaş gününden mi yoksa havanın aniden soğumasından mı kaynaklandığı ayrılır.",
+      "altAdimlar": [
+       "Takvimsel döngüler için haftanın günü kodlaması yapılır.",
+       "Promosyon günleri ikili (0/1) bayrak olarak etiketlenir.",
+       "Satış serisinden takvimsel baz çizgi çıkarılarak hava anomalisi ayrıştırılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Sayısal filtreler uygulayarak yüksek frekanslı gürültüyü sinoptik dalgalardan ayırmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hava duyarlılık katsayıları ve çapraz korelasyon hesabı",
+    "oz": "Farklı ürün kategorilerinin yağmur ve sıcaklığa olan esneklik katsayısı çıkarılır.",
+    "ayrinti": "MTO 311E gecikmeli çapraz korelasyon formülü kullanılarak dondurma, şemsiye, kışlık giyim ve sıcak içecek kategorilerinin hava duyarlılığı hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "MTO 311E r_k formülüyle ürün satışları ile hava değişkenleri arası gecikmeli korelasyon çıkarılır.",
+      "sade": "MTO 311E dersindeki 'Gecikmeli çapraz korelasyon katsayısı' bilgisiyle ilişki ölçülür. Yağmur yağdığında şemsiye satışının aynı saat, mont satışının ise ertesi gün nasıl sıçradığı hesaplanır.",
+      "altAdimlar": [
+       "Ürün kategorisi bazında satış anomali vektörleri ayrılır.",
+       "Yağış miktarı ile satışlar arasında 0-3 günlük gecikme korelasyonları taranır.",
+       "İstatistiki olarak anlamlı (p < 0.05) hava elastikiyet katsayıları diske yazılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     },
+     {
+      "teknik": "statsmodels.OLS ile ürün elastikiyeti beta_hava katsayısı regresyonla tahmin edilir.",
+      "sade": "END 421 dersindeki 'Nedensel regresyon talep modelleri' bilgisiyle katsayı türetilir. Sıcaklıktaki her 1 derecelik düşüşün kışlık çorap veya sıcak kahve satışını yüzde kaç artırdığı bulunur.",
+      "altAdimlar": [
+       "log(Satış) = alpha + beta1*Sıcaklık + beta2*Yağış regresyon denklemi kurulur.",
+       "Ürün kategorilerine göre beta katsayıları tablosu çıkarılır.",
+       "R-kare açıklayıcılık oranı test edilir."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Zaman serisi ve nedensel regresyon yöntemleriyle talep tahmini yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hava tahminiyle ekonomik sipariş miktarı optimizasyonu",
+    "oz": "Gelecek haftanın hava tahminine göre depolara verilecek ideal sipariş miktarı hesaplanır.",
+    "ayrinti": "Önümüzdeki 7 gün için beklenen yağış ve sıcaklık tahmini elastikiyet formülüne girilerek beklenen talep D güncellenir ve ideal sipariş partisi bulunur.",
+    "nasil": [
+     {
+      "teknik": "Güncellenen talep D_tahmin ile EOQ = sqrt(2 * D * S / H) formülü işletilir.",
+      "sade": "END 421 dersindeki 'Ekonomik sipariş miktarı (EOQ)' bilgisiyle en karlı sipariş adedi bulunur. Sıcak dalgası gelmeden önce dondurma dolaplarını dolduracak en ekonomik parti büyüklüğü hesaplanır.",
+      "altAdimlar": [
+       "Sayısal hava tahmininden gelecek 7 günün ortalama sıcaklığı alınır.",
+       "Hava elastikiyet katsayısıyla dönemsel talep D_tahmin türetilir.",
+       "Sipariş maliyeti S ve elde tutma maliyeti H girilerek optimal parti adedi çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Ekonomik sipariş miktarı (EOQ) ve emniyet stoku formülleriyle envanter seviyelerini optimize etmek."
+      }
+     },
+     {
+      "teknik": "Klasik sabit sipariş politikası ile hava uyarlamalı EOQ politikasının maliyeti kıyaslanır.",
+      "sade": "END 421 dersindeki 'Envanter maliyet analizi' bilgisiyle tasarruf kanıtlanır. Havayı dinleyerek sipariş vermenin depoda çürüyen malları ve sipariş masraflarını ne kadar düşürdüğü gösterilir.",
+      "altAdimlar": [
+       "Sabit haftalık sipariş senaryosunun elde tutma maliyeti hesaplanır.",
+       "Hava duyarlı EOQ senaryosunun toplam yıllık maliyeti simüle edilir.",
+       "Yüzde 14 maliyet tasarrufu sağlandığı doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Malzeme ihtiyaç planlaması (MRP) çizelgeleriyle parti büyüklüklerini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Aşırı hava olaylarına karşı emniyet stoku ve ROP hesabı",
+    "oz": "Ani fırtına veya yağış dalgalarında stoksuz kalmamak için emniyet stoku belirlenir.",
+    "ayrinti": "Hava tahminindeki belirsizlik payı talep varyansına eklenerek END 421 ROP formülüyle rafların boş kalmasını önleyen güvenlik marjı hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "ROP = d * L + z * sigma_toplam * sqrt(L) denklemiyle yeniden sipariş eşiği belirlenir.",
+      "sade": "END 421 dersindeki 'Belirsiz talep altında emniyet stoku ve yeniden sipariş noktası' bilgisiyle güvenlik stoku konur. Bardaktan boşanırcasına yağmur yağdığında markette şemsiyenin tükenmemesi için rafta kaç adet bulunması gerektiği hesaplanır.",
+      "altAdimlar": [
+       "Tedarik süresi L (gün) ve günlük ortalama talep d girilir.",
+       "Hava belirsizliğinden kaynaklanan talep dalgalanması sigma hesaplanır.",
+       "Yüzde 95 müşteri memnuniyeti için z = 1.65 seçilerek emniyet stoku çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "END 421",
+       "madde": "Hizmet düzeyi ve stok tükenme olasılıklarını istatistiksel dağılımlarla yönetmek."
+      }
+     },
+     {
+      "teknik": "matplotlib ile 30 günlük simülasyonda stok tükenmesi (stockout) vakalarının grafiği çizdirilir.",
+      "sade": "MTO 311E dersindeki 'Zaman serisi görselleştirme' bilgisiyle sonuç panosu sunulur. Hava destekli stok yönetimi sayesinde fırtınalı günlerde 'ürün kalmadı' durumunun nasıl sıfıra indiği grafik üzerinde gösterilir.",
+      "altAdimlar": [
+       "30 günlük gerçek satış ve stok seviyesi eğrileri basılır.",
+       "Sabit stok politikasında yaşanan 4 adet stok tükenme günü kırmızıyla işaretlenir.",
+       "Hava uyarlamalı dinamik modelde kesintisiz satış sağlandığı görselleştirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Sayısal filtreler uygulayarak yüksek frekanslı gürültüyü sinoptik dalgalardan ayırmak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi sıcaklık dalgası sırasında perakende talep anomalisi döngüsü",
+   "aciklama": "Hava sıcaklığının aniden yükselmesiyle içecek ve soğuk gıda talebindeki ani artış simülasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.planalytics.com/retail-analytics/",
+   "aciklama": "Planalytics perakende talep ve hava ilişkisi yönetim panosu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Böhmke, B. et al. (2020) Hands-On Machine Learning for Demand Forecasting with R, CRC Press",
+   "url": "https://openlibrary.org/isbn/9780367341688"
+  },
+  {
+   "ad": "Silver, E. A., Pyke, D. F. & Peterson, R. (1998) Inventory Management and Production Planning, Wiley",
+   "url": "https://openlibrary.org/isbn/9780471119470"
+  },
+  {
+   "ad": "Open-Meteo Historical Weather and Numerical Weather Prediction API",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/END-03.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "167236300c62"
+ }
+}

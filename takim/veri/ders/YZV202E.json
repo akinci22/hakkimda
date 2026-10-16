@@ -1,0 +1,122 @@
+{
+ "kod": "YZV 202E",
+ "ad": "Optimization for Data Science",
+ "bolum": "Yapay Zeka ve Veri Mühendisliği",
+ "obsNo": "202E",
+ "ozet": "Veri bilimi ve makine öğrenmesinde sürekli ve ayrık optimizasyon yöntemlerini öğretir. Dışbükey fonksiyonlar, gradyan inişi, stokastik gradyan inişi, momentum ve altgradyan yöntemleri ele alınır. Dengesiz veri kümelerinde ağırlıklı kayıp fonksiyonlarının ve F1-skoru gibi türevlenemez metriklerin optimizasyonunu sağlar.",
+ "neOgrenirsin": [
+  "Dışbükey optimizasyon problemlerini tanımlamak ve KKT koşullarını uygulamak.",
+  "Gradyan inişi ve mini-batch yöntemleriyle kayıp yüzeyinde ilerlemek.",
+  "Dengesiz veri kümelerinde ağırlıklı ikili çapraz entropi kayıp fonksiyonlarını optimize etmek.",
+  "L1 ve L2 düzenlileştirme terimleriyle seyreklik ve genelleştirme dengesi kurmak.",
+  "Diferansiyellenebilir vekil fonksiyonlarla F1-skorunu doğrudan optimize etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Ağırlıklı ikili çapraz entropi (Weighted BCE)",
+   "tex": "\\mathcal{L}_{\\mathrm{WBCE}} = -\\frac{1}{N} \\sum_{i=1}^N \\left[ w \\, y_i \\ln(p_i) + (1 - y_i) \\ln(1 - p_i) \\right]",
+   "terimler": [
+    [
+     "\\mathcal{L}_{\\mathrm{WBCE}}",
+     "ağırlıklı ikili çapraz entropi kaybı",
+     "birimsiz"
+    ],
+    [
+     "N",
+     "toplam gözlem sayısı",
+     "adet"
+    ],
+    [
+     "w",
+     "pozitif sınıfa verilen ağırlık katsayısı",
+     "pozitif skaler"
+    ],
+    [
+     "y_i",
+     "gerçek ikili etiket (0 veya 1)",
+     "ikili değer"
+    ],
+    [
+     "p_i",
+     "modelin pozitif sınıf olasılık tahmini",
+     "olasılık"
+    ],
+    [
+     "\\ln",
+     "doğal logaritma",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Nadir görülen olaylarda (örneğin don veya aşırı sıcak hava) modelin sıfır tahmin edip yüksek doğruluk yakalamasını engeller. Nadir pozitif sınıfın kaçırılmasını normal durumlara göre w kat daha ağır cezalandırır.",
+   "ornek": "İstanbul kış aylarında don olayı (T_min <= 0 °C) günlerin sadece yüzde 5'inde görülür (1:19 dengesizliği). Ağırlık w = 19 alındığında, don olan bir günü kaçırmanın cezası normal bir günü yanlış tahmin etmeye denk hale gelir; model don olayını yakalamaya odaklanır.",
+   "nerede": "F-BBF-YZV-02 projesinde don ve aşırı sıcaklık olaylarını sınıflandıran sinir ağının kayıp fonksiyonu olarak."
+  },
+  {
+   "ad": "F1-skoru ve dengesiz sınıflandırma başarım bağıntısı",
+   "tex": "F_1 = 2 \\, \\frac{\\mathrm{Kesinlik} \\times \\mathrm{Duyarlılık}}{\\mathrm{Kesinlik} + \\mathrm{Duyarlılık}} = \\frac{2 \\, \\mathrm{TP}}{2 \\, \\mathrm{TP} + \\mathrm{FP} + \\mathrm{FN}}",
+   "terimler": [
+    [
+     "F_1",
+     "kesinlik ve duyarlılığın harmonik ortalaması",
+     "skaler"
+    ],
+    [
+     "\\mathrm{TP}",
+     "doğru pozitif tahmin sayısı",
+     "adet"
+    ],
+    [
+     "\\mathrm{FP}",
+     "yanlış alarm sayısı",
+     "adet"
+    ],
+    [
+     "\\mathrm{FN}",
+     "kaçırılan olay sayısı",
+     "adet"
+    ],
+    [
+     "\\mathrm{Kesinlik}",
+     "doğru pozitif oranı",
+     "oran"
+    ],
+    [
+     "\\mathrm{Duyarlılık}",
+     "yakalanan pozitif oranı",
+     "oran"
+    ]
+   ],
+   "sade": "Nadir olaylarda aldatıcı doğruluk oranı yerine hem yanlış alarmları hem de kaçırılan fırtınaları aynı anda dengeler. Sayılardan biri sıfıra yaklaşırsa F1-skoru sert biçimde düşer.",
+   "ornek": "100 günlük kış döneminde 5 gün don oldu. Model hiç don uyarısı vermezse doğruluk yüzde 95 çıkar ama F1-skoru 0 olur. Model 4 günü doğru yakalayıp 2 yanlış alarm verirse TP=4, FP=2, FN=1 ile F1 = 8 / (8 + 2 + 1) = 0,73 çıkar.",
+   "nerede": "F-BBF-YZV-02'de eşik değeri taraması yaparak en yüksek başarım veren karar sınırını belirlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Precisionrecall.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Kesinlik, duyarlılık ve F1-skoru hesaplama diyagramı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul kış dönemi don olayları ağırlıklı çapraz entropi kayıp yüzeyi optimizasyonu, 2026-10",
+   "aciklama": "Farklı sınıf ağırlıklarında gradyan inişinin kayıp minimumuna yakınsama animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · YZV 202E (Optimization for Data Science)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=YZV&dersNo=202E"
+  },
+  {
+   "ad": "Boyd, S. & Vandenberghe, L. (2004) Convex Optimization, Cambridge University Press · DOI 10.1017/CBO9780511804441",
+   "url": "https://doi.org/10.1017/CBO9780511804441"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=YZV&dersNo=202E"
+}

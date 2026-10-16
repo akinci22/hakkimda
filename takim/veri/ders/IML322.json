@@ -1,0 +1,117 @@
+{
+ "kod": "IML 322",
+ "ad": "İmalatta Otomasyon",
+ "bolum": "İmalat Mühendisliği",
+ "obsNo": "322",
+ "ozet": "İmalat sistemlerinde endüstriyel otomasyon, PLC programlama, sensör entegrasyonu ve kapalı çevrim kontrol prensiplerini öğretir. Hassas CNC işleme merkezlerinde dış ortam sıcaklık dalgalanmalarının yol açtığı termal genleşme hatalarının sensör geri beslemesi ve kompanzasyon algoritmalarıyla giderilmesi incelenir.",
+ "neOgrenirsin": [
+  "Endüstriyel sensörler ve PLC ile CNC makinelerinde kapalı çevrim kontrol kurmak.",
+  "İşleme merkezlerinde ortam sıcaklığı kaynaklı termal genleşme hatalarını hesaplamak.",
+  "Sensör verileriyle CNC eksenlerinde dinamik termal kompanzasyon uygulamak.",
+  "Üretim hattında çevresel sıcaklık dalgalanmalarına duyarlı otomasyon çevrimleri tasarlamak.",
+  "Hassas metroloji standartlarında 20 °C referans sıcaklık sapmalarını denetlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Doğrusal termal genleşme ve boyutsal sapma bağıntısı",
+   "tex": "\\Delta L = \\alpha \\cdot L_0 \\cdot (T - T_0)",
+   "terimler": [
+    [
+     "\\Delta L",
+     "iş parçasındaki veya makine eksenindeki boyutsal sapma",
+     "\\mu\\mathrm{m}"
+    ],
+    [
+     "\\alpha",
+     "malzemenin doğrusal termal genleşme katsayısı",
+     "10^{-6}/\\mathrm{K}"
+    ],
+    [
+     "L_0",
+     "referans sıcaklıktaki nominal parça veya mil uzunluğu",
+     "\\mathrm{mm}"
+    ],
+    [
+     "T",
+     "atölye ortamı anlık sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "T_0",
+     "ISO standart metroloji referans sıcaklığı (20 °C)",
+     "^\\circ\\mathrm{C}"
+    ]
+   ],
+   "sade": "Atölye sıcaklığı standart referans olan 20 °C değerinden saptığında, çelik iş parçasının ve makine gövdesinin mikron cinsinden ne kadar uzayıp kısalacağını hesaplar. Mikron toleranslı parçalarda hatalı ıskartayı önlemek için talaş kaldırma eksenine gereken düzeltme payını belirler.",
+   "ornek": "500 mm boyundaki çelik parçada (alpha = 11,5 x 10^-6 1/K), sıcak hava dalgasıyla atölye 32 °C'ye çıktığında Delta T = 12 °C olur ve parça boyunda 69 mikron genleşme sapması oluşur; bu durum 10 mikron toleranslı havacılık parçasının ıskartaya çıkmasına yol açar.",
+   "nerede": "F-MKF-IML-03 projesinde 20 °C referans metroloji sıcaklığından sapmaların imalat toleranslarına ve CNC kompanzasyonuna etkisini anlatırken."
+  },
+  {
+   "ad": "Geri beslemeli PID sıcaklık ve kompanzasyon çevrimi",
+   "tex": "u(t) = K_p \\, e(t) + K_i \\int_0^t e(\\tau) \\, d\\tau + K_d \\, \\frac{de(t)}{dt}",
+   "terimler": [
+    [
+     "u(t)",
+     "CNC makinesi eksen kompanzasyon kontrol sinyali",
+     "\\mu\\mathrm{m}"
+    ],
+    [
+     "e(t)",
+     "anlık sıcaklık sapmasından kaynaklanan boyutsal hata",
+     "\\mu\\mathrm{m}"
+    ],
+    [
+     "K_p",
+     "oransal kazanç katsayısı",
+     "1"
+    ],
+    [
+     "K_i",
+     "integral kazanç katsayısı",
+     "\\mathrm{s}^{-1}"
+    ],
+    [
+     "K_d",
+     "türevsel kazanç katsayısı",
+     "\\mathrm{s}"
+    ],
+    [
+     "t",
+     "zaman değişkeni",
+     "\\mathrm{s}"
+    ]
+   ],
+   "sade": "Ortam sıcaklığının makine eksenlerinde yarattığı ötelenmeyi sensörlerle sürekli ölçerek servo motorlara zıt yönde düzeltme komutu verir. Sıcaklık dalgalansa dahi kesici takım ucunun nominal konumda sabit kalmasını sağlar.",
+   "ornek": "Atölyede öğle saatlerinde sıcaklık 1,5 °C/saat hızla artarken, PID kontrol çevrimi türev terimiyle iş mili Z eksenini 8 mikron geri çekerek parçaya istenmeyen dalmayı engeller.",
+   "nerede": "F-MKF-IML-03 açık dersinde CNC makinelerinde dış hava şartlarına duyarlı dinamik termal kompanzasyon otomasyonunu açıklarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Thermal_expansion.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Katılarda sıcaklık artışına bağlı doğrusal ve hacimsel termal genleşme prensibi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul imalat sanayi bölgelerinde saatlik 2 metre sıcaklık salınımı, 2026",
+   "aciklama": "Gün içi sıcaklık değişiminin 20 °C metroloji referans çizgisi etrafındaki salınımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · IML 322 (İmalatta Otomasyon)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=IML&dersNo=322"
+  },
+  {
+   "ad": "Groover, M. P. (2015) Automation, Production Systems, and CIM, Pearson · ISBN 978-0133499612",
+   "url": "https://www.pearson.com/en-us/subject-catalog/p/automation-production-systems-and-computer-integrated-manufacturing/P200000003264"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=IML&dersNo=322"
+}

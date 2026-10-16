@@ -1,0 +1,151 @@
+{
+ "kod": "KIM 212E",
+ "ad": "Instrumental Analytic. Methods",
+ "bolum": "Kimya",
+ "obsNo": "212E",
+ "ozet": "Kimyasal analizde modern enstrümantal cihazların çalışma prensiplerini ve sinyal değerlendirmesini öğretir. UV-Vis spektrofotometrisi, Lambert-Beer yasası, kütle spektrometrisi, gaz kromatografisi ve atomik absorbsiyon spektroskopisi ele alınır. Atmosferik aerosol partiküllerinin kimyasal bileşimini ve optik derinliğini spektroskopik piklerden nicel olarak belirler.",
+ "neOgrenirsin": [
+  "Lambert-Beer yasası ile optik absorbsiyon spektrumlarından derişim ve sönüm katsayısı hesaplamak.",
+  "UV-Vis ve FTIR spektroskopisi ile aerosol ve gaz numunelerinin kimyasal parmak izini çıkarmak.",
+  "Kromatografi pik alanlarından alıkonma zamanı ve bileşen oranlarını nicel olarak ayıklamak.",
+  "Log-normal boyut dağılımı fonksiyonuyla partikül kütle ve sayı fraksiyonlarını çözmek.",
+  "Aerosol Optik Derinliği (AOD) ve Ångström dalga boyu üssü bağıntılarını spektroskopik veriden türetmek.",
+  "Kalibrasyon eğrileri ve dedeksiyon limitleriyle enstrümantal ölçüm belirsizliğini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Lambert-Beer optik soğurma yasası",
+   "tex": "A = \\varepsilon \\, b \\, c = -\\ln\\left(\\frac{I}{I_0}\\right)",
+   "terimler": [
+    [
+     "A",
+     "absorbans (optik soğurma değeri)",
+     "birimsiz"
+    ],
+    [
+     "\\varepsilon",
+     "molar soğurma (ekstinksiyon) katsayısı",
+     "L/(mol·cm)"
+    ],
+    [
+     "b",
+     "optik ışık yolu uzunluğu",
+     "cm"
+    ],
+    [
+     "c",
+     "çözeltideki veya gazdaki analit derişimi",
+     "mol/L"
+    ],
+    [
+     "I",
+     "örnekten geçen ışık şiddeti",
+     "W/m²"
+    ],
+    [
+     "I_0",
+     "gelen referans ışık şiddeti",
+     "W/m²"
+    ]
+   ],
+   "sade": "Bir ortamdan geçen ışığın ne kadarının soğurulduğu, ışığın katettiği mesafe ve ortamdaki partikül derişimi ile doğru orantılıdır. Gökyüzündeki aerosol kirliliği arttıkça yere ulaşan güneş ışığı üstel olarak azalır.",
+   "ornek": "500 nm dalga boyunda referans ışık şiddeti I0 = 1000 W/m² iken kentsel pus altında ölçülen I = 670 W/m² ise atmosferik aerosol optik derinliği A = -ln(0,67) ≈ 0,40 olarak hesaplanır.",
+   "nerede": "F-FEF-KIM-02'de UV-Vis ve spektrofotometre verilerinden aerosol optik derinliği (AOD) türetirken."
+  },
+  {
+   "ad": "Ångström aerosol optik derinliği bağıntısı",
+   "tex": "\\tau_\\lambda = \\beta \\, \\lambda^{-\\alpha}",
+   "terimler": [
+    [
+     "\\tau_\\lambda",
+     "dalga boyuna bağlı aerosol optik derinliği",
+     "birimsiz"
+    ],
+    [
+     "\\beta",
+     "Ångström bulanıklık katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\lambda",
+     "ışığın dalga boyu",
+     "\\mu m"
+    ],
+    [
+     "\\alpha",
+     "Ångström dalga boyu üssü (partikül boyutu indisi)",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Aerosollerin farklı renklerdeki ışığı ne kadar saçtığı partiküllerin boyutuna bağlıdır. İnce şehir dumanı mavi ışığı çok kırarken (alpha > 1,5), iri çöl tozu tüm dalga boylarını eşit kırar (alpha < 0,5).",
+   "ornek": "440 nm ve 870 nm spektroskopik ölçümlerinde tau_440 = 0,45 ve tau_870 = 0,18 bulunursa, Ångström üssü alpha = -ln(0,45/0,18)/ln(440/870) ≈ 1,34 çıkar; bu da ortamda kentsel ince aerosollerin baskın olduğunu kanıtlar.",
+   "nerede": "F-FEF-KIM-02'de optik partikül sayacı verisinden kentsel duman ile toz fraksiyonunu ayırırken."
+  },
+  {
+   "ad": "Log-normal partikül boyut dağılımı",
+   "tex": "\\frac{d N}{d \\ln D_p} = \\frac{N_0}{\\sqrt{2\\pi} \\ln \\sigma_g} \\exp\\left(-\\frac{(\\ln D_p - \\ln D_{pg})^2}{2 (\\ln \\sigma_g)^2}\\right)",
+   "terimler": [
+    [
+     "N",
+     "toplam partikül sayı konsantrasyonu",
+     "cm⁻³"
+    ],
+    [
+     "D_p",
+     "partikül aerodinamik çapı",
+     "\\mu m"
+    ],
+    [
+     "N_0",
+     "moddaki toplam partikül sayısı",
+     "cm⁻³"
+    ],
+    [
+     "D_{pg}",
+     "geometrik ortalama partikül çapı",
+     "\\mu m"
+    ],
+    [
+     "\\sigma_g",
+     "geometrik standart sapma katsayısı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Havadaki partiküllerin çapları simetrik değil, logaritmik bir çan eğrisi şeklinde dağılır. Milyonlarca çok küçük nanopartikül havada asılıyken kütlenin çoğunu az sayıdaki iri tanecikler oluşturur.",
+   "ornek": "İstanbul istasyonunda Dpg = 0,15 mikrometre ve sigma_g = 1,6 olan ince mod partikül verisi log-normal fonksiyonla çözülerek PM2.5 kütlesinin yüzde 72'sinin bu moda ait olduğu bulunur.",
+   "nerede": "F-FEF-KIM-02'de partikül sayacı spektrumundan log-normal uydurma ile kütle fraksiyonlarını çıkarırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Beer_lambert.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Lambert-Beer yasası optik absorbsiyon ve ışık zayıflaması şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul PM2.5 ve PM10 partikül boyutu dağılımı animasyonu, 2026-10",
+   "aciklama": "Kentsel istasyonlarda ölçülen aerosol optik saçılma ve partikül spektrumu animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · KIM 212E (Instrumental Analytic. Methods)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KIM&dersNo=212E"
+  },
+  {
+   "ad": "Skoog, D. A., Holler, F. J. & Crouch, S. R. (2017) Principles of Instrumental Analysis, 7. baskı, Cengage Learning · ISBN 978-1305577213",
+   "url": "https://openlibrary.org/isbn/9781305577213"
+  },
+  {
+   "ad": "Hinds, W. C. (1999) Aerosol Technology: Properties, Behavior, and Measurement of Airborne Particles, 2. baskı, Wiley · ISBN 978-0471194101",
+   "url": "https://openlibrary.org/isbn/9780471194101"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KIM&dersNo=212E"
+}

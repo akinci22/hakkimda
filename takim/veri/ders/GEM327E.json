@@ -1,0 +1,155 @@
+{
+ "kod": "GEM 327E",
+ "ad": "Ship Hydrodynamics(Resistance)",
+ "bolum": "Gemi İnşaatı ve Gemi Makineleri Mühendisliği",
+ "obsNo": "327E",
+ "ozet": "Gemi gövdesinin su içindeki hidrodinamik direncini, dalga yapıcı direnci, sürtünme direncini ve deniz şartlarından kaynaklanan ilave dalga direncini inceler. Froude sayısı, ITTC-1957 sürtünme bağıntısı, STAWAVE yöntemleri ve dalga spektrumları ele alınır. Açık deniz dalga yüksekliği ve periyodunun gemi yakıt tüketimi ve hız kaybı üzerindeki etkilerini hesaplar.",
+ "neOgrenirsin": [
+  "ITTC-1957 formülasyonu ile gemi gövdesinin viskoz sürtünme direncini hesaplamak.",
+  "STAWAVE-1 ve STAWAVE-2 yöntemleriyle baş dalgalarda gemi ilave direncini belirlemek.",
+  "Dalga spektrumları ve belirgin dalga yüksekliğinden gemi hız kaybı ve yakıt cezasını türetmek.",
+  "Froude benzerlik kuralı ve kalıntı direnç katsayısı ile gövde dalga direncini ayrıştırmak.",
+  "Gemi baş bodoslama formu ve su hattı geometrisinin dalga direnci üzerindeki hidrodinamik etkisini analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "ITTC-1957 sürtünme direnci katsayısı",
+   "tex": "C_F = \\frac{0{,}075}{\\left(\\log_{10} \\mathrm{Re} - 2\\right)^2}, \\qquad \\mathrm{Re} = \\frac{V \\cdot L}{\\nu}",
+   "terimler": [
+    [
+     "C_F",
+     "gemi sürtünme direnci katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\mathrm{Re}",
+     "Reynolds sayısı",
+     "birimsiz"
+    ],
+    [
+     "V",
+     "geminin seyir hızı",
+     "m/s"
+    ],
+    [
+     "L",
+     "su hattı boyu",
+     "m"
+    ],
+    [
+     "\\nu",
+     "deniz suyu kinematik viskozitesi",
+     "m²/s"
+    ]
+   ],
+   "sade": "Geminin ıslak gövde yüzeyi ile deniz suyu arasındaki sürtünme kaybını hesaplar. Gemi hızı ve boyu büyüdükçe Reynolds sayısı artar, ancak birim alana düşen sürtünme katsayısı logaritmik olarak azalır.",
+   "ornek": "L = 150 m ve V = 8 m/s (yaklaşık 16 knot) olan bir gemide nu = 1,18e-6 m²/s iken Re ≈ 1,02e9 ve CF ≈ 0,00155 olarak hesaplanır.",
+   "nerede": "F-GIDB-GEM-01'de dalgasız sakin sudaki temel sürtünme direncini referans olarak hesaplarken."
+  },
+  {
+   "ad": "STAWAVE-1 ilave dalga direnci formülü",
+   "tex": "R_{aw} = \\frac{1}{16} \\rho g H_s^2 B \\sqrt{\\frac{B}{L_{wl}}}",
+   "terimler": [
+    [
+     "R_{aw}",
+     "baş dalgalarda ilave dalga direnci",
+     "N"
+    ],
+    [
+     "\\rho",
+     "deniz suyu yoğunluğu (1025 kg/m³)",
+     "kg/m³"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "m/s²"
+    ],
+    [
+     "H_s",
+     "belirgin dalga yüksekliği",
+     "m"
+    ],
+    [
+     "B",
+     "geminin azami genişliği",
+     "m"
+    ],
+    [
+     "L_{wl}",
+     "gemi su hattı boyu",
+     "m"
+    ]
+   ],
+   "sade": "Dalgalı denizde ilerleyen geminin gövdesine çarpan dalgalar gemiyi geriye doğru iter ve ek bir direnç oluşturur. Bu ilave direnç dalga yüksekliğinin karesiyle doğru orantılı olarak katlanarak artar.",
+   "ornek": "Genişliği B = 22 m ve su hattı boyu Lwl = 140 m olan bir yük gemisinde, Hs = 2,5 m Marmara fırtına dalgasında ilave direnç Raw ≈ (1/16) * 1025 * 9,81 * (2,5)^2 * 22 * sqrt(22/140) ≈ 34,2 kN olarak hesaplanır.",
+   "nerede": "F-GIDB-GEM-01'de ECMWF dalga yüksekliği tahminlerinden Marmara geçişindeki ilave gemi direncini hesaplarken."
+  },
+  {
+   "ad": "Dalgalı denizde ilave güç ve yakıt cezası",
+   "tex": "\\Delta P = R_{aw} \\cdot V, \\qquad \\Delta V \\approx \\frac{R_{aw}}{\\left(\\frac{\\partial R_T}{\\partial V}\\right)}",
+   "terimler": [
+    [
+     "\\Delta P",
+     "ilave dalga direnci için gereken ek makine gücü",
+     "kW"
+    ],
+    [
+     "R_{aw}",
+     "ilave dalga direnci",
+     "kN"
+    ],
+    [
+     "V",
+     "geminin seyir hızı",
+     "m/s"
+    ],
+    [
+     "\\Delta V",
+     "dalga kaynaklı hız kaybı",
+     "m/s"
+    ],
+    [
+     "\\partial R_T / \\partial V",
+     "toplam gemi direncinin hıza göre türevi",
+     "kN/(m/s)"
+    ]
+   ],
+   "sade": "Dalga direnci arttığında gemi aynı hızda kalabilmek için fazladan makine gücü harcamak zorundadır. Makine gücü sabit tutulursa gemi yavaşlar ve hız kaybı yaşanır.",
+   "ornek": "Raw = 35 kN ilave direnç altında V = 8 m/s hızını korumak için Delta P = 35 * 8 = 280 kW ilave makine gücü gerekir; bu da saatte yaklaşık 55 kg ek yakıt tüketimi demektir.",
+   "nerede": "F-GIDB-GEM-01'de dalga direncini sefer süresi gecikmesi ve yakıt cezasına dönüştürürken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Kelvin_wake.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Gemi hidrodinamiğinde Kelvin dalga deseni ve baş dalgası geometrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Denizi belirgin dalga yüksekliği ve dalga periyodu animasyonu, 2026-10",
+   "aciklama": "Marmara Denizi fırtına dalga yüksekliği ve periyot alanı döngüsü animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEM 327E (Ship Hydrodynamics(Resistance))",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEM&dersNo=327E"
+  },
+  {
+   "ad": "Lewis, E. V. (1988) Principles of Naval Architecture, Cilt II: Resistance, Propulsion and Vibration, SNAME · ISBN 978-0939773015",
+   "url": "https://openlibrary.org/isbn/9780939773015"
+  },
+  {
+   "ad": "ITTC Recommended Procedures (2014) Preparation and Conduct of Speed/Power Trials, ITTC 7.5-04-01-01.1",
+   "url": "https://www.ittc.info/media/7978/75-04-01-011.pdf"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEM&dersNo=327E"
+}

@@ -1,0 +1,144 @@
+{
+ "kod": "GEO 204",
+ "ad": "Hata Teorisi ve Dengeleme",
+ "bolum": "Geomatik Mühendisliği",
+ "obsNo": "204",
+ "ozet": "Ölçme hatalarının türlerini, hata yayılma yasasını ve en küçük kareler dengeleme yöntemini öğretir. Parametre kestirimi, ağırlıklı en küçük kareler, varyans-kovaryans matrisleri ve istatistiksel hipotez testleri ele alınır. GNSS ve jeodezik ağlarda ölçüm hatalarını minimize ederek güvenilir parametre kestirimini hedefler.",
+ "neOgrenirsin": [
+  "Rastlantısal ve sistematik ölçme hatalarını istatistiksel modellerle ayırt etmek.",
+  "Hata yayılma yasasını uygulayarak fonksiyonel büyüklüklerin varyansını hesaplamak.",
+  "Parametrik dengeleme modelini matris gösterimiyle kurup en küçük kareler çözümünü bulmak.",
+  "Ölçülerin ağırlık matrisini ve bilinmeyenlerin varyans-kovaryans matrisini türetmek.",
+  "Dengeleme sonrası uyuşumsuz ölçüleri istatistiksel testlerle (Baarda testi) ayıklamak."
+ ],
+ "formuller": [
+  {
+   "ad": "En küçük kareler parametrik dengeleme normal denklemleri",
+   "tex": "\\hat{\\mathbf{x}} = (\\mathbf{A}^T \\mathbf{P} \\mathbf{A})^{-1} \\mathbf{A}^T \\mathbf{P} \\mathbf{l}",
+   "terimler": [
+    [
+     "\\hat{\\mathbf{x}}",
+     "kestirilen bilinmeyen parametreler vektörü",
+     "fiziksel birim"
+    ],
+    [
+     "\\mathbf{A}",
+     "tasarım (katsayılar) matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{P}",
+     "ölçülerin ağırlık matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{l}",
+     "indirgenmiş ölçü vektörü",
+     "fiziksel birim"
+    ]
+   ],
+   "sade": "Fazla sayıda ölçüm yapıldığında hata kareleri toplamını en küçük yapan en olası parametre değerlerini matris cebriyle tek adımda çözer.",
+   "ornek": "GNSS istasyonunda 12 uydudan gelen sinyal gecikmesi ölçümleriyle troposferik zenit gecikmesi (ZTD) parametresi kestirilirken A ve P matrisleri kurularak ZTD = 2,345 m olarak bulunur.",
+   "nerede": "GEO-02'de GNSS sinyal gecikmelerinden zenit toplam gecikmesini (ZTD) ve troposferik parametreleri kestirirken."
+  },
+  {
+   "ad": "Hata yayılma genel matris bağıntısı",
+   "tex": "\\mathbf{\\Sigma}_{yy} = \\mathbf{J} \\, \\mathbf{\\Sigma}_{xx} \\, \\mathbf{J}^T",
+   "terimler": [
+    [
+     "\\mathbf{\\Sigma}_{yy}",
+     "fonksiyonel büyüklüklerin varyans-kovaryans matrisi",
+     "fiziksel birimin karesi"
+    ],
+    [
+     "\\mathbf{J}",
+     "kısmi türevler Jacobi matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{\\Sigma}_{xx}",
+     "giriş ölçülerinin varyans-kovaryans matrisi",
+     "fiziksel birimin karesi"
+    ]
+   ],
+   "sade": "Ölçümlerdeki rasgele hataların bu ölçümlerden türetilen sonuç büyüklüklerine nasıl yansıdığını ve sonucu ne kadar belirsizleştirdiğini hesaplar.",
+   "ornek": "Zenit ıslak gecikmesindeki 2 mm'lik standart sapma su buharı dönüşüm katsayısıyla çarpıldığında hesaplanan çökelen su buharı (PWV) belirsizliği 0,3 mm olarak bulunur.",
+   "nerede": "GEO-02'de GNSS zenit ıslak gecikmesinden çökelen su buharına (PWV) geçerken hata yayılımı hesabında."
+  },
+  {
+   "ad": "Zenit ıslak gecikmesinden çökelen su buharı bağıntısı",
+   "tex": "\\mathrm{PWV} = \\Pi \\, \\mathrm{ZWD}, \\qquad \\Pi = \\frac{10^6}{\\rho_w R_v \\left(\\frac{k_3}{T_m} + k'_2\\right)}",
+   "terimler": [
+    [
+     "\\mathrm{PWV}",
+     "çökelen su buharı (precipitable water vapor)",
+     "mm"
+    ],
+    [
+     "\\Pi",
+     "boyutsuz su buharı dönüşüm katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\mathrm{ZWD}",
+     "zenit ıslak gecikmesi",
+     "mm"
+    ],
+    [
+     "\\rho_w",
+     "sıvı su yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "R_v",
+     "su buharı gaz sabiti",
+     "J/(kg·K)"
+    ],
+    [
+     "T_m",
+     "troposferin ağırlıklı ortalama sıcaklığı",
+     "K"
+    ],
+    [
+     "k_3, k'_2",
+     "refraksiyon katsayıları",
+     "K²/hPa ve K/hPa"
+    ]
+   ],
+   "sade": "Atmosferdeki su buharının GPS sinyalini ne kadar yavaşlattığından yola çıkarak gökyüzündeki toplam nem miktarını milimetre cinsinden su sütunu olarak hesaplar.",
+   "ornek": "ZWD = 150 mm ve ortalama sıcaklık Tm = 280 K iken dönüşüm katsayısı Pi ≈ 0,16 hesaplanır; atmosfere dik doğrultudaki toplam su buharı PWV = 0,16 × 150 = 24 mm olarak bulunur.",
+   "nerede": "GEO-02 projesinde GNSS gecikme parametresinden sayısal model karşılaştırması için su buharı çıkarırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi ERA5 çökelen su buharı (TCWV) alanı ve GNSS istasyon gecikmeleri",
+   "aciklama": "Atmosferik su buharının sinoptik hareketi ile yer GNSS istasyonlarının nem ölçümleri"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://egvap.dmi.dk/",
+   "aciklama": "E-GVAP Avrupa GNSS Su Buharı Ağı portalı ve teknik dokümanları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEO 204 (Hata Teorisi ve Dengeleme)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=204"
+  },
+  {
+   "ad": "Ghilani, C. D. (2017) Adjustment Computations: Spatial Data Analysis, 6. baskı, Wiley · ISBN 978-1-119-38598-1",
+   "url": "https://openlibrary.org/isbn/9781119385981"
+  },
+  {
+   "ad": "Bevis, M. et al. (1992) GPS Meteorology: Remote Sensing of Atmospheric Water Vapor, JGR",
+   "url": "https://doi.org/10.1029/92JD01517"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=204"
+}

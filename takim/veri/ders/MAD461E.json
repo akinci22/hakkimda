@@ -1,0 +1,151 @@
+{
+ "kod": "MAD 461E",
+ "ad": "Mine Ventilation",
+ "bolum": "Maden Mühendisliği",
+ "obsNo": "461",
+ "ozet": "Yeraltı maden ocaklarında temiz hava dağıtımı, zararlı gazların seyreltilmesi ve iklimlendirme sistemlerinin tasarım ilkelerini öğretir. Ocak direnci, fan karakteristikleri, doğal havalandırma basıncı ve barometrik hava basıncının galeri gaz sızıntılarına etkisi incelenir. Atmosferik basınç değişimleri altında metan ve zehirli gaz risklerini denetlemeyi sağlar.",
+ "neOgrenirsin": [
+  "Atkinson sürtünme denklemiyle yeraltı galerilerinde hava basıncı kayıplarını hesaplamak.",
+  "Doğal havalandırma basıncını yüzey ve ocak içi hava yoğunluğu farkından türetmek.",
+  "Barometrik basınç düşüşünün galeri boşluklarındaki metan difüzyonuna etkisini belirlemek.",
+  "Zehirli ve patlayıcı maden gazlarını izin verilen eşik sınır değerlerin altında seyreltmek.",
+  "Ocak havalandırma şebekelerinde hava akış hızını ve fan gücü gereksinimini denetlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Atkinson hava yolu direnci ve basınç kaybı denklemi",
+   "tex": "\\Delta p = R \\cdot Q^2 = \\frac{k \\cdot L \\cdot P_o}{A^3} \\cdot Q^2",
+   "terimler": [
+    [
+     "\\Delta p",
+     "hava akışı sürtünme basınç kaybı",
+     "Pa"
+    ],
+    [
+     "R",
+     "maden yolu aerodinamik direnci",
+     "N·s²/m⁸"
+    ],
+    [
+     "Q",
+     "havalandırma hava debisi",
+     "m³/s"
+    ],
+    [
+     "k",
+     "galeri sürtünme faktörü",
+     "kg/m³"
+    ],
+    [
+     "L",
+     "galeri uzunluğu",
+     "m"
+    ],
+    [
+     "P_o",
+     "galeri çevre kesiti uzunluğu",
+     "m"
+    ],
+    [
+     "A",
+     "galeri en kesit alanı",
+     "m²"
+    ]
+   ],
+   "sade": "Galeriden geçen hava debisi arttıkça sürtünme nedeniyle basınç kaybının debinin karesiyle nasıl katlandığını gösterir. Havalandırma fanının yenmesi gereken toplam basınç direncini hesaplar.",
+   "ornek": "Kesit alanı A = 12 m², çevresi Po = 14 m, boyu L = 500 m ve sürtünme faktörü k = 0,012 kg/m³ olan galeride Q = 30 m³/s debi için basınç kaybı Delta p ≈ 43,8 Pa bulunur.",
+   "nerede": "F-MDF-MAD-01 projesinde yüzey basınç düşüşüne bağlı olarak ocak havalandırma galerilerindeki hava akış dengesini korurken."
+  },
+  {
+   "ad": "Doğal havalandırma basıncı ve hava yoğunluğu integrali",
+   "tex": "p_{\\mathrm{dhb}} = g \\cdot H \\cdot (\\rho_{\\mathrm{in}} - \\rho_{\\mathrm{cik}})",
+   "terimler": [
+    [
+     "p_{\\mathrm{dhb}}",
+     "doğal havalandırma basıncı",
+     "Pa"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi",
+     "m/s²"
+    ],
+    [
+     "H",
+     "kuyu derinliği veya kot farkı",
+     "m"
+    ],
+    [
+     "\\rho_{\\mathrm{in}}",
+     "temiz hava iniş kuyusundaki ortalama hava yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "\\rho_{\\mathrm{cik}}",
+     "kirli hava çıkış kuyusundaki ortalama hava yoğunluğu",
+     "kg/m³"
+    ]
+   ],
+   "sade": "Yüzeydeki soğuk havanın yoğunluğu ile ocak içindeki sıcak havanın yoğunluğu arasındaki farktan doğan kendiliğinden hava çekiş kuvvetini hesaplar. Mevsim ve hava sıcaklığı değiştikçe madenin doğal çekiş yönü değişebilir.",
+   "ornek": "Derinliği H = 400 m olan kuyuda yüzey kış sıcaklığı nedeniyle iniş yoğunluğu 1,26 kg/m³, ocak çıkış yoğunluğu 1,18 kg/m³ iken doğal havalandırma basıncı p_dhb ≈ 314 Pa motor gücüne katkı sağlar.",
+   "nerede": "F-MDF-MAD-01 ve F-MDF-MAD-03 projelerinde yüzey hava sıcaklığı ve barometrik basınç değişiminin ocak hava debisine etkisini çözerken."
+  },
+  {
+   "ad": "Maden gazı seyreltme debisi bağıntısı",
+   "tex": "Q = \\frac{q_g}{c_{\\max} - c_0}",
+   "terimler": [
+    [
+     "Q",
+     "gerekli temiz havalandırma debisi",
+     "m³/s"
+    ],
+    [
+     "q_g",
+     "ocakta açığa çıkan gaz debisi",
+     "m³/s"
+    ],
+    [
+     "c_{\\max}",
+     "izin verilen azami gaz konsantrasyonu hacim oranı",
+     "birimsiz"
+    ],
+    [
+     "c_0",
+     "giriş havasındaki başlangıç gaz konsantrasyonu",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Ocakta açığa çıkan metan veya karbonmonoksit gazının güvenli seviyeye düşürülmesi için galeriden geçirilmesi gereken asgari temiz hava hacmini belirler. Ani basınç düşüşünde gaz debisi arttıkça temiz hava ihtiyacı da artar.",
+   "ornek": "Açığa çıkan metan debisi qg = 0,05 m³/s, izin verilen üst sınır c_max = 0,01 (yüzde 1) ve temiz hava metanı c0 = 0 iken galeriden en az Q = 5 m³/s temiz hava geçirilmelidir.",
+   "nerede": "F-MDF-MAD-01 projesinde ani alçak basınç geçişinde metan difüzyon artışını seyreltmek için fan debisi eşiğini hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Mine_ventilation_diagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Yeraltı maden ocağı havalandırma şebekesi hava akış diyagramı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Zonguldak kömür havzası barometrik yüzey basıncı ve sıcaklık salınımı, 2026",
+   "aciklama": "Alçak basınç cephe geçişlerinde yüzey hava yoğunluğu ve basınç gradyanı değişimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MAD 461E (Mine Ventilation)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAD&dersNo=461"
+  },
+  {
+   "ad": "Hartman, H. L. et al. (2012) Mine Ventilation and Air Conditioning, 3. baskı, Wiley-Interscience · ISBN 978-0471116356",
+   "url": "https://www.wiley.com/en-us/Mine+Ventilation+and+Air+Conditioning%2C+3rd+Edition-p-9780471116356"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAD&dersNo=461"
+}

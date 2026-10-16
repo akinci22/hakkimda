@@ -1,0 +1,117 @@
+{
+ "kod": "MAT 263E",
+ "ad": "Computational Linear Algebra",
+ "bolum": "Matematik Mühendisliği",
+ "obsNo": "263",
+ "ozet": "Matris ayrışımları, özdeğer ve tekil değer problemleri (SVD), en küçük kareler çözümleri ve seyrek matris algoritmalarını öğretir. LU, QR, Cholesky ve SVD ayrışımları ele alınır. Meteorolojik istasyon ağlarının hata kovaryans matrislerinin boyut indirgemesinde ve veri asimilasyonunda temel matematiksel omurgayı sağlar.",
+ "neOgrenirsin": [
+  "Tekil Değer Ayrışımı (SVD) ile matrislerin düşük dereceli yaklaşımlarını kurmak.",
+  "Özdeğer ve özvektör analizi ile kovaryans matrislerindeki temel salınım modlarını bulmak.",
+  "QR ayrışımı ve Gram-Schmidt ortogonalizasyonu ile en küçük kareler problemlerini çözmek.",
+  "Seyrek matris formatları (CSR, CSC) ile büyük ölçekli uzaysal korelasyonları bellekte optimize etmek.",
+  "Koşul sayısı (condition number) ile sayısal çözücülerin hata duyarlılığını analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Tekil Değer Ayrışımı (SVD) matris çarpanlarına ayırma",
+   "tex": "\\mathbf{A} = \\mathbf{U} \\boldsymbol{\\Sigma} \\mathbf{V}^T = \\sum_{i=1}^r \\sigma_i \\mathbf{u}_i \\mathbf{v}_i^T",
+   "terimler": [
+    [
+     "\\mathbf{A}",
+     "istasyon-zaman hata matrisi (m x n)",
+     "fiziksel birim"
+    ],
+    [
+     "\\mathbf{U}",
+     "sol tekil vektörler ortogonal matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\boldsymbol{\\Sigma}",
+     "tekil değerler köşegen matrisi",
+     "fiziksel birim"
+    ],
+    [
+     "\\mathbf{V}^T",
+     "sağ tekil vektörler ortogonal matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\sigma_i",
+     "i'inci tekil değer (büyüklük sırasına göre)",
+     "fiziksel birim"
+    ],
+    [
+     "r",
+     "matrisin mertebesi",
+     "adet"
+    ]
+   ],
+   "sade": "Karmaşık bir hata tablosunu en baskın desenlerine ayırır. İlk birkaç tekil değer ve vektör, tüm istasyonlardaki toplam hatanın büyük bölümünü tek başına açıklar.",
+   "ornek": "10 istasyon ve 14 günlük saatlik hata verisinden oluşan 10x336 boyutlu matrise SVD uygulandığında ilk 2 tekil değer toplam varyansın yüzde 76'sını açıklar.",
+   "nerede": "Marmara istasyonları arasındaki tahmin hatası korelasyon matrisinin ana bileşenlerini ve bölgesel sapma modlarını ayıklarken."
+  },
+  {
+   "ad": "Frobenius normuna göre en iyi düşük mertebeli yaklaşım",
+   "tex": "\\min_{\\mathrm{rank}(\\mathbf{B}) \\le k} \\|\\mathbf{A} - \\mathbf{B}\\|_F = \\sqrt{\\sum_{i=k+1}^r \\sigma_i^2}",
+   "terimler": [
+    [
+     "\\mathbf{A}",
+     "orijinal tam mertebeli hata matrisi",
+     "fiziksel birim"
+    ],
+    [
+     "\\mathbf{B}",
+     "k mertebeli en iyi yaklaşım matrisi",
+     "fiziksel birim"
+    ],
+    [
+     "\\|\\cdot\\|_F",
+     "Frobenius matris normu",
+     "fiziksel birim"
+    ],
+    [
+     "k",
+     "tutulan baskın bileşen sayısı",
+     "adet"
+    ],
+    [
+     "\\sigma_i",
+     "ihmal edilen tekil değerler",
+     "fiziksel birim"
+    ]
+   ],
+   "sade": "Matristen küçük gürültüleri atıp sadece ana desenleri tuttuğumuzda yapılan hatanın, atılan tekil değerlerin kareleri toplamının kareköküne eşit olduğunu söyler.",
+   "ornek": "Toplam tekil değer kareleri toplamı 120 iken k=2 seçilip kalanlar atıldığında kalan hata normu sqrt(14) = 3,74 olarak sınırlanır.",
+   "nerede": "10 istasyonluk gürültülü hata matrisini 2 ana bileşene sıkıştırarak temiz ve seyrek arka plan hata kovaryansı üretirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi istasyonları sıcaklık hatası kovaryans matrisi SVD ayrışımı animasyonu, 2026-10",
+   "aciklama": "İstasyonlar arası hata korelasyonlarının tekil değer ayrışımı animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Singular-value-decomposition.pbm",
+   "lisans": "CC0",
+   "aciklama": "Matris SVD ayrışımı geometrik ve cebirsel gösterimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MAT 263E (Computational Linear Algebra)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=263"
+  },
+  {
+   "ad": "Strang, G. (2016) Introduction to Linear Algebra, Wellesley-Cambridge Press · ISBN 978-0980232776",
+   "url": "https://openlibrary.org/isbn/9780980232776"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=263"
+}

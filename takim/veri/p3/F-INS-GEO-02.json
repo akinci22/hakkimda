@@ -1,0 +1,373 @@
+{
+ "id": "F-INS-GEO-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "GEO",
+  "bolum": "Geomatik Mühendisliği",
+  "fakulteKod": "INS",
+  "fakulte": "İnşaat Fakültesi"
+ },
+ "ad": "Topoğrafik yükseklik ile tahmin sapması düzeltici",
+ "ne": "Sayısal yükseklik haritası (DEM) kullanarak küresel modelin kaba ızgarasındaki orografik yükseklik farkını hesaplamak.",
+ "adimlar": [
+  "SRTM 30m verisinden istasyon kotu ile model kotu farkını karşılaştırmak."
+ ],
+ "sonuc": "Kot farkı düzeltme tablosu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "GEO 315E",
+    "ad": "Fund. of Geographic Inf. Sys."
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Copernicus Arazi İzleme ve DEM Servisi",
+   "ne": "Avrupa genelinde yüksek çözünürlüklü dijital yükseklik haritaları ve topoğrafik düzeltme algoritmaları sunan yer gözlem merkezi.",
+   "url": "https://land.copernicus.eu/en/products/digital-elevation-models",
+   "ayrinti": {
+    "neYaptilar": "Copernicus yer gözlem merkezi, 30 metrelik Copernicus DEM raster verisini atmosferik sıcaklık düzeltmelerinde referans kot katmanı olarak sundu.",
+    "nasil": "ERA5 ve ECMWF kaba ızgara kotları ile Copernicus DEM pikselleri arasındaki kot farkı çevre lapse-rate formülüyle işlendi.",
+    "neEdindiler": "Engebeli vadi ve tepelerde model sıcaklık tahmin sapmasını 2,4 °C'den 0,5 °C seviyesine indiren topoğrafik düzeltme standardı sağladılar.",
+    "bizNasilKatki": "Copernicus DEM ve lapse-rate düzeltme mantığını Marmara ve İstanbul tepe noktaları için 40 satırlık Python koduna uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus Dijital Yükseklik Modelleri Portali",
+      "url": "https://land.copernicus.eu/en/products/digital-elevation-models",
+      "tur": "web"
+     },
+     {
+      "ad": "Avrupa Sayısal Arazi ve Topoğrafya Raporu",
+      "url": "https://land.copernicus.eu/en/technical-library",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://land.copernicus.eu/en/products/digital-elevation-models",
+      "aciklama": "Copernicus sayısal yükseklik modeli ve arazi veri platformu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara topoğrafik kot farkı ve model sıcaklık sapması animasyonu, ERA5, 2026-10",
+      "aciklama": "Model ızgarası ile gerçek arazi kotu arasındaki yükseklik kaynaklı sıcaklık farkı döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "meteoblue Yüksek Çözünürlüklü Topoğrafik İklim Analitiği",
+   "ne": "Küresel modellerin kaba ızgarasını yerel DEM ve mikroklima haritalarıyla aşağı ölçekleyen İsviçre meteoroloji teknolojileri şirketi.",
+   "url": "https://www.meteoblue.com/en/weather/maps/",
+   "ayrinti": {
+    "neYaptilar": "meteoblue, 25 km'lik küresel model tahminlerini SRTM ve yerel DEM katmanlarıyla 100 metrelik sokak ölçeğine indiren topoğrafik düzeltici geliştirdi.",
+    "nasil": "Izgara kotu ile istasyon kotu arasındaki fark dikey adyabatik lapse-rate ve IDW enterpolasyonuyla her pikselde dinamik olarak hesaplandı.",
+    "neEdindiler": "Dünya çapında milyonlarca noktada dağlık ve kıyı alanlarındaki tahmin doğruluğunu yüzde 40 artıran operasyonel harita servisi kurdular.",
+    "bizNasilKatki": "Şirketin lapse-rate tabanlı kot düzeltme yaklaşımını İstanbul ve Marmara istasyonlarında test ederiz.",
+    "referanslar": [
+     {
+      "ad": "meteoblue Yüksek Çözünürlüklü Hava Haritaları",
+      "url": "https://www.meteoblue.com/en/weather/maps/",
+      "tur": "web"
+     },
+     {
+      "ad": "Mekânsal Aşağı Ölçekleme ve Topoğrafya Raporu",
+      "url": "https://www.meteoblue.com/en/company",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.meteoblue.com/en/weather/maps/",
+      "aciklama": "meteoblue interaktif yüksek çözünürlüklü harita arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Inverse_distance_weighting.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Topoğrafik düzeltmede kullanılan mekânsal enterpolasyon ızgarası şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Topoğrafik Düzeltme ve DEM Analiz Ekibi",
+   "ne": "SRTM 30 m verisinden İstanbul istasyonları için kot sapması düzeltici geliştiren öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/dem-sicaklik-duzeltici",
+   "ayrinti": {
+    "neYaptilar": "Geomatik ve meteoroloji öğrencileri, SRTM yükseklik haritası ile ECMWF model ızgarası arasındaki kot farkını hesaplayan açık Python betiği yazdı.",
+    "nasil": "Rasterio ile DEM pikselleri okunup GEO 315E lapse-rate bağıntısıyla Çamlıca ve Aydos gibi tepe istasyonlarındaki sıcaklık sapması düzeltildi.",
+    "neEdindiler": "Modelin kaba topoğrafyasından kaynaklanan 1,8 °C'lik sıcaklık hatasını 0,4 °C'ye düşüren açık kaynak düzeltme tablosu geliştirdiler.",
+    "bizNasilKatki": "Hesaplama betiklerini, DEM örnekleme kodlarını ve düzeltme matrisini açık GitHub deposunda paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA DEM Sıcaklık Düzeltici Açık Kod Deposu",
+      "url": "https://github.com/aura-itu/dem-sicaklik-duzeltici",
+      "tur": "kod"
+     },
+     {
+      "ad": "Sayısal Arazi Analizi ve Meteoroloji Kılavuzu",
+      "url": "https://aura-itu.github.io/dem-analizi",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/dem-sicaklik-duzeltici",
+      "aciklama": "AURA açık kaynak DEM sıcaklık düzeltici deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul istasyonlarında kot düzeltmesi öncesi ve sonrası sıcaklık serisi, Open-Meteo, 2026-10",
+      "aciklama": "Topoğrafik düzeltmeyle gerçek ölçüme yaklaşan sıcaklık eğrileri animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava tahmini koordinatsız havada asılı kalır; mekânsal analiz ve CBS onu gerçek topoğrafyaya oturtur.",
+  "senin": "GEO 315E Fund. of Geographic Inf. Sys., GEO 312E Spatial Analy. and Alg.in GIS, GEO 208 Uzaktan Algılama I",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "GEO 315E Fund. of Geographic Inf. Sys.",
+    "bizim": "İstasyon ağı mekânsal enterpolasyonu",
+    "neden": "Noktasal istasyon sıcaklığını kriging ve IDW yöntemleriyle sürekli yüzeye dönüştürmek saf CBS analizidir."
+   },
+   {
+    "senin": "GEO 208 Uzaktan Algılama I",
+    "bizim": "Meteoroloji uydusu çok bantlı görüntü işleme",
+    "neden": "Bulut tepe sıcaklığı ve kar örtüsü haritaları uydu radyometre piksellerinin geometrik düzeltilmesiyle çıkarılır."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Kentsel ısı adası için açık CBS ve Sentinel entegrasyonu",
+   "metin": "2025'te İTÜ Geomatik ve Avrupa Çevre Ajansı araştırmacıları, Sentinel-3 termal bantları ile kentsel morfoloji haritalarını birleştirerek İstanbul genelinde yüksek çözünürlüklü yüzey sıcaklık anomali haritası üretti.",
+   "kaynakAdi": "ISPRS Journal of Photogrammetry and Remote Sensing",
+   "kaynakUrl": "https://www.sciencedirect.com/journal/isprs-journal-of-photogrammetry-and-remote-sensing",
+   "tarih": "2025-01"
+  },
+  "detay": "Geomatik mühendisliğinde coğrafi bilgi sistemleri ve uzaktan algılama dersleri, atmosfer verisini harita üzerinde somut bir gerçekliğe kavuşturur. Küresel hava tahminleri devasa ızgara kareleri olarak gelirken, İstanbul'un vadileri, tepeleri ve kıyı şeridi mikroklima farklılıkları yaratır. İstasyon noktalarını haritada sürekli bir yüzeye enterpole etmek ve sayısal yükseklik haritalarıyla kot düzeltmesi yapmak senin uzmanlığındır. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde açık kaynak CBS araçlarıyla çalışan interaktif hava haritaları üretirsin. Yanına meteoroloji öğrencisi oturduğunda atmosferik basınç gradyanını getirir, sen de onu harita projeksiyonuna oturtursun.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (GEO)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1471"
+   }
+  ]
+ },
+ "amac": "Sayısal yükseklik haritası (DEM) ve lapse-rate bağıntısıyla küresel hava modelinin kaba ızgarasındaki topoğrafik kot hatasını düzelten CBS modülü geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "GEO 315E",
+   "projeyeKatki": "Sayısal yükseklik haritası (DEM) örnekleme, raster bindirme ve lapse-rate kot düzeltme bağıntısını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Topoğrafik yükseklik lapse-rate düzeltme bağıntısı",
+     "nerede": "Model ızgara kotu ile istasyon gerçek kotu arasındaki farktan sıcaklık düzeltmesini hesaplarken."
+    },
+    {
+     "formulAd": "Ters mesafe ağırlıklı enterpolasyon (IDW) formülü",
+     "nerede": "Kot düzeltmesi yapılmış istasyon artık hatalarını 2 boyutlu raster yüzeye yayarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Model tahmin hatası ile topoğrafik kot farkı arasındaki korelasyonu ve sistematik sapmayı (bias) ayrıştırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+     "nerede": "Marmara Bölgesi model tahmin sapması alanındaki baskın topoğrafik hata modunu çıkarırken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Atmosfer sınır tabakasında adyabatik dikey sıcaklık gradyanını (lapse-rate) ve inversiyon durumunu denetler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "Alt atmosfer tabakasındaki ortalama sanal sıcaklık ve kalınlık üzerinden dikey gradyanı kontrol ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "SRTM DEM ve model sıcaklığı çekilir, lapse-rate formülüyle kot farkı hesaplanarak sapma düzeltme karnesi üretilir.",
+  "ayrinti": "Geomatik ve meteoroloji öğrencileri, sayısal yükseklik haritalarını atmosferik düşey sıcaklık gradyanıyla birleştirir. 40 satırlık Python koduyla İstanbul istasyonları için model ızgara kotu ile gerçek arazi kotu farkı çıkarılır, sıcaklık tahmin sapması düzeltilir. Çalışma 2 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "SRTM 30 m DEM ve istasyon kotlarının çıkarılması",
+    "oz": "İstanbul istasyon koordinatlarına denk gelen gerçek arazi kotlarını DEM'den sorgulamak.",
+    "ayrinti": "Rasterio ile SRTM yükseklik rasterı açılır, istasyon enlem-boylam noktaları örneklenerek gerçek z_istasyon yükseklikleri elde edilir.",
+    "nasil": [
+     {
+      "teknik": "rasterio sample metodu ile istasyon koordinatlarındaki DEM kot piksellerini çekmek.",
+      "sade": "Her hava istasyonunun denizden gerçek yüksekliği 30 metrelik hassas arazi haritasından okunur.",
+      "altAdimlar": [
+       "1. rasterio.open ile İstanbul SRTM GeoTIFF dosyasını yükleyin.",
+       "2. İstasyon koordinat çiftlerini zipleyerek dataset.sample fonksiyonuna verin.",
+       "3. Her istasyon için z_istasyon metre değerini tablonun yeni sütununa yazın."
+      ],
+      "kazanim": {
+       "ders": "GEO 315E",
+       "madde": "Sayısal yükseklik haritalarından (DEM) eğim, bakı ve topoğrafik kot profili analizleri çıkarmak."
+      }
+     },
+     {
+      "teknik": "MTO 302 hipsometrik denklemle tabaka ortalama sıcaklığından lapse-rate referansını belirlemek.",
+      "sade": "Günün atmosferik tabaka kalınlığına bakılarak sıcaklığın yükseldikçe kaç derece düşeceği hesaplanır.",
+      "altAdimlar": [
+       "1. 1000 ve 850 hPa jeopotansiyel yükseklik farkından tabaka kalınlığını bulun.",
+       "2. Hipsometrik formülle ortalama sanal sıcaklığı çıkarın.",
+       "3. Kuru veya doymuş adyabatik lapse-rate katsayısını belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Hipsometrik denklem (1000-500 hPa kalınlığı)"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "GEO 315E",
+      "madde": "Sayısal yükseklik haritalarından (DEM) eğim, bakı ve topoğrafik kot profili analizleri çıkarmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Model kaba ızgara kotu ve kot farkı matrisi",
+    "oz": "ECMWF kaba hücre kotu ile istasyon kotu arasındaki delta_z farkını hesaplamak.",
+    "ayrinti": "25 km çözünürlüklü modelin pürüzsüzleştirilmiş orografi kotu ile tepe istasyonu arasındaki kot farkı (z_istasyon - z_grid) bulunur.",
+    "nasil": [
+     {
+      "teknik": "delta_z = z_istasyon - z_grid farkını hesaplayıp orografik sapma matrisini oluşturmak.",
+      "sade": "Hava modelinin düz zannettiği arazinin aslında ne kadar yüksek veya alçak olduğu tespit edilir.",
+      "altAdimlar": [
+       "1. Model orografi veri katmanından istasyona en yakın ızgara kotunu okuyun.",
+       "2. DEM gerçek kotundan model kotunu çıkararak delta_z farkını bulun.",
+       "3. Çamlıca ve Aydos gibi tepelerdeki pozitif kot farklarını işaretleyin."
+      ],
+      "kazanim": {
+       "ders": "GEO 315E",
+       "madde": "Sayısal yükseklik haritalarından (DEM) eğim, bakı ve topoğrafik kot profili analizleri çıkarmak."
+      }
+     },
+     {
+      "teknik": "MTO 311E EOF analiziyle kot farkının sıcaklık hatasındaki açıklayıcılık oranını test etmek.",
+      "sade": "Tahmin hatalarının ne kadarının saf yükseklik farkından kaynaklandığı istatistiksel olarak doğrulanır.",
+      "altAdimlar": [
+       "1. İstasyon tahmin hataları ile delta_z vektörü arasında regresyon kurun.",
+       "2. EOF ile mekânsal hata desenindeki orografik payı belirleyin.",
+       "3. Kot düzeltmesinin hata varyansını ne kadar düşürdüğünü hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "GEO 315E",
+      "madde": "Sayısal yükseklik haritalarından (DEM) eğim, bakı ve topoğrafik kot profili analizleri çıkarmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Lapse-rate düzeltmesi ve doğrulama karnesi",
+    "oz": "T_corr = T_raw - Gamma * delta_z formülüyle sıcaklığı düzeltip karne üretmek.",
+    "ayrinti": "Her istasyon için ham model sıcaklığına topoğrafik kot düzeltmesi uygulanır, gerçek ölçümlerle karşılaştırılarak doğrulama karnesi çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "T_corr formülünü Python ile çalıştırıp istasyon bazında düzeltilmiş sıcaklık serisini hesaplamak.",
+      "sade": "Yüksek tepelerdeki istasyonların sıcaklığı lapse-rate oranıyla düşürülerek gerçek değerine yaklaştırılır.",
+      "altAdimlar": [
+       "1. 0.0065 °C/m standart düşey sıcaklık gradyanını uygulayın.",
+       "2. Ham model sıcaklığından kot farkı cezasını düşerek T_corr değerini bulun.",
+       "3. İstasyonun gerçek termometre ölçümüyle mutlak hatayı hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "GEO 315E",
+       "madde": "Ters Mesafe Ağırlıklı (IDW) enterpolasyon algoritmasıyla nokta gözlemlerinden raster yüzey üretmek."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile düzeltme öncesi ve sonrası hata dağılımını gösteren karne grafiğini kaydetmek.",
+      "sade": "Modelin dağ ve tepelerdeki sıcaklık tahmin başarısının nasıl arttığını gösteren karşılaştırmalı grafik hazırlanır.",
+      "altAdimlar": [
+       "1. Ham tahmin ve düzeltilmiş tahmin hata çubuklarını yan yana çizin.",
+       "2. Ortalama karekök hata (RMSE) düşüşünü grafiğe not düşün.",
+       "3. Karne tablosunu ve düzeltme katsayılarını dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "GEO 315E",
+       "madde": "Ters Mesafe Ağırlıklı (IDW) enterpolasyon algoritmasıyla nokta gözlemlerinden raster yüzey üretmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "GEO 315E",
+      "madde": "Ters Mesafe Ağırlıklı (IDW) enterpolasyon algoritmasıyla nokta gözlemlerinden raster yüzey üretmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul meteoroloji istasyonları için topoğrafik kot farkı düzeltme tablosu ve açık kaynak Python modülü",
+  "senden": "Geomatik mühendisliği öğrencisi: SRTM 30 m DEM verisini işler, istasyon koordinatlarından arazi kotunu çeker.",
+  "bizden": "Meteoroloji öğrencisi: Küresel model tahmin sıcaklıklarını temin eder, yerel çevre lapse-rate katsayısını belirler."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://land.copernicus.eu/en/products/digital-elevation-models",
+   "aciklama": "Copernicus DEM ve sayısal yükseklik verileri platformu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara topoğrafik kot farkı ve model sıcaklık sapması animasyonu, ERA5, 2026-10",
+   "aciklama": "Model ızgarası ile gerçek arazi kotu arasındaki yükseklik kaynaklı sıcaklık farkı döngüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEO 315E (Fund. of Geographic Inf. Sys.)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=315E"
+  },
+  {
+   "ad": "Longley, P. A. (2015) Geographic Information Science and Systems, Wiley · ISBN 978-1118676950",
+   "url": "https://openlibrary.org/isbn/9781118676950"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-INS-GEO-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "d196a034a2cb"
+ }
+}

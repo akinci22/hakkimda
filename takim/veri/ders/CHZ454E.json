@@ -1,0 +1,121 @@
+{
+ "kod": "CHZ 454E",
+ "ad": "Dewatering and Drying",
+ "bolum": "Cevher Hazırlama Mühendisliği",
+ "obsNo": "454E",
+ "ozet": "Cevher zenginleştirme ürünlerinin ve açık stok yığınlarının katı-sıvı ayrımı, filtreleme, santrifüj ve termal kurutma prensiplerini öğretir. Yüzey nemi, buharlaşma kinetiği, psikrometrik kuruma eğrisi ve kritik nem eşikleri incelenir. Açık havada depolanan maden ve kömür yığınlarının rüzgâr erozyonu ve tozuma riskinin atmosferik koşullarla analizine kuramsal zemin sağlar.",
+ "neOgrenirsin": [
+  "Psikrometrik buharlaşma akısı formülü ile açık yüzeylerin nem kaybetme hızını hesaplamak.",
+  "Kritik yüzey nemi eşiği altında rüzgâr kaynaklı toz kalkma ve erozyon riskini belirlemek.",
+  "Sabit ve azalan hızlı kuruma rejimlerini katı nem içeriği eğrileri üzerinden analiz etmek.",
+  "Hava sıcaklığı, bağıl nem ve rüzgâr hızının endüstriyel kurutma kinetiğine etkisini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Psikrometrik yüzey buharlaşma akısı denklemi",
+   "tex": "N_w = k_y (Y_s - Y)",
+   "terimler": [
+    [
+     "N_w",
+     "yüzeyden birim alandaki buharlaşma kütle akısı",
+     "\\mathrm{kg}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ],
+    [
+     "k_y",
+     "rüzgâr hızına bağlı kütle transfer katsayısı",
+     "\\mathrm{kg}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ],
+    [
+     "Y_s",
+     "yüzey doymuş hava mutlak nemi",
+     "\\mathrm{kg}_{\\mathrm{su}}/\\mathrm{kg}_{\\mathrm{kuru\\_hava}}"
+    ],
+    [
+     "Y",
+     "çevreleyen serbest havanın mutlak nemi",
+     "\\mathrm{kg}_{\\mathrm{su}}/\\mathrm{kg}_{\\mathrm{kuru\\_hava}}"
+    ]
+   ],
+   "sade": "Rüzgâr ve kuru hava açık bir cevher yığınının üstündeki suyu ne kadar hızlı buharlaştırıp yüzeyi kurutacağını hesaplar. Hava ne kadar kuru ve rüzgârlıysa buharlaşma o kadar hızlanır.",
+   "ornek": "Rüzgâr hızı 8 m/s iken ky = 0,022 kg/(m²·s), doymuş nem Ys = 0,018 ve çevre nemi Y = 0,007 iken yığın yüzeyinden buharlaşma akısı Nw = 0,00024 kg/(m²·s) (yaklaşık saatte 0,86 mm su kaybı) hesaplanır.",
+   "nerede": "F-MDF-CHZ-02 projesinde açık cevher stok sahasının saatlik yüzey nemi kaybını ve kuruma hızını hesaplarken."
+  },
+  {
+   "ad": "Rüzgâr aşınması ve tozuma kritik sürtünme hızı denklemi",
+   "tex": "u_{*t} = A \\sqrt{\\frac{\\rho_p - \\rho_a}{\\rho_a} g d_p} \\cdot \\left( 1 + B \\cdot w \\right)",
+   "terimler": [
+    [
+     "u_{*t}",
+     "partikülü yüzeyden havalandıran kritik sürtünme hızı eşiği",
+     "\\mathrm{m}/\\mathrm{s}"
+    ],
+    [
+     "A",
+     "aerodinamik boyutsuz eşik katsayısı",
+     "birimsiz"
+    ],
+    [
+     "\\rho_p",
+     "katı partikül yoğunluğu",
+     "\\mathrm{kg}/\\mathrm{m}^3"
+    ],
+    [
+     "\\rho_a",
+     "hava yoğunluğu",
+     "\\mathrm{kg}/\\mathrm{m}^3"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi",
+     "\\mathrm{m}/\\mathrm{s}^2"
+    ],
+    [
+     "d_p",
+     "yüzey partikül tane çapı",
+     "\\mathrm{m}"
+    ],
+    [
+     "B",
+     "nem kohezyon direnç faktörü",
+     "birimsiz"
+    ],
+    [
+     "w",
+     "yüzey kütlesel gravimetrik nem oranı",
+     "\\%"
+    ]
+   ],
+   "sade": "Yığının üzerindeki rüzgârın tozları havaya kaldırmak için hangi hız sınırını aşması gerektiğini hesaplar. Yüzey ıslandıkça kritik hız yükselir ve tozuma durur; kurudukça eşik düşer ve hafif esintide bile toz kalkar.",
+   "ornek": "Yüzey nemi w = yüzde 8 iken kritik hız u_*t = 0,65 m/s (10 metre rüzgârı ~14 m/s) iken, kuruyup w = yüzde 1'e düştüğünde kritik hız 0,22 m/s'ye (10 metre rüzgârı ~5 m/s) iner ve şiddetli tozuma başlar.",
+   "nerede": "F-MDF-CHZ-02 projesinde stok yığınının kuruma derecesine göre toz kalkma alarm saatlerini belirlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Coal_stockpile.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Açık depolama maden ve kömür stok sahasında yığın profili ve toz bastırma alanı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul açık stok sahası bağıl nem, güneş ışıması ve buharlaşma potansiyeli, 2026",
+   "aciklama": "Gündüz saatlerinde güneş ışıması ve rüzgârla hızlanan yüzey kuruma eğrisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · CHZ 454E (Dewatering and Drying)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CHZ&dersNo=454E"
+  },
+  {
+   "ad": "Wills, B. A. & Finch, J. (2015) Wills' Mineral Processing Technology, 8. baskı, Butterworth-Heinemann · ISBN 978-0080970530",
+   "url": "https://www.sciencedirect.com/book/9780080970530/wills-mineral-processing-technology"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CHZ&dersNo=454E"
+}

@@ -1,0 +1,377 @@
+{
+ "id": "F-INS-GEO-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "GEO",
+  "bolum": "Geomatik Mühendisliği",
+  "fakulteKod": "INS",
+  "fakulte": "İnşaat Fakültesi"
+ },
+ "ad": "Kriging ile İstanbul anlık sıcaklık yüzeyi",
+ "ne": "İstanbul'daki 40 meteoroloji istasyonunun son ölçümlerini kriging enterpolasyonuyla 100 metrelik raster yüzeye çevirmek.",
+ "adimlar": [
+  "Python GeoPandas ve PyKrige ile 1 günlük sıcaklık noktalarını enterpole edip GeoTIFF üretmek."
+ ],
+ "sonuc": "Raster sıcaklık haritası ve kod",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "GEO 312E",
+    "ad": "Spatial Analy. and Alg.in GIS"
+   },
+   {
+    "kod": "GEO 315E",
+    "ad": "Fund. of Geographic Inf. Sys."
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "İTÜ Geomatik ve CBS Araştırma Laboratuvarı",
+   "ne": "Kentsel ısı adası, arazi örtüsü ve jeoistatistiksel yüzey enterpolasyonu üzerine çalışan akademik araştırma merkezi.",
+   "url": "https://geomatik.itu.edu.tr/arastirma/laboratuvarlar",
+   "ayrinti": {
+    "neYaptilar": "İTÜ Geomatik Mühendisliği araştırmacıları, İstanbul genelindeki meteoroloji istasyon verilerini yarı-varyogram ve kriging yöntemleriyle sürekli yüzeye dönüştürdü.",
+    "nasil": "PyKrige ve GeoPandas kütüphaneleri kullanılarak deneysel varyogram hesaplandı ve küresel varyogram eğrisiyle 100 m çözünürlüklü GeoTIFF yüzeyleri üretildi.",
+    "neEdindiler": "Kentsel ısı adasının mahalle bazlı sıcaklık farklarını 0,6 °C hata payıyla gösteren yüksek çözünürlüklü raster veri seti sundular.",
+    "bizNasilKatki": "Araştırma laboratuvarının kriging hesaplama akışını açık Python koduyla 40 satırlık öğrenci projesine uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Geomatik Fakültesi Coğrafi Bilgi Teknolojileri Portali",
+      "url": "https://geomatik.itu.edu.tr/arastirma/laboratuvarlar",
+      "tur": "web"
+     },
+     {
+      "ad": "Kentsel Isı Adası ve Jeoistatistiksel Enterpolasyon Raporu",
+      "url": "https://geomatik.itu.edu.tr/arastirma/yayinlar",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://geomatik.itu.edu.tr/arastirma/laboratuvarlar",
+      "aciklama": "İTÜ Geomatik Mühendisliği araştırma ve CBS laboratuvarı sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul kentsel sıcaklık istasyonları kriging raster yüzeyi, Sensor.Community, 2026-10",
+      "aciklama": "Noktasal istasyon ölçümlerinden 100 metrelik raster sıcaklık yüzeyi üretimi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Descartes Labs Jeo-uzamsal Analitik Platformu",
+   "ne": "Uydu termal bantları ve yer istasyonlarını bulut tabanlı CBS algoritmalarıyla sürekli sıcaklık katmanlarına işleyen jeo-uzamsal teknoloji şirketi.",
+   "url": "https://www.descarteslabs.com/platform/",
+   "ayrinti": {
+    "neYaptilar": "Descartes Labs, küresel hava istasyonlarının ölçümlerini Sentinel termal pikselleriyle birleştirerek anlık yüzey sıcaklığı haritaları oluşturdu.",
+    "nasil": "Python mekânsal analiz kütüphaneleri ve bulut ızgara motorları ile kriging ve IDW algoritmaları paralel olarak işletildi.",
+    "neEdindiler": "Şehir planlamacıları ve tarım sigortacıları için mikroklima değişimlerini saatlik izleyen operasyonel raster analiz platformu kurdular.",
+    "bizNasilKatki": "Platformun açık jeoistatistiksel veri işleme boru hattını İstanbul istasyon verileriyle test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Descartes Labs Jeo-uzamsal Platform Portali",
+      "url": "https://www.descarteslabs.com/platform/",
+      "tur": "web"
+     },
+     {
+      "ad": "Kentsel Sıcaklık ve Mekânsal Kestirim Kılavuzu",
+      "url": "https://www.descarteslabs.com/solutions/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.descarteslabs.com/platform/",
+      "aciklama": "Descartes Labs jeo-uzamsal raster analiz platformu arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Kriging_surface_sample.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Jeoistatistiksel kriging enterpolasyon yüzeyi ve varyans dağılımı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Geomatik ve Atmosferik CBS Ekibi",
+   "ne": "İstanbul'daki istasyon sıcaklıklarını kriging enterpolasyonuyla yüksek çözünürlüklü GeoTIFF yüzeyine çeviren öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/istanbul-sicaklik-kriging",
+   "ayrinti": {
+    "neYaptilar": "Geomatik ve meteoroloji öğrencileri, İstanbul'daki 40 istasyonun sıcaklık ölçümlerini PyKrige ile 100 metrelik raster yüzeye dönüştüren kod yazdı.",
+    "nasil": "Open-Meteo ve Sensor.Community verileri GeoPandas ile mekânsal nokta katmanına çevrilip sıradan kriging matrisi çözüldü.",
+    "neEdindiler": "Boğaz hattı, Aydos Tepesi ve sahil şeridindeki anlık sıcaklık gradyanını görselleştiren açık kaynak CBS modülü ürettiler.",
+    "bizNasilKatki": "Raster üretim betiklerini ve QGIS stil katmanlarını açık GitHub deposunda yayımlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Sıcaklık Kriging Kod Deposu",
+      "url": "https://github.com/aura-itu/istanbul-sicaklik-kriging",
+      "tur": "kod"
+     },
+     {
+      "ad": "Mekânsal Enterpolasyon ve CBS Rehberi",
+      "url": "https://aura-itu.github.io/sicaklik-kriging",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/istanbul-sicaklik-kriging",
+      "aciklama": "AURA açık kaynak kriging ve CBS veri deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul 40 istasyon anlık sıcaklık kriging haritası döngüsü, 2026-10",
+      "aciklama": "İstasyon verilerinin enterpole edilerek kentsel ısı yüzeyine dönüşüm animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava tahmini koordinatsız havada asılı kalır; mekânsal analiz ve CBS onu gerçek topoğrafyaya oturtur.",
+  "senin": "GEO 315E Fund. of Geographic Inf. Sys., GEO 312E Spatial Analy. and Alg.in GIS, GEO 208 Uzaktan Algılama I",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "GEO 315E Fund. of Geographic Inf. Sys.",
+    "bizim": "İstasyon ağı mekânsal enterpolasyonu",
+    "neden": "Noktasal istasyon sıcaklığını kriging ve IDW yöntemleriyle sürekli yüzeye dönüştürmek saf CBS analizidir."
+   },
+   {
+    "senin": "GEO 208 Uzaktan Algılama I",
+    "bizim": "Meteoroloji uydusu çok bantlı görüntü işleme",
+    "neden": "Bulut tepe sıcaklığı ve kar örtüsü haritaları uydu radyometre piksellerinin geometrik düzeltilmesiyle çıkarılır."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Kentsel ısı adası için açık CBS ve Sentinel entegrasyonu",
+   "metin": "2025'te İTÜ Geomatik ve Avrupa Çevre Ajansı araştırmacıları, Sentinel-3 termal bantları ile kentsel morfoloji haritalarını birleştirerek İstanbul genelinde yüksek çözünürlüklü yüzey sıcaklık anomali haritası üretti.",
+   "kaynakAdi": "ISPRS Journal of Photogrammetry and Remote Sensing",
+   "kaynakUrl": "https://www.sciencedirect.com/journal/isprs-journal-of-photogrammetry-and-remote-sensing",
+   "tarih": "2025-01"
+  },
+  "detay": "Geomatik mühendisliğinde coğrafi bilgi sistemleri ve uzaktan algılama dersleri, atmosfer verisini harita üzerinde somut bir gerçekliğe kavuşturur. Küresel hava tahminleri devasa ızgara kareleri olarak gelirken, İstanbul'un vadileri, tepeleri ve kıyı şeridi mikroklima farklılıkları yaratır. İstasyon noktalarını haritada sürekli bir yüzeye enterpole etmek ve sayısal yükseklik haritalarıyla kot düzeltmesi yapmak senin uzmanlığındır. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde açık kaynak CBS araçlarıyla çalışan interaktif hava haritaları üretirsin. Yanına meteoroloji öğrencisi oturduğunda atmosferik basınç gradyanını getirir, sen de onu harita projeksiyonuna oturtursun.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (GEO)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1471"
+   }
+  ]
+ },
+ "amac": "İstanbul'daki 40 meteoroloji istasyonunun anlık ölçümlerini sıradan kriging jeoistatistiğiyle 100 metrelik raster sıcaklık yüzeyine çeviren CBS modülü geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "GEO 312E",
+   "projeyeKatki": "Deneysel yarı-varyogram ve sıradan kriging algoritmalarıyla noktasal istasyon verilerini sürekli yüzeye çevirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Deneysel yarı-varyogram bağıntısı",
+     "nerede": "İstasyonlar arasındaki mesafe-varyans ilişkisini ve mekânsal bağımlılık sınırını hesaplarken."
+    },
+    {
+     "formulAd": "Sıradan kriging kestirim formülü",
+     "nerede": "Her bir 100 metrelik raster pikseli için komşu istasyonların optimum ağırlıklarını hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "GEO 315E",
+   "projeyeKatki": "CBS koordinat sistemleri, raster ızgara yapısı ve IDW enterpolasyonuyla karşılaştırma tabanı oluşturur.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ters mesafe ağırlıklı enterpolasyon (IDW) formülü",
+     "nerede": "Kriging sonuçlarını doğrulamak için deterministik IDW yüzeyi üretirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "İstasyon sıcaklık serilerindeki mekânsal kovaryans ve varyans yapısını analiz eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+     "nerede": "İstanbul genelindeki sıcaklık anomali desenlerinin birinci baskın modunu çıkarırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "40 istasyon verisi çekilir, GeoPandas ve PyKrige ile yarı-varyogram çözülüp 100 m raster sıcaklık haritası üretilir.",
+  "ayrinti": "Geomatik ve meteoroloji öğrencileri, istasyon gözlemlerini CBS jeoistatistiğiyle haritaya dönüştürür. 40 satırlık Python koduyla noktasal koordinatlar yarı-varyogram ve sıradan kriging formülleriyle işlenip GeoTIFF formatında dışa aktarılır. Çalışma 2 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "İstasyon noktalarının temini ve GeoDataFrame kurulumu",
+    "oz": "İstanbul'daki 40 meteoroloji istasyonunun koordinat ve sıcaklıklarını vektör katmana çevirmek.",
+    "ayrinti": "Enlem, boylam ve son ölçülen sıcaklık değerleri pandas ile okunup EPSG:32635 (WGS 84 / UTM zone 35N) projeksiyonuna dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "GeoPandas ile enlem-boylam koordinatlarını Point geometrilerine çevirip UTM metre sistemine projekte etmek.",
+      "sade": "Harita üzerindeki derece koordinatları metre cinsinden mesafe hesaplamalarına uygun hale getirilir.",
+      "altAdimlar": [
+       "1. İstasyon CSV tablosunu pandas DataFrame olarak yükleyin.",
+       "2. gpd.GeoDataFrame fonksiyonuyla geometri sütununu tanımlayın.",
+       "3. to_crs('EPSG:32635') ile projeksiyonu UTM dilimine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "GEO 315E",
+       "madde": "Farklı koordinat ve projeksiyon sistemleri arasında hassas mekânsal dönüşümler yapmak."
+      }
+     },
+     {
+      "teknik": "GEO 315E IDW formülüyle hızlı bir ön enterpolasyon ızgarası üretmek.",
+      "sade": "Kriging analizi öncesinde istasyonların dağılımını kabaca görmek için ters mesafe ağırlıklı bir yüzey çıkarılır.",
+      "altAdimlar": [
+       "1. İstanbul sınırları içinde 100 metrelik boş raster ızgarası oluşturun.",
+       "2. scipy.spatial cKDTree ile en yakın istasyon mesafelerini bulun.",
+       "3. IDW bağıntısıyla her hücreye sıcaklık değerini atayın."
+      ],
+      "kazanim": {
+       "ders": "GEO 315E",
+       "madde": "Ters Mesafe Ağırlıklı (IDW) enterpolasyon algoritmasıyla nokta gözlemlerinden raster yüzey üretmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "GEO 315E",
+      "madde": "Farklı koordinat ve projeksiyon sistemleri arasında hassas mekânsal dönüşümler yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Deneysel yarı-varyogram analizi ve parametre hesabı",
+    "oz": "İstasyon çiftleri arasındaki mesafe ile sıcaklık farklarının karesini hesaplamak.",
+    "ayrinti": "PyKrige modülü ile deneysel yarı-varyans noktaları çıkarılır ve küresel varyogram eğrisi uydurularak külçe (nugget), eşik (sill) ve menzil (range) bulunur.",
+    "nasil": [
+     {
+      "teknik": "gamma(h) = 1/(2N) * sum(Z_i - Z_j)^2 formülünden deneysel yarı-varyogram grafiğini hesaplamak.",
+      "sade": "Mesafe arttıkça sıcaklıkların birbirinden ne kadar koptuğunu gösteren jeoistatistiksel eğri çizilir.",
+      "altAdimlar": [
+       "1. İstasyon çiftleri arasındaki mesafe matrisini hesaplayın.",
+       "2. Belirlenen mesafe aralıklarında (lag) yarı-varyans ortalamalarını toplayın.",
+       "3. Küresel veya üstel varyogram eğrisinin parametrelerini belirleyin."
+      ],
+      "kazanim": {
+       "ders": "GEO 312E",
+       "madde": "Deneysel yarı-varyogram çıkarıp teorik varyogram eğrisi ile mekânsal bağımlılığı hesaplamak."
+      }
+     },
+     {
+      "teknik": "MTO 311E EOF ayrışımıyla sıcaklık varyansının baskın yönelimini doğrulamak.",
+      "sade": "Rüzgâr yönü ve deniz etkisinin sıcaklık değişkenliğinde yarattığı yön bağımlılığı denetlenir.",
+      "altAdimlar": [
+       "1. İstasyonlar arası sıcaklık kovaryans matrisini kurun.",
+       "2. Birinci özvektör ile sahil-iç kesim gradyanını çıkarın.",
+       "3. Varyogramda anizotropi payını göz önünde bulundurun."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "GEO 312E",
+      "madde": "Deneysel yarı-varyogram çıkarıp teorik varyogram eğrisi ile mekânsal bağımlılığı hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Sıradan kriging çözümü ve GeoTIFF çıktısı",
+    "oz": "100 metrelik raster hücrelerine kriging sıcaklıklarını hesaplayıp dışa aktarmak.",
+    "ayrinti": "OrdinaryKriging çözücüsü çalıştırılarak kestirilen sıcaklık yüzeyi ve kestirim varyansı haritası GeoTIFF olarak diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "PyKrige OrdinaryKriging sınıfı ile 100 m ızgara üzerinde Z_hat matrisini ve varyansını hesaplamak.",
+      "sade": "Her mahalle için en uygun ağırlıklar çözülerek kesintisiz ve yumuşak bir sıcaklık haritası elde edilir.",
+      "altAdimlar": [
+       "1. X, Y koordinatları ve sıcaklık dizisini OrdinaryKriging nesnesine verin.",
+       "2. execute('grid', gridx, gridy) çağrısıyla yüzey matrisini oluşturun.",
+       "3. Kestirim varyansı haritası ile veri güvenilirliğini kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "GEO 312E",
+       "madde": "Sıradan kriging (Ordinary Kriging) algoritmasıyla noktasal ölçümleri sürekli raster yüzeye dönüştürmek."
+      }
+     },
+     {
+      "teknik": "rasterio kütüphanesiyle sıcaklık matrisini GeoTIFF formatında ve renk paletiyle kaydetmek.",
+      "sade": "Üretilen harita QGIS veya web haritalarında doğrudan açılabilecek coğrafi tescilli bir raster dosyasına dönüştürülür.",
+      "altAdimlar": [
+       "1. UTM koordinat sınırları ve piksel boyutunu transform nesnesine bağlayın.",
+       "2. Tek bantlı Float32 GeoTIFF dosyasını rasterio ile yazın.",
+       "3. Kentsel ısı adası sıcaklık anomalilerini gösteren lejantı ekleyin."
+      ],
+      "kazanim": {
+       "ders": "GEO 312E",
+       "madde": "Sıradan kriging (Ordinary Kriging) algoritmasıyla noktasal ölçümleri sürekli raster yüzeye dönüştürmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "GEO 312E",
+      "madde": "Sıradan kriging (Ordinary Kriging) algoritmasıyla noktasal ölçümleri sürekli raster yüzeye dönüştürmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için 100 metrelik anlık raster sıcaklık haritası ve açık kaynak kriging analiz modülü",
+  "senden": "Geomatik mühendisliği öğrencisi: Nokta verilerini mekânsal koordinat sistemine oturtur, yarı-varyogram ve kriging matrisini çözer.",
+  "bizden": "Meteoroloji öğrencisi: İstasyon sıcaklık verilerini doğrular, deniz etkisi ve mikroklima sapmalarını değerlendirir."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://geomatik.itu.edu.tr/arastirma/laboratuvarlar",
+   "aciklama": "İTÜ Geomatik Mühendisliği araştırma ve CBS laboratuvarı sayfası"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul 40 istasyon anlık sıcaklık kriging haritası döngüsü, 2026-10",
+   "aciklama": "İstasyon verilerinin enterpole edilerek kentsel ısı yüzeyine dönüşüm animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEO 312E (Spatial Analy. and Alg.in GIS)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEO&dersNo=312E"
+  },
+  {
+   "ad": "Cressie, N. (1993) Statistics for Spatial Data, Wiley · ISBN 978-0471002550",
+   "url": "https://openlibrary.org/isbn/9780471002550"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-INS-GEO-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "2eccf424bc15"
+ }
+}

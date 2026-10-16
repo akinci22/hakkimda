@@ -1,0 +1,136 @@
+{
+ "kod": "CEV 308E",
+ "ad": "Hava Kirlenmesi",
+ "bolum": "Çevre Mühendisliği",
+ "obsNo": "308",
+ "ozet": "Hava kirliliğinin kaynaklarını, kirletici türlerini ve atmosferik taşınım ilkelerini öğretir. Partikül madde, kükürt dioksit, azot oksitler ve ozon oluşumu ele alınır. Gauss duman dağılım simülasyonu, atmosferik kararlılık sınıfları, baca gazı yükselmesi, inversiyon kirlilik tuzakları ve emisyon kontrol teknolojileri ile hava kalitesi standartları incelenir.",
+ "neOgrenirsin": [
+  "Birincil ve ikincil hava kirleticilerinin oluşum kimyası ve kaynaklarını sınıflandırmak.",
+  "Gauss duman dağılım bağıntısıyla nokta kaynaklardan yere inen kirletici derişimini hesaplamak.",
+  "Pasquill-Gifford kararlılık sınıfları ve rüzgâr profiliyle dispersiyon katsayılarını bulmak.",
+  "Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek.",
+  "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Gauss nokta kaynak duman dağılım bağıntısı",
+   "tex": "C(x,y,z) = \\frac{Q}{2 \\pi u \\sigma_y \\sigma_z} \\exp\\left(-\\frac{y^2}{2 \\sigma_y^2}\\right) \\left[ \\exp\\left(-\\frac{(z-H)^2}{2 \\sigma_z^2}\\right) + \\exp\\left(-\\frac{(z+H)^2}{2 \\sigma_z^2}\\right) \\right]",
+   "terimler": [
+    [
+     "C(x,y,z)",
+     "kirletici derişimi",
+     "µg/m³"
+    ],
+    [
+     "Q",
+     "baca kirletici emisyon debisi",
+     "g/s"
+    ],
+    [
+     "u",
+     "baca tepesindeki rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "\\sigma_y, \\sigma_z",
+     "yatay ve dikey dağılım katsayıları",
+     "m"
+    ],
+    [
+     "H",
+     "etkin baca yüksekliği",
+     "m"
+    ]
+   ],
+   "sade": "Bacadan çıkan gaz ve partiküllerin rüzgârla taşınırken yanlara ve aşağıya doğru çan eğrisi şeklinde yayılmasını hesaplar. Yere değen dumanın insanlara ve şehre ulaşan anlık kirlilik miktarını belirler.",
+   "ornek": "Q = 50 g/s kükürt dioksit salan ve H = 80 m etkin yüksekliğe sahip bir bacadan, u = 4 m/s rüzgârda 2 km mesafede yer seviyesi derişimi yaklaşık 85 µg/m³ olarak hesaplanır.",
+   "nerede": "Sanayi bacalarının yerleşim yerlerinde yarattığı kirlilik haritasını çıkarırken ve baca etki mesafesini hesaplarken."
+  },
+  {
+   "ad": "Briggs etkin duman yükselmesi bağıntısı",
+   "tex": "\\Delta h = \\frac{1{,}6 \\, F_b^{1/3} \\, x^{2/3}}{u}",
+   "terimler": [
+    [
+     "\\Delta h",
+     "dumanın baca tepesinden itibaren yükselme miktarı",
+     "m"
+    ],
+    [
+     "F_b",
+     "termal yüzme akısı parametresi",
+     "m⁴/s³"
+    ],
+    [
+     "x",
+     "bacadan olan yatay mesafe",
+     "m"
+    ],
+    [
+     "u",
+     "baca tepesi rüzgâr hızı",
+     "m/s"
+    ]
+   ],
+   "sade": "Bacadan çıkan sıcak gazın çevredeki soğuk havadan hafif olması sebebiyle yukarı doğru tırmanma yüksekliğini hesaplar. Gaz ne kadar sıcaksa duman o kadar yükseğe çıkar ve yerdeki kirlilik o kadar azalır.",
+   "ornek": "Termal yüzme parametresi Fb = 60 m⁴/s³ olan sıcak baca gazı, u = 5 m/s rüzgârda 500 m mesafede yaklaşık 79 metre yükselerek etkin baca boyunu iki katına çıkarır.",
+   "nerede": "Sanayi tesislerinin emisyon etki analizinde etkin baca yüksekliği H = hs + delta h hesabında kullanılır."
+  },
+  {
+   "ad": "Hava Kalitesi İndeksi parçalı doğrusal hesabı",
+   "tex": "I = \\frac{I_{\\mathrm{hi}} - I_{\\mathrm{lo}}}{C_{\\mathrm{hi}} - C_{\\mathrm{lo}}} (C - C_{\\mathrm{lo}}) + I_{\\mathrm{lo}}",
+   "terimler": [
+    [
+     "I",
+     "hesaplanan hava kalitesi indeksi",
+     "birimsiz"
+    ],
+    [
+     "C",
+     "ölçülen 24 saatlik kirletici derişimi",
+     "µg/m³"
+    ],
+    [
+     "C_{\\mathrm{lo}}, C_{\\mathrm{hi}}",
+     "mevcut derişim aralığının alt ve üst sınır değerleri",
+     "µg/m³"
+    ],
+    [
+     "I_{\\mathrm{lo}}, I_{\\mathrm{hi}}",
+     "indeks kategorisinin alt ve üst puanları",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Ölçülen kirletici miktarını halkın anlayabileceği 0 ile 500 arasında standart bir puan ölçeğine çevirir. Puan 100'ü aştığında hassas gruplar için sağlık uyarısı verilir.",
+   "ornek": "24 saatlik ortalama PM2.5 derişimi 35,5 µg/m³ olduğunda HKİ değeri tam 101 çıkar; bu durum hassas gruplar için sağlıksız turuncu uyarı kategorisine denk gelir.",
+   "nerede": "İstasyon verilerini kamuoyuna açık hava kalitesi indeksine ve sağlık riski uyarısına dönüştürürken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gaussian_Plume_Model.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Nokta kaynaktan çıkan kirleticilerin rüzgâr yönünde Gauss duman dağılımı şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul genelinde PM2.5 konsantrasyonu dağılımı, Sensor.Community, 2024-01-15..20, 1 saatlik",
+   "aciklama": "Kış fırtınası ve inversiyon dönemlerinde mahalle bazlı partikül kirliliği animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · CEV 308 (Hava Kirlenmesi)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CEV&dersNo=308"
+  },
+  {
+   "ad": "Seinfeld, J. H. ve Pandis, S. N. (2016) Atmospheric Chemistry and Physics, 3. baskı, Wiley · ISBN 978-1-118-94740-1",
+   "url": "https://openlibrary.org/isbn/9781118947401"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CEV&dersNo=308"
+}

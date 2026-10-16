@@ -1,0 +1,112 @@
+{
+ "kod": "MIM 231E",
+ "ad": "Building Materials",
+ "bolum": "Mimarlık",
+ "obsNo": "231E",
+ "ozet": "Yapı malzemelerinin fiziksel, mekanik, termal ve higrotermal özelliklerini öğretir. Çok katmanlı bina kabuğunda toplam ısı geçiş katsayısı (U-değeri), buhar difüzyon direnci ve Glaser yöntemiyle katmanlar arası nem yoğuşması riski analiz edilir. TS 825 ve EN ISO 13788 standartlarında malzeme seçiminin temel dersidir.",
+ "neOgrenirsin": [
+  "Yapı malzemelerinin ısıl iletkenlik ve buhar difüzyon direnç faktörlerini kavramak.",
+  "Çok katmanlı duvar kesitlerinde toplam ısıl direnç ve U-değerini hesaplamak.",
+  "Glaser yöntemiyle bina kabuğunda ara yüzey buhar basınçlarını ve yoğuşma derinliğini belirlemek.",
+  "İç ve dış ortam sıcaklık ve nem farklarına göre küf ve nem hasarı riskini değerlendirmek.",
+  "TS 825 standartlarına uygun yalıtım malzemesi ve buhar kesici katman tasarlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Çok katmanlı bina kabuğu U-değeri denklemi",
+   "tex": "U = \\frac{1}{R_{si} + \\sum_{i=1}^n \\frac{d_i}{\\lambda_i} + R_{se}}",
+   "terimler": [
+    [
+     "U",
+     "toplam ısı geçiş katsayısı",
+     "\\mathrm{W}/(\\mathrm{m}^2 \\cdot \\mathrm{K})"
+    ],
+    [
+     "R_{si}",
+     "iç yüzey ısıl direnci",
+     "\\mathrm{m}^2 \\cdot \\mathrm{K}/\\mathrm{W}"
+    ],
+    [
+     "d_i",
+     "i'nci katman malzeme kalınlığı",
+     "\\mathrm{m}"
+    ],
+    [
+     "\\lambda_i",
+     "i'nci malzemenin ısıl iletkenlik katsayısı",
+     "\\mathrm{W}/(\\mathrm{m} \\cdot \\mathrm{K})"
+    ],
+    [
+     "R_{se}",
+     "dış yüzey ısıl direnci",
+     "\\mathrm{m}^2 \\cdot \\mathrm{K}/\\mathrm{W}"
+    ]
+   ],
+   "sade": "Bina duvarını oluşturan tuğla, taş yünü, sıva ve yalıtım katmanlarının içeriden dışarıya ısı kaçışını ne kadar yavaşlattığını hesaplar. U-değeri ne kadar küçükse binanın kışın sıcak, yazın serin kalması o kadar kolay olur.",
+   "ornek": "20 cm gazbeton (lambda = 0,13 W/mK) ve 8 cm taşyünü (lambda = 0,035 W/mK) içeren duvarda R_toplam = 0,13 + 1,54 + 2,29 + 0,04 = 4,00 m2K/W ve U = 0,25 W/m2K çıkar; bu değer TS 825 İstanbul bölgesi sınırını karşılar.",
+   "nerede": "F-MIM-MIM-02 projesinde farklı duvar kesitlerinin kış şartlarında toplam ısı kaybını ve ısıl geçirgenliğini hesaplarken."
+  },
+  {
+   "ad": "Glaser yöntemi ile ara yüzey su buharı kısmi basıncı",
+   "tex": "p_{v,j} = p_{v,i} - \\frac{\\sum_{k=1}^j s_{d,k}}{S_{d,\\mathrm{toplam}}} (p_{v,i} - p_{v,e})",
+   "terimler": [
+    [
+     "p_{v,j}",
+     "j'nci katman ara yüzeyindeki su buharı kısmi basıncı",
+     "\\mathrm{Pa}"
+    ],
+    [
+     "p_{v,i}",
+     "iç ortam su buharı kısmi basıncı",
+     "\\mathrm{Pa}"
+    ],
+    [
+     "p_{v,e}",
+     "dış ortam su buharı kısmi basıncı",
+     "\\mathrm{Pa}"
+    ],
+    [
+     "s_{d,k}",
+     "k'ncı katmanın eşdeğer hava tabakası kalınlığı (\\mu_k \\cdot d_k)",
+     "\\mathrm{m}"
+    ],
+    [
+     "S_{d,\\mathrm{toplam}}",
+     "duvar kesitinin toplam buhar difüzyon direnci",
+     "\\mathrm{m}"
+    ]
+   ],
+   "sade": "İç mekândaki nemin dışarı doğru kaçarken duvar katmanları arasında hangi basınca düşeceğini adım adım hesaplar. Hesaplanan kısmi basınç o katmandaki doymuş buhar basıncını aşarsa su damlacıkları oluşarak yoğuşma başlar.",
+   "ornek": "İçeride 20 °C ve %50 nem (pv,i = 1170 Pa), dışarıda 0 °C ve %90 nem (pv,e = 550 Pa) iken, yalıtımın soğuk yüzünde pv > psat olursa yoğuşma gerçekleşir ve buhar kesici katmanın gerekliliği kanıtlanır.",
+   "nerede": "F-MIM-MIM-02 projesinde kış hava şartlarında duvar katmanları arasında ara yüzey yoğuşma riskini Glaser grafiğiyle gösterirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Thermal_insulation_wall.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Bina kabuğu çok katmanlı dış duvar kesiti ve ısı akışı yönü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul kış dönemi saatlik 2 metre sıcaklık ve çiy noktası serisi, 2026",
+   "aciklama": "Dış hava sıcaklığı ile çiy noktası yaklaşması ve yoğuşma riski döngüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MIM 231E (Building Materials)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MIM&dersNo=231E"
+  },
+  {
+   "ad": "Hens, H. (2017) Building Physics - Heat, Air and Moisture, Ernst & Sohn · ISBN 978-3433031971",
+   "url": "https://www.wiley.com/en-us/Building+Physics+Heat%2C+Air+and+Moisture%3A+Fundamentals+and+Engineering+Methods+with+Examples+and+Exercises%2C+3rd+Edition-p-9783433031971"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MIM&dersNo=231E"
+}

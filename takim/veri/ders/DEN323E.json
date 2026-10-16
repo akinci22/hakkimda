@@ -1,0 +1,150 @@
+{
+ "kod": "DEN 323E",
+ "ad": "Wave Mechanics",
+ "bolum": "Gemi ve Deniz Teknolojisi Mühendisliği",
+ "obsNo": "323",
+ "ozet": "Doğrusal dalga teorisi (Airy), dalga kinematiği ve dinamikleri, dispersiyon bağıntısı, dalga enerjisi ve grup hızı ile rüzgâr kaynaklı dalga spektrumlarını öğretir. Deniz yapılarının ve gemilerin maruz kaldığı dalga kuvvetlerini, enerji akısını ve spektral dalga istatistiğini hesaplamanın temel dersidir.",
+ "neOgrenirsin": [
+  "Doğrusal dalga potansiyeli teorisiyle serbest yüzey sınır koşullarını çözmek.",
+  "Dispersiyon bağıntısıyla dalga boyu, frekans ve su derinliği ilişkisini kurmak.",
+  "Dalga enerjisi, enerji akısı ve grup hızı hesaplarını derin ve sığ suda yapmak.",
+  "Rüzgâr kaynaklı düzensiz dalgalar için Pierson-Moskowitz spektrumunu hesaplamak.",
+  "Spektral momentler üzerinden belirgin dalga yüksekliğini (Hs) tahmin etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Doğrusal dalga dispersiyon bağıntısı",
+   "tex": "\\omega^2 = g k \\tanh(k h)",
+   "terimler": [
+    [
+     "\\omega",
+     "açısal dalga frekansı (2\\pi / T)",
+     "rad/s"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "m/s²"
+    ],
+    [
+     "k",
+     "dalga sayısı (2\\pi / L)",
+     "rad/m"
+    ],
+    [
+     "h",
+     "su derinliği",
+     "m"
+    ],
+    [
+     "\\tanh",
+     "hiperbolik tanjant fonksiyonu",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Derinlik ve periyot bilindiğinde dalga boyunu belirleyen temel denklemdir. Derin suda dalga boyu sadece periyoda bağlıyken, sığlaşan kıyılarda taban sürtünmesi nedeniyle derinlik dalgayı yavaşlatır.",
+   "ornek": "Marmara Denizi'nde h = 50 m derinlikte periyodu T = 6 s olan bir dalganın açısal frekansı omega = 1,05 rad/s olur; derin su yaklaşımıyla dalga boyu L yaklaşık 56 m hesaplanır.",
+   "nerede": "GEM-01 ve GEM-04 projelerinde rüzgâr periyodundan dalga boyu ve yayılma hızına geçerken."
+  },
+  {
+   "ad": "Pierson-Moskowitz tam gelişmiş dalga spektrumu",
+   "tex": "S(\\omega) = \\frac{\\alpha g^2}{\\omega^5} \\exp\\left[-\\beta \\left(\\frac{g}{U_{10} \\omega}\\right)^4\\right]",
+   "terimler": [
+    [
+     "S(\\omega)",
+     "dalga enerjisi spektral yoğunluğu",
+     "m²·s"
+    ],
+    [
+     "\\alpha",
+     "Phillips sabiti (yaklaşık 0,0081)",
+     "birimsiz"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "m/s²"
+    ],
+    [
+     "\\omega",
+     "açısal dalga frekansı",
+     "rad/s"
+    ],
+    [
+     "\\beta",
+     "şekil katsayısı (yaklaşık 0,74)",
+     "birimsiz"
+    ],
+    [
+     "U_{10}",
+     "deniz yüzeyinden 10 m yükseklikteki rüzgâr hızı",
+     "m/s"
+    ]
+   ],
+   "sade": "Belirli bir hızda kesintisiz esen rüzgârın denizde üretebileceği en yüksek dalga enerjisini ve frekans dağılımını verir. Rüzgâr hızlandıkça dalga enerjisinin zirve noktası daha alçak frekanslara kayar.",
+   "ornek": "10 metre yükseklikte U_10 = 15 m/s rüzgâr esiyorsa spektrumun tepe frekansı omega_p yaklaşık 0,57 rad/s (T_p = 11 s) çıkar; spektrum entegre edilerek belirgin dalga yüksekliği H_s = 4,8 m bulunur.",
+   "nerede": "GEM-01 projesinde ERA5 rüzgâr hızından Marmara için dalga spektrumu ve belirgin dalga yüksekliği türetirken."
+  },
+  {
+   "ad": "Belirgin dalga yüksekliği (spektral moment bağıntısı)",
+   "tex": "H_s \\approx 4 \\sqrt{m_0}, \\qquad m_0 = \\int_0^\\infty S(\\omega) \\, d\\omega",
+   "terimler": [
+    [
+     "H_s",
+     "belirgin dalga yüksekliği (en yüksek üçte birlik dalgaların ortalaması)",
+     "m"
+    ],
+    [
+     "m_0",
+     "dalga spektrumunun sıfırıncı momenti (yüzey dalgalanma varyansı)",
+     "m²"
+    ],
+    [
+     "S(\\omega)",
+     "frekansa bağlı dalga spektrumu",
+     "m²·s"
+    ],
+    [
+     "\\omega",
+     "açısal frekans",
+     "rad/s"
+    ]
+   ],
+   "sade": "Dalga spektrumunun altındaki toplam alanın karekökünün dört katı, denizcilerin gözle tahmin ettiği belirgin dalga boyuna eşittir. Açık deniz şamandıraları dalga boyunu bu varyanstan hesaplar.",
+   "ornek": "Spektrum integrali m_0 = 0,36 m² olarak hesaplandığında belirgin dalga yüksekliği H_s = 4 * 0,6 = 2,4 metre olarak bulunur.",
+   "nerede": "GEM-01 ve GEM-04 projelerinde şamandıra ölçümleriyle tahmin edilen dalga yüksekliğini kıyaslarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Airy_wave_theory.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Doğrusal dalga teorisi (Airy): su parçacıklarının derinlik boyunca değişen yörüngeleri"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Denizi belirgin dalga yüksekliği (Hs) ve rüzgâr alanı döngüsü",
+   "aciklama": "Kuzeydoğudan esen poyraz fırtınasında Marmara açıklarında dalga boyunun 2 metreyi aşması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · DEN 323E (Wave Mechanics)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=DEN&dersNo=323"
+  },
+  {
+   "ad": "Dean, R. G. & Dalrymple, R. A. (1991) Water Wave Mechanics for Engineers and Scientists, World Scientific · ISBN 978-9810204204",
+   "url": "https://openlibrary.org/isbn/9789810204204"
+  },
+  {
+   "ad": "Holthuijsen, L. H. (2007) Waves in Oceanic and Coastal Waters, Cambridge University Press · ISBN 978-0521859486",
+   "url": "https://openlibrary.org/isbn/9780521859486"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=DEN&dersNo=323"
+}

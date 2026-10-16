@@ -1,0 +1,126 @@
+{
+ "kod": "UCK 322E",
+ "ad": "Flight Mechanics",
+ "bolum": "Uçak Mühendisliği",
+ "obsNo": "322E",
+ "ozet": "Uçakların boylamasına ve yanal-yönsel statik ve dinamik kararlılık ilkelerini, serbest uçuş hareket denklemlerini öğretir. Atmosferik rüzgâr hamleleri, açık hava türbülansı (CAT) ve dikey rüzgâr gradyanlarının uçağın yük katsayısı, hücum açısı ve uçuş emniyetine etkileri analiz edilir. Türbülanslı atmosferde uçak dinamik tepkileri incelenir.",
+ "neOgrenirsin": [
+  "Uçağın boylamasına ve yanal-yönsel hareket diferansiyel denklemlerini kurmak.",
+  "Dikey hava hamlelerinde uçağın dinamik yük katsayısı faktörünü (load factor) hesaplamak.",
+  "Açık hava türbülansı ve gradyan Richardson sayısı kritik eşiklerini uçuş dinamiğine bağlamak.",
+  "Uçuş mekaniğinde otomatik uçuş kontrol sistemlerinin türbülans tepkilerini incelemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Türbülans dinamik yük katsayısı artış formülü",
+   "tex": "\\Delta n = \\frac{\\rho_0 \\cdot C_{L\\alpha} \\cdot w_{\\mathrm{gust}} \\cdot V_{\\mathrm{TAS}}}{2 \\cdot (W / S)} \\cdot K_g",
+   "terimler": [
+    [
+     "\\Delta n",
+     "türbülans hamlesi kaynaklı ivmelenme yük faktörü artışı",
+     "birimsiz"
+    ],
+    [
+     "\\rho_0",
+     "deniz seviyesi standart hava yoğunluğu",
+     "\\mathrm{kg}/\\mathrm{m}^3"
+    ],
+    [
+     "C_{L\\alpha}",
+     "kanat taşıma eğrisi eğimi (dCL/dalpha)",
+     "1/\\mathrm{rad}"
+    ],
+    [
+     "w_{\\mathrm{gust}}",
+     "dikey türbülans hamle hızı",
+     "\\mathrm{m}/\\mathrm{s}"
+    ],
+    [
+     "V_{\\mathrm{TAS}}",
+     "uçağın gerçek hava sürati (true airspeed)",
+     "\\mathrm{m}/\\mathrm{s}"
+    ],
+    [
+     "W / S",
+     "uçağın kanat yüklemesi (ağırlık / kanat alanı)",
+     "\\mathrm{N}/\\mathrm{m}^2"
+    ],
+    [
+     "K_g",
+     "hamle hafifletme faktörü (gust alleviation factor)",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Uçak açık hava türbülansına girdiğinde yolcuların ve gövdenin maruz kaldığı ani G kuvvetini dikey rüzgâr hızına ve uçuş süratine bağlar. Aşırı G kuvveti yapısal gerilme doğurabilir.",
+   "ornek": "Hava sürati 230 m/s (Mach 0,78), kanat yükü 4500 N/m2 ve dikey hamle w = 9 m/s iken Delta n = 1,45 g ek yük oluşur; toplam yük faktörü n = 2,45 g ile yapısal emniyet sınırına yaklaşır.",
+   "nerede": "F-UUBF-UCK-02 ve F-UUBF-UCK-03 projelerinde açık hava türbülansının yolcu uçağı üzerindeki yapısal yükünü hesaplarken."
+  },
+  {
+   "ad": "Gradyan Richardson sayısı ve türbülans kriteri",
+   "tex": "Ri = \\frac{\\frac{g}{\\theta} \\frac{\\partial \\theta}{\\partial z}}{\\left(\\frac{\\partial u}{\\partial z}\\right)^2 + \\left(\\frac{\\partial v}{\\partial z}\\right)^2}",
+   "terimler": [
+    [
+     "Ri",
+     "gradyan Richardson sayısı",
+     "birimsiz"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "\\mathrm{m}/\\mathrm{s}^2"
+    ],
+    [
+     "\\theta",
+     "potansiyel sıcaklık",
+     "\\mathrm{K}"
+    ],
+    [
+     "\\frac{\\partial \\theta}{\\partial z}",
+     "dikey potansiyel sıcaklık gradyanı (statik kararlılık)",
+     "\\mathrm{K}/\\mathrm{m}"
+    ],
+    [
+     "\\frac{\\partial u}{\\partial z}",
+     "doğu rüzgâr bileşeninin dikey kayması",
+     "\\mathrm{s}^{-1}"
+    ],
+    [
+     "\\frac{\\partial v}{\\partial z}",
+     "kuzey rüzgâr bileşeninin dikey kayması",
+     "\\mathrm{s}^{-1}"
+    ]
+   ],
+   "sade": "Atmosferik tabakalaşmanın kararlılığı ile rüzgâr kaymasının türbülans üretme potansiyelini oranlar. Ri sayısı kritik 0,25 değerinin altına indiğinde dinamik kararsızlık başlar ve açık hava türbülansı (CAT) patlak verir.",
+   "ornek": "300 hPa jet akımı seviyesinde theta = 320 K, dtheta/dz = 0,003 K/m ve dikey rüzgâr kayması dU/dz = 0,016 s-1 iken Ri = (9,81 / 320 * 0,003) / (0,016)^2 = 0,359 / 0,000256 ≈ 0,36 bulunur; rüzgâr kayması 0,022 s-1'e çıktığında Ri = 0,19 ile şiddetli türbülans tetiklenir.",
+   "nerede": "F-UUBF-UCK-02 projesinde üst atmosfer jet akımlarında açık hava türbülansı indeksini hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Kelvin_Helmholtz_instability.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Rüzgâr kayması ve düşük Richardson sayısı sonucu gelişen Kelvin-Helmholtz türbülans dalgaları"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara ve Balkanlar 300 hPa jet akımı ve Richardson sayısı alanı, 2026",
+   "aciklama": "Jet akımları kenarında kritik Richardson sayısı ve açık hava türbülansı alanları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · UCK 322E (Flight Mechanics)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=UCK&dersNo=322E"
+  },
+  {
+   "ad": "Nelson, R. C. (1998) Flight Stability and Automatic Control, McGraw-Hill · ISBN 978-0070462731",
+   "url": "https://openlibrary.org/isbn/9780070462731"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=UCK&dersNo=322E"
+}

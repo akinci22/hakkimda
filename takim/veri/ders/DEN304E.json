@@ -1,0 +1,150 @@
+{
+ "kod": "DEN 304E",
+ "ad": "Oceanography",
+ "bolum": "Gemi ve Deniz Teknolojisi Mühendisliği",
+ "obsNo": "304",
+ "ozet": "Okyanusların fiziksel yapısını, deniz suyu özelliklerini (sıcaklık, tuzluluk, yoğunluk), rüzgâr kaynaklı yüzey akıntılarını, Ekman spiralini ve termohalin sirkülasyonu öğretir. Deniz-atmosfer etkileşimi, ısı ve nem alışverişi ile Boğazlar sistemindeki çift tabakalı akıntı dinamiklerini incelemenin temel dersidir.",
+ "neOgrenirsin": [
+  "Deniz suyunun durum denklemiyle sıcaklık ve tuzluluktan yoğunluk hesaplamak.",
+  "Ekman taşıması ve sürtünme derinliğiyle rüzgârın akıntılara etkisini formüle etmek.",
+  "T-S diyagramlarıyla su kütlelerinin karışımını ve tabakalaşmasını analiz etmek.",
+  "Boğazlar sistemindeki çift tabakalı hidrostatik akıntı dengesini çözmek.",
+  "Deniz yüzeyi buharlaşması ve gizli ısı akısıyla deniz-hava etkileşimini analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Deniz suyu yoğunluğu ve termohalin bağıntı",
+   "tex": "\\rho(S, T) \\approx \\rho_0 \\left[1 - \\alpha (T - T_0) + \\beta (S - S_0)\\right]",
+   "terimler": [
+    [
+     "\\rho(S, T)",
+     "deniz suyu yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "\\rho_0",
+     "referans deniz suyu yoğunluğu (yaklaşık 1025)",
+     "kg/m³"
+    ],
+    [
+     "\\alpha",
+     "termal genleşme katsayısı",
+     "1/°C"
+    ],
+    [
+     "T - T_0",
+     "referans sıcaklıktan sapma",
+     "°C"
+    ],
+    [
+     "\\beta",
+     "tuzluluk büzülme katsayısı",
+     "1/PSU"
+    ],
+    [
+     "S - S_0",
+     "referans tuzluluktan sapma",
+     "PSU"
+    ]
+   ],
+   "sade": "Deniz suyunun ağırlığını sıcaklık ve tuzluluk belirler. Su soğudukça ve tuzlandıkça ağırlaşarak dibe çöker. Boğazlar'da Karadeniz'in az tuzlu hafif suyu üstten güneye, Akdeniz'in tuzlu ağır suyu alttan kuzeye akar.",
+   "ornek": "İstanbul Boğazı yüzeyinde T = 12 °C, S = 18 PSU iken yoğunluk yaklaşık 1014 kg/m³ çıkar; 40 m derinde Akdeniz kökenli dip suyunda S = 38 PSU olduğunda yoğunluk 1029 kg/m³ seviyesine ulaşır.",
+   "nerede": "GEM-03 projesinde Boğaz'daki deniz-atmosfer ısı dengesini ve yüzey su kütlesi kararlılığını hesaplarken."
+  },
+  {
+   "ad": "Ekman tabaka derinliği ve rüzgâr sürtünmesi",
+   "tex": "D_E = \\pi \\sqrt{\\frac{2 A_z}{|f|}}",
+   "terimler": [
+    [
+     "D_E",
+     "Ekman sürtünme tabakası kalınlığı",
+     "m"
+    ],
+    [
+     "A_z",
+     "dikey türbülanslı girdap vizkozitesi",
+     "m²/s"
+    ],
+    [
+     "f",
+     "Coriolis parametresi (2\\Omega \\sin\\varphi)",
+     "s⁻¹"
+    ]
+   ],
+   "sade": "Rüzgârın deniz yüzeyine uyguladığı sürtünme kuvvetinin suyun ne kadar derinine işleyeceğini söyler. Bu derinlik boyunca akıntı yönü Coriolis kuvvetiyle rüzgârın sağına doğru sapan bir spiral çizer.",
+   "ornek": "Marmara Denizi enleminde (41° K, f = 9,6 * 10^-5 s^-1) ortalama girdap viskozitesi A_z = 0,02 m²/s alındığında Ekman sürtünme derinliği yaklaşık 64 metre olarak hesaplanır.",
+   "nerede": "GEM-01 ve GEM-02 projelerinde rüzgârın ürettiği yüzey akıntı hızını ve gemi rotasındaki sürüklenme payını belirlerken."
+  },
+  {
+   "ad": "Deniz yüzeyi buharlaşma ve gizli ısı akısı",
+   "tex": "Q_E = \\rho_a L_v C_E U_{10} (q_s - q_a)",
+   "terimler": [
+    [
+     "Q_E",
+     "deniz yüzeyinden atmosfere gizli ısı ve buharlaşma akısı",
+     "W/m²"
+    ],
+    [
+     "\\rho_a",
+     "yüzey hava yoğunluğu (yaklaşık 1,22)",
+     "kg/m³"
+    ],
+    [
+     "L_v",
+     "suyun buharlaşma gizli ısısı (2,5 \\times 10^6 J/kg)",
+     "J/kg"
+    ],
+    [
+     "C_E",
+     "türbülanslı buharlaşma transfer katsayısı",
+     "birimsiz"
+    ],
+    [
+     "U_{10}",
+     "10 m yükseklikteki rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "q_s - q_a",
+     "deniz yüzeyi ile hava arasındaki doymuş özgül nem farkı",
+     "kg/kg"
+    ]
+   ],
+   "sade": "Rüzgâr sert estikçe ve deniz yüzeyi üzerindeki havadan sıcak kaldıkça atmosfere buhar transferi katlanır. Sonbaharda ılık deniz üstüne aniden soğuk hava oturduğunda buharlaşan nem hızla yoğunlaşıp deniz sisi üretir.",
+   "ornek": "Deniz suyu 16 °C (q_s = 0,0115 kg/kg), hava 8 °C (q_a = 0,0055 kg/kg) ve rüzgâr 4 m/s iken Q_E = 88 W/m² gizli ısı akısıyla Boğaz üzerinde yoğun adveksiyon sisi tetiklenir.",
+   "nerede": "GEM-03 projesinde Boğaz'da deniz yüzeyinden nem transferi ve sis oluşum eşiğini tespit ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ekman_spiral.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Ekman spirali: rüzgâr sürtünmesi ve Coriolis etkisiyle derinlikle dönen okyanus akıntı vektörleri"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Denizi yüzey sıcaklığı ve 2 metre çiy noktası farkı döngüsü",
+   "aciklama": "Soğuk hava dalgalarında deniz yüzeyi ile atmosfer arasındaki nem akısı ve doygunluk alanı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · DEN 304E (Oceanography)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=DEN&dersNo=304"
+  },
+  {
+   "ad": "Talley, L. D. et al. (2011) Descriptive Physical Oceanography: An Introduction, 6. baskı, Academic Press · ISBN 978-0750645522",
+   "url": "https://openlibrary.org/isbn/9780750645522"
+  },
+  {
+   "ad": "Stewart, R. H. (2008) Introduction to Physical Oceanography, Texas A&M University",
+   "url": "https://openlibrary.org/isbn/9780123848666"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=DEN&dersNo=304"
+}

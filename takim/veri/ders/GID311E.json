@@ -1,0 +1,117 @@
+{
+ "kod": "GID 311E",
+ "ad": "Food Microbiology",
+ "bolum": "Gıda Mühendisliği",
+ "obsNo": "311",
+ "ozet": "Gıdalarda bulunan mikroorganizmaların fizyolojisini, üreme dinamiklerini, bozulma mekanizmalarını ve patojen kontrolünü öğretir. Sıcaklık, su aktivitesi ve pH gibi çevresel faktörlerin mikrobiyal kinetiğe etkisi incelenir. Soğuk zincir lojistiğinde ve depolamada mikroklimatik sıcaklık dalgalanmalarının mikrobiyal üreme hızına etkisini hesaplamayı sağlar.",
+ "neOgrenirsin": [
+  "Mikrobiyal üreme eğrisini fazlarına (lag, log, durağan) ayırıp analiz etmek.",
+  "Sıcaklık ve su aktivitesinin patojen bakteri üreme kinetiğine etkisini hesaplamak.",
+  "Ratkowsky karekök denklemiyle sıcaklığa bağlı spesifik üreme hızını kestirmek.",
+  "Gıda bozulma indikatörlerini ve raf ömrü dinamiklerini belirlemek.",
+  "Soğuk zincir sıcaklık kırılmalarında mikrobiyal risk analizi yapmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Ratkowsky sıcaklığa bağlı mikrobiyal spesifik üreme hızı",
+   "tex": "\\sqrt{\\mu} = b \\cdot (T - T_{\\min}) \\cdot \\left(1 - e^{c \\cdot (T - T_{\\max})}\\right)",
+   "terimler": [
+    [
+     "\\mu",
+     "spesifik mikrobiyal üreme hızı",
+     "1/saat"
+    ],
+    [
+     "b",
+     "Regresyon katsayısı",
+     "1/(K·√saat)"
+    ],
+    [
+     "T",
+     "ortam sıcaklığı",
+     "K veya °C"
+    ],
+    [
+     "T_{\\min}",
+     "minimum üreme sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{\\max}",
+     "maksimum üreme sıcaklığı",
+     "°C"
+    ],
+    [
+     "c",
+     "yüksek sıcaklık inhibisyon parametresi",
+     "1/°C"
+    ]
+   ],
+   "sade": "Sıcaklık arttıkça bakterilerin üreme hızının nasıl katlanarak hızlandığını gösterir. Soğuk zincirde sıcaklık birkaç derece bile yükselse bakteri çoğalma hızı dramatik biçimde artar.",
+   "ornek": "Listeria monocytogenes için T_min = -1,5 °C ve b = 0,02 iken sıcaklık 4 °C'den 12 °C'ye çıktığında spesifik üreme hızı saatte 0,012'den 0,073'e çıkarak 6 katına fırlar.",
+   "nerede": "F-KMF-GID-01 projesinde soğuk zincir taşıma sırasında hava sıcaklığı kırılmalarından bakteri artış hızını hesaplarken."
+  },
+  {
+   "ad": "Mikrobiyal logaritmik üreme ve ikiye katlanma bağıntısı",
+   "tex": "N(t) = N_0 \\cdot 2^{t / g} = N_0 \\cdot e^{\\mu t}",
+   "terimler": [
+    [
+     "N(t)",
+     "t anındaki bakteri popülasyonu",
+     "KOB/g"
+    ],
+    [
+     "N_0",
+     "başlangıç bakteri popülasyonu",
+     "KOB/g"
+    ],
+    [
+     "t",
+     "maruziyet süresi",
+     "saat"
+    ],
+    [
+     "g",
+     "generasyon süresi (ikiye katlanma zamanı)",
+     "saat"
+    ],
+    [
+     "\\mu",
+     "spesifik üreme hızı",
+     "1/saat"
+    ]
+   ],
+   "sade": "Bakterilerin sabit sıcaklıkta zamanla üstel olarak çoğalma miktarını hesaplar. Belirli bir süre sonra gıdadaki bakteri yükünün bozulma eşiğini aşıp aşmadığını gösterir.",
+   "ornek": "Başlangıçta gramda 100 koloni (N0 = 100 KOB/g) olan tavuk etinde mu = 0,2 1/saat iken 12 saatlik sıcak hava maruziyetinde N(12) ≈ 1100 KOB/g seviyesine ulaşır.",
+   "nerede": "F-KMF-GID-01 projesinde frigorifik araçtaki sıcaklık artış süresine göre kümülatif bakteri sayısını bulurken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Bacterial_growth_curve.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Mikrobiyal üreme eğrisi: gecikme, logaritmik artış, durağan ve ölüm fazları"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye otoyol lojistik koridoru 2 m sıcaklık anomalisi, ERA5, 2026 yaz",
+   "aciklama": "Soğuk zincir güzergâhı boyunca aşırı sıcaklık kırılması riski"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GID 311E (Food Microbiology)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GID&dersNo=311"
+  },
+  {
+   "ad": "Adams, M. R., & Moss, M. O. (2008) Food Microbiology, Royal Society of Chemistry · ISBN 978-0854042845",
+   "url": "https://pubs.rsc.org/en/content/ebook/978-0-85404-284-5"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GID&dersNo=311"
+}

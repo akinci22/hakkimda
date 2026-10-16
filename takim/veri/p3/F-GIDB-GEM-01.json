@@ -1,0 +1,377 @@
+{
+ "id": "F-GIDB-GEM-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "GEM",
+  "bolum": "Gemi İnşaatı ve Gemi Makineleri Mühendisliği",
+  "fakulteKod": "GIDB",
+  "fakulte": "Gemi İnşaatı ve Deniz Bilimleri Fakültesi"
+ },
+ "ad": "Marmara geçişi ilave dalga direnci karnesi",
+ "ne": "ECMWF dalga yüksekliği ve periyodu tahminlerinden tipik bir konteyner gemisi için ilave direnç ve yakıt cezasını hesaplamak.",
+ "adimlar": [
+  "Python'da 40 satır: STAWAVE-1 formülüyle 30 günlük dalga verisinden ilave direnç eğrisi çizmek."
+ ],
+ "sonuc": "İlave gemi direnci hesaplama modülü",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "GEM 327E",
+    "ad": "Ship Hydrodynamics(Resistance)"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "MARIN Hidrodinamik ve Denizcilik Enstitüsü",
+   "ne": "Açık deniz dalgalarında gemi ilave direnci ve hava rotalaması üzerine çalışan araştırma merkezi.",
+   "url": "https://www.marin.nl/en/facilities/seakeeping-and-manoeuvring-basin",
+   "ayrinti": {
+    "neYaptilar": "MARIN enstitüsü, dalga havuzlarında farklı gemi formları için STAWAVE bağıntılarını test ederek dalga direnci veri tabanı oluşturdu.",
+    "nasil": "ECMWF dalga tahminleri ile gövde hidrodinamiği eşleştirilerek Kuzey Denizi ve Akdeniz rotalarında ilave direnç hesaplandı.",
+    "neEdindiler": "Dalga kaynaklı hız kaybı kestirimlerinde yüzde 90 doğruluk sağlayarak IMO enerji verimliliği indeksine katkı verdiler.",
+    "bizNasilKatki": "MARIN'in açık STAWAVE-1 hesaplama yöntemini Marmara Denizi fırtına şartlarına 40 satırlık Python koduyla uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "MARIN Dalga Havuzu ve Hidrodinamik Portali",
+      "url": "https://www.marin.nl/en/facilities/seakeeping-and-manoeuvring-basin",
+      "tur": "web"
+     },
+     {
+      "ad": "Gemilerde İlave Dalga Direnci ve Hız Kaybı Raporu",
+      "url": "https://www.marin.nl/en/publications",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.marin.nl/en/facilities/seakeeping-and-manoeuvring-basin",
+      "aciklama": "MARIN denizcilik ve dalga test havuzu tesisi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Denizi belirgin dalga yüksekliği ve periyodu animasyonu, 2026-10",
+      "aciklama": "Marmara geçişinde fırtına dalgası yüksekliği döngüsü animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "StormGeo Denizcilik Hava ve Rota Hizmetleri",
+   "ne": "Küresel ticaret filolarına dalga direnci ve yakıt tasarrufu odaklı hava rotalaması sağlayan deniz teknolojileri şirketi.",
+   "url": "https://www.stormgeo.com/solutions/shipping/",
+   "ayrinti": {
+    "neYaptilar": "StormGeo, dalga yüksekliği ve periyodu verilerini gemi gövde karakteristikleriyle birleştirerek ilave yakıt cezasını anlık hesapladı.",
+    "nasil": "ECMWF ve GFS dalga spektrumları ITTC-1957 ve STAWAVE direnç bağıntılarıyla gerçek zamanlı olarak entegre edildi.",
+    "neEdindiler": "Yılda 65 binden fazla ticari gemi seferinde rota optimizasyonuyla ortalama yüzde 12 yakıt ve sera gazı tasarrufu sağladılar.",
+    "bizNasilKatki": "Şirketin ilave direnç ve yakıt cezası hesap mantığını Marmara Boğaz geçiş senaryolarında test ederiz.",
+    "referanslar": [
+     {
+      "ad": "StormGeo Denizcilik Rota Çözümleri Sayfası",
+      "url": "https://www.stormgeo.com/solutions/shipping/",
+      "tur": "web"
+     },
+     {
+      "ad": "Akıllı Hava Rotalaması Teknik Raporu",
+      "url": "https://www.stormgeo.com/resources/white-papers/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.stormgeo.com/solutions/shipping/",
+      "aciklama": "StormGeo denizcilik operasyonel rota analitiği arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Kelvin_wake.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Gemi gövdesinin oluşturduğu Kelvin dalga deseni şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Gemi Hidrodinamiği ve Dalga Direnci Ekibi",
+   "ne": "ECMWF dalga tahminlerinden Marmara geçişi için ilave gemi direnci ve yakıt karnesi çıkaran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/marmara-dalga-direnci-karnesi",
+   "ayrinti": {
+    "neYaptilar": "Gemi inşaatı ve meteoroloji öğrencileri, Marmara Denizi fırtına dalgalarında tipik bir konteyner gemisinin ilave direncini hesaplayan Python kodu yazdı.",
+    "nasil": "ECMWF dalga yüksekliği ve GEM 327E STAWAVE-1 formülü birleştirilerek 30 günlük sefer yakıt cezası eğrisi çıkarıldı.",
+    "neEdindiler": "Kuzeyli sert poyraz fırtınalarında Marmara geçişinde ilave yakıt tüketiminin yüzde 18 arttığını belgeleyen açık karne geliştirdiler.",
+    "bizNasilKatki": "Hesaplama betiğini ve interaktif Jupyter defterini açık kaynak deposunda yayımlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Marmara Dalga Direnci Kod Deposu",
+      "url": "https://github.com/aura-itu/marmara-dalga-direnci-karnesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Gemi Direnci ve Dalga Analitiği Kılavuzu",
+      "url": "https://aura-itu.github.io/dalga-direnci",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/marmara-dalga-direnci-karnesi",
+      "aciklama": "AURA gemi hidrodinamiği ve dalga direnci açık kod deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara fırtına dalgası ve gemi ilave direnci döngüsü animasyonu, 2026-10",
+      "aciklama": "Dalga yüksekliği artışıyla yükselen ilave direnç ve yakıt kaybı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Rüzgâr ve dalga tahmin sapması, gemi direnci formüllerinde tonlarca yakıt artışı ve rota kaybı demektir.",
+  "senin": "GEM 327E Ship Hydrodynamics(Resistance), GEM 421 Gemi Hareket ve Manevraları, GEM 321E Ship Theory",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "GEM 327E Ship Hydrodynamics(Resistance)",
+    "bizim": "Deniz yüzeyi rüzgâr gerilmesi ve dalga spektrumu",
+    "neden": "Geminin maruz kaldığı ilave dalga direnci, açık deniz rüzgâr alanı ve kabarma (swell) tahminlerinin fonksiyonudur."
+   },
+   {
+    "senin": "GEM 421 Gemi Hareket ve Manevraları",
+    "bizim": "Boğaz akıntıları ve yerel fırtına dinamikleri",
+    "neden": "İstanbul Boğazı kılavuz kaptan geçişlerinde gemi yunuslama ve savrulma hareketleri yerel rüzgârla değişir."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Akıllı hava rotalaması ile gemi yakıt ve emisyon optimizasyonu",
+   "metin": "2025'te Uluslararası Denizcilik Örgütü (IMO) ve DNV, küresel ticaret filolarında dalga ve rüzgâr tahminlerini anlık hidrodinamik direnç analizine bağlayan hava rotalama sistemlerini zorunlu kıldı. Sefer yakıtı %14 azaltıldı.",
+   "kaynakAdi": "DNV Maritime Insights",
+   "kaynakUrl": "https://www.dnv.com/maritime/",
+   "tarih": "2025-02"
+  },
+  "detay": "Gemi inşaatı ve gemi makineleri mühendisliğinde hidrodinamik ve gemi hareketleri dersleri, geminin denizle girdiği dinamik savaşı inceler. Açık denizde ilerleyen bir geminin yakıt tüketimini ve stabilitesini belirleyen en büyük etken, gövdeye çarpan rüzgâr ve dalgalardır. Küresel hava tahmin modellerinin dalga yüksekliği, dalga periyodu ve rüzgâr yönü kestirimlerindeki hataları düzeltmek, optimum rota seçiminin kalbidir. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde hidrodinamik direnç bağıntılarını canlı dalga tahminleriyle test edersin. Yanına meteoroloji öğrencisi oturduğunda deniz yüzeyi kabarma spektrumunu getirir, sen de gemi gövdesinin maruz kalacağı ilave direnci hesaplarsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (GEM)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2399"
+   }
+  ]
+ },
+ "amac": "ECMWF dalga yüksekliği ve periyodu tahminlerinden tipik bir konteyner gemisi için ilave direnç ve yakıt cezasını hesaplayan karne modülü geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "GEM 327E",
+   "projeyeKatki": "STAWAVE-1 ilave dalga direnci formülünü ve dalgalı denizde ek güç ve yakıt cezası bağıntısını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "STAWAVE-1 ilave dalga direnci formülü",
+     "nerede": "ECMWF dalga yüksekliği tahminlerinden Marmara geçişindeki ilave gemi direncini hesaplarken."
+    },
+    {
+     "formulAd": "Dalgalı denizde ilave güç ve yakıt cezası",
+     "nerede": "İlave direnci ek yakıt tüketimi ve varış gecikmesi cezasına dönüştürürken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Marmara Denizi rüzgâr ve dalga yüksekliği alanlarındaki baskın fırtına modlarını ayrıştırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+     "nerede": "Marmara Denizi rüzgâr ve dalga yüksekliği alanlarındaki baskın fırtına modlarını çıkarırken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Sinoptik rüzgâr alanını ve kontur gradyanından jeostrofik rüzgârı hesaplayarak dalga kabarmasını kestirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+     "nerede": "Balkanlar üzerinden gelen soğuk cephe geçişlerinde Marmara rüzgâr hızını ve dalga kabarmasını kestirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ECMWF dalga verisi çekilir, STAWAVE-1 formülüyle ilave direnç ve yakıt cezası hesaplanarak gemi karnesi üretilir.",
+  "ayrinti": "Gemi inşaatı ve meteoroloji öğrencileri, açık deniz dalga verilerini gövde hidrodinamiğiyle birleştirir. 40 satırlık Python koduyla tipik bir konteyner gemisi için 30 günlük ilave direnç ve yakıt kaybı tablosu çıkarılır. Çalışma 2 haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Marmara dalga ve rüzgâr tahminlerinin temini",
+    "oz": "ECMWF veya ERA5 veri setinden belirgin dalga yüksekliği ve periyodunu çekmek.",
+    "ayrinti": "Marmara geçiş rotasındaki 4 ana koordinat için saatlik belirgin dalga yüksekliği (Hs) ve dalga periyodu (Tp) indirilir.",
+    "nasil": [
+     {
+      "teknik": "cdsapi ile ERA5 deniz dalgası verilerini Marmara kutusu için NetCDF formatında çekmek.",
+      "sade": "Marmara Denizi'nin açık dalga yüksekliği ve dalga periyodu verileri Copernicus veri servisinden indirilir.",
+      "altAdimlar": [
+       "1. Python ortamında cdsapi kütüphanesini çağırarak istek nesnesini kurun.",
+       "2. 27E-30E ve 40N-41.5N koordinat kutusunda swh ve mwp değişkenlerini talep edin.",
+       "3. İndirilen NetCDF dosyasını xarray ile açıp zaman indeksine göre dilimleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı"
+      }
+     },
+     {
+      "teknik": "MTO 302 jeostrofik rüzgâr formülüyle kuzeyli fırtına dalgalarının şişme süresini denetlemek.",
+      "sade": "Poyraz fırtınasının deniz üzerinde ne kadar mesafe katettiği ve dalgayı nasıl büyüttüğü incelenir.",
+      "altAdimlar": [
+       "1. Marmara üzerindeki yatay basınç farkından jeostrofik rüzgârı hesaplayın.",
+       "2. Rüzgâr etki mesafesi (fetch) ile dalga yüksekliği arasındaki bağıntıyı kurun.",
+       "3. Sert rüzgâr saatlerindeki dalga periyodu artışını doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr (basınç yüzeyinde)"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Jeostrofik rüzgâr (basınç yüzeyinde)"
+     }
+    ]
+   },
+   {
+    "baslik": "STAWAVE-1 ilave dalga direnci hesabı",
+    "oz": "Gövde boyutları ve dalga yüksekliğinden ek direnç kuvvetini hesaplamak.",
+    "ayrinti": "Tipik bir feeder konteyner gemisi parametreleri (B=22 m, Lwl=140 m) ile baş dalgalardaki ilave direnç formülü çözülür.",
+    "nasil": [
+     {
+      "teknik": "STAWAVE-1 formülünü Python fonksiyonu olarak kodlayıp saatlik ilave direnci hesaplamak.",
+      "sade": "Gemi genişliği, boyu ve dalga boyunun karesi çarpılarak gemiye etki eden ilave kuvvet kN cinsinden bulunur.",
+      "altAdimlar": [
+       "1. Gemi parametrelerini sabit değişkenler olarak tanımlayın.",
+       "2. Dalga yüksekliği serisi üzerinden STAWAVE-1 fonksiyonunu vektörel çalıştırın.",
+       "3. Dalgasız sakin su direncinin üzerine ilave direnci ekleyerek toplam direnci bulun."
+      ],
+      "kazanim": {
+       "ders": "GEM 327E",
+       "madde": "STAWAVE-1 ve STAWAVE-2 yöntemleriyle baş dalgalarda gemi ilave direncini belirlemek."
+      }
+     },
+     {
+      "teknik": "ITTC-1957 formülasyonuyla sakin su sürtünme direncini kıyaslama tabanına yerleştirmek.",
+      "sade": "Dalga olmasaydı geminin harcayacağı standart sürtünme kaybı Reynolds sayısı üzerinden hesaplanır.",
+      "altAdimlar": [
+       "1. Geminin seyir hızından Reynolds sayısını hesaplayın.",
+       "2. ITTC-1957 sürtünme katsayısıyla sakin su direnç kuvvetini bulun.",
+       "3. İlave dalga direncinin sakin su direncine oranını yüzdelik pay olarak çıkarın."
+      ],
+      "kazanim": {
+       "ders": "GEM 327E",
+       "madde": "ITTC-1957 formülasyonu ile gemi gövdesinin viskoz sürtünme direncini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "GEM 327E",
+      "madde": "STAWAVE-1 ve STAWAVE-2 yöntemleriyle baş dalgalarda gemi ilave direncini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Yakıt cezası analitiği ve geçiş karnesi",
+    "oz": "İlave direnci makine gücüne, tonaj yakıt kaybına ve gecikme karnesine dönüştürmek.",
+    "ayrinti": "Özgül yakıt tüketimi (SFOC) bağıntısıyla saatlik ilave yakıt ve sefer süresi gecikmesi karne formatında özetlenir.",
+    "nasil": [
+     {
+      "teknik": "Delta_P = Raw * V bağıntısından ek kilowatt gücü ve saatlik ton yakıt cezasını hesaplamak.",
+      "sade": "Dalga direncini yenmek için ana makinenin yakacağı ek yakıt miktarı ton cinsinden hesaplanır.",
+      "altAdimlar": [
+       "1. İlave direnci gemi seyir hızıyla çarparak gereken ek mekanik gücü bulun.",
+       "2. 180 g/kWh özgül yakıt tüketimiyle sefer boyunca harcanan ek yakıtı toplayın.",
+       "3. Dalgasız sefere kıyasla toplam yakıt cezasını dolar ve tonaj olarak raporlayın."
+      ],
+      "kazanim": {
+       "ders": "GEM 327E",
+       "madde": "Dalga spektrumları ve belirgin dalga yüksekliğinden gemi hız kaybı ve yakıt cezasını türetmek."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile Marmara geçişi rota profilinde ilave direnç ve yakıt eğrisini görselleştirmek.",
+      "sade": "Kılavuz kaptanlar ve armatörler için Marmara geçişinde fırtına dalgasının nerede yakıtı vurduğunu gösteren grafik hazırlanır.",
+      "altAdimlar": [
+       "1. Marmara geçiş rotasındaki kilometre taşlarına göre dalga direncini grafikleyin.",
+       "2. Fırtına eşiğinin aşıldığı deniz alanlarını kırmızı uyarı bandıyla gösterin.",
+       "3. Raporu PDF ve PNG olarak dışa aktarıp açık depoda yayımlayın."
+      ],
+      "kazanim": {
+       "ders": "GEM 327E",
+       "madde": "Dalga spektrumları ve belirgin dalga yüksekliğinden gemi hız kaybı ve yakıt cezasını türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "GEM 327E",
+      "madde": "Dalga spektrumları ve belirgin dalga yüksekliğinden gemi hız kaybı ve yakıt cezasını türetmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Marmara geçişi için ilave dalga direnci hesaplama modülü ve 30 günlük sefer yakıt karnesi",
+  "senden": "Gemi inşaatı öğrencisi: Gemi gövde formunu, su hattı geometrisini ve STAWAVE-1 direnç katsayılarını tanımlar.",
+  "bizden": "Meteoroloji öğrencisi: ECMWF ve ERA5 belirgin dalga yüksekliği, dalga periyodu ve deniz rüzgârı tahminlerini sağlar."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://www.marin.nl/en/facilities/seakeeping-and-manoeuvring-basin",
+   "aciklama": "MARIN hidrodinamik araştırma ve denizcilik dalga havuzu arayüzü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara fırtına dalgası ve gemi ilave direnci döngüsü animasyonu, 2026-10",
+   "aciklama": "Dalga yüksekliği artışıyla değişen ilave gemi direnci animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEM 327E (Ship Hydrodynamics(Resistance))",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEM&dersNo=327E"
+  },
+  {
+   "ad": "Lewis, E. V. (1988) Principles of Naval Architecture, Cilt II: Resistance, Propulsion and Vibration, SNAME · ISBN 978-0939773015",
+   "url": "https://openlibrary.org/isbn/9780939773015"
+  },
+  {
+   "ad": "ITTC Recommended Procedures (2014) Preparation and Conduct of Speed/Power Trials, ITTC 7.5-04-01-01.1",
+   "url": "https://www.ittc.info/media/7978/75-04-01-011.pdf"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-GIDB-GEM-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "97332fb2a474"
+ }
+}

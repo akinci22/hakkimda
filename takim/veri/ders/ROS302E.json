@@ -1,0 +1,102 @@
+{
+ "kod": "ROS 302E",
+ "ad": "Robot Motion Planning and Control",
+ "bolum": "Robotik ve Otonom Sistemler Mühendisliği",
+ "obsNo": "302",
+ "ozet": "Mobil robotlar ve insansız hava araçları için hareket planlama algoritmalarını ve geri beslemeli yörünge kontrolünü öğretir. Konfigürasyon uzayı, A*, RRT ve potansiyel alanlar gibi yol bulma teknikleri, kinematik kısıtlar, dinamik pencere yaklaşımı ve rüzgâr gibi dış bozucular altında yörünge takibi incelenir.",
+ "neOgrenirsin": [
+  "Robotik sistemler için konfigürasyon uzayında engelleri ve serbest hareket alanlarını tanımlamak.",
+  "A* ve RRT algoritmalarıyla en kısa ve güvenli rotayı planlamak.",
+  "Dinamik Pencere Yaklaşımı ile hız ve ivme kısıtları altında engellerden kaçınmak.",
+  "Rüzgâr ve türbülans gibi dış kuvvet bozucularını telafi eden yörünge takip kontrolörleri tasarlamak.",
+  "Otonom İHA iniş ve kalkış manevraları için kinematik uygunluk pencerelerini hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Yapay potansiyel alanlar toplam kuvvet vektörü",
+   "tex": "\\mathbf{F}_{tot} = -\\nabla U_{att}(\\mathbf{q}) - \\nabla U_{rep}(\\mathbf{q})",
+   "terimler": [
+    [
+     "\\mathbf{F}_{tot}",
+     "robota etki eden toplam sanal kontrol kuvveti",
+     "N"
+    ],
+    [
+     "\\nabla U_{att}(\\mathbf{q})",
+     "hedef çekim potansiyelinin gradyanı",
+     "N"
+    ],
+    [
+     "\\nabla U_{rep}(\\mathbf{q})",
+     "engellerden ve tehlikeli rüzgâr alanından itme potansiyeli gradyanı",
+     "N"
+    ],
+    [
+     "\\mathbf{q}",
+     "robotun konfigürasyon konum vektörü",
+     "m"
+    ]
+   ],
+   "sade": "Robotu hedefe çeken bir çekim alanı ile tehlikeli bölgelerden uzaklaştıran itme alanını birleştirir. İHA'nın rüzgâr hamlesi ve binalardan kaçarak güvenli iniş pistine yönelmesini sağlar.",
+   "ornek": "Hedefe olan çekim kuvveti 15 N ve bina köşesindeki şiddetli rüzgâr girdabından gelen itme kuvveti 8 N olduğunda İHA net 7 N bileşke kuvvet yönünde güvenli koridora sapar.",
+   "nerede": "İHA iniş yaklaşmasında binalar arası şiddetli rüzgâr kayması bölgelerinden kaçınan rota üretirken."
+  },
+  {
+   "ad": "Dinamik Pencere Yaklaşımı hız uzayı sınır bağıntısı",
+   "tex": "V_a = \\left\\{ (v, \\omega) \\mid v \\le \\sqrt{2 d(\\mathbf{v}) \\dot{v}_{max}}, \\; \\omega \\le \\sqrt{2 d_{\\theta}(\\mathbf{v}) \\dot{\\omega}_{max}} \\right\\}",
+   "terimler": [
+    [
+     "V_a",
+     "güvenli durma mesafesini sağlayan kabul edilebilir hız uzayı",
+     "hız kümesi"
+    ],
+    [
+     "v, \\omega",
+     "İHA çizgisel ve açısal hız bileşenleri",
+     "m/s, rad/s"
+    ],
+    [
+     "d(\\mathbf{v})",
+     "mevcut rota üzerindeki en yakın engele veya sert rüzgâr sınırına olan mesafe",
+     "m"
+    ],
+    [
+     "\\dot{v}_{max}, \\dot{\\omega}_{max}",
+     "aracın maksimum çizgisel ve açısal frenleme ivmeleri",
+     "m/s², rad/s²"
+    ]
+   ],
+   "sade": "Robotun mevcut hızında ani bir engelle ya da şiddetli rüzgâr hamlesiyle karşılaştığında güvenle durabileceği veya yön değiştirebileceği hız aralığını belirler.",
+   "ornek": "Piste yaklaşan İHA'nın maksimum frenleme ivmesi 4 m/s² ve güvenli iniş pisti mesafesi 18 m olduğunda izin verilen maksimum yaklaşma hızı 12 m/s olarak sınırlandırılır.",
+   "nerede": "İHA otonom iniş penceresinde ani rüzgâr hamlelerine karşı maksimum güvenli hız sınırını hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İHA yaklaşma rotasında rüzgâr hamlesi vektörleri ve güvenli iniş penceresi animasyonu",
+   "aciklama": "Mikro rüzgâr alanı simülasyonunda dinamik pencere yaklaşımıyla iniş rotası animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:RRT_algorithm.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "RRT hareket planlama algoritması rastgele ağaç dallanması diyagramı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · ROS 302E (Robot Motion Planning and Control)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ROS&dersNo=302"
+  },
+  {
+   "ad": "LaValle, S. M. (2006) Planning Algorithms, Cambridge University Press · ISBN 978-0-521-86205-9",
+   "url": "https://openlibrary.org/isbn/9780521862059"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ROS&dersNo=302"
+}

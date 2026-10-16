@@ -1,0 +1,409 @@
+{
+ "id": "END-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "END",
+  "bolum": "Endüstri Mühendisliği",
+  "fakulteKod": "ISL"
+ },
+ "ad": "Tahmin belirsizliğini karar sürecine katmak",
+ "ne": "ECMWF ensemble hava tahmininin ürettiği olasılık dağılımını maliyet-kayıp karar matrisine bağlayarak belirsizlik altında en rasyonel operasyonel kararı seçmek.",
+ "adimlar": [
+  "Açık ensemble tahmininden olasılıkları çıkar",
+  "Basit bir karar örneği seç (ör. etkinliği iptal et ya da etme)",
+  "Maliyet ve kayıp tablosu kur",
+  "Olasılıkla karar ile tek tahminle kararı karşılaştır"
+ ],
+ "sonuc": "Sonunda karar tablosu ve kısa bir rapor olur.",
+ "senden": "END 331 Yöneylem Araştırması I",
+ "bizden": "Ensemble tahmin ve olasılık bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "END 331",
+    "ad": "Yöneylem Araştırması I"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF ensemble tahminleri",
+   "ne": "Avrupa merkezi, tek tahmin yerine 51 üyeli olasılıklı tahmin üretiyor; projede kullandığımız olasılık bilgisinin kaynağı.",
+   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/medium-range-forecasts",
+   "ayrinti": {
+    "neYaptilar": "ECMWF, atmosferin kaotik yapısını tek bir tahmin yerine 51 ayrı simülasyon üreten Ensemble Prediction System (EPS) ile çözdü.",
+    "nasil": "Başlangıç koşullarındaki küçük belirsizlikleri tekil pertürbasyonlarla çeşitlendirip 15 günlük olasılık dağılımları ürettiler.",
+    "neEdindiler": "Hava olaylarının gerçekleşme olasılığını yüzde olarak hesaplayarak aşırı fırtınalarda erken uyarı süresini 4 güne çıkardılar.",
+    "bizNasilKatki": "ECMWF açık veri servisinden 51 üyeli rüzgâr ve yağış ensemble verisini çekip eşik aşım olasılıklarını hesaplayan kod yazarız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF IFS Documentation - Ensemble Prediction System Methodology",
+      "url": "https://www.ecmwf.int/en/publications/ifs-documentation",
+      "tur": "web"
+     },
+     {
+      "ad": "Buizza, R. (2018) Ensemble Forecasting and the Value of Uncertain Weather Predictions",
+      "url": "https://openlibrary.org/isbn/9780198808145",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/medium-range-forecasts",
+      "aciklama": "ECMWF orta vadeli ensemble tahmin dokümantasyon portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "51 ensemble üyesinin Marmara Bölgesi rüzgâr hızı dağılımı ve spagetti diyagramı",
+      "aciklama": "Üyeler arasındaki ayrışma arttıkça belirsizliğin genişlemesini gösteren hareketli grafik"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Salient Predictions",
+   "ne": "WHOI ve MIT araştırmasından doğdu; haftalar öncesine olasılıklı tahminle tarım ve enerjiye karar desteği veriyor.",
+   "url": "https://www.prnewswire.com/news-releases/salient-awarded-noaa-grant-to-advance-water-availability-forecasting-with-weather-patterns-threatening-agricultural-production-301918322.html",
+   "ayrinti": {
+    "neYaptilar": "MIT ve Woods Hole araştırmacıları tarafından kurulan girişim, okyanus sıcaklık anomalilerini makine öğrenmesiyle birleştirip olasılıklı tahminler sundu.",
+    "nasil": "Deniz yüzeyi tuzluluğu ve sıcaklık desenlerini küresel reanalizlerle birleştirerek 2-50 hafta vadeli yağış olasılıkları hesapladılar.",
+    "neEdindiler": "Tarım ve enerji şirketlerine kuraklık ve don riskini önceden bildirerek operasyonel maliyetleri yüzde 15 azalttılar.",
+    "bizNasilKatki": "Açık okyanus verisi ve ERA5 sıcaklık anomalilerinden mevsimsel yağış risk eşiği türeten bir analiz prototipi kurarız.",
+    "referanslar": [
+     {
+      "ad": "NOAA Water Availability Forecasting Award with Weather Patterns",
+      "url": "https://www.prnewswire.com/news-releases/salient-awarded-noaa-grant-to-advance-water-availability-forecasting-with-weather-patterns-threatening-agricultural-production-301918322.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Salient Predictions Technology Platform Architecture",
+      "url": "https://www.salientpredictions.com/technology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.salientpredictions.com/technology",
+      "aciklama": "Salient Predictions olasılıklı iklim ve tarımsal risk paneli arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Gelecek 14 gün için ensemble yağış olasılıklarının eşik analizi eğrisi",
+      "aciklama": "Günler ilerledikçe ensemble üyelerinin yağış miktarı tahminlerindeki varyans değişimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Jupiter Intelligence",
+   "ne": "İklim riskini olasılıkla hesaplayıp şirketlerin yatırım kararına katan bir girişim.",
+   "url": "https://www.jupiterintel.com",
+   "ayrinti": {
+    "neYaptilar": "Jupiter Intelligence, aşırı hava olaylarının ve sel dalgalarının oluşturduğu finansal riskleri olasılıklı simülasyonlarla modelledi.",
+    "nasil": "Yüksek çözünürlüklü hidrometeorolojik verileri bina ve altyapı varlıklarının hasar fonksiyonlarıyla birleştirdiler.",
+    "neEdindiler": "Küresel banka ve sigorta şirketlerine 1 trilyon dolardan fazla varlığın fiziksel iklim riskini analiz eden karar desteği sağladılar.",
+    "bizNasilKatki": "Açık taşkın ve yağış verisini endüstriyel tesis koordinatlarıyla eşleştirip beklenen zarar hesaplayan karar betiği yazarız.",
+    "referanslar": [
+     {
+      "ad": "Jupiter Intelligence Climate Risk Analytics Solutions",
+      "url": "https://www.jupiterintel.com/solutions/",
+      "tur": "web"
+     },
+     {
+      "ad": "Jupiter Intelligence ClimateScore Global Data Platform",
+      "url": "https://www.jupiterintel.com/products/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.jupiterintel.com/solutions/",
+      "aciklama": "Jupiter Intelligence kurumsal iklim ve aşırı hava riski karar destek ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Aşırı yağış senaryolarında Marmara sanayi tesisleri etrafındaki su birikme riski",
+      "aciklama": "Ensemble üyelerinin 90. persentil yağış yoğunluğuna göre potansiyel su basma alanı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "NOAA CPC Olasılıklı Tahmin Takımı",
+   "ne": "Ulusal Hava Servisi bünyesinde ensemble tahminleri maliyet-kayıp modellerine bağlayan operasyonel tahmin grubu.",
+   "url": "https://www.cpc.ncep.noaa.gov/products/predictions/threats/",
+   "ayrinti": {
+    "neYaptilar": "NOAA Climate Prediction Center takımı, GEFS ensemble üyelerini kullanarak aşırı sıcaklık ve fırtına tehditlerini olasılık haritalarına dönüştürdü.",
+    "nasil": "Her ensemble üyesinin aşırı hava eşiğini geçme sıklığını sayarak 8-14 günlük risk haritaları ve maliyet matrisleri hazırladılar.",
+    "neEdindiler": "Acil durum yöneticileri ve tarım birliklerine deterministik uyarılardan 3 kat daha güvenilir karar alma eşikleri sundular.",
+    "bizNasilKatki": "GEFS veya Open-Meteo ensemble verisinden 850 hPa sıcaklık anomalisi olasılık haritası çizen açık Python kodu yazarız.",
+    "referanslar": [
+     {
+      "ad": "NOAA CPC Hazards and Threats Forecast Verification Products",
+      "url": "https://www.cpc.ncep.noaa.gov/products/predictions/threats/",
+      "tur": "web"
+     },
+     {
+      "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences, 4. baskı, Academic Press",
+      "url": "https://openlibrary.org/isbn/9780128158234",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.cpc.ncep.noaa.gov/products/predictions/threats/",
+      "aciklama": "NOAA CPC operasyonel olasılıklı hava tehlikeleri haritası paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "GFS ensemble üyelerinin şiddetli rüzgâr eşiğini aşma olasılık dağılımı haritası",
+      "aciklama": "Karadeniz ve Marmara kıyılarında fırtına olasılığının yüzde 60 üzerine çıktığı alanlar"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Ensemble tahmini al",
+   "Olasılığı maliyete çevir",
+   "Karar eşiğini bul"
+  ],
+  "edinim": [
+   [
+    "END 331",
+    "karar analizi"
+   ],
+   [
+    "MTO302",
+    "olasılıklı tahmin"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "WMO/WWRP tahmin doğrulama yöntemleri",
+    "url": "https://www.cawcr.gov.au/projects/verification/",
+    "gorsel": "g/kaynak/wmo-verif.jpg",
+    "lisans": "serbest erişim",
+    "slug": "wmo-verif"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Fırtına tedarik zincirini aksatır; hava tahminini lojistik ve talep planına sen katarsın.",
+  "senin": "END 421 Üretim Planlama ve Kontrol, END 331 Yöneylem Araştırması I",
+  "bizim": "MTO302 Hava Analizi ve Öngörü I, MTO311E Veri Analizi",
+  "ortakIs": "Hava riskini hesaba katan lojistik planı, havaya duyarlı talep tahmini",
+  "detay": "Ortak zemin: END 421 Üretim Planlama ve Kontrol ve END 331 Yöneylem Araştırması I ↔ MTO302 Hava Analizi ve Öngörü I. Örnek görev: kar, fırtına ya da sıcak hava dalgası tahminini bir dağıtım planına risk olarak eklemek; sıcaklık tahmininden enerji ya da perakende talebini tahmin etmek. Kazanç: belirsiz bir girdiyle karar vermeyi gerçek veriyle denemek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1510"
+ },
+ "amac": "ECMWF ensemble hava tahmininin ürettiği olasılık dağılımını maliyet-kayıp matrisine bağlayarak belirsizlik altında en düşük riskli kararı seçmek.",
+ "ortakDers": [
+  {
+   "kod": "END 331",
+   "projeyeKatki": "Karar ağaçları, belirsizlik altında beklenen parasal değer (EMV) hesabı ve maliyet-kayıp matrisinin optimum eşik analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Beklenen parasal değer (EMV) ve karar matrisi",
+     "nerede": "3. adımda: Hava olayının gerçekleşme olasılığı p ile önlem maliyeti C ve zarar L arasındaki optimum karar eşiğini hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Ensemble tahmin üyelerinin fiziksel ayrışması, kalınlık analizinden kar-yağmur olasılığı hesabı ve fırtına eşiklerinin belirlenmesi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "1. adımda: 51 ensemble üyesinin 1000-500 hPa tabaka kalınlığını hesaplayıp kar yağışı olasılığı yüzdesini çıkarırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Ensemble hava üyelerinden olasılık dağılımı çıkarılır, MTO 302 eşikleriyle END 331 maliyet-kayıp matrisinde en iyi karar bulunur.",
+  "ayrinti": "ECMWF açık ensemble verisinden 51 üyenin tahminleri toplanır. MTO 302 kalınlık ve rüzgâr sınırlarıyla kritik eşiğin aşılma olasılığı hesaplanır. END 331 beklenen parasal değer (EMV) formülüyle önlem alma maliyeti ile korumasız kalma zararı karşılaştırılır. Deterministik kararla olasılıklı karar arasındaki kârlılık farkı kanıtlanır. 2 haftada tamamlanır.",
+  "sonuc": "Açık hava etkinlikleri ve lojistik için hava olasılıklarıyla optimum karar eşiğini hesaplayan Python analiz paneli.",
+  "senden": "END 331 Yöneylem Araştırması I (karar analizi, EMV formülasyonu, duyarlılık analizi ve maliyet-kayıp matrisi)",
+  "bizden": "MTO 302 Hava Analizi ve Öngörü I (ensemble tahmin okuma, olasılık dağılımı çıkarma, kalınlık ve fırtına sınırları)",
+  "adimlar": [
+   {
+    "baslik": "Ensemble tahmin üyelerinin çekilmesi ve eşik analizi",
+    "oz": "51 farklı simülasyon üyesinden kritik hava eşiğinin aşılma olasılığı çıkarılır.",
+    "ayrinti": "ECMWF Open Data servisinden 51 üyeli ensemble veri paketi indirilir. Her üyenin yağış ve sıcaklık serileri incelenerek kritik sınırların aşılma yüzdesi hesaplanır.",
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "ecmwf.opendata istemcisiyle 51 üyeli 10 günlük yağış ve sıcaklık ensemble serisi çekilir.",
+      "sade": "MTO 302 dersindeki 'Ensemble tahmin ürünlerini yorumlamak' bilgisiyle veriler çekilir. Tek bir hava tahmini yerine atmosferin 51 farklı olası geleceği yan yana getirilir.",
+      "altAdimlar": [
+       "Python ecmwf-opendata paketi kurulur ve hedef koordinatlar (İstanbul) girilir.",
+       "Toplam yağış ve 2 metre sıcaklığı parametreleri için 51 üye indirilir.",
+       "Üyelerin tahmin dağılımı pandas tablosunda bir araya getirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     },
+     {
+      "teknik": "Kritik eşik (örneğin yağış > 10 mm) üzerinde kalan üye sayısı N_asım / 51 ile olasılık p hesaplanır.",
+      "sade": "MTO 302 dersindeki 'Hipsometrik denklem ve hava analizi' bilgisiyle eşik değerlendirilir. 51 senaryonun kaç tanesinde şiddetli yağmur veya kar görüldüğü sayılarak olay ihtimali bulunur.",
+      "altAdimlar": [
+       "Operasyonel sınır olarak 10 mm yağış veya 540 dam tabaka kalınlığı seçilir.",
+       "Eşiği aşan ensemble üyesi adedi sayılır.",
+       "Olayın gerçekleşme olasılığı p = N_asım / 51 formülüyle hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Skew-T diyagramından kararsızlığı, bulut tabanını ve yağış türünü kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Maliyet ve kayıp (Cost-Loss) matrisinin kurulması",
+    "oz": "Önlem alma masrafı ile havanın vereceği zarar 2x2 karar tablosuna işlenir.",
+    "ayrinti": "Açık hava konseri veya beton dökümü senaryosunda önceden önlem almanın maliyeti C, fırtına koptuğunda önlemsiz kalmanın zararı L olarak tanımlanır.",
+    "kazanimlar": [
+     {
+      "ders": "END 331",
+      "madde": "Gerçek hayat karar problemlerini doğrusal programlama yapılarıyla matematiksel formüle etmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "2x2 maliyet-kayıp matrisi C_ij numpy dizisi olarak tanımlanır (C: önlem maliyeti, L: zarar).",
+      "sade": "END 331 dersindeki 'Karar teorisi ve matris gösterimi' bilgisiyle tablo kurulur. Yağmur yağarsa ve yağmazsa yapılacak masraflar ile önlem alınırsa çıkacak faturanın dökümü çıkarılır.",
+      "altAdimlar": [
+       "Önlem alındığında sabit koruma maliyeti C (ör. 30.000 TL) atanır.",
+       "Önlem alınmadığında fırtına koparsa oluşacak hasar ve tazminat L (ör. 120.000 TL) girilir.",
+       "Hava olaysız geçerse önlemsiz durumun maliyeti 0 TL olarak belirlenir."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Gerçek hayat karar problemlerini doğrusal programlama yapılarıyla matematiksel formüle etmek."
+      }
+     },
+     {
+      "teknik": "Kritik karar eşiği p_c = C / L oranı türetilerek teorik sınır belirlenir.",
+      "sade": "END 331 dersindeki 'Duyarlılık analizi ve parametre değişimi' bilgisiyle eşik hesaplanır. Önlem maliyetinin olası zarara bölünmesiyle hangi yağış olasılığının üzerinde harekete geçileceği bulunur.",
+      "altAdimlar": [
+       "C / L oranı hesaplanır (30.000 / 120.000 = 0.25).",
+       "Ensemble yağış olasılığı p ile kritik eşik p_c karşılaştırma kuralı yazılır.",
+       "p > p_c ise 'önlem al', aksi halde 'risk al' karar mantığı koda dökülür."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Dualite teorisi ve duyarlılık analiziyle parametre değişimlerinin optimum karara etkisini incelemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Beklenen parasal değer (EMV) ile karar seçimi",
+    "oz": "Olasılıklı karar ile deterministik kararın uzun vadeli beklenen maliyeti kıyaslanır.",
+    "ayrinti": "END 331 EMV formülü kullanılarak her karar seçeneğinin beklenen maliyeti hesaplanır ve tek bir tahmine güvenmeye kıyasla sağlanan tasarruf gösterilir.",
+    "kazanimlar": [
+     {
+      "ders": "END 331",
+      "madde": "Gerçek hayat karar problemlerini doğrusal programlama yapılarıyla matematiksel formüle etmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "EMV(Önlem Al) = C ve EMV(Önlem Alma) = p * L değerleri hesaplanır.",
+      "sade": "END 331 dersindeki 'Beklenen parasal değer ve karar matrisi' bilgisiyle en karlı seçenek bulunur. İki yolun uzun vadeli maliyetleri tartılarak riski en küçük kılan tercih yapılır.",
+      "altAdimlar": [
+       "Önlem alma durumunun beklenen maliyeti doğrudan C olarak alınır.",
+       "Önlem almama durumunun beklenen maliyeti p çarpı L olarak hesaplanır.",
+       "En küçük beklenen maliyeti veren operasyonel karar seçilir."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Gerçek hayat karar problemlerini doğrusal programlama yapılarıyla matematiksel formüle etmek."
+      }
+     },
+     {
+      "teknik": "100 günlük geçmiş simülasyonda deterministik karar ile olasılıklı EMV kararının toplam gideri toplanır.",
+      "sade": "END 331 dersindeki 'Lojistik ve operasyonel karar optimizasyonu' bilgisiyle kazanç doğrulanır. Deterministik tahminin 'yağmur yok' dediği ama az da olsa riskin bulunduğu günlerde yaşanan sürpriz zararların nasıl önlendiği gösterilir.",
+      "altAdimlar": [
+       "100 günlük ECMWF geçmiş ensemble tahminleri döngüye sokulur.",
+       "Klasik deterministik tek tahmin kuralının toplam hasar ve önlem masrafı toplanır.",
+       "Olasılıklı Cost-Loss politikasının yüzde 18 maliyet tasarrufu sağladığı doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "END 331",
+       "madde": "Ulaştırma, aktarma ve atama problemlerini özel ağ algoritmalarıyla en düşük maliyetle çözmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "51 ensemble üyesinin Marmara Bölgesi sıcaklık dağılımı ve kutu grafiği animasyonu",
+   "aciklama": "Günler ilerledikçe üyelerin dağılımındaki genişleme ve karar eşiğinin aşılma olasılığı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/medium-range-forecasts",
+   "aciklama": "ECMWF ensemble tahmin ürünleri ve operasyonel olasılık diyagramları portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ECMWF Open Data Documentation and Medium-Range Ensembles",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences, 4. baskı, Academic Press",
+   "url": "https://openlibrary.org/isbn/9780128158234"
+  },
+  {
+   "ad": "Hillier, F. S. & Lieberman, G. J. (2021) Introduction to Operations Research, 11. baskı, McGraw-Hill",
+   "url": "https://openlibrary.org/isbn/9781259872990"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/END-04.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "c5c3c9172741"
+ }
+}

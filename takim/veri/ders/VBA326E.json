@@ -1,0 +1,95 @@
+{
+ "kod": "VBA 326E",
+ "ad": "Big Data and Analytics",
+ "bolum": "Veri Bilimi ve Analitiği",
+ "obsNo": "326",
+ "ozet": "Büyük veri mimarilerini, dağıtık dosya sistemlerini, sütunsal depolama formatlarını (Parquet, Arrow) ve analitik SQL motorlarını (DuckDB, Spark) öğretir. Petabayt ölçeğindeki zaman serileri ve çok boyutlu ızgara verilerinde veri bölümleme, indeksleme ve paralel sorgulama yöntemleri incelenir.",
+ "neOgrenirsin": [
+  "Sütun bazlı dosya formatlarıyla (Parquet, Arrow) veri depolama ve sıkıştırma mimarisi tasarlamak.",
+  "DuckDB gibi gömülü analitik SQL motorlarıyla büyük veri serilerini bellek içinde sorgulamak.",
+  "Veri bölümleme (partitioning) stratejileriyle disk okuma maliyetlerini ve gecikmeleri düşürmek.",
+  "Büyük veri kümelerinde dağıtık işlem ilkeleri ve paralel hesaplama akışları kurmak.",
+  "Zaman serisi ve coğrafi ızgara verilerini verimli şemalarla dönüştürmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Sütunsal sıkıştırma ve depolama kazanç oranı",
+   "tex": "\\mathrm{CR} = 1 - \\frac{S_{\\mathrm{comp}}}{S_{\\mathrm{raw}}}",
+   "terimler": [
+    [
+     "\\mathrm{CR}",
+     "sıkıştırma ve depolama kazanç oranı",
+     "birimsiz (yüzde)"
+    ],
+    [
+     "S_{\\mathrm{comp}}",
+     "sütunsal sıkıştırılmış dosya boyutu (Parquet)",
+     "GB"
+    ],
+    [
+     "S_{\\mathrm{raw}}",
+     "ham metin veya tablosal veri boyutu (CSV)",
+     "GB"
+    ]
+   ],
+   "sade": "Sütun bazlı sıkıştırmanın disk alanından ne kadar tasarruf sağladığını ve veri tabanında okuma yükünü ne oranda hafiflettiğini belirler.",
+   "ornek": "100 GB ham saatlik meteoroloji istasyon ölçümü Parquet formatında Snappy ile 14 GB boyuta indiğinde sıkıştırma kazancı yüzde 86 olur; disk okuma süresi 7 kat hızlanır.",
+   "nerede": "F-ISL-VBA-03 projesinde ham CSV iklim verilerini Parquet formatına dönüştürüp depolama verimini kıyaslarken."
+  },
+  {
+   "ad": "Dağıtık sorgu hızlanma katsayısı (Amdahl yasası)",
+   "tex": "S(p) = \\frac{1}{(1 - s) + \\frac{s}{p}}",
+   "terimler": [
+    [
+     "S(p)",
+     "p çekirdekli sistemdeki teorik hızlanma katsayısı",
+     "kat"
+    ],
+    [
+     "s",
+     "kodun paralelleştirilebilir kısmının oranı",
+     "birimsiz"
+    ],
+    [
+     "p",
+     "kullanılan paralel işlemci çekirdeği sayısı",
+     "adet"
+    ]
+   ],
+   "sade": "Bir analitik sorguya ne kadar çok işlemci çekirdeği eklenirse eklensin, hızlanmanın paralelleştirilemeyen seri adımlarla sınırlı kalacağını ifade eder.",
+   "ornek": "Veri okuma ve filtreleme adımının yüzde 95'i paralelleştirilebilen (s = 0.95) bir DuckDB sorgusunda 8 çekirdekli işlemci kullanıldığında hızlanma katsayısı 5.92 kat olarak gerçekleşir.",
+   "nerede": "F-ISL-VBA-03 projesinde DuckDB çok çekirdekli paralellik performansını test ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Row_vs_column_storage.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Satır ve sütun bazlı veritabanı depolama mimarilerinin karşılaştırması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://duckdb.org/why_duckdb",
+   "aciklama": "DuckDB sütunsal analitik veritabanı mimarisi ve sorgu optimizasyon sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · VBA 326E (Big Data and Analytics)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=VBA&dersNo=326"
+  },
+  {
+   "ad": "White, T. (2015) Hadoop: The Definitive Guide, 4. baskı, O'Reilly Media · ISBN 978-1491918890",
+   "url": "https://openlibrary.org/isbn/9781491918890"
+  },
+  {
+   "ad": "Raasveldt, M. & Mühleisen, H. (2019) DuckDB: an Embeddable Analytical Database, ACM SIGMOD · DOI: 10.1145/3299869.3320212",
+   "url": "https://doi.org/10.1145/3299869.3320212"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=VBA&dersNo=326"
+}

@@ -1,0 +1,140 @@
+{
+ "kod": "ISL 333E",
+ "ad": "Finance",
+ "bolum": "İşletme Mühendisliği",
+ "obsNo": "333",
+ "ozet": "Kurumsal finansmanın temellerini, paranın zaman değerini, risk ve getiri analizini ve sermaye bütçelemesini öğretir. İskontolu nakit akışları, Net Bugünkü Değer (NPV), İç Verim Oranı (IRR), Sermaye Varlıklarını Fiyatlama Modeli (CAPM), türev finansal araçlar ve parametrik risk transfer sözleşmeleri ele alınır.",
+ "neOgrenirsin": [
+  "Paranın zaman değeri ve iskontolu nakit akışlarıyla yatırım projelerinin Net Bugünkü Değerini (NPV) hesaplamak.",
+  "Sermaye Varlıklarını Fiyatlama Modeli (CAPM) ile beklenen getiri ve risk primini bulmak.",
+  "Parametrik sigorta ve hava türevlerinde tetikleyici endekse dayalı ödeme fonksiyonu tasarlamak.",
+  "Beklenen kayıp ve risk yükü formülleriyle adil prim tutarını belirlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Parametrik sigorta ödeme fonksiyonu",
+   "tex": "\\mathrm{Payoff}(I) = \\min\\left( \\mathrm{MaxPayout}, \\; \\max\\left(0, \\; \\frac{T - I}{T - E} \\cdot \\mathrm{MaxPayout}\\right) \\right)",
+   "terimler": [
+    [
+     "\\mathrm{Payoff}(I)",
+     "tetiklenen sigorta tazminat ödemesi",
+     "TL"
+    ],
+    [
+     "I",
+     "gerçekleşen kümülatif yağış endeksi",
+     "mm"
+    ],
+    [
+     "T",
+     "sözleşme tetikleme yağış eşik değeri",
+     "mm"
+    ],
+    [
+     "E",
+     "maksimum ödemenin yapılacağı aşırı kuraklık eşiği",
+     "mm"
+    ],
+    [
+     "\\mathrm{MaxPayout}",
+     "poliçedeki azami teminat tutarı",
+     "TL"
+    ]
+   ],
+   "sade": "Kümülatif yağış belirlenen kritik barajın altına indiğinde çiftçiye ekspertiz beklemeden otomatik tazminat öder. Yağış ne kadar azsa ödenen miktar o kadar artar.",
+   "ornek": "T = 80 mm tetik eşiği, E = 30 mm aşırı kuraklık sınırı ve 500.000 TL teminatlı bir sözleşmede, 60 günlük yağış I = 55 mm gerçekleşirse tazminat 250.000 TL olarak anında ödenir.",
+   "nerede": "60 günlük havza yağış anomalisine göre tarımsal kuraklık tazminat fonksiyonunu simüle ederken."
+  },
+  {
+   "ad": "Beklenen tazminat ve aktüeryal adil prim bağıntısı",
+   "tex": "P_{\\mathrm{fair}} = (1 + \\lambda) \\cdot \\sum_{i=1}^{N} p_i \\cdot \\mathrm{Payoff}(I_i)",
+   "terimler": [
+    [
+     "P_{\\mathrm{fair}}",
+     "yıllık sigorta prim tutarı",
+     "TL"
+    ],
+    [
+     "p_i",
+     "i senaryosunun gerçekleşme olasılığı",
+     "birimsiz"
+    ],
+    [
+     "\\mathrm{Payoff}(I_i)",
+     "i senaryosundaki tazminat tutarı",
+     "TL"
+    ],
+    [
+     "\\lambda",
+     "sigortacı risk yükü ve operasyonel marj katsayısı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Geçmiş iklim verilerinden kuraklık olasılıkları çıkarılarak sigortanın ortalama kaç lira ödeyeceği bulunur. Üzerine güvenlik payı eklenerek çiftçinin ödeyeceği adil prim saptanır.",
+   "ornek": "Geçmiş 30 yıllık iklim serisinde kuraklık olasılığı yüzde 10 ve ortalama hasar 200.000 TL ise, yüzde 15 risk yüküyle yıllık prim P = 1,15 × 20.000 = 23.000 TL olarak hesaplanır.",
+   "nerede": "Geçmiş ERA5 yağış serisi üzerinden parametrik ürünün finansal prim tutarını belirlerken."
+  },
+  {
+   "ad": "Net Bugünkü Değer (NPV) formülü",
+   "tex": "\\mathrm{NPV} = \\sum_{t=1}^{T} \\frac{\\mathrm{CF}_t}{(1 + r)^t} - C_0",
+   "terimler": [
+    [
+     "\\mathrm{NPV}",
+     "projenin net bugünkü değeri",
+     "TL"
+    ],
+    [
+     "\\mathrm{CF}_t",
+     "t dönemindeki net nakit akışı",
+     "TL"
+    ],
+    [
+     "r",
+     "dönemsel iskonto oranı (sermaye maliyeti)",
+     "birimsiz"
+    ],
+    [
+     "t",
+     "zaman periyodu",
+     "yıl"
+    ],
+    [
+     "C_0",
+     "başlangıç yatırım sermayesi",
+     "TL"
+    ]
+   ],
+   "sade": "Gelecekte elde edilecek tüm nakit kazançları enflasyon ve faiz payı düşülerek bugünün parasına çevirir. Projenin kârlı olup olmadığını belirler.",
+   "ornek": "Başlangıç maliyeti 100.000 TL olan bir risk yönetim sisteminde r = 0,10 iskonto oranıyla yıllık 40.000 TL net tasarruf sağlandığında 3 yıllık NPV yaklaşık 24.343 TL pozitif çıkar.",
+   "nerede": "Parametrik sigorta korumasının tarım işletmesine sağladığı uzun vadeli nakit akışı stabilitesini ölçerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Capital_asset_pricing_model.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Finansal risk ve beklenen getiri arasındaki sermaye fiyatlama doğrusu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi tarımsal kuraklık ve kümülatif yağış anomalisi, 2026-10",
+   "aciklama": "Trakya ve Marmara tarım havzalarında 60 günlük kümülatif yağış açığı döngüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · ISL 333E (Finance)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ISL&dersNo=333"
+  },
+  {
+   "ad": "Bodie, Z., Kane, A. ve Marcus, A. J. (2020) Investments, 12. baskı, McGraw-Hill · ISBN 978-1260013832",
+   "url": "https://openlibrary.org/isbn/9781260013832"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ISL&dersNo=333"
+}

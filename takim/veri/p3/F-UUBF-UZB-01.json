@@ -1,0 +1,380 @@
+{
+ "id": "F-UUBF-UZB-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "UZB",
+  "bolum": "Uzay Mühendisliği",
+  "fakulteKod": "UUBF",
+  "fakulte": "Uçak ve Uzay Bilimleri Fakültesi"
+ },
+ "ad": "Kutup uydusu yer izi ve gözlem zamanlama hesabı",
+ "ne": "MetOp ve NOAA uydularının İstanbul üzerindeki geçiş pencerelerini iki satırlı yörünge elemanları (TLE) ile hesaplamak.",
+ "adimlar": [
+  "Python SGP4 kütüphanesiyle son TLE verisinden İstanbul istasyonu geçiş saatlerini çıkarmak."
+ ],
+ "sonuc": "Uydu geçiş zamanlama çizelgesi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "UZB 352E",
+    "ad": "Orbital Mechanics"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "University of Wisconsin-Madison SSEC Doğrudan Yayın İstasyonu",
+   "ne": "Kutup yörüngeli NOAA ve MetOp uydularından yerel X-bandı doğrudan yayın verisi toplayan araştırma merkezi.",
+   "url": "https://www.ssec.wisc.edu/datacenter/direct-broadcast",
+   "ayrinti": {
+    "neYaptilar": "Wisconsin kampüsündeki 4,4 metrelik izleme anteniyle kutup uydularının yer izi geçiş pencerelerini hesaplayıp ham telemetriyi indirdiler.",
+    "nasil": "SGP4 yörünge yayılım algoritması ve Kepler parametreleriyle uydunun azimut ve elevasyon açılarını hesaplayarak anteni otomatik yönlendirdiler.",
+    "neEdindiler": "Atmosferik sondaj ve bulut kompozit görüntülerini uydunun geçişinden 15 dakika sonra açık veri olarak araştırmacılara sundular.",
+    "bizNasilKatki": "Öğrenciler SSEC geçiş kestirim mantığını İTÜ Ayazağa koordinatlarına uyarlayarak Python ile geçiş çizelgesi üretebilir.",
+    "referanslar": [
+     {
+      "ad": "SSEC Doğrudan Yayın Veri Merkezi",
+      "url": "https://www.ssec.wisc.edu/datacenter/direct-broadcast",
+      "tur": "web"
+     },
+     {
+      "ad": "IEEE TGRS Polar Satellite Orbit Tracking Paper",
+      "url": "https://ieeexplore.ieee.org/document/8404107",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ssec.wisc.edu/datacenter/direct-broadcast",
+      "aciklama": "SSEC doğrudan yayın yer istasyonu kutup uyduları geçiş takip ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:MetOp-A_orbit.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "MetOp kutup yörüngeli meteoroloji uydusunun Dünya etrafındaki yörünge düzlemi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Spire Global Küp-Uydu Meteorolojik Veri Ağı",
+   "ne": "Alçak Dünya yörüngesindeki küp-uydu takımıyla radyo okültasyon ve yer izi gözlemi sunan uzay veri girişimi.",
+   "url": "https://spire.com/weather",
+   "ayrinti": {
+    "neYaptilar": "100'den fazla küp-uydunun yörünge mekaniğini hesaplayarak atmosferik dikey sıcaklık ve nem profillerini küresel ölçekte topladılar.",
+    "nasil": "GNSS radyo okültasyon sinyallerinin atmosferden kırılma geometrisini Kepler yörünge elemanları ve SGP4 algoritmasıyla çözdüler.",
+    "neEdindiler": "Günde 20 binden fazla dikey atmosfer profili toplayarak küresel hava tahmin modellerinin doğruluğunu belirgin şekilde artırdılar.",
+    "bizNasilKatki": "Öğrenciler Spire açık örnek verilerini kullanarak Marmara üzerindeki uydu geçiş pencerelerini hesaplayabilir.",
+    "referanslar": [
+     {
+      "ad": "Spire Weather ve Küp-Uydu Gözlem Platformu",
+      "url": "https://spire.com/weather",
+      "tur": "web"
+     },
+     {
+      "ad": "AMS Spire GNSS Radyo Okültasyon Makalesi",
+      "url": "https://journals.ametsoc.org/view/journals/bams/102/3/BAMS-D-20-0098.1.xml",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://spire.com/weather",
+      "aciklama": "Spire Global hava durumu ve küp-uydu takip panosu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://spire.com/weather",
+      "aciklama": "Spire küp-uydu atmosferik dikey profil veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Kutup Uydusu Gözlem ve Yörünge Takımı",
+   "ne": "MetOp ve NOAA uydularının İstanbul geçişlerini hesaplayıp açık meteorolojik verileri arşivleyen öğrenci çalışma takımı.",
+   "url": "https://github.com/aura-itu/uydu-yer-izi-zamanlama",
+   "ayrinti": {
+    "neYaptilar": "NOAA-20 ve MetOp-B uydularının son TLE yörünge verilerini Celestrak üzerinden çekerek İstanbul geçiş çizelgesini türettiler.",
+    "nasil": "UZB 352E vis-viva ve Kepler periyot bağıntıları ile Python sgp4 kütüphanesini birleştirip elevasyon açısı 15 dereceden büyük pencereleri süzdüler.",
+    "neEdindiler": "İstanbul Ayazağa yerleşkesi için günlük 8 ila 12 adet yüksek kaliteli gözlem penceresi sunan açık kaynaklı hesaplama betiği geliştirdiler.",
+    "bizNasilKatki": "Uzay mühendisliği öğrencisi yörünge mekaniğini ve yer izini kodlar, meteoroloji öğrencisi uydu ışıma kanallarını hava analizine bağlar.",
+    "referanslar": [
+     {
+      "ad": "AURA Uydu Yer İzi ve Zamanlama GitHub Deposu",
+      "url": "https://github.com/aura-itu/uydu-yer-izi-zamanlama",
+      "tur": "kod"
+     },
+     {
+      "ad": "CelesTrak Güncel TLE Yörünge Elemanları Portalı",
+      "url": "https://celestrak.org/NORAD/elements/weather.txt",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/uydu-yer-izi-zamanlama",
+      "aciklama": "AURA kutup uydusu yer izi ve geçiş hesaplama reposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "MetOp ve NOAA kutup uydusu yer izi geçiş geometrisi, 2026",
+      "aciklama": "Kutup uydusunun Türkiye üzerindeki yer izi ve gözlem açısı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava tahmin modellerinin girdisi olan meteoroloji uyduları, uzay ortamı ve yörünge mekaniğinin ürünüdür.",
+  "senin": "UZB 411E Space Environment, UZB 352E Orbital Mechanics, UZB 451E Spacecraft Communications",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "UZB 411E Space Environment",
+    "bizim": "Üst atmosfer yoğunluğu ve uzay havası",
+    "neden": "Güneş fırtınaları ve iyonosferik bozulmalar, hem uydu sürüklenmesini hem de atmosfer ışıma dengesini etkiler."
+   },
+   {
+    "senin": "UZB 352E Orbital Mechanics",
+    "bizim": "LEO ve Geostationary uydu gözlem geometrisi",
+    "neden": "Kutup yörüngeli ve jeosenkron meteoroloji uydularının yer izi (ground track) kapsama alanını yörünge mekaniği belirler."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "EUMETSAT MTG-I1 şimşek görüntüleyici uydusu",
+   "metin": "2025'te operasyonel olan EUMETSAT Meteosat Third Generation (MTG-I1), Avrupa ve Akdeniz üzerindeki şimşek aktivitelerini jeosenkron yörüngeden saniyede 1000 kareyle izliyor. Uydu alt sistemleri ve telemetri uzay mühendisliği standartlarıyla çalışıyor.",
+   "kaynakAdi": "EUMETSAT News",
+   "kaynakUrl": "https://www.eumetsat.int/meteosat-third-generation",
+   "tarih": "2025-01"
+  },
+  "detay": "Uzay mühendisliğinde yörünge mekaniği ve uzay ortamı dersleri, meteorolojinin birincil veri kaynağı olan uyduların nasıl çalıştığını anlamanın tek yoludur. Her 15 dakikada bir gelen uydu görüntüleri ve atmosferik dikey sondaj verileri, uzaydaki sensör platformlarının hassas yönelim ve yörünge kararlılığı sayesinde elde edilir. İyonosferik gecikmeler, güneş ışıması baskısı ve uydu telemetrisi, atmosfer modellerine giren ham verinin kalitesini doğrudan belirler. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir yörünge geçiş analizi çalışması yaparsın. Yanına meteoroloji öğrencisi oturduğunda atmosferik radyometre kanallarını anlatır, sen de o uydunun gözlem geometrisini çözersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (UZB)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2713"
+   }
+  ]
+ },
+ "amac": "MetOp ve NOAA kutup uydularının TLE yörünge verileriyle İstanbul yer istasyonu geçiş pencerelerini ve gözlem zamanlamasını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "UZB 352E",
+   "projeyeKatki": "Vis-viva enerji bağıntısı ve Kepler periyot yasasıyla uydunun yörünge hızını, dolanım süresini ve yer izi kaymasını hesaplar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Vis-viva enerji ve yörünge hızı bağıntısı",
+     "nerede": "820 km irtifadaki MetOp uydusunun 7,44 km/s yörünge hızını ve yer istasyonu yaklaşma açısını hesaplarken."
+    },
+    {
+     "formulAd": "Kepler üçüncü yasası ve yörünge periyodu",
+     "nerede": "Uydunun 101,3 dakikalık dolanım süresini ve günlük 14 turundaki İstanbul geçiş saatlerini belirlerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Ayrık Fourier Dönüşümü ve zaman serisi ayrıştırması ile uydu gözlem aralıklarının frekans dağılımını analiz eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+     "nerede": "Uydu geçiş pencerelerinin zamansal periyotlarını ve veri sürekliliğini test ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "MetOp ve NOAA uydularının TLE yörünge verileri ve Kepler formülleriyle İstanbul geçiş pencerelerini hesaplamak.",
+  "ayrinti": "CelesTrak üzerinden güncel iki satırlı yörünge elemanları (TLE) indirilir. UZB 352E Kepler formülleri ve Python SGP4 modülüyle uydunun coğrafi konumu ve yer istasyonuna göre ufuk açısı türetilir. İstanbul Ayazağa için elevasyonu 15 derecenin üzerindeki geçiş pencereleri çizelgelenir. Haftada iki saatlik çalışmayla iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Güncel TLE yörünge verilerini çekmek ve ayrıştırmak",
+    "oz": "CelesTrak üzerinden NOAA ve MetOp uydularının güncel TLE satırlarını almak.",
+    "ayrinti": "Meteoroloji uydularının son yörünge elemanları CelesTrak sunucularından çekilerek zaman damgası ve dışmerkezlik kontrolü yapılır.",
+    "nasil": [
+     {
+      "teknik": "urllib.request ile https://celestrak.org/NORAD/elements/weather.txt taranarak MetOp-B ve NOAA-20 TLE blokları ayıklanır.",
+      "sade": "İnternetteki açık uzay veri tabanından uyduların son konum ve hız parametrelerini içeren metin satırlarını indiririz.",
+      "altAdimlar": [
+       "1. CelesTrak hava uyduları dosyasını indir.",
+       "2. MetOp ve NOAA uydu adlarını filtrele.",
+       "3. İki satırlı yörünge elemanlarını belleğe al."
+      ],
+      "kazanim": {
+       "ders": "UZB 352E",
+       "madde": "İki cisim hareket denklemlerini çözerek klasik Kepler yörünge elemanlarını belirlemek."
+      }
+     },
+     {
+      "teknik": "sgp4.api.Satrec.twoline2rv işleviyle TLE satırları çözülerek yarı büyük eksen, eğiklik açısı ve ortalama hareket parametrelerine dönüştürülür.",
+      "sade": "Ham metin satırlarındaki karmaşık sayıları uydunun uzaydaki fiziksel büyüklüklerine ve eğiklik derecelerine çeviririz.",
+      "altAdimlar": [
+       "1. Satrec nesnesini TLE ile başlat.",
+       "2. Yörünge eğikliği ve basıklığını oku.",
+       "3. Epoch zamanını UTC standardına çevir."
+      ],
+      "kazanim": {
+       "ders": "UZB 352E",
+       "madde": "Kepler denklemi ve vis-viva bağıntısıyla yörüngenin herhangi bir anındaki hız ve konumu hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "UZB 352E",
+      "madde": "İki cisim hareket denklemlerini çözerek klasik Kepler yörünge elemanlarını belirlemek."
+     },
+     {
+      "ders": "UZB 352E",
+      "madde": "Kepler denklemi ve vis-viva bağıntısıyla yörüngenin herhangi bir anındaki hız ve konumu hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "SGP4 yayılımı ile yer izi ve gözlem geometrisini çözmek",
+    "oz": "Uydunun enlem, boylam ve yer istasyonuna göre bakış açılarını hesaplamak.",
+    "ayrinti": "SGP4 yörünge algoritmasıyla uydunun ECI koordinatları ECEF yeryüzü koordinatlarına dönüştürülür ve İstanbul'a göre ufuk yüksekliği bulunur.",
+    "nasil": [
+     {
+      "teknik": "sgp4.api.jday ve sat.sgp4_tsince fonksiyonlarıyla 1 dakikalık adımlarla TEME koordinatları ve hız vektörü hesaplanır.",
+      "sade": "Gelecek yedi gün boyunca uydunun dakikalık uzay konumunu ve hızını yerçekimi kurallarına göre tek tek hesaplarız.",
+      "altAdimlar": [
+       "1. Zaman adımlarını Julian takvimine çevir.",
+       "2. Uydunun anlık hız ve konumunu üret.",
+       "3. Vis-viva ile dairesel hız tutarlılığını test et."
+      ],
+      "kazanim": {
+       "ders": "UZB 352E",
+       "madde": "Kepler denklemi ve vis-viva bağıntısıyla yörüngenin herhangi bir anındaki hız ve konumu hesaplamak."
+      }
+     },
+     {
+      "teknik": "İstanbul koordinatları (41.10 K, 29.02 D, 120 m) için ufuk yatay koordinat dönüşümüyle azimut ve elevasyon açısı türetilir.",
+      "sade": "Uydunun İTÜ Ayazağa'dan bakıldığında gökyüzünde hangi yönde ve ufkun kaç derece üstünde duracağını buluruz.",
+      "altAdimlar": [
+       "1. Gözlem istasyonunun yerküre konumunu tanımla.",
+       "2. Göreceli mesafe vektörünü yerel düzleme çevir.",
+       "3. Ufuk açısı (elevasyon) eğrisini çiz."
+      ],
+      "kazanim": {
+       "ders": "UZB 352E",
+       "madde": "Güneş eşzamanlı ve kutup yörüngeleri için yer izi ve yer istasyonu geçiş sürelerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "UZB 352E",
+      "madde": "Kepler denklemi ve vis-viva bağıntısıyla yörüngenin herhangi bir anındaki hız ve konumu hesaplamak."
+     },
+     {
+      "ders": "UZB 352E",
+      "madde": "Güneş eşzamanlı ve kutup yörüngeleri için yer izi ve yer istasyonu geçiş sürelerini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Geçiş pencerelerini süzmek ve zamanlama çizelgesini kurmak",
+    "oz": "Elevasyonu 15 derecenin üzerindeki geçişleri ayıklayıp çizelge oluşturmak.",
+    "ayrinti": "Anten haberleşmesi için uygun yükselme açıları filtrelenir; yaklaşma, tepe noktası ve batış saatleri çizelgeye dökülür.",
+    "nasil": [
+     {
+      "teknik": "pandas ile elevasyon açısı 15 dereceden büyük ardışık bloklar AOS, TCA ve LOS anları olarak gruplanır.",
+      "sade": "Uydunun ufuktan doğduğu, gökyüzünde en tepeye ulaştığı ve battığı dakikaları ayıklayarak net bir tabloya dökeriz.",
+      "altAdimlar": [
+       "1. 15 derece eşik filtresini uygula.",
+       "2. Maksimum elevasyon tepe noktasını bul.",
+       "3. Geçiş süresini dakika cinsinden hesapla."
+      ],
+      "kazanim": {
+       "ders": "UZB 352E",
+       "madde": "Güneş eşzamanlı ve kutup yörüngeleri için yer izi ve yer istasyonu geçiş sürelerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "MTO 311E zaman serisi yöntemleriyle geçiş aralıklarının Fourier güç spektrumu incelenerek periyodik uydu döngüsü doğrulanır.",
+      "sade": "Geçişlerin gün içindeki dağılımını inceleyip sabah ve akşam turlarının düzenli aralıklarla tekrarladığını gösteririz.",
+      "altAdimlar": [
+       "1. Geçiş zaman damgalarını zaman serisine aktar.",
+       "2. Ardışık geçişler arası zaman farkını çıkar.",
+       "3. Zamanlama çizelgesini CSV ve grafik olarak dışa aktar."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "UZB 352E",
+      "madde": "Güneş eşzamanlı ve kutup yörüngeleri için yer izi ve yer istasyonu geçiş sürelerini hesaplamak."
+     },
+     {
+      "ders": "MTO 311E",
+      "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Ayazağa istasyonu için haftalık MetOp ve NOAA uydusu geçiş zamanlama çizelgesi ve yer izi haritası.",
+  "senden": "UZB 352E yörünge mekaniği formülleriyle TLE verilerini işler, uydu yer izi ve bakış açılarını hesaplarsın.",
+  "bizden": "Meteoroloji uydularının radyometre kanallarını tanımlar, hava analizi için en kritik geçiş pencerelerini seçeriz."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://www.ssec.wisc.edu/datacenter/direct-broadcast",
+   "aciklama": "Wisconsin SSEC kutup uydusu yer istasyonu geçiş takibi ve yer izi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:MetOp-A_orbit.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "MetOp kutup yörüngeli uydunun yer izi ve yörünge eğiklik geometrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Kutup uydusu yer izi ve gözlem açısı simülasyonu, 2026",
+   "aciklama": "Uydunun Türkiye üzerinden geçişi sırasında yer istasyonu görüş açısı animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Uzay Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2713"
+  },
+  {
+   "ad": "Curtis, H. D. (2020) Orbital Mechanics for Engineering Students, Elsevier · DOI 10.1016/C2017-0-02220-7",
+   "url": "https://doi.org/10.1016/C2017-0-02220-7"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-UUBF-UZB-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "02d474d519df"
+ }
+}

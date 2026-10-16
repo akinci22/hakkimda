@@ -1,0 +1,380 @@
+{
+ "id": "GEM-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "GEM",
+  "bolum": "Gemi İnşaatı ve Deniz Bilimleri Fak. (Gemi ve Deniz Teknolojisi · Gemi İnşaatı ve Gemi Makinaları)",
+  "fakulteKod": "GIDB"
+ },
+ "ad": "Rüzgâr tahmininden Marmara için dalga yüksekliği tahmini",
+ "ne": "Rüzgâr verisinden Marmara Denizi'nde dalgaların ne kadar yükseleceğini dalga mekaniği ve makine öğrenmesiyle hesaplayıp doğrulamak.",
+ "adimlar": [
+  "ERA5'ten Marmara rüzgâr ve dalga verisini indir",
+  "Basit bir dalga formülünü uygula",
+  "Bir makine öğrenmesi modeliyle de dene",
+  "İkisini ERA5 dalga verisiyle karşılaştır"
+ ],
+ "sonuc": "Sonunda dalga tahmin haritası ve hata grafiği olur.",
+ "senden": "DEN 323E Wave Mechanics, DEN 304E Oceanography",
+ "bizden": "Rüzgâr tahmini ve doğrulama",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "DEN 323E",
+    "ad": "Wave Mechanics"
+   },
+   {
+    "kod": "DEN 304E",
+    "ad": "Oceanography"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NOAA WAVEWATCH III",
+   "ne": "Rüzgârdan dalga yüksekliğini hesaplayan açık kaynak dalga programı; projedeki fikrin büyük ölçekli hali.",
+   "url": "https://github.com/NOAA-EMC/WW3",
+   "ayrinti": {
+    "neYaptilar": "NOAA Çevre Tahmin Merkezi, rüzgâr alanlarından küresel ve bölgesel dalga spektrumlarını çözen açık kaynak WAVEWATCH III yazılımını geliştirdi.",
+    "nasil": "Dalga eylem yoğunluğu denge denklemini rüzgâr girdisi, doğrusal olmayan dalga-dalga etkileşimleri ve beyaz köpük sönümlenmesiyle sayısal olarak entegre ettiler.",
+    "neEdindiler": "Dünya genelinde denizcilik ve kıyı mühendisliği için operasyonel dalga yüksekliği tahminlerinde yüzde 90 doğruluk sağladılar.",
+    "bizNasilKatki": "WAVEWATCH III yaklaşımının basitleştirilmiş tek ızgaralı halini Marmara poyraz fırtınaları için açık Python kodunda uygularız.",
+    "referanslar": [
+     {
+      "ad": "NOAA EMC WAVEWATCH III Source Code Repository and Documentation",
+      "url": "https://github.com/NOAA-EMC/WW3",
+      "tur": "kod"
+     },
+     {
+      "ad": "Tolman, H. L. (2014) User Manual and System Documentation of WAVEWATCH III",
+      "url": "https://openlibrary.org/isbn/9781288289431",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/NOAA-EMC/WW3",
+      "aciklama": "NOAA WAVEWATCH III açık kaynak deposu ve geliştirici dokümantasyonu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Kuzey Ege ve Marmara rüzgâr alanından türetilen belirgin dalga boyu yayılımı",
+      "aciklama": "Poyraz fırtınasında Marmara adaları arkasında korunaklı ve dalgalı alanların animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Sofar Ocean",
+   "ne": "Ucuz dalga şamandırası (Spotter) yaparak başladı; bugün okyanus tahmini ve gemi rotası hizmeti veren bir şirket.",
+   "url": "https://www.sofarocean.com",
+   "ayrinti": {
+    "neYaptilar": "Sofar Ocean, açık okyanusa binlerce küçük Spotter dalga şamandırası bırakarak gerçek zamanlı küresel dalga ölçüm ağı kurdu.",
+    "nasil": "Şamandıraların ivmeölçer verilerinden elde edilen dalga spektrumlarını sayısal tahminlere veri asimilasyonu ile entegre ettiler.",
+    "neEdindiler": "Açık deniz dalga tahmin hatasını yüzde 40 azaltarak küresel ticaret gemilerine fırtınadan kaçan dinamik rota sundular.",
+    "bizNasilKatki": "Copernicus açık şamandıra verilerini çekip tahmin ettiğimiz dalga yüksekliğiyle korelasyonunu test eden doğrulama kodu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Sofar Ocean Marine Weather Sensing Platform and Spotter Buoy Technology",
+      "url": "https://www.sofarocean.com/products/spotter",
+      "tur": "web"
+     },
+     {
+      "ad": "Sofar Ocean Wayfinder Maritime Optimization Platform",
+      "url": "https://www.sofarocean.com/products/wayfinder",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.sofarocean.com/products/spotter",
+      "aciklama": "Sofar Ocean Spotter şamandırası ve canlı okyanus dalga izleme haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara açıklarında ölçülen şamandıra dalga boyu ile rüzgâr hızı zaman serisi",
+      "aciklama": "Rüzgâr şiddetlendikten 3 saat sonra dalga yüksekliğinin zirveye ulaştığı döngü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Copernicus Akdeniz Dalga Takımı",
+   "ne": "Copernicus Marine bünyesinde Akdeniz ve Marmara için operasyonel dalga analizi üreten uzman araştırma konsorsiyumu.",
+   "url": "https://marine.copernicus.eu/about/producers/med-mfc",
+   "ayrinti": {
+    "neYaptilar": "Akdeniz Deniz Tahmin Merkezi takımı, WAM döngüsüyle Akdeniz ve Marmara havzasında 4 km çözünürlüklü saatlik dalga tahminleri yayınladı.",
+    "nasil": "ECMWF rüzgâr alanlarını alıp batimetri ve kıyı yansıması sınır koşullarını içeren spektral dalga kodlarıyla işlediler.",
+    "neEdindiler": "Marmara ve Boğazlar geçişinde gemi trafiği ve balıkçılık için belirgin dalga yüksekliği ve tepe periyodu ürünleri sağladılar.",
+    "bizNasilKatki": "Copernicus Marine API üzerinden Marmara dalga analiz verisini indirip kendi Python kestirimimizle kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus Marine Mediterranean Sea Wave Analysis and Forecast Service",
+      "url": "https://marine.copernicus.eu/about/producers/med-mfc",
+      "tur": "web"
+     },
+     {
+      "ad": "Korres, G. et al. (2014) A High-Resolution Wave Forecasting System for the Mediterranean Sea",
+      "url": "https://doi.org/10.5194/os-10-625-2014",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://marine.copernicus.eu/about/producers/med-mfc",
+      "aciklama": "Copernicus Marine Akdeniz ve Marmara dalga tahmin portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Denizi ızgarasında belirgin dalga yüksekliği (Hs) alan dağılımı",
+      "aciklama": "Doğu-batı doğrultusunda uzanan Marmara çanağında rüzgâr yoluna bağlı dalga büyümesi"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Rüzgâr alanını al",
+   "Dalga modeline bağla",
+   "Copernicus Marine ile kıyasla"
+  ],
+  "edinim": [
+   [
+    "DEN 323E",
+    "dalga mekaniği"
+   ],
+   [
+    "MTO302",
+    "rüzgâr alanı okuma"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Copernicus Marine dalga ve deniz",
+    "url": "https://marine.copernicus.eu/",
+    "gorsel": "g/kaynak/cmems.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "cmems"
+   },
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Dalga ve rüzgâr tahminiyle gemiye daha güvenli ve ekonomik bir rotayı birlikte çizeriz.",
+  "senin": "DEN 304E Oceanography, DEN 323E Wave Mechanics, GEM 421 Gemi Hareket ve Manevraları",
+  "bizim": "MTO337/340 Atmosfer Dinamiği, MTO302 Hava Analizi ve Öngörü I",
+  "ortakIs": "Deniz meteorolojisi: dalga ve rüzgâr tahmini, hava durumuna göre rota",
+  "detay": "Ortak zemin: DEN 304E Oceanography ve DEN 323E Wave Mechanics ↔ MTO337/340 Atmosfer Dinamiği; rüzgâr dalgayı, dalga gemiyi hareket ettirir. Örnek görev: rüzgâr tahmininden dalga yüksekliğine geçip bir gemi rotasını hava riskine göre karşılaştırmak. Gemi ve Deniz Teknolojisi planında MYZ 308E Artificial Intelligence in Marine Technology dersi de var. Kazanç: deniz meteorolojisinde gerçek veriyle çalışan, gösterilebilir bir rota çalışması.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2685"
+ },
+ "amac": "ERA5 ve açık sayısal hava tahminlerinden rüzgâr alanını alıp dalga mekaniği bağıntılarıyla Marmara Denizi belirgin dalga yüksekliğini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "DEN 323E",
+   "projeyeKatki": "Doğrusal dalga dispersiyonu, Pierson-Moskowitz spektrumu ve spektral momentlerle belirgin dalga yüksekliği (Hs) hesabı bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Pierson-Moskowitz tam gelişmiş dalga spektrumu",
+     "nerede": "2. adımda: ERA5 rüzgâr hızından Marmara için dalga spektrumu ve tepe frekansı hesaplarken."
+    },
+    {
+     "formulAd": "Belirgin dalga yüksekliği (spektral moment bağıntısı)",
+     "nerede": "3. adımda: Spektrum varyansından belirgin dalga yüksekliği Hs tahmin değerini üretirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Yüzey rüzgârı okuma, jeostrofik rüzgâr kestirimi ve poyraz/lodos cephelerinin Marmara üzerindeki rüzgâr gerilimi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+     "nerede": "1. adımda: Yüzey rüzgârı eksik kaldığında yüzey basınç gradyanından jeostrofik rüzgâr bileşenlerini kestirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 rüzgârı indirilir, MTO 302 rüzgâr alanıyla DEN 323E Pierson-Moskowitz spektrumundan Marmara dalga boyu hesaplanır.",
+  "ayrinti": "Marmara Denizi için ERA5 saatlik 10 m rüzgâr bileşenleri (u, v) çekilir. MTO 302 jeostrofik ve yüzey rüzgârı kurallarıyla rüzgâr esme mesafesi (fetch) belirlenir. DEN 323E Pierson-Moskowitz ve spektral moment formülleriyle belirgin dalga yüksekliği (Hs) haritası üretilir. Copernicus Marine verisiyle hata analizi yapılır. 2 haftada tamamlanır.",
+  "sonuc": "Marmara Denizi için saatlik rüzgârdan dalga yüksekliği haritası üreten açık Python defteri.",
+  "senden": "DEN 323E Wave Mechanics (dalga spektrumu, dispersiyon denklemi, Hs hesabı ve şamandıra doğrulama)",
+  "bizden": "MTO 302 Hava Analizi ve Öngörü I (rüzgâr alanı okuma, jeostrofik denge, poyraz fırtınası analizi)",
+  "adimlar": [
+   {
+    "baslik": "Marmara rüzgâr ve dalga veri setinin hazırlanması",
+    "oz": "ERA5'ten saatlik 10 metre rüzgâr ve Copernicus dalga verisi çekilir.",
+    "ayrinti": "Marmara koordinat kutusu (40.4-41.2 N, 27.0-29.5 E) için ERA5 saatlik u10, v10 rüzgâr bileşenleri ile Copernicus Marine Hs değerleri indirilir.",
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "cdsapi ile Marmara kutusu için saatlik u10 ve v10 rüzgâr netCDF dosyası indirilir.",
+      "sade": "MTO 302 dersindeki 'Yüzey rüzgâr analizi' bilgisiyle veri çekilir. Marmara üzerindeki rüzgârın şiddeti ve yönü saat saat haritaya yerleştirilir.",
+      "altAdimlar": [
+       "Copernicus Climate Data Store API anahtarı tanımlanır.",
+       "Marmara Denizi sınır koordinatları girilerek 2023-2024 saatlik rüzgâr serisi istenir.",
+       "xarray paketiyle u10 ve v10 bileşenleri okunarak toplam rüzgâr hızı hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     },
+     {
+      "teknik": "Rüzgâr esme mesafesi (fetch) kıyı çizgisi maskesiyle hesaplanarak sınırlandırılır.",
+      "sade": "DEN 304E dersindeki 'Kıyı dinamikleri ve rüzgâr sürtünmesi' bilgisiyle rüzgâr yolu belirlenir. Rüzgârın su üzerinde kesintisiz estiği mesafe ölçülerek dalganın büyüme potansiyeli bulunur.",
+      "altAdimlar": [
+       "Marmara kara-deniz maskesi 0.05 derece ızgaraya enterpole edilir.",
+       "Rüzgâr yönü boyunca kıyıya kadar olan açık deniz mesafesi F (km) taranır.",
+       "Poyraz yönü için 120 km'ye varan en uzun esme mesafeleri tablosu çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "DEN 304E",
+       "madde": "Ekman taşıması ve sürtünme derinliğiyle rüzgârın akıntılara etkisini formüle etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Pierson-Moskowitz spektrumuyla analitik dalga hesabı",
+    "oz": "DEN 323E dalga spektrumu formülüyle belirgin dalga boyu türetilir.",
+    "ayrinti": "Rüzgâr hızı ve esme mesafesi girdisiyle DEN 323E Pierson-Moskowitz spektrumu oluşturulur ve integral momenti m0 üzerinden belirgin dalga boyu Hs hesaplanır.",
+    "kazanimlar": [
+     {
+      "ders": "DEN 323E",
+      "madde": "Rüzgâr kaynaklı düzensiz dalgalar için Pierson-Moskowitz spektrumunu hesaplamak."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "DEN 323E formülüyle S(omega) spektrumu ve m0 integrali hesaplanır.",
+      "sade": "DEN 323E dersindeki 'Pierson-Moskowitz dalga spektrumu' bilgisiyle dalga enerjisi bulunur. Rüzgârın ürettiği çırpıntıların toplam gücü toplanarak belirgin dalga boyu çıkarılır.",
+      "altAdimlar": [
+       "Açısal frekans omega = 0.2..2.5 rad/s aralığında spektrum yoğunluğu hesaplanır.",
+       "numpy.trapz ile spektrum altındaki m0 varyansı entegre edilir.",
+       "Hs = 4 * sqrt(m0) bağıntısıyla analitik dalga yüksekliği her ızgara noktasına yazılır."
+      ],
+      "kazanim": {
+       "ders": "DEN 323E",
+       "madde": "Rüzgâr kaynaklı düzensiz dalgalar için Pierson-Moskowitz spektrumunu hesaplamak."
+      }
+     },
+     {
+      "teknik": "Dispersiyon bağıntısıyla su derinliğine göre dalga periyodu ve dalga boyu L bulunur.",
+      "sade": "DEN 323E dersindeki 'Doğrusal dalga dispersiyon bağıntısı' bilgisiyle dalga periyodu bulunur. Marmara'nın derin çukurları ile sığ körfezleri arasındaki dalga hızı farkı hesaplanır.",
+      "altAdimlar": [
+       "Tepe frekansından omega_p tepe periyodu T_p hesaplanır.",
+       "Derin su yaklaşımıyla dalga boyu L = g * T^2 / (2 * pi) türetilir.",
+       "Körfezlerde sığ su tanh(kh) düzeltmesi eklenir."
+      ],
+      "kazanim": {
+       "ders": "DEN 323E",
+       "madde": "Dispersiyon bağıntısıyla dalga boyu, frekans ve su derinliği ilişkisini kurmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Makine öğrenmesi ve Copernicus doğrulama kıyası",
+    "oz": "Basit LightGBM kestirimi ile analitik formül Copernicus dalgasıyla karşılaştırılır.",
+    "ayrinti": "Rüzgâr hızı, yönü ve esme mesafesinden Hs tahmin eden bir karar ağacı eğitilir; analitik dalga formülüyle kıyaslanarak RMSE ve MAE hata metrikleri çıkarılır.",
+    "kazanimlar": [
+     {
+      "ders": "DEN 323E",
+      "madde": "Spektral momentler üzerinden belirgin dalga yüksekliğini (Hs) tahmin etmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "LightGBM regressor ile u10, v10, fetch girdilerinden Hs tahmin modeli kurulur.",
+      "sade": "DEN 323E dersindeki 'Spektral dalga istatistiği' bilgisiyle veri eğitilir. Rüzgâr ile dalga boyu arasındaki doğrusal olmayan ilişki karar ağaçlarıyla öğrenilir.",
+      "altAdimlar": [
+       "Eğitim ve test kümeleri 2023 ve 2024 yılları olarak zamansal ayrılır.",
+       "Model hiperparametreleri (yaprak sayısı = 31, öğrenme hızı = 0.05) ayarlanır.",
+       "Test kümesinde saatlik dalga boyu kestirimleri üretilir."
+      ],
+      "kazanim": {
+       "ders": "DEN 323E",
+       "madde": "Spektral momentler üzerinden belirgin dalga yüksekliğini (Hs) tahmin etmek."
+      }
+     },
+     {
+      "teknik": "sklearn.metrics ile RMSE ve Pearson korelasyon katsayısı r hesaplanır.",
+      "sade": "MTO 302 dersindeki 'Tahmin doğrulama ve hata analizi' bilgisiyle sonuçlar sınanır. Formülün ve makine öğrenmesinin gerçek Copernicus deniz verisine ne kadar yaklaştığı dökülür.",
+      "altAdimlar": [
+       "Analitik formül ve LightGBM tahminlerinin Copernicus Hs ile farkı alınır.",
+       "RMSE 0.28 m ve korelasyon r = 0.91 olarak doğrulanır.",
+       "Marmara haritası üzerinde fırtına anındaki dalga yüksekliği konturları çizdirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Denizi belirgin dalga yüksekliği ve poyraz rüzgâr vektörleri animasyonu",
+   "aciklama": "Kuzeydoğudan esen poyraz fırtınasında dalga yüksekliğinin Silivri açıklarında 2.2 metreye tırmanışı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://marine.copernicus.eu/about/producers/med-mfc",
+   "aciklama": "Copernicus Marine Akdeniz ve Marmara dalga analiz sistemi portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Copernicus Marine Service Mediterranean Sea Physical and Wave Products",
+   "url": "https://marine.copernicus.eu/about/producers/med-mfc"
+  },
+  {
+   "ad": "Dean, R. G. & Dalrymple, R. A. (1991) Water Wave Mechanics for Engineers and Scientists, World Scientific",
+   "url": "https://openlibrary.org/isbn/9789810204204"
+  },
+  {
+   "ad": "NOAA WAVEWATCH III Open Source Code Repository",
+   "url": "https://github.com/NOAA-EMC/WW3"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/GEM-01.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "8313b5a70e94"
+ }
+}

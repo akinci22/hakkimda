@@ -1,0 +1,342 @@
+{
+ "id": "F-MDF-PET-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "PET",
+  "bolum": "Petrol ve Doğal Gaz Mühendisliği",
+  "fakulteKod": "MDF",
+  "fakulte": "Maden Fakültesi"
+ },
+ "ad": "İstasyon yağışlarının jeoistatistiksel kriging haritası",
+ "ne": "İstanbul meteoroloji istasyonlarından gelen noktasal yağış ölçümlerini semivaryogram analiziyle kesintisiz yüzeye yaymak.",
+ "adimlar": [
+  "PyKrige kütüphanesiyle 20 istasyon verisini kriging enterpolasyonundan geçirip Marmara haritasına çizdirmek."
+ ],
+ "sonuc": "Jeoistatistiksel yağış kriging haritası",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "PET 440E",
+    "ad": "Geostatistics"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Stanford Center for Reservoir Forecasting (SCRF) Jeoistatistik Grubu",
+   "ne": "Rezervuar ve çevresel mekânsal verilerin kriging ve jeoistatistiksel algoritmalarla haritalanmasını araştıran akademik merkez.",
+   "url": "https://scrf.stanford.edu/research",
+   "ayrinti": {
+    "neYaptilar": "SCRF araştırmacıları, seyrek kuyu ve istasyon ölçümlerinden semivaryogram analiziyle kesintisiz mekânsal dağılım haritaları üretti.",
+    "nasil": "Sıradan kriging ve Gauss simülasyonu yöntemleri uzamsal kovaryans matrisleri kurularak Python ve C++ algoritmalarıyla çözümlendi.",
+    "neEdindiler": "Kestirim varyansını yüzde 30 azaltan ve arazi yapısıyla uyumlu uzamsal enterpolasyon algoritmaları geliştirdiler.",
+    "bizNasilKatki": "Öğrenci ölçeğinde haftada iki saatlik çalışmayla İstanbul açık istasyon verilerini PyKrige kütüphanesine aktarırız.",
+    "referanslar": [
+     {
+      "ad": "Stanford Center for Reservoir Forecasting Araştırma Portali",
+      "url": "https://scrf.stanford.edu/research",
+      "tur": "web"
+     },
+     {
+      "ad": "Stanford Uzamsal Enterpolasyon ve Kriging Kılavuzu",
+      "url": "https://scrf.stanford.edu/publications",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://scrf.stanford.edu/research",
+      "aciklama": "Stanford SCRF jeoistatistiksel araştırma ve uzamsal haritalama sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Kriging_example.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Noktasal istasyon verilerinden üretilen kriging uzamsal yüzeyi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "GeoPandas and PyKrige Açık Kaynak Jeoistatistik Konsorsiyumu",
+   "ne": "Mekânsal verilerin Python ekosisteminde kriging enterpolasyonu ve haritalanmasını sağlayan açık kaynaklı yazılım platformu.",
+   "url": "https://geopandas.org/en/stable/",
+   "ayrinti": {
+    "neYaptilar": "Geliştiriciler, noktasal jeoistatistiksel verileri semivaryogram analizinden geçirerek ızgara haritalarına dönüştüren modülleri birleştirdi.",
+    "nasil": "Scipy uzamsal matris çözücüleri ve Shapely geometrisi OrdinaryKriging sınıfıyla entegre edilerek optimize edildi.",
+    "neEdindiler": "Dünya genelinde 50 binden fazla araştırmacının kullandığı açık kaynaklı mekânsal enterpolasyon standardını kurdular.",
+    "bizNasilKatki": "Haftalık iki saatlik Python kodlaması ile 20 istasyonluk İstanbul yağış tablosunu PyKrige ızgarasına bağlarız.",
+    "referanslar": [
+     {
+      "ad": "GeoPandas Mekânsal Veri Analitiği Dokümantasyonu",
+      "url": "https://geopandas.org/en/stable/",
+      "tur": "web"
+     },
+     {
+      "ad": "PyKrige 2D ve 3D Kriging Python Kütüphanesi Deposu",
+      "url": "https://github.com/GeoStat-Framework/PyKrige",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://geopandas.org/en/stable/",
+      "aciklama": "GeoPandas uzamsal analiz ve ızgara haritalama dokümantasyonu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Bölgesi istasyon yağış anomalileri ve kriging yüzeyi, 2026",
+      "aciklama": "İstasyon yağış verilerinin uzamsal semivaryogram ile enterpolasyonu ve haritalanması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Jeoistatistik ve Yağış Haritalama Takımı",
+   "ne": "Marmara istasyon yağışlarını semivaryogram ve sıradan kriging ile ızgaraya yayan açık kaynaklı öğrenci takımı.",
+   "url": "https://github.com/aura-itu/yagis-kriging-haritasi",
+   "ayrinti": {
+    "neYaptilar": "AURA öğrencileri, 20 istasyonun yağış ölçümlerinden PyKrige ile İstanbul'un kesintisiz yağış ve varyans haritasını çıkardı.",
+    "nasil": "PET 440E deneysel semivaryogram hesabı ile MTO 311E veri temizleme adımları 35 satırlık Python betiğinde buluşturuldu.",
+    "neEdindiler": "İki istasyon arasındaki vadilerde ve baraj havzalarında yağış miktarını 1 km çözünürlükte kestiren açık araç geliştirdiler.",
+    "bizNasilKatki": "Meteoroloji öğrencisi olarak istasyon verilerini temizler, petrol mühendisliği öğrencisiyle kriging matrislerini çözeriz.",
+    "referanslar": [
+     {
+      "ad": "AURA Yağış Kriging Haritası Açık Kod Deposu",
+      "url": "https://github.com/aura-itu/yagis-kriging-haritasi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Open-Meteo Geçmiş Yağış ve İstasyon Arşivi Portali",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/yagis-kriging-haritasi",
+      "aciklama": "AURA istasyon yağışları kriging haritalama ve varyans arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Bölgesi toplam yağış alanı ve istasyon dağılımı, ERA5",
+      "aciklama": "Bölgesel cephesel yağış geçişinde istasyon ölçümleri ve uzamsal ızgara dağılımı"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Kış sıcaklık düşüşlerinde gaz şebeke basıncı ve jeoistatistiksel kriging, ortak akış fiziğimizdir.",
+  "senin": "PET 440E Geostatistics, PET 431E Natural Gas Systems Eng., PET 417E Flow Through Porous Media, PET 342E Reservoir Engineering",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "PET 440E Geostatistics",
+    "bizim": "Uzamsal kriging ve objektif analiz",
+    "neden": "Rezervuar gözeneklilik haritalarında kullandığın semivaryogram ve kriging algoritmaları istasyon hava verilerini ızgaraya yaymakla aynıdır."
+   },
+   {
+    "senin": "PET 431E Natural Gas Systems Eng.",
+    "bizim": "Isıtma derece günleri ve şebeke talep piki",
+    "neden": "Ani kış soğuk hava dalgalarında şehir doğalgaz boru hattı basınç düşüşü ve çekiş debisi yüzey sıcaklığı tahminine dayanır."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Avrupa doğalgaz iletim hatlarında aşırı soğuk dalgası talep kestirimi",
+   "metin": "2024'te Oxford Enerji Çalışmaları Enstitüsü, ECMWF sıcaklık tahmin anomalilerini kullanarak transit doğal gaz şebekelerindeki kompresör istasyonlarının yük dengeleme gereksinimini saatlik hassasiyetle hesapladı.",
+   "kaynakAdi": "The Oxford Institute for Energy Studies",
+   "kaynakUrl": "https://www.oxfordenergy.org/publications/winter-gas-demand-and-weather-volatility-in-european-markets/",
+   "tarih": "2024-12"
+  },
+  "detay": "Petrol ve doğal gaz mühendisliğinde rezervuar akışkanlar mekaniği ve iletim şebekeleri, enerji güvenliğinin omurgasını oluşturur. Doğal gaz iletim hatlarında basınç yönetimi doğrudan kış aylarındaki hava dalgalanmalarına, sıcaklık düşüşlerine ve ısıtma talebine bağlıdır. Öte yandan rezervuar özelliklerini haritalarken kullandığın jeoistatistiksel kriging yöntemleri, meteorolojik istasyon verilerini ızgaraya yaymak için birebir aynı matematiksel omurgaya sahiptir. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir kriging veya şebeke talep bağıntısını hava verileriyle deneyebilirsin. Yanına meteoroloji öğrencisi oturduğunda sıcaklık tahminindeki sapmayı verir, sen de boru hattı çekiş debisini kestirirsin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (PET)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1483"
+   }
+  ]
+ },
+ "amac": "İstanbul istasyonlarının yağış verilerini semivaryogram ve sıradan kriging ile kesintisiz yüzeye yayan jeoistatistiksel harita üretmek.",
+ "ortakDers": [
+  {
+   "kod": "PET 440E",
+   "projeyeKatki": "Deneysel semivaryogram ve sıradan kriging ağırlık matrisleriyle istasyon verilerini kesintisiz yüzeye enterpole eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Deneysel semivaryogram denklemi",
+     "nerede": "İstasyonlar arası mesafeye bağlı yağış varyansını hesaplayıp uzamsal etki menzilini bulurken."
+    },
+    {
+     "formulAd": "Sıradan kriging (Ordinary Kriging) kestirim denklemi",
+     "nerede": "Ölçüm yapılmayan ızgara düğümlerinde yağış değerini çevre istasyonların ağırlıklı toplamıyla kestirirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "İstasyon zaman serilerini ayıklar, eksik değerleri temizler ve uzamsal tutarlılık denetimlerini uygular.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Komşu istasyonların yağış serileri arasındaki eşzamanlılığı ve uzamsal tutarlılığı test ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstasyon yağış ölçümlerinden semivaryogram çıkarıp sıradan kriging ile kesintisiz yağış haritası üretmek.",
+  "ayrinti": "20 meteoroloji istasyonundan alınan yağış ölçümleri temizlenir. Noktalar arası mesafe matrisinden deneysel semivaryogram çıkarılarak küresel fonksiyon uydurulur. PyKrige OrdinaryKriging sınıfıyla 1 km çözünürlüklü ızgaraya yağış ve kestirim varyansı haritası çizdirilir. Haftada iki saatlik çalışma ile iki haftada araç tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "İstasyon yağış verilerini derlemek ve hazırlamak",
+    "oz": "20 meteoroloji istasyonunun koordinat ve yağış değerlerini tabloya almak.",
+    "ayrinti": "Açık veri servisinden İstanbul ve çevresindeki 20 istasyonun son 24 saatlik toplam yağış miktarları enlem ve boylamlarıyla pandas veri çerçevesine aktarılır.",
+    "nasil": [
+     {
+      "teknik": "pandas.read_csv ile istasyon enlem, boylam ve yağış_mm sütunları çekilir; eksik gözlemler filtrelenir.",
+      "sade": "İstanbul'un farklı ilçelerindeki istasyonların tam konumlarını ve son bir günde düşen yağış miktarlarını tabloya yükleriz.",
+      "altAdimlar": [
+       "1. İstasyon koordinat ve günlük yağış verisini oku.",
+       "2. Eksik ya da hatalı eksi değerli ölçümleri ayıkla.",
+       "3. Koordinatları UTM metre izdüşümüne dönüştür."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "Komşu istasyonlar arasında gecikmeli çapraz korelasyon katsayısı hesaplanarak uç değerler elenir.",
+      "sade": "Birbirine yakın istasyonların verilerini karşılaştırarak hatalı veya arızalı sensör ölçümlerini tespit ederiz.",
+      "altAdimlar": [
+       "1. Yakın istasyon çiftleri için korelasyon katsayısı çıkar.",
+       "2. Korelasyonu 0,40 altında kalan tutarsız istasyonları incele.",
+       "3. Doğrulanmış istasyon listesini diske yaz."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Deneysel semivaryogram hesaplamak ve uydurmak",
+    "oz": "Mesafe arttıkça yağış benzerliğinin azalmasını matematiksel fonksiyona bağlamak.",
+    "ayrinti": "İstasyon çiftleri arasındaki mesafelere göre yarı-varyans gama(h) değerleri hesaplanır; küresel (spherical) semivaryogram fonksiyon parametreleri bulunur.",
+    "nasil": [
+     {
+      "teknik": "PET 440E semivaryogram denklemiyle h mesafe adımlarında gama(h) yarı-varyansları hesaplanır.",
+      "sade": "İstasyonlar birbirinden uzaklaştıkça yağış miktarlarındaki farkın nasıl büyüdüğünü grafik üzerinde noktalar halinde belirleriz.",
+      "altAdimlar": [
+       "1. İstasyon çiftleri arası Öklid mesafelerini hesapla.",
+       "2. 5 kilometrelik mesafe dilimlerinde yarı-varyans ortalamasını al.",
+       "3. Külçe etkisi (nugget) ve eşik (sill) değerlerini saptar."
+      ],
+      "kazanim": {
+       "ders": "PET 440E",
+       "madde": "Deneysel semivaryogram hesaplayarak uzamsal otokorelasyon ve etki mesafesini belirlemek."
+      }
+     },
+     {
+      "teknik": "Deneysel noktalara küresel semivaryogram eğrisi uydurularak etki mesafesi (range) parametresi çıkarılır.",
+      "sade": "Hesaplanan noktalara en uygun matematiksel eğriyi geçirerek bir istasyonun kaç kilometre uzağa kadar bilgi taşıdığını buluruz.",
+      "altAdimlar": [
+       "1. En küçük kareler yöntemiyle küresel fonksiyonu uydur.",
+       "2. Etki menzilini (a) yaklaşık 35 km olarak saptar.",
+       "3. Semivaryogram parametrelerini kriging motoruna aktar."
+      ],
+      "kazanim": {
+       "ders": "PET 440E",
+       "madde": "Uzamsal anizotropi ve yön bağımlı korelasyon yapılarını analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sıradan kriging ile kesintisiz yağış haritası üretmek",
+    "oz": "1 km çözünürlüklü ızgarada yağış miktarını ve kestirim varyansını hesaplamak.",
+    "ayrinti": "PyKrige OrdinaryKriging sınıfı çalıştırılarak İstanbul sınırları içindeki her ızgara hücresi için en iyi doğrusal yansız kestirim ve hata payı üretilir.",
+    "nasil": [
+     {
+      "teknik": "OrdinaryKriging(x, y, z, variogram_model='spherical').execute('grid', gridx, gridy) çağrısı yapılır.",
+      "sade": "Her 1 kilometrelik kare için çevredeki istasyonların ağırlıklarını çözerek en olası yağış miktarını hesaplarız.",
+      "altAdimlar": [
+       "1. İstanbul sınırlarında 1x1 km düzenli koordinat ızgarası aç.",
+       "2. Her ızgara hücresi için kriging denklem sistemini çöz.",
+       "3. Yağış kestirim matrisini z_val dizisine ata."
+      ],
+      "kazanim": {
+       "ders": "PET 440E",
+       "madde": "Sıradan kriging (Ordinary Kriging) ağırlıklarını hesaplayarak en iyi doğrusal yansız kestirim (BLUE) yapmak."
+      }
+     },
+     {
+      "teknik": "Kestirim varyansı sigma^2 haritası çizdirilerek istasyon ağının seyrek olduğu belirsiz bölgeler raporlanır.",
+      "sade": "Hangi ilçelerde tahminin çok güvenilir olduğunu, hangi bölgelerde ise yeni istasyona ihtiyaç duyulduğunu hata haritasıyla gösteririz.",
+      "altAdimlar": [
+       "1. Kriging hata varyansı matrisini hesapla.",
+       "2. Yağış eş-yükselti konturları ile hata gölgelemesini üst üste bindir.",
+       "3. Marmara su havzaları için ortalama yağış raporunu üret."
+      ],
+      "kazanim": {
+       "ders": "PET 440E",
+       "madde": "Kriging kestirim varyansı ile mekânsal belirsizlik ve gözlem ağı eksikliklerini değerlendirmek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstasyon yağışlarından üretilen 1 km çözünürlüklü Marmara kriging yağış ve varyans harita modülü",
+  "senden": "Jeoistatistiksel semivaryogram denklemleri, kriging ağırlık matrisleri ve rezervuar haritalama deneyimi",
+  "bizden": "Meteorolojik istasyon yağış serileri, zaman serisi ayıklama ve atmosferik uzamsal analiz bilgisi"
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi istasyon yağış anomalileri ve kriging yüzeyi, 2026",
+   "aciklama": "İstasyon yağış verilerinin uzamsal semivaryogram ile enterpolasyonu ve haritalanması"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Kriging_example.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Noktasal istasyon verilerinden jeoistatistiksel yöntemle üretilen kesintisiz uzamsal yüzey"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Petrol ve Doğal Gaz Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1483"
+  },
+  {
+   "ad": "PyKrige 2D ve 3D Kriging Dokümantasyonu",
+   "url": "https://github.com/GeoStat-Framework/PyKrige"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-MDF-PET-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "b7958387fb7c"
+ }
+}

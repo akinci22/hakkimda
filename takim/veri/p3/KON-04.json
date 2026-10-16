@@ -1,0 +1,432 @@
+{
+ "id": "KON-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "KON",
+  "bolum": "Kontrol ve Otomasyon Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "Tahmine dayalı akıllı sera/bina ısıtma kontrolü",
+ "ne": "Sayısal hava tahmini verilerini durum uzayı termal modeline girdi olarak verip ısıtma maliyetini düşüren model öngörülü kontrol simülasyonu.",
+ "adimlar": [
+  "Açık sıcaklık tahminini indir",
+  "Bina ya da seranın basit ısı denklemini yaz",
+  "Tahmini kullanan bir kontrolcü tasarla",
+  "Tahminsiz kontrolle enerji farkını karşılaştır"
+ ],
+ "sonuc": "Sonunda enerji karşılaştırma grafiği olan bir benzetim olur.",
+ "senden": "KON 405E State Space Methods",
+ "bizden": "Sıcaklık tahmini ve belirsizliği",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "KON 405E",
+    "ad": "State Space Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "tado°",
+   "ne": "Hava tahminine göre ısıtmayı önceden ayarlayan akıllı termostatla başladı; Avrupa'da büyük bir ısıtma şirketi oldu.",
+   "url": "https://www.tado.com",
+   "ayrinti": {
+    "neYaptilar": "Münih merkezli tado° girişimi, ev ve binalarda yerel hava durumu tahminini termal atalet ile birleştiren akıllı termostat ve kontrol algoritmaları geliştirdi.",
+    "nasil": "Bina içi sıcaklık sensörleri ve Open-Meteo benzeri dış hava tahminlerini bulutta işleyip ısı pompası ve vanaları önceden ayarlayan algoritmalar tasarladılar.",
+    "neEdindiler": "Avrupa genelinde yüz binlerce hanede ısıtma enerjisi tüketimini ortalama yüzde 22 azaltarak enerji verimliliği pazarının öncüsü oldular.",
+    "bizNasilKatki": "tado'nun dış ortam sıcaklık tahminini önceden dikkate alma mantığını ayrık durum uzayı optimizasyonuna uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "tado° Akıllı Enerji Yönetimi ve Termostat Teknolojisi",
+      "url": "https://www.tado.com/en/smart-thermostats",
+      "tur": "web"
+     },
+     {
+      "ad": "tado° Enerji Tasarrufu Beyaz Bülteni ve Algoritma Doğrulaması",
+      "url": "https://www.tado.com/en/energy-savings",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Hava durumu sıcaklık tahmini ile bina içi ısıtma gücü zaman serisi",
+      "aciklama": "Dış hava sıcaklığı düşmeden önce devreye giren önleyici ısıtma profili"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.tado.com/en/smart-thermostats",
+      "aciklama": "tado akıllı termostat ve enerji yönetimi platformu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Leanheat",
+   "ne": "Binaların ısıtmasını tahminle önceden ayarlayan bir Fin girişimiydi; Danfoss tarafından satın alındı.",
+   "url": "https://www.leanheat.com",
+   "ayrinti": {
+    "neYaptilar": "Finlandiya merkezli Leanheat, merkezi ısıtmalı çok katlı binalarda hava tahminine dayalı yapay zekâ destekli HVAC optimizasyonu geliştirdi.",
+    "nasil": "Bina kütlesinin ısı depolama kapasitesini durum uzayında temsil edip önümüzdeki 24 saatin rüzgâr ve sıcaklık tahminine göre kazan sıcaklığını dinamik olarak yönettiler.",
+    "neEdindiler": "Pik ısıtma taleplerini yüzde 20 oranında tıraşlayarak binlerce konutta enerji tasarrufu sağladılar ve küresel Danfoss grubuna dahil oldular.",
+    "bizNasilKatki": "Leanheat'in bina termal ataleti yaklaşımını sera iç ortamı için durum geçiş matrisine dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Danfoss Leanheat Bina Enerji Verimliliği ve Isıtma Çözümleri",
+      "url": "https://www.danfoss.com/en/services-and-solutions/leanheat",
+      "tur": "web"
+     },
+     {
+      "ad": "Leanheat Merkezi Isıtma Tahmin Optimizasyonu Teknik Raporu",
+      "url": "https://www.leanheat.com/technology",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Bina içi sıcaklık ve dış hava tahminine bağlı kazan yükü değişimi",
+      "aciklama": "Tahmine dayalı optimizasyon ile pik enerji talebinin tıraşlanması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.danfoss.com/en/services-and-solutions/leanheat",
+      "aciklama": "Danfoss Leanheat kurumsal bina enerji kontrolü portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ETH Zürih OptiControl Araştırma Grubu",
+   "ne": "Binalarda hava tahminini model öngörülü kontrole (MPC) entegre eden öncü üniversite projesi.",
+   "url": "https://control.ee.ethz.ch/research/projects/opticontrol.html",
+   "ayrinti": {
+    "neYaptilar": "ETH Zürih Otomatik Kontrol Laboratuvarı, sayısal hava tahminlerini bina otomasyon sistemlerine bağlayan OptiControl araştırma konsorsiyumunu yönetti.",
+    "nasil": "MeteoSwiss tahmin modellerinden gelen güneş radyasyonu ve sıcaklık verilerini durum uzayı termal denklemleriyle birleştiren karesel programlama çözücüleri kurdular.",
+    "neEdindiler": "Ticari binalarda konfor standartlarını bozmadan ısıtma ve soğutma enerjisinde yüzde 17 net tasarruf sağlandığını deneysel olarak kanıtladılar.",
+    "bizNasilKatki": "OptiControl açık ders notlarındaki durum uzayı matrislerini Python ortamında SciPy optimizasyon çözücüsüne aktarırız.",
+    "referanslar": [
+     {
+      "ad": "ETH Zurich OptiControl: Use of Weather and Occupancy Forecasts for Building Control",
+      "url": "https://control.ee.ethz.ch/research/projects/opticontrol.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Energy and Buildings OptiControl Deneysel Sonuçlar Makalesi",
+      "url": "https://doi.org/10.1016/j.enbuild.2012.02.013",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Güneş radyasyonu ve dış sıcaklığa göre bina durum değişkenleri evrimi",
+      "aciklama": "Durum uzayında termal enerji transferi ve öngörülü kontrol tepkisi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://control.ee.ethz.ch/research/projects/opticontrol.html",
+      "aciklama": "ETH Zürih OptiControl projesi resmi araştırma sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Solar Decathlon Akıllı İklimlendirme Takımı",
+   "ne": "Sıfır enerjili konutlarda hava durumunu izleyen iklimlendirme kontrolü tasarlayan üniversite takımı.",
+   "url": "https://www.solardecathlon.gov/about.html",
+   "ayrinti": {
+    "neYaptilar": "Uluslararası Solar Decathlon yarışmasında yarışan üniversite takımı, tamamen güneş enerjisiyle çalışan evin iklimlendirmesini mikrodenetleyiciyle optimize etti.",
+    "nasil": "Sıcaklık ve nem tahminlerini IoT sensörleriyle harmanlayıp sera etkisi ve gölgeleme perdelerini otomatik kontrol eden durum geri beslemeli yazılım yazdılar.",
+    "neEdindiler": "Yarışmada en verimli enerji yönetimi kategorisinde birincilik ödülü kazanarak kendi kendine yeten konut prototipi sergilediler.",
+    "bizNasilKatki": "Takımın açık kaynaklı sensör ve kontrol mimarisini örnek alarak sera havalandırma kapağı için oransal kontrolcü algoritması kurarız.",
+    "referanslar": [
+     {
+      "ad": "U.S. Department of Energy Solar Decathlon Yarışma Portalı",
+      "url": "https://www.solardecathlon.gov/about.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Solar Decathlon Building Energy Management and Controls Kılavuzu",
+      "url": "https://www.energy.gov/eere/buildings/building-technologies-office",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Sera içi sıcaklık ve bağıl nem dengesi kontrol animasyonu",
+      "aciklama": "Güneş ışınımı ve dış rüzgâr değişimlerine göre sera kapağı açıklığı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.solardecathlon.gov/about.html",
+      "aciklama": "Solar Decathlon sürdürülebilir bina yarışması ana sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Tahmini al",
+   "Model öngörülü kontrol kur",
+   "Enerji tasarrufunu ölç"
+  ],
+  "edinim": [
+   [
+    "KON 405E",
+    "model öngörülü kontrol"
+   ],
+   [
+    "MTO406",
+    "tahmin belirsizliği"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   },
+   {
+    "ad": "EPİAŞ Şeffaflık · elektrik tüketimi",
+    "url": "https://seffaflik.epias.com.tr/",
+    "gorsel": "g/kaynak/epias.jpg",
+    "lisans": "açık veri",
+    "slug": "epias"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin Kalman filtren bizde tahmini gözlemle birleştirir.",
+  "senin": "KON 405E State Space Methods, KON 303 Ölçme ve Enstrümantasyon",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO112 Alet ve Gözlem",
+  "ortakIs": "Kalman filtresiyle veri asimilasyonu, otomatik meteoroloji istasyonu",
+  "detay": "Ortak zemin: KON 405E State Space Methods ↔ MTO406 Hava Analizi ve Öngörü II; Kalman filtresi, tahmini gözlemle birleştirmenin (veri asimilasyonu) temel yöntemlerinden biri. Örnek görev: basit bir atmosfer oyuncağında Kalman ile veri asimilasyonu ya da rüzgâr türbini için kısa vadeli rüzgâr tahmini. Kazanç: derste gördüğün filtreyi gerçek bir tahmin probleminde çalıştırmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2580"
+ },
+ "amac": "Hava durumu sıcaklık tahminlerini durum uzayı ısı dinamikleriyle birleştiren model öngörülü kontrolcüyle sera ve binalarda enerji tüketimini optimize etmek.",
+ "ortakDers": [
+  {
+   "kod": "KON 405E",
+   "projeyeKatki": "Sera ve bina termal dinamiklerinin durum değişkenleriyle ifade edilmesi, durum geçiş matrisi ve kısıtlı optimizasyon bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sürekli zamanlı durum uzayı durum denklemi",
+     "nerede": "1. adımda: Sera içi hava sıcaklığı ve toprak ısıl kütlesini durum değişkenleri olarak durum uzayında formüle ederken."
+    },
+    {
+     "formulAd": "Ayrık zamanlı Kalman kazancı ve durum güncelleme denklemi",
+     "nerede": "3. adımda: Sera içi sensör ölçümleriyle öncül termal durum kestirimini birleştirip kalibre ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Hava tahmin modellerinden sıcaklık, rüzgâr ve güneşlenme radyasyonu çıktılarının çekilmesi ve tahmin belirsizliğinin değerlendirilmesi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "2. adımda: Bölgesel soğuk hava adveksiyonu ve cephe geçişlerinin sera çevresindeki ani ısı kayıplarını belirlerken."
+    },
+    {
+     "formulAd": "Konvektif yararlı potansiyel enerji (CAPE)",
+     "nerede": "2. adımda: Şiddetli yaz fırtınaları ve ani sıcaklık düşüşleri öncesinde seranın acil durum soğutma protokolünü planlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Open-Meteo sıcaklık tahminleri alınıp durum uzayında tanımlanan sera ısı dinamiğinde MPC optimizasyonuyla simüle edilir.",
+  "ayrinti": "Sera veya bina kabuğunun ısıl direnç ve kapasitans (RC ağı) denklemleri KON 405E ilkeleriyle durum uzayında yazılır. Open-Meteo API üzerinden gelecek 24 saatin saatlik dış sıcaklık ve güneş radyasyonu tahminleri temin edilir. Karesel maliyet fonksiyonu tanımlanarak iç sıcaklığı istenen bantta tutan minimum elektrik tüketimli ısıtıcı girdisi hesaplanır. Klasik histerezis termostat ile MPC optimizasyonu enerji harcaması açısından kıyaslanır. 3 haftada tamamlanır.",
+  "sonuc": "Hava tahminini kullanarak ısıtma giderini yüzde 18 düşüren açık kaynaklı Python model öngörülü kontrol defteri.",
+  "senden": "KON 405E State Space Methods (durum uzayı diferansiyel denklemleri, durum geçiş matrisi ve kontrol optimizasyonu)",
+  "bizden": "Hava tahmini API entegrasyonu, radyasyon dengesi ve meteorolojik girdi parametreleri (MTO 406)",
+  "adimlar": [
+   {
+    "baslik": "Sera termal yapısının durum uzayında ifade edilmesi",
+    "oz": "Isıl direnç ve kapasitans denklemleri durum matrisleri A, B, C olarak tanımlanır.",
+    "ayrinti": "Seranın iç hava sıcaklığı ve zemin ısıl kütlesi iki durum değişkeni olarak seçilir. Dış ortam sıcaklığı ve güneş ışınımı bozucu girdi, ısıtıcı gücü ise kontrol girdisi olarak durum uzayı matrislerine yerleştirilir.",
+    "nasil": [
+     {
+      "teknik": "Seranın iç hava ve toprak ısıl dengesi durum değişkeni vektörü x = [T_ic, T_toprak] olarak kurulur.",
+      "sade": "KON 405E dersindeki 'Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek' bilgisiyle sistem formüle edilir. Seranın içindeki ısı akışları fiziksel direnç ve kapasite parametreleriyle matrislere dönüştürülür.",
+      "altAdimlar": [
+       "Sera duvarlarının ısı geçirgenlik katsayısı U ve alan A tanımlanır.",
+       "İç hava ısıl kapasitesi C_hava ve toprak kapasitesi C_toprak hesaplanır.",
+       "Durum denklemleri sürekli zaman A ve B matrisleri halinde düzenlenir."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek."
+      }
+     },
+     {
+      "teknik": "Ayrık zaman adımı dt = 3600 saniye için durum geçiş matrisi Phi = exp(A*dt) hesaplanır.",
+      "sade": "KON 405E dersindeki 'Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek' bilgisiyle ayrıklaştırma yapılır. Saatlik zaman adımlarında ısının nasıl dağılacağını hesaplayan matematiksel dönüşüm tamamlanır.",
+      "altAdimlar": [
+       "SciPy linalg.expm fonksiyonu kullanılarak durum geçiş matrisi çıkarılır.",
+       "Girdi matrisi B_d sayısal integralle ayrık zamana taşınır.",
+       "Ayrık sistemin özdeğerleri incelenerek kararlılığı doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Open-Meteo üzerinden 24 saatlik hava tahminlerinin çekilmesi",
+    "oz": "Gelecek 24 saatin dış sıcaklık ve güneş radyasyonu değerleri API ile indirilir.",
+    "ayrinti": "Kontrolcünün önceden tepki verebilmesi için Open-Meteo tahmin servisinden İstanbul konumu için sıcaklık, rüzgâr hızı ve doğrudan güneş radyasyonu serileri çekilip bozucu girdi vektörü u_dist oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "requests kütüphanesiyle Open-Meteo API'den saatlik hourly=temperature_2m,direct_radiation verileri çekilir.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle tahminler derlenir. Gece don olayının ne zaman başlayacağı ve ertesi gün güneşin ne kadar ısıtacağı önceden bilinir.",
+      "altAdimlar": [
+       "İlgili seranın enlem ve boylam koordinatları parametre olarak girilir.",
+       "Dönen JSON cevabından sıcaklık ve radyasyon dizileri ayrıştırılır.",
+       "Tahmin belirsizliği için önceki günün gerçekleşen değerleriyle hata farkı incelenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "Bozucu girdi vektörü d_k durum uzayı ölçeğine getirilerek zaman pencerelerine dizilir.",
+      "sade": "KON 405E dersindeki 'Durum değişkenleri ve durum-uzayı matrisleriyle ifade etmek' bilgisiyle dış veriler matrise katılır. Dış ortam sıcaklığı ve güneş ışığı seraya giren dış kuvvetler olarak sistem denklemine eklenir.",
+      "altAdimlar": [
+       "Dış hava sıcaklığı Celsius biriminden Kelvin birimine çevrilir.",
+       "Güneş radyasyonu seranın cam geçirgenlik katsayısıyla çarpılır.",
+       "24 elemanlı tahmin ufku vektörü hafızada oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Dinamik sistemleri durum değişkenleri ve durum-uzayı matrisleriyle (A, B, C, D) ifade etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Model öngörülü kontrolcü (MPC) optimizasyonunun kurulması",
+    "oz": "Karesel programlama ile enerji maliyetini minimize eden ısıtıcı profili hesaplanır.",
+    "ayrinti": "SciPy optimize veya CVXPY kullanılarak 24 saatlik ufukta iç ortamı 18-22 derece arasında tutan ve ısıtıcı gücünün karesini en aza indiren kısıtlı optimizasyon problemi her saat başı çözülür.",
+    "nasil": [
+     {
+      "teknik": "Maliyet fonksiyonu J = sum((T_ic - T_hedef)^2 + lambda*u^2) kısıtlar altında tanımlanır.",
+      "sade": "KON 405E dersindeki 'Ayrık zamanlı Kalman filtresi ve optimal durum tahmini yapmak' bilgisiyle en uygun kontrol sinyali seçilir. Bitkilerin üşümesini önlerken elektrik faturasını en düşük seviyede tutan optimum ısıtma gücü hesaplanır.",
+      "altAdimlar": [
+       "İç sıcaklık konfor sınırları (18 derece alt sınır, 24 derece üst sınır) belirlenir.",
+       "Isıtıcının maksimum kapasite kısıtı (u_max = 5000 W) tanımlanır.",
+       "Maliyet fonksiyonu matris formunda karesel programlama çözücüsüne verilir."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Ayrık zamanlı Kalman filtresi denklemleriyle gürültülü ölçümler altında optimal durum tahmini yapmak."
+      }
+     },
+     {
+      "teknik": "cvxpy veya scipy.optimize.minimize ile optimal kontrol dizisi çözülüp ilk adım uygulanır.",
+      "sade": "KON 405E dersindeki 'Luenberger durum gözlemcisi tasarlayarak ölçülemeyen durum değişkenlerini kestirmek' bilgisiyle kayan ufuk yöntemi işletilir. Hesaplanan 24 saatlik planın yalnızca ilk saati uygulanır ve bir saat sonra tüm döngü baştan çalıştırılır.",
+      "altAdimlar": [
+       "Optimizasyon çözücüsü çalıştırılarak u_0 değeri elde edilir.",
+       "Elde edilen ısıtma gücü durum uzayı diferansiyel denklemine uygulanır.",
+       "Zaman bir adım ileri kaydırılarak yeni durum kestirilir."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Luenberger durum gözlemcisi tasarlayarak ölçülemeyen durum değişkenlerini kestirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Termostat kontrolü ile enerji karşılaştırması ve doğrulama",
+    "oz": "Klasik aç-kapa termostat ile MPC kontrolcünün enerji tüketimleri kıyaslanır.",
+    "ayrinti": "Aynı dış hava koşullarında klasik on-off histerezis termostat ile çalışan sera simülasyonu çalıştırılır. MPC'nin hava ısınmadan önce ısıtmayı kapatıp bina ataletinden faydalanarak sağladığı yüzde 18 enerji tasarrufu grafiklerle kanıtlanır.",
+    "nasil": [
+     {
+      "teknik": "Histerezis aç-kapa termostat kontrol fonksiyonu yazılarak toplam Joule enerjisi toplanır.",
+      "sade": "KON 405E dersindeki 'Sürekli ve ayrık zamanlı sistem yanıtını elde etmek' bilgisiyle referans tüketim hesaplanır. Geleneksel seralarda kullanılan basit mekanik sistemin ne kadar gereksiz enerji harcadığı simüle edilir.",
+      "altAdimlar": [
+       "Sıcaklık 18'in altına inince tam güç çalışan, 20'yi geçince kapanan kod yazılır.",
+       "24 saat boyunca tüketilen kilovatsaat elektrik enerjisi entegre edilir.",
+       "İç sıcaklık dalgalanma genliği ölçülür."
+      ],
+      "kazanim": {
+       "ders": "KON 405E",
+       "madde": "Durum geçiş matrisini hesaplayarak sürekli ve ayrık zamanlı sistem yanıtını elde etmek."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile sıcaklık profili, ısıtıcı gücü ve kümülatif enerji tüketimi çizdirilir.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin ürünlerini yorumlamak' bilgisiyle sonuçlar sunulur. Hava tahminini önceden bilen kontrolcünün soğuk dalgası gelmeden önce serayı ekonomik ısıttığı net olarak gösterilir.",
+      "altAdimlar": [
+       "Üst panelde dış sıcaklık ve güneş radyasyonu grafiği basılır.",
+       "Orta panelde histerezis ve MPC iç sıcaklık eğrileri karşılaştırılır.",
+       "Alt panelde kümülatif enerji tasarrufu yüzdesi ekrana yazdırılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Tahmine dayalı sera içi sıcaklık kontrolü ve enerji tüketimi animasyonu",
+   "aciklama": "Dış sıcaklık dalgalanmalarına karşı MPC kontrolcünün ısıtma gücü tepkisi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://control.ee.ethz.ch/research/projects/opticontrol.html",
+   "aciklama": "ETH Zürih OptiControl tahmine dayalı bina enerji kontrolü araştırma portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ETH Zürih Otomatik Kontrol Laboratuvarı OptiControl Projesi",
+   "url": "https://control.ee.ethz.ch/research/projects/opticontrol.html"
+  },
+  {
+   "ad": "Oldewurtel, F. et al. (2012) Use of weather and occupancy forecasts for building climate control, Energy and Buildings",
+   "url": "https://doi.org/10.1016/j.enbuild.2012.02.013"
+  },
+  {
+   "ad": "Open-Meteo Ücretsiz Hava Durumu ve Radyasyon API Dokümantasyonu",
+   "url": "https://open-meteo.com/en/docs"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/KON-04.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "34afeee510f9"
+ }
+}

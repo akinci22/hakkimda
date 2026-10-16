@@ -1,0 +1,125 @@
+{
+ "kod": "EEF 206",
+ "ad": "İşaret İşleme",
+ "bolum": "Elektronik ve Haberleşme Mühendisliği",
+ "obsNo": "206",
+ "ozet": "Sürekli ve ayrık zamanlı işaret ve sistemlerin zaman ve frekans uzayındaki temel analizini öğretir. Konvolüsyon, Fourier serileri ve dönüşümü, Laplace dönüşümü, z-dönüşümü, örnekleme teoremi (Nyquist), doğrusal zamanla değişmeyen (LTI) sistemlerin frekans tepkisi ve sayısal filtre tasarımı ilkeleri ele alınır.",
+ "neOgrenirsin": [
+  "Sürekli ve ayrık zamanlı LTI sistemlerin dürtü yanıtını ve konvolüsyon toplamını hesaplamak.",
+  "Ayrık zamanlı Fourier dönüşümü (DTFT) ile sinyallerin frekans spektrumunu analiz etmek.",
+  "Nyquist-Shannon örnekleme kriterini uygulayarak örtüşme (aliasing) etkisini önlemek.",
+  "z-dönüşümü ve kutup-sıfır diyagramları ile ayrık zamanlı filtre kararlılığını belirlemek.",
+  "FIR ve IIR sayısal filtre tasarımıyla gürültülü işaretleri frekans domeninde filtrelemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Ayrık zamanlı konvolüsyon toplamı",
+   "tex": "y[n] = \\sum_{k=-\\infty}^{\\infty} x[k] \\, h[n - k]",
+   "terimler": [
+    [
+     "y[n]",
+     "sistem çıkış işareti",
+     "fiziksel birim"
+    ],
+    [
+     "x[k]",
+     "giriş işareti",
+     "fiziksel birim"
+    ],
+    [
+     "h[n - k]",
+     "sistemin zaman kaydırılmış birim dürtü yanıtı",
+     "birimsiz"
+    ],
+    [
+     "k",
+     "toplama indisi",
+     "örnek adımı"
+    ]
+   ],
+   "sade": "Giriş işaretinin sistemin dürtü tepkisiyle adım adım kaydırılarak çarpılıp toplanmasıdır. Doğrusal bir filtrenin giriş sinyaline verdiği cevabı eksiksiz hesaplar.",
+   "ornek": "3 elemanlı hareketli ortalama filtresine (h = [1/3, 1/3, 1/3]) giren gürültülü sıcaklık serisinde her yeni çıkış, son üç ölçümün ağırlıklı toplamı olarak elde edilir.",
+   "nerede": "IoT hava istasyonundan gelen gürültülü sensör zaman serilerini hareketli ortalama ve FIR filtreleriyle yumuşatırken."
+  },
+  {
+   "ad": "Ayrık zamanlı Fourier dönüşümü (DTFT)",
+   "tex": "X(e^{j\\omega}) = \\sum_{n=-\\infty}^{\\infty} x[n] \\, e^{-j\\omega n}",
+   "terimler": [
+    [
+     "X(e^{j\\omega})",
+     "ayrık zamanlı Fourier spektrumu",
+     "fiziksel birim"
+    ],
+    [
+     "x[n]",
+     "ayrık zamanlı işaret dizisi",
+     "fiziksel birim"
+    ],
+    [
+     "\\omega",
+     "ayrık açısal frekans",
+     "rad/örnek"
+    ],
+    [
+     "n",
+     "örnek zaman indisi",
+     "örnek"
+    ]
+   ],
+   "sade": "Ayrık zamanlı bir ölçüm dizisini oluşturan tüm frekans bileşenlerini sürekli bir frekans ekseninde gösterir. Sinyalin hangi frekanslarda güç taşıdığını açıklar.",
+   "ornek": "Rüzgâr hızı sensörünün 1 Hz örnekleme verisine DTFT uygulandığında, türbin kanat dönüşünden kaynaklanan 0,2 Hz'lik periyodik dalgalanma açıkça ayırt edilir.",
+   "nerede": "İstasyon sensör verilerindeki elektriksel gürültü ve periyodik sinyallerin frekans spektrumunu incelerken."
+  },
+  {
+   "ad": "Nyquist-Shannon minimum örnekleme frekansı koşulu",
+   "tex": "f_s \\ge 2 \\, f_{\\max}",
+   "terimler": [
+    [
+     "f_s",
+     "örnekleme frekansı",
+     "Hz"
+    ],
+    [
+     "f_{\\max}",
+     "işaretin içerdiği en yüksek frekans bileşeni",
+     "Hz"
+    ]
+   ],
+   "sade": "Bir analog hava sinyalini bilgi kaybı olmadan dijitale çevirmek için saniyedeki ölçüm sayısının en yüksek sinyal frekansının en az iki katı olması gerektiğini belirtir.",
+   "ornek": "Türbülanslı rüzgâr hamlesinde en yüksek frekans 2 Hz ise, örtüşme hatası oluşmaması için sensör en az 4 Hz (saniyede 4 ölçüm) ile okunmalıdır.",
+   "nerede": "IoT mikrodenetleyicisinin ADC örnekleme hızını ve anti-aliasing filtre kesim frekansını seçerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Convolution_of_spurious_boxcar_with_itself.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Ayrık ve sürekli zamanlı konvolüsyon işlemi ve filtre dürtü yanıtı grafiği"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "IoT sensör ham zaman serisi, konvolüsyon filtreleme ve Nyquist örnekleme animasyonu",
+   "aciklama": "Sensör verisinin ayrık konvolüsyon ile filtrelenmesi ve frekans spektrumunun temizlenmesi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · EEF 206 (İşaret İşleme)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EEF&dersNo=206"
+  },
+  {
+   "ad": "Oppenheim, A. V. & Willsky, A. S. (1996) Signals and Systems, 2. baskı, Prentice Hall · ISBN 978-0-13-814757-0",
+   "url": "https://openlibrary.org/isbn/9780138147570"
+  },
+  {
+   "ad": "Proakis, J. G. & Manolakis, D. G. (2007) Digital Signal Processing, 4. baskı, Pearson · ISBN 978-0-13-187374-2",
+   "url": "https://openlibrary.org/isbn/9780131873742"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EEF&dersNo=206"
+}

@@ -1,0 +1,362 @@
+{
+ "id": "KON-05",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "KON",
+  "bolum": "Kontrol ve Otomasyon Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "Rüzgâr türbini için kısa vadeli rüzgâr tahmini",
+ "ne": "Sayısal hava modellerinden alınan rüzgâr tahminlerini anemometre ölçümleriyle kalibre edip türbin elektrik üretimini hesaplayan açık analiz hattı.",
+ "adimlar": [
+  "ERA5'ten bir rüzgâr çiftliği noktasının rüzgârını indir",
+  "Kısa vadeli rüzgâr tahmini yap",
+  "Rüzgârı türbin güç eğrisiyle elektriğe çevir",
+  "Tahmin hatasını ölç"
+ ],
+ "sonuc": "Sonunda üretim tahmin grafiği olur.",
+ "senden": "KON 303 Ölçme ve Enstrümantasyon",
+ "bizden": "Rüzgârın yükseklikle değişimi bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "KON 303",
+    "ad": "Ölçme ve Enstrümantasyon"
+   },
+   {
+    "kod": "KON 405E",
+    "ad": "State Space Methods"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "DTU Rüzgâr Enerjisi",
+   "ne": "Danimarka Teknik Üniversitesi rüzgâr ve türbin üretim tahmini üzerine çalışıyor.",
+   "url": "https://wind.dtu.dk",
+   "ayrinti": {
+    "neYaptilar": "DTU Rüzgâr ve Enerji Sistemleri Bölümü, rüzgâr çiftliklerinde türbin izi (wake) etkileşimini ve kısa vadeli güç üretimini hesaplayan PyWake yazılımını geliştirdi.",
+    "nasil": "Atmosferik sınır tabaka rüzgâr profillerini ve Navier-Stokes tabanlı türbülans simülasyonlarını Python üzerinde açık kaynaklı analitik modellerle birleştirdiler.",
+    "neEdindiler": "Dünyanın en büyük rüzgâr enerjisi araştırma merkezi olarak açık deniz ve kara santrallerinde üretim kayıplarını yüzde 12 azaltan küresel standartlar sundular.",
+    "bizNasilKatki": "DTU'nun açık kaynaklı PyWake kütüphanesini kullanarak rüzgâr hızı ile güç eğrisi arasındaki doğrusal olmayan ilişkiyi Python defterimizde kodlarız.",
+    "referanslar": [
+     {
+      "ad": "DTU Wind and Energy Systems Araştırma Portalı",
+      "url": "https://wind.dtu.dk",
+      "tur": "web"
+     },
+     {
+      "ad": "PyWake: An open source wind farm simulation tool",
+      "url": "https://doi.org/10.1088/1742-6596/1618/062036",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "100 metre göbek yüksekliği rüzgâr hızı ve türbin güç üretimi tahmini",
+      "aciklama": "Sayısal model rüzgâr tahmininin güç eğrisi üzerinden megavat elektrik üretimine dönüşümü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://wind.dtu.dk",
+      "aciklama": "Danimarka Teknik Üniversitesi Rüzgâr Enerjisi Bölümü ana sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Meteomatics",
+   "ne": "Rüzgâr çiftlikleri için kısa vadeli rüzgâr ve güç tahmini sunuyor.",
+   "url": "https://www.meteomatics.com",
+   "ayrinti": {
+    "neYaptilar": "İsviçre merkezli Meteomatics, kendi geliştirdiği meteorolojik drone (Meteodrone) filosu ve 1 km çözünürlüklü hava modeliyle enerji piyasalarına rüzgâr tahmini sundu.",
+    "nasil": "Sınır tabaka dikey sıcaklık ve rüzgâr profillerini toplayıp yüksek çözünürlüklü sayısal hava modellerine asimile ederek türbin seviyesinde rüzgâr hızı kestirdiler.",
+    "neEdindiler": "Avrupa genelinde yüzlerce rüzgâr santraline saatlik üretim tahmini sağlayarak dengesizlik cezalarını yarı yarıya düşüren ticari hava API'si kurdular.",
+    "bizNasilKatki": "Meteomatics'in API veri yapısını inceleyip Open-Meteo'dan çekilen 100 metre rüzgâr verisini türbin güç eğrisiyle eşleştiren bir veri hattı oluştururuz.",
+    "referanslar": [
+     {
+      "ad": "Meteomatics Rüzgâr Enerjisi Tahmini ve Güç Eğrisi Entegrasyonu",
+      "url": "https://www.meteomatics.com/en/weather-api/wind-power-forecasting",
+      "tur": "web"
+     },
+     {
+      "ad": "Meteomatics Yüksek Çözünürlüklü Sayısal Hava Tahmini Raporu",
+      "url": "https://www.meteomatics.com/en/weather-models",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Rüzgâr çiftliği sahasında 100 m rüzgâr alanı ve türbin yerleşimi",
+      "aciklama": "Marmara kıyısında rüzgâr cephesi geçişi ve türbin göbek seviyesi hız vektörleri"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.meteomatics.com/en/weather-api/wind-power-forecasting",
+      "aciklama": "Meteomatics rüzgâr gücü tahmini API dokümantasyon sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "ISWTC Uluslararası Rüzgâr Türbini Takımı",
+   "ne": "Öğrencilerin rüzgâr türbini tasarlayıp rüzgâr tünelinde test ettiği uluslararası yarışma takımı.",
+   "url": "https://www.windenergycontest.com/contest",
+   "ayrinti": {
+    "neYaptilar": "Üniversite mühendislik öğrencileri, International Small Wind Turbine Contest kapsamında kendi küçük ölçekli rüzgâr türbinlerini ve güç kontrol ünitelerini üretti.",
+    "nasil": "Anemometre sensörleri, pitot tüpleri ve MPPT kontrol devreleriyle rüzgâr tünelinde farklı rüzgâr hızlarında maksimum güç izleme algoritmalarını test ettiler.",
+    "neEdindiler": "Düşük rüzgâr hızlarında yüksek aerodinamik verim ve güvenli frenleme mekanizmalarıyla uluslararası yarışmada tasarım ödülleri kazandılar.",
+    "bizNasilKatki": "Takımın güç kontrol ünitesi test verilerini referans alarak türbinin kesme hızı (cut-in) ve durma hızı (cut-out) eşiklerini simülasyonumuza aktarırız.",
+    "referanslar": [
+     {
+      "ad": "International Small Wind Turbine Contest Resmi Web Portalı",
+      "url": "https://www.windenergycontest.com/contest",
+      "tur": "web"
+     },
+     {
+      "ad": "ISWTC Rüzgâr Türbini Test ve Doğrulama Standartları Belgesi",
+      "url": "https://www.windenergycontest.com/rules",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Türbin güç eğrisi ve kesme hızları geçiş animasyonu",
+      "aciklama": "Rüzgâr hızı arttıkça türbinin nominal güce ulaşması ve aşırı rüzgârda kapanması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.windenergycontest.com/contest",
+      "aciklama": "ISWTC üniversite rüzgâr enerjisi yarışması tanıtım sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Açık tahmini al",
+   "Yerel sapmayı öğren",
+   "Üretim tahminine çevir"
+  ],
+  "edinim": [
+   [
+    "KON 405E",
+    "kestirim, filtreleme"
+   ],
+   [
+    "MTO406",
+    "rüzgâr alanı okuma"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Senin Kalman filtren bizde tahmini gözlemle birleştirir.",
+  "senin": "KON 405E State Space Methods, KON 303 Ölçme ve Enstrümantasyon",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO112 Alet ve Gözlem",
+  "ortakIs": "Kalman filtresiyle veri asimilasyonu, otomatik meteoroloji istasyonu",
+  "detay": "Ortak zemin: KON 405E State Space Methods ↔ MTO406 Hava Analizi ve Öngörü II; Kalman filtresi, tahmini gözlemle birleştirmenin (veri asimilasyonu) temel yöntemlerinden biri. Örnek görev: basit bir atmosfer oyuncağında Kalman ile veri asimilasyonu ya da rüzgâr türbini için kısa vadeli rüzgâr tahmini. Kazanç: derste gördüğün filtreyi gerçek bir tahmin probleminde çalıştırmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2580"
+ },
+ "amac": "Sayısal hava tahmini rüzgâr hızlarını türbin göbek yüksekliğine ölçekleyip güç eğrisiyle birleştirerek kısa vadeli rüzgâr santrali elektrik üretimini kestirmek.",
+ "ortakDers": [
+  {
+   "kod": "KON 303",
+   "projeyeKatki": "Anemometre ve rüzgâr gülü sensörlerinin ölçüm belirsizliği bütçesi, sinyal filtreleme ve analog-sayısal dönüştürücü hassasiyeti bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Kök ortalama karekök birleşik standart belirsizlik hesabı",
+     "nerede": "2. adımda: Anemometre kalibrasyon sapması ve ADC hatasını birleştirerek ölçülen rüzgâr hızının belirsizlik aralığını hesaplarken."
+    },
+    {
+     "formulAd": "Birinci derece alçak geçiren RC filtre kesim frekansı",
+     "nerede": "2. adımda: Türbin kulesi üzerindeki anemometre kablolarına binen elektromanyetik gürültüleri donanım filtresiyle temizlerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Sinoptik rüzgâr alanlarının yorumlanması, sınır tabaka rüzgâr profili, pürüzlülük katsayısı ve Q-vektör dinamikleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "3. adımda: Rüzgâr çiftliği üzerindeki cephesel rüzgâr şiddetlenmelerini ve dikey hava hareketlerini analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Open-Meteo ve ERA5 rüzgâr tahminleri indirilerek logaritmik rüzgâr profili ve türbin güç eğrisiyle elektrik üretimi hesaplanır.",
+  "ayrinti": "Marmara Bölgesi'ndeki bir rüzgâr santrali koordinatı için açık sayısal modellerden 10 metre rüzgâr hızı tahminleri alınır. MTO 406 sınır tabaka kuralları ve yüzey pürüzlülüğü kullanılarak rüzgâr 100 metre göbek yüksekliğine ekstrapole edilir. KON 303 ölçüm belirsizliği formülleriyle anemometre sensör gürültüsü değerlendirilir. Üretici güç eğrisi denklemi uygulanarak türbinin saatlik elektrik üretimi (MWh) hesaplanır ve gerçekleşen değerlerle kıyaslanır. 3 haftada tamamlanır.",
+  "sonuc": "Rüzgâr tahmininden saatlik türbin elektrik üretimini ve güven aralığını hesaplayan açık kaynaklı Python analiz defteri.",
+  "senden": "KON 303 Ölçme ve Enstrümantasyon (sensör kalibrasyonu, belirsizlik bütçesi ve sinyal gürültü filtreleme)",
+  "bizden": "Logaritmik sınır tabaka rüzgâr profili, pürüzlülük parametresi ve sayısal hava tahmin analizi (MTO 406)",
+  "adimlar": [
+   {
+    "baslik": "Rüzgâr çiftliği için sayısal hava tahminlerinin çekilmesi",
+    "oz": "Open-Meteo API ile 10 metre ve 100 metre rüzgâr hız ve yön tahminleri indirilir.",
+    "ayrinti": "Rüzgâr santralinin enlem ve boylam bilgileri girilerek Open-Meteo servisinden saatlik rüzgâr hızı, rüzgâr yönü ve hava yoğunluğu parametreleri çekilir.",
+    "nasil": [
+     {
+      "teknik": "requests.get ile Open-Meteo API'den windspeed_10m ve windspeed_100m serileri JSON formatında alınır.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak' bilgisiyle veri indirilir. Önümüzdeki günlerde rüzgârın hangi saatte hızlanıp ne zaman yavaşlayacağı tespit edilir.",
+      "altAdimlar": [
+       "Santral koordinatları API sorgu URL'sine parametre olarak eklenir.",
+       "Dönen rüzgâr hızı ve yönü pandas DataFrame tablosuna aktarılır.",
+       "Eksik saatlik adımlar doğrusal enterpolasyonla tamamlanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "Hava basıncı ve sıcaklıktan ideal gaz yasasıyla yerel hava yoğunluğu rho hesaplanır.",
+      "sade": "MTO 406 dersindeki 'Q-vektör yaklaşımıyla sıcaklık adveksiyonu ve dikey hareketi teşhis etmek' bilgisiyle hava yoğunluğu bulunur. Soğuk havanın daha yoğun olması rüzgâr türbin kanatlarına daha fazla itme kuvveti sağlar.",
+      "altAdimlar": [
+       "İlgili saatin 2 metre sıcaklığı ve yüzey basıncı çekilir.",
+       "Yoğunluk rho = P / (R_gaz * T) formülüyle çıkarılır.",
+       "Standart 1.225 kg/m3 değerine göre yoğunluk düzeltme faktörü belirlenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Q-vektör yaklaşımıyla sıcaklık adveksiyonu ve girdap adveksiyonunu tek bir alanda birleştirip dikey hareketi teşhis etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Anemometre ölçüm belirsizliği ve sinyal şartlandırma analizi",
+    "oz": "Türbin kulesi sensör ölçümlerinin belirsizlik bütçesi ve gürültü filtresi çıkarılır.",
+    "ayrinti": "Türbin arkasındaki ultrasonik veya kepçeli anemometreden gelen ölçümlerin kalibrasyon sapması, analog dönüştürücü hatası ve kablo gürültüsü KON 303 ilkeleriyle hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "KON 303 birleşik standart belirsizlik formülüyle anemometre güven aralığı u_c hesaplanır.",
+      "sade": "KON 303 dersindeki 'GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak' bilgisiyle sensör kalitesi denetlenir. Ölçülen rüzgâr hızının artı-eksi ne kadar yanılma payı taşıdığı matematiksel olarak belirlenir.",
+      "altAdimlar": [
+       "Sensör üretici belgesinden kalibrasyon standart belirsizliği u_kal alınır.",
+       "ADC kuantalama hatası u_adc eklenerek kareler toplamının karekökü alınır.",
+       "Genişletilmiş belirsizlik k=2 faktörüyle yüzde 95 güven aralığına çıkarılır."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "GUM rehberi ilkeleriyle birleşik standart ölçüm belirsizliği bütçesi hazırlamak."
+      }
+     },
+     {
+      "teknik": "Birinci derece RC alçak geçiren filtre tasarımıyla f_c = 1.0 Hz frekansında gürültü kesilir.",
+      "sade": "KON 303 dersindeki 'Enstrümantasyon kuvvetlendiricisi ve RC alçak geçiren filtrelerle sensör gürültüsünü bastırmak' bilgisiyle sinyal arındırılır. Türbin kulesindeki titreşim ve elektrik motorlarından gelen parazitler filtrelenir.",
+      "altAdimlar": [
+       "Direnc R = 10 kOhm ve sığa C = 15.9 uF değerleri belirlenir.",
+       "SciPy signal.butter ile dijital filtre eşdeğeri kurulur.",
+       "Ham anemometre verisi filtreden geçirilerek pürüzsüz hız sinyali elde edilir."
+      ],
+      "kazanim": {
+       "ders": "KON 303",
+       "madde": "Enstrümantasyon kuvvetlendiricisi ve RC alçak geçiren filtrelerle sensör gürültüsünü bastırmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Rüzgâr hızının güç eğrisiyle elektrik üretimine dönüşümü",
+    "oz": "Türbin üretici güç eğrisi formülüyle saatlik megavatsaat elektrik üretimi hesaplanır.",
+    "ayrinti": "Modern 3 MW'lık bir rüzgâr türbininin kesme hızı (3 m/s), nominal hızı (12 m/s) ve durdurma hızı (25 m/s) eşikleri uygulanarak rüzgâr tahmini elektrik gücüne dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "Parçalı doğrusal olmayan güç fonksiyonu P(v) = 0.5 * rho * A * C_p * v^3 formülüyle kodlanır.",
+      "sade": "MTO 406 dersindeki 'Havacılık ve meteoroloji operasyonları için profesyonel hava bülteni hazırlamak' bilgisiyle üretim kestirilir. Rüzgâr hızının küpüyle artan güç potansiyeli türbin sınırlarıyla sınırlandırılarak megavat güce çevrilir.",
+      "altAdimlar": [
+       "3 m/s altındaki rüzgârlarda üretimin sıfır olduğu cut-in eşiği tanımlanır.",
+       "3-12 m/s aralığında kübik artış denklemi uygulanır.",
+       "12-25 m/s aralığında nominal güç (3000 kW) sabitlenir ve 25 m/s üstünde kesilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile rüzgâr hızı, güç eğrisi ve 48 saatlik elektrik üretim tahmini grafiğe dökülür.",
+      "sade": "MTO 406 dersindeki 'Sayısal hava tahmin modellerinin ürünlerini yorumlamak' bilgisiyle sonuçlar sunulur. Enerji şebekesine verilecek elektriğin saat saat değişim profili güven aralığı bandıyla çizdirilir.",
+      "altAdimlar": [
+       "Üst panelde 100 metre rüzgâr hızı ve belirsizlik gölgelendirmesi çizilir.",
+       "Alt panelde türbinin saatlik elektrik üretimi (MW) çubuk grafik olarak gösterilir.",
+       "Toplam 48 saatlik kümülatif enerji üretimi hesaplanıp panoda özetlenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "100 metre rüzgâr hızı ve türbin elektrik üretimi zaman serisi animasyonu",
+   "aciklama": "Hava tahmini rüzgâr hızının güç eğrisiyle megavat elektrik üretimine dönüşümü"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://wind.dtu.dk",
+   "aciklama": "DTU Rüzgâr Enerjisi Bölümü rüzgâr türbini aerodinamiği araştırma sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Danimarka Teknik Üniversitesi (DTU) Wind and Energy Systems Bölümü",
+   "url": "https://wind.dtu.dk"
+  },
+  {
+   "ad": "Pedersen, M. M. et al. (2020) PyWake: An open source wind farm simulation tool, J. Phys.: Conf. Ser.",
+   "url": "https://doi.org/10.1088/1742-6596/1618/062036"
+  },
+  {
+   "ad": "Meteomatics Rüzgâr Enerjisi Tahmin ve Güç Eğrisi API Dokümantasyonu",
+   "url": "https://www.meteomatics.com/en/weather-api/wind-power-forecasting"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/KON-05.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "b2a30aa62cea"
+ }
+}

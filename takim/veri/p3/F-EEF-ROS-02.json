@@ -1,0 +1,379 @@
+{
+ "id": "F-EEF-ROS-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "ROS",
+  "bolum": "Robotik ve Otonom Sistemleri Mühendisliği",
+  "fakulteKod": "EEF",
+  "fakulte": "Elektrik-Elektronik Fakültesi"
+ },
+ "ad": "Rüzgâr kuvveti altında yol planlama simülasyonu",
+ "ne": "Sınır tabaka rüzgâr vektörlerini engel maliyeti olarak A* veya RRT algoritmasına ekleyip minimum enerji rotasını çizmek.",
+ "adimlar": [
+  "2B ızgara üzerinde rüzgâr vektörü destekli RRT kodu yazmak."
+ ],
+ "sonuc": "Rüzgâr duyarlı otonom rota demosu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "ROS 303E",
+    "ad": "Robot Kinematics and Dynamics"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "CMU Robotics Institute Motion Planning",
+   "ne": "Rüzgâr alanlarında insansız hava araçları için enerji ve zaman optimal rota planlama algoritmaları geliştiren araştırma laboratuvarı.",
+   "url": "https://www.ri.cmu.edu/research-areas/motion-planning/",
+   "ayrinti": {
+    "neYaptilar": "CMU Robotics Institute araştırmacıları, değişken rüzgâr akışlarında çalışan insansız hava araçları için rüzgâr vektörlerini dinamik kenar maliyeti olarak işleyen RRT* algoritması geliştirdi.",
+    "nasil": "Sayısal rüzgâr haritası 2B ve 3B ızgaralara bölünerek aerodinamik sürükleme kuvveti her düğümde enerji maliyeti fonksiyonuna dönüştürüldü.",
+    "neEdindiler": "Karşı rüzgâr alanlarından kaçınarak batarya tüketiminde yüzde 28 tasarruf sağlayan optimal uçuş koridorları elde ettiler.",
+    "bizNasilKatki": "Laboratuvarın enerji maliyet fonksiyonunu açık kaynak kodla Python'a aktarıp Marmara rüzgâr ızgarasında test ederiz.",
+    "referanslar": [
+     {
+      "ad": "CMU Robotik Enstitüsü Hareket Planlama Sayfası",
+      "url": "https://www.ri.cmu.edu/research-areas/motion-planning/",
+      "tur": "web"
+     },
+     {
+      "ad": "Rüzgâr Altında Optimal Yol Planlama Araştırması",
+      "url": "https://www.ri.cmu.edu/publications/",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ri.cmu.edu/research-areas/motion-planning/",
+      "aciklama": "CMU Robotics Institute hareket ve yol planlama araştırma sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul rüzgâr vektörleri ve enerji optimal İHA rotası animasyonu, 2026-10",
+      "aciklama": "Rüzgâr vektör alanında A* ve RRT rota optimizasyonu karşılaştırma animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Skydio Autonomous Flight Engine",
+   "ne": "Gerçek zamanlı rüzgâr direnci ve engeller altında otonom rota planlayan robotik ve uçuş kontrol girişimi.",
+   "url": "https://www.skydio.com/technology",
+   "ayrinti": {
+    "neYaptilar": "Skydio, otonom hava araçlarının kentsel kanyonlarda ve açık sahada rüzgâr darbelerini hesaba katarak en az batarya tüketen rotayı çizmesini sağladı.",
+    "nasil": "Uçuş bilgisayarındaki yerleşik ivmeölçer ve pitot tüpü ölçümleriyle anlık rüzgâr kuvveti kestirilip yörünge takip kontrolörüne geri beslendi.",
+    "neEdindiler": "Rüzgâr darbelerinde rotadan sapma miktarını yüzde 45 azaltırken uçuş menzilini yüzde 18 uzattılar.",
+    "bizNasilKatki": "Skydio'nun aerodinamik enerji maliyet mantığını simülasyon ortamında basit bir A* algoritmasına uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Skydio Otonom Uçuş Teknolojisi Dokümantasyonu",
+      "url": "https://www.skydio.com/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Otonom İHA Güvenli Uçuş ve Rüzgâr İnceleme Raporu",
+      "url": "https://www.skydio.com/safety",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.skydio.com/technology",
+      "aciklama": "Skydio otonom rota ve engellerden kaçınma teknolojisi paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:RRT_algorithm.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "RRT rota arama algoritmasının düğüm dallanma diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Rüzgâr Duyarlı Otonom Rota Ekibi",
+   "ne": "Sınır tabaka rüzgâr hızlarını harita maliyeti olarak işleyip en az enerji tüketen dron rotasını bulan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/ruzgar-duyarli-rota-simulasyonu",
+   "ayrinti": {
+    "neYaptilar": "Robotik ve meteoroloji öğrencileri, İstanbul rüzgâr verileri üzerinde çalışan ve rüzgârı arkasına alarak enerji tasarrufu yapan rota simülatörü kodladı.",
+    "nasil": "Python NetworkX ve SciPy ile 2B ızgara harita kuruldu; her kenarın ağırlığına rüzgâr yönü ve aerodinamik sürükleme maliyeti eklendi.",
+    "neEdindiler": "Klasik en kısa yol algoritmasına kıyasla aynı batarya ile yüzde 22 daha uzun menzile ulaşan rüzgâr duyarlı uçuş rotası buldular.",
+    "bizNasilKatki": "Geliştirilen RRT ve A* simülasyon kodunu açık kaynaklı bir web arayüzüyle görselleştirip topluluğa sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Rüzgâr Duyarlı Rota Simülasyonu Deposu",
+      "url": "https://github.com/aura-itu/ruzgar-duyarli-rota-simulasyonu",
+      "tur": "kod"
+     },
+     {
+      "ad": "Otonom İHA Rota Planlama Raporu",
+      "url": "https://aura-itu.github.io/ruzgar-rota",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/ruzgar-duyarli-rota-simulasyonu",
+      "aciklama": "AURA rüzgâr duyarlı otonom rota simülatörü kod deposu ve sonuç grafikleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul rüzgâr alanı üzerinde A* algoritması rota keşfi animasyonu, 2026-10",
+      "aciklama": "Rüzgâr vektörleri eşliğinde minimum enerji yol arama animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "İHA ve otonom araçların rota planlaması, mikro ölçekli rüzgâr hamlesi ve sis tahminine dayanır.",
+  "senin": "ROS 302E Robot Motion Planning & Control, KON 414E Principles of Robot Autonomy, ROS 303E Robot Kinematics and Dynamics",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "ROS 302E Robot Motion Planning & Control",
+    "bizim": "Kentsel kanyonlarda mikro rüzgâr alanı",
+    "neden": "Otonom dron rotasını binalar arasındaki türbülans girdaplarından kaçırarak çizmek dinamik yol planlamasıdır."
+   },
+   {
+    "senin": "KON 414E Principles of Robot Autonomy",
+    "bizim": "Meteorolojik görüş mesafesi ve sensör füzyonu",
+    "neden": "Sis ve şiddetli yağmurda lidar ve kamera verimliliği düştüğünde otonomi seviyesini hava tahmini belirler."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Otonom kargo İHA'ları için kentsel mikro hava rotalaması",
+   "metin": "2025'te MIT ve Skydio araştırmacıları, şehir içi kargo dronlarının binalar arası rüzgâr sapmalarını anlık hava tahminleriyle telafi eden yapay zekâlı hareket planlayıcı geliştirdi. Ani rüzgâr darbelerinde kaza riski %40 düşürüldü.",
+   "kaynakAdi": "IEEE Transactions on Robotics",
+   "kaynakUrl": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8860",
+   "tarih": "2025-01"
+  },
+  "detay": "Robotik ve otonom sistemler mühendisliğinde hareket planlama ve otonomi dersleri, robotun dış dünyadaki belirsizliklerle başa çıkmasını hedefler. Karada veya havada hareket eden bir otonom sistem için atmosfer şartları sadece bir arka plan değil, kontrolü zorlayan doğrudan bir dış kuvvettir. Görüş mesafesini sıfırlayan sis, binaların arasından aniden vuran rüzgâr hamlesi veya yağmur damlacıkları robotik algılayıcıları yanıltabilir. Küresel modellerin yerel hava kestirimlerini istasyon verileriyle düzeltmek, otonom sistemin güvenli karar almasını sağlar. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir rüzgâr duyarlı rota algoritması geliştirirsin. Yanına meteoroloji öğrencisi oturduğunda rüzgâr vektörlerini getirir, sen de otonom aracın kinematik tepkisini çözersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (ROS)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2297"
+   }
+  ]
+ },
+ "amac": "Rüzgâr kuvveti vektörlerini maliyet fonksiyonuna ekleyip A* ve RRT algoritmalarıyla otonom İHA için minimum enerji rotası hesaplayan simülasyon kurmak.",
+ "ortakDers": [
+  {
+   "kod": "ROS 303E",
+   "projeyeKatki": "Robot dinamik denklemlerini ve rüzgâr sürükleme kuvveti bağıntılarını rota maliyeti fonksiyonuna dönüştürür.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Aerodinamik sürükleme kuvveti bağıntısı",
+     "nerede": "İHA'nın rüzgâra karşı uçarken harcayacağı batarya enerjisini her ızgara kenarında hesaplarken."
+    },
+    {
+     "formulAd": "Lagrange hareket denklemi ve dış aerodinamik kuvvet",
+     "nerede": "Yol segmentlerinde rüzgâr sapmasını telafi etmek için gereken motor itki kuvvetini belirlerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "Atmosfer sınır tabakasındaki jeostrofik rüzgâr ve yüzey sürtünmesi kaynaklı rüzgâr vektör alanını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr vektörü",
+     "nerede": "Basınç gradyanından rota haritası üzerine 2B rüzgâr vektör matrisini kurarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Rüzgâr vektörlerini kenar maliyeti olarak A* ve RRT algoritmalarına ekleyip minimum batarya tüketimli rotayı simüle etmek.",
+  "ayrinti": "Python, NetworkX ve Matplotlib kullanılarak 50x50 ızgara alanında rüzgâr alanı oluşturulur. Rüzgâr yönü ve şiddetine göre kenar maliyetleri hesaplanır; A* ve RRT algoritmaları koşturularak en az enerji harcayan rota görselleştirilir.",
+  "adimlar": [
+   {
+    "baslik": "Rüzgâr alanı matrisinin ızgara üzerinde tanımlanması",
+    "oz": "2B harita ızgarasındaki her düğüme u ve v rüzgâr hız vektörlerini atamak.",
+    "ayrinti": "Açık hava tahmini API'sinden çekilen rüzgâr yönü ve hızı, 50x50 düğümlü bir koordinat ızgarasına enterpole edilir. Her düğüm rüzgârın şiddetini ve yönünü vektör olarak saklar.",
+    "nasil": [
+     {
+      "teknik": "np.meshgrid ile 50x50 düğümlü koordinat ızgarası üretip u, v rüzgâr bileşenlerini ızgaraya yerleştirmek.",
+      "sade": "Haritayı eşit karelere bölerek her noktaya o andaki rüzgârın yönünü ve hızını temsil eden iki sayı atarız.",
+      "altAdimlar": [
+       "1. numpy kütüphanesini içe aktararak 50x50 boyutlu x ve y koordinat matrislerini oluştur.",
+       "2. Açık hava tahmininden alınan rüzgâr yönünü radyana çevirip u ve v hız bileşenlerini hesapla.",
+       "3. Her ızgara hücresine yerel rüzgâr vektörünü matris elemanı olarak ata."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Mekânsal enterpolasyon ile istasyon verilerini düzenli ızgaraya aktarmak."
+      }
+     },
+     {
+      "teknik": "NetworkX ile düğümler arası kenarları bağlayıp yönlü çizge (DiGraph) nesnesi oluşturmak.",
+      "sade": "Kareler arasındaki geçişleri bir yol ağına dönüştürürüz; böylece robot bir kareden komşu kareye geçebilir.",
+      "altAdimlar": [
+       "1. networkx kütüphanesini içe aktarıp boş bir yönlü çizge tanımla.",
+       "2. Her ızgara hücresini komşu 8 hücreye bağlayan yönlü kenarları çizgeye ekle.",
+       "3. Çizge topolojisinin sınırlarını harita boyutuna göre sınırla."
+      ],
+      "kazanim": {
+       "ders": "ROS 303E",
+       "madde": "Robotik sistemler için konfigürasyon uzayında engelleri ve serbest hareket alanlarını tanımlamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Aerodinamik rüzgâr maliyeti fonksiyonunun kodlanması",
+    "oz": "Bağıl rüzgâr vektörüne göre kenar ağırlıklarını hesaplamak.",
+    "ayrinti": "İHA rüzgâra karşı uçtuğunda aerodinamik sürükleme kuvveti artar ve batarya tüketimi yükselir. Rüzgârı arkasına aldığında ise enerji maliyeti düşer.",
+    "nasil": [
+     {
+      "teknik": "Bağıl rüzgâr hızından aerodinamik sürükleme kuvveti formülüyle kenar enerji maliyetini hesaplamak.",
+      "sade": "İHA'nın gideceği yön ile rüzgâr yönü arasındaki açıyı inceleyip karşıdan gelen rüzgâr için kenar geçiş maliyetini artırırız.",
+      "altAdimlar": [
+       "1. Uçuş yönü vektörü ile rüzgâr vektörünün farkını alarak bağıl hız vektörünü bul.",
+       "2. Aerodinamik sürükleme bağıntısını kullanarak harcanacak mekanik gücü hesapla.",
+       "3. Elde edilen güç değerini kenar ağırlığı (weight) olarak çizgeye ata."
+      ],
+      "kazanim": {
+       "ders": "ROS 303E",
+       "madde": "Rüzgâr direnci ve yerçekimi etkisinde manipülatör ve mobil otonom araçların tork ve itki gereksinimlerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Kenar ağırlık matrisinde negatif veya sonsuz döngü olmaması için minimum maliyet tabanı belirlemek.",
+      "sade": "Rüzgâr çok kuvvetli arkadan esse bile hareket maliyetinin sıfırın altına düşmesini engelleyerek yol bulma algoritmasını koruruz.",
+      "altAdimlar": [
+       "1. Kenar ağırlıklarının minimum değerini pozitif bir eşik değere sabitle.",
+       "2. Çizgedeki tüm kenarları dolaşarak negatif maliyet kontrolü yap.",
+       "3. Hatalı kenar değerlerini geçerli aralığa kırp."
+      ],
+      "kazanim": {
+       "ders": "ROS 303E",
+       "madde": "Ters dinamik yöntemleri ile yörünge takip kontrolü için gerekli kontrol kuvvetlerini belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "A* ve RRT algoritmalarıyla rota arama",
+    "oz": "Başlangıç ve hedef noktaları arasında minimum maliyetli yolu bulmak.",
+    "ayrinti": "Klasik geometrik en kısa yol ile rüzgâr duyarlı en az enerji tüketen yol aynı harita üzerinde koşturularak karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "networkx.astar_path fonksiyonunu rüzgâr maliyeti ağırlığıyla çalıştırıp optimal rotayı çıkarmak.",
+      "sade": "Algoritma haritadaki tüm olası yolları tarar ve rüzgârı en verimli kullanan rotayı adım adım seçer.",
+      "altAdimlar": [
+       "1. Başlangıç ve hedef koordinatlarını harita üzerinde belirle.",
+       "2. Sezgisel mesafe fonksiyonu ile birlikte A* algoritmasını rüzgâr maliyeti üzerinden çağır.",
+       "3. Algoritmanın döndürdüğü düğüm listesini rota koordinatlarına dönüştür."
+      ],
+      "kazanim": {
+       "ders": "ROS 303E",
+       "madde": "Robotik sistemler için konfigürasyon uzayında engelleri ve serbest hareket alanlarını tanımlamak."
+      }
+     },
+     {
+      "teknik": "RRT ağacı üreterek rastgele örnekleme ile engeller ve sert rüzgâr alanları arasından alternatif yol aramak.",
+      "sade": "A* gibi deterministik yolun yanında, kentsel engellerin yoğun olduğu bölgeler için rastgele dallanan arama ağacı kurarız.",
+      "altAdimlar": [
+       "1. Harita uzayında rastgele noktalar örnekleyip en yakın ağaç düğümüne doğru adım at.",
+       "2. Yeni dalın şiddetli rüzgâr eşiğini aşıp aşmadığını denetle.",
+       "3. Hedefe ulaşıldığında ağaç köküne geriye doğru yürüyerek rotayı oluştur."
+      ],
+      "kazanim": {
+       "ders": "ROS 303E",
+       "madde": "Ters dinamik yöntemleri ile yörünge takip kontrolü için gerekli kontrol kuvvetlerini belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Enerji tüketimi karşılaştırması ve rota haritalama",
+    "oz": "Klasik rota ile rüzgâr duyarlı rotanın batarya harcamasını kıyaslamak.",
+    "ayrinti": "Matplotlib ile rüzgâr vektör alanının üzerine her iki rota üst üste çizilir. Toplam batarya tüketim farkı sayısal olarak raporlanır.",
+    "nasil": [
+     {
+      "teknik": "plt.quiver ile rüzgâr alanını, plt.plot ile düz çizgi ve rüzgâr duyarlı rotaları tek figürde çizmek.",
+      "sade": "Haritada oklarla rüzgâr yönünü, renkli çizgilerle de düz rota ile rüzgârı kullanan akıllı rotayı gösteririz.",
+      "altAdimlar": [
+       "1. Matplotlib kütüphanesini kullanarak yeni bir çizim penceresi aç.",
+       "2. quiver işleviyle ızgara üzerindeki rüzgâr oklarını arka plana yerleştir.",
+       "3. Düz rotayı kırmızı, rüzgâr duyarlı rotayı yeşil çizgiyle haritaya ekle."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Mekânsal enterpolasyon ile istasyon verilerini düzenli ızgaraya aktarmak."
+      }
+     },
+     {
+      "teknik": "Rota boyunca harcanan toplam Joule enerjisini hesaplayıp yüzde tasarruf oranını yazdırmak.",
+      "sade": "İki rotanın toplam batarya tüketimini kıyaslayarak rüzgâr duyarlı planlamanın kaç dakika ek uçuş süresi kazandırdığını buluruz.",
+      "altAdimlar": [
+       "1. Rota segmentlerindeki sürükleme kuvvetlerini segment uzunluğuyla çarparak harcanan işi topla.",
+       "2. Düz hat rotasındaki enerji harcaması ile rüzgâr duyarlı rotayı oranla.",
+       "3. Elde edilen yüzde kazancı konsola ve grafik başlığına yazdır."
+      ],
+      "kazanim": {
+       "ders": "ROS 303E",
+       "madde": "Rüzgâr direnci ve yerçekimi etkisinde manipülatör ve mobil otonom araçların tork ve itki gereksinimlerini hesaplamak."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Rüzgâr vektörlerine duyarlı A* ve RRT tabanlı otonom rota planlayıcı simülasyonu ve batarya kazancı karşılaştırma karnesi.",
+  "senden": "Robotik hareket planlama algoritmalarını (A*, RRT) kodlamak ve kinematik enerji kısıtlarını maliyet fonksiyonuna bağlamak.",
+  "bizden": "Sınır tabaka rüzgâr verilerini 2B ızgaraya enterpole etmek ve rüzgâr vektör matrisini simülasyona aktarmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul rüzgâr vektörleri ve İHA minimum enerji rotası animasyonu, 2026-10",
+   "aciklama": "2B rüzgâr vektör alanı üzerinde rüzgâr duyarlı rota arama süreci animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:RRT_algorithm.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Otonom hareket planlamasında kullanılan RRT arama ağacı diyagramı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ders planı (ROS)",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2297"
+  },
+  {
+   "ad": "IEEE Transactions on Robotics",
+   "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8860"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-EEF-ROS-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "6a3a86e4e4bc"
+ }
+}

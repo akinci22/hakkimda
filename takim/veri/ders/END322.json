@@ -1,0 +1,136 @@
+{
+ "kod": "END 322",
+ "ad": "Sistem Simülasyonu",
+ "bolum": "Endüstri Mühendisliği",
+ "obsNo": "322",
+ "ozet": "Kesikli olay simülasyonu, Monte Carlo yöntemleri, rastgele sayı ve değişken üretimi, kuyruk sistemleri ve model doğrulama tekniklerini öğretir. Stokastik belirsizlik içeren üretim, lojistik ve hizmet sistemlerinin bilgisayar ortamında taklit edilmesini ve performans analizini sağlar.",
+ "neOgrenirsin": [
+  "Stokastik sistemleri kesikli olay simülasyonu yaklaşımıyla bilgisayarda simüle etmek.",
+  "Ters dönüşüm ve kabul-red yöntemleriyle istenen olasılık dağılımından rastgele değişken üretmek.",
+  "Monte Carlo simülasyonu ile analitik çözümü zor olan risk olasılıklarını tahmin etmek.",
+  "Kuyruk sistemlerinde Little Kanunu ile ortalama bekleme süresi ve kuyruk uzunluğunu hesaplamak.",
+  "Simülasyon çıktılarını güven aralıkları ve varyans azaltma teknikleriyle analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Monte Carlo ortalama ve beklenen değer kestirimi",
+   "tex": "\\hat{\\theta}_N = \\frac{1}{N} \\sum_{i=1}^N g(X_i), \\quad \\mathrm{Var}(\\hat{\\theta}_N) = \\frac{\\sigma^2}{N}",
+   "terimler": [
+    [
+     "\\hat{\\theta}_N",
+     "Monte Carlo simülasyonu ortalama kestirimi",
+     "birimsiz"
+    ],
+    [
+     "N",
+     "simülasyon iterasyon ve senaryo sayısı",
+     "adet"
+    ],
+    [
+     "g(X_i)",
+     "i senaryosundaki performans fonksiyonu çıktısı",
+     "fiziksel birim"
+    ],
+    [
+     "X_i",
+     "stokastik girdi değişkeni (rüzgâr hızı veya gecikme)",
+     "fiziksel birim"
+    ],
+    [
+     "\\sigma^2",
+     "çıktı değişkeninin varyansı",
+     "fiziksel birimin karesi"
+    ]
+   ],
+   "sade": "Bir sistem binlerce kez rastgele senaryolarla çalıştırılarak ortalama performans ve risk hesaplanır. Deneme sayısı arttıkça hata payı karekök N ile ters orantılı küçülür.",
+   "ornek": "51 üyeli rüzgâr tahmininden türetilen N = 10.000 Monte Carlo sevkiyat denemesinde, geminin gecikme olasılığı theta = 0,18 ve yüzde 95 güven aralığı ±0,007 olarak saptanır.",
+   "nerede": "Topluluk rüzgâr ve fırtına verilerinden kargo teslimat gecikme olasılığı dağılımını hesaplarken."
+  },
+  {
+   "ad": "Ters dönüşüm yöntemiyle rastgele değişken üretimi",
+   "tex": "X = F^{-1}(U), \\quad U \\sim \\mathrm{Uniform}(0, 1)",
+   "terimler": [
+    [
+     "X",
+     "hedef olasılık dağılımına uyan rastgele değişken",
+     "fiziksel birim"
+    ],
+    [
+     "F^{-1}",
+     "kümülatif dağılım fonksiyonunun tersi (kuantil)",
+     "fiziksel birim"
+    ],
+    [
+     "U",
+     "sıfır ile bir arasında düzgün dağılan rastgele sayı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Bilgisayarın ürettiği sıfır ile bir arasındaki düzgün rastgele sayıları, havanın gerçek Weibull rüzgâr veya log-normal yağış dağılımına dönüştürür.",
+   "ornek": "Weibull parametreleri k = 2 ve c = 8 m/s olan bir rüzgâr alanı için U = 0,45 rastgele sayısı girildiğinde rüzgâr hızı X = 8 × (-ln(0,55))^(0,5) ≈ 6,18 m/s olarak üretilir.",
+   "nerede": "Hava topluluk dağılımından sentetik rüzgâr senaryoları simüle ederken."
+  },
+  {
+   "ad": "Kuyruk sistemlerinde Little Kanunu",
+   "tex": "L = \\lambda \\cdot W, \\quad L_q = \\lambda \\cdot W_q",
+   "terimler": [
+    [
+     "L",
+     "sistemdeki ortalama birim sayısı (bekleyen + işlenen)",
+     "adet"
+    ],
+    [
+     "\\lambda",
+     "sisteme ortalama geliş oranı (trafik debisi)",
+     "adet/saat"
+    ],
+    [
+     "W",
+     "bir birimin sistemde geçirdiği ortalama toplam süre",
+     "saat"
+    ],
+    [
+     "L_q",
+     "kuyrukta bekleyen ortalama birim sayısı",
+     "adet"
+    ],
+    [
+     "W_q",
+     "kuyrukta geçen ortalama bekleme süresi",
+     "saat"
+    ]
+   ],
+   "sade": "Bir sırada bekleyen ortalama müşteri sayısı, gelenlerin sıklığı ile kuyrukta geçirilen ortalama sürenin çarpımına eşittir. Fırtınada limanda bekleyen gemi sayısını anında verir.",
+   "ornek": "Boğaz'da fırtına nedeniyle günde lambda = 40 gemi gelirken ortalama geçiş bekleme süresi W = 1,5 gün ise demir yerinde bekleyen ortalama gemi sayısı L = 40 × 1,5 = 60 gemi olur.",
+   "nerede": "Hava muhalefeti kaynaklı liman ve aktarma merkezi birikmelerini simüle ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:MonteCarloIntegrationCircle.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Monte Carlo simülasyonu rastgele örnekleme ve alan integrasyonu prensibi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi rüzgâr hızı olasılık dağılımı ve Monte Carlo döngüsü, 2026-10",
+   "aciklama": "Rüzgâr hızı Weibull dağılımından üretilen sentetik teslimat gecikme simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · END 322 (Sistem Simülasyonu)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=END&dersNo=322"
+  },
+  {
+   "ad": "Law, A. M. (2015) Simulation Modeling and Analysis, 5. baskı, McGraw-Hill · ISBN 978-0073401317",
+   "url": "https://openlibrary.org/isbn/9780073401317"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=END&dersNo=322"
+}

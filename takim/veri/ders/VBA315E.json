@@ -1,0 +1,120 @@
+{
+ "kod": "VBA 315E",
+ "ad": "Machine Learning",
+ "bolum": "Veri Bilimi ve Analitiği",
+ "obsNo": "315",
+ "ozet": "Denetimli ve denetimsiz öğrenme, karar ağaçları, rassal ormanlar, gradyan artırma (Gradient Boosting, XGBoost), destek vektör makineleri ve hiperparametre optimizasyonunu öğretir. Çok boyutlu zaman serisi ve tablosal verilerde regresyon modelleri kurulur.",
+ "neOgrenirsin": [
+  "Karar ağaçları ve gradyan artırma algoritmalarıyla regresyon modelleri eğitmek.",
+  "XGBoost kütüphanesiyle kayıp fonksiyonu gradyanlarını kullanarak tahmin hatalarını optimize etmek.",
+  "Öznitelik önem dereceleri ve katkı analizleriyle modellerin açıklanabilirliğini sağlamak.",
+  "Çapraz doğrulama ile hiperparametre optimizasyonu yapmak.",
+  "Aşırı öğrenmeyi düzenlileştirme ve erken durdurma ile engellemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Gradyan Artırma (Gradient Boosting) adım güncellemesi",
+   "tex": "F_m(x) = F_{m-1}(x) + \\eta \\sum_{j=1}^J \\gamma_{jm} I(x \\in R_{jm})",
+   "terimler": [
+    [
+     "F_m(x)",
+     "m inci yinelemedeki birikimli model tahmini (rüzgâr hamlesi hızı)",
+     "m/s"
+    ],
+    [
+     "F_{m-1}(x)",
+     "önceki yinelemedeki birikimli tahmin fonksiyonu",
+     "m/s"
+    ],
+    [
+     "\\eta",
+     "öğrenme oranı (shrinkage katsayısı)",
+     "birimsiz (0 ile 1 arası)"
+    ],
+    [
+     "\\gamma_{jm}",
+     "m inci ağacın j inci yaprağındaki optimum çıktı değeri",
+     "m/s"
+    ],
+    [
+     "R_{jm}",
+     "m inci ağacın j inci yaprak bölgesini tanımlayan öznitelik uzayı",
+     "karma birimler"
+    ]
+   ],
+   "sade": "Her yeni karar ağacı bir önceki adımın hata kalıntılarını ve kayıp fonksiyonunun gradyanını öğrenerek mevcut modele küçük bir katsayıyla eklenir.",
+   "ornek": "Temel tahmin modeli rüzgâr hamlesini 18 m/s tahmin etmişken, yeni eklenen ağaç basınç gradyanı özniteliğiyle +2.4 m/s düzeltme getirerek tahmini 20.4 m/s yapar.",
+   "nerede": "F-ISL-VBA-02 projesinde XGBoost ile rüzgâr hamlesi tepe hızını tahmin ederken."
+  },
+  {
+   "ad": "XGBoost amaç fonksiyonu ve düzenlileştirme",
+   "tex": "\\mathcal{L}^{(t)} = \\sum_{i=1}^n l(y_i, \\hat{y}_i^{(t-1)} + f_t(x_i)) + \\Omega(f_t), \\quad \\Omega(f) = \\gamma T + \\frac{1}{2} \\lambda \\sum_{j=1}^T w_j^2",
+   "terimler": [
+    [
+     "\\mathcal{L}^{(t)}",
+     "t inci adımda minimize edilen toplam kayıp ve ceza fonksiyonu",
+     "(m/s)^2"
+    ],
+    [
+     "l(\\cdot)",
+     "tahmin hatası kayıp fonksiyonu (ortalama kare hata)",
+     "(m/s)^2"
+    ],
+    [
+     "\\Omega(f_t)",
+     "ağacın karmaşıklığını cezalandıran düzenlileştirme terimi",
+     "birimsiz"
+    ],
+    [
+     "T",
+     "karar ağacındaki toplam yaprak sayısı",
+     "adet"
+    ],
+    [
+     "w_j",
+     "j inci yapraktaki ağırlık katsayısı",
+     "m/s"
+    ],
+    [
+     "\\gamma, \\lambda",
+     "yaprak sayısı ve L2 ağırlık ceza hiperparametreleri",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Modelin hem tahmin hatasını minimize etmesini sağlar hem de yaprak sayısını ve ağırlık büyüklüklerini cezalandırarak aşırı öğrenmeyi önler.",
+   "ornek": "90 günlük rüzgâr hamlesi eğitiminde lambda = 1.5 atanarak modelin sakin günlerde gereksiz karmaşık dallanma yapması engellenir.",
+   "nerede": "F-ISL-VBA-02 projesinde model hiperparametrelerini ayarlarken aşırı öğrenmeyi önleme adımında."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gradient_Boosting_Algorithm.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Gradient boosting algoritmik yapısı ve kalıntıların ardışık optimizasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://xgboost.readthedocs.io/en/stable/",
+   "aciklama": "XGBoost açık kaynak makine öğrenmesi kütüphanesi dokümantasyon sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · VBA 315E (Machine Learning)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=VBA&dersNo=315"
+  },
+  {
+   "ad": "Hastie, T., Tibshirani, R. & Friedman, J. (2009) The Elements of Statistical Learning, 2. baskı, Springer · ISBN 978-0387848570",
+   "url": "https://openlibrary.org/isbn/9780387848570"
+  },
+  {
+   "ad": "Chen, T. & Guestrin, C. (2016) XGBoost: A Scalable Tree Boosting System, KDD · DOI: 10.1145/2939672.2939785",
+   "url": "https://doi.org/10.1145/2939672.2939785"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=VBA&dersNo=315"
+}

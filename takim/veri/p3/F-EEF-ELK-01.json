@@ -1,0 +1,392 @@
+{
+ "id": "F-EEF-ELK-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "ELK",
+  "bolum": "Elektrik Mühendisliği",
+  "fakulteKod": "EEF",
+  "fakulte": "Elektrik-Elektronik Fakültesi"
+ },
+ "ad": "Rüzgâr türbini güç eğrisi tahmin karnesi",
+ "ne": "Marmara Bölgesi rüzgâr hızı tahminlerini IEC 61400 standardı türbin güç eğrisinden geçirip üretilecek elektrik sapmasını ölçmek.",
+ "adimlar": [
+  "Python'da 40 satır: 30 günlük rüzgâr tahmin serisini analitik güç eğrisine dönüştürüp megavat hatasını çizmek."
+ ],
+ "sonuc": "Tahmini vs gerçek elektrik üretim grafiği",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "ELK 421",
+    "ad": "Elektrik Enerjisi Üretimi"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "DTU Wind and Energy Systems",
+   "ne": "Sınır tabaka rüzgâr tahminlerini türbin aero-mekanik güç eğrileriyle birleştiren araştırma enstitüsü.",
+   "url": "https://www.wind.dtu.dk/research",
+   "ayrinti": {
+    "neYaptilar": "Danimarka Teknik Üniversitesi (DTU), rüzgâr santrallerinin şebeke besleme profilini belirlemek için yerel rüzgâr tahminleriyle türbin güç eğrilerini eşleştirdi.",
+    "nasil": "Sayısal hava tahminlerinden elde edilen 100 metre göbek yüksekliği rüzgâr vektörleri, aeroelastik türbin simülasyonlarına aktarılarak üretim kestirimi yapıldı.",
+    "neEdindiler": "Kuzey Denizi açık deniz santrallerinde 24 saatlik elektrik üretim tahmin hatasını yüzde 8 bandının altına indirdiler.",
+    "bizNasilKatki": "DTU'nun IEC standardı güç eğrisi formülasyonlarını Marmara Bölgesi rüzgâr santralleri için Python tabanlı açık hesaplama modülüne uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "DTU Rüzgâr Enerjisi Araştırma Portalı",
+      "url": "https://www.wind.dtu.dk/research",
+      "tur": "web"
+     },
+     {
+      "ad": "DTU Rüzgâr Santralleri Güç Entegrasyonu Raporu",
+      "url": "https://orbit.dtu.dk/en/publications/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.wind.dtu.dk/research",
+      "aciklama": "DTU rüzgâr türbini güç eğrileri ve aerodinamik araştırma paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Bölgesi saatlik 100 m rüzgâr hızı ve türbin üretim gücü animasyonu, 2026-10",
+      "aciklama": "Rüzgâr hızı değişimine bağlı anlık elektrik üretim sapması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Vortex FdC Wind Forecasting",
+   "ne": "Yenilenebilir şebeke işletmecileri için rüzgâr santrali üretim tahmin karneleri sunan meteorolojik teknoloji girişimi.",
+   "url": "https://vortexfdc.com/wind-power-forecasting",
+   "ayrinti": {
+    "neYaptilar": "Vortex FdC, küresel hava tahmin modellerini mikrolokasyon rüzgâr ölçümleriyle birleştirerek türbin bazlı üretim tahmin servisi kurdu.",
+    "nasil": "WRF ve ERA5 verileri santral topografyasıyla ölçeklendirildi; türbin üretici güç eğrileri uygulanarak şebeke dengesizlik riski hesaplandı.",
+    "neEdindiler": "Küresel ölçekte 50 gigavatın üzerinde rüzgâr kurulu gücünde piyasa dengesizlik maliyetlerini yüzde 25 düşürdüler.",
+    "bizNasilKatki": "Marmara santralleri için açık kaynaklı hava tahmin API'leriyle benzer bir türbin güç karnesi boru hattı geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Vortex FdC Rüzgâr Gücü Tahmin Platformu",
+      "url": "https://vortexfdc.com/wind-power-forecasting",
+      "tur": "web"
+     },
+     {
+      "ad": "Vortex Rüzgâr Enerjisi ve Doğrulama Dokümantasyonu",
+      "url": "https://vortexfdc.com/technology",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://vortexfdc.com/wind-power-forecasting",
+      "aciklama": "Vortex rüzgâr hızı ve türbin güç üretimi gösterge paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Wind_turbine_power_curves.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Rüzgâr türbini güç eğrisi ve kesme hızları grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Rüzgâr Enerjisi Tahmin Ekibi",
+   "ne": "Marmara santrallerinde rüzgâr tahmininden türbin elektrik çıkışı ve dengesizlik karnesi hesaplayan öğrenci takımı.",
+   "url": "https://github.com/aura-itu/ruzgar-guc-karnesi",
+   "ayrinti": {
+    "neYaptilar": "Elektrik ve meteoroloji öğrencileri, saatlik rüzgâr tahminlerini IEC analitik türbin eğrisiyle megavat saat üretimine dönüştüren açık araç yazdı.",
+    "nasil": "Open-Meteo ve ECMWF açık verisinden 100 m rüzgâr hızları çekildi; Betz limitli aerodinamik güç eğrisiyle elektrik üretim karnesi çıkarıldı.",
+    "neEdindiler": "Bir rüzgâr santralinde 1 m/s'lik tahmin sapmasının 3 MW'lık bir türbinde saate 450 kWh elektrik sapması yarattığı niceliksel olarak gösterildi.",
+    "bizNasilKatki": "Açık kaynaklı Python kodunu test verileriyle doğrulayıp şebeke planlama öğrencilerine pratik karne aracı olarak sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Rüzgâr Güç Karnesi kod deposu",
+      "url": "https://github.com/aura-itu/ruzgar-guc-karnesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Rüzgâr Güç Karnesi Kullanıcı Kılavuzu",
+      "url": "https://aura-itu.github.io/ruzgar-karnesi",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/ruzgar-guc-karnesi",
+      "aciklama": "Python rüzgâr gücü ve türbin üretim eğrisi arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Bandırma rüzgâr sahası 100 m rüzgâr hızı ve türbin elektrik üretim profili, 2026-10",
+      "aciklama": "Saatlik rüzgâr hızı ve santral çıkış gücü değişim animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Rüzgâr ve güneş santrallerinin şebeke dengesi, 24 saatlik yerel hava tahmininin isabetine bağlıdır.",
+  "senin": "ELK 421 Elektrik Enerjisi Üretimi, ELK 322 Power Transmission Systems, ELK 331 Güç Elektroniği Devreleri",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "ELK 421 Elektrik Enerjisi Üretimi",
+    "bizim": "Rüzgâr hızı ve güneş ışıması tahmin karnesi",
+    "neden": "Yenilenebilir enerji santralinin üreteceği megavat gücü doğrudan sınır tabaka rüzgâr profilinden hesaplanır."
+   },
+   {
+    "senin": "ELK 322 Power Transmission Systems",
+    "bizim": "Ekstrem hava olayları ve hat yüklenme kapasitesi",
+    "neden": "Aşırı sıcak dalgaları veya fırtınalarda iletim hatlarının dinamik hat derecelendirmesi (DLR) hava verisiyle belirlenir."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Yenilenebilir şebeke entegrasyonunda anlık hava tahmini",
+   "metin": "2025'te TEİAŞ ve EPİAŞ piyasa analizlerinde, rüzgâr ve güneş enerjisi dengesizlik maliyetlerini düşürmek için 15 dakikalık yerel tahmin düzeltme algoritmaları devreye alındı. Şebeke frekans kararlılığı yüksek isabetli hava kestirimiyle korundu.",
+   "kaynakAdi": "EPİAŞ Şeffaflık Bülteni",
+   "kaynakUrl": "https://seffaflik.epias.com.tr/elektrik/uretim/ruzgar-gunes-tahmini",
+   "tarih": "2025-02"
+  },
+  "detay": "Elektrik mühendisliğinde şebeke analizi ve enerji üretimi dersleri, yenilenebilir enerjinin yaygınlaşmasıyla doğrudan hava durumuna bağlandı. Bir rüzgâr türbininin veya güneş sahasının kaç megavat üreteceği ya da iletim hattının ne kadar akım taşıyabileceği tamamen ortamın termal ve aerodinamik koşullarıyla belirlenir. Derste gördüğün güç akışı ve şebeke dengesi problemleri, küresel modellerin yerel rüzgâr ve ışıma sapmalarını düzeltince doğrudan piyasa değerine dönüşür. Sınav haftalarında işe ara verirken, dönem boyunca kendi seçeceğin bir santral verisinde tahmin düzeltme yaparsın. Yanına meteoroloji öğrencisi oturduğunda rüzgâr kesme katsayısını hesaplar, sen de onu şebeke frekans dengesine bağlarsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (ELK)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1456"
+   }
+  ]
+ },
+ "amac": "Marmara Bölgesi rüzgâr hızı tahminlerini IEC 61400 güç eğrisinden geçirip üretilecek elektrik sapmasını ve şebeke dengesini hesaplayan karne geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "ELK 421",
+   "projeyeKatki": "Türbin aerodinamik güç katsayısını, IEC güç eğrisi kesme hızlarını ve şebeke primer frekans kontrolü tepkisini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Rüzgâr türbini güç denklemi",
+     "nerede": "Saatlik rüzgâr hızı tahmin serisini megavat cinsinden elektrik enerjisi üretim profiline dönüştürürken."
+    },
+    {
+     "formulAd": "Generatör hız düşümü ve primer frekans tepkisi",
+     "nerede": "Rüzgâr üretim sapmasının enterkonnekte şebekede frekans dengesine etkisini değerlendirirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Marmara üzerindeki yüzey basınç gradyanlarını ve sınır tabaka rüzgâr profili tahminlerini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+     "nerede": "Bölgesel basınç haritalarından serbest atmosfer ve sınır tabaka rüzgâr hızını kestirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Rüzgâr tahmin serisini IEC türbin güç eğrisine dönüştürerek elektrik üretim sapması ve dengesizlik karnesi çıkaran Python kodu.",
+  "ayrinti": "Açık meteoroloji servisinden Marmara santral koordinatları için 100 m rüzgâr hızı verisi çekilir. IEC 61400 standardı uyarınca devreye girme, nominal ve devreden çıkma hızlarına göre parça parça güç eğrisi fonksiyonu kurulur. Üretilen megavat değerleri gözlemle karşılaştırılarak şebeke dengesizlik karnesi çıkarılır.",
+  "adimlar": [
+   {
+    "baslik": "Santral koordinatlarında 100 m rüzgâr tahminlerini indirmek",
+    "oz": "Marmara rüzgâr sahası için saatlik rüzgâr hızı ve yönü serisini çekmek.",
+    "ayrinti": "Open-Meteo API kullanılarak 30 günlük saatlik 100 m göbek yüksekliği rüzgâr hızı ve hava sıcaklığı verileri indirilir.",
+    "nasil": [
+     {
+      "teknik": "import requests; res = requests.get('https://api.open-meteo.com/v1/forecast?latitude=40.35&longitude=27.97&hourly=wind_speed_100m,temperature_2m').json()",
+      "sade": "Belirlenen rüzgâr santrali enlem ve boylamı için meteoroloji servisinden 100 metre yükseklikteki saatlik rüzgâr hızı sorgulanır.",
+      "altAdimlar": [
+       "Santralin coğrafi koordinatlarını belirleyin.",
+       "API üzerinden saatlik 100 metre rüzgâr verisini talep edin.",
+       "JSON yanıtını Python sözlük yapısına aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+      }
+     },
+     {
+      "teknik": "import numpy as np; v_wind = np.array(res['hourly']['wind_speed_100m']) / 3.6",
+      "sade": "İndirilen kilometre/saat cinsindeki rüzgâr hızları güç denkleminde kullanılmak üzere metre/saniye birimine çevrilir.",
+      "altAdimlar": [
+       "Rüzgâr hızı listesini NumPy dizisine dönüştürün.",
+       "3,6 katsayısına bölerek m/s birimine aktarın.",
+       "Dizideki eksik veya sıfır değerleri kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "ELK 421",
+       "madde": "Yenilenebilir enerji kaynakları ile elektrik enerjisi üretimi."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ELK 421",
+      "madde": "Yenilenebilir enerji kaynakları ile elektrik enerjisi üretimi."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.wind.dtu.dk/research",
+      "aciklama": "100 m rüzgâr hızı tahmin serisi ve istasyon gözlem paneli"
+     }
+    ]
+   },
+   {
+    "baslik": "IEC standardı türbin güç eğrisi fonksiyonunu uygulamak",
+    "oz": "Rüzgâr hızını analitik güç eğrisiyle megavat elektrik çıkışına çevirmek.",
+    "ayrinti": "3 m/s kesme girişi, 12 m/s nominal ve 25 m/s fırtına kesme hızı eşiklerine göre 3 MW'lık türbin güç üretim eğrisi hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "def power_curve(v): return np.piecewise(v, [v < 3, (v >= 3) & (v < 12), (v >= 12) & (v <= 25), v > 25], [0.0, lambda x: 3.0 * ((x - 3)/9)**3, 3.0, 0.0])",
+      "sade": "Türbinin devreye girme, nominal güce ulaşma ve fırtınada durma bölgelerini tanımlayan parça parça güç eğrisi fonksiyonu kurulur.",
+      "altAdimlar": [
+       "Devreye girme ve fırtına kesme sınır hızlarını tanımlayın.",
+       "Nominal güç bölgesinde üretimi sabit 3 MW olarak belirleyin.",
+       "Kübik geçiş fonksiyonuyla ara rüzgâr hızlarını güce dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "ELK 421",
+       "madde": "Elektrik santrallarının temel işletme ve üretim prensiplerini analiz etmek."
+      }
+     },
+     {
+      "teknik": "p_mw = power_curve(v_wind); print(f'Ortalama Üretim: {p_mw.mean():.2f} MW, Kapasite Faktörü: {p_mw.mean()/3.0*100:.1f}%')",
+      "sade": "Saatlik rüzgâr dizisi güç fonksiyonundan geçirilir ve santralin ortalama elektrik üretimi ile kapasite faktörü hesaplanır.",
+      "altAdimlar": [
+       "Saatlik güç dizisini hesaplayın.",
+       "Toplam üretilen megavat saat miktarını toplayın.",
+       "Kapasite faktörünü ekrana yazdırın."
+      ],
+      "kazanim": {
+       "ders": "ELK 421",
+       "madde": "Elektrik enerjisi üretim maliyeti hesabı ve tarife yapılarını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ELK 421",
+      "madde": "Elektrik santrallarının temel işletme ve üretim prensiplerini analiz etmek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Wind_turbine_power_curves.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Türbin güç eğrisi ve kesme sınırları şeması"
+     }
+    ]
+   },
+   {
+    "baslik": "Elektrik üretim sapması ve dengesizlik karnesini çıkarmak",
+    "oz": "Tahmin ve gerçek üretim arasındaki megavat farkını diske yazmak.",
+    "ayrinti": "Ölçülen rüzgâr hızı ile tahmin edilen hız arasındaki farkın yarattığı üretim sapması ve dengesizlik bedeli JSON karnesi olarak oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "v_obs = v_wind + np.random.normal(0, 0.8, len(v_wind)); p_obs = power_curve(v_obs); sapma_mwh = np.abs(p_mw - p_obs).sum()",
+      "sade": "Tahmin edilen rüzgâr ile gerçekleşen rüzgâr arasındaki sapmadan kaynaklanan toplam enerji dengesizliği megavat saat cinsinden hesaplanır.",
+      "altAdimlar": [
+       "Gözlem serisiyle tahmin serisini karşılaştırın.",
+       "Saatlik üretim farklarını mutlak değer olarak toplayın.",
+       "Toplam dengesizlik enerjisini belirleyin."
+      ],
+      "kazanim": {
+       "ders": "ELK 421",
+       "madde": "Şebekede primer ve sekonder yük-frekans kontrol mekanizmalarını hesaplamak."
+      }
+     },
+     {
+      "teknik": "import json; json.dump({'sapma_mwh': float(sapma_mwh), 'ortalama_guc_mw': float(p_mw.mean())}, open('ruzgar_karne.json', 'w'), indent=2)",
+      "sade": "Santral işletmecisi ve iletim sistemi operatörü için hazırlanan karne metrikleri JSON dosyasına aktarılır.",
+      "altAdimlar": [
+       "Karne metriklerini sözlük yapısında toplayın.",
+       "Float türüne dönüştürerek JSON dosyasına yazın.",
+       "Oluşturulan karne dosyasını doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "ELK 421",
+       "madde": "Elektrik enerjisi üretim maliyeti hesabı ve tarife yapılarını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ELK 421",
+      "madde": "Şebekede primer ve sekonder yük-frekans kontrol mekanizmalarını hesaplamak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Bölgesi saatlik 100 m rüzgâr hızı alanı ve türbin üretim profili, 2026-10",
+      "aciklama": "Tahmin edilen ve gerçekleşen elektrik üretimi sapma karnesi animasyonu"
+     }
+    ]
+   }
+  ],
+  "sonuc": "Marmara rüzgâr sahası saatlik rüzgâr tahminlerini türbin elektrik üretimine dönüştüren ve üretim sapma karnesini veren Python analiz aracı.",
+  "senden": "IEC türbin güç eğrisi ve şebeke frekans sapması fonksiyonlarını yazmak.",
+  "bizden": "Santral sahası için saatlik 100 m göbek yüksekliği rüzgâr hızı ve hava yoğunluğu tahmin serisini sağlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi saatlik 100 m rüzgâr hızı alanı ve türbin üretim profili, 2026-10",
+   "aciklama": "Saatlik rüzgâr hızı ve türbin elektrik üretim profili animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://vortexfdc.com/wind-power-forecasting",
+   "aciklama": "Vortex rüzgâr gücü tahmin platformu gösterge paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wind_turbine_power_curves.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "IEC standardı rüzgâr türbini güç eğrisi ve kesme hızları grafiği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "DTU Wind and Energy Systems Portal",
+   "url": "https://www.wind.dtu.dk/research"
+  },
+  {
+   "ad": "Vortex FdC Wind Power Forecasting",
+   "url": "https://vortexfdc.com/wind-power-forecasting"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-EEF-ELK-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "f2230c7293a5"
+ }
+}

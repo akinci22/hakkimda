@@ -1,0 +1,102 @@
+{
+ "kod": "EUT 241E",
+ "ad": "Computer Aided Design",
+ "bolum": "Endüstriyel Tasarım",
+ "obsNo": "241E",
+ "ozet": "Ürün tasarımında üç boyutlu parametrik ve serbest yüzeyli bilgisayar destekli CAD araçlarını, katı-yüzey geometrisi oluşturmayı ve dijital prototiplemeyi öğretir. Aerodinamik kabuk tasarımı, panjur açıları, geçmeli montaj toleransları ve üretim optimizasyonu incelenir.",
+ "neOgrenirsin": [
+  "Parametrik CAD yazılımlarında çok parçalı montaj ve geçmeli bağlantı geometrileri oluşturmak.",
+  "Güneş ışıması gölgeleme açısı ve louver eğimi geometrik denklemlerini kurmak.",
+  "Doğal hava sirkülasyonu sağlayan aerodinamik kabuk yüzeyleri tasarlamak.",
+  "3B yazıcılar için parça toleranslarını ve STL/STEP dosya optimizasyonunu gerçekleştirmek.",
+  "Saha koşullarına dayanıklı sensör siperi ve muhafaza kutusu prototipleri geliştirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Güneş gölgeleme açısı ve louver aralığı bağıntısı",
+   "tex": "h_{\\mathrm{plaka}} = d_{\\mathrm{aralik}} \\cdot \\tan(\\alpha_{\\mathrm{gunes}})",
+   "terimler": [
+    [
+     "h_{\\mathrm{plaka}}",
+     "louver plakasının düşey örtüşme yüksekliği",
+     "\\mathrm{mm}"
+    ],
+    [
+     "d_{\\mathrm{aralik}}",
+     "ardışık iki plaka arasındaki yatay mesafe",
+     "\\mathrm{mm}"
+    ],
+    [
+     "\\alpha_{\\mathrm{gunes}}",
+     "maksimum güneş geliş zenit veya yükseklik açısı",
+     "^\\circ"
+    ]
+   ],
+   "sade": "Sensör siperinin panjurlarının güneşi tam engelleyip içeriye doğrudan ışık sokmaması için kanatların ne kadar eğimli ve ne aralıkta olması gerektiğini hesaplar. Güneş en tepedeyken bile sensörün gölgede kalmasını sağlar.",
+   "ornek": "İstanbul enlemi için yaz öğle saatinde güneş açısı alpha = 65° ve plaka aralığı d = 15 mm iken örtüşme yüksekliği h = 15 x tan(65°) ≈ 32,2 mm bulunur; doğrudan radyasyon hatası engellenir.",
+   "nerede": "F-MIM-EUT-01 projesinde 3B baskı radyasyon siperinin louver kanat açısını ve katmanlar arası düşey yüksekliğini hesaplarken."
+  },
+  {
+   "ad": "Doğal havalandırma hava akış debisi bağıntısı",
+   "tex": "Q_{\\mathrm{hava}} = C_d \\cdot A_{\\mathrm{acik}} \\cdot \\sqrt{\\frac{2 \\Delta P}{\\rho}}",
+   "terimler": [
+    [
+     "Q_{\\mathrm{hava}}",
+     "kalkan içi doğal hava akış debisi",
+     "\\mathrm{m^3/s}"
+    ],
+    [
+     "C_d",
+     "louver kanatçık boşaltma katsayısı",
+     "birimsiz (0.6 ile 0.8 arası)"
+    ],
+    [
+     "A_{\\mathrm{acik}}",
+     "toplam net hava giriş kesit alanı",
+     "\\mathrm{m^2}"
+    ],
+    [
+     "\\Delta P",
+     "rüzgâr kaynaklı dinamik basınç farkı",
+     "\\mathrm{Pa}"
+    ],
+    [
+     "\\rho",
+     "ortam hava yoğunluğu",
+     "\\mathrm{kg/m^3}"
+    ]
+   ],
+   "sade": "Rüzgâr estiğinde sensör kalkanının içine saniyede ne kadar temiz hava gireceğini hesaplar. Yeterli hava akışı sağlanmazsa sensör siperin içinde hapsolan ısıyla aşırı ısınır ve yanlış ölçüm yapar.",
+   "ornek": "Delta P = 2,5 Pa rüzgâr dinamik basıncında, Cd = 0,65 ve net giriş alanı A = 0,004 m² iken debi Qhava = 0,65 x 0,004 x sqrt(5 / 1,225) ≈ 0,0052 m³/s (yaklaşık 5,2 L/s) olur ve hazne hızla süpürülür.",
+   "nerede": "F-MIM-EUT-01 projesinde kalkan içindeki sensörün termal zaman sabiti gecikmesini önlemek için havalandırma debisini doğrulamada."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Standart panjurlu meteorolojik Stevenson siperi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul istasyonları saatlik rüzgâr hızı ve radyasyon akısı döngüsü, 2026",
+   "aciklama": "Güneş radyasyonu piki ve doğal havalandırma rüzgâr hızı gün içi seyri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · EUT 241E (Computer Aided Design)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EUT&dersNo=241E"
+  },
+  {
+   "ad": "WMO Guide to Meteorological Instruments and Methods of Observation (WMO-No. 8)",
+   "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EUT&dersNo=241E"
+}

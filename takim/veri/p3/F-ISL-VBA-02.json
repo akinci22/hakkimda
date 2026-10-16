@@ -1,0 +1,380 @@
+{
+ "id": "F-ISL-VBA-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "VBA",
+  "bolum": "Veri Bilimi ve Analitiği",
+  "fakulteKod": "ISL",
+  "fakulte": "İşletme Fakültesi"
+ },
+ "ad": "XGBoost ile rüzgâr hamlesi kestirimi",
+ "ne": "Basınç gradyanı ve sıcaklık tahminlerini öznitelik olarak verip tepe rüzgâr hızını gradient boosting ile kestirmek.",
+ "adimlar": [
+  "Colab'da 40 satır: scikit-learn ile 90 günlük veride öznitelik önem derecelerini çıkarmak."
+ ],
+ "sonuc": "Öznitelik analiz raporu ve model kodu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "VBA 315E",
+    "ad": "Machine Learning"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NCAR Uygulamalı Makine Öğrenmesi ve Sayısal Tahmin Grubu",
+   "ne": "Sayısal hava modellerinin tepe rüzgâr hamlesi eksikliklerini gradyan artırma ağaçlarıyla düzelten araştırma merkezi.",
+   "url": "https://ral.ucar.edu/focus-areas/machine-learning",
+   "ayrinti": {
+    "neYaptilar": "NCAR araştırmacıları, fırtınalarda ani hamlelerin standart model ızgaralarında yakalanamamasını gradient boosting algoritmalarıyla çözdü.",
+    "nasil": "Yüzey basınç gradyanı, dikey rüzgâr kesmesi ve kararsızlık indeksleri XGBoost öznitelik havuzuna verilerek istasyon hamleleri tahmin edildi.",
+    "neEdindiler": "Havalimanlarında ve rüzgâr santrallerinde ekstrem rüzgâr hamlesi tahmin hatasını yüzde 34 azaltan operasyonel bir algoritma geliştirdiler.",
+    "bizNasilKatki": "NCAR'ın öznitelik mühendisliği yaklaşımını Marmara Boğazı ve rüzgâr çiftlikleri için 40 satırlık Python koduna uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "NCAR Yapay Zekâ ve Meteoroloji Portali",
+      "url": "https://ral.ucar.edu/focus-areas/machine-learning",
+      "tur": "web"
+     },
+     {
+      "ad": "Makine Öğrenmesi ile Ekstrem Rüzgâr Hamlesi Raporu",
+      "url": "https://ral.ucar.edu/publications",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://ral.ucar.edu/focus-areas/machine-learning",
+      "aciklama": "NCAR atmosferik yapay zekâ ve rüzgâr hamlesi araştırma sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Gradient_Boosting_Algorithm.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Gradient boosting ağaç optimizasyonu ve hata indirgeme şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "DNV Rüzgâr Enerjisi ve Ekstrem Kestirim Çözümleri",
+   "ne": "Türbin kanat güvenliği ve şebeke entegrasyonu için yapay zekâ destekli rüzgâr hamlesi tahminleri üreten küresel danışmanlık şirketi.",
+   "url": "https://www.dnv.com/services/wind-energy-services/",
+   "ayrinti": {
+    "neYaptilar": "DNV, açık deniz ve karasal rüzgâr santrallerinde türbinlerin fırtına korumasına geçiş zamanını tahmin eden makine öğrenmesi modülü kurdu.",
+    "nasil": "NWP model çıktıları yerel lidar ölçümleriyle harmanlanıp XGBoost ve LightGBM regresörleriyle eğitildi.",
+    "neEdindiler": "Türbin mekanik yorulma hasarlarını önlerken yıllık enerji üretim kaybını minimize eden endüstri standardı tahmin servisi sundular.",
+    "bizNasilKatki": "DNV'nin kullandığı rüzgâr kesmesi ve basınç gradyanı özniteliklerini açık ERA5 ve istasyon verileriyle test ederiz.",
+    "referanslar": [
+     {
+      "ad": "DNV Rüzgâr Enerjisi Hizmetleri",
+      "url": "https://www.dnv.com/services/wind-energy-services/",
+      "tur": "web"
+     },
+     {
+      "ad": "Rüzgâr Türbinleri için Ekstrem Yük Kılavuzu",
+      "url": "https://www.dnv.com/energy-transition-outlook/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.dnv.com/services/wind-energy-services/",
+      "aciklama": "DNV rüzgâr türbini operasyonel tahmin ve yük analitiği paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Marmara ve Ege Denizi rüzgâr hamlesi fırtına döngüsü, 2026-03",
+      "aciklama": "Soğuk cephe geçişinde ani rüzgâr hamlesi hızlarının dağılım animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Rüzgâr Analitiği ve Ekstrem Tahmin Ekibi",
+   "ne": "Marmara Bölgesi fırtına hamlelerini XGBoost regresyon ağaçlarıyla tahmin eden öğrenci ekibi.",
+   "url": "https://github.com/aura-met/xgboost-wind-gust-prediction",
+   "ayrinti": {
+    "neYaptilar": "AURA Takımı, 90 günlük kış rüzgâr serisinde basınç gradyanı ve sıcaklık adveksiyonunu öznitelik olarak verip hamle hızını tahmin etti.",
+    "nasil": "Veri bilimi ve meteoroloji öğrencileri Python Scikit-learn ve XGBoost kütüphaneleriyle model eğitip SHAP öznitelik önem analizini çıkardı.",
+    "neEdindiler": "Standart modelin yakalayamadığı 25 m/s üzerindeki ani hamleleri yüzde 82 doğrulukla yakalayan hafif bir regresyon modeli elde ettiler.",
+    "bizNasilKatki": "40 satırlık Colab kodunu hazırlayıp öznitelik önem grafiğini haftada 1 saatte tamamlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA XGBoost Rüzgâr Hamlesi Deposu",
+      "url": "https://github.com/aura-met/xgboost-wind-gust-prediction",
+      "tur": "kod"
+     },
+     {
+      "ad": "Ekstrem Rüzgâr Hamlesi Öznitelik Analizi",
+      "url": "https://github.com/aura-met/wind-gust-feature-importance",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Gradient_Boosting_Algorithm.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Karar ağaçları ve gradyan artırma optimizasyon adımları"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul Boğazı 10 metre rüzgâr ve hamle hızı zaman serisi, 2026-02",
+      "aciklama": "Lodos fırtınasında ortalama rüzgâr hızı ile ani tepe hamleleri arasındaki fark döngüsü"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Büyük iklim verisini istasyon bazlı metriklerle özetleyip canlı panolara dökmek veri analitiğinin kalbidir.",
+  "senin": "VBA 213E Data Visualization, VBA 315E Machine Learning, VBA 326E Big Data and Analytics",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "VBA 213E Data Visualization",
+    "bizim": "İstasyon tahmin karnesi ve hata panosu",
+    "neden": "Kullanıcının bir bakışta model sapmasını ve güven aralığını kavramasını sağlayan interaktif görselleştirme tasarlarız."
+   },
+   {
+    "senin": "VBA 315E Machine Learning",
+    "bizim": "Sayısal hava tahmini düzeltme algoritmaları",
+    "neden": "Gradient boosting ve regresyon ağaçlarıyla yerel topoğrafya kaynaklı sıcaklık ve rüzgâr sapmalarını gideririz."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Hava tahmini doğrulamasında açık veri analitiği panoları",
+   "metin": "2025'te ECMWF ve Açık Veri Enstitüsü, küresel tahmin modellerinin yerel istasyonlarla anlık doğrulama metriklerini (RMSE, CRPS, bias) interaktif açık analitik panolarıyla kamuoyuna sundu. Model şeffaflığı veri bilimi görselleştirmeleriyle sağlandı.",
+   "kaynakAdi": "ECMWF Open Data Insights",
+   "kaynakUrl": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+   "tarih": "2025-02"
+  },
+  "detay": "Veri bilimi ve analitiği bölümünde makine öğrenmesi ve veri görselleştirme dersleri, ham veri denizinden anlamlı içgörüler çıkarmayı hedefler. Küresel hava tahmin modelleri her gün gigabaytlarca ızgara verisi akıtırken, asıl marifet bu veriyi yerel istasyon ölçümleriyle kıyaslayıp hangi günlerde saptığını net metriklerle ortaya koymaktır. Gradient boosting algoritmalarıyla tahmin düzeltmesi yapmak ve karmaşık hata analizlerini sade gösterge panellerine dönüştürmek senin alanındır. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde gerçek zaman serileri üzerinde çalışan analitik araçlar geliştirirsin. Yanına meteoroloji öğrencisi oturduğunda fırtınanın fiziksel göstergelerini anlatır, sen de onu en isabetli makine öğrenmesi özniteliğine çevirirsin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (VBA)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2293"
+   }
+  ]
+ },
+ "amac": "Basınç gradyanı ve sıcaklık tahminlerini öznitelik olarak verip tepe rüzgâr hamlesini XGBoost ile kestirmek.",
+ "ortakDers": [
+  {
+   "kod": "VBA 315E",
+   "projeyeKatki": "VBA 315E dersindeki gradyan artırma (Gradient Boosting) adım güncellemesi ve regülarizasyonlu amaç fonksiyonu, rüzgâr hamlesi gibi aşırı asimetrik ekstrem olayları minimum hatayla kestirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gradyan Artırma (Gradient Boosting) adım güncellemesi",
+     "nerede": "Kayıp fonksiyonu gradyanlarını kullanarak rüzgâr hamlesi tahmin kalıntılarını ardışık ağaçlarla optimize ederken."
+    },
+    {
+     "formulAd": "XGBoost amaç fonksiyonu ve düzenlileştirme",
+     "nerede": "Ağaç yaprak karmaşıklığını cezalandırıp fırtınasız sakin günlerde aşırı öğrenmeyi engellerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "MTO 311E dersindeki meteorolojik veri analizi ve korelasyon testleri, istasyon basınç farkları ile rüzgâr hamlesi arasındaki gecikmeli ilişkiyi doğrular.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Marmara Ereğlisi ile Şile arasındaki basınç gradyanının Boğaz'daki rüzgâr hamlesine etkisini ölçerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "MTO 302 dersindeki sinoptik cephe analizleri ve jeostrofik rüzgâr bağıntısı, modele verilecek en kritik fiziksel basınç ve sıcaklık özniteliklerini belirler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "Cephe geçişlerinde dikey termal rüzgâr kesmesini ve hamle potansiyelini hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Basınç gradyanı ve sıcaklık verilerini öznitelik olarak kullanıp tepe rüzgâr hamlesini XGBoost ile tahmin etmek.",
+  "ayrinti": "90 günlük saatlik istasyon ölçümlerinden basınç farkı delta_P, dikey lapse-rate ve sıcaklık adveksiyonu öznitelikleri türetilir. Veri seti eğitim ve test olarak ayrılır. XGBoost kütüphanesiyle hiperparametre optimizasyonu yapılır, model eğitilir ve öznitelik önem dereceleri raporlanır.",
+  "adimlar": [
+   {
+    "baslik": "Meteorolojik Öznitelik Mühendisliği",
+    "oz": "Basınç farkı ve sıcaklık serilerinden hamleye duyarlı türetilmiş öznitelikler üretmek.",
+    "ayrinti": "İki istasyon arasındaki yatay basınç gradyanı (delta_P), saatlik basınç eğilimi (dp/dt) ve hava yoğunluğu hesaplanır. Bu öznitelikler tablosal veri çerçevesine sütun olarak eklenir.",
+    "nasil": [
+     {
+      "teknik": "df['delta_p'] = (df['p_batin'] - df['p_dogu']) / 100 ile yatay basınç farkını hesaplamak.",
+      "sade": "Marmara'nın batısı ile doğusu arasındaki hava basıncı farkı hektopaskal cinsinden türetilerek rüzgârı iten temel kuvvet bulunur.",
+      "altAdimlar": [
+       "1. Batı ve doğu istasyonlarının deniz seviyesi basınçlarını al.",
+       "2. İki ölçüm arasındaki farkı hesapla.",
+       "3. Yatay basınç gradyanı sütununu oluştur."
+      ],
+      "kazanim": {
+       "ders": "VBA 315E",
+       "madde": "Öznitelik önem dereceleri ve katkı analizleriyle modellerin açıklanabilirliğini sağlamak."
+      }
+     },
+     {
+      "teknik": "df['dp_dt'] = df['basinc'].diff(periods=3) ile 3 saatlik basınç eğilimini çıkarmak.",
+      "sade": "Hızlı yaklaşan soğuk cephenin habercisi olan ani basınç düşüş hızı hesaplanır.",
+      "altAdimlar": [
+       "1. Saatlik basınç serisinin 3 saatlik geriye dönük farkını al.",
+       "2. Cephe geçişi anındaki ani düşüşleri tespit et.",
+       "3. Öznitelik tablosuna ekle."
+      ],
+      "kazanim": {
+       "ders": "VBA 315E",
+       "madde": "Öznitelik önem dereceleri ve katkı analizleriyle modellerin açıklanabilirliğini sağlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "VBA 315E",
+      "madde": "Öznitelik önem dereceleri ve katkı analizleriyle modellerin açıklanabilirliğini sağlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "XGBoost Regresyon Modelinin Eğitilmesi",
+    "oz": "Aşırı öğrenmeyi önleyerek gradyan artırma ağaçlarını tepe hamle hızına göre eğitmek.",
+    "ayrinti": "XGBRegressor modeli tanımlanır. Max_depth = 4, learning_rate = 0.05 ve reg_lambda = 1.5 değerleriyle 5 katlı çapraz doğrulama altında 300 yineleme ile eğitilir.",
+    "nasil": [
+     {
+      "teknik": "model_xgb = xgb.XGBRegressor(n_estimators=300, max_depth=4, learning_rate=0.05, reg_lambda=1.5).fit(X_train, y_train) çalıştırmak.",
+      "sade": "Karar ağaçları önceki hatalardan ders çıkararak rüzgâr hamlesini adım adım öğrenir.",
+      "altAdimlar": [
+       "1. Veriyi yüzde 80 eğitim ve yüzde 20 test olarak böl.",
+       "2. XGBoost regresörünü regülarizasyon parametreleriyle kur.",
+       "3. Modeli eğitim verisiyle eğit."
+      ],
+      "kazanim": {
+       "ders": "VBA 315E",
+       "madde": "XGBoost kütüphanesiyle kayıp fonksiyonu gradyanlarını kullanarak tahmin hatalarını optimize etmek."
+      }
+     },
+     {
+      "teknik": "rmse = mean_squared_error(y_test, model_xgb.predict(X_test), squared=False) ile test hatasını ölçmek.",
+      "sade": "Eğitilen modelin hiç görmediği fırtına günlerinde rüzgâr hamlesini kaç m/s hata ile tahmin ettiği doğrulanır.",
+      "altAdimlar": [
+       "1. Test kümesindeki tepe hamle tahminlerini üret.",
+       "2. Gerçek hamle hızlarıyla RMSE skorunu hesapla.",
+       "3. Skoru temel model ile kıyasla."
+      ],
+      "kazanim": {
+       "ders": "VBA 315E",
+       "madde": "Aşırı öğrenmeyi düzenlileştirme ve erken durdurma ile engellemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "VBA 315E",
+      "madde": "XGBoost kütüphanesiyle kayıp fonksiyonu gradyanlarını kullanarak tahmin hatalarını optimize etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Öznitelik Önem Dereceleri ve Raporlama",
+    "oz": "Hangi atmosferik değişkenin fırtına hamlesini daha çok tetiklediğini analiz etmek.",
+    "ayrinti": "Modelin feature_importances_ çıktısı ve SHAP değerleri hesaplanır. Basınç farkının ve sıcaklık düşüşünün hamleye göreli katkısı grafikleştirilerek analiz raporuna aktarılır.",
+    "nasil": [
+     {
+      "teknik": "xgb.plot_importance(model_xgb, importance_type='gain', max_num_features=10) ile önem grafiğini çizmek.",
+      "sade": "Hangi fiziksel değişkenin rüzgâr tahminine en büyük isabet kazancı sağladığı çubuk grafikle gösterilir.",
+      "altAdimlar": [
+       "1. Bilgi kazancı (gain) bazlı öznitelik önem değerlerini hesapla.",
+       "2. İlk 10 değişkeni önem sırasına diz.",
+       "3. Grafiği PNG olarak kaydet."
+      ],
+      "kazanim": {
+       "ders": "VBA 315E",
+       "madde": "Öznitelik önem dereceleri ve katkı analizleriyle modellerin açıklanabilirliğini sağlamak."
+      }
+     },
+     {
+      "teknik": "rapor_df.to_markdown('ruzgar_hamlesi_oznitelik_raporu.md') ile teknik raporu derlemek.",
+      "sade": "Meteoroloji uzmanları için makine öğrenmesinin keşfettiği fiziksel kuralları özetleyen tablo hazırlanır.",
+      "altAdimlar": [
+       "1. Öznitelik isimleri ve önem katsayılarını derle.",
+       "2. Fiziksel meteorolojik yorumları ekle.",
+       "3. Markdown formatında diske yaz."
+      ],
+      "kazanim": {
+       "ders": "VBA 315E",
+       "madde": "Karar ağaçları ve gradyan artırma algoritmalarıyla regresyon modelleri eğitmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "VBA 315E",
+      "madde": "Öznitelik önem dereceleri ve katkı analizleriyle modellerin açıklanabilirliğini sağlamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "XGBoost rüzgâr hamlesi tahmin betiği, öznitelik önem analizi raporu ve RMSE doğrulama tablosu.",
+  "senden": "Makine öğrenmesi öznitelik mühendisliği, XGBoost hiperparametre optimizasyonu ve önem analizi.",
+  "bizden": "Yatay basınç gradyanı hesaplaması, sinoptik fırtına verileri ve atmosferik dinamik kurallar."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://www.dnv.com/services/wind-energy-services/",
+   "aciklama": "DNV rüzgâr türbini operasyonel tahmin ve yük analitiği paneli"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "gfs",
+   "konu": "Marmara ve Ege Denizi rüzgâr hamlesi fırtına döngüsü, 2026-03",
+   "aciklama": "Soğuk cephe geçişinde ani rüzgâr hamlesi hızlarının dağılım animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gradient_Boosting_Algorithm.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Karar ağaçları ve gradyan artırma optimizasyon adımları"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · VBA 315E",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=VBA&dersNo=315"
+  },
+  {
+   "ad": "NCAR Yapay Zekâ ve Sayısal Tahmin Portali",
+   "url": "https://ral.ucar.edu/focus-areas/machine-learning"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-ISL-VBA-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "7ee6306bed29"
+ }
+}

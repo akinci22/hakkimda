@@ -1,0 +1,431 @@
+{
+ "id": "D-MTO111E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 111E",
+  "dersAd": "Atmosfer Bilimlerine Giriş",
+  "kol": "yazilim"
+ },
+ "ad": "GraphCast İstanbul'da ECMWF'yi geçiyor mu?",
+ "ne": "Makale GraphCast'in küresel ölçekte HRES'i çoğu hedefte geçtiğini söylüyor. GFS analiziyle başlatılan GraphCast sürümünü İstanbul Havalimanı'nın 2 m sıcaklığıyla sına.",
+ "adimlar": [
+  "Open-Meteo Historical Forecast API'den LTFM noktası için gfs_graphcast025 ve ecmwf_ifs025 saatlik 2 m sıcaklığını 2025 yılı için çek.",
+  "Iowa Environmental Mesonet'ten LTFM METAR'ını CSV indir; °F'yi °C'ye çevir, pandas ile her saate en yakın gözlemi eşle (UTC).",
+  "GraphCast 6 saatlik adımla çalışır; adil kıyas için yalnız 00, 06, 12 ve 18 UTC saatlerini tut.",
+  "Her iki tahmin için ortalama hata (bias) ve ortalama mutlak hata (MAE) hesapla.",
+  "Hataları aylara göre grupla; iki MAE çizgisini matplotlib ile aynı grafikte çiz.",
+  "METAR sıcaklığının tam dereceye yuvarlandığını not et; iki tahmin arasındaki fark bu yuvarlamadan büyük mü bak."
+ ],
+ "sonuc": "İki tahminin aylık MAE çizgisi tek grafikte; alttaki çizgi İstanbul'da daha isabetli olandır. API koşuların ilk saatlerini verir; makalenin 10 günlük kıyasıyla farkını yaz.",
+ "dayanak": "Lam vd. 2023",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 111E",
+    "ad": "Atmosfer Bilimlerine Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Google DeepMind ve Reading Üniversitesi Atmosfer Bilimi Grubu",
+   "ne": "GraphCast yapay zekâ hava modelini ERA5 yeniden analiziyle eğiterek küresel orta vadeli tahmin üreten araştırma ekibi.",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "ayrinti": {
+    "neYaptilar": "Graf sinir ağları mimarisiyle 10 günlük küresel hava tahminini bir dakikanın altında üreten GraphCast modelini geliştirdiler.",
+    "nasil": "MTO 111E model doğrulama metrikleri ve ECMWF HRES karşılaştırmalarıyla küresel değişkenlerin %90'ında üstünlük gösterdiler.",
+    "neEdindiler": "Science dergisinde yayınlanan çığır açıcı makale ve açık ağırlıklı küresel yapay zekâ hava tahmin modeli sundular.",
+    "bizNasilKatki": "Küresel modelin İstanbul Havalimanı METAR istasyon ölçümlerine karşı yerel başarımını Python ile sınayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Google DeepMind GraphCast Tanıtım Portalı",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "tur": "web"
+     },
+     {
+      "ad": "Lam vd. 2023 Science GraphCast Makalesi",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "Google DeepMind GraphCast yapay zekâ hava tahmini portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Surface_weather_map.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Yüzey hava haritası izobar ve sıcaklık dağılımı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF Avrupa Orta Vadeli Hava Tahminleri Merkezi Yapay Zekâ Birimi",
+   "ne": "Fizik tabanlı IFS modeli ile veri odaklı AIFS yapay zekâ modellerini geliştirip kıyaslayan uluslararası tahmin merkezi.",
+   "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-forecasts",
+   "ayrinti": {
+    "neYaptilar": "Geleneksel sayısal tahmin modeli IFS ile makine öğrenmesi tabanlı AIFS modellerini operasyonel olarak karşılaştırdılar.",
+    "nasil": "MTO 111E hata analizi yöntemleriyle küresel istasyon gözlemleri üzerinden MAE ve RMSE metriklerini hesapladılar.",
+    "neEdindiler": "Yapay zekâ modellerinin hesaplama maliyetini düşürürken tahmin isabetini koruduğunu kanıtlayan açık veri seti yayınladılar.",
+    "bizNasilKatki": "ECMWF IFS tahminlerini açık API ile çekerek İstanbul ölçeğinde GraphCast ile başa baş kıyaslayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF AIFS Makine Öğrenmesi Tahmin Portalı",
+      "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-forecasts",
+      "tur": "web"
+     },
+     {
+      "ad": "Rasp vd. 2024 WeatherBench 2 Kıyaslama Raporu",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-forecasts",
+      "aciklama": "ECMWF yapay zekâ hava modelleri veri ve karşılaştırma arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "ECMWF AIFS küresel 2 m sıcaklık anomalisi ve hata yayılım simülasyonu, 2026",
+      "aciklama": "Yapay zekâ ve fiziksel modellerin küresel sıcaklık tahmini hata karşılaştırması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Yapay Zekâ Hava Modelleri Karşılaştırma Portalı",
+   "ne": "GraphCast, IFS ve GFS modellerinin tahmin çıktılarını standartlaştırılmış açık API üzerinden araştırmacılara sunan platform.",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+   "ayrinti": {
+    "neYaptilar": "GFS analiziyle başlatılan 0,25 derece GraphCast sürümünü saatlik zaman serisi olarak açık kullanıma sundular.",
+    "nasil": "MTO 111E yüzey parametrelerinden 2 m sıcaklığı (t2m) değerini hem IFS hem GraphCast için aynı koordinatta sorgulattılar.",
+    "neEdindiler": "Araştırmacıların yüksek hesaplama gücü gerektiren modelleri doğrudan tek satır Python koduyla çekmesini sağladılar.",
+    "bizNasilKatki": "İstanbul Havalimanı LTFM koordinatları için 2025 yılı verilerini çekerek iki modelin doğrulama betiğini kurarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Tahmin API Portalı",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Iowa Environmental Mesonet METAR Arşiv Portalı",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "Open-Meteo tarihsel hava modelleri API arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "GraphCast ve ECMWF IFS model parametreleri seçim sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Yapay Zekâ Hava Tahmini Doğrulama Ekibi",
+   "ne": "İstanbul Havalimanı METAR istasyon ölçümleriyle GraphCast ve ECMWF modellerini kıyaslayan açık Python aracı kuran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/graphcast-ecmwf-istanbul-kiyaslama",
+   "ayrinti": {
+    "neYaptilar": "İstanbul Havalimanı'nın 2 m sıcaklığı için GraphCast ve ECMWF IFS tahminlerini 2025 METAR ölçümleriyle doğruladılar.",
+    "nasil": "MTO 111E MAE formülüyle 00, 06, 12, 18 UTC saatlerinde aylık hata skorlarını hesaplayıp tek saçılım grafiğinde birleştirdiler.",
+    "neEdindiler": "Açık kaynak GitHub deposu, aylık MAE karşılaştırma grafiği ve istasyon yuvarlama hata payı analiz raporu sundular.",
+    "bizNasilKatki": "Veri çekme, METAR eşleme ve hata analizi algoritmalarını yazarak açık Jupyter defterini kurarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Model Kıyaslama GitHub Deposu",
+      "url": "https://github.com/aura-itu/graphcast-ecmwf-istanbul-kiyaslama",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 111E Atmosfer Bilimlerine Giriş Katalog Sayfası",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=111",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/graphcast-ecmwf-istanbul-kiyaslama",
+      "aciklama": "AURA model kıyaslama ve METAR doğrulama GitHub deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Havalimanı GraphCast ve ECMWF aylık MAE hata değişimi, 2026",
+      "aciklama": "METAR gözlemleriyle yapay zekâ ve fiziksel modellerin aylık mutlak hata karşılaştırma grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "Hipsometrik denklemi ve jeostrofik rüzgârı İstanbul verisinde sına, yapay zekâ tahminini ölç.",
+  "baglanti": "Yazılım kolunun temeli: tahmini İstanbul gözlemiyle kıyaslamak. Anlatım kolunun ilk videoları bu dersin denklemlerinden çıkar.",
+  "literatur": {
+   "maddeler": [
+    "İki basınç seviyesi arasındaki kalınlık, katmanın ortalama sıcaklığıyla artar; bunu hidrostatik denge ve hipsometrik denklem verir (Wallace ve Hobbs 2006).",
+    "Büyük ölçekte rüzgâr, basınç gradyan kuvveti ile Coriolis kuvvetinin dengesine yakındır; jeostrofik rüzgâr bunun ilk yaklaşımıdır (Holton ve Hakim 2013).",
+    "Yer-atmosfer sistemi Güneş'ten kısa dalga alır, uzun dalga yayar; sera gazları uzun dalganın bir kısmını soğurup geri yayar (Wallace ve Hobbs 2006)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "ERA5 yeniden analiziyle eğitilen GraphCast, 0,25° çözünürlükte 10 günlük küresel tahmini bir dakikanın altında üretiyor; 1380 hedefin %90'ında HRES'i geçiyor (Lam vd. 2023).",
+    "Açık kapı: GraphCast tek (deterministik) tahmin veriyor; makale belirsizliğin ele alınışını temel sınırlılık sayıyor, ileri öngörü sürelerinde bulanıklaşmayı belirtiyor (Lam vd. 2023).",
+    "Açık kapı: WeatherBench 2, yapay zekâ ve fizik tabanlı tahminleri ortak veri ve skorlarla kıyaslıyor; istasyonla doğrulamayı ileride eklemeyi hedefliyor (Rasp vd. 2024)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Wallace ve Hobbs 2006",
+    "baslik": "Atmospheric Science: An Introductory Survey (2. baskı)",
+    "yayin": "Academic Press (Elsevier), ders kitabı",
+    "yil": "2006",
+    "url": "https://doi.org/10.1016/C2009-0-00034-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press (Elsevier), ders kitabı",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382(6677)",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2024",
+    "baslik": "WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 16(6)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023MS004019",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GraphCast ve ECMWF küresel modellerinin İstanbul Havalimanı 2 m sıcaklık tahminlerini METAR istasyon gözlemleriyle kıyaslayıp hata analizi yapmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 111E",
+   "projeyeKatki": "Ortalama mutlak tahmin hatası (MAE) formülü ile model doğrulama ilkelerini sağlayarak yapay zekâ ve fiziksel modellerin istasyon karnesini çıkarır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ortalama mutlak tahmin hatası (MAE) bağıntısı",
+     "nerede": "GraphCast ve ECMWF IFS modellerinin İstanbul Havalimanı 2 m sıcaklık tahminlerinin METAR istasyon ölçümleriyle aylık hata skorunu hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "GraphCast ve ECMWF modellerinin İstanbul 2 m sıcaklık tahminlerini METAR gözlemleriyle sınayan Python kıyaslama aracı kurmak.",
+  "ayrinti": "Open-Meteo API'den İstanbul Havalimanı için saatlik gfs_graphcast025 ve ecmwf_ifs025 modellerinin 2 m sıcaklık tahminleri çekilir. IEM METAR istasyon ölçümleri pandas ile 00, 06, 12, 18 UTC adımlarında eşleştirilir. MTO 111E ortalama mutlak hata bağıntısıyla iki modelin aylık MAE skorları hesaplanır ve grafik üzerinde kıyaslanır. Açık kaynak Python aracı olarak sunulur. Haftada iki saatlik emekle iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Model tahminlerini ve istasyon METAR gözlemini çekmek",
+    "oz": "Open-Meteo API ve IEM arşivinden verileri eşleştirmek.",
+    "ayrinti": "İstanbul Havalimanı (LTFM) koordinatları için GraphCast ve ECMWF IFS 2 m sıcaklıkları ile IEM METAR istasyon ölçümleri indirilerek zaman serisinde hizalanır.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo API'den gfs_graphcast025 ve ecmwf_ifs025 modellerinin LTFM noktası için saatlik t2m verileri çekilerek pandas DataFrame'e aktarılır.",
+      "sade": "Yapay zekâ modeli GraphCast ile fiziksel ECMWF modelinin İstanbul için ürettiği sıcaklık tahminlerini açık API'den indiririz.",
+      "altAdimlar": [
+       "1. LTFM havalimanı koordinatlarını belirle.",
+       "2. GraphCast ve ECMWF saatlik sıcaklık sorgusunu yap.",
+       "3. JSON yanıtını zaman serisi tablosuna dönüştür."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Iowa Environmental Mesonet arşivinden LTFM METAR verileri indirilerek sıcaklık değerleri Celsius'a çevrilir ve 6 saatlik model adımlarıyla eşlenir.",
+      "sade": "Havalimanındaki gerçek meteoroloji istasyonunun ölçümlerini indirip modellerin koşu saatleriyle tam olarak hizalarız.",
+      "altAdimlar": [
+       "1. IEM METAR CSV dosyasını indir.",
+       "2. Fahrenheit değerlerini Celsius'a dönüştür.",
+       "3. 00, 06, 12 ve 18 UTC saatlerine en yakın ölçümleri eşle."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 111E",
+      "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "MAE ve bias hata metriklerini hesaplayıp gruplamak",
+    "oz": "MTO 111E MAE bağıntısıyla modellerin isabetini ölçmek.",
+    "ayrinti": "Gerçek istasyon ölçümleri referans alınarak GraphCast ve ECMWF IFS tahminleri için ortalama hata ve mutlak hata aylık olarak hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "MTO 111E MAE formülü Delta y = |y_tahmin - y_gercek| NumPy ile işletilerek iki model için aylık ortalama mutlak hata skorları çıkarılır.",
+      "sade": "İki modelin de havalimanı sıcaklığını ortalama kaç derece yanıldığını formülle tek tek hesaplayıp karşılaştırırız.",
+      "altAdimlar": [
+       "1. Model tahmini ile METAR ölçümü arasındaki farkı al.",
+       "2. Mutlak değerlerin ortalamasını alarak MAE skorunu bul.",
+       "3. Tahmin sapmasını (bias) yönlü olarak hesapla."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "pandas groupby işleviyle 12 aylık MAE dağılımı hesaplanır ve METAR derece yuvarlama payının hata üzerindeki etkisi incelenir.",
+      "sade": "Yılın hangi aylarında yapay zekânın, hangi aylarında geleneksel fizik modelinin daha başarılı olduğunu aylık olarak gruplarız.",
+      "altAdimlar": [
+       "1. Hata tablosunu aylara göre grupla.",
+       "2. Aylık ortalama MAE değerlerini tabloya dök.",
+       "3. Tam derece yuvarlamasının hata sınırını belirle."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 111E",
+      "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Aylık MAE çizgilerini çizmek ve sonuçları sunmak",
+    "oz": "Matplotlib ile kıyaslama grafiğini çizip paylaşmak.",
+    "ayrinti": "İki modelin aylık MAE çizgileri tek grafikte birleştirilir, başarı farkları raporlanır ve açık kaynak Jupyter defteri olarak yayınlanır.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib kütüphanesiyle GraphCast ve ECMWF IFS aylık MAE çizgileri aynı grafikte çizilerek alttaki başarılı model vurgulanır.",
+      "sade": "İki modelin performansını yıl boyunca gösteren anlaşılır bir karşılaştırma grafiği oluştururuz.",
+      "altAdimlar": [
+       "1. X eksenine ayları yerleştir.",
+       "2. GraphCast ve IFS MAE çizgilerini farklı renklerle çiz.",
+       "3. İstasyon yuvarlama hata bandını grafiğe ekle."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Analiz betiği, veri doğrulama karnesi ve README belgesi GitHub deposunda açık kaynak olarak paylaşıma sunulur.",
+      "sade": "Herkesin kendi şehri için iki modeli kıyaslayabileceği açık kaynaklı bir Python defteri yayınlarız.",
+      "altAdimlar": [
+       "1. Jupyter defterini düzenle ve belgele.",
+       "2. GitHub deposuna veri çekme betiğini yükle.",
+       "3. Model kıyaslama sonuçlarını özetle."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 111E",
+      "madde": "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "GraphCast ve ECMWF modellerinin İstanbul Havalimanı 2 m sıcaklık tahminlerini METAR istasyonuyla kıyaslayan açık kaynak Python doğrulama aracı ve aylık MAE grafiği.",
+  "senden": "MTO 111E hava tahmin modelleri doğrulama ilkeleri, METAR veri analizi ve Colab kodlama desteği sağlarsın.",
+  "bizden": "AURA veri hattı, Open-Meteo ve IEM API entegrasyonu ile GitHub açık kaynak deposu kurulumunu sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "aciklama": "Google DeepMind GraphCast yapay zekâ hava tahmini portalı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Surface_weather_map.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Yüzey hava haritası izobar ve sıcaklık dağılımı şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Havalimanı GraphCast ve ECMWF aylık MAE hata değişimi, 2026",
+   "aciklama": "METAR gözlemleriyle yapay zekâ ve fiziksel modellerin aylık mutlak hata karşılaştırma grafiği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Lam, R. vd. (2023) Learning skillful medium-range global weather forecasting, Science, 382(6677) · DOI: 10.1126/science.adi2336",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  },
+  {
+   "ad": "Rasp, S. vd. (2024) WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models, JAMES · DOI: 10.1029/2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "Wallace, J. M., Hobbs, P. V. (2006) Atmospheric Science: An Introductory Survey (2. baskı), Academic Press · DOI: 10.1016/C2009-0-00034-8",
+   "url": "https://doi.org/10.1016/C2009-0-00034-8"
+  },
+  {
+   "ad": "Holton, J. R., Hakim, G. J. (2013) An Introduction to Dynamic Meteorology (5. baskı), Academic Press · DOI: 10.1016/C2009-0-63394-8",
+   "url": "https://doi.org/10.1016/C2009-0-63394-8"
+  },
+  {
+   "ad": "Open-Meteo Tarihsel Tahmin API Dokümantasyonu",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+  },
+  {
+   "ad": "Iowa Environmental Mesonet METAR Arşiv Portalı",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO111E-02.json",
+  "tarih": "2026-10-17 00:23",
+  "geminiSha1": "99b50a83c618"
+ }
+}

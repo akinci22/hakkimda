@@ -1,0 +1,146 @@
+{
+ "kod": "ELK 322",
+ "ad": "Power Transmission Systems",
+ "bolum": "Elektrik Mühendisliği",
+ "obsNo": "322",
+ "ozet": "Yüksek gerilim elektrik iletim sistemlerinin modellenmesini, elektriksel ve termal parametrelerini öğretir. İletim hatlarının RLC parametreleri, sürekli ve geçici durum analizleri, güç akışı, arıza analizleri, şebeke kararlılığı ve dinamik hat derecelendirmesi (DLR) ilkeleri incelenir.",
+ "neOgrenirsin": [
+  "İletim sistemlerinin RLC parametrelerini ve eşdeğer devre modellerini belirlemek.",
+  "Güç sistemlerinde sürekli durum güç akışı ve gerilim düşümü analizlerini yürütmek.",
+  "İletim hatlarında termal sınırları ve dinamik hat derecelendirmesi (DLR) prensiplerini uygulamak.",
+  "Simetrili bileşenler yöntemiyle dengeli ve dengesiz şebeke arızalarını analiz etmek.",
+  "Güç sistemi kararlılığını korumak ve koruma röleleri koordinasyonunu tasarlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "IEEE 738 iletken dinamik akım taşıma kapasitesi (ampacity)",
+   "tex": "I_{\\max} = \\sqrt{\\frac{q_c + q_r - q_s}{R(T_c)}}",
+   "terimler": [
+    [
+     "I_{\\max}",
+     "maksimum izin verilen hat akımı",
+     "A"
+    ],
+    [
+     "q_c",
+     "rüzgâr kaynaklı konveksiyonel ısı kaybı",
+     "W/m"
+    ],
+    [
+     "q_r",
+     "ışınımla gerçekleşen ısı kaybı",
+     "W/m"
+    ],
+    [
+     "q_s",
+     "güneş ışınımından soğurulan ısı kazancı",
+     "W/m"
+    ],
+    [
+     "R(T_c)",
+     "iletkenin çalışma sıcaklığındaki omik direnci",
+     "\\Omega/m"
+    ]
+   ],
+   "sade": "Yüksek gerilim iletim hattının aşırı ısınıp sarkmadan güvenle taşıyabileceği maksimum elektrik akımını rüzgâr soğutması, hava sıcaklığı ve güneş ışınımına göre dinamik olarak hesaplar.",
+   "ornek": "Yaz sıcağında rüzgârsız havada iletken akım sınırı 800 A iken, 4 m/s dik rüzgâr estiğinde konveksiyonel soğutma sayesinde güvenli hat kapasitesi 1150 A seviyesine çıkar.",
+   "nerede": "Dinamik hat derecelendirmesi (DLR) simülasyonunda hava tahminlerinden gerçek zamanlı hat iletim kapasitesini belirlerken."
+  },
+  {
+   "ad": "İletken direncinin sıcaklıkla değişimi",
+   "tex": "R(T_c) = R_0 \\left[1 + \\alpha_0 \\, (T_c - T_0)\\right]",
+   "terimler": [
+    [
+     "R(T_c)",
+     "çalışma sıcaklığındaki iletken direnci",
+     "\\Omega/m"
+    ],
+    [
+     "R_0",
+     "referans sıcaklıktaki iletken direnci",
+     "\\Omega/m"
+    ],
+    [
+     "\\alpha_0",
+     "malzeme sıcaklık direnç katsayısı",
+     "1/°C"
+    ],
+    [
+     "T_c",
+     "iletken çekirdek sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_0",
+     "referans ortam sıcaklığı (20 °C)",
+     "°C"
+    ]
+   ],
+   "sade": "İletken ısındıkça metal atomlarının titreşimi artar ve elektrik akımına gösterdiği omik direnç yükselir; hat üzerindeki joule kaybı artar.",
+   "ornek": "Alüminyum iletken 20 °C'de 0,055 ohm/km dirence sahipken, sıcak yaz gününde hat sıcaklığı 75 °C'ye çıktığında direnci 0,067 ohm/km değerine yükselir.",
+   "nerede": "İletim hattı joule ısınma kaybını ve iletken sıcaklığını iteratif termal denge adımında hesaplarken."
+  },
+  {
+   "ad": "İletim hattı aktif güç akışı bağıntısı",
+   "tex": "P = \\frac{V_1 \\, V_2}{X} \\, \\sin\\delta",
+   "terimler": [
+    [
+     "P",
+     "hat üzerinden iletilen aktif güç",
+     "MW"
+    ],
+    [
+     "V_1",
+     "gönderme barası gerilimi",
+     "kV"
+    ],
+    [
+     "V_2",
+     "alma barası gerilimi",
+     "kV"
+    ],
+    [
+     "X",
+     "iletim hattı toplam seri reaktansı",
+     "\\Omega"
+    ],
+    [
+     "\\delta",
+     "baralar arasındaki güç açısı",
+     "rad"
+    ]
+   ],
+   "sade": "İki bara arasında iletilebilecek aktif elektrik gücünün hat reaktansına ve baralar arasındaki gerilim açı farkına bağlı olduğunu gösterir.",
+   "ornek": "380 kV gerilimli iletim hattında seri reaktans 40 ohm ve güç açısı 25 derece iken hat üzerinden aktarılan aktif güç yaklaşık 1520 MW seviyesine ulaşır.",
+   "nerede": "Dinamik hat kapasitesi arttığında şebekede oluşabilecek güç akışını ve iletim sınırlarını kontrol ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:High_voltage_power_lines.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yüksek gerilim enerji iletim hattı ve iletken demeti termal sarkma yapısı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Trakya enerji iletim koridoru saatlik rüzgâr hızı, sıcaklık ve dinamik hat akım kapasitesi animasyonu, 2026-10",
+   "aciklama": "Hava koşullarına bağlı dinamik iletken akım taşıma kapasitesi (ampacity) değişimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · ELK 322 (Power Transmission Systems)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ELK&dersNo=322"
+  },
+  {
+   "ad": "Grainger, J. J. & Stevenson, W. D. (1994) Power System Analysis, McGraw-Hill · ISBN 978-0-07-061293-8",
+   "url": "https://openlibrary.org/isbn/9780070612938"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ELK&dersNo=322"
+}

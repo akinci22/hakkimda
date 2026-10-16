@@ -1,0 +1,112 @@
+{
+ "kod": "BLG 335E",
+ "ad": "Analysis of Algorithms I",
+ "bolum": "Bilgisayar Mühendisliği",
+ "obsNo": "335E",
+ "ozet": "Algoritmaların zaman ve bellek karmaşıklıklarının asimptotik analizini, böl ve yönet stratejilerini, dinamik programlamayı, açgözlü algoritmaları ve çizge dolaşma yöntemlerini öğretir. Çok boyutlu meteorolojik ızgaraların sorgulanması, en yakın komşu araması ve mekânsal optimizasyon problemlerinin matematiksel temelidir.",
+ "neOgrenirsin": [
+  "Asimptotik notasyonlar (büyük O, Omega, Teta) ile algoritma başarımını matematiksel olarak incelemek.",
+  "Böl ve yönet (divide and conquer) yaklaşımlarıyla çok boyutlu uzayları ve dizileri özyinelemeli parçalamak.",
+  "Çok boyutlu arama ağaçları (kd-tree) ve aralık sorgularının karmaşıklıklarını hesaplamak.",
+  "Açgözlü yaklaşımlar ve en kısa yol algoritmalarıyla mekânsal rota optimizasyonu yürütmek.",
+  "Dinamik programlama ile meteorolojik zaman serilerinde alt problemlerin çözümlerini optimize etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Usta Teoremi (Master Theorem) yineleme bağıntısı",
+   "tex": "T(n) = a \\, T(n/b) + f(n), \\qquad T(n) = \\Theta(n^{\\log_b a})",
+   "terimler": [
+    [
+     "T(n)",
+     "n boyutlu girdi için toplam yürütme zamanı",
+     "birimsiz"
+    ],
+    [
+     "a",
+     "her adımda türetilen alt problem sayısı",
+     "adet"
+    ],
+    [
+     "b",
+     "alt problemlerin boyut küçülme çarpanı",
+     "birimsiz"
+    ],
+    [
+     "f(n)",
+     "bölme ve birleştirme adımlarının ek işlem maliyeti",
+     "birimsiz"
+    ],
+    [
+     "\\Theta",
+     "asimptotik sıkı sınır",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Bir problemi sürekli eşit parçalara bölüp çözen algoritmaların toplam ne kadar süreceğini tek formülle hesaplar. Alt problemlerin büyüme hızıyla birleştirme maliyetini yarıştırarak asimptotik karmaşıklığı verir.",
+   "ornek": "2 boyutlu ızgarayı ortadan ikiye bölen kd-tree inşa algoritmasında a = 2, b = 2 ve f(n) = n olduğunda log_2(2) = 1 olur. Teoremin ikinci durumu uyarınca N noktalı Marmara ızgarasının ağaç inşa süresi T(n) = Theta(n log n) adımda biter.",
+   "nerede": "F-BBF-BLG-02'de küresel ızgara noktalarından kd-tree indeksi kurarken ağacın inşa süresini ve bellek maliyetini hesaplarken."
+  },
+  {
+   "ad": "Öklid ve Haversine mekânsal küresel uzaklık formülü",
+   "tex": "d = 2 R \\arcsin \\sqrt{\\sin^2\\left(\\frac{\\Delta \\varphi}{2}\\right) + \\cos\\varphi_1 \\cos\\varphi_2 \\sin^2\\left(\\frac{\\Delta \\lambda}{2}\\right)}",
+   "terimler": [
+    [
+     "d",
+     "küre yüzeyinde iki nokta arasındaki büyük daire mesafesi",
+     "km"
+    ],
+    [
+     "R",
+     "Dünya'nın ortalama yarıçapı",
+     "6371 km"
+    ],
+    [
+     "\\varphi_1, \\varphi_2",
+     "birinci ve ikinci noktanın enlem açıları",
+     "radyan"
+    ],
+    [
+     "\\Delta \\varphi",
+     "enlem farkı",
+     "radyan"
+    ],
+    [
+     "\\Delta \\lambda",
+     "boylam farkı",
+     "radyan"
+    ]
+   ],
+   "sade": "Dünya'nın küresel eğriliğini hesaba katarak iki koordinat arasındaki en kısa yüzey mesafesini tam olarak hesaplar. Düzlem Öklid uzaklığının kutuplara ve enleme bağlı distorsiyonunu ortadan kaldırır.",
+   "ornek": "İstanbul (41,01° K, 28,97° D) ile Ankara (39,93° K, 32,85° D) arasındaki Haversine mesafesi d = 351 km olarak hesaplanır. 0,25 derecelik ızgara hücresi İstanbul enleminde doğu-batı ekseninde yaklaşık 21 km'ye karşılık gelir.",
+   "nerede": "F-BBF-BLG-02'de kd-tree yaprağında en yakın aday ızgara noktaları arasında küresel gerçek mesafeyi kıyaslarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Haversine_formula_diagram.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Küre yüzeyinde Haversine formülü ve büyük daire geometrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi 0,25 derece ızgara noktaları kd-tree ve kaba kuvvet arama karşılaştırması, 2026-10",
+   "aciklama": "Mekânsal arama algoritmalarının sorgu süresi mikro benchmark karşılaştırma animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · BLG 335E (Analysis of Algorithms I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BLG&dersNo=335E"
+  },
+  {
+   "ad": "Kleinberg, J. & Tardos, E. (2013) Algorithm Design, Pearson · ISBN 978-0-321-29535-4",
+   "url": "https://www.pearson.com/en-us/subject-catalog/p/algorithm-design/P200000003273"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BLG&dersNo=335E"
+}

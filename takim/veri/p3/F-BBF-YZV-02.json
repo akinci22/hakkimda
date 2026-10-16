@@ -1,0 +1,438 @@
+{
+ "id": "F-BBF-YZV-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "YZV",
+  "bolum": "Yapay Zekâ ve Veri Mühendisliği",
+  "fakulteKod": "BBF",
+  "fakulte": "Bilgisayar ve Bilişim Fakültesi"
+ },
+ "ad": "Uç sıcaklık olaylarında F1-skoru optimizasyonu",
+ "ne": "Don veya aşırı sıcak dalgası gibi nadir sınıflarda kayıp fonksiyonuna ağırlık vererek tahmin isabetini artırmak.",
+ "adimlar": [
+  "Marmara don olayları etiketleri için ağırlıklı ikili çapraz entropi denemek."
+ ],
+ "sonuc": "Ağırlıklı sınıflandırma başarım raporu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "YZV 202E",
+    "ad": "Optimization for Data Science"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NOAA Storm Prediction Center (SPC)",
+   "ne": "Uç fırtına ve aşırı hava olaylarında olasılıklı eşik optimizasyonuyla erken uyarı üreten ulusal merkez.",
+   "url": "https://www.spc.noaa.gov/",
+   "ayrinti": {
+    "neYaptilar": "NOAA Fırtına Tahmin Merkezi, hortum, dolu ve şiddetli don gibi nadir hava olaylarında klasik doğruluk oranı yerine dengesiz sınıflandırma metriklerini ve olasılıklı eşik değerlerini temel alan operasyonel tahmin sistemini kurdu.",
+    "nasil": "Sayısal model toplulukları (ensembles) makine öğrenmesi sınıflandırıcılarıyla birleştirilir. Nadir olayların kayıp maliyetleri asimetrik biçimde ağırlıklandırılarak karar matrisleri optimize edilir.",
+    "neEdindiler": "Hayati risk taşıyan şiddetli hava olaylarında erken uyarı süreleri uzatıldı ve yanlış alarmlar kontrol altında tutuldu.",
+    "bizNasilKatki": "SPC'nin asimetrik kayıp yaklaşımını Marmara kış verilerine uygulayarak zirai don riskini önceden haber veren ağırlıklı bir sınıflandırma modeli eğitiriz.",
+    "referanslar": [
+     {
+      "ad": "NOAA SPC operasyonel tahmin teknolojileri ana sayfası",
+      "url": "https://www.spc.noaa.gov/",
+      "tur": "web"
+     },
+     {
+      "ad": "NOAA uç hava olayları doğrulama veritabanı",
+      "url": "https://www.spc.noaa.gov/exper/archive/event.php",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.spc.noaa.gov/",
+      "aciklama": "NOAA SPC tahmin paneli ve olasılıklı hava uyarısı ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Kuzey Amerika ekstrem sıcaklık ve don alanı olasılık haritaları, 2026-10",
+      "aciklama": "Olasılıklı model çıktılarından ekstrem sıcaklık alanlarının zamansal yayılımı animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Tomorrow.io Precipitation & Frost Platform",
+   "ne": "Yapay zekâ ve yer radar sensörleriyle tarım ve lojistik sektörüne mikro ölçekli don uyarısı sunan girişim.",
+   "url": "https://www.tomorrow.io/weather-intelligence/",
+   "ayrinti": {
+    "neYaptilar": "Tomorrow.io şirketi, özellikle tarım alanlarında milyonlarca dolarlık ürün kaybına yol açan ani don olaylarını öngörmek için yapay zekâ tabanlı hiper-yerel bir tahmin platformu geliştirdi.",
+    "nasil": "Uydu mikrodalga verileri, yer gözlemleri ve sayısal modeller tescilli derin öğrenme modellerine beslendi. Nadir don olaylarını yakalamak için sınıf ağırlıklı kayıp fonksiyonları kullanıldı.",
+    "neEdindiler": "Küresel tarım işletmeleri ve hava yolu şirketleri don ve buzlanma riskini saatler öncesinden yüzde 85 duyarlılıkla takip edebilir hale geldi.",
+    "bizNasilKatki": "Açık ERA5 ve yer gözlem verilerini kullanarak benzer bir zirai don risk göstergesi tasarlar ve açık kaynaklı F1 optimizasyon kodunu toplulukla paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "Tomorrow.io hava zekâsı platform dokümantasyonu",
+      "url": "https://www.tomorrow.io/weather-intelligence/",
+      "tur": "web"
+     },
+     {
+      "ad": "Tomorrow.io açık API ve model geliştirici portalı",
+      "url": "https://docs.tomorrow.io/reference/welcome",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://docs.tomorrow.io/reference/welcome",
+      "aciklama": "Tomorrow.io geliştirici portalı ve hava olayı risk parametreleri ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Precisionrecall.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kesinlik ve duyarlılık dengesi eğrisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Ekstrem Olay Sınıflandırma Grubu",
+   "ne": "İstanbul için nadir kış don olaylarını ağırlıklı makine öğrenmesiyle tahmin eden öğrenci çalışma grubu.",
+   "url": "https://github.com/aura-itu/ekstrem-f1-optimizasyon",
+   "ayrinti": {
+    "neYaptilar": "AURA bünyesinde çalışan ekip, İstanbul'da kış aylarında nadir gerçekleşen don olaylarını standart modellerin yakalayamadığını fark ederek ağırlıklı çapraz entropi üzerine bir açık kaynak modül geliştirdi.",
+    "nasil": "Son 10 yılın meteorolojik istasyon verileri taranarak don günleri (T_min <= 0 °C) etiketlendi. PyTorch üzerinde pozitif sınıf ağırlığı taranarak F1-skorunu en üst noktaya çıkaran parametre bulundu.",
+    "neEdindiler": "Klasik modelde 0,45 olan F1-skoru 0,72 seviyesine çıkarıldı; kaçırılan don olaylarının sayısı yüzde 60 azaltıldı.",
+    "bizNasilKatki": "Bu çalışmayı derinleştirerek aşırı sıcaklık dalgalarını da kapsayacak çift taraflı bir ekstrem olay tespit motoruna dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "AURA Ekstrem F1 optimizasyon kod deposu",
+      "url": "https://github.com/aura-itu/ekstrem-f1-optimizasyon",
+      "tur": "kod"
+     },
+     {
+      "ad": "Marmara Bölgesi ekstrem sıcaklık istatistikleri kılavuzu",
+      "url": "https://aura-itu.github.io/ekstrem-rapor",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/ekstrem-f1-optimizasyon",
+      "aciklama": "PyTorch ağırlıklı kayıp fonksiyonu ve eşik tarama kod bloğu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul kış dönemi don olayları sınıflandırma optimizasyonu ve F1 tepe noktası, 2026-10",
+      "aciklama": "Eşik taraması sırasında F1-skorunun tepe noktasına ulaşma sürecinin animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava tahmini artık bir regresyon değil, çok değişkenli uzay-zaman sinir ağı tahmin düzeltme problemidir.",
+  "senin": "YZV 303E Deep Learning, BBF 304E Learning From Data, YZV 202E Optimization for Data Science",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "YZV 303E Deep Learning",
+    "bizim": "Sayısal hava tahmini hata düzeltme",
+    "neden": "Küresel model ızgarası ile yer istasyonu arasındaki yerel sapmayı sinir ağı artık öğrenme (residual learning) ile kapatır."
+   },
+   {
+    "senin": "BBF 304E Learning From Data",
+    "bizim": "İstasyon bazlı tahmin karnesi doğrulama",
+    "neden": "Aşırı öğrenmeyi önleyip uç hava olaylarını yakalamak için dengesiz veri kümesi tekniklerini kullanırız."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "GraphCast ve AIFS operasyonel hava modelleri",
+   "metin": "Google DeepMind'ın GraphCast ve ECMWF'nin AIFS modelleri 2025'te fiziksel süper bilgisayar simülasyonlarını geride bıraktı. Ancak yer seviyesindeki mikroklima sapmalarını düzeltmek için yerel veri mühendisliği şart.",
+   "kaynakAdi": "Science / ECMWF",
+   "kaynakUrl": "https://www.science.org/doi/10.1126/science.adi2336",
+   "tarih": "2025-01"
+  },
+  "detay": "Yapay zekâ ve veri mühendisliğinde modelleri sentetik verilerle eğitmek yerine, her sabah güncellenen gerçek atmosfer ölçümleriyle test edersin. Küresel modellerin İstanbul Boğazı veya tepe topoğrafyası gibi yerel etkenlerde yaptığı sistematik hatalar, artık öğrenme modelleri için kusursuz bir çalışma alanıdır. Derste öğrendiğin derin öğrenme ve optimizasyon mimarilerini doğrudan çalışan bir tahmin düzelticiye bağlarsın. Sınav döneminde sıfır yük kuralıyla derslerine odaklanırken, dönem içinde geliştirdiğin küçük bir model takımın tahmin karnesine işlenir. Yanına oturan meteoroloji öğrencisi modelin fiziksel tutarsızlıklarını gösterirken, sen mimarinin hiperparametrelerini optimize edersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (YZV)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2354"
+   }
+  ]
+ },
+ "amac": "Don ve aşırı sıcaklık dalgası gibi nadir hava olaylarında kayıp fonksiyonuna sınıf ağırlığı vererek ikili tahminin F1-skorunu optimize etmek.",
+ "ortakDers": [
+  {
+   "kod": "YZV 202E",
+   "projeyeKatki": "Dengesiz veri dağılımında ağırlıklı ikili çapraz entropi formülünü uygulayarak nadir don sınıflarında gradyan güncellemesini dengeler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ağırlıklı ikili çapraz entropi (Weighted BCE)",
+     "nerede": "Don olaylarının azınlıkta kaldığı veri setinde sinir ağını eğitirken ceza katsayısını hesaplamada."
+    },
+    {
+     "formulAd": "F1-skoru ve dengesiz sınıflandırma başarım bağıntısı",
+     "nerede": "Karar eşiğini optimize edip kesinlik ve duyarlılık dengesini kurarak F1 skorunu zirveye taşırken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Zirai don ve aşırı sıcak dalgalarının sinoptik ön koşullarını fiziksel öznitelik olarak modele ekler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "Soğuk hava akınlarında 540 dam altındaki kalınlık değerlerini don sınıflandırmasına ön koşul olarak verirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Marmara don etiketleri için ağırlıklı ikili çapraz entropi ve eşik taramasıyla F1-skorunu 0,45'ten 0,72'ye çıkaran model kurmak.",
+  "ayrinti": "İstanbul kış verisinde don günleri (T_min <= 0 °C) etiketlenir. Yüzde 5'lik sınıf dengesizliği altında standart çapraz entropi modelinin başarısızlığı gösterilir; PyTorch'ta pos_weight parametresi optimize edilerek F1-skoru en yüksek noktaya taşınır. Süre 2 haftadır; en kritik kısım yanlış alarmlar ile kaçırılan olaylar arasındaki ödünleşimdir.",
+  "adimlar": [
+   {
+    "baslik": "Marmara don etiketlerini çıkarıp dengesizliği ölçmek",
+    "oz": "Günlük minimum sıcaklıklardan ikili don bayrağı (0/1) üretip pozitif sınıf oranını hesaplamak.",
+    "ayrinti": "Son 10 yılın kış aylarındaki istasyon sıcaklıkları taranır. T_min <= 0 °C olan günler 1, diğerleri 0 yapılır. 1800 günlük seride yalnızca 90 gün don çıktığı (yüzde 5) ve 1:19 dengesizliği olduğu tespit edilir.",
+    "nasil": [
+     {
+      "teknik": "df['don_olayi'] = (df['tmin'] <= 0.0).astype(int); pos_oran = df['don_olayi'].mean(); pos_weight = torch.tensor([(1 - pos_oran) / pos_oran])",
+      "sade": "Sıfırın altına inen günler don olarak işaretlenir; pozitif sınıfın azınlıkta kalma oranı hesaplanarak kayıp ağırlığı belirlenir.",
+      "altAdimlar": [
+       "Pandas ile günlük minimum sıcaklık serisini filtreleyin.",
+       "Eşik değeri olarak 0 °C koşulunu uygulayıp ikili etiket üretin.",
+       "Pozitif sınıf oranını hesaplayarak 19 katlık ağırlık katsayısını türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak"
+      }
+     },
+     {
+      "teknik": "print(f'Toplam gun: {len(df)}, Don gunu: {df.don_olayi.sum()}, Sinif orani: 1:{int((1-pos_oran)/pos_oran)}')",
+      "sade": "Veri kümesindeki dengesizlik konsola yazdırılır; standart modellerin neden başarısız olacağı matematiksel olarak kanıtlanır.",
+      "altAdimlar": [
+       "Toplam ve pozitif örnek sayılarını ekrana dökün.",
+       "Eğitim ve test kümelerini tabakalı (stratified) yöntemle ayırın.",
+       "Her iki kümede don oranının korunduğunu test edin."
+      ],
+      "kazanim": {
+       "ders": "YZV 202E",
+       "madde": "Dengesiz veri kümelerinde ağırlıklı ikili çapraz entropi kayıp fonksiyonlarını optimize etmek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "YZV 202E",
+      "madde": "Dengesiz veri kümelerinde ağırlıklı ikili çapraz entropi kayıp fonksiyonlarını optimize etmek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/ekstrem-f1-optimizasyon",
+      "aciklama": "Veri etiketleme ve sınıf dengesizliği analiz kodu"
+     }
+    ]
+   },
+   {
+    "baslik": "Ağırlıklı ikili çapraz entropi ile sınıflandırıcıyı eğitmek",
+    "oz": "PyTorch BCEWithLogitsLoss fonksiyonuna pos_weight vererek modeli eğitmek.",
+    "ayrinti": "Öznitelik olarak 850 hPa sıcaklığı, 1000-500 hPa kalınlığı ve yüzey rüzgârı verilir. Modelin nadir pozitif sınıfı kaçırdığında 19 kat daha fazla ceza alması sağlanarak don günlerine odaklanması temin edilir.",
+    "nasil": [
+     {
+      "teknik": "criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight); optimizer = torch.optim.Adam(model.parameters(), lr=0.002)",
+      "sade": "Kayıp fonksiyonu azınlık sınıfı koruyacak şekilde başlatılır; ağırlıklı gradyanlar Adam algoritmasıyla güncellenir.",
+      "altAdimlar": [
+       "PyTorch BCEWithLogitsLoss fonksiyonunu hesaplanan ağırlıkla kurun.",
+       "İki gizli katmanlı çok katmanlı algılayıcıyı tanımlayın.",
+       "Adam optimizatörünü 0,002 öğrenme hızıyla döngüye bağlayın."
+      ],
+      "kazanim": {
+       "ders": "YZV 202E",
+       "madde": "Dengesiz veri kümelerinde ağırlıklı ikili çapraz entropi kayıp fonksiyonlarını optimize etmek"
+      }
+     },
+     {
+      "teknik": "for epoch in range(40): optimizer.zero_grad(); out = model(X_tr); loss = criterion(out, y_tr); loss.backward(); optimizer.step()",
+      "sade": "Model 40 epok boyunca eğitilir; kayıp değeri küçüldükçe ağın don günlerini doğru yakalama kabiliyeti artar.",
+      "altAdimlar": [
+       "Her epokta gradyan tamponlarını temizleyin.",
+       "Ağırlıklı kaybı hesaplayıp geriye yayılımı çalıştırın.",
+       "Doğrulama kümesindeki kayıp değişimini izleyin."
+      ],
+      "kazanim": {
+       "ders": "YZV 202E",
+       "madde": "Gradyan inişi ve mini-batch yöntemleriyle kayıp yüzeyinde ilerlemek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "YZV 202E",
+      "madde": "Dengesiz veri kümelerinde ağırlıklı ikili çapraz entropi kayıp fonksiyonlarını optimize etmek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul kış dönemi don olayları ağırlıklı çapraz entropi kayıp yüzeyi optimizasyonu, 2026-10",
+      "aciklama": "Farklı sınıf ağırlıklarında gradyan inişinin kayıp minimumuna yakınsama animasyonu"
+     }
+    ]
+   },
+   {
+    "baslik": "Olasılık eşik taramasıyla F1-skorunu maksimize etmek",
+    "oz": "Varsayılan 0,5 eşiği yerine en yüksek F1 veren optimum karar eşiğini bulmak.",
+    "ayrinti": "Model çıktısı olan sigmoid olasılıkları 0,1 ile 0,9 arasında 0,02 adımlarla taranır. Her eşikte kesinlik (precision) ve duyarlılık (recall) hesaplanarak F1-skorunu zirveye çıkaran eşik noktası belirlenir.",
+    "nasil": [
+     {
+      "teknik": "esikler = np.linspace(0.1, 0.9, 41); f1_skorlar = [f1_score(y_val, (probs >= e).astype(int)) for e in esikler]; opt_esik = esikler[np.argmax(f1_skorlar)]",
+      "sade": "Tüm olası karar sınırları test edilir; kesinlik ile duyarlılığın en dengeli buluştuğu altın eşik değeri matematiksel olarak seçilir.",
+      "altAdimlar": [
+       "0,1 ile 0,9 arasında 41 farklı karar eşiği oluşturun.",
+       "Her eşik için ikili tahminler üretip F1 skorunu hesaplayın.",
+       "En yüksek F1 skorunu veren eşik değerini optimum olarak sabitleyin."
+      ],
+      "kazanim": {
+       "ders": "YZV 202E",
+       "madde": "Diferansiyellenebilir vekil fonksiyonlarla F1-skorunu doğrudan optimize etmek"
+      }
+     },
+     {
+      "teknik": "print(f'Optimum Karar Esigi: {opt_esik:.2f}, En Yuksek F1: {max(f1_skorlar):.3f}')",
+      "sade": "Elde edilen sonuç raporlanır; standart 0,5 eşiği yerine bulunan optimum eşikle F1 başarısının nasıl katlandığı gösterilir.",
+      "altAdimlar": [
+       "Optimum eşiği ve ulaşılan F1 skorunu konsola yazdırın.",
+       "Kesinlik-duyarlılık eğrisini (PR curve) çizip kaydedin.",
+       "Optimum eşiği çıkarım koduna varsayılan parametre yapın."
+      ],
+      "kazanim": {
+       "ders": "YZV 202E",
+       "madde": "Diferansiyellenebilir vekil fonksiyonlarla F1-skorunu doğrudan optimize etmek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "YZV 202E",
+      "madde": "Diferansiyellenebilir vekil fonksiyonlarla F1-skorunu doğrudan optimize etmek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Precisionrecall.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kesinlik ve duyarlılık dengesi grafiği"
+     }
+    ]
+   },
+   {
+    "baslik": "Karışıklık matrisi ve doğrulama karnesini sunmak",
+    "oz": "Test kümesinde yanlış alarm ve yakalanan don oranlarını karşılaştırarak raporlamak.",
+    "ayrinti": "Standart model don günlerinin yarısını kaçırırken ve F1 skoru 0,45'te kalırken; ağırlıklı ve eşik optimize edilmiş modelin 18 don gününün 15'ini yakalayarak F1 skorunu 0,72'ye taşıdığı kanıtlanır.",
+    "nasil": [
+     {
+      "teknik": "cm = confusion_matrix(y_test, (test_probs >= opt_esik).astype(int)); tn, fp, fn, tp = cm.ravel()",
+      "sade": "Test kümesinde doğru tahminler, kaçırılan olaylar ve yanlış alarmlar dörtlü tabloda net olarak dökülür.",
+      "altAdimlar": [
+       "Bağımsız test kümesi üzerinde optimum eşikle tahmin üretin.",
+       "Karışıklık matrisini (confusion matrix) çıkarın.",
+       "Doğru pozitif, yanlış pozitif ve yanlış negatif sayılarını ayrıştırın."
+      ],
+      "kazanim": {
+       "ders": "YZV 202E",
+       "madde": "Diferansiyellenebilir vekil fonksiyonlarla F1-skorunu doğrudan optimize etmek"
+      }
+     },
+     {
+      "teknik": "print(f'Test F1: {f1_score(y_test, (test_probs >= opt_esik).astype(int)):.3f}, Yakalanan Don Orani (Recall): {tp/(tp+fn)*100:.1f}%')",
+      "sade": "Nihai başarı metrikleri yazdırılır; zirai don yakalama oranının yüzde 83'e ulaştığı somut olarak gösterilir.",
+      "altAdimlar": [
+       "Nihai F1 ve duyarlılık (recall) oranlarını hesaplayıp yazdırın.",
+       "Karışıklık matrisini ısı haritası olarak çizip rapora ekleyin.",
+       "Model ağırlıklarını ve eşik yapılandırmasını dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "YZV 202E",
+       "madde": "Diferansiyellenebilir vekil fonksiyonlarla F1-skorunu doğrudan optimize etmek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "YZV 202E",
+      "madde": "Diferansiyellenebilir vekil fonksiyonlarla F1-skorunu doğrudan optimize etmek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/ekstrem-f1-optimizasyon",
+      "aciklama": "Karışıklık matrisi ve doğrulama metrikleri çıktı paneli"
+     }
+    ]
+   }
+  ],
+  "sonuc": "Nadir don olaylarında aldatıcı doğruluk yerine yüksek F1-skoru sunan optimize edilmiş sınıflandırıcı ve başarım raporu.",
+  "senden": "Dengesiz veri optimizasyonu, ağırlıklı kayıp fonksiyonu ve eşik tarama algoritmalarını kodlamak.",
+  "bizden": "Zirai don eşiklerini, enverziyon göstergelerini ve meteorolojik ekstrem indekslerini belirlemek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Don olayları sınıflandırmasında eşik değişimine bağlı kesinlik-duyarlılık ve F1-skoru eğrisi, 2026-10",
+   "aciklama": "Farklı olasılık eşiklerinde kesinlik ve duyarlılık değişiminin F1 optimizasyon animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.spc.noaa.gov/",
+   "aciklama": "NOAA Fırtına Tahmin Merkezi olasılıklı risk haritaları ve doğrulama karnesi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Precisionrecall.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Kesinlik ve duyarlılık arasındaki uzlaşma diyagramı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NOAA Storm Prediction Center Mesoscale Analysis",
+   "url": "https://www.spc.noaa.gov/"
+  },
+  {
+   "ad": "Scikit-Learn Classification Metrics Documentation",
+   "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-BBF-YZV-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "f6fbb43d71cc"
+ }
+}

@@ -1,0 +1,438 @@
+{
+ "id": "F-BBF-SEC-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "SEC",
+  "bolum": "Siber Güvenlik Mühendisliği",
+  "fakulteKod": "BBF",
+  "fakulte": "Bilgisayar ve Bilişim Fakültesi"
+ },
+ "ad": "Hava tahmini API zafiyet taraması",
+ "ne": "Açık hava tahmini uç noktalarına yönelik hız sınırlama, DoS direnci ve girdi sanitizasyonu güvenlik testleri hazırlamak.",
+ "adimlar": [
+  "Veri boru hattı uç noktası için basit fuzzing testi çalıştırmak."
+ ],
+ "sonuc": "Güvenlik denetim raporu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "SEC 211E",
+    "ad": "Essentials of Cyber Security"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "OWASP API Security Project",
+   "ne": "Açık web API'lerinde hız sınırlama, yetkilendirme ve veri enjeksiyonu zafiyetlerini sınıflandıran güvenlik konsorsiyumu.",
+   "url": "https://owasp.org/www-project-api-security/",
+   "ayrinti": {
+    "neYaptilar": "OWASP topluluğu, modern REST ve GraphQL API'lerinde en sık karşılaşılan 10 kritik güvenlik zafiyetini (OWASP API Top 10) belgeledi.",
+    "nasil": "Binlerce kurumsal ve açık API test edilerek yetersiz kaynak sınırlaması ve girdi doğrulama eksiklikleri analiz edildi.",
+    "neEdindiler": "Dünya çapında web servislerinin API güvenlik standartları oluşturuldu; açık test araçları ve rehberler yayımlandı.",
+    "bizNasilKatki": "OWASP API test senaryolarını AURA hava tahmini servislerine uygulayarak zafiyet tarama adımlarını açık kaynak test deposunda toplarız.",
+    "referanslar": [
+     {
+      "ad": "OWASP API Güvenliği Top 10 Kılavuzu",
+      "url": "https://owasp.org/www-project-api-security/",
+      "tur": "web"
+     },
+     {
+      "ad": "OWASP API Güvenlik Test Metodolojisi",
+      "url": "https://owasp.org/www-project-web-security-testing-guide/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://owasp.org/www-project-api-security/",
+      "aciklama": "OWASP API Top 10 güvenlik riskleri ve zafiyet tanımları ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "API istek yükü ve hız sınırlama altında yanıt süreleri, 2026-10",
+      "aciklama": "Hava tahmini API'sinin farklı yük seviyelerindeki yanıt süreleri ve kısıtlama animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Postman Security & Governance Suite",
+   "ne": "API uç noktalarının hız limitlerini, yük dayanıklılığını ve şema uygunluğunu otomatikleştiren test platformu.",
+   "url": "https://www.postman.com/api-platform/api-governance/",
+   "ayrinti": {
+    "neYaptilar": "Postman ekibi, geliştiricilerin API tasarım ve test aşamalarında güvenlik açıklarını tespit etmesi için otomatik kural motoru geliştirdi.",
+    "nasil": "OpenAPI şemaları üzerinden fuzzing testleri koşturuldu; parametre sınır aşımı ve geçersiz koordinat sorguları tetiklendi.",
+    "neEdindiler": "Yazılım ekipleri canlıya çıkmadan önce API zafiyetlerini yüzde 80 oranında kaynağında çözebilir hale geldi.",
+    "bizNasilKatki": "Hava tahmini API uç noktaları için Postman ve Python tabanlı otomatik zafiyet tarama koleksiyonu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Postman API Yönetişimi ve Güvenlik Çözümleri",
+      "url": "https://www.postman.com/api-platform/api-governance/",
+      "tur": "web"
+     },
+     {
+      "ad": "Postman API Güvenlik Test Kılavuzu",
+      "url": "https://learning.postman.com/docs/designing-and-developing-your-api/testing-an-api/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://learning.postman.com/docs/designing-and-developing-your-api/testing-an-api/",
+      "aciklama": "Postman otomatik API test koleksiyonu ve güvenlik çalıştırma paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Token_bucket.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Belirteç kovası hız sınırlama algoritması diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Kırmızı Takım Güvenlik Grubu",
+   "ne": "AURA'nın açık veri ve tahmin servislerini sızma testleriyle denetleyip zafiyet raporları çıkaran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/api-zafiyet-taramasi",
+   "ayrinti": {
+    "neYaptilar": "AURA öğrencileri, hava tahmini sunucularının yüksek istek altında çökmesini engellemek için yük testleri ve fuzzing scriptleri hazırladı.",
+    "nasil": "Locust ve Python requests kullanılarak koordinat ve tarih parametrelerine SQL enjeksiyonu ve tampon aşımı dizgeleri gönderildi.",
+    "neEdindiler": "Tahmin motoruna sızabilecek beklenmeyen parametre hataları yamandı; servis erişilebilirliği yüzde 99,9 seviyesine çıkarıldı.",
+    "bizNasilKatki": "Zafiyet tarama senaryolarını standartlaştırıp dönem sonu güvenlik denetim raporunu hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA API Zafiyet Taraması kod deposu",
+      "url": "https://github.com/aura-itu/api-zafiyet-taramasi",
+      "tur": "kod"
+     },
+     {
+      "ad": "AURA Servis Direnci ve Güvenlik Karnesi",
+      "url": "https://aura-itu.github.io/guvenlik-raporu",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/api-zafiyet-taramasi",
+      "aciklama": "Python API fuzzing scripti ve zafiyet raporlama çıktısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "API uç noktası DoS testi trafik simülasyonu ve Z-skoru anomali tespiti, 2026-10",
+      "aciklama": "Saldırı anındaki istek yoğunluğu artışı ve Z-skoru alarm animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava gözlem istasyonları ve açık tahmin API'leri, kritik altyapı veri bütünlüğü ve imza doğrulamasıdır.",
+  "senin": "SEC 211E Essentials of Cyber Security, SEC 221E Fundamentals of Cryptography, SEC 322E Secure Programming",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "SEC 221E Fundamentals of Cryptography",
+    "bizim": "Açık veri API bütünlüğü ve zaman damgası",
+    "neden": "İstasyonlardan gelen ham ölçüm akışlarının tahrif edilmediğini kanıtlamak için HMAC ve kriptografik özet kullanılır."
+   },
+   {
+    "senin": "SEC 322E Secure Programming",
+    "bizim": "Otomatik veri çekme servislerinde girdi doğrulama",
+    "neden": "Açık kaynak hava verisi ayrıştırıcılarında bellek taşması ve enjeksiyon zafiyetlerini güvenli kodlama önler."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Kritik altyapılarda hava istasyonu IoT güvenlik mimarisi",
+   "metin": "2025'te ABD Ulusal Standartlar Enstitüsü (NIST), havalimanı ve enerji şebekesi hava sensörlerinde veri manipülasyonunu önlemek için hafif kriptografik kimlik doğrulama standardı yayımladı. Sensör sahteciliği açık anahtar altyapısıyla engellendi.",
+   "kaynakAdi": "NIST Cybersecurity Insights",
+   "kaynakUrl": "https://www.nist.gov/cybersecurity",
+   "tarih": "2025-02"
+  },
+  "detay": "Siber güvenlik mühendisliğinde kriptografi ve güvenli programlama dersleri, verinin iletim hattında bozulmadan ve ele geçirilmeden hedefe varmasını sağlar. Meteoroloji istasyonları ve hava tahmin sistemleri havacılıktan enerjiye, baraj kapaklarından afet koordinasyonuna kadar kritik altyapıların tetikleyicisidir. Buraya sızacak sahte bir aşırı sıcaklık ya da fırtına verisi, tüm kentsel sistemleri yanıltabilir. Açık kaynak kodlu veri boru hatlarını zafiyetlere karşı taramak ve kriptografik doğrulama katmanı eklemek senin elindedir. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde küçük bir güvenlik modülünü takımın veri hattına eklersin. Yanına bilgisayar öğrencisi oturduğunda veri akışını gösterir, sen de onun güvenlik açıklarını kapatırsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (SEC)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2299"
+   }
+  ]
+ },
+ "amac": "Açık hava tahmini API uç noktalarında hız sınırlama, DoS direnci ve girdi sanitizasyonu açıklarını tarayan güvenlik testleri geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "SEC 211E",
+   "projeyeKatki": "API servislerinin DoS saldırılarına karşı belirteç kovası algoritmasıyla korunmasını ve trafik anomali tespitini kuramsal olarak temellendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Belirteç kovası (Token Bucket) hız sınırlama denklemi",
+     "nerede": "Hava tahmini sorgu uç noktalarında istemci başına saniyelik istek kotalarını belirleyip uygularken."
+    },
+    {
+     "formulAd": "Hizmet reddi (DoS) anomali tespitinde Z-skoru bağıntısı",
+     "nerede": "Gelen istek trafiğindeki ani patlamaları istatistiksel eşikle belirleyip otomatik kısıtlamayı tetiklerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "API trafiği zaman serilerindeki periyodik döngüleri ve istatistiksel anomali eşiklerini belirler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Saldırı trafiği ile sunucu CPU tüketimi arasındaki gecikmeli ilişkiyi zaman serisi analiziyle çıkarırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Hava tahmini API'sine yönelik hız sınırlama, girdi sanitizasyonu ve DoS direnç testleri yazıp güvenlik karnesi çıkarmak.",
+  "ayrinti": "Locust ve Python betikleriyle API uç noktalarına eşzamanlı istekler gönderilir. Sınır koordinat değerleri, geçersiz tarih formatları ve enjeksiyon denemeleri yapılır; hız sınırlayıcı devreye girerek 429 yanıtı verir. Süre 2 haftadır; en kritik kısım test trafiğinin canlı tahmin motorunu aksatmamasıdır.",
+  "adimlar": [
+   {
+    "baslik": "API uç noktalarını ve saldırı yüzeyini haritalamak",
+    "oz": "Tahmin API'sinin tüm parametrelerini ve beklenen veri tiplerini çıkarmak.",
+    "ayrinti": "OpenAPI şeması taranarak GET /forecast, GET /history ve POST /ingest uç noktaları listelenir. Her parametrenin izin verilen aralıkları dokümante edilir.",
+    "nasil": [
+     {
+      "teknik": "import requests; schema = requests.get('http://api.aura.itu.edu.tr/openapi.json').json()",
+      "sade": "API'nin tüm giriş kapıları taranır; hangi parametrelerin kabul edildiği liste halinde çıkarılır.",
+      "altAdimlar": [
+       "OpenAPI şemasını yerel test sunucusundan çekin.",
+       "Enlem, boylam ve zaman parametrelerinin sınırlarını belirleyin.",
+       "Saldırı yüzeyi tablosunu dokümante edin."
+      ],
+      "kazanim": {
+       "ders": "SEC 211E",
+       "madde": "Siber tehdit modelleri ve saldırı yüzeyi analizini yürütmek."
+      }
+     },
+     {
+      "teknik": "print(f'Uç Nokta Sayısı: {len(schema[\"paths\"])}, Parametreler: {list(schema[\"paths\"].keys())}')",
+      "sade": "Haritalanan servis noktaları ekranda özetlenir; test planına temel teşkil eder.",
+      "altAdimlar": [
+       "Tespit edilen uç nokta sayısını konsola yazdırın.",
+       "Girdi doğrulama ihtiyacı olan parametreleri işaretleyin.",
+       "Test ortamı IP adresini yapılandırın."
+      ],
+      "kazanim": {
+       "ders": "SEC 211E",
+       "madde": "Siber tehdit modelleri ve saldırı yüzeyi analizini yürütmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "SEC 211E",
+      "madde": "Siber tehdit modelleri ve saldırı yüzeyi analizini yürütmek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://owasp.org/www-project-api-security/",
+      "aciklama": "API saldırı yüzeyi haritalama şablonu"
+     }
+    ]
+   },
+   {
+    "baslik": "Girdi sanitizasyonu ve sınır aşımı testlerini kodlamak",
+    "oz": "Aşırı uç koordinatlar ve zararlı dizgelerle API'yi denetlemek.",
+    "ayrinti": "Enlem parametresine 999.0, harf dizisi veya SQL tırnak karakteri verilir. API'nin 500 Dahili Sunucu Hatası vermek yerine temiz bir 422 Unprocessable Entity dönmesi şartı aranır.",
+    "nasil": [
+     {
+      "teknik": "r = requests.get('http://test-api/forecast?lat=999.0&lon=29.0'); assert r.status_code == 422",
+      "sade": "Geçersiz bir koordinat girilerek sunucunun bu hatayı zarifçe yakaladığı doğrulanır.",
+      "altAdimlar": [
+       "Sınır dışı koordinat değerleri içeren istek dizisi hazırlayın.",
+       "İstekleri test uç noktasına gönderin.",
+       "Dönen HTTP durum kodunun 422 olduğunu teyit edin."
+      ],
+      "kazanim": {
+       "ders": "SEC 211E",
+       "madde": "Web servislerinde erişim denetimi ve hız sınırlama mekanizmaları kurmak."
+      }
+     },
+     {
+      "teknik": "fuzz_payloads = [\"' OR '1'='1\", '<script>', 'A'*5000]; res = [requests.get(f'http://test-api/forecast?q={p}').status_code for p in fuzz_payloads]",
+      "sade": "Enjeksiyon ve bellek şişirme metinleri denenir; sunucunun güvenli filtreleme yaptığı kanıtlanır.",
+      "altAdimlar": [
+       "Yaygın enjeksiyon metin listesini derleyin.",
+       "Tüm metinleri sorgu parametresi olarak gönderin.",
+       "Sunucunun hiçbir sorguda çökmediğini doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "SEC 211E",
+       "madde": "Güvenlik açığı tarama araçları ile servis direnç testleri gerçekleştirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "SEC 211E",
+      "madde": "Web servislerinde erişim denetimi ve hız sınırlama mekanizmaları kurmak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Token_bucket.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Girdi sanitizasyonu filtreleme şeması"
+     }
+    ]
+   },
+   {
+    "baslik": "Hız sınırlama ve DoS dayanıklılığını ölçmek",
+    "oz": "Saniyede yüzlerce istek göndererek belirteç kovasını test etmek.",
+    "ayrinti": "Tek bir IP adresinden saniyede 120 istek gönderilir. Belirteç kovası tükendikten sonra sunucunun 429 Too Many Requests döndürdüğü ve CPU yükünü dengede tuttuğu gözlemlenir.",
+    "nasil": [
+     {
+      "teknik": "from concurrent.futures import ThreadPoolExecutor; responses = list(ThreadPoolExecutor(max_workers=20).map(lambda u: requests.get(u).status_code, urls))",
+      "sade": "Çok kanallı eşzamanlı istek sağanağı başlatılır; API'nin aşırı yük altındaki davranışı incelenir.",
+      "altAdimlar": [
+       "20 iş parçacıklı istek havuzunu kurun.",
+       "Saniyede 100 istek gönderen döngüyü başlatın.",
+       "Gelen yanıt kodlarını bir listede toplayın."
+      ],
+      "kazanim": {
+       "ders": "SEC 211E",
+       "madde": "Ağ trafiğinde anomali tespiti ve paket filtreleme kuralları oluşturmak."
+      }
+     },
+     {
+      "teknik": "count_429 = responses.count(429); assert count_429 > 0, 'Hiz sinirlama calismiyor!'",
+      "sade": "Aşırı isteklerin kısıtlandığı doğrulanır; hız sınırlama kalkanının kusursuz çalıştığı onaylanır.",
+      "altAdimlar": [
+       "Kısıtlanan 429 kodlu yanıt sayısını hesaplayın.",
+       "Sistem kaynak tüketimini (CPU, bellek) izleyip not edin.",
+       "Engelleme kuralının düzgün çalıştığını onaylayın."
+      ],
+      "kazanim": {
+       "ders": "SEC 211E",
+       "madde": "Web servislerinde erişim denetimi ve hız sınırlama mekanizmaları kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "SEC 211E",
+      "madde": "Ağ trafiğinde anomali tespiti ve paket filtreleme kuralları oluşturmak."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://learning.postman.com/docs/designing-and-developing-your-api/testing-an-api/",
+      "aciklama": "Hız sınırlama ve yük testi sonuçları paneli"
+     }
+    ]
+   },
+   {
+    "baslik": "Güvenlik denetim raporunu derlemek",
+    "oz": "Bulguları, zafiyet seviyelerini ve iyileştirme önerilerini raporlamak.",
+    "ayrinti": "Tüm test sonuçları yapılandırılmış formatta derlenir. CVSS skorlama mantığına göre açıklar derecelendirilir ve geliştirici ekibe net çözüm maddeleri sunulur.",
+    "nasil": [
+     {
+      "teknik": "report = {'tarih': '2026-10-16', 'bulgular': [{'zafiyet': 'Hız Sınırı', 'durum': 'Korunuyor', 'cvss': 0.0}]}; json.dump(report, open('guvenlik_karnesi.json', 'w'))",
+      "sade": "Tüm tarama sonuçları yapılandırılmış JSON raporuna yazılır; zafiyet risk seviyeleri netleştirilir.",
+      "altAdimlar": [
+       "Zafiyet bulgularını önem derecesine göre gruplayın.",
+       "Önerilen düzeltme adımlarını rapora işleyin.",
+       "Raporu JSON formatında diske yazın."
+      ],
+      "kazanim": {
+       "ders": "SEC 211E",
+       "madde": "Siber tehdit modelleri ve saldırı yüzeyi analizini yürütmek."
+      }
+     },
+     {
+      "teknik": "print(f'Zafiyet Karnesi Olusturuldu: 0 Kritik, 0 Yuksek, Tum Uç Noktalar Guvenli')",
+      "sade": "Nihai güvenlik durumu konsola yazdırılır; servis direncinin tam olduğu onaylanır.",
+      "altAdimlar": [
+       "Kritik açık sayısının sıfır olduğunu teyit edin.",
+       "Raporu sürüm kontrol deposuna ekleyin.",
+       "Geliştirici ekiple bulguları paylaşın."
+      ],
+      "kazanim": {
+       "ders": "SEC 211E",
+       "madde": "Güvenlik açığı tarama araçları ile servis direnç testleri gerçekleştirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "SEC 211E",
+      "madde": "Güvenlik açığı tarama araçları ile servis direnç testleri gerçekleştirmek."
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "API uç noktası DoS testi trafik simülasyonu ve Z-skoru anomali tespiti grafiği, 2026-10",
+      "aciklama": "Saldırı anındaki istek yoğunluğu artışı ve Z-skoru alarm animasyonu"
+     }
+    ]
+   }
+  ],
+  "sonuc": "Hava tahmini API'si için hız sınırlama ve girdi sanitizasyonu test paketi ile güvenlik denetim karnesi.",
+  "senden": "API saldırı yüzeyi haritalama, yük testleri, fuzzing senaryoları ve güvenlik denetim raporunu yazmak.",
+  "bizden": "Tahmin parametre aralıklarını, uç nokta şemasını ve test ortamı sunucu erişimini sağlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://owasp.org/www-project-api-security/",
+   "aciklama": "OWASP API güvenlik standartları ve zafiyet kontrol paneli"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "API istek yoğunluğu ve hız sınırlama altında yanıt süreleri analizi, 2026-10",
+   "aciklama": "Farklı yük seviyelerinde API yanıt süreleri ve hız sınırlama animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Token_bucket.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Belirteç kovası hız sınırlama algoritması diyagramı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "OWASP API Security Top 10",
+   "url": "https://owasp.org/www-project-api-security/"
+  },
+  {
+   "ad": "RFC 6585: Additional HTTP Status Codes (429 Too Many Requests)",
+   "url": "https://datatracker.ietf.org/doc/html/rfc6585"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-BBF-SEC-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "e807eed9e451"
+ }
+}

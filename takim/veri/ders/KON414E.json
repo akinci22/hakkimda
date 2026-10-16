@@ -1,0 +1,102 @@
+{
+ "kod": "KON 414E",
+ "ad": "Principles of Robot Autonomy",
+ "bolum": "Robotik ve Otonom Sistemler Mühendisliği",
+ "obsNo": "414",
+ "ozet": "Otonom robotların algılama, durum kestirimi, yerelleştirme ve haritalama (SLAM), karar verme ve belirsizlik altında hareket planlama ilkelerini öğretir. Sis, şiddetli yağmur ve türbülans gibi zorlu çevre koşullarında sensör füzyonu (kamera, lidar, radar, IMU) ve Bayesçi filtreleme yöntemleri ele alınır.",
+ "neOgrenirsin": [
+  "Genişletilmiş ve Kokusuz Kalman Filtreleri ile gürültülü sensör verilerinden durum kestirimi yapmak.",
+  "Parçacık filtreleri (Monte Carlo yerelleştirme) ile doğrusal olmayan ortamlarda robot konumunu belirlemek.",
+  "Lidar, kamera ve radar verilerini füzyonlayarak çevre haritası ve doluluk ızgarası üretmek.",
+  "Görüş mesafesinin düştüğü sis ve yağış koşullarında sensör belirsizlik kovaryansını dinamik ayarlamak.",
+  "Belirsizlik altında Markov karar süreçleri ve model öngörülü kontrol ile güvenli rota çizmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Genişletilmiş Kalman Filtresi kovaryans güncellemesi",
+   "tex": "\\mathbf{K}_k = \\mathbf{P}_k^- \\mathbf{H}_k^T \\left( \\mathbf{H}_k \\mathbf{P}_k^- \\mathbf{H}_k^T + \\mathbf{R}_k \\right)^{-1}",
+   "terimler": [
+    [
+     "\\mathbf{K}_k",
+     "Kalman kazanç matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{P}_k^-",
+     "öncül durum hata kovaryans matrisi",
+     "durum birimlerinin karesi"
+    ],
+    [
+     "\\mathbf{H}_k",
+     "ölçüm fonksiyonunun Jakoben matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{R}_k",
+     "ölçüm gürültüsü kovaryans matrisi",
+     "ölçüm birimlerinin karesi"
+    ]
+   ],
+   "sade": "Sensörden gelen bilginin ne kadar güvenilir olduğunu ölçüm gürültüsü kovaryansına bakarak tartar. Sis ve şiddetli yağışta sensör gürültüsü arttığında filtre ölçüme daha az, kinematik tahmine daha çok güvenir.",
+   "ornek": "Yoğun siste lidar mesafe gürültü varyansı 0,01 m²'den 2,5 m²'ye fırladığında Kalman kazancı K 0,85'ten 0,12'ye düşer; filtre yanıltıcı lidar yansımalarını baskılar.",
+   "nerede": "Zorlu hava koşullarında otonom araç konum kestiriminde lidar ve radar sensör ağırlıklarını hava durumuna göre dinamik uyarlarken."
+  },
+  {
+   "ad": "Sis ve yağmurda optik sinyal Beer-Lambert sönümlenmesi",
+   "tex": "I(d) = I_0 \\, e^{-\\gamma_{atm} \\, d}",
+   "terimler": [
+    [
+     "I(d)",
+     "d mesafesindeki algılanan ışık şiddeti",
+     "W/m²"
+    ],
+    [
+     "I_0",
+     "kaynak ışık şiddeti",
+     "W/m²"
+    ],
+    [
+     "\\gamma_{atm}",
+     "atmosferik sönümlenme ve saçılma katsayısı",
+     "m⁻¹"
+    ],
+    [
+     "d",
+     "sensör ile hedef arasındaki mesafe",
+     "m"
+    ]
+   ],
+   "sade": "Lidar lazerinin ve kamera ışığının sis damlacıkları veya yağmur taneleri arasından geçerken mesafeyle nasıl katlanarak zayıfladığını gösterir.",
+   "ornek": "Görüş mesafesinin 50 metreye düştüğü yoğun siste gama = 0,06 m⁻¹ iken, 30 metre ötedeki bir hedeften dönen lidar sinyali başlangıç gücünün sadece yüzde 16'sına düşer.",
+   "nerede": "Sis ve yağış altında lidar algılama mesafesinin ve güvenilirlik sınırının hava verisine göre hesaplanmasında."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul sis ve görüş mesafesi değişimine bağlı sensör sönümlenme animasyonu",
+   "aciklama": "Görüş mesafesi düşüşünde optik ve mikrodalga sensör sinyal sönümlenmesi animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Beer_lambert.png",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Beer-Lambert optik saçılma ve sinyal sönümlenmesi diyagramı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · KON 414E (Principles of Robot Autonomy)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KON&dersNo=414"
+  },
+  {
+   "ad": "Thrun, S., Burgard, W., Fox, D. (2005) Probabilistic Robotics, MIT Press · ISBN 978-0262201629",
+   "url": "https://openlibrary.org/isbn/9780262201629"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KON&dersNo=414"
+}

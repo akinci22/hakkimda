@@ -1,0 +1,130 @@
+{
+ "kod": "BIO 325E",
+ "ad": "Ecology",
+ "bolum": "Moleküler Biyoloji ve Genetik",
+ "obsNo": "325E",
+ "ozet": "Ekolojinin temel ilkelerini, popülasyon dinamiklerini, biyolojik çeşitliliği, ekosistem enerji akışını ve organizmaların çevresel faktörlerle etkileşimini inceler. Sıcaklık, nem ve rüzgâr gibi abiyotik faktörlerin bitki fenolojisi, polen salımı ve tür dağılımı üzerindeki nicel etkilerini sayısal olarak analiz eder.",
+ "neOgrenirsin": [
+  "Büyüme Derece-Gün (GDD) yöntemiyle sıcaklık birikiminden fenolojik eşikleri ve polen salım zamanını hesaplamak.",
+  "Lojistik popülasyon büyümesi denklemiyle biyolojik salımların pik ve sönümlenme evrelerini belirlemek.",
+  "Shannon-Wiener biyoçeşitlilik indeksi ile havadaki polen ve biyoaerosol tür dağılımını sınıflandırmak.",
+  "Abiyotik çevresel stres faktörlerinin bitki fizyolojisi ve alerjen üretimi üzerindeki etkilerini analiz etmek.",
+  "Ekosistem enerji akışı ve madde döngüleri çerçevesinde biyosfer-atmosfer etkileşimini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Büyüme Derece-Gün (GDD) fenoloji bağıntısı",
+   "tex": "\\mathrm{GDD} = \\sum_{i=1}^{n} \\max(T_{\\mathrm{ort}, i} - T_{\\mathrm{taban}}, 0)",
+   "terimler": [
+    [
+     "\\mathrm{GDD}",
+     "birikmiş büyüme derece-gün değeri",
+     "°C·gün"
+    ],
+    [
+     "T_{\\mathrm{ort}, i}",
+     "i'inci günün ortalama hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{\\mathrm{taban}}",
+     "bitki gelişimi için eşik taban sıcaklık",
+     "°C"
+    ],
+    [
+     "n",
+     "hesaplanan toplam gün sayısı",
+     "gün"
+    ]
+   ],
+   "sade": "Bitkilerin tomurcuklanması, çiçek açması ve polen salması takvim gününe değil, hava sıcaklığının belirli bir eşiğin üzerinde birikmesine bağlıdır. İlkbahar ılık geçerse derece-gün toplamı hızla artar ve polen mevsimi erken başlar.",
+   "ornek": "Çim ve huş ağacı polen salımı için taban sıcaklık 5 °C kabul edildiğinde, 20 günlük ortalama 12 °C olan bir dönemde GDD = 20 * (12 - 5) = 140 °C·gün birikir ve salım eşiğine ulaşılır.",
+   "nerede": "F-FEF-MBG-01'de ilkbahar sıcaklık birikiminden ağaç ve çim poleni salım günlerini hesaplarken."
+  },
+  {
+   "ad": "Lojistik popülasyon büyümesi denklemi",
+   "tex": "\\frac{d N}{d t} = r N \\left(1 - \\frac{N}{K}\\right)",
+   "terimler": [
+    [
+     "N",
+     "popülasyon büyüklüğü veya polen konsantrasyonu",
+     "adet/m³"
+    ],
+    [
+     "t",
+     "zaman",
+     "gün"
+    ],
+    [
+     "r",
+     "içsel büyüme katsayısı",
+     "gün⁻¹"
+    ],
+    [
+     "K",
+     "çevresel taşıma kapasitesi",
+     "adet/m³"
+    ]
+   ],
+   "sade": "Bir popülasyon veya biyolojik salım başlangıçta katlanarak artar, ancak çevresel kaynaklar ve alan sınırlılığı nedeniyle doygunluğa ulaşarak yavaşlar ve taşıma kapasitesinde dengelenir.",
+   "ornek": "r = 0,3 gün⁻¹ ve K = 5000 polen/m³ olan kentsel polen salımında, 500 polen/m³ başlangıç konsantrasyonu 5 gün içinde lojistik büyüme ile yaklaşık 1850 polen/m³ seviyesine ulaşır.",
+   "nerede": "F-FEF-MBG-01'de polen mevsiminin pik dönemini ve kentsel atmosferdeki biyolojik doygunluk profilini belirlerken."
+  },
+  {
+   "ad": "Shannon-Wiener biyoçeşitlilik indeksi",
+   "tex": "H' = -\\sum_{i=1}^{S} p_i \\ln p_i",
+   "terimler": [
+    [
+     "H'",
+     "Shannon biyoçeşitlilik indeksi",
+     "birimsiz"
+    ],
+    [
+     "S",
+     "ortamdaki toplam polen türü sayısı",
+     "adet"
+    ],
+    [
+     "p_i",
+     "i'inci türün toplam popülasyona oranı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Bir ortamdaki canlı türlerinin hem sayısını hem de dağılım dengesini tek bir katsayıda ölçer. Sayı ne kadar yüksekse ekosistem o kadar çeşitli ve dengelidir.",
+   "ornek": "Havada ölçülen 4 farklı polen türünün oranları 0,40, 0,30, 0,20 ve 0,10 olduğunda H' = -(0,4ln0,4 + 0,3ln0,3 + 0,2ln0,2 + 0,1ln0,1) ≈ 1,28 olarak hesaplanır.",
+   "nerede": "F-FEF-MBG-01'de atmosferdeki polen türlerinin çeşitlilik ve baskınlık profilini sınıflandırırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Pollen_grains.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Mikroskop altında çeşitli bitki poleni tanecikleri yapısı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul sıcaklık ve bağıl nem zaman serisiyle polen risk eşikleri animasyonu, 2026-10",
+   "aciklama": "Derece-gün birikimi ve hava sıcaklığına bağlı polen mevsimi risk eğrisi döngüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · BIO 325E (Ecology)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIO&dersNo=325E"
+  },
+  {
+   "ad": "Begon, M. & Townsend, C. R. (2021) Ecology: From Individuals to Ecosystems, 5. baskı, Wiley · ISBN 978-1119279358",
+   "url": "https://openlibrary.org/isbn/9781119279358"
+  },
+  {
+   "ad": "Sofiev, M. et al. (2015) An operational system for evaluating the allergy hazard from birch pollen, Medical Meteorology · DOI 10.1007/s00484-012-0570-z",
+   "url": "https://doi.org/10.1007/s00484-012-0570-z"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIO&dersNo=325E"
+}

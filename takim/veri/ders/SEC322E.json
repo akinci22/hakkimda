@@ -1,0 +1,95 @@
+{
+ "kod": "SEC 322E",
+ "ad": "Secure Programming",
+ "bolum": "Siber Güvenlik Mühendisliği",
+ "obsNo": "322E",
+ "ozet": "Yazılım geliştirme yaşam döngüsünde güvenlik prensiplerini, yaygın kod zafiyetlerini ve güvenli tasarım kalıplarını öğretir. Savunmacı programlama teknikleri ve statik analiz yöntemleri incelenir.",
+ "neOgrenirsin": [
+  "Girdi doğrulama ve veri temizleme kalıplarını kodlamak.",
+  "Bellek taşması ve biçimlendirme açıklarını engelleyen güvenli yöntemler uygulamak.",
+  "Kriptografik kütüphaneleri güvenli parametrelerle hatasız entegre etmek.",
+  "Statik kod analizi araçlarıyla kaynak kod zafiyetlerini taramak."
+ ],
+ "formuller": [
+  {
+   "ad": "Shannon bilgi entropisi ve veri rastgeleliği formülü",
+   "tex": "H(X) = -\\sum_{i=1}^{n} P(x_i) \\log_2 P(x_i)",
+   "terimler": [
+    [
+     "H(X)",
+     "veri akışının Shannon bilgi entropisi",
+     "bit/karakter"
+    ],
+    [
+     "P(x_i)",
+     "x_i baytının veri dizisindeki görülme olasılığı",
+     "olasılık"
+    ],
+    [
+     "n",
+     "farklı bayt sembolü sayısı",
+     "adet"
+    ]
+   ],
+   "sade": "Bir veri paketinin ne kadar rastgele veya tahmin edilebilir olduğunu ölçer. Yüksek entropi güçlü bir anahtarı veya şifreli içeriği, düşük entropi ise tekrarlayan düz metni gösterir.",
+   "ornek": "Rastgele 256 bitlik bir oturum anahtarında entropi 7,98 bit/karakter çıkarak yüksek rastgeleliği kanıtlarken, düz metin hava verisinde entropi 3,20 seviyesine düşer.",
+   "nerede": "F-BBF-SEC-01 ve SEC-02'de istasyon şifreleme anahtarlarının kalitesini ve rastgeleliğini denetlerken."
+  },
+  {
+   "ad": "Zamanlama saldırısı direnci (sabit zamanlı karşılaştırma)",
+   "tex": "R = \\bigvee_{i=0}^{N-1} (A_i \\oplus B_i) == 0",
+   "terimler": [
+    [
+     "R",
+     "karşılaştırma sonucu bayrağı",
+     "ikili bayrak"
+    ],
+    [
+     "A_i, B_i",
+     "karşılaştırılan i'inci imza baytları",
+     "bayt"
+    ],
+    [
+     "\\oplus",
+     "bit bazında XOR farkı",
+     "birimsiz"
+    ],
+    [
+     "\\bigvee",
+     "tüm bayt farklarının mantıksal VEYA birleşimi",
+     "birimsiz"
+    ],
+    [
+     "N",
+     "imza bayt uzunluğu",
+     "tamsayı"
+    ]
+   ],
+   "sade": "İki imza dizisini karşılaştırırken ilk farklı baytta durmak yerine tüm diziyi eşit sürede tarar. Böylece saldırganın işlem süresini ölçerek gizli imzayı tahmin etmesi engellenir.",
+   "ornek": "32 baytlık HMAC imzasını test ederken standart metin eşitliği 4 nanosaniyede durabilirken, sabit zamanlı fonksiyon her zaman 25 nanosaniye sürerek yan kanal sızıntısını sıfırlar.",
+   "nerede": "F-BBF-SEC-01 imza doğrulama fonksiyonunda hmac.compare_digest ile zamanlama saldırılarını önlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Buffer_overflow_vulnerability.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Bellek taşması ve yığın düzeni güvenlik diyagramı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · SEC 322E (Secure Programming)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=SEC&dersNo=322E"
+  },
+  {
+   "ad": "OWASP Secure Coding Practices Quick Reference Guide",
+   "url": "https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=SEC&dersNo=322E"
+}

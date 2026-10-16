@@ -1,0 +1,112 @@
+{
+ "kod": "EUT 204E",
+ "ad": "Manufacturing Methods",
+ "bolum": "Endüstriyel Tasarım",
+ "obsNo": "204E",
+ "ozet": "Seri ve eklemeli üretim yöntemlerini, polimer ve kompozit malzeme davranışlarını, enjeksiyon kalıplama ve 3B baskı parametrelerini öğretir. Açık hava koşullarına maruz kalan ürünlerde UV yaşlanması, ısıl çekme ve boyutsal toleranslar analiz edilir.",
+ "neOgrenirsin": [
+  "Eklemeli imalat ve FDM/SLA 3B baskı parametrelerini optimize etmek.",
+  "Açık hava koşullarında polimer malzemelerin UV dayanımı ve ısıl çekme paylarını belirlemek.",
+  "Enjeksiyon ve baskı toleranslarına göre geçmeli mekanik bağlantılar tasarlamak.",
+  "Yüzey pürüzlülüğü ve katman kalınlığı ile mekanik dayanım ilişkisini test etmek.",
+  "Düşük maliyetli prototipleme ile seri üretime uygun kalıp geometrisi geliştirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Termal büzülme ve boyutsal tolerans denklemi",
+   "tex": "\\Delta L = L_0 \\cdot \\alpha_L \\cdot (T_{\\mathrm{baski}} - T_{\\mathrm{ortam}})",
+   "terimler": [
+    [
+     "\\Delta L",
+     "baskı sonrası parçadaki boyutsal büzülme miktarı",
+     "\\mathrm{mm}"
+    ],
+    [
+     "L_0",
+     "tasarlanan nominal parça uzunluğu",
+     "\\mathrm{mm}"
+    ],
+    [
+     "\\alpha_L",
+     "polimer malzemenin doğrusal ısıl genleşme katsayısı",
+     "1/\\mathrm{K}"
+    ],
+    [
+     "T_{\\mathrm{baski}}",
+     "eriyik baskı veya nozül sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ],
+    [
+     "T_{\\mathrm{ortam}}",
+     "oda veya çalışma ortamı sıcaklığı",
+     "^\\circ\\mathrm{C}"
+    ]
+   ],
+   "sade": "3B yazıcıdan çıkan plastik parçanın soğurken ne kadar küçüleceğini hesaplar. Birbirine geçen parçaların sıkışmadan veya gevşek kalmadan kilitlenmesi için bu büzülme payı CAD çizimine eklenir.",
+   "ornek": "L0 = 120 mm çapında ASA filament siper halkası için alpha = 9 x 10^-5 1/K ve sıcaklık farkı Delta T = 220 K iken büzülme Delta L = 120 x (9 x 10^-5) x 220 ≈ 2,38 mm olur; çizimde yüzde 2 pay bırakılır.",
+   "nerede": "F-MIM-EUT-01 projesinde birbirine geçen modüler louver plakalarının tolerans payını hesaplarken."
+  },
+  {
+   "ad": "3B baskı katman yapışma ve çekme mukavemeti bağıntısı",
+   "tex": "\\sigma_{\\mathrm{katman}} = \\sigma_0 \\cdot \\left(1 - \\frac{t_{\\mathrm{katman}}}{d_{\\mathrm{nozul}}}\\right) \\cdot \\eta_{\\mathrm{bag}}",
+   "terimler": [
+    [
+     "\\sigma_{\\mathrm{katman}}",
+     "katmanlar arası efektif çekme dayanımı",
+     "\\mathrm{MPa}"
+    ],
+    [
+     "\\sigma_0",
+     "ham polimer malzemenin baz çekme mukavemeti",
+     "\\mathrm{MPa}"
+    ],
+    [
+     "t_{\\mathrm{katman}}",
+     "3B yazıcı katman yüksekliği",
+     "\\mathrm{mm}"
+    ],
+    [
+     "d_{\\mathrm{nozul}}",
+     "yazıcı nozül çapı",
+     "\\mathrm{mm}"
+    ],
+    [
+     "\\eta_{\\mathrm{bag}}",
+     "ısıl difüzyon ve katman kaynama verimi",
+     "birimsiz (0 ile 1 arası)"
+    ]
+   ],
+   "sade": "3B baskıyla üretilen parçanın katman katman ayrılmaması için nozül çapı ve katman kalınlığının nasıl seçileceğini gösterir. Katman inceldikçe parçanın rüzgâr ve fırtınaya karşı mekanik direnci artar.",
+   "ornek": "Ham ASA için sigma_0 = 45 MPa, nozül d = 0,4 mm, katman t = 0,2 mm ve verim eta = 0,85 iken katman dayanımı sigma = 45 x (1 - 0,5) x 0,85 ≈ 19,1 MPa bulunur ve fırtına yükünü taşır.",
+   "nerede": "F-MIM-EUT-01 projesinde saha koşullarına maruz kalacak sensör kalkanının rüzgâr yükü dayanımını belirlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:3D_printer_in_action.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "3B yazıcı ile açık kaynak parça ve muhafaza prototip üretimi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul istasyonları saatlik aşırı sıcaklık ve UV indeksi yıllık seyri, 2026",
+   "aciklama": "Açık hava malzemelerinin maruz kaldığı güneş radyasyonu ve termal genleşme döngüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · EUT 204E (Manufacturing Methods)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EUT&dersNo=204E"
+  },
+  {
+   "ad": "Gibson, I. et al. (2021) Additive Manufacturing Technologies, Springer · ISBN 978-3030561260",
+   "url": "https://link.springer.com/book/10.1007/978-3-030-56127-7"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EUT&dersNo=204E"
+}

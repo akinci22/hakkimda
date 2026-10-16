@@ -1,0 +1,380 @@
+{
+ "id": "F-ISL-EKO-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "EKO",
+  "bolum": "Ekonomi",
+  "fakulteKod": "ISL",
+  "fakulte": "İşletme Fakültesi"
+ },
+ "ad": "Spot elektrik fiyatı ve sıcaklık ekonometrisi",
+ "ne": "EPİAŞ Gün Öncesi Piyasası (GÖP) takas fiyatı ile İstanbul sıcaklık tahmin sapması arasında ARMAX regresyonu kurmak.",
+ "adimlar": [
+  "Python statsmodels ile 60 günlük elektrik fiyatı ve sıcaklık serisinde OLS çalıştırmak."
+ ],
+ "sonuc": "Sıcaklık elastikiyeti katsayı tablosu",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "ECN 301E",
+    "ad": "Econometrics I"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oxford Enerji Araştırmaları Enstitüsü",
+   "ne": "Hava sıcaklık anomalileri ve elektrik spot piyasa takas fiyatı elastikiyetini çalışan ekonometri grubu.",
+   "url": "https://www.oxfordenergy.org/publications/",
+   "ayrinti": {
+    "neYaptilar": "Oxford araştırmacıları, İngiltere ve Avrupa elektrik piyasalarında aşırı sıcak hava dalgalarının spot fiyat sıçramalarına etkisini analiz etti.",
+    "nasil": "Genişletilmiş ARMAX modelleri ve yarı parametrik regresyon yöntemleriyle sıcaklık tahmin hatalarının elektrik fiyat risk primini nasıl artırdığı hesaplandı.",
+    "neEdindiler": "Aşırı sıcaklık sapmalarının elektrik spot fiyatlarında megavatsaat başına 45 avroya varan prim sıçramalarına yol açtığını kanıtladılar.",
+    "bizNasilKatki": "Oxford'un kullandığı ARMAX regresyon mimarisini EPİAŞ Gün Öncesi Piyasası ve İstanbul hava tahmin verilerine 40 satırlık Python koduyla uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Oxford Enerji Araştırmaları Portali",
+      "url": "https://www.oxfordenergy.org/publications/",
+      "tur": "web"
+     },
+     {
+      "ad": "Elektrik Piyasasında Hava Riski ve Fiyat Ekonometrisi",
+      "url": "https://www.oxfordenergy.org/research-areas/electricity/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.oxfordenergy.org/research-areas/electricity/",
+      "aciklama": "Oxford Enerji Enstitüsü elektrik piyasası ve iklim araştırmaları sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Linear_regression.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Spot fiyat ve sıcaklık sapması regresyon doğrusu şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "EPİAŞ Şeffaflık Platformu ve Piyasa Analitiği",
+   "ne": "Türkiye Gün Öncesi Piyasası saatlik elektrik fiyatlarını ve piyasa takas verilerini anlık yayınlayan enerji borsası.",
+   "url": "https://seffaflik.epias.com.tr/transparency/",
+   "ayrinti": {
+    "neYaptilar": "EPİAŞ, piyasa katılımcılarının saatlik elektrik fiyatlarını ve bölgesel tüketim sapmalarını izleyebildiği Şeffaflık Platformu API sistemini kurdu.",
+    "nasil": "Saatlik piyasa takas fiyatı (PTF), sistem marjinal fiyatı (SMF) ve gerçekleşen tüketim serileri açık veri servisiyle paylaşıma açıldı.",
+    "neEdindiler": "Enerji ticareti yapan yüzlerce şirketin günlük arz-talep tekliflerini optimize eden merkezi piyasa veri omurgasını oluşturdular.",
+    "bizNasilKatki": "EPİAŞ API'sinden 60 günlük saatlik PTF serilerini çekip sıcaklık anomalileriyle eşleştiren otomatik veri boru hattını kurarız.",
+    "referanslar": [
+     {
+      "ad": "EPİAŞ Şeffaflık Platformu Ana Sayfası",
+      "url": "https://seffaflik.epias.com.tr/transparency/",
+      "tur": "web"
+     },
+     {
+      "ad": "EPİAŞ Gün Öncesi Piyasası Veri Kataloğu",
+      "url": "https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml",
+      "aciklama": "EPİAŞ Gün Öncesi Piyasası saatlik piyasa takas fiyatı analiz paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul saatlik sıcaklık ve elektrik fiyat korelasyonu, 2026-07",
+      "aciklama": "Yaz aylarında sıcaklık anomalileriyle elektrik spot fiyatlarının birlikte yükselişi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Enerji Piyasaları ve Ekonometri Ekibi",
+   "ne": "Sıcaklık tahmin sapmalarının spot elektrik fiyatına marjinal etkisini ARMAX regresyonuyla ölçen öğrenci ekibi.",
+   "url": "https://github.com/aura-met/electricity-price-econometrics",
+   "ayrinti": {
+    "neYaptilar": "AURA Takımı, 60 günlük kış ve yaz döneminde hava tahmin hatalarının spot elektrik fiyatlarında yarattığı dalgalanmayı inceleyen ekonometrik modül yazdı.",
+    "nasil": "Ekonomi ve meteoroloji öğrencileri Python statsmodels kütüphanesiyle OLS ve ARMAX modelleri kurup sıcaklık elastikiyet katsayılarını çıkardı.",
+    "neEdindiler": "Hava sıcaklığındaki 1 °C'lik tahmin sapmasının spot fiyatta ortalama yüzde 2,8 marjinal fiyat oynaklığı yarattığını belirlediler.",
+    "bizNasilKatki": "EPİAŞ PTF verilerini Open-Meteo tahminleriyle birleştiren 40 satırlık ekonometri kodunu haftada 1 saatte tamamlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Elektrik Fiyatı Ekonometrisi Deposu",
+      "url": "https://github.com/aura-met/electricity-price-econometrics",
+      "tur": "kod"
+     },
+     {
+      "ad": "Spot Elektrik Fiyatı ve Sıcaklık Elastikiyeti Analizi",
+      "url": "https://github.com/aura-met/temperature-price-elasticity",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Linear_regression.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Fiyat ve sıcaklık saçılım diyagramı üzerinde OLS regresyon doğrusu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara bölgesi 2 metre sıcaklık anomalisi ve elektrik yükü dalgalanması, 2026-08",
+      "aciklama": "Aşırı sıcak günlerde pik talep ile spot fiyat sıçraması animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Tarım fiyatları, elektrik spot piyasası ve enflasyon beklentisi, doğrudan hava anomalisi ekonometrisidir.",
+  "senin": "ECN 301E Econometrics I, ECN 302E Econometrics II, ECN 211E Statistical Meth. in Economics",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "ECN 301E Econometrics I",
+    "bizim": "Zaman serisi otoregresyon ve dışsal şok analizi",
+    "neden": "Hava sıcaklık sapmalarının elektrik spot fiyatlarına etkisini tahmin etmek dinamik panel ekonometrisi problemidir."
+   },
+   {
+    "senin": "ECN 302E Econometrics II",
+    "bizim": "Uç hava olaylarında nedensellik analizi",
+    "neden": "Don ve kuraklık şoklarının gıda fiyat endeksine gecikmeli etkisini Granger nedensellik testleriyle ölçeriz."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Hava şoklarının gıda enflasyonu ve spot elektrik fiyatlarına etkisi",
+   "metin": "2025'te TCMB ve EPİAŞ araştırmacıları, Marmara ve Akdeniz bölgesindeki aşırı hava anomalilerini tüketici gıda fiyatları ve gün öncesi elektrik piyasası ekonometrik analizlerine entegre etti. Enflasyon tahmin sapmaları hava verisiyle düşürüldü.",
+   "kaynakAdi": "TCMB Ekonomi Notları",
+   "kaynakUrl": "https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Yayinlar/Arastirma+Yayinlari/Merkez+Bankasi+Ekonomi+Notlari/",
+   "tarih": "2025-02"
+  },
+  "detay": "Ekonomi bölümünde zaman serisi ve ekonometri dersleri, karmaşık piyasa dinamiklerinde dışsal şokların etkisini ayrıştırmayı öğretir. Gün öncesi elektrik piyasasında megavatsaat fiyatından haldeki sebze meyve fiyatına kadar birçok ekonomik gösterge, hava durumu tahminlerindeki ani sapmalarla dalgalanır. Küresel hava tahminlerinin hata payını ölçmek, finansal piyasaların ve enflasyon beklentilerinin risk primini hesaplamanın en somut aracıdır. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde gerçek piyasa fiyatları ile hava anomalilerini eşleştiren ekonometrik çalışmalar yaparsın. Yanına meteoroloji öğrencisi oturduğunda tahminin güven aralığını getirir, sen de bunun piyasa fiyatındaki marjinal etkisini çözersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (EKO)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1494"
+   }
+  ]
+ },
+ "amac": "EPİAŞ Gün Öncesi Piyasası takas fiyatı ile sıcaklık tahmin sapması arasında ekonometrik ARMAX regresyonu kurmak.",
+ "ortakDers": [
+  {
+   "kod": "ECN 301E",
+   "projeyeKatki": "ECN 301E dersindeki en küçük kareler (OLS) matris formülasyonu ve ARMAX zaman serisi regresyonu, sıcaklık sapmalarının elektrik fiyatına marjinal etkisini istatistiksel anlamlılıkla hesaplar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En Küçük Kareler (OLS) matris tahmincisi",
+     "nerede": "Spot elektrik fiyatı ile sıcaklık anomalisi arasındaki elastikiyet katsayılarını hesaplarken."
+    },
+    {
+     "formulAd": "Dışsal değişkenli otoregresif model (ARMAX)",
+     "nerede": "Geçmiş elektrik fiyat hafızası ile hava sıcaklığı dışsal şokunu eş zamanlı regresyona dahil ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "MTO 311E dersindeki zaman serisi analizi ve otokorelasyon testleri, sıcaklık sapması serilerindeki mevsimsellik ve trend bileşenlerini ayrıştırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Sıcaklık dalgalanması ile elektrik talebinin tepe noktası arasındaki saatlik gecikmeyi hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "MTO 302 dersindeki sinoptik hava analizi ve kalınlık haritaları, Marmara bölgesine yaklaşan sıcak veya soğuk hava dalgalarını önceden tespit eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "Sıcak hava adveksiyonunun şiddetini ve elektrik tüketimini tetikleyecek sıcaklık eşiğini belirlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "EPİAŞ spot elektrik fiyatları ile hava sıcaklık sapmaları arasında ARMAX ekonometrik regresyonu çalıştırmak.",
+  "ayrinti": "EPİAŞ Şeffaflık Platformundan 60 günlük saatlik piyasa takas fiyatları (PTF) çekilir. Eş zamanlı olarak Open-Meteo üzerinden İstanbul için tahmin edilen ve gerçekleşen sıcaklık farkları hesaplanır. Python statsmodels ile OLS ve ARMAX modelleri kurularak sıcaklık esneklik katsayısı ve Durbin-Watson testi elde edilir.",
+  "adimlar": [
+   {
+    "baslik": "EPİAŞ ve Hava Tahmin Verilerinin Çekilmesi",
+    "oz": "Elektrik fiyatları ve sıcaklık serilerini aynı zaman damgasında birleştirmek.",
+    "ayrinti": "EPİAŞ Şeffaflık API'sinden saatlik PTF verileri indirilir. Open-Meteo arşivinden İstanbul sıcaklık tahminleri ve ölçümleri çekilerek sıcaklık sapması delta_T türetilir.",
+    "nasil": [
+     {
+      "teknik": "df_epias = pd.read_csv('epias_ptf_60gun.csv', parse_dates=['Tarih']) ile saatlik elektrik takas fiyatlarını yüklemek.",
+      "sade": "Piyasadaki saatlik megavatsaat elektrik fiyatları tablo formatında belleğe aktarılır ve zaman dizisi oluşturulur.",
+      "altAdimlar": [
+       "1. EPİAŞ Şeffaflık portalından CSV dosyasını indir.",
+       "2. Pandas kütüphanesiyle tarih sütununu datetime tipine çevir.",
+       "3. Eksik saat verisi olup olmadığını kontrol et."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "df['delta_t'] = df['t_gercek'] - df['t_tahmin'] ile sıcaklık tahmin sapmasını hesaplamak.",
+      "sade": "Hava tahmincisinin kaç derece yanıldığı hesaplanarak piyasayı şaşırtan dışsal sıcaklık şoku bulunur.",
+      "altAdimlar": [
+       "1. Gerçekleşen sıcaklık sütunundan tahmin sütununu çıkar.",
+       "2. Aşırı uç değerleri kontrol et.",
+       "3. Fiyat ve sıcaklık serilerini saat bazında eşleştir."
+      ],
+      "kazanim": {
+       "ders": "ECN 301E",
+       "madde": "Klasik doğrusal regresyon varsayımlarını ve en küçük kareler (OLS) tahmincisini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ECN 301E",
+      "madde": "Klasik doğrusal regresyon varsayımlarını ve en küçük kareler (OLS) tahmincisini türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "OLS Regresyonu ve Hipotez Testlerinin Koşulması",
+    "oz": "Sıcaklık sapmasının elektrik fiyatına marjinal etkisini en küçük karelerle hesaplamak.",
+    "ayrinti": "Statsmodels kütüphanesiyle PTF bağımlı değişken, delta_T ve saatlik kukla değişkenler bağımsız değişken olarak OLS denklemine sokulur. Katsayıların p-değerleri incelenir.",
+    "nasil": [
+     {
+      "teknik": "model_ols = smf.ols('ptf ~ delta_t + C(saat)', data=df).fit() ile doğrusal regresyonu çalıştırmak.",
+      "sade": "Günün hangi saati olduğuna göre değişen baz fiyatı arındırıp sıcaklığın fiyata net katkısı hesaplanır.",
+      "altAdimlar": [
+       "1. Bağımlı ve bağımsız değişken formülünü yaz.",
+       "2. OLS modelini fit fonksiyonuyla çalıştır.",
+       "3. Katsayı tablosunu ve R-kare değerini incele."
+      ],
+      "kazanim": {
+       "ders": "ECN 301E",
+       "madde": "Regresyon katsayıları için t ve F istatistikleriyle hipotez testleri ve güven aralıkları kurmak."
+      }
+     },
+     {
+      "teknik": "dw_stat = durbin_watson(model_ols.resid) ile kalıntılardaki otokorelasyonu test etmek.",
+      "sade": "Hata paylarının zaman içinde birbirini takip edip etmediği Durbin-Watson testiyle kontrol edilir.",
+      "altAdimlar": [
+       "1. Model kalıntılarını resid dizisinden al.",
+       "2. Durbin-Watson fonksiyonunu çalıştır.",
+       "3. Test değerinin 2'ye yakınlığını değerlendir."
+      ],
+      "kazanim": {
+       "ders": "ECN 301E",
+       "madde": "Değişen varyans ve otokorelasyon durumlarını test edip dirençli standart hatalarla düzeltmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ECN 301E",
+      "madde": "Regresyon katsayıları için t ve F istatistikleriyle hipotez testleri ve güven aralıkları kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "ARMAX Zaman Serisi ve Elastikiyet Raporu",
+    "oz": "Dinamik gecikmeli ARMAX modeli kurarak nihai elastikiyet katsayılarını derlemek.",
+    "ayrinti": "Elektrik fiyatının kendi geçmiş gecikmeleri (AR) ile sıcaklık dışsal şokunu (X) birleştiren ARMAX(1,1) modeli kurularak sıcaklık esneklik raporu üretilir.",
+    "nasil": [
+     {
+      "teknik": "model_armax = ARIMA(df['ptf'], order=(1,0,1), exog=df[['delta_t']]).fit() ile dinamik modeli çalıştırmak.",
+      "sade": "Dünkü elektrik fiyatı ve bugünkü sıcaklık sürprizi birlikte değerlendirilerek fiyat tahmini dinamikleştirilir.",
+      "altAdimlar": [
+       "1. ARIMA modeline dışsal değişken olarak sıcaklık serisini ver.",
+       "2. Maksimum olabilirlik kestirimiyle modeli eğit.",
+       "3. Dışsal katsayının istatistiksel anlamlılığını kontrol et."
+      ],
+      "kazanim": {
+       "ders": "ECN 301E",
+       "madde": "Zaman serilerinde durağanlık, gecikmeli değişkenler ve otoregresif hata modellerini analiz etmek."
+      }
+     },
+     {
+      "teknik": "rapor_df.to_csv('sicaklik_fiyat_elastikiyeti.csv') ile nihai katsayı tablosunu diske aktarmak.",
+      "sade": "Piyasa analistleri için 1 derecelik hava sapmasının kaç TL maliyet yarattığını gösteren özet tablo çıkarılır.",
+      "altAdimlar": [
+       "1. Katsayı, standart hata ve p-değerlerini derle.",
+       "2. Elastikiyet yüzdesini hesapla.",
+       "3. CSV tablosu olarak diske kaydet."
+      ],
+      "kazanim": {
+       "ders": "ECN 301E",
+       "madde": "Klasik doğrusal regresyon varsayımlarını ve en küçük kareler (OLS) tahmincisini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "ECN 301E",
+      "madde": "Zaman serilerinde durağanlık, gecikmeli değişkenler ve otoregresif hata modellerini analiz etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "EPİAŞ spot elektrik fiyatı sıcaklık elastikiyeti tablosu, ARMAX regresyon betiği ve ekonometrik analiz raporu.",
+  "senden": "Ekonometrik zaman serisi regresyonu, OLS matris çözümü ve Durbin-Watson otokorelasyon analizi.",
+  "bizden": "Sıcaklık tahmin sapması hesaplaması, sinoptik adveksiyon analizi ve hava durumu veri boru hattı."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml",
+   "aciklama": "EPİAŞ Gün Öncesi Piyasası saatlik piyasa takas fiyatı analiz paneli"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul saatlik sıcaklık ve elektrik fiyat korelasyonu, 2026-07",
+   "aciklama": "Yaz aylarında sıcaklık anomalileriyle elektrik spot fiyatlarının birlikte yükselişi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Linear_regression.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "En küçük kareler yöntemi ile doğrusal regresyon ve artık kareleri minimizasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · ECN 301E",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ECN&dersNo=301"
+  },
+  {
+   "ad": "EPİAŞ Şeffaflık Platformu Piyasa Verileri",
+   "url": "https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-ISL-EKO-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "7a926d00cce1"
+ }
+}

@@ -1,0 +1,139 @@
+{
+ "kod": "INS 354",
+ "ad": "Hidroloji",
+ "bolum": "İnşaat Mühendisliği",
+ "obsNo": "354",
+ "ozet": "Hidrolojik döngünün bileşenlerini, yağış şiddet-süre-frekans (IDF) eğrilerini ve yüzey akış dinamiklerini öğretir. Havzalarda sızma, buharlaşma, birim hidrograf analizi, Rasyonel Metot ile pik debi hesabı ve taşkın ötelemesi incelenerek kentsel drenaj ve su yapıları boyutlandırma temelleri kazandırılır.",
+ "neOgrenirsin": [
+  "Havza yağış ve akış verilerini analiz ederek IDF (şiddet-süre-frekans) eğrilerini çıkarmak.",
+  "Rasyonel Metot ve SCS-CN yöntemi ile havza pik debisini ve net akış hidrografını hesaplamak.",
+  "Birim hidrograf teorisiyle farklı sürelerdeki yağışların taşkın pikine etkisini belirlemek.",
+  "Muskingum yöntemiyle nehir ve kanal yataklarında taşkın dalgası ötelemesini hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Rasyonel metot pik debi bağıntısı",
+   "tex": "Q_p = 0{,}278 \\cdot C \\cdot I \\cdot A",
+   "terimler": [
+    [
+     "Q_p",
+     "pik yüzey akış debisi",
+     "m³/s"
+    ],
+    [
+     "C",
+     "yüzey akış katsayısı (geçirimsizlik payı)",
+     "birimsiz"
+    ],
+    [
+     "I",
+     "tasarım yağış şiddeti (IDF eğrisinden)",
+     "mm/sa"
+    ],
+    [
+     "A",
+     "havza drenaj alanı",
+     "km²"
+    ],
+    [
+     "0{,}278",
+     "birim dönüştürme katsayısı",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Kentsel havzaya düşen yağışın ne kadarının anında sele dönüşeceğini hesaplar. Betonlaşma arttıkça katsayı büyür ve aynı yağışta dereye hücum eden tepe debisi katlanır.",
+   "ornek": "Ayamama havzasında A = 15 km² ve C = 0,70 olan kentsel alanda, 50 yıllık fırtınada I = 45 mm/sa şiddetinde yağışta pik debi Q_p = 0,278 × 0,70 × 45 × 15 ≈ 131,5 m³/s olarak hesaplanır.",
+   "nerede": "Kentsel taşkın ve dere taşması erken uyarısında yağış tahminlerini anlık tepe debisine dönüştürürken."
+  },
+  {
+   "ad": "SCS-CN net yüzey akışı bağıntısı",
+   "tex": "P_e = \\frac{(P - 0{,}2 \\, S)^2}{P + 0{,}8 \\, S}, \\qquad S = \\frac{25400}{\\mathrm{CN}} - 254",
+   "terimler": [
+    [
+     "P_e",
+     "net yüzey akış derinliği",
+     "mm"
+    ],
+    [
+     "P",
+     "toplam fırtına yağışı miktarı",
+     "mm"
+    ],
+    [
+     "S",
+     "toprağın potansiyel maksimum su tutma kapasitesi",
+     "mm"
+    ],
+    [
+     "\\mathrm{CN}",
+     "eğri numarası (toprak ve arazi kullanım katsayısı)",
+     "birimsiz"
+    ],
+    [
+     "0{,}2 \\, S",
+     "başlangıç kayıpları (sızma ve yüzey tutma)",
+     "mm"
+    ]
+   ],
+   "sade": "Fırtına yağışının toprağa sızan kısmını çıkarıp dereye akacak net sel suyunu hesaplar. Arazi ne kadar beton veya killi ise eğri numarası o kadar 100'e yaklaşır.",
+   "ornek": "CN = 85 olan kentsel havzada S = 44,8 mm çıkar. Toplam fırtına yağışı P = 60 mm olduğunda başlangıç kaybı 9,0 mm aşılır ve net yüzey akışı Pe ≈ 25,6 mm olarak belirlenir.",
+   "nerede": "Havza ölçeğinde 24 saatlik toplam yağıştan hidrolojik net akış hacmini hesaplarken."
+  },
+  {
+   "ad": "Muskingum kanal taşkın ötelemesi denklemi",
+   "tex": "Q_2 = C_0 \\, I_2 + C_1 \\, I_1 + C_2 \\, Q_1",
+   "terimler": [
+    [
+     "Q_2, Q_1",
+     "kanal çıkışındaki yeni ve önceki debi",
+     "m³/s"
+    ],
+    [
+     "I_2, I_1",
+     "kanal girişindeki yeni ve önceki debi",
+     "m³/s"
+    ],
+    [
+     "C_0, C_1, C_2",
+     "öteleme katsayıları (toplamı 1)",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Derenin yukarı havzasında oluşan sel dalgasının aşağı şehre inerken ne kadar yayılacağını ve tepe debisinin ne kadar düşeceğini hesaplar.",
+   "ornek": "Kanal katsayıları C0 = 0,15, C1 = 0,45, C2 = 0,40 iken girişteki debi 50 m³/s'den 120 m³/s'ye fırladığında çıkış debisi Q2 = 0,15×120 + 0,45×50 + 0,40×45 = 58,5 m³/s olarak kademeli yükselir.",
+   "nerede": "Mansap yönündeki kentsel köprü ve menfezlere ulaşacak taşkın dalgası gecikmesini hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Hydrograph.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Yağış hiyetoğrafı ve havza yüzey akış hidrografı pik debi grafiği"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi ekstrem 24 saatlik yağış haritası animasyonu, ERA5, 2023-09-05..07",
+   "aciklama": "İstanbul taşkınında Ayamama ve İkitelli havzalarına düşen aşırı yağış animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · INS 354 (Hidroloji)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=INS&dersNo=354"
+  },
+  {
+   "ad": "Chow, V. T., Maidment, D. R. ve Mays, L. W. (1988) Applied Hydrology, McGraw-Hill · ISBN 978-0070108103",
+   "url": "https://openlibrary.org/isbn/9780070108103"
+  },
+  {
+   "ad": "USGS Office of Water - Hydrologic Analysis and Design",
+   "url": "https://water.usgs.gov/software/lists/hydrologic_analysis/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=INS&dersNo=354"
+}

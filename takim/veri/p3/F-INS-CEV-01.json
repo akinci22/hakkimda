@@ -1,0 +1,415 @@
+{
+ "id": "F-INS-CEV-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "CEV",
+  "bolum": "Çevre Mühendisliği",
+  "fakulteKod": "INS",
+  "fakulte": "İnşaat Fakültesi"
+ },
+ "ad": "İnversiyon tabakası ve PM2.5 korelasyonu",
+ "ne": "İstanbul Çevre ve Şehircilik istasyonlarının PM2.5 ölçümleri ile dikey sıcaklık gradyanı tahminini kıyaslayıp kirlilik tuzağı günlerini tespit etmek.",
+ "adimlar": [
+  "Python'da 40 satır: 30 günlük PM2.5 ile yüzey-850 hPa sıcaklık farkını korele etmek."
+ ],
+ "sonuc": "İnversiyon kirlilik korelasyon grafiği",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "CEV 308E",
+    "ad": "Hava Kirlenmesi"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   },
+   {
+    "kod": "MTO 337",
+    "ad": "Atmosfer Dinamiği I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Atina Üniversitesi Çevre Fiziği ve Meteoroloji Grubu",
+   "ne": "Akdeniz havzası şehirlerinde inversiyon tabakası ve partikül madde birikimini inceleyen akademik araştırma grubu.",
+   "url": "https://meteo.phys.uoa.gr/research/air-quality/",
+   "ayrinti": {
+    "neYaptilar": "Atina Üniversitesi meteoroloji ve çevre fiziği laboratuvarı, kentsel çanak havzalarda dikey sıcaklık terselmesi ile PM2.5 konsantrasyonu arasındaki bağıntıyı radiosonde verileriyle analiz etti.",
+    "nasil": "ERA5 yeniden analiz dikey profilleri ile yer seviyesi hava kalitesi istasyonları eşleştirilerek sınır tabaka kararlılık endeksleri çıkarıldı.",
+    "neEdindiler": "Sıcaklık inversiyonu yaşanan günlerde yer seviyesi PM2.5 kirliliğinin normal günlere kıyasla 3 katına çıktığını kanıtlayan uluslararası yayınlar ürettiler.",
+    "bizNasilKatki": "Atina grubunun dikey gradyan yöntemini İstanbul Boğazı ve vadi istasyonlarındaki 30 günlük ölçüm serisine uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Atina Üniversitesi Hava Kalitesi Araştırma Grubu",
+      "url": "https://meteo.phys.uoa.gr/research/air-quality/",
+      "tur": "web"
+     },
+     {
+      "ad": "Kentsel İnversiyon ve Hava Kirliliği Raporu",
+      "url": "https://meteo.phys.uoa.gr/publications/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://meteo.phys.uoa.gr/research/air-quality/",
+      "aciklama": "Atina Üniversitesi kentsel hava kalitesi ve sınır tabaka araştırma sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Inversion_layer_smog.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sıcaklık terselmesi altında vadide hapsolan kentsel duman ve partikül tabakası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "AirVisual (IQAir) Atmosferik Kirlilik İzleme Platformu",
+   "ne": "Küresel istasyon ağı ve dikey rüzgâr profilleriyle hava kirliliği tahmini sunan çevre teknolojisi şirketi.",
+   "url": "https://www.iqair.com/world-air-quality",
+   "ayrinti": {
+    "neYaptilar": "IQAir, küresel şehirlerde yer sensörleri ile troposferik sıcaklık gradyanlarını birleştirerek inversiyon kaynaklı kirlilik uyarıları yayınladı.",
+    "nasil": "Açık hava kalitesi sensörleri, GFS dikey sıcaklık profilleri ve istatistiksel algoritmalarla 48 saatlik PM2.5 tahmin karneleri ürettiler.",
+    "neEdindiler": "Dünya genelinde 80 binden fazla noktada gerçek zamanlı hava kalitesi haritası ve erken uyarı servisi kurdular.",
+    "bizNasilKatki": "IQAir'in kirlilik indeksi yaklaşımını Marmara istasyonlarında dikey sıcaklık farkıyla test eden açık kaynak Python koduna dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "IQAir Küresel Hava Kalitesi İzleme Portalı",
+      "url": "https://www.iqair.com/world-air-quality",
+      "tur": "web"
+     },
+     {
+      "ad": "Hava Kirliliği ve Meteorolojik Etkiler Teknik Bülteni",
+      "url": "https://www.iqair.com/newsroom",
+      "tur": "haber"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.iqair.com/world-air-quality",
+      "aciklama": "IQAir canlı küresel hava kirliliği ve indeks haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "İstanbul PM2.5 konsantrasyonu ve kış inversiyonu korelasyonu, 2026-01",
+      "aciklama": "Sıcaklık terselmesi günlerinde İstanbul ilçelerinde yükselen partikül yoğunluğu animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Hava Kalitesi ve Sınır Tabaka Grubu",
+   "ne": "Marmara Bölgesi kış inversiyonlarını açık verilerle izleyen ve kirlilik korelasyonu çıkaran öğrenci ekibi.",
+   "url": "https://github.com/aura-team/inversiyon-kirlilik-analizi",
+   "ayrinti": {
+    "neYaptilar": "Ekip, Çevre Şehircilik Bakanlığı açık hava kalitesi verileri ile ERA5 850 hPa sıcaklıklarını eşleştiren Python analiz hattı kurdu.",
+    "nasil": "Yüzey sıcaklığı ile 850 hPa sıcaklığı arasındaki fark hesaplanarak Pearson korelasyon katsayısı ve dağılım grafikleri çizdirildi.",
+    "neEdindiler": "Haftada 1-2 saatlik çalışmayla 30 günlük kış döneminde inversiyon kuvveti ile PM2.5 derişimi arasında 0,78 pozitif korelasyon saptadılar.",
+    "bizNasilKatki": "Veri çekme scripti, istatistiksel analiz fonksiyonları ve grafik şablonlarını GitHub üzerinden takıma sağlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İnversiyon ve Hava Kalitesi Deposu",
+      "url": "https://github.com/aura-team/inversiyon-kirlilik-analizi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Atmosferik Sınır Tabaka ve Hava Kirliliği Rehberi",
+      "url": "https://github.com/aura-team/dokumanlar",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara yüzey ve 850 hPa sıcaklık farkı (inversiyon indisi), ERA5, 2026-01",
+      "aciklama": "Atmosferik dikey kararlılık ve sıcaklık terselmesi tabakasının zamansal değişimi"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Atmosferik sıcaklık terselmesi ve kirleticilerin yüzeye hapsolma mekanizması şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava kalitesi indeksi ve kirlilik dağılımı, atmosferik sınır tabakanın inversiyon dinamiklerine bağlıdır.",
+  "senin": "CEV 308E Hava Kirlenmesi, CEV 242E Çevre Müh. İçin Hidroloji, CEV 211E Çevre Kimyası I",
+  "bizim": "MTO 311E Veri Analizi, MTO 337 Atmosfer Dinamiği I",
+  "karsilastirma": [
+   {
+    "senin": "CEV 308E Hava Kirlenmesi",
+    "bizim": "Sıcaklık terselmesi (inversiyon) ve karışım yüksekliği",
+    "neden": "Partikül madde (PM2.5) konsantrasyonunu hapseden dikey atmosferik kararlılık doğrudan sınır tabaka fiziğidir."
+   },
+   {
+    "senin": "CEV 242E Çevre Müh. İçin Hidroloji",
+    "bizim": "Havza yağış-akış ve buharlaşma dengesi",
+    "neden": "Kentsel su kaynaklarının doluluk hesabı sayısal hava tahmininden gelen alansal yağış ve buharlaşma girdilerine dayanır."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "İstanbul'da kış aylarında inversiyon ve hava kalitesi erken uyarısı",
+   "metin": "2025'te Marmara Belediyeler Birliği ve İTÜ Çevre Mühendisliği, sınır tabaka meteorolojisi verilerini kullanarak kentsel hava kirliliği erken uyarı sistemi geliştirdi. İnversiyon günlerinde PM10 pikleri başarıyla öngörüldü.",
+   "kaynakAdi": "Atmospheric Environment",
+   "kaynakUrl": "https://www.sciencedirect.com/journal/atmospheric-environment",
+   "tarih": "2025-01"
+  },
+  "detay": "Çevre mühendisliğinde hava kirliliği ve hidroloji dersleri, atmosferin dinamik koşullarını doğrudan birer sınır koşulu olarak kullanır. Bacalardan ve egzozlardan çıkan kirleticilerin havada nasıl dağılacağı veya yer seviyesinde hapsolup kalacağı tamamen meteorolojik sınır tabaka hareketlerine bağlıdır. İstasyon hava kalitesi verileri ile küresel tahminlerin rüzgâr ve inversiyon parametrelerini eşleştirmek, kentsel halk sağlığı için somut bir değer üretir. Sınav haftalarında tamamen derslerine odaklanırken, dönem içinde İstanbul'un kirlilik ve havza yağış verileri üzerinde çalışırsın. Yanına meteoroloji öğrencisi oturduğunda atmosferik türbülans katsayılarını çıkarır, sen de kirletici konsantrasyonu dağılımını hesaplarsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (CEV)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1469"
+   }
+  ]
+ },
+ "amac": "İstanbul hava kalitesi istasyonlarının PM2.5 ölçümleri ile yüzey-850 hPa dikey sıcaklık gradyanını karşılaştırarak kış inversiyonu kirlilik tuzaklarını tespit etmek.",
+ "ortakDers": [
+  {
+   "kod": "CEV 308E",
+   "projeyeKatki": "CEV 308E dersindeki hava kalitesi indeksi ve inversiyon kirlilik tuzakları ilkeleri, partikül madde konsantrasyonu sınır aşımlarını dikey atmosferik kararlılıkla ilişkilendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hava Kalitesi İndeksi parçalı doğrusal hesabı",
+     "nerede": "İstasyonlardan ölçülen mikrogram bölü metreküp cinsinden PM2.5 değerlerini standart sağlık risk kategorilerine dönüştürürken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "MTO 311E dersindeki zaman serisi temizleme ve çapraz korelasyon yöntemleri, hava kalitesi ölçümleri ile meteorolojik basınç seviyeleri arasındaki senkron bağıntıyı çıkarır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Sıcaklık terselmesinin başlaması ile yer seviyesinde partikül madde birikimi arasındaki saatlik gecikme süresini saptarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 337",
+   "projeyeKatki": "MTO 337 dersindeki hidrostatik denge ve termal rüzgâr bağıntısı, troposferin alt katmanlarındaki dikey sıcaklık profilini ve tabaka kalınlığı değişimini açıklar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Termal rüzgâr bağıntısı",
+     "nerede": "Yüzey ile 850 hPa seviyesi arasındaki sıcaklık gradyanından kaynaklanan dikey rüzgâr kaymasını analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "30 günlük yer PM2.5 ölçümleri ile yüzey-850 hPa sıcaklık farkını eşleştirip korelasyon grafiğini çıkarmak.",
+  "ayrinti": "Açık veri portalından İstanbul hava kalitesi istasyonlarının PM2.5 saatlik verileri çekilir. Aynı döneme ait ERA5 yüzey ve 850 hPa sıcaklık farkından dikey gradyan indisi hesaplanır. Python Pandas ve Seaborn kütüphaneleriyle 40 satırlık kod koşturularak kirlilik tuzağı günleri korelasyon grafiğiyle raporlanır.",
+  "adimlar": [
+   {
+    "baslik": "İstasyon PM2.5 ve Hava Kalitesi Verisi İndirme",
+    "oz": "İstanbul istasyonlarının saatlik partikül ölçümlerini CSV formatında derlemek.",
+    "ayrinti": "Çevre Şehircilik Bakanlığı sürekli izleme istasyonlarından Kadıköy, Ümraniye ve Esenyurt PM2.5 zaman serileri indirilir. Aykırı değerler temizlenerek 24 saatlik hareketli ortalamalar hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "pandas.read_csv('hava_kalitesi.csv') ile PM2.5 serisini yükleyip 24 saatlik yuvarlanan ortalamayı hesaplamak.",
+      "sade": "İstasyonlardan gelen saatlik kirlilik verileri tabloya aktarılır. Hatalı sensör okumaları temizlenerek günlük ortalama partikül konsantrasyonu çıkarılır.",
+      "altAdimlar": [
+       "1. İstasyon hava kalitesi veri dosyasını Pandas ile oku.",
+       "2. Negatif ve boş partikül ölçüm değerlerini ayıkla.",
+       "3. Günlük maruziyet için 24 saatlik ortalama sütunu oluştur."
+      ],
+      "kazanim": {
+       "ders": "CEV 308E",
+       "madde": "Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "scipy.ndimage.gaussian_filter1d(pm25_raw, sigma=2) ile sensör gürültüsünü filtrelemek.",
+      "sade": "Hava kalitesi sensörlerinin anlık gürültülü sıçramaları Gauss filtresiyle yumuşatılarak net eğilim ortaya çıkarılır.",
+      "altAdimlar": [
+       "1. Ham saatlik PM2.5 serisini diziye aktar.",
+       "2. 1 boyutlu Gauss filtresiyle ani gürültüleri bastır.",
+       "3. Filtrelenmiş eğriyi ham veriyle karşılaştır."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Sayısal filtreler uygulayarak yüksek frekanslı gürültüyü sinoptik dalgalardan ayırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "CEV 308E",
+      "madde": "Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Dikey Sıcaklık Gradyanı ve İnversiyon İndisi",
+    "oz": "Yüzey ile 850 hPa sıcaklık farkından dikey kararlılık serisi üretmek.",
+    "ayrinti": "ERA5 veya reanaliz verilerinden yer seviyesi 2 metre sıcaklığı ile 850 hPa (yaklaşık 1500 m) sıcaklığı çekilir. Delta T = T850 - Tyuzey farkı hesaplanır; pozitif değerler sıcaklık terselmesi (inversiyon) tabakasını işaret eder.",
+    "nasil": [
+     {
+      "teknik": "xarray.open_dataset('era5_seviyeler.nc') ile T_850 ve T_yuzey farkını alıp delta_T serisini türetmek.",
+      "sade": "Yeryüzü ile 1,5 km yükseklikteki hava sıcaklığı kıyaslanır. Yukarıdaki havanın yerdeki havadan daha sıcak olduğu inversiyon saatleri tespit edilir.",
+      "altAdimlar": [
+       "1. NetCDF atmosferik profil veri setini xarray ile aç.",
+       "2. 850 hPa sıcaklığından yüzey sıcaklığını çıkar.",
+       "3. Pozitif fark veren günleri inversiyon bayrağıyla işaretle."
+      ],
+      "kazanim": {
+       "ders": "MTO 337",
+       "madde": "Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek."
+      }
+     },
+     {
+      "teknik": "scipy.interpolate.interp1d ile dikey sıcaklık profilini standart kot seviyelerine enterpole etmek.",
+      "sade": "Farklı basınç seviyelerindeki sıcaklıklar dikey eksende birleştirilerek inversiyon tabakasının kalınlığı bulunur.",
+      "altAdimlar": [
+       "1. Yüzey ve 850 hPa sıcaklık değerlerini al.",
+       "2. Dikey ara değer enterpolasyonu fonksiyonunu çalıştır.",
+       "3. Sıcaklık terselmesinin tavan yüksekliğini saptar."
+      ],
+      "kazanim": {
+       "ders": "CEV 308E",
+       "madde": "Atmosferik inversiyon ve karışma yüksekliği verileriyle kirlilik birikim riskini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 337",
+      "madde": "Termal rüzgâr bağıntısıyla dikey rüzgâr kaymasını sıcaklık gradyanından türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Zaman Serisi Eşleme ve Çapraz Korelasyon",
+    "oz": "İki zaman serisini tarih indeksinde birleştirip Pearson katsayısını hesaplamak.",
+    "ayrinti": "Saatlik PM2.5 değerleri ile delta T inversiyon indisi ortak zaman ekseninde birleştirilir. SciPy kütüphanesiyle Pearson korelasyon katsayısı ve p-değeri hesaplanarak istatistiksel anlamlılık test edilir.",
+    "nasil": [
+     {
+      "teknik": "scipy.stats.pearsonr(df['delta_T'], df['pm25']) ile korelasyon katsayısı ve anlamlılık p değerini hesaplamak.",
+      "sade": "İki veri serisi yan yana getirilir. Havanın terseldiği günlerde kirletici parçacıkların ne kadar yükseldiği istatistiksel korelasyon formülüyle ölçülür.",
+      "altAdimlar": [
+       "1. İki zaman serisini tarih sütununa göre eşleştir.",
+       "2. SciPy pearsonr fonksiyonu ile korelasyon katsayısını bul.",
+       "3. Gecikmeli korelasyonla partikül birikme süresini incele."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     },
+     {
+      "teknik": "numpy.correlate(delta_T - delta_T.mean(), pm25 - pm25.mean(), mode='full') ile gecikmeli korelasyon serisini çıkarmak.",
+      "sade": "Sıcaklık terselmesi oluştuktan kaç saat sonra kirli havanın maksimum seviyeye çıktığı zaman gecikmesi analiziyle saptanır.",
+      "altAdimlar": [
+       "1. İki serinin ortalamasını çıkararak sıfır merkezli yap.",
+       "2. Çapraz korelasyon fonksiyonunu farklı zaman kaydırmalarıyla koştur.",
+       "3. En yüksek korelasyonun denk geldiği saatlik gecikmeyi belirle."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kirlilik Tuzağı Saçılım Grafiği ve Çıktı",
+    "oz": "Seaborn saçılım ve regresyon eğrisi çizdirerek kirlilik tuzağı günlerini vurgulamak.",
+    "ayrinti": "Delta T ve PM2.5 saçılım grafiği çizdirilir, Dünya Sağlık Örgütü kılavuz eşiği (15 µg/m³) yatay çizgi olarak eklenir. İnversiyonun şiddetlendiği günlerin kirlilik sınırını aştığı grafik üzerinde görselleştirilerek PNG formatında diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "seaborn.regplot(data=df, x='delta_T', y='pm25') ile regresyon eğrisi çizip grafiği diske aktarmak.",
+      "sade": "Elde edilen veriler saçılım grafiğine dökülür. Sıcaklık terselmesinin kirliliği yere hapsettiği günler kırmızı noktalarla vurgulanarak grafik diske aktarılır.",
+      "altAdimlar": [
+       "1. Matplotlib ve Seaborn ile saçılım grafiğini kurgula.",
+       "2. DSÖ hava kalitesi kılavuz sınır çizgisini grafiğe ekle.",
+       "3. Yüksek çözünürlüklü korelasyon figürünü PNG olarak diske aktar."
+      ],
+      "kazanim": {
+       "ders": "CEV 308E",
+       "madde": "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+      }
+     },
+     {
+      "teknik": "matplotlib.pyplot.savefig('inversiyon_kirlilik_korelasyonu.png', dpi=300) ile analiz figürünü diske aktarmak.",
+      "sade": "Korelasyon grafiği ve regresyon doğrusu yüksek kalitede dosyalanarak açık kaynak depoya eklenir.",
+      "altAdimlar": [
+       "1. Dağılım grafiği üzerine regresyon eğimini ve p değerini yazdır.",
+       "2. Eksen etiketlerini ve birimleri düzenle.",
+       "3. Grafik dosyasını PNG formatında diske yaz."
+      ],
+      "kazanim": {
+       "ders": "CEV 308E",
+       "madde": "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "CEV 308E",
+      "madde": "Hava Kalitesi İndeksi hesaplayarak sınır değer aşımı erken uyarıları oluşturmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için 30 günlük dikey sıcaklık gradyanı ile PM2.5 korelasyon grafiği ve kirlilik tuzağı analiz scripti.",
+  "senden": "Çevre mühendisliği hava kalitesi sınır değerleri, PM2.5 veri temizleme adımları ve sağlık riski yorumu.",
+  "bizden": "Troposferik dikey sıcaklık profilleri temini, atmosferik sınır tabaka analizi ve korelasyon kodu kurgusu."
+ },
+ "gorseller": [
+  {
+   "tur": "kaydirma",
+   "url": "https://www.iqair.com/world-air-quality",
+   "aciklama": "IQAir küresel hava kalitesi ve partikül madde izleme arayüzü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul PM2.5 partikül konsantrasyonu ve inversiyon etkisi, 2026-01",
+   "aciklama": "Kış aylarında sıcaklık terselmesi günlerinde partikül kirliliğinin mekânsal dağılımı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Atmosferik inversiyon tabakası altında kirliliğin dikey hapsolma mekanizması şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS CEV 308E Ders Katalog Formu",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=CEV&dersNo=308"
+  },
+  {
+   "ad": "EEA Avrupa Çevre Ajansı Hava Kalitesi Portalı",
+   "url": "https://www.eea.europa.eu/en/topics/in-depth/air-pollution"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-INS-CEV-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "cb859d55abcf"
+ }
+}

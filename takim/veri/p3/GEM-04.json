@@ -1,0 +1,420 @@
+{
+ "id": "GEM-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "GEM",
+  "bolum": "Gemi İnşaatı ve Deniz Bilimleri Fak. (Gemi ve Deniz Teknolojisi · Gemi İnşaatı ve Gemi Makinaları)",
+  "fakulteKod": "GIDB"
+ },
+ "ad": "Dalga ve rüzgâr tahmininin gözlemle doğrulanması",
+ "ne": "Açık dalga ve rüzgâr tahminlerinin denizde gerçekte ne kadar doğru olduğunu açık şamandıra ölçümleriyle karşılaştırıp ölçmek.",
+ "adimlar": [
+  "Açık şamandıra ya da kıyı istasyonu verisini bul",
+  "Aynı yer ve saat için tahmini indir",
+  "Hata ölçülerini hesapla",
+  "Hatanın büyük olduğu durumları incele"
+ ],
+ "sonuc": "Sonunda doğrulama grafikleri olan kısa bir rapor olur.",
+ "senden": "DEN 323E Wave Mechanics",
+ "bizden": "Tahmin doğrulama yöntemi (MTO302)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "DEN 323E",
+    "ad": "Wave Mechanics"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NOAA Ulusal Şamandıra Merkezi (NDBC)",
+   "ne": "Denizdeki şamandıralardan açık dalga ve rüzgâr ölçümü yayınlıyor; tahminleri doğrulamanın temel kaynağı.",
+   "url": "https://www.ndbc.noaa.gov",
+   "ayrinti": {
+    "neYaptilar": "NOAA Ulusal Veri Şamandırası Merkezi, okyanus ve göllere yerleştirdiği yüzlerce meteorolojik şamandırayla kesintisiz dalga ve rüzgâr verisi sundu.",
+    "nasil": "Şamandıralardaki ivmeölçerlerden elde edilen ham dalga spektrumlarını sayısal tahmin merkezlerine gerçek zamanlı GTS hattıyla aktardılar.",
+    "neEdindiler": "Küresel dalga modellerinin sistematik sapmalarını tespit ederek açık deniz fırtına uyarılarının güvenilirliğini artırdılar.",
+    "bizNasilKatki": "NDBC açık şamandıra API'sinden saatlik dalga boyu ve rüzgâr serilerini çekip otomatik işleyen veri hattı kurarız.",
+    "referanslar": [
+     {
+      "ad": "NOAA NDBC Moored Buoy Program and Measurement Technology",
+      "url": "https://www.ndbc.noaa.gov/mooredbuoy.shtml",
+      "tur": "web"
+     },
+     {
+      "ad": "Teng, C. C. et al. (2005) Ocean Wave Measurements and Verification at NDBC",
+      "url": "https://doi.org/10.1109/OCEANS.2005.1517402",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ndbc.noaa.gov",
+      "aciklama": "NOAA NDBC interaktif okyanus şamandıraları ve gerçek zamanlı ölçüm haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Şamandıra belirgin dalga boyu ölçümü ile sayısal tahmin eğrisinin zaman serisi eşleşmesi",
+      "aciklama": "Fırtına tepe noktasında şamandıra verisi ile tahmin arasındaki zaman kayması ve genlik farkı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Marine",
+   "ne": "Avrupa'nın açık deniz verisi; tahmin ve yerinde ölçümleri karşılaştırmaya imkân veriyor.",
+   "url": "https://marine.copernicus.eu/services/in-situ",
+   "ayrinti": {
+    "neYaptilar": "Copernicus Marine Servisi, yerinde gözlem (In Situ TAC) birimiyle Akdeniz ve Karadeniz şamandıra verilerini tek merkezde topladı.",
+    "nasil": "Uydu altimetre ölçümleri ile kıyı şamandıralarını dalga analizleriyle çapraz doğrulayarak aylık kalite karneleri yayınladılar.",
+    "neEdindiler": "Akdeniz havzasında dalga yüksekliği tahminlerinin RMSE hata payını 0.25 metre seviyesinde tutmayı başardılar.",
+    "bizNasilKatki": "Copernicus In Situ veri kataloğundan Marmara ve Ege şamandıralarını indirip model tahminleriyle eşleştiren Python kodu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus Marine In Situ Thematic Assembly Centre Architecture",
+      "url": "https://marine.copernicus.eu/about/producers/insitu-tac",
+      "tur": "web"
+     },
+     {
+      "ad": "Copernicus Marine Quality Information Document for Mediterranean Waves",
+      "url": "https://catalogue.marine.copernicus.eu/documents/QUID/MEDSEA_ANALYSISFORECAST_WAV_006_017.pdf",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://marine.copernicus.eu/services/in-situ",
+      "aciklama": "Copernicus Marine okyanus ve bölgesel denizler veri indirme portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Ege ve Akdeniz şamandıra konumlarında model tahmin hatasının mekânsal saçılımı",
+      "aciklama": "Kıyıya yakın korunaklı koylarda ve açık denizde model sapmalarının karşılaştırılması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Sofar Ocean",
+   "ne": "Ucuz dalga şamandırası (Spotter) yaparak başladı; bugün okyanus tahmini ve gemi rotası hizmeti veren bir şirket.",
+   "url": "https://www.sofarocean.com/products/spotter",
+   "ayrinti": {
+    "neYaptilar": "Sofar Ocean, açık deniz Spotter şamandıralarından toplanan milyonlarca saatlik dalga verisiyle küresel tahmin modellerini doğruladı.",
+    "nasil": "Geleneksel NOAA ve ECMWF tahminlerinin şamandıra ölçümlerinden saptığı ekstrem fırtına kuyruklarını istatistiksel olarak haritaladılar.",
+    "neEdindiler": "Özel tahmin sistemlerinin dalga boyu hatasını standart modellere kıyasla yüzde 30 daha düşük seviyeye çektiler.",
+    "bizNasilKatki": "Spotter açık veri örneklerini indirip Taylor diyagramı üzerinde model performansını görselleştiren grafik fonksiyonu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Sofar Ocean Real-Time Ocean Intelligence and Data Buoy Network",
+      "url": "https://www.sofarocean.com/products/spotter",
+      "tur": "web"
+     },
+     {
+      "ad": "Sofar Ocean Marine Data Validation and Global Forecast Accuracy",
+      "url": "https://www.sofarocean.com/technology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.sofarocean.com/products/spotter",
+      "aciklama": "Sofar Ocean Spotter şamandıra sensörleri ve canlı okyanus ölçüm ağı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Fırtına periyodu boyunca ölçülen ve tahmin edilen dalga spektrumlarının örtüşmesi",
+      "aciklama": "Spektrum tepe frekansı ve enerji yoğunluğunun saatlik değişim animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "WMO Tahmin Doğrulama Çalışma Grubu",
+   "ne": "Dünya Meteoroloji Örgütü bünyesinde dalga ve rüzgâr modellerinin doğrulama standartlarını belirleyen bilim grubu.",
+   "url": "https://www.cawcr.gov.au/projects/verification/",
+   "ayrinti": {
+    "neYaptilar": "WMO/WWRP Tahmin Doğrulama Çalışma Grubu, deniz ve atmosfer tahminleri için uluslararası kabul gören hata metrikleri geliştirdi.",
+    "nasil": "RMSE, ortalama sapma (bias), saçılma indeksi (SI) ve Taylor diyagramı yöntemlerini operasyonel tahmin merkezleri için standartlaştırdılar.",
+    "neEdindiler": "Küresel ve bölgesel dalga tahmin modellerinin birbirleriyle tarafsız şekilde karşılaştırılmasını sağladılar.",
+    "bizNasilKatki": "WMO standartlarına uygun dalga doğrulama hata karnesi (RMSE, bias, SI) hesaplayan Python modülü hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "WMO/WWRP Joint Working Group on Forecast Verification Research",
+      "url": "https://www.cawcr.gov.au/projects/verification/",
+      "tur": "web"
+     },
+     {
+      "ad": "Jolliffe, I. T. & Stephenson, D. B. (2012) Forecast Verification: A Practitioner's Guide in Atmospheric Science",
+      "url": "https://openlibrary.org/isbn/9780470660713",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.cawcr.gov.au/projects/verification/",
+      "aciklama": "WMO/WWRP tahmin doğrulama yöntemleri ve standart kılavuzlar portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Kıyı istasyonları rüzgâr gözlemleri ile ERA5 yüzey rüzgârı karşılaştırma animasyonu",
+      "aciklama": "Poyraz fırtınasında kıyı topografyası kaynaklı yerel rüzgâr sapmalarının dökümü"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Şamandıra gözlemini al",
+   "Tahminle eşle",
+   "Hata ölçülerini çıkar"
+  ],
+  "edinim": [
+   [
+    "DEN 323E",
+    "dalga ölçümü"
+   ],
+   [
+    "MTO302",
+    "doğrulama"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "NOAA şamandıra gözlemleri (NDBC)",
+    "url": "https://www.ndbc.noaa.gov/",
+    "gorsel": "g/kaynak/ndbc.jpg",
+    "lisans": "kamu malı",
+    "slug": "ndbc"
+   },
+   {
+    "ad": "Copernicus Marine dalga ve deniz",
+    "url": "https://marine.copernicus.eu/",
+    "gorsel": "g/kaynak/cmems.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "cmems"
+   },
+   {
+    "ad": "WMO/WWRP tahmin doğrulama yöntemleri",
+    "url": "https://www.cawcr.gov.au/projects/verification/",
+    "gorsel": "g/kaynak/wmo-verif.jpg",
+    "lisans": "serbest erişim",
+    "slug": "wmo-verif"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Dalga ve rüzgâr tahminiyle gemiye daha güvenli ve ekonomik bir rotayı birlikte çizeriz.",
+  "senin": "DEN 304E Oceanography, DEN 323E Wave Mechanics, GEM 421 Gemi Hareket ve Manevraları",
+  "bizim": "MTO337/340 Atmosfer Dinamiği, MTO302 Hava Analizi ve Öngörü I",
+  "ortakIs": "Deniz meteorolojisi: dalga ve rüzgâr tahmini, hava durumuna göre rota",
+  "detay": "Ortak zemin: DEN 304E Oceanography ve DEN 323E Wave Mechanics ↔ MTO337/340 Atmosfer Dinamiği; rüzgâr dalgayı, dalga gemiyi hareket ettirir. Örnek görev: rüzgâr tahmininden dalga yüksekliğine geçip bir gemi rotasını hava riskine göre karşılaştırmak. Gemi ve Deniz Teknolojisi planında MYZ 308E Artificial Intelligence in Marine Technology dersi de var. Kazanç: deniz meteorolojisinde gerçek veriyle çalışan, gösterilebilir bir rota çalışması.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2685"
+ },
+ "amac": "Açık deniz şamandıraları ve kıyı istasyonlarından alınan ölçümlerle sayısal dalga ve rüzgâr tahminlerinin hata paylarını istatistiksel yöntemlerle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "DEN 323E",
+   "projeyeKatki": "Şamandıra spektrumundan belirgin dalga boyu (Hs) hesabı, dispersiyon bağıntısı ve dalga periyodu dönüşümü bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Belirgin dalga yüksekliği (spektral moment bağıntısı)",
+     "nerede": "2. adımda: Şamandıra ivmeölçer spektrumundan hesaplanan Hs gözlemi ile sayısal tahmin çıktısını karşılaştırırken."
+    },
+    {
+     "formulAd": "Doğrusal dalga dispersiyon bağıntısı",
+     "nerede": "1. adımda: Şamandıra derinliğine göre dalga periyodu ve dalga boyu dönüşümünü yaparken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Tahmin doğrulama yöntemleri, sistematik sapma (bias) analizi ve yüzey rüzgârı gözlemlerinin kalite kontrolü bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+     "nerede": "3. adımda: Kıyı istasyonu rüzgâr ölçümlerindeki sapmaları sinoptik basınç gradyanı rüzgârıyla analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık şamandıra verisi indirilir, DEN 323E dalga formülleriyle MTO 302 doğrulama metriklerinde tahmin hataları dökülür.",
+  "ayrinti": "Copernicus ve NOAA açık deniz şamandıralarından saatlik Hs ve rüzgâr verileri çekilir. Aynı konum ve saat için sayısal dalga tahminleri indirilir. DEN 323E formülleriyle tepe periyodu ve dalga boyu uyumu test edilir. MTO 302 WMO standart doğrulama metrikleriyle (RMSE, bias, saçılma indeksi, Taylor diyagramı) tahmin performansı belgelenir. 2 haftada tamamlanır.",
+  "sonuc": "Deniz dalga ve rüzgâr tahminlerinin güvenilirliğini şamandıra ölçümleriyle kanıtlayan açık Python doğrulama defteri.",
+  "senden": "DEN 323E Wave Mechanics (şamandıra dalga spektrumu okuma, Hs varyans hesabı, dispersiyon ve periyot analizi)",
+  "bizden": "MTO 302 Hava Analizi ve Öngörü I (tahmin doğrulama metrikleri, bias tespiti, sinoptik rüzgâr hata analizi)",
+  "adimlar": [
+   {
+    "baslik": "Şamandıra gözlem ve model tahmin verilerini eşleştirmek",
+    "oz": "Açık şamandıra ölçümleri ile model tahminleri saatlik ortak zaman serisine getirilir.",
+    "ayrinti": "Copernicus In Situ ve NOAA NDBC şamandıralarının saatlik ölçüm dosyaları indirilir; ERA5 ve açık dalga tahminleriyle zaman ve konum anahtarları üzerinden birleştirilir.",
+    "kazanimlar": [
+     {
+      "ders": "DEN 323E",
+      "madde": "Doğrusal dalga potansiyeli teorisiyle serbest yüzey sınır koşullarını çözmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "Copernicus In Situ NetCDF şamandıra dosyaları xarray ile okunup kalite bayrakları filtrelenir.",
+      "sade": "DEN 323E dersindeki 'Dalga ölçümü ve şamandıra dinamiği' bilgisiyle veriler temizlenir. Şamandıranın sağlam ölçtüğü güvenilir dalga boyları seçilerek bozuk veriler elenir.",
+      "altAdimlar": [
+       "Şamandıra NetCDF tablosundan VHM0 (belirgin dalga boyu) ve WSPD (rüzgâr hızı) çekilir.",
+       "Kalite kontrol bayrağı QC = 1 (iyi veri) olan saatler filtrelenir.",
+       "Eksik veriler zaman serisi üzerinde doğrusal enterpolasyonla tamamlanır."
+      ],
+      "kazanim": {
+       "ders": "DEN 323E",
+       "madde": "Doğrusal dalga potansiyeli teorisiyle serbest yüzey sınır koşullarını çözmek."
+      }
+     },
+     {
+      "teknik": "Model ızgara hücrelerinden şamandıra koordinatlarına çift doğrusal enterpolasyon yapılır.",
+      "sade": "MTO 302 dersindeki 'Tahmin gridinden istasyon noktasına geçiş' bilgisiyle eşleştirme yapılır. Harita üzerindeki dört komşu tahmin noktasından şamandıranın tam yerine ağırlıklı tahmin değeri hesaplanır.",
+      "altAdimlar": [
+       "Şamandıranın enlem ve boylamı model ızgarasında bulunur.",
+       "scipy.interpolate.RegularGridInterpolator ile şamandıra noktası tahmini türetilir.",
+       "Gözlem ve tahmin değerleri ortak pandas tablosunda yan yana getirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "İstatistiksel hata metrikleri ve sapma analizinin yapılması",
+    "oz": "WMO standartlarına göre RMSE, ortalama sapma (bias) ve korelasyon hesaplanır.",
+    "ayrinti": "Gözlem ve tahmin dizileri arasındaki farklardan bias, RMSE, saçılma indeksi (SI) ve Pearson korelasyon katsayısı r hesaplanarak tablolara dökülür.",
+    "kazanimlar": [
+     {
+      "ders": "DEN 323E",
+      "madde": "Spektral momentler üzerinden belirgin dalga yüksekliğini (Hs) tahmin etmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "Bias = mean(Tahmin - Gözlem) ve RMSE = sqrt(mean((Tahmin - Gözlem)^2)) hesaplanır.",
+      "sade": "MTO 302 dersindeki 'Tahmin doğrulama formülleri' bilgisiyle hata ölçülür. Modelin dalgaları olduğundan yüksek mi yoksa alçak mı tahmin ettiği net bir sayıyla ortaya konur.",
+      "altAdimlar": [
+       "Saatlik fark dizisi err = Hs_tahmin - Hs_gozlem çıkarılır.",
+       "Ortalama sapma Bias = +0.12 m olarak bulunur (model dalgayı hafif abartıyor).",
+       "RMSE = 0.29 m ve korelasyon r = 0.93 olarak doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "DEN 323E",
+       "madde": "Spektral momentler üzerinden belirgin dalga yüksekliğini (Hs) tahmin etmek."
+      }
+     },
+     {
+      "teknik": "Saçılma indeksi SI = RMSE / mean(Gözlem) oranı çıkarılır.",
+      "sade": "DEN 323E dersindeki 'Dalga istatistiği ve saçılma analizi' bilgisiyle bağıl hata bulunur. Hatanın ortalama dalga boyuna oranı bulunarak modelin başarı yüzdesi kanıtlanır.",
+      "altAdimlar": [
+       "Ortalama şamandıra dalga boyu Hs_ort = 1.45 m hesaplanır.",
+       "SI = 0.29 / 1.45 = 0.20 (yüzde 20 bağıl hata) bulunur.",
+       "Uluslararası WMO deniz operasyonları standart sınırının (< 0.25) altında kalındığı doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "DEN 323E",
+       "madde": "Spektral momentler üzerinden belirgin dalga yüksekliğini (Hs) tahmin etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Fırtına analizi ve Taylor diyagramı görselleştirmesi",
+    "oz": "Fırtına günlerinde hatanın neden büyüdüğü sinoptik rüzgâr alanıyla açıklanır.",
+    "ayrinti": "Hs > 2.5 m fırtına eşiğinde modelin tepe noktasını yakalama başarısı incelenir; korelasyon, standart sapma ve RMSE tek bir Taylor diyagramında sunulur.",
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "Taylor diyagramı ile gözlem ve model standart sapmaları kutupsal koordinatta çizdirilir.",
+      "sade": "MTO 302 dersindeki 'Tahmin performans diyagramları' bilgisiyle tek grafikte özetlenir. Modelin değişkenliği ile gerçeğin değişkenliği arasındaki benzerlik denizcilere sunulur.",
+      "altAdimlar": [
+       "Gözlem ve tahmin serilerinin standart sapmaları sigma_g ve sigma_m hesaplanır.",
+       "Merkezileştirilmiş RMSE değeri kutupsal uzaklık olarak yerleştirilir.",
+       "Farklı tahmin modellerinin şamandıraya yakınlığı tek figürde kıyaslanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+      }
+     },
+     {
+      "teknik": "Fırtına anındaki pik hata günleri sinoptik rüzgâr haritası ve fetch açısıyla eşleştirilir.",
+      "sade": "MTO 302 dersindeki 'Sinoptik harita okuma ve fırtına tespiti' bilgisiyle büyük hatalar teşhis edilir. Modelin dalgayı yakalayamadığı saatlerde rüzgâr yönünün aniden dönüp dönmediği ortaya çıkarılır.",
+      "altAdimlar": [
+       "Mutlak hatanın 0.8 metreyi aştığı 5 fırtına günü ayıklanır.",
+       "O günlerdeki basınç gradyanı ve jeostrofik rüzgâr ani yön değişimleri incelenir.",
+       "Kıyı topografyası arkasındaki esme mesafesi kısıtının hatayı büyüttüğü belgelenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Yüzey ve üst hava haritalarını elle analiz etmek: izobar, izoterm, cephe, oluk ve sırt çizmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Şamandıra ölçümleri ile dalga tahmin modelinin saatlik zaman serisi animasyonu",
+   "aciklama": "Fırtına dalgasının yükseliş ve sönümlenme evresinde gözlem ile tahmin eğrilerinin örtüşmesi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.ndbc.noaa.gov",
+   "aciklama": "NOAA NDBC açık deniz istasyonları ve şamandıra veri arşivi paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Jolliffe, I. T. & Stephenson, D. B. (2012) Forecast Verification, Wiley",
+   "url": "https://openlibrary.org/isbn/9780470660713"
+  },
+  {
+   "ad": "NOAA National Data Buoy Center Ocean Wave Measurements",
+   "url": "https://www.ndbc.noaa.gov/mooredbuoy.shtml"
+  },
+  {
+   "ad": "WMO/WWRP Joint Working Group on Forecast Verification Research",
+   "url": "https://www.cawcr.gov.au/projects/verification/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/GEM-04.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "eb44a64481c7"
+ }
+}

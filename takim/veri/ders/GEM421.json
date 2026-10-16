@@ -1,0 +1,155 @@
+{
+ "kod": "GEM 421",
+ "ad": "Gemi Hareket ve Manevraları",
+ "bolum": "Gemi İnşaatı ve Gemi Makineleri Mühendisliği",
+ "obsNo": "421",
+ "ozet": "Dalgalı denizde gemi hareketlerini (baş-kıç vurma, yalpa, dalıp-çıkma), gemi tepki genlik operatörlerini (RAO), rüzgâr ve dalgadan kaynaklanan ilave direnci ile rota manevra dinamiklerini öğretir. Geminin fırtınalı denizde seyir emniyetini, hız kaybını ve yakıt optimizasyonunu hesaplamanın temel dersidir.",
+ "neOgrenirsin": [
+  "Gemi hareket denklemlerini 6 serbestlik derecesinde kurup dalga zorlamalarını hesaplamak.",
+  "Genlik yanıt operatörleri (RAO) ile dalga spektrumundan gemi yalpa tepkilerini türetmek.",
+  "Dalgalı denizde dalga ve rüzgâr kaynaklı ilave direnci (added resistance) hesaplamak.",
+  "Rüzgâr ve akıntı altında gemi manevra kabiliyeti ve dönme dairesi analizini yapmak.",
+  "Karşılaşma frekansı dönüşümüyle dalga rezonansından kaçınacak optimum rota açısını bulmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Genlik yanıt operatörü (RAO) ve hareket spektrumu",
+   "tex": "S_R(\\omega) = |\\mathrm{RAO}(\\omega)|^2 S_\\zeta(\\omega)",
+   "terimler": [
+    [
+     "S_R(\\omega)",
+     "geminin hareket tepki spektrumu (yalpa veya baş-kıç vurma)",
+     "m²·s veya rad²·s"
+    ],
+    [
+     "|\\mathrm{RAO}(\\omega)|",
+     "gemi gövde transfer fonksiyonu genliği",
+     "m/m veya rad/m"
+    ],
+    [
+     "S_\\zeta(\\omega)",
+     "deniz dalga spektral yoğunluğu",
+     "m²·s"
+    ],
+    [
+     "\\omega",
+     "dalga açısal frekansı",
+     "rad/s"
+    ]
+   ],
+   "sade": "Geminin dalgalara verdiği dinamik tepki, dalga spektrumunun gemi gövde transfer katsayısıyla çarpılmasıyla bulunur. Bu formülle hangi frekanstaki dalgaların gemiyi tehlikeli şekilde sallayacağı hesaplanır.",
+   "ornek": "Belirgin dalga boyu 3 m olan bir fırtınada RAO tepe noktası gemi doğal periyodu T_n = 10 s ile çakışırsa yalpa genliği 18 dereceye tırmanarak yük kayması riski yaratır.",
+   "nerede": "GEM-02 projesinde fırtınalı alternatif rotalarda gemi sallantı şiddeti ve seyir konforunu kıyaslarken."
+  },
+  {
+   "ad": "Dalgalardan kaynaklanan ilave gemi direnci",
+   "tex": "R_{AW} = 2 \\rho g \\frac{B^2}{L} \\int_0^\\infty C_{AW}(\\omega) S_\\zeta(\\omega) \\, d\\omega",
+   "terimler": [
+    [
+     "R_{AW}",
+     "düzensiz dalgalardan kaynaklanan ilave gemi direnci",
+     "N"
+    ],
+    [
+     "\\rho",
+     "deniz suyu yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "m/s²"
+    ],
+    [
+     "B",
+     "gemi genişliği",
+     "m"
+    ],
+    [
+     "L",
+     "gemi boyu",
+     "m"
+    ],
+    [
+     "C_{AW}(\\omega)",
+     "boyutsuz ilave dalga direnci transfer fonksiyonu",
+     "birimsiz"
+    ],
+    [
+     "S_\\zeta(\\omega)",
+     "dalga enerji spektrumu",
+     "m²·s"
+    ]
+   ],
+   "sade": "Gemi sakin sudaki direncine ek olarak çarptığı dalgaları yarmak için ek güç harcar. Baştan gelen sert dalgalar gemiyi frenleyerek yakıt sarfiyatını katlar.",
+   "ornek": "Boyu 150 m, genişliği 22 m olan bir kargo gemisi 2,5 m baş dalgaya girdiğinde R_AW = 140 kN ilave direnç oluşur; gemi hızı 14 knot'tan 10,5 knot'a düşer.",
+   "nerede": "GEM-02 projesinde fırtınanın içinden geçen düz rota ile etrafından dolanan hava rotasının yakıt tüketimini kıyaslarken."
+  },
+  {
+   "ad": "Dalga karşılaşma frekansı bağıntısı",
+   "tex": "\\omega_e = \\omega - \\frac{\\omega^2 V}{g} \\cos\\mu",
+   "terimler": [
+    [
+     "\\omega_e",
+     "geminin hissettiği dalga karşılaşma açısal frekansı",
+     "rad/s"
+    ],
+    [
+     "\\omega",
+     "durgun sudaki dalga açısal frekansı",
+     "rad/s"
+    ],
+    [
+     "V",
+     "gemi seyir hızı",
+     "m/s"
+    ],
+    [
+     "g",
+     "yer çekimi ivmesi",
+     "m/s²"
+    ],
+    [
+     "\\mu",
+     "dalga yönü ile gemi pruvası arasındaki karşılaşma açısı",
+     "radyan veya derece"
+    ]
+   ],
+   "sade": "Gemi dalgaya doğru hızlandıkça dalgalar pruvaya daha sık çarpar; dalgayla aynı yönde aktığında ise dalgalar seyrekleşir. Rota açısını 15-20 derece kırmak rezonans tehlikesini savuşturur.",
+   "ornek": "Periyodu 8 s olan dalgada 15 knot (7,7 m/s) hızla baştan dalga alan gemide (mu = 0) karşılaşma periyodu 5,1 saniyeye inerken, rota 30 derece kırıldığında periyot 5,7 saniyeye çıkar.",
+   "nerede": "GEM-02 projesinde rüzgâr ve dalga yönüne göre rota açılarını optimize edip rezonanstan kaçarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ship_motions.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Dalgalı denizde 6 serbestlik derecesinde gemi hareket eksenleri"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Ege ve Marmara rotasında dalga karşılaşma açısına bağlı ilave direnç dağılımı",
+   "aciklama": "Fırtına merkezine yaklaştıkça baştan alınan dalgalar yüzünden gemi hız kaybının haritalanması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GEM 421 (Gemi Hareket ve Manevraları)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEM&dersNo=421"
+  },
+  {
+   "ad": "Lewis, E. V. (1989) Principles of Naval Architecture: Motions in Waves and Controllability, SNAME",
+   "url": "https://openlibrary.org/isbn/9780939773121"
+  },
+  {
+   "ad": "Bhattacharyya, R. (1978) Dynamics of Marine Vehicles, Wiley-Interscience",
+   "url": "https://openlibrary.org/isbn/9780444534798"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GEM&dersNo=421"
+}

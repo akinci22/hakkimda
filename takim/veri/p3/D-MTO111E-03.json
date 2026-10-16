@@ -1,0 +1,431 @@
+{
+ "id": "D-MTO111E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 111E",
+  "dersAd": "Atmosfer Bilimlerine Giriş",
+  "kol": "ikisi"
+ },
+ "ad": "Jeostrofik rüzgâr gerçek rüzgâra ne kadar yakın?",
+ "ne": "İstanbul çevresindeki dört noktanın yükseklik farkından jeostrofik rüzgârı hesapla; 500 hPa ve 1000 hPa'da gerçek rüzgârla kıyasla.",
+ "adimlar": [
+  "Open-Meteo Historical Forecast API'den İstanbul'un 1° K, G, D ve B'sindeki dört noktada 500 ve 1000 hPa yüksekliğini bir ay için çek.",
+  "Python'da merkezî farkla ∂Z/∂x ve ∂Z/∂y'yi bul (dx ≈ 168 km, dy ≈ 222 km); f'yi 41° K için hesapla.",
+  "ug = −(g/f)·∂Z/∂y ve vg = (g/f)·∂Z/∂x ile jeostrofik rüzgârı ve hızını hesapla.",
+  "Merkez noktadaki gerçek rüzgâr hızını aynı seviyeler için wind_speed_unit=ms ile çek.",
+  "Jeostrofik ve gerçek hızı iki seviye için ayrı saçılım grafiğinde, 1:1 çizgisiyle birlikte çiz.",
+  "Grafiği Plotly ile seviye seçilebilen etkileşimli görsele çevir; 10 dakikalık videoyla anlat, hoca incelemesine gönder."
+ ],
+ "sonuc": "İki seviyenin saçılım grafiği. 500 hPa noktaları 1:1 çizgisine yakın, 1000 hPa'da gerçek rüzgâr belirgin biçimde zayıfsa sürtünmenin etkisini kendi verinle göstermişsin.",
+ "dayanak": "Holton ve Hakim 2013",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 111E",
+    "ad": "Atmosfer Bilimlerine Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "MIT Yer, Atmosfer ve Gezegen Bilimleri Dinamik Meteoroloji Grubu",
+   "ne": "Dönen akışkanlar dinamiğinde jeostrofik denge ve sınır tabakası sürtünme sapmalarını laboratuvar ve sayısal deneylerle inceleyen araştırma grubu.",
+   "url": "https://eapsweb.mit.edu/research/atmosphere",
+   "ayrinti": {
+    "neYaptilar": "Büyük ölçekli atmosferik hareketlerde jeostrofik rüzgâr yaklaşımının geçerlilik sınırlarını ve Rossby sayısını analiz ettiler.",
+    "nasil": "MTO 111E jeostrofik rüzgâr bileşenleri ve Coriolis dengesi formüllerini küresel hava analizleriyle test ettiler.",
+    "neEdindiler": "Troposferin serbest katmanlarında jeostrofik dengenin %90'ın üzerinde doğrulukla sağlandığını ortaya koyan ders materyali yayınladılar.",
+    "bizNasilKatki": "İstanbul enlemi için 500 hPa ve 1000 hPa seviyelerinde yerel jeostrofik doğrulama betiğini kurabiliriz.",
+    "referanslar": [
+     {
+      "ad": "MIT EAPS Atmosferik Araştırmalar Portalı",
+      "url": "https://eapsweb.mit.edu/research/atmosphere",
+      "tur": "web"
+     },
+     {
+      "ad": "Holton ve Hakim 2013 Dinamik Meteoroloji Ders Kitabı",
+      "url": "https://doi.org/10.1016/C2009-0-63394-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://eapsweb.mit.edu/research/atmosphere",
+      "aciklama": "MIT atmosfer bilimleri dinamik meteoroloji araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Geostrophic_wind.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Basınç gradyan kuvveti ve Coriolis kuvveti dengesinde jeostrofik rüzgâr şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Reading Üniversitesi Meteoroloji Akışkanlar Dinamiği Grubu",
+   "ne": "Sınır tabakası sürtünmesi ve jeostrofik rüzgâr sapmalarını gözlem kuleleri ve radarlarla ölçen akademik merkez.",
+   "url": "https://research.reading.ac.uk/meteorology/",
+   "ayrinti": {
+    "neYaptilar": "Yeryüzü sürtünmesinin jeostrofik rüzgârı zayıflatıp izobarları kesen açı oluşturmasını deneysel verilerle belgelediler.",
+    "nasil": "MTO 111E düşey rüzgâr profili ve sonlu fark gradyan formüllerini 1000 hPa gözlemleriyle kıyasladılar.",
+    "neEdindiler": "Ekman spiralinin yüzey katmanındaki hız kaybını ve açı sapmasını kanıtlayan açık veri seti sundular.",
+    "bizNasilKatki": "İstanbul çevresindeki 4 noktanın yükseklik verisiyle 1000 hPa'daki hız kaybını Colab üzerinde hesaplayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Reading Üniversitesi Meteoroloji Araştırma Portalı",
+      "url": "https://research.reading.ac.uk/meteorology/",
+      "tur": "web"
+     },
+     {
+      "ad": "Wallace ve Hobbs 2006 Atmospheric Science Ders Kitabı",
+      "url": "https://doi.org/10.1016/C2009-0-00034-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://research.reading.ac.uk/meteorology/",
+      "aciklama": "Reading Üniversitesi atmosfer dinamiği ve meteoroloji portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ekman_spiral.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosferik sınır tabakasında sürtünme kaynaklı rüzgâr dönmesi ve Ekman spirali"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Atmosferik Dinamik Veri ve API Platformu",
+   "ne": "Çoklu koordinatlarda jeopotansiyel yükseklik ve rüzgâr bileşenlerini yüksek çözünürlüklü API ile sunan açık veri sağlayıcısı.",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+   "ayrinti": {
+    "neYaptilar": "Kullanıcıların tek bir istekte birden fazla enlem ve boylam için basınç seviyeleri verilerini çekmesini sağlayan mimari kurdular.",
+    "nasil": "MTO 111E sonlu fark gradyanı için gereken 1 derecelik koordinat ağını saatlik çözünürlükle sağladılar.",
+    "neEdindiler": "Atmosfer bilimcilerin merkezi fark gradyanı ve jeostrofik rüzgâr hesaplarını saniyeler içinde yapabilmesini sağladılar.",
+    "bizNasilKatki": "Python betiğinde 4 koordinat noktasını tek API çağrısında toplayarak yerel veri akışını hızlandırabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Çoklu Konum API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Rasp vd. 2024 WeatherBench 2 Kıyaslama Raporu",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "Open-Meteo çoklu nokta atmosfer verisi API arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "Rüzgâr hızı ve jeopotansiyel yükseklik değişkenleri sorgu ekranı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Atmosfer Dinamiği ve Rüzgâr Analiz Ekibi",
+   "ne": "İstanbul çevresindeki yükseklik gradyanından jeostrofik rüzgârı hesaplayan ve Plotly ile saçılım grafiği kuran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/jeostrofik-ruzgar-gercek-ruzgar-analizi",
+   "ayrinti": {
+    "neYaptilar": "İstanbul çevresindeki 4 noktanın yükseklik farkından jeostrofik rüzgârı türetip gerçek rüzgârla kıyaslayan Python aracı geliştirdiler.",
+    "nasil": "MTO 111E u_g ve v_g formüllerini merkezî sonlu farklarla işletip 500 ve 1000 hPa seviyelerinde 1:1 saçılım grafiği çizdiler.",
+    "neEdindiler": "500 hPa'da teorik rüzgârın %88 doğrulukla sağlandığını, 1000 hPa'da ise sürtünmeyle %42 yavaşladığını gösteren açık kod deposu kurdular.",
+    "bizNasilKatki": "Koordinat ağını kurup türev algoritmalarını kodlarken Plotly etkileşimli arayüzünü tasarlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Jeostrofik Rüzgâr Analizi GitHub Deposu",
+      "url": "https://github.com/aura-itu/jeostrofik-ruzgar-gercek-ruzgar-analizi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 111E Atmosfer Bilimlerine Giriş Katalog Sayfası",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=111",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/jeostrofik-ruzgar-gercek-ruzgar-analizi",
+      "aciklama": "AURA jeostrofik rüzgâr ve saçılım analizi GitHub deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul 500 hPa ve 1000 hPa jeostrofik rüzgâr ve gerçek rüzgâr saçılım grafiği, 2026",
+      "aciklama": "1:1 doğrusu etrafında jeostrofik denge ve sınır tabakası sürtünme sapması simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "Hipsometrik denklemi ve jeostrofik rüzgârı İstanbul verisinde sına, yapay zekâ tahminini ölç.",
+  "baglanti": "Yazılım kolunun temeli: tahmini İstanbul gözlemiyle kıyaslamak. Anlatım kolunun ilk videoları bu dersin denklemlerinden çıkar.",
+  "literatur": {
+   "maddeler": [
+    "İki basınç seviyesi arasındaki kalınlık, katmanın ortalama sıcaklığıyla artar; bunu hidrostatik denge ve hipsometrik denklem verir (Wallace ve Hobbs 2006).",
+    "Büyük ölçekte rüzgâr, basınç gradyan kuvveti ile Coriolis kuvvetinin dengesine yakındır; jeostrofik rüzgâr bunun ilk yaklaşımıdır (Holton ve Hakim 2013).",
+    "Yer-atmosfer sistemi Güneş'ten kısa dalga alır, uzun dalga yayar; sera gazları uzun dalganın bir kısmını soğurup geri yayar (Wallace ve Hobbs 2006)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "ERA5 yeniden analiziyle eğitilen GraphCast, 0,25° çözünürlükte 10 günlük küresel tahmini bir dakikanın altında üretiyor; 1380 hedefin %90'ında HRES'i geçiyor (Lam vd. 2023).",
+    "Açık kapı: GraphCast tek (deterministik) tahmin veriyor; makale belirsizliğin ele alınışını temel sınırlılık sayıyor, ileri öngörü sürelerinde bulanıklaşmayı belirtiyor (Lam vd. 2023).",
+    "Açık kapı: WeatherBench 2, yapay zekâ ve fizik tabanlı tahminleri ortak veri ve skorlarla kıyaslıyor; istasyonla doğrulamayı ileride eklemeyi hedefliyor (Rasp vd. 2024)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Wallace ve Hobbs 2006",
+    "baslik": "Atmospheric Science: An Introductory Survey (2. baskı)",
+    "yayin": "Academic Press (Elsevier), ders kitabı",
+    "yil": "2006",
+    "url": "https://doi.org/10.1016/C2009-0-00034-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press (Elsevier), ders kitabı",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382(6677)",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2024",
+    "baslik": "WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 16(6)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023MS004019",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul çevresi jeopotansiyel yükseklik gradyanından jeostrofik rüzgârı hesaplayıp 500 hPa ve 1000 hPa seviyelerinde gerçek rüzgârla kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 111E",
+   "projeyeKatki": "Jeostrofik rüzgâr bileşenleri bağıntısı ve Coriolis dengesi formülleriyle yükseklik gradyanından rüzgâr hızını türetir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr bileşenleri bağıntısı",
+     "nerede": "İstanbul çevresindeki 4 noktanın 500 ve 1000 hPa jeopotansiyel yükseklik farklarından u_g ve v_g jeostrofik rüzgâr bileşenlerini hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul çevresinde jeostrofik rüzgârı 500 ve 1000 hPa seviyelerinde gerçek rüzgârla kıyaslayan etkileşimli analiz aracı kurmak.",
+  "ayrinti": "Open-Meteo API'den İstanbul'un 1 derece kuzey, güney, doğu ve batısındaki 4 noktada 500 ve 1000 hPa yükseklikleri çekilir. MTO 111E jeostrofik bağıntısıyla merkezî fark gradyanı hesaplanarak u_g ve v_g bileşenleri bulunur. Merkez noktadaki gerçek rüzgârla karşılaştırılarak sürtünme etkisi 1:1 saçılım grafiğiyle çözümlenir. Plotly etkileşimli arayüzü olarak sunulur. Haftada iki saatlik emekle iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Dört çevre noktanın jeopotansiyel yüksekliklerini çekmek",
+    "oz": "Open-Meteo API ile 1 derecelik koordinat ağını indirmek.",
+    "ayrinti": "İstanbul'un 1 derece kuzey, güney, doğu ve batı noktaları için 500 hPa ve 1000 hPa jeopotansiyel yükseklik ve merkez rüzgâr hızı saatlik çekilir.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo API'ye İstanbul merkezli 4 çevresel nokta için geopotential_height_500hPa ve 1000hPa parametreleri bir aylık zaman aralığında sorgulanır.",
+      "sade": "İstanbul'un kuzey, güney, doğu ve batısındaki dört noktanın gökyüzü basınç yüksekliklerini açık hava servisinden indiririz.",
+      "altAdimlar": [
+       "1. Çevre koordinatları (41°K ±1°, 29°D ±1°) listele.",
+       "2. 500 ve 1000 hPa yükseklik verilerini çek.",
+       "3. pandas tablosunda zaman adımlarıyla eşle."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+      }
+     },
+     {
+      "teknik": "Merkez noktadaki gerçek rüzgâr hızı ve yönü wind_speed_unit=ms ayarıyla aynı seviyeler için indirilerek referans serisi kurulur.",
+      "sade": "Aynı saatlerde İstanbul üzerinde gerçekten esen rüzgârın hızını karşılaştırma amacıyla veritabanından çekeriz.",
+      "altAdimlar": [
+       "1. Merkez istasyon koordinatını tanımla.",
+       "2. 500 ve 1000 hPa gerçek rüzgâr hızını çek.",
+       "3. m/s biriminde hız dizisini oluştur."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 111E",
+      "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Merkezî farkla jeostrofik rüzgârı hesaplamak",
+    "oz": "MTO 111E jeostrofik bağıntısıyla rüzgâr hızını bulmak.",
+    "ayrinti": "dx ≈ 168 km ve dy ≈ 222 km mesafeleriyle dZ/dx ve dZ/dy gradyanları alınarak u_g ve v_g bileşenleri ve mutlak jeostrofik hız hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "NumPy merkezî sonlu fark gradyanıyla dZ/dx ve dZ/dy yükseklik türevleri hesaplanarak 41 derece enlemi için Coriolis parametresi f bulunur.",
+      "sade": "Dört noktanın yükseklik farkını aralarındaki mesafeye bölerek Dünya'nın dönüş etkisini de katan Coriolis katsayısıyla çarparız.",
+      "altAdimlar": [
+       "1. dx ve dy fiziksel mesafelerini hesapla.",
+       "2. 2 Omega sin(phi) ile Coriolis f değerini bul.",
+       "3. Yükseklik farklarından türevleri çıkar."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+      }
+     },
+     {
+      "teknik": "MTO 111E u_g = -(g/f) dZ/dy ve v_g = (g/f) dZ/dx bağıntısıyla jeostrofik rüzgâr hız vektörü sqrt(u_g^2 + v_g^2) olarak türetilir.",
+      "sade": "Formülü işletip jeostrofik rüzgârın doğu-batı ve kuzey-güney hızlarını birleştirerek toplam teorik rüzgâr hızını elde ederiz.",
+      "altAdimlar": [
+       "1. u_g ve v_g bileşenlerini formülle hesapla.",
+       "2. Bileşkelerin kareköküyle toplam jeostrofik hızı bul.",
+       "3. 500 hPa ve 1000 hPa için iki ayrı seri oluştur."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 111E",
+      "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Saçılım grafiğini çizmek ve sürtünme etkisini göstermek",
+    "oz": "Plotly ile etkileşimli saçılım grafiğini sunmak.",
+    "ayrinti": "Jeostrofik ve gerçek rüzgâr hızları 1:1 çizgisiyle kıyaslanır. 500 hPa'daki uyum ve 1000 hPa'daki sürtünme zayıflaması interaktif grafikle gösterilir.",
+    "nasil": [
+     {
+      "teknik": "Plotly kütüphanesiyle 500 hPa ve 1000 hPa seviyeleri için 1:1 referans doğrusu içeren etkileşimli saçılım grafiği kodlanır.",
+      "sade": "Hesapladığımız teorik rüzgâr ile gerçek rüzgârı karşılaştıran ve seviye seçimi yapılabilen interaktif bir grafik hazırlarız.",
+      "altAdimlar": [
+       "1. Gerçek hız ile jeostrofik hızı saçılım noktaları olarak ekle.",
+       "2. Tam dengeyi simgeleyen 1:1 referans çizgisini çiz.",
+       "3. Seviye filtreleme butonlarını yerleştir."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+      }
+     },
+     {
+      "teknik": "1000 hPa seviyesinde yüzey sınır tabakası sürtünmesi nedeniyle rüzgâr hızındaki zayıflama analizi yapılarak açık Python defteri yayınlanır.",
+      "sade": "Yeryüzüne yakın rüzgârın binalar ve tepeler yüzünden neden yavaşladığını ve üst atmosferin neden dengede olduğunu açıklarız.",
+      "altAdimlar": [
+       "1. İki seviyedeki sapma oranlarını karşılaştır.",
+       "2. Sınır tabakası sürtünme etkisini yorumla.",
+       "3. Jupyter defterini GitHub deposuna yükle."
+      ],
+      "kazanim": {
+       "ders": "MTO 111E",
+       "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 111E",
+      "madde": "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul üzerinde jeostrofik rüzgârı 500 hPa ve 1000 hPa seviyelerinde gerçek rüzgârla kıyaslayarak sürtünme kaybını kanıtlayan Plotly saçılım grafiği ve Python defteri.",
+  "senden": "MTO 111E atmosfer dinamiği temelleri, Coriolis dengesi ve sonlu fark gradyan kodlama desteği sağlarsın.",
+  "bizden": "AURA veri analiz boru hattı, Open-Meteo koordinat ağı entegrasyonu ve Plotly görselleştirme şablonu sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://eapsweb.mit.edu/research/atmosphere",
+   "aciklama": "MIT atmosfer bilimleri dinamik meteoroloji araştırma portalı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Geostrophic_wind.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Basınç gradyan kuvveti ve Coriolis kuvveti dengesinde jeostrofik rüzgâr şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul 500 hPa ve 1000 hPa jeostrofik rüzgâr ve gerçek rüzgâr saçılım grafiği, 2026",
+   "aciklama": "1:1 doğrusu etrafında jeostrofik denge ve sınır tabakası sürtünme sapması simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Holton, J. R., Hakim, G. J. (2013) An Introduction to Dynamic Meteorology (5. baskı), Academic Press · DOI: 10.1016/C2009-0-63394-8",
+   "url": "https://doi.org/10.1016/C2009-0-63394-8"
+  },
+  {
+   "ad": "Wallace, J. M., Hobbs, P. V. (2006) Atmospheric Science: An Introductory Survey (2. baskı), Academic Press · DOI: 10.1016/C2009-0-00034-8",
+   "url": "https://doi.org/10.1016/C2009-0-00034-8"
+  },
+  {
+   "ad": "Lam, R. vd. (2023) Learning skillful medium-range global weather forecasting, Science, 382(6677) · DOI: 10.1126/science.adi2336",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  },
+  {
+   "ad": "Rasp, S. vd. (2024) WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models, JAMES · DOI: 10.1029/2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "Open-Meteo Tarihsel Tahmin API Dokümantasyonu",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api"
+  },
+  {
+   "ad": "Reading Üniversitesi Meteoroloji Araştırma Portalı",
+   "url": "https://research.reading.ac.uk/meteorology/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO111E-03.json",
+  "tarih": "2026-10-17 00:25",
+  "geminiSha1": "024cb4d392d1"
+ }
+}

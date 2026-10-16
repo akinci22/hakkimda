@@ -1,0 +1,117 @@
+{
+ "kod": "JEO 431E",
+ "ad": "Engineering Geology",
+ "bolum": "Jeoloji Mühendisliği",
+ "obsNo": "431",
+ "ozet": "Mühendislik yapılarının zemin ve kaya ortamlarıyla etkileşimini, şev duraylılığını, kütle hareketlerini ve hidrojeolojik zemin doygunluğunu öğretir. Şiddetli yağışların zemin kayma direncine etkisi, antecedent yağış indeksi (API) ve sonsuz şev duraylılık analizleri incelenir. Aşırı yağış altında yamaç heyelan riskini kestirmeyi sağlar.",
+ "neOgrenirsin": [
+  "Sonsuz şev duraylılık modeliyle zemin güvenlik katsayısını (FS) hesaplamak.",
+  "Antecedent yağış indeksi (API) ile geçmiş kümülatif yağışın zemin nemine etkisini belirlemek.",
+  "Yeraltı suyu seviyesi ve gözenek suyu basıncının kayma direncini düşürme eşiğini saptamak.",
+  "Mühendislik jeolojisi haritalarında heyelan duyarlılık bölgelerini sınıflandırmak.",
+  "Aşırı yağış eşiği aşıldığında erken uyarı tetikleme sınırlarını belirlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Sonsuz şev duraylılık ve gözenek suyu güvenlik katsayısı",
+   "tex": "FS = \\frac{c' + (\\gamma \\cdot z \\cdot \\cos^2 \\beta - u) \\cdot \\tan \\phi'}{\\gamma \\cdot z \\cdot \\sin \\beta \\cdot \\cos \\beta}",
+   "terimler": [
+    [
+     "FS",
+     "şev güvenlik katsayısı",
+     "birimsiz"
+    ],
+    [
+     "c'",
+     "efektif zemin kohezyonu",
+     "kPa"
+    ],
+    [
+     "\\gamma",
+     "doygun zemin birim hacim ağırlığı",
+     "kN/m³"
+    ],
+    [
+     "z",
+     "kayma düzlemi derinliği",
+     "m"
+    ],
+    [
+     "\\beta",
+     "yamaç eğim açısı",
+     "derece"
+    ],
+    [
+     "u",
+     "gözenek suyu basıncı",
+     "kPa"
+    ],
+    [
+     "\\phi'",
+     "efektif içsel sürtünme açısı",
+     "derece"
+    ]
+   ],
+   "sade": "Yağmur suyu zemine sızıp gözenek suyu basıncını artırdıkça yamaçtaki toprağın tutunma gücünün nasıl azaldığını hesaplar. Güvenlik faktörü 1'in altına indiğinde zemin kütlesi aşağı doğru kaymaya başlar.",
+   "ornek": "Eğim beta = 30°, kohezyon c' = 10 kPa, sürtünme phi' = 28°, derinlik z = 3 m ve gamma = 19 kN/m³ iken kuru durumda FS = 1,42 iken gözenek basıncı u = 25 kPa olduğunda FS = 0,91'e inerek heyelan tetiklenir.",
+   "nerede": "F-MDF-JEO-01 projesinde şiddetli yağış altında Karadeniz yamaçlarında güvenlik katsayısı düşüşünü ve kayma anını simüle ederken."
+  },
+  {
+   "ad": "Antecedent Yağış İndeksi zemin nem hafızası bağıntısı",
+   "tex": "API_t = k \\cdot API_{t-1} + P_t",
+   "terimler": [
+    [
+     "API_t",
+     "t günündeki antecedent yağış indeksi",
+     "mm"
+    ],
+    [
+     "k",
+     "günlük süzülme ve buharlaşma azalma katsayısı",
+     "birimsiz"
+    ],
+    [
+     "API_{t-1}",
+     "bir önceki günün antecedent yağış indeksi",
+     "mm"
+    ],
+    [
+     "P_t",
+     "t gününde düşen günlük yağış miktarı",
+     "mm"
+    ]
+   ],
+   "sade": "Toprağın geçmiş günlerde yağan yağmurlarla ne kadar suya doyduğunu hesaplar. Birkaç gündür aralıksız yağan yağmurlardan sonra gelen küçük bir sağanak bile toprağı doyurarak heyelana yol açabilir.",
+   "ornek": "Azalma katsayısı k = 0,90 olan bir bölgede 3 gün boyunca sırasıyla 40 mm, 30 mm ve 50 mm yağış düştüğünde kümülatif API değeri 97,6 mm'ye ulaşarak kritik doygunluk eşiğini aşar.",
+   "nerede": "F-MDF-JEO-01 projesinde geçmiş kümülatif yağış verisiyle zemin nem doygunluğunu takip edip ani fırtına öncesi heyelan duyarlılığını çıkarırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Landslide_in_Rize_Turkey.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Doğu Karadeniz dik yamaçlarında şiddetli yağış sonrası tetiklenen sığ heyelan"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Rize ve Trabzon kıyı dağları saatlik yağış ve toprak nemi simülasyonu, 2026",
+   "aciklama": "Kümülatif yağış birikimi ile toprak doygunluğu ve heyelan kritik eşik aşımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · JEO 431E (Engineering Geology)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=JEO&dersNo=431"
+  },
+  {
+   "ad": "Waltham, T. (2009) Foundations of Engineering Geology, 3. baskı, CRC Press · ISBN 978-0415469593",
+   "url": "https://www.routledge.com/Foundations-of-Engineering-Geology/Waltham/p/book/9780415469593"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=JEO&dersNo=431"
+}

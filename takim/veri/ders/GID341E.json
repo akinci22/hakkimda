@@ -1,0 +1,122 @@
+{
+ "kod": "GID 341E",
+ "ad": "Heat Transfer",
+ "bolum": "Gıda Mühendisliği",
+ "obsNo": "341",
+ "ozet": "Gıda işleme ve depolama süreçlerindeki iletim, taşınım ve ışınım yoluyla ısı transfer mekanizmalarını öğretir. Kararlı ve kararsız durum ısı iletimi, genel ısı transfer katsayısı, eşanjör tasarımı ve yalıtım hesapları incelenir. Soğuk hava depolarında ve frigorifik taşımacılıkta dış atmosfer sıcaklığına bağlı ısı kazancını hesaplamak için temel ilkeleri verir.",
+ "neOgrenirsin": [
+  "Fourier ısı iletim yasası ile çok katmanlı yalıtım duvarlarından geçen ısı akısını hesaplamak.",
+  "Doğal ve zorlanmış taşınımda konveksiyon katsayısını boyutsuz sayılarla (Nu, Re, Pr) belirlemek.",
+  "Stefan-Boltzmann yasası ile yüzeyler arası ışınım ısı transferini analiz etmek.",
+  "Toplam ısı transfer katsayısı (U) ile frigorifik kasa ısı kazancını hesaplamak.",
+  "Kararsız durum ısı transferinde lumped kapasitans yöntemiyle soğuma süresini bulmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Toplam ısı transfer katsayısı ve kasa ısı kazancı formülü",
+   "tex": "Q = U \\cdot A \\cdot (T_{\\mathrm{dis}} - T_{\\mathrm{ic}}), \\qquad \\frac{1}{U} = \\frac{1}{h_i} + \\sum \\frac{L_k}{k_k} + \\frac{1}{h_o}",
+   "terimler": [
+    [
+     "Q",
+     "kasaya giren ısı akısı",
+     "W"
+    ],
+    [
+     "U",
+     "toplam ısı transfer katsayısı",
+     "W/(m²·K)"
+    ],
+    [
+     "A",
+     "kasa toplam dış yüzey alanı",
+     "m²"
+    ],
+    [
+     "T_{\\mathrm{dis}}",
+     "dış ortam hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{\\mathrm{ic}}",
+     "kasa içi hedef sıcaklık",
+     "°C"
+    ],
+    [
+     "h_i, h_o",
+     "iç ve dış konveksiyonel ısı transfer katsayıları",
+     "W/(m²·K)"
+    ],
+    [
+     "L_k, k_k",
+     "yalıtım katmanı kalınlığı ve ısıl iletkenliği",
+     "m ve W/(m·K)"
+    ]
+   ],
+   "sade": "Frigorifik aracın dışındaki hava ne kadar sıcaksa ve yalıtım ne kadar zayıfsa kasanın içine o kadar yüksek ısı sızar. Soğutucunun bu ısıyı karşılayacak kapasitede olması gerekir.",
+   "ornek": "Kasa yüzey alanı A = 80 m², U = 0,35 W/(m²·K) olan bir kamyonda dışarısı 38 °C ve kasa içi 4 °C iken ısı yükü Q = 0,35 * 80 * (38 - 4) = 952 Watt olarak hesaplanır.",
+   "nerede": "F-KMF-GID-01 projesinde sıcak hava dalgaları altında frigorifik aracın iç sıcaklık artışını kestirirken."
+  },
+  {
+   "ad": "Fourier tek boyutlu kararlı durum ısı iletim bağıntısı",
+   "tex": "q = -k \\frac{d T}{d x} = \\frac{k}{L} \\cdot (T_1 - T_2)",
+   "terimler": [
+    [
+     "q",
+     "birim alandan geçen ısı akı yoğunluğu",
+     "W/m²"
+    ],
+    [
+     "k",
+     "malzemenin ısıl iletkenlik katsayısı",
+     "W/(m·K)"
+    ],
+    [
+     "d T / d x",
+     "sıcaklık gradyanı",
+     "K/m"
+    ],
+    [
+     "L",
+     "yalıtım duvarı kalınlığı",
+     "m"
+    ],
+    [
+     "T_1, T_2",
+     "yalıtımın dış ve iç yüzey sıcaklıkları",
+     "K veya °C"
+    ]
+   ],
+   "sade": "Isının katı bir maddeden diğer tarafa moleküler titreşimlerle nasıl geçtiğini ifade eder. Yalıtım malzemesi kalınlaştıkça ve iletkenliği düştükçe ısı geçişi yavaşlar.",
+   "ornek": "Poliüretan köpük için k = 0,024 W/(m·K) ve kalınlık L = 0,08 m iken 30 derecelik sıcaklık farkında duvar boyunca ısı akısı q = (0,024 / 0,08) * 30 = 9 W/m² bulunur.",
+   "nerede": "F-KMF-GID-01 projesinde soğuk zincir kasa yalıtımının sıcak hava şartlarındaki ısıl direncini çözümlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Heat_transfer.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "İletim, taşınım ve ışınım mekanizmaları ile ısı transferi diyagramı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Akdeniz ve Marmara otoyol rotası 2 m sıcaklık döngüsü, 2026 Temmuz",
+   "aciklama": "Öğle saatlerinde asfalt üzeri aşırı sıcaklık ve araç dış yüzey ısıl yükü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · GID 341E (Heat Transfer)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GID&dersNo=341"
+  },
+  {
+   "ad": "Incropera, F. P., & DeWitt, D. P. (2011) Fundamentals of Heat and Mass Transfer, John Wiley & Sons · ISBN 978-0470501979",
+   "url": "https://www.wiley.com/en-us/Fundamentals+of+Heat+and+Mass+Transfer%2C+7th+Edition-p-9780470501979"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=GID&dersNo=341"
+}

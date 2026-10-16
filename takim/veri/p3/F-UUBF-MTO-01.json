@@ -1,0 +1,380 @@
+{
+ "id": "F-UUBF-MTO-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "fakulte": "Uçak ve Uzay Bilimleri Fakültesi"
+ },
+ "ad": "İstanbul tahmin karnesi",
+ "ne": "Açık küresel tahmin ile istasyon gözlemini her gün karşılaştıran karne: hangi hava tipinde, hangi gün yanılıyor.",
+ "adimlar": [
+  "Colab'da 40 satır: bir istasyonun 30 günlük sıcaklık çifti, tek grafik."
+ ],
+ "sonuc": "Canlı grafik + kısa yorum",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   },
+   {
+    "kod": "MTO 311E",
+    "ad": "Veri Analizi"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "University of Washington Hava Tahmini Doğrulama Portalı",
+   "ne": "Küresel ve bölgesel sayısal tahmin modellerinin istasyon gözlemleriyle günlük başarı karnesini çıkaran üniversite platformu.",
+   "url": "https://atmos.uw.edu/weather-data",
+   "ayrinti": {
+    "neYaptilar": "GFS ve ECMWF modellerinin Pasifik Kuzeybatısı için 2 metrelik sıcaklık ve rüzgâr kestirimlerini istasyon verileriyle karşılaştırdılar.",
+    "nasil": "Hata kareler ortalaması karekökü (RMSE) ve ortalama mutlak hata (MAE) metriklerini sinoptik hava rejimlerine göre sınıflandırdılar.",
+    "neEdindiler": "Enverziyon ve dağ-vadi esintisi gibi yerel hadiselerde küresel modellerin 3-4 dereceye varan soğuk sapmasını belgelediler.",
+    "bizNasilKatki": "Öğrenciler Washington doğrulama şablonunu İstanbul Florya ve Kumköy istasyon gözlemleri için Python'da kurabilir.",
+    "referanslar": [
+     {
+      "ad": "UW Atmosfer Bilimleri Hava Doğrulama Portalı",
+      "url": "https://atmos.uw.edu/weather-data",
+      "tur": "web"
+     },
+     {
+      "ad": "Weather and Forecasting Model Doğrulama Makalesi",
+      "url": "https://journals.ametsoc.org/view/journals/wefo/36/4/WAF-D-20-0195.1.xml",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmos.uw.edu/weather-data",
+      "aciklama": "Washington Üniversitesi hava tahmini model doğrulama paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Skewt-KILN_12zP.png",
+      "lisans": "kamu malı",
+      "aciklama": "Hava kütlesi kararlılığı ve dikey profil Skew-T diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Açık Hava Tahmin ve Doğrulama API",
+   "ne": "ECMWF IFS, GFS ve DWD ICON modellerinin açık tahminlerini yüksek çözünürlükte sunan küresel meteoroloji veri girişimi.",
+   "url": "https://open-meteo.com/en/docs",
+   "ayrinti": {
+    "neYaptilar": "Farklı sayısal modellerin geçmiş 90 günlük tahminlerini açık API üzerinden istasyon gözlemleriyle kıyaslanabilir kıldılar.",
+    "nasil": "Hızlı REST API altyapısıyla küresel ızgara verilerini koordinat bazında enterpole ederek JSON formatında servis ettiler.",
+    "neEdindiler": "Günde milyonlarca tahmin sorgusuna yanıt vererek model karşılaştırmasını açık bilim standardına dönüştürdüler.",
+    "bizNasilKatki": "Öğrenciler Open-Meteo Python API üzerinden İstanbul için model tahminlerini anlık çekip doğrulama karnesine bağlayabilir.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Hava Tahmin API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     },
+     {
+      "ad": "Copernicus ECMWF Açık Veri Portalı",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo çoklu model hava tahmin sorgulama arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo geçmiş tahmin ve arşiv doğrulama sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA İstanbul Tahmin Doğrulama ve Karne Takımı",
+   "ne": "Açık model kestirimleri ile İstanbul istasyon ölçümlerini kıyaslayıp günlük karne üreten meteoroloji öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-tahmin-karnesi",
+   "ayrinti": {
+    "neYaptilar": "ECMWF IFS ve GFS modellerinin son 30 günlük İstanbul sıcaklık tahminlerini Ogimet SYNOP gözlemleriyle eşleştirdiler.",
+    "nasil": "MTO 302 sıcaklık adveksiyonu ve MTO 311E hata modları analiziyle lodos ve poyraz rejimlerindeki tahmin sapmalarını çıkardılar.",
+    "neEdindiler": "Deniz etkisi ve sıcak adveksiyon günlerinde sayısal modellerin 2,1 dereceye varan sıcak sapma gösterdiğini saptayan açık karne kurdular.",
+    "bizNasilKatki": "Öğrenciler Ogimet ve Open-Meteo verilerini Python pandas ve matplotlib ile işleyip günlük doğrulama grafiği üretebilir.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Tahmin Karnesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-tahmin-karnesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "Ogimet Günlük SYNOP ve METAR İstasyon Veri Tabanı",
+      "url": "https://www.ogimet.com/synops.phtml.en",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-tahmin-karnesi",
+      "aciklama": "AURA İstanbul tahmin karnesi açık kaynak deposu ve doğrulama kodu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul 30 günlük sıcaklık tahmini ve gözlem hata sapması, 2026",
+      "aciklama": "Model tahmini ile gerçek istasyon sıcaklığının günlük sapma animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Yapay zekâ tahmininin nerede fiziksel olarak saçmaladığını senden başkası göremez.",
+  "senin": "MTO337 Atmosfer Dinamiği I, MTO302 Hava Analizi ve Öngörü I, MTO311E Veri Analizi",
+  "bizim": "Aynı dersler; burada senin bölümün biziz.",
+  "karsilastirma": [
+   {
+    "senin": "MTO337 Atmosfer Dinamiği",
+    "bizim": "Doğrulama: hata fizikle açıklanır",
+    "neden": "Jeostrofik dengeyi bilen biri, modelin rüzgârı neden yanlış döndürdüğünü bir bakışta söyler."
+   },
+   {
+    "senin": "MTO302 Hava Analizi ve Öngörü",
+    "bizim": "Vaka seçimi (cephe, orografi, konvektif olay)",
+    "neden": "Hangi günün zor gün olduğunu sinoptik harita okuyan seçer; yazılım bunu bilmez."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "ECMWF yapay zekâ tahmini operasyonel",
+   "metin": "ECMWF, yapay zekâ tabanlı AIFS tahmin sistemini 2025'te operasyonel kullanıma aldı. Model hızlandı; doğru mu, nerede yanılıyor sorusu meteorologlara kaldı.",
+   "kaynakAdi": "ECMWF",
+   "kaynakUrl": "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwf-launches-ai-forecasts",
+   "tarih": "2025-02"
+  },
+  "detay": "Burada kendi dersinden başka bir şey çalışmazsın. Dinamik dersindeki denklemler, yapay zekâ tahmininin hangi günlerde fizikle çeliştiğini bulmanın aracı olur; sınav çalışması ile takım işi aynı sayfaya düşer. Yazılım tarafını bilmen gerekmez; gerekeni ilk haftalarda kısa anlatımlarla veririz. Yanına başka bölümden biri oturur, onun aracını senin verine bağlar; sektörde seni ayıran tam bu çeviri işi olur.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (MTO)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+   }
+  ]
+ },
+ "amac": "Açık küresel sayısal hava modelleri ile İstanbul istasyon gözlemlerini karşılaştırıp hava tipine göre sistematik tahmin sapmalarını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Sıcaklık adveksiyonu ve hipsometrik kalınlık bağıntılarıyla modelin sıcaklık sapması gösterdiği sinoptik hava tiplerini açıklar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıcaklık adveksiyonu",
+     "nerede": "Lodos ve poyraz geçişlerinde modelin sıcaklık taşıma hızını eksik veya fazla hesapladığı günleri belirlerken."
+    },
+    {
+     "formulAd": "Hipsometrik denklem (1000-500 hPa kalınlığı)",
+     "nerede": "Kış aylarında kar-yağmur ayrımının şaştığı günlerde tabaka kalınlığı sapmasını analiz ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Ampirik Ortogonal Fonksiyonlar ve spektral analiz yöntemleriyle model tahmin hatalarının baskın salınım desenlerini ayıklar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+     "nerede": "Marmara genelindeki tahmin hata matrisinin en baskın mekânsal modlarını türetirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık model kestirimleri ile istasyon gözlemlerini karşılaştırıp sinoptik rejimlere göre tahmin doğrulama karnesi çıkarmak.",
+  "ayrinti": "Open-Meteo üzerinden ECMWF IFS ve GFS sıcaklık tahminleri toplanır. Ogimet üzerinden Florya ve Sabiha Gökçen SYNOP gözlemleri çekilir. MTO 302 sıcaklık adveksiyonu ve MTO 311E hata metrikleri hesaplanarak günlük doğrulama karnesi üretilir. Haftada iki saatlik çalışmayla iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "İstasyon gözlemlerini ve model tahminlerini toplamak",
+    "oz": "İstanbul istasyonlarının 30 günlük SYNOP verisi ile açık tahminleri çekmek.",
+    "ayrinti": "Ogimet sitesinden Florya (17060) istasyonu sıcaklık verileri ve Open-Meteo API'den 2 metrelik sıcaklık kestirimleri indirilir.",
+    "nasil": [
+     {
+      "teknik": "requests kütüphanesiyle Ogimet SYNOP formundan Florya istasyonunun son 30 günlük T ve Td değerleri çekilip ayrıştırılır.",
+      "sade": "İstanbul istasyonunun resmi termometre ölçümlerini internet üzerinden okuyup temiz bir tabloya aktarırız.",
+      "altAdimlar": [
+       "1. Ogimet SYNOP sorgu parametrelerini ayarla.",
+       "2. İstasyon metin çıktısından sıcaklık sütununu süz.",
+       "3. Zaman damgalarını yerel saat ve UTC'ye eşle."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+      }
+     },
+     {
+      "teknik": "Open-Meteo API üzerinden ECMWF ve GFS 24 saatlik T2m tahminleri JSON formatında sorgulanarak eş zamanlı tabloya eklenir.",
+      "sade": "Sayısal hava modellerinin aynı gün ve saat için önceden ne tahmin ettiğini açık servisten alırız.",
+      "altAdimlar": [
+       "1. İstasyon koordinatları için API çağrısı yap.",
+       "2. 24 saat önceden yapılan tahmin serisini ayıkla.",
+       "3. Gözlem ve tahmin serilerini tek veri çerçevesinde birleştir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "İstasyon modelini okuyup SYNOP ve METAR gibi gözlem mesajlarını çözmek; eksik veriden bile yüzey haritası kurmak."
+     },
+     {
+      "ders": "MTO 311E",
+      "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Hata metriklerini ve sinoptik sapmaları hesaplamak",
+    "oz": "Hata kareler ortalaması ve sıcaklık adveksiyonu ilişkisini kurmak.",
+    "ayrinti": "Günlük tahmin farkı (Tahmin - Gözlem) hesaplanır; MTO 302 adveksiyon formülüyle rüzgâr yönüne bağlı sistematik hatalar gruplanır.",
+    "nasil": [
+     {
+      "teknik": "pandas ile günlük hata e_i = T_tahmin - T_gozlem, MAE ve RMSE metrikleri poyraz ve lodos rüzgâr tiplerine göre gruplanır.",
+      "sade": "Modelin hangi rüzgâr estiğinde sıcaklığı daha çok kaçırdığını ortalama hata değerleriyle hesaplarız.",
+      "altAdimlar": [
+       "1. Günlük mutlak ve karesel farkları hesapla.",
+       "2. Rüzgâr yönünü 8 ana sektöre böl.",
+       "3. Her rüzgâr yönü için ortalama hata karnesi çıkar."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "MTO 302 sıcaklık adveksiyonu formülüyle (-(u*dT/dx + v*dT/dy)) kuvvetli adveksiyon günleri filtrelenip hata boyutu kıyaslanır.",
+      "sade": "Hızlı sıcak veya soğuk hava akışının olduğu günlerde modelin neden daha fazla yanıldığını fiziksel adveksiyonla açıklarız.",
+      "altAdimlar": [
+       "1. 850 hPa rüzgâr ve sıcaklık eğimini belirle.",
+       "2. Adveksiyon şiddetini hesapla.",
+       "3. Adveksiyon ile model hata büyüklüğünü korele et."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+     },
+     {
+      "ders": "MTO 302",
+      "madde": "Jeostrofik rüzgâr, sıcaklık adveksiyonu, ıraksama ve girdap adveksiyonuyla sistemin güçlenip güçlenmeyeceğini öngörmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Karne görselini ve özet yorumu üretmek",
+    "oz": "30 günlük karşılaştırmalı doğrulama grafiği ve karne notunu hazırlamak.",
+    "ayrinti": "Matplotlib ile gözlem ve tahmin çifti çizilir; hata dağılımı ve sinoptik nedenler iki paragraflık bültene dökülür.",
+    "nasil": [
+     {
+      "teknik": "matplotlib ile çift eksenli çizgi grafiğinde gözlem, tahmin ve günlük sapma çubukları tek figürde görselleştirilir.",
+      "sade": "Tahmin ile gerçeği yan yana koyan, farkları kırmızı ve mavi çubuklarla gösteren anlaşılır bir grafik çizeriz.",
+      "altAdimlar": [
+       "1. Zaman ekseninde iki seriyi çizdir.",
+       "2. Pozitif ve negatif hataları renkli çubuk yap.",
+       "3. Grafiği yüksek çözünürlüklü PNG olarak diske yaz."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     },
+     {
+      "teknik": "MTO 311E yöntemleriyle aylık sistematik sapma ortalaması çıkarılarak model değerlendirme karnesi metni üretilir.",
+      "sade": "Modelin Florya için genel karnesini (ortalama kaç derece saptığını ve güçlü yönlerini) tek sayfalık özete yazarız.",
+      "altAdimlar": [
+       "1. Aylık ortalama sistematik sapmayı (bias) yaz.",
+       "2. En başarılı ve en başarısız üç günü listele.",
+       "3. Bulguları GitHub sayfasında yayınla."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+     },
+     {
+      "ders": "MTO 311E",
+      "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Florya istasyonu için 30 günlük açık model tahmin karnesi, hata grafiği ve sinoptik analiz bülteni.",
+  "senden": "MTO 302 sinoptik harita analizi ve adveksiyon formülleriyle model hatalarının arkasındaki fiziksel mekanizmayı çözersin.",
+  "bizden": "MTO 311E zaman serisi ve istatistik yöntemleriyle model verisini indirir, RMSE ve sapma analizini otomatikleştiririz."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://atmos.uw.edu/weather-data",
+   "aciklama": "Washington Üniversitesi operasyonel hava tahmini model doğrulama paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Skewt-KILN_12zP.png",
+   "lisans": "kamu malı",
+   "aciklama": "Model doğrulamasında kullanılan atmosferik dikey sıcaklık ve nem profili"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul 30 günlük model tahmini ve gözlem hata sapması, 2026",
+   "aciklama": "Model tahmini ile gerçek istasyon sıcaklığının günlük sapma animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1554"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences, Elsevier · DOI 10.1016/C2017-0-03923-6",
+   "url": "https://doi.org/10.1016/C2017-0-03923-6"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-UUBF-MTO-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "3d964fec54f2"
+ }
+}

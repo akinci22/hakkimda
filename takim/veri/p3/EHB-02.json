@@ -1,0 +1,406 @@
+{
+ "id": "EHB-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "EHB",
+  "bolum": "Elektronik ve Haberleşme Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "Radar yansıtıcılığından YZ ile nowcasting",
+ "ne": "Doppler radar yansıtıcılık haritalarını optik akış ve derin öğrenmeyle işleyip 2 saat sonrasının yağış alanlarını kestiren açık kaynaklı nowcasting sistemi.",
+ "adimlar": [
+  "Açık radar ya da uydu yağış görüntülerini indir",
+  "Görüntülerdeki gürültüyü temizle",
+  "Basit bir tahmin ağı eğit",
+  "Tahmini gerçekle karşılaştır"
+ ],
+ "sonuc": "Sonunda tahmin animasyonu olan bir defter olur.",
+ "senden": "EEF 206 İşaret İşleme, EEF 212 Elektromanyetik Teori",
+ "bizden": "Radarın yağışı nasıl gördüğü (MTO301)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "EEF 206",
+    "ad": "İşaret İşleme"
+   },
+   {
+    "kod": "EEF 212",
+    "ad": "Elektromanyetik Teori"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 301",
+    "ad": "Meteorolojide Uzaktan Algılamanın Temelleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "DeepMind ve Met Office nowcasting",
+   "ne": "Radar görüntüsünden önümüzdeki iki saatin yağışını tahmin eden derin öğrenme çalışması.",
+   "url": "https://www.nature.com/articles/s41586-021-03854-z",
+   "ayrinti": {
+    "neYaptilar": "DeepMind araştırmacıları ve İngiltere Meteoroloji Ofisi (Met Office), derin üretici modellerle (DGMR) radar görüntülerinden 2 saatlik yağış nowcasting sistemi kurdu.",
+    "nasil": "Bileşik radar yansıtıcılık dizilerini uzaysal-zamansal koşullu üretici çekişmeli ağlara (cGAN) besleyerek ani gelişen konvektif fırtına hücrelerini simüle ettiler.",
+    "neEdindiler": "Nature dergisinde yayımlanan çalışmada, meteoroloji uzmanlarının yüzde 89'u DGMR tahminlerini klasik ekstrapolasyon yöntemlerinden daha başarılı buldu.",
+    "bizNasilKatki": "DGMR mimarisinin veri ön işleme adımlarını ve kayıp fonksiyonu ağırlıklarını inceleyerek küçük ölçekli bir U-Net modeline uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Nature: Skilful precipitation nowcasting using deep generative models of radar",
+      "url": "https://www.nature.com/articles/s41586-021-03854-z",
+      "tur": "makale"
+     },
+     {
+      "ad": "DeepMind Radar Nowcasting Araştırma Bülteni",
+      "url": "https://deepmind.google/discover/blog/nowcasting-precipitation-with-deep-generative-models",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "DeepMind DGMR radar yağış nowcasting karşılaştırma döngüsü",
+      "aciklama": "Gerçek radar yansıtıcılığı ile üretici modelin 90 dakikalık yağış tahmini"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.nature.com/articles/s41586-021-03854-z",
+      "aciklama": "Nature makalesi DGMR radar nowcasting yayın sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "pySTEPS",
+   "ne": "Radar ile yağış nowcasting için gönüllülerin geliştirdiği açık kaynak kütüphane.",
+   "url": "https://pysteps.github.io",
+   "ayrinti": {
+    "neYaptilar": "Uluslararası meteorologlar ve yazılım geliştiricileri, radar verilerinden çok kısa vadeli yağış tahmini üreten açık kaynaklı pySTEPS kütüphanesini geliştirdi.",
+    "nasil": "Lucas-Kanade optik akış algoritması, spektral ölçek ayrıştırma ve stokastik topluluk pertürbasyonlarını Python üzerinde yüksek performansla birleştirdiler.",
+    "neEdindiler": "Avrupa ve Avustralya operasyonel hava merkezleri tarafından kullanılan, 500'den fazla akademik atıf alan standart bir nowcasting aracı oluşturdular.",
+    "bizNasilKatki": "pySTEPS'in optik akış fonksiyonlarını kullanarak radar kareleri arasındaki hareket vektörlerini çıkarıp adveksiyon adımını kodlarız.",
+    "referanslar": [
+     {
+      "ad": "pySTEPS: An open-source Python library for probabilistic nowcasting",
+      "url": "https://pysteps.github.io",
+      "tur": "web"
+     },
+     {
+      "ad": "Geoscientific Model Development pySTEPS Kütüphane Makalesi",
+      "url": "https://doi.org/10.5194/gmd-12-4185-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "pySTEPS optik akış vektörleri ve adveksiyon yağış tahmini animasyonu",
+      "aciklama": "Radar yansıtıcılık alanlarının piksel hareket vektörleriyle geleceğe taşınması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://pysteps.github.io",
+      "aciklama": "pySTEPS açık kaynaklı radar nowcasting topluluk dokümantasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Rainbow.ai",
+   "ne": "Radar ve uydu verisiyle dakika dakika yağış tahmini yaparak başladı; küresel nowcasting şirketi oldu.",
+   "url": "https://www.rainbow.ai",
+   "ayrinti": {
+    "neYaptilar": "Teknoloji girişimi Rainbow.ai, küresel Doppler radar ağlarını ve yapay zekâ optik akış modellerini birleştiren mobil yağış uyarı uygulaması geliştirdi.",
+    "nasil": "Radar ham sinyallerindeki gürültüleri derin konvolüsyonel ağlarla filtreleyip yağmurun sokak bazında ne zaman başlayıp biteceğini saniyeler içinde hesapladılar.",
+    "neEdindiler": "Dünya çapında milyonlarca aktif kullanıcıya ulaşarak hiper-yerel yağış takibinde en hızlı büyüyen hava teknolojisi girişimlerinden biri oldular.",
+    "bizNasilKatki": "Rainbow.ai'ın radar gürültü temizleme ve yağış eşikleme mantığını kendi veri işleme hattımıza entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "Rainbow.ai Hiper-Yerel Yağış ve Nowcasting Platformu",
+      "url": "https://www.rainbow.ai/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Rainbow.ai Yapay Zekâ Destekli Hava Tahmin Teknolojisi",
+      "url": "https://www.rainbow.ai/technology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Rainbow.ai dakika dakika yağmur başlangıç ve bitiş zaman serisi",
+      "aciklama": "Kullanıcı konumuna yaklaşan yağış hücresinin radar üzerindeki ilerleyişi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.rainbow.ai/technology",
+      "aciklama": "Rainbow.ai kurumsal hiper-yerel hava uygulaması portalı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "pySTEPS örnek verisi",
+   "Optik akış",
+   "Doğrulama"
+  ],
+  "edinim": [
+   [
+    "EEF 206",
+    "2B işaret işleme"
+   ],
+   [
+    "MTO301",
+    "radar ürünleri"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "pySTEPS · radar nowcasting kütüphanesi",
+    "url": "https://github.com/pySTEPS/pysteps",
+    "gorsel": "g/kaynak/pysteps.jpg",
+    "lisans": "BSD-3",
+    "slug": "pysteps"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Yağmur sinyali zayıflatır; senin işaret işlemen o zayıflamadan yağışı kestirir.",
+  "senin": "EEF 206 İşaret İşleme, EEF 212 Elektromanyetik Teori",
+  "bizim": "MTO311E Veri Analizi, MTO301 Uzaktan Algılama",
+  "ortakIs": "IoT hava istasyonu ağı, yağmur sönümlemesinden yağış tahmini",
+  "detay": "Ortak zemin: EEF 206 İşaret İşleme ↔ MTO311E Veri Analizi; EEF 212 Elektromanyetik Teori ↔ MTO301 Uzaktan Algılama. Örnek görev: haberleşme bağlantılarındaki yağmur zayıflamasından yağış kestirmek ya da IoT istasyon ağı kurmak. Kazanç: sinyal işlemeyi gerçek hava verisinde denemek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1452"
+ },
+ "amac": "Hava radarı yansıtıcılık görüntülerinden optik akış ve konvolüsyonel sinir ağlarıyla 2 saatlik yağış yayılımını çok kısa vadede tahmin etmek.",
+ "ortakDers": [
+  {
+   "kod": "EEF 206",
+   "projeyeKatki": "2 boyutlu radar görüntülerinde konvolüsyon tabanlı uzaysal filtreleme, kenar sezme ve Fourier tabanlı frekans analiz yöntemleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık zamanlı konvolüsyon toplamı",
+     "nerede": "2. adımda: Radar yansıtıcılık matrisine 2 boyutlu Gauss filtresi uygulayarak zemin ekoları ve tuz-biber gürültülerini temizlerken."
+    },
+    {
+     "formulAd": "Ayrık zamanlı Fourier dönüşümü (DTFT)",
+     "nerede": "3. adımda: Optik akış hareket alanındaki yüksek frekanslı türbülans dalgalanmalarını frekans uzayında ayıklarken."
+    }
+   ]
+  },
+  {
+   "kod": "EEF 212",
+   "projeyeKatki": "Radar mikrodalgalarının yağış ortamında zayıflaması (sönümleme), dielektrik saçılma özellikleri ve Poynting güç akısı ilkeleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Elektromanyetik dalga sönümlenme bağıntısı",
+     "nerede": "1. adımda: Şiddetli yağışın arkasında kalan radar hücrelerinde sinyal zayıflamasını ters sönümleme denklemiyle telafi ederken."
+    },
+    {
+     "formulAd": "Poynting güç akısı yoğunluk vektörü",
+     "nerede": "1. adımda: Radar anteninden hedefe ulaşan elektromanyetik darbe enerjisini ve geri dönen güç seviyesini normalize ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 301",
+   "projeyeKatki": "Meteorolojik radar denklemi, yansıtıcılık faktörü Z (dBZ) hesabı ve Marshall-Palmer bağıntısıyla yağış şiddetine dönüşüm bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Meteorolojik radar denklemi (hacimsel hedef)",
+     "nerede": "1. adımda: Alınan radar gücünden yağmur damlalarının yansıtıcılık faktörünü (dBZ) çıkarırken."
+    },
+    {
+     "formulAd": "Marshall-Palmer Z-R yağış şiddeti bağıntısı",
+     "nerede": "4. adımda: Tahmin edilen yansıtıcılık alanlarını saatlik milimetre yağış miktarına çevirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık radar yansıtıcılık dizileri indirilip Lucas-Kanade optik akış ve U-Net sinir ağıyla 2 saatlik yağış hareketi simüle edilir.",
+  "ayrinti": "Açık kaynaklı radar yansıtıcılık (dBZ) zaman dizileri pySTEPS kütüphanesinden çekilir. EEF 212 sönümleme denklemleriyle yağmur içi zayıflama düzeltmesi yapılır. EEF 206 2B konvolüsyon filtreleriyle zemin yansımaları ayıklanır. OpenCV ve pySTEPS ile Lucas-Kanade optik akış vektörleri türetilerek yağış kütlesi adveksiyonla ötelenir. MTO 301 Marshall-Palmer bağıntısıyla piksel değerleri yağış şiddetine (mm/saat) dönüştürülür. 3 haftada tamamlanır.",
+  "sonuc": "Radar verisinden sonraki 120 dakikanın yağış yayılımını animasyonla sunan ve CSI beceri skoru hesaplayan açık Python defteri.",
+  "senden": "EEF 206 İşaret İşleme (2B konvolüsyon ve filtreleme) + EEF 212 Elektromanyetik Teori (dalga zayıflaması)",
+  "bizden": "Radar yansıtıcılığı, Marshall-Palmer Z-R dönüşümü ve meteorolojik doğrulamalar (MTO 301)",
+  "adimlar": [
+   {
+    "baslik": "Radar yansıtıcılık verilerinin çekilmesi ve düzeltilmesi",
+    "oz": "pySTEPS açık radar veri kümesi indirilip sönümleme düzeltmesi yapılır.",
+    "ayrinti": "5 dakikalık aralıklarla taranan radar bileşik yansıtıcılık alanları (dBZ) çekilir. EEF 212 elektromanyetik zayıflama bağıntısıyla yoğun yağışın radar sinyalinde yarattığı güç kaybı düzeltilir.",
+    "nasil": [
+     {
+      "teknik": "pysteps.io.load_radar_volume ile netCDF veya HDF5 formatındaki yansıtıcılık alanları okunur.",
+      "sade": "MTO 301 dersindeki 'Radar denklemi ile geri saçılan güçten yansıtıcılığı hesaplamak' bilgisiyle veriler belleğe alınır. Havadaki bulut ve yağış kütlelerinin yansıtıcılık haritaları matris formatına getirilir.",
+      "altAdimlar": [
+       "pySTEPS örnek veri deposundan 12 ardışık radar karesi indirilir.",
+       "dBZ birimindeki yansıtıcılık matrisi NumPy dizisine dönüştürülür.",
+       "Geçersiz piksel ve menzil dışı alanlar NaN maskesiyle işaretlenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik radar denklemi ile geri saçılan güçten radar yansıtıcılığını (Z) hesaplamak."
+      }
+     },
+     {
+      "teknik": "EEF 212 dalga sönümlenme bağıntısı kullanılarak yağmur zayıflaması kompanse edilir.",
+      "sade": "EEF 212 dersindeki 'Kayıplı ortamlarda sönümleme sabitini ve dalga zayıflamasını belirlemek' bilgisiyle sinyal onarılır. Şiddetli yağmurun arkasındaki alanlarda sinyal azaldığı için gerçek yansıtıcılık değeri yeniden kazanılır.",
+      "altAdimlar": [
+       "Işın boyu boyunca kümülatif zayıflama integrali hesaplanır.",
+       "Sönümleme katsayısı alfa kullanılarak dBZ değerleri yukarı çekilir.",
+       "Fiziksel olmayan aşırı güçlenme değerleri üst sınırla kırpılır."
+      ],
+      "kazanim": {
+       "ders": "EEF 212",
+       "madde": "Kayıplı ortamlarda sönümleme sabitini ve dalga zayıflamasını belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Uzaysal filtreleme ile zemin ekolarının ayıklanması",
+    "oz": "2 boyutlu konvolüsyon filtresiyle radar parazitleri temizlenir.",
+    "ayrinti": "Dağlar, binalar ve deniz yüzeyinden dönen sahte zemin yansımaları (clutter) EEF 206 ayrık konvolüsyon toplamı ve medyan filtresiyle ayıklanarak saf yağış ekoları bırakılır.",
+    "nasil": [
+     {
+      "teknik": "scipy.signal.convolve2d ile Gauss yumuşatma çekirdeği radar matrisine uygulanır.",
+      "sade": "EEF 206 dersindeki 'Ayrık zamanlı konvolüsyon toplamı ile sistem çıkışını hesaplamak' bilgisiyle gürültü silinir. Radar görüntüsündeki tek piksellik yapay parazitler çevre piksellerle dengelenir.",
+      "altAdimlar": [
+       "5x5 boyutunda Gauss konvolüsyon matrisi tanımlanır.",
+       "Radar yansıtıcılık matrisi üzerine kayan pencereyle konvolüsyon işletilir.",
+       "Gürültüsü bastırılmış temiz yansıtıcılık alanı elde edilir."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Sürekli ve ayrık zamanlı LTI sistemlerin dürtü yanıtını ve konvolüsyon toplamını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Hareketsiz zemin ekoları ardışık kareler arası fark analiziyle maskelenir.",
+      "sade": "EEF 206 dersindeki 'Frekans domeninde sayısal filtre tasarımı yapmak' bilgisiyle sabit ekolar elenir. Yağmur bulutları hareket ederken yerinde çakılı kalan tepe ve köprü yansımaları silinir.",
+      "altAdimlar": [
+       "Son üç radar karesinin piksel bazında zaman türevi hesaplanır.",
+       "Değişmeyen yüksek yansıtıcılıklı pikseller zemin ekosu olarak işaretlenir.",
+       "Maskelenen pikseller komşu piksellerden enterpolasyonla doldurulur."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "FIR ve IIR sayısal filtre tasarımıyla gürültülü işaretleri frekans domeninde filtrelemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Lucas-Kanade optik akış ile hareket vektörleri hesabı",
+    "oz": "Piksel hareket vektörleri çıkarılarak adveksiyon alanı hesaplanır.",
+    "ayrinti": "Ardışık radar kareleri arasında parlaklık korunumu varsayımıyla hareket alanını temsil eden u ve v hız vektörleri Lucas-Kanade optik akış yöntemiyle hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "cv2.calcOpticalFlowFarneback ile yoğun optik akış vektör alanı çıkarılır.",
+      "sade": "EEF 206 dersindeki 'Sinyallerin frekans spektrumunu ve zamansal değişimini analiz etmek' bilgisiyle bulutların yönü bulunur. Fırtına hücresinin saatte kaç kilometre hızla hangi semte ilerlediği hesaplanır.",
+      "altAdimlar": [
+       "Ardışık iki radar karesi gri tonlama formatına getirilir.",
+       "Farneback optik akış algoritması çalıştırılarak her piksele (u, v) vektörü atanır.",
+       "Hatalı ters yönlü vektörler medyan filtresiyle düzeltilir."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Ayrık zamanlı Fourier dönüşümü (DTFT) ile sinyallerin frekans spektrumunu analiz etmek."
+      }
+     },
+     {
+      "teknik": "pysteps.nowcasts.extrapolation ile yarı-Lagrange adveksiyon şeması işletilir.",
+      "sade": "MTO 301 dersindeki 'Radar yansıtıcılığı ile fırtına hücrelerinin takibini yapmak' bilgisiyle öngörü yapılır. Bulutlar optik akış vektörleri doğrultusunda 10'ar dakikalık adımlarla 2 saat sonrasına kaydırılır.",
+      "altAdimlar": [
+       "Hesaplanan hareket alanı pysteps ekstrapolasyon fonksiyonuna aktarılır.",
+       "12 zaman adımı (120 dakika) boyunca adveksiyon integrasyonu yapılır.",
+       "Geleceğe taşınan yansıtıcılık dizisi bir tensörde toplanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Meteorolojik radar denklemi ile geri saçılan güçten radar yansıtıcılığını (Z) hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Marshall-Palmer dönüşümü ve nowcasting doğrulama",
+    "oz": "Tahmin edilen yansıtıcılıklar yağış miktarına çevrilip CSI ile doğrulanır.",
+    "ayrinti": "Tahmin edilen dBZ değerleri Marshall-Palmer formülüyle mm/saat yağış şiddetine dönüştürülür. Gerçekleşen radar görüntüleriyle Kritik Başarı İndeksi (CSI) hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "R = (10^(Z/10) / a)^(1/b) Marshall-Palmer formülüyle yağış şiddeti matrisi hesaplanır.",
+      "sade": "MTO 301 dersindeki 'Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılığı yağışa çevirmek' bilgisiyle dönüşüm yapılır. Radarın gördüğü renkli eko haritaları metrekareye kaç kilogram yağmur düşeceğine çevrilir.",
+      "altAdimlar": [
+       "Standart katsayılar a = 200 ve b = 1.6 olarak tanımlanır.",
+       "Tüm pikseller için lineer Z = 10^(dBZ/10) dönüşümü işletilir.",
+       "R = (Z/200)^(1/1.6) uygulanarak saatlik mm yağış şiddeti üretilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek."
+      }
+     },
+     {
+      "teknik": "pysteps.verification.spatial ile CSI (Critical Success Index) ve ETS skorları çıkarılır.",
+      "sade": "MTO 301 dersindeki 'Uzaktan algılama kalite kontrolü ve doğrulama' bilgisiyle tahmin başarısı ölçülür. 30, 60 ve 90. dakikalarda yapılan tahminlerin gerçek yağmurla ne kadar örtüştüğü sayılarla gösterilir.",
+      "altAdimlar": [
+       "Yağış eşiği 5 mm/saat seçilerek ikili (binary) yağış maskesi çıkarılır.",
+       "İsabet (hit), ıskalama (miss) ve yanlış alarm (false alarm) sayıları toplanır.",
+       "CSI = hit / (hit + miss + false alarm) zamana bağlı başarı grafiği çizdirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Zemin ekosu, parazitler ve zayıflama etkilerini kalite kontrolle temizlemek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Radar yansıtıcılık döngüsü ve 2 saatlik optik akış nowcasting animasyonu",
+   "aciklama": "Gerçekleşen radar yansıtıcılığı ve optik akışla kestirilen yağış alanları"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://pysteps.github.io",
+   "aciklama": "pySTEPS açık kaynaklı radar nowcasting topluluk dokümantasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "pySTEPS Açık Kaynaklı Olasılıklı Nowcasting Kütüphanesi",
+   "url": "https://pysteps.github.io"
+  },
+  {
+   "ad": "Ravuri, S. et al. (2021) Skilful precipitation nowcasting using deep generative models of radar, Nature",
+   "url": "https://doi.org/10.1088/1742-6596/1618/062036"
+  },
+  {
+   "ad": "Pulkkinen, S. et al. (2019) Pysteps: an open-source Python library for probabilistic precipitation nowcasting, GMD",
+   "url": "https://doi.org/10.5194/gmd-12-4185-2019"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/EHB-02.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "16ee09ddb2bd"
+ }
+}

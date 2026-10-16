@@ -1,0 +1,120 @@
+{
+ "kod": "INS 344",
+ "ad": "Çelik Yapılar I",
+ "bolum": "İnşaat Mühendisliği",
+ "obsNo": "344",
+ "ozet": "Yapı çeliğinin mekanik özelliklerini, çelik elemanların çekme, basınç, eğilme ve burulma altındaki davranışlarını öğretir. TS EN 1993 ve TS EN 1991-1-4 standartları kapsamında yapısal yük kombinasyonları, fırtına hamlesi kaynaklı dinamik rüzgâr yükü, stabilite ve birleşim detayları incelenir.",
+ "neOgrenirsin": [
+  "TS EN 1991-1-4 standardına göre rüzgâr hamle hızı ve dinamik pik hız basıncını hesaplamak.",
+  "Yapı cephelerindeki basınç katsayıları (Cpe) ile net rüzgâr yükünü ve yapısal kuvvetleri belirlemek.",
+  "Eksenel çekme ve basınç elemanlarının burkulma tahkiklerini Eurocode kurallarına göre yapmak.",
+  "Çelik kafes ve çerçeve sistemlerde fırtına yüklerinin aktarımını ve stabilite gereksinimlerini çözmek."
+ ],
+ "formuller": [
+  {
+   "ad": "TS EN 1991-1-4 pik hız basıncı formülü",
+   "tex": "q_p(z) = [1 + 7 \\, I_v(z)] \\cdot \\frac{1}{2} \\, \\rho \\, v_m^2(z)",
+   "terimler": [
+    [
+     "q_p(z)",
+     "z yüksekliğindeki pik dinamik hız basıncı",
+     "N/m²"
+    ],
+    [
+     "I_v(z)",
+     "türbülans şiddeti",
+     "birimsiz"
+    ],
+    [
+     "\\rho",
+     "hava yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "v_m(z)",
+     "z yüksekliğindeki ortalama rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "7",
+     "pik hamle faktörü sabiti",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Fırtına anındaki ani rüzgâr patlamalarının (hamle) binanın dış cephesine uygulayacağı en tepe basıncı hesaplar. Türbülans ve rüzgâr hızı arttıkça cepheye çarpan darbe kuvveti katlanır.",
+   "ornek": "Deniz kıyısında z = 50 m yükseklikte ortalama rüzgâr vm = 28 m/s, türbülans Iv = 0,16 ve hava yoğunluğu rho = 1,25 kg/m³ iken pik hız basıncı qp = (1 + 7×0,16) × 0,5 × 1,25 × 28² ≈ 1040 N/m² (1,04 kPa) olarak hesaplanır.",
+   "nerede": "Fırtına hamlesi verilerini bina cephesine ve çelik taşıyıcı sisteme etkiyen tasarım basıncına çevirirken."
+  },
+  {
+   "ad": "Yüzey net rüzgâr basıncı bağıntısı",
+   "tex": "w_e = q_p(z_e) \\cdot c_{pe}, \\qquad F_w = c_s c_d \\sum w_e A_{\\mathrm{ref}}",
+   "terimler": [
+    [
+     "w_e",
+     "dış yüzey tasarım rüzgâr basıncı",
+     "N/m²"
+    ],
+    [
+     "q_p(z_e)",
+     "referans yükseklikteki pik hız basıncı",
+     "N/m²"
+    ],
+    [
+     "c_{pe}",
+     "dış basınç katsayısı (Eurocode tablosundan)",
+     "birimsiz"
+    ],
+    [
+     "F_w",
+     "yapıya etkiyen toplam rüzgâr kuvveti",
+     "N"
+    ],
+    [
+     "c_s c_d",
+     "yapısal boyut ve dinamik katsayı",
+     "birimsiz"
+    ],
+    [
+     "A_{\\mathrm{ref}}",
+     "referans rüzgâr alanı",
+     "m²"
+    ]
+   ],
+   "sade": "Rüzgârın binanın rüzgâr alan tarafında itme, yan ve arka taraflarında ise emme (vakum) etkisi yaratmasını hesaplar. Yüksek binaların çelik kolon ve kirişlerine binen toplam devirme kuvvetini verir.",
+   "ornek": "qp = 1000 N/m² ve rüzgâr ön cephesi için cpe = +0,8 iken ön yüzey basıncı we = +800 N/m² (itme); arka cephede cpe = -0,5 iken we = -500 N/m² (emme) bulunur. 400 m² cephede toplam net itki 520 kN çıkar.",
+   "nerede": "Çelik kolon, kiriş ve cephe kaplamalarının taşıması gereken fırtına yüklerini belirlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wind_pressure_distribution.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Bina cephesinde rüzgâr basıncı ve emme dağılımı şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara fırtına hamlesi rüzgâr hızları dağılımı, ERA5, 2021-11-29",
+   "aciklama": "İstanbul'da çatı uçmalarına neden olan şiddetli lodos fırtınası hamle hızları animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · INS 344 (Çelik Yapılar I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=INS&dersNo=344"
+  },
+  {
+   "ad": "Trahair, N. S., Bradford, M. A., Nethercot, D. A. ve Gardner, L. (2007) The Behaviour and Design of Steel Structures to EC3, Taylor & Francis · ISBN 978-0415418652",
+   "url": "https://openlibrary.org/isbn/9780415418652"
+  },
+  {
+   "ad": "Eurocode 1: Actions on structures - Part 1-4: General actions - Wind actions (EN 1991-1-4)",
+   "url": "https://www.phd.eng.br/wp-content/uploads/2015/12/en.1991.1.4.2005.pdf"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=INS&dersNo=344"
+}

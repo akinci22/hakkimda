@@ -1,0 +1,442 @@
+{
+ "id": "F-BBF-BLG-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "BLG",
+  "bolum": "Bilgisayar Mühendisliği",
+  "fakulteKod": "BBF",
+  "fakulte": "Bilgisayar ve Bilişim Fakültesi"
+ },
+ "ad": "GFS ve ECMWF otomatik veri boru hattı",
+ "ne": "Açık küresel tahmin verilerini her gün cron/worker ile çekip istasyon koordinatlarına göre kırpan hafif bir servis yazmak.",
+ "adimlar": [
+  "Python'da 50 satır: ECMWF açık veri API'sinden İstanbul koordinatını çekip SQLite'a yazmak."
+ ],
+ "sonuc": "Otomatik çalışan veri boru hattı scripti",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "BLG 223E",
+    "ad": "Data Structures"
+   },
+   {
+    "kod": "BLG 411E",
+    "ad": "Software Engineering"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "ECMWF Open Data & ecCodes",
+   "ne": "Küresel açık hava tahmin verilerini Python istemcisi ve GRIB2 kod çözücüyle dağıtan açık veri altyapısı.",
+   "url": "https://confluence.ecmwf.int/display/ECC/ecCodes+Home",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Orta Vadeli Hava Tahminleri Merkezi (ECMWF), küresel atmosferik sayısal tahmin çıktılarını açık veri politikasıyla tüm dünyaya sundu. Python tabanlı ecmwf-opendata istemcisi ve C/Python ecCodes kütüphanesi ile GRIB2 ve BUFR formatındaki petabaytlarca veriyi hafif parçalar halinde sunuyorlar.",
+    "nasil": "RESTful veri uç noktaları üzerinden her 6 saatte bir güncellenen 0,25 derecelik ızgara paketleri yayımlanır. Kullanıcılar indeks dosyalarını indirerek sadece ihtiyaç duydukları seviye ve koordinat bayt aralığını HTTP range sorgularıyla çeker.",
+    "neEdindiler": "Günde yüz binlerce araştırmacı küresel IFS ve AIFS model çıktılarına süper bilgisayar gereksinimi olmadan saniyeler içinde erişebilir hale geldi.",
+    "bizNasilKatki": "AURA bünyesinde bu açık veri API'sini dinleyen hafif bir Python arka plan işçisi kurarız. Tüm küre yerine sadece Marmara Bölgesi koordinatlarını çekerek ağ trafiğini ve disk tüketimini yüzde 99 oranında azaltabiliriz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF ecCodes kütüphanesi ana dokümantasyonu",
+      "url": "https://confluence.ecmwf.int/display/ECC/ecCodes+Home",
+      "tur": "web"
+     },
+     {
+      "ad": "ecmwf-opendata resmi Python istemci deposu (GitHub, Apache 2.0)",
+      "url": "https://github.com/ecmwf/ecmwf-opendata",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/ecmwf/ecmwf-opendata",
+      "aciklama": "ecmwf-opendata istemci kod yapısı ve veri indirme parametreleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "ECMWF açık veri istemcisi aktarım hızı ve gecikme metrikleri, 2026-10",
+      "aciklama": "Açık veri API uç noktalarından veri çekme süreleri ve paket başarım grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Unidata LDM & THREDDS (UCAR)",
+   "ne": "Üniversiteler arası meteorolojik veri akışını sağlayan yerel Veri Dağıtım Yöneticisi ve sunucu sistemi.",
+   "url": "https://www.unidata.ucar.edu/software/ldm/",
+   "ayrinti": {
+    "neYaptilar": "Amerikan Atmosferik Araştırmalar Üniversiteler Birliği (UCAR) bünyesindeki Unidata, üniversitelerin gerçek zamanlı hava ve radar verilerini paylaşabilmesi için LDM (Local Data Manager) protokolünü geliştirdi. Sistem olay güdümlü kuyruk mimarisiyle çalışır.",
+    "nasil": "Gelen meteorolojik ürünler TCP soketleri üzerinden bellek kuyruğuna alınır. Düzenli ifadelerle filtrelenen paketler anında yerel diske yazılır veya bağlı alt analiz süreçlerine iletilir.",
+    "neEdindiler": "250'den fazla araştırma kurumu ve üniversite laboratuvarı NOAA, NCEP ve radar verilerini gecikmesiz olarak ortak bir ağda paylaşmayı başardı.",
+    "bizNasilKatki": "Unidata'nın olay güdümlü kuyruk mantığını taklit ederek, küresel model çıktısı tamamlandığında tetiklenen hafif bir webhook dinleyicisi tasarlarız. Böylece gereksiz yoklama (polling) isteklerinden kaçınırız.",
+    "referanslar": [
+     {
+      "ad": "Unidata LDM resmi yazılım ve mimari kılavuzu",
+      "url": "https://www.unidata.ucar.edu/software/ldm/",
+      "tur": "web"
+     },
+     {
+      "ad": "UCAR Unidata açık kaynak veri teknolojileri platformu",
+      "url": "https://github.com/Unidata/LDM",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.unidata.ucar.edu/software/ldm/",
+      "aciklama": "Unidata LDM veri dağıtım topolojisi ve istemci kuyruk yönetimi ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Data_Queue.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Olay güdümlü veri kuyruğu ve FIFO işleme mimarisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Open-Meteo Open Source Weather API",
+   "ne": "Açık küresel tahmin verilerini yüksek performanslı zaman serisi API'sine dönüştüren açık kaynaklı motor.",
+   "url": "https://github.com/open-meteo/open-meteo",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynak geliştiricileri tarafından kurulan Open-Meteo, ECMWF, GFS, DWD ICON ve Météo-France modellerinin ham verilerini çekip hafif ikili formatlara dönüştüren ve mikro saniyeler içinde sunan açık bir tahmin servisi kurdu.",
+    "nasil": "Her saat başı çalışan cron betikleri GRIB2 verilerini indirir. C++ ve FlatBuffers tabanlı özel dosya biçimiyle ızgara noktaları mekânsal olarak parçalanır. SQLite ve bellek eşlemeli dosyalarla (mmap) sunulur.",
+    "neEdindiler": "Günde 1 milyardan fazla API isteğine yanıt veren, ticari kısıtlama taşımayan ve geliştiricilere tamamen açık bir hava durumu ekosistemi oluştu.",
+    "bizNasilKatki": "Open-Meteo'nun açık kaynaklı boru hattı mimarisinden esinlenerek, İTÜ Maslak kampüsü ve İstanbul çevresi için optimize edilmiş mikro bir yerel önbellek katmanı inşa ederiz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo açık kaynak deposu ve veri dönüştürücüler",
+      "url": "https://github.com/open-meteo/open-meteo",
+      "tur": "kod"
+     },
+     {
+      "ad": "Open-Meteo API resmi geliştirici dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo dokümantasyon sayfası ve saatlik veri sorgulama paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Open-Meteo İstanbul saatlik tahmin sorgu gecikmesi ve yanıt süresi, 2026-10",
+      "aciklama": "İstanbul koordinatları için API yanıt sürelerinin milisaniye düzeyinde dağılım animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Günde gigabaytlarca küresel hava verisini çekip boru hattından geçirmek, saf bir dağıtık sistem mimarisidir.",
+  "senin": "BLG 223E Data Structures, BLG 335E Analysis of Algorithms I, BLG 411E Software Engineering",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "BLG 223E Data Structures",
+    "bizim": "NetCDF / GRIB2 çok boyutlu ızgara dizileri",
+    "neden": "Atmosferik 4B tensörleri bellekte verimli tutmak ve indekslemek gelişmiş veri yapısı tasarımıdır."
+   },
+   {
+    "senin": "BLG 411E Software Engineering",
+    "bizim": "Sürekli veri çekme ve doğrulama boru hattı",
+    "neden": "Her 6 saatte bir çalışan küresel tahmin modellerini hatasız işleyen güvenilir bir servis mimarisi kurarız."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Zarr ve Icechunk açık hava veri formatları",
+   "metin": "2025'te ECMWF ve NASA, petabaytlarca hava tahmin verisini bulutta anlık sorgulamak için Zarr ve nesne tabanlı depolama Icechunk mimarisine geçti. Hızlı veri erişimi ve paralel okuma yazılım mühendisliği algoritmalarıyla sağlandı.",
+   "kaynakAdi": "ECMWF Tech Blog",
+   "kaynakUrl": "https://www.ecmwf.int/en/about/media-centre/news/2025/cloud-data-formats-weather-prediction",
+   "tarih": "2025-03"
+  },
+  "detay": "Meteoroloji modelleri her gün gigabaytlarca ham veri üretir; asıl zorluk bu veriyi şişmeden çekmek, doğru veri yapılarıyla saklamak ve anlık API uç noktalarına sunmaktır. Yazılım mühendisliği ve algoritma derslerinde öğrendiğin tasarım kalıpları, burada doğrudan çalışan bir veri hattına dönüşür. Sunucu tarafında kuracağın hafif servisler, küresel modeller ile İstanbul istasyon ölçümlerini birbiriyle konuşturan omurga olur. Sınav haftalarında işe ara verirken, dönem boyunca kendi ilgi alanına göre bir uç nokta veya veri yapısı optimize edersin. Yanına oturan meteoroloji öğrencisi verinin fiziksel anlamını çözerken, sen tüm bu akışın kesintisiz işlemesini sağlarsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (BLG)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2340"
+   }
+  ]
+ },
+ "amac": "Açık küresel tahmin verilerini (GFS/ECMWF) hafif zamanlanmış bir boru hattıyla çekip İstanbul istasyon koordinatlarına göre kırpan bir servis kurmak.",
+ "ortakDers": [
+  {
+   "kod": "BLG 223E",
+   "projeyeKatki": "İstasyon koordinatlarını ve zaman serisi meta verilerini hash tablosu ve kd-tree veri yapılarıyla saklayarak küresel ızgara kırpma sorgularını hızlandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Hash tablosu ortalama arama karmaşıklığı ve yük faktörü",
+     "nerede": "İstasyon meta verilerini anahtar-değer eşleştirmesiyle anlık indekslerken."
+    },
+    {
+     "formulAd": "Kd-tree mekânsal arama derinliği bağıntısı",
+     "nerede": "Küresel 0,25 derecelik ızgara noktalarından İstanbul koordinatına en yakın hücreleri seçerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Boru hattından gelen ızgara verilerindeki aykırı değerleri filtreleyip eksik adımları zaman serisi analizi ve enterpolasyonla tamamlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+     "nerede": "Çekilen saatlik sıcaklık serilerindeki 24 saatlik periyodik döngünün doğruluğunu denetlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık hava tahmin API'lerinden GRIB2 verisi çeken, koordinat filtreleyen ve SQLite'a yazan hafif bir Python servisi kurmak.",
+  "ayrinti": "ECMWF açık veri kütüphanesi ve NOAA NOMADS akışları kullanılarak otomatik bir veri boru hattı tasarlanır. Hafif bir arka plan servisi saatlik verileri çeker, kd-tree ile İstanbul kutusunu keser ve yerel veritabanına aktarır. Toplam geliştirme süresi 2-3 haftadır; en kritik kısım ağ kesintilerinde veri kaybını önleyen yeniden deneme mekanizmasıdır.",
+  "adimlar": [
+   {
+    "baslik": "Açık tahmin veri istemcisini yapılandırmak",
+    "oz": "ECMWF ve GFS açık veri kütüphaneleriyle bağlantı kurup ham tahmin dosyalarını indirmek.",
+    "ayrinti": "ECMWF'nin açık veri Python istemcisi ve NOAA HTTP uç noktaları incelenir. Her 6 saatlik model çalıştırmasında yeni yayınlanan dosya indeksleri kontrol edilir ve sadece hedef değişkenleri (sıcaklık, rüzgâr, basınç) içeren hafif bayt aralıkları talep edilir.",
+    "nasil": [
+     {
+      "teknik": "from ecmwf.opendata import Client; client = Client(source='ecmwf'); client.retrieve(model='ifs', param=['2t', '10u', '10v'], target='tahmin.grib2')",
+      "sade": "ECMWF açık veri istemcisi kurularak IFS modelinin yer seviyesi sıcaklık ve rüzgâr alanları tek bir dosya olarak indirilir.",
+      "altAdimlar": [
+       "Python sanal ortamı oluşturup ecmwf-opendata paketini kurun.",
+       "İstemciyi IFS modeli ve 0 saatlik analiz adımıyla başlatın.",
+       "Hedef parametreleri 2 metre sıcaklığı ve 10 metre rüzgârı olarak belirleyin."
+      ],
+      "kazanim": {
+       "ders": "BLG 223E",
+       "madde": "Dizi ve liste yapılarıyla veri akışlarını yönetmek"
+      }
+     },
+     {
+      "teknik": "urllib3.util.retry.Retry(total=5, backoff_factor=1.5, status_forcelist=[502, 503, 504]) ile dirençli HTTP oturumu açılır.",
+      "sade": "Uzak sunucu geçici olarak yanıt vermediğinde istek hemen düşmez; katlanarak artan bekleme süreleriyle yeniden denenir.",
+      "altAdimlar": [
+       "Requests oturumu içerisine Retry stratejisi enjekte edin.",
+       "Geçici 5xx ağ hatalarında bağlantıyı otomatik olarak 5 kez yineleyin.",
+       "Hata loglarını yerel bir günlük dosyasına yazdırın."
+      ],
+      "kazanim": {
+       "ders": "BLG 223E",
+       "madde": "Öncelik kuyrukları ve yığın yapılarıyla olay akışlarını yönetmek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BLG 223E",
+      "madde": "Dizi ve liste yapılarıyla veri akışlarını yönetmek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/ecmwf/ecmwf-opendata",
+      "aciklama": "ecmwf-opendata kütüphanesi Python kod bloğu"
+     }
+    ]
+   },
+   {
+    "baslik": "Mekânsal filtreleme ve koordinat dilimleme",
+    "oz": "Küresel GRIB2 dosyasından Marmara ve İstanbul koordinatlarını kd-tree ile ayıklamak.",
+    "ayrinti": "Küresel 0,25 derecelik ızgara noktaları belleğe tensör olarak alınır. scipy.spatial.cKDTree veri yapısı kullanılarak İstanbul Maslak kampüsü koordinatlarına en yakın 4 ızgara noktası logaritmik zamanda bulunur ve gereksiz hücreler atılır.",
+    "nasil": [
+     {
+      "teknik": "tree = cKDTree(np.c_[lats.ravel(), lons.ravel()]); dist, idx = tree.query([41.10, 29.02], k=4)",
+      "sade": "Enlem ve boylam koordinatları iki boyutlu arama ağacına dönüştürülür; kampüs noktasına en yakın 4 hava hücresi anında tespit edilir.",
+      "altAdimlar": [
+       "GRIB2 dosyasından 2B koordinat ızgaralarını çıkarıp düzleştirin.",
+       "İki boyutlu kd-tree indeksini koordinat çiftleriyle inşa edin.",
+       "İTÜ Ayazağa koordinatını sorgulayarak en yakın komşu indislerini alın."
+      ],
+      "kazanim": {
+       "ders": "BLG 223E",
+       "madde": "İkili arama ağaçları ve kd-tree ile çok boyutlu verileri indekslemek"
+      }
+     },
+     {
+      "teknik": "xr.open_dataset('tahmin.grib2', engine='cfgrib').sel(latitude=slice(41.5, 40.5), longitude=slice(28.5, 29.5))",
+      "sade": "xarray kütüphanesiyle tüm dünya haritasından sadece İstanbul ve çevresini kapsayan coğrafi pencere kırpılır.",
+      "altAdimlar": [
+       "cfgrib motorunu kullanarak GRIB2 dosyasını xarray veri kümesine açın.",
+       "Enlem ve boylam dilimleme aralıklarını İstanbul sınırlarına daraltın.",
+       "Kırpılan alt veri kümesini yerel bellek yapısına aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Mekânsal enterpolasyon ile istasyon verilerini düzenli ızgaraya aktarmak"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BLG 223E",
+      "madde": "İkili arama ağaçları ve kd-tree ile çok boyutlu verileri indekslemek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Kdtree_2d.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "İki boyutlu kd-tree ile mekânsal komşu arama yapısı"
+     }
+    ]
+   },
+   {
+    "baslik": "Yerel veritabanına aktarım ve şema tasarımı",
+    "oz": "Kırpılan tahmin verilerini SQLite ilişkisel tablosuna eklemek.",
+    "ayrinti": "Zaman serisi sorgularını hızlandırmak için tahmin çalıştırma zamanı, geçerlilik tarihi ve istasyon kodu üzerinde birleşik indeksler tanımlanır. Mükerrer veri yazımını önleyen benzersizlik kısıtları konulur.",
+    "nasil": [
+     {
+      "teknik": "CREATE TABLE IF NOT EXISTS tahmin (istasyon_id TEXT, calisma_zamani TIMESTAMP, gecerlilik TIMESTAMP, sicaklik REAL, PRIMARY KEY (istasyon_id, calisma_zamani, gecerlilik))",
+      "sade": "Veritabanında her tahmin için benzersiz bir birincil anahtar kurulur; aynı tahmin ikinci kez çekilse bile veritabanı kopyalanmaz.",
+      "altAdimlar": [
+       "SQLite bağlantısı açarak istasyon tahmin tablosunu oluşturun.",
+       "Zaman serisi sorguları için tarih alanlarına ikincil indeks ekleyin.",
+       "INSERT OR REPLACE komutuyla yeni tahminleri güvenle yazın."
+      ],
+      "kazanim": {
+       "ders": "BLG 223E",
+       "madde": "Karma tabloları ile istasyon meta verilerini anlık sorgulamak"
+      }
+     },
+     {
+      "teknik": "cur.executemany('INSERT INTO tahmin VALUES (?,?,?,?)', veri_listesi); con.commit()",
+      "sade": "Binlerce saatlik tahmin satırı tek tek değil, toplu işlem olarak diske aktarılır; disk yazma süresi milisaniyelere iner.",
+      "altAdimlar": [
+       "Filtrelenen tahmin dizilerini demet (tuple) listesine dönüştürün.",
+       "Toplu ekleme komutuyla SQLite işlem bloğunu çalıştırın.",
+       "İşlem tamamlandığında commit ile diske kalıcı olarak işleyin."
+      ],
+      "kazanim": {
+       "ders": "BLG 223E",
+       "madde": "Dizi ve liste yapılarıyla veri akışlarını yönetmek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BLG 223E",
+      "madde": "Karma tabloları ile istasyon meta verilerini anlık sorgulamak"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/open-meteo/open-meteo",
+      "aciklama": "Veritabanı şeması ve sorgu katmanı mimarisi"
+     }
+    ]
+   },
+   {
+    "baslik": "Fiziksel tutarlılık ve Fourier spektrum kontrolü",
+    "oz": "İndirilen serinin fiziksel sınırlarını ve günlük periyodunu doğrulamak.",
+    "ayrinti": "İndirilen sıcaklık değerlerinin İstanbul iklimi sınırlarında (-15 °C ile +45 °C) olup olmadığı denetlenir. Hızlı Fourier Dönüşümü (FFT) uygulanarak serinin 24 saatlik güneşlenme döngüsünü taşıyıp taşımadığı kontrol edilir.",
+    "nasil": [
+     {
+      "teknik": "assert (sicaklik > -15.0).all() and (sicaklik < 45.0).all(), 'Meteorolojik sinir disi sicaklik tespit edildi'",
+      "sade": "Boru hattından geçen her veri paketine mantık kalkanı konulur; bozuk bir paket geldiğinde sonraki aşamalara geçiş engellenir.",
+      "altAdimlar": [
+       "Numpy dizisi üzerinde mantıksal doğrulama süzgeci uygulayın.",
+       "Aralık dışı veya NaN değerleri loglayıp alarm üretin.",
+       "Hatalı paketleri inceleme kuyruğuna yönlendirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak"
+      }
+     },
+     {
+      "teknik": "fft_guc = np.abs(np.fft.rfft(sicaklik_serisi))**2; tepe_periyot = len(sicaklik_serisi) / np.argmax(fft_guc[1:])",
+      "sade": "Sıcaklık eğrisinin frekans analizi yapılır; 24 saatlik döngüde güçlü bir tepe oluştuğu matematiksel olarak teyit edilir.",
+      "altAdimlar": [
+       "Saatlik sıcaklık serisine tek boyutlu Fourier dönüşümü uygulayın.",
+       "Güç spektrumundaki en yüksek frekans bileşenini bulun.",
+       "Tepe periyodunun 24 saate denk geldiğini doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını bulmak"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını bulmak"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul sıcaklık serisi Fourier güç spektrumu ve 24 saatlik döngü kontrolü, 2026-10",
+      "aciklama": "Saatlik tahmin serisinin Fourier güç spektrumu ve periyodik tepe animasyonu"
+     }
+    ]
+   }
+  ],
+  "sonuc": "Her gün otomatik güncellenen, İstanbul odaklı temiz hava tahmin veritabanı ve hafif sorgu servisi.",
+  "senden": "Veri yapıları, API istemcisi, yeniden deneme kuyruğu ve veritabanı indeksleme mimarisini kurmak.",
+  "bizden": "Meteorolojik parametrelerin fiziksel birimlerini, yükseklik seviyelerini ve sınır değerlerini doğrulamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "ECMWF ve GFS 2 m sıcaklık verisi boru hattı akışı ve İstanbul ızgara kırpma gecikmesi, 2026-10",
+   "aciklama": "Veri boru hattının küresel GRIB2 verisinden İstanbul istasyonuna aktarım akışı animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://github.com/open-meteo/open-meteo",
+   "aciklama": "Açık kaynaklı hava API boru hattı mimarisi ve zaman serisi dönüştürücü kod yapısı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Kdtree_2d.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "İki boyutlu ızgarada en yakın komşu arama ağacı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ECMWF ecCodes kütüphanesi dokümantasyonu",
+   "url": "https://confluence.ecmwf.int/display/ECC/ecCodes+Home"
+  },
+  {
+   "ad": "Open-Meteo Weather API Engine (GitHub)",
+   "url": "https://github.com/open-meteo/open-meteo"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-BBF-BLG-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "84867485116d"
+ }
+}

@@ -1,0 +1,122 @@
+{
+ "kod": "JEF 212E",
+ "ad": "Data Processing in Geophysics",
+ "bolum": "Jeofizik Mühendisliği",
+ "obsNo": "212E",
+ "ozet": "Jeofiziksel zaman serilerinin ve dalga formlarının dijital sinyal işleme prensiplerini öğretir. Örnekleme kuramı, Fourier analizi, güç spektrumu yoğunluğu (PSD), evrişim, çapraz korelasyon ve dijital filtreleme yöntemleri ele alınır. Sismik gürültülerin ayıklanması ve yer kabuğu sinyallerinin spektral ayrıştırılmasında temel oluşturur.",
+ "neOgrenirsin": [
+  "Ayrık Fourier dönüşümü ile sismik sinyallerin frekans spektrumunu hesaplamak.",
+  "Güç spektrumu yoğunluğu (PSD) ile fırtına kaynaklı mikrosismik enerjiyi belirlemek.",
+  "Bant geçiren dijital filtrelerle dalga formlarını gürültüden arındırmak.",
+  "Zaman serilerinde otokorelasyon ve çapraz korelasyonla dalga gecikmelerini saptamak.",
+  "Spektral pencereler uygulayarak frekans sızıntısını ve spektral sapmayı azaltmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Güç spektrumu yoğunluğu (PSD) Welch formülasyonu",
+   "tex": "P(f) = \\frac{1}{N \\cdot f_s} \\left| \\sum_{n=0}^{N-1} x_n w_n e^{-i 2\\pi f n / f_s} \\right|^2",
+   "terimler": [
+    [
+     "P(f)",
+     "güç spektrumu yoğunluğu",
+     "\\mu\\mathrm{m}^2 / (\\mathrm{s}^2 \\cdot \\mathrm{Hz})"
+    ],
+    [
+     "N",
+     "örneklem sayısı",
+     "adet"
+    ],
+    [
+     "f_s",
+     "örnekleme frekansı",
+     "Hz"
+    ],
+    [
+     "x_n",
+     "n zamanındaki sismik hız genliği",
+     "\\mu\\mathrm{m}/\\mathrm{s}"
+    ],
+    [
+     "w_n",
+     "pencereleme fonksiyonu katsayısı",
+     "birimsiz"
+    ],
+    [
+     "f",
+     "frekans",
+     "Hz"
+    ],
+    [
+     "n",
+     "zaman indisi",
+     "adet"
+    ]
+   ],
+   "sade": "Sismometreden gelen sinyalin hangi frekansta ne kadar enerji taşıdığını gösterir. Fırtınalı havalarda okyanus dalgalarının yarattığı 0,1 ile 0,5 Hz arasındaki enerji sıçramasını açıkça ortaya koyar.",
+   "ornek": "Kandilli rasathanesi istasyonunda sakin bir günde 0,2 Hz'de PSD değeri -130 dB iken, şiddetli lodos fırtınasında deniz dalgası basıncıyla -105 dB seviyesine çıkarak 25 dB enerji artışı üretir.",
+   "nerede": "F-MDF-JEF-01 projesinde fırtınalı ve sakin günlerin mikrosismik arka plan gürültü farkını hesaplarken."
+  },
+  {
+   "ad": "Bant geçiren filtre genlik transfer fonksiyonu",
+   "tex": "|H(f)|^2 = \\frac{1}{1 + \\left( \\frac{f^2 - f_0^2}{f \\cdot B} \\right)^{2n}}",
+   "terimler": [
+    [
+     "|H(f)|",
+     "filtre genlik yanıtı",
+     "birimsiz"
+    ],
+    [
+     "f",
+     "sinyal frekansı",
+     "Hz"
+    ],
+    [
+     "f_0",
+     "merkez rezonans frekansı",
+     "Hz"
+    ],
+    [
+     "B",
+     "bant genişliği",
+     "Hz"
+    ],
+    [
+     "n",
+     "filtre derecesi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Sismik sinyaldeki sadece istenen frekans aralığını geçirip geri kalan gürültüyü süzer. Fırtına dalgalarının frekansına odaklanarak şehir gürültüsünü veya deprem dalgalarını ayıklar.",
+   "ornek": "Merkez frekansı f_0 = 0,2 Hz ve bant genişliği B = 0,1 Hz olan 4. derece Butterworth filtre, 1 Hz üzerindeki insan kaynaklı titreşimleri 40 dB zayıflatır.",
+   "nerede": "F-MDF-JEF-01 projesinde sismik ham sinyalden mikrosismik dalga formunu izole ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Fourier_transform_time_and_frequency_domains.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Zaman ortamındaki sismik dalga formunun Fourier dönüşümü ile frekans spektrumuna ayrışımı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Denizi kıyı rüzgâr hızı ve dalga yüksekliği zaman serisi, 2026",
+   "aciklama": "Lodos fırtınasında kıyı rüzgârı artışı ve dalga enerjisi spektrumu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · JEF 212E (Data Processing in Geophysics)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=JEF&dersNo=212E"
+  },
+  {
+   "ad": "Yılmaz, Ö. (2001) Seismic Data Analysis: Processing, Inversion, and Interpretation, SEG · DOI 10.1190/1.9781560801580",
+   "url": "https://doi.org/10.1190/1.9781560801580"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=JEF&dersNo=212E"
+}

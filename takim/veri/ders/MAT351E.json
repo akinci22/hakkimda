@@ -1,0 +1,97 @@
+{
+ "kod": "MAT 351E",
+ "ad": "Computational Optimization",
+ "bolum": "Matematik Mühendisliği",
+ "obsNo": "351",
+ "ozet": "Doğrusal ve doğrusal olmayan optimizasyon problemlerinin matematiksel formülasyonu ve sayısal çözüm algoritmalarını öğretir. Gradyan inişi, Newton ve yarı Newton yöntemleri, Lagrange çarpanları, KKT koşulları ve Huber gibi gürbüz kayıp fonksiyonları incelenir. Veri asimilasyonu ve makine öğrenmesinde model parametrelerinin eniyilenmesinde temel rol oynar.",
+ "neOgrenirsin": [
+  "Tek ve çok değişkenli amaç fonksiyonlarının yerel ve küresel minimum koşullarını belirlemek.",
+  "Gradyan inişi (gradient descent) ve eşlenik gradyan algoritmalarını kodlamak.",
+  "Newton-Raphson ve BFGS yarı Newton yöntemleriyle ikinci dereceden yakınsama sağlamak.",
+  "L1 (MAE), L2 (MSE) ve Huber kayıp fonksiyonlarının gradyan duyarlılıklarını karşılaştırmak.",
+  "Kısıtlı optimizasyon problemlerinde Lagrange fonksiyonu ve KKT koşullarıyla optimal çözümü bulmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Huber gürbüz kayıp fonksiyonu",
+   "tex": "L_\\delta(r) = \\frac{1}{2} r^2 \\quad (|r| \\le \\delta), \\qquad L_\\delta(r) = \\delta(|r| - \\frac{1}{2}\\delta) \\quad (|r| > \\delta)",
+   "terimler": [
+    [
+     "L_\\delta(r)",
+     "Huber kayıp fonksiyonu değeri",
+     "birimsiz"
+    ],
+    [
+     "r",
+     "gözlem ile tahmin arasındaki kalıntı farkı",
+     "°C"
+    ],
+    [
+     "\\delta",
+     "ikinci dereceden birinci dereceye geçiş eşik parametresi",
+     "°C"
+    ]
+   ],
+   "sade": "Küçük hatalarda karesel (L2) davranarak hassas yaklaşımlar sunar; aşırı uç anomalilerde ise doğrusal (L1) davranarak aykırı değerlerin tahmin sistemini bozmasını engeller.",
+   "ornek": "Delta = 1,5 °C iken 0,8 °C'lik küçük hata için kayıp 0,32 olurken; istasyon arızası kaynaklı 10 °C'lik uç değerde karesel kayıp 50 yerine doğrusal 13,875 ile sınırlanır.",
+   "nerede": "Sıcaklık tahmin sisteminin uç istasyon anomalilerine aşırı tepki vermesini önlemek için kayıp fonksiyonu optimizasyonunda."
+  },
+  {
+   "ad": "Gradyan inişi parametre güncelleme bağıntısı",
+   "tex": "\\mathbf{w}_{k+1} = \\mathbf{w}_k - \\eta \\, \\nabla_{\\mathbf{w}} J(\\mathbf{w}_k)",
+   "terimler": [
+    [
+     "\\mathbf{w}_k",
+     "k'inci adımdaki model parametre vektörü",
+     "vektör"
+    ],
+    [
+     "\\eta",
+     "öğrenme katsayısı veya adım boyutu",
+     "birimsiz"
+    ],
+    [
+     "\\nabla_{\\mathbf{w}} J(\\mathbf{w}_k)",
+     "kayıp fonksiyonunun model parametrelerine göre gradyanı",
+     "gradyan vektörü"
+    ],
+    [
+     "\\mathbf{w}_{k+1}",
+     "güncellenmiş yeni parametre vektörü",
+     "vektör"
+    ]
+   ],
+   "sade": "Modelin yaptığı hatanın eğimini hesaplar ve parametreleri bu eğimin ters yönünde küçük bir adımla kaydırarak hatayı en aza indirir.",
+   "ornek": "Sıcaklık ağırlık katsayısı gradyanı 4,2 °C ve öğrenme oranı eta = 0,01 iken katsayı 0,042 azaltılarak bir sonraki tahmin hatası küçültülür.",
+   "nerede": "İstanbul sıcaklık tahmin sisteminin ağırlıklarını L1, L2 ve Huber kayıpları üzerinden güncellerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul sıcaklık tahmininde L1, L2 ve Huber kayıp fonksiyonları gradyan optimizasyonu animasyonu",
+   "aciklama": "Uç sıcaklık değerlerinde kayıp fonksiyonlarının parametre güncelleme davranışı animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gradient_descent.svg",
+   "lisans": "CC BY 3.0",
+   "aciklama": "Gradyan inişi optimizasyon algoritmasının yerel minimuma yakınsama diyagramı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MAT 351E (Computational Optimization)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=351"
+  },
+  {
+   "ad": "Nocedal, J., Wright, S. J. (2006) Numerical Optimization, Springer · ISBN 978-0387303031",
+   "url": "https://openlibrary.org/isbn/9780387303031"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=351"
+}

@@ -1,0 +1,395 @@
+{
+ "id": "EHB-01",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "EHB",
+  "bolum": "Elektronik ve Haberleşme Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "IoT hava istasyonu ağı + YZ kısa vadeli tahmin",
+ "ne": "Dağıtık IoT hava istasyonlarından MQTT ile toplanan ölçümleri dijital filtrelerden geçirip LSTM sinir ağıyla 3 saatlik tahmin üreten açık platform.",
+ "adimlar": [
+  "Okulun elindeki sensörleri ya da açık istasyon verisini kullan",
+  "Veriyi kablosuz olarak bir sunucuya gönder",
+  "Kısa vadeli bir tahmin modeli eğit",
+  "Tahmini panelde göster"
+ ],
+ "sonuc": "Sonunda çalışan bir veri akışı ve tahmin paneli olur.",
+ "senden": "EEF 206 İşaret İşleme",
+ "bizden": "Ölçüm denetimi ve veri analizi (MTO311E)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "EEF 206",
+    "ad": "İşaret İşleme"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Earth Networks (WeatherBug)",
+   "ne": "Okullara kurulan hava istasyonu ağıyla başladı; ülke çapında ölçüm ve tahmin şirketi oldu.",
+   "url": "https://www.earthnetworks.com",
+   "ayrinti": {
+    "neYaptilar": "ABD genelinde binlerce okula ve kamu binasına kurdukları yerel hava ve şimşek sensörleriyle en büyük ticari IoT mikro-hava istasyonu ağını kurdular.",
+    "nasil": "Hücresel ve kablosuz haberleşmeyle saniyeler içinde toplanan verileri merkezi bulutta işleyip yerel aşırı hava uyarıları ve şimşek takip sistemleri tasarladılar.",
+    "neEdindiler": "WeatherBug mobil uygulamasını milyarlarca sorguya ulaştırıp belediyelere ve enerji şirketlerine hiper-yerel hava istihbaratı satan küresel bir şirket oldular.",
+    "bizNasilKatki": "Earth Networks'ün istasyon kalibrasyon ve dağıtık veri toplama mimarisini kampüs ölçeğinde ESP32 düğümleriyle mini bir ağda deneriz.",
+    "referanslar": [
+     {
+      "ad": "Earth Networks Hiper-Yerel Hava Gözlem Ağı Portalı",
+      "url": "https://www.earthnetworks.com/weather-stations/",
+      "tur": "web"
+     },
+     {
+      "ad": "Earth Networks Toplam Yıldırım ve Hava Güvenliği Çözümleri",
+      "url": "https://www.earthnetworks.com/solutions",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Dağıtık istasyon ağı sıcaklık ve basınç dalgalanmaları animasyonu",
+      "aciklama": "Kent ölçeğinde farklı noktalardaki sıcaklık değişimlerinin harita üzerindeki yayılımı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.earthnetworks.com/weather-stations/",
+      "aciklama": "Earth Networks kurumsal hava istasyonu ve IoT izleme sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "senseBox (Münster Üniversitesi)",
+   "ne": "Öğrencilerin kendi sensör istasyonunu kurup veriyi internete gönderdiği bir üniversite projesi.",
+   "url": "https://sensebox.de",
+   "ayrinti": {
+    "neYaptilar": "Münster Üniversitesi Jeoinformatik Enstitüsü, okullar ve vatandaş bilimi için açık donanım ve yazılımlı çevre ve hava istasyonu kiti senseBox'ı geliştirdi.",
+    "nasil": "Arduino ve ESP32 tabanlı mikrokontrolcülere sıcaklık, nem, basınç ve PM sensörleri bağlayıp openSenseMap açık veri platformuna LoRaWAN ve Wi-Fi ile veri aktardılar.",
+    "neEdindiler": "Avrupa genelinde binlerce aktif istasyondan oluşan, araştırmacıların ve okulların serbestçe erişebildiği devasa bir açık iklim veri havuzu oluşturdular.",
+    "bizNasilKatki": "senseBox'ın açık kaynaklı firmware kodunu ve openSenseMap API entegrasyonunu kendi istasyon prototipimize entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "senseBox: Citizen Science Toolkit for Environmental Monitoring",
+      "url": "https://sensebox.de/en/products/home/",
+      "tur": "web"
+     },
+     {
+      "ad": "openSenseMap Açık Çevre ve Sensör Verisi Platformu",
+      "url": "https://opensensemap.org/explore",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "openSenseMap istasyon ağı anlık sıcaklık ve partikül madde animasyonu",
+      "aciklama": "Vatandaş bilimi istasyonlarından toplanan anlık meteorolojik parametreler"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://sensebox.de/en/products/home/",
+      "aciklama": "senseBox açık donanımlı çevre sensör istasyonu platformu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Weather Underground",
+   "ne": "Michigan Üniversitesinde bir öğrenci projesi olarak başladı; gönüllü istasyon ağıyla büyük bir hava sitesine dönüştü.",
+   "url": "https://www.wunderground.com/about/our-company",
+   "ayrinti": {
+    "neYaptilar": "Michigan Üniversitesi atmosfer bilimi öğrencileri, kişisel hava istasyonlarını (PWS) internete bağlayan küresel kitle kaynaklı gözlem platformu kurdu.",
+    "nasil": "Ev tipi sensörlerden gelen ölçümleri TCP/IP üzerinden toplayıp yerel mikroklima haritaları ve çok kısa vadeli tahmin algoritmaları ürettiler.",
+    "neEdindiler": "250.000'den fazla kişisel hava istasyonunu birleştirerek The Weather Company ve IBM bünyesinde en büyük hiper-yerel gözlem ağına dönüştüler.",
+    "bizNasilKatki": "Weather Underground'un PWS veri yükleme protokolünü (Wunderground API) inceleyip istasyon verilerimizi küresel ağa açarız.",
+    "referanslar": [
+     {
+      "ad": "Weather Underground Tarihçesi ve Kişisel Hava İstasyonu Ağı",
+      "url": "https://www.wunderground.com/about/our-company",
+      "tur": "web"
+     },
+     {
+      "ad": "Weather Underground Kişisel İstasyon Bağlantı Dokümanı",
+      "url": "https://support.weather.com",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Kişisel hava istasyonları kentsel ısı adası sıcaklık farkları animasyonu",
+      "aciklama": "Kentsel doku ile yeşil alanlar arasındaki anlık sıcaklık sapmalarının takibi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.wunderground.com/about/our-company",
+      "aciklama": "Weather Underground kurumsal tanıtım ve istasyon ağı sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Sensor.Community Açık Hava İstasyonu Topluluğu",
+   "ne": "Açık kaynaklı sensörlerle küresel hava ve hava kalitesi ağı kuran küresel gönüllü topluluğu.",
+   "url": "https://sensor.community/en/sensors/",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynak savunucusu mühendis ve öğrenciler, düşük maliyetli sensörlerle kendi hava istasyonunu kuran küresel bir hareket başlattı.",
+    "nasil": "NodeMCU ve DHT22/BME280 sensörlerini bir araya getirip Wi-Fi üzerinden JSON yüklemesi yapan açık kaynaklı yazılım geliştirdiler.",
+    "neEdindiler": "80'den fazla ülkede 15.000'i aşkın aktif sensörle dünyanın en geniş açık hava kalitesi ve mikroklima haritasını kurdular.",
+    "bizNasilKatki": "Topluluğun açık REST API'sinden İstanbul istasyonlarının verilerini çekerek kendi tahmin modelimizin eğitiminde kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Sensor.Community Açık Sensör ve Çevre İzleme Ağı",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "tur": "web"
+     },
+     {
+      "ad": "Sensor.Community GitHub Açık Donanım ve Yazılım Deposu",
+      "url": "https://github.com/opendata-stuttgart/sensors-software",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Sensor.Community İstanbul istasyonları nem ve sıcaklık zaman serisi",
+      "aciklama": "Açık sensör ağından gelen ham hava verilerinin zaman serisi akışı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://sensor.community/en/sensors/",
+      "aciklama": "Sensor.Community küresel açık sensör platformu ana sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "İstasyonları kur, veriyi topla",
+   "Gürültüyü filtrele",
+   "Kısa vadeli tahmin öğren"
+  ],
+  "edinim": [
+   [
+    "EEF 206",
+    "örnekleme, filtreleme"
+   ],
+   [
+    "MTO311E",
+    "zaman serisi analizi"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Sensor.Community açık sensör ağı",
+    "url": "https://sensor.community/",
+    "gorsel": "g/kaynak/sensor-community.jpg",
+    "lisans": "ODbL",
+    "slug": "sensor-community"
+   },
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Yağmur sinyali zayıflatır; senin işaret işlemen o zayıflamadan yağışı kestirir.",
+  "senin": "EEF 206 İşaret İşleme, EEF 212 Elektromanyetik Teori",
+  "bizim": "MTO311E Veri Analizi, MTO301 Uzaktan Algılama",
+  "ortakIs": "IoT hava istasyonu ağı, yağmur sönümlemesinden yağış tahmini",
+  "detay": "Ortak zemin: EEF 206 İşaret İşleme ↔ MTO311E Veri Analizi; EEF 212 Elektromanyetik Teori ↔ MTO301 Uzaktan Algılama. Örnek görev: haberleşme bağlantılarındaki yağmur zayıflamasından yağış kestirmek ya da IoT istasyon ağı kurmak. Kazanç: sinyal işlemeyi gerçek hava verisinde denemek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1452"
+ },
+ "amac": "Dağıtık IoT hava istasyonlarından toplanan sıcaklık ve nem verilerini işaret işleme ve makine öğrenmesiyle birleştirip yerel çok kısa vadeli hava tahmini üretmek.",
+ "ortakDers": [
+  {
+   "kod": "EEF 206",
+   "projeyeKatki": "Sensör örnekleme hızı seçimi (Nyquist kriteri), analog gürültülerin ayrık konvolüsyonla filtrelenmesi ve DTFT frekans analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık zamanlı konvolüsyon toplamı",
+     "nerede": "2. adımda: Ucuz sensörlerden gelen gürültülü sıcaklık ve nem ölçümlerini FIR alçak geçiren filtreyle yumuşatırken."
+    },
+    {
+     "formulAd": "Nyquist-Shannon minimum örnekleme frekansı koşulu",
+     "nerede": "1. adımda: ESP32 mikrodenetleyicisinin ADC okuma aralığını ve sensör yoklama periyodunu belirlerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Meteorolojik zaman serilerinin temizlenmesi, periyodik günlük dalgaların Fourier dönüşümüyle saptanması ve istasyonlar arası korelasyon bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık Fourier Dönüşümü (DFT) ve güç spektrumu",
+     "nerede": "2. adımda: Sıcaklık serisindeki 24 saatlik günlük döngüyü ve yüksek frekanslı türbülans gürültüsünü spektrumda ayrıştırırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ESP32 tabanlı IoT sensör verileri MQTT ile sunucuya aktarılır, dijital filtreden geçirilip LSTM ile 3 saatlik tahmin üretilir.",
+  "ayrinti": "Kampüs içinde farklı noktalara yerleştirilen ESP32 mikrodenetleyicili BME280 ve rüzgâr sensörlerinden Wi-Fi üzerinden MQTT protokolüyle merkezi sunucuya sıcaklık, nem ve basınç verileri aktarılır. EEF 206 sayısal işaret işleme yöntemleriyle sensör gürültüleri konvolüsyon tabanlı filtrelerle ayıklanır. MTO 311E spektral analiz ilkeleriyle günlük eğilim çıkarılır. PyTorch üzerinde eğitilen hafif bir LSTM ağıyla önümüzdeki 3 saatin sıcaklık değişimi öngörülür. 3 haftada tamamlanır.",
+  "sonuc": "Dağıtık IoT istasyonlarından canlı veri toplayan, dijital filtreyle temizleyip 3 saatlik hava tahmini sunan web paneli.",
+  "senden": "EEF 206 İşaret İşleme (Nyquist örnekleme, FIR dijital filtreleme ve konvolüsyon)",
+  "bizden": "Meteorolojik sensör yerleşimi, Fourier spektral analizi ve zaman serisi doğrulaması (MTO 311E)",
+  "adimlar": [
+   {
+    "baslik": "IoT sensör düğümünün donanım ve haberleşme kurulumu",
+    "oz": "ESP32 mikrodenetleyicisine meteoroloji sensörleri bağlanıp MQTT yayını başlatılır.",
+    "ayrinti": "BME280 ortam sensörü I2C veri yoluyla ESP32 kartına bağlanır. EEF 206 örnekleme frekansı kurallarına göre saniyede 1 okuma yapılır. Veriler JSON paketine dönüştürülüp Wi-Fi üzerinden Mosquitto MQTT broker sunucusuna iletilir.",
+    "nasil": [
+     {
+      "teknik": "ESP32 Arduino C++ firmware ile BME280 sensöründen 1 Hz hızında sıcaklık, nem ve basınç okunur.",
+      "sade": "EEF 206 dersindeki 'Nyquist-Shannon örnekleme kriterini uygulayarak örtüşme etkisini önlemek' bilgisiyle frekans ayarlanır. Havadaki ani değişimlerin kaçırılmaması ve parazit oluşmaması için sensör doğru zaman aralığında taranır.",
+      "altAdimlar": [
+       "Wire kütüphanesi ile 0x76 adresindeki BME280 sensörü başlatılır.",
+       "1000 ms zamanlayıcı kesmesiyle sensör registers değerleri okunur.",
+       "Ölçüm paketleri yapılandırılmış C yapısına yazılır."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Nyquist-Shannon örnekleme kriterini uygulayarak örtüşme (aliasing) etkisini önlemek."
+      }
+     },
+     {
+      "teknik": "PubSubClient kütüphanesiyle telemetri verileri JSON formatında MQTT broker konusuna yayınlanır.",
+      "sade": "EEF 206 dersindeki 'Ayrık zamanlı LTI sistemlerin dürtü yanıtını hesaplamak' bilgisiyle veri akışı kurulur. İstasyonun topladığı çevre bilgileri kablosuz ağ üzerinden merkezi tahmin sunucusuna kesintisiz yollanır.",
+      "altAdimlar": [
+       "Yerel Wi-Fi ağına bağlantı kurulup IP adresi alınır.",
+       "Mosquitto MQTT sunucusuna bağlanılarak istasyon/ist1/hava konusu açılır.",
+       "Sensör JSON metni 10 saniyelik paketler halinde iletilir."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Sürekli ve ayrık zamanlı LTI sistemlerin dürtü yanıtını ve konvolüsyon toplamını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sensör serilerinde dijital işaret işleme ve filtreleme",
+    "oz": "Ham ölçümler ayrık konvolüsyon ve Fourier analiziyle filtrelenir.",
+    "ayrinti": "Ucuz sensörlerin ürettiği elektriksel parazit ve ani sıçramalar EEF 206 ayrık konvolüsyon toplamı kullanılarak FIR alçak geçiren filtreyle temizlenir. MTO 311E Ayrık Fourier Dönüşümü ile frekans spektrumu kontrol edilir.",
+    "nasil": [
+     {
+      "teknik": "SciPy signal.convolve ile tasarlanan FIR alçak geçiren filtre katsayıları ham seriye uygulanır.",
+      "sade": "EEF 206 dersindeki 'Ayrık zamanlı konvolüsyon toplamıyla sistem çıkışı elde etmek' bilgisiyle filtreleme yapılır. Ölçüm kablolarından kaynaklanan ani sıçramalar ve gürültüler temizlenerek gerçek hava eğilimi korunur.",
+      "altAdimlar": [
+       "NumPy ile 7 katsayılı Hamming pencereli FIR filtre çekirdeği h[n] üretilir.",
+       "Gelen ham sensör tamponuna np.convolve işlemi işletilir.",
+       "Gecikme süresi kompanse edilerek filtrelenmiş seri elde edilir."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Sürekli ve ayrık zamanlı LTI sistemlerin dürtü yanıtını ve konvolüsyon toplamını hesaplamak."
+      }
+     },
+     {
+      "teknik": "np.fft.rfft ile sıcaklık zaman serisinin güç spektrumu P_k hesaplanır.",
+      "sade": "MTO 311E dersindeki 'Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını bulmak' bilgisiyle spektrum taranır. Güneşin doğuşu ve batışıyla oluşan 24 saatlik döngü doğrulanır, yüksek frekanslı parazitlerin yok edildiği görülür.",
+      "altAdimlar": [
+       "Filtrelenmiş seriden 256 noktalı pencereler alınır.",
+       "Fourier dönüşümü işletilerek frekans güç yoğunlukları çıkarılır.",
+       "24 saatlik periyoda denk gelen tepe noktası doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Ayrık Fourier dönüşümü ile atmosferik sinyallerin baskın frekanslarını ve periyotlarını bulmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yapay zekâ ile kısa vadeli hava tahmini ve web paneli",
+    "oz": "LSTM sinir ağıyla 3 saatlik sıcaklık tahmini yapılıp web arayüzünde gösterilir.",
+    "ayrinti": "Geçmiş 6 saatin filtrelenmiş verileri girdi olarak verilip önümüzdeki 3 saatin sıcaklık seyrini öngören PyTorch LSTM modeli çalıştırılır. Tahmin ve canlı sensör verileri FastAPI ve Chart.js paneline basılır.",
+    "nasil": [
+     {
+      "teknik": "PyTorch nn.LSTM hücresiyle geçmiş adımlardan sonraki 3 saatin trendini çıkaran model eğitilir.",
+      "sade": "MTO 311E dersindeki 'Zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak' bilgisiyle model eğitilir. Havanın son birkaç saatteki düşüş ya da yükseliş ivmesine bakılarak yakın gelecek kestirilir.",
+      "altAdimlar": [
+       "Geçmiş verilerden 36 zaman adımlı giriş matrisleri oluşturulur.",
+       "2 katmanlı LSTM ve lineer regresyon katmanı çalıştırılır.",
+       "Elde edilen 3 saatlik tahmin serisi güven aralığıyla üretilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "FastAPI uç noktası üzerinden Chart.js tabanlı canlı telemetri ve tahmin göstergesi kurulur.",
+      "sade": "EEF 206 dersindeki 'Ayrık zamanlı filtre tasarımıyla gürültülü işaretleri filtrelemek' bilgisiyle temiz çıktılar sunulur. Kullanıcılar kampüsteki anlık hava durumunu ve gelecek 3 saatin tahminini grafik üzerinden izler.",
+      "altAdimlar": [
+       "FastAPI ile /api/telemetry ve /api/forecast JSON servisleri yazılır.",
+       "HTML5 ve Chart.js ile gerçek zamanlı çizgi grafikleri bağlanır.",
+       "Yeni MQTT paketi geldikçe WebSocket ile ekran otomatik yenilenir."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "FIR ve IIR sayısal filtre tasarımıyla gürültülü işaretleri frekans domeninde filtrelemek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "IoT istasyon ağı sıcaklık ve bağıl nem canlı zaman serisi animasyonu",
+   "aciklama": "Ham sensör ölçümleri, FIR filtrelenmiş sinyal ve LSTM 3 saatlik tahmin eğrisi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://sensebox.de/en/products/home/",
+   "aciklama": "senseBox açık donanımlı çevre ve hava gözlem istasyonu platformu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "senseBox Açık Donanım ve Çevre İzleme Kiti Dokümantasyonu",
+   "url": "https://sensebox.de/en/products/home/"
+  },
+  {
+   "ad": "openSenseMap Küresel Açık Sensör Veri Portalı",
+   "url": "https://opensensemap.org/explore"
+  },
+  {
+   "ad": "Sensor.Community Küresel Çevre Sensörleri Topluluk Deposu",
+   "url": "https://github.com/opendata-stuttgart/sensors-software"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/EHB-01.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "c7e3e03f0b53"
+ }
+}

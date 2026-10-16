@@ -1,0 +1,144 @@
+{
+ "kod": "UZB 352E",
+ "ad": "Orbital Mechanics",
+ "bolum": "Uzay Mühendisliği",
+ "obsNo": "352E",
+ "ozet": "İki cisim problemi, Kepler yörünge hareket denklemleri, yörünge belirleme ve yörünge manevralarını öğretir. Alçak Dünya (LEO), kutup, güneş eşzamanlı (SSO) ve jeosenkron (GEO) yörüngelerin geometrisi, yer izi hesapları ve yerçekimi pertürbasyonları ele alınır. Meteoroloji ve yer gözlem uydularının gözlem kapsamını ve geçiş pencerelerini yörünge fiziğiyle analiz etmeyi hedefler.",
+ "neOgrenirsin": [
+  "İki cisim hareket denklemlerini çözerek klasik Kepler yörünge elemanlarını belirlemek.",
+  "Kepler denklemi ve vis-viva bağıntısıyla yörüngenin herhangi bir anındaki hız ve konumu hesaplamak.",
+  "Güneş eşzamanlı ve kutup yörüngeleri için yer izi ve yer istasyonu geçiş sürelerini hesaplamak.",
+  "Dünya basıklığı J2 pertürbasyonunun yörünge düğüm gerilemesine etkisini türetmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Vis-viva enerji ve yörünge hızı bağıntısı",
+   "tex": "v^2 = \\mu \\left( \\frac{2}{r} - \\frac{1}{a} \\right)",
+   "terimler": [
+    [
+     "v",
+     "uydunun yörüngesel hızı",
+     "m/s"
+    ],
+    [
+     "\\mu",
+     "Dünya yerçekimi parametresi (G M = 3,986 \\times 10^{14})",
+     "m³/s²"
+    ],
+    [
+     "r",
+     "uydunun Dünya merkezine anlık uzaklığı",
+     "m"
+    ],
+    [
+     "a",
+     "yörüngenin yarı büyük eksen uzunluğu",
+     "m"
+    ]
+   ],
+   "sade": "Bir uydunun yörüngedeki herhangi bir noktada sahip olduğu hızı, Dünya merkezine olan uzaklığına ve yörüngenin büyüklüğüne göre belirler. Dairesel yörüngede irtifa yükseldikçe uydunun hızı azalır.",
+   "ornek": "820 km irtifada dairesel kutup yörüngesinde (r = a = 7200 km) dönen MetOp meteoroloji uydusunun hızı v = sqrt(3,986×10^14 / 7,2×10^6) ≈ 7440 m/s olarak bulunur.",
+   "nerede": "Kutup ve jeosenkron meteoroloji uydularının geçiş hızını ve Doppler frekans kaymasını hesaplarken."
+  },
+  {
+   "ad": "Kepler üçüncü yasası ve yörünge periyodu",
+   "tex": "T = 2\\pi \\sqrt{\\frac{a^3}{\\mu}}",
+   "terimler": [
+    [
+     "T",
+     "uydunun tam bir yörünge dolanım süresi",
+     "s"
+    ],
+    [
+     "a",
+     "yarı büyük eksen uzunluğu",
+     "m"
+    ],
+    [
+     "\\mu",
+     "Dünya yerçekim parametresi",
+     "m³/s²"
+    ]
+   ],
+   "sade": "Uydunun Dünya etrafındaki bir tam turunun ne kadar sürdüğünü yörünge irtifasına bağlar. Alçak Dünya yörüngesinde yaklaşık 100 dakika süren tur, jeosenkron yörüngede tam 24 saate ulaşır.",
+   "ornek": "820 km irtifadaki MetOp uydusu için a = 7200 km iken periyot T ≈ 6080 saniye, yani yaklaşık 101,3 dakika çıkar; günde Dünya çevresinde 14,2 tur atar.",
+   "nerede": "Uydunun İstanbul yer istasyonu üzerinden gün içinde kaç kez ve hangi aralıklarla geçeceğini belirlerken."
+  },
+  {
+   "ad": "Dünya basıklığı J2 düğüm boylamı gerileme hızı",
+   "tex": "\\dot{\\Omega} = -\\frac{3}{2} J_2 R_E^2 \\sqrt{\\frac{\\mu}{a^7}} \\frac{\\cos i}{(1 - e^2)^2}",
+   "terimler": [
+    [
+     "\\dot{\\Omega}",
+     "çıkış düğümü boylamının presesyon hızı",
+     "rad/s"
+    ],
+    [
+     "J_2",
+     "Dünya basıklık katsayısı (1,08263 \\times 10^{-3})",
+     "birimsiz"
+    ],
+    [
+     "R_E",
+     "Dünya ekvatoral yarıçapı (6378 km)",
+     "m"
+    ],
+    [
+     "\\mu",
+     "Dünya yerçekim parametresi",
+     "m³/s²"
+    ],
+    [
+     "a",
+     "yarı büyük eksen",
+     "m"
+    ],
+    [
+     "i",
+     "yörünge eğiklik açısı (inklinasyon)",
+     "rad"
+    ],
+    [
+     "e",
+     "yörünge dışmerkezliği",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Dünya ekvatorda şişkin olduğu için uydunun yörünge düzlemi yavaşça döner. Eğiklik açısı 98 derece civarı seçildiğinde yörünge presesyonu Dünya'nın Güneş etrafındaki dönüşüne eşitlenir ve uydu hep aynı yerel saatte aynı bölgeden geçer.",
+   "ornek": "820 km irtifada i = 98,7° olan güneş eşzamanlı bir meteoroloji uydusunda presesyon hızı tam günde 0,9856° olur; bu sayede her geçişte aynı güneş açısıyla atmosfer aydınlatılır.",
+   "nerede": "Güneş eşzamanlı meteoroloji uydularının (MetOp, NOAA-20) yerel gözlem saatini sabit tutarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Orbital_elements.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Kepler yörünge elemanları: yarı büyük eksen, dışmerkezlik ve eğiklik açısı geometrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Jeosenkron yörünge yer izi ve kapsama diski, GOES-16, 2024, 24 saatlik",
+   "aciklama": "Sabit boylamdan Dünya diskinin sürekli izlenmesi ve LEO uydusu geçiş izi karşılaştırması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · UZB 352E (Orbital Mechanics)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=UZB&dersNo=352E"
+  },
+  {
+   "ad": "Curtis, H. D. (2020) Orbital Mechanics for Engineering Students, 4. baskı, Butterworth-Heinemann · DOI 10.1016/C2017-0-02220-7",
+   "url": "https://doi.org/10.1016/C2017-0-02220-7"
+  },
+  {
+   "ad": "Vallado, D. A. (2013) Fundamentals of Astrodynamics and Applications, 4. baskı, Microcosm Press · ISBN 978-1-881883-18-0",
+   "url": "https://openlibrary.org/isbn/9781881883180"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=UZB&dersNo=352E"
+}

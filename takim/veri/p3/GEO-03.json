@@ -1,0 +1,387 @@
+{
+ "id": "GEO-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "GEO",
+  "bolum": "Geomatik (Harita) Mühendisliği",
+  "fakulteKod": "INS"
+ },
+ "ad": "Yükseklik verisiyle ML downscaling",
+ "ne": "Kaba çözünürlüklü küresel reanaliz hava verilerini yüksek çözünürlüklü sayısal yükseklik modeli (SRTM) ve derin öğrenmeyle hiper-yerel ölçeğe indiren sistem.",
+ "adimlar": [
+  "ERA5 sıcaklığını ve açık yükseklik haritasını indir",
+  "Sıcaklığın yükseklikle ilişkisini çıkar",
+  "İnce ızgarada sıcaklığı tahmin eden bir model eğit",
+  "Sonucu istasyon ölçümüyle karşılaştır"
+ ],
+ "sonuc": "Sonunda ayrıntılı bir sıcaklık haritası olur.",
+ "senden": "GEO 313E Digital Image Processing",
+ "bizden": "Sıcaklığın yükseklikle değişimi bilgisi",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "GEO 313E",
+    "ad": "Digital Image Processing"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NVIDIA CorrDiff",
+   "ne": "Kaba hava verisini yapay zekâyla birkaç kilometrelik ayrıntıya indiren çalışma.",
+   "url": "https://arxiv.org/abs/2309.15214",
+   "ayrinti": {
+    "neYaptilar": "NVIDIA araştırmacıları, küresel sayısal hava modellerinin 25 km çözünürlüklü alanlarını 2 km çözünürlüğe çıkaran CorrDiff difüzyon modelini geliştirdi.",
+    "nasil": "Sayısal yükseklik haritalarını ve radar yansıtıcılıklarını koşullu difüzyon ağlarına rehber olarak verip orografik yağış ve rüzgâr detaylarını simüle ettiler.",
+    "neEdindiler": "Geleneksel bölgesel sayısal hava modellerine göre bin kat daha hızlı çalışan ve aşırı fırtına hücrelerini yakalayan bir süper-çözünürlük standardı kurdular.",
+    "bizNasilKatki": "CorrDiff mimarisinin yükseklik modeliyle hava alanını birleştirme mantığını inceleyerek U-Net tabanlı basit bir versiyonunu kodlarız.",
+    "referanslar": [
+     {
+      "ad": "arXiv: CorrDiff - Generative AI for Extreme Weather Downscaling",
+      "url": "https://arxiv.org/abs/2309.15214",
+      "tur": "makale"
+     },
+     {
+      "ad": "NVIDIA Earth-2 İklim Zekâsı Platformu",
+      "url": "https://www.nvidia.com/en-us/high-performance-computing/earth-2/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://arxiv.org/abs/2309.15214",
+      "aciklama": "CorrDiff üretici yapay zekâ hava indirgeme araştırma yayını"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "25 km ERA5 sıcaklık alanının SRTM topoğrafyasıyla 1 km ızgaraya indirilmesi",
+      "aciklama": "Kaba ızgaralı sıcaklık verisinin vadi ve dağ hatlarına uyarlanmış yüksek çözünürlüklü animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Meteomatics",
+   "ne": "Yükseklik verisiyle tahmini çok ince ızgaraya indirerek hava verisi satan küresel şirket.",
+   "url": "https://www.meteomatics.com/en/weather-api",
+   "ayrinti": {
+    "neYaptilar": "İsviçre merkezli Meteomatics, global model tahminlerini küresel 90 metrelik yükseklik verisiyle anlık olarak 1 km'nin altına indiren API platformu kurdu.",
+    "nasil": "Topoğrafik lapse rate, güneşlenme açısı ve vadi drenaj akışlarını sayısal arazi modelleri üzerinde analitik ve istatistiksel algoritmalarla çözdüler.",
+    "neEdindiler": "Enerji, havacılık ve lojistik sektörlerinde dünyanın en hassas coğrafi hava servisi sağlayıcılarından biri haline geldiler.",
+    "bizNasilKatki": "Meteomatics'in yükseklik tabanlı sıcaklık gradyanı indirgeme formüllerini açık Python kütüphanemize uygularız.",
+    "referanslar": [
+     {
+      "ad": "Meteomatics Global Weather API and Downscaling Portal",
+      "url": "https://www.meteomatics.com/en/weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Meteomatics Topoğrafik Çözünürlük İyileştirme Teknolojisi",
+      "url": "https://www.meteomatics.com/en/technology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.meteomatics.com/en/weather-api",
+      "aciklama": "Meteomatics hava veri arayüzü ve yerel çözünürlük teknolojisi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Topoğrafik yükseklik etkisiyle oluşan vadi tabanı sıcaklık terselmesi animasyonu",
+      "aciklama": "Dağlık arazide yükseklik değişimine bağlı gece soğuk hava göllenmesi ve sıcaklık dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "ClimateLearn",
+   "ne": "Açık kaynaklı hava ve iklim süper-çözünürlük ve yapay zekâ kütüphanesi.",
+   "url": "https://github.com/aditya-grover/climate-learn",
+   "ayrinti": {
+    "neYaptilar": "Stanford ve UCLA araştırmacıları ile açık kaynak geliştiricileri, iklim verilerinde makine öğrenmesi ve uzaysal downscaling için ClimateLearn paketini yazdı.",
+    "nasil": "ERA5 ve CMIP6 iklim simülasyonlarını PyTorch tensörlerine bağlayıp U-Net ve ResNet mimarileriyle uzaysal çözünürlük artırma eğitimini standartlaştırdılar.",
+    "neEdindiler": "Akademik araştırmacıların karmaşık iklim verilerini birkaç satır kodla süper-çözünürlüğe ulaştırmasını sağlayan evrensel bir açık kütüphane oluşturdular.",
+    "bizNasilKatki": "ClimateLearn kütüphanesinin ön işleme ve uzaysal ölçekleme sınıflarını kullanarak modelimizin temel eğitim döngüsünü kurarız.",
+    "referanslar": [
+     {
+      "ad": "ClimateLearn GitHub Açık Kaynak İklim Öğrenmesi Deposu",
+      "url": "https://github.com/aditya-grover/climate-learn",
+      "tur": "kod"
+     },
+     {
+      "ad": "ClimateLearn: Benchmarking Machine Learning for Weather and Climate",
+      "url": "https://arxiv.org/abs/2307.01977",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aditya-grover/climate-learn",
+      "aciklama": "ClimateLearn açık kaynaklı iklim yapay zekâsı kod ve dokümantasyon sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "ClimateLearn U-Net mimarisi ile sıcaklık alanı çözünürlük yükseltme döngüsü",
+      "aciklama": "Yapay zekâ modelinin kaba piksel sınırlarını yumuşatarak topografik detayları üretmesi"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "ERA5 ve yükseklik modelini hizala",
+   "İnce ölçek ilişkisini öğren",
+   "İstasyonla doğrula"
+  ],
+  "edinim": [
+   [
+    "GEO 313E",
+    "raster işleme, yeniden örnekleme"
+   ],
+   [
+    "MTO406",
+    "orografik etkiler"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   },
+   {
+    "ad": "Open-Meteo API (tahmin + gözlem)",
+    "url": "https://open-meteo.com/",
+    "gorsel": "g/kaynak/open-meteo.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "open-meteo"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Uydu görüntüsünden sis haritası çıkarır, GNSS sinyalinden havadaki su buharını kestirirsin.",
+  "senin": "GEO 204 Hata Teorisi ve Dengeleme, GEO 313E Digital Image Processing",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO301 Uzaktan Algılama",
+  "ortakIs": "Uydudan YZ ile sis haritası, GNSS ile su buharı",
+  "detay": "Ortak zemin: GEO 204 Hata Teorisi ve Dengeleme ↔ MTO406; en küçük kareler veri asimilasyonunun matematiği. GEO 313E Digital Image Processing ↔ MTO301 Uzaktan Algılama. Örnek görev: uydudan sis ve alçak bulut haritası ya da GNSS ile su buharı karşılaştırması. Kazanç: görüntü işlemeyi havacılık ve ulaşım için anlamlı bir işte kullanmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2294"
+ },
+ "amac": "Kaba çözünürlüklü ERA5 sıcaklık alanlarını sayısal yükseklik modeli ve konvolüsyonel sinir ağlarıyla 1 kilometrelik ince ızgaraya indirgemek.",
+ "ortakDers": [
+  {
+   "kod": "GEO 313E",
+   "projeyeKatki": "Sayısal yükseklik modellerinin raster analizi, uzaysal enterpolasyon, 2B konvolüsyonel filtreleme ve piksel bazlı çözünürlük dönüştürme bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "2B Sayısal konvolüsyon ve uzaysal filtreleme bağıntısı",
+     "nerede": "2. adımda: Yüksek çözünürlüklü SRTM yükseklik haritasından eğim ve bakı gradyan filtreleri türetirken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Orta enlem sıcaklık gradyanı, yerel sıcaklık düşüş oranı (lapse rate) dinamiği ve Q-vektör sıcaklık adveksiyonu analizi bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "3. adımda: Kaba modeldeki yatay sıcaklık gradyanı ile yerel orografik hava akışının kesişimini teşhis ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 sıcaklık ızgarası ile SRTM yükseklik haritası eşleştirilip gradyan artırma modeliyle ince ölçekli harita üretilir.",
+  "ayrinti": "Copernicus CDS üzerinden 25 km'lik ERA5 saatlik sıcaklık alanları çekilir. NASA SRTM 90 metrelik sayısal yükseklik modeli indirilir. GEO 313E raster işleme yöntemleriyle iki veri aynı 1 km'lik ızgaraya enterpole edilir. MTO 406 sıcaklık gradyanı ve topoğrafik lapse rate bağıntılarıyla öznitelik matrisi kurulur. LightGBM ve U-Net ile eğitilen model 1 km çözünürlüklü sıcaklık haritası üretir. 3 haftada tamamlanır.",
+  "sonuc": "Kaba hava verilerini 1 km çözünürlüğe indirgeyen ve istasyon ölçümleriyle doğrulayan açık Python defteri.",
+  "senden": "GEO 313E Digital Image Processing (raster işleme, 2B konvolüsyon filtreleme ve uzaysal çözünürlük dönüştürme)",
+  "bizden": "MTO 406 Hava Analizi (orografik lapse rate, sıcaklık gradyanı ve yer gözlemleriyle doğrulama)",
+  "adimlar": [
+   {
+    "baslik": "ERA5 sıcaklık ve SRTM yükseklik verilerinin toplanması",
+    "oz": "Kaba sıcaklık ızgarası ve ince sayısal yükseklik modeli indirilir.",
+    "ayrinti": "CDS API ile Marmara Bölgesi 2 metre sıcaklık (t2m) alanı çekilir; NASA Earthdata üzerinden 90 m SRTM DEM rasterı indirilir.",
+    "nasil": [
+     {
+      "teknik": "cdsapi.Client().retrieve ile 25 km çözünürlüklü ERA5 t2m NetCDF dosyası çekilir.",
+      "sade": "GEO 313E dersindeki 'Uzaktan algılama görüntülerine radyometrik kalibrasyon uygulamak' bilgisiyle kaba veri alınır. Küresel hava analizi verisi indirilir ve sıcaklık değerleri Kelvin'den Celsius'a çevrilir.",
+      "altAdimlar": [
+       "CDS API istemcisi üzerinden saatlik t2m değişkeni sorgulanır.",
+       "NetCDF verisi xarray kütüphanesiyle NumPy dizisine dönüştürülür.",
+       "Enlem ve boylam sınırları Marmara havzasına göre kırpılır."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Uzaktan algılama görüntülerine radyometrik kalibrasyon ve atmosferik düzeltme uygulamak."
+      }
+     },
+     {
+      "teknik": "rasterio.open ile SRTM DEM rasterı okunup 1 km hedef ızgaraya bilineer yeniden örnekleme yapılır.",
+      "sade": "GEO 313E dersindeki 'Uzaysal filtreleme ve yeniden örnekleme yapmak' bilgisiyle arazi haritası hazırlanır. Dağların, tepelerin ve vadilerin yükseklik bilgileri 1 kilometrelik kutulara uyarlanır.",
+      "altAdimlar": [
+       "SRTM GeoTIFF dosyası açılır ve geçersiz deniz pikselleri sıfır kotuna eşitlenir.",
+       "Hedef 1 km çözünürlüklü boş koordinat ızgarası tanımlanır.",
+       "Rasterio reproject işleviyle DEM verisi hedef ızgaraya yerleştirilir."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Uzaysal filtreleme ve konvolüsyon çekirdekleri ile görüntü yumuşatma ve kenar sezme yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Topoğrafik öznitelikler ve konvolüsyonel filtreleme",
+    "oz": "Yükseklik matrisinden eğim, bakı ve yerel yükseklik farkı türetilir.",
+    "ayrinti": "Sıcaklığın güneşlenme ve rüzgârla değişimini yakalamak için DEM üzerine GEO 313E 2B Sobel filtreleri uygulanarak eğim ve yönelim hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "scipy.signal.convolve2d ile 3x3 Sobel çekirdekleri işletilerek dZ/dx ve dZ/dy eğimleri çıkarılır.",
+      "sade": "GEO 313E dersindeki '2B Sayısal konvolüsyon ve uzaysal filtreleme bağıntısı' bilgisiyle dağ yamaçları bulunur. Arazinin hangi yöne ne kadar dik eğimli olduğu türetilir.",
+      "altAdimlar": [
+       "Yatay ve dikey yönde 3x3 Sobel konvolüsyon matrisleri tanımlanır.",
+       "DEM matrisi üzerinden kayan pencereyle gradyan matrisleri çıkarılır.",
+       "Eğim açısı (slope) ve güneş görme yönü (aspect) hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Uzaysal filtreleme ve konvolüsyon çekirdekleri ile görüntü yumuşatma ve kenar sezme yapmak."
+      }
+     },
+     {
+      "teknik": "Yerel yükseklik anomalisinden lapse rate bağıntısıyla taban sıcaklık düzeltme katmanı oluşturulur.",
+      "sade": "MTO 406 dersindeki 'Yarı-jeostrofik sıcaklık gradyanı' bilgisiyle işlem yapılır. Yükseldikçe her 100 metrede havanın yaklaşık 0.65 derece soğuma fiziği hesaplanır.",
+      "altAdimlar": [
+       "Kaba ERA5 ızgara kotu ile 1 km SRTM kotu arasındaki fark Delta H çıkarılır.",
+       "Standart troposferik sıcaklık düşüş oranı gamma = 0.0065 K/m ile çarpılır.",
+       "İlk kaba orografik sıcaklık düzeltme alanı oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Yarı-jeostrofik omega ve geopotansiyel eğilim denklemleriyle dikey hareketi ve siklon gelişimini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Makine öğrenmesi ile süper-çözünürlük modelinin eğitilmesi",
+    "oz": "Topoğrafik özellikler ve kaba sıcaklık girdisiyle gradyan artırma modeli eğitilir.",
+    "ayrinti": "Öznitelik matrisi (kaba t2m, SRTM kotu, eğim, bakı, lapse rate) kullanılarak LightGBM veya U-Net mimarisi eğitilir.",
+    "nasil": [
+     {
+      "teknik": "lightgbm.LGBMRegressor ile 500 ağaçlı gradyan artırılmış karar ağacı modeli kurulur.",
+      "sade": "GEO 313E dersindeki 'Makine öğrenmesi algoritmalarıyla tematik analiz yapmak' bilgisiyle model eğitilir. Arazinin iniş çıkışlarına bakarak sıcaklığın nasıl değiştiğini öğrenen algoritma kurulur.",
+      "altAdimlar": [
+       "Girdi öznitelikleri standart ölçeklendiriciyle normalize edilir.",
+       "Eğitim ve doğrulama alt kümeleri zaman ekseninde ayrıştırılır.",
+       "LGBMRegressor hiperparametreleri optimize edilerek model eğitilir."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Denetimli ve denetimsiz makine öğrenmesi algoritmalarıyla piksel bazlı görüntü sınıflandırma yapmak."
+      }
+     },
+     {
+      "teknik": "Model çıktısı 1 km'lik ızgaraya uygulanarak ince çözünürlüklü sıcaklık alanı üretilir.",
+      "sade": "GEO 313E dersindeki 'Tematik harita üretimi' bilgisiyle harita dışa aktarılır. Vadilerin soğuk göllenmesini ve tepe noktaların serinliğini gösteren 1 km'lik detaylı sıcaklık haritası elde edilir.",
+      "altAdimlar": [
+       "Marmara Bölgesi'ndeki tüm 1 km pikseller için modelden çıkarım yapılır.",
+       "Tahmin matrisi coğrafi koordinatlarıyla birleştirilir.",
+       "GeoTIFF formatında yüksek çözünürlüklü sıcaklık rasterı diske yazılır."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Hata matrisi ve Kappa katsayısı ile tematik harita doğruluk analizini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yer istasyonu sıcaklık ölçümleriyle doğrulama",
+    "oz": "Kaba ERA5 ve 1 km downscaled tahminler meteoroloji istasyonlarıyla kıyaslanır.",
+    "ayrinti": "İstanbul, Kocaeli ve Bursa illerindeki yer meteoroloji istasyonu ölçümleriyle kaba ERA5 ve 1 km indirgenmiş modelin RMSE ve korelasyonu hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "scipy.stats.pearsonr ve sklearn.metrics.mean_squared_error ile istasyon bazlı başarı çıkarılır.",
+      "sade": "MTO 406 dersindeki 'Hava brifingi ve model doğrulama' bilgisiyle sonuç kanıtlanır. İnce ölçekli haritanın yerdeki termometreleri kaba modele göre ne kadar daha iyi tutturduğu sayılarla belgelenir.",
+      "altAdimlar": [
+       "İstasyon noktalarındaki gerçek sıcaklık serileri ayrıştırılır.",
+       "Kaba model ve 1 km yapay zekâ modelinin RMSE değerleri kıyaslanır.",
+       "Hata düşüş yüzdesi ve vadi tabanı sıcaklık profili grafiği çizdirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Havacılık ve denizcilik operasyonları için profesyonel hava brifingi ve uyarı bülteni hazırlamak."
+      }
+     },
+     {
+      "teknik": "matplotlib.pyplot ile vadi ve dağ geçişi boyunca 1B dikey sıcaklık profili çizdirilir.",
+      "sade": "GEO 313E dersindeki 'Tematik harita analizi' bilgisiyle topoğrafik uyum test edilir. Harita üzerinde çekilen bir hat boyunca sıcaklığın vadi tabanlarında yükselip zirvelerde düşüşü görselleştirilir.",
+      "altAdimlar": [
+       "Uludağ zirvesinden Bursa ovasına doğru bir kesit çizgisi tanımlanır.",
+       "1 km ızgaradan hat boyunca piksel sıcaklık profili çıkarılır.",
+       "Topografya kotu ile sıcaklık eğrisi aynı grafikte üst üste bindirilir."
+      ],
+      "kazanim": {
+       "ders": "GEO 313E",
+       "madde": "Hata matrisi ve Kappa katsayısı ile tematik harita doğruluk analizini hesaplamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi kaba ERA5 sıcaklığı ile 1 km topografik indirgeme animasyonu",
+   "aciklama": "Yükseklik modeli desteğiyle kaba 25 km'lik piksellerden 1 km'lik vadi sıcaklık haritası üretimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.meteomatics.com/en/weather-api",
+   "aciklama": "Meteomatics küresel topoğrafik çözünürlük iyileştirme portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Mardani, M. et al. (2023) CorrDiff: Generative AI for Extreme Weather Downscaling, arXiv",
+   "url": "https://arxiv.org/abs/2309.15214"
+  },
+  {
+   "ad": "Vandal, T. et al. (2017) Deepsd: Generating high resolution climate projections from low resolution using deep learning, KDD",
+   "url": "https://doi.org/10.1145/3097983.3098004"
+  },
+  {
+   "ad": "NASA Shuttle Radar Topography Mission (SRTM) Global 1 arc second Dataset",
+   "url": "https://www.earthdata.nasa.gov/sensors/srtm"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/GEO-03.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "132eed79723d"
+ }
+}

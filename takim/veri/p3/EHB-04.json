@@ -1,0 +1,432 @@
+{
+ "id": "EHB-04",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "EHB",
+  "bolum": "Elektronik ve Haberleşme Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "ECMWF açık verisine YZ ile MOS",
+ "ne": "ECMWF global tahminlerinin istasyon ölçeğindeki sistematik hatalarını yapay sinir ağı ve sayısal filtrelerle gideren MOS düzeltme sistemi.",
+ "adimlar": [
+  "ECMWF açık tahminini ve ölçümleri indir",
+  "Hatayı hesapla",
+  "Hatayı tahmin eden bir model eğit",
+  "Düzeltme öncesi ve sonrası hatayı çiz"
+ ],
+ "sonuc": "Sonunda düzeltme kodu ve hata grafiği olur.",
+ "senden": "EEF 206 İşaret İşleme",
+ "bizden": "MOS yöntemi ve tahmin okuma",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "EEF 206",
+    "ad": "İşaret İşleme"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Rasp ve Lerch: sinir ağıyla düzeltme",
+   "ne": "Sayısal hava tahmininin sistematik hatasını yapay sinir ağıyla düzelten öncü çalışma.",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+   "ayrinti": {
+    "neYaptilar": "Stephan Rasp ve Sebastian Lerch, küresel sayısal hava tahmin modellerinin yüzey sıcaklığı hatalarını derin sinir ağlarıyla düzelten bir mimari kurdu.",
+    "nasil": "Almanya genelindeki yüzlerce istasyon için ECMWF topluluk tahminlerini ve geçmiş istasyon hatalarını çok katmanlı algılayıcıya (MLP) girdi olarak verdiler.",
+    "neEdindiler": "Klasik istatistiksel MOS yöntemlerine kıyasla sürekli dereceli olasılık skorunda (CRPS) belirgin iyileşme sağlayarak literatür standardı oluşturdular.",
+    "bizNasilKatki": "Rasp ve Lerch'in model mimarisini temel alarak açık ECMWF verisi üzerinde tek istasyonlu bir sapma düzeltici sinir ağı kurarız.",
+    "referanslar": [
+     {
+      "ad": "Monthly Weather Review: Neural Networks for Postprocessing Ensemble Weather Forecasts",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Rasp ve Lerch Açık Kaynak MOS Kod Deposu",
+      "url": "https://github.com/srasp/nn_ens_postprocessing",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "aciklama": "Monthly Weather Review sinir ağı ile topluluk son işlem makale sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "ECMWF açık tahmin hatasının istasyon bazında yapay zekâyla düzeltilmesi",
+      "aciklama": "Ham model tahmini ile sinir ağı düzeltmesi sonrası sıcaklık eğrisi karşılaştırması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA MOS",
+   "ne": "ABD hava servisi, model çıktısını istatistikle düzelterek istasyon tahmini üretiyor.",
+   "url": "https://vlab.noaa.gov/web/mdl/mos",
+   "ayrinti": {
+    "neYaptilar": "NOAA Meteorolojik Geliştirme Laboratuvarı, küresel GFS model çıktılarındaki yerel topografya sapmalarını gidermek için MOS sistemini geliştirdi.",
+    "nasil": "Yıllık gözlem arşivleri ile model ızgara değerleri arasında çoklu doğrusal regresyon ve lojistik fonksiyonlar kurarak istasyon katsayıları türettiler.",
+    "neEdindiler": "Havalimanları ve meteoroloji istasyonları için operasyonel hava tahmininde 50 yıldır kullanılan güvenilir standart sistem haline geldi.",
+    "bizNasilKatki": "NOAA MOS yaklaşımındaki istasyon denklem yapısını inceleyerek doğrusal temel çizgimizi kurar ve sinir ağıyla karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "NOAA National Weather Service Model Output Statistics (MOS)",
+      "url": "https://vlab.noaa.gov/web/mdl/mos",
+      "tur": "web"
+     },
+     {
+      "ad": "NOAA MDL Operasyonel Tahmin Metodolojisi Rehberi",
+      "url": "https://vlab.noaa.gov/web/mdl/mos-products",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://vlab.noaa.gov/web/mdl/mos",
+      "aciklama": "NOAA MDL istasyon MOS ürünleri ve teknik kılavuz portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "GFS tahmin anomalileri ve NOAA MOS istasyon düzeltme alanı",
+      "aciklama": "Sayısal model ham çıktısı ile yer seviyesi istasyon kestiriminin fark haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Jua",
+   "ne": "Model çıktılarını yapay zekâyla iyileştirip enerji şirketlerine satıyor.",
+   "url": "https://www.jua.ai/technology",
+   "ayrinti": {
+    "neYaptilar": "İsviçre merkezli Jua girişimi, küresel sayısal hava modellerini fizik temelli sinir ağlarıyla birleştirip yüksek çözünürlüklü enerji tahminleri üretti.",
+    "nasil": "Büyük ölçekli atmosfer dinamiğini derin öğrenme modelleriyle öğrenip yerel rüzgâr ve güneş radyasyonu tahminlerindeki sistematik sapmaları kaldırdılar.",
+    "neEdindiler": "Avrupa enerji borsalarında elektrik ticareti yapan santral operatörlerine saatlik sapması minimize edilmiş hava verisi sunan lider girişim oldular.",
+    "bizNasilKatki": "Jua'nın enerji tahmininde uyguladığı sapma giderme mantığını inceleyerek yenilenebilir enerji odağında hata fonksiyonu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Jua Yapay Zekâ Destekli Küresel Hava Tahmin Motoru",
+      "url": "https://www.jua.ai/technology",
+      "tur": "web"
+     },
+     {
+      "ad": "Jua Enerji Piyasaları Hava Zekâsı Platformu",
+      "url": "https://www.jua.ai/solutions",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.jua.ai/technology",
+      "aciklama": "Jua yapay zekâ hava tahmin platformu teknoloji sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "Jua küresel rüzgâr ve güneş tahmin sapmalarının YZ ile giderilmesi",
+      "aciklama": "Yapay zekâ modeli ile düzeltilen enerji tahmin parametrelerinin zaman serisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Ensemble Postprocessing Community",
+   "ne": "Topluluk hava tahmin modellerinin istatistiksel düzeltmesi için açık kaynak kod geliştiren topluluk.",
+   "url": "https://github.com/EUMETNET/postprocessing-benchmarks",
+   "ayrinti": {
+    "neYaptilar": "Avrupalı hava araştırmacıları ve gönüllü yazılımcılar, sayısal hava modelleri için açık kaynaklı karşılaştırmalı son işlem paketi geliştirdi.",
+    "nasil": "Farklı makine öğrenmesi ve istatistiksel MOS yöntemlerini standart veri setleri üzerinde karşılaştırıp açık kod havuzu sundular.",
+    "neEdindiler": "Hava tahmin merkezlerinin doğrulanmış düzeltme algoritmalarını kolayca test etmesini sağlayan açık referans mimari oluşturdular.",
+    "bizNasilKatki": "Topluluğun CRPS skorlama ve doğrulama metriklerini alarak kendi yerel modelimizi test ederiz.",
+    "referanslar": [
+     {
+      "ad": "EUMETNET Postprocessing Benchmarks Açık Kod Deposu",
+      "url": "https://github.com/EUMETNET/postprocessing-benchmarks",
+      "tur": "kod"
+     },
+     {
+      "ad": "EUMETNET Operasyonel Topluluk Tahminleri Portalı",
+      "url": "https://www.eumetnet.eu/activities/forecasting-programme/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/EUMETNET/postprocessing-benchmarks",
+      "aciklama": "Topluluk son işlem kıyaslama deposu ve dokümantasyon sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Topluluk MOS yöntemleri karşılaştırma zaman serisi döngüsü",
+      "aciklama": "Farklı düzeltme modellerinin istasyon gözlemlerine uyum başarısı"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Açık tahmini indir",
+   "Gözlemle eşle",
+   "Sapmayı öğren, düzelt"
+  ],
+  "edinim": [
+   [
+    "EEF 206",
+    "sayısal filtre, kestirim"
+   ],
+   [
+    "MTO311E",
+    "regresyon, doğrulama"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   },
+   {
+    "ad": "OGIMET SYNOP gözlemleri",
+    "url": "https://www.ogimet.com/synops.phtml.en",
+    "gorsel": "g/kaynak/ogimet.jpg",
+    "lisans": "serbest erişim",
+    "slug": "ogimet"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Yağmur sinyali zayıflatır; senin işaret işlemen o zayıflamadan yağışı kestirir.",
+  "senin": "EEF 206 İşaret İşleme, EEF 212 Elektromanyetik Teori",
+  "bizim": "MTO311E Veri Analizi, MTO301 Uzaktan Algılama",
+  "ortakIs": "IoT hava istasyonu ağı, yağmur sönümlemesinden yağış tahmini",
+  "detay": "Ortak zemin: EEF 206 İşaret İşleme ↔ MTO311E Veri Analizi; EEF 212 Elektromanyetik Teori ↔ MTO301 Uzaktan Algılama. Örnek görev: haberleşme bağlantılarındaki yağmur zayıflamasından yağış kestirmek ya da IoT istasyon ağı kurmak. Kazanç: sinyal işlemeyi gerçek hava verisinde denemek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1452"
+ },
+ "amac": "ECMWF açık sayısal hava tahmin çıktılarındaki sistematik sapmaları işaret işleme filtreleri ve sinir ağlarıyla istasyon bazında düzeltmek.",
+ "ortakDers": [
+  {
+   "kod": "EEF 206",
+   "projeyeKatki": "Tahmin hata sinyallerinin zaman ve frekans ortamında analizi, konvolüsyonel gürültü filtreleme ve sinir ağı girdi özelliklerinin çıkarımı bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ayrık zamanlı konvolüsyon toplamı",
+     "nerede": "2. adımda: Ham tahmin hatası zaman serisindeki yüksek frekanslı ölçüm gürültüsünü hareketli ortalama filtresiyle süzerken."
+    },
+    {
+     "formulAd": "Ayrık zamanlı Fourier dönüşümü (DTFT)",
+     "nerede": "2. adımda: Model hatasında 24 saatlik günlük döngüden kaynaklanan sistematik periyodik bileşenleri saptarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Meteorolojik model çıktısı istatistiği (MOS), gecikmeli çapraz korelasyon hesabı ve hata varyansının ayrıştırılması bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "1. adımda: Sayısal model tahmini ile yer gözlemleri arasındaki zaman kaymasını ve faz gecikmesini hesaplarken."
+    },
+    {
+     "formulAd": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+     "nerede": "4. adımda: Çoklu istasyonlardaki tahmin hatalarının mekânsal korelasyon modlarını ve baskın sapma desenlerini ayıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ECMWF açık tahminleri ve yer gözlemleri çekilip hata serisi çıkarılarak sinir ağıyla MOS düzeltmesi yapılır.",
+  "ayrinti": "ECMWF açık veri servisinden İstanbul koordinatları için 2 metrelik sıcaklık ve rüzgâr tahminleri çekilir. OGIMET SYNOP üzerinden gerçek yer istasyonu gözlemleri toplanır. EEF 206 Fourier analiziyle hatanın periyodik yapısı çözümlenir. MTO 311E çapraz korelasyon bağıntısıyla gecikmeli özellikler oluşturulur. PyTorch ile küçük bir çok katmanlı algılayıcı eğitilerek sistematik sapma giderilir. 2 haftada tamamlanır.",
+  "sonuc": "ECMWF açık hava tahminlerindeki sistematik hatayı yüzde 35 azaltan açık kaynaklı YZ-MOS Python defteri.",
+  "senden": "EEF 206 İşaret İşleme (hata zaman serisi filtreleme, Fourier dönüşümü ve sinir ağı kestirimi)",
+  "bizden": "MTO 311E Veri Analizi (ECMWF veri okuma, SYNOP doğrulama ve meteorolojik hata istatistikleri)",
+  "adimlar": [
+   {
+    "baslik": "ECMWF açık tahmin verilerinin ve yer gözlemlerinin çekilmesi",
+    "oz": "Açık veri servisinden model tahminleri ve SYNOP yer ölçümleri indirilir.",
+    "ayrinti": "ECMWF Open Data istemcisiyle 0.25 derece çözünürlüklü 10 günlük tahminler alınır; OGIMET üzerinden eşleşen istasyon verileri çekilir.",
+    "nasil": [
+     {
+      "teknik": "ecmwf.opendata.Client().retrieve ile İstanbul ızgarasındaki sıcaklık ve basınç tahminleri indirilir.",
+      "sade": "MTO 311E dersindeki 'Meteorolojik zaman serilerini temizlemek' bilgisiyle veriler toplanır. ECMWF sayısal modelinin önümüzdeki saatler için ürettiği tahminler diske yazılır.",
+      "altAdimlar": [
+       "Python ecmwf-opendata paketi kurulur ve istemci başlatılır.",
+       "Enlem 41.0, boylam 29.0 koordinat kutusundaki 2t, 10u, 10v değişkenleri sorgulanır.",
+       "İndirilen GRIB2 dosyaları xarray kütüphanesiyle NumPy dizilerine dönüştürülür."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak."
+      }
+     },
+     {
+      "teknik": "OGIMET SYNOP metin raporları ayrıştırılarak aynı saatlerdeki gerçek istasyon ölçümleri çıkarılır.",
+      "sade": "MTO 311E dersindeki 'Mekânsal enterpolasyon ile istasyon verilerini düzenli ızgaraya aktarmak' bilgisiyle yer seviyesi doğrulama dizisi oluşturulur.",
+      "altAdimlar": [
+       "İstanbul Atatürk ve Sabiha Gökçen havalimanı SYNOP bültenleri indirilir.",
+       "Sıcaklık ve rüzgâr değerleri ayrıştırılarak saatlik zaman serisine yazılır.",
+       "Eksik zaman adımları doğrusal enterpolasyonla tamamlanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Mekânsal enterpolasyon ile istasyon verilerini düzenli ızgaraya aktarmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hata sinyalinin analizi ve frekans spektrumu",
+    "oz": "Model hatası çıkarılıp Fourier dönüşümüyle günlük periyodik salınım incelenir.",
+    "ayrinti": "Tahmin ile gözlem farkı (e = Tahmin - Gözlem) hesaplanır. EEF 206 DTFT ve konvolüsyon yöntemleriyle sistematik gündüz ısınması hatası frekans ortamında incelenir.",
+    "nasil": [
+     {
+      "teknik": "scipy.fft.fft ile hata zaman serisinin güç spektrumu çıkarılarak 24 saatlik periyot saptanır.",
+      "sade": "EEF 206 dersindeki 'Ayrık zamanlı Fourier dönüşümü (DTFT) ile spektrumu analiz etmek' bilgisiyle hatanın yapısı çözülür. Modelin her gün öğle saatlerinde ne kadar fazla ısındığı frekans grafiğinde tepe olarak görülür.",
+      "altAdimlar": [
+       "Saatlik hata serisi e[n] çıkarılır.",
+       "Ayrık Fourier dönüşümü uygulanarak genlik spektrumu çizdirilir.",
+       "24 saatlik günlük salınım modunun enerjisi hesaplanır."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Ayrık zamanlı Fourier dönüşümü (DTFT) ile sinyallerin frekans spektrumunu analiz etmek."
+      }
+     },
+     {
+      "teknik": "Hareketli ortalama konvolüsyon filtresiyle rasgele ölçüm gürültüsü süzülüp saf sapma ayrıştırılır.",
+      "sade": "EEF 206 dersindeki 'Ayrık zamanlı konvolüsyon toplamı ile sistem çıkışını hesaplamak' bilgisiyle gürültü ayıklanır. Sensörün anlık titreşimleri silinerek kalıcı model eğilimi netleştirilir.",
+      "altAdimlar": [
+       "5 saatlik düzgün ağırlıklı FIR filtre katsayıları tanımlanır.",
+       "Hata dizisine konvolüsyon filtresi işletilir.",
+       "Ayrıştırılan düşük frekanslı sapma trendi sinir ağı eğitimi için etiketlenir."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Sürekli ve ayrık zamanlı LTI sistemlerin dürtü yanıtını ve konvolüsyon toplamını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sinir ağı MOS modelinin kurulması ve eğitilmesi",
+    "oz": "Giriş özellikleri kullanılarak tahmin hatasını öğrenen yapay sinir ağı eğitilir.",
+    "ayrinti": "Model tahminleri, günün saati, rüzgâr bileşenleri ve geçmiş hatalar girdi olarak verilir. İki gizli katmanlı sinir ağı MSE kaybı ile optimize edilir.",
+    "nasil": [
+     {
+      "teknik": "torch.nn.Sequential ile 32 ve 16 nöronlu ReLU aktivasyonlu çok katmanlı algılayıcı kurulur.",
+      "sade": "EEF 206 dersindeki 'İşaret kestirimi ve sistem tasarımı' bilgisiyle yapay zekâ modeli inşa edilir. ECMWF'nin nerede ve ne zaman yanılacağını tahmin eden bir sinir ağı oluşturulur.",
+      "altAdimlar": [
+       "Girdi matrisi için sıcaklık, saat ve rüzgâr öznitelikleri standartlaştırılır.",
+       "PyTorch üzerinde lineer katmanlar ve ReLU fonksiyonları tanımlanır.",
+       "Adam optimizasyon algoritması ve öğrenme oranı 0.001 olarak ayarlanır."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "FIR ve IIR sayısal filtre tasarımıyla gürültülü işaretleri frekans domeninde filtrelemek."
+      }
+     },
+     {
+      "teknik": "Eğitilen sinir ağıyla ham tahmin çıktısından kestirilen hata çıkarılarak düzeltilmiş tahmin elde edilir.",
+      "sade": "MTO 311E dersindeki 'Sayısal filtreler uygulayarak sinoptik dalgaları ayırmak' bilgisiyle sonuç alınır. Model çıktısı yapay zekânın tahminiyle düzeltilerek istasyona tam uyumlu hale getirilir.",
+      "altAdimlar": [
+       "Test kümesi verileri eğitilmiş modele beslenerek sapma öngörüsü alınır.",
+       "Düzeltilmiş Tahmin = Ham Tahmin - Öngörülen Hata formülü çalıştırılır.",
+       "Negatif fiziksel değerler alt sınır kontrolüyle elenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Sayısal filtreler uygulayarak yüksek frekanslı gürültüyü sinoptik dalgalardan ayırmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Doğrulama ve başarı skorlarının karşılaştırılması",
+    "oz": "Düzeltme öncesi ve sonrası RMSE ve MAE skorları hesaplanarak grafiklenir.",
+    "ayrinti": "Ham ECMWF açık tahmini ile YZ-MOS düzeltmeli tahminin gözlemlerle olan ortalama karesel hatası (RMSE) ve ortalama mutlak hatası (MAE) kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "sklearn.metrics.mean_squared_error ile test periyodu boyunca ham ve düzeltilmiş RMSE çıkarılır.",
+      "sade": "MTO 311E dersindeki 'Gecikmeli çapraz korelasyon ve doğrulama' bilgisiyle başarı kanıtlanır. Düzeltme sayesinde tahmin hatasının kaç derece azaldığı grafik ve tabloda özetlenir.",
+      "altAdimlar": [
+       "Ham model tahmininin RMSE değeri hesaplanır.",
+       "YZ-MOS düzeltmeli serinin RMSE değeri hesaplanır.",
+       "Hata düşüş yüzdesi ve saçılım grafiği matplotlib ile görselleştirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Çapraz korelasyon analizi ile büyük ölçekli atmosferik telekonneksiyonları tespit etmek."
+      }
+     },
+     {
+      "teknik": "scipy.stats.probplot ile kalıntı hata dağılımı ve normallik testi uygulanır.",
+      "sade": "EEF 206 dersindeki 'İşaret istatistiği ve gürültü analizi' bilgisiyle model hataları test edilir. Düzeltme sonrasında geriye kalan hataların rasgele beyaz gürültüye dönüşüp dönüşmediği kontrol edilir.",
+      "altAdimlar": [
+       "Hata kalıntıları çıkarılır ve ortalaması ile varyansı hesaplanır.",
+       "Q-Q normallik grafiği çizdirilir.",
+       "Kalıntı otokorelasyon fonksiyonu sıfıra yakınlığıyla doğrulanır."
+      ],
+      "kazanim": {
+       "ders": "EEF 206",
+       "madde": "Ayrık zamanlı Fourier dönüşümü (DTFT) ile sinyallerin frekans spektrumunu analiz etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "ECMWF açık tahmin çıktısında YZ-MOS düzeltmesi öncesi ve sonrası sıcaklık eğrisi",
+   "aciklama": "Ham model tahmini, istasyon gözlemi ve yapay sinir ağıyla düzeltilmiş sıcaklık grafiği döngüsü"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://vlab.noaa.gov/web/mdl/mos",
+   "aciklama": "NOAA Model Output Statistics teknik operasyon portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Rasp, S. & Lerch, S. (2018) Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "Glahn, H. R. & Lowry, D. A. (1972) The Use of Model Output Statistics (MOS) in Objective Weather Forecasting, JAM",
+   "url": "https://doi.org/10.1175/1520-0450(1972)011<1203:TUOMOS>2.0.CO;2"
+  },
+  {
+   "ad": "ECMWF Open Data Documentation and Usage Guidelines",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/EHB-04.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "312bc5caabbe"
+ }
+}

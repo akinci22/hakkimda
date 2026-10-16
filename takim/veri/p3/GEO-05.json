@@ -1,0 +1,458 @@
+{
+ "id": "GEO-05",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "GEO",
+  "bolum": "Geomatik (Harita) Mühendisliği",
+  "fakulteKod": "INS"
+ },
+ "ad": "Dengeleme ile veri asimilasyonu: oyuncak örnek",
+ "ne": "Haritacılıktaki en küçük kareler dengeleme yöntemini Lorenz-96 atmosfer oyuncağında veri asimilasyonu amacıyla çalıştıran eğitim uygulaması.",
+ "adimlar": [
+  "Basit bir tahmin alanı ve sahte gözlemler üret",
+  "En küçük kareler dengelemesini uygula",
+  "Sonucu tahmin ve gözlemle karşılaştır",
+  "İki yöntemin benzerliğini kısaca açıkla"
+ ],
+ "sonuc": "Sonunda açıklamalı bir defter olur.",
+ "senden": "GEO 204 Hata Teorisi ve Dengeleme",
+ "bizden": "Veri asimilasyonunun tahmindeki yeri (MTO406)",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "GEO 204",
+    "ad": "Hata Teorisi ve Dengeleme"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 406",
+    "ad": "Hava Analizi ve Öngörü II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF veri asimilasyonu",
+   "ne": "Avrupa merkezi, gözlem ve tahmini en küçük kareler mantığıyla (4D-Var) birleştiriyor.",
+   "url": "https://www.ecmwf.int/en/research/data-assimilation",
+   "ayrinti": {
+    "neYaptilar": "ECMWF, her gün 40 milyondan fazla uydu ve yer gözlemini sayısal hava modeliyle birleştiren 4D-Var veri asimilasyon sistemini kurdu.",
+    "nasil": "En küçük kareler ve varyasyonel optimizasyon yöntemlerini paralel süper bilgisayarlarda 12 saatlik asimilasyon pencerelerinde çözdüler.",
+    "neEdindiler": "Küresel tahminlerin başlangıç hatasını radikal şekilde azaltarak 10 günlük hava tahmin doğruluğunu dünya lideri seviyeye taşıdılar.",
+    "bizNasilKatki": "4D-Var cost fonksiyonu ve ağırlık matrislerini 40 değişkenli Lorenz-96 oyuncak sistemi üzerinde Python ile simüle ederiz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Data Assimilation Research Overview",
+      "url": "https://www.ecmwf.int/en/research/data-assimilation",
+      "tur": "web"
+     },
+     {
+      "ad": "Bonavita et al. (2016) The ensemble of data assimilations in the ECMWF forecasting system, QJRMS",
+      "url": "https://doi.org/10.1002/qj.2882",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/research/data-assimilation",
+      "aciklama": "ECMWF 4D-Var veri asimilasyonu ve gözlem işleme mimarisi portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Küresel 500 hPa jeopotansiyel analizinde gözlem asimilasyonu öncesi ve sonrası hata alanı",
+      "aciklama": "Sayısal model arka plan alanı ile asimile edilen gözlemlerin hata dağılım döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NCAR DART",
+   "ne": "Kalman filtresi tabanlı veri asimilasyonunu Lorenz gibi oyuncak sistemlerden gerçek modellere kadar açık kodla sunuyor.",
+   "url": "https://dart.ucar.edu",
+   "ayrinti": {
+    "neYaptilar": "NCAR araştırmacıları, topluluk Kalman filtresi (EnKF) algoritmalarını tüm atmosferik ve okyanus modellerine bağlayan DART çatısını kurdu.",
+    "nasil": "Lorenz-63 ve Lorenz-96 gibi kaos modellerinden küresel WRF hava modellerine kadar modüler Fortran ve Python arayüzleri sundular.",
+    "neEdindiler": "Dünya genelinde yüzlerce üniversite ve araştırma merkezinde operasyonel ve akademik veri asimilasyonu standardı haline geldiler.",
+    "bizNasilKatki": "DART'ın Lorenz-96 filtreleme mantığını inceleyerek parametrik dengeleme matrisleriyle karşılaştırmalı Jupyter defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "NCAR Data Assimilation Research Testbed (DART) Documentation",
+      "url": "https://dart.ucar.edu",
+      "tur": "web"
+     },
+     {
+      "ad": "Anderson et al. (2009) The Data Assimilation Research Testbed: A Community Facility, BAMS",
+      "url": "https://doi.org/10.1175/2009BAMS2618.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://dart.ucar.edu",
+      "aciklama": "NCAR DART veri asimilasyonu test ortamı ve model kütüphanesi portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Lorenz-96 40 değişkenli dinamik sisteminde asimilasyon adım döngüsü",
+      "aciklama": "Topluluk üyelerinin kaos dinamiği boyunca saçılımı ve gözlemle birleşme animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "JCSDA (JEDI)",
+   "ne": "Gözlemi tahmine en küçük kareler mantığıyla katan ortak yazılımı geliştiriyor.",
+   "url": "https://www.jcsda.org",
+   "ayrinti": {
+    "neYaptilar": "NASA, NOAA ve ABD Hava Kuvvetleri ortaklığıyla yeni nesil birleşik veri asimilasyonu (JEDI) yazılım altyapısı geliştirildi.",
+    "nasil": "Nesne yönelimli C++ ve Python tasarım desenleriyle gözlem operatörlerini (UFO) ve varyasyonel maliyet matrislerini modülerleştirdiler.",
+    "neEdindiler": "Uydu radyasından radar yansıtıcılığına kadar milyonlarca ölçümü tek bir matris dengeleme çatısı altında toplamayı başardılar.",
+    "bizNasilKatki": "JEDI mimarisindeki gözlem operatörü ve arka plan kovaryans matrisinin iki boyutlu mini prototipini NumPy ile kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Joint Center for Satellite Data Assimilation JEDI Framework",
+      "url": "https://www.jcsda.org/jcsda-project-jedi",
+      "tur": "web"
+     },
+     {
+      "ad": "Trémolet et al. (2020) Object-Oriented Prediction System (OOPS) in JEDI, ECMWF Technical Memorandum",
+      "url": "https://doi.org/10.21957/w4e341x4",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.jcsda.org/jcsda-project-jedi",
+      "aciklama": "JCSDA JEDI yeni nesil veri asimilasyonu yazılım mimarisi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Uydu parlaklık sıcaklığı gözlem operatörü ve model analizi fark alanı",
+      "aciklama": "GOES uydu kızılötesi kanalları ile atmosfer modeli analiz ızgarası arasındaki fark döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Spire Global",
+   "ne": "Kendi küp uydu takımıyla GNSS okültasyon verilerini toplayıp hava modellerinde asimile eden şirket.",
+   "url": "https://spire.com/weather/",
+   "ayrinti": {
+    "neYaptilar": "Spire Global, 100'den fazla nano-uydu ile atmosferik radyo okültasyon profilleri toplayıp sayısal modellere asimile etti.",
+    "nasil": "GNSS sinyallerinin kırılma açılarından sıcaklık ve nem profilleri çıkarıp 3D-Var sistemleriyle küresel tahmin modellerine kattılar.",
+    "neEdindiler": "Ticari hava tahmin pazarında küresel meteoroloji kurumlarıyla yarışan bağımsız veri ve asimilasyon servisi kurdular.",
+    "bizNasilKatki": "Spire'ın radyo okültasyon gözlem operatörü mantığını Lorenz-96 asimilasyon scriptimize uygularız.",
+    "referanslar": [
+     {
+      "ad": "Spire Weather Numerical Weather Prediction and Data Assimilation",
+      "url": "https://spire.com/weather/",
+      "tur": "web"
+     },
+     {
+      "ad": "Bowler (2020) Radio occultation data assimilation in numerical weather prediction, QJRMS",
+      "url": "https://doi.org/10.1002/qj.3820",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://spire.com/weather/",
+      "aciklama": "Spire Global uydu hava tahmin ve veri asimilasyon platformu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Küp uydu GNSS sinyal kırılma profilleri ve atmosferik sıcaklık asimilasyonu",
+      "aciklama": "Troposfer dikey katmanlarında uydu okültasyon ölçümlerinin modele entegrasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "DAPPER Asimilasyon Takımı",
+   "ne": "Lorenz sistemleri üzerinde veri asimilasyonu ve Kalman filtreleri geliştiren açık kaynak çalışma takımı.",
+   "url": "https://github.com/nansencenter/DAPPER",
+   "ayrinti": {
+    "neYaptilar": "Nansen Çevre ve Uzaktan Algılama Merkezi araştırmacı ve öğrencileri, Python ile veri asimilasyonu test ortamı geliştirdi.",
+    "nasil": "Lorenz-63, Lorenz-96 ve kuramsal dalga modellerinde EnKF, Partikül filtresi ve 4D-Var algoritmalarını modüler kodladılar.",
+    "neEdindiler": "Veri asimilasyonu öğrenen araştırmacılar için dünya çapında en çok kullanılan açık kaynak eğitim ve benchmark kütüphanesi oldular.",
+    "bizNasilKatki": "DAPPER kütüphanesinin Lorenz-96 sınıfını kullanarak dengeleme denklemlerimizi açıkça doğrularız.",
+    "referanslar": [
+     {
+      "ad": "DAPPER: Data Assimilation with Python: a Package for Experimental Research",
+      "url": "https://github.com/nansencenter/DAPPER",
+      "tur": "kod"
+     },
+     {
+      "ad": "Bocquet et al. (2019) Data assimilation in geosciences, Foundations and Trends",
+      "url": "https://doi.org/10.1561/0900000003",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/nansencenter/DAPPER",
+      "aciklama": "DAPPER açık kaynak veri asimilasyonu Python deposu ve örnekleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Lorenz-96 modelinde DAPPER filtreleme adımları ve kovaryans daralması",
+      "aciklama": "Asimilasyon anında belirsizlik elipsinin gözlemler doğrultusunda büzüşme dinamiği"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Lorenz-96 oyuncağını kur",
+   "Dengeleme ile çöz",
+   "Kalman ile karşılaştır"
+  ],
+  "edinim": [
+   [
+    "GEO 204",
+    "en küçük kareler, ağırlık"
+   ],
+   [
+    "MTO406",
+    "asimilasyon"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "DAPPER · veri asimilasyonu araç kutusu (Lorenz-96, EnKF)",
+    "url": "https://github.com/nansencenter/DAPPER",
+    "gorsel": "g/kaynak/dapper.jpg",
+    "lisans": "MIT",
+    "slug": "dapper"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Uydu görüntüsünden sis haritası çıkarır, GNSS sinyalinden havadaki su buharını kestirirsin.",
+  "senin": "GEO 204 Hata Teorisi ve Dengeleme, GEO 313E Digital Image Processing",
+  "bizim": "MTO406 Hava Analizi ve Öngörü II, MTO301 Uzaktan Algılama",
+  "ortakIs": "Uydudan YZ ile sis haritası, GNSS ile su buharı",
+  "detay": "Ortak zemin: GEO 204 Hata Teorisi ve Dengeleme ↔ MTO406; en küçük kareler veri asimilasyonunun matematiği. GEO 313E Digital Image Processing ↔ MTO301 Uzaktan Algılama. Örnek görev: uydudan sis ve alçak bulut haritası ya da GNSS ile su buharı karşılaştırması. Kazanç: görüntü işlemeyi havacılık ve ulaşım için anlamlı bir işte kullanmak.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2294"
+ },
+ "amac": "Haritacılıktaki en küçük kareler dengelemesini Lorenz-96 atmosfer oyuncağında veri asimilasyonu olarak uygulamak ve karşılaştırmak.",
+ "ortakDers": [
+  {
+   "kod": "GEO 204",
+   "projeyeKatki": "Hata teorisindeki ağırlıklı en küçük kareler, varyans-kovaryans matrisleri ve parametrik dengeleme denklemleri atmosferik veri asimilasyonunun temelidir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En küçük kareler parametrik dengeleme normal denklemleri",
+     "nerede": "2. adımda: Sahte gözlemler ile arka plan model tahminini birleştirip analiz durumunu kestirirken."
+    },
+    {
+     "formulAd": "Hata yayılma genel matris bağıntısı",
+     "nerede": "3. adımda: Gözlem ve model belirsizliklerinin analiz kovaryans matrisine aktarılmasını hesaplarken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 406",
+   "projeyeKatki": "Sayısal hava modellerinde başlangıç alanı oluşturma, kaos dinamiği ve topluluk tahminlerinde analiz belirsizliği kavramları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yarı-jeostrofik Q-vektörü",
+     "nerede": "1. adımda: Lorenz-96 sistemindeki dikey zorlama ve dinamik kararsızlık benzerliğini kurarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Lorenz-96 kaos modeli kurulur, sahte gözlemlerle GEO 204 en küçük kareler dengelemesi yapılarak analiz durumu kestirilir.",
+  "ayrinti": "Lorenz-96 40 değişkenli dinamik denklemi Runge-Kutta 4 ile çözülerek atmosferik gerçek durum üretilir. Bu duruma rasgele Gauss gürültüsü eklenerek eksik gözlemler taklit edilir. GEO 204 parametrik dengeleme normal denklemleri işletilerek tahmin ve gözlem birleştirilir. Sonuç Kalman filtresi ile karşılaştırılıp analiz hatası çizdirilir. 2 haftada tamamlanır.",
+  "sonuc": "Harita dengelemesi matematiğinin atmosfer veri asimilasyonuyla özdeş olduğunu kanıtlayan etkileşimli Python defteri.",
+  "senden": "GEO 204 Hata Teorisi ve Dengeleme (normal denklemler, ağırlık matrisi, parametrik kestirim ve hata kovaryansı)",
+  "bizden": "MTO 406 Hava Analizi (Lorenz-96 kaos dinamiği, arka plan tahmin alanı ve asimilasyon hata analizi)",
+  "adimlar": [
+   {
+    "baslik": "Lorenz-96 dinamik sisteminin sayısal çözümü",
+    "oz": "40 değişkenli atmosferik oyuncak model Runge-Kutta 4 ile entegre edilir.",
+    "ayrinti": "dx_i/dt = (x_{i+1} - x_{i-2}) * x_{i-1} - x_i + F denklemi çözülerek doğadaki dalgalı ve kaotik atmosfer durumu simüle edilir.",
+    "nasil": [
+     {
+      "teknik": "scipy.integrate.solve_ivp ile RK45 yöntemi kullanılarak 40 boyutlu Lorenz-96 sistemi çözülür.",
+      "sade": "MTO 406 dersindeki 'Atmosferik kaos ve model öngörülebilirliği' bilgisiyle sistem kurulur. Atmosferdeki rüzgâr ve basınç dalgalarını taklit eden 40 halkalı matematiksel oyuncak çalıştırılır.",
+      "altAdimlar": [
+       "F = 8 dış zorlama katsayısıyla kaotik rejim tanımlanır.",
+       "Periodik sınır koşulları (x[-1] = x[39], x[40] = x[0]) kodlanır.",
+       "0.01 zaman adımıyla 1000 adım ileriye doğru integrasyon yapılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Yarı-jeostrofik omega ve geopotansiyel eğilim denklemleriyle dikey hareketi ve siklon gelişimini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Model durumuna sistematik sapma eklenerek 6 saatlik arka plan tahmin alanı (xb) türetilir.",
+      "sade": "MTO 406 dersindeki 'Sayısal model toplulukları ve tahmin hatası' bilgisiyle arka plan oluşturulur. Hava tahmin modelinin zamana bağlı olarak gerçekten nasıl saptığı simüle edilir.",
+      "altAdimlar": [
+       "Gerçek durum serisi x_true olarak saklanır.",
+       "Belirli bir başlangıç hatasıyla ikinci bir entegrasyon koşulur.",
+       "Gözlem anındaki model tahmini arka plan vektörü olarak ayrılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sentetik gözlem üretimi ve ağırlık matrisinin kurulması",
+    "oz": "Gerçek durumdan her iki noktada bir rasgele gürültülü gözlem alınır.",
+    "ayrinti": "Gerçek durum vektöründen yalnız 20 noktada ölçüm alınır; GEO 204 hata teorisine göre gözlem varyans matrisi (R) ve ağırlık matrisi (P) oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "numpy.random.normal ile sigma = 1.0 varyanslı Gauss gürültüsü eklenerek sahte gözlem vektörü (y) üretilir.",
+      "sade": "GEO 204 dersindeki 'Rastlantısal ölçme hatalarını istatistiksel modellerle ayırt etmek' bilgisiyle gözlem üretilir. Yeryüzündeki meteoroloji istasyonlarının ölçüm belirsizliği modellenir.",
+      "altAdimlar": [
+       "40 durum değişkeninin tek sayılı 20 tanesi gözlem istasyonu seçilir.",
+       "Ölçüm gürültüsü standart sapması sigma = 1.0 olarak tanımlanır.",
+       "Gözlem operatörü matrisi H (20x40 boyutlu) kurulur."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Rastlantısal ve sistematik ölçme hatalarını istatistiksel modellerle ayırt etmek."
+      }
+     },
+     {
+      "teknik": "P = R^-1 ağırlık matrisi kurularak ölçülerin güvenilirlik katsayıları atanır.",
+      "sade": "GEO 204 dersindeki 'Ölçülerin ağırlık matrisini türetmek' bilgisiyle ağırlıklar atanır. Hangi gözlemin daha hassas, hangi tahminin daha belirsiz olduğu matematiksel olarak belirlenir.",
+      "altAdimlar": [
+       "Gözlem hata varyansı R matrisinin köşegenine dizilir.",
+       "Arka plan tahmin hatası kovaryans matrisi B (40x40) tanımlanır.",
+       "Tasarım matrisi ve ağırlık matrisleri cebirsel formata getirilir."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Ölçülerin ağırlık matrisini ve bilinmeyenlerin varyans-kovaryans matrisini türetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Parametrik dengeleme ile analiz durumunun kestirimi",
+    "oz": "GEO 204 normal denklemleriyle model ve gözlem tek adımda asimile edilir.",
+    "ayrinti": "En küçük kareler normal denklemleri x_hat = (A^T P A)^-1 A^T P l çözülerek model tahmini ile dağınık gözlemleri birleştiren analiz alanı bulunur.",
+    "nasil": [
+     {
+      "teknik": "numpy.linalg.inv ile (H^T R^-1 H + B^-1)^-1 matris tersi alınarak BLUE kestirimi hesaplanır.",
+      "sade": "GEO 204 dersindeki 'En küçük kareler parametrik dengeleme normal denklemleri' bilgisiyle en iyi tahmin bulunur. Haritacılıkta nirengi ağlarını dengeleyen formül, atmosferin en olası durumunu çıkarır.",
+      "altAdimlar": [
+       "İndirgenmiş ölçü fark vektörü l = y - H*xb hesaplanır.",
+       "Normal denklem katsayılar matrisi N oluşturulur.",
+       "Analiz artım vektörü delta_x matris çarpımıyla tek adımda çözülür."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Parametrik dengeleme modelini matris gösterimiyle kurup en küçük kareler çözümünü bulmak."
+      }
+     },
+     {
+      "teknik": "Sigma_yy = J Sigma_xx J^T hata yayılma bağıntısıyla analiz kovaryans matrisi Pa türetilir.",
+      "sade": "GEO 204 dersindeki 'Hata yayılma genel matris bağıntısı' bilgisiyle analiz güvenilirliği hesaplanır. Gözlemleri kattıktan sonra havanın neresinde ne kadar belirsizlik kaldığı kanıtlanır.",
+      "altAdimlar": [
+       "Analiz hatası kovaryans matrisi Pa = (B^-1 + H^T R^-1 H)^-1 hesaplanır.",
+       "Gözlem olan ve olmayan noktalardaki hata varyansı düşüşü kıyaslanır.",
+       "Analiz durumunun gerçek duruma yakınlığı RMSE ile ölçülür."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Hata yayılma yasasını uygulayarak fonksiyonel büyüklüklerin varyansını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Dengeleme ve Kalman filtresi sonuçlarının karşılaştırılması",
+    "oz": "Statik dengeleme çözümü Kalman filtresi ve 3D-Var formülasyonuyla kıyaslanır.",
+    "ayrinti": "Harita mühendisliğindeki parametrik dengeleme çözümü ile meteorolojideki 3D-Var ve Kalman filtresi kazanç matrisinin özdeşliği grafiklerle gösterilir.",
+    "nasil": [
+     {
+      "teknik": "Kalman kazancı K = B H^T (H B H^T + R)^-1 üzerinden eşdeğer analiz vektörü doğrulanır.",
+      "sade": "MTO 406 dersindeki 'Model analizi ve asimilasyon matematiği' bilgisiyle iki disiplin bağlanır. Haritacının normal denklemleri ile meteorologun Kalman kazancının aynı sonucu verdiği gösterilir.",
+      "altAdimlar": [
+       "Kalman kazanç matrisi K hesaplanır.",
+       "Kalman analiz vektörü x_kalman = xb + K*(y - H*xb) türetilir.",
+       "Dengeleme çözümü ile Kalman çözümü arasındaki farkın 10^-12 düzeyinde olduğu teyit edilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 406",
+       "madde": "Sayısal hava tahmin modellerinin topluluk spagetti diyagramlarını ve olasılıklı ürünlerini yorumlamak."
+      }
+     },
+     {
+      "teknik": "matplotlib ile 40 grid noktası boyunca Gerçek, Tahmin, Gözlem ve Analiz durumları çizdirilir.",
+      "sade": "GEO 204 dersindeki 'Dengeleme sonrası uyuşumsuzluk ve doğruluk analizi' bilgisiyle grafik sunulur. Sayısal modelin gözlem noktalarına doğru nasıl esneyip gerçek duruma yaklaştığı görselleştirilir.",
+      "altAdimlar": [
+       "40 değişkenin dairesel profil grafiği hazırlanır.",
+       "Hata kareleri ortalaması (RMSE) değişim eğrisi eklenir.",
+       "Elde edilen Python fonksiyonları açık kaynak bir rehber defter haline getirilir."
+      ],
+      "kazanim": {
+       "ders": "GEO 204",
+       "madde": "Dengeleme sonrası uyuşumsuz ölçüleri istatistiksel testlerle (Baarda testi) ayıklamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Lorenz-96 dinamik sisteminde 40 değişkenli asimilasyon analiz döngüsü",
+   "aciklama": "Tahmin, gürültülü gözlem ve dengeleme sonrası elde edilen analiz durumunun zamansal dalga hareketi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://dart.ucar.edu",
+   "aciklama": "NCAR DART veri asimilasyonu araştırma ortamı ve dokümantasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Ghilani, C. D. (2017) Adjustment Computations: Spatial Data Analysis, 6. baskı, Wiley · ISBN 978-1-119-38598-1",
+   "url": "https://openlibrary.org/isbn/9781119385981"
+  },
+  {
+   "ad": "Lorenz, E. N. (1996) Predictability: A problem partly solved, ECMWF Seminar Proceedings",
+   "url": "https://www.ecmwf.int/en/elibrary/10821-predictability-problem-partly-solved"
+  },
+  {
+   "ad": "Kalnay, E. (2003) Atmospheric Modeling, Data Assimilation and Predictability, Cambridge University Press",
+   "url": "https://doi.org/10.1017/CBO9780511802270"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/GEO-05.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "85cee0abba52"
+ }
+}

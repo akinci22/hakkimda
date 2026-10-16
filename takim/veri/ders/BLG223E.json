@@ -1,0 +1,112 @@
+{
+ "kod": "BLG 223E",
+ "ad": "Data Structures",
+ "bolum": "Bilgisayar Mühendisliği",
+ "obsNo": "223E",
+ "ozet": "Verilerin bellekte düzenlenme, erişilme ve işlenme yapılarını öğretir. Bağlı listeler, yığınlar, kuyruklar, ağaçlar (özellikle kd-tree ve ikili arama ağaçları), öncelik kuyrukları ve çizge yapıları ele alınır. Atmosferik büyük ızgara verilerinin ve meteorolojik zaman serilerinin bellekte hızlı sorgulanmasını sağlayan yapıların temelidir.",
+ "neOgrenirsin": [
+  "Dizi, bağlı liste, yığın ve kuyruk veri yapılarını bellek ve zaman karmaşıklığıyla uygulamak.",
+  "İkili arama ağaçları, dengeli ağaçlar ve kd-tree ile çok boyutlu verileri indekslemek.",
+  "Öncelik kuyrukları ve yığın (heap) yapılarıyla olay güdümlü akışları yönetmek.",
+  "Karma tabloları (hash tables) ile meteorolojik istasyon meta verilerini anlık sorgulamak.",
+  "Çizge (graph) temsilleri ve dolaşma algoritmalarıyla dağıtık veri akışlarını kurmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Hash tablosu ortalama arama karmaşıklığı ve yük faktörü",
+   "tex": "\\alpha = \\frac{n}{m}, \\qquad T_{\\mathrm{ort}} = \\mathcal{O}(1 + \\alpha)",
+   "terimler": [
+    [
+     "\\alpha",
+     "karma tablosu doluluk oranı (yük faktörü)",
+     "birimsiz"
+    ],
+    [
+     "n",
+     "tabloda saklanan meteorolojik anahtar sayısı",
+     "adet"
+    ],
+    [
+     "m",
+     "karma tablosundaki yuva (bucket) sayısı",
+     "adet"
+    ],
+    [
+     "T_{\\mathrm{ort}}",
+     "başarılı bir arama için ortalama zaman karmaşıklığı",
+     "birimsiz"
+    ],
+    [
+     "\\mathcal{O}",
+     "büyük O asimptotik karmaşıklık gösterimi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Veriyi bellekte saklarken her istasyon kodunu bir matematiksel işlevle doğrudan bellek adresine dönüştürür. Doluluk oranı dengeli tutulduğunda binlerce istasyon arasından aranan değer tek işlemde bulunur.",
+   "ornek": "Türkiye genelindeki 1800 otomatik istasyon verisi m = 4096 büyüklüğündeki bir tabloda saklandığında yük faktörü alpha = 1800/4096 = 0,44 olur. Bu doluluk oranında zincirleme çakışma maliyeti 1,2 adımı geçmez; istasyon verisi mikrosaniyeler içinde çekilir.",
+   "nerede": "F-BBF-BLG-01 veri boru hattında gelen küresel model ızgara değerlerini WMO istasyon indeksleriyle eşleştirirken."
+  },
+  {
+   "ad": "Kd-tree mekânsal arama derinliği bağıntısı",
+   "tex": "h \\approx \\lfloor \\log_2 n \\rfloor, \\qquad T_{\\mathrm{en\\_yakin}} = \\mathcal{O}(\\log n)",
+   "terimler": [
+    [
+     "h",
+     "kd-tree ağacının maksimum derinliği",
+     "seviye"
+    ],
+    [
+     "n",
+     "ağaca yerleştirilen coğrafi ızgara nokta sayısı",
+     "adet"
+    ],
+    [
+     "\\log_2",
+     "ikilik tabanda logaritma",
+     "birimsiz"
+    ],
+    [
+     "T_{\\mathrm{en\\_yakin}}",
+     "dengeli ağaçta en yakın komşu arama zaman karmaşıklığı",
+     "birimsiz"
+    ],
+    [
+     "\\mathcal{O}",
+     "asimptotik sınır gösterimi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "İki boyutlu harita noktalarını her adımda dönüşümlü olarak enlem ve boylama göre ikiye böler. Milyonlarca nokta arasından hedef konuma en yakın hava ızgarasını logaritmik hızda bulur.",
+   "ornek": "ECMWF'nin 0,25 derecelik küresel ızgarasında Marmara Bölgesi'ni kapsayan 2500 koordinat noktası kd-tree ile indekslendiğinde ağaç derinliği h = 11 seviye olur. İstanbul koordinatına en yakın 4 ızgara noktası yalnızca 11-15 karşılaştırmayla bulunur.",
+   "nerede": "F-BBF-BLG-01 ve F-BBF-BLG-02'de küresel ızgara tensöründen yerel istasyon koordinatlarını dilimlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Kdtree_2d.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "2 boyutlu kd-tree ağaç yapısı ve mekânsal düzlem bölümlemesi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul istasyon koordinatları hash tablosu ve kd-tree arama performansı mikro analizi, 2026-10",
+   "aciklama": "Meteorolojik ızgara noktaları sorgulama gecikmesi ve bellek erişim süreleri animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · BLG 223E (Data Structures)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BLG&dersNo=223E"
+  },
+  {
+   "ad": "Cormen, T. H. et al. (2022) Introduction to Algorithms, 4. baskı, MIT Press · ISBN 978-0-262-04630-5",
+   "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BLG&dersNo=223E"
+}

@@ -1,0 +1,102 @@
+{
+ "kod": "KON 301E",
+ "ad": "System Modelling and Simulation",
+ "bolum": "Kontrol ve Otomasyon Mühendisliği",
+ "obsNo": "301",
+ "ozet": "Fiziksel sistemlerin matematiksel model kurma prensiplerini ve sayısal simülasyonunu öğretir. Mekanik, elektriksel ve termal sistemlerin diferansiyel denklemleri, transfer fonksiyonları, durum uzayı gösterimleri, blok diyagram indirgeme, geri besleme döngüleri ve Runge-Kutta gibi sayısal integral çözücüleri incelenir.",
+ "neOgrenirsin": [
+  "Termal, mekanik ve akışkan sistemlerin dinamik diferansiyel denklemlerini kurmak.",
+  "Doğrusal ve doğrusal olmayan sistemleri transfer fonksiyonu ve durum uzayında ifade etmek.",
+  "Blok diyagramları ve işaret akış çizgelerini cebirsel olarak indirgemek.",
+  "Pozitif ve negatif geri besleme döngülerinin kararlılık ve kutup konumlarına etkisini analiz etmek.",
+  "Sayısal simülasyon algoritmalarıyla zaman alanı yanıtlarını elde etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Kapalı çevrim geri besleme transfer fonksiyonu",
+   "tex": "T(s) = \\frac{G(s)}{1 + G(s)H(s)}",
+   "terimler": [
+    [
+     "T(s)",
+     "kapalı çevrim sistem transfer fonksiyonu",
+     "birimsiz"
+    ],
+    [
+     "G(s)",
+     "ileri yol transfer fonksiyonu",
+     "birimsiz"
+    ],
+    [
+     "H(s)",
+     "geri besleme yolu transfer fonksiyonu",
+     "birimsiz"
+    ],
+    [
+     "s",
+     "Laplace karmaşık frekans değişkeni",
+     "rad/s"
+    ]
+   ],
+   "sade": "Negatif geri beslemenin sistemin toplam kazancını nasıl dengelediğini ve kararlılığı nasıl sağladığını gösterir. İleri yoldaki dalgalanmaları geri besleme zayıflatarak sistemi istenen referansta tutar.",
+   "ornek": "İleri yol kazancı G = 100 ve geri besleme katsayısı H = 0,09 olduğunda kapalı çevrim kazancı T = 100 / (1 + 9) = 10 değerine oturur; açık çevrimdeki yüzde 20 parametre kayması kapalı çevrimde yalnızca yüzde 2 sapma yaratır.",
+   "nerede": "Atmosferik enerji dengesinde sera gazı ve albedo negatif geri besleme döngülerinin net iklim tepkisini hesaplarken."
+  },
+  {
+   "ad": "Klasik dördüncü derece Runge-Kutta sayısal adım bağıntısı",
+   "tex": "y_{n+1} = y_n + \\frac{h}{6} (k_1 + 2k_2 + 2k_3 + k_4)",
+   "terimler": [
+    [
+     "y_{n+1}",
+     "sonraki zaman adımındaki durum değeri",
+     "durum birimi"
+    ],
+    [
+     "y_n",
+     "mevcut zaman adımındaki durum değeri",
+     "durum birimi"
+    ],
+    [
+     "h",
+     "sayısal simülasyon zaman adımı",
+     "s"
+    ],
+    [
+     "k_1, k_2, k_3, k_4",
+     "adım içi dört farklı eğim kestirimi",
+     "durum birimi / s"
+    ]
+   ],
+   "sade": "Analitik çözümü bulunamayan karmaşık diferansiyel denklemleri bilgisayarda küçük adımlarla yüksek doğrulukla çözmeyi sağlar. Dört farklı teğet eğiminin ağırlıklı ortalamasını alarak bir sonraki durumu hesaplar.",
+   "ornek": "Zaman adımı h = 0,01 saniye seçilerek atmosferik Lorenz konveksiyon diferansiyel denklemleri çözüldüğünde birikimli enerji hatası 100 saniye boyunca yüzde 0,001 seviyesinde kalır.",
+   "nerede": "Atmosferik dinamik diferansiyel denklemlerin sayısal simülasyonunda zaman serisini ilerletirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Atmosferik geri besleme döngüleri ve sıcaklık salınımı kararlılık analizi animasyonu",
+   "aciklama": "Negatif ve pozitif geri besleme mekanizmalarının sistem durumuna etkisi animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Negative_feedback_diagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Geri beslemeli dinamik sistem blok diyagramı şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · KON 301E (System Modelling and Simulation)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KON&dersNo=301"
+  },
+  {
+   "ad": "Close, C. M., Newell, D. K. (2001) Modeling and Analysis of Dynamic Systems, 3. baskı, Wiley · ISBN 978-0-471-39442-6",
+   "url": "https://openlibrary.org/isbn/9780471394426"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=KON&dersNo=301"
+}

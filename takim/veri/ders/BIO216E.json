@@ -1,0 +1,150 @@
+{
+ "kod": "BIO 216E",
+ "ad": "Microbiology",
+ "bolum": "Moleküler Biyoloji ve Genetik",
+ "obsNo": "216E",
+ "ozet": "Mikroorganizmaların morfolojisini, fizyolojisini, metabolizmasını, üreme kinetiğini ve çevresel koşullara direncini inceler. Bakteriyel büyüme ve ölüm kinetiği, sterilizasyon ve güneş UV ışımasının DNA hasarı üzerindeki etkileri ele alınır. Atmosferik sınır tabakada asılı kalan bakteriyel biyoaerosollerin canlılık oranını ve inaktivasyonunu inceler.",
+ "neOgrenirsin": [
+  "Bakteriyel inaktivasyon kinetiği denklemiyle güneş UV ışıması altında hücre canlılık yarı ömrünü hesaplamak.",
+  "Bakteri üreme eğrisi ve ikiye katlanma süresi bağıntılarıyla popülasyon artış hızını belirlemek.",
+  "Gauss duman dağılımı modeliyle rüzgâr türbülansı altında biyoaerosol difüzyon konsantrasyonunu hesaplamak.",
+  "Biyoaerosollerin atmosferik nem ve sıcaklık stresine karşı hayatta kalma mekanizmalarını incelemek.",
+  "Bakteriyel buz çekirdekleyici proteinlerin (INA) aerosol fazındaki mikrobiyolojik özelliklerini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Bakteriyel inaktivasyon ve UV sönümlenme kinetiği",
+   "tex": "\\ln\\left(\\frac{N}{N_0}\\right) = -k \\cdot I_{\\mathrm{UV}} \\cdot t",
+   "terimler": [
+    [
+     "N",
+     "t anındaki canlı bakteri konsantrasyonu",
+     "adet/m³"
+    ],
+    [
+     "N_0",
+     "başlangıçtaki canlı bakteri konsantrasyonu",
+     "adet/m³"
+    ],
+    [
+     "k",
+     "bakteriye özgü UV inaktivasyon katsayısı",
+     "m²/(W·s)"
+    ],
+    [
+     "I_{\\mathrm{UV}}",
+     "güneş UV ışınım şiddeti",
+     "W/m²"
+    ],
+    [
+     "t",
+     "güneş ışığına maruz kalma süresi",
+     "s"
+    ]
+   ],
+   "sade": "Güneşten gelen morötesi (UV) ışınlar havadaki bakterilerin DNA yapısını bozarak canlılıklarını kaybetmelerine neden olur. UV ışığı ve havada kalma süresi arttıkça canlı bakteri sayısı üstel olarak azalır.",
+   "ornek": "UV indeksi yüksek bir öğle saatinde I_UV = 35 W/m² ve k = 0,0015 m²/(W·s) iken havadaki bakteri popülasyonu 60 saniye içinde N/N0 = exp(-0,0015 * 35 * 60) ≈ 0,043 değerine düşerek yüzde 95'ten fazlası inaktif hale gelir.",
+   "nerede": "F-FEF-MBG-02'de rüzgârla taşınan bakterilerin güneş UV ışınımı altında canlı kalma süresini ve yarı ömrünü hesaplarken."
+  },
+  {
+   "ad": "Bakteriyel üreme ve nesil süresi bağıntısı",
+   "tex": "N_t = N_0 \\cdot 2^{t / g}, \\qquad g = \\frac{t \\ln 2}{\\ln(N_t / N_0)}",
+   "terimler": [
+    [
+     "N_t",
+     "t süresi sonundaki bakteri sayısı",
+     "adet"
+    ],
+    [
+     "N_0",
+     "başlangıç bakteri sayısı",
+     "adet"
+    ],
+    [
+     "t",
+     "büyüme süresi",
+     "saat"
+    ],
+    [
+     "g",
+     "ikiye katlanma (nesil) süresi",
+     "saat"
+    ]
+   ],
+   "sade": "Uygun sıcaklık ve nem ortamında bakteriler ikiye bölünerek katlanarak çoğalır. Sıcaklık düştükçe veya kuraklık arttıkça ikiye katlanma süresi uzar, büyüme durur.",
+   "ornek": "25 °C ve yüksek nemde g = 0,5 saat olan bir bakteri kültürü, 3 saatte 6 nesil atlayarak 100 hücreden Nt = 100 * 2^6 = 6400 hücreye ulaşır.",
+   "nerede": "F-FEF-MBG-02 ve F-FEF-MBG-03'te biyoaerosollerin uygun nem koşullarında çoğalma potansiyelini değerlendirirken."
+  },
+  {
+   "ad": "Biyoaerosol Gauss difüzyon konsantrasyonu",
+   "tex": "C = \\frac{Q}{2\\pi u \\sigma_y \\sigma_z} \\exp\\left(-\\frac{y^2}{2\\sigma_y^2}\\right) \\left[\\exp\\left(-\\frac{(z-H)^2}{2\\sigma_z^2}\\right) + \\exp\\left(-\\frac{(z+H)^2}{2\\sigma_z^2}\\right)\\right]",
+   "terimler": [
+    [
+     "C",
+     "havadaki biyoaerosol konsantrasyonu",
+     "adet/m³"
+    ],
+    [
+     "Q",
+     "biyoaerosol salım debisi",
+     "adet/s"
+    ],
+    [
+     "u",
+     "ortalama rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "\\sigma_y, \\sigma_z",
+     "yatay ve dikey Gauss difüzyon katsayıları",
+     "m"
+    ],
+    [
+     "y, z",
+     "rüzgâr eksenine dik mesafeler",
+     "m"
+    ],
+    [
+     "H",
+     "efektif salım yüksekliği",
+     "m"
+    ]
+   ],
+   "sade": "Rüzgârla taşınan biyolojik partiküller kaynaktan uzaklaştıkça türbülans nedeniyle koni şeklinde dağılarak seyrekleşir. Rüzgâr kuvvetlendikçe başlangıç konsantrasyonu hızla seyrelir.",
+   "ornek": "Rüzgâr hızı u = 4 m/s ve salım debisi Q = 10^6 bakteri/s olan bir kaynakta, rüzgâr yönünde 500 m mesafede sigma_y = 35 m ve sigma_z = 18 m iken eksen üzeri zemin konsantrasyonu yaklaşık 126 bakteri/m³ olarak hesaplanır.",
+   "nerede": "F-FEF-MBG-02'de rüzgâr hızı ve yönüne göre bakteriyel biyoaerosollerin yayılım mesafesini hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Bacillus_subtilis_Gram.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Mikroskop altında havada asılı kalabilen bakteri hücreleri yapısı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul UV indeksi ve rüzgâr hızı zaman serisi animasyonu, 2026-10",
+   "aciklama": "Güneş UV ışıması ve rüzgâr hızına bağlı bakteri inaktivasyon döngüsü animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · BIO 216E (Microbiology)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIO&dersNo=216E"
+  },
+  {
+   "ad": "Madigan, M. T. et al. (2020) Brock Biology of Microorganisms, 16. baskı, Pearson · ISBN 978-0134874401",
+   "url": "https://openlibrary.org/isbn/9780134874401"
+  },
+  {
+   "ad": "Després, V. R. et al. (2012) Primary biological aerosol particles in the atmosphere, Tellus B · DOI 10.3402/tellusb.v64i0.15598",
+   "url": "https://doi.org/10.3402/tellusb.v64i0.15598"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIO&dersNo=216E"
+}

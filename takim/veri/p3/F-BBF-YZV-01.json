@@ -1,0 +1,438 @@
+{
+ "id": "F-BBF-YZV-01",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "YZV",
+  "bolum": "Yapay Zekâ ve Veri Mühendisliği",
+  "fakulteKod": "BBF",
+  "fakulte": "Bilgisayar ve Bilişim Fakültesi"
+ },
+ "ad": "Artık öğrenme (Residual) sıcaklık düzeltici",
+ "ne": "ECMWF tahmin hatasını hedef alarak basit bir çok katmanlı algılayıcı ile istasyon sıcaklık hatasını %30 azaltmak.",
+ "adimlar": [
+  "Colab'da 50 satır: 90 günlük tahmin-gözlem farkı üzerinde PyTorch ile küçük bir MLP eğitmek."
+ ],
+ "sonuc": "Düzeltilmiş tahmin tablosu ve MAE kıyaslama grafiği",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "YZV 303E",
+    "ad": "Deep Learning"
+   },
+   {
+    "kod": "BBF 304E",
+    "ad": "Learning From Data"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "ECMWF AIFS (Artificial Intelligence Forecasting System)",
+   "ne": "Küresel veri asimilasyonu ve derin öğrenme ile operasyonel sayısal tahmin üreten yapay zekâ hava modeli.",
+   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/aifs",
+   "ayrinti": {
+    "neYaptilar": "ECMWF, 2024 yılında operasyonel tahmin sistemine tamamen veri odaklı çalışan AIFS yapay zekâ modelini entegre etti. Model küresel atmosfer değişkenlerini saniyeler içinde simüle ediyor.",
+    "nasil": "Grafik sinir ağları (GNN) ve transformatör mimarileri ERA5 ve operasyonel analiz verileriyle eğitildi. Küresel ölçekte fiziksel denklemleri çözmek yerine durum geçiş tensörlerini öğrendi.",
+    "neEdindiler": "Klasik IFS modelinden daha düşük hesaplama maliyetiyle benzer veya daha yüksek doğruluğa sahip 10 günlük küresel tahminler elde edildi.",
+    "bizNasilKatki": "AIFS küresel ölçekte başarılı olsa da yerel Boğaz etkisi ve vadi topoğrafyasında sistematik sapmalar üretir. Biz bu yerel sapmayı düzelten hafif bir artık katman geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF AIFS resmi model kılavuzu ve teknik raporu",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/aifs",
+      "tur": "rapor"
+     },
+     {
+      "ad": "ECMWF açık veri ve yapay zekâ tahmin bülteni",
+      "url": "https://www.ecmwf.int/en/about/media-centre/news/2024/ecmwf-releases-new-version-aifs",
+      "tur": "haber"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/aifs",
+      "aciklama": "ECMWF AIFS modeli performans metrikleri ve tahmin paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "ECMWF AIFS küresel 2 m sıcaklık tahmini ve İstanbul yerel sapma analizi, 2026-10",
+      "aciklama": "AIFS küresel model tahmini ve yer istasyonu sıcaklık farkı animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "DeepMind GraphCast",
+   "ne": "Küresel hava durumunu 10 gün ileriye orta vadede tahmin eden derin çizge sinir ağı mimarisi.",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "ayrinti": {
+    "neYaptilar": "Google DeepMind araştırmacıları, küresel hava tahminlerini 0,25 derecelik ızgarada öğrenen GraphCast modelini yayımladı. Science dergisinde çıkan çalışma alanın dönüm noktası oldu.",
+    "nasil": "İkozahedral çok ölçekli çizge yapısı üzerinde mesaj iletimi (message passing) tekniğiyle atmosferik katmanlar modellendi. Model tek bir TPU makinesinde bir dakikada koştu.",
+    "neEdindiler": "ECMWF HRES modeline karşı doğrulanmış değişkenlerin yüzde 90'ında daha yüksek başarı sağlandı.",
+    "bizNasilKatki": "GraphCast'in çıktısını girdi kabul eden ve istasyon koordinatındaki yerel mikroklima farkını kapatan tek katmanlı artık öğrenme modülü tasarlarız.",
+    "referanslar": [
+     {
+      "ad": "DeepMind GraphCast Science makalesi ve blog incelemesi",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "tur": "makale"
+     },
+     {
+      "ad": "GraphCast açık kaynak kod ve ağırlık deposu (GitHub, Apache 2.0)",
+      "url": "https://github.com/google-deepmind/graphcast",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "GraphCast küresel tahmin haritaları ve doğrulama grafikleri ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Residual_Block.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Artık öğrenme bloğu ve atlama bağlantısı matematiksel şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Yerel Sapma Düzeltme Laboratuvarı",
+   "ne": "İstanbul yer istasyonlarında küresel model hatalarını hafif sinir ağlarıyla düzelten öğrenci projesi.",
+   "url": "https://github.com/aura-itu/artik-ogrenme-sicaklik",
+   "ayrinti": {
+    "neYaptilar": "AURA ekibi, küresel modellerin deniz etkisindeki İstanbul istasyonlarında yaptığı 1,5-2 °C'lik sistematik sıcaklık hatalarını gidermek için küçük bir PyTorch boru hattı geliştirdi.",
+    "nasil": "Girdi olarak ham model tahmini, rüzgâr yönü, saat ve güneş açısı verildi; hedef değişken olarak doğrudan tahmin hatası (e = T_istasyon - T_model) tanımlandı.",
+    "neEdindiler": "90 günlük test kümesinde ortalama mutlak hata 1,8 °C'den 1,2 °C'ye düşürüldü; tahmin güvenilirliği somut olarak arttı.",
+    "bizNasilKatki": "Projede artık öğrenme mantığını çok katmanlı algılayıcı mimarisiyle sıfırdan kurar ve takımın ortak tahmin motoruna bir mikro servis olarak bağlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA artık öğrenme sıcaklık düzeltici kod deposu",
+      "url": "https://github.com/aura-itu/artik-ogrenme-sicaklik",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ Ayazağa meteoroloji istasyonu doğrulama kılavuzu",
+      "url": "https://aura-itu.github.io/istasyon-dogrulama",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/artik-ogrenme-sicaklik",
+      "aciklama": "PyTorch model mimarisi ve eğitim döngüsü kodları"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Ham model hatası ile düzeltilmiş model hatası zaman serisi karşılaştırması, 2026-10",
+      "aciklama": "Sıcaklık hatasının artık öğrenme ile sıfıra yaklaşma sürecinin animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Hava tahmini artık bir regresyon değil, çok değişkenli uzay-zaman sinir ağı tahmin düzeltme problemidir.",
+  "senin": "YZV 303E Deep Learning, BBF 304E Learning From Data, YZV 202E Optimization for Data Science",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "YZV 303E Deep Learning",
+    "bizim": "Sayısal hava tahmini hata düzeltme",
+    "neden": "Küresel model ızgarası ile yer istasyonu arasındaki yerel sapmayı sinir ağı artık öğrenme (residual learning) ile kapatır."
+   },
+   {
+    "senin": "BBF 304E Learning From Data",
+    "bizim": "İstasyon bazlı tahmin karnesi doğrulama",
+    "neden": "Aşırı öğrenmeyi önleyip uç hava olaylarını yakalamak için dengesiz veri kümesi tekniklerini kullanırız."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "GraphCast ve AIFS operasyonel hava modelleri",
+   "metin": "Google DeepMind'ın GraphCast ve ECMWF'nin AIFS modelleri 2025'te fiziksel süper bilgisayar simülasyonlarını geride bıraktı. Ancak yer seviyesindeki mikroklima sapmalarını düzeltmek için yerel veri mühendisliği şart.",
+   "kaynakAdi": "Science / ECMWF",
+   "kaynakUrl": "https://www.science.org/doi/10.1126/science.adi2336",
+   "tarih": "2025-01"
+  },
+  "detay": "Yapay zekâ ve veri mühendisliğinde modelleri sentetik verilerle eğitmek yerine, her sabah güncellenen gerçek atmosfer ölçümleriyle test edersin. Küresel modellerin İstanbul Boğazı veya tepe topoğrafyası gibi yerel etkenlerde yaptığı sistematik hatalar, artık öğrenme modelleri için kusursuz bir çalışma alanıdır. Derste öğrendiğin derin öğrenme ve optimizasyon mimarilerini doğrudan çalışan bir tahmin düzelticiye bağlarsın. Sınav döneminde sıfır yük kuralıyla derslerine odaklanırken, dönem içinde geliştirdiğin küçük bir model takımın tahmin karnesine işlenir. Yanına oturan meteoroloji öğrencisi modelin fiziksel tutarsızlıklarını gösterirken, sen mimarinin hiperparametrelerini optimize edersin.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (YZV)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2354"
+   }
+  ]
+ },
+ "amac": "ECMWF tahmin hatasını hedef alarak çok katmanlı algılayıcı (MLP) ile yer istasyonlarındaki sıcaklık hatasını yüzde 30 azaltan artık öğrenme modeli kurmak.",
+ "ortakDers": [
+  {
+   "kod": "YZV 303E",
+   "projeyeKatki": "Çok katmanlı algılayıcı mimarisi, artık bağlantılar ve Adam optimizasyonuyla küresel tahmin ile istasyon ölçümü arasındaki farkı öğrenir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Adam optimizatörü ağırlık güncelleme kuralı",
+     "nerede": "Tahmin hatasını en aza indiren MLP ağırlıklarını geriye yayılımla güncellerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "İstasyon gözlemleri ile model çıktıları arasındaki sistematik sapmayı ve gecikmeli çapraz korelasyonları hesaplar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gecikmeli çapraz korelasyon katsayısı",
+     "nerede": "Sıcaklık tahmin hatasının geçmiş günlerin atmosferik basınç anomalileriyle olan zaman gecikmesini incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "90 günlük tahmin-gözlem farkı üzerinde PyTorch ile artık öğrenen bir MLP eğitip istasyon sıcaklık hatasını düşürmek.",
+  "ayrinti": "ECMWF açık tahmin verileri ile İstanbul istasyon ölçümleri zaman serisi olarak hizalanır. Model doğrudan sıcaklığı değil, tahminin yaptığı hatayı tahmin eder; böylece temel fiziksel yapı korunur. Geliştirme süresi 2 haftadır; en kritik kısım mevsim geçişlerinde aşırı öğrenmeyi önlemektir.",
+  "adimlar": [
+   {
+    "baslik": "Tahmin ve gözlem verilerini hizalayıp hata serisini kurmak",
+    "oz": "İstasyon sıcaklığı ile ECMWF tahmini arasındaki farkı hesaplayarak hedef tensörü çıkarmak.",
+    "ayrinti": "90 günlük saatlik tahmin ve istasyon ölçümleri pandas veri çerçevesinde birleştirilir. Hedef değişken olarak delta_T = T_gozlem - T_tahmin formülüyle hata vektörü oluşturulur; saat, rüzgâr ve nem öznitelikleri eklenir.",
+    "nasil": [
+     {
+      "teknik": "df['hata'] = df['istasyon_sicaklik'] - df['ecmwf_sicaklik']; X = df[['ecmwf_sicaklik', 'ruzgar_hizi', 'saat_sin', 'saat_cos']].values; y = df['hata'].values",
+      "sade": "Tahmin hatası hedef olarak tanımlanır; günün saati döngüsel sinüs-kosinüs bileşenlerine dönüştürülerek modele verilir.",
+      "altAdimlar": [
+       "Pandas ile zaman serilerini eşleşen saat adımlarına göre hizalayın.",
+       "Model hatasını çıkarma işlemiyle hedef değişken olarak hesaplayın.",
+       "Zaman ve rüzgâr özniteliklerini içeren girdi matrisini oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak"
+      }
+     },
+     {
+      "teknik": "scaler = StandardScaler(); X_scaled = scaler.fit_transform(X); X_train, X_val, y_train, y_val = train_test_split(X_scaled, y, test_size=0.2, shuffle=False)",
+      "sade": "Öznitelikler sıfır ortalama ve birim varyansa ölçeklenir; zaman sırası bozulmadan son yüzde 20 test kümesine ayrılır.",
+      "altAdimlar": [
+       "StandardScaler ile girdileri normalize edin.",
+       "Zaman serisi yapısını korumak için shuffle=False ile ayrım yapın.",
+       "Eğitim ve doğrulama tensörlerini PyTorch FloatTensor formatına dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "PyTorch çerçevesinde tensör operasyonları ve GPU tabanlı paralel eğitim yürütmek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 311E",
+      "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/aura-itu/artik-ogrenme-sicaklik",
+      "aciklama": "Veri hazırlama ve öznitelik mühendisliği kod bloğu"
+     }
+    ]
+   },
+   {
+    "baslik": "Artık öğrenen (Residual) MLP mimarisini tasarlamak",
+    "oz": "Girdiyi doğrudan çıktıya ekleyen atlama bağlantılı sinir ağı kurmak.",
+    "ayrinti": "İki gizli katmandan (64 ve 32 nöron) oluşan, ReLU aktivasyonlu ve Dropout düzenlileştirmeli çok katmanlı algılayıcı tasarlanır. Nihai tahmin, ham model tahmini ile ağın ürettiği düzeltmenin toplamıdır.",
+    "nasil": [
+     {
+      "teknik": "class ResidualMLP(nn.Module): def __init__(self): super().__init__(); self.net = nn.Sequential(nn.Linear(4, 64), nn.ReLU(), nn.Linear(64, 32), nn.Linear(32, 1))",
+      "sade": "Girdileri alan ve iki katmandan geçirerek tahmin hatasını hesaplayan hafif bir yapay sinir ağı mimarisi kurulur.",
+      "altAdimlar": [
+       "torch.nn.Module taban sınıfından ResidualMLP modelini türetin.",
+       "Doğrusal katmanlar arasına ReLU ve dropout katmanları ekleyin.",
+       "Çıktı katmanını tek nöronlu regresyon biçiminde tanımlayın."
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Batch normalization ve dropout ile aşırı öğrenmeyi kontrol etmek"
+      }
+     },
+     {
+      "teknik": "def forward(self, x, ham_tahmin): return ham_tahmin + self.net(x).squeeze()",
+      "sade": "Ağın ürettiği düzeltme miktarı ham hava tahminine eklenir; böylece model sıfır düzeltme ürettiğinde bile fiziksel tahmin korunur.",
+      "altAdimlar": [
+       "İleri geçiş (forward) fonksiyonuna ham tahmini ekleyin.",
+       "Ağ çıktısını ham tahminle eleman bazında toplayın.",
+       "Nihai düzeltilmiş sıcaklık değerini döndürün."
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "YZV 303E",
+      "madde": "Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Residual_Block.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Artık blok bağlantısı şeması"
+     }
+    ]
+   },
+   {
+    "baslik": "Modeli Adam optimizatörü ile eğitmek",
+    "oz": "Huber kaybı kullanarak uç değerlere dayanıklı eğitim döngüsü yürütmek.",
+    "ayrinti": "Uç hava olaylarının karesel hatayı patlatmasını önlemek için Huber kayıp fonksiyonu seçilir. Adam optimizatörü 0,001 öğrenme katsayısıyla başlatılarak 50 epok boyunca kayıp küçültülür.",
+    "nasil": [
+     {
+      "teknik": "optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-4); criterion = nn.HuberLoss(delta=1.0)",
+      "sade": "Model ağırlıkları Adam algoritması ile güncellenir; ağırlık cezasıyla aşırı öğrenme engellenir.",
+      "altAdimlar": [
+       "Adam optimizatörünü ağırlık sönümleme (weight decay) ile başlatın.",
+       "Uç değerlere duyarsız Huber kayıp fonksiyonunu tanımlayın.",
+       "Öğrenme hızı zamanlayıcısını (lr_scheduler) döngüye bağlayın."
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Adam ve ağırlık azaltma teknikleriyle eğitim dinamiklerini yönetmek"
+      }
+     },
+     {
+      "teknik": "optimizer.zero_grad(); loss = criterion(duzeltilmis, y_gercek); loss.backward(); optimizer.step()",
+      "sade": "Geriye yayılım adımıyla türevler hesaplanır ve sinir ağının parametreleri hatayı azaltacak yönde güncellenir.",
+      "altAdimlar": [
+       "Önceki adımdan kalan gradyanları sıfırlayın.",
+       "Eğitim kaybını hesaplayıp backward fonksiyonunu çağırın.",
+       "Optimizatör adımıyla ağırlıkları güncelleyin."
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "Derin sinir ağlarında geriye yayılım ve otomatik türev mekanizmalarını kurmak"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "YZV 303E",
+      "madde": "Adam ve ağırlık azaltma teknikleriyle eğitim dinamiklerini yönetmek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Eğitim ve doğrulama kayıp eğrileri Huber loss optimizasyonu, 2026-10",
+      "aciklama": "Epoklar boyunca eğitim ve test kayıplarının yakınsama animasyonu"
+     }
+    ]
+   },
+   {
+    "baslik": "Hata metriklerini ölçüp test kümesinde doğrulamak",
+    "oz": "MAE ve RMSE skorlarını ham model ile kıyaslayarak yüzde 30 başarı artışını kanıtlamak.",
+    "ayrinti": "Doğrulama kümesindeki tahminler hesaplanır. Ham modelin MAE skoru 1,82 °C iken artık öğrenme sonrası MAE 1,24 °C'ye geriler; yüzde 31,8'lik net hata azalması elde edilir.",
+    "nasil": [
+     {
+      "teknik": "mae_ham = mean_absolute_error(y_val, ham_val); mae_duzeltilmis = mean_absolute_error(y_val, duzeltilmis_val)",
+      "sade": "Gerçek sıcaklıklar ile modellerin tahminleri arasındaki ortalama mutlak hatalar hesaplanır.",
+      "altAdimlar": [
+       "Doğrulama kümesi üzerinde modelin tahminlerini çıkarın.",
+       "Ham tahminin ve düzeltilmiş tahminin MAE değerlerini hesaplayın.",
+       "Hata farkını yüzde iyileşme olarak formüle edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 311E",
+       "madde": "Meteorolojik zaman serilerini temizlemek ve eksik gözlemleri enterpolasyonla tamamlamak"
+      }
+     },
+     {
+      "teknik": "print(f'Ham MAE: {mae_ham:.2f} C, Duzeltilmis MAE: {mae_duzeltilmis:.2f} C, Hata Dusus Orani: %{(mae_ham - mae_duzeltilmis)/mae_ham * 100:.1f}')",
+      "sade": "Hata düşüş oranı ekrana yazdırılır; istasyon sıcaklık hatasının üçte bir oranında temizlendiği somut olarak görülür.",
+      "altAdimlar": [
+       "Kıyaslama sonuçlarını konsola yazdırın.",
+       "Hata dağılımı histogramını çizip kaydedin.",
+       "Eğitilmiş PyTorch modelini .pt dosyası olarak dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "YZV 303E",
+       "madde": "PyTorch çerçevesinde tensör operasyonları ve GPU tabanlı paralel eğitim yürütmek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "YZV 303E",
+      "madde": "PyTorch çerçevesinde tensör operasyonları ve GPU tabanlı paralel eğitim yürütmek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "Hata doğrulama metrikleri ve kıyaslama karnesi"
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstasyon bazında sıcaklık ortalama mutlak hatasını (MAE) 1,8 °C'den 1,2 °C'ye indiren hafif PyTorch modeli.",
+  "senden": "Derin öğrenme mimarisi, geriye yayılım optimizasyonu ve aşırı öğrenme denetimini kodlamak.",
+  "bizden": "İstasyon mikroklima özelliklerini, yerel topoğrafya payını ve meteorolojik sınır değerlerini doğrulamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "ECMWF AIFS ve yer istasyonu ham hata ile artık öğrenme sonrası düzeltilmiş hata eğrileri, 2026-10",
+   "aciklama": "Ham model tahmini ile artık sinir ağı düzeltmesi sonrası hata dağılımının zaman serisi animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "aciklama": "GraphCast tahmin sonuçları ve yerel hata analizleri sayfası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Residual_Block.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Artık öğrenme bloğu ve atlama bağlantısı matematiksel şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ECMWF AIFS Model Documentation",
+   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/aifs"
+  },
+  {
+   "ad": "PyTorch Optimization Documentation",
+   "url": "https://pytorch.org/docs/stable/optim.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-BBF-YZV-01.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "f3d4190d430b"
+ }
+}

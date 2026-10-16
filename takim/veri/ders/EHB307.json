@@ -1,0 +1,131 @@
+{
+ "kod": "EHB 307",
+ "ad": "Haberleşme I",
+ "bolum": "Elektronik ve Haberleşme Mühendisliği",
+ "obsNo": "307",
+ "ozet": "Analog ve sayısal haberleşme sistemlerinin temel iletim ilkelerini, modülasyon tekniklerini ve kanal etkilerini öğretir. Doğrusal (AM, DSB, SSB) ve açısal (FM, PM) modülasyon, gürültü analizi, frekans bölmeli çoğullama, darbe modülasyonu ve sinyal yayılımı ele alınır.",
+ "neOgrenirsin": [
+  "Haberleşme sistemlerindeki temel kavramları ve iletim kanalı kısıtlamalarını analiz etmek.",
+  "Doğrusal modülasyon (AM, DSB, SSB) tekniklerini tasarlamak ve demodüle etmek.",
+  "Üstel modülasyon (FM, PM) sinyallerinin zaman ve frekans domeninde analizini yapmak.",
+  "İletim kanallarında serbest uzay kaybı, gürültü ve sinyal sönümlenmesi etkilerini hesaplamak.",
+  "Darbe modülasyonu (PAM, PWM, PCM) ve örnekleme teoremini iletişim hatlarına uygulamak."
+ ],
+ "formuller": [
+  {
+   "ad": "ITU-R P.838 özgül yağış sönümleme bağıntısı",
+   "tex": "\\gamma_R = k \\, R^\\alpha",
+   "terimler": [
+    [
+     "\\gamma_R",
+     "özgül sinyal sönümlenmesi",
+     "dB/km"
+    ],
+    [
+     "k",
+     "frekans ve polarizasyon katsayısı",
+     "birimsiz"
+    ],
+    [
+     "R",
+     "yağış şiddeti",
+     "mm/saat"
+    ],
+    [
+     "\\alpha",
+     "yağmur damla boyutu dağılım üssü",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Yağan yağmur damlalarının mikrodalga radyo sinyallerini emip saçması sonucu sinyal gücündeki desibel/kilometre kaybını yağış hızına bağlar.",
+   "ornek": "25 GHz yatay polarizasyonlu bir hücresel linkte k=0,157 ve alpha=0,999 iken 30 mm/saatlik sağanak altında sinyal kaybı kilometre başına yaklaşık 4,7 dB olur.",
+   "nerede": "Baz istasyonları arasındaki mikrodalga bağlantı (CML) sinyal kaybından anlık yağış miktarını tahmin ederken."
+  },
+  {
+   "ad": "Serbest uzay yol kaybı (FSPL) denklemi",
+   "tex": "L_{fs} = 20 \\log_{10}(d) + 20 \\log_{10}(f) + 20 \\log_{10}\\left(\\frac{4\\pi}{c}\\right)",
+   "terimler": [
+    [
+     "L_{fs}",
+     "serbest uzay yayılım kaybı",
+     "dB"
+    ],
+    [
+     "d",
+     "antenler arasındaki mesafe",
+     "m"
+    ],
+    [
+     "f",
+     "taşıyıcı radyo frekansı",
+     "Hz"
+    ],
+    [
+     "c",
+     "ışık hızı (3x10^8 m/s)",
+     "m/s"
+    ]
+   ],
+   "sade": "Radyo dalgasının verici antenden alıcıya doğru yayılırken hiçbir engelle karşılaşmasa bile dalga cephesi genleşmesi nedeniyle uğradığı doğal güç kaybıdır.",
+   "ornek": "2 km mesafedeki iki baz istasyonu arasında 15 GHz frekansta çalışan bir kablosuz hatta serbest uzay yayılım kaybı yaklaşık 122 dB seviyesindedir.",
+   "nerede": "Yağışsız kuru havadaki temel sinyal referans seviyesini belirleyip yağmur sönümlemesini ayırt ederken."
+  },
+  {
+   "ad": "Shannon-Hartley kanal kapasitesi teoremi",
+   "tex": "C = B \\, \\log_2\\left(1 + \\frac{S}{N}\\right)",
+   "terimler": [
+    [
+     "C",
+     "maksimum veri iletim kapasitesi",
+     "bit/s"
+    ],
+    [
+     "B",
+     "iletim bant genişliği",
+     "Hz"
+    ],
+    [
+     "S",
+     "alınan sinyal gücü",
+     "W"
+    ],
+    [
+     "N",
+     "kanaldaki gürültü gücü",
+     "W"
+    ]
+   ],
+   "sade": "Belirli bir bant genişliğinde ve gürültü seviyesinde bir iletişim hattının taşıyabileceği teorik en yüksek bilgi iletim hızını hesaplar.",
+   "ornek": "10 MHz bant genişliğinde sinyal-gürültü oranı 30 dB (1000 kat) olan bir hatta kanal kapasitesi yaklaşık 99,7 Mbit/s seviyesindedir.",
+   "nerede": "Yağmur sönümlemesi nedeniyle sinyal gücü zayıfladığında kablosuz linkin veri taşıma kapasitesindeki düşüşü hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_microwave_attenuation.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Atmosferik gazlar ve yağış damlaları kaynaklı mikrodalga sönümlenme eğrileri"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Şehir içi mikrodalga bağlantı sinyal sönümlenmesi ve yağış haritası animasyonu, 2026-10",
+   "aciklama": "Mikrodalga sinyal zayıflamasından elde edilen anlık yağış yoğunluk haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · EHB 307 (Haberleşme I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EHB&dersNo=307"
+  },
+  {
+   "ad": "Haykin, S. (2014) Communication Systems, 5. baskı, Wiley · ISBN 978-0-471-69790-9",
+   "url": "https://openlibrary.org/isbn/9780471697909"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=EHB&dersNo=307"
+}

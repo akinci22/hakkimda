@@ -1,0 +1,100 @@
+{
+ "kod": "SEC 211E",
+ "ad": "Essentials of Cyber Security",
+ "bolum": "Siber Güvenlik Mühendisliği",
+ "obsNo": "211E",
+ "ozet": "Siber güvenliğin temel kavramlarını, tehdit modellerini, ağ güvenliği mimarilerini ve savunma stratejilerini öğretir. Kimlik doğrulama, erişim denetimi ve servis güvenliği temelleri pratik uygulamalarla ele alınır.",
+ "neOgrenirsin": [
+  "Siber tehdit modelleri ve saldırı yüzeyi analizini yürütmek.",
+  "Ağ trafiğinde anomali tespiti ve paket filtreleme kuralları oluşturmak.",
+  "Web servislerinde erişim denetimi ve hız sınırlama mekanizmaları kurmak.",
+  "Güvenlik açığı tarama araçları ile servis direnç testleri gerçekleştirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Belirteç kovası (Token Bucket) hız sınırlama denklemi",
+   "tex": "B(t) = \\min(B_{\\max}, \\, B(t_0) + r \\cdot (t - t_0))",
+   "terimler": [
+    [
+     "B(t)",
+     "t anında kovada bulunan kullanılabilir belirteç sayısı",
+     "adet"
+    ],
+    [
+     "B_{\\max}",
+     "kovanın maksimum belirteç kapasitesi",
+     "adet"
+    ],
+    [
+     "B(t_0)",
+     "t_0 anındaki önceki belirteç miktarı",
+     "adet"
+    ],
+    [
+     "r",
+     "saniyede kovaya eklenen belirteç dolum hızı",
+     "belirteç/s"
+    ],
+    [
+     "t - t_0",
+     "son istekten bu yana geçen süre",
+     "s"
+    ]
+   ],
+   "sade": "API servislerine gelen istekleri düzenler. Her istek bir belirteç harcar; kova boşalınca gelen aşırı istekler engellenerek sunucunun çökmesi önlenir.",
+   "ornek": "Hava tahmini API'sinde B_max = 60 istek ve r = 1 belirteç/saniye ayarlandığında, bir IP saniyede 100 istek gönderirse ilk 60 istek kabul edilir, kalan 40 istek 429 Too Many Requests koduyla engellenir.",
+   "nerede": "F-BBF-SEC-02 projesinde hava tahmini API uç noktalarını DoS saldırılarına karşı korurken hız sınırlama algoritması olarak."
+  },
+  {
+   "ad": "Hizmet reddi (DoS) anomali tespitinde Z-skoru bağıntısı",
+   "tex": "Z = \\frac{x_t - \\mu}{\\sigma}",
+   "terimler": [
+    [
+     "Z",
+     "istek sayısının standartlaştırılmış Z-skoru",
+     "birimsiz"
+    ],
+    [
+     "x_t",
+     "t zaman aralığında gelen toplam istek sayısı",
+     "istek/dakika"
+    ],
+    [
+     "\\mu",
+     "tarihsel ortalama istek yoğunluğu",
+     "istek/dakika"
+    ],
+    [
+     "\\sigma",
+     "istek sayısının standart sapması",
+     "istek/dakika"
+    ]
+   ],
+   "sade": "Normal trafik yoğunluğu ile saldırı anındaki ani trafik patlamalarını istatistiksel olarak birbirinden ayırır. Z-skoru 3'ü aşan trafik ani saldırı olarak bayraklanır.",
+   "ornek": "Normalde dakikada ortalama 120 (sapma 20) istek alan bir uç noktaya aniden dakikada 500 istek gelirse Z = (500-120)/20 = 19 çıkar; sistem otomatik IP engelleme modunu tetikler.",
+   "nerede": "F-BBF-SEC-02'de API loglarını izleyerek dağıtık hizmet engelleme girişimlerini otomatik tespit etmede."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Token_bucket.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Belirteç kovası hız sınırlama algoritması çalışma şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · SEC 211E (Essentials of Cyber Security)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=SEC&dersNo=211E"
+  },
+  {
+   "ad": "Stallings, W. (2021) Cryptography and Network Security, Pearson",
+   "url": "https://www.pearson.com/en-us/subject-catalog/p/cryptography-and-network-security-principles-and-practice/P200000003337"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=SEC&dersNo=211E"
+}

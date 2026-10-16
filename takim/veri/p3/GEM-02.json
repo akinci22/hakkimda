@@ -1,0 +1,413 @@
+{
+ "id": "GEM-02",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "GEM",
+  "bolum": "Gemi İnşaatı ve Deniz Bilimleri Fak. (Gemi ve Deniz Teknolojisi · Gemi İnşaatı ve Gemi Makinaları)",
+  "fakulteKod": "GIDB"
+ },
+ "ad": "Hava durumuna göre gemi rotası karşılaştırması",
+ "ne": "Rüzgâr ve dalga tahminine göre gemi için fırtına dalgalarından kaçan daha güvenli, az yakıt harcayan rota optimizasyonu yapmak.",
+ "adimlar": [
+  "Bir rota için açık rüzgâr ve dalga tahminini indir",
+  "Denizi ızgaraya böl",
+  "Her adımın süresini ve riskini hesapla",
+  "Düz rota ile hava durumuna göre rotayı karşılaştır"
+ ],
+ "sonuc": "Sonunda rota haritası ve süre karşılaştırması olur.",
+ "senden": "GEM 421 Gemi Hareket ve Manevraları",
+ "bizden": "Rüzgâr ve dalga tahmini okuma",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "GEM 421",
+    "ad": "Gemi Hareket ve Manevraları"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Sofar Wayfinder",
+   "ne": "Rüzgâr ve dalga tahminine göre gemiye yakıt tasarrufu sağlayan rota öneren ürün.",
+   "url": "https://www.sofarocean.com/products/wayfinder",
+   "ayrinti": {
+    "neYaptilar": "Sofar Ocean, açık deniz şamandıralarından gelen yüksek çözünürlüklü dalga verilerini gemi gövde direnç hesaplarıyla birleştiren Wayfinder platformunu kurdu.",
+    "nasil": "Gemi tipine özel direnç eğrilerini dalga spektrumlarıyla eşleştirip en az yakıt tüketen rota bükümlerini gerçek zamanlı güncellediler.",
+    "neEdindiler": "Ticari kargo gemilerinde fırtına gecikmelerini önlerken sefer başına ortalama yüzde 4-7 yakıt tasarrufu sağladılar.",
+    "bizNasilKatki": "Açık dalga tahmin verilerini Dijkstra rota algoritmasına maliyet matrisi olarak veren bir prototip kod yazarız.",
+    "referanslar": [
+     {
+      "ad": "Sofar Ocean Wayfinder Dynamic Voyage Optimization Platform",
+      "url": "https://www.sofarocean.com/products/wayfinder",
+      "tur": "web"
+     },
+     {
+      "ad": "Sofar Ocean Maritime Decarbonization and Fuel Efficiency Insights",
+      "url": "https://www.sofarocean.com/impact",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.sofarocean.com/products/wayfinder",
+      "aciklama": "Sofar Wayfinder gemi seyir optimizasyonu ve dalga kaçınma rota arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Ege Denizi fırtına dalgaları etrafından dolanan dinamik gemi rota eğrisi",
+      "aciklama": "Fırtına gözü ilerledikçe geminin dalga yüksekliğini 2 metrenin altında tutacak manevraları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "StormGeo",
+   "ne": "Norveç'te hava tahmininden doğdu; bugün gemilere hava durumuna göre rota hizmeti veren büyük bir şirket.",
+   "url": "https://www.stormgeo.com",
+   "ayrinti": {
+    "neYaptilar": "StormGeo, denizcilik sektörüne 7/24 hava destekli rota optimizasyonu ve filo performans izleme hizmetleri sundu.",
+    "nasil": "Sayısal hava tahminlerini geminin hidrodinamik direnç formülleri ve pruva dalga karşılaşma açılarıyla optimize ettiler.",
+    "neEdindiler": "Yılda 70.000'den fazla ticari gemi seferine rehberlik ederek kargo hasarlarını ve sera gazı salımını azalttılar.",
+    "bizNasilKatki": "Ege ve Marmara geçişi için açık Copernicus dalga verisiyle fırtına kaçınma rotası çizen Python betiği hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "StormGeo Shipping Route Advisory and Voyage Optimization",
+      "url": "https://www.stormgeo.com/solutions/shipping/",
+      "tur": "web"
+     },
+     {
+      "ad": "StormGeo Fleet Performance and Weather Routing Intelligence",
+      "url": "https://www.stormgeo.com/solutions/shipping/route-advisory/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.stormgeo.com/solutions/shipping/",
+      "aciklama": "StormGeo gemi hava rotalama paneli ve dalga riski gösterge tablosu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Akdeniz fırtınasında düz rota ile optimize rota arasındaki dalga maruziyeti",
+      "aciklama": "Fırtınanın içinden geçen düz rotada 4 metreye çıkan dalgaların optimize rotada 2 metreyi aşmaması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Weathernews",
+   "ne": "Japonya'da gemiler için hava tahminiyle başladı; dünyanın en büyük özel hava şirketlerinden biri oldu.",
+   "url": "https://www.weathernews.com",
+   "ayrinti": {
+    "neYaptilar": "Weathernews, denizcilik hava tahminlerini gemi sevk verileriyle birleştiren küresel deniz operasyon merkezi kurdu.",
+    "nasil": "Okyanus dalga yükseklikleri, rüzgâr yönleri ve akıntı vektörlerini 10.000'den fazla ticari geminin kaptan köprüsüne doğrudan ilettiler.",
+    "neEdindiler": "Küresel konteyner taşımacılığında hava kaynaklı kaza risklerini yüzde 60 oranında düşürdüler.",
+    "bizNasilKatki": "Açık rüzgâr ve akıntı vektörlerini gemi seyir hızına ekleyen vektörel hız üçgeni fonksiyonu yazarız.",
+    "referanslar": [
+     {
+      "ad": "Weathernews Global Sea Planning and Voyage Weather Routing",
+      "url": "https://global.weathernews.com/services/voyage-planning/",
+      "tur": "web"
+     },
+     {
+      "ad": "Weathernews Maritime Environmental Intelligence Technology",
+      "url": "https://global.weathernews.com/technology/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://global.weathernews.com/services/voyage-planning/",
+      "aciklama": "Weathernews okyanus hava durumu ve gemi seyir takip haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Doğu Akdeniz fırtına döngüsünde rüzgâr okları ve gemi rota koridoru",
+      "aciklama": "Siklon geçişi esnasında geminin rüzgârı arkasına alacak şekilde pruva yönünü güncellemesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "İTÜ Gemi Simülasyon Laboratuvarı",
+   "ne": "İTÜ Denizcilik Fakültesi bünyesinde zorlu hava ve deniz koşullarında gemi manevralarını simüle eden araştırma grubu.",
+   "url": "https://denizcilik.itu.edu.tr/arastirma/laboratuvarlar",
+   "ayrinti": {
+    "neYaptilar": "İTÜ araştırma takımı, köprüüstü simülatöründe Marmara ve Boğazlar geçişinde fırtına rüzgârlarının gemi rotasına etkisini test etti.",
+    "nasil": "Gemi hidrodinamik katsayılarını rüzgâr savrulması ve dalga ilave direnciyle birleştirip gerçek zamanlı seyir senaryoları koştular.",
+    "neEdindiler": "Boğaz girişinde lodos ve poyraz fırtınalarında gemi sürüklenme sınırlarını ve acil demirleme kriterlerini belirlediler.",
+    "bizNasilKatki": "Açık hava tahminlerinden üretilen rüzgâr yükü değerlerini açık gemi rotalama matrisine aktaran Python aracı üretiriz.",
+    "referanslar": [
+     {
+      "ad": "İTÜ Denizcilik Fakültesi Simülatör ve Araştırma Laboratuvarları",
+      "url": "https://denizcilik.itu.edu.tr/arastirma/laboratuvarlar",
+      "tur": "web"
+     },
+     {
+      "ad": "Lewis, E. V. (1989) Principles of Naval Architecture: Motions in Waves",
+      "url": "https://openlibrary.org/isbn/9780939773121",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://denizcilik.itu.edu.tr/arastirma/laboratuvarlar",
+      "aciklama": "İTÜ köprüüstü simülatörü ve denizcilik araştırma altyapısı ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Denizi kuzey kıyılarında rüzgâr sürükleme kuvveti dağılımı",
+      "aciklama": "Borda rüzgârında geminin rota koridorundan sapma miktarının hareketli analizi"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Dalga/rüzgâr tahminini al",
+   "Rota maliyeti tanımla",
+   "Rotaları karşılaştır"
+  ],
+  "edinim": [
+   [
+    "GEM 421",
+    "gemi hareketi, manevra"
+   ],
+   [
+    "MTO302",
+    "deniz tahmini"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "Copernicus Marine dalga ve deniz",
+    "url": "https://marine.copernicus.eu/",
+    "gorsel": "g/kaynak/cmems.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "cmems"
+   },
+   {
+    "ad": "ECMWF Open Data (IFS + AIFS)",
+    "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "gorsel": "g/kaynak/ecmwf-open.jpg",
+    "lisans": "CC BY 4.0",
+    "slug": "ecmwf-open"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Dalga ve rüzgâr tahminiyle gemiye daha güvenli ve ekonomik bir rotayı birlikte çizeriz.",
+  "senin": "DEN 304E Oceanography, DEN 323E Wave Mechanics, GEM 421 Gemi Hareket ve Manevraları",
+  "bizim": "MTO337/340 Atmosfer Dinamiği, MTO302 Hava Analizi ve Öngörü I",
+  "ortakIs": "Deniz meteorolojisi: dalga ve rüzgâr tahmini, hava durumuna göre rota",
+  "detay": "Ortak zemin: DEN 304E Oceanography ve DEN 323E Wave Mechanics ↔ MTO337/340 Atmosfer Dinamiği; rüzgâr dalgayı, dalga gemiyi hareket ettirir. Örnek görev: rüzgâr tahmininden dalga yüksekliğine geçip bir gemi rotasını hava riskine göre karşılaştırmak. Gemi ve Deniz Teknolojisi planında MYZ 308E Artificial Intelligence in Marine Technology dersi de var. Kazanç: deniz meteorolojisinde gerçek veriyle çalışan, gösterilebilir bir rota çalışması.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2685"
+ },
+ "amac": "Rüzgâr ve dalga tahminlerini gemi direnç bağıntılarıyla birleştirerek fırtınalı denizlerde yakıt tasarrufu ve seyir güvenliği sağlayan rotayı hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "GEM 421",
+   "projeyeKatki": "Dalgalı denizde ilave gemi direnci (added resistance), karşılaşma frekansı ve yalpa genliği hesaplamaları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Dalgalardan kaynaklanan ilave gemi direnci",
+     "nerede": "2. adımda: Fırtınalı rota segmentlerinde gemi hız kaybı ve ilave motor gücü sarfiyatını hesaplarken."
+    },
+    {
+     "formulAd": "Dalga karşılaşma frekansı bağıntısı",
+     "nerede": "3. adımda: Dalga geliş açısına göre rezonans yalpadan kaçınacak rota kırılmalarını belirlerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 302",
+   "projeyeKatki": "Açık deniz rüzgâr alanlarının analizi, cephe geçişlerinde rüzgâr yönü değişimleri ve jeostrofik denge hesapları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik rüzgâr (basınç yüzeyinde)",
+     "nerede": "1. adımda: Açık deniz basınç alanlarından fırtına hattı rüzgâr şiddetini ve yönünü haritalarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Dalga tahmini ızgaraya bölünür, GEM 421 ilave direnciyle MTO 302 fırtına hattından kaçan en ekonomik rota bulunur.",
+  "ayrinti": "Çanakkale-İstanbul seyir koridoru için açık ERA5 dalga ve rüzgâr verisi çekilir. Deniz alanı düğüm noktalarına bölünerek her kenara GEM 421 ilave direnç ve yakıt maliyeti atanır. Dijkstra ve A* arama algoritmalarıyla düz rota ile hava uyarlamalı rota karşılaştırılır. Hız kaybı ve yakıt tasarrufu grafiğe dökülür. 2 haftada tamamlanır.",
+  "sonuc": "Düz rota ile fırtınadan kaçan dinamik rotanın yakıt ve seyir süresini kıyaslayan açık rota planlama defteri.",
+  "senden": "GEM 421 Gemi Hareket ve Manevraları (ilave dalga direnci, RAO hesapları, karşılaşma açısı ve yakıt optimizasyonu)",
+  "bizden": "MTO 302 Hava Analizi ve Öngörü I (rüzgâr ve dalga tahmin ızgarası, fırtına cephesi izleme, hava brifingi)",
+  "adimlar": [
+   {
+    "baslik": "Seyir bölgesi dalga ve rüzgâr tahmin ızgarasının kurulması",
+    "oz": "Deniz alanı ızgara grafına bölünür, rüzgâr ve dalga vektörleri atanır.",
+    "ayrinti": "Marmara ve Kuzey Ege seyir sahası 0.1 derecelik düğüm noktalarına ayrılır; ERA5 ve Open-Meteo verileri bu düğümlere kenar ağırlığı olarak bağlanır.",
+    "kazanimlar": [
+     {
+      "ders": "MTO 302",
+      "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "NetworkX ile deniz ızgarası düğüm ve kenarları tanımlanır, kara pikselleri maskelenir.",
+      "sade": "MTO 302 dersindeki 'Hava haritası ve ızgara analizi' bilgisiyle deniz haritası sayısallaştırılır. Geminin gidebileceği olası su yolları birbirine bağlı bir ağa dönüştürülür.",
+      "altAdimlar": [
+       "Kıyı çizgisi sınırları shapely çokgenleriyle taranıp deniz düğümleri ayrıştırılır.",
+       "Her düğüme o saatteki belirgin dalga boyu Hs ve rüzgâr hızı U10 atanır.",
+       "Sekiz yönlü komşuluk kenarları NetworkX grafına eklenir."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     },
+     {
+      "teknik": "Her segment için rüzgâr yönü ile seyir açısı farkından karşılaşma açısı mu çıkarılır.",
+      "sade": "GEM 421 dersindeki 'Dalga karşılaşma frekansı' bilgisiyle açı hesaplanır. Rüzgârın ve dalganın gemiye tam baştan mı, bordadan mı yoksa kıçtan mı vurduğu bulunur.",
+      "altAdimlar": [
+       "Gemi pruva rotası açısı theta_rota hesaplanır.",
+       "Dalga yönü theta_dalga ile fark alınarak mu = |theta_rota - theta_dalga| belirlenir.",
+       "Karşılaşma açısı segment verisine yazılır."
+      ],
+      "kazanim": {
+       "ders": "GEM 421",
+       "madde": "Karşılaşma frekansı dönüşümüyle dalga rezonansından kaçınacak optimum rota açısını bulmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "İlave direnç ve segment geçiş sürelerinin hesaplanması",
+    "oz": "GEM 421 formülüyle her kenarda dalga kaynaklı hız kaybı ve yakıt bulunur.",
+    "ayrinti": "Dalga boyu ve karşılaşma açısına göre GEM 421 ilave direnç formülü işletilir; geminin 14 knot sakin su hızının dalgada kaça düşeceği ve harcanan yakıt hesaplanır.",
+    "kazanimlar": [
+     {
+      "ders": "GEM 421",
+      "madde": "Dalgalı denizde dalga ve rüzgâr kaynaklı ilave direnci (added resistance) hesaplamak."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "R_AW ilave direnç formülüyle gemi hız kaybı delta_V hesaplanır.",
+      "sade": "GEM 421 dersindeki 'İlave gemi direnci' bilgisiyle gecikme çıkarılır. Geminin fırtınalı dalgalarla çarpışırken ne kadar yavaşlayacağı hesaplanır.",
+      "altAdimlar": [
+       "Gemi ana boyutları (L = 140 m, B = 20 m) ve blok katsayısı girilir.",
+       "Baştan gelen dalgalarda R_AW ilave direnci hesaplanır.",
+       "Gemi efektif seyir hızı V_efektif = V_sakin - delta_V olarak bulunur."
+      ],
+      "kazanim": {
+       "ders": "GEM 421",
+       "madde": "Dalgalı denizde dalga ve rüzgâr kaynaklı ilave direnci (added resistance) hesaplamak."
+      }
+     },
+     {
+      "teknik": "Kenar geçiş süresi t = d / V_efektif ve yakıt tüketimi F = SFC * P_motor * t hesaplanır.",
+      "sade": "GEM 421 dersindeki 'Seyir performansı ve yakıt sarfiyatı' bilgisiyle maliyet bulunur. Her rota parçası için harcanacak ton cinsinden yakıt miktarı belirlenir.",
+      "altAdimlar": [
+       "Mesafe d (deniz mili) efektif hıza bölünerek geçiş saati bulunur.",
+       "Motorun ilave direnci yenmek için çektiği güç P_motor hesaplanır.",
+       "Kenar ağırlığı maliyet = yakıt_ton olarak graf kenarlarına atanır."
+      ],
+      "kazanim": {
+       "ders": "GEM 421",
+       "madde": "Genlik yanıt operatörleri (RAO) ile dalga spektrumundan gemi yalpa tepkilerini türetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Dijkstra ile hava uyarlamalı rotanın çıkarılması",
+    "oz": "Fırtınanın içinden geçen düz rota ile etrafından dolanan rota kıyaslanır.",
+    "ayrinti": "NetworkX Dijkstra algoritmasıyla başlangıç ve varış limanları arasında en düşük toplam yakıt tüketen rota bulunur; düz rotayla yakıt ve süre farkı doğrulanır.",
+    "kazanimlar": [
+     {
+      "ders": "GEM 421",
+      "madde": "Karşılaşma frekansı dönüşümüyle dalga rezonansından kaçınacak optimum rota açısını bulmak."
+     }
+    ],
+    "nasil": [
+     {
+      "teknik": "networkx.dijkstra_path ile en düşük maliyetli düğüm dizisi çözülür.",
+      "sade": "GEM 421 dersindeki 'Rota optimizasyonu' bilgisiyle en akılcı yol çizilir. Mesafesi 15 mil daha uzun olsa da fırtınadan kaçtığı için daha az yakıt yakan rota seçilir.",
+      "altAdimlar": [
+       "Çanakkale çıkış ve Ambarlı limanı giriş koordinatları atanır.",
+       "Dijkstra arama algoritması maliyet ağırlıkları üzerinden koşturulur.",
+       "En düşük yakıtlı optimum hava rotasının koordinat dizisi elde edilir."
+      ],
+      "kazanim": {
+       "ders": "GEM 421",
+       "madde": "Karşılaşma frekansı dönüşümüyle dalga rezonansından kaçınacak optimum rota açısını bulmak."
+      }
+     },
+     {
+      "teknik": "Düz rota ile optimize rotanın toplam yakıtı, süresi ve maksimum dalga maruziyeti kıyaslanır.",
+      "sade": "MTO 302 dersindeki 'Tahmin değerlendirme ve hava brifingi' bilgisiyle sonuçlar özetlenir. Kaptana sunulacak seyir brifinginde dalgalardan kaçmanın sağladığı emniyet ve kazanç dökülür.",
+      "altAdimlar": [
+       "Düz rotada 3.2 m dalgaya maruz kalınarak 18.5 ton yakıt harcandığı hesaplanır.",
+       "Optimize rotada maksimum dalganın 1.8 metrede kaldığı ve 16.8 ton yakıtla yüzde 9 tasarruf sağlandığı kanıtlanır.",
+       "Harita üzerinde iki rota çizgisi ve dalga konturları görselleştirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 302",
+       "madde": "Profesyonel tahmincinin kullandığı ürünlerle günlük tahmin yazıp kısa bir hava brifingi vermek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara ve Ege geçişinde fırtına dalgalarından kaçan gemi rotası simülasyonu",
+   "aciklama": "Fırtına merkezi hareket ettikçe geminin dalga boyunun düşük kaldığı koridorda ilerlemesi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.stormgeo.com/solutions/shipping/",
+   "aciklama": "StormGeo operasyonel gemi rota optimizasyonu ve dalga riski değerlendirme portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lewis, E. V. (1989) Principles of Naval Architecture: Motions in Waves and Controllability, SNAME",
+   "url": "https://openlibrary.org/isbn/9780939773121"
+  },
+  {
+   "ad": "StormGeo Maritime Route Advisory and Weather Optimization Services",
+   "url": "https://www.stormgeo.com/solutions/shipping/"
+  },
+  {
+   "ad": "Copernicus Marine Service Mediterranean Sea Wave Forecasting Model",
+   "url": "https://marine.copernicus.eu/about/producers/med-mfc"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/GEM-02.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "6d9bba2aea47"
+ }
+}

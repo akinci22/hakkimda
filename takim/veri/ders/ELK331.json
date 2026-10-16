@@ -1,0 +1,146 @@
+{
+ "kod": "ELK 331",
+ "ad": "Güç Elektroniği Devreleri",
+ "bolum": "Elektrik Mühendisliği",
+ "obsNo": "331",
+ "ozet": "Güç yarı iletken anahtarlama elemanlarını ve enerji dönüşüm devrelerini öğretir. Kontrollü ve kontrolsüz doğrultucular, DA-DA kıyıcılar, eviriciler (inverter), darbe genişlik modülasyonu (PWM) ve yenilenebilir enerji güç çeviricilerinin tasarımı ele alınır.",
+ "neOgrenirsin": [
+  "Yarı iletken güç anahtarlarının çalışma karakteristiklerini ve kayıplarını analiz etmek.",
+  "Doğru akım kıyıcı (buck, boost) devrelerini tasarlamak ve gerilim regülasyonu sağlamak.",
+  "Bir ve üç fazlı eviricilerde darbe genişlik modülasyonu (PWM) kontrolünü uygulamak.",
+  "Yenilenebilir enerji sistemlerinde MPPT algoritmasıyla güç aktarımını optimize etmek.",
+  "Güç çevirici devrelerinde harmonik analizi ve filtreleme yapılarını tasarlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "PV panel hücresi çalışma sıcaklığı denklemi",
+   "tex": "T_c = T_a + G \\, e^{-a - b \\, v}",
+   "terimler": [
+    [
+     "T_c",
+     "fotovoltaik hücre sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_a",
+     "ortam hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "G",
+     "panel yüzeyine gelen güneş ışınımı",
+     "W/m^2"
+    ],
+    [
+     "v",
+     "panel yüzeyindeki rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "a, b",
+     "panel tipi ve montaj termal katsayıları",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Güneş panelinin çalışma anındaki gerçek hücre sıcaklığını hava sıcaklığı, gelen ışınım şiddeti ve soğutucu rüzgâr hızına bağlı olarak hesaplar.",
+   "ornek": "Yazın hava sıcaklığı 32 °C, güneş ışınımı 950 W/m2 ve rüzgâr hızı 2 m/s iken açık montajlı bir panelde hücre sıcaklığı yaklaşık 54 °C değerine ulaşır.",
+   "nerede": "Güneş santralinde hava tahminlerinden hücre sıcaklığını ve güç elektroniği evirici giriş gerilimini hesaplarken."
+  },
+  {
+   "ad": "Fotovoltaik sıcaklık verim kaybı ve güç bağıntısı",
+   "tex": "P_{pv} = P_{stc} \\, \\frac{G}{G_{stc}} \\, \\left[1 + \\gamma \\, (T_c - T_{stc})\\right]",
+   "terimler": [
+    [
+     "P_{pv}",
+     "fotovoltaik panel çıkış gücü",
+     "W"
+    ],
+    [
+     "P_{stc}",
+     "standart test koşullarındaki nominal güç",
+     "W"
+    ],
+    [
+     "G",
+     "anlık güneş ışınımı",
+     "W/m^2"
+    ],
+    [
+     "G_{stc}",
+     "standart test ışınımı (1000 W/m2)",
+     "W/m^2"
+    ],
+    [
+     "\\gamma",
+     "hücre sıcaklık güç katsayısı",
+     "1/°C"
+    ],
+    [
+     "T_c",
+     "hesaplanan hücre sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{stc}",
+     "standart test hücre sıcaklığı (25 °C)",
+     "°C"
+    ]
+   ],
+   "sade": "Panel hücresi standart 25 °C üzerine çıktığında yarı iletken veriminin düşmesiyle panelin ürettiği doğru akım gücündeki kaybı hesaplar.",
+   "ornek": "Standart gücü 400 W ve gamma katsayısı -0,004 1/°C olan bir panelde hücre sıcaklığı 55 °C'ye çıktığında yüzde 12 verim kaybıyla çıkış gücü 352 W seviyesine geriler.",
+   "nerede": "Güneş sahası güç elektroniği eviricisi ve kıyıcı devrelerinin üreteceği anlık gücü kestirirken."
+  },
+  {
+   "ad": "DC-DC yükseltici (boost) kıyıcı gerilim dönüşüm oranı",
+   "tex": "V_o = \\frac{V_{in}}{1 - D}",
+   "terimler": [
+    [
+     "V_o",
+     "çıkış doğru akım gerilimi",
+     "V"
+    ],
+    [
+     "V_{in}",
+     "PV panel dizisi giriş doğru akım gerilimi",
+     "V"
+    ],
+    [
+     "D",
+     "anahtarlama doluluk oranı (duty cycle)",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Güneş panelinden gelen değişken doğru gerilimi şebeke eviricisi için gereken sabit yüksek gerilim seviyesine yükseltir.",
+   "ornek": "Panel dizisi aşırı sıcaklık nedeniyle 280 V çıkış veriyorsa, çıkışta 700 V barası elde etmek için anahtar doluluk oranı D = 0,60 olarak ayarlanır.",
+   "nerede": "Fotovoltaik sistemin MPPT güç elektroniği kıyıcı devresinde çalışma noktasını panel sıcaklığına göre ayarlarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Boost_conve_diagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Güneş paneli MPPT devresinde kullanılan DC-DC yükseltici kıyıcı şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İç Anadolu güneş santrali saatlik hava sıcaklığı, güneş ışınımı ve hücre verim kaybı, 2026-10",
+   "aciklama": "Panel hücre sıcaklığına bağlı anlık fotovoltaik verim kaybı animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · ELK 331 (Güç Elektroniği Devreleri)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ELK&dersNo=331"
+  },
+  {
+   "ad": "Rashid, M. H. (2014) Power Electronics: Devices, Circuits, and Applications, 4. baskı, Pearson · ISBN 978-0-13-312590-0",
+   "url": "https://openlibrary.org/isbn/9780133125900"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=ELK&dersNo=331"
+}

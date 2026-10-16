@@ -1,0 +1,391 @@
+{
+ "id": "EHB-03",
+ "kaynakTur": "bolum",
+ "sahip": {
+  "k": "EHB",
+  "bolum": "Elektronik ve Haberleşme Mühendisliği",
+  "fakulteKod": "EEF"
+ },
+ "ad": "Haberleşme linklerinde yağmur sönümlemesinden yağış",
+ "ne": "Baz istasyonları arasındaki mikrodalga link sinyal zayıflamasını açık kaynaklı algoritmalarla işleyip yüksek çözünürlüklü yüzey yağış haritasına dönüştüren sistem.",
+ "adimlar": [
+  "Açık bir mikrodalga link veri kümesi bul",
+  "Sinyal zayıflamasını hesapla",
+  "Zayıflamayı yağışa çeviren formülü uygula",
+  "Sonucu yağış ölçümüyle karşılaştır"
+ ],
+ "sonuc": "Sonunda yağış tahmini grafiği olan bir defter olur.",
+ "senden": "EEF 212 Elektromanyetik Teori",
+ "bizden": "Yağış ölçümü ve doğrulama",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "EEF 212",
+    "ad": "Elektromanyetik Teori"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 301",
+    "ad": "Meteorolojide Uzaktan Algılamanın Temelleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Tel Aviv Üniversitesi (Messer ve ark.)",
+   "ne": "Cep telefonu ağındaki sinyal zayıflamasından yağış ölçülebileceğini ilk gösteren öncü çalışma.",
+   "url": "https://www.science.org/doi/10.1126/science.1120034",
+   "ayrinti": {
+    "neYaptilar": "Hagit Messer ve araştırma grubu, hücresel haberleşme şebekelerindeki mikrodalga sinyal zayıflamasından yağış yoğunluğu çıkarılabileceğini kanıtladı.",
+    "nasil": "Standart ticari baz istasyonlarının sinyal seviyesi ölçümlerini toplayıp mikrodalga zayıflama fiziğiyle yağmur damlası saçılmasını ilişkilendirdiler.",
+    "neEdindiler": "Science dergisinde yayımlanan yöntem, geleneksel yağış ölçer bulunmayan alanlarda yüzde 85 doğrulukla yağmur haritası çıkardı.",
+    "bizNasilKatki": "Makaledeki A-R güç bağıntısını inceleyerek açık mikrodalga sinyal verisi üzerinde temel zayıflama dönüşümünü uygularız.",
+    "referanslar": [
+     {
+      "ad": "Science: Environmental monitoring by wireless communication networks",
+      "url": "https://www.science.org/doi/10.1126/science.1120034",
+      "tur": "makale"
+     },
+     {
+      "ad": "Tel Aviv University Environmental Monitoring Lab",
+      "url": "https://www.eng.tau.ac.il/~messer/publications",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.science.org/doi/10.1126/science.1120034",
+      "aciklama": "Science dergisi hücresel ağlarla çevresel izleme makalesi yayını"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Mikrodalga link zayıflaması ile radar yağış alanı karşılaştırma animasyonu",
+      "aciklama": "Baz istasyonu sinyal sönümlemesinden türetilen yağış alanının radar ekolarıyla örtüşmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "pycomlink",
+   "ne": "Mikrodalga link verisinden yağış hesaplayan açık kaynaklı Python kütüphanesi.",
+   "url": "https://github.com/pycomlink/pycomlink",
+   "ayrinti": {
+    "neYaptilar": "Uluslararası araştırmacılar, ticari mikrodalga link (CML) verilerini uçtan uca işleyip yağış alanlarına dönüştüren pycomlink paketini geliştirdi.",
+    "nasil": "Ham sinyal seviyelerinden kuru hava taban çizgisini saptayıp ıslak anten sönümlemesini filtreleyen ve A-R bağıntısını çözen algoritmalar yazdılar.",
+    "neEdindiler": "Avrupa genelinde yüzlerce araştırmacının kullandığı, kıtasal ölçekte CML yağış haritaları üreten standart açık araç seti oluşturdular.",
+    "bizNasilKatki": "pycomlink kütüphanesini içe aktararak açık veri setindeki ham sinyal düşüşlerinden saatlik yağış şiddetini hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "pycomlink GitHub Açık Kaynak Kod Deposu",
+      "url": "https://github.com/pycomlink/pycomlink",
+      "tur": "kod"
+     },
+     {
+      "ad": "Geoscientific Model Development pycomlink Makalesi",
+      "url": "https://doi.org/10.5194/gmd-10-4131-2017",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://github.com/pycomlink/pycomlink",
+      "aciklama": "pycomlink açık kaynak kütüphanesi dokümantasyon ve örnekler deposu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Mikrodalga link ağı yağış şiddeti zaman serisi canlandırması",
+      "aciklama": "Baz istasyonları arasındaki hat boyunca sinyal kaybından hesaplanan yağış miktarı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Tomorrow.io (eski ClimaCell)",
+   "ne": "Telsiz sinyalinin yağmurda zayıflamasından yağış ölçme fikriyle başladı; kendi uydusu olan bir hava şirketi oldu.",
+   "url": "https://www.tomorrow.io/products/weather-api",
+   "ayrinti": {
+    "neYaptilar": "ClimaCell adıyla kurulan girişim, hücresel şebekelerdeki sinyal zayıflamasını kullanarak geleneksel radarların göremediği alçak irtifa yağışlarını yakaladı.",
+    "nasil": "Milyonlarca mikrodalga haberleşme bağlantısındaki sinyal dalgalanmalarını bulut bilişimde işleyip hiper-yerel hava tahmin motoru kurdular.",
+    "neEdindiler": "Havacılık, spor ve lojistik devlerine hizmet veren, kendi radar uydularını uzaya fırlatan milyar dolarlık küresel bir hava zekâsı şirketi oldular.",
+    "bizNasilKatki": "Tomorrow.io'nun ilk çıkış noktası olan baz istasyonu zayıflama fiziğini inceleyerek tek bir link hattında yağış kestirimi yaparız.",
+    "referanslar": [
+     {
+      "ad": "Tomorrow.io Kurumsal Hava ve Yağış Teknolojisi",
+      "url": "https://www.tomorrow.io/products/weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Tomorrow.io Uzay ve Radar Takımyıldızı Programı",
+      "url": "https://www.tomorrow.io/space-mission",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://www.tomorrow.io/products/weather-api",
+      "aciklama": "Tomorrow.io hiper-yerel hava platformu ürün sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Hücresel ağ link zayıflaması ile mikrodalga yağış haritalama simülasyonu",
+      "aciklama": "Kentsel alanda baz istasyonları linklerinden elde edilen yüksek çözünürlüklü yağış izleme"
+     }
+    ]
+   }
+  }
+ ],
+ "v2": {
+  "nasil": [
+   "Link sinyal seviyesini kaydet",
+   "Sönümleme–yağış ilişkisini kur",
+   "Gözlemle doğrula"
+  ],
+  "edinim": [
+   [
+    "EEF 212",
+    "dalga yayılımı, sönümleme"
+   ],
+   [
+    "MTO301",
+    "uzaktan algılama ilkesi"
+   ]
+  ],
+  "kaynak": [
+   {
+    "ad": "OGIMET SYNOP gözlemleri",
+    "url": "https://www.ogimet.com/synops.phtml.en",
+    "gorsel": "g/kaynak/ogimet.jpg",
+    "lisans": "serbest erişim",
+    "slug": "ogimet"
+   },
+   {
+    "ad": "ERA5 yeniden analiz · Copernicus CDS",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+    "gorsel": "g/kaynak/era5.jpg",
+    "lisans": "Copernicus lisansı",
+    "slug": "era5"
+   }
+  ]
+ },
+ "bolumBaglam": {
+  "yuz": "Yağmur sinyali zayıflatır; senin işaret işlemen o zayıflamadan yağışı kestirir.",
+  "senin": "EEF 206 İşaret İşleme, EEF 212 Elektromanyetik Teori",
+  "bizim": "MTO311E Veri Analizi, MTO301 Uzaktan Algılama",
+  "ortakIs": "IoT hava istasyonu ağı, yağmur sönümlemesinden yağış tahmini",
+  "detay": "Ortak zemin: EEF 206 İşaret İşleme ↔ MTO311E Veri Analizi; EEF 212 Elektromanyetik Teori ↔ MTO301 Uzaktan Algılama. Örnek görev: haberleşme bağlantılarındaki yağmur zayıflamasından yağış kestirmek ya da IoT istasyon ağı kurmak. Kazanç: sinyal işlemeyi gerçek hava verisinde denemek.",
+  "dersPlani": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/1452"
+ },
+ "amac": "Hücresel baz istasyonları arasındaki mikrodalga haberleşme linklerinin yağmur sönümlemesinden faydalanarak yer seviyesi anlık yağış miktarını kestirmek.",
+ "ortakDers": [
+  {
+   "kod": "EEF 212",
+   "projeyeKatki": "Mikrodalga sinyallerinin atmosferik yağış ortamında yayılması, dielektrik kayıplar ve elektromanyetik dalga sönümlenme bağıntıları bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Elektromanyetik dalga sönümlenme bağıntısı",
+     "nerede": "2. adımda: Baz istasyonu alıcısında ölçülen sinyal gücü düşüşünden ortamın zayıflama katsayısı alfa değerini hesaplarken."
+    },
+    {
+     "formulAd": "Poynting güç akısı yoğunluk vektörü",
+     "nerede": "1. adımda: Verici antenin yaydığı nominal güç akısı ile yağışsız havadaki referans taban çizgisini normalize ederken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 301",
+   "projeyeKatki": "Meteorolojik uzaktan algılama ilkeleri, yağmur damlası boyut dağılımı ve sönümleme-yağış (k-R) bağıntısının fiziksel parametreleri bu dersten gelir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Marshall-Palmer Z-R yağış şiddeti bağıntısı",
+     "nerede": "3. adımda: Mikrodalga sönümleme katsayısından türetilen anlık yağış şiddetini geleneksel radar yansıtıcılığıyla karşılaştırırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Mikrodalga link zayıflama verileri alınıp A-R güç bağıntısıyla yağış şiddetine çevrilerek istasyon ölçümüyle doğrulanır.",
+  "ayrinti": "Açık kaynaklı CML veri tabanından baz istasyonlarının sinyal seviyesi zaman serileri çekilir. EEF 212 Poynting güç bağıntısıyla yağışsız referans taban seviyesi belirlenir. Elektromanyetik sönümleme bağıntısı kullanılarak yağmur kaynaklı sinyal kaybı ayrıştırılır. MTO 301 uzaktan algılama k-R bağıntısıyla dB/km başına düşen sönümleme mm/saat yağış miktarına dönüştürülür. Yağış ölçer istasyon verisiyle karşılaştırılıp doğrulama grafiği çizdirilir. 2 haftada tamamlanır.",
+  "sonuc": "Mikrodalga link sinyal zayıflamasını saatlik yağış miktarına çeviren ve yer gözlemleriyle doğrulayan açık Python defteri.",
+  "senden": "EEF 212 Elektromanyetik Teori (dalga yayılımı, sönümleme sabiti ve sinyal zayıflaması analizi)",
+  "bizden": "MTO 301 Uzaktan Algılama (yağmur damlası saçılması, k-R bağıntısı ve yüzey yağış doğrulaması)",
+  "adimlar": [
+   {
+    "baslik": "Mikrodalga link sinyal seviyesi verilerinin çekilmesi",
+    "oz": "Açık CML veri tabanından alınan ve iletilen güç verileri çekilir.",
+    "ayrinti": "İki baz istasyonu arasında 15-38 GHz bandında çalışan mikrodalga bağlantısının iletilen (Tx) ve alınan (Rx) güç zaman serileri pycomlink ile belleğe aktarılır.",
+    "nasil": [
+     {
+      "teknik": "pycomlink.io.read_cml_metadata ile bağlantı frekansı, polarizasyonu ve koordinatları okunur.",
+      "sade": "EEF 212 dersindeki 'Düzlem elektromanyetik dalgaların dielektrik ortamlarda faz hızı ve yayılımını hesaplamak' bilgisiyle link parametreleri ayıklanır. Baz istasyonları arasındaki hat uzunluğu ve dalga boyu belirlenir.",
+      "altAdimlar": [
+       "Açık CML deposundan CSV formatındaki sinyal seviyesi dosyası indirilir.",
+       "Verici ve alıcı koordinatları arasındaki Öklid mesafesi kilometre cinsinden hesaplanır.",
+       "Frekans (GHz) ve anten polarizasyonu (yatay/dikey) metaveriden ayıklanır."
+      ],
+      "kazanim": {
+       "ders": "EEF 212",
+       "madde": "Düzlem elektromanyetik dalgaların dielektrik ortamlarda faz hızı ve yayılımını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Alınan güç (Rx) ve iletilen güç (Tx) farkından toplam yol zayıflaması (TL = Tx - Rx) dizisi çıkarılır.",
+      "sade": "EEF 212 dersindeki 'Poynting vektörü ile elektromanyetik dalganın taşıdığı güç akısını bulmak' bilgisiyle güç farkı bulunur. Havanın sakin olduğu andaki güç ile anlık güç kıyaslanır.",
+      "altAdimlar": [
+       "Tx ve Rx sütunları arasındaki fark alınarak ham desibel kaybı çıkarılır.",
+       "Hatalı sensör okumaları ve donanım kesintileri NaN maskesiyle temizlenir.",
+       "15 dakikalık zaman adımlarıyla düzenli zaman dizisi oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "EEF 212",
+       "madde": "Poynting vektörü ile elektromanyetik dalganın taşıdığı güç akısını ve ışıma yoğunluğunu bulmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kuru hava taban çizgisinin saptanması ve sönümleme hesabı",
+    "oz": "Yağmurun olmadığı anlar belirlenip yağışa bağlı zayıflama ayrıştırılır.",
+    "ayrinti": "Sinyaldeki dalgalanmaların ne kadarının atmosferik su buharı ve sıcaklıktan, ne kadarının yağmur damlalarından kaynaklandığını belirlemek için ıslak-kuru ayrımı yapılır.",
+    "nasil": [
+     {
+      "teknik": "pycomlink.processing.baseline ile yuvarlanan medyan penceresi uygulanarak taban çizgi belirlenir.",
+      "sade": "EEF 212 dersindeki 'Kayıplı ortamlarda sönümleme sabitini ve dalga zayıflamasını belirlemek' bilgisiyle referans sinyal çizilir. Yağış öncesi ve sonrası sabit sinyal seviyesi tespit edilir.",
+      "altAdimlar": [
+       "Son 24 saatin sinyal standart sapması taranarak kuru periyotlar bulunur.",
+       "Kuru periyotlardaki medyan güç seviyesi referans taban çizgisi olarak atanır.",
+       "Anten ıslanması kaynaklı ek kayıp için 1.5 dB sabit ofset düşülür."
+      ],
+      "kazanim": {
+       "ders": "EEF 212",
+       "madde": "Kayıplı ortamlarda sönümleme sabitini ve dalga zayıflamasını belirlemek."
+      }
+     },
+     {
+      "teknik": "Net yağmur sönümlemesi A_rain = TL - Baseline bağıntısıyla hesaplanır ve hat boyuna bölünür.",
+      "sade": "EEF 212 dersindeki 'Kayıplı ortamlarda sönümleme sabitini ve dalga zayıflamasını belirlemek' bilgisiyle birim kilometre başına desibel kaybı (dB/km) elde edilir.",
+      "altAdimlar": [
+       "Toplam zayıflamadan taban seviye çıkarılarak net yağış zayıflaması bulunur.",
+       "Net zayıflama link uzunluğu L (km) değerine bölünerek alfa sönümleme katsayısı çıkarılır.",
+       "Negatif zayıflama değerleri sıfırlanır."
+      ],
+      "kazanim": {
+       "ders": "EEF 212",
+       "madde": "Kayıplı ortamlarda sönümleme sabitini ve dalga zayıflamasını belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "k-R güç bağıntısıyla yağış şiddetinin hesaplanması",
+    "oz": "ITU-R tavsiyelerine uygun k-R bağıntısıyla desibel sönümlemesi mm/saat yağışa çevrilir.",
+    "ayrinti": "Mikrodalga frekansına ve polarizasyona bağlı ITU-R P.838 katsayıları kullanılarak özgül zayıflama (k) anlık yağış şiddetine (R) dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "R = (k / a)**(1/b) ITU-R P.838 ters güç fonksiyonu uygulanarak yağış şiddeti dizisi hesaplanır.",
+      "sade": "MTO 301 dersindeki 'Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek' bilgisiyle sönümleme yağmura çevrilir. Desibel düşüşü saatte metrekareye düşen litreye dönüştürülür.",
+      "altAdimlar": [
+       "Bağlantının çalışma frekansı için ITU-R tablosundan a ve b katsayıları okunur.",
+       "R = (k / a)**(1/b) formülü her zaman adımı için çalıştırılır.",
+       "0.1 mm/saat altındaki değerler gürültü kabul edilerek sıfırlanır."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Marshall-Palmer Z-R bağıntısını kullanarak yansıtıcılık faktörünü anlık yağış şiddetine çevirmek."
+      }
+     },
+     {
+      "teknik": "Hesaplanan anlık şiddet zaman integraliyle saatlik ve günlük toplam birikimli yağışa dönüştürülür.",
+      "sade": "MTO 301 dersindeki 'Meteorolojik uzaktan algılama ilkeleri' bilgisiyle kümülatif yağmur hesaplanır. Dakikalık yağışlar toplanarak gün boyu yağan toplam yağmur bulunur.",
+      "altAdimlar": [
+       "15 dakikalık yağış hızları zaman adımıyla çarpılarak dilim birikimleri bulunur.",
+       "Dilim birikimleri kümülatif toplanarak saatlik yağış miktarı elde edilir.",
+       "Zaman serisi pandas veri çerçevesine yazılır."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Elektromanyetik spektrumda atmosferik pencereleri ve ışınım transferini analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yer gözlem istasyonu verisiyle doğrulama",
+    "oz": "Hesaplanan yağış değerleri en yakın yağış ölçer istasyonuyla karşılaştırılır.",
+    "ayrinti": "Mikrodalga link hattına en yakın meteoroloji istasyonunun pluviyometre ölçümleri indirilerek korelasyon ve RMSE hata istatistikleri hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "scipy.stats.pearsonr ile CML yağışı ve istasyon ölçümü arasındaki korelasyon çıkarılır.",
+      "sade": "MTO 301 dersindeki 'Zemin ekosu, parazitler ve zayıflama etkilerini kalite kontrolle temizlemek' bilgisiyle doğrulama yapılır. Telsiz hattından bulunan yağmur ile yerdeki ölçerin ne kadar uyumlu olduğu test edilir.",
+      "altAdimlar": [
+       "En yakın istasyonun saatlik yağış serisi zaman ekseninde eşleştirilir.",
+       "İki seri arasındaki Pearson korelasyon katsayısı ve RMSE hesaplanır.",
+       "Zaman serisi saçılım grafiği (scatter plot) ve çizgi grafiği olarak çizdirilir."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Zemin ekosu, parazitler ve zayıflama etkilerini kalite kontrolle temizlemek."
+      }
+     },
+     {
+      "teknik": "Aylık kümülatif yağış toplamları bar grafiği ve hata çubuklarıyla görselleştirilir.",
+      "sade": "MTO 301 dersindeki 'Uzaktan algılama kalite kontrolü' bilgisiyle kümülatif tutarlılık incelenir. Ay boyunca telsiz hattından hesaplanan toplam yağmur ile yağış ölçerde biriken su sütunu karşılaştırılır.",
+      "altAdimlar": [
+       "Günlük ve haftalık toplam yağış miktarları toplanır.",
+       "İki veri kümesi arasındaki mutlak yüzde hata hesaplanır.",
+       "Matplotlib ile çubuk grafik ve saçılım diyagramı oluşturulur."
+      ],
+      "kazanim": {
+       "ders": "MTO 301",
+       "madde": "Zemin ekosu, parazitler ve zayıflama etkilerini kalite kontrolle temizlemek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Mikrodalga haberleşme linkleri zayıflamasından elde edilen anlık yağış alanı",
+   "aciklama": "Baz istasyonları arasındaki sinyal sönümlemesinden hesaplanan yağış yoğunluğu dağılımı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://github.com/pycomlink/pycomlink",
+   "aciklama": "pycomlink açık kaynak kütüphanesi dokümantasyon ve örnekler deposu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Messer, H. et al. (2006) Environmental monitoring by wireless communication networks, Science",
+   "url": "https://www.science.org/doi/10.1126/science.1120034"
+  },
+  {
+   "ad": "Chwala, C. et al. (2017) pycomlink: an open-source Python library for processing microwave link data, GMD",
+   "url": "https://doi.org/10.5194/gmd-10-4131-2017"
+  },
+  {
+   "ad": "ITU-R P.838-3: Specific attenuation model for rain for use in prediction methods",
+   "url": "https://www.itu.int/rec/R-REC-P.838-3-200503-I/en"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/EHB-03.json",
+  "tarih": "2026-10-17 00:30",
+  "geminiSha1": "6a3b0fb72d10"
+ }
+}

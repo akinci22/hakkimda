@@ -1,0 +1,438 @@
+{
+ "id": "F-BBF-BLG-02",
+ "kaynakTur": "fakulte",
+ "sahip": {
+  "k": "BLG",
+  "bolum": "Bilgisayar Mühendisliği",
+  "fakulteKod": "BBF",
+  "fakulte": "Bilgisayar ve Bilişim Fakültesi"
+ },
+ "ad": "Çok boyutlu ızgara sorgulama motoru",
+ "ne": "GRIB2 formatındaki 0.25 derecelik ızgara noktaları arasında mekânsal kd-tree ile en yakın komşu aramasını hızlandırmak.",
+ "adimlar": [
+  "Marmara Bölgesi koordinatları için 2 boyutlu kd-tree kıyaslama demosu hazırlamak."
+ ],
+ "sonuc": "Mikro benchmark raporu ve modül",
+ "dersler": {
+  "senin": [
+   {
+    "kod": "BLG 335E",
+    "ad": "Analysis of Algorithms I"
+   }
+  ],
+  "bizim": [
+   {
+    "kod": "MTO 311E",
+    "ad": "Data Analysis in Meteorology"
+   },
+   {
+    "kod": "MTO 302",
+    "ad": "Hava Analizi ve Öngörü I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "SciPy Spatial cKDTree",
+   "ne": "Çok boyutlu noktalarda C++ hızında en yakın komşu ve yarıçap araması sunan temel açık kaynaklı kütüphane.",
+   "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.html",
+   "ayrinti": {
+    "neYaptilar": "SciPy topluluğu, Python'daki döngü yavaşlığını aşmak için C++ dilinde optimize edilmiş cKDTree veri yapısını geliştirdi. Ağaç ikili yaprak düzeniyle bellekte ardışık tutularak işlemci önbellek başarımını maksimize eder.",
+    "nasil": "Nokta kümesi median değeri etrafında özyinelemeli bölünerek inşa edilir. Sorgu anında Minkowski p-normu veya Öklid uzaklığı üzerinden dallar budanarak arama uzayı hızla daraltılır.",
+    "neEdindiler": "Milyonlarca mekânsal koordinat sorgusu saniyeler içinde tamamlanarak modern veri biliminin ve meteorolojik kütüphanelerin standart aracı haline geldi.",
+    "bizNasilKatki": "cKDTree yapısını Marmara koordinatlarına özel olarak yapılandırıp küresel mesafe hesaplarında Haversine düzeltmesi yapan bir sarmalayıcı sınıf yazarız.",
+    "referanslar": [
+     {
+      "ad": "SciPy cKDTree resmi referans dokümantasyonu",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.html",
+      "tur": "web"
+     },
+     {
+      "ad": "SciPy açık kaynak algoritma deposu (GitHub, BSD 3-Clause)",
+      "url": "https://github.com/scipy/scipy/tree/main/scipy/spatial",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.html",
+      "aciklama": "cKDTree sınıfı fonksiyon tanımları ve parametre kılavuzu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "cKDTree arama süresi ve bellek tüketim analizi, 2026-10",
+      "aciklama": "Farklı ızgara boyutlarında cKDTree arama sürelerinin asimptotik grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Zarr & PyGRIB (ECMWF ecCodes)",
+   "ne": "Petabaytlarca hava verisini bulutta bloklar halinde parçalayıp hızlı sorgulatan modern veri formatı.",
+   "url": "https://zarr.readthedocs.io/en/stable/",
+   "ayrinti": {
+    "neYaptilar": "Açık veri konsorsiyumu ve ECMWF, geleneksel monolitik GRIB2 dosyaları yerine parçalı (chunked) ve sıkıştırılmış Zarr tensör formatını benimsedi. Veri bulut nesne depolarında mekânsal bloklar halinde saklanır.",
+    "nasil": "Her 100x100 piksellik hava ızgarası bağımsız bir ikili dosya olarak sıkıştırılır. Kullanıcı bir koordinat istediğinde tüm dosyayı indirmek yerine sadece ilgili bloğun baytlarını çeker.",
+    "neEdindiler": "Ağ transfer süreleri yüzde 90 azaldı; küresel tahmin modellerine erişim anlık API sorgularına dönüştü.",
+    "bizNasilKatki": "Zarr blok indeksleme mantığını kendi yerel SQLite ve kd-tree altyapımıza uygulayarak Marmara Bölgesi sorgularını blok tabanlı önbelleğe alırız.",
+    "referanslar": [
+     {
+      "ad": "Zarr Python kütüphanesi resmi mimari kılavuzu",
+      "url": "https://zarr.readthedocs.io/en/stable/",
+      "tur": "web"
+     },
+     {
+      "ad": "Zarr açık kaynak depolama spesifikasyonu (GitHub)",
+      "url": "https://github.com/zarr-developers/zarr-python",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://zarr.readthedocs.io/en/stable/",
+      "aciklama": "Zarr veri blokları ve hiyerarşik dizi mimarisi ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Data_Queue.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Parçalı veri bloklarının bellek tamponu ve işleme yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "GeoPandas Spatial Index (R-tree)",
+   "ne": "Açık kaynak mekânsal veri çerçevelerinde R-tree indekslemesiyle komşu ve kesişim araması sunan ekosistem.",
+   "url": "https://geopandas.org/en/stable/docs/reference/sindex.html",
+   "ayrinti": {
+    "neYaptilar": "GeoPandas topluluğu, Python ekosisteminde coğrafi şekiller ve koordinat noktaları arasında hızlı geometrik sorgulamalar yapmak için libspatialindex destekli R-tree indeksini entegre etti.",
+    "nasil": "Noktalar sınırlayıcı kutular (bounding boxes) içerisine alınarak ağaç hiyerarşisi kurulur. Arama sırasında kesişmeyen kutular tek hamlede elenir.",
+    "neEdindiler": "Coğrafi bilgi sistemleri (CBS) analizleri kaba kuvvet döngülerine kıyasla yüzlerce kat hızlandı.",
+    "bizNasilKatki": "Kd-tree ile R-tree indekslerinin meteorolojik düzenli ızgaralardaki hız ve bellek tüketimlerini karşılaştıran bir kıyaslama tablosu çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "GeoPandas mekânsal indeksleme geliştirici kılavuzu",
+      "url": "https://geopandas.org/en/stable/docs/reference/sindex.html",
+      "tur": "web"
+     },
+     {
+      "ad": "GeoPandas açık kaynak deposu (GitHub, BSD 3-Clause)",
+      "url": "https://github.com/geopandas/geopandas",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://geopandas.org/en/stable/docs/reference/sindex.html",
+      "aciklama": "GeoPandas mekânsal indeks dokümantasyonu ve kod örnekleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "GeoPandas R-tree ve cKDTree arama karşılaştırması, 2026-10",
+      "aciklama": "Mekânsal indeks yapıları arama gecikmelerinin karşılaştırmalı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "bolumBaglam": {
+  "yuz": "Günde gigabaytlarca küresel hava verisini çekip boru hattından geçirmek, saf bir dağıtık sistem mimarisidir.",
+  "senin": "BLG 223E Data Structures, BLG 335E Analysis of Algorithms I, BLG 411E Software Engineering",
+  "bizim": "MTO 311E Veri Analizi, MTO 302 Hava Analizi ve Öngörü I",
+  "karsilastirma": [
+   {
+    "senin": "BLG 223E Data Structures",
+    "bizim": "NetCDF / GRIB2 çok boyutlu ızgara dizileri",
+    "neden": "Atmosferik 4B tensörleri bellekte verimli tutmak ve indekslemek gelişmiş veri yapısı tasarımıdır."
+   },
+   {
+    "senin": "BLG 411E Software Engineering",
+    "bizim": "Sürekli veri çekme ve doğrulama boru hattı",
+    "neden": "Her 6 saatte bir çalışan küresel tahmin modellerini hatasız işleyen güvenilir bir servis mimarisi kurarız."
+   }
+  ],
+  "guncelOrnek": {
+   "baslik": "Zarr ve Icechunk açık hava veri formatları",
+   "metin": "2025'te ECMWF ve NASA, petabaytlarca hava tahmin verisini bulutta anlık sorgulamak için Zarr ve nesne tabanlı depolama Icechunk mimarisine geçti. Hızlı veri erişimi ve paralel okuma yazılım mühendisliği algoritmalarıyla sağlandı.",
+   "kaynakAdi": "ECMWF Tech Blog",
+   "kaynakUrl": "https://www.ecmwf.int/en/about/media-centre/news/2025/cloud-data-formats-weather-prediction",
+   "tarih": "2025-03"
+  },
+  "detay": "Meteoroloji modelleri her gün gigabaytlarca ham veri üretir; asıl zorluk bu veriyi şişmeden çekmek, doğru veri yapılarıyla saklamak ve anlık API uç noktalarına sunmaktır. Yazılım mühendisliği ve algoritma derslerinde öğrendiğin tasarım kalıpları, burada doğrudan çalışan bir veri hattına dönüşür. Sunucu tarafında kuracağın hafif servisler, küresel modeller ile İstanbul istasyon ölçümlerini birbiriyle konuşturan omurga olur. Sınav haftalarında işe ara verirken, dönem boyunca kendi ilgi alanına göre bir uç nokta veya veri yapısı optimize edersin. Yanına oturan meteoroloji öğrencisi verinin fiziksel anlamını çözerken, sen tüm bu akışın kesintisiz işlemesini sağlarsın.",
+  "zaman": "Haftada 1-2 saat; sınav haftası sıfır. İzleyici seviyesi 0 saat.",
+  "kaynaklar": [
+   {
+    "ad": "İTÜ ders planı (BLG)",
+    "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2340"
+   }
+  ]
+ },
+ "amac": "GRIB2 formatındaki 0,25 derecelik ızgara noktaları arasında mekânsal kd-tree ile en yakın komşu aramasını kaba kuvvete göre yüz kat hızlandırmak.",
+ "ortakDers": [
+  {
+   "kod": "BLG 335E",
+   "projeyeKatki": "Çok boyutlu ızgara noktalarını böl ve yönet mantığıyla kd-tree ağacına dönüştürerek arama karmaşıklığını O(N)'den O(log N)'e düşürür.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Usta Teoremi (Master Theorem) yineleme bağıntısı",
+     "nerede": "İki boyutlu koordinat uzayını özyinelemeli parçalayan kd-tree inşa süresini kanıtlarken."
+    },
+    {
+     "formulAd": "Öklid ve Haversine mekânsal küresel uzaklık formülü",
+     "nerede": "Küre yüzeyindeki iki koordinat arasındaki gerçek mesafeyi kutup distorsiyonu olmadan ölçerken."
+    }
+   ]
+  },
+  {
+   "kod": "MTO 311E",
+   "projeyeKatki": "Mekânsal enterpolasyon adımlarında en yakın ızgara noktalarını tespit ederek ağırlıklı ters mesafe (IDW) hesabına girdi sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ampirik Ortogonal Fonksiyonlar (EOF) ayrışımı",
+     "nerede": "Izgara üzerindeki en yüksek varyans taşıyan noktaları belirleyip ağaç aramasını o bölgelerde yoğunlaştırırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Marmara ızgarası için C++ destekli kd-tree ve kaba kuvvet aramasını kıyaslayan mikro benchmark motoru geliştirmek.",
+  "ayrinti": "0,25 derecelik küresel model ızgarasından 2500 koordinat noktası ayıklanır. Scipy cKDTree ve kaba kuvvet döngüleri binlerce rastgele istasyon sorgusuyla koşturularak yürütme süreleri mikrosaniye hassasiyetinde ölçülür. Geliştirme süresi 1-2 haftadır; en kritik kısım bellek önbellek kaçırmalarını (cache miss) en aza indiren bellek yerleşimidir.",
+  "adimlar": [
+   {
+    "baslik": "Marmara koordinat ızgarasını hazırlamak",
+    "oz": "GRIB2 dosyasından enlem-boylam matrisini çıkarıp düz koordinat dizisine dönüştürmek.",
+    "ayrinti": "Marmara Bölgesi'ni kapsayan 39.5-42.0 K enlem ve 26.0-31.0 D boylam aralığındaki 0,25 derecelik model hücreleri filtrelenir. 2500 koordinat çifti bellekte ardışık bir C dizisi (contiguous array) olarak hizalanır.",
+    "nasil": [
+     {
+      "teknik": "grid_pts = np.ascontiguousarray(np.column_stack((lats.ravel(), lons.ravel())), dtype=np.float64)",
+      "sade": "Koordinatlar bellekte tek bir blok halinde hizalanır; böylece işlemci önbelleği veriye doğrudan ve gecikmesiz erişir.",
+      "altAdimlar": [
+       "xarray ile ızgara koordinat dizilerini numpy formatında okuyun.",
+       "Enlem ve boylam sütunlarını iki boyutlu dizi olarak birleştirin.",
+       "Bellek düzenini C formatında ardışık hale getirin."
+      ],
+      "kazanim": {
+       "ders": "BLG 335E",
+       "madde": "Asimptotik notasyonlar ile algoritma başarımını matematiksel olarak incelemek"
+      }
+     },
+     {
+      "teknik": "print(f'Izgara nokta sayisi: {len(grid_pts)}, Bellek boyutu: {grid_pts.nbytes / 1024:.2f} KB')",
+      "sade": "Bellek tüketimi kontrol edilir; binlerce noktanın sadece birkaç kilobayt yer kapladığı doğrulanır.",
+      "altAdimlar": [
+       "Dizinin eleman sayısını ve bayt büyüklüğünü ekrana yazdırın.",
+       "Noktaların coğrafi sınırları aşıp aşmadığını test edin.",
+       "Geçersiz NaN değerleri kontrol ederek temizleyin."
+      ],
+      "kazanim": {
+       "ders": "BLG 335E",
+       "madde": "Böl ve yönet yaklaşımlarıyla çok boyutlu uzayları ve dizileri özyinelemeli parçalamak"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BLG 335E",
+      "madde": "Asimptotik notasyonlar ile algoritma başarımını matematiksel olarak incelemek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.html",
+      "aciklama": "cKDTree bellek yapısı ve koordinat hizalama parametreleri"
+     }
+    ]
+   },
+   {
+    "baslik": "Kd-tree arama ağacını inşa etmek",
+    "oz": "Koordinat noktalarını medyan değerlerinden ikiye bölerek arama ağacı kurmak.",
+    "ayrinti": "cKDTree sınıfı kullanılarak koordinat uzayı dengeli biçimde parçalanır. Yaprak boyutu (leafsize) parametresi optimize edilerek derinlik ve arama başarım dengesi kurulur.",
+    "nasil": [
+     {
+      "teknik": "from scipy.spatial import cKDTree; kdtree = cKDTree(grid_pts, leafsize=16)",
+      "sade": "Koordinatlar her yaprakta en fazla 16 nokta kalacak şekilde ağaca yerleştirilir; ağaç inşası milisaniyeler sürer.",
+      "altAdimlar": [
+       "scipy.spatial modülünden cKDTree sınıfını yükleyin.",
+       "Marmara koordinat dizisini yaprak boyutu 16 ile ağaca verin.",
+       "Ağacın derinliğini ve düğüm sayısını kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "BLG 335E",
+       "madde": "Çok boyutlu arama ağaçları ve aralık sorgularının karmaşıklıklarını hesaplamak"
+      }
+     },
+     {
+      "teknik": "dists, indices = kdtree.query(hedef_istasyonlar, k=1, workers=-1)",
+      "sade": "Tüm hedef istasyonlar için en yakın ızgara noktaları çok çekirdekli paralel arama ile tek komutta bulunur.",
+      "altAdimlar": [
+       "Hedef meteoroloji istasyon koordinatlarını girdi olarak verin.",
+       "workers=-1 parametresiyle işlemcinin tüm çekirdeklerini devreye alın.",
+       "En yakın nokta indislerini ve mesafe dizilerini alın."
+      ],
+      "kazanim": {
+       "ders": "BLG 335E",
+       "madde": "Çok boyutlu arama ağaçları ve aralık sorgularının karmaşıklıklarını hesaplamak"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BLG 335E",
+      "madde": "Çok boyutlu arama ağaçları ve aralık sorgularının karmaşıklıklarını hesaplamak"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Haversine_formula_diagram.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Küre üzerinde en yakın komşu arama geometrisi"
+     }
+    ]
+   },
+   {
+    "baslik": "Kaba kuvvet arama algoritmasını kodlamak",
+    "oz": "Karşılaştırma çıtası olarak tüm noktaları tek tek gezen doğrusal arama yazmak.",
+    "ayrinti": "Hedef istasyonun tüm 2500 ızgara noktasına olan uzaklığını döngü ile hesaplayıp en küçüğünü seçen O(N) karmaşıklıklı temel arama algoritması kurulur.",
+    "nasil": [
+     {
+      "teknik": "def kaba_kuvvet_ara(hedef, noktalar): return np.argmin(np.sum((noktalar - hedef)**2, axis=1))",
+      "sade": "İstasyon ile tüm ızgara noktaları arasındaki Öklid mesafeleri tek tek hesaplanır ve en küçük mesafenin indisi döner.",
+      "altAdimlar": [
+       "Hedef koordinat ile tüm noktalar arasındaki fark vektörünü alın.",
+       "Kareler toplamını satır bazında hesaplayarak mesafeleri bulun.",
+       "argmin işleviyle en yakın noktanın indisini elde edin."
+      ],
+      "kazanim": {
+       "ders": "BLG 335E",
+       "madde": "Asimptotik notasyonlar ile algoritma başarımını matematiksel olarak incelemek"
+      }
+     },
+     {
+      "teknik": "assert kdtree_idx == kaba_idx, 'Kd-tree ve kaba kuvvet sonuclari uyusmuyor'",
+      "sade": "Hızlı ağaç aramasının bulduğu en yakın noktanın, kaba kuvvetin bulduğu tam doğru noktayla birebir aynı olduğu doğrulanır.",
+      "altAdimlar": [
+       "Aynı koordinat için iki yöntemin ürettiği indisleri karşılaştırın.",
+       "Farklılık varsa tolerans ve yaprak parametrelerini denetleyin.",
+       "Yöntemin yüzde yüz doğrulukla çalıştığını raporlayın."
+      ],
+      "kazanim": {
+       "ders": "BLG 335E",
+       "madde": "Asimptotik notasyonlar ile algoritma başarımını matematiksel olarak incelemek"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BLG 335E",
+      "madde": "Asimptotik notasyonlar ile algoritma başarımını matematiksel olarak incelemek"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kaydirma",
+      "url": "https://geopandas.org/en/stable/docs/reference/sindex.html",
+      "aciklama": "Mekânsal karşılaştırma algoritmaları paneli"
+     }
+    ]
+   },
+   {
+    "baslik": "Mikro benchmark ve hızlanma raporunu üretmek",
+    "oz": "1000 rastgele sorgu ile yürütme sürelerini zamanlayıp kıyaslamak.",
+    "ayrinti": "timeit modülüyle her iki yöntemin 1000 istasyon sorgusundaki toplam yürütme süresi ölçülür. Kd-tree algoritmasının sağladığı yüz kattan fazla hızlanma tablolara dökülür.",
+    "nasil": [
+     {
+      "teknik": "t_kdtree = timeit.timeit(lambda: kdtree.query(rastgele_pts), number=100); t_kaba = timeit.timeit(lambda: [kaba_kuvvet_ara(p, grid_pts) for p in rastgele_pts], number=100)",
+      "sade": "Her iki yöntem 100'er kez koşturulur; ortalama çalışma süreleri mikrosaniye cinsinden hesaplanır.",
+      "altAdimlar": [
+       "Marmara sınırları içinde 1000 rastgele test koordinatı üretin.",
+       "timeit ile iki algoritmanın çalışma sürelerini ayrı ayrı ölçün.",
+       "Hızlanma katsayısını t_kaba / t_kdtree formülüyle hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "BLG 335E",
+       "madde": "Asimptotik notasyonlar ile algoritma başarımını matematiksel olarak incelemek"
+      }
+     },
+     {
+      "teknik": "print(f'Hizlanma: {t_kaba / t_kdtree:.1f} kat, Kd-tree sorgu suresi: {t_kdtree * 1e3 / 100:.2f} ms')",
+      "sade": "Elde edilen hızlanma oranı ekrana yazdırılır; sorgu süresinin milisaniyenin altına indiği somut olarak gösterilir.",
+      "altAdimlar": [
+       "Sonuçları konsola ve markdown tablosuna dökün.",
+       "Logaritmik hızlanma grafiğini çizip kaydedin.",
+       "Modülü veri boru hattında kullanılmak üzere dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "BLG 335E",
+       "madde": "Çok boyutlu arama ağaçları ve aralık sorgularının karmaşıklıklarını hesaplamak"
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BLG 335E",
+      "madde": "Çok boyutlu arama ağaçları ve aralık sorgularının karmaşıklıklarını hesaplamak"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara ızgarası kd-tree arama hızı ile kaba kuvvet döngüsü karşılaştırma analizi, 2026-10",
+      "aciklama": "Kd-tree ve kaba kuvvet en yakın komşu arama sürelerinin logaritmik karşılaştırma animasyonu"
+     }
+    ]
+   }
+  ],
+  "sonuc": "Milisaniyeler yerine mikrosaniyeler içinde sonuç veren mekânsal ızgara arama modülü ve kıyaslama raporu.",
+  "senden": "Algoritmik karmaşıklık analizi, kd-tree optimizasyonu ve kıyaslama altyapısını kodlamak.",
+  "bizden": "Izgara çözünürlüğünü, küresel koordinat projeksiyonunu ve meteorolojik enterpolasyon ağırlıklarını belirlemek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara ızgarası kd-tree arama hızı ile kaba kuvvet döngüsü karşılaştırma analizi, 2026-10",
+   "aciklama": "Kd-tree ve kaba kuvvet en yakın komşu arama sürelerinin logaritmik karşılaştırma animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://geopandas.org/en/stable/docs/reference/sindex.html",
+   "aciklama": "Mekânsal indeksleme kütüphanesi dokümantasyonu ve arama performansı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Haversine_formula_diagram.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Büyük daire mesafesi ve küresel koordinat geometrisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "SciPy cKDTree resmi dokümantasyonu",
+   "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.html"
+  },
+  {
+   "ad": "GeoPandas Spatial Index Guide",
+   "url": "https://geopandas.org/en/stable/docs/reference/sindex.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-16",
+ "_birlestirme": {
+  "kaynak": "cikti/F-BBF-BLG-02.json",
+  "tarih": "2026-10-17 00:28",
+  "geminiSha1": "bc7ccc91eb1e"
+ }
+}

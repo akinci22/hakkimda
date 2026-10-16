@@ -1,0 +1,189 @@
+{
+ "kod": "MTO 111E",
+ "ad": "Atmosfer Bilimlerine Giriş",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "111",
+ "ozet": "Atmosferin bileşimi, dikey yapısı, temel termodinamik ve dinamik süreçleri inceler. Hidrostatik denge, hipsometrik denklem, basınç gradyanı, Coriolis kuvveti ve jeostrofik rüzgâr kavramları öğretilir. Radyasyon dengesi, sera etkisi ve küresel iklim sisteminin ana ilkeleri verilir. Sayısal ve veri tabanlı atmosfer modellerinin anlaşılması için temel teorik altyapıyı kurar.",
+ "neOgrenirsin": [
+  "Hidrostatik denge ve hipsometrik denklemle atmosferik katman kalınlıklarını hesaplamak.",
+  "Jeopotansiyel yükseklik gradyanından jeostrofik rüzgâr bileşenlerini türetmek.",
+  "Atmosferik düşey sıcaklık ve nem profillerini termodinamik diyagramlarda çözümlemek.",
+  "Sayısal ve yapay zekâ hava tahmin modellerinin istasyon ölçümleriyle hata metriklerini hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Hipsometrik katman kalınlığı bağıntısı",
+   "tex": "\\Delta Z = \\frac{R_d \\, \\bar{T}_v}{g} \\, \\ln\\left( \\frac{p_1}{p_2} \\right)",
+   "terimler": [
+    [
+     "\\Delta Z",
+     "iki basınç seviyesi arasındaki katman kalınlığı",
+     "m"
+    ],
+    [
+     "R_d",
+     "kuru hava için spesifik gaz sabiti",
+     "J/(kg K)"
+    ],
+    [
+     "\\bar{T}_v",
+     "katmanın ortalama sanal sıcaklığı",
+     "K"
+    ],
+    [
+     "g",
+     "standart yerçekimi ivmesi",
+     "m/s^2"
+    ],
+    [
+     "p_1",
+     "alt seviye barometrik basıncı",
+     "hPa"
+    ],
+    [
+     "p_2",
+     "üst seviye barometrik basıncı",
+     "hPa"
+    ]
+   ],
+   "sade": "İki basınç katmanı arasındaki düşey mesafenin havanın sıcaklığıyla doğru orantılı olarak arttığını gösterir. Sıcak hava genleştiği için yaz mevsiminde 1000-500 hPa katman kalınlığı kışa göre belirgin şekilde büyür.",
+   "ornek": "1000 hPa ile 500 hPa arasında ortalama sanal sıcaklık kışın 255 K iken kalınlık yaklaşık 5100 m, yazın 275 K iken yaklaşık 5500 m hesaplanır.",
+   "nerede": "D-MTO111E-01 projesinde İstanbul üzerindeki kış ve yaz günleri için 1000-500 hPa kalınlık farkının hesaplanmasında."
+  },
+  {
+   "ad": "Jeostrofik rüzgâr bileşenleri bağıntısı",
+   "tex": "u_g = -\\frac{g}{f} \\, \\frac{\\partial Z}{\\partial y}, \\quad v_g = \\frac{g}{f} \\, \\frac{\\partial Z}{\\partial x}",
+   "terimler": [
+    [
+     "u_g",
+     "jeostrofik rüzgârın batı-doğu (zonal) bileşeni",
+     "m/s"
+    ],
+    [
+     "v_g",
+     "jeostrofik rüzgârın güney-kuzey (meridyonal) bileşeni",
+     "m/s"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi",
+     "m/s^2"
+    ],
+    [
+     "f",
+     "Coriolis parametresi (2 Omega sin phi)",
+     "1/s"
+    ],
+    [
+     "Z",
+     "sabit basınç yüzeyinin jeopotansiyel yüksekliği",
+     "m"
+    ],
+    [
+     "\\frac{\\partial Z}{\\partial y}",
+     "kuzey-güney yönündeki yükseklik gradyanı",
+     "m/m"
+    ],
+    [
+     "\\frac{\\partial Z}{\\partial x}",
+     "batı-doğu yönündeki yükseklik gradyanı",
+     "m/m"
+    ]
+   ],
+   "sade": "Büyük ölçekli atmosferik hareketlerde basınç gradyan kuvveti ile Dünya'nın dönüşünden kaynaklanan Coriolis kuvvetinin dengesini hesaplar. Üst atmosferde gerçek rüzgâr bu dengeye çok yakındır.",
+   "ornek": "İstanbul enleminde f = 9,5 × 10^(-5) 1/s ve 500 hPa seviyesinde 200 km mesafede 50 m'lik yükseklik farkı için yaklaşık 26 m/s jeostrofik rüzgâr hesaplanır.",
+   "nerede": "D-MTO111E-03 projesinde 500 hPa ve 1000 hPa yükseklik gradyanından jeostrofik rüzgâr türetilmesinde."
+  },
+  {
+   "ad": "Ortalama mutlak tahmin hatası (MAE) bağıntısı",
+   "tex": "\\mathrm{MAE} = \\frac{1}{N} \\sum_{i=1}^N \\left| \\hat{y}_i - y_i \\right|",
+   "terimler": [
+    [
+     "\\mathrm{MAE}",
+     "ortalama mutlak tahmin hatası",
+     "°C"
+    ],
+    [
+     "\\hat{y}_i",
+     "i'nci zaman adımındaki model tahmini",
+     "°C"
+    ],
+    [
+     "y_i",
+     "i'nci zaman adımındaki gerçek istasyon ölçümü",
+     "°C"
+    ],
+    [
+     "N",
+     "doğrulaması yapılan toplam gözlem sayısı",
+     "adet"
+    ]
+   ],
+   "sade": "Tahmin edilen hava sıcaklığının gerçekte ölçülen sıcaklıktan ortalama kaç derece saptığını yön gözetmeksizin hesaplar. Sayısal ve yapay zekâ hava tahmin modellerinin doğruluk karnesini verir.",
+   "ornek": "GraphCast modelinin 30 günlük sıcaklık tahminlerinde gerçek METAR ölçümlerine göre MAE = 1,2 °C iken ECMWF modelinde MAE = 1,4 °C bulunarak model başarımı kıyaslanır.",
+   "nerede": "D-MTO111E-02 projesinde GraphCast ve IFS modellerinin İstanbul yüzey sıcaklığı tahminlerinin doğrulanmasında."
+  },
+  {
+   "ad": "Hidrostatik denge bağıntısı",
+   "tex": "\\frac{\\partial p}{\\partial z} = - \\rho \\, g",
+   "terimler": [
+    [
+     "\\frac{\\partial p}{\\partial z}",
+     "düşey basınç gradyanı",
+     "Pa/m"
+    ],
+    [
+     "\\rho",
+     "hava yoğunluğu",
+     "kg/m^3"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi",
+     "m/s^2"
+    ],
+    [
+     "p",
+     "atmosferik barometrik basınç",
+     "Pa"
+    ],
+    [
+     "z",
+     "geometrik irtifa",
+     "m"
+    ]
+   ],
+   "sade": "Yerçekimi kuvveti ile düşey basınç gradyan kuvvetinin dengede olduğunu ifade eder. Düşey ivmelenmelerin ihmal edilebildiği büyük ölçekli atmosferik tabakalaşmanın temel yasasıdır.",
+   "ornek": "Deniz seviyesinde rho = 1,225 kg/m^3 ve g = 9,81 m/s^2 iken her 8 metre yükselişte hava basıncı yaklaşık 1 hPa düşer.",
+   "nerede": "D-MTO111E-01 projesinde hipsometrik denklemin hidrostatik dengeden türetilerek Colab defterinde gösterilmesinde."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_layers.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Dünya atmosferinin düşey katmanları ve sıcaklık profili şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul 1000-500 hPa katman kalınlığı mevsimsel değişimi ve sıcaklık profili, 2026",
+   "aciklama": "Hipsometrik denklemle kış ve yaz troposfer katman kalınlığı simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 111 (Atmosfer Bilimlerine Giriş)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=111"
+  },
+  {
+   "ad": "Wallace, J. M., Hobbs, P. V. (2006) Atmospheric Science: An Introductory Survey (2. baskı), Academic Press · ISBN 978-0-12-732951-2",
+   "url": "https://openlibrary.org/isbn/9780127329512"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=111"
+}
