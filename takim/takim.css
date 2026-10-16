@@ -416,7 +416,7 @@ details.merak summary{padding:13px 0;cursor:pointer;font-family:var(--baslik);fo
 /* ayrıntı = zihin haritası: kök ortada büyür, dallar çizgilerle çevresine açılır; dal tıklanınca alt budaklar (cümleler) iner */
 .detay{border:1px solid var(--murekkep);background:var(--panel-bg);color:var(--murekkep);padding:0;max-width:min(1180px,96vw);width:100%;height:min(88vh,860px);box-shadow:10px 10px 0 rgba(31,42,46,.35);margin:auto;overflow:hidden}
 .detay::backdrop{background:rgba(31,42,46,.5);backdrop-filter:blur(7px)}
-.detay[open]{animation:detay-ac .5s cubic-bezier(.2,.8,.2,1)}
+.detay[open]{animation:detay-ac .3s cubic-bezier(.2,.8,.2,1)}   /* C03: açılış 300 ms */
 @keyframes detay-ac{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
 .detay-ic{position:relative;height:100%;display:grid;grid-template-rows:auto 1fr;background:
   repeating-linear-gradient(180deg,transparent 0 59px,rgba(31,42,46,.05) 59px 60px)}
@@ -461,7 +461,7 @@ details.merak summary{padding:13px 0;cursor:pointer;font-family:var(--baslik);fo
 .detay.dar .dugum.kok h3{font-size:clamp(1.7rem,8vw,2.3rem);line-height:1}
 .detay.dar .dugum.kok p{font-size:1.05rem;line-height:1.5}
 .detay.dar .dugum.kok .dugum-ip{display:block;margin-top:8px;font-size:.78rem}
-.detay.dar .dugum.dal{display:block;margin:0 0 14px 56px;padding:14px 14px 14px 16px;border-left:4px solid var(--vurgu);box-shadow:4px 4px 0 var(--cizgi-2);animation:dar-gel .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--g)}
+.detay.dar .dugum.dal{display:block;margin:0 0 14px 56px;padding:14px 14px 14px 16px;border-left:4px solid var(--vurgu);box-shadow:4px 4px 0 var(--cizgi-2);animation:dar-gel .3s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--g)}
 @keyframes dar-gel{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
 .detay.dar .dugum.dal::before{content:"";position:absolute;left:-28px;top:24px;width:24px;height:2px;background:var(--vurgu);opacity:.7}
 .detay.dar .dugum-no{position:absolute;left:-56px;top:9px;width:32px;height:32px;border-radius:50%;background:var(--kagit);border:2px solid var(--vurgu);color:var(--vurgu);display:grid;place-items:center;font:700 .8rem var(--mono);transition:background .25s,color .25s,transform .25s}
@@ -1347,7 +1347,7 @@ button.p3-kr{cursor:pointer} button.p3-kr:hover{color:var(--vurgu);text-decorati
 .p3-kr-ayrac{flex:none;color:var(--vurgu)}
 .p3-yigin{position:relative;overflow:clip;min-width:0}
 .p3 img,.p3 video{max-width:100%}
-.p3-ekr{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-content:start;min-width:0;outline:none;transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .28s ease}
+.p3-ekr{--p3-gecis:300ms;position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-content:start;min-width:0;outline:none;transition:transform var(--p3-gecis) cubic-bezier(.2,.8,.2,1),opacity var(--p3-gecis) ease}   /* C03: p3 ekran geçişleri tek değişkenden */
 .p3-ekr.giris{transform:translateX(100%);opacity:0}
 .p3-ekr.geride,.p3-ekr.cikis{position:absolute;left:0;top:0;width:100%;pointer-events:none}
 .p3-ekr.geride{transform:translateX(-30%);opacity:.5}
@@ -1464,7 +1464,7 @@ button.p3-kr{cursor:pointer} button.p3-kr:hover{color:var(--vurgu);text-decorati
 .p3-kazanim{margin:0;display:inline-block;padding:6px 12px 6px 10px;border:1px solid var(--cizgi-2);border-radius:999px;background:var(--panel-bg);font-size:.9em;line-height:1.5;color:var(--murekkep-2)} .p3-kazanim q{font-style:italic;color:var(--murekkep)}
 .p3-kazanimlar li{line-height:1.55}
 @media (max-width:860px){.p3-sat-g img{width:72px} .p3-nasil-ac{margin-left:4px;padding-left:10px} .p3-nasil-b{min-height:48px}}
-@media (prefers-reduced-motion:reduce){.p3-ekr,.p3-sat,.p3-parca,.p3-ok,.p3-geri,.p3-mini-k img,.p3-mini-k video,.p3-nasil-b{transition:none!important} .p3-ekr.giris,.p3-ekr.geri-bas{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.p3-ekr,.p3-sat,.p3-parca,.p3-ok,.p3-geri,.p3-mini-k img,.p3-mini-k video,.p3-nasil-b{transition-duration:.15s!important} .p3-ekr.giris,.p3-ekr.geri-bas{transform:none}}   /* C01 kuralı: reduce kısaltır, kapatmaz (kaydırma yok, yalnız solma) */
 
 /* ===== TUR 10 (15 Eki) — §F ders planı ekranı (E0) · §G-4 imleç yok · §G-6 görsel belirme · §G-7 başlık harf animasyonu ===== */
 /* E0: yarıyıl katları (details) — masaüstünde hepsi açık, darda yalnız ilki (JS open); satırlar Faz 1 dili, projesi olmayan satır soluk ve tıklanmaz */
