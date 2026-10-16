@@ -818,6 +818,9 @@ function donusKur() {
 }
 function gitEl(h, pay = 70) { if (!h) return; const y = h.getBoundingClientRect().top + scrollY - pay; if (Math.abs(y - scrollY) > innerHeight) donusGoster(scrollY);
   if (IC) { if (window.__lenis) window.__lenis.scrollTo(y); else scrollTo({ top: y, behavior: 'smooth' }); return; } kaydirHedef(y); }
+/* A08: üst şerit iki satıra çıkınca çapa inişi başlığı örtmesin → gerçek yüksekliği CSS değişkenine yaz */
+function ustHYaz() { const u = $('.ust'); if (!u || !GOVDE) return; const t = parseFloat(getComputedStyle(u).top) || 0; GOVDE.style.setProperty('--ust-h', Math.round(t + u.offsetHeight) + 'px'); }
+function ustHKur() { const u = $('.ust'); if (!u) return; ustHYaz(); if (window.ResizeObserver) new ResizeObserver(ustHYaz).observe(u); else addEventListener('resize', ustHYaz); }
 function ustPay() { const u = $('.ust'); if (!u) return 70; const t = parseFloat(getComputedStyle(u).top) || 0; return Math.max(70, t + u.offsetHeight + 16); }   /* yapışık hâldeki alt kenar: sticky top + yükseklik (şerit henüz yapışmamışken de doğru) */   /* iniş: yapışkan şeridin gerçek alt kenarı + 16 px (içkinde ana menü + şerit) */
 if(!window.__girdiKur){window.__girdiKur=1;window.__girdi=0;var __g=function(){window.__girdi=performance.now();};['wheel','touchstart','touchmove'].forEach(function(t){addEventListener(t,__g,{passive:true,capture:true});});addEventListener('keydown',function(e){if(/^(Arrow|Page|Home|End| )/.test(e.key)||e.key===' ')__g();},true);}   /* 7 Eki: kullanıcı kaydırmaya başladıysa gecikmeli 'iniş düzeltmeleri' onu yukarı geri çekmesin */
 function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = ustPay();
@@ -1002,12 +1005,15 @@ function kapanisKur() {
   /* Esc: tarayıcı cancel→dahili close ile sarmalı atlar, basamak ölü kalırdı → cancel'ı kesip kendi kapanışımızdan geçiriyoruz. Galeri büyütmesi açıksa yalnız o kapanır. */
   D.addEventListener('cancel', e => { e.preventDefault(); if (p3BuyukKapat()) return; D.close(); });
 
+  let KILIT_Y = null;   /* A03: pencere açıkken arka plan kaymasın; kapanınca aynı yere dönülür */
+  const kilitle = () => { if (KILIT_Y != null) return; KILIT_Y = scrollY; try { window.__lenis && window.__lenis.stop(); } catch (e) { } document.documentElement.style.overflow = 'hidden'; };
+  const kilitAc = () => { if (KILIT_Y == null) return; const y = KILIT_Y; KILIT_Y = null; document.documentElement.style.overflow = ''; try { window.__lenis && window.__lenis.start(); } catch (e) { } if (Math.abs(scrollY - y) > 2) { if (window.__lenis) window.__lenis.scrollTo(y, { immediate: true, force: true }); else scrollTo({ top: y, behavior: 'instant' }); } };
   function acildi() {
-    okSon = performance.now(); okumaBasla(D);
+    kilitle(); okSon = performance.now(); okumaBasla(D);
     try { history.pushState({ tkDetay: 1 }, ''); GERI_BASAMAK = true; } catch (e) { GERI_BASAMAK = false; }   /* cihaz geri hareketi kapatsın */
   }
   function kapandi() {
-    okumaDur();
+    okumaDur(); kilitAc();
     const n = (GERI_BASAMAK ? 1 : 0) + p3Basamak();   /* kapatma düğmesiyle kapatıldıysa eklenen basamakları (dialog + ekran yığını) birlikte geri al */
     GERI_BASAMAK = false; if (n) { try { history.go(-n); } catch (e) {} }
     setTimeout(donusKart, 60);
@@ -1020,7 +1026,7 @@ function kapanisKur() {
       if (h > d) { try { history.go(d - h); } catch (err) {} return; }   /* ileri tuşu: yeniden kuramayız, geçmişi hizala */
       return;
     }
-    GERI_BASAMAK = false; if (D.open) { kapanisIslendi = true; kp0(); } okumaDur(); setTimeout(donusKart, 60);
+    GERI_BASAMAK = false; if (D.open) { kapanisIslendi = true; kp0(); } okumaDur(); kilitAc(); setTimeout(donusKart, 60);
   });
 
   /* -- kullanıcı dokundu/kaydırdı: kendiliğinden iniş 3 sn daha beklesin -- */
@@ -1128,7 +1134,7 @@ async function kunye() {
   await arkaKur();
   asamaYukle();
   acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); merak(); sonKart(); panelSen();
-  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
+  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
 
@@ -1413,7 +1419,7 @@ function p3EkranAc(t, ilk) {
   }
 }
 function p3Geriye(h) {   /* yığını h derinliğine indir (popstate'ten gelir) */
-  const S = P3; if (!S) return; h = Math.max(1, h | 0);
+  const S = P3; if (!S) return; h = Math.max(1, h | 0); p3BuyukKapat();   /* geri: açık büyütme de kapanır */
   while (S.ekranlar.length > h) {
     const giden = S.ekranlar.pop(); S.basamak = Math.max(0, S.basamak - 1);
     const hedef = S.ekranlar[S.ekranlar.length - 1]; p3Videolar(giden.el, false);

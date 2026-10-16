@@ -483,6 +483,7 @@ function kaydirDegis(k, src, yon) {
    her bölümde hava değişir: bulut → güneş doğar → hüzmeler artar → şimşek → yağmur → güneş döner → yalnız güneş. */
 (function () {
   var sira = ["projeler", "yemek", "naplist", "yayin", "temsilcilik", "fotograf", "takim"];
+  if (!document.getElementById("projeler")) return;   // A07: alt sayfalarda (fotograf/ vb.) ana sayfanın ilerleme bulutu başlığa biniyordu
   var b = document.createElement("div"); b.className = "hava-bulut"; b.setAttribute("aria-hidden", "true");
   var isin = ""; for (var a = 0; a < 360; a += 30) isin += '<line x1="0" y1="-17" x2="0" y2="-25" transform="rotate(' + a + ')"/>';
   var yag = ""; for (var r = 0; r < 6; r++) yag += '<line x1="' + (30 + r * 8) + '" y1="44" x2="' + (27 + r * 8) + '" y2="52" style="animation-delay:' + (r * .13) + 's"/>';

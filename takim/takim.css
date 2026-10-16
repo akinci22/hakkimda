@@ -479,8 +479,8 @@ details.merak summary{padding:13px 0;cursor:pointer;font-family:var(--baslik);fo
 .detay:not(.dar) .detay-alt{display:none}
 
 /* zemin: İTÜ Ayazağa çizimi (son bölüm, 1000 hPa) */
-.zemin{position:relative;margin:34px -16px 0;border-top:1px solid var(--murekkep);color:var(--murekkep);background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--kagit-2) 60%,transparent))}
-.zemin svg{display:block;width:100%;height:clamp(200px,28vw,340px)}
+.zemin{position:relative;margin:34px 0 0;overflow:hidden;border-top:1px solid var(--murekkep);color:var(--murekkep);background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--kagit-2) 60%,transparent))}
+.zemin svg{display:block;width:100%;max-width:100%;height:clamp(200px,28vw,340px)}
 @media (max-width:700px){.zemin svg{height:230px}}
 .zemin text{font:500 11px var(--mono);fill:var(--murekkep-2)} .zemin .zm-ad{font:700 13px var(--baslik);letter-spacing:.1em;text-transform:uppercase;fill:var(--izoterm)}
 .zm-tepe path{fill:color-mix(in srgb,var(--adyabat) 14%,transparent);stroke:var(--murekkep-3);stroke-width:1}
@@ -738,7 +738,7 @@ html[data-kime="khsm"] .asama-baslik[data-asama="6"],html[data-kime="hoca"] .asa
 .mobil-balon span{display:none}
 /* QA düzeltmeleri (6 Eki) */
 .detay.metin .detay-yol,.detay.metin.dar .detay-yol{background:color-mix(in srgb,var(--kagit) 94%,transparent);backdrop-filter:blur(6px)}
-.blok{scroll-margin-top:110px}
+.blok{scroll-margin-top:calc(var(--ust-h,94px) + 16px)}   /* A08: üst bar + aşama şeridi gerçek yüksekliği (JS yazar) */
 .sayi .etk-roz,button.sayi .etk-roz{display:none}
 main{padding-bottom:60px}
 .donus{left:auto;right:16px;transform:translateY(16px)} .donus.acik{transform:none}
