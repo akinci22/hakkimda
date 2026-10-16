@@ -1448,6 +1448,8 @@ function p3Jestler(yigin, D) {
   D.addEventListener('touchstart', e => { if (!P3 || P3.ekranlar.length <= 1 || e.touches.length !== 1) { x0 = null; return; } const t = e.touches[0]; x0 = t.clientX < 28 ? t.clientX : null; y0 = t.clientY; tetik = false; }, { passive: true });
   D.addEventListener('touchmove', e => { if (x0 == null || tetik || !P3) return; const t = e.touches[0]; const dx = t.clientX - x0, dy = Math.abs(t.clientY - y0); if (dx > 72 && dy < 48) { tetik = true; x0 = null; p3Geri(); } }, { passive: true });
   D.addEventListener('touchend', () => { x0 = null; }, { passive: true });
+  /* A01: modal dialog'un yerel cancel olayı (Esc) büyütme açıkken pencereyi kapatmasın, yalnız büyütme kapansın */
+  D.addEventListener('cancel', e => { if (P3 && P3.buyuk) { e.preventDefault(); p3BuyukKapat(); } });
   /* klavye: Esc büyütmeyi kapatır, Backspace / Alt+← bir ekran geri (yazı alanında değilse) */
   D.addEventListener('keydown', e => {
     if (!P3) return; const t = e.composedPath()[0];
