@@ -524,7 +524,7 @@ function katliKur() {
 }
 /* resmî görünüm: KHŞM ve hocalar için kuruluş özeti (yalnız ?kime=… ile görünür) */
 function resmi() {
-  const R = veri.metinler.resmi, H = veri.metinler.hoca; if (!KIME || !R || !$('#resmi')) return;
+  const R = veri.metinler.resmi, H = veri.metinler.hoca; if (!KIME || !R || !$('#resmi')) return; $('#kimlik-resmi')?.removeAttribute('hidden');
   $('#resmi-baslik').textContent = R.baslik || ''; $('#resmi-alt').textContent = R.alt || '';
   $('#resmi-satirlar').replaceChildren(...(R.satirlar || []).flatMap(x => [el('dt', {}, x.k), el('dd', {}, yerDoldur(x.m), kaynakMini(kaynakAl(x), ' · '))]));
   if (H) { $('#hoca-baslik').textContent = H.baslik || ''; $('#hoca-alt').textContent = H.alt || ''; $('#hoca-maddeler').replaceChildren(...(H.maddeler || []).map(x => el('li', {}, x))); }
