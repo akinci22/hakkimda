@@ -516,7 +516,7 @@ function katliKur() {
   const M = veri.metinler, A = veri.anket.anlatilar || {};
   const yaz = (id, t) => { const e = $(id); if (e) e.textContent = t || ''; };
   yaz('#merdiven-kapak-b', (M.merdiven && M.merdiven.baslik) || 'Ne yapacağız: 6 adım'); yaz('#merdiven-kapak-m', (M.merdiven && M.merdiven.kapak) || 'Hatayı ölçmekten yapay zekâya: adım adım yol haritası.');
-  yaz('#anlatilar-kapak-b', A.baslik || 'Atmosfer Anlatıları'); yaz('#anlatilar-kapak-m', A.kapak || 'Öğrenci zor bir dersin kolay bir parçasını 10-20 dakikada anlatır; video kalır.');
+  yaz('#anlatilar-kapak-b', A.baslik || 'Atmosfer Anlatıları'); yaz('#anlatilar-kapak-m', A.kapak || 'Öğrenci zor bir dersin kolay bir parçasını 10 dakikada (hedef 20) anlatır; video kalır.');
   const D = M.derin || { baslik: 'Meraklısına: kanıt ve ayrıntı', alt: 'Kanıt, karne ve kaynaklar burada.', icerik: ['Canlı tahmin karnesi', 'Yapılmış işler', 'Takımların yaşı ve bütçesi', 'Kaynaklar ve tam tablolar'] };
   yaz('#derin-baslik', D.baslik); yaz('#derin-alt', D.alt); const L = $('#derin-icerik'); if (L) L.replaceChildren(...(D.icerik || []).map(x => el('li', {}, x)));
   ['merdiven', 'anlatilar', 'eelisa', 'derin'].forEach(g => { const b = $(`#${g}-ac`); if (b) b.addEventListener('click', () => { const ac = b.getAttribute('aria-expanded') !== 'true'; katliAyarla(g, ac); durum.etkilesim++; }); });
@@ -723,7 +723,7 @@ function yasCubuklari(G) {
   [0, 5, 10, 15, 20].filter(v => v <= mx).forEach(v => { const x = L + v / mx * iw; S.append(svgEl('line', { x1: x, x2: x, y1: 16, y2: H - 10, stroke: 'rgba(31,42,46,.14)' })); S.append(svgEl('text', { x, y: 11, 'text-anchor': 'middle' }, v + ' yıl')); });
   satir.forEach((s, i) => { const y = 26 + i * SAT; const bw = Math.max(3, s.yas / mx * iw); S.append(svgEl('text', { x: L - 8, y: y + 12, 'text-anchor': 'end', class: 'ad' }, s.ad));
     const r = svgEl('rect', { x: L, y, width: bw, height: 16, class: 'cubuk' + (s.biz ? ' biz' : '') }); ipucuBagla(r, () => ({ baslik: s.ad, metin: s.biz ? 'Biz: kuruluş 2026. Hedef 2209 + AI Weather Quest.' : `Kuruluş ${s.kurulus} · ${s.yas} yıl · ilk büyük derece: ${s.ilk || 'kaynak yok'} · kaynak: ${s.kaynak || '—'}` })); S.append(r);
-    if (s.derece && s.derece > s.kurulus) { const dx = L + (s.derece - s.kurulus) / mx * iw; S.append(svgEl('path', { d: `M${dx} ${y + 1} l-4 -7 h8 z`, class: 'derece' })); S.append(svgEl('text', { x: dx + 7, y: y - 1, class: 'derece' }, `ilk derece ${s.derece - s.kurulus}. yılda`)); }
+    if (s.derece && s.derece > s.kurulus) { const dx = L + (s.derece - s.kurulus) / mx * iw; S.append(svgEl('path', { d: `M${dx} ${y + 1} l-4 -7 h8 z`, class: 'derece' })); S.append(svgEl('text', { x: dx + 7, y: y - 1, class: 'derece' }, `ilk derece (her ölçekte) ${s.derece - s.kurulus}. yılda`)); }
     S.append(svgEl('text', { x: L + bw + 6, y: y + 12 }, s.biz ? '0 · başlıyoruz' : `${s.yas} yıl`)); });
   S.append(svgEl('text', { x: L, y: H - 2 }, 'çubuk: kuruluştan bugüne · üçgen: kaynaklı ilk büyük derece · çubuğun üstünde dur'));
 }
@@ -1250,7 +1250,7 @@ function derslerin() {
   ciz();
   /* 15 Eki (tur9 §F): ders kartlarının üstünde ders planı girişi — yarıyıl yarıyıl bölüm dersleri, derse basınca o dersin projeleri (E0 → E1 → mevcut akış) */
   if (p3Plan().length && !$('#plan-giris')) {
-    const b = el('button', { class: 'plan-giris', id: 'plan-giris', type: 'button' }, el('span', { class: 'plan-giris-ic' }, el('b', {}, M.planBaslik || 'Ders planı · yarıyıl yarıyıl'), el('span', {}, M.planAlt || 'Bölüm derslerinin tamamı; derse basınca o dersin proje önerileri.')), el('span', { class: 'p3-ok', 'aria-hidden': 'true' }));
+    const b = el('button', { class: 'plan-giris', id: 'plan-giris', type: 'button' }, el('span', { class: 'plan-giris-ic' }, el('b', {}, M.planBaslik || 'Ders planı · yarıyıl yarıyıl'), el('span', {}, M.planAlt || 'Bölümün proje bağlantılı dersleri; derse basınca o dersin proje önerileri.')), el('span', { class: 'p3-ok', 'aria-hidden': 'true' }));
     b.addEventListener('click', () => { ACAN = b; durum.etkilesim++; detayAc(p3PlanDetay()); });
     YS.after(b);
   }
