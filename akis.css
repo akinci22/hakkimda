@@ -1041,3 +1041,12 @@ section.blok,#takim{scroll-margin-top:72px}
    Geçiş bu iki bölümde üst boşluk içinde biter; başlık bölgesi tam zemin rengindedir. Açık temalı bölümlere dokunulmadı. --- */
 .blok.t-yayin,.blok.t-foto{background:linear-gradient(to bottom,var(--onceki,var(--zemin,var(--kagit))) 0,var(--zemin,var(--kagit)) clamp(110px,13vh,150px))!important}
 .t-yayin .bolum-no,.t-foto .bolum-no{text-shadow:0 1px 2px rgba(0,0,0,.3)}
+/* ZFIX (16 Eki 2026, yakınlaştırma): tam ekran düğmesi yalnız ikon; yazı üzerine gelince açılır, metni örtmez */
+.tam-ekran{right:12px;bottom:12px;width:44px;height:44px;padding:0;justify-content:center;gap:0;overflow:hidden;opacity:.82}
+.tam-ekran i{font-style:normal;font-size:1.15rem;line-height:1}
+.tam-ekran span{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .3s}
+.tam-ekran:hover,.tam-ekran:focus-visible{width:auto;padding:0 14px;gap:8px;opacity:1}
+.tam-ekran:hover span,.tam-ekran:focus-visible span{max-width:200px}
+/* ZFIX: dar uçta menü yatay kayar — sağda solma + "›" ipucu */
+@media (max-width:899px){.menu-ic{position:relative}.menu-ic::after{content:"›";position:absolute;right:4px;top:50%;transform:translateY(-50%);font:600 1.1rem var(--mono,monospace);color:var(--murekkep-2,#555);pointer-events:none}
+ .menu-bag{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:18px}}

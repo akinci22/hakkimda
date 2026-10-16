@@ -582,6 +582,8 @@ function kaydirDegis(k, src, yon) {
     linkler.sort(function (x, y) { return hedefY(x) - hedefY(y); }).forEach(function (a) { bag.appendChild(a); });
     if (!genis()) { bag.classList.remove("cizgi"); linkler.forEach(function (a) { a.style.left = ""; }); return; }
     bag.classList.add("cizgi"); var son = -1e9, xs = [];
+    /* ZFIX: geniş ekranda (z0.67) ilk başlık "Ö. F. Akıncı" adının üstüne binmesin */
+    var ad = document.querySelector(".menu-ad"); if (ad && ad.offsetWidth) son = ad.getBoundingClientRect().right + 10;
     linkler.forEach(function (a) {
       var x = window.hizaX(Math.max(0, Math.min(1, hedefY(a) / top))), w = a.offsetWidth;
       x = Math.max(x, son + w / 2 + 6); x = Math.min(x, innerWidth - w / 2 - 8); son = x + w / 2;
@@ -720,7 +722,7 @@ function kaydirDegis(k, src, yon) {
    ayrıca sağ altta belirgin bir "Tam ekran" düğmesi durur. Esc ile çıkılır. */
 (function () {
   if (!document.documentElement.requestFullscreen || matchMedia("(hover: none)").matches) return;
-  var d = document.createElement("button"); d.type = "button"; d.className = "tam-ekran"; d.innerHTML = "⛶ Tam ekranda gez";
+  var d = document.createElement("button"); d.type = "button"; d.className = "tam-ekran"; d.setAttribute("aria-label", "Tam ekranda gez"); d.title = "Tam ekranda gez"; d.innerHTML = '<i aria-hidden="true">⛶</i><span>Tam ekranda gez</span>';
   document.body.appendChild(d);
   function ac() { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () {}); }
   d.addEventListener("click", function (e) { e.stopPropagation(); document.fullscreenElement ? document.exitFullscreen() : ac(); });
@@ -902,4 +904,19 @@ function kaydirDegis(k, src, yon) {
   if (!("IntersectionObserver" in window)) { v.forEach(ata); return; }
   var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { if (g.isIntersecting) { ata(g.target); io.unobserve(g.target); } }); }, { rootMargin: "1500px 0px" });
   v.forEach(function (x) { io.observe(x); });
+})();
+/* ZFIX (16 Eki 2026, yakınlaştırma): YolHava bulutu sabit konumda; bir başlık altına girince saydamlaşır, başlığı örtmez */
+(function () {
+  var hb = null, bekle = false;
+  function bak() {
+    bekle = false; hb = hb || document.querySelector(".hava-bulut"); if (!hb) return;
+    var r = hb.getBoundingClientRect(), ust = false;
+    document.querySelectorAll("h1,h2,h3,.ick-etiket,.ick-giris").forEach(function (h) {
+      if (ust) return; var q = h.getBoundingClientRect();
+      if (q.width && q.left < r.right && r.left < q.right && q.top < r.bottom && r.top < q.bottom) ust = true;
+    });
+    hb.classList.toggle("hb-geri", ust);
+  }
+  function iste() { if (!bekle) { bekle = true; requestAnimationFrame(bak); } }
+  addEventListener("scroll", iste, { passive: true }); addEventListener("resize", iste); setTimeout(bak, 1200);
 })();

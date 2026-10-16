@@ -1608,3 +1608,12 @@ html[data-kime="khsm"] #yz,html[data-kime="hoca"] #yz{display:none}   /* E02: re
 .katil-hap .hap-git{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;font:700 max(1rem,16px)/1 var(--baslik);text-transform:uppercase;letter-spacing:.05em;color:inherit;text-decoration:none}
 .katil-hap .hap-kapat{min-width:44px;min-height:44px;border:0;background:none;color:inherit;font:600 16px var(--govde);cursor:pointer;opacity:.8}
 #kitle-blok .kb-cipler .kb-cip{width:auto;flex:0 0 auto;display:inline-flex;align-items:center;margin:0;text-align:left}
+/* ZFIX (16 Eki 2026, yakınlaştırma): aşama şeridi ≤960px'te tam etiket + yatay kaydırma, alt satır gizli */
+@media (max-width:960px){.serit button{flex:0 0 auto;min-width:0}.serit button b{overflow:visible;text-overflow:clip}.serit button span{display:none}}
+.zemin svg{overflow:hidden;clip-path:inset(0)}
+/* ZFIX: 320px altı — kartlar kaba sığsın */
+.mezun-kartlar{grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))}
+.mezun-kartlar>.kart{min-width:0;overflow-wrap:anywhere}
+.fk{min-width:0;overflow-wrap:anywhere}
+@media (max-width:300px){.sade-dugme{max-width:100%;overflow:hidden;text-overflow:ellipsis}.fk{grid-template-columns:28px 1fr;padding:12px}.fk svg{width:28px;height:28px}}
+@media (max-width:300px){.ust-ic{flex-wrap:wrap;row-gap:4px}.ust-ad{white-space:normal}.sade-dugme{font-size:.68rem;padding:0 8px}}
