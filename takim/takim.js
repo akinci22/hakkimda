@@ -517,6 +517,7 @@ function katliKur() {
   const yaz = (id, t) => { const e = $(id); if (e) e.textContent = t || ''; };
   yaz('#merdiven-kapak-b', (M.merdiven && M.merdiven.baslik) || 'Ne yapacağız: 6 adım'); yaz('#merdiven-kapak-m', (M.merdiven && M.merdiven.kapak) || 'Hatayı ölçmekten yapay zekâya: adım adım yol haritası.');
   yaz('#anlatilar-kapak-b', A.baslik || 'Atmosfer Anlatıları'); yaz('#anlatilar-kapak-m', A.kapak || 'Öğrenci zor bir dersin kolay bir parçasını 10 dakikada (hedef 20) anlatır; video kalır.');
+  KOK.querySelectorAll('.kapak-blok').forEach(k => { if (k.querySelector('h2')) return; const b = k.querySelector('.kapak-k b'); if (!b || !b.textContent.trim()) return; const h = document.createElement('h2'); h.className = 'gorunmez'; h.textContent = b.textContent; k.querySelector('.sar, div')?.prepend(h); });   /* B13: kapaklar da başlık ağacında görünsün (görünüm aynı) */
   const D = M.derin || { baslik: 'Meraklısına: kanıt ve ayrıntı', alt: 'Kanıt, karne ve kaynaklar burada.', icerik: ['Canlı tahmin karnesi', 'Yapılmış işler', 'Takımların yaşı ve bütçesi', 'Kaynaklar ve tam tablolar'] };
   yaz('#derin-baslik', D.baslik); yaz('#derin-alt', D.alt); const L = $('#derin-icerik'); if (L) L.replaceChildren(...(D.icerik || []).map(x => el('li', {}, x)));
   ['merdiven', 'anlatilar', 'eelisa', 'derin'].forEach(g => { const b = $(`#${g}-ac`); if (b) b.addEventListener('click', () => { const ac = b.getAttribute('aria-expanded') !== 'true'; katliAyarla(g, ac); durum.etkilesim++; }); });
