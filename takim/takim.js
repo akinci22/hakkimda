@@ -793,7 +793,7 @@ function sonKart() {
   if (durum.roller.length) satirlar.push('rol: ' + durum.roller.join(', '));
   K.replaceChildren(...[el('p', { class: 'yorum' }, S.baslik), kural ? el('p', { class: 'rol' }, kural.rol) : el('p', { class: 'kilitli' }, "aşama 2'de sana yakın olanı seçince burada sana göre bir rol çıkar"), el('p', {}, kural ? kural.metin : 'Üç seçenekten biri yeter.'), satirlar.length ? el('p', { class: 'kilitli' }, satirlar.join(' · ')) : null].filter(Boolean));
   const M = veri.metinler.kapanis; $('#son-ozet').replaceChildren(ses(M.hirsli, M.rahat));
-  $('#son-cta').replaceChildren(...S.cta.map((c, i) => el('a', { class: i === 0 ? 'birincil' : '', href: c.href }, c.etiket)));
+  $('#son-cta').replaceChildren(...S.cta.map((c, i) => { const a = el('a', { class: i === 0 ? 'birincil' : '', href: c.href }, c.etiket); if (c.href === '#baloncuk') a.addEventListener('click', () => setTimeout(() => $('#balon-metin')?.focus({ preventScroll: true }), 900)); return a; }));
 }
 
 /* ---------------- PANEL · RAY · AŞAMA ---------------- */
