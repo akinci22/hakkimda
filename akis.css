@@ -1050,3 +1050,5 @@ section.blok,#takim{scroll-margin-top:72px}
 /* ZFIX: dar uçta menü yatay kayar — sağda solma + "›" ipucu */
 @media (max-width:899px){.menu-ic{position:relative}.menu-ic::after{content:"›";position:absolute;right:4px;top:50%;transform:translateY(-50%);font:600 1.1rem var(--mono,monospace);color:var(--murekkep-2,#555);pointer-events:none}
  .menu-bag{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:18px}}
+/* ZFIX-2 (17 Eki): tam ekran düğmesi "↑ başa dön" (.uste) ile aynı köşedeydi → onun tam üstüne, aynı sağ hizaya; z-index uste'nin üstünde */
+.tam-ekran{right:clamp(16px,2.5vw,32px);bottom:calc(clamp(16px,2.5vw,32px) + 46px + 10px + env(safe-area-inset-bottom,0px));z-index:55;width:46px;height:46px}

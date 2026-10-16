@@ -726,7 +726,20 @@ function kaydirDegis(k, src, yon) {
   document.body.appendChild(d);
   function ac() { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () {}); }
   d.addEventListener("click", function (e) { e.stopPropagation(); document.fullscreenElement ? document.exitFullscreen() : ac(); });
-  document.addEventListener("fullscreenchange", function () { d.classList.toggle("gizli", !!document.fullscreenElement); });
+  /* ZFIX-2 (17 Eki): düğme altındaki metinle çakışırsa (yakınlaştırma/dar pencere) geri çekilir; alan boşalınca döner */
+  var TXT = /^(P|H1|H2|H3|H4|A|LI|SPAN|B|STRONG|EM|SMALL|LABEL|FIGCAPTION|TD|TH)$/, bekle = 0;
+  function ortuyor() {                                    // düğme kutusuna değen metinli öğe (p/h/a/li/span/b) var mı — 5×5 ızgara
+    var r = d.getBoundingClientRect();
+    for (var i = 0; i < 5; i++) for (var j = 0; j < 5; j++) {
+      var es = document.elementsFromPoint(Math.min(innerWidth - 1, r.left + 1 + i * (r.width - 2) / 4), Math.min(innerHeight - 1, r.top + 1 + j * (r.height - 2) / 4));
+      for (var k = 0; k < es.length; k++) { var e = es[k]; if (e === d || d.contains(e)) continue; if (TXT.test(e.tagName) && e.textContent.trim()) return true; }
+    }
+    return false;
+  }
+  function denet() { bekle = 0; d.classList.toggle("gizli", !!document.fullscreenElement || ortuyor()); }
+  function iste() { if (!bekle) bekle = requestAnimationFrame(denet); }
+  addEventListener("scroll", iste, { passive: true }); addEventListener("resize", iste); setTimeout(denet, 300);
+  document.addEventListener("fullscreenchange", denet);
   ac();                                                        // açılışta dene (tarayıcı izin verirse F11 gibi açılır)
   document.addEventListener("pointerdown", function (e) { if (e.pointerType === "mouse" && !document.fullscreenElement) ac(); }, true);   // çıkılsa bile ilk tıklamada geri döner
   document.addEventListener("keydown", function (e) { if (!document.fullscreenElement && e.key !== "Escape") ac(); }, true);
