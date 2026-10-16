@@ -657,7 +657,7 @@ function test() {
   $$('.test-sec .sec').forEach(b => b.onclick = () => ciz(b.dataset.set)); testSetSec = ciz; ciz(durum.kitle === 'dis' ? 'misafir' : 'mto');   /* v2: set, girişteki kitle seçimine göre */
 }
 /* oy kilidi: her anket cihaz başına bir kez (test modunda localStorage, canlıda Firebase anonim kimlik + create-only kural) */
-const kilitSatiri = () => el('p', { class: 'oy-kilit' }, '✓ Oyun kaydedildi · bu cihazdan bir kez · değiştirilemez');
+const kilitSatiri = () => el('p', { class: 'oy-kilit' }, '✓ Oyun alındı · bu cihazdan bir kez · değiştirilemez');
 const sozlerKutusu = (sozler) => sozler && sozler.length ? el('div', { class: 'sozler' }, el('span', { class: 'sozler-ust' }, 'Oy verenlerin kendi cümleleri'), ...sozler.slice(0, 12).map(t => el('span', { class: 'soz' }, '“' + t + '”'))) : null;
 function cokluSoru(s) {
   const secili = new Set(); let diger = '';
