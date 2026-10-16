@@ -548,7 +548,7 @@ body.imlec-aktif,body.imlec-aktif a,body.imlec-aktif button,body.imlec-aktif [ro
   .blok[data-hpa]::after{font-size:5rem}
 }
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.3s!important;transition-duration:.2s!important}   /* C01: reduce kapatmaz, kısaltır (ortak.css ile aynı) */
+  *,*::before,*::after{animation-duration:.3s!important;animation-iteration-count:1!important;transition-duration:.2s!important}   /* C01: reduce kapatmaz, kısaltır (ortak.css ile aynı); sonsuz döngüler hızlı yanıp sönmesin diye tek tur */
   .gel{opacity:1;transform:none}
   #imlec{display:none!important}
   body.imlec-aktif,body.imlec-aktif *{cursor:auto}
