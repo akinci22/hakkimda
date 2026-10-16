@@ -486,7 +486,7 @@ function kitleGoster(id, sessiz) {
   const G = veri.metinler.giris, B = $('#kitle-blok'); if (!B) return; const K = G && G.kitle && G.kitle[id]; if (!K) { B.hidden = true; return; }
   const ayr = el('button', { class: 'kb-ayrinti', type: 'button' }, 'Ayrıntı ›');
   const dev = K.devam ? el('button', { class: 'kb-devam', type: 'button', onclick: () => { durum.etkilesim++; git(K.devam); } }, K.devamEtiket || 'Devam ↓') : null;
-  B.replaceChildren(el('p', { class: 'kb-baslik' }, K.baslik || ''), el('ul', {}, ...(K.maddeler || []).map(m => el('li', {}, m))), el('div', { class: 'kb-dugmeler' }, dev, K.detay ? ayr : null));
+  B.replaceChildren(el('p', { class: 'kb-baslik' }, K.baslik || ''), el('ul', {}, ...(K.maddeler || []).map(m => el('li', {}, m))), el('div', { class: 'kb-dugmeler' }, dev, id === 'mto' && $('#derslerin') ? el('button', { class: 'kb-devam kb-ders', type: 'button', onclick: () => { durum.etkilesim++; git('derslerin'); } }, 'Derslerine göre projeler · 340 hPa ↓') : null, K.detay ? ayr : null));   /* E13: MTO öğrencisi derslere tek adımda */
   if (K.detay) { const d = () => ({ ust: 'sana göre · ' + (K.baslik || ''), baslik: K.baslik, kisa: (K.maddeler || [])[0] || '', uzun: K.detay }); ayr.addEventListener('click', () => { durum.etkilesim++; detayAc(d()); }); }
   const H = $('#acilis-h1'); if (H) { if (K.h1) H.innerHTML = K.h1; H.hidden = false; }   /* 7 Eki: ana başlık bölüm seçilince, kitleye göre */
   const V = $('#acilis-vaat'); if (V && K.vaat) V.textContent = K.vaat;
@@ -498,7 +498,7 @@ function kitleSec(id, sessiz) {
   $$('.giris-b').forEach(b => b.setAttribute('aria-checked', String(b.dataset.id === id)));
   katliAyarla('anlatilar', id === 'mto' || !!KIME);
   bolumler();
-  if (testSetSec && durum.test.toplam === 0) testSetSec(id === 'dis' ? 'misafir' : 'mto');
+  if (testSetSec && durum.test.toplam === 0) testSetSec(id === 'mto' ? 'mto' : 'misafir');
   kitleGoster(id, sessiz);
   if (!sessiz) { durum.etkilesim++; const B = $('#kitle-blok'); if (B && !B.hidden) { const r = B.getBoundingClientRect(); if (r.bottom > innerHeight - 24) gitEl(B, Math.max(96, innerHeight - r.height - 40)); } }   /* blok ekran dışındaysa yalnız onu görünür et; sayfa başka bölüme atlamaz */
 }
@@ -654,7 +654,7 @@ function test() {
     }));
     terimSar($('#test-sorular'));
   };
-  $$('.test-sec .sec').forEach(b => b.onclick = () => ciz(b.dataset.set)); testSetSec = ciz; ciz(durum.kitle === 'dis' ? 'misafir' : 'mto');   /* v2: set, girişteki kitle seçimine göre */
+  $$('.test-sec .sec').forEach(b => b.onclick = () => ciz(b.dataset.set)); testSetSec = ciz; ciz(durum.kitle === 'mto' ? 'mto' : 'misafir');   /* v2: set, girişteki kitle seçimine göre; seçim yoksa genel (türevsiz) set (E11) */
 }
 /* oy kilidi: her anket cihaz başına bir kez (test modunda localStorage, canlıda Firebase anonim kimlik + create-only kural) */
 const kilitSatiri = () => el('p', { class: 'oy-kilit' }, '✓ Oyun alındı · bu cihazdan bir kez · değiştirilemez');
