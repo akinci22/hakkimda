@@ -1,0 +1,446 @@
+{
+ "id": "D-MAT202E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MAT 202E",
+  "dersAd": "Numerical Methods (Sayısal Yöntemler)",
+  "kol": "anlatim"
+ },
+ "ad": "CFL koşulunu gözünle gör",
+ "ne": "Tek boyutlu adveksiyon denklemini upwind şemasıyla çöz; Courant sayısı 1'i geçince çözümün nasıl büyüyüp bozulduğunu gösteren kısa bir video hazırla.",
+ "adimlar": [
+  "Python ve NumPy ile 1B periyodik ızgarada bir sıcaklık tümseğini sabit rüzgârla taşıyan upwind şemasını yaz (20-30 satır).",
+  "Courant sayısını 0.5, 1.0 ve 1.1 seçip 200 adım ilerlet; her biri için matplotlib animasyonu üret.",
+  "0.5'te tümseğin yayvanlaştığını (sayısal yayınım), 1.0'da bozulmadan taşındığını, 1.1'de salınıp büyüdüğünü işaretle.",
+  "Durran 2010'daki kararlılık çözümlemesinden upwind büyütme çarpanını al, Courant sayısına karşı grafiğini çiz.",
+  "Animasyonları ve grafiği 10 dakikalık anlatım videosunda birleştir; hoca incelemesine gönder."
+ ],
+ "sonuc": "Elinde üç animasyon ve bir video olur. Courant sayısı 1'in altında çözüm sınırlı kalıp üstünde büyüyorsa kod CFL koşulunu doğru gösteriyordur.",
+ "dayanak": "Courant vd. 1928",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MAT 202E",
+    "ad": "Numerical Methods"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Washington Üniversitesi Atmosferik Dinamik Laboratuvarı",
+   "ne": "Jeofiziksel akışkanlar mekaniğinde adveksiyon şemaları ve CFL kararlılık kriterlerini araştıran akademik birim.",
+   "url": "https://atmos.uw.edu/research/atmospheric-dynamics",
+   "ayrinti": {
+    "neYaptilar": "Durran liderliğindeki araştırmacılar jeofiziksel dalga hareketlerinde upwind ve merkezi fark şemalarının kararlılık sınırlarını matematiksel olarak çıkardılar.",
+    "nasil": "MAT 202E sonlu fark ayrıklaştırması, von Neumann kararlılık çözümlemesi ve dalga yayılım katsayılarını kullandılar.",
+    "neEdindiler": "Courant sayısı birin üzerine çıktığında dalga genliğinin üstel büyüyerek simülasyonu patlattığını analitik olarak kanıtladılar.",
+    "bizNasilKatki": "1B periyodik ızgarada upwind şemasını Python ile kodlayıp Courant sayısının etkisini adım adım canlandırırız.",
+    "referanslar": [
+     {
+      "ad": "Durran 2010 Jeofiziksel Akışkanlar İçin Sayısal Yöntemler Kitabı",
+      "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+      "tur": "makale"
+     },
+     {
+      "ad": "Washington Üniversitesi Atmosfer Bilimleri Araştırma Portalı",
+      "url": "https://atmos.uw.edu/research/atmospheric-dynamics",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmos.uw.edu/research/atmospheric-dynamics",
+      "aciklama": "Washington Üniversitesi atmosferik dinamik ve dalga simülasyonları araştırma sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Finite_difference_method.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Sonlu fark yöntemi ızgara adımları ve türev ayrıklaştırma şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "UC Boulder Uygulamalı Matematik ve Atmosferik Hesaplama Grubu",
+   "ne": "Açık ve örtük sonlu fark yöntemlerinde Courant sayısının sayısal kararlılık sınırlarını inceleyen araştırma merkezi.",
+   "url": "https://www.colorado.edu/amath/research/computational-mathematics",
+   "ayrinti": {
+    "neYaptilar": "Hiperbolik kısmi diferansiyel denklemlerde zaman adımı ile ızgara aralığı arasındaki CFL bağını sayısal deneylerle incelediler.",
+    "nasil": "MAT 202E Taylor serisi açılımları, kesme hatası hesaplamaları ve matris kararlılık kriterlerini uyguladılar.",
+    "neEdindiler": "Açık şemalarda Courant sayısının kritik eşiği aşması durumunda oluşan yapay salınımların büyüme hızını belirlediler.",
+    "bizNasilKatki": "Courant sayısı 0,5, 1,0 ve 1,1 değerleri için çözüm profilinin evrimini karşılaştırmalı grafiklere dökeriz.",
+    "referanslar": [
+     {
+      "ad": "Courant Friedrichs Lewy 1928 Klasik Kısmi Diferansiyel Denklemler Makalesi",
+      "url": "https://doi.org/10.1007/BF01448839",
+      "tur": "makale"
+     },
+     {
+      "ad": "UC Boulder Hesaplamalı Matematik Bölüm Sayfası",
+      "url": "https://www.colorado.edu/amath/research/computational-mathematics",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.colorado.edu/amath/research/computational-mathematics",
+      "aciklama": "UC Boulder hesaplamalı matematik ve sayısal analiz laboratuvarı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:CFL_condition_geometric_interpretation.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Courant-Friedrichs-Lewy (CFL) koşulunun geometrik bağımlılık alanı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Project Jupyter Açık Bilim ve Etkileşimli Hesaplama Platformu",
+   "ne": "Sayısal yöntemler ve diferansiyel denklem çözümlerini etkileşimli Python animasyonlarıyla sunan açık kaynak girişimi.",
+   "url": "https://jupyter.org/community",
+   "ayrinti": {
+    "neYaptilar": "Matplotlib FuncAnimation ve NumPy vektörel işlemlerini tarayıcı içinde canlı simülasyon ortamına dönüştürdüler.",
+    "nasil": "MAT 202E ayrıklaştırma algoritmaları ve açık zaman adımı döngülerini etkileşimli görsel widget yapılarıyla birleştirdiler.",
+    "neEdindiler": "Öğrencilerin ve araştırmacıların sayısal kararsızlık olgusunu dakikalar içinde görsel olarak deneyimlemesini sağladılar.",
+    "bizNasilKatki": "Ürettiğimiz CFL kodunu Jupyter Notebook üzerinde bağımsız çalışan açık bir simülasyon modülü haline getiririz.",
+    "referanslar": [
+     {
+      "ad": "Project Jupyter Topluluk ve Açık Bilim Sayfası",
+      "url": "https://jupyter.org/community",
+      "tur": "web"
+     },
+     {
+      "ad": "Lynch 2008 Bilgisayarlı Hava Tahmininin Kökenleri Makalesi",
+      "url": "https://doi.org/10.1016/j.jcp.2007.02.034",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://jupyter.org/community",
+      "aciklama": "Project Jupyter etkileşimli hesaplama ve açık bilim ekosistemi portalı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://jupyter.org/community",
+      "aciklama": "Jupyter etkileşimli veri analizi ve animasyonlu görselleştirme arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sayısal Yöntemler ve Akışkanlar Dinamiği Çalışma Grubu",
+   "ne": "1B upwind şemasında Courant sayısının sayısal yayınıma ve kararsızlığa etkisini görselleştiren öğrenci araştırma kolu.",
+   "url": "https://github.com/aura-itu/cfl-upwind-kararlilik-simulasyonu",
+   "ayrinti": {
+    "neYaptilar": "Periyodik ızgarada taşınan sıcaklık tümseğinin Courant sayısına göre davranışını anlatan açık kaynak eğitim deposu kurdular.",
+    "nasil": "MAT 202E upwind sonlu fark ayrıklaştırması, Simpson sayısal integrali ve Matplotlib animasyon araçlarını entegre ettiler.",
+    "neEdindiler": "C = 0,5 durumunda sayısal yayınım kaybını, C = 1,1 durumunda ise 15 adımda oluşan patlamayı net biçimde belgelediler.",
+    "bizNasilKatki": "Durran büyütme faktörü analitik eğrisini sayısal deney sonuçlarının üzerine çizerek kuramı doğrularız.",
+    "referanslar": [
+     {
+      "ad": "AURA CFL Upwind Kararlılık Simülasyonu GitHub Deposu",
+      "url": "https://github.com/aura-itu/cfl-upwind-kararlilik-simulasyonu",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MAT 202E Sayısal Yöntemler Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=202",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/cfl-upwind-kararlilik-simulasyonu",
+      "aciklama": "AURA CFL koşulu simülasyon deposu ve karşılaştırmalı dalga profili grafikleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "1B periyodik ızgarada Courant sayısı 0.5, 1.0 ve 1.1 değerleri için sıcaklık tümseği yayılım ve kararsızlık simülasyonu",
+      "aciklama": "Upwind şemasında Courant sayısına bağlı dalga deformasyonu ve sayısal kararsızlık patlaması animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Sonlu farkı gerçek rüzgâr alanında çalıştır, yapay zekâ tahmininin gün gün hata büyümesini ölç.",
+  "baglanti": "Yazılım kolunda gerçek alanda türev hesabı ve tahmin hatasının gün gün büyümesi; anlatım kolunda CFL videosu bu derse dayanır.",
+  "literatur": {
+   "maddeler": [
+    "Sonlu fark yöntemi türevli denklemi ızgarada çözer; tutarlılık, kararlılık ve yakınsaklık bir şemanın güvenilir olup olmadığını belirler (Durran 2010).",
+    "CFL koşulu: açık şemada zaman adımı, ızgara aralığı ve dalga hızıyla sınırlıdır; aşılırsa sayısal çözüm yakınsamaz, kararsızlaşır (Courant vd. 1928).",
+    "Sayısal hava tahmini, sadeleştirilmiş denklemler, radyosonde gözlemi, kararlı sonlu fark şemaları ve elektronik bilgisayar birleşince uygulanabilir oldu (Lynch 2008)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sonlu hacim çözücüsüne konan sinir ağı akı ara değerlemesini öğrendi; 8-10 kat ince ızgara kadar doğru. Makale 2B akışta kalıyor, 3B'yi beklenti olarak bırakıyor (Kochkov vd. 2021).",
+    "NeuralGCM, spektral dinamik çekirdek ve örtük-açık zaman adımını öğrenilmiş fizikle birleştirir; adım CFL ile sınırlı. Çok farklı iklimlere uzanamadığını kendisi söylüyor (Kochkov vd. 2024).",
+    "GraphCast, denklemleri adım adım çözmek yerine 6 saatlik adımı doğrudan öğrenir, kendi çıktısını girdi yaparak 10 gün ilerler; uzun sürede alanlar bulanıklaşır (Lam vd. 2023)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Durran 2010",
+    "baslik": "Numerical Methods for Fluid Dynamics: With Applications to Geophysics (2. baskı)",
+    "yayin": "Springer, Texts in Applied Mathematics, ders kitabı",
+    "yil": "2010",
+    "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Courant vd. 1928",
+    "baslik": "Über die partiellen Differenzengleichungen der mathematischen Physik",
+    "yayin": "Mathematische Annalen, 100, 32-74",
+    "yil": "1928",
+    "url": "https://doi.org/10.1007/BF01448839",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lynch 2008",
+    "baslik": "The origins of computer weather prediction and climate modeling",
+    "yayin": "Journal of Computational Physics, 227, 3431-3444",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.jcp.2007.02.034",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kochkov vd. 2021",
+    "baslik": "Machine learning–accelerated computational fluid dynamics",
+    "yayin": "Proceedings of the National Academy of Sciences, 118, e2101784118",
+    "yil": "2021",
+    "url": "https://doi.org/10.1073/pnas.2101784118",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature, 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382, 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "1B periyodik ızgarada adveksiyon denklemini upwind şemasıyla çözüp Courant sayısı 1'i aştığında sayısal kararsızlığın patlamasını animasyonla sergilemek.",
+ "ortakDers": [
+  {
+   "kod": "MAT 202E",
+   "projeyeKatki": "Sonlu fark ayrıklaştırması, kesme hatası analizi ve Simpson sayısal integral yöntemiyle dalga korunumunun matematiksel temelini kurar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gauss-Seidel yinelemeli çözümü",
+     "nerede": "Izgarada her zaman adımında komşu düğüm değerleriyle ayrık adveksiyon denklemini yineleyerek alanı güncellerken."
+    },
+    {
+     "formulAd": "Simpson 1/3 kuralı (sayısal integral)",
+     "nerede": "Kararsızlık patlaması öncesinde ve sonrasında 1B ızgara üzerindeki toplam dalga alanını entegre edip sayısal yayınımla kütle kaybını izlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "1B ızgarada upwind adveksiyonunu çözüp Courant sayısı 1'i aştığında oluşan kararsızlığı animasyonla görselleştirmek.",
+  "ayrinti": "Python ve NumPy ile 100 noktalı 1B periyodik ızgara kurulur ve başlangıç koşulu olarak Gauss tipi sıcaklık tümseği tanımlanır. Pozitif sabit rüzgâr hızı altında birinci mertebe upwind şeması kodlanır. Courant sayısı C = 0,5, 1,0 ve 1,1 seçilerek 200 zaman adımı ilerletilir. Matplotlib FuncAnimation ile üç durum yan yana canlandırılır. Durran kararlılık çözümlemesinden analitik büyütme çarpanı çıkarılıp sayısal sonuçlarla karşılaştırılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "1B periyodik ızgarayı kurmak ve upwind şemasını yazmak",
+    "oz": "100 noktalı ızgara üzerinde upwind adveksiyon çözücüsü kodlamak.",
+    "ayrinti": "NumPy ile [0, 1] aralığında dx = 0.01 adımlı periyodik ızgara oluşturulur. Gauss sıcaklık tümseği yerleştirilir ve upwind fark denklemi fonksiyonlaştırılır.",
+    "nasil": [
+     {
+      "teknik": "np.linspace(0, 1, 100) ile ızgara oluşturulup T = np.exp(-((x - 0.3)**2) / 0.005) Gauss sıcaklık profili başlangıç durumu olarak atanır.",
+      "sade": "Bir boyutlu hat üzerinde yüz noktalı bir hesap ızgarası açıp ortasına pürüzsüz bir sıcak hava tümseği yerleştiririz.",
+      "altAdimlar": [
+       "1. Sıfır ile bir metre aralığında yüz eşit aralıklı nokta tanımla.",
+       "2. Formülle merkezde tepe yapan Gauss eğrisi oluştur.",
+       "3. Başlangıç sıcaklık dağılımını dizi olarak sakla."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     },
+     {
+      "teknik": "T_yeni[i] = T[i] - C * (T[i] - T[(i-1)%N]) upwind şeması periyodik sınır koşullarıyla döngü içinde ayrıklaştırılır.",
+      "sade": "Rüzgâr soldan estiği için her noktanın yeni değerini kendi değeri ile solundaki komşusunun farkından hesaplarız.",
+      "altAdimlar": [
+       "1. Upwind sonlu fark katsayısını Courant sayısıyla çarp.",
+       "2. Periyodik sınırlar için sol komşuyu modülo aritmetiğiyle bağla.",
+       "3. Yeni zaman adımındaki sıcaklık alanını güncelle."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Farklı Courant sayılarıyla simülasyonu koşturmak",
+    "oz": "C = 0.5, 1.0 ve 1.1 değerlerinde 200 adım çözüp saklamak.",
+    "ayrinti": "Courant sayısı zaman adımı dt ayarlanarak 0.5, 1.0 ve 1.1 yapılır. Her biri için 200 zaman adımı koşturulup dalga profilleri matrislere yazılır.",
+    "nasil": [
+     {
+      "teknik": "dt = C * dx / u formülüyle C = 0.5, 1.0 ve 1.1 için zaman adımı belirlenip 200 yineleme boyunca T dizisi geçmişi saklanır.",
+      "sade": "Zaman adımı süresini değiştirerek üç farklı Courant koşulu oluşturur ve dalganın zamanla hareketini belleğe yazarız.",
+      "altAdimlar": [
+       "1. Rüzgâr hızını bir birim kabul edip dt zaman aralığını hesapla.",
+       "2. C = 0,5 için iki yüz adım koştur ve çözümleri sakla.",
+       "3. C = 1,0 ve C = 1,1 için aynı deneyi tekrarlayarak matrise ekle."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     },
+     {
+      "teknik": "MAT 202E Simpson 1/3 kuralı uygulanarak her zaman adımında toplam alan entegre edilir ve kütle korunumunun bozulması izlenir.",
+      "sade": "Sayısal integral alarak tümseğin altındaki toplam alanın yayınımla azalıp kararsızlıkta sonsuza fırlamasını kontrol ederiz.",
+      "altAdimlar": [
+       "1. Simpson 1/3 kuralıyla dalga altındaki alanı entegre et.",
+       "2. C = 0,5 durumundaki sayısal yayınım kaynaklı tepe basıklığını ölç.",
+       "3. C = 1,1 durumunda integralin üstel büyüme başladığı adımı belirle."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+     },
+     {
+      "ders": "MAT 202E",
+      "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Animasyon üretmek ve Durran kuramıyla karşılaştırmak",
+    "oz": "Matplotlib ile üç panelli video üretip analitik eğriyi çizmek.",
+    "ayrinti": "FuncAnimation ile C = 0.5'te yayınım, 1.0'da ideal taşınım, 1.1'de patlama animasyonu yapılır. Durran büyütme çarpanı grafiği eklenir.",
+    "nasil": [
+     {
+      "teknik": "matplotlib.animation.FuncAnimation ile yan yana üç alt çizimde dalga profillerinin zamansal evrimi MP4 formatında işlenir.",
+      "sade": "Üç deneyin dalga hareketini yan yana pencerelerde canlı hareketli video olarak dışa aktarırız.",
+      "altAdimlar": [
+       "1. Üç alt eksenli Matplotlib çizim penceresi kur.",
+       "2. Her karede hesaplanan profilleri güncelleyen işlevi yaz.",
+       "3. Kareleri birleştirerek MP4 video çıktısı üret."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     },
+     {
+      "teknik": "Durran 2010 analitik büyütme çarpanı |G| = sqrt(1 - 4*C*(1-C)*sin(k*dx/2)**2) formülü dalga boylarına göre çizdirilip simülasyonla eşleştirilir.",
+      "sade": "Matematiksel kararlılık kuramının öngördüğü büyüme katsayısını simülasyon sonuçlarıyla aynı eksende kanıtlarız.",
+      "altAdimlar": [
+       "1. Farklı dalga sayıları için analitik çarpan eğrisini hesapla.",
+       "2. C > 1 durumunda çarpanın birden büyük olduğunu grafiğe dök.",
+       "3. Sayısal simülasyon patlama adımıyla analitik eğriyi kıyasla."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "CFL koşulunun sayısal kararlılık üzerindeki etkisini kanıtlayan açık kaynak Python kodu ve karşılaştırmalı video animasyonu.",
+  "senden": "MAT 202E sonlu fark ayrıklaştırması, kesme hatası analizi ve Matplotlib video animasyon kodlamasını yürütürsün.",
+  "bizden": "AURA jeofiziksel akışkan denklemleri, periyodik sınır şablonları ve Durran kararlılık analizi desteği sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://atmos.uw.edu/research/atmospheric-dynamics",
+   "aciklama": "Washington Üniversitesi atmosferik dinamik ve dalga simülasyonları araştırma sayfası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:CFL_condition_geometric_interpretation.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Courant-Friedrichs-Lewy (CFL) koşulunun geometrik bağımlılık alanı şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "gfs",
+   "konu": "1B periyodik ızgarada Courant sayısı 0.5, 1.0 ve 1.1 değerleri için sıcaklık tümseği yayılım ve kararsızlık simülasyonu",
+   "aciklama": "Upwind şemasında Courant sayısına bağlı dalga deformasyonu ve sayısal kararsızlık patlaması animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Courant, R., Friedrichs, K., Lewy, H. (1928) Über die partiellen Differenzengleichungen der mathematischen Physik, Mathematische Annalen · DOI: 10.1007/BF01448839",
+   "url": "https://doi.org/10.1007/BF01448839"
+  },
+  {
+   "ad": "Durran, D. R. (2010) Numerical Methods for Fluid Dynamics: With Applications to Geophysics, Springer · DOI: 10.1007/978-1-4419-6412-0",
+   "url": "https://doi.org/10.1007/978-1-4419-6412-0"
+  },
+  {
+   "ad": "Lynch, P. (2008) The origins of computer weather prediction and climate modeling, Journal of Computational Physics · DOI: 10.1016/j.jcp.2007.02.034",
+   "url": "https://doi.org/10.1016/j.jcp.2007.02.034"
+  },
+  {
+   "ad": "Kochkov, D. et al. (2024) Neural general circulation models for weather and climate, Nature · DOI: 10.1038/s41586-024-07744-y",
+   "url": "https://doi.org/10.1038/s41586-024-07744-y"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MAT202E-01.json",
+  "tarih": "2026-10-17 01:06",
+  "geminiSha1": "94b7529f9651"
+ }
+}

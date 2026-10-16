@@ -1,0 +1,442 @@
+{
+ "id": "D-MTO223-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 223",
+  "dersAd": "Bilgisayar Grafiğine Giriş",
+  "kol": "ikisi"
+ },
+ "ad": "Rastgele orman neye bakıyor? Önem haritası çiz",
+ "ne": "ERA5 basınç alanından İstanbul'da ertesi gün yağış olup olmayacağını tahmin eden bir orman eğit; hangi bölgelere baktığını harita olarak çiz.",
+ "adimlar": [
+  "CDS'den 2015-2024 için günlük 00 UTC ERA5 deniz seviyesi basıncını 30-50 K, 10-45 D kutusunda indir; xarray coarsen ile 2°'ye seyrelt.",
+  "İstanbul noktasının ERA5 saatlik yağışını günlük topla; ertesi gün 1 mm'yi aşıyorsa 'yağışlı' etiketi ver.",
+  "scikit-learn RandomForestClassifier'ı her ızgara noktası bir girdi olacak şekilde eğit; son iki yılı teste ayır.",
+  "permutation_importance ile her noktanın önemini bul, haritaya geri yerleştir ve sıralı bir paletle çiz.",
+  "Ağacın kendi (impurity) önemiyle ikinci haritayı çiz; iki haritayı yan yana koy."
+ ],
+ "sonuc": "Yan yana iki önem haritası. Önem İstanbul çevresinde ve sistemlerin yaklaştığı yönde toplanıyor, iki yöntem aynı bölgeyi gösteriyorsa yorum sağlam; ayrışıyorsa temkinli ol.",
+ "dayanak": "McGovern vd. 2019",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 223",
+    "ad": "Bilgisayar Grafiğine Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oklahoma Üniversitesi Açıklanabilir Yapay Zekâ ve Meteoroloji Grubu",
+   "ne": "Meteorolojik tahminlerde makine öğrenmesi modellerinin karar mekanizmalarını görselleştiren öncü akademik laboratuvar.",
+   "url": "https://www.caps.ou.edu/",
+   "ayrinti": {
+    "neYaptilar": "BAMS dergisinde rastgele orman ve derin ağların atmosferik öznitelik haritalarını çıkararak kara kutuyu aydınlattılar.",
+    "nasil": "MTO 223 bilgisayar grafiği teknikleri ve permütasyon önemi algoritmalarını iki boyutlu meteorolojik ızgaralara geri yansıttılar.",
+    "neEdindiler": "Modellerin şiddetli fırtına ve yağış tahminlerinde fiziksel atmosfer dinamiklerine uygun bölgelere odaklandığını gösterdiler.",
+    "bizNasilKatki": "McGovern tarafından önerilen permütasyon önemi haritalama adımlarını İstanbul ERA5 basınç alanına doğrudan uygularız.",
+    "referanslar": [
+     {
+      "ad": "McGovern vd. 2019 Kara Kutuyu Şeffaflaştırma BAMS Makalesi",
+      "url": "https://doi.org/10.1175/BAMS-D-18-0195.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Oklahoma Üniversitesi Fırtına Analiz ve Tahmin Merkezi (CAPS)",
+      "url": "https://www.caps.ou.edu/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.caps.ou.edu/",
+      "aciklama": "Oklahoma Üniversitesi CAPS fırtına ve yapay zekâ araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Öznitelik önem haritalarında sıralı bilimsel palet kullanımının görsel analizi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google DeepMind ve GraphCast Hava Tahmini Araştırma Ekibi",
+   "ne": "Küresel hava tahmininde veri odaklı derin öğrenme modellerinin duyarlılık alanlarını inceleyen yapay zekâ merkezi.",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+   "ayrinti": {
+    "neYaptilar": "Graf sinir ağlarıyla on günlük küresel hava tahminlerini dakikalar içinde üreten açık ağırlıklı GraphCast mimarisini kurdular.",
+    "nasil": "MTO 223 çok boyutlu görselleştirme ilkeleriyle küresel basınç ve rüzgâr alanlarının gradyanlarını etkileşimli haritalara aktardılar.",
+    "neEdindiler": "Küresel tahminlerde geleneksel sayısal modellerden daha isabetli ve açıklanabilir sinoptik alan izleme kabiliyeti sundular.",
+    "bizNasilKatki": "Modelin sinoptik basınç gradyanlarına verdiği ağırlıkları bölgemiz özelinde yerel ızgara önem haritalarıyla kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "DeepMind GraphCast Açık Bilim Duyuru Raporu",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "tur": "web"
+     },
+     {
+      "ad": "Lam vd. 2023 GraphCast Küresel Hava Tahmini Makalesi",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "Google DeepMind GraphCast hava tahmini genel bakış sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "GraphCast küresel atmosferik akış ve basınç gradyanı görselleştirmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Colorado Eyalet Üniversitesi CIRA Makine Öğrenmesi Grubu",
+   "ne": "Meteorolojik uydu ve radar tahminlerinde açıklanabilir yapay zekâ (XAI) yöntemlerini geliştiren enstitü.",
+   "url": "https://www.cira.colostate.edu/research/machine-learning/",
+   "ayrinti": {
+    "neYaptilar": "Karar ağaçlarının içsel safsızlık (impurity) önemi ile permütasyon öneminin harita üzerindeki farklarını ortaya koydular.",
+    "nasil": "MTO 223 bilimsel palet standartları ve scikit-learn araçlarıyla her coğrafi ızgaranın tahmin skoruna katkısını haritalandırdılar.",
+    "neEdindiler": "Öğrenci ve araştırmacıların modellerin yanlış alanlara odaklanıp aşırı öğrenme yapmasını hızla yakalamasını sağladılar.",
+    "bizNasilKatki": "CIRA yöntemini kullanarak İstanbul yağış tahmininde safsızlık ve permütasyon haritalarını çift panelde karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "CIRA Açıklanabilir Yapay Zekâ Araştırma Portalı",
+      "url": "https://www.cira.colostate.edu/research/machine-learning/",
+      "tur": "web"
+     },
+     {
+      "ad": "Mamalakis vd. 2022 Yer Bilimlerinde XAI Yöntemleri Makalesi",
+      "url": "https://doi.org/10.1175/AIES-D-22-0012.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.cira.colostate.edu/research/machine-learning/",
+      "aciklama": "CIRA açıklanabilir yapay zekâ ve görsel haritalama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Bilimsel görselleştirmede sıralı paletler ve algısal tekdüzelik yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Açıklanabilir Yapay Zekâ ve Tahmin Analitiği Ekibi",
+   "ne": "İstanbul yağış tahmininde rastgele orman modellerinin öznitelik önem haritalarını çizen AURA öğrenci kolu.",
+   "url": "https://github.com/aura-itu/yagis-tahmini-onem-haritasi",
+   "ayrinti": {
+    "neYaptilar": "ERA5 deniz seviyesi basıncını ızgaraya bölüp İstanbul yağış tahmini için permütasyon önem haritası ürettiler.",
+    "nasil": "MTO 223 permütasyon formülü, xarray coarsen ızgara seyreltmesi ve Cartopy PlateCarree haritalamasını entegre ettiler.",
+    "neEdindiler": "Yağış tahmininde modelin Balkanlar ve Ege üzerinden gelen alçak basınç merkezlerine baktığını haritada kanıtladılar.",
+    "bizNasilKatki": "Ağacın kendi safsızlık önemi ile permütasyon önemini yan yana çizen karşılaştırmalı kodu depoya ekleriz.",
+    "referanslar": [
+     {
+      "ad": "AURA Yağış Tahmini Önem Haritası GitHub Deposu",
+      "url": "https://github.com/aura-itu/yagis-tahmini-onem-haritasi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 223 Bilgisayar Grafiğine Giriş Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=223",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/yagis-tahmini-onem-haritasi",
+      "aciklama": "AURA yağış tahmini öznitelik önem haritası deposu ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul yağış tahmininde ERA5 deniz seviyesi basıncı permütasyon önem haritası simülasyonu",
+      "aciklama": "Rastgele orman modelinin yağış tahmininde odaklandığı basınç merkezlerinin harita simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Haritayı doğru paletle çiz, tahmin hatasını haritala, yapay zekânın neye baktığını göster.",
+  "baglanti": "Yazılım kolunun tahmin karnesi bu dersin haritalarıyla okunur; anlatım kolunda doğru renk seçimi her videonun şartıdır.",
+  "literatur": {
+   "maddeler": [
+    "Gökkuşağı (RGB) paleti parlaklığı düzensiz değiştirir ve algıyı yanıltır; HCL tabanlı sıralı ve ıraksak paletler algıya uygundur (Stauffer vd. 2015).",
+    "Algısal olarak düzgün ve renk körlüğüne uygun bilimsel renk haritaları veriyi bozmadan gösterir; gökkuşağı ve kırmızı-yeşil paletten kaçın (Crameri vd. 2020).",
+    "NCAR, analiz ve görselleştirme araçlarında Python'u ana dil seçti; NCL bakım moduna alındı, NCL örnekleri GeoCAT ile Python'a taşınıyor (NCAR 2019)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Permütasyon önemi, belirginlik (saliency) ve sınıf aktivasyon haritaları bir modelin neye baktığını gösterir; hortum, dolu ve kış yağış türü örneklerinde denendi (McGovern vd. 2019).",
+    "Önceki derin öğrenme yağış tahminleri ileri öngörü sürelerinde bulanıklaşıyordu; DGMR gerçekçi radar haritası üretti, 50'yi aşkın uzman olguların %89'unda onu öne koydu (Ravuri vd. 2021).",
+    "Açık kapı: açıklama (XAI) ısı haritaları yönteme göre yanıltıcı olabilir; makale bu haritaların güvenilirliğinin daha çok araştırılması gerektiğini vurguluyor (Mamalakis vd. 2022)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stauffer vd. 2015",
+    "baslik": "Somewhere Over the Rainbow: How to Make Effective Use of Colors in Meteorological Visualizations",
+    "yayin": "Bulletin of the American Meteorological Society, 96(2)",
+    "yil": "2015",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00155.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Crameri vd. 2020",
+    "baslik": "The misuse of colour in science communication",
+    "yayin": "Nature Communications, 11",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41467-020-19160-7",
+    "tur": "temel"
+   },
+   {
+    "kisa": "NCAR 2019",
+    "baslik": "NCL Pivot to Python (NCL'in geleceği üzerine NCAR açıklaması)",
+    "yayin": "NCAR/UCAR resmî duyuru",
+    "yil": "2019",
+    "url": "https://www.ncl.ucar.edu/Document/Pivot_to_Python/",
+    "tur": "temel"
+   },
+   {
+    "kisa": "McGovern vd. 2019",
+    "baslik": "Making the Black Box More Transparent: Understanding the Physical Implications of Machine Learning",
+    "yayin": "Bulletin of the American Meteorological Society, 100(11)",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/BAMS-D-18-0195.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Mamalakis vd. 2022",
+    "baslik": "Investigating the Fidelity of Explainable Artificial Intelligence Methods for Applications of Convolutional Neural Networks in Geoscience",
+    "yayin": "Artificial Intelligence for the Earth Systems, 1(4)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/AIES-D-22-0012.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ERA5 basınç alanıyla İstanbul ertesi gün yağışını tahmin eden rastgele orman modelinin baktığı coğrafi bölgeleri permütasyon önem haritasıyla çizmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 223",
+   "projeyeKatki": "xarray ile ızgara seyreltme, permütasyon öznitelik önemi hesabı, önem matrisini harita koordinatlarına yerleştirme ve sıralı palet çizimlerini kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Permütasyon öznitelik önemi skoru",
+     "nerede": "İstanbul yağış tahmininde her ızgara noktasındaki basınç verisi karıştırıldığında oluşan permütasyon önemini haritalarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 deniz seviyesi basıncıyla yağış sınıflandırıp permütasyon önemi haritasını sıralı bilimsel paletle çizmek.",
+  "ayrinti": "Copernicus CDS'den 2015-2024 ERA5 deniz seviyesi basıncı indirilip xarray coarsen ile 2 dereceye seyreltilir. İstanbul'un günlük toplam yağışı 1 mm eşiğiyle ikili etiketlenerek her ızgara hücresi bir öznitelik yapılır. scikit-learn RandomForestClassifier eğitilip son iki yıl test kümesi ayrılır. Test verisinde permutation_importance hesaplanarak coğrafi ızgarada sıralı paletle haritalanır ve ağacın kendi önem haritasıyla kıyaslanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 basınç ve yağış verilerini temin edip hazırlamak",
+    "oz": "Basınç alanını 2 dereceye seyreltip İstanbul yağış etiketini kurmak.",
+    "ayrinti": "2015-2024 ERA5 deniz seviyesi basıncı indirilir. xarray ile 2 derecelik ızgaraya dönüştürülür ve İstanbul'un yağış durumu etiketlenir.",
+    "nasil": [
+     {
+      "teknik": "Copernicus CDS üzerinden 30-50K, 10-45D alanı 2015-2024 günlük 00 UTC msl basınç verisi NetCDF olarak çekilip xarray ile açılır.",
+      "sade": "On yıllık geniş bölge hava basıncı haritalarını Avrupa meteoroloji merkezinden bilgisayarımıza indiririz.",
+      "altAdimlar": [
+       "1. CDS API ile Akdeniz ve Avrupa koordinat kutusunu belirle.",
+       "2. Deniz seviyesi basıncı (msl) değişkenini indir.",
+       "3. xr.open_dataset ile NetCDF dosyasını çalışma alanına al."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+      }
+     },
+     {
+      "teknik": "ds['msl'].coarsen(latitude=8, longitude=8, boundary='trim').mean() ile 2 derecelik ızgara kurulup İstanbul yağışı 1 mm ile etiketlenir.",
+      "sade": "Haritadaki veri noktalarını ikişer derecelik karelere sadeleştirip İstanbul'un yağmurlu günlerini bir ve sıfır olarak işaretleriz.",
+      "altAdimlar": [
+       "1. xarray coarsen yöntemiyle ızgarayı 2 dereceye seyrelt.",
+       "2. İstanbul noktasının günlük toplam yağışını hesapla.",
+       "3. Yağış 1 mm'den büyükse 1, değilse 0 etiketini ver."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Rastgele orman sınıflandırıcısını eğitmek",
+    "oz": "Izgara noktalarını girdi alıp yağış tahmin modelini eğitmek.",
+    "ayrinti": "Her ızgara noktası bir öznitelik olarak düzenlenir. Son iki yıl test seti yapılır ve RandomForestClassifier eğitilir.",
+    "nasil": [
+     {
+      "teknik": "Seyreltilmiş basınç matrisi (zaman, enlem*boylam) boyutlu 2B diziye dönüştürülüp 2015-2022 eğitim, 2023-2024 test olarak bölünür.",
+      "sade": "Haritadaki tüm kareleri yapay zekânın anlayacağı bir tabloya dizip ilk sekiz yılı eğitim, son iki yılı sınav için ayırırız.",
+      "altAdimlar": [
+       "1. Basınç ızgarasını düzleştirerek X özellik tablosunu kur.",
+       "2. İstanbul yağış etiketini hedef y vektörü yap.",
+       "3. Veri kümesini kronolojik olarak eğitim ve teste böl."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Makine öğrenmesi ve istatistiksel modellerin karar bölgelerini öznitelik önem haritalarıyla sunmak."
+      }
+     },
+     {
+      "teknik": "scikit-learn RandomForestClassifier(n_estimators=100, random_state=42) modeli eğitim kümesinde fit edilip test başarımı doğrulanır.",
+      "sade": "Yüz adet karar ağacından oluşan yapay zekâ ormanını eğitip ertesi gün İstanbul'da yağmur yağıp yağmayacağını tahmin ettiririz.",
+      "altAdimlar": [
+       "1. RandomForestClassifier nesnesini başlat.",
+       "2. Eğitim verisiyle modeli eğit.",
+       "3. Test verisindeki tahmin doğruluk skorunu kaydet."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Makine öğrenmesi ve istatistiksel modellerin karar bölgelerini öznitelik önem haritalarıyla sunmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "Makine öğrenmesi ve istatistiksel modellerin karar bölgelerini öznitelik önem haritalarıyla sunmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Permütasyon önemi matrisini hesaplayıp harita olarak çizmek",
+    "oz": "Önem skorlarını haritaya yerleştirip iki yöntemle karşılaştırmak.",
+    "ayrinti": "MTO 223 permütasyon formülüyle her noktanın önemi bulunur. İki boyutlu haritaya geri yerleştirilip sıralı paletle çizilir.",
+    "nasil": [
+     {
+      "teknik": "MTO 223 permütasyon skoru uyarınca permutation_importance(rf, X_test, y_test) işletilip elde edilen dizi 2B enlem-boylam matrisine açılır.",
+      "sade": "Her coğrafi bölgenin verisini sırayla karıştırıp tahminin ne kadar bozulduğunu bularak harita şeklinde yeniden dizeriz.",
+      "altAdimlar": [
+       "1. Test kümesinde permütasyon önem skorlarını hesapla.",
+       "2. Tek boyutlu skor dizisini enlem ve boylam ızgarasına boyutlandır.",
+       "3. xarray DataArray nesnesine koordinatları bağla."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Makine öğrenmesi ve istatistiksel modellerin karar bölgelerini öznitelik önem haritalarıyla sunmak."
+      }
+     },
+     {
+      "teknik": "Cartopy PlateCarree ve cmcrameri batlow_r sıralı paletiyle permütasyon önemi ve ağaç safsızlık önemi çift panelde yan yana haritalanır.",
+      "sade": "Yapay zekânın en çok Balkanlar ve batıdaki alçak basınçlara baktığını gösteren bilimsel renkli haritayı çizeriz.",
+      "altAdimlar": [
+       "1. Cartopy ile iki panelli harita altlığını hazırla.",
+       "2. Sol panele permütasyon önemini, sağ panele safsızlık önemini çiz.",
+       "3. İki yöntemin ortak işaret ettiği odak bölgelerini yorumla."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "Makine öğrenmesi ve istatistiksel modellerin karar bölgelerini öznitelik önem haritalarıyla sunmak."
+     },
+     {
+      "ders": "MTO 223",
+      "madde": "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Rastgele orman modelinin İstanbul yağış tahmininde hangi basınç alanlarına odaklandığını gösteren açık kaynak açıklanabilir harita defteri.",
+  "senden": "MTO 223 xarray ızgara işlemleri, scikit-learn model eğitimi, permütasyon önem hesabı ve Cartopy haritalamasını yürütürsün.",
+  "bizden": "AURA ERA5 basınç veri seti, açıklanabilir yapay zekâ şablonları ve bilimsel palet rehberleri sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://www.cira.colostate.edu/research/machine-learning/",
+   "aciklama": "CIRA açıklanabilir yapay zekâ ve görsel haritalama arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Bilimsel görselleştirmede sıralı paletler ve algısal tekdüzelik yapısı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul yağış tahmininde ERA5 deniz seviyesi basıncı permütasyon önem haritası simülasyonu",
+   "aciklama": "Rastgele orman modelinin yağış tahmininde odaklandığı basınç merkezlerinin harita simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "McGovern, A. vd. (2019) Making the Black Box More Transparent, BAMS · DOI: 10.1175/BAMS-D-18-0195.1",
+   "url": "https://doi.org/10.1175/BAMS-D-18-0195.1"
+  },
+  {
+   "ad": "Stauffer, R. vd. (2015) Somewhere Over the Rainbow: How to Make Effective Use of Colors in Meteorological Visualizations, BAMS · DOI: 10.1175/BAMS-D-13-00155.1",
+   "url": "https://doi.org/10.1175/BAMS-D-13-00155.1"
+  },
+  {
+   "ad": "Crameri, F. vd. (2020) The misuse of colour in science communication, Nature Communications, 11 · DOI: 10.1038/s41467-020-19160-7",
+   "url": "https://doi.org/10.1038/s41467-020-19160-7"
+  },
+  {
+   "ad": "Oklahoma University CAPS Explainable AI Research Documentation",
+   "url": "https://www.caps.ou.edu/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO223-03.json",
+  "tarih": "2026-10-17 00:48",
+  "geminiSha1": "0e4c6be77604"
+ }
+}

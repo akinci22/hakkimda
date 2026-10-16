@@ -1,0 +1,140 @@
+{
+ "kod": "AKM 204E",
+ "ad": "Akışkanlar Mekaniği",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "204",
+ "ozet": "Akışkanlar statiği, kinematik ve korunum yasalarını (kütle, momentum, enerji) diferansiyel ve integral formda öğretir. Boyut analizi, Navier-Stokes denklemleri, boru içi akışlar, sınır tabaka teorisi ve türbülansa giriş konularını atmosfer ve mühendislik akışları temelinde ele alır.",
+ "neOgrenirsin": [
+  "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek.",
+  "Reynolds sayısı ve boyut analiziyle akış rejimlerini (laminer, türbülanslı) sınıflandırmak.",
+  "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek.",
+  "Sürtünme sürüklemesi ve basınç düşüşünü boru ve açık kanal akışlarında hesaplamak.",
+  "Türbülanslı akışlarda Reynolds ortalamalı gerilmeleri ve sınır koşullarını analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Türbülanslı sınır tabaka logaritmik hız profili",
+   "tex": "u(z) = \\frac{u_*}{\\kappa} \\ln\\left(\\frac{z}{z_0}\\right)",
+   "terimler": [
+    [
+     "u(z)",
+     "z yüksekliğindeki ortalama rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "u_*",
+     "sürtünme hızı (friction velocity)",
+     "m/s"
+    ],
+    [
+     "\\kappa",
+     "von Kármán sabiti (yaklaşık 0,40)",
+     "boyutsuz"
+    ],
+    [
+     "z",
+     "yüzeyden itibaren dikey yükseklik",
+     "m"
+    ],
+    [
+     "z_0",
+     "yüzey aerodinamik pürüzlülük uzunluğu",
+     "m"
+    ]
+   ],
+   "sade": "Nötr atmosferik sınır tabakada rüzgâr hızının yükseklikle logaritmik olarak nasıl arttığını yüzey pürüzlülüğü ve sürtünme hızına bağlı olarak açıklar.",
+   "ornek": "İstanbul'da kentsel alanda z0=1,0 m ve sürtünme hızı u*=0,5 m/s iken 10 m rüzgârı (0,5/0,4)*ln(10/1) ≈ 2,88 m/s, 100 m rüzgârı ise (0,5/0,4)*ln(100/1) ≈ 5,76 m/s bulunur.",
+   "nerede": "D-AKM204E-01 projesinde ERA5 10 m rüzgârından 100 m rüzgâr hızını kestirirken kullanılır."
+  },
+  {
+   "ad": "Reynolds sayısı atalet ve viskozite oranı",
+   "tex": "Re = \\frac{U L}{\\nu}",
+   "terimler": [
+    [
+     "Re",
+     "Reynolds sayısı",
+     "boyutsuz"
+    ],
+    [
+     "U",
+     "karakteristik akış hızı",
+     "m/s"
+    ],
+    [
+     "L",
+     "karakteristik geometrik uzunluk ölçeği",
+     "m"
+    ],
+    [
+     "\\nu",
+     "akışkanın kinematik viskozitesi (hava için 1,5e-5)",
+     "m^2/s"
+    ]
+   ],
+   "sade": "Akıştaki atalet kuvvetlerinin viskoz sürtünme kuvvetlerine oranını göstererek akışın laminer mi yoksa türbülanslı mı olduğunu belirler.",
+   "ornek": "İstanbul'da 10 m/s lodos rüzgârında L=100 m bina veya tepe ölçeği için Re = (10 * 100) / 1,5e-5 ≈ 6,7e7 bulunur; atmosferin neredeyse daima tamamen türbülanslı olduğunu kanıtlar.",
+   "nerede": "D-AKM204E-02 projesinde atmosfer rüzgârı ile boru akışının Reynolds sayılarını kıyaslarken kullanılır."
+  },
+  {
+   "ad": "Bir boyutlu viskoz Burgers denklemi",
+   "tex": "\\frac{\\partial u}{\\partial t} + u \\frac{\\partial u}{\\partial x} = \\nu \\frac{\\partial^2 u}{\\partial x^2}",
+   "terimler": [
+    [
+     "u",
+     "akış hız alanı",
+     "m/s"
+    ],
+    [
+     "t",
+     "zaman değişkeni",
+     "s"
+    ],
+    [
+     "x",
+     "konum koordinatı",
+     "m"
+    ],
+    [
+     "\\nu",
+     "kinematik viskozite katsayısı",
+     "m^2/s"
+    ]
+   ],
+   "sade": "Doğrusal olmayan taşınım (adveksiyon) ile viskoz yayılım (difüzyon) arasındaki etkileşimi gösteren en temel akışkan dinamiği denklemlerindendir.",
+   "ornek": "nu=0,01/pi ve başlangıç koşulu u(x,0)=-sin(pi*x) iken t=0,5 anında dikleşen hız profili şok tabakasının gelişimini sergiler.",
+   "nerede": "D-AKM204E-03 projesinde fizik bilgili sinir ağı (PINN) ile Burgers denklemini çözerken kullanılır."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Atmosferik sınır tabaka hız profili ve yüzey pürüzlülüğü şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi 10 m ve 100 m rüzgâr hızı dikey profil animasyonu",
+   "aciklama": "Günlük kararlılık döngüsünde yüzey ve üst rüzgâr hızlarının değişimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · AKM 204E (Akışkanlar Mekaniği)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=AKM&dersNo=204"
+  },
+  {
+   "ad": "Kundu, Cohen, Dowling (2016) Fluid Mechanics, 6. baskı, Academic Press · ISBN 978-0-12-405935-1",
+   "url": "https://shop.elsevier.com/books/fluid-mechanics/kundu/978-0-12-405935-1"
+  },
+  {
+   "ad": "Pope, S. B. (2000) Turbulent Flows, Cambridge University Press · DOI 10.1017/CBO9780511840531",
+   "url": "https://doi.org/10.1017/CBO9780511840531"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=AKM&dersNo=204"
+}

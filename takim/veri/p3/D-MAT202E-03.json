@@ -1,0 +1,446 @@
+{
+ "id": "D-MAT202E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MAT 202E",
+  "dersAd": "Numerical Methods (Sayısal Yöntemler)",
+  "kol": "yazilim"
+ },
+ "ad": "YZ tahmininde hata gün gün nasıl büyüyor?",
+ "ne": "GraphCast, AIFS, ECMWF IFS ve GFS'in İstanbul sıcaklık tahmininde 1-7 gün önceden hatasını ölç; YZ tahmininin uzun sürede yumuşayıp yumuşamadığına bak.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den LTBA için Mart 2025-Mayıs 2026 arası dört tahminin temperature_2m_previous_day1...day7 değerini çek.",
+  "IEM'den aynı saatlerin LTBA METAR sıcaklığını indir; yalnız 00, 06, 12, 18 UTC'yi tut, herhangi bir tahminde boş olan saatleri at.",
+  "Her tahmin ve gün için RMSE hesapla; RMSE'yi 'kaç gün önceden' eksenine karşı tek grafikte çiz.",
+  "Yumuşama testi: bu dört saatte tahminin gün içi genliğini (en yüksek - en düşük) gözlenen genliğe böl, güne göre çiz.",
+  "Bulguları Lam vd. 2023'ün uzun sürede bulanıklaşma yorumuyla karşılaştıran yarım sayfalık bir not yaz."
+ ],
+ "sonuc": "Elinde dört tahminin güne göre RMSE ve genlik oranı grafiği olur. YZ tahmininde genlik oranı 1. günden 7. güne düşüyor, IFS'te düşmüyorsa yumuşama İstanbul noktasında da görülüyor demektir.",
+ "dayanak": "Lam vd. 2023",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MAT 202E",
+    "ad": "Numerical Methods"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oxford Üniversitesi Atmosferik Öngörülebilirlik ve Dinamik Grubu",
+   "ne": "Sayısal ve yapay zekâ hava tahmin modellerinin hata büyümesi, kaos ve öngörülebilirlik sınırlarını araştıran enstitü.",
+   "url": "https://www.physics.ox.ac.uk/research/subdepartment/atmospheric-oceanic-and-planetary-physics",
+   "ayrinti": {
+    "neYaptilar": "Palmer ve ekibi otoregresif yapay zekâ modellerinin zaman ilerledikçe küçük ölçekli varyansı yitirdiğini matematiksel olarak gösterdiler.",
+    "nasil": "MAT 202E hata analizi, Lyapunov üstelleri ve diferansiyel dinamik sistem yaklaşımlarını uyguladılar.",
+    "neEdindiler": "5. günden sonra yapay zekâ tahminlerinde genlik sönümünün arttığını ve aşırı uç değerlerin baskılandığını kanıtladılar.",
+    "bizNasilKatki": "İstanbul METAR ölçümleriyle modellerin gün içi genlik oranını hesaplayıp sönümleme etkisini belgeleriz.",
+    "referanslar": [
+     {
+      "ad": "Lam 2023 GraphCast ile Küresel Orta Vadeli Hava Tahmini Makalesi",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     },
+     {
+      "ad": "Oxford Atmosferik Fizik Bölümü Araştırma Portalı",
+      "url": "https://www.physics.ox.ac.uk/research/subdepartment/atmospheric-oceanic-and-planetary-physics",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.physics.ox.ac.uk/research/subdepartment/atmospheric-oceanic-and-planetary-physics",
+      "aciklama": "Oxford Üniversitesi atmosferik kaos ve tahmin öngörülebilirliği sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plume.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Zaman içinde hata büyümesi ve topluluk tahmin demeti dağılımı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF Makine Öğrenmesi ve Sayısal Tahmin Birimi",
+   "ne": "AIFS ve IFS modellerinin orta vadeli tahmin doğruluğunu ve spektral genlik kaybını inceleyen küresel merkez.",
+   "url": "https://www.ecmwf.int/en/research/machine-learning",
+   "ayrinti": {
+    "neYaptilar": "Yapay zekâ tabanlı AIFS modeli ile fiziksel dinamik çekirdekli IFS modelinin 1-10 günlük hata büyümesini doğruladılar.",
+    "nasil": "MAT 202E kök ortalama kare hata formülü, varyans analizi ve zaman serisi eğri uydurma tekniklerini kullandılar.",
+    "neEdindiler": "AIFS'in ilk 5 günde daha düşük RMSE verdiğini, ancak 7. günde fiziksel IFS'in varyansı daha iyi koruduğunu saptadılar.",
+    "bizNasilKatki": "Aynı doğrulama protokolünü İstanbul Atatürk Havalimanı tekil istasyon ölçeğine indirgeriz.",
+    "referanslar": [
+     {
+      "ad": "Kochkov 2024 NeuralGCM Genel Dolaşım Modelleri Makalesi",
+      "url": "https://doi.org/10.1038/s41586-024-07744-y",
+      "tur": "makale"
+     },
+     {
+      "ad": "ECMWF Makine Öğrenmesi Araştırma Sayfası",
+      "url": "https://www.ecmwf.int/en/research/machine-learning",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/research/machine-learning",
+      "aciklama": "ECMWF AIFS yapay zekâ hava tahmin araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Mean_squared_error_loss.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Hata kareleri ortalaması ve regresyon hedef fonksiyonu eğrisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google DeepMind GraphCast Hava Tahmin Araştırma Ekibi",
+   "ne": "Küresel atmosfer dinamiklerini graf sinir ağlarıyla 10 güne kadar otoregresif olarak tahmin eden araştırma ekibi.",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+   "ayrinti": {
+    "neYaptilar": "ERA5 verileriyle eğitilen GraphCast modeli ile 6 saatlik adımlarla 10 güne uzanan küresel tahminler ürettiler.",
+    "nasil": "MAT 202E sayısal optimizasyon kuralları, gradyan inişi ve otoregresif döngüsel tensör mimarilerini kullandılar.",
+    "neEdindiler": "Küresel 1380 değişkenin yüzde doksanında klasik IFS modelinden daha başarılı sonuçlar elde ettiler.",
+    "bizNasilKatki": "GraphCast tahminlerini Open-Meteo uç noktasından çekip Türkiye istasyonlarında hata yayılımını irdeleriz.",
+    "referanslar": [
+     {
+      "ad": "DeepMind GraphCast Resmi Araştırma Duyurusu",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+      "tur": "web"
+     },
+     {
+      "ad": "Durran 2010 Jeofiziksel Akışkanlar İçin Sayısal Yöntemler Kitabı",
+      "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+      "aciklama": "DeepMind GraphCast küresel hava tahmini mimari diyagramı ve blog sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+      "aciklama": "GraphCast tahmin doğruluğu ve küresel karşılaştırma grafikleri arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Yapay Zekâ Doğrulama ve Tahmin Değerlendirme Takımı",
+   "ne": "İstanbul METAR ölçümleriyle GraphCast, AIFS ve IFS sıcaklık tahminlerinin 1-7 günlük RMSE ve genlik analizini yapan öğrenci kolu.",
+   "url": "https://github.com/aura-itu/yapay-zeka-tahmin-hata-buyumesi",
+   "ayrinti": {
+    "neYaptilar": "LTBA için 4 farklı modelin geçmiş çalıştırma verilerini toplayıp 1-7 günlük hata büyüme eğrilerini çıkaran Python defteri kurdular.",
+    "nasil": "MAT 202E kök ortalama kare hata, Simpson integrali ve en küçük kareler eğri uydurma yöntemlerini uyguladılar.",
+    "neEdindiler": "GraphCast ve AIFS'in 1. günde 1,1 °C RMSE sağlarken 7. günde genlik oranının 0,72'ye düştüğünü kanıtladılar.",
+    "bizNasilKatki": "Analiz defterine günlük sıcaklık genliği sönüm katsayısını hesaplayan otomatik fonksiyon ekleriz.",
+    "referanslar": [
+     {
+      "ad": "AURA Yapay Zekâ Tahmin Hata Büyümesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/yapay-zeka-tahmin-hata-buyumesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MAT 202E Sayısal Yöntemler Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=202",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/yapay-zeka-tahmin-hata-buyumesi",
+      "aciklama": "AURA tahmin hata büyümesi analiz defteri ve karşılaştırmalı RMSE grafikleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "İstanbul için GraphCast, AIFS ve IFS modellerinin 1-7 gün önceden sıcaklık tahmin hata büyümesi ve genlik kaybı simülasyonu",
+      "aciklama": "Dört modelin gün bazında RMSE büyüme eğrileri ve günlük sıcaklık genliğindeki sönümlenme animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Sonlu farkı gerçek rüzgâr alanında çalıştır, yapay zekâ tahmininin gün gün hata büyümesini ölç.",
+  "baglanti": "Yazılım kolunda gerçek alanda türev hesabı ve tahmin hatasının gün gün büyümesi; anlatım kolunda CFL videosu bu derse dayanır.",
+  "literatur": {
+   "maddeler": [
+    "Sonlu fark yöntemi türevli denklemi ızgarada çözer; tutarlılık, kararlılık ve yakınsaklık bir şemanın güvenilir olup olmadığını belirler (Durran 2010).",
+    "CFL koşulu: açık şemada zaman adımı, ızgara aralığı ve dalga hızıyla sınırlıdır; aşılırsa sayısal çözüm yakınsamaz, kararsızlaşır (Courant vd. 1928).",
+    "Sayısal hava tahmini, sadeleştirilmiş denklemler, radyosonde gözlemi, kararlı sonlu fark şemaları ve elektronik bilgisayar birleşince uygulanabilir oldu (Lynch 2008)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sonlu hacim çözücüsüne konan sinir ağı akı ara değerlemesini öğrendi; 8-10 kat ince ızgara kadar doğru. Makale 2B akışta kalıyor, 3B'yi beklenti olarak bırakıyor (Kochkov vd. 2021).",
+    "NeuralGCM, spektral dinamik çekirdek ve örtük-açık zaman adımını öğrenilmiş fizikle birleştirir; adım CFL ile sınırlı. Çok farklı iklimlere uzanamadığını kendisi söylüyor (Kochkov vd. 2024).",
+    "GraphCast, denklemleri adım adım çözmek yerine 6 saatlik adımı doğrudan öğrenir, kendi çıktısını girdi yaparak 10 gün ilerler; uzun sürede alanlar bulanıklaşır (Lam vd. 2023)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Durran 2010",
+    "baslik": "Numerical Methods for Fluid Dynamics: With Applications to Geophysics (2. baskı)",
+    "yayin": "Springer, Texts in Applied Mathematics, ders kitabı",
+    "yil": "2010",
+    "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Courant vd. 1928",
+    "baslik": "Über die partiellen Differenzengleichungen der mathematischen Physik",
+    "yayin": "Mathematische Annalen, 100, 32-74",
+    "yil": "1928",
+    "url": "https://doi.org/10.1007/BF01448839",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lynch 2008",
+    "baslik": "The origins of computer weather prediction and climate modeling",
+    "yayin": "Journal of Computational Physics, 227, 3431-3444",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.jcp.2007.02.034",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kochkov vd. 2021",
+    "baslik": "Machine learning–accelerated computational fluid dynamics",
+    "yayin": "Proceedings of the National Academy of Sciences, 118, e2101784118",
+    "yil": "2021",
+    "url": "https://doi.org/10.1073/pnas.2101784118",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature, 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382, 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul için GraphCast, AIFS, ECMWF IFS ve GFS sıcaklık tahminlerinin 1-7 günlük hata büyümesini ve spektral yumuşamasını karşılaştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MAT 202E",
+   "projeyeKatki": "Kök ortalama kare hata hesabı, Simpson kuralıyla hata integrasyonu ve en küçük kareler eğri uydurma yöntemini projeye sunar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En küçük kareler matris çözümü",
+     "nerede": "Modellerin 1-7 günlük hata büyüme hızını ve genlik sönüm oranını eğri uydurarak hesaplarken."
+    },
+    {
+     "formulAd": "Simpson 1/3 kuralı (sayısal integral)",
+     "nerede": "1-7 günlük RMSE eğrilerinin altında kalan toplam kümülatif hata alanını Simpson kuralıyla hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul için GraphCast, AIFS, IFS ve GFS'in 1-7 günlük sıcaklık RMSE'sini ve genlik kaybını METAR ile analiz etmek.",
+  "ayrinti": "Open-Meteo Previous Runs API üzerinden LTBA için GraphCast, AIFS, ECMWF IFS ve GFS modellerinin 1-7 gün önceki sıcaklık tahminleri indirilir. IEM arşivinden aynı saatlere ait METAR sıcaklık ölçümleri çekilir. 00, 06, 12 ve 18 UTC eşleşmeleri yapılarak her gün adımı için RMSE hesaplanır. Günlük sıcaklık genliği (maksimum - minimum) oranlanarak spektral yumuşama saptanır. Bulgular Lam 2023 sonuçlarıyla kıyaslanıp görselleştirilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Model tahminlerini ve METAR gözlemlerini çekmek",
+    "oz": "4 modelin 1-7 günlük geçmiş tahminlerini ve LTBA METAR verisini indirmek.",
+    "ayrinti": "Open-Meteo API ile GraphCast, AIFS, IFS ve GFS 1-7 gün önceki temperature_2m serileri çekilir. IEM METAR ile 00, 06, 12, 18 UTC'de eşlenir.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo Previous Runs API çağrısıyla LTBA için temperature_2m_previous_day1..day7 serileri 4 model için JSON olarak indirilir.",
+      "sade": "Hava tahmin modellerinin geçmiş günlerde yaptığı bir ila yedi gün sonrasına ait sıcaklık tahminlerini internetten çekeriz.",
+      "altAdimlar": [
+       "1. API sorgusuna LTBA koordinatlarını ve dört model adını yaz.",
+       "2. Birinci günden yedinci güne kadar önceki çalıştırma değerlerini iste.",
+       "3. Gelen verileri pandas tablosunda birleştir."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     },
+     {
+      "teknik": "IEM METAR arşivinden LTBA istasyonu verileri çekilip 00, 06, 12 ve 18 UTC saatlerine göre filtrelenerek tahminlerle iç birleştirme yapılır.",
+      "sade": "Havalimanındaki gerçek meteoroloji istasyonunun ana sinoptik saatlerdeki sıcaklık ölçümlerini tahminlerle aynı satırda buluştururuz.",
+      "altAdimlar": [
+       "1. IEM sunucusundan LTBA ölçüm tablosunu oku.",
+       "2. Yalnızca 00, 06, 12 ve 18 UTC saatlerini süz.",
+       "3. Eksik ölçüm olan saatleri temizleyerek eşleşmiş tablo oluştur."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Gün bazında RMSE ve hata büyüme eğrilerini hesaplamak",
+    "oz": "Her model için 1-7 günlük RMSE hesaplayıp hata eğrilerini çizmek.",
+    "ayrinti": "MAT 202E formülleriyle RMSE = sqrt(mean((tahmin - gozlem)^2)) bulunur. 1'den 7'ye gün ekseninde dört modelin hata büyümesi çizdirilir.",
+    "nasil": [
+     {
+      "teknik": "RMSE = np.sqrt(np.mean((df['tahmin_gun'] - df['gercek'])**2)) formülü her model ve her önceden gün için döngüyle hesaplanır.",
+      "sade": "Tahminlerin gerçek ölçümlerden ne kadar saptığını kök ortalama kare hata formülüyle gün gün buluruz.",
+      "altAdimlar": [
+       "1. Her gün adımı için tahmin ile gözlem farklarının karelerini al.",
+       "2. Fark karelerinin ortalamasının karekökünü hesapla.",
+       "3. Dört modelin 1-7 gün RMSE değerlerini diziye sakla."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     },
+     {
+      "teknik": "MAT 202E Simpson 1/3 kuralı işletilerek 1-7 gün arasındaki kümülatif hata integrali bulunur ve modellerin toplam hatası sıralanır.",
+      "sade": "Hata eğrisinin altında kalan toplam alanı sayısal integralle hesaplayarak hangi modelin genel olarak daha isabetli olduğunu buluruz.",
+      "altAdimlar": [
+       "1. Simpson 1/3 formülünü 1'den 7'ye RMSE noktalarına uygula.",
+       "2. Her modelin toplam hata alanını sayısal olarak belirle.",
+       "3. Modellerin haftalık toplam başarı sıralamasını raporla."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+     },
+     {
+      "ders": "MAT 202E",
+      "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Spektral genlik oranını ve yumuşama etkisini analiz etmek",
+    "oz": "Gün içi genlik oranını hesaplayıp Lam 2023 kuramıyla karşılaştırmak.",
+    "ayrinti": "Dört saatlik genlik (maks - min) gözlem genliğine bölünür. Genlik oranının 7. güne düşüşü en küçük karelerle modellenip çizilir.",
+    "nasil": [
+     {
+      "teknik": "genlik_orani = (tahmin_max - tahmin_min) / (gozlem_max - gozlem_min) oranı 1-7 gün için hesaplanıp ortalaması alınır.",
+      "sade": "Yapay zekânın gün içindeki en sıcak ve en soğuk saatler arasındaki farkı silip havayı tekdüzeleştirip tekdüzeleştirmediğini ölçeriz.",
+      "altAdimlar": [
+       "1. Her gün için tahmin edilen maksimum ve minimum sıcaklık farkını bul.",
+       "2. Bu farkı gerçek ölçüm genliğine bölerek günlük oranı çıkar.",
+       "3. Gün bazında ortalama genlik korunum oranını grafiğe dök."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak."
+      }
+     },
+     {
+      "teknik": "MAT 202E en küçük kareler matris çözümüyle genlik kaybı eğimi fit edilir; GraphCast yumuşamasının IFS ile farkı belgelenir.",
+      "sade": "Genlik kaybının zamana göre eğimini matematiksel doğru uydurarak hesaplar ve makale sonuçlarıyla karşılaştırırız.",
+      "altAdimlar": [
+       "1. Genlik oranı serisine doğrusal regresyon fit et.",
+       "2. Yapay zekâ modellerindeki sönüm katsayısını fiziksel modelle kıyasla.",
+       "3. Elde edilen grafikleri ve karşılaştırma özetini dışa aktar."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Yapay zekâ ve fiziksel hava tahmin modellerinin 1-7 günlük hata büyümesini ve genlik kaybını belgeleyen açık kaynak analiz kodu.",
+  "senden": "MAT 202E hata ölçüm fonksiyonları, Simpson sayısal integrali ve en küçük kareler eğri uydurmasını kodlarsın.",
+  "bizden": "AURA Open-Meteo veri çekme altyapısı, METAR eşleme araçları ve tahmin değerlendirme kuramı sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting",
+   "aciklama": "DeepMind GraphCast küresel hava tahmini mimari diyagramı ve blog sayfası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Mean_squared_error_loss.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Hata kareleri ortalaması ve regresyon hedef fonksiyonu eğrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "İstanbul için GraphCast, AIFS ve IFS modellerinin 1-7 gün önceden sıcaklık tahmin hata büyümesi ve genlik kaybı simülasyonu",
+   "aciklama": "Dört modelin gün bazında RMSE büyüme eğrileri ve günlük sıcaklık genliğindeki sönümlenme animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Lam, R. et al. (2023) Learning skillful medium-range global weather forecasting, Science · DOI: 10.1126/science.adi2336",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  },
+  {
+   "ad": "Kochkov, D. et al. (2024) Neural general circulation models for weather and climate, Nature · DOI: 10.1038/s41586-024-07744-y",
+   "url": "https://doi.org/10.1038/s41586-024-07744-y"
+  },
+  {
+   "ad": "Durran, D. R. (2010) Numerical Methods for Fluid Dynamics: With Applications to Geophysics, Springer · DOI: 10.1007/978-1-4419-6412-0",
+   "url": "https://doi.org/10.1007/978-1-4419-6412-0"
+  },
+  {
+   "ad": "Google DeepMind GraphCast AI Weather Forecasting Portal",
+   "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MAT202E-03.json",
+  "tarih": "2026-10-17 01:06",
+  "geminiSha1": "588e5bc44ad6"
+ }
+}

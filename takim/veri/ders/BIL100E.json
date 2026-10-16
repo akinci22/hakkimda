@@ -1,0 +1,145 @@
+{
+ "kod": "BIL 100E",
+ "ad": "Programlama Diline Giriş (Python)",
+ "bolum": "Bilgisayar Mühendisliği",
+ "obsNo": "100",
+ "ozet": "Python programlama dili ile temel algoritma tasarımı, veri yapıları ve bilimsel kütüphanelerin (NumPy, pandas, matplotlib) mühendislik problemlerinde kullanımını öğretir. Vektörel veri işleme, çok boyutlu diziler, meteorolojik zaman serilerinin çözümlenmesi ve yeniden üretilebilir hesaplama iş akışları ele alınır.",
+ "neOgrenirsin": [
+  "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak.",
+  "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek.",
+  "Sayısal atmosfer ve istasyon verilerini iki boyutlu ve zaman serisi grafiklerle görselleştirmek.",
+  "Gözlem ve model verileri arasındaki ortalama mutlak hata ve sapmaları hesaplamak.",
+  "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Vektörel dizi ortalaması ve eksen indirgeme",
+   "tex": "\\bar{x} = \\frac{1}{N} \\sum_{i=1}^{N} x_i",
+   "terimler": [
+    [
+     "\\bar{x}",
+     "vektörün veya seçilen eksenin aritmetik ortalaması",
+     "ölçülen değişkenin birimi, ör. °C"
+    ],
+    [
+     "N",
+     "eleman sayısı (örnekte gün içindeki saat sayısı 24)",
+     "birimsiz"
+    ],
+    [
+     "x_i",
+     "i. indisteki anlık veri değeri",
+     "°C"
+    ],
+    [
+     "\\sum",
+     "belirlenen eksen boyunca elemanların toplamı",
+     "—"
+    ]
+   ],
+   "sade": "Bir dizi içindeki tüm sayıları toplayıp eleman sayısına böler. NumPy üzerinde eksen belirterek günün 24 saatini tek işlemde günlük ortalamaya indirger.",
+   "ornek": "İstanbul için ölçülen 24 saatlik sıcaklık değerlerinin toplamı 360 °C ise N=24 için günlük ortalama sıcaklık 15,0 °C olarak hesaplanır.",
+   "nerede": "D-BIL100E-01 projesinde 40 yıllık saatlik ERA5 sıcaklık serisinden günlük ortalamaları axis=1 ekseninde tek satırda türetirken."
+  },
+  {
+   "ad": "İki boyutlu ızgarada en yakın komşu Öklid uzaklığı",
+   "tex": "d_k = \\sqrt{(\\phi_k - \\phi_0)^2 + (\\lambda_k - \\lambda_0)^2}",
+   "terimler": [
+    [
+     "d_k",
+     "hedef istasyon ile k. model ızgara noktası arasındaki açısal uzaklık",
+     "derece"
+    ],
+    [
+     "\\phi_k",
+     "k. ızgara noktasının coğrafi enlemi",
+     "°"
+    ],
+    [
+     "\\phi_0",
+     "istasyonun coğrafi enlemi (LTFM için 41,28°)",
+     "°"
+    ],
+    [
+     "\\lambda_k",
+     "k. ızgara noktasının coğrafi boylamı",
+     "°"
+    ],
+    [
+     "\\lambda_0",
+     "istasyonun coğrafi boylamı (LTFM için 28,75°)",
+     "°"
+    ]
+   ],
+   "sade": "Bir hava gözlem istasyonuna sayısal model ızgarasındaki en yakın hücreyi bulmak için enlem ve boylam farklarının kareler toplamının karekökünü alır.",
+   "ornek": "İstanbul Havalimanı (41,28°K, 28,75°D) için 0,25 derece çözünürlüklü ERA5 ızgarasındaki 41,25°K ve 28,75°D noktası d ≈ 0,03 derece uzaklıkla en yakın seçilir.",
+   "nerede": "D-BIL100E-02 projesinde xarray kütüphanesinin nearest yöntemiyle istasyona en yakın ERA5 ızgara noktasını bulurken."
+  },
+  {
+   "ad": "Ortalama mutlak hata (MAE)",
+   "tex": "\\mathrm{MAE} = \\frac{1}{N} \\sum_{i=1}^{N} |y_i - \\hat{y}_i|",
+   "terimler": [
+    [
+     "\\mathrm{MAE}",
+     "tahminlerin gerçek değerden ortalama sapma büyüklüğü",
+     "°C"
+    ],
+    [
+     "N",
+     "değerlendirilen toplam gözlem ve tahmin çifti sayısı",
+     "birimsiz"
+    ],
+    [
+     "y_i",
+     "i. andaki gerçek istasyon gözlem değeri",
+     "°C"
+    ],
+    [
+     "\\hat{y}_i",
+     "i. an için üretilen model veya regresyon tahmini",
+     "°C"
+    ],
+    [
+     "|\\cdot|",
+     "mutlak değer farkı",
+     "°C"
+    ]
+   ],
+   "sade": "Her tahminin gerçek değerden ne kadar saptığının işaretine bakılmaksızın ortalamasını alır. Modelin ortalama kaç derece yanıldığını gösterir.",
+   "ornek": "İstanbul'da 10 günlük sıcaklık tahmininde hatalar 1, 2, -1, 0, 1 °C ise mutlak hataların toplamı 5 °C olup MAE = 1,0 °C olarak bulunur.",
+   "nerede": "D-BIL100E-03 projesinde GFS ham tahmini ile makine öğrenmesi düzeltmelerinin başarımını test setinde kıyaslarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Bilimsel hesaplama kütüphanesi NumPy veri yapısı ve çok boyutlu dizi sembolü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul 40 yıllık saatlik 2 m sıcaklık verisi ve NumPy ile hesaplanan günlük ortalamalar zaman serisi animasyonu",
+   "aciklama": "Döngü yerine vektörel eksen indirgeme ile hesaplanan 1985-2024 sıcaklık ortalamaları simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · BIL 100 / 100E",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIL&dersNo=100"
+  },
+  {
+   "ad": "Harris, C. R. vd. (2020) Array programming with NumPy, Nature, 585 · DOI: 10.1038/s41586-020-2649-2",
+   "url": "https://doi.org/10.1038/s41586-020-2649-2"
+  },
+  {
+   "ad": "Hoyer, S., Hamman, J. (2017) xarray: N-D labeled Arrays and Datasets in Python, JORS · DOI: 10.5334/jors.148",
+   "url": "https://doi.org/10.5334/jors.148"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIL&dersNo=100"
+}

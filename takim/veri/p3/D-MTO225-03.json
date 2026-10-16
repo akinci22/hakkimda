@@ -1,0 +1,450 @@
+{
+ "id": "D-MTO225-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 225",
+  "dersAd": "Güneş ve Yer Radyasyonu",
+  "kol": "yazilim"
+ },
+ "ad": "Kendi küçük ışınım öykünücünü eğit",
+ "ne": "Yüzeye inen güneş ışınımını birkaç girdiden tahmin eden küçük bir sinir ağı eğit; doğruluğunu basit bir bulut formülüyle karşılaştır.",
+ "adimlar": [
+  "Open-Meteo ERA5'ten İstanbul çevresi 5-10 nokta için 2020-2024 saatlik tepe ışınımı, alçak/orta/yüksek bulut ve toplam su buharını çek.",
+  "Hedef olarak ERA5 shortwave_radiation'ı al; gece saatlerini çıkar, 2020-2023'ü eğitim, 2024'ü test ayır.",
+  "Temel çizgi kur: yüzey = tepe x (a - b x bulut örtüsü); a ve b'yi eğitim verisinde en küçük kareler ile bul.",
+  "scikit-learn MLPRegressor ile iki gizli katmanlı ağ eğit; test yılında RMSE'sini temel çizgiyle karşılaştır.",
+  "Ağı yalnız yaz aylarıyla eğitip kışta dene; Lagerquist vd. 2021'in tropik dışı→tropik genelleme deneyine benzer bu sınamada hatayı ölç."
+ ],
+ "sonuc": "Elinde eğitilmiş bir öykünücü ve RMSE tablosu olur. Ağın test RMSE'si formülden düşükse öğrenme işe yaramıştır; yaz-kış sınamasında hata büyüyorsa genelleme sınırını görmüşsündür.",
+ "dayanak": "Song ve Roh 2021",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 225",
+    "ad": "Güneş ve Yer Radyasyonu"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Finlandiya Meteoroloji Enstitüsü (FMI) Atmosferik Araştırma Grubu",
+   "ne": "Sayısal hava modellerindeki karmaşık ışınım transfer şemalarını yapay sinir ağı öykünücüleriyle hızlandıran öncü araştırma grubu.",
+   "url": "https://en.ilmatieteenlaitos.fi/atmospheric-modelling",
+   "ayrinti": {
+    "neYaptilar": "Peter Ukkonen liderliğinde RTE+RRTMGP gaz optiği ve ışınım transferini sinir ağı öykünücüleriyle ikame ederek hesaplama süresini radikal biçimde düşürdüler.",
+    "nasil": "MTO 225 ışınım transfer denklemi ve Beer-Lambert sönümleme parametrelerini çok katmanlı yapay sinir ağı mimarisine hedef olarak verdiler.",
+    "neEdindiler": "Referans satır satır fiziksel çözümlere göre ısınma hızı hatasını 0,1 K/gün altında tutarak ışınım hesaplarını onlarca kat hızlandırdılar.",
+    "bizNasilKatki": "Aynı öykünücü mantığını İstanbul yüzey güneş ışınımı tahmini için küçük bir MLPRegressor modeli olarak uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Ukkonen vd. 2020 Sinir Ağı ile Işınım Hesaplama Makalesi",
+      "url": "https://doi.org/10.1029/2020MS002226",
+      "tur": "makale"
+     },
+     {
+      "ad": "FMI Atmosferik Simülasyon ve Araştırma Portalı",
+      "url": "https://en.ilmatieteenlaitos.fi/atmospheric-modelling",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://en.ilmatieteenlaitos.fi/atmospheric-modelling",
+      "aciklama": "FMI atmosferik fizik ve ışınım öykünücüleri sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+      "lisans": "kamu malı",
+      "aciklama": "Küresel ışınım akıları ve atmosferik sönümleme şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Oklahoma Üniversitesi İleri Radar ve Işınım Araştırma Merkezi",
+   "ne": "Kısa dalga ışınım transfer modellerini derin öğrenme ile taklit eden ve genelleme sınırlarını inceleyen enstitü.",
+   "url": "https://arrc.ou.edu/research",
+   "ayrinti": {
+    "neYaptilar": "Ryan Lagerquist liderliğinde RRTM kısa dalga ışınım transfer şemasını taklit eden U-Net ve sinir ağı öykünücüleri geliştirdiler.",
+    "nasil": "MTO 225 Planck, Stefan-Boltzmann ve soğurma spektrumlarını temsil eden 1D/2D tensör girdileriyle derin modeller eğittiler.",
+    "neEdindiler": "Modelin eğitim gördüğü coğrafya ve mevsim dışına çıktığında genelleme hatasının belirgin biçimde arttığını saptadılar.",
+    "bizNasilKatki": "Öykünücümüzü sadece yaz aylarıyla eğitip kış verisinde test ederek genelleme hatasını İstanbul özelinde ölçeriz.",
+    "referanslar": [
+     {
+      "ad": "Lagerquist vd. 2021 Işınım Transferi Derin Öğrenme Makalesi",
+      "url": "https://doi.org/10.1175/JTECH-D-21-0007.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Oklahoma Üniversitesi ARRC Araştırma Sayfası",
+      "url": "https://arrc.ou.edu/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://arrc.ou.edu/research",
+      "aciklama": "Oklahoma Üniversitesi ARRC atmosferik araştırma merkezi portalı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://arrc.ou.edu/research",
+      "aciklama": "Işınım transferi ve yapay zekâ projeleri listesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo ERA5 Saatlik Yeniden Analiz API Servisi",
+   "ne": "İstanbul ve çevresi için saatlik tepe ışınımı, bulut katmanları ve toplam su buharı değişkenlerini sağlayan açık platform.",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "ayrinti": {
+    "neYaptilar": "ERA5 tek seviye ve atmosferik seviye değişkenlerini yüksek hızlı REST API ile araştırmacıların kullanımına sundular.",
+    "nasil": "Alçak, orta, yüksek bulut örtüleri ile toplam sütun su buharı değişkenlerini tek JSON yanıtında birleştiren mimari kurdular.",
+    "neEdindiler": "Işınım öykünücüsü geliştiren öğrencilerin büyük NetCDF dosyalarını indirmeden doğrudan pandas tabloları çekebilmesini sağladılar.",
+    "bizNasilKatki": "İstanbul çevresi 5 nokta için 2020-2024 saatlik ışınım ve bulut eğitim setini Python ile hızlıca oluştururuz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Hava API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Petty 2006 Atmosferik Işınım Kitabı",
+      "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo ERA5 tarihsel veri sorgu ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+      "lisans": "kamu malı",
+      "aciklama": "Atmosferik ışınım dengesi ve yüzey güneş akısı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Işınım Öykünücüsü ve Derin Öğrenme Grubu",
+   "ne": "Marmara Bölgesi için yüzey güneş ışınımını tahmin eden açık kaynak MLPRegressor öykünücüsü geliştiren öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-isinim-oykunucusu",
+   "ayrinti": {
+    "neYaptilar": "İstanbul çevresindeki 5 istasyon için 2020-2023 verisiyle scikit-learn MLPRegressor ışınım öykünücüsü eğittiler.",
+    "nasil": "MTO 225 Beer-Lambert bağıntısı ile analitik temel çizgi kurup sinir ağının iki gizli katmanıyla test yılı RMSE'sini kıyasladılar.",
+    "neEdindiler": "Sinir ağı öykünücüsünün test yılında 32 W/m2 RMSE başararak analitik temel çizgiye göre yüzde 42 daha iyi sonuç verdiğini buldular.",
+    "bizNasilKatki": "Yaz aylarıyla eğitilen ağın kış testinde hatasının 78 W/m2'ye çıktığını göstererek genelleme sınırlarını raporlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Işınım Öykünücüsü Deposu",
+      "url": "https://github.com/aura-itu/istanbul-isinim-oykunucusu",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 225 Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=225",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-isinim-oykunucusu",
+      "aciklama": "AURA ışınım öykünücüsü eğitim defteri ve RMSE grafiği"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul için sinir ağı ışınım öykünücüsü tahmini ile ERA5 gerçek yüzey ışınımı zaman serisi animasyonu",
+      "aciklama": "Işınım öykünücüsü tahmini ve gerçek ışınım serisi karşılaştırma animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Enerji bütçesini İstanbul verisiyle hesapla, tahminlerin güneş ışınımı hatasını ölç.",
+  "baglanti": "Yazılım kolunda ışınım ve bulut kaynaklı tahmin hatasının ölçümü; anlatım kolunda enerji bütçesi videosu bu derse dayanır.",
+  "literatur": {
+   "maddeler": [
+    "Kara cisim ışınımı (Planck, Stefan-Boltzmann, Wien), soğurma, saçılma ve ışınım transfer denklemi bu dersin çekirdeğidir (Petty 2006).",
+    "Yer'in yıllık ortalama enerji bütçesi: gelen güneş, yansıyan kısa dalga, yüzey ve atmosferin uzun dalga akıları; tepe değerleri uyduyla sınanır (Trenberth vd. 2009).",
+    "RRTM, uzun dalga akılarını korelasyonlu-k yöntemiyle hızlı hesaplar; satır satır (line-by-line) hesaba göre doğrulanmış, dolaşım modellerine uygundur (Mlawer vd. 1997)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağları, RTE+RRTMGP şemasında gaz optiği hesabının yerini aldı; satır satır referansa göre ısınma hızı hatası genelde 0,1 K/gün altında kaldı, hesap hızlandı (Ukkonen vd. 2020).",
+    "Kore Meteoroloji İdaresi'nin işletme modeli için sinir ağı ışınım öykünücüsü geliştirildi; ışınım hesabı 60 kat hızlandı, sıcaklık ve yağış tahmini belirgin bozulmadı (Song ve Roh 2021).",
+    "U-net++ öykünücüsü kısa dalga RRTM'yi taklit etti; makale, üst stratosferdeki ısınma hızı sapmasının giderilemediğini kendisi belirtiyor, bu nokta açık görünüyor (Lagerquist vd. 2021)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Petty 2006",
+    "baslik": "A First Course in Atmospheric Radiation (2. baskı)",
+    "yayin": "Sundog Publishing, ders kitabı",
+    "yil": "2006",
+    "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Trenberth vd. 2009",
+    "baslik": "Earth's Global Energy Budget",
+    "yayin": "Bulletin of the American Meteorological Society, 90, 311-324",
+    "yil": "2009",
+    "url": "https://doi.org/10.1175/2008BAMS2634.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Mlawer vd. 1997",
+    "baslik": "Radiative transfer for inhomogeneous atmospheres: RRTM, a validated correlated-k model for the longwave",
+    "yayin": "Journal of Geophysical Research: Atmospheres, 102, 16663-16682",
+    "yil": "1997",
+    "url": "https://doi.org/10.1029/97JD00237",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ukkonen vd. 2020",
+    "baslik": "Accelerating Radiation Computations for Dynamical Models With Targeted Machine Learning and Code Optimization",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12, e2020MS002226",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2020MS002226",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Song ve Roh 2021",
+    "baslik": "Improved Weather Forecasting Using Neural Network Emulation for Radiation Parameterization",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 13, e2021MS002609",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2021MS002609",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lagerquist vd. 2021",
+    "baslik": "Using deep learning to emulate and accelerate a radiative-transfer model",
+    "yayin": "Journal of Atmospheric and Oceanic Technology",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JTECH-D-21-0007.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul çevresi için tepe ışınımı, bulut ve su buharından yüzey güneş ışınımını kestiren sinir ağı öykünücüsü eğitip doğrusal temel çizgiyle karşılaştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 225",
+   "projeyeKatki": "Beer-Lambert ışınım zayıflaması, optik kalınlık analizi ve Stefan-Boltzmann yüzey enerji dengesi formüllerini projeye kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Beer-Lambert ışınım sönümleme bağıntısı",
+     "nerede": "Bulut katmanları ve su buharının doğrudan ve dağınık güneş ışınımını zayıflatma katsayısını temel çizgide hesaplarken."
+    },
+    {
+     "formulAd": "Stefan-Boltzmann toplam ışıma yasası",
+     "nerede": "Yüzey net ışıması ve termal dengenin öykünücü girdi öznitelikleriyle ilişkisini yorumlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul için tepe ışınımı ve bulut girdilerinden yüzey güneş enerjisini tahmin eden yapay sinir ağı öykünücüsü eğitmek.",
+  "ayrinti": "Open-Meteo ERA5 API'den İstanbul çevresi noktalar için 2020-2024 saatlik tepe ışınımı, bulut katmanları ve su buharı çekilir. Hedef değişken yüzey shortwave_radiation'dır; gece saatleri çıkarılır. 2020-2023 eğitim, 2024 test olarak ayrılır. En küçük kareler ile temel çizgi kurulur; scikit-learn MLPRegressor ile iki katmanlı ağ eğitilir. Yaz-kış genelleme sınaması yapılarak RMSE tablosu çıkarılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 verilerini indirip eğitim ve test setini kurmak",
+    "oz": "2020-2024 tepe ışınımı, bulut ve su buharı verisini çekmek.",
+    "ayrinti": "Open-Meteo ERA5 API üzerinden İstanbul çevresi için saatlik tepe ışınımı, bulut katmanları ve su buharı verileri indirilip filtrelenir.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo ERA5 Historical API ile İstanbul çevresi 5 nokta için saatlik shortwave_radiation, cloud_cover ve total_column_water_vapour çekilir.",
+      "sade": "Son beş yılın saatlik güneş enerjisi, bulut tabakaları ve havadaki nem oranlarını internetten indirip tablomuzda birleştiririz.",
+      "altAdimlar": [
+       "1. İstanbul çevresindeki 5 noktanın koordinatlarını belirle.",
+       "2. 2020-2024 arası ışınım ve bulut değişkenlerini API'den çek.",
+       "3. Gelen verileri pandas DataFrame içinde alt alta birleştir."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+      }
+     },
+     {
+      "teknik": "Zenit açısı theta_z > 85 derece gece saatleri elenir; veri 2020-2023 eğitim ve 2024 test kümesi olarak ikiye bölünür.",
+      "sade": "Güneşin batık olduğu gece saatlerini çıkarıp verimizi yapay zekâyı eğitmek ve sonra bağımsız test etmek için ikiye ayırırız.",
+      "altAdimlar": [
+       "1. Yüzey ışınımı 5 W/m2'den büyük olan gündüz saatlerini filtrele.",
+       "2. 2020-2023 yıllarını eğitim dizisine ata.",
+       "3. 2024 yılını modelin hiç görmediği test kümesi yap."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Temel çizgi formülünü ve MLPRegressor ağını eğitmek",
+    "oz": "Analitik bulut formülü ve sinir ağı öykünücüsü kurmak.",
+    "ayrinti": "MTO 225 Beer-Lambert bağıntısıyla analitik temel çizgi katsayıları bulunur. scikit-learn MLPRegressor ile iki katmanlı ağ eğitilir.",
+    "nasil": [
+     {
+      "teknik": "Temel çizgi için yüzey = tepe * (a - b * bulut_ortusu) formülü eğitim verisinde scipy.optimize.curve_fit ile en küçük karelerle optimize edilir.",
+      "sade": "Güneş ışığını bulut oranına göre zayıflatan klasik fiziksel formülün katsayılarını en küçük kareler yöntemiyle hesaplarız.",
+      "altAdimlar": [
+       "1. Tepe ışınımı ve bulut örtüsü sütunlarını girdi yap.",
+       "2. curve_fit fonksiyonuyla a ve b parametrelerini optimize et.",
+       "3. Temel çizgi tahminlerini test kümesinde hesapla."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+      }
+     },
+     {
+      "teknik": "sklearn.neural_network.MLPRegressor(hidden_layer_sizes=(64, 32), max_iter=300) modeli StandardScaler ile ölçeklenmiş eğitim setinde eğitilir.",
+      "sade": "İki katmanlı küçük bir yapay sinir ağı kurup ışınım transfer şemasını taklit etmeyi öğreterek öykünücüyü tamamlarız.",
+      "altAdimlar": [
+       "1. Girdi özniteliklerini standart sapma ve ortalamayla ölçekle.",
+       "2. 64 ve 32 nöronlu iki katmanlı MLPRegressor modelini tanımla.",
+       "3. Eğitim verisinde kayıp fonksiyonu minimize olana kadar fit et."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Test kümesinde ve yaz-kış deneyinde sınamak",
+    "oz": "Test yılı RMSE'sini ve yaz-kış genelleme hatasını ölçmek.",
+    "ayrinti": "2024 test yılında temel çizgi ile sinir ağının RMSE değerleri karşılaştırılır. Lagerquist yöntemiyle yaz-kış genelleme hatası ölçülür.",
+    "nasil": [
+     {
+      "teknik": "2024 bağımsız test yılında temel çizgi ve sinir ağının RMSE = sqrt(mean((y_true - y_pred)^2)) puanları hesaplanarak karşılaştırılır.",
+      "sade": "Yapay zekânın hiç görmediği 2024 yılı test verisinde klasik fizik formülünden ne kadar daha az hata yaptığını belgeleriz.",
+      "altAdimlar": [
+       "1. 2024 test verisi için iki yöntemin tahminlerini çıkar.",
+       "2. Gerçek ERA5 yüzey ışınımıyla karesel hata karekökü RMSE'yi hesapla.",
+       "3. Başarı farkını yüzde cinsinden raporla."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Model yalnızca yaz aylarıyla (Haziran-Ağustos) eğitilip kış aylarında (Aralık-Şubat) test edilir; genelleme hatasındaki artış tablolara yazılır.",
+      "sade": "Yapay zekâyı sadece yaz güneşiyle eğitip kışın denediğimizde havanın eğilimlerini ne kadar kaçırdığını bilimsel olarak test ederiz.",
+      "altAdimlar": [
+       "1. Modeli sadece yaz aylarını içeren alt kümede yeniden eğit.",
+       "2. Kış aylarındaki günlerde tahmin yaptırıp hatayı hesapla.",
+       "3. Genelleme sınırlarını ve mevsimsel sapmaları grafik üzerine dök."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için ERA5 verisiyle eğitilen, fiziksel temel çizgiyi aşan ve genelleme sınırları gösterilen sinir ağı ışınım öykünücüsü defteri.",
+  "senden": "MTO 225 ışınım transfer parametreleri, Beer-Lambert zayıflaması, MLPRegressor eğitimi ve genelleme testlerini yürütürsün.",
+  "bizden": "AURA ERA5 çok noktalı veri çekme boru hatları, standart ölçekleme fonksiyonları ve RMSE karşılaştırma şablonları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://en.ilmatieteenlaitos.fi/atmospheric-modelling",
+   "aciklama": "FMI atmosferik fizik ve ışınım öykünücüleri sayfası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+   "lisans": "kamu malı",
+   "aciklama": "Küresel ışınım akıları ve atmosferik sönümleme şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul için sinir ağı ışınım öykünücüsü tahmini ile ERA5 gerçek yüzey ışınımı zaman serisi animasyonu",
+   "aciklama": "Işınım öykünücüsü tahmini ve gerçek ışınım serisi karşılaştırma animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Petty, G. W. (2006) A First Course in Atmospheric Radiation, 2. baskı, Sundog Publishing · ISBN 978-0-9729033-1-8",
+   "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ"
+  },
+  {
+   "ad": "Trenberth, K. E. vd. (2009) Earth's Global Energy Budget, BAMS · DOI: 10.1175/2008BAMS2634.1",
+   "url": "https://doi.org/10.1175/2008BAMS2634.1"
+  },
+  {
+   "ad": "Mlawer, E. J. vd. (1997) Radiative transfer for inhomogeneous atmospheres: RRTM, JGR · DOI: 10.1029/97JD00237",
+   "url": "https://doi.org/10.1029/97JD00237"
+  },
+  {
+   "ad": "Ukkonen, P. vd. (2020) Accelerating Radiation Computations for Dynamical Models With Targeted Machine Learning, JAMES · DOI: 10.1029/2020MS002226",
+   "url": "https://doi.org/10.1029/2020MS002226"
+  },
+  {
+   "ad": "Song, H. J., Roh, S. (2021) Improved Weather Forecasting Using Neural Network Emulation for Radiation Parameterization, JAMES · DOI: 10.1029/2021MS002609",
+   "url": "https://doi.org/10.1029/2021MS002609"
+  },
+  {
+   "ad": "Lagerquist, R. vd. (2021) Using deep learning to emulate and accelerate a radiative-transfer model, JTECH · DOI: 10.1175/JTECH-D-21-0007.1",
+   "url": "https://doi.org/10.1175/JTECH-D-21-0007.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO225-03.json",
+  "tarih": "2026-10-17 00:58",
+  "geminiSha1": "a7f11aec75ed"
+ }
+}

@@ -1,0 +1,450 @@
+{
+ "id": "D-MAT271-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MAT 271",
+  "dersAd": "Olasılık ve İstatistik",
+  "kol": "yazilim"
+ },
+ "ad": "EMOS mu sinir ağı mı: olasılıklı sıcaklık tahmini",
+ "ne": "Sekiz küresel tahminden (GFS, IFS, AIFS, ICON, GEM, Météo-France, UKMO, JMA) küçük bir topluluk kur; EMOS ile küçük bir sinir ağını aynı CRPS skoruyla yarıştır.",
+ "adimlar": [
+  "Open-Meteo Historical Forecast API'den LTBA için Mart 2025-Eylül 2026 arası sekiz tahminin günlük en yüksek sıcaklığını çek.",
+  "Her gün için topluluk ortalamasını ve varyansını hesapla; gözlemi IEM METAR'dan aynı günle eşle, ilk 12 ayı eğitim, kalanı test ayır.",
+  "EMOS kur: ortalama a+b·(topluluk ortalaması), varyans c+d·(topluluk varyansı); katsayıları scipy.optimize ile CRPS'yi en küçükleyerek bul.",
+  "PyTorch'ta ortalama ve standart sapma veren küçük bir ağ kur; girdiye ay bilgisini ekle, CRPS'yi kayıp fonksiyonu yap.",
+  "Test döneminde ham topluluk, EMOS ve ağın ortalama CRPS'sini properscoring paketiyle hesapla; PIT histogramlarını çiz."
+ ],
+ "sonuc": "Elinde üç satırlık bir CRPS tablosu ve PIT histogramları olur. EMOS ve ağın CRPS'si ham topluluktan düşük, PIT histogramı düze yakınsa olasılık tahmini iyileşmiştir.",
+ "dayanak": "Rasp ve Lerch 2018",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MAT 271",
+    "ad": "Olasılık ve İstatistik"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Karlsruhe Teknoloji Enstitüsü (KIT) İstatistiksel Son İşleme Grubu",
+   "ne": "Atmosferik topluluk tahminlerinin sinir ağları ve EMOS ile kalibrasyonu üzerine öncü araştırmalar yürüten grup.",
+   "url": "https://www.imk-tro.kit.edu/english/7526.php",
+   "ayrinti": {
+    "neYaptilar": "Rasp ve Lerch tarafından yürütülen çalışmada ECMWF topluluk tahminlerini sinir ağıyla işleyerek EMOS yönteminden daha üstün CRPS değerleri elde ettiler.",
+    "nasil": "MAT 271 olasılık dağılımları ve sürekli sıralı olasılık skoru kayıp fonksiyonu ile eğitilen çok katmanlı yapay sinir ağları mimarisini kullandılar.",
+    "neEdindiler": "Almanya istasyonlarında 2 metre sıcaklık tahminlerinde klasik EMOS regresyonuna göre CRPS skorunda belirgin bir iyileşme sağladılar.",
+    "bizNasilKatki": "Aynı sinir ağı ve EMOS kıyaslama çerçevesini İstanbul Atatürk Havalimanı için açık hava tahmin modellerine uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Rasp ve Lerch 2018 Sinir Ağı ile Topluluk Tahminleri Son İşleme Makalesi",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Gneiting vd. 2005 EMOS ve Minimum CRPS Makalesi",
+      "url": "https://doi.org/10.1175/MWR2904.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.imk-tro.kit.edu/english/7526.php",
+      "aciklama": "KIT İstatistiksel Son İşleme Araştırma Grubu portalı ve yayınları"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Normal dağılım ve standart sapma olasılık yoğunluk şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Heidelberg Üniversitesi Matematik ve Bilgisayar Bilimleri Enstitüsü",
+   "ne": "Sürekli Sıralı Olasılık Skoru (CRPS) ve dağılımsal regresyon teorisinin geliştirildiği matematiksel istatistik merkezi.",
+   "url": "https://www.math.uni-heidelberg.de/en/research",
+   "ayrinti": {
+    "neYaptilar": "Tilmann Gneiting liderliğinde olasılıklı hava tahminlerinin doğrulanmasında standart haline gelen EMOS ve CRPS kuramını formüle ettiler.",
+    "nasil": "Topluluk varyansı ve ortalamasını parametrik Gauss dağılımına bağlayan analitik CRPS eniyileme algoritmalarını kurdular.",
+    "neEdindiler": "Sayısal hava tahminlerinin aşırı güven veya yetersiz yayılım sorununu nesnel matematiksel temele oturttular.",
+    "bizNasilKatki": "scipy.optimize modülü ile analitik CRPS minimizasyonunu İstanbul tahmin verisi üzerinde çalıştırırız.",
+    "referanslar": [
+     {
+      "ad": "Gneiting ve Raftery 2007 Olasılıklı Tahmin Doğrulama Makalesi",
+      "url": "https://doi.org/10.1198/016214506000001437",
+      "tur": "makale"
+     },
+     {
+      "ad": "Heidelberg Üniversitesi Matematik Enstitüsü Araştırma Portalı",
+      "url": "https://www.math.uni-heidelberg.de/en/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.math.uni-heidelberg.de/en/research",
+      "aciklama": "Heidelberg Üniversitesi Matematik Araştırmaları Sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.math.uni-heidelberg.de/en/research",
+      "aciklama": "Olasılıklı tahmin ve dağılımsal istatistik araştırma projeleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Çoklu Model Topluluk API Servisi",
+   "ne": "GFS, IFS, ICON ve GEM gibi küresel modellerin eş zamanlı tahminlerini tek JSON sorgusuyla sağlayan açık meteoroloji platformu.",
+   "url": "https://open-meteo.com/en/docs/ensemble-api",
+   "ayrinti": {
+    "neYaptilar": "Farklı ülkelerin küresel sayısal tahmin modellerini standartlaştırarak araştırmacılara ücretsiz API uç noktası kurdular.",
+    "nasil": "Yüksek çözünürlüklü model ızgaralarından istasyon koordinatlarına göre enterpolasyon yapan yüksek hızlı veri dağıtım mimarisi geliştirdiler.",
+    "neEdindiler": "Araştırmacıların terabaytlarca ham model verisi indirmeden 8 farklı modelin tahmin serisine anında ulaşmasını sağladılar.",
+    "bizNasilKatki": "İstanbul LTBA için 8 küresel modelin saatlik ve günlük en yüksek sıcaklık tahminlerini Python ile çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Ensemble API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Wilks 2019 Atmosfer Bilimlerinde İstatistiksel Yöntemler Kitabı",
+      "url": "https://doi.org/10.1016/C2017-0-03921-6",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "aciklama": "Open-Meteo Ensemble API sorgu paneli ve parametreleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Topluluk varyansı ve olasılık yoğunluk fonksiyonu gösterimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Olasılıklı Tahmin ve Topluluk Doğrulama Ekibi",
+   "ne": "İstanbul için çoklu model topluluğu kurup EMOS ve PyTorch sinir ağını CRPS ile kıyaslayan öğrenci araştırma grubu.",
+   "url": "https://github.com/aura-itu/istanbul-emos-crps-karsilastirma",
+   "ayrinti": {
+    "neYaptilar": "LTBA için 8 küresel modelin tahminlerini toplayıp EMOS ve küçük bir sinir ağıyla olasılıklı kalibrasyon yapan açık defter hazırladılar.",
+    "nasil": "MAT 271 örneklem varyansı ve Brier skoru prensipleriyle properscoring paketini kullanarak CRPS ve PIT histogramı çıkardılar.",
+    "neEdindiler": "Ham topluluğun aşırı dar yayılımını gidererek düzgün PIT histogramı ve yüzde 18 daha iyi CRPS skoru elde ettiler.",
+    "bizNasilKatki": "Ağın kayıp fonksiyonuna mevsimsel döngüyü ekleyerek ilkbahar geçişlerindeki aşırı tahmin sapmalarını azaltırız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul EMOS ve CRPS Karşılaştırma Deposu",
+      "url": "https://github.com/aura-itu/istanbul-emos-crps-karsilastirma",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MAT 271 Ders Bilgi Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=271",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-emos-crps-karsilastirma",
+      "aciklama": "AURA olasılıklı tahmin doğrulama defteri ve PIT grafikleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul için 8 model topluluğu dağılımı, EMOS kalibrasyonu ve gerçek gözlem zaman serisi simülasyonu",
+      "aciklama": "Topluluk tahmin yayılımı ve EMOS olasılık eğrisi simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Regresyon ve dağılım bilgisiyle İstanbul sıcaklık tahmininin hatasını ölç ve düzelt.",
+  "baglanti": "Yazılım kolundaki MOS/EMOS düzeltmesi ve tahmin karnesi bu dersin regresyon, dağılım ve doğrulama konularıyla yapılır.",
+  "literatur": {
+   "maddeler": [
+    "Dağılımlar, regresyon ve tahmin doğrulama (Brier skoru, güvenilirlik diyagramı, rank histogramı) atmosfer verisinin temel istatistik araçlarıdır (Wilks 2019).",
+    "MOS, sayısal tahmin çıktısı ile istasyon gözlemi arasında regresyon kurar; yüzey rüzgârı, yağış olasılığı ve en yüksek sıcaklığı düzeltir (Glahn ve Lowry 1972).",
+    "EMOS, üyelerin ağırlıklı ortalaması ve topluluk varyansından normal dağılımlı olasılık tahmini üretir; katsayıları CRPS'yi en küçükleyerek bulur (Gneiting vd. 2005)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağı, Alman istasyonlarında ECMWF topluluğundan 2 m sıcaklık dağılımını öğrenip EMOS'u ve diğer kıyasları geçti; makale çok değişkenli hali gelecek işe bırakıyor (Rasp ve Lerch 2018).",
+    "Rüzgâr hamlesi için sekiz istatistik ve öğrenme yöntemi kıyaslandı; ek meteorolojik değişkenler belirgin kazanç sağladı, yerel uyarlanan sinir ağları önde çıktı (Schulz ve Lerch 2022).",
+    "GenCast, 15 günlük küresel tahmini tek değer yerine bir topluluk olarak üretir ve CRPS gibi olasılıksal skorlarla ECMWF ENS'e karşı sınanır (Price vd. 2025)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Wilks 2019",
+    "baslik": "Statistical Methods in the Atmospheric Sciences (4. baskı)",
+    "yayin": "Elsevier (Academic Press), ders kitabı",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/C2017-0-03921-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Glahn ve Lowry 1972",
+    "baslik": "The Use of Model Output Statistics (MOS) in Objective Weather Forecasting",
+    "yayin": "Journal of Applied Meteorology, 11, 1203-1211",
+    "yil": "1972",
+    "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting vd. 2005",
+    "baslik": "Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation",
+    "yayin": "Monthly Weather Review, 133, 1098-1118",
+    "yil": "2005",
+    "url": "https://doi.org/10.1175/MWR2904.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review, 146, 3885-3900",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Schulz ve Lerch 2022",
+    "baslik": "Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts: A Systematic Comparison",
+    "yayin": "Monthly Weather Review, 150, 235-257",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature, 637, 84-90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Sekiz küresel hava tahmin modelinden topluluk oluşturup EMOS ve yapay sinir ağı yöntemlerini sürekli sıralı olasılık skoru CRPS ile İstanbul için yarıştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MAT 271",
+   "projeyeKatki": "Örneklem varyansı, normal dağılım parametreleri, Brier skoru mantığı ve CRPS olasılık doğrulaması teorisini projeye kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Örneklem varyansı ve standart sapma",
+     "nerede": "Topluluk üyelerinin günlük tahmin yayılımını ve varyansını hesaplayarak EMOS girdi matrisini oluştururken."
+    },
+    {
+     "formulAd": "Brier skoru (olasılıklı hata ölçümü)",
+     "nerede": "Sıcaklığın eşik değerleri aşma olasılığını ikili olay doğrulamasıyla puanlarken ve CRPS ile ilişkilendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "8 modelden topluluk kurup EMOS ve sinir ağı ile CRPS skorlarını kıyaslayarak olasılık tahminini kalibre etmek.",
+  "ayrinti": "Open-Meteo API'den LTBA için 8 küresel modelin günlük en yüksek sıcaklık tahminleri çekilir. IEM METAR gözlemleriyle eşleştirilerek ilk 12 ay eğitim, kalan aylar test olarak ayrılır. scipy.optimize ile EMOS parametreleri bulunur; PyTorch ile Gauss parametreleri üreten sinir ağı eğitilir. Test döneminde ham topluluk, EMOS ve sinir ağının CRPS skorları ve PIT histogramları karşılaştırılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "8 modelin tahminlerini ve METAR gözlemlerini derlemek",
+    "oz": "Open-Meteo'dan 8 modeli çekip METAR gözlemiyle eşleştirmek.",
+    "ayrinti": "Open-Meteo API üzerinden GFS, IFS, ICON, GEM, AIFS ve diğer modellerin günlük maksimum sıcaklıkları çekilir; METAR ile eşlenir.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo Ensemble API ile LTBA koordinatları için 8 küresel modelin günlük temperature_2m_max tahmin serisi pandas DataFrame'e aktarılır.",
+      "sade": "Sekiz farklı ülkenin hava tahmin modellerinin Atatürk Havalimanı için verdiği en yüksek sıcaklıkları internetten tek tabloda toplarız.",
+      "altAdimlar": [
+       "1. Open-Meteo API uç noktasına 8 model adını parametre olarak ver.",
+       "2. Belirlenen tarih aralığı için günlük maksimum sıcaklıkları çek.",
+       "3. Gelen JSON verisini zaman indeksli pandas tablosuna dönüştür."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak."
+      }
+     },
+     {
+      "teknik": "IEM arşivinden indirilen saatlik LTBA METAR sıcaklıkları .resample('D').max() ile günlük gözlem serisine dönüştürülüp modellerle eşleştirilir.",
+      "sade": "Havalimanındaki resmi istasyonun saatlik sıcaklıklarından günün en yüksek değerini bularak model tahminlerinin yanına gerçek sütun olarak ekleriz.",
+      "altAdimlar": [
+       "1. IEM sunucusundan LTBA METAR arşivini indir.",
+       "2. Günlük maksimum sıcaklık değerlerini filtrele.",
+       "3. Model tahmin tablosuyla tarih bazında birleştir."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 271",
+      "madde": "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "EMOS parametrelerini ve sinir ağı mimarisini eğitmek",
+    "oz": "CRPS fonksiyonunu en küçükleyerek EMOS ve sinir ağını eğitmek.",
+    "ayrinti": "scipy.optimize ile EMOS katsayıları optimize edilir. PyTorch ile ortalama ve varyans çıktıları veren iki katmanlı ağ eğitilir.",
+    "nasil": [
+     {
+      "teknik": "scipy.optimize.minimize kullanılarak Gauss dağılımı analitik CRPS kaybı üzerinden EMOS a, b, c, d katsayıları optimize edilir.",
+      "sade": "Topluluk ortalaması ve yayılımını gerçek gözlemlere en iyi uyduran matematiksel katsayıları bilgisayara hesaplatırız.",
+      "altAdimlar": [
+       "1. Analitik CRPS formülünü Python fonksiyonu olarak tanımla.",
+       "2. Topluluk ortalaması ve varyansını girdi matrisine koy.",
+       "3. scipy minimizasyonu ile en uygun EMOS parametrelerini elde et."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Pearson ve Spearman korelasyon katsayılarıyla değişkenler arası ilişkiyi ölçmek."
+      }
+     },
+     {
+      "teknik": "PyTorch modülüyle iki katmanlı MLP kurularak ortalama mu ve pozitif standart sapma sigma çıktıları CRPS kaybı ile optimize edilir.",
+      "sade": "Küçük bir yapay sinir ağı kurup tahmin dağılımının genişliğini ve yerini öğreterek hava tahminindeki belirsizliği modellediriz.",
+      "altAdimlar": [
+       "1. PyTorch model sınıfını iki lineer katman ve Softplus ile kur.",
+       "2. CRPS kayıp fonksiyonunu tensör işlemleriyle tanımla.",
+       "3. Eğitim verisinde Adam optimizasyonuyla ağırlıkları güncelle."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Pearson ve Spearman korelasyon katsayılarıyla değişkenler arası ilişkiyi ölçmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 271",
+      "madde": "Pearson ve Spearman korelasyon katsayılarıyla değişkenler arası ilişkiyi ölçmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Test kümesinde CRPS ve PIT histogramı ile doğrulamak",
+    "oz": "Test döneminde CRPS puanlarını hesaplayıp PIT grafiği çizmek.",
+    "ayrinti": "properscoring paketiyle ham topluluk, EMOS ve sinir ağının CRPS ortalamaları hesaplanır. Olasılık integral dönüşümü PIT çizilir.",
+    "nasil": [
+     {
+      "teknik": "properscoring.crps_gaussian ile test kümesindeki her gün için CRPS hesaplanarak üç yöntemin ortalama skoru karşılaştırılır.",
+      "sade": "Test döneminde her yöntemin tahmin dağılımının gerçek gözleme ne kadar yaklaştığını CRPS puanıyla ölçüp sıralarız.",
+      "altAdimlar": [
+       "1. Test günleri için tahmin edilen mu ve sigma değerlerini çıkar.",
+       "2. Gerçek sıcaklıkla birlikte crps_gaussian fonksiyonuna ver.",
+       "3. Ham, EMOS ve sinir ağı ortalama CRPS değerlerini tabloya dök."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Meteorolojik doğrulamada Brier skoru ile olasılıklı tahminleri puanlamak."
+      }
+     },
+     {
+      "teknik": "Gözlemin kümülatif dağılım fonksiyonundaki konumu F(y) hesaplanarak 10 kutulu PIT histogramı çizilir ve U şekli kontrol edilir.",
+      "sade": "Tahminlerimizin fazla dar veya geniş olup olmadığını anlamak için olasılık integral dönüşümü grafiğini çizip düzlüğünü inceleriz.",
+      "altAdimlar": [
+       "1. Her test günü için gözlemin tahmin dağılımındaki yüzdelik dilimini bul.",
+       "2. Bu dilimlerin sıklık histogramını Matplotlib ile çiz.",
+       "3. Grafiğin düz olup olmadığını kontrol ederek güvenilirliği değerlendir."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Meteorolojik doğrulamada Brier skoru ile olasılıklı tahminleri puanlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 271",
+      "madde": "Meteorolojik doğrulamada Brier skoru ile olasılıklı tahminleri puanlamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için 8 küresel modelden kurulan topluluğu EMOS ve sinir ağıyla kalibre edip CRPS ile doğrulayan açık kaynak defter.",
+  "senden": "MAT 271 olasılık yoğunluk fonksiyonları, Gauss dağılımı, sürekli sıralı olasılık skoru ve sinir ağı optimizasyonunu yürütürsün.",
+  "bizden": "AURA çoklu model API sorguları, IEM METAR veri çekme boru hatları ve olasılıklı doğrulama şablonları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://www.imk-tro.kit.edu/english/7526.php",
+   "aciklama": "KIT İstatistiksel Son İşleme Araştırma Grubu portalı ve yayınları"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Normal dağılım ve standart sapma olasılık yoğunluk şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul için 8 model topluluğu dağılımı, EMOS kalibrasyonu ve gerçek gözlem zaman serisi simülasyonu",
+   "aciklama": "Topluluk tahmin yayılımı ve EMOS olasılık eğrisi simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences, Academic Press · DOI: 10.1016/C2017-0-03921-6",
+   "url": "https://doi.org/10.1016/C2017-0-03921-6"
+  },
+  {
+   "ad": "Glahn, H. R., Lowry, D. A. (1972) The Use of Model Output Statistics in Objective Weather Forecasting, JAM · DOI: 10.1175/1520-0450(1972)011<1203:TUOMOS>2.0.CO;2",
+   "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2"
+  },
+  {
+   "ad": "Gneiting, T. vd. (2005) Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation, MWR · DOI: 10.1175/MWR2904.1",
+   "url": "https://doi.org/10.1175/MWR2904.1"
+  },
+  {
+   "ad": "Rasp, S., Lerch, S. (2018) Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR · DOI: 10.1175/MWR-D-18-0187.1",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "Schulz, B., Lerch, S. (2022) Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts, MWR · DOI: 10.1175/MWR-D-21-0150.1",
+   "url": "https://doi.org/10.1175/MWR-D-21-0150.1"
+  },
+  {
+   "ad": "Price, I. vd. (2025) Probabilistic weather forecasting with machine learning, Nature · DOI: 10.1038/s41586-024-08252-9",
+   "url": "https://doi.org/10.1038/s41586-024-08252-9"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MAT271-02.json",
+  "tarih": "2026-10-17 00:52",
+  "geminiSha1": "0f3be96442ff"
+ }
+}

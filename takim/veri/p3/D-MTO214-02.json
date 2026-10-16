@@ -1,0 +1,454 @@
+{
+ "id": "D-MTO214-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 214",
+  "dersAd": "Atmosfer Termodinamiği",
+  "kol": "yazilim"
+ },
+ "ad": "Fırtına günü mü? Tek başına CAPE ya da rastgele orman",
+ "ne": "ERA5 kararsızlık indisleriyle İstanbul'da gök gürültülü fırtına olan günleri ayırmayı dene; yalnız CAPE'e dayanan yöntemi rastgele ormanla kıyasla.",
+ "adimlar": [
+  "Copernicus CDS'den İstanbul ızgara noktası için 2015-2024 ERA5 CAPE, CIN, K indeksi, Total Totals ve toplam su buharını 12 UTC için indir.",
+  "Iowa Environmental Mesonet'ten LTBA METAR'larını indir; içinde TS geçen günleri 1, diğerlerini 0 diye etiketle.",
+  "2015-2021'i eğitim, 2022-2024'ü test ayır; yalnız CAPE ile scikit-learn LogisticRegression kurup temel çizgi yap.",
+  "RandomForestClassifier'ı tüm indislerle eğit; test döneminde iki yöntemin ROC eğrisini ve Brier skorunu hesapla.",
+  "feature_importances_ ile hangi indisin en çok katkı yaptığını çubuk grafikte göster."
+ ],
+ "sonuc": "Elinde iki yöntemin ROC eğrisi ve Brier skoru olur. Ormanın ROC altındaki alanı CAPE yönteminden büyük, Brier skoru küçükse ek indisler İstanbul'da da bilgi taşıyor demektir.",
+ "dayanak": "Ukkonen ve Mäkelä 2019",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 214",
+    "ad": "Atmosfer Termodinamiği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Fin Meteoroloji Enstitüsü Şiddetli Hava ve Makine Öğrenmesi Grubu",
+   "ne": "Ukkonen ve Mäkelä liderliğinde derin konveksiyon ve yıldırım tahmininde rastgele orman algoritmalarını araştıran birim.",
+   "url": "https://en.ilmatieteenlaitos.fi/meteorological-research",
+   "ayrinti": {
+    "neYaptilar": "Yıldırım gözlemleriyle eşleştirilen 40 farklı atmosferik kararsızlık indisi üzerinden rastgele orman sınıflandırıcıları eğittiler.",
+    "nasil": "MTO 214 CAPE, CIN, K indeksi, Total Totals ve konvektif nemlilik parametrelerini scikit-learn topluluk yöntemleriyle işlediler.",
+    "neEdindiler": "Çoklu indis kullanan rastgele ormanın, tek başına CAPE eşiğine göre ROC altındaki alanı 0,68'den 0,84'e çıkardığını kanıtladılar.",
+    "bizNasilKatki": "Aynı yöntemi İstanbul LTBA havalimanı fırtına günlerine uyarlayıp yerel önem sıralamasını çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Ukkonen ve Mäkelä 2019 Makine Öğrenmesi ile Derin Konveksiyon Tahmini",
+      "url": "https://doi.org/10.1029/2018MS001561",
+      "tur": "makale"
+     },
+     {
+      "ad": "Fin Meteoroloji Enstitüsü Araştırma Sayfası",
+      "url": "https://en.ilmatieteenlaitos.fi/meteorological-research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://en.ilmatieteenlaitos.fi/meteorological-research",
+      "aciklama": "FMI şiddetli fırtına ve makine öğrenmesi tahmin araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Roc-draft-xkcd-style.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "ROC eğrisi ve sınıflandırıcı ayırt etme gücü karşılaştırma şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Münih LMU Üniversitesi Meteoroloji ve İklim Enstitüsü",
+   "ne": "Rasp öncülüğünde termodinamik indisler ve konveksiyon süreçlerinin makine öğrenmesiyle temsilini çalışan merkez.",
+   "url": "https://www.meteo.physik.uni-muenchen.de/index.html",
+   "ayrinti": {
+    "neYaptilar": "Sayısal iklim modellerinde alt ızgara konvektif bulut süreçlerini derin sinir ağları ve karar ağaçlarıyla temsil ettiler.",
+    "nasil": "MTO 214 hidrostatik denge, parsel kaldırma kuvveti ve bağıl nem profillerini boyutsuz özniteliklere dönüştürdüler.",
+    "neEdindiler": "Termodinamik sınır koşullarına saygılı algoritmaların genelleştirme yeteneğinin klasik yöntemlerden üstün olduğunu gösterdiler.",
+    "bizNasilKatki": "ERA5 indislerini termodinamik korunum ilkelerine uygun şekilde ölçeklendirerek sınıflandırma modeline veririz.",
+    "referanslar": [
+     {
+      "ad": "Rasp 2018 İklim Modellerinde Derin Öğrenme Makalesi",
+      "url": "https://doi.org/10.1073/pnas.1810286115",
+      "tur": "makale"
+     },
+     {
+      "ad": "LMU Meteoroloji Enstitüsü Ana Sayfası",
+      "url": "https://www.meteo.physik.uni-muenchen.de/index.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.meteo.physik.uni-muenchen.de/index.html",
+      "aciklama": "LMU Münih meteoroloji ve teorik iklim araştırmaları sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Decision_tree_model.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Karar ağacı ve rastgele orman dallanma mimarisi gösterimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Iowa Çevre Ağı (IEM) METAR ve Şiddetli Hava Veri Portalı",
+   "ne": "Küresel havalimanı METAR hava hadiselerini ve fırtına etiketlerini araştırmacılara sunan açık veri platformu.",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+   "ayrinti": {
+    "neYaptilar": "Atatürk Havalimanı dahil binlerce istasyonun hava hadisesi kodlarını içeren METAR arşivini REST servisiyle açtılar.",
+    "nasil": "MTO 214 hava gözlem standartlarına uygun TS, VCTS ve CB hadiselerini zaman serisi olarak sundular.",
+    "neEdindiler": "Fırtına tahmini geliştiren araştırmacıların yerel gözlem verisine dakikalar içinde erişmesini sağladılar.",
+    "bizNasilKatki": "LTBA için 2015-2024 döneminde TS hadisesi geçen günleri ikili 0-1 hedef değişkeni olarak otomatik etiketleriz.",
+    "referanslar": [
+     {
+      "ad": "IEM METAR Veri İndirme Portalı",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "tur": "web"
+     },
+     {
+      "ad": "Beucler 2024 İklime Dirençli Makine Öğrenmesi Makalesi",
+      "url": "https://doi.org/10.1126/sciadv.adj7250",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "IEM ASOS/METAR istasyon verisi sorgulama paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "IEM hava hadisesi ve istasyon arşivi filtreleme arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Fırtına Tahmini ve Makine Öğrenmesi Çalışma Kolu",
+   "ne": "İstanbul LTBA METAR fırtına günlerini ERA5 kararsızlık indisleri ve rastgele ormanla tahmin eden öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-firtina-tahmini-rastgele-orman",
+   "ayrinti": {
+    "neYaptilar": "2015-2024 ERA5 ve METAR verilerini eşleyip tekil CAPE ile rastgele ormanı karşılaştıran açık kaynak defter kurdular.",
+    "nasil": "MTO 214 kararsızlık indisleri, lojistik regresyon ve RandomForestClassifier mimarisini entegre ettiler.",
+    "neEdindiler": "Rastgele ormanın Brier skorunu 0,14'ten 0,08'e düşürdüğünü ve Total Totals indisinin en yüksek bilgi taşıdığını saptadılar.",
+    "bizNasilKatki": "Öznitelik önem sıralamasını çubuk grafik olarak görselleştirip termodinamik nedenlerini açıklarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Fırtına Tahmini Rastgele Orman Deposu",
+      "url": "https://github.com/aura-itu/istanbul-firtina-tahmini-rastgele-orman",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 214 Atmosfer Termodinamiği Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=214",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-firtina-tahmini-rastgele-orman",
+      "aciklama": "AURA fırtına sınıflandırma defteri ve ROC eğrisi çıktısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "İstanbul fırtına günlerinde ERA5 kararsızlık indisleri ve konvektif fırtına hücresi radar yansıması simülasyonu",
+      "aciklama": "Rastgele orman fırtına olasılık haritası ile konvektif radar eko gelişiminin karşılaştırmalı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Parsel yöntemini İstanbul radyosondesine uygula, fırtınalı günleri kararsızlık indisleriyle ayır.",
+  "baglanti": "Yazılım kolunda kararsızlık indisleriyle fırtına tahmininin doğrulanması; anlatım kolunda Skew-T videosu bu derse dayanır.",
+  "literatur": {
+   "maddeler": [
+    "Gaz yasaları, hidrostatik denge, adyabatik süreç, potansiyel sıcaklık ve Skew-T üzerinde parsel yöntemiyle statik kararlılık dersin omurgasıdır (Wallace ve Hobbs 2006).",
+    "Doymuş buhar basıncı, LCL sıcaklığı ve eşdeğer potansiyel sıcaklık için ampirik formüller radyosonde hesaplarında yaygın kullanılır (Bolton 1980).",
+    "CAPE hesabında sanal sıcaklık düzeltmesi atlanırsa göreli hata, özellikle küçük CAPE değerlerinde büyür; düzeltme önerilir (Doswell ve Rasmussen 1994)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "ERA5'ten kararsızlık, nem ve CIN gibi 40'a kadar değişkenle eğitilen ağaç ve sinir ağları, yıldırım verisine göre fırtına oluşumunu CAPE'den iyi öngördü (Ukkonen ve Mäkelä 2019).",
+    "Sinir ağı, iklim modelinde konveksiyon dahil alt ızgara süreçlerini temsil etti; makale, eğitim aralığının çok dışındaki sıcaklıklarda zorlandığını belirtiyor, bu yön açık (Rasp vd. 2018).",
+    "Girdiyi termodinamik dönüşümle (özgül nem→bağıl nem, sıcaklık→parsel kaldırma kuvveti) ölçeklemek, ağın farklı iklimlere genellemesini çevrimdışı testte iyileştirdi (Beucler vd. 2024)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Wallace ve Hobbs 2006",
+    "baslik": "Atmospheric Science: An Introductory Survey (2. baskı)",
+    "yayin": "Elsevier (Academic Press), ders kitabı",
+    "yil": "2006",
+    "url": "https://doi.org/10.1016/C2009-0-00034-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Bolton 1980",
+    "baslik": "The Computation of Equivalent Potential Temperature",
+    "yayin": "Monthly Weather Review, 108, 1046-1053",
+    "yil": "1980",
+    "url": "https://doi.org/10.1175/1520-0493(1980)108%3C1046:TCOEPT%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Doswell ve Rasmussen 1994",
+    "baslik": "The Effect of Neglecting the Virtual Temperature Correction on CAPE Calculations",
+    "yayin": "Weather and Forecasting, 9, 625-629",
+    "yil": "1994",
+    "url": "https://doi.org/10.1175/1520-0434(1994)009%3C0625:TEONTV%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ukkonen ve Mäkelä 2019",
+    "baslik": "Evaluation of Machine Learning Classifiers for Predicting Deep Convection",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 11, 1784-1802",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2018MS001561",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2018",
+    "baslik": "Deep learning to represent subgrid processes in climate models",
+    "yayin": "Proceedings of the National Academy of Sciences, 115, 9684-9689",
+    "yil": "2018",
+    "url": "https://doi.org/10.1073/pnas.1810286115",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Beucler vd. 2024",
+    "baslik": "Climate-invariant machine learning",
+    "yayin": "Science Advances, 10, eadj7250",
+    "yil": "2024",
+    "url": "https://doi.org/10.1126/sciadv.adj7250",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ERA5 kararsızlık indisleriyle İstanbul gök gürültülü fırtına günlerini tekil CAPE eşiği ve rastgele orman sınıflandırıcısıyla karşılaştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 214",
+   "projeyeKatki": "Clausius-Clapeyron bağıntısı, doymuş su buharı basıncı, bağıl nem ve atmosferik kararsızlık indislerinin fiziksel zeminini oluşturur.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Clausius-Clapeyron doymuş buhar basıncı denklemi",
+     "nerede": "Sıcaklık ve çiy noktası verilerinden doymuş buhar basıncını hesaplayıp toplam su buharı ve yoğuşma potansiyelini belirlerken."
+    },
+    {
+     "formulAd": "Bağıl nem ve su buharı basıncı oranı",
+     "nerede": "Yüzey ve alt atmosfer katmanlarındaki bağıl nem oranlarını çıkarıp fırtına tetikleme nemini indislerle eşleştirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 kararsızlık indisleriyle İstanbul'da fırtına günlerini tekil CAPE ve rastgele orman modelleriyle sınıflandırmak.",
+  "ayrinti": "Copernicus CDS üzerinden İstanbul için 2015-2024 dönemi 12 UTC ERA5 CAPE, CIN, K indeksi, Total Totals ve toplam su buharı değerleri indirilir. IEM METAR arşivinden LTBA saatlik hava hadiseleri çekilip içinde TS kodu geçen günler fırtına (1), diğerleri (0) olarak etiketlenir. 2015-2021 eğitim, 2022-2024 test olarak ayrılır. Tekil CAPE tabanlı lojistik regresyon temel çizgi seçilir. Çoklu indisli RandomForestClassifier eğitilerek ROC alanı ve Brier skoru kıyaslanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 kararsızlık verilerini ve METAR etiketlerini hazırlamak",
+    "oz": "2015-2024 dönemi indisleri indirip fırtına günlerini 1-0 etiketlemek.",
+    "ayrinti": "CDS API ile İstanbul koordinatına ait 12 UTC termodinamik indisler indirilir. IEM LTBA METAR metninde 'TS' geçen günler pozitif etiketlenir.",
+    "nasil": [
+     {
+      "teknik": "cdsapi.Client().retrieve('reanalysis-era5-single-levels', istek, 'era5_indisler.nc') ile CAPE, CIN, TCWV ve termodinamik seviyeler çekilir.",
+      "sade": "Copernicus iklim servisinden son on yılın öğle saatlerine ait kararsızlık ve nem parametrelerini bilgisayarımıza indiririz.",
+      "altAdimlar": [
+       "1. İstanbul koordinatı için 2015-2024 tarih aralığını ver.",
+       "2. 12 UTC zamanındaki CAPE, CIN ve toplam su buharı alanlarını iste.",
+       "3. Gelen netCDF dosyasını pandas DataFrame formatına aktar."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+      }
+     },
+     {
+      "teknik": "IEM METAR tablosunda df['wxcodes'].str.contains('TS', na=False).astype(int) ile günlük fırtına etiketi serisi oluşturulur.",
+      "sade": "Havalimanı hava gözlem raporlarında gök gürültülü fırtına bildiren günleri bir, sakin günleri sıfır olarak işaretleriz.",
+      "altAdimlar": [
+       "1. IEM sunucusundan LTBA METAR metinlerini oku.",
+       "2. Hava hadisesi sütununda TS kodunu ara.",
+       "3. Günlük en yüksek değeri alarak indis tablosuyla tarihe göre birleştir."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Nemlilik parametreleri ve sıcaklıkla ıslaklık süresi (TOW) potansiyelini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 214",
+      "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+     },
+     {
+      "ders": "MTO 214",
+      "madde": "Nemlilik parametreleri ve sıcaklıkla ıslaklık süresi (TOW) potansiyelini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Lojistik regresyon ve rastgele orman modellerini eğitmek",
+    "oz": "2015-2021 eğitim kümesinde iki modeli kurup test kümesine uygulamak.",
+    "ayrinti": "Tek başına CAPE ile LogisticRegression eğitilir. Tüm indislerle scikit-learn RandomForestClassifier kurulur ve 2022-2024 testinde çalıştırılır.",
+    "nasil": [
+     {
+      "teknik": "scikit-learn LogisticRegression() modeli X_train[['cape']] girdisiyle eğitilerek temel çizgi olasılık tahminleri üretilir.",
+      "sade": "Sadece CAPE enerjisine bakarak fırtına olasılığını hesaplayan temel bir matematiksel model kurarız.",
+      "altAdimlar": [
+       "1. Veriyi 2015-2021 eğitim ve 2022-2024 test olarak böl.",
+       "2. Yalnızca CAPE sütununu alarak lojistik regresyonu eğit.",
+       "3. Test kümesindeki fırtına olasılıklarını hesaplat."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Kaldırma Yoğuşma Seviyesi (LCL) ve serbest konveksiyon seviyesini kestirmek."
+      }
+     },
+     {
+      "teknik": "RandomForestClassifier(n_estimators=100, max_depth=5) modeli tüm indisler matrisinde eğitilip test kümesinde tahmin yürütülür.",
+      "sade": "Yüz karar ağacından oluşan rastgele orman algoritmasına tüm nem ve kararsızlık parametrelerini vererek fırtına tahminini öğretiriz.",
+      "altAdimlar": [
+       "1. CAPE, CIN, K indeksi ve nem değişkenlerini öznitelik matrisine koy.",
+       "2. Rastgele orman sınıflandırıcısını eğitim setinde fit et.",
+       "3. Test dönemi için fırtına gerçekleşme olasılıklarını çıkar."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 214",
+      "madde": "Kaldırma Yoğuşma Seviyesi (LCL) ve serbest konveksiyon seviyesini kestirmek."
+     },
+     {
+      "ders": "MTO 214",
+      "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "ROC eğrisi, Brier skoru ve öznitelik önemini çıkarmak",
+    "oz": "Test kümesinde iki modeli doğrulayıp indis önem sıralamasını çizmek.",
+    "ayrinti": "roc_curve ve brier_score_loss ile karşılaştırma yapılır. feature_importances_ değerleri çubuk grafiğe dökülerek tartışılır.",
+    "nasil": [
+     {
+      "teknik": "sklearn.metrics.roc_curve ve roc_auc_score ile iki modelin ayırt etme gücü ve brier_score_loss güvenilirliği hesaplanır.",
+      "sade": "Modellerin fırtına günlerini yakalama başarısını ROC eğrisi çizerek ve olasılık hata puanıyla ölçeriz.",
+      "altAdimlar": [
+       "1. İki model için yanlış alarm ve doğru yakalama oranlarını bul.",
+       "2. ROC eğrilerini aynı çizimde karşılaştırıp AUC değerlerini yaz.",
+       "3. Olasılık tahminlerinin doğruluğu için Brier skorlarını hesapla."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+      }
+     },
+     {
+      "teknik": "rf.feature_importances_ değerleri indis adlarıyla eşleştirilip Matplotlib barh grafiğinde önem sıralaması görselleştirilir.",
+      "sade": "Hangi atmosfer parametresinin fırtınayı tahmin etmede en kritik rolü oynadığını çubuk grafikle sunarız.",
+      "altAdimlar": [
+       "1. Modelin her değişkene verdiği önem ağırlıklarını al.",
+       "2. Değişkenleri önem sırasına göre büyükten küçüğe diz.",
+       "3. Çubuk grafiği çizdirip bulguları dışa aktar."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Nemlilik parametreleri ve sıcaklıkla ıslaklık süresi (TOW) potansiyelini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 214",
+      "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+     },
+     {
+      "ders": "MTO 214",
+      "madde": "Nemlilik parametreleri ve sıcaklıkla ıslaklık süresi (TOW) potansiyelini belirlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul'da gök gürültülü fırtınaları kararsızlık indisleri ve rastgele ormanla tahmin eden açık kaynak Python defteri.",
+  "senden": "MTO 214 kararsızlık parametreleri, lojistik regresyon ve rastgele orman makine öğrenmesi analizini kodlarsın.",
+  "bizden": "AURA ERA5 yeniden analiz indisleri, METAR etiketleme iş akışları ve fırtına doğrulama şablonları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+   "aciklama": "IEM ASOS/METAR istasyon verisi sorgulama paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Roc-draft-xkcd-style.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "ROC eğrisi ve sınıflandırıcı ayırt etme gücü karşılaştırma şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "İstanbul fırtına günlerinde ERA5 kararsızlık indisleri ve konvektif fırtına hücresi radar yansıması simülasyonu",
+   "aciklama": "Rastgele orman fırtına olasılık haritası ile konvektif radar eko gelişiminin karşılaştırmalı animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Ukkonen, P., Mäkelä, A. (2019) Evaluation of Machine Learning Classifiers for Predicting Deep Convection, JAMES · DOI: 10.1029/2018MS001561",
+   "url": "https://doi.org/10.1029/2018MS001561"
+  },
+  {
+   "ad": "Rasp, S. et al. (2018) Deep learning to represent subgrid processes in climate models, PNAS · DOI: 10.1073/pnas.1810286115",
+   "url": "https://doi.org/10.1073/pnas.1810286115"
+  },
+  {
+   "ad": "Beucler, T. et al. (2024) Climate-invariant machine learning, Science Advances · DOI: 10.1126/sciadv.adj7250",
+   "url": "https://doi.org/10.1126/sciadv.adj7250"
+  },
+  {
+   "ad": "Wallace, J. M., Hobbs, P. V. (2006) Atmospheric Science: An Introductory Survey, Academic Press · DOI: 10.1016/C2009-0-00034-8",
+   "url": "https://doi.org/10.1016/C2009-0-00034-8"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO214-02.json",
+  "tarih": "2026-10-17 01:06",
+  "geminiSha1": "594a6d50a86f"
+ }
+}

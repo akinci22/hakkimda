@@ -1,0 +1,483 @@
+{
+ "id": "D-MTO254-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 254",
+  "dersAd": "İklim Bilimi",
+  "kol": "yazilim"
+ },
+ "ad": "Niño3.4'ü önceden kestir: kalıcılığı geçebilir misin?",
+ "ne": "Ham vd.'nin fikrini küçük ölçekte dene: geçmiş Niño3.4 değerlerinden 1–12 ay sonrasını tahmin eden basit bir ağ kur, kalıcılık tahminiyle kıyasla.",
+ "adimlar": [
+  "NOAA CPC'nin aylık Niño3.4 dosyasını (ersst5.nino.mth.91-20.ascii) Google Colab'da pandas ile oku.",
+  "Son 12 ayın değerlerini girdi, k ay sonrasını hedef yap; 1950–1983'ü eğitim, 1984–2017'yi test olarak ayır.",
+  "scikit-learn ile önce doğrusal regresyon, sonra küçük bir MLPRegressor eğit.",
+  "Her öncelik süresi için test korelasyonunu hesapla; kalıcılık tahminiyle aynı grafikte çiz.",
+  "Ham vd.'nin CNN'iyle farkı not et: senin girdin tek sayı, onunki deniz yüzeyi sıcaklığı ve ısı içeriği haritaları."
+ ],
+ "sonuc": "Öncelik süresine göre korelasyon grafiği. Ağın çizgisi kalıcılığın üstündeyse geçmiş indeks bilgi taşıyor; uzun sürelerde ikisi de düşüyorsa harita girdisine neden gerek olduğu görülür.",
+ "dayanak": "Ham vd. 2019",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 254",
+    "ad": "İklim Bilimi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Chonnam Ulusal Üniversitesi İklim Dinamiği ve Derin Öğrenme Grubu",
+   "ne": "Evrişimli sinir ağları ve ısı içeriği haritalarıyla 1,5 yıl öncesinden El Niño tahminini başaran araştırma grubu.",
+   "url": "https://www.nature.com/articles/s41586-019-1559-7",
+   "ayrinti": {
+    "neYaptilar": "CMIP iklim simülasyonları ve yeniden analiz verileriyle evrişimli sinir ağını eğiterek 17 ay öncesinden başarılı ENSO kestirimi yaptılar.",
+    "nasil": "MTO 254 telebağlantı indeksleri, deniz yüzeyi sıcaklık anomalileri ve ısı içeriği gradyanlarını derin öğrenme filtreleriyle işlediler.",
+    "neEdindiler": "Geleneksel dinamik iklim modellerini geride bırakan ve Nature dergisinde yayımlanan çığır açıcı bir derin öğrenme mimarisi kurdular.",
+    "bizNasilKatki": "Karmaşık 2B haritalar yerine tek boyutlu indeks serisiyle scikit-learn MLPRegressor kullanarak öğrenci düzeyinde yalın bir prototip kurarız.",
+    "referanslar": [
+     {
+      "ad": "Ham vd. 2019 Deep Learning for Multi-Year ENSO Forecasts Nature Makalesi",
+      "url": "https://doi.org/10.1038/s41586-019-1559-7",
+      "tur": "makale"
+     },
+     {
+      "ad": "NOAA CPC ENSO İndeksleri ve İzleme Sayfası",
+      "url": "https://www.cpc.ncep.noaa.gov/data/indices/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.cpc.ncep.noaa.gov/data/indices/",
+      "aciklama": "NOAA CPC resmi ENSO izleme ve Niño3.4 anomali zaman serisi sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Enso-normal.svg",
+      "lisans": "NOAA",
+      "aciklama": "Tropikal Pasifik Okyanusu normal ve El Niño evresi Walker sirkülasyonu şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Salient Predictions Mevsimlik İklim Kestirimi Girişimi",
+   "ne": "Okyanus yüzey tuzluluğu, sıcaklığı ve makine öğrenimi algoritmalarıyla 2-12 ay önceden mevsimlik hava tahminleri sunan girişim.",
+   "url": "https://www.salientpredictions.com/technology/",
+   "ayrinti": {
+    "neYaptilar": "Küresel okyanus gözlemleri ve telebağlantı örüntülerini sinir ağlarıyla işleyerek enerji ve tarım sektörüne 12 aylık iklim öngörüleri sağladılar.",
+    "nasil": "MTO 254 ENSO döngüleri, termoklin derinliği ve okyanus ısı bütçesi sinyallerini topluluk makine öğrenimi modelleriyle harmanladılar.",
+    "neEdindiler": "Dinamik atmosferik küresel modellere kıyasla mevsimlik ölçekte iki kat daha yüksek korelasyon elde ederek ticari başarıya ulaştılar.",
+    "bizNasilKatki": "Girişimin yaklaştığı mevsimlik kestirim mantığını açık Colab defterinde Niño3.4 kalıcılık kıyasıyla test edip açıkça belgelendiririz.",
+    "referanslar": [
+     {
+      "ad": "Salient Predictions Makine Öğrenimi Mevsimlik Kestirim Teknolojisi",
+      "url": "https://www.salientpredictions.com/technology/",
+      "tur": "web"
+     },
+     {
+      "ad": "Ray vd. 2021 Subseasonal to Seasonal Climate Forecasting with Machine Learning",
+      "url": "https://doi.org/10.1175/BAMS-D-20-0085.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.salientpredictions.com/technology/",
+      "aciklama": "Salient Predictions mevsimlik hava ve iklim tahmini gösterge ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:El_Nino_Southern_Oscillation_Indices.png",
+      "lisans": "NOAA",
+      "aciklama": "Tarihsel El Niño ve La Niña döngüleri standart deniz yüzeyi sıcaklık anomalisi grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "CliMetLab Açık Kaynak İklim Veri ve Tahmin Takımı",
+   "ne": "İklim ve meteoroloji veri setlerini Python makine öğrenimi kütüphanelerine köprüleyen açık kaynak ECMWF geliştirici takımı.",
+   "url": "https://climetlab.readthedocs.io/en/latest/",
+   "ayrinti": {
+    "neYaptilar": "ENSO, NAO ve MJO telebağlantı indekslerini doğrudan pandas ve xarray veri yapılarına aktaran açık kaynak boru hattı geliştirdiler.",
+    "nasil": "MTO 254 zaman serisi standardizasyonu, gecikmeli öznitelik türetme ve kaydırmalı pencere doğrulaması standartlarını Python ile paketlediler.",
+    "neEdindiler": "İklim veri bilimcilerinin veri hazırlama yükünü saatlerden dakikalara indiren dünya çapında standart bir kütüphane ekosistemi kurdular.",
+    "bizNasilKatki": "Bu veri yapısını kullanarak NOAA Niño3.4 ASCII akışını otomatik ayrıştıran ve scikit-learn eğitimine hazır hale getiren açık kod yazarız.",
+    "referanslar": [
+     {
+      "ad": "CliMetLab Dokümantasyonu ve Makine Öğrenimi Rehberi",
+      "url": "https://climetlab.readthedocs.io/en/latest/",
+      "tur": "web"
+     },
+     {
+      "ad": "Eyring vd. 2024 Pushing Frontiers in Climate Modelling with ML",
+      "url": "https://doi.org/10.1038/s41558-024-02095-y",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://climetlab.readthedocs.io/en/latest/",
+      "aciklama": "CliMetLab veri hattı ve makine öğrenimi entegrasyonu dokümantasyon sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:ENSO_cycle_explained.svg",
+      "lisans": "NOAA",
+      "aciklama": "Tropikal Pasifik Okyanusu El Niño ve La Niña evreleri termoklin derinliği kesiti"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "İstanbul'un ısınmasını ERA5 ve istasyonla ölç; El Niño tahminini küçük bir sinir ağıyla dene.",
+  "baglanti": "Yazılımda yeniden analiz ile istasyon karşılaştırması; anlatımda enerji dengesi ve sera etkisi videosu.",
+  "literatur": {
+   "maddeler": [
+    "İklimi gelen Güneş ışınımı ile uzaya giden uzun dalga ışınım arasındaki enerji dengesi belirler; sera etkisi yüzeyi bu dengede daha sıcak tutar (Hartmann 2016)",
+    "2011–2020 dönemi 1850–1900'e göre yaklaşık 1,1 °C daha sıcak; atmosferi, okyanusu ve karaları insan etkisinin ısıttığı tartışmasız (IPCC 2021)",
+    "ERA5 yeniden analizi gözlemi sayısal tahminle birleştirip onlarca yıllık saatlik küresel veri verir; uzun ve tutarlı iklim serisi buradan çıkar (Hersbach vd. 2020)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "CNN önce iklim benzetimleri, sonra yeniden analizle eğitildi; Niño3.4 indeksini 1,5 yıla kadar becerili öngördü, ısı haritası fiziksel öncülleri gösterdi (Ham vd. 2019)",
+    "NeuralGCM dinamik çözücüyü öğrenen bileşenlerle birleştirdi; deniz yüzeyi sıcaklığı verilince on yıllarca iklimi izledi ama çok farklı gelecek iklime genellenmiyor (Kochkov vd. 2024)",
+    "Görüş makalesi, iklimde YZ için genelleme, belirsizlik ölçümü, açıklanabilirlik ve nedenselliği çözülmesi gereken başlıca sorunlar sayıyor (Eyring vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Hartmann 2016",
+    "baslik": "Global Physical Climatology (2. baskı)",
+    "yayin": "Elsevier",
+    "yil": "2016",
+    "url": "https://doi.org/10.1016/C2009-0-00030-0",
+    "tur": "temel"
+   },
+   {
+    "kisa": "IPCC 2021",
+    "baslik": "Climate Change 2021 – The Physical Science Basis. Working Group I Contribution to the Sixth Assessment Report",
+    "yayin": "Cambridge University Press (IPCC resmî raporu; basılı sürüm 2023)",
+    "yil": "2021",
+    "url": "https://doi.org/10.1017/9781009157896",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hersbach vd. 2020",
+    "baslik": "The ERA5 global reanalysis",
+    "yayin": "Quarterly Journal of the Royal Meteorological Society, 146, 1999–2049",
+    "yil": "2020",
+    "url": "https://doi.org/10.1002/qj.3803",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ham vd. 2019",
+    "baslik": "Deep learning for multi-year ENSO forecasts",
+    "yayin": "Nature, 573, 568–572",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-1559-7",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature, 632, 1060–1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Eyring vd. 2024",
+    "baslik": "Pushing the frontiers in climate modelling and analysis with machine learning",
+    "yayin": "Nature Climate Change, 14, 916–928",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41558-024-02095-y",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Geçmiş 12 aylık Niño3.4 indeks değerleriyle 1-12 ay sonrasını çok katmanlı yapay sinir ağıyla tahmin edip kalıcılık kestirimiyle başarımını kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 254",
+   "ad": "İklim Bilimi",
+   "projeyeKatki": "Okyanus yüzey sıcaklığı anomalileri ve atmosferik telebağlantı indekslerinin zaman serisi analizi ve El Niño kestirim prensiplerini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "İklim anomalisi ve ortalamadan sapma formülü",
+     "nerede": "Adım 1 ve Adım 2'de NOAA CPC ERSSTv5 verisinden 1991-2020 dönemi Niño3.4 deniz yüzeyi sıcaklığı anomalisini türetirken",
+     "aciklama": "Ham deniz yüzeyi sıcaklığı ortalamasından iklim referans dönemi ortalamasını çıkararak standart El Niño anomali indeksini elde eder."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "NOAA Niño3.4 verisiyle yapay sinir ağı eğitip 1-12 aylık öncelik sürelerinde kalıcılık tahminini geçmeye çalışmak.",
+  "ayrinti": "NOAA İklim Tahmin Merkezi'nin aylık Niño3.4 veri dosyasını pandas ile çekerek son 12 ayın değerlerinden gecikmeli öznitelikler üretiriz. Doğrusal regresyon ve çok katmanlı yapay sinir ağı modellerini eğitip öncelik süresi 1 aydan 12 aya kadar test korelasyonunu hesaplar, kalıcılık kestirimiyle kıyaslayarak sınırları saptarız.",
+  "adimlar": [
+   {
+    "baslik": "NOAA CPC Niño3.4 indeks verisinin çekilmesi ve hazırlanması",
+    "oz": "NOAA sunucusundan aylık Niño3.4 tablosunu indirip pandas ile temizlemek.",
+    "ayrinti": "1950'den günümüze uzanan aylık deniz yüzeyi sıcaklığı anomali serisini okuyup kaydırmalı pencereye hazır zaman serisi nesnesine dönüştürürüz.",
+    "nasil": [
+     {
+      "teknik": "urllib ve pandas.read_csv ile NOAA CPC ftp/http adresindeki ersst5.nino.mth.91-20.ascii tablosunu DataFrame olarak yüklemek.",
+      "sade": "NOAA'nın resmi web sitesindeki ham metin tablosunu satır satır çekip Python tablosuna dönüştürürüz.",
+      "altAdimlar": [
+       "1. NOAA CPC indeks dizinindeki ASCII formatlı dosya URL adresini belirleyin.",
+       "2. pandas.read_csv fonksiyonunda boşluk ayracını ve başlık satırlarını yapılandırın.",
+       "3. Yıl ve ay sütunlarını birleştirip DatetimeIndex biçimine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+      }
+     },
+     {
+      "teknik": "Niño3.4 sütununu seçip eksik gözlemleri doğrusal enterpolasyonla tamamlamak ve standart anomali kontrolü yapmak.",
+      "sade": "Tablodaki Niño3.4 bölgesine ait sütunu ayıklar, veri serisinde kopukluk olup olmadığını teyit ederiz.",
+      "altAdimlar": [
+       "1. NINO3.4 etiketli sütunu filtreleyip numpy float dizisine aktarın.",
+       "2. Varsa eksik veya hatalı değerleri kontrol edip enterpolasyonla giderin.",
+       "3. 1991-2020 normaline göre anomali değerlerinin -3 ile +3 aralığında kaldığını sınayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+      }
+     },
+     {
+      "teknik": "Son 12 ayın anomali değerlerini girdi (X), k ay sonrasını hedef (y) yapan gecikmeli öznitelik matrisi üretmek.",
+      "sade": "Makine öğrenimi modeline 'geçmiş bir yılın durumu verilince gelecek k ay sonrası ne olur' sorusunu soracak veri yapısını kurarız.",
+      "altAdimlar": [
+       "1. 12 aylık kaydırma penceresi (lags) için döngüyle gecikmeli sütunlar oluşturun.",
+       "2. Öncelik süresi k (1 ila 12 ay) için hedef serisini shift(-k) ile hizalayın.",
+       "3. NaN değer içeren uç satırları dropna ile temizleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 254",
+      "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Eğitim ve test kümelerinin zaman serisi mantığıyla ayrımı",
+    "oz": "1950-1983 arasını eğitim, 1984-2024 arasını bağımsız test kümesi olarak bölmek.",
+    "ayrinti": "Gelecek verisinin geçmişe sızmasını önlemek amacıyla rastgele bölme yerine katı kronolojik sınır uygulayarak gerçekçi doğrulama sağlarız.",
+    "nasil": [
+     {
+      "teknik": "Veri setini 1950-1983 eğitim ve 1984-2024 test periyotlarına kronolojik olarak dilimlemek.",
+      "sade": "Zaman serilerinde geleceği geçmişe karıştırmamak için tarihi ikiye bölüp modeli sadece eski yıllarla eğitiriz.",
+      "altAdimlar": [
+       "1. Tarih endeksine göre 1950-01-01 ile 1983-12-31 arasını eğitim kümesi olarak ayırın.",
+       "2. 1984-01-01 sonrasını bağımsız test ve doğrulama kümesine tahsis edin.",
+       "3. Her iki kümenin boyutlarını ve dağılım istatistiklerini kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     },
+     {
+      "teknik": "StandardScaler ile eğitim kümesinden ortalama ve varyans öğrenip test kümesini ölçeklendirmek.",
+      "sade": "Sinir ağının daha rahat öğrenebilmesi için verileri sıfır ortalama ve bir standart sapma ölçeğine normalize ederiz.",
+      "altAdimlar": [
+       "1. scikit-learn StandardScaler sınıfını yalnız eğitim verisi üzerinde fit edin.",
+       "2. transform metoduyla hem eğitim hem test girdi matrislerini dönüştürün.",
+       "3. Çıktı anomali serisinin ölçeğini bozmadan saklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     },
+     {
+      "teknik": "Kalıcılık kestirimi taban çizgisini (persistence baseline) her öncelik süresi için test kümesinde hesaplamak.",
+      "sade": "'Gelecek ay hava bu ayın aynısı olacak' diyen en basit tahmini kıyaslama tabanı olarak kurarız.",
+      "altAdimlar": [
+       "1. Son bilinen gözlemi (t anındaki indeks) k ay sonrası için sabit tahmin kabul edin.",
+       "2. Kalıcılık tahmini ile gerçek test serisi arasındaki Pearson korelasyonunu bulun.",
+       "3. Öncelik süresi uzadıkça kalıcılığın nasıl düştüğünü listeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 254",
+      "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Makine öğrenimi modellerinin kurulması ve eğitimi",
+    "oz": "scikit-learn ile doğrusal regresyon ve MLPRegressor sinir ağını eğitmek.",
+    "ayrinti": "1 aydan 12 aya kadar her öncelik adımı için ayrı bir yapay sinir ağı modeli eğiterek çok adımlı kestirim kapasitesini ölçeriz.",
+    "nasil": [
+     {
+      "teknik": "LinearRegression ile doğrusal taban modelini eğitip test kümesindeki korelasyon katsayısını hesaplamak.",
+      "sade": "Geçmiş 12 ayın doğrusal ağırlıklı toplamıyla tahmin üreten temel regresyon çizgisini çekeriz.",
+      "altAdimlar": [
+       "1. scikit-learn LinearRegression modelini eğitim kümesinde fit edin.",
+       "2. Test kümesinde tahminler üretip scipy.stats.pearsonr ile korelasyonu bulun.",
+       "3. Hata kareler ortalamasını (MSE) kaydedip referans tablosuna işleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     },
+     {
+      "teknik": "MLPRegressor(hidden_layer_sizes=(32, 16), activation='relu', max_iter=500) ile sinir ağını eğitmek.",
+      "sade": "Doğrusal olmayan telebağlantı etkileşimlerini yakalayabilecek iki katmanlı küçük bir yapay sinir ağı kurarız.",
+      "altAdimlar": [
+       "1. 32 ve 16 nöronlu iki gizli katmana sahip MLPRegressor nesnesi başlatın.",
+       "2. Erken durdurma (early stopping) parametresiyle aşırı öğrenmeyi engelleyin.",
+       "3. Eğitim eğrisini inceleyerek loss değerinin kararlı şekilde yakınsadığını teyit edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+      }
+     },
+     {
+      "teknik": "k=1'den k=12'ye kadar 12 ayrı öncelik süresi için modelleri eğitip sonuçları sözlükte toplamak.",
+      "sade": "1 ay, 2 ay ... 12 ay sonrasını tahmin eden 12 ayrı model çalıştırıp her birinin başarısını toplarız.",
+      "altAdimlar": [
+       "1. 1'den 12'ye kadar dönen bir for döngüsü kurgulayın.",
+       "2. Her k için hedef sütununu güncelleyip modeli baştan eğitin.",
+       "3. Test korelasyon katsayılarını dizi olarak biriktirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 254",
+      "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kalıcılık kıyası, hata analizi ve fiziksel yorum",
+    "oz": "Kalıcılık, doğrusal regresyon ve sinir ağı korelasyon eğrilerini aynı grafikte karşılaştırmak.",
+    "ayrinti": "Öncelik süresi arttıkça modellerin kalıcılığa göre nerede üstün kaldığını ve tek indeks yaklaşımının sınırlarını tartışırız.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib ile öncelik süresine (1-12 ay) bağlı korelasyon katsayısı değişimini üç model için çizdirmek.",
+      "sade": "X ekseninde aylar, Y ekseninde tahmin doğruluğu olan net bir karşılaştırma grafiği hazırlarız.",
+      "altAdimlar": [
+       "1. X eksenine 1'den 12'ye öncelik aylarını yerleştirin.",
+       "2. Kalıcılık, Doğrusal Regresyon ve MLP eğrilerini farklı renk ve stillerle çizin.",
+       "3. 0,5 korelasyon seviyesine kesikli faydalı tahmin sınırı çizgisi ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     },
+     {
+      "teknik": "Sinir ağının kalıcılığı ilk 3-6 ayda aştığını, 9 aydan sonra okyanus hafızası kaybıyla korelasyonun düştüğünü saptamak.",
+      "sade": "Geçmiş deniz sıcaklığı indeksinin yarım yıla kadar fayda sağladığını ama bir yıl sonrası için yetmediğini görürüz.",
+      "altAdimlar": [
+       "1. 1-6 aylık vadede MLP eğrisinin kalıcılık çizgisinin ne kadar üzerinde olduğunu ölçün.",
+       "2. 7-12 aylık vadede her iki modelin de 0,5 eşiğinin altına indiğini not edin.",
+       "3. Sonuçları Ham vd. 2019'un harita tabanlı derin ağıyla kıyaslayarak tartışın."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+      }
+     },
+     {
+      "teknik": "Ham vd. 2019'un 2B deniz sıcaklığı ve ısı içeriği haritaları olmadan neden 1,5 yıla ulaşılamadığını özetlemek.",
+      "sade": "Sadece tek bir sayıya bakmanın sınırını ve denizaltı ısı haritalarının neden hayati olduğunu açıklarız.",
+      "altAdimlar": [
+       "1. Okyanus termoklin dinamiklerinin tek nokta zaman serisinde kaybolduğunu belirtin.",
+       "2. Çok yıllık kestirim için neden 2B evrişimli ağlara ihtiyaç duyulduğunu maddelerle özetleyin.",
+       "3. Tüm analiz kodlarını ve grafikleri içeren Colab defterini paylaşıma açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 254",
+      "madde": "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Öncelik süresine göre korelasyon grafiği ve hata tablosu. Ağın çizgisi ilk 3-6 ayda kalıcılık tahminini aşarak telebağlantı hafızasının değerini açıkça kanıtlar.",
+  "senden": "Colab ortamında pandas ile veri ön işleme boru hattını kurmak ve scikit-learn modellerini eğitmek.",
+  "bizden": "NOAA indeks veri setini doğrulamak, kalıcılık referans çizgisini türetmek ve sonuçları yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Tropikal Pasifik Niño3.4 bölgesi deniz yüzeyi sıcaklığı anomalileri döngüsü animasyonu",
+   "aciklama": "El Niño ve La Niña dönemlerinde deniz yüzeyi sıcaklık anomalilerinin aylık salınımı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Enso-normal.svg",
+   "lisans": "NOAA",
+   "aciklama": "Tropikal Pasifik Okyanusu normal ve El Niño durumlarında atmosfer-okyanus etkileşimi"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://www.cpc.ncep.noaa.gov/data/indices/",
+   "aciklama": "NOAA CPC iklim telebağlantı indeksleri resmi veri tablosu arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Ham vd. 2019 Deep Learning for Multi-Year ENSO Forecasts Nature",
+   "url": "https://doi.org/10.1038/s41586-019-1559-7"
+  },
+  {
+   "ad": "NOAA CPC Aylık Telebağlantı İndeksleri Veri Portalı",
+   "url": "https://www.cpc.ncep.noaa.gov/data/indices/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO254-03.json",
+  "tarih": "2026-10-17 01:27",
+  "geminiSha1": "45bd39784759"
+ }
+}

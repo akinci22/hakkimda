@@ -1,0 +1,475 @@
+{
+ "id": "D-AKM204E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "AKM 204E",
+  "dersAd": "Akışkanlar Mekaniği",
+  "kol": "ikisi"
+ },
+ "ad": "Burgers denklemini sinir ağıyla çöz (PINN)",
+ "ne": "Raissi vd.'nin Burgers örneğini yeniden üret: denklemin artığını eğitim hedefine koyan ağı eğit, sonlu farklar çözümüyle kıyasla, kısa bir videoda anlat.",
+ "adimlar": [
+  "Google Colab'a DeepXDE kütüphanesini kur; belgelerindeki Burgers denklemi örneğini aç.",
+  "Aynı denklemi numpy ile basit bir sonlu farklar şemasıyla çöz; bunu referans al.",
+  "PINN'i eğit; t=0,25, 0,5 ve 0,75 anlarında iki çözümü aynı grafikte çiz.",
+  "Göreli L2 hatasını hesapla; artık noktası sayısını yarıya indirip deneyi tekrarla.",
+  "Şok bölgesinde hatanın neden büyüdüğünü 5 dakikalık bir videoda anlat."
+ ],
+ "sonuc": "Karşılaştırma grafikleri, hata tablosu ve kısa video. PINN çizgisi sonlu farklar çözümünün üstüne oturuyor ve L2 hatası eğitimle düşüyorsa yöntem çalışıyor demektir.",
+ "dayanak": "Raissi vd. 2019",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "AKM 204E",
+    "ad": "Akışkanlar Mekaniği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Brown Üniversitesi Uygulamalı Matematik ve PINN Grubu (CRUNCH)",
+   "ne": "Fizik bilgili sinir ağları (PINN) mimarisini icat ederek doğrusal olmayan akışkan denklemlerini derin öğrenmeyle çözen öncü üniversite grubu.",
+   "url": "https://www.brown.edu/research/projects/crunch/",
+   "ayrinti": {
+    "neYaptilar": "Navier-Stokes ve Burgers denklemlerini yapay sinir ağlarının kayıp fonksiyonuna otomatik türevle yerleştirerek ızgarasız akış çözümü geliştirdiler.",
+    "nasil": "AKM 204E viskoz yayılım, doğrusal olmayan adveksiyon ve diferansiyel korunum yasalarını TensorFlow ve PyTorch tensör hesaplarıyla birleştirdiler.",
+    "neEdindiler": "Hesaplamalı akışkanlar mekaniğinde binlerce atıf alan ve makine öğrenimi ile fiziği birleştiren yeni bir bilimsel disiplin kurdular.",
+    "bizNasilKatki": "Raissi vd.'nin Burgers denklemi deneyini DeepXDE ile Colab'a taşıyıp sonlu farklar çözümüyle kıyaslayan Türkçe açık eğitim aracı üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Raissi vd. 2019 Physics-Informed Neural Networks JCP Makalesi",
+      "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+      "tur": "makale"
+     },
+     {
+      "ad": "Brown CRUNCH Grubu PINN Araştırma Portalı",
+      "url": "https://www.brown.edu/research/projects/crunch/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.brown.edu/research/projects/crunch/",
+      "aciklama": "Brown CRUNCH grubu fizik bilgili derin öğrenme araştırma merkezi sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Burgers_equation_shock.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Burgers denkleminde zamanla dikleşen hız profili ve şok dalgası oluşumu grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "NVIDIA Modulus Fizik Tabanlı Makine Öğrenimi Platformu",
+   "ne": "Endüstriyel akışkanlar dinamiği ve hava tahmini simülasyonlarını PINN mimarisiyle hızlandıran açık kaynak yapay zekâ platformu.",
+   "url": "https://developer.nvidia.com/modulus",
+   "ayrinti": {
+    "neYaptilar": "Navier-Stokes ve atmosferik dalga denklemlerini GPU üzerinde fiziksel artık kaybıyla çözen Modulus derin öğrenme çatısını kurdular.",
+    "nasil": "AKM 204E kısmi diferansiyel denklemler, sınır değer problemleri ve Fourier sinir operatörlerini CUDA çekirdekleriyle ölçeklediler.",
+    "neEdindiler": "Aerodinamik tasarım ve iklim simülasyonlarında geleneksel çözücülere kıyasla 1000 kata varan hızlanma sağlayan ticari ekosistem sundular.",
+    "bizNasilKatki": "NVIDIA'nın kurduğu devasa yapının çekirdeğindeki Burgers diferansiyel kaybı mekanizmasını tek boyutlu yalın bir eğitim defterinde gösteririz.",
+    "referanslar": [
+     {
+      "ad": "NVIDIA Modulus Fizik Bilgili Yapay Zekâ Dokümantasyonu",
+      "url": "https://developer.nvidia.com/modulus",
+      "tur": "web"
+     },
+     {
+      "ad": "Kochkov vd. 2021 ML-Accelerated CFD PNAS Makalesi",
+      "url": "https://doi.org/10.1073/pnas.2101784118",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://developer.nvidia.com/modulus",
+      "aciklama": "NVIDIA Modulus fizik bilgili derin öğrenme geliştirici arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Burgers_wave_steepening.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Viskoz Burgers denkleminde dalga dikleşmesi ve adveksiyon difüzyon dengesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "DeepXDE Açık Kaynak Bilimsel Makine Öğrenimi Takımı",
+   "ne": "Diferansiyel denklemleri PINN ile çözmek için dünya çapında en yaygın kullanılan açık kaynak Python kütüphanesini geliştiren takım.",
+   "url": "https://deepxde.readthedocs.io/en/latest/",
+   "ayrinti": {
+    "neYaptilar": "Kullanıcıların geometri, sınır koşulları ve diferansiyel artıkları birkaç satırda tanımlamasını sağlayan Python kütüphanesi kurdular.",
+    "nasil": "AKM 204E otomatik türev, artık noktası örnekleme ve L-BFGS optimizasyon algoritmalarını modüler bir nesne tabanlı yapıda birleştirdiler.",
+    "neEdindiler": "Tüm dünyada binlerce araştırmacının fizik kurallarını yapay zekâya öğretmek için başvurduğu standart açık kaynak aracı sundular.",
+    "bizNasilKatki": "DeepXDE kullanarak Burgers denklemini çözen ve sonlu farklar referansıyla doğrulayan şeffaf bir Türkçe öğrenci defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "DeepXDE Resmi Dokümantasyonu ve Burgers Eğitimi",
+      "url": "https://deepxde.readthedocs.io/en/latest/",
+      "tur": "web"
+     },
+     {
+      "ad": "Lu vd. 2021 DeepXDE Deep Learning Library for Solving PDEs SIAM Makalesi",
+      "url": "https://doi.org/10.1137/19M1274067",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepxde.readthedocs.io/en/latest/",
+      "aciklama": "DeepXDE bilimsel makine öğrenimi kütüphanesi dokümantasyon portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Neural_network_bottleneck.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Çok katmanlı yapay sinir ağı mimarisi ve nöron bağlantıları şematik diyagramı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Sınır tabaka profilini ERA5 rüzgârında sına, Burgers denklemini sinir ağıyla çöz.",
+  "baglanti": "Yazılımda rüzgâr profili doğrulaması; anlatımda Reynolds sayısı ve türbülans videosu.",
+  "literatur": {
+   "maddeler": [
+    "Akışkan hareketi kütle ve momentum korunumundan çıkan Navier–Stokes denklemleriyle yazılır; Reynolds sayısı ataletin viskoziteye oranıdır (Kundu vd. 2016)",
+    "Yüzeyde kaymama koşulu ince bir sınır tabaka yaratır; sürtünme sürüklemesi ve akış ayrılması bu tabakada belirlenir (Kundu vd. 2016)",
+    "Türbülanslı akışta Reynolds ortalaması yeni bilinmeyenler (Reynolds gerilmeleri) doğurur; kapanış problemi buradan çıkar (Pope 2000)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Fizik bilgili sinir ağı (PINN), denklemin artığını eğitim hedefine ekler; Burgers denklemi ve sığ su dalgaları makaledeki örnekler arasında (Raissi vd. 2019)",
+    "Öğrenen ayrıklaştırma 2B türbülansta 8–10 kat ince ızgara doğruluğunu 40–80 kat hızla verdi; eğitimde görmediği Reynolds sayılarında da kararlı kaldı (Kochkov vd. 2021)",
+    "Derleme, RANS kapanış belirsizliğini veriyle ölçme ve azaltma yollarını tarıyor; fiziksel kısıtlara dayanmayı savunuyor, kalan zorlukları açık sorular olarak tartışıyor (Duraisamy vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kundu vd. 2016",
+    "baslik": "Fluid Mechanics (6. baskı)",
+    "yayin": "Academic Press / Elsevier",
+    "yil": "2016",
+    "url": "https://shop.elsevier.com/books/fluid-mechanics/kundu/978-0-12-405935-1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pope 2000",
+    "baslik": "Turbulent Flows",
+    "yayin": "Cambridge University Press",
+    "yil": "2000",
+    "url": "https://doi.org/10.1017/CBO9780511840531",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Raissi vd. 2019",
+    "baslik": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations",
+    "yayin": "Journal of Computational Physics, 378, 686–707",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2021",
+    "baslik": "Machine learning–accelerated computational fluid dynamics",
+    "yayin": "Proceedings of the National Academy of Sciences, 118, e2101784118",
+    "yil": "2021",
+    "url": "https://doi.org/10.1073/pnas.2101784118",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Duraisamy vd. 2019",
+    "baslik": "Turbulence Modeling in the Age of Data",
+    "yayin": "Annual Review of Fluid Mechanics, 51, 357–377",
+    "yil": "2019",
+    "url": "https://doi.org/10.1146/annurev-fluid-010518-040547",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Fizik bilgili sinir ağı (PINN) ile viskoz Burgers denklemini çözüp sonlu farklar sayısal yöntemiyle kıyaslayarak şok dalgası çözümünü videoda anlatmak.",
+ "ortakDers": [
+  {
+   "kod": "AKM 204E",
+   "ad": "Akışkanlar Mekaniği",
+   "projeyeKatki": "Taşınım ve viskoz difüzyonun dengelendiği 1B Burgers denklemini ve akış diferansiyel operatörlerini sağlayarak PINN kaybını kurar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Bir boyutlu viskoz Burgers denklemi",
+     "nerede": "Adım 1 ve Adım 2'de sinir ağının artık kaybı fonksiyonunu (residual loss) otomatik türev ile hesaplarken",
+     "aciklama": "u_t + u * u_x - nu * u_xx = 0 diferansiyel artığını kayıp fonksiyonuna ekleyerek ağın akışkan mekaniği yasalarına uymasını zorunlu kılar."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Viskoz Burgers denklemini DeepXDE PINN ile çözüp sonlu farklar referansıyla kıyaslayarak şok dinamiğini videoda anlatmak.",
+  "ayrinti": "Google Colab'da DeepXDE ile Raissi vd.'nin Burgers denklemi örneğini kurarız. Denklemin türev artıklarını eğitim hedefine koyan sinir ağını eğitirken aynı sistemi NumPy sonlu farklar şemasıyla bağımsız olarak çözeriz. Farklı zaman anlarında iki çözümü üst üste çizip L2 bağıl hatasını ölçer, dik şok bölgesindeki hata artışını 5 dakikalık açık videoda açıklarız.",
+  "adimlar": [
+   {
+    "baslik": "Burgers denklemi ve fizik bilgili sinir ağı (PINN) kurulumu",
+    "oz": "DeepXDE kütüphanesini kurup uzay-zaman geometrisi ve denklemi tanımlamak.",
+    "ayrinti": "x in [-1, 1] ve t in [0, 0.99] uzay-zaman bölgesinde viskoz Burgers PDE artığını otomatik türevle formüle ederiz.",
+    "nasil": [
+     {
+      "teknik": "DeepXDE kütüphanesini Colab oturumuna import edip dde.geometry.TimeDomain ile 1B uzay-zaman alanını tanımlamak.",
+      "sade": "Akışın gerçekleşeceği x mesafesi ve t zaman aralığını hesaplama alanı olarak belirleriz.",
+      "altAdimlar": [
+       "1. dde.geometry.Interval(-1, 1) ile uzaysal aralığı kurun.",
+       "2. dde.geometry.TimeDomain(0, 0.99) ile zaman boyutunu ekleyin.",
+       "3. GeometryXTime sınıfıyla uzay ve zamanı birleşik çözüm alanına dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     },
+     {
+      "teknik": "dde.grad.jacobian ve dde.grad.hessian ile u_t + u*u_x - (0.01/pi)*u_xx = 0 diferansiyel artığını pde fonksiyonunda yazmak.",
+      "sade": "Sinir ağına akışkanın uyması gereken temel momentum taşınımı ve sürtünme denklemini kayıp kuralı olarak öğretiriz.",
+      "altAdimlar": [
+       "1. u hızının zamana göre birinci türevini jacobian(y, x, i=0, j=1) ile alın.",
+       "2. Uzaya göre birinci ve ikinci türevleri jacobian ve hessian ile hesaplayın.",
+       "3. Artık terimini dy_t + y * dy_x - (0.01 / np.pi) * dy_xx olarak döndürün."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     },
+     {
+      "teknik": "Başlangıç koşulu u(x,0) = -sin(pi*x) ve Dirichlet periyodik sınır koşullarını dde.icbc nesneleriyle tanımlamak.",
+      "sade": "Dalganın başladığı ilk andaki şeklini ve sınır noktalardaki hız değerlerini sisteme kilitleriz.",
+      "altAdimlar": [
+       "1. dde.icbc.IC ile t=0 anında y = -np.sin(np.pi * x) başlangıç profilini atayın.",
+       "2. dde.icbc.DirichletBC ile x=-1 ve x=1 noktalarında hızın sıfır kaldığını tanımlayın.",
+       "3. dde.data.TimePDE veri yapısında artık noktası sayısını (2000 nokta) belirleyin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "AKM 204E",
+      "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Referans sonlu farklar (FDM) sayısal çözücüsü",
+    "oz": "NumPy ile aynı denklemi yüksek çözünürlüklü sonlu farklar şemasıyla çözmek.",
+    "ayrinti": "PINN çözümünün doğruluğunu denetlemek üzere geleneksel Crank-Nicolson veya upwind sayısal şemasıyla bağımsız referans üretiriz.",
+    "nasil": [
+     {
+      "teknik": "NumPy ile Nx=1000 ve Nt=2000 ayrık ızgarada upwind adveksiyon ve merkezi fark difüzyon çözücüsünü kodlamak.",
+      "sade": "Geleneksel mühendislik yöntemini kullanarak uzay ve zamanı binlerce küçük kareye bölüp denklemi adım adım çözeriz.",
+      "altAdimlar": [
+       "1. dx = 2.0 / 1000 ve dt = 0.99 / 2000 adımlarını belirleyin.",
+       "2. CFL kararlılık kriterini kontrol ederek adveksiyon katsayısını doğrulayın.",
+       "3. Zaman döngüsünde her adımda hız profilini güncelleyip matrise depolayın."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     },
+     {
+      "teknik": "t=0.25, t=0.50 ve t=0.75 anlarındaki referans çözüm vektörlerini doğrulama matrisine aktarmak.",
+      "sade": "Karşılaştırma yapacağımız üç kritik zaman anındaki referans hız değerlerini saklarız.",
+      "altAdimlar": [
+       "1. Belirlenen zaman adımlarına denk gelen indisleri hesaplayın.",
+       "2. Çözüm dizisinden ilgili sütunları ayıklayıp referans_u sözlüğüne ekleyin.",
+       "3. Şok oluşumunun t=0.5 civarında dikleştiğini grafik önizlemesinde gözlemleyin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     },
+     {
+      "teknik": "Raissi vd. 2019 açık veri setindeki tam spektral referans çözümü ile sonlu farklar sonucunu çapraz doğrulamak.",
+      "sade": "Kendi geleneksel çözücümüzün de literatürdeki doğrulanmış spektral veriyle örtüştüğünü teyit ederiz.",
+      "altAdimlar": [
+       "1. Raissi'nin GitHub reposundaki burgers_shock.mat referans dosyasını yükleyin.",
+       "2. FDM sonucu ile spektral çözüm arasındaki maksimum farkın 1e-3 altında olduğunu kontrol edin.",
+       "3. Doğrulanan FDM serisini güvenilir referans tabanı olarak sabitleyin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "AKM 204E",
+      "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "PINN modelinin eğitimi ve göreli L2 hata hesabı",
+    "oz": "Çok katmanlı ağı Adam ve L-BFGS ile eğitip referans çözümle kıyaslamak.",
+    "ayrinti": "4 katmanlı 50 nöronlu ağı eğitir, t=0.25, 0.50 ve 0.75 anlarında tahmin üreterek bağıl L2 hatasını hesaplarız.",
+    "nasil": [
+     {
+      "teknik": "dde.nn.FNN([2] + [50]*4 + [1], 'tanh', 'Glorot normal') mimarisiyle derin sinir ağını kurmak.",
+      "sade": "Girdi olarak konum ve zamanı alıp çıktı olarak akış hızını veren dört katmanlı derin ağı inşa ederiz.",
+      "altAdimlar": [
+       "1. 2 girdili (x, t) ve 1 çıktılı (u) tam bağlantılı ağ nesnesini oluşturun.",
+       "2. Tanh aktivasyon fonksiyonunu türevlenebilirlik şartı nedeniyle seçin.",
+       "3. Glorot normal ağırlık ilklendirmesini uygulayın."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     },
+     {
+      "teknik": "Modeli önce Adam (lr=0.001, 1000 iterasyon) ardından L-BFGS algoritmasıyla sıfır kayba doğru eğitmek.",
+      "sade": "Ağı önce hızlı öğrenen optimizasyonla yaklaştırır, sonra hassas matematiksel çözücüyle tam oturturuz.",
+      "altAdimlar": [
+       "1. model.compile('adam', lr=0.001) ile ilk eğitim aşamasını başlatın.",
+       "2. loss değeri 1e-2 altına indiğinde L-BFGS çözücüsüne geçin.",
+       "3. Toplam diferansiyel artık kaybının 1e-4 seviyesine kadar gerilediğini gözlemleyin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     },
+     {
+      "teknik": "Göreli L2 hatasını np.linalg.norm(u_pred - u_true) / np.linalg.norm(u_true) bağıntısıyla test noktalarında hesaplamak.",
+      "sade": "Sinir ağının ürettiği akış hızının geleneksel çözüme göre yüzde kaç saptığını tam matematiksel olarak buluruz.",
+      "altAdimlar": [
+       "1. x in [-1, 1] aralığında 1000 test noktası oluşturun.",
+       "2. t=0.25, 0.50, 0.75 anları için PINN tahminlerini model.predict ile alın.",
+       "3. Bağıl L2 hatasının %1'in altında olduğunu hesap tablosuna yazdırın."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "AKM 204E",
+      "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Şok bölgesi hata analizi ve eğitim videosu",
+    "oz": "Dik şok kesitindeki gradyan zorluğunu görselleştirip 5 dakikalık açık videoda anlatmak.",
+    "ayrinti": "Adveksiyonun dalgayı dikleştirdiği x=0 civarındaki şok bölgesinde hatanın neden yükseldiğini görsel ve sözlü olarak sunarız.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib ile t=0.25, 0.50 ve 0.75 anlarında FDM ve PINN hız profillerini aynı eksende çizdirmek.",
+      "sade": "Geleneksel yöntem çizgisi ile yapay zekâ çizgisini üst üste koyup ne kadar mükemmel örtüştüğünü gösteririz.",
+      "altAdimlar": [
+       "1. 3 panelli bir matplotlib şekli (figure) oluşturun.",
+       "2. FDM referansını düz mavi çizgi, PINN tahminini kırmızı kesikli çizgiyle çizin.",
+       "3. Fark eğrisini alt panellere artık dağılımı olarak yerleştirin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     },
+     {
+      "teknik": "Artık noktası sayısını 2000'den 1000'e indirerek veri seyreltmesinin şok bölgesindeki hataya etkisini ölçmek.",
+      "sade": "Yapay zekâya daha az fiziksel kontrol noktası verdiğimizde şokun nasıl hafifçe dağıldığını test ederiz.",
+      "altAdimlar": [
+       "1. TimePDE tanımındaki num_domain parametresini 1000'e düşürün.",
+       "2. Modeli aynı sayıda adımla yeniden eğitip L2 hatasını tekrar hesaplayın.",
+       "3. Hatanın özellikle x=0 merkezindeki dik şokta iki katına çıktığını belgeleyin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     },
+     {
+      "teknik": "5 dakikalık açık videoda diferansiyel kaybın ızgarasız akış fiziğini nasıl çözdüğünü adım adım anlatmak.",
+      "sade": "Geleneksel ızgaralar yerine sinir ağlarının diferansiyel türev artığıyla nasıl fizik öğrendiğini özetleriz.",
+      "altAdimlar": [
+       "1. Video anlatımında önce Burgers denkleminin adveksiyon ve difüzyon terimlerini tanıtın.",
+       "2. PINN mantığının denklemi kayıp olarak görmesini şema üzerinde gösterin.",
+       "3. Elde edilen kod ve grafik defterini GitHub deposunda paylaşıma açın."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "AKM 204E",
+      "madde": "Akışkan akışlarında kütle ve momentum korunumunu Navier-Stokes denklemleriyle formüle etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Karşılaştırma grafikleri, L2 hata tablosu ve 5 dakikalık eğitim videosu. PINN çizgisinin sonlu farklar çözümünün üzerine tam oturduğu ve denklemin türev artığıyla doğru eğitildiği somutça kanıtlanır.",
+  "senden": "DeepXDE kütüphanesini Colab'da yapılandırmak ve sonlu farklar referans kodunu çalıştırmak.",
+  "bizden": "PINN diferansiyel kayıp fonksiyonunu kurmak, L2 hatasını analiz etmek ve videoyu seslendirmek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Burgers dalga dikleşmesi ve şok profili zamansal evrimi animasyonu",
+   "aciklama": "Başlangıç sinüzoidal dalgasının t=0'dan t=1'e dikleşerek şoka dönüşüm animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Burgers_equation_shock.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Viskoz Burgers denkleminde hız alanının dikleşmesi ve şok bölgesi grafiği"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://deepxde.readthedocs.io/en/latest/",
+   "aciklama": "DeepXDE Burgers denklemi PINN çözücü dokümantasyon ekranı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Raissi vd. 2019 Physics-Informed Neural Networks JCP",
+   "url": "https://doi.org/10.1016/j.jcp.2018.10.045"
+  },
+  {
+   "ad": "Lu vd. 2021 DeepXDE Library for Solving PDEs SIAM",
+   "url": "https://doi.org/10.1137/19M1274067"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-AKM204E-03.json",
+  "tarih": "2026-10-17 01:34",
+  "geminiSha1": "1294c4c308af"
+ }
+}

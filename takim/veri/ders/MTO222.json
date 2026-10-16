@@ -1,0 +1,135 @@
+{
+ "kod": "MTO 222",
+ "ad": "Hidroloji",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "222",
+ "ozet": "Hidrolojik döngüyü, havza su bütçesini, yağış-akış ilişkilerini ve yer altı suyu hareketlerini öğretir. Buharlaşma-terleme, sızma kapasitesi ve hidrograf analizleri incelenir. Taşkın frekans analizi, akım tahmin yöntemleri ve su kaynaklarının yönetimi için istatistiksel ve fiziksel ilkeleri sunar.",
+ "neOgrenirsin": [
+  "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak.",
+  "Nash-Sutcliffe ve Kling-Gupta verimlilik katsayılarıyla akım performansını değerlendirmek.",
+  "Birim hidrograf ve sentetik hidrograf yöntemleriyle pik akımları türetmek.",
+  "Penman-Monteith ve Thornthwaite yöntemleriyle potansiyel buharlaşmayı kestirmek.",
+  "Taşkın tekerrür aralıklarını Gumbel ve log-Pearson tip 3 dağılımlarıyla analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Kling-Gupta verimlilik katsayısı",
+   "tex": "\\mathrm{KGE} = 1 - \\sqrt{(r - 1)^2 + (\\alpha - 1)^2 + (\\beta - 1)^2}",
+   "terimler": [
+    [
+     "\\mathrm{KGE}",
+     "Kling-Gupta verimlilik katsayısı",
+     "boyutsuz"
+    ],
+    [
+     "r",
+     "gözlem ve simülasyon arasındaki Pearson korelasyon katsayısı",
+     "boyutsuz"
+    ],
+    [
+     "\\alpha",
+     "simülasyon standart sapmasının gözleme oranı (değişkenlik)",
+     "boyutsuz"
+    ],
+    [
+     "\\beta",
+     "simülasyon ortalamasının gözlem ortalamasına oranı (sapma)",
+     "boyutsuz"
+    ]
+   ],
+   "sade": "Akım simülasyonlarının başarısını korelasyon, değişkenlik oranı ve ortalama sapma olmak üzere üç bağımsız fiziksel bileşene ayırarak 1'e yakınlığıyla ölçer.",
+   "ornek": "Küresel akım çıktısında r = 0,88, standart sapma oranı alfa = 0,92 ve ortalama akım oranı beta = 1,05 iken KGE = 1 - sqrt(0,12^2 + 0,08^2 + 0,05^2) ≈ 0,847 bulunur; bu değer yüksek hidrolojik beceriyi gösterir.",
+   "nerede": "D-MTO222-01 ve D-MTO222-02'de küresel taşkın sistemi ve LSTM akım çıktılarının doğrulanmasında kullanılır."
+  },
+  {
+   "ad": "Havza su dengesi denklemi",
+   "tex": "P - E - Q = \\frac{d S}{d t}",
+   "terimler": [
+    [
+     "P",
+     "havzaya düşen toplam yağış miktarı",
+     "mm veya mm/gün"
+    ],
+    [
+     "E",
+     "gerçek buharlaşma ve terleme kaybı",
+     "mm veya mm/gün"
+    ],
+    [
+     "Q",
+     "havzadan boşalan yüzey ve taban akımı",
+     "mm veya mm/gün"
+    ],
+    [
+     "\\frac{d S}{d t}",
+     "havza depolamasındaki zamana bağlı değişim",
+     "mm veya mm/gün"
+    ]
+   ],
+   "sade": "Bir havzaya giren yağışın buharlaşma ve nehir akışı ile çıktığı, aradaki farkın ise toprak ve göl depolamasındaki değişimi oluşturduğu kütle korunum ilkesidir.",
+   "ornek": "İstanbul havzasında yıllık yağış P = 820 mm, gerçek buharlaşma E = 540 mm ve ölçülen nehir akımı Q = 250 mm iken depolama değişimi dS/dt = 820 - 540 - 250 = +30 mm olarak hesaplanır.",
+   "nerede": "D-MTO222-03'te İstanbul su toplama havzalarında aylık kuraklık ve su fazlası dönemlerini ayrıştırmada kullanılır."
+  },
+  {
+   "ad": "Nash-Sutcliffe model verimlilik katsayısı",
+   "tex": "\\mathrm{NSE} = 1 - \\frac{\\sum_{t=1}^{T} (Q_o^t - Q_m^t)^2}{\\sum_{t=1}^{T} (Q_o^t - \\bar{Q}_o)^2}",
+   "terimler": [
+    [
+     "\\mathrm{NSE}",
+     "Nash-Sutcliffe verimlilik katsayısı",
+     "boyutsuz"
+    ],
+    [
+     "Q_o^t",
+     "t anındaki ölçülen gözlem akımı",
+     "m^3/s"
+    ],
+    [
+     "Q_m^t",
+     "t anındaki simüle edilen akım",
+     "m^3/s"
+    ],
+    [
+     "\\bar{Q}_o",
+     "gözlem akımlarının ortalaması",
+     "m^3/s"
+    ]
+   ],
+   "sade": "Simülasyonun ölçülen akımları ne kadar doğru temsil ettiğini, basit bir ortalama kestirime kıyasla değerlendiren klasik hidrolojik doğrulama ölçütüdür.",
+   "ornek": "Bir havzada gözlem varyansı 120 (m^3/s)^2 ve kare hata ortalaması 24 (m^3/s)^2 iken NSE = 1 - (24 / 120) = 0,80 bulunur; 0'dan büyük olması tahminin ortalamadan üstün olduğunu gösterir.",
+   "nerede": "D-MTO222-01 ve D-MTO222-02'de akım tahminlerinin referans hidrolojik sistemlerle kıyaslanmasında kullanılır."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Water_cycle.png",
+   "lisans": "kamu malı",
+   "aciklama": "Küresel hidrolojik döngü: yağış, buharlaşma, sızma ve yüzey akışı şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi nehir havzaları günlük akım ve yağış korelasyonu, 2024",
+   "aciklama": "Yağış tepe noktası ile nehir akış piki arasındaki gecikme süresi hidrograf animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 222 (Hidroloji)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=222"
+  },
+  {
+   "ad": "Brutsaert, W. (2005) Hydrology: An Introduction, Cambridge University Press · DOI 10.1017/CBO9780511808470",
+   "url": "https://doi.org/10.1017/CBO9780511808470"
+  },
+  {
+   "ad": "Gupta vd. (2009) Decomposition of the mean squared error and NSE performance criteria · DOI 10.1016/j.jhydrol.2009.08.003",
+   "url": "https://doi.org/10.1016/j.jhydrol.2009.08.003"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=222"
+}

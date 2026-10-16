@@ -1,0 +1,139 @@
+{
+ "kod": "MTO 223",
+ "ad": "Bilgisayar Grafiğine Giriş",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "223",
+ "ozet": "Meteorolojik verilerin bilgisayar ortamında iki ve üç boyutlu grafik teknikleri, harita projeksiyonları ve bilimsel renk haritaları ile görselleştirilmesini öğretir. GrADS, Python Cartopy ve çağdaş veri görselleştirme kütüphaneleriyle sayısal hava modelleri çıktılarının analizi, hata haritalaması ve algıya uygun sunumu ele alınır.",
+ "neOgrenirsin": [
+  "GrADS ve Python Cartopy ile meteorolojik alanları uygun harita projeksiyonlarında görselleştirmek.",
+  "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek.",
+  "İki boyutlu ızgara verilerinde sayısal model hata alanlarını sıfıra simetrik ıraksak paletlerle haritalamak.",
+  "Makine öğrenmesi ve istatistiksel modellerin karar bölgelerini öznitelik önem haritalarıyla sunmak.",
+  "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Göreceli parlaklık ve algısal kontrast",
+   "tex": "L = 0.2126 R + 0.7152 G + 0.0722 B",
+   "terimler": [
+    [
+     "L",
+     "algılanan göreceli parlaklık değeri (0 ile 1 arası)",
+     "birimsiz"
+    ],
+    [
+     "R",
+     "doğrusal kırmızı renk kanalı bileşeni",
+     "birimsiz"
+    ],
+    [
+     "G",
+     "doğrusal yeşil renk kanalı bileşeni",
+     "birimsiz"
+    ],
+    [
+     "B",
+     "doğrusal mavi renk kanalı bileşeni",
+     "birimsiz"
+    ]
+   ],
+   "sade": "İnsan gözünün yeşil ışığa olan yüksek duyarlılığını dikkate alarak renkli bir pikselin gri tondaki parlaklığını hesaplar. Gökkuşağı paletinde parlaklığın dalgalanması yapay sınırlar üretir.",
+   "ornek": "Saf sarı için L = 0,93 iken saf mavi için L = 0,07 bulunur; bu büyük parlaklık farkı haritada veri gradyanı olmadığı halde yapay cepheler algılatır.",
+   "nerede": "D-MTO223-01 projesinde gökkuşağı ve batlow paletlerinin gri tona çevrilip algısal parlaklık tekdüzeliğinin test edilmesinde."
+  },
+  {
+   "ad": "Ortalama hata (Mean Error / Bias)",
+   "tex": "\\mathrm{ME} = \\frac{1}{N} \\sum_{i=1}^{N} (f_i - o_i)",
+   "terimler": [
+    [
+     "\\mathrm{ME}",
+     "ortalama hata veya sistematik sapma büyüklüğü",
+     "°C"
+    ],
+    [
+     "N",
+     "değerlendirilen toplam ızgara veya zaman noktası sayısı",
+     "birimsiz"
+    ],
+    [
+     "f_i",
+     "i. noktadaki GFS sayısal model sıcaklık tahmini",
+     "°C"
+    ],
+    [
+     "o_i",
+     "i. noktadaki ERA5 yeniden analiz referans değeri",
+     "°C"
+    ],
+    [
+     "\\sum",
+     "tüm ızgara noktaları üzerinden toplam operatörü",
+     "—"
+    ]
+   ],
+   "sade": "Model tahmininden referans değeri çıkarıp ortalamasını alır. Pozitif değerler modelin sıcak, negatif değerler soğuk yanıldığını gösterir; haritada sıfır nötr renkte ortalanır.",
+   "ornek": "Marmara'da 100 ızgara noktasında GFS tahminlerinin ERA5'ten farkları toplamı +120 °C ise ME = +1,2 °C sıcak sapma verir ve haritada kırmızı tonda belirir.",
+   "nerede": "D-MTO223-02 projesinde GFS'in Marmara Bölgesi sıcaklık hatası haritasını sıfırı ortalayan ıraksak HCL paletiyle çizerken."
+  },
+  {
+   "ad": "Permütasyon öznitelik önemi skoru",
+   "tex": "I_j = L_j^{\\mathrm{perm}} - L_0",
+   "terimler": [
+    [
+     "I_j",
+     "j. ızgara noktasının model kararına olan permütasyon önem skoru",
+     "birimsiz"
+    ],
+    [
+     "L_j^{\\mathrm{perm}}",
+     "j. ızgara sütunu karıştırıldıktan sonraki test hata değeri",
+     "birimsiz"
+    ],
+    [
+     "L_0",
+     "orijinal veri setindeki temel test hata değeri",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Bir ızgara noktasındaki hava basıncı değerleri rastgele karıştırıldığında modelin tahmin hatasındaki artışı ölçer. Hata çok artıyorsa o coğrafi bölge tahmin için kritiktir.",
+   "ornek": "İstanbul yağış tahmininde Balkanlar üzerindeki ızgara karıştırıldığında test hatası 0,15'ten 0,35'e çıkıyorsa o noktanın önem skoru I_j = 0,20 olarak haritaya yerleşir.",
+   "nerede": "D-MTO223-03 projesinde rastgele orman modelinin yağış tahmininde hangi coğrafi bölgelere baktığını gösteren önem haritasını çizerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Gökkuşağı ve jet paletlerinin parlaklık eğrileri ile yapay gradyan oluşumunun analizi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye 2 m sıcaklık alanının gökkuşağı ve batlow bilimsel paletleriyle karşılaştırmalı görselleştirme simülasyonu",
+   "aciklama": "Farklı renk haritalarının meteorolojik alan temsilindeki algısal farkları simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 223",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=223"
+  },
+  {
+   "ad": "Crameri, F. vd. (2020) The misuse of colour in science communication, Nature Communications, 11 · DOI: 10.1038/s41467-020-19160-7",
+   "url": "https://doi.org/10.1038/s41467-020-19160-7"
+  },
+  {
+   "ad": "Stauffer, R. vd. (2015) Somewhere Over the Rainbow: How to Make Effective Use of Colors in Meteorological Visualizations, BAMS · DOI: 10.1175/BAMS-D-13-00155.1",
+   "url": "https://doi.org/10.1175/BAMS-D-13-00155.1"
+  },
+  {
+   "ad": "McGovern, A. vd. (2019) Making the Black Box More Transparent, BAMS · DOI: 10.1175/BAMS-D-18-0195.1",
+   "url": "https://doi.org/10.1175/BAMS-D-18-0195.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=223"
+}

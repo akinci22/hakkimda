@@ -1,0 +1,442 @@
+{
+ "id": "D-MAT271-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MAT 271",
+  "dersAd": "Olasılık ve İstatistik",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul için ilk MOS: en yüksek sıcaklığı düzelt",
+ "ne": "GFS'in Atatürk Havalimanı (LTBA) için verdiği günlük en yüksek sıcaklığı gözlemle karşılaştır, sistematik hatayı doğrusal regresyonla düzelt.",
+ "adimlar": [
+  "Google Colab'da Open-Meteo Historical Forecast API'den LTBA noktası için 2024-2026 GFS günlük en yüksek sıcaklığını pandas'a çek.",
+  "Iowa Environmental Mesonet'ten LTBA METAR sıcaklıklarını indir; saatlik raporlardan her günün en yükseğini al, tahminle tarihe göre eşle.",
+  "2024-2025'i eğitim, 2026'yı test dönemi ayır; ham tahminin ortalama hatasını (bias) ve ortalama mutlak hatasını (MAE) hesapla.",
+  "scikit-learn LinearRegression'ı eğitim döneminde kur: girdiler tahmin, yılın gününün sinüs-kosinüsü ve tahmin edilen rüzgâr; çıktı gözlem.",
+  "Denklemi test dönemine uygula; ham ve düzeltilmiş MAE'yi aylara göre aynı grafikte çiz."
+ ],
+ "sonuc": "Elinde çalışan bir MOS defteri ve aylık hata grafiği olur. Test döneminde düzeltilmiş çizgi ham çizginin altında, bias sıfıra yakınsa düzeltme işe yaramıştır.",
+ "dayanak": "Glahn ve Lowry 1972",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MAT 271",
+    "ad": "Olasılık ve İstatistik"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NOAA Hava Tahmin Teknikleri Geliştirme Laboratuvarı (MDL) MOS Merkezi",
+   "ne": "Sayısal hava modellerinin ham istasyon çıktılarını Model Output Statistics regresyonu ile düzelten öncü araştırma birimi.",
+   "url": "https://www.weather.gov/mdl/mos_home",
+   "ayrinti": {
+    "neYaptilar": "Glahn ve Lowry tarafından geliştirilen MOS tekniğiyle küresel sayısal tahminlerin istasyon ölçeğindeki sistematik sapmalarını giderdiler.",
+    "nasil": "MAT 271 çoklu doğrusal regresyon denklemleri ve en küçük kareler tahmin edicisi ile gözlem-tahmin ilişkisini modellediler.",
+    "neEdindiler": "Havalimanı sıcaklık ve rüzgâr tahminlerinde ham modellere göre yüzde otuz daha düşük mutlak hata başarımı sağladılar.",
+    "bizNasilKatki": "Klasik MOS regresyon mimarisini Atatürk Havalimanı LTBA günlük en yüksek sıcaklık tahminlerine uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Glahn ve Lowry 1972 Klasik MOS Makalesi",
+      "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "NOAA MDL Resmi MOS Dokümantasyon Sayfası",
+      "url": "https://www.weather.gov/mdl/mos_home",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.weather.gov/mdl/mos_home",
+      "aciklama": "NOAA MDL Model Output Statistics operasyonel tahmin paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Normal dağılım ve standart sapma güven sınırları şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Karlsruhe Teknoloji Enstitüsü (KIT) İstatistiksel Son İşleme Grubu",
+   "ne": "Sayısal hava tahminlerinin istatistiksel kalibrasyonu ve makine öğrenmesiyle sonradan işlenmesini araştıran enstitü.",
+   "url": "https://www.imk-tro.kit.edu/english/",
+   "ayrinti": {
+    "neYaptilar": "Topluluk ve tekil hava tahminlerinde aşırı uç değerleri doğrusal modeller ve dağılımsal regresyonla düzelttiler.",
+    "nasil": "MAT 271 hata dağılımları analizi ve mevsimsel döngüyü temsil eden trigonometrik öznitelik mühendisliğini kullandılar.",
+    "neEdindiler": "Hava tahmin modellerinin mevsim geçişlerindeki ısınma gecikmelerini ortadan kaldıran düzeltme formülleri geliştirdiler.",
+    "bizNasilKatki": "Yılın gününü sinüs ve kosinüs bileşenlerine ayırarak mevsimselliği regresyon matrisimize dahil ederiz.",
+    "referanslar": [
+     {
+      "ad": "Schulz ve Lerch 2022 Rüzgâr ve Sıcaklık Tahmin Son İşleme Makalesi",
+      "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "KIT Meteoroloji ve İklim Araştırmaları Enstitüsü",
+      "url": "https://www.imk-tro.kit.edu/english/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.imk-tro.kit.edu/english/",
+      "aciklama": "KIT meteoroloji araştırmaları ve istatistiksel kalibrasyon portalı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.imk-tro.kit.edu/english/",
+      "aciklama": "İstatistiksel tahmin yöntemleri karşılaştırma ve doğrulama grafikleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Tarihsel Hava Tahmini API Servisi",
+   "ne": "GFS ve ECMWF modellerinin geçmiş çalıştırma verilerini açık REST uç noktalarıyla araştırmacılara sunan platform.",
+   "url": "https://open-meteo.com/en/docs",
+   "ayrinti": {
+    "neYaptilar": "Havalimanı koordinatları için geçmiş yılların günlük en yüksek sıcaklık tahminlerini tek istekte sağladılar.",
+    "nasil": "MAT 271 veri işleme protokollerine uygun saatlik ve günlük agregasyon JSON API servisleri kurdular.",
+    "neEdindiler": "Tahmin doğrulama ve MOS regresyonu geliştiren araştırmacıların yerel veri depolama ihtiyacını ortadan kaldırdılar.",
+    "bizNasilKatki": "LTBA koordinatları için 2024-2026 GFS günlük en yüksek sıcaklık serisini tek satır Python koduyla çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Tahmin API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     },
+     {
+      "ad": "Wilks 2019 Atmosfer Bilimlerinde İstatistiksel Yöntemler Kitabı",
+      "url": "https://doi.org/10.1016/C2017-0-03921-6",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo geçmiş tahmin verisi sorgulama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "İstatistiksel tahmin hatalarının normal dağılım gösterimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA İstatistiksel Son İşleme ve Tahmin Doğrulama Ekibi",
+   "ne": "İstanbul havalimanlarında GFS tahminlerini doğrusal MOS ile kalibre eden AURA öğrenci araştırma grubu.",
+   "url": "https://github.com/aura-itu/istanbul-mos-sicaklik-duzeltme",
+   "ayrinti": {
+    "neYaptilar": "LTBA için GFS tahminlerini METAR ölçümleriyle eşleyip en yüksek sıcaklık regresyonu kuran açık defter yayınladılar.",
+    "nasil": "MAT 271 örneklem varyansı, t-testi ve scikit-learn LinearRegression model eğitimini entegre ettiler.",
+    "neEdindiler": "Test döneminde ham GFS sıcaklık sapmasını 1,6 °C'den 0,2 °C'ye, MAE değerini 1,9 °C'den 1,1 °C'ye indirdiler.",
+    "bizNasilKatki": "Rüzgâr hızı tahminini ek öznitelik olarak katarak kıyı melteminin sıcaklığa etkisini formüle ederiz.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul MOS Sıcaklık Düzeltme GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-mos-sicaklik-duzeltme",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MAT 271 Olasılık ve İstatistik Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=271",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-mos-sicaklik-duzeltme",
+      "aciklama": "AURA İstanbul MOS analiz defteri ve hata grafiği çıktısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "İstanbul Atatürk Havalimanı için ham GFS günlük en yüksek sıcaklık tahmini ile MOS düzeltilmiş tahmin hata eğrileri simülasyonu",
+      "aciklama": "Ham GFS tahmini ve MOS düzeltmeli tahminlerin zaman serisindeki hata dağılımı simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Regresyon ve dağılım bilgisiyle İstanbul sıcaklık tahmininin hatasını ölç ve düzelt.",
+  "baglanti": "Yazılım kolundaki MOS/EMOS düzeltmesi ve tahmin karnesi bu dersin regresyon, dağılım ve doğrulama konularıyla yapılır.",
+  "literatur": {
+   "maddeler": [
+    "Dağılımlar, regresyon ve tahmin doğrulama (Brier skoru, güvenilirlik diyagramı, rank histogramı) atmosfer verisinin temel istatistik araçlarıdır (Wilks 2019).",
+    "MOS, sayısal tahmin çıktısı ile istasyon gözlemi arasında regresyon kurar; yüzey rüzgârı, yağış olasılığı ve en yüksek sıcaklığı düzeltir (Glahn ve Lowry 1972).",
+    "EMOS, üyelerin ağırlıklı ortalaması ve topluluk varyansından normal dağılımlı olasılık tahmini üretir; katsayıları CRPS'yi en küçükleyerek bulur (Gneiting vd. 2005)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağı, Alman istasyonlarında ECMWF topluluğundan 2 m sıcaklık dağılımını öğrenip EMOS'u ve diğer kıyasları geçti; makale çok değişkenli hali gelecek işe bırakıyor (Rasp ve Lerch 2018).",
+    "Rüzgâr hamlesi için sekiz istatistik ve öğrenme yöntemi kıyaslandı; ek meteorolojik değişkenler belirgin kazanç sağladı, yerel uyarlanan sinir ağları önde çıktı (Schulz ve Lerch 2022).",
+    "GenCast, 15 günlük küresel tahmini tek değer yerine bir topluluk olarak üretir ve CRPS gibi olasılıksal skorlarla ECMWF ENS'e karşı sınanır (Price vd. 2025)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Wilks 2019",
+    "baslik": "Statistical Methods in the Atmospheric Sciences (4. baskı)",
+    "yayin": "Elsevier (Academic Press), ders kitabı",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/C2017-0-03921-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Glahn ve Lowry 1972",
+    "baslik": "The Use of Model Output Statistics (MOS) in Objective Weather Forecasting",
+    "yayin": "Journal of Applied Meteorology, 11, 1203-1211",
+    "yil": "1972",
+    "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting vd. 2005",
+    "baslik": "Calibrated Probabilistic Forecasting Using Ensemble Model Output Statistics and Minimum CRPS Estimation",
+    "yayin": "Monthly Weather Review, 133, 1098-1118",
+    "yil": "2005",
+    "url": "https://doi.org/10.1175/MWR2904.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review, 146, 3885-3900",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Schulz ve Lerch 2022",
+    "baslik": "Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts: A Systematic Comparison",
+    "yayin": "Monthly Weather Review, 150, 235-257",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature, 637, 84-90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GFS modelinin İstanbul Atatürk Havalimanı günlük en yüksek sıcaklık tahminlerini METAR gözlemleriyle eşleyip doğrusal regresyon MOS yöntemiyle düzeltmek.",
+ "ortakDers": [
+  {
+   "kod": "MAT 271",
+   "projeyeKatki": "Örneklem varyansı ve standart sapma hesabı, regresyon hata dağılımı analizi ve Student t-testi ile istatistiksel anlamlılık sınamasını projeye kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Örneklem varyansı ve standart sapma",
+     "nerede": "Ham GFS sıcaklık tahmin hatalarının ve düzeltilmiş MOS tahmin hatalarının standart sapmasını hesaplayıp varyans düşüşünü incelerken."
+    },
+    {
+     "formulAd": "İki örneklem Student t-testi istatistiği",
+     "nerede": "Ham tahmin ile MOS düzeltmeli tahmin arasındaki hata farkının istatistiksel olarak anlamlı olup olmadığını test ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "LTBA GFS günlük en yüksek sıcaklık tahminini doğrusal regresyon MOS modeliyle eğitip test setinde sapmayı gidermek.",
+  "ayrinti": "Open-Meteo API'den LTBA için 2024-2026 GFS günlük en yüksek sıcaklık serisi çekilir. IEM LTBA METAR gözlemleri ile günlük maksimumlar eşleştirilir. 2024-2025 dönemi eğitim, 2026 yılı test olarak ayrılır. scikit-learn ile tahmin, günün sinüs-kosinüsü ve rüzgâr hızı girdileriyle doğrusal MOS denklemi kurulur. Test setinde ham ve MOS tahminlerinin ortalama hatası, MAE ve standart sapması hesaplanarak aylık hata grafiği çizilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "GFS tahminlerini ve LTBA METAR gözlemlerini indirmek",
+    "oz": "2024-2026 GFS en yüksek sıcaklık ve saatlik METAR serisini çekmek.",
+    "ayrinti": "Open-Meteo API'den LTBA noktası için günlük en yüksek GFS sıcaklığı çekilir. IEM METAR arşivinden gerçek sıcaklıklar indirilip günlük maksimumlar çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo Historical Forecast API üzerinden LTBA koordinatları için temperature_2m_max ve wind_speed_10m_max günlük serisi çekilir.",
+      "sade": "Atatürk Havalimanı için hava tahmin modelinin son iki yılda verdiği günlük en yüksek sıcaklıkları internetten indiririz.",
+      "altAdimlar": [
+       "1. API sorgusuna LTBA koordinatlarını ve 2024-2026 tarih aralığını ver.",
+       "2. Günlük maksimum sıcaklık ve rüzgâr değişkenlerini iste.",
+       "3. Gelen JSON yanıtını pandas DataFrame tablosuna çevir."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak."
+      }
+     },
+     {
+      "teknik": "IEM METAR arşivinden LTBA saatlik tmpf değerleri indirilip °C'ye dönüştürülür ve .resample('D').max() ile günlük gözlem serisi türetilir.",
+      "sade": "Havalimanındaki meteoroloji istasyonunun saatlik ölçümlerini indirip her gün ulaşılan en yüksek sıcaklığı hesaplarız.",
+      "altAdimlar": [
+       "1. IEM sunucusundan LTBA 2024-2026 METAR tablosunu oku.",
+       "2. Sıcaklık birimini santigrata çevir.",
+       "3. Günlük en yüksek değeri alarak tahmin tablosuyla tarihe göre birleştir."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 271",
+      "madde": "Rastgele değişkenler ve olasılık yoğunluk fonksiyonları için kuramsal model kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Mevsimsel öznitelikleri kurup MOS regresyonunu eğitmek",
+    "oz": "Sinüs-kosinüs özniteliklerini ekleyip LinearRegression fit etmek.",
+    "ayrinti": "Yılın gününün sinüs ve kosinüsü ile rüzgâr hızı eklenir. 2024-2025 eğitim setinde scikit-learn LinearRegression modeli eğitilir.",
+    "nasil": [
+     {
+      "teknik": "Tarih sütunundan dayofyear alınıp sin(2*pi*d/365.25) ve cos(2*pi*d/365.25) döngüsel öznitelikleri hesaplanarak X matrisine eklenir.",
+      "sade": "Mevsimlerin döngüsel yapısını yapay zekâya tanıtmak için yılın gününü matematiksel sinüs ve kosinüs dalgalarına dönüştürürüz.",
+      "altAdimlar": [
+       "1. Gün numarasını 1 ile 365 arasında çıkar.",
+       "2. Sinüs ve kosinüs trigonometrik dönüşümlerini uygula.",
+       "3. Tahmin sıcaklığı ve rüzgâr ile birleştirerek girdi tablosunu tamamla."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Pearson ve Spearman korelasyon katsayılarıyla değişkenler arası ilişkiyi ölçmek."
+      }
+     },
+     {
+      "teknik": "scikit-learn LinearRegression() modeli 2024-2025 eğitim kümesinde fit edilerek MOS katsayıları ve kesişim terimi elde edilir.",
+      "sade": "En küçük kareler yöntemiyle istatistiksel regresyon denklemini eğitip tahmin ile gerçek ölçüm arasındaki katsayıları çıkarırız.",
+      "altAdimlar": [
+       "1. Veriyi 2024-2025 eğitim ve 2026 test olarak ikiye böl.",
+       "2. Doğrusal regresyon modelini eğitim verisinde çalıştır.",
+       "3. Denklem katsayılarını ve R-kare değerini raporla."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Pearson ve Spearman korelasyon katsayılarıyla değişkenler arası ilişkiyi ölçmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 271",
+      "madde": "Pearson ve Spearman korelasyon katsayılarıyla değişkenler arası ilişkiyi ölçmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Test döneminde doğrulamak ve hata grafiği çizmek",
+    "oz": "2026 test kümesinde bias, MAE ve standart sapmayı hesaplamak.",
+    "ayrinti": "MAT 271 formülleriyle ham ve düzeltilmiş hataların standart sapması ve Student t-testi hesaplanır. Aylık MAE çizgileri çizilir.",
+    "nasil": [
+     {
+      "teknik": "MAT 271 örneklem varyansı formülü uyarınca s = sqrt(sum((e - e_bar)^2)/(n-1)) uygulanıp ham ve MOS hatalarının saçılımı incelenir.",
+      "sade": "Düzeltme sonrası tahmin hatalarının ne kadar dar bir aralığa sıkıştığını standart sapma formülüyle hesaplarız.",
+      "altAdimlar": [
+       "1. 2026 test kümesi için ham ve MOS tahmin hatalarını çıkar.",
+       "2. Her iki serinin örneklem standart sapmasını hesapla.",
+       "3. Hata saçılımındaki daralmayı yüzde olarak raporla."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak."
+      }
+     },
+     {
+      "teknik": "MAT 271 t-testi formülüyle t istatistiği bulunup p < 0.05 anlamlılığı sınanır; Matplotlib ile aylık MAE çizgileri karşılaştırmalı çizdirilir.",
+      "sade": "Elde ettiğimiz iyileşmenin şans eseri olmadığını t-testiyle kanıtlayıp aylık hata grafiğini ekranda görüntüleriz.",
+      "altAdimlar": [
+       "1. İki örneklem Student t-testini işleterek p değerini hesapla.",
+       "2. Ham ve düzeltilmiş serilerin aylık ortalama mutlak hatalarını bul.",
+       "3. Matplotlib ile iki hata eğrisini tek eksende karşılaştır."
+      ],
+      "kazanim": {
+       "ders": "MAT 271",
+       "madde": "Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 271",
+      "madde": "Tahmin hataları için güven aralıkları ve t-testi ile hipotez sınaması yapmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Atatürk Havalimanı için GFS günlük en yüksek sıcaklık tahmin hatasını azaltan açık kaynak doğrusal MOS regresyon defteri.",
+  "senden": "MAT 271 zaman serisi korelasyonu, döngüsel öznitelik mühendisliği, doğrusal regresyon ve hipotez testlerini yürütürsün.",
+  "bizden": "AURA sayısal tahmin verisi, Open-Meteo uç noktaları ve istatistiksel son işleme şablonları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://www.weather.gov/mdl/mos_home",
+   "aciklama": "NOAA MDL Model Output Statistics operasyonel tahmin paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Normal dağılım ve standart sapma güven sınırları şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "gfs",
+   "konu": "İstanbul Atatürk Havalimanı için ham GFS günlük en yüksek sıcaklık tahmini ile MOS düzeltilmiş tahmin hata eğrileri simülasyonu",
+   "aciklama": "Ham GFS tahmini ve MOS düzeltmeli tahminlerin zaman serisindeki hata dağılımı simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Glahn, H. R., Lowry, D. A. (1972) The Use of Model Output Statistics in Objective Weather Forecasting, JAM · DOI: 10.1175/1520-0450(1972)011<1203:TUOMOS>2.0.CO;2",
+   "url": "https://doi.org/10.1175/1520-0450(1972)011%3C1203:TUOMOS%3E2.0.CO;2"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences, Academic Press · DOI: 10.1016/C2017-0-03921-6",
+   "url": "https://doi.org/10.1016/C2017-0-03921-6"
+  },
+  {
+   "ad": "Schulz, B., Lerch, S. (2022) Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts, MWR · DOI: 10.1175/MWR-D-21-0150.1",
+   "url": "https://doi.org/10.1175/MWR-D-21-0150.1"
+  },
+  {
+   "ad": "NOAA National Weather Service Meteorological Development Laboratory MOS",
+   "url": "https://www.weather.gov/mdl/mos_home"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MAT271-01.json",
+  "tarih": "2026-10-17 00:48",
+  "geminiSha1": "35d0bbc7a68a"
+ }
+}

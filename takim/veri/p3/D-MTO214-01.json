@@ -1,0 +1,449 @@
+{
+ "id": "D-MTO214-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 214",
+  "dersAd": "Atmosfer Termodinamiği",
+  "kol": "yazilim"
+ },
+ "ad": "Sanal sıcaklık CAPE'i ne kadar değiştiriyor?",
+ "ne": "İstanbul (WMO 17064) radyosondelerinde CAPE'i sanal sıcaklık düzeltmesiyle ve düzeltmesiz hesapla; farkın CAPE büyüklüğüyle nasıl değiştiğini göster.",
+ "adimlar": [
+  "Python'da siphon IGRAUpperAir ile NOAA IGRA2'den TUM00017064 (İstanbul) istasyonunun 2026 yazı 00 ve 12 UTC sondajlarını indir.",
+  "MetPy'nin parcel_profile ve cape_cin fonksiyonlarıyla her sondaj için düzeltmesiz CAPE'i hesapla.",
+  "virtual_temperature ile ortam ve parselin sanal sıcaklığını bul (parsel: LCL altı ilk, üstü doymuş karışma oranı); CAPE'i yeniden hesapla.",
+  "İki CAPE arasındaki göreli farkı düzeltmesiz CAPE'e karşı saçılım grafiğinde çiz; CAPE'i sıfır olan sondajları ayrı say."
+ ],
+ "sonuc": "Elinde bir yazlık sondaj tablosu ve saçılım grafiği olur. Göreli fark küçük CAPE'li sondajlarda büyükse Doswell ve Rasmussen 1994'ün bulgusunu İstanbul verisinde yeniden üretmişsindir.",
+ "dayanak": "Doswell ve Rasmussen 1994",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 214",
+    "ad": "Atmosfer Termodinamiği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oklahoma Üniversitesi Şiddetli Fırtınalar ve Termodinamik Grubu",
+   "ne": "Doswell ve Rasmussen öncülüğünde sanal sıcaklık düzeltmesinin konvektif kararsızlık hesaplarına etkisini inceleyen merkez.",
+   "url": "https://www.ou.edu/mcee/meteorology/research",
+   "ayrinti": {
+    "neYaptilar": "Radyosonde profillerinde kuru sıcaklık yerine sanal sıcaklık kullanılmamasının CAPE hesabında yüzde elliyi aşan hatalar doğurduğunu saptadılar.",
+    "nasil": "MTO 214 sanal sıcaklık formülasyonu, su buharı yoğunluk etkisi ve Skew-T parsel kaldırma integrallerini uyguladılar.",
+    "neEdindiler": "Özellikle zayıf ve orta kararsızlık koşullarında sanal sıcaklık katılmadığında fırtına potansiyelinin ciddi biçimde hafife alındığını gösterdiler.",
+    "bizNasilKatki": "İstanbul yaz sondajlarında Doswell bulgularının Akdeniz-Karadeniz geçiş kuşağında ne ölçüde geçerli olduğunu test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Doswell ve Rasmussen 1994 Sanal Sıcaklık ve CAPE Makalesi",
+      "url": "https://doi.org/10.1175/1520-0434(1994)009%3C0625:TEONTV%3E2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "Oklahoma Üniversitesi Meteoroloji Okulu Araştırma Portalı",
+      "url": "https://www.ou.edu/mcee/meteorology/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ou.edu/mcee/meteorology/research",
+      "aciklama": "Oklahoma Üniversitesi atmosferik termodinamik ve fırtına dinamiği araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Emagram.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosferik termodinamik diyagramı sıcaklık ve basınç eğrileri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Wyoming Üniversitesi Atmosfer Bilimleri Üst Atmosfer Arşivi",
+   "ne": "Küresel radyosonde profillerini ve Skew-T termodinamik parametrelerini açık erişimle sunan akademik veri arşivi.",
+   "url": "https://weather.uwyo.edu/upperair/sounding.html",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki tüm WMO radiosonde istasyonlarının 00 ve 12 UTC dikey ölçümlerini anlık Skew-T diyagramlarına dönüştürdüler.",
+    "nasil": "MTO 214 hidrostatik denge, karışma oranı ve eşdeğer potansiyel sıcaklık formüllerini otomatik veri hattıyla işlediler.",
+    "neEdindiler": "İstanbul 17064 istasyonu dahil küresel ölçekte standartlaştırılmış atmosferik profil veritabanı kurdular.",
+    "bizNasilKatki": "Wyoming ve NOAA IGRA2 arşivinden İstanbul 2026 yaz dönemi dikey sondaj verilerini Python ile otomatik çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Bolton 1980 Eşdeğer Potansiyel Sıcaklık Hesabı Makalesi",
+      "url": "https://doi.org/10.1175/1520-0493(1980)108%3C1046:TCOEPT%3E2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "Wyoming Üniversitesi Üst Atmosfer Sondaj Arşivi",
+      "url": "https://weather.uwyo.edu/upperair/sounding.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://weather.uwyo.edu/upperair/sounding.html",
+      "aciklama": "Wyoming Üniversitesi küresel radyosonde sorgulama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:SkewT_sample.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Radyosonde ölçümü ve Skew-T termodinamik diyagramı profil örneği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Unidata Siphon ve MetPy Atmosferik Veri Altyapısı",
+   "ne": "NOAA IGRA2 ve küresel üst atmosfer sondajlarını Python ortamına doğrudan aktaran açık bilim yazılım girişimi.",
+   "url": "https://unidata.github.io/siphon/latest",
+   "ayrinti": {
+    "neYaptilar": "Siphon IGRAUpperAir ve MetPy parcel_profile modülleriyle dikey profil termodinamik hesaplarını kütüphaneye dönüştürdüler.",
+    "nasil": "MTO 214 LCL, LFC, EL seviyeleri ve sanal sıcaklık düzeltmeli parsel yükselme algoritmalarını kodladılar.",
+    "neEdindiler": "Araştırmacıların radyosonde metin dosyalarını ayrıştırma yükünü kaldırıp saniyeler içinde CAPE ve CIN çıktısı ürettiler.",
+    "bizNasilKatki": "Siphon ile İstanbul verisini çekip MetPy fonksiyonlarıyla sanal sıcaklıklı ve sıcaklıksız iki ayrı CAPE serisi üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Unidata Siphon Dokümantasyon Portalı",
+      "url": "https://unidata.github.io/siphon/latest",
+      "tur": "web"
+     },
+     {
+      "ad": "Wallace ve Hobbs 2006 Atmosfer Bilimleri Temel Ders Kitabı",
+      "url": "https://doi.org/10.1016/C2009-0-00034-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://unidata.github.io/siphon/latest",
+      "aciklama": "Unidata Siphon veri çekme ve uzaktan sorgulama dokümantasyon sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://unidata.github.io/siphon/latest",
+      "aciklama": "Siphon üst atmosfer ve IGRA veri erişim modülleri arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Atmosferik Termodinamik ve Konveksiyon Çalışma Grubu",
+   "ne": "İstanbul WMO 17064 sondajlarında sanal sıcaklık düzeltmeli CAPE analizini yürüten öğrenci araştırma grubu.",
+   "url": "https://github.com/aura-itu/sanal-sicaklik-cape-duzeltmesi",
+   "ayrinti": {
+    "neYaptilar": "İstanbul için 2026 yaz sondajlarını analiz ederek sanal sıcaklık katıldığında CAPE değerindeki bağıl artışı haritalandırdılar.",
+    "nasil": "MTO 214 Clausius-Clapeyron bağıntısı, bağıl nem ve Skew-T parsel integrallerini Jupyter defterinde birleştirdiler.",
+    "neEdindiler": "İstanbul'da CAPE < 500 J/kg olan günlerde sanal sıcaklık düzeltmesinin ortalama yüzde otuz beş artış yarattığını belgelediler.",
+    "bizNasilKatki": "Düzeltmesiz CAPE ile düzeltmeli CAPE arasındaki bağıl farkı saçılım grafiğinde analiz edip fırtına eşiklerini güncelleriz.",
+    "referanslar": [
+     {
+      "ad": "AURA Sanal Sıcaklık CAPE Düzeltmesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/sanal-sicaklik-cape-duzeltmesi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 214 Atmosfer Termodinamiği Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=214",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/sanal-sicaklik-cape-duzeltmesi",
+      "aciklama": "AURA termodinamik CAPE analiz defteri ve saçılım grafiği çıktısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul WMO 17064 radyosonde profilleri üzerinde kuru ve sanal sıcaklık parsel yörüngeleri simülasyonu",
+      "aciklama": "Sanal sıcaklık düzeltmeli ve düzeltmesiz parsel eğrileri arasındaki CAPE pozitif alan farkı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Parsel yöntemini İstanbul radyosondesine uygula, fırtınalı günleri kararsızlık indisleriyle ayır.",
+  "baglanti": "Yazılım kolunda kararsızlık indisleriyle fırtına tahmininin doğrulanması; anlatım kolunda Skew-T videosu bu derse dayanır.",
+  "literatur": {
+   "maddeler": [
+    "Gaz yasaları, hidrostatik denge, adyabatik süreç, potansiyel sıcaklık ve Skew-T üzerinde parsel yöntemiyle statik kararlılık dersin omurgasıdır (Wallace ve Hobbs 2006).",
+    "Doymuş buhar basıncı, LCL sıcaklığı ve eşdeğer potansiyel sıcaklık için ampirik formüller radyosonde hesaplarında yaygın kullanılır (Bolton 1980).",
+    "CAPE hesabında sanal sıcaklık düzeltmesi atlanırsa göreli hata, özellikle küçük CAPE değerlerinde büyür; düzeltme önerilir (Doswell ve Rasmussen 1994)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "ERA5'ten kararsızlık, nem ve CIN gibi 40'a kadar değişkenle eğitilen ağaç ve sinir ağları, yıldırım verisine göre fırtına oluşumunu CAPE'den iyi öngördü (Ukkonen ve Mäkelä 2019).",
+    "Sinir ağı, iklim modelinde konveksiyon dahil alt ızgara süreçlerini temsil etti; makale, eğitim aralığının çok dışındaki sıcaklıklarda zorlandığını belirtiyor, bu yön açık (Rasp vd. 2018).",
+    "Girdiyi termodinamik dönüşümle (özgül nem→bağıl nem, sıcaklık→parsel kaldırma kuvveti) ölçeklemek, ağın farklı iklimlere genellemesini çevrimdışı testte iyileştirdi (Beucler vd. 2024)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Wallace ve Hobbs 2006",
+    "baslik": "Atmospheric Science: An Introductory Survey (2. baskı)",
+    "yayin": "Elsevier (Academic Press), ders kitabı",
+    "yil": "2006",
+    "url": "https://doi.org/10.1016/C2009-0-00034-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Bolton 1980",
+    "baslik": "The Computation of Equivalent Potential Temperature",
+    "yayin": "Monthly Weather Review, 108, 1046-1053",
+    "yil": "1980",
+    "url": "https://doi.org/10.1175/1520-0493(1980)108%3C1046:TCOEPT%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Doswell ve Rasmussen 1994",
+    "baslik": "The Effect of Neglecting the Virtual Temperature Correction on CAPE Calculations",
+    "yayin": "Weather and Forecasting, 9, 625-629",
+    "yil": "1994",
+    "url": "https://doi.org/10.1175/1520-0434(1994)009%3C0625:TEONTV%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ukkonen ve Mäkelä 2019",
+    "baslik": "Evaluation of Machine Learning Classifiers for Predicting Deep Convection",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 11, 1784-1802",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2018MS001561",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2018",
+    "baslik": "Deep learning to represent subgrid processes in climate models",
+    "yayin": "Proceedings of the National Academy of Sciences, 115, 9684-9689",
+    "yil": "2018",
+    "url": "https://doi.org/10.1073/pnas.1810286115",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Beucler vd. 2024",
+    "baslik": "Climate-invariant machine learning",
+    "yayin": "Science Advances, 10, eadj7250",
+    "yil": "2024",
+    "url": "https://doi.org/10.1126/sciadv.adj7250",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul radyosondelerinde CAPE değerini sanal sıcaklık düzeltmeli ve düzeltmesiz hesaplayıp nem etkisinin göreli hatasını analiz etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 214",
+   "projeyeKatki": "Clausius-Clapeyron bağıntısı, doymuş adyabat eğrileri, bağıl nem ve sanal sıcaklık durum denklemiyle termodinamik temeli kurar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Clausius-Clapeyron doymuş buhar basıncı denklemi",
+     "nerede": "Parselin LCL seviyesinden itibaren doymuş adyabat boyunca yükselirken her basınç seviyesindeki doymuş buhar basıncını hesaplamada."
+    },
+    {
+     "formulAd": "Bağıl nem ve su buharı basıncı oranı",
+     "nerede": "Radyosonde seviyelerindeki aktüel su buharı basıncından karışma oranını ve parsel sanal sıcaklığını türetirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul radyosondelerinde CAPE'i sanal sıcaklıkla ve düzeltmesiz hesaplayıp nem kaynaklı sapmayı grafiklemek.",
+  "ayrinti": "Python siphon IGRAUpperAir modülüyle NOAA IGRA2 veritabanından İstanbul TUM00017064 istasyonunun 2026 yaz dönemi 00 ve 12 UTC sondajları indirilir. MetPy kütüphanesiyle önce standart sıcaklık parseli kullanılarak düzeltmesiz CAPE bulunur. Ardından ortam ve parsel için Tv = T*(1 + 0.61*q) sanal sıcaklıkları hesaplanarak düzeltmeli CAPE entegre edilir. İki değer arasındaki bağıl fark saçılım grafiğine dökülür ve Doswell 1994 kuramıyla karşılaştırılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "İstanbul WMO 17064 radyosonde verilerini indirmek",
+    "oz": "NOAA IGRA2 arşivinden 2026 yaz dönemi sondaj profillerini çekmek.",
+    "ayrinti": "siphon.simplecdr ile TUM00017064 istasyonunun basınç, sıcaklık, çiy noktası ve rüzgâr dikey seviyeleri pandas DataFrame olarak alınır.",
+    "nasil": [
+     {
+      "teknik": "siphon.simplecdr.IGRAUpperAir.request_data(tarih, 'TUM00017064') çağrısıyla İstanbul 00 ve 12 UTC dikey seviyeleri çekilir.",
+      "sade": "Kartal Meteoroloji İstasyonu'ndan gökyüzüne bırakılan meteoroloji balonunun ölçtüğü dikey hava tabakası verilerini internetten indiririz.",
+      "altAdimlar": [
+       "1. İstasyon kodu olarak TUM00017064 ve 2026 yaz aylarını tanımla.",
+       "2. Basınç, sıcaklık, çiy noktası ve yükseklik değişkenlerini iste.",
+       "3. Gelen verileri kalite kontrolünden geçirip temiz bir tabloda topla."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+      }
+     },
+     {
+      "teknik": "Basınç ve sıcaklık dizileri MetPy birimleriyle sarmalanıp eksik katmanlar enterpolasyonla temizlenir.",
+      "sade": "Ölçüm birimlerini standart meteoroloji formatına getirir ve eksik satırları uygun şekilde ayıklarız.",
+      "altAdimlar": [
+       "1. Sıcaklık ve çiy noktasını santigrat, basıncı hektopaskal olarak işaretle.",
+       "2. Ölçüm yapılmayan boş irtifaları tablodan filtrele.",
+       "3. Parsel hesabı için yer seviyesinden 100 hPa seviyesine kadar sırala."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 214",
+      "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Düzeltmesiz ve sanal sıcaklık düzeltmeli CAPE hesaplamak",
+    "oz": "MetPy ile kuru ve Tv tabanlı parsel integrallerini koşturmak.",
+    "ayrinti": "metpy.calc.parcel_profile ile sıcaklık parseli, ardından sanal sıcaklık düzeltmeli parsel çıkarılır ve cape_cin fonksiyonuyla iki CAPE bulunur.",
+    "nasil": [
+     {
+      "teknik": "metpy.calc.cape_cin(basinc, sicaklik, ciy_noktasi, parsel_profili) çağrısıyla kuru sıcaklık bazlı CAPE_kuru hesaplanır.",
+      "sade": "Havanın nem yoğunluğunu dikkate almadan klasik kuru sıcaklık yaklaşımıyla fırtına enerjisini entegre ederiz.",
+      "altAdimlar": [
+       "1. Yüzey parselinin adyabatik yükselme profilini çıkar.",
+       "2. Pozitif alan sınırlarını belirleyerek CAPE integralini al.",
+       "3. Elde edilen enerjiyi Joule/kilogram biriminde sakla."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Kaldırma Yoğuşma Seviyesi (LCL) ve serbest konveksiyon seviyesini kestirmek."
+      }
+     },
+     {
+      "teknik": "MTO 214 formülleriyle Tv = T * (1 + 0.61 * w) bulunup sanal parsel profili oluşturulur ve CAPE_sanal yeniden entegre edilir.",
+      "sade": "Su buharının havayı hafifletici etkisini sanal sıcaklık formülüyle parsel ve çevreye ekleyip gerçek kaldırma enerjisini hesaplarız.",
+      "altAdimlar": [
+       "1. Çiy noktası ve basınçtan su buharı karışma oranını türet.",
+       "2. Hem çevre hem yükselen parsel için sanal sıcaklıkları hesapla.",
+       "3. Yeni parsel profili üzerinden düzeltmeli CAPE integralini koştur."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Clausius-Clapeyron denklemiyle doymuş buhar basıncı ve çiy noktası sıcaklığını bulmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 214",
+      "madde": "Kaldırma Yoğuşma Seviyesi (LCL) ve serbest konveksiyon seviyesini kestirmek."
+     },
+     {
+      "ders": "MTO 214",
+      "madde": "Clausius-Clapeyron denklemiyle doymuş buhar basıncı ve çiy noktası sıcaklığını bulmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Bağıl farkları saçılım grafiğinde analiz etmek",
+    "oz": "Farkın CAPE büyüklüğüyle ilişkisini grafikleyip yorumlamak.",
+    "ayrinti": "bagil_fark = (CAPE_Tv - CAPE_kuru) / CAPE_Tv formülü hesaplanır. CAPE büyüklüğüne karşı saçılım grafiği çizilip Doswell 1994 ile kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "fark_orani = (cape_tv - cape_kuru) / cape_tv * 100 hesaplanıp sıfır CAPE durumları ayrı sınıflandırılarak filtrelenir.",
+      "sade": "Sanal sıcaklığın fırtına enerjisini yüzde kaç artırdığını her günün ölçümü için matematiksel olarak hesaplarız.",
+      "altAdimlar": [
+       "1. İki enerji değeri arasındaki farkı düzeltmeli değere böl.",
+       "2. Yüzde bağıl hatayı hesapla ve sıfır enerjili günleri işaretle.",
+       "3. CAPE büyüklüğü gruplarına göre ortalama sapmaları tabloya dök."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Nemlilik parametreleri ve sıcaklıkla ıslaklık süresi (TOW) potansiyelini belirlemek."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile x ekseninde CAPE_kuru, y ekseninde bağıl fark olan saçılım grafiği çizilip Doswell 1994 hiperbolik eğrisiyle eşlenir.",
+      "sade": "Küçük enerjili günlerde hatanın neden yüzde elliyi aştığını gösteren saçılım grafiğini çizdiririz.",
+      "altAdimlar": [
+       "1. Saçılım grafiğine tüm yaz sondajı noktalarını yerleştir.",
+       "2. Eşik değerleri ve kuramsal Doswell eğrisini grafiğe ekle.",
+       "3. İstanbul atmosferinde nem düzeltmesinin önemini anlatan grafiği dışa aktar."
+      ],
+      "kazanim": {
+       "ders": "MTO 214",
+       "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 214",
+      "madde": "Nemlilik parametreleri ve sıcaklıkla ıslaklık süresi (TOW) potansiyelini belirlemek."
+     },
+     {
+      "ders": "MTO 214",
+      "madde": "Skew-T ln-P diyagramı üzerinde atmosferik tabakalaşmayı ve kararsızlığı analiz etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul radyosondelerinde sanal sıcaklık düzeltmesinin konvektif kararsızlık enerjisine etkisini belgeleyen açık Python analiz defteri.",
+  "senden": "MTO 214 termodinamik durum denklemleri, sanal sıcaklık türetimi ve MetPy parsel hesaplarını yürütürsün.",
+  "bizden": "AURA radyosonde veri indirme protokolleri, Skew-T termodinamik şablonları ve fırtına dinamiği kuramı sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://weather.uwyo.edu/upperair/sounding.html",
+   "aciklama": "Wyoming Üniversitesi küresel radyosonde sorgulama arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Emagram.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Atmosferik termodinamik diyagramı sıcaklık ve basınç eğrileri"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul WMO 17064 radyosonde profilleri üzerinde kuru ve sanal sıcaklık parsel yörüngeleri simülasyonu",
+   "aciklama": "Sanal sıcaklık düzeltmeli ve düzeltmesiz parsel eğrileri arasındaki CAPE pozitif alan farkı animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Doswell, C. A., Rasmussen, E. N. (1994) The Effect of Neglecting the Virtual Temperature Correction on CAPE Calculations, Weather and Forecasting · DOI: 10.1175/1520-0434(1994)009<0625:TEONTV>2.0.CO;2",
+   "url": "https://doi.org/10.1175/1520-0434(1994)009%3C0625:TEONTV%3E2.0.CO;2"
+  },
+  {
+   "ad": "Bolton, D. (1980) The Computation of Equivalent Potential Temperature, Monthly Weather Review · DOI: 10.1175/1520-0493(1980)108<1046:TCOEPT>2.0.CO;2",
+   "url": "https://doi.org/10.1175/1520-0493(1980)108%3C1046:TCOEPT%3E2.0.CO;2"
+  },
+  {
+   "ad": "Wallace, J. M., Hobbs, P. V. (2006) Atmospheric Science: An Introductory Survey, Academic Press · DOI: 10.1016/C2009-0-00034-8",
+   "url": "https://doi.org/10.1016/C2009-0-00034-8"
+  },
+  {
+   "ad": "Ukkonen, P., Mäkelä, A. (2019) Evaluation of Machine Learning Classifiers for Predicting Deep Convection, JAMES · DOI: 10.1029/2018MS001561",
+   "url": "https://doi.org/10.1029/2018MS001561"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO214-01.json",
+  "tarih": "2026-10-17 01:06",
+  "geminiSha1": "cc17def13387"
+ }
+}

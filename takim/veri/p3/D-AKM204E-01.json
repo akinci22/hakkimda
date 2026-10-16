@@ -1,0 +1,475 @@
+{
+ "id": "D-AKM204E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "AKM 204E",
+  "dersAd": "Akışkanlar Mekaniği",
+  "kol": "yazilim"
+ },
+ "ad": "Logaritmik yasa İstanbul'da tutuyor mu?",
+ "ne": "Türbülanslı sınır tabakadaki logaritmik hız profiliyle ERA5'in 10 m rüzgârından 100 m rüzgârını tahmin et; ERA5'in kendi 100 m değeriyle kıyasla.",
+ "adimlar": [
+  "Open-Meteo Historical Weather API'den İstanbul için bir yıllık saatlik ERA5 10 m ve 100 m rüzgâr hızını indir.",
+  "Logaritmik yasayı u(z)=(u*/κ)·ln(z/z0) olarak yaz; ilk ayın verisinden tek bir pürüzlülük uzunluğu z0 bul.",
+  "Bu z0 ile kalan aylarda 10 m rüzgârından 100 m rüzgârını Python ile hesapla.",
+  "Tahmin ile ERA5 100 m değeri arasındaki hatayı günün saatine göre ortala; matplotlib ile çiz.",
+  "Gece ve gündüz farkını kararlı ve kararsız tabakalaşmayla iki cümlede açıkla."
+ ],
+ "sonuc": "Günün saatine göre hata grafiği. Hata gün içinde işaret değiştiriyorsa yasa yalnız nötre yakın koşulda tutuyor; kararsız gündüz ve kararlı gece onu bozuyor demektir.",
+ "dayanak": "Pope 2000",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "AKM 204E",
+    "ad": "Akışkanlar Mekaniği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "DTU Rüzgâr Enerjisi Bölümü ve Atmosferik Sınır Tabaka Grubu",
+   "ne": "WAsP yazılımı ve lidar ölçümleriyle atmosferik sınır tabakada logaritmik rüzgâr profillerini ve pürüzlülük modellerini geliştiren araştırma merkezi.",
+   "url": "https://www.wasp.dk/wasp",
+   "ayrinti": {
+    "neYaptilar": "Türbülanslı sınır tabaka fiziğini topografik ve pürüzlülük haritalarıyla birleştirerek rüzgâr türbinleri için dikey profil hesaplama standardını kurdular.",
+    "nasil": "AKM 204E logaritmik hız yasası, kaynama pürüzlülüğü ve Monin-Obukhov kararlılık fonksiyonlarını sayısal akışkan modelleriyle bütünleştirdiler.",
+    "neEdindiler": "Dünyadaki rüzgâr enerjisi santrallerinin yer seçiminde endüstri standardı olan WAsP mühendislik aracını sektöre kazandırdılar.",
+    "bizNasilKatki": "Aynı logaritmik formülasyonu İstanbul ERA5 ızgarasında test edip kararlılık sapmalarını gösteren açık Colab defteri üretiriz.",
+    "referanslar": [
+     {
+      "ad": "DTU Wind Energy WAsP Resmi Dokümantasyonu",
+      "url": "https://www.wasp.dk/wasp",
+      "tur": "web"
+     },
+     {
+      "ad": "Troen ve Petersen 1989 European Wind Atlas Raporu",
+      "url": "https://doi.org/10.11581/DTU:00000062",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.wasp.dk/wasp",
+      "aciklama": "DTU WAsP rüzgâr profili ve sınır tabaka hesaplama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Atmosferik sınır tabakada logaritmik hız profili ve yüzey tabakası kesiti"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Vortex FDM Rüzgâr Simülasyonu Girişimi",
+   "ne": "Yüksek çözünürlüklü WRF ve sınır tabaka algoritmalarıyla rüzgâr türbini göbek yüksekliğinde (80-150 m) saatlik rüzgâr serileri üreten girişim.",
+   "url": "https://vortexfdc.com/technology/",
+   "ayrinti": {
+    "neYaptilar": "ERA5 ve küresel yeniden analizleri yerel pürüzlülük haritalarıyla dinamik olarak alt ölçeğe indirip türbin yüksekliği rüzgârını kestirdiler.",
+    "nasil": "AKM 204E Reynolds gerilmeleri, türbülans kinetik enerjisi ve yüzey sürtünme hızlarını mikro ölçekli ağlarda çözdüler.",
+    "neEdindiler": "Rüzgâr çiftliği yatırımcılarına küresel ölçekte banka onaylı kaynak tahmin raporları sunan başarılı bir veri servisi kurdular.",
+    "bizNasilKatki": "Girişimin karmaşık mikro ölçek simülasyonu yerine tek pürüzlülük katsayılı analitik logaritmik yasayı Python'la sınayıp sınırlarını belgeleriz.",
+    "referanslar": [
+     {
+      "ad": "Vortex FDM Rüzgâr Analiz Teknolojisi",
+      "url": "https://vortexfdc.com/technology/",
+      "tur": "web"
+     },
+     {
+      "ad": "Pope 2000 Turbulent Flows Cambridge University Press",
+      "url": "https://doi.org/10.1017/CBO9780511840531",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://vortexfdc.com/technology/",
+      "aciklama": "Vortex rüzgâr enerjisi kaynak haritalama ve zaman serisi platformu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Wind_turbine_wake_aerodynamics.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Rüzgâr türbini kanat aerodinamiği ve türbülanslı sınır tabaka izi akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Open-Meteo Açık Kaynak Hava Tahmin Takımı",
+   "ne": "ERA5 ve küresel hava modellerini açık API üzerinden 10 m ve 100 m rüzgâr hızlarıyla ücretsiz sunan bağımsız geliştirici takımı.",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "ayrinti": {
+    "neYaptilar": "ECMWF ERA5 yeniden analiz arşivindeki çok katmanlı rüzgâr verilerini coğrafi koordinat bazında saatlik JSON akışına dönüştürdüler.",
+    "nasil": "AKM 204E dikey ızgara enterpolasyonu ve açık API mimarisiyle saniyeler içinde 10 m ve 100 m rüzgâr hızlarını kullanıcıya sundular.",
+    "neEdindiler": "Dünya genelinde bilim insanları ve öğrencilerin hava verisine ücretsiz ve API anahtarsız erişmesini sağlayan popüler bir altyapı kurdular.",
+    "bizNasilKatki": "Bu API'yi kullanarak İstanbul için 1 yıllık saatlik rüzgâr verisini tek HTTP isteğiyle çeken açık Python veri alım kodu hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Historical Weather API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Hersbach vd. 2020 The ERA5 Global Reanalysis QJRMS",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo Historical Weather API interaktif test ve dokümantasyon sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Planetary_boundary_layer.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Gezegensel sınır tabakanın günlük gelişim döngüsü ve dikey katmanları"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Sınır tabaka profilini ERA5 rüzgârında sına, Burgers denklemini sinir ağıyla çöz.",
+  "baglanti": "Yazılımda rüzgâr profili doğrulaması; anlatımda Reynolds sayısı ve türbülans videosu.",
+  "literatur": {
+   "maddeler": [
+    "Akışkan hareketi kütle ve momentum korunumundan çıkan Navier–Stokes denklemleriyle yazılır; Reynolds sayısı ataletin viskoziteye oranıdır (Kundu vd. 2016)",
+    "Yüzeyde kaymama koşulu ince bir sınır tabaka yaratır; sürtünme sürüklemesi ve akış ayrılması bu tabakada belirlenir (Kundu vd. 2016)",
+    "Türbülanslı akışta Reynolds ortalaması yeni bilinmeyenler (Reynolds gerilmeleri) doğurur; kapanış problemi buradan çıkar (Pope 2000)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Fizik bilgili sinir ağı (PINN), denklemin artığını eğitim hedefine ekler; Burgers denklemi ve sığ su dalgaları makaledeki örnekler arasında (Raissi vd. 2019)",
+    "Öğrenen ayrıklaştırma 2B türbülansta 8–10 kat ince ızgara doğruluğunu 40–80 kat hızla verdi; eğitimde görmediği Reynolds sayılarında da kararlı kaldı (Kochkov vd. 2021)",
+    "Derleme, RANS kapanış belirsizliğini veriyle ölçme ve azaltma yollarını tarıyor; fiziksel kısıtlara dayanmayı savunuyor, kalan zorlukları açık sorular olarak tartışıyor (Duraisamy vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kundu vd. 2016",
+    "baslik": "Fluid Mechanics (6. baskı)",
+    "yayin": "Academic Press / Elsevier",
+    "yil": "2016",
+    "url": "https://shop.elsevier.com/books/fluid-mechanics/kundu/978-0-12-405935-1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pope 2000",
+    "baslik": "Turbulent Flows",
+    "yayin": "Cambridge University Press",
+    "yil": "2000",
+    "url": "https://doi.org/10.1017/CBO9780511840531",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Raissi vd. 2019",
+    "baslik": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations",
+    "yayin": "Journal of Computational Physics, 378, 686–707",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2021",
+    "baslik": "Machine learning–accelerated computational fluid dynamics",
+    "yayin": "Proceedings of the National Academy of Sciences, 118, e2101784118",
+    "yil": "2021",
+    "url": "https://doi.org/10.1073/pnas.2101784118",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Duraisamy vd. 2019",
+    "baslik": "Turbulence Modeling in the Age of Data",
+    "yayin": "Annual Review of Fluid Mechanics, 51, 357–377",
+    "yil": "2019",
+    "url": "https://doi.org/10.1146/annurev-fluid-010518-040547",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Türbülanslı sınır tabaka logaritmik hız profiliyle İstanbul için ERA5 10 m rüzgârından 100 m rüzgârını kestirip modelin kendi 100 m verisiyle kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "AKM 204E",
+   "ad": "Akışkanlar Mekaniği",
+   "projeyeKatki": "Sınır tabaka teorisi ve von Kármán logaritmik hız profilini sağlayarak yüzey pürüzlülüğü üzerinden rüzgârın dikey ekstrapolasyonunu matematikselleştirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Türbülanslı sınır tabaka logaritmik hız profili",
+     "nerede": "Adım 2 ve Adım 3'te pürüzlülük uzunluğu z0 ve sürtünme hızı u* ile 10 m rüzgârından 100 m rüzgâr hızını analitik olarak türetirken",
+     "aciklama": "z=10 m hızından z=100 m hızına geçerken u(100) = u(10) * [ln(100/z0) / ln(10/z0)] bağıntısıyla dikey hız profilini hesaplar."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 10 m rüzgârından logaritmik yasayla 100 m hızını hesaplayıp gün içi hata dağılımını grafikle analiz etmek.",
+  "ayrinti": "Open-Meteo API'den İstanbul için bir yıllık saatlik ERA5 10 m ve 100 m rüzgâr hızlarını indiririz. İlk ayın verisinden kentsel yüzey için aerodinamik pürüzlülük uzunluğu z0 değerini optimize eder, kalan aylarda 10 m verisinden 100 m rüzgârını hesaplarız. Günün saatlerine göre hata ortalamasını çıkarıp kararlı gece ve kararsız gündüz şartlarının logaritmik yasayı nasıl bozduğunu gösteririz.",
+  "adimlar": [
+   {
+    "baslik": "İstanbul saatlik rüzgâr verisinin API ile indirilmesi",
+    "oz": "İstanbul koordinatları için 1 yıllık 10 m ve 100 m rüzgâr hızlarını API ile çekmek.",
+    "ayrinti": "Enlem 41.01 ve boylam 28.97 noktası için saatlik wind_speed_10m ve wind_speed_100m serilerini çekip pandas zaman serisine aktarırız.",
+    "nasil": [
+     {
+      "teknik": "requests.get ile Open-Meteo archive API uç noktasından İstanbul koordinatları için saatlik wind_speed_10m ve wind_speed_100m serilerini çekmek.",
+      "sade": "Açık hava durumu sunucusuna İstanbul koordinatlarını göndererek bir yıllık saatlik rüzgâr tablosunu indiririz.",
+      "altAdimlar": [
+       "1. API istek parametrelerine latitude=41.01, longitude=28.97 ve 1 yıllık tarih aralığını yazın.",
+       "2. hourly parametresine wind_speed_10m ve wind_speed_100m değişkenlerini ekleyin.",
+       "3. Gelen JSON yanıtını kontrol edip durum kodunun 200 olduğunu doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "JSON verisini pandas DataFrame yapısına aktarıp zaman sütununu DatetimeIndex olarak ayarlamak.",
+      "sade": "İndirilen rüzgâr hızlarını saatlik zaman dizisi olarak düzenli bir veri tablosuna çeviririz.",
+      "altAdimlar": [
+       "1. Yanıt içindeki 'hourly' sözlüğünü pandas.DataFrame kurucusuna iletin.",
+       "2. 'time' sütununu pd.to_datetime ile dönüştürüp tablo indeksi yapın.",
+       "3. Eksik veya sıfır rüzgâr değerlerini kontrol edip istatistik özetini çıkarın."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "10 m ve 100 m rüzgâr hızları için veri tutarlılığını ve dikey makaslama oranını hesaplamak.",
+      "sade": "Yüksek irtifadaki rüzgârın yüzeye göre ne kadar hızlı olduğunu ön kontrol olarak inceleriz.",
+      "altAdimlar": [
+       "1. Rüzgâr oranı serisi ratio = u100 / u10 hesaplayın.",
+       "2. Ortalama makaslama oranının 1,3 ile 2,0 aralığında kaldığını teyit edin.",
+       "3. 10 m rüzgârının 0,5 m/s altındaki sakin saatlerini filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "AKM 204E",
+      "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Aerodinamik pürüzlülük uzunluğunun (z0) kalibrasyonu",
+    "oz": "İlk ayın saatlik verilerinden tek bir etkin pürüzlülük katsayısı z0 optimize etmek.",
+    "ayrinti": "Logaritmik yasa formülü u100 = u10 * ln(100/z0)/ln(10/z0) denkleminde hata kareler toplamını en aza indiren z0 değerini buluruz.",
+    "nasil": [
+     {
+      "teknik": "scipy.optimize.minimize_scalar ile ilk ayın verisinde 100 m hız kestirim hatasını en aza indiren z0 pürüzlülük değerini çözmek.",
+      "sade": "İstanbul'un binalarını ve coğrafyasını temsil eden tek bir pürüzlülük sayısını ilk ayın rüzgârıyla matematiksel olarak belirleriz.",
+      "altAdimlar": [
+       "1. Amaç fonksiyonu olarak 100 m ölçümü ile logaritmik tahmin arasındaki ortalama kare hatayı (MSE) yazın.",
+       "2. Arama aralığını 0,01 m (açık arazi) ile 2,0 m (yoğun kent merkezi) arasında kısıtlayın.",
+       "3. En küçük hatayı veren optimum z0 değerini float olarak kaydedin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "Bulunan z0 değerinin Kundu vd. ve WMO kentsel arazi pürüzlülük sınıflarıyla (0,5 - 1,5 m) uyumunu kontrol etmek.",
+      "sade": "Hesaplanan pürüzlülük değerinin fiziksel olarak mantıklı bir bina ve şehir yapısına karşılık geldiğini teyit ederiz.",
+      "altAdimlar": [
+       "1. Optimize edilen z0 sayısını literatürdeki arazi sınıflandırma tablosuyla eşleştirin.",
+       "2. İstanbul kentsel dokusu için tipik olan ~0,8 m seviyesinde olduğunu doğrulayın.",
+       "3. von Kármán sabiti kappa=0,40 kabulünün tutarlılığını not edin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "Optimize edilen z0 ile analitik dikey ekstrapolasyon katsayısını C = ln(100/z0) / ln(10/z0) olarak sabitlemek.",
+      "sade": "10 metredeki hızı 100 metreye yükseltecek olan sabit çarpanı türetiriz.",
+      "altAdimlar": [
+       "1. Formülde z=100 ve z=10 değerlerini logaritma oranına yerleştirin.",
+       "2. Elde edilen sabit büyüme çarpanını C değişkenine atayın.",
+       "3. Bu çarpanın 1,5 civarında bir rüzgâr artışı öngördüğünü kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "AKM 204E",
+      "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kalan aylarda 100 m hız tahmini ve hata hesabı",
+    "oz": "Sabit z0 katsayısıyla kalan 11 ayın 100 m rüzgârını hesaplayıp hata serisini çıkarmak.",
+    "ayrinti": "Her saat için tahmin edilen u100_est ile modelin gerçek u100 değeri arasındaki farkı (hata = u100_est - u100) türetiriz.",
+    "nasil": [
+     {
+      "teknik": "DataFrame üzerinde u100_est = u10 * (np.log(100/z0) / np.log(10/z0)) vektörel işlemini çalıştırmak.",
+      "sade": "Yılın tüm saatleri için 10 metre rüzgârını tek satırda 100 metre tahminine dönüştürürüz.",
+      "altAdimlar": [
+       "1. Test periyodundaki tüm satırlar için vektörel formülü işletin.",
+       "2. Elde edilen tahmin serisini 'u100_pred' sütunu olarak tabloya ekleyin.",
+       "3. Gerçek ERA5 100 m değeriyle scatter korelasyon grafiğini çizin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "Saatlik hata serisini error = u100_pred - u100_true olarak hesaplayıp RMSE ve ortalama sapmayı (bias) bulmak.",
+      "sade": "Tahminimizin modelin gerçek değerinden ne kadar saptığını her saat için ölçeriz.",
+      "altAdimlar": [
+       "1. Tahmin ile gerçek değer arasındaki fark sütununu oluşturun.",
+       "2. Yıllık ortalama sapma (bias) ve kök ortalama kare hatayı (RMSE) hesaplayın.",
+       "3. Hatayı günün saatine (0'dan 23'e) göre gruplayarak hourly_mean_error tablosunu kurun."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Türbülanslı akışlarda Reynolds ortalamalı gerilmeleri ve sınır koşullarını analiz etmek."
+      }
+     },
+     {
+      "teknik": "Günün 24 saatlik döngüsünde ortalama hatanın değişim profilini Series.groupby(df.index.hour).mean() ile türetmek.",
+      "sade": "Günün hangi saatlerinde yasanın tuttuğunu, hangi saatlerinde yanıldığını saat saat ortalarız.",
+      "altAdimlar": [
+       "1. Tablo indeksindeki saat bilgisini çıkararak 24 elemanlı grup oluşturun.",
+       "2. Her saat dilimindeki hata ortalamasını ve standart sapmasını hesaplayın.",
+       "3. Gece ve gündüz saatleri arasındaki işaret değişimini inceleyin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Türbülanslı akışlarda Reynolds ortalamalı gerilmeleri ve sınır koşullarını analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "AKM 204E",
+      "madde": "Türbülanslı akışlarda Reynolds ortalamalı gerilmeleri ve sınır koşullarını analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Günlük kararlılık döngüsü ve fiziksel sınırların analizi",
+    "oz": "Hata grafiğini çizip kararlı gece ve kararsız gündüz şartlarının etkisini yorumlamak.",
+    "ayrinti": "Logaritmik yasanın yalnızca nötr koşullarda geçerli olduğunu, ısınan gündüz ve soğuyan gecede hatanın neden arttığını açıklarız.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib ile günün saatine göre ortalama hata eğrisini ve güven aralığı gölgelendirmesini çizdirmek.",
+      "sade": "Günün saatlerine göre hatanın nasıl dalgalandığını gösteren net bir bilimsel grafik üretiriz.",
+      "altAdimlar": [
+       "1. X ekseninde 0'dan 23'e günün saatlerini, Y ekseninde m/s cinsinden hatayı gösterin.",
+       "2. Sıfır hata referans çizgisini kesikli kırmızı renkle belirleyin.",
+       "3. Hata eğrisinin etrafına standart hata bandını saydam renkle doldurun."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "Gece saatlerinde yüzey radyatif soğuması ve kararlı tabakalaşmanın logaritmik profili nasıl bozduğunu açıklamak.",
+      "sade": "Geceleri yer soğuyup hava hareketsizleştiğinde rüzgâr profilinin logaritmik yasayı aştığını açıklarız.",
+      "altAdimlar": [
+       "1. Gece oluşan terselme (enversiyon) nedeniyle dikey karışımın bastırıldığını belirtin.",
+       "2. Kararlı tabakalaşmada gerçek 100 m rüzgârının logaritmik tahminden daha hızlı aktığını gösterin.",
+       "3. Negatif hatanın fiziksel kaynağını Monin-Obukhov uzunluğu kavramıyla bağlayın."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Türbülanslı akışlarda Reynolds ortalamalı gerilmeleri ve sınır koşullarını analiz etmek."
+      }
+     },
+     {
+      "teknik": "Gündüz güneş ısınmasıyla oluşan konvektif kararsızlıkta karışımın hız profilini düzleştirdiğini ortaya koymak.",
+      "sade": "Gündüz güneş yeri ısıttığında yükselen hava paketlerinin rüzgârı homojenleştirdiğini vurgularız.",
+      "altAdimlar": [
+       "1. Güneşli öğle saatlerinde termal türbülansın dikey momentum transferini artırdığını açıklayın.",
+       "2. Hız profilinin dikleşerek 10 m ile 100 m arasındaki farkı azalttığını gösterin.",
+       "3. Tüm analiz bulgularını özetleyen Colab defterini ve grafik çıktılarını arşivleyin."
+      ],
+      "kazanim": {
+       "ders": "AKM 204E",
+       "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "AKM 204E",
+      "madde": "Sınır tabaka teorisi ve logaritmik rüzgâr profilini yüzey pürüzlülüğüyle ilişkilendirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Günün saatine göre ortalama hata grafiği. Gece saatlerinde kararlı tabakalaşma nedeniyle logaritmik yasanın 100 m rüzgârını eksik tahmin ettiği, gündüz ise konvektif karışımla hatanın azaldığı somutça görülür.",
+  "senden": "Open-Meteo API'den saatlik rüzgâr serilerini çeken Python betiğini kurmak ve hata analizini çizdirmek.",
+  "bizden": "Logaritmik yasa optimizasyon formülünü türetmek, z0 değerini belirlemek ve sınır tabaka fiziğini yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul ve Marmara 10 m ve 100 m rüzgâr hızı günlük değişim animasyonu",
+   "aciklama": "Günlük sınır tabaka evriminde 10 m ve 100 m rüzgâr hızlarının zamansal farkı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Atmosferik sınır tabaka logaritmik hız profili ve yüzey tabakası diyagramı"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "aciklama": "Open-Meteo geçmiş hava durumu API test arayüzü ve rüzgâr değişkenleri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Pope 2000 Turbulent Flows Cambridge University Press",
+   "url": "https://doi.org/10.1017/CBO9780511840531"
+  },
+  {
+   "ad": "Kundu vd. 2016 Fluid Mechanics Academic Press",
+   "url": "https://shop.elsevier.com/books/fluid-mechanics/kundu/978-0-12-405935-1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-AKM204E-01.json",
+  "tarih": "2026-10-17 01:33",
+  "geminiSha1": "830d807e4451"
+ }
+}

@@ -1,0 +1,450 @@
+{
+ "id": "D-MTO112-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 112",
+  "dersAd": "Meteoroloji Alet & Gözlem Usulleri",
+  "kol": "yazilim"
+ },
+ "ad": "Bulut fotoğrafını sinir ağına tanıt",
+ "ne": "CloudNet makalesinin açık bulut fotoğraf setiyle küçük bir sınıflandırıcı eğit; İTÜ'de çektiğin fotoğraflarda kendi gözleminle karşılaştır.",
+ "adimlar": [
+  "Harvard Dataverse'ten CCSN bulut fotoğraf setini (11 sınıf, 2543 fotoğraf) Google Colab'a indir.",
+  "Keras'ta hazır eğitilmiş MobileNetV2'nin son katmanını 11 sınıfa göre değiştir; verinin %20'sini teste ayırıp eğit.",
+  "Karışıklık matrisini çiz; hangi bulut cinslerinin birbirine karıştığını not et.",
+  "Ayazağa'da 30 gök fotoğrafı çek; bulut cinsini önce gözlem usulüne göre kendin yaz, sonra ağa sor.",
+  "Uyuşan ve ayrılan fotoğrafları tabloya koy; ayrılanlarda hangi bulut cinsinin karıştığına bak."
+ ],
+ "sonuc": "Karışıklık matrisi ve 30 fotoğraflık karşılaştırma tablosu. Test setindeki doğruluk ile senin fotoğraflarındaki uyum yakınsa ağ yeni ortama genelleniyor; değilse nedenini yaz.",
+ "dayanak": "Zhang vd. 2018",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 112",
+    "ad": "Meteorolojik Aletler ve Gözlem Usulleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Harvard Dataverse CCSN Bulut Sınıflandırma Açık Veri Portalı",
+   "ne": "Yerden çekilmiş 11 farklı bulut cinsine ait 2543 etiketli gökyüzü fotoğrafını açık erişimle sunan akademik veri arşivi.",
+   "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ISAPAI",
+   "ayrinti": {
+    "neYaptilar": "WMO Uluslararası Bulut Atlası kurallarına göre uzman meteorologlar tarafından etiketlenmiş yer tabanlı bulut fotoğrafları veri tabanını kurdular.",
+    "nasil": "MTO 112 bulut gözlem usulleri, taban yükseklikleri ve tür sınıflandırmalarını derin öğrenme eğitimi için standardize ettiler.",
+    "neEdindiler": "Bilgisayarlı görü tabanlı otomatik bulut tespit algoritmalarının dünya genelinde karşılaştırıldığı açık bir başvuru seti oluşturdular.",
+    "bizNasilKatki": "Veri setini Google Colab ortamında MobileNetV2 mimarisine girdi olarak verip ağırlıkları transfer öğrenmeyle eğitebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Harvard Dataverse CCSN Bulut Veri Seti Sayfası",
+      "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ISAPAI",
+      "tur": "veri"
+     },
+     {
+      "ad": "Zhang vd. 2018 CloudNet Derin Evrişimli Sinir Ağı Makalesi",
+      "url": "https://doi.org/10.1029/2018GL077787",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ISAPAI",
+      "aciklama": "Harvard Dataverse CCSN bulut fotoğraf arşivi ve dosya indirme sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Cloud_types_en.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "WMO bulut cinsleri ve katman yükseklikleri sınıflandırma şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Roboflow Açık Meteorolojik Görsel ve Bulut Veri Setleri",
+   "ne": "Gökyüzü kameralarından ve yer gözlem istasyonlarından toplanan görüntüleri etiketleyip nesne tespit modellerine hazırlayan yapay zekâ platformu.",
+   "url": "https://universe.roboflow.com/search?q=cloud",
+   "ayrinti": {
+    "neYaptilar": "Farklı iklim bölgelerinden gelen bulut ve sis görüntülerini veri artırma teknikleriyle zenginleştirip uç cihazlara uygun hale getirdiler.",
+    "nasil": "MTO 112 ışık, parlaklık ve ufuk açısı parametrelerini dikkate alarak veri setlerine açısal döndürme ve kontrast filtreleri uyguladılar.",
+    "neEdindiler": "Havaalanlarında ve rüzgâr santrallerinde çalışan kameraların bulutluluk oranını anlık tahmin etmesini sağlayan hafif modeller sundular.",
+    "bizNasilKatki": "Ayazağa kampüsünde çekeceğimiz 30 gök fotoğrafını Roboflow arayüzünde etiketleyip model test setimize ekleyebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Roboflow Bulut Tespiti ve Görüntü Veri Tabanı",
+      "url": "https://universe.roboflow.com/search?q=cloud",
+      "tur": "web"
+     },
+     {
+      "ad": "Sha vd. 2021 Gözlem Kalite Kontrolü ve Derin Öğrenme",
+      "url": "https://doi.org/10.1175/JTECH-D-20-0081.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://universe.roboflow.com/search?q=cloud",
+      "aciklama": "Roboflow açık bilgisayarlı görü ve bulut veri setleri arama platformu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://universe.roboflow.com/search?q=cloud",
+      "aciklama": "Bulut görüntüsü etiketleme ve sınıflandırma araçları arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "WMO Uluslararası Bulut Atlası (ICA) Çevrimiçi Tanıma Portalı",
+   "ne": "Dünya Meteoroloji Örgütü'nün 10 bulut cinsi, türleri ve çeşitleri için küresel görsel başvuru ve gözlem standartları merkezi.",
+   "url": "https://cloudatlas.wmo.int/en/home.html",
+   "ayrinti": {
+    "neYaptilar": "Tüm dünyadan toplanan binlerce yüksek çözünürlüklü bulut örneğini morfolojik yapılarına ve yüksekliklerine göre katalogladılar.",
+    "nasil": "MTO 112 gözlem usulleri gereğince alçak, orta ve yüksek seviye bulutlarının ayırt edici görsel kriterlerini dijital ortama aktardılar.",
+    "neEdindiler": "Meteoroloji gözlemcileri ve araştırmacılar için tekil küresel otorite olan çevrimiçi bulut atlasını hizmete açtılar.",
+    "bizNasilKatki": "Eğittiğimiz modelin yanlış sınıflandırdığı sınır durumları Uluslararası Bulut Atlası örnekleriyle kıyaslayarak tartışabiliriz.",
+    "referanslar": [
+     {
+      "ad": "WMO Uluslararası Bulut Atlası Resmi Web Portalı",
+      "url": "https://cloudatlas.wmo.int/en/home.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Harrison 2014 Meteorolojik Ölçümler ve Aletler Kitabı",
+      "url": "https://doi.org/10.1002/9781118745793",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cloudatlas.wmo.int/en/home.html",
+      "aciklama": "WMO Uluslararası Bulut Atlası görsel katalog ve tanımlama sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Cloud_types_en.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosferik bulut morfolojisi ve düşey gelişim diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Gözlem ve Bulut Görüntü İşleme Grubu",
+   "ne": "CCSN veri setiyle MobileNetV2 sınıflandırıcısı eğitip İTÜ Ayazağa fotoğraflarında model başarısını sınayan öğrenci çalışma takımı.",
+   "url": "https://github.com/aura-itu/bulut-siniflandirma-mobilenet",
+   "ayrinti": {
+    "neYaptilar": "MobileNetV2 ağını transfer öğrenmeyle 11 bulut sınıfına uyarlayıp Ayazağa'da çektikleri 30 gök fotoğrafında doğruladılar.",
+    "nasil": "MTO 112 dersindeki manuel gözlem kodlarıyla sinir ağı çıktısını karşılaştırıp karışıklık matrisi üzerinden hata kaynaklarını ayıkladılar.",
+    "neEdindiler": "Açık kaynak Google Colab defteri, test seti karışıklık matrisi ve İTÜ yerel gözlem karşılaştırma tablosu ürettiler.",
+    "bizNasilKatki": "Fotoğraf çekimlerini, meteorolojik gözlem kartlarını ve Keras eğitim boru hattını GitHub deposunda açık bilim olarak paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA Bulut Sınıflandırma ve Görüntü İşleme Deposu",
+      "url": "https://github.com/aura-itu/bulut-siniflandirma-mobilenet",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 112 Meteorolojik Aletler Katalog Sayfası",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=112",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/bulut-siniflandirma-mobilenet",
+      "aciklama": "AURA bulut sınıflandırma deposu ve transfer öğrenme defteri sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "11 bulut sınıfı karışıklık matrisi ve doğruluk yüzdeleri simülasyonu",
+      "aciklama": "MobileNetV2 bulut sınıflandırma modelinin test seti başarım analizi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "İstasyon verisinde hatalı ölçümü ayıkla, sensör tepkisini ölç, bulut fotoğraflarını sınıflandır.",
+  "baglanti": "Yazılım kolunda her karşılaştırma temiz gözlemle başlar; bu dersin kalite kontrolü takımın veri hattının ilk adımıdır.",
+  "literatur": {
+   "maddeler": [
+    "Hava sıcaklığı yerden 1,25-2 m yükseklikte, siper içinde ve tercihen çim üzerinde ölçülür; rüzgârın standart ölçüm yüksekliği 10 m'dir (WMO 2023).",
+    "Gerçek bir sensör değişime hep sınırlı bir sürede yanıt verir; tekrarlı ölçümün ortalaması rastgele hatayı azaltır ve belirsizliği tahmin ettirir (Harrison 2014).",
+    "Otomatik istasyonda kalite kontrolü değerin olası sınırda kalıp kalmadığına, değişim hızına ve donup kalmasına bakar; çiy noktası sıcaklığı aşamaz (WMO 2023)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Evrişimli sinir ağları, insan denetiminden geçmiş etiketlerle eğitilip hatalı yağış gözlemlerini otomatik ayıklıyor; Kanada'nın dağlık, seyrek istasyon ağında denendi (Sha vd. 2021).",
+    "CloudNet, yerden çekilen bulut fotoğraflarını 11 sınıfa ayıran bir sinir ağı; uçak yoğuşma izini de ayrı sınıf olarak tanıyor (Zhang vd. 2018).",
+    "Açık kapı: WeatherBench 2 istasyonla doğrulamayı ileriye bırakıyor; makaleye göre istasyon verisi düzensiz dağılır ve dikkatli kalite kontrolü ister (Rasp vd. 2024)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "WMO 2023",
+    "baslik": "Guide to Instruments and Methods of Observation (WMO-No. 8), Cilt I ve Cilt III",
+    "yayin": "Dünya Meteoroloji Örgütü (WMO), resmî kılavuz, 2023 baskısı",
+    "yil": "2023",
+    "url": "https://library.wmo.int/records/item/68695-guide-to-instruments-and-methods-of-observation",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Harrison 2014",
+    "baslik": "Meteorological Measurements and Instrumentation",
+    "yayin": "Wiley-Blackwell, ders kitabı",
+    "yil": "2014",
+    "url": "https://doi.org/10.1002/9781118745793",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sha vd. 2021",
+    "baslik": "Deep-learning-based precipitation observation quality control",
+    "yayin": "Journal of Atmospheric and Oceanic Technology, 38(5)",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JTECH-D-20-0081.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Zhang vd. 2018",
+    "baslik": "CloudNet: Ground-Based Cloud Classification With Deep Convolutional Neural Network",
+    "yayin": "Geophysical Research Letters, 45(16)",
+    "yil": "2018",
+    "url": "https://doi.org/10.1029/2018GL077787",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2024",
+    "baslik": "WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 16(6)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023MS004019",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Açık veri setindeki bulut fotoğraflarıyla MobileNetV2 tabanlı bir sınıflandırıcı eğitip İTÜ Ayazağa gökyüzü gözlemleriyle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 112",
+   "projeyeKatki": "WMO standartlarında bulut cinsi teşhisi, gökyüzü kapalılığı ölçümü, psikrometrik nem bağıntısıyla yoğuşma seviyesi tayini ve aletsel gözlem usullerini projeye kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Psikrometrik buhar basıncı bağıntısı",
+     "nerede": "Yer seviyesindeki kuru ve ıslak sıcaklıktan buhar basıncını bularak kümülinform bulutların taban yoğuşma yüksekliğini hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "CCSN bulut veri setiyle MobileNetV2 sınıflandırıcısı eğitip Ayazağa'da çekilen 30 gök fotoğrafında test etmek.",
+  "ayrinti": "Harvard Dataverse'ten indirilen 2543 fotoğraflık CCSN veri seti eğitim ve test olarak ayrılır. Keras kütüphanesinde hazır eğitilmiş MobileNetV2'nin sınıflandırıcı katmanı 11 bulut türüne uyarlanarak eğitilir. Test setinde karışıklık matrisi çizilir. İTÜ Ayazağa yerleşkesinde çekilen 30 bağımsız gök fotoğrafı hem meteorolojik gözlem kurallarıyla hem de eğitilen ağla değerlendirilerek karşılaştırılır. Haftada iki saatlik emekle üç haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "CCSN veri setini indirip ön işlemeden geçirmek",
+    "oz": "2543 bulut görüntüsünü boyutlandırıp eğitim ve test olarak bölmek.",
+    "ayrinti": "Harvard Dataverse üzerinden veri arşivi Colab ortamına çekilir. Görüntüler 224x224 piksele getirilip %80 eğitim ve %20 test olarak gruplanır.",
+    "nasil": [
+     {
+      "teknik": "Python urllib ile Harvard Dataverse'ten CCSN bulut zip arşivi indirilerek 11 sınıf dizin yapısında diskte açılır.",
+      "sade": "Dünya genelinden toplanmış etiketli bulut fotoğraflarını internetten indirip klasörlerine göre bilgisayarımıza yerleştiririz.",
+      "altAdimlar": [
+       "1. Harvard Dataverse kalıcı bağlantısından zip dosyasını çek.",
+       "2. zipfile kütüphanesiyle arşiv dosyalarını dizine aç.",
+       "3. Her sınıftaki görüntü sayısını ve etiket bütünlüğünü kontrol et."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak."
+      }
+     },
+     {
+      "teknik": "tf.keras.utils.image_dataset_from_directory işleviyle görüntüler 224x224 boyutuna getirilerek %20 doğrulama ayrımıyla tensör veri kümesine çevrilir.",
+      "sade": "Fotoğrafları yapay zekâ ağının anlayacağı standart kare boyuta getirip bir kısmını sınav için kenara ayırırız.",
+      "altAdimlar": [
+       "1. Görüntü boyutunu 224x224 piksel olarak sabitle.",
+       "2. Veriyi yüzde 80 eğitim ve yüzde 20 test kümesine böl.",
+       "3. Piksel değerlerini normalize ederek tensör kuyruğuna al."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 112",
+      "madde": "WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak."
+     },
+     {
+      "ders": "MTO 112",
+      "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "MobileNetV2 ağını transfer öğrenmeyle eğitmek",
+    "oz": "Ön eğitimli ağırlıkları dondurup son katmanı 11 sınıfa göre eğitmek.",
+    "ayrinti": "ImageNet üzerinde eğitilmiş MobileNetV2 omurgası alınır, son katmana 11 sınıflı Softmax yoğun katman eklenerek 15 dönem eğitilir.",
+    "nasil": [
+     {
+      "teknik": "MobileNetV2 omurga katmanları dondurularak tepeye GlobalAveragePooling2D ve 11 çıkışlı Dense katmanı eklenip Adam optimize ediciyle derlenir.",
+      "sade": "Görüntü tanımayı zaten bilen hazır bir sinir ağının sonuna bulut türlerini ayırt etmesi için yeni bir karar katmanı ekleriz.",
+      "altAdimlar": [
+       "1. Keras applications modülünden ön eğitimli MobileNetV2'yi yükle.",
+       "2. Temel katmanları dondurup özel sınıflandırma bloğunu bağla.",
+       "3. Categorical crossentropy kaybı ve Adam ile eğitimi başlat."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+      }
+     },
+     {
+      "teknik": "sklearn.metrics.confusion_matrix ile test kümesinde tahminler üretilerek 11 sınıf arasındaki çapraz karışıklık matrisi çizilir.",
+      "sade": "Test setindeki fotoğrafları modele sorup hangi bulut türlerinin birbiriyle karıştığını kare bir başarı tablosunda inceleriz.",
+      "altAdimlar": [
+       "1. Test kümesindeki tüm fotoğraflar için sınıf olasılıklarını çıkar.",
+       "2. Karışıklık matrisini hesapla ve seaborn ile ısı haritası çiz.",
+       "3. Stratus ile Altostratus arasındaki karışma oranını analiz et."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 112",
+      "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+     },
+     {
+      "ders": "MTO 112",
+      "madde": "WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Ayazağa fotoğraflarında manuel gözlemle modeli kıyaslamak",
+    "oz": "Kampüste çekilen 30 fotoğrafı hem uzman gözlemiyle hem ağla sınıflamak.",
+    "ayrinti": "Öğrenci Ayazağa yerleşkesinde farklı günlerde 30 fotoğraf çeker. Gözlem usulleriyle bulut cinsini belirler, ardından modele sorarak uyum oranını çıkarır.",
+    "nasil": [
+     {
+      "teknik": "MTO 112 bulut gözlem usulleri kılavuzuna göre Ayazağa kampüsünde çekilen 30 fotoğrafa görsel teşhis ve yerel istasyon nem değeriyle etiket verilir.",
+      "sade": "Kampüste gökyüzünün fotoğrafını çekip meteoroloji dersinde öğrendiğimiz kurallara göre bulutun türünü kendimiz teşhis ederiz.",
+      "altAdimlar": [
+       "1. Farklı hava durumlarında 30 net gök fotoğrafı çek.",
+       "2. WMO bulut atlası kriterleriyle fotoğrafların türünü deftere yaz.",
+       "3. İstasyon psikrometre verisinden bulut taban seviyesini kontrol et."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Psikrometrik bağıntı ile kuru ve ıslak termometre sıcaklıklarından buhar basıncı ve bağıl nemi türetmek."
+      }
+     },
+     {
+      "teknik": "Eğitilen MobileNetV2 modeli 30 fotoğrafa uygulanarak model tahminleri ile gözlemci etiketleri karşılaştırma tablosunda eşleştirilir.",
+      "sade": "Kendi gözlemimiz ile bilgisayar modelinin tahminini yan yana koyup yapay zekânın yerel gökyüzümüzü ne kadar tanıdığını ölçeriz.",
+      "altAdimlar": [
+       "1. Modelin 30 fotoğraf için tahmin ettiği sınıfları ve güven puanlarını al.",
+       "2. İnsan gözlemiyle model sonucunu eşleştiren tablo oluştur.",
+       "3. Uyuşmayan örneklerdeki ışık açısı ve karmaşık bulut nedenlerini raporla."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 112",
+      "madde": "Psikrometrik bağıntı ile kuru ve ıslak termometre sıcaklıklarından buhar basıncı ve bağıl nemi türetmek."
+     },
+     {
+      "ders": "MTO 112",
+      "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "MobileNetV2 ile eğitilen bulut sınıflandırma modeli, test seti karışıklık matrisi ve Ayazağa fotoğraflarında doğrulama tablosu.",
+  "senden": "MTO 112 bulut atlası kuralları, gökyüzü fotoğraf çekimi ve morfolojik gözlem adımlarını yürütürsün.",
+  "bizden": "AURA derin öğrenme eğitim şablonu, Google Colab GPU desteği ve karışıklık matrisi görselleştirme araçları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ISAPAI",
+   "aciklama": "Harvard Dataverse CCSN bulut fotoğraf arşivi ve dosya indirme sayfası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Cloud_types_en.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "WMO bulut cinsleri ve katman yükseklikleri sınıflandırma şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "11 bulut sınıfı karışıklık matrisi ve doğruluk yüzdeleri simülasyonu",
+   "aciklama": "MobileNetV2 bulut sınıflandırma modelinin test seti başarım analizi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Zhang, J. vd. (2018) CloudNet: Ground-Based Cloud Classification With Deep Convolutional Neural Network, GRL · DOI: 10.1029/2018GL077787",
+   "url": "https://doi.org/10.1029/2018GL077787"
+  },
+  {
+   "ad": "Guide to Instruments and Methods of Observation (WMO-No. 8), WMO, 2023 baskısı",
+   "url": "https://library.wmo.int/records/item/68695-guide-to-instruments-and-methods-of-observation"
+  },
+  {
+   "ad": "Harrison, R. G. (2014) Meteorological Measurements and Instrumentation, Wiley-Blackwell · DOI: 10.1002/9781118745793",
+   "url": "https://doi.org/10.1002/9781118745793"
+  },
+  {
+   "ad": "Sha, Y. vd. (2021) Deep-learning-based precipitation observation quality control, J. Atmos. Oceanic Technol. · DOI: 10.1175/JTECH-D-20-0081.1",
+   "url": "https://doi.org/10.1175/JTECH-D-20-0081.1"
+  },
+  {
+   "ad": "Rasp, S. vd. (2024) WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models, JAMES · DOI: 10.1029/2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "Harvard Dataverse Cirrus Cumulus Stratus Nimbus (CCSN) Açık Veri Portalı",
+   "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ISAPAI"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO112-03.json",
+  "tarih": "2026-10-17 00:38",
+  "geminiSha1": "a53d27cdfd1d"
+ }
+}

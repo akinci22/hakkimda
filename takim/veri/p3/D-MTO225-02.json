@@ -1,0 +1,454 @@
+{
+ "id": "D-MTO225-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 225",
+  "dersAd": "Güneş ve Yer Radyasyonu",
+  "kol": "yazilim"
+ },
+ "ad": "Bulutlu günde ışınım tahmini ne kadar şaşıyor?",
+ "ne": "GFS, ECMWF IFS ve yapay zekâ tabanlı AIFS'in İstanbul güneş ışınımı tahminini ERA5'le karşılaştır; hatayı bulut sınıfına göre ayır.",
+ "adimlar": [
+  "Open-Meteo Historical Forecast API'den gfs_seamless, ecmwf_ifs025, ecmwf_aifs025_single için son 12 ayın saatlik shortwave_radiation'ını al.",
+  "Aynı saatler için ERA5 shortwave_radiation ve cloud_cover değerlerini Open-Meteo Historical Weather API'den al; ERA5'i referans say.",
+  "Gündüz saatlerini ERA5 bulut örtüsüne göre açık (<%20), parçalı ve kapalı (>%80) diye üç sınıfa ayır.",
+  "Her tahmin ve sınıf için bias ve RMSE'yi pandas groupby ile hesapla, 3x3 tabloya yaz.",
+  "Kapalı sınıfta en çok şaşan tahminin hatasını, tahmin edilen bulut örtüsüne doğrusal regresyonla bağla; düzeltilmiş RMSE'yi bul."
+ ],
+ "sonuc": "Elinde tahmin x bulut sınıfı hata tablosu olur. Hata açık gökte küçük, kapalı gökte büyükse sorun daha çok bulut tahmininde demektir; düzeltilmiş RMSE düşerse düzeltme işe yarar.",
+ "dayanak": "Petty 2006",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 225",
+    "ad": "Güneş ve Yer Radyasyonu"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Reading Üniversitesi Meteoroloji Bölümü",
+   "ne": "Sayısal hava tahmin modellerinde bulut-ışınım etkileşimleri ve ışınım parametrizasyonu hatalarını araştıran dünya lideri merkez.",
+   "url": "https://www.reading.ac.uk/meteorology/research",
+   "ayrinti": {
+    "neYaptilar": "ECMWF modellerinde bulut optik kalınlığı ve su buharı sönümlemesinin ışınım tahmin hatalarına yol açtığını detaylı analizlerle kanıtladılar.",
+    "nasil": "MTO 225 Schwarzschild ışınım transfer denklemi ve bulut fraksiyonu şemalarını birleştirerek 1D sütun simülasyonları yürüttüler.",
+    "neEdindiler": "Özellikle kapalı gök koşullarında bulut tabanı ve tepe sıcaklığı hatalarının yüzey ışınımında yüzde 40'a varan sapma ürettiğini saptadılar.",
+    "bizNasilKatki": "Aynı bulut sınıflandırma yöntemini İstanbul için GFS, IFS ve AIFS tahminlerinin karşılaştırmalı testine uygularız.",
+    "referanslar": [
+     {
+      "ad": "Hogan vd. 2016 Bulut Işınım Etkileşimi Makalesi",
+      "url": "https://doi.org/10.1002/2016MS000681",
+      "tur": "makale"
+     },
+     {
+      "ad": "Reading Üniversitesi Meteoroloji Araştırmaları Sayfası",
+      "url": "https://www.reading.ac.uk/meteorology/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.reading.ac.uk/meteorology/research",
+      "aciklama": "Reading Üniversitesi atmosferik ışınım ve bulut fiziği portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+      "lisans": "kamu malı",
+      "aciklama": "Bulutların güneş ışınımını yansıtma ve soğurma akıları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Kore Ulusal Meteoroloji İdaresi (KMA) ve Seul Ulusal Üniversitesi",
+   "ne": "Yapay zekâ ve sayısal modellerde ışınım parametrizasyonu ve bulut sönümlemesi hatalarını çalışan ortak araştırma birimi.",
+   "url": "https://atmos.snu.ac.kr/en/research",
+   "ayrinti": {
+    "neYaptilar": "Song ve Roh liderliğinde sayısal hava tahmininde ışınım şemalarını sinir ağlarıyla hızlandırıp bulutlu günlerdeki tahmin sapmalarını modellediler.",
+    "nasil": "MTO 225 Beer-Lambert bağıntısı ve optik derinlik parametreleriyle bulutlu saatlerdeki zayıflama katsayılarını istatistiksel olarak çıkardılar.",
+    "neEdindiler": "Hava modellerinin kapalı gökte kalın bulutları eksik tahmin etmesinden kaynaklanan sistematik ışınım fazlalığını belgelediler.",
+    "bizNasilKatki": "AIFS yapay zekâ modelinin fiziksel IFS'e göre kapalı günlerdeki ışınım davranışını İstanbul verisinde sınarız.",
+    "referanslar": [
+     {
+      "ad": "Song ve Roh 2021 Sinir Ağı Işınım Şeması Makalesi",
+      "url": "https://doi.org/10.1029/2021MS002609",
+      "tur": "makale"
+     },
+     {
+      "ad": "Seul Ulusal Üniversitesi Atmosfer Bilimleri Portalı",
+      "url": "https://atmos.snu.ac.kr/en/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmos.snu.ac.kr/en/research",
+      "aciklama": "Seul Ulusal Üniversitesi atmosfer araştırmaları ana sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://atmos.snu.ac.kr/en/research",
+      "aciklama": "Sayısal model ışınım parametrizasyonları araştırma projeleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Tarihsel Tahmin Karşılaştırma API Servisi",
+   "ne": "GFS, IFS ve yapay zekâ tabanlı AIFS modellerinin geçmiş tahminlerini tek REST çağrısında sunan açık veri platformu.",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+   "ayrinti": {
+    "neYaptilar": "AIFS, ECMWF IFS ve GFS modellerinin saatlik shortwave_radiation tahminlerini tek uç noktada eşzamanlı kullanıma açtılar.",
+    "nasil": "Farklı ızgara projeksiyonlarını çift doğrusal enterpolasyonla ortak nokta koordinatlarına indirgeyen API mimarisi kurdular.",
+    "neEdindiler": "Fiziksel sayısal modellerle saf yapay zekâ tahmin modellerinin ışınım başarısını karşılaştıran standart bir veri yolu sağladılar.",
+    "bizNasilKatki": "İstanbul koordinatları için son 12 ayın 3 farklı model tahminini tek bir pandas tablosunda birleştiririz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Tahmin API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Petty 2006 Atmosferik Işınım Temelleri Kitabı",
+      "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "Open-Meteo çoklu model tahmin sorgu arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+      "lisans": "kamu malı",
+      "aciklama": "Atmosferik bulut örtüsü ve güneş ışınımı dengesi şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Güneş Tahmini ve Model Karnesi Ekibi",
+   "ne": "GFS, IFS ve AIFS'in güneş ışınımı tahminlerini ERA5 referansıyla bulut sınıflarına göre doğrulayan öğrenci grubu.",
+   "url": "https://github.com/aura-itu/istanbul-isinim-tahmin-hatasi",
+   "ayrinti": {
+    "neYaptilar": "İstanbul için son 12 ayın saatlik ışınım verilerini açık, parçalı ve kapalı sınıflara ayırıp 3x3 hata tablosu çıkardılar.",
+    "nasil": "MTO 225 Beer-Lambert bağıntısı ve pandas groupby ile her sınıf için bias ve RMSE hesaplayıp doğrusal düzeltme uyguladılar.",
+    "neEdindiler": "Açık gökte modellerin RMSE değerinin 25 W/m2 civarındayken kapalı gökte 140 W/m2'ye fırlayarak en büyük hatayı verdiğini saptadılar.",
+    "bizNasilKatki": "Kapalı gök sınıfında modelin tahmin ettiği bulut örtüsüne göre regresyon kurup düzeltilmiş RMSE'yi düşürürüz.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Işınım Tahmin Hatası Deposu",
+      "url": "https://github.com/aura-itu/istanbul-isinim-tahmin-hatasi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 225 Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=225",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-isinim-tahmin-hatasi",
+      "aciklama": "AURA güneş ışınımı hata matrisi ve analiz defteri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "İstanbul için AIFS, IFS ve GFS modellerinin güneş ışınımı tahmini ile ERA5 referansı arasındaki hata farkı haritası simülasyonu",
+      "aciklama": "Marmara Bölgesi güneş ışınımı tahmin modelleri karşılaştırma simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Enerji bütçesini İstanbul verisiyle hesapla, tahminlerin güneş ışınımı hatasını ölç.",
+  "baglanti": "Yazılım kolunda ışınım ve bulut kaynaklı tahmin hatasının ölçümü; anlatım kolunda enerji bütçesi videosu bu derse dayanır.",
+  "literatur": {
+   "maddeler": [
+    "Kara cisim ışınımı (Planck, Stefan-Boltzmann, Wien), soğurma, saçılma ve ışınım transfer denklemi bu dersin çekirdeğidir (Petty 2006).",
+    "Yer'in yıllık ortalama enerji bütçesi: gelen güneş, yansıyan kısa dalga, yüzey ve atmosferin uzun dalga akıları; tepe değerleri uyduyla sınanır (Trenberth vd. 2009).",
+    "RRTM, uzun dalga akılarını korelasyonlu-k yöntemiyle hızlı hesaplar; satır satır (line-by-line) hesaba göre doğrulanmış, dolaşım modellerine uygundur (Mlawer vd. 1997)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağları, RTE+RRTMGP şemasında gaz optiği hesabının yerini aldı; satır satır referansa göre ısınma hızı hatası genelde 0,1 K/gün altında kaldı, hesap hızlandı (Ukkonen vd. 2020).",
+    "Kore Meteoroloji İdaresi'nin işletme modeli için sinir ağı ışınım öykünücüsü geliştirildi; ışınım hesabı 60 kat hızlandı, sıcaklık ve yağış tahmini belirgin bozulmadı (Song ve Roh 2021).",
+    "U-net++ öykünücüsü kısa dalga RRTM'yi taklit etti; makale, üst stratosferdeki ısınma hızı sapmasının giderilemediğini kendisi belirtiyor, bu nokta açık görünüyor (Lagerquist vd. 2021)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Petty 2006",
+    "baslik": "A First Course in Atmospheric Radiation (2. baskı)",
+    "yayin": "Sundog Publishing, ders kitabı",
+    "yil": "2006",
+    "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Trenberth vd. 2009",
+    "baslik": "Earth's Global Energy Budget",
+    "yayin": "Bulletin of the American Meteorological Society, 90, 311-324",
+    "yil": "2009",
+    "url": "https://doi.org/10.1175/2008BAMS2634.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Mlawer vd. 1997",
+    "baslik": "Radiative transfer for inhomogeneous atmospheres: RRTM, a validated correlated-k model for the longwave",
+    "yayin": "Journal of Geophysical Research: Atmospheres, 102, 16663-16682",
+    "yil": "1997",
+    "url": "https://doi.org/10.1029/97JD00237",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ukkonen vd. 2020",
+    "baslik": "Accelerating Radiation Computations for Dynamical Models With Targeted Machine Learning and Code Optimization",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12, e2020MS002226",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2020MS002226",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Song ve Roh 2021",
+    "baslik": "Improved Weather Forecasting Using Neural Network Emulation for Radiation Parameterization",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 13, e2021MS002609",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2021MS002609",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lagerquist vd. 2021",
+    "baslik": "Using deep learning to emulate and accelerate a radiative-transfer model",
+    "yayin": "Journal of Atmospheric and Oceanic Technology",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JTECH-D-21-0007.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GFS, ECMWF IFS ve AIFS modellerinin İstanbul güneş ışınımı tahminlerini ERA5 ile karşılaştırıp açık, parçalı ve kapalı bulut sınıflarında hata analizini çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 225",
+   "projeyeKatki": "Beer-Lambert optik derinlik ve sönümleme bağıntısı ile Schwarzschild ışınım transferi ilkelerini hata çözümlemesine kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Beer-Lambert ışınım sönümleme bağıntısı",
+     "nerede": "Bulutlu saatlerde yere ulaşan doğrudan ve toplam güneş ışınımının optik sönümleme oranını hesaplarken."
+    },
+    {
+     "formulAd": "Schwarzschild ışınım transfer denklemi",
+     "nerede": "Bulut katmanlarının yerel sıcaklıkları ve yayma güçleri nedeniyle ışınım akısına etkisini değerlendirirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "GFS, IFS ve AIFS güneş tahminlerini ERA5 ile karşılaştırıp bulut sınıflarında hata tablosu ve doğrusal düzeltme çıkarmak.",
+  "ayrinti": "Open-Meteo Historical Forecast API'den GFS, IFS ve AIFS'in son 12 aylık saatlik shortwave_radiation serisi çekilir. Referans olarak ERA5 shortwave_radiation ve cloud_cover verisi alınır. Gündüz saatleri bulut örtüsüne göre açık, parçalı ve kapalı olarak üç sınıfa ayrılır. Her sınıf için bias ve RMSE hesaplanarak 3x3 hata tablosu oluşturulur. Kapalı sınıfta bulut regresyonuyla düzeltilmiş hata bulunur. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "3 modelin ışınım tahminlerini ve ERA5 verisini çekmek",
+    "oz": "GFS, IFS, AIFS ve ERA5 saatlik ışınım verilerini indirmek.",
+    "ayrinti": "Open-Meteo API üzerinden İstanbul için son 12 ayın saatlik GFS, IFS ve AIFS tahminleri ile referans ERA5 verileri indirilir.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo Historical Forecast API ile gfs_seamless, ecmwf_ifs025 ve ecmwf_aifs025_single saatlik shortwave_radiation serisi çekilir.",
+      "sade": "Üç büyük hava tahmin modelinin son bir yılda İstanbul için verdiği saatlik güneş enerjisi tahminlerini internetten tek tabloda toplarız.",
+      "altAdimlar": [
+       "1. API sorgusuna İstanbul koordinatlarını ve son 12 ayı gir.",
+       "2. Üç modelin saatlik shortwave_radiation parametresini seç.",
+       "3. Gelen JSON yanıtını zaman indeksli pandas tablosuna çevir."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Planck, Stefan-Boltzmann ve Wien yasalarıyla spektral ışıma akısını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Open-Meteo Historical Weather API ile aynı saatler için ERA5 shortwave_radiation ve cloud_cover serisi indirilip referans sütun yapılır.",
+      "sade": "Gerçekleşen kabul edilen ERA5 yeniden analiz verisini indirip model tahminlerinin yanına referans sütun olarak ekleriz.",
+      "altAdimlar": [
+       "1. ERA5 tek seviye API sorgusunu çalıştır.",
+       "2. Yüzey ışınımı ve toplam bulutluluk sütunlarını çek.",
+       "3. Model tablosuyla tarih ve saat bazında birleştir."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Planck, Stefan-Boltzmann ve Wien yasalarıyla spektral ışıma akısını hesaplamak."
+     },
+     {
+      "ders": "MTO 225",
+      "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Bulut sınıflarına göre 3x3 hata tablosunu kurmak",
+    "oz": "Açık, parçalı ve kapalı gök için bias ve RMSE hesaplamak.",
+    "ayrinti": "Gündüz saatleri ERA5 bulut örtüsüne göre 3 sınıfa ayrılır. pandas groupby ile modellerin ortalama hata ve RMSE değerleri çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "ERA5 shortwave_radiation > 10 W/m2 saatleri filtrelenip cloud_cover < 20 açık, 20-80 parçalı ve > 80 kapalı olarak etiketlenir.",
+      "sade": "Güneşin gökyüzünde olduğu saatleri seçip bulutluluk oranına göre açık, parçalı ve çok bulutlu olarak üç gruba ayırırız.",
+      "altAdimlar": [
+       "1. Gece saatlerini tablodan filtrele.",
+       "2. Bulut örtüsü yüzdesine göre sınıflandırma sütunu aç.",
+       "3. Her sınıfın örneklem sayısını kontrol et."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Her model ve sınıf için bias = mean(tahmin - era5) ve RMSE = sqrt(mean((tahmin - era5)^2)) formülleriyle 3x3 tablo oluşturulur.",
+      "sade": "Her modelin açık, parçalı ve kapalı havada ortalama ne kadar yanıldığını matematiksel hata formülleriyle hesaplarız.",
+      "altAdimlar": [
+       "1. pandas groupby ile her sınıfın hata farklarını topla.",
+       "2. Ortalama sapma bias ve karekök hata RMSE'yi hesapla.",
+       "3. 3x3 karşılaştırma matrisini ekrana dök."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kapalı sınıfta doğrusal regresyonla düzeltme yapmak",
+    "oz": "Bulut örtüsü regresyonu ile kapalı gün hatasını azaltmak.",
+    "ayrinti": "Kapalı sınıfta en yüksek hataya sahip modelin tahmini, bulut örtüsüyle regresyona sokulur; düzeltilmiş RMSE düşüşü raporlanır.",
+    "nasil": [
+     {
+      "teknik": "Kapalı sınıfta en yüksek RMSE veren modelin hata serisi e_t ile tahmin bulut örtüsü C_pred arasında linear_model.LinearRegression fit edilir.",
+      "sade": "Modellerin kapalı havada yaptığı büyük hatayı tahmin edilen bulut oranıyla ilişkilendiren düzeltme formülü eğitiriz.",
+      "altAdimlar": [
+       "1. Kapalı gök saatlerindeki hata serisini hedef değişken yap.",
+       "2. Modelin bulut örtüsü tahminini girdi olarak ver.",
+       "3. En küçük kareler regresyonuyla düzeltme katsayılarını bul."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+      }
+     },
+     {
+      "teknik": "Düzeltilmiş tahminler üzerinden kapalı sınıf RMSE'si yeniden hesaplanarak hata tablosuna eklenir ve Matplotlib ile çizdirilir.",
+      "sade": "Düzeltme sonrası hatanın ne kadar azaldığını gösteren grafiği çizip sonuçları açık araştırma defterinde belgeleriz.",
+      "altAdimlar": [
+       "1. Düzeltme formülünü test saatlerine uygula.",
+       "2. Düzeltilmiş yeni RMSE değerini hesapla.",
+       "3. Ham ve düzeltilmiş hata çubuklarını karşılaştırmalı çiz."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+     },
+     {
+      "ders": "MTO 225",
+      "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için GFS, IFS ve AIFS güneş tahminlerinin bulut sınıflarındaki hata matrisini çıkaran ve doğrusal düzelten açık defter.",
+  "senden": "MTO 225 ışınım zayıflaması, bulut sınıflandırması, çoklu model hata matrisi ve regresyon analizini yürütürsün.",
+  "bizden": "AURA çoklu model API sorguları, ERA5 referans verileri ve istatistiksel hata analizi şablonları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://www.reading.ac.uk/meteorology/research",
+   "aciklama": "Reading Üniversitesi atmosferik ışınım ve bulut fiziği portalı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+   "lisans": "kamu malı",
+   "aciklama": "Bulutların güneş ışınımını yansıtma ve soğurma akıları"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "İstanbul için AIFS, IFS ve GFS modellerinin güneş ışınımı tahmini ile ERA5 referansı arasındaki hata farkı haritası simülasyonu",
+   "aciklama": "Marmara Bölgesi güneş ışınımı tahmin modelleri karşılaştırma simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Petty, G. W. (2006) A First Course in Atmospheric Radiation, 2. baskı, Sundog Publishing · ISBN 978-0-9729033-1-8",
+   "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ"
+  },
+  {
+   "ad": "Trenberth, K. E. vd. (2009) Earth's Global Energy Budget, BAMS · DOI: 10.1175/2008BAMS2634.1",
+   "url": "https://doi.org/10.1175/2008BAMS2634.1"
+  },
+  {
+   "ad": "Mlawer, E. J. vd. (1997) Radiative transfer for inhomogeneous atmospheres: RRTM, JGR · DOI: 10.1029/97JD00237",
+   "url": "https://doi.org/10.1029/97JD00237"
+  },
+  {
+   "ad": "Song, H. J., Roh, S. (2021) Improved Weather Forecasting Using Neural Network Emulation for Radiation Parameterization, JAMES · DOI: 10.1029/2021MS002609",
+   "url": "https://doi.org/10.1029/2021MS002609"
+  },
+  {
+   "ad": "Lagerquist, R. vd. (2021) Using deep learning to emulate and accelerate a radiative-transfer model, JTECH · DOI: 10.1175/JTECH-D-21-0007.1",
+   "url": "https://doi.org/10.1175/JTECH-D-21-0007.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO225-02.json",
+  "tarih": "2026-10-17 00:56",
+  "geminiSha1": "542ece6bdebf"
+ }
+}

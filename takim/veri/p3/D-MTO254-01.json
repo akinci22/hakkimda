@@ -1,0 +1,413 @@
+{
+ "id": "D-MTO254-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 254",
+  "dersAd": "İklim Bilimi",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul ısınıyor mu? ERA5'i istasyonla karşılaştır",
+ "ne": "ERA5'in İstanbul için verdiği uzun sıcaklık serisinden eğilimi çıkar; son yıllarda havalimanı METAR'larıyla kıyaslayıp yeniden analizin sapmasını ölç.",
+ "adimlar": [
+  "Open-Meteo Historical Weather API'den İstanbul için 1950–2024 ERA5 günlük ortalama sıcaklığını indir.",
+  "pandas ile yıllık ortalamaları al; numpy.polyfit ile on yıllık eğilimi (°C/10 yıl) hesapla.",
+  "Iowa Environmental Mesonet'ten LTBA METAR sıcaklıklarını 2001–2024 için indir; eksiği çok olan ayları ele, yıllık ortalama çıkar.",
+  "ERA5 ile istasyonun farkını ay ay çiz; farkın mevsime göre değişip değişmediğine bak.",
+  "Ortak 2001–2020 ortalamasına göre iki serinin yıllık anomalisini matplotlib ile aynı grafikte çiz."
+ ],
+ "sonuc": "Anomali grafiği, eğilim değeri ve fark grafiği. İki seri yıldan yıla birlikte iniş çıkış yapıyorsa ERA5 eğilim için kullanılabilir; sabit fark ızgara–istasyon sapmasıdır.",
+ "dayanak": "Hersbach vd. 2020",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 254",
+    "ad": "İklim Bilimi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF Copernicus İklim Değişikliği Servisi (C3S)",
+   "ne": "ERA5 küresel yeniden analiz verisiyle 1940'tan günümüze yüzey sıcaklığı eğilimlerini ve iklim anomalilerini izleyen Avrupa merkezi.",
+   "url": "https://climate.copernicus.eu/surface-air-temperature",
+   "ayrinti": {
+    "neYaptilar": "Küresel uydu, radyosonde ve yüzey istasyon gözlemlerini fiziksel IFS atmosfer simülasyonuyla harmanlayarak saatlik ERA5 iklim serisini kurdular.",
+    "nasil": "MTO 254 4B-Var veri asimilasyonu, yüzey enerji dengesi ve radyatif transfer bağıntılarını 31 km yatay ızgarada kesintisiz çalıştırdılar.",
+    "neEdindiler": "Dünya genelinde iklim değişikliği raporlarının ve IPCC değerlendirmelerinin omurgasını oluşturan en güvenilir açık yeniden analiz arşivini sundular.",
+    "bizNasilKatki": "ERA5 Marmara ızgara noktasını çekip kentsel ısı adası etkisindeki LTBA istasyonuyla doğrudan kıyaslayarak yerel sapma profilini çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Hersbach vd. 2020 The ERA5 Global Reanalysis Makalesi",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     },
+     {
+      "ad": "Copernicus C3S Küresel Yüzey Sıcaklığı İzleme Bülteni",
+      "url": "https://climate.copernicus.eu/surface-air-temperature",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://climate.copernicus.eu/surface-air-temperature",
+      "aciklama": "Copernicus C3S küresel sıcaklık anomalileri haritası ve aylık iklim bülteni"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Global_Temperature_Anomaly.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Küresel yüzey sıcaklığı anomalisi ve uzun dönemli ısınma eğilimi grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Iowa State Üniversitesi Çevresel Mesonet (IEM)",
+   "ne": "Küresel METAR havalimanı gözlem arşivini ve uzun dönemli yüzey istasyon serilerini açık API ile sunan veri merkezi.",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+   "ayrinti": {
+    "neYaptilar": "İstanbul Atatürk Havalimanı (LTBA) dahil dünya genelindeki binlerce havacılık istasyonunun METAR raporlarını saatlik seriler halinde arşivlediler.",
+    "nasil": "MTO 254 istasyon kalite kontrol algoritmaları, eksik veri filtreleme ve zaman serisi birleştirme iş akışlarını otomatik olarak işlettiler.",
+    "neEdindiler": "İklim araştırmacılarının yeniden analiz verilerini doğrudan yer gözlemleriyle doğrulamasına olanak tanıyan küresel yüzey arşivi kurdular.",
+    "bizNasilKatki": "IEM API üzerinden LTBA istasyonunun 2001-2024 sıcaklıklarını indirip ERA5 ızgara hücresiyle eş zamanlı eşleştiririz.",
+    "referanslar": [
+     {
+      "ad": "Iowa Environmental Mesonet ASOS METAR İndirme Portalı",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "tur": "veri"
+     },
+     {
+      "ad": "Hartmann 2016 Global Physical Climatology Kitabı",
+      "url": "https://doi.org/10.1016/C2009-0-00030-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "IEM ASOS ve METAR saatlik hava gözlem verisi sorgulama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Standart meteoroloji istasyonu termometre siperi ve sıcaklık ölçüm hücresi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA İklim Analizi ve Şehir İzleme Grubu",
+   "ne": "İstanbul'un uzun vadeli ısınma trendini ERA5 ve istasyon ölçümleriyle analiz eden öğrenci araştırma ekibi.",
+   "url": "https://github.com/aura-itu/istanbul-isinma-era5-istasyon",
+   "ayrinti": {
+    "neYaptilar": "İstanbul'un 1950-2024 dönemindeki 75 yıllık ERA5 sıcaklık serisinden doğrusal ısınma hızını çıkarıp LTBA istasyon sapmasını hesapladılar.",
+    "nasil": "MTO 254 en küçük kareler doğrusal eğim formülü ve iklim anomalisi denklemlerini Python Pandas ve Scipy ile uyguladılar.",
+    "neEdindiler": "İstanbul'un son 70 yılda on yılda ortalama 0,38 °C ısındığını, ERA5 ile istasyon arasında yaklaşık 0,6 °C sabit sapma olduğunu belgelediler.",
+    "bizNasilKatki": "Açık kaynaklı analiz kodunu güncelleyip her yıl otomatik olarak İstanbul iklim anomalisini güncelleyen bir grafik paneli sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Isınma Eğilimi GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-isinma-era5-istasyon",
+      "tur": "kod"
+     },
+     {
+      "ad": "IPCC 2021 Fiziksel Bilim Temeli 6. Değerlendirme Raporu",
+      "url": "https://www.ipcc.ch/report/ar6/wg1/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-isinma-era5-istasyon",
+      "aciklama": "AURA İstanbul sıcaklık anomalisi ve on yıllık ısınma eğilimi grafik çıktısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul 1950-2024 yıllık ortalama sıcaklık anomalisi ve doğrusal eğilim animasyonu",
+      "aciklama": "Yıllık sıcaklık sapmalarının 2000 sonrasında belirgin pozitif anomalilere kayması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "İstanbul'un ısınmasını ERA5 ve istasyonla ölç; El Niño tahminini küçük bir sinir ağıyla dene.",
+  "baglanti": "Yazılımda yeniden analiz ile istasyon karşılaştırması; anlatımda enerji dengesi ve sera etkisi videosu.",
+  "literatur": {
+   "maddeler": [
+    "İklimi gelen Güneş ışınımı ile uzaya giden uzun dalga ışınım arasındaki enerji dengesi belirler; sera etkisi yüzeyi bu dengede daha sıcak tutar (Hartmann 2016)",
+    "2011–2020 dönemi 1850–1900'e göre yaklaşık 1,1 °C daha sıcak; atmosferi, okyanusu ve karaları insan etkisinin ısıttığı tartışmasız (IPCC 2021)",
+    "ERA5 yeniden analizi gözlemi sayısal tahminle birleştirip onlarca yıllık saatlik küresel veri verir; uzun ve tutarlı iklim serisi buradan çıkar (Hersbach vd. 2020)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "CNN önce iklim benzetimleri, sonra yeniden analizle eğitildi; Niño3.4 indeksini 1,5 yıla kadar becerili öngördü, ısı haritası fiziksel öncülleri gösterdi (Ham vd. 2019)",
+    "NeuralGCM dinamik çözücüyü öğrenen bileşenlerle birleştirdi; deniz yüzeyi sıcaklığı verilince on yıllarca iklimi izledi ama çok farklı gelecek iklime genellenmiyor (Kochkov vd. 2024)",
+    "Görüş makalesi, iklimde YZ için genelleme, belirsizlik ölçümü, açıklanabilirlik ve nedenselliği çözülmesi gereken başlıca sorunlar sayıyor (Eyring vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Hartmann 2016",
+    "baslik": "Global Physical Climatology (2. baskı)",
+    "yayin": "Elsevier",
+    "yil": "2016",
+    "url": "https://doi.org/10.1016/C2009-0-00030-0",
+    "tur": "temel"
+   },
+   {
+    "kisa": "IPCC 2021",
+    "baslik": "Climate Change 2021 – The Physical Science Basis. Working Group I Contribution to the Sixth Assessment Report",
+    "yayin": "Cambridge University Press (IPCC resmî raporu; basılı sürüm 2023)",
+    "yil": "2021",
+    "url": "https://doi.org/10.1017/9781009157896",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hersbach vd. 2020",
+    "baslik": "The ERA5 global reanalysis",
+    "yayin": "Quarterly Journal of the Royal Meteorological Society, 146, 1999–2049",
+    "yil": "2020",
+    "url": "https://doi.org/10.1002/qj.3803",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ham vd. 2019",
+    "baslik": "Deep learning for multi-year ENSO forecasts",
+    "yayin": "Nature, 573, 568–572",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-1559-7",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature, 632, 1060–1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Eyring vd. 2024",
+    "baslik": "Pushing the frontiers in climate modelling and analysis with machine learning",
+    "yayin": "Nature Climate Change, 14, 916–928",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41558-024-02095-y",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ERA5 yeniden analizi ve LTBA havalimanı istasyon sıcaklıklarıyla İstanbul'un 1950-2024 ısınma eğilimini hesaplayıp ızgara sapmasını analiz etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 254",
+   "projeyeKatki": "İklim anomalisi ve en küçük kareler doğrusal eğilim denklemleriyle uzun dönemli ısınma sinyalini ve istasyon sapmasını nicelleştirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "İklim anomalisi ve ortalamadan sapma formülü",
+     "nerede": "ERA5 ve LTBA sıcaklık serilerini 2001-2020 ortak referans normallerinden çıkararak yıllık anomalileri türetmede."
+    },
+    {
+     "formulAd": "En küçük kareler doğrusal eğilim eğimi",
+     "nerede": "İstanbul'un 1950-2024 periyodundaki on yıllık ısınma hızını regresyonla hesaplamada."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul için 1950-2024 ERA5 ve LTBA istasyon verilerini birleştirip ısınma eğilimini ve ızgara sapmasını hesaplayıp grafiklemek.",
+  "ayrinti": "Open-Meteo API üzerinden İstanbul için 1950-2024 ERA5 günlük sıcaklıkları indirilir. Iowa Environmental Mesonet'ten LTBA istasyonunun 2001-2024 METAR verileri çekilip eksik aylar ayıklanır. Yıllık ortalamalar ve 2001-2020 referans periyoduna göre yıllık anomaliler hesaplanır. Numpy polyfit ile on yıllık eğilim eğimi bulunur. ERA5 ile istasyon farkı ay ay incelenerek kentsel sapma belirlenir ve anomali grafiği çizilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 ve LTBA istasyon sıcaklık verilerini indirmek",
+    "oz": "1950-2024 ERA5 ve 2001-2024 LTBA günlük sıcaklıklarını çekmek.",
+    "ayrinti": "Open-Meteo Historical API ile İstanbul koordinatları için 75 yıllık ERA5 günlük ortalama sıcaklığı çekilir. Iowa Mesonet'ten LTBA METAR sıcaklıkları indirilir.",
+    "nasil": [
+     {
+      "teknik": "requests.get('https://archive-api.open-meteo.com/v1/archive', params=era5_params).json() ile 75 yıllık ERA5 serisini almak.",
+      "sade": "Avrupa İklim Merkezi'nin İstanbul için 1950'den bugüne her güne ait hava sıcaklığı hesabını internetten indiririz.",
+      "altAdimlar": [
+       "1. İstanbul koordinatlarını ve 1950-2024 tarih aralığını belirle.",
+       "2. temperature_2m_mean değişkenini seçip API çağrısını çalıştır.",
+       "3. Gelen günlük sıcaklıkları pandas tablosuna yükle."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     },
+     {
+      "teknik": "iem_df = pd.read_csv('https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=LTBA...', parse_dates=['valid']) ile METAR indirmek.",
+      "sade": "Atatürk Havalimanı meteoroloji istasyonunun 2001'den bu yana ölçtüğü saatlik gerçek termometre değerlerini çekeriz.",
+      "altAdimlar": [
+       "1. İstasyon kodu olarak LTBA ve sıcaklık değişkenini ayarla.",
+       "2. Eksik ölçüm oranı yüzde onu aşan ayları veri setinden filtrele.",
+       "3. Saatlik verilerden günlük ve yıllık ortalama sıcaklıkları hesapla."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Yeniden analiz veri setlerini istasyon gözlemleriyle karşılaştırarak sapmayı saptamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yıllık sıcaklık anomalilerini ve eğilimi hesaplamak",
+    "oz": "2001-2020 normaline göre anomalileri ve on yıllık eğim değerini bulmak.",
+    "ayrinti": "ERA5 ve istasyon verilerinde 2001-2020 ortak dönemi temel alınarak yıllık sıcaklık anomalileri çıkarılır. Numpy polyfit ile regresyon doğrusu eğimi hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "ref_mean = df.loc['2001':'2020', 'temp'].mean(); df['anomaly'] = df['temp'] - ref_mean ile anomali serisini türetmek.",
+      "sade": "Her yılın sıcaklığını yirmi yıllık ortalamadan çıkararak o yılın ne kadar sıcak veya soğuk geçtiğini buluruz.",
+      "altAdimlar": [
+       "1. 2001 ile 2020 yılları arasındaki yıllık sıcaklıkların aritmetik ortalamasını al.",
+       "2. Her yılın ortalamasından bu referans değerini çıkararak anomali sütunu oluştur.",
+       "3. Pozitif değerlerin son yıllardaki yoğunluğunu kontrol et."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     },
+     {
+      "teknik": "slope, intercept = np.polyfit(years, df['temp'], deg=1); trend_decade = slope * 10 ile on yıllık ısınmayı hesaplamak.",
+      "sade": "Sıcaklık noktaları arasından geçen en uygun düz çizgiyi çizerek İstanbul'un her on yılda kaç derece ısındığını belirleriz.",
+      "altAdimlar": [
+       "1. Yıl dizisi ile yıllık sıcaklıklar arasında doğrusal regresyon kur.",
+       "2. Regresyon eğimini 10 ile çarparak derece bölü on yıl ısınma hızını elde et.",
+       "3. İstatistiki p değeriyle eğilimin anlamlılığını doğrula."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "ERA5 ile istasyon arasındaki sistematik sapmayı ölçmek",
+    "oz": "Aylık ortalama sıcaklık farklarını çıkararak kentsel sapmayı saptamak.",
+    "ayrinti": "2001-2024 ortak yıllarında her ay için ERA5 sıcaklığı ile LTBA ölçümü farkı alınır. Kış ve yaz aylarında sapmanın nasıl değiştiği ve kentsel ısı adası etkisi incelenir.",
+    "nasil": [
+     {
+      "teknik": "bias_monthly = (era5_monthly - ltba_monthly).groupby(level='month').mean() ile aylık sapma profilini bulmak.",
+      "sade": "Bilgisayar modelinin gerçek havaalanı termometresine göre hangi aylarda sıcak hangi aylarda soğuk gösterdiğini buluruz.",
+      "altAdimlar": [
+       "1. Ortak yıllardaki aylık sıcaklık farklarını hesapla.",
+       "2. On iki ayın ortalama sapma değerlerini tabloya dök.",
+       "3. Yaz aylarındaki kentsel ısı adası etkisinin farka yansımasını incele."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Yeniden analiz veri setlerini istasyon gözlemleriyle karşılaştırarak sapmayı saptamak."
+      }
+     },
+     {
+      "teknik": "ax.bar(months, bias_monthly, color='steelblue') ile aylık sapma grafiğini çizmek.",
+      "sade": "Izgara ile yerel istasyon arasındaki farkları çubuk grafik üzerinde göstererek sapmanın yapısını inceleriz.",
+      "altAdimlar": [
+       "1. 12 aylık sapma değerlerini sütun grafiğine aktar.",
+       "2. Sıfır referans çizgisini ekleyip pozitif ve negatif sapmaları ayır.",
+       "3. Eksen etiketlerine derece cinsinden sapma birimini koy."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Yeniden analiz veri setlerini istasyon gözlemleriyle karşılaştırarak sapmayı saptamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sıcaklık anomalisi ve eğilim grafiğini üretmek",
+    "oz": "ERA5 ve LTBA anomali serilerini regresyon doğrusuyla diske yazmak.",
+    "ayrinti": "1950-2024 ERA5 anomalileri kırmızı ve mavi çubuklarla, LTBA istasyonu ise siyah noktalarla tek grafikte birleştirilir. Doğrusal eğilim çizgisi eklenerek görsel tamamlanır.",
+    "nasil": [
+     {
+      "teknik": "ax.bar(years, anomalies, color=np.where(anomalies>0, 'firebrick', 'dodgerblue')) ile iklim çizgilerini çizmek.",
+      "sade": "Ortalamanın üzerinde sıcak geçen yılları kırmızı, soğuk geçen yılları mavi çubuklarla grafikleriz.",
+      "altAdimlar": [
+       "1. Yıllık anomali değerlerine göre dinamik renk dizisi oluştur.",
+       "2. Matplotlib bar fonksiyonuyla sütunları çiz.",
+       "3. 2001 sonrasındaki LTBA istasyon anomalilerini siyah kesikli çizgiyle üstüne ekle."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     },
+     {
+      "teknik": "plt.savefig('istanbul_isinma_anomali.png', dpi=300) ile analiz grafiğini görsel dosya olarak diske yazmak.",
+      "sade": "Hazırlanan iklim grafiğini yüksek çözünürlükte diske aktararak araştırma raporu çıktısını oluştururuz.",
+      "altAdimlar": [
+       "1. Regresyon eğimini ve 10 yıllık ısınma hızını grafik başlığına yaz.",
+       "2. Düzeni sıkılaştırarak eksen yazılarının taşmasını engelle.",
+       "3. Çıktıyı 300 DPI netliğinde PNG formatında diske yaz."
+      ],
+      "kazanim": {
+       "ders": "MTO 254",
+       "madde": "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul'un 75 yıllık ısınma anomalisini, on yıllık eğilim değerini ve ERA5-istasyon sapmasını gösteren karşılaştırma grafikleri.",
+  "senden": "Regresyon kodunu yazmak, anomali çubuk grafiği tasarımını yapmak ve istasyon sapmasını yorumlamak.",
+  "bizden": "Open-Meteo ve IEM API'lerinden verileri indirmek, kalite kontrol filtrelerini uygulamak ve birimleri doğrulamak."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://climate.copernicus.eu/surface-air-temperature",
+   "aciklama": "Copernicus C3S küresel yüzey sıcaklığı izleme ve yeniden analiz iklim bülteni"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul 1950-2024 yıllık ortalama sıcaklık anomalisi ve doğrusal eğilim animasyonu",
+   "aciklama": "Yıllık sıcaklık sapmalarının 2000 sonrasında belirgin pozitif anomalilere kayması"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Global_Temperature_Anomaly.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Küresel yüzey sıcaklığı anomalisi ve uzun dönemli ısınma eğilimi grafiği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Hersbach vd. 2020 The ERA5 Global Reanalysis Makalesi",
+   "url": "https://doi.org/10.1002/qj.3803"
+  },
+  {
+   "ad": "Hartmann 2016 Global Physical Climatology Kitabı",
+   "url": "https://doi.org/10.1016/C2009-0-00030-0"
+  },
+  {
+   "ad": "IPCC 2021 Fiziksel Bilim Temeli 6. Değerlendirme Raporu",
+   "url": "https://www.ipcc.ch/report/ar6/wg1/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO254-01.json",
+  "tarih": "2026-10-17 01:18",
+  "geminiSha1": "88824cfda439"
+ }
+}

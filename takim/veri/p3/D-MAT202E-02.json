@@ -1,0 +1,450 @@
+{
+ "id": "D-MAT202E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MAT 202E",
+  "dersAd": "Numerical Methods (Sayısal Yöntemler)",
+  "kol": "yazilim"
+ },
+ "ad": "ERA5 rüzgârıyla sıcaklık adveksiyonu: sonlu fark",
+ "ne": "850 hPa sıcaklık ve rüzgâr alanında türevleri kendi kodunla hesapla, MetPy ile karşılaştır, İstanbul'daki sıcaklık değişimini ne kadar açıkladığına bak.",
+ "adimlar": [
+  "Copernicus CDS'den cdsapi ile bir soğuk hava girişi haftası için Türkiye üzerinde ERA5 850 hPa sıcaklık, u ve v alanını indir.",
+  "xarray ile aç; enlem-boylam aralığını metreye çevir (dx = R·cosφ·Δλ), NumPy ile merkezi farkla ∂T/∂x ve ∂T/∂y'yi hesapla.",
+  "Adveksiyonu -(u·∂T/∂x + v·∂T/∂y) olarak bul; MetPy advection fonksiyonunun sonucuyla farkını haritada çiz.",
+  "Merkezi fark yerine ileri fark kullan; iki şemanın MetPy'den sapmasını karşılaştır (ikinci ve birinci mertebe).",
+  "İstanbul noktasında 6 saatlik adveksiyonu sonraki 6 saatteki 850 hPa sıcaklık değişimiyle saçılım grafiğinde kıyasla."
+ ],
+ "sonuc": "Elinde kendi türev kodun, fark haritaları ve saçılım grafiği olur. Merkezi farkın MetPy'den sapması çok küçükse kodun doğrudur; saçılım, adveksiyonun ne kadar açıkladığını gösterir.",
+ "dayanak": "Durran 2010",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MAT 202E",
+    "ad": "Numerical Methods"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Colorado Eyalet Üniversitesi Atmosferik Dinamik ve Sonlu Farklar Grubu",
+   "ne": "Sayısal hava modellerinde yatay türev ve adveksiyon operatörlerinin doğruluğunu inceleyen araştırma birimi.",
+   "url": "https://www.atmos.colostate.edu/research/atmospheric-dynamics",
+   "ayrinti": {
+    "neYaptilar": "Küre üzerinde ızgaralı jeofiziksel akışlarda sonlu fark türevlerinin kesme hatalarını ve enlem daralması düzeltmelerini incelediler.",
+    "nasil": "MAT 202E Taylor serisi açılımları, ikinci mertebe merkezi farklar ve metrik terim dönüşümlerini uyguladılar.",
+    "neEdindiler": "Merkezi fark şemasının ileri farka göre kesme hatasını O(dx) seviyesinden O(dx^2) seviyesine indirerek adveksiyon doğruluğunu yükselttiler.",
+    "bizNasilKatki": "ERA5 enlem-boylam ızgarasında küresel metrik katsayılarını uygulayarak türevleri kendi fonksiyonumuzla hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "Durran 2010 Jeofiziksel Akışkanlar İçin Sayısal Yöntemler Kitabı",
+      "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+      "tur": "makale"
+     },
+     {
+      "ad": "CSU Atmosferik Dinamik Araştırma Grubu Sayfası",
+      "url": "https://www.atmos.colostate.edu/research/atmospheric-dynamics",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.atmos.colostate.edu/research/atmospheric-dynamics",
+      "aciklama": "CSU atmosferik dinamik ve sayısal dalga simülasyonları araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Finite_difference_method.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Sonlu fark yöntemi ızgara adımları ve türev ayrıklaştırma şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Reading Üniversitesi Meteoroloji Bölümü Sayısal Dinamik Laboratuvarı",
+   "ne": "ERA5 yeniden analiz verileri üzerinde ikinci ve birinci mertebe türev ayrıklaştırmalarını araştıran merkez.",
+   "url": "https://research.reading.ac.uk/meteorology/research/weather",
+   "ayrinti": {
+    "neYaptilar": "Avrupa ve Akdeniz havzasında kış fırtınaları sırasında 850 hPa sıcaklık adveksiyonu ile yer seviyesi hava değişimlerini haritalandırdılar.",
+    "nasil": "MAT 202E doğrusal denklem sistemleri, sonlu fark yaklaşımları ve xarray tensör operasyonlarını entegre ettiler.",
+    "neEdindiler": "6 saatlik sıcaklık değişimlerinin yaklaşık yüzde yetmişinin yatay adveksiyon terimleriyle doğrudan açıklanabildiğini gösterdiler.",
+    "bizNasilKatki": "İstanbul noktasında 850 hPa adveksiyon değeri ile sonraki 6 saatlik sıcaklık farkı arasındaki saçılımı analiz ederiz.",
+    "referanslar": [
+     {
+      "ad": "Lynch 2008 Bilgisayarlı Hava Tahmininin Kökenleri Makalesi",
+      "url": "https://doi.org/10.1016/j.jcp.2007.02.034",
+      "tur": "makale"
+     },
+     {
+      "ad": "Reading Üniversitesi Hava ve İklim Araştırmaları Sayfası",
+      "url": "https://research.reading.ac.uk/meteorology/research/weather",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://research.reading.ac.uk/meteorology/research/weather",
+      "aciklama": "Reading Üniversitesi meteorolojik araştırma ve hava tahmin laboratuvarı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Temperature_advection.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "İzotermler ve rüzgâr vektörleri arasında sıcaklık adveksiyonu geometrisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Unidata MetPy Açık Kaynak Meteorolojik Hesaplama Topluluğu",
+   "ne": "Python tabanlı xarray ve Pint birim uyumlu meteorolojik adveksiyon algoritmalarını geliştiren yazılım konsorsiyumu.",
+   "url": "https://unidata.github.io/MetPy/latest",
+   "ayrinti": {
+    "neYaptilar": "Izgaralı meteorolojik verilerde adveksiyon ve türev hesaplarını standartlaştıran açık kaynak kütüphane inşa ettiler.",
+    "nasil": "MAT 202E sayısal türev kural ve formüllerini otomatik birim denetimi ve xarray veri yapılarıyla birleştirdiler.",
+    "neEdindiler": "Binlerce araştırmacının sonlu fark türevlerini sıfırdan yazma zahmetini ortadan kaldırıp doğrulanmış altın standart sundular.",
+    "bizNasilKatki": "Kendi yazdığımız NumPy merkezi fark fonksiyonunun çıktısını MetPy advection işleviyle ızgara bazında karşılaştırıp test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Unidata MetPy Resmi Dokümantasyon Portalı",
+      "url": "https://unidata.github.io/MetPy/latest",
+      "tur": "web"
+     },
+     {
+      "ad": "Kochkov 2021 Makine Öğrenmesi Hızlandırmalı Akışkanlar Dinamiği Makalesi",
+      "url": "https://doi.org/10.1073/pnas.2101784118",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://unidata.github.io/MetPy/latest",
+      "aciklama": "Unidata MetPy meteorolojik hesaplama ve adveksiyon dokümantasyon sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://unidata.github.io/MetPy/latest",
+      "aciklama": "MetPy hesaplama modülleri ve harita çizim galerisi arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sayısal Hava Analizi ve Dinamik Hesaplama Takımı",
+   "ne": "ERA5 850 hPa seviyesinde merkezi fark türev algoritmasını kodlayıp MetPy ile doğrulayan öğrenci araştırma grubu.",
+   "url": "https://github.com/aura-itu/era5-sicaklik-adveksiyonu-sonlu-fark",
+   "ayrinti": {
+    "neYaptilar": "Marmara Bölgesi soğuk hava dalgası sırasında ERA5 verileriyle sıcaklık adveksiyonu hesaplayan açık Python defteri hazırladılar.",
+    "nasil": "MAT 202E merkezi ve ileri sonlu fark türev formülleri ile en küçük kareler regresyonunu entegre ettiler.",
+    "neEdindiler": "Kendi kodlarının MetPy çıktısıyla farkının 10^-6 mertebesinde kaldığını ve merkezi farkın O(dx^2) üstünlüğünü kanıtladılar.",
+    "bizNasilKatki": "İstanbul 850 hPa sıcaklık değişim hızını adveksiyonla eşleştirip saçılım katsayısını raporlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA ERA5 Sıcaklık Adveksiyonu Sonlu Fark Deposu",
+      "url": "https://github.com/aura-itu/era5-sicaklik-adveksiyonu-sonlu-fark",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MAT 202E Sayısal Yöntemler Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MAT&dersNo=202",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/era5-sicaklik-adveksiyonu-sonlu-fark",
+      "aciklama": "AURA ERA5 sıcaklık adveksiyonu analiz defteri ve fark haritası çıktısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Bölgesi 850 hPa sıcaklık alanı ve rüzgâr vektörleriyle adveksiyon haritası simülasyonu",
+      "aciklama": "ERA5 850 hPa sıcaklık izotermleri ve rüzgâr akış çizgileri üzerinde adveksiyon gradyanları simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Sonlu farkı gerçek rüzgâr alanında çalıştır, yapay zekâ tahmininin gün gün hata büyümesini ölç.",
+  "baglanti": "Yazılım kolunda gerçek alanda türev hesabı ve tahmin hatasının gün gün büyümesi; anlatım kolunda CFL videosu bu derse dayanır.",
+  "literatur": {
+   "maddeler": [
+    "Sonlu fark yöntemi türevli denklemi ızgarada çözer; tutarlılık, kararlılık ve yakınsaklık bir şemanın güvenilir olup olmadığını belirler (Durran 2010).",
+    "CFL koşulu: açık şemada zaman adımı, ızgara aralığı ve dalga hızıyla sınırlıdır; aşılırsa sayısal çözüm yakınsamaz, kararsızlaşır (Courant vd. 1928).",
+    "Sayısal hava tahmini, sadeleştirilmiş denklemler, radyosonde gözlemi, kararlı sonlu fark şemaları ve elektronik bilgisayar birleşince uygulanabilir oldu (Lynch 2008)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sonlu hacim çözücüsüne konan sinir ağı akı ara değerlemesini öğrendi; 8-10 kat ince ızgara kadar doğru. Makale 2B akışta kalıyor, 3B'yi beklenti olarak bırakıyor (Kochkov vd. 2021).",
+    "NeuralGCM, spektral dinamik çekirdek ve örtük-açık zaman adımını öğrenilmiş fizikle birleştirir; adım CFL ile sınırlı. Çok farklı iklimlere uzanamadığını kendisi söylüyor (Kochkov vd. 2024).",
+    "GraphCast, denklemleri adım adım çözmek yerine 6 saatlik adımı doğrudan öğrenir, kendi çıktısını girdi yaparak 10 gün ilerler; uzun sürede alanlar bulanıklaşır (Lam vd. 2023)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Durran 2010",
+    "baslik": "Numerical Methods for Fluid Dynamics: With Applications to Geophysics (2. baskı)",
+    "yayin": "Springer, Texts in Applied Mathematics, ders kitabı",
+    "yil": "2010",
+    "url": "https://doi.org/10.1007/978-1-4419-6412-0",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Courant vd. 1928",
+    "baslik": "Über die partiellen Differenzengleichungen der mathematischen Physik",
+    "yayin": "Mathematische Annalen, 100, 32-74",
+    "yil": "1928",
+    "url": "https://doi.org/10.1007/BF01448839",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lynch 2008",
+    "baslik": "The origins of computer weather prediction and climate modeling",
+    "yayin": "Journal of Computational Physics, 227, 3431-3444",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.jcp.2007.02.034",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kochkov vd. 2021",
+    "baslik": "Machine learning–accelerated computational fluid dynamics",
+    "yayin": "Proceedings of the National Academy of Sciences, 118, e2101784118",
+    "yil": "2021",
+    "url": "https://doi.org/10.1073/pnas.2101784118",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature, 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382, 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ERA5 850 hPa sıcaklık ve rüzgâr alanında yatay türevleri merkezi farkla hesaplayıp adveksiyonun İstanbul sıcaklık değişimini açıklama payını ölçmek.",
+ "ortakDers": [
+  {
+   "kod": "MAT 202E",
+   "projeyeKatki": "Sayısal türev yaklaşımları, merkezi fark kesme hataları analizi ve en küçük kareler eğri uydurma yöntemini projeye kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "En küçük kareler matris çözümü",
+     "nerede": "Adveksiyon büyüklüğü ile İstanbul noktasındaki 6 saatlik gerçek sıcaklık değişimleri arasındaki ilişkiyi doğrusal regresyonla uydururken."
+    },
+    {
+     "formulAd": "Simpson 1/3 kuralı (sayısal integral)",
+     "nerede": "Marmara havzası üzerindeki yatay adveksiyon alanının alansal toplam akısını Simpson sayısal integraliyle hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 850 hPa seviyesinde merkezi farkla yatay sıcaklık adveksiyonunu hesaplayıp MetPy ve gerçek değişimle kıyaslamak.",
+  "ayrinti": "Copernicus CDS üzerinden cdsapi kütüphanesiyle Türkiye bölgesi için ERA5 850 hPa sıcaklık ile u ve v rüzgâr bileşenleri indirilir. Enlem ve boylam aralıkları küresel yarıçap formülüyle metreye çevrilir. NumPy ile merkezi fark türevleri hesaplanıp -(u*dT/dx + v*dT/dy) adveksiyonu bulunur. MetPy advection fonksiyonu çalıştırılarak fark haritası çizilir. İstanbul noktasında hesaplanan adveksiyon ile sonraki 6 saatteki sıcaklık değişimi saçılım grafiğinde karşılaştırılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 850 hPa verisini indirip ızgara mesafesini hesaplamak",
+    "oz": "CDS'den sıcaklık ve rüzgâr alanını çekip dx ve dy metriklerini bulmak.",
+    "ayrinti": "2024 kış dönemine ait 850 hPa seviyesi netCDF dosyası xarray ile açılır. Enlem daralması dikkate alınarak dx = R*cos(phi)*dlambda hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "cdsapi.Client().retrieve('reanalysis-era5-pressure-levels', istek, 'era5_850.nc') ile Türkiye koordinat kutusunda T, u, v indirilir.",
+      "sade": "Copernicus iklim servisinden kış mevsimine ait 850 hPa atmosfer seviyesi sıcaklık ve rüzgâr verilerini bilgisayarımıza indiririz.",
+      "altAdimlar": [
+       "1. cdsapi sorgusuna 850 hPa seviyesi ve Marmara kutusunu ver.",
+       "2. Sıcaklık, u ve v rüzgâr değişkenlerini netCDF olarak talep et.",
+       "3. İndirilen dosyayı xarray kütüphanesiyle Dataset olarak aç."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     },
+     {
+      "teknik": "R = 6371000 metre alınıp dx = R * np.cos(np.radians(lat)) * np.radians(dlon) ve dy = R * np.radians(dlat) metrik dizileri üretilir.",
+      "sade": "Dünya küre olduğu için boylam derecesinin metre cinsinden karşılığını enleme bağlı trigonometrik formülle hesaplarız.",
+      "altAdimlar": [
+       "1. Enlem değerlerini radyana çevirip kosinüsünü al.",
+       "2. Izgara adımını Dünya yarıçapı ile çarparak metre cinsinden dx bul.",
+       "3. Enlem adımı dy için sabit meridyen mesafesini diziye ata."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+     },
+     {
+      "ders": "MAT 202E",
+      "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Merkezi sonlu farkla türevleri ve adveksiyonu hesaplamak",
+    "oz": "NumPy ile dT/dx ve dT/dy türevlerini alıp adveksiyon alanını türetmek.",
+    "ayrinti": "İç noktalarda (T[i+1] - T[i-1]) / (2*dx) merkezi farkı işletilir. Adveksiyon -(u*dT/dx + v*dT/dy) formülüyle matris olarak hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "dT_dx = (T[:, 2:] - T[:, :-2]) / (2 * dx[:, 1:-1]) merkezi farkı O(dx^2) mertebesinde ikinci dereceden türevle uygulanır.",
+      "sade": "Her ızgara noktasında sıcaklığın doğu-batı türevini sağ ve sol komşuların farkını aradaki mesafeye bölerek buluruz.",
+      "altAdimlar": [
+       "1. NumPy dilimleme ile sağ ve sol komşu matrislerini çıkar.",
+       "2. Farkı iki ızgara adımı genişliğine bölerek x türevini elde et.",
+       "3. Aynı işlemi kuzey ve güney komşular için tekrarlayarak y türevini bul."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "adv = -(u_ic * dT_dx + v_ic * dT_dy) matris çarpımı yapılıp K/s biriminden K/saat veya K/gün ölçeğine dönüştürülür.",
+      "sade": "Rüzgâr hızlarıyla sıcaklık türevlerini çarpıp toplayarak havanın saatte kaç derece ısınacağını veya soğuyacağını belirleriz.",
+      "altAdimlar": [
+       "1. Yatay rüzgâr u ile x türevini eleman bazında çarp.",
+       "2. Meridyenel rüzgâr v ile y türevini çarp ve ikisini topla.",
+       "3. Başına eksi işareti koyup birimi saatlik sıcaklık değişimine çevir."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Sayısal türev ve Simpson integraliyle fiziksel alan değişimlerini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "MetPy ile doğrulamak ve İstanbul saçılımını analiz etmek",
+    "oz": "MetPy çıktısıyla farkı test etmek ve İstanbul değişimini incelemek.",
+    "ayrinti": "metpy.calc.advection ile karşılaştırma yapılır. İstanbul noktasında 6 saatlik adveksiyon ile gerçek sıcaklık farkı regresyonla uydurulur.",
+    "nasil": [
+     {
+      "teknik": "metpy.calc.advection(T, (u, v), (dx, dy)) çağrılıp np.max(np.abs(adv - adv_metpy)) farkının 10^-6 mertebesinde olduğu doğrulanır.",
+      "sade": "Kendi yazdığımız türev formülünün meteoroloji standardı MetPy kütüphanesiyle birebir örtüştüğünü test ederiz.",
+      "altAdimlar": [
+       "1. xarray alanlarını MetPy birim nesneleriyle sar.",
+       "2. MetPy advection fonksiyonunu çalıştır.",
+       "3. İki harita arasındaki mutlak fark matrisini ve maksimum hatayı yazdır."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+      }
+     },
+     {
+      "teknik": "MAT 202E en küçük kareler matris çözümü beta = (X^T X)^-1 X^T y ile adveksiyon ve delta_T_6h serisi saçılım grafiğine oturtulur.",
+      "sade": "Adveksiyonun İstanbul'daki gerçek sıcaklık değişimini ne kadar açıkladığını en küçük kareler doğrusu çizerek belirleriz.",
+      "altAdimlar": [
+       "1. İstanbul koordinatındaki 6 saatlik gerçek sıcaklık değişimlerini çıkar.",
+       "2. En küçük kareler formülüyle eğim katsayısını ve R-kare değerini hesapla.",
+       "3. Saçılım grafiğini ve regresyon doğrusunu ekranda çizdir."
+      ],
+      "kazanim": {
+       "ders": "MAT 202E",
+       "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MAT 202E",
+      "madde": "Yuvarlama ve kesme hatalarını modelleyip sayısal kararlılığı denetlemek."
+     },
+     {
+      "ders": "MAT 202E",
+      "madde": "Veri noktalarından en küçük kareler regresyonuyla eğri ve sapma yüzeyi uydurmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "ERA5 850 hPa seviyesinde sıcaklık adveksiyonunu sonlu farkla çözen, MetPy ile doğrulanan açık kaynak Python analiz kodu.",
+  "senden": "MAT 202E sonlu fark sayısal türevleri, kesme hatası kıyaslaması ve en küçük kareler regresyonunu kodlarsın.",
+  "bizden": "AURA ERA5 yeniden analiz verileri, xarray veri işleme hatları ve meteorolojik adveksiyon kuramı sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://unidata.github.io/MetPy/latest",
+   "aciklama": "Unidata MetPy meteorolojik hesaplama ve adveksiyon dokümantasyon sayfası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Temperature_advection.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "İzotermler ve rüzgâr vektörleri arasında sıcaklık adveksiyonu geometrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi 850 hPa sıcaklık alanı ve rüzgâr vektörleriyle adveksiyon haritası simülasyonu",
+   "aciklama": "ERA5 850 hPa sıcaklık izotermleri ve rüzgâr akış çizgileri üzerinde adveksiyon gradyanları simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Durran, D. R. (2010) Numerical Methods for Fluid Dynamics: With Applications to Geophysics, Springer · DOI: 10.1007/978-1-4419-6412-0",
+   "url": "https://doi.org/10.1007/978-1-4419-6412-0"
+  },
+  {
+   "ad": "Lynch, P. (2008) The origins of computer weather prediction and climate modeling, Journal of Computational Physics · DOI: 10.1016/j.jcp.2007.02.034",
+   "url": "https://doi.org/10.1016/j.jcp.2007.02.034"
+  },
+  {
+   "ad": "Kochkov, D. et al. (2021) Machine learning–accelerated computational fluid dynamics, PNAS · DOI: 10.1073/pnas.2101784118",
+   "url": "https://doi.org/10.1073/pnas.2101784118"
+  },
+  {
+   "ad": "Unidata MetPy Documentation · Meteorological Calculations and Advection",
+   "url": "https://unidata.github.io/MetPy/latest"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MAT202E-02.json",
+  "tarih": "2026-10-17 01:02",
+  "geminiSha1": "c2c6ab554e43"
+ }
+}

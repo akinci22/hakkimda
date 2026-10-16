@@ -1,0 +1,135 @@
+{
+ "kod": "MTO 254",
+ "ad": "İklim Bilimi",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "254",
+ "ozet": "Küresel ve bölgesel iklim sisteminin fiziksel mekanizmalarını, gezegensel enerji dengesini ve sera etkisini öğretir. Okyanus-atmosfer etkileşimleri, genel sirkülasyon hücreleri ve iklim değişkenliği incelenir. İklim sınıflandırmaları, tarihsel iklim serilerinin analizi ve iklim değişikliği sinyallerinin istatistiksel tespiti için temel araçları sunar.",
+ "neOgrenirsin": [
+  "Gezegensel enerji dengesi ve sera etkisi mekanizmasını radyatif denklemlerle analiz etmek.",
+  "Tarihsel sıcaklık ve yağış zaman serilerinden doğrusal eğilim ve anomali hesaplamak.",
+  "Okyanus yüzey sıcaklıkları ve atmosferik telebağlantı indekslerini incelemek.",
+  "Köppen-Geiger ve De Martonne iklim sınıflandırma yöntemlerini uygulamak.",
+  "Yeniden analiz veri setlerini istasyon gözlemleriyle karşılaştırarak sapmayı saptamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Küresel gezegensel enerji dengesi denklemi",
+   "tex": "(1 - \\alpha_p) \\frac{S_0}{4} = \\sigma T_e^4",
+   "terimler": [
+    [
+     "S_0",
+     "Güneş sabiti (yaklaşık 1361)",
+     "W/m^2"
+    ],
+    [
+     "\\alpha_p",
+     "gezegensel albedo (yaklaşık 0,30)",
+     "boyutsuz"
+    ],
+    [
+     "\\sigma",
+     "Stefan-Boltzmann sabiti (5,67 \\times 10^{-8})",
+     "W/(m^2·K^4)"
+    ],
+    [
+     "T_e",
+     "Dünya'nın etkin ışınım sıcaklığı",
+     "K"
+    ]
+   ],
+   "sade": "Dünya'nın Güneş'ten soğurduğu net kısa dalga ışınım enerjisinin, uzaya salınan uzun dalga kara cisim ışımasıyla dengelendiği temel fiziksel korunum yasasıdır.",
+   "ornek": "Güneş sabiti 1361 W/m^2 ve albedo 0,30 iken soğurulan akı 238 W/m^2 olur; Stefan-Boltzmann bağıntısıyla etkin sıcaklık Te = (238 / 5,67e-8)^(1/4) ≈ 255 K (-18 °C) bulunur; yüzeyin +15 °C olmasını doğal sera etkisi sağlar.",
+   "nerede": "D-MTO254 projelerinde sera etkisi ve küresel sıcaklık dengesi anlatımında kullanılır."
+  },
+  {
+   "ad": "İklim anomalisi ve ortalamadan sapma formülü",
+   "tex": "T'_y = T_y - \\bar{T}_{ref}",
+   "terimler": [
+    [
+     "T'_y",
+     "y yılına ait sıcaklık anomalisi",
+     "°C veya K"
+    ],
+    [
+     "T_y",
+     "y yılındaki yıllık ortalama sıcaklık",
+     "°C"
+    ],
+    [
+     "\\bar{T}_{ref}",
+     "referans iklim dönemi (ör. 1991-2020) ortalama sıcaklığı",
+     "°C"
+    ]
+   ],
+   "sade": "Belirli bir yılın sıcaklığının uzun vadeli standart referans normallerinden ne kadar sıcak ya da soğuk olduğunu gösteren iklim değişikliği göstergesidir.",
+   "ornek": "İstanbul'da 2023 yıllık ortalama sıcaklığı 16,4 °C ve 1991-2020 normali 15,1 °C iken yıllık sıcaklık anomalisi T' = 16,4 - 15,1 = +1,3 °C olarak bulunur.",
+   "nerede": "D-MTO254-01'de ERA5 ve istasyon sıcaklık serilerinden 1950-2024 ısınma anomalisini türetirken."
+  },
+  {
+   "ad": "En küçük kareler doğrusal eğilim eğimi",
+   "tex": "b = \\frac{\\sum_{i=1}^{n} (t_i - \\bar{t})(T_i - \\bar{T})}{\\sum_{i=1}^{n} (t_i - \\bar{t})^2}",
+   "terimler": [
+    [
+     "b",
+     "zaman serisi doğrusal ısınma eğimi",
+     "°C/yıl"
+    ],
+    [
+     "t_i",
+     "i yılı zaman indisi",
+     "yıl"
+    ],
+    [
+     "\\bar{t}",
+     "yılların aritmetik ortalaması",
+     "yıl"
+    ],
+    [
+     "T_i",
+     "i yılındaki yıllık sıcaklık değeri",
+     "°C"
+    ],
+    [
+     "\\bar{T}",
+     "tüm periyodun ortalama sıcaklığı",
+     "°C"
+    ]
+   ],
+   "sade": "Zaman serisindeki yıllık dalgalanmaların arkasındaki uzun dönemli ısınma veya soğuma hızını matematiksel olarak en az hatayla kestiren doğrusal eğimdir.",
+   "ornek": "İstanbul'da son 50 yıllık sıcaklık serisinde hesaplanan b = 0,035 °C/yıl eğimi, kentin her on yılda ortalama 0,35 °C ısındığını gösterir.",
+   "nerede": "D-MTO254-01'de ERA5 ve LTBA istasyon serilerinden on yıllık ısınma eğilimini hesaplarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Earth%27s_energy_budget.png",
+   "lisans": "NASA",
+   "aciklama": "Dünya'nın enerji bütçesi gelen güneş ışınımı, yansıma ve sera gazı uzun dalga akısı şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye ve Marmara 1950-2024 2 m sıcaklık anomalisi yıllık eğilim animasyonu",
+   "aciklama": "Son 70 yılda Marmara Bölgesi'ndeki yıllık sıcaklık sapmalarının pozitif yönde büyümesi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 254 (İklim Bilimi)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=254"
+  },
+  {
+   "ad": "Hartmann, D. L. (2016) Global Physical Climatology, 2. baskı, Elsevier · DOI 10.1016/C2009-0-00030-0",
+   "url": "https://doi.org/10.1016/C2009-0-00030-0"
+  },
+  {
+   "ad": "Hersbach vd. (2020) The ERA5 global reanalysis, QJRMS · DOI 10.1002/qj.3803",
+   "url": "https://doi.org/10.1002/qj.3803"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=254"
+}

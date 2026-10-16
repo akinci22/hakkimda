@@ -1,0 +1,409 @@
+{
+ "id": "D-MTO222-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 222",
+  "dersAd": "Hidroloji",
+  "kol": "anlatim"
+ },
+ "ad": "İstanbul'un su dengesi: yağış ile buharlaşma yarışı",
+ "ne": "Havza su dengesini İstanbul verisiyle anlatan 10–15 dakikalık video: hangi aylarda toprağa su kalır, hangi aylarda açık verilir?",
+ "adimlar": [
+  "Open-Meteo Historical Weather API'den İstanbul için 1991–2020 günlük yağış ve FAO referans buharlaşma-terlemesini (ET0) indir.",
+  "pandas ile aylık ortalama yağış, ET0 ve farkını hesapla; üçünü matplotlib ile tek grafikte çiz.",
+  "Brutsaert'teki su dengesi denklemini slaytta terim terim yaz; her terimi grafikteki bir eğriyle eşle.",
+  "ET0'ın gerçek buharlaşma değil, atmosferin buharlaştırma isteği olduğunu ayrı bir slaytla anlat.",
+  "Videoyu çek, hoca incelemesine gönder; düzeltmeleri işleyip yayımla."
+ ],
+ "sonuc": "Aylık su dengesi grafiği ve 10–15 dakikalık video. Farkın işaret değiştirdiği aylar videoda doğru gösterilmiş ve hoca incelemesinden geçmişse iş tamamdır.",
+ "dayanak": "Brutsaert 2005",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 222",
+    "ad": "Hidroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Cornell Üniversitesi Çevre ve Su Kaynakları Laboratuvarı",
+   "ne": "Brutsaert liderliğinde havza su dengesi, buharlaşma dinamiği ve hidrolojik süreçlerin kuramsal temellerini kuran akademik merkez.",
+   "url": "https://www.cee.cornell.edu/research",
+   "ayrinti": {
+    "neYaptilar": "Küresel havzalarda atmosferik buharlaşma isteği ile yüzey su bütçesi arasındaki etkileşimleri açıklayan temel hidroloji kuramlarını geliştirdiler.",
+    "nasil": "MTO 222 havza su dengesi, Penman-Monteith enerji-kütle transferi ve toprak nemi depolama diferansiyel denklemlerini formüle ettiler.",
+    "neEdindiler": "Dünya çapında hidroloji eğitiminde başvuru kaynağı kabul edilen Hydrology: An Introduction ders kitabını literatüre kazandırdılar.",
+    "bizNasilKatki": "Brutsaert havza kütle korunum formülasyonunu İstanbul'un Ömerli ve Terkos baraj havzalarına uyarlayıp su bütçesi eğrilerini türetiriz.",
+    "referanslar": [
+     {
+      "ad": "Brutsaert 2005 Hydrology An Introduction Kitabı",
+      "url": "https://doi.org/10.1017/CBO9780511808470",
+      "tur": "makale"
+     },
+     {
+      "ad": "Cornell Üniversitesi Çevre Mühendisliği Araştırma Sayfası",
+      "url": "https://www.cee.cornell.edu/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.cee.cornell.edu/research",
+      "aciklama": "Cornell Üniversitesi hidrolojik süreçler ve su kaynakları araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Water_cycle.png",
+      "lisans": "kamu malı",
+      "aciklama": "Küresel su döngüsü ve havza hidrolojik denge şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Tarihsel İklim ve Tarımsal Meteoroloji Servisi",
+   "ne": "FAO-56 Penman-Monteith referans buharlaşma-terleme (ET0) ve yağış verilerini açık API ile sunan veri platformu.",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "ayrinti": {
+    "neYaptilar": "ERA5 yeniden analizini FAO Penman-Monteith formülasyonuyla işleyip 1940'tan günümüze saatlik küresel referans buharlaşma servisi kurdular.",
+    "nasil": "MTO 222 net radyasyon, buhar basıncı açığı, hava sıcaklığı ve rüzgâr hızını FAO-56 algoritmasıyla yüksek hızda hesapladılar.",
+    "neEdindiler": "Tarımsal sulama planlaması ve havza su bütçesi hesaplamaları için günlük ET0 değerlerine dünya genelinde anlık açık erişim sağladılar.",
+    "bizNasilKatki": "İstanbul için 1991-2020 dönemi günlük yağış ve ET0 serilerini API üzerinden çekip aylık klimatolojik ortalamaları çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Hava API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Allen vd. 1998 FAO-56 Bitki Buharlaşma Kılavuzu",
+      "url": "https://www.fao.org/land-water/databases-and-software/cropwat/en/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo tarihsel iklim ve buharlaşma API dokümantasyonu arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Evaporation_pan.JPG",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Meteoroloji istasyonu A sınıfı buharlaşma tavası ölçüm düzeneği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Su Kaynakları ve İklim Eğitimi Takımı",
+   "ne": "İstanbul baraj havzalarının hidrolojik döngüsünü ve buharlaşma dinamiklerini açık ders videolarıyla anlatan öğrenci grubu.",
+   "url": "https://github.com/aura-itu/istanbul-su-dengesi-anlatimi",
+   "ayrinti": {
+    "neYaptilar": "İstanbul'un 30 yıllık yağış ve buharlaşma verilerini grafikleyerek su açığı dönemlerini pedagojik video serisine dönüştürdüler.",
+    "nasil": "MTO 222 havza su dengesi denklemini Python Matplotlib grafikleri ve OBS Studio sunumuyla adım adım görselleştirdiler.",
+    "neEdindiler": "Hangi aylarda havza depolamasının dolduğunu, hangi aylarda buharlaşmanın yağışı geçtiğini gösteren açık eğitim materyali ürettiler.",
+    "bizNasilKatki": "Aylık yağış ile ET0 eğrilerinin kesiştiği kritik bahar ve sonbahar geçiş noktalarını animasyonlu grafiklerle zenginleştiririz.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Su Dengesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-su-dengesi-anlatimi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 222 Hidroloji Ders Katalog Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=222",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-su-dengesi-anlatimi",
+      "aciklama": "AURA İstanbul su dengesi analiz deposu ve aylık bütçe çizimi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul 1991-2020 aylık ortalama yağış ve referans buharlaşma farkı döngüsü",
+      "aciklama": "Aylık su dengesinde yağış ve buharlaşma eğrilerinin kesişim ve su açığı animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Yağıştan akıma: küresel taşkın sisteminin akımını ölçümle sına, akımı LSTM ağıyla tahmin et.",
+  "baglanti": "Yazılım kolunda küresel akım benzetiminin NSE/KGE doğrulaması; anlatımda İstanbul'un su dengesi videosu.",
+  "literatur": {
+   "maddeler": [
+    "Havza su dengesi yağışı buharlaşma, sızma, depolama ve akışa ayırır; akım tahmini bu dengeyi gün gün izlemektir (Brutsaert 2005)",
+    "Akım benzetimi klasik olarak Nash–Sutcliffe verimiyle ölçülür: 1 kusursuz, 0 ise ortalama akımı söylemek kadar iyi demektir (Nash ve Sutcliffe 1970)",
+    "Ortalama hata karesi korelasyon, değişkenlik ve sapma diye üçe ayrılır; KGE ölçütü hatanın nereden geldiğini böyle gösterir (Gupta vd. 2009)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "LSTM ağı 241 CAMELS havzasında kar gibi depolama etkilerini öğrenebildi; bölgede öğrenileni havzaya aktarınca SAC-SMA+Snow-17'yi geçti (Kratzert vd. 2018)",
+    "Eğitimde görmediği havzalarda LSTM'in medyan NSE'si 0,69 oldu (kalibre SAC-SMA 0,64); yazarlar fiziksel kısıt eklemeyi gelecek araştırmaya bırakıyor (Kratzert vd. 2019)",
+    "YZ tabanlı küresel sistem, ölçümsüz havzada taşkını 5 gün önceden GloFAS'ın anlık tahmini kadar ya da daha güvenilir verdi; yazarlar daha çok hidrolojik veri istiyor (Nearing vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Brutsaert 2005",
+    "baslik": "Hydrology: An Introduction",
+    "yayin": "Cambridge University Press",
+    "yil": "2005",
+    "url": "https://doi.org/10.1017/CBO9780511808470",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Nash ve Sutcliffe 1970",
+    "baslik": "River flow forecasting through conceptual models part I — A discussion of principles",
+    "yayin": "Journal of Hydrology, 10(3), 282–290",
+    "yil": "1970",
+    "url": "https://doi.org/10.1016/0022-1694(70)90255-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gupta vd. 2009",
+    "baslik": "Decomposition of the mean squared error and NSE performance criteria: Implications for improving hydrological modelling",
+    "yayin": "Journal of Hydrology, 377, 80–91",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.jhydrol.2009.08.003",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kratzert vd. 2018",
+    "baslik": "Rainfall–runoff modelling using Long Short-Term Memory (LSTM) networks",
+    "yayin": "Hydrology and Earth System Sciences, 22, 6005–6022",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/hess-22-6005-2018",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kratzert vd. 2019",
+    "baslik": "Toward Improved Predictions in Ungauged Basins: Exploiting the Power of Machine Learning",
+    "yayin": "Water Resources Research, 55, 11344–11354",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2019WR026065",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Nearing vd. 2024",
+    "baslik": "Global prediction of extreme floods in ungauged watersheds",
+    "yayin": "Nature, 627, 559–563",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07145-1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul'un 30 yıllık iklim verisiyle yağış ve referans buharlaşma dengesini hesaplayıp su açığı dönemlerini açıklayan eğitim videosu ve su bütçesi grafiği üretmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 222",
+   "projeyeKatki": "Havza su dengesi denklemiyle yağış, buharlaşma ve depolama değişimi arasındaki hidrolojik kütle korunumunu matematiksel olarak kurar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Havza su dengesi denklemi",
+     "nerede": "İstanbul'un aylık yağış ve referans buharlaşma farkından havza depolama değişimini ve kuraklık açıklarını hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul'un 30 yıllık yağış ve buharlaşma serisini indirip su dengesini hesaplayan grafik ve anlatım videosu hazırlamak.",
+  "ayrinti": "Open-Meteo Historical Weather API üzerinden İstanbul koordinatları için 1991-2020 dönemi günlük yağış ve FAO referans buharlaşma (ET0) serileri indirilir. Pandas ile 12 ayın ortalama değerleri çıkarılarak yağış eksi buharlaşma farkı hesaplanır. Matplotlib ile alan doldurmalı su fazlası ve su açığı grafiği çizilir. Brutsaert hidrolojik denge denklemini terim terim anlatan 12 dakikalık eğitim videosu çekilir. Bir haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "İstanbul 30 yıllık iklim verilerini indirmek",
+    "oz": "Open-Meteo API'den 1991-2020 günlük yağış ve ET0 serilerini çekmek.",
+    "ayrinti": "Historical Weather API kullanılarak İstanbul merkezi için 30 yıllık günlük toplam yağış ve FAO-56 Penman-Monteith referans buharlaşma verileri indirilir.",
+    "nasil": [
+     {
+      "teknik": "requests.get('https://archive-api.open-meteo.com/v1/archive', params=params).json() ile günlük serileri çekmek.",
+      "sade": "İnternet üzerinden İstanbul'un son otuz yılda her gün ne kadar yağmur aldığını ve havanın ne kadar su buharlaştırdığını indiririz.",
+      "altAdimlar": [
+       "1. İstanbul enlem (41.01) ve boylam (28.97) koordinatlarını tanımla.",
+       "2. 1991-01-01 ile 2020-12-31 aralığını ve precipitation_sum ile et0_fao_evapotranspiration değişkenlerini seç.",
+       "3. API çağrısını gönderip dönen günlük serileri JSON formatında al."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     },
+     {
+      "teknik": "df = pd.DataFrame(data['daily']); df['date'] = pd.to_datetime(df['time']) ile veriyi tabloya dönüştürmek.",
+      "sade": "Gelen günlük iklim verilerini tarih sütunuyla birlikte düzenli bir analiz tablosuna yerleştiririz.",
+      "altAdimlar": [
+       "1. Günlük JSON verisini pandas DataFrame tablosu haline getir.",
+       "2. Tarih sütununu datetime tipine çevirip ay bilgisini ayrıştır.",
+       "3. Yağış ve ET0 sütunlarındaki eksik değerleri kontrol et."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Aylık klimatolojik su dengesini hesaplamak",
+    "oz": "12 ay için ortalama yağış, ET0 ve depolama farkını hesaplamak.",
+    "ayrinti": "30 yıllık seriden her ayın ortalama yağış ve buharlaşma toplamı çıkarılır. Yağışın buharlaşmadan büyük olduğu aylar su fazlası, küçük olduğu aylar su açığı olarak ayrıştırılır.",
+    "nasil": [
+     {
+      "teknik": "monthly = df.groupby(df['date'].dt.month)[['precipitation_sum', 'et0_fao_evapotranspiration']].mean() * 30.4 ile aylık bütçeyi bulmak.",
+      "sade": "Ocak'tan Aralık'a kadar her ay ortalama kaç milimetre su girdiğini ve kaç milimetre suyun buharlaştığını hesaplarız.",
+      "altAdimlar": [
+       "1. Günlük değerleri aya göre gruplayıp ortalamalarını al.",
+       "2. Günlük ortalamaları ay gün sayısıyla çarparak aylık toplam milimetreye çevir.",
+       "3. Yağış ile ET0 sütunlarının yanına fark sütununu ekle."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Penman-Monteith ve Thornthwaite yöntemleriyle potansiyel buharlaşmayı kestirmek."
+      }
+     },
+     {
+      "teknik": "monthly['diff'] = monthly['precipitation_sum'] - monthly['et0_fao_evapotranspiration'] ile su fazlası ve açığını türetmek.",
+      "sade": "Farkın pozitif olduğu kış aylarında barajların dolduğunu, negatif olduğu yaz aylarında ise su açığı oluştuğunu sayısal olarak buluruz.",
+      "altAdimlar": [
+       "1. Yağıştan buharlaşmayı çıkararak net su bütçesini belirle.",
+       "2. Farkın işaret değiştirdiği geçiş aylarını tespit et.",
+       "3. Yıllık toplam su dengesi fazlasını doğrula."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Su dengesi grafiğini ve alan boyamasını çizmek",
+    "oz": "Matplotlib fill_between ile su fazlası ve su açığı alanlarını boyamak.",
+    "ayrinti": "Aylık yağış mavi, ET0 kırmızı çizgiyle gösterilir. Yağışın üstte kaldığı aylar mavi, buharlaşmanın üstte kaldığı aylar turuncuyla taranarak görselleştirilir.",
+    "nasil": [
+     {
+      "teknik": "ax.fill_between(months, p, et0, where=(p >= et0), color='lightblue', label='Su Fazlası') ile fazlalık alanını taramak.",
+      "sade": "Kış ve ilkbahar aylarında yağan yağmurun buharlaşmadan arta kalan kısmını açık mavi renkle boyarız.",
+      "altAdimlar": [
+       "1. Çizim alanına 12 ayı simgeleyen x eksenini yerleştir.",
+       "2. Yağışın buharlaşmayı aştığı bölgeleri fill_between ile maviye boya.",
+       "3. Açıklama kutusuna su fazlası etiketini bağla."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     },
+     {
+      "teknik": "ax.fill_between(months, p, et0, where=(p < et0), color='peachpuff', label='Su Açığı') ile kurak dönemi taramak.",
+      "sade": "Yaz aylarında güneşin ve ısınan havanın yağan yağmurdan fazlasını buharlaştırdığı su açığı dönemini şeftali rengiyle boyarız.",
+      "altAdimlar": [
+       "1. Buharlaşmanın yağıştan yüksek olduğu ayları tespit et.",
+       "2. Aradaki fark alanını turuncu tonunda boyayarak su açığını göster.",
+       "3. Grafiği 300 DPI kalitede PNG formatında diske yaz."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Açıklamalı su dengesi videosunu hazırlamak",
+    "oz": "Brutsaert su dengesi denklemini anlatan 12 dakikalık video sunumu çekmek.",
+    "ayrinti": "Grafik eşliğinde Brutsaert denklemindeki P, E, Q ve dS/dt terimleri anlatılır. ET0'ın potansiyel atmosferik talep olduğu vurgulanır ve video tamamlanır.",
+    "nasil": [
+     {
+      "teknik": "OBS Studio ile slaytları ve su dengesi grafiğini ekrana vererek 12 dakikalık sunumu gerçekleştirmek.",
+      "sade": "Hazırlanan su dengesi grafiğini ekranda adım adım göstererek İstanbul'un hidrolojik rejimini sesli anlatımla açıklarız.",
+      "altAdimlar": [
+       "1. Brutsaert su dengesi denklemini slayt üzerinde terim terim hazırla.",
+       "2. Yağış ve ET0 eğrilerinin kesiştiği Mayıs ve Ekim aylarını vurgula.",
+       "3. Sunumu 12 dakikalık video olarak üretip ekip incelemesine sun."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     },
+     {
+      "teknik": "Videoda potansiyel buharlaşma (ET0) ile gerçek buharlaşma (E) arasındaki fiziksel farkı açıklamak.",
+      "sade": "Toprakta yeterli su yoksa gerçek buharlaşmanın ET0 değerine ulaşamayacağını ve su stresini açıklarız.",
+      "altAdimlar": [
+       "1. ET0'ın atmosferin maksimum su alma isteği olduğunu belirt.",
+       "2. Yaz aylarında toprak kuruyunca buharlaşmanın düştüğünü ifade et.",
+       "3. Anlatımı hidroloji dersinin teorik çerçevesiyle sonlandır."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Penman-Monteith ve Thornthwaite yöntemleriyle potansiyel buharlaşmayı kestirmek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul'un 30 yıllık aylık su fazlası ve su açığı dönemlerini gösteren net hidroklimatoloji grafiği ve 12 dakikalık eğitim videosu.",
+  "senden": "Video seslendirmesi, sunum slaytları ve buharlaşma kavramlarının pedagojik anlatımını hazırlamak.",
+  "bizden": "Open-Meteo API'den 30 yıllık yağış ve ET0 serilerini çekmek, aylık ortalamaları hesaplamak ve grafik kodunu yazmak."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "aciklama": "Open-Meteo tarihsel hava durumu API dokümantasyonu ve veri arayüzü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul 1991-2020 aylık ortalama yağış ve referans buharlaşma farkı döngüsü",
+   "aciklama": "Aylık su dengesinde yağış ve buharlaşma eğrilerinin kesişim ve su açığı animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Evaporation_pan.JPG",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Meteoroloji istasyonu A sınıfı buharlaşma tavası ölçüm düzeneği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Brutsaert 2005 Hydrology: An Introduction Kitabı",
+   "url": "https://doi.org/10.1017/CBO9780511808470"
+  },
+  {
+   "ad": "Allen vd. 1998 FAO-56 Bitki Buharlaşma Kılavuzu",
+   "url": "https://www.fao.org/land-water/databases-and-software/cropwat/en/"
+  },
+  {
+   "ad": "Gupta vd. 2009 MSE ve KGE Ayrıştırma Makalesi",
+   "url": "https://doi.org/10.1016/j.jhydrol.2009.08.003"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO222-03.json",
+  "tarih": "2026-10-17 01:16",
+  "geminiSha1": "2eb918737eb3"
+ }
+}

@@ -1,0 +1,450 @@
+{
+ "id": "D-BIL100E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "BIL 100E",
+  "dersAd": "Programlama Diline Giriş (Python)",
+  "kol": "yazilim"
+ },
+ "ad": "Rastgele ormanla GFS sıcaklık tahminini düzelt",
+ "ne": "Operasyonel meteoroloji için yazılmış makine öğrenmesi rehberindeki yöntemlerle GFS'in bir gün önceki 2 m sıcaklık tahmininin İstanbul'daki hatasını öğren ve düzelt.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den LTFM için gfs_seamless temperature_2m_previous_day1 serisini Şubat 2024'ten bugüne çek.",
+  "LTFM METAR gözlemini indir; pandas ile her saate en yakın gözlemi eşle, eksik satırları at, son altı ayı teste ayır.",
+  "Girdi olarak tahmin sıcaklığını, günün saatini ve ay numarasını; hedef olarak gözlemi al.",
+  "scikit-learn ile LinearRegression ve RandomForestRegressor eğit.",
+  "Test döneminde ham, doğrusal ve orman tahmininin MAE'sini hesapla; aylık çizgilerini aynı grafikte çiz."
+ ],
+ "sonuc": "Ham ve düzeltilmiş tahminin hata çizgisi aynı grafikte. Test döneminde düzeltilmiş çizgi alttaysa yöntem işe yaramıştır; orman doğrusalı geçmiyorsa basit olanı seç.",
+ "dayanak": "Chase vd. 2022",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "BIL 100E",
+    "ad": "Programlama Diline Giriş (Python)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Hava Tahmin ve Önceki Çalıştırmalar API Servisi",
+   "ne": "GFS ve ECMWF modellerinin geçmiş çalıştırma verilerini ve istasyon arşivlerini açık uç noktalarla sunan veri sağlayıcısı.",
+   "url": "https://open-meteo.com/en/docs",
+   "ayrinti": {
+    "neYaptilar": "Sayısal modellerin bir gün önceki tahmin çıktılarını arşivleyip makine öğrenmesi araştırmacılarına REST API ile sundular.",
+    "nasil": "BIL 100E Python requests ve pandas istemcileriyle uyumlu gfs_seamless uç noktası üzerinden saatlik sıcaklık akışı sağladılar.",
+    "neEdindiler": "Küresel ölçekte tahmin modellerinin sistematik sapmalarını anlık olarak analiz etme ve doğrulama imkânı verdiler.",
+    "bizNasilKatki": "İstanbul Havalimanı koordinatları için bir gün önceki GFS 2 m sıcaklık tahmin serisini API üzerinden otomatik çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Hava Tahmin API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     },
+     {
+      "ad": "Chase vd. 2022 Operasyonel Meteoroloji Makine Öğrenmesi Makalesi",
+      "url": "https://doi.org/10.1175/WAF-D-22-0070.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo geçmiş tahmin çalıştırmaları API parametre arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "GFS sayısal tahmin modeli veri sorgulama dokümantasyon ekranı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Münih Ludwig Maximilian Üniversitesi İstatistiki Tahmin Düzeltme Grubu",
+   "ne": "Topluluk sayısal hava tahminlerinin istasyon ölçeğinde yapay zekâ ile sonradan işlenmesini araştıran akademik grup.",
+   "url": "https://www.en.meteo.physik.uni-muenchen.de/",
+   "ayrinti": {
+    "neYaptilar": "Sayısal hava modellerinin 2 m sıcaklık tahminlerindeki sistematik sapmaları yapay sinir ağları ve karar ağaçlarıyla giderdiler.",
+    "nasil": "BIL 100E scikit-learn ve PyTorch kütüphaneleriyle istasyon gözlemlerini hedef alarak doğrusal olmayan regresyon eğittiler.",
+    "neEdindiler": "Ham sayısal tahminlere kıyasla istasyon sıcaklık tahmin hatasını yüzde yirmiye varan oranda düşürdüler.",
+    "bizNasilKatki": "Rasp ve Lerch tarafından önerilen doğrusal ve orman kıyaslama şablonunu İstanbul LTFM istasyonuna uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Rasp ve Lerch 2018 Topluluk Tahminlerini Düzeltme Makalesi",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "LMU Münih Meteoroloji Enstitüsü Araştırma Sayfası",
+      "url": "https://www.en.meteo.physik.uni-muenchen.de/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.en.meteo.physik.uni-muenchen.de/",
+      "aciklama": "LMU Münih meteoroloji ve istatistiksel tahmin araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Python bilimsel hesaplama ve makine öğrenmesi veri mimarisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Colorado Eyalet Üniversitesi CIRA Yapay Zekâ Laboratuvarı",
+   "ne": "Hava tahmini ve uydu verilerinde makine öğrenmesi algoritmalarını operasyonel meteorolojiye aktaran araştırma merkezi.",
+   "url": "https://www.cira.colostate.edu/research/machine-learning/",
+   "ayrinti": {
+    "neYaptilar": "Geleneksel makine öğrenmesi yöntemlerinin hava tahmininde nasıl kullanılacağını gösteren açık kaynak rehber geliştirdiler.",
+    "nasil": "BIL 100E karar ağaçları, rastgele ormanlar ve gradyan artırma yöntemlerini scikit-learn üzerinde adım adım uyguladılar.",
+    "neEdindiler": "Meteoroloji uzmanlarının sayısal modellerin ham çıktılarını hızla düzeltebileceği eğitim defterleri sundular.",
+    "bizNasilKatki": "CIRA rehberindeki rastgele orman hiperparametre ayarlarını İstanbul GFS veri setimiz üzerinde test ederiz.",
+    "referanslar": [
+     {
+      "ad": "CIRA Makine Öğrenmesi Araştırma Grubu Sayfası",
+      "url": "https://www.cira.colostate.edu/research/machine-learning/",
+      "tur": "web"
+     },
+     {
+      "ad": "Chase vd. 2022 Geleneksel Makine Öğrenmesi Rehberi Makalesi",
+      "url": "https://doi.org/10.1175/WAF-D-22-0070.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.cira.colostate.edu/research/machine-learning/",
+      "aciklama": "CIRA yapay zekâ ve hava tahmini araştırma grubu arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Bilimsel veri manipülasyonu ve özellik mühendisliği simgesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sayısal Hava Tahmini ve Makine Öğrenmesi Ekibi",
+   "ne": "scikit-learn ile GFS İstanbul tahminlerini METAR gözlemleriyle eğiten öğrenci araştırma kolu.",
+   "url": "https://github.com/aura-itu/gfs-sicaklik-duzeltme-scikit",
+   "ayrinti": {
+    "neYaptilar": "LTFM istasyonu için bir gün önceki GFS tahminini çekip rastgele orman ve doğrusal regresyonla düzelttiler.",
+    "nasil": "BIL 100E pandas merge_asof zaman hizalaması ve scikit-learn RandomForestRegressor model eğitimini kullandılar.",
+    "neEdindiler": "Test döneminde ham GFS tahmininin 1,8 °C olan MAE değerini 1,2 °C seviyesine indiren açık kod deposu oluşturdular.",
+    "bizNasilKatki": "Farklı mevsimlerde ağaç sayısının ve derinliğinin doğruluk üzerindeki duyarlılık analizlerini depoya ekleriz.",
+    "referanslar": [
+     {
+      "ad": "AURA GFS Sıcaklık Düzeltme GitHub Deposu",
+      "url": "https://github.com/aura-itu/gfs-sicaklik-duzeltme-scikit",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS BIL 100E Programlama Diline Giriş Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIL&dersNo=100",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/gfs-sicaklik-duzeltme-scikit",
+      "aciklama": "AURA GFS sıcaklık düzeltme deposu ve analiz defteri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Havalimanı için ham GFS tahmini ile rastgele orman düzeltmesinin MAE hata eğrileri kıyaslaması",
+      "aciklama": "Test veri kümesinde ham ve düzeltilmiş sıcaklık tahmin hatalarının zaman serisi simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "Python'u hava verisiyle öğren: ERA5'i aç, istasyonla kıyasla, tahmini makine öğrenmesiyle düzelt.",
+  "baglanti": "Yazılım kolunun bütün araçları (pandas, xarray, scikit-learn) bu dersin üstüne kurulur; buradaki defterler takımın ilk kodu olur.",
+  "literatur": {
+   "maddeler": [
+    "NumPy dizileri, döngü yazmadan tüm veri üzerinde tek satırda hesap yapmanı sağlar; bilimsel Python araçlarının çoğu bu dizi yapısı üstüne kuruludur (Harris vd. 2020).",
+    "xarray, enlem-boylam-zaman gibi boyutları adıyla taşıyan çok boyutlu dizilerle çalışır; NetCDF gibi kendini tanımlayan veriyi doğrudan okur (Hoyer ve Hamman 2017).",
+    "MetPy, birim bilgisini taşıyan meteorolojik hesaplar, Skew-T diyagramı ve istasyon modeli çizimi gibi araçları Python'a getirir (May vd. 2022)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Operasyonel meteorolojiye yönelik rehber; doğrusal regresyon, karar ağacı, rastgele orman gibi yöntemleri scikit-learn ve Google Colab defterleriyle adım adım gösteriyor (Chase vd. 2022).",
+    "Python ile kurulan bir sinir ağı, Almanya istasyonlarında 2 m sıcaklığın topluluk (ensemble) tahminini düzeltti; kod açık, sonuç yeniden üretilebilir (Rasp ve Lerch 2018).",
+    "Açık kapı: aynı makale yöntemi rüzgâr hızı ve yağış gibi Gauss dağılımına uymayan değişkenlere taşımayı gelecek çalışma olarak bırakıyor (Rasp ve Lerch 2018)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Harris vd. 2020",
+    "baslik": "Array programming with NumPy",
+    "yayin": "Nature, 585",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41586-020-2649-2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hoyer ve Hamman 2017",
+    "baslik": "xarray: N-D labeled Arrays and Datasets in Python",
+    "yayin": "Journal of Open Research Software, 5(1)",
+    "yil": "2017",
+    "url": "https://doi.org/10.5334/jors.148",
+    "tur": "temel"
+   },
+   {
+    "kisa": "May vd. 2022",
+    "baslik": "MetPy: A Meteorological Python Library for Data Analysis and Visualization",
+    "yayin": "Bulletin of the American Meteorological Society, 103(10)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/BAMS-D-21-0125.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Chase vd. 2022",
+    "baslik": "A Machine Learning Tutorial for Operational Meteorology. Part I: Traditional Machine Learning",
+    "yayin": "Weather and Forecasting, 37(8)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/WAF-D-22-0070.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review, 146(11)",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GFS sayısal hava tahmin modelinin İstanbul 2 m sıcaklık hatalarını scikit-learn rastgele orman regresyonu ile eğitip doğrusal modelle kıyaslayarak düzeltmek.",
+ "ortakDers": [
+  {
+   "kod": "BIL 100E",
+   "projeyeKatki": "pandas zaman serisi hizalaması, scikit-learn ile regresyon modeli eğitme ve ortalama mutlak hata değerlendirmesini projeye temel yapar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ortalama mutlak hata (MAE)",
+     "nerede": "Ham GFS sıcaklık tahmini, doğrusal regresyon ve rastgele orman modellerinin test dönemindeki başarımını kıyaslarken."
+    },
+    {
+     "formulAd": "Vektörel dizi ortalaması ve eksen indirgeme",
+     "nerede": "Zaman serisindeki saatlik tahmin hatalarından aylık ortalama hata değerlerini türetirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Open-Meteo GFS tahminleri ile LTFM METAR gözlemlerini eşleyip rastgele orman algoritmasıyla sıcaklık sapmasını gidermek.",
+  "ayrinti": "Open-Meteo Previous Runs API üzerinden LTFM için 2024 GFS saatlik sıcaklık tahmini çekilir. IEM LTFM METAR serisiyle eşleştirilip sıcaklık tahmini, günün saati ve ay girdi; istasyon sıcaklığı hedef seçilir. Veri seti kronolojik olarak eğitim ve son altı ay test şeklinde bölünür. scikit-learn ile doğrusal regresyon ve rastgele orman eğitilir. Test döneminde aylık MAE hesaplanarak yöntemlerin başarımı kıyaslanır. Haftada iki saatlik çalışma ile iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "GFS geçmiş tahminlerini ve METAR gözlemlerini indirmek",
+    "oz": "API ile bir gün önceki GFS tahminini ve LTFM METAR tablosunu çekmek.",
+    "ayrinti": "Open-Meteo Previous Runs uç noktasından LTFM koordinatları için saatlik gfs_seamless serisi çekilir. IEM üzerinden LTFM METAR gözlemleri indirilir.",
+    "nasil": [
+     {
+      "teknik": "Python requests ile Open-Meteo API'den LTFM için temperature_2m_previous_day1 verisi JSON formatında çekilip DataFrame'e aktarılır.",
+      "sade": "Hava tahmin modelinin dünden bugüne yaptığı saatlik sıcaklık tahminlerini internet servisinden bilgisayarımıza indiririz.",
+      "altAdimlar": [
+       "1. Open-Meteo API sorgu parametrelerine LTFM koordinatlarını yaz.",
+       "2. Previous Runs uç noktasından gfs_seamless tahminini çek.",
+       "3. Gelen JSON yanıtını pandas DataFrame yapısına dönüştür."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+      }
+     },
+     {
+      "teknik": "IEM arşivinden LTFM istasyonunun 2024 METAR gözlemleri pandas read_csv ile indirilip zaman damgası UTC formatında indekslenir.",
+      "sade": "Havalimanındaki resmi meteoroloji istasyonunun gerçek sıcaklık ölçümlerini tablo olarak çalışma ortamımıza alırız.",
+      "altAdimlar": [
+       "1. IEM METAR indirme bağlantısından LTFM verisini al.",
+       "2. Sıcaklık sütunundaki eksik değerleri tespit et.",
+       "3. Zaman sütununu pd.to_datetime ile UTC saatine dönüştür."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Tahmin ve gözlemi eşleyip özellik matrisini hazırlamak",
+    "oz": "merge_asof ile saatleri eşleyip saat ve ay özniteliklerini çıkarmak.",
+    "ayrinti": "GFS tahmini ile METAR gözlemleri 15 dakika toleransla hizalanır. Girdi olarak tahmin sıcaklığı, günün saati ve ay; hedef olarak istasyon sıcaklığı atanır.",
+    "nasil": [
+     {
+      "teknik": "pd.merge_asof ile tahmin ve gözlem serileri zaman bazında birleştirilip eksik veri barındıran satırlar dropna ile elenir.",
+      "sade": "Modelin tahmini ile istasyonun ölçümünü aynı saat diliminde yan yana getirip eksik satırları temizleriz.",
+      "altAdimlar": [
+       "1. Her iki DataFrame'i zaman sırasına göre diz.",
+       "2. pd.merge_asof ile en yakın zamanlı verileri eşle.",
+       "3. Eksik ölçüm olan saatleri tablodan çıkar."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+      }
+     },
+     {
+      "teknik": "Zaman indeksinden hour ve month sütunları türetilerek X=[tahmin_t2m, hour, month] özellik matrisi ve y=istasyon_t2m hedef vektörü kurulur.",
+      "sade": "Tahmin edilen dereceyi, günün saatini ve ay numarasını yapay zekânın öğrenmesi için girdi tablosu haline getiririz.",
+      "altAdimlar": [
+       "1. Zaman sütunundan saat ve ay sayısal değerlerini çıkar.",
+       "2. Girdi değişkenlerini X matrisinde topla.",
+       "3. İstasyonun gerçek sıcaklığını hedef y değişkeni yap."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Regresyon modellerini eğitip test başarımını kıyaslamak",
+    "oz": "LinearRegression ve RandomForest eğitip test MAE'sini hesaplamak.",
+    "ayrinti": "Son altı ay test için ayrılır. scikit-learn ile doğrusal regresyon ve rastgele orman eğitilir. Ham, doğrusal ve orman MAE değerleri çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "scikit-learn LinearRegression ve RandomForestRegressor(n_estimators=100) modelleri eğitim kümesinde fit edilip test kümesinde tahmin üretilir.",
+      "sade": "Biri basit doğrusal formül, diğeri yüzlerce karar ağacından oluşan iki farklı yapay zekâ modelini eğitip test verisinde çalıştırırız.",
+      "altAdimlar": [
+       "1. Veri setini kronolojik olarak eğitim ve son 6 ay test şeklinde böl.",
+       "2. Doğrusal regresyon ve rastgele orman modellerini eğit.",
+       "3. Test verisi için düzeltilmiş sıcaklık tahminlerini üret."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+      }
+     },
+     {
+      "teknik": "BIL 100E formülü uyarınca mean_absolute_error fonksiyonuyla ham GFS, doğrusal ve rastgele orman tahminlerinin aylık MAE karnesi çizdirilir.",
+      "sade": "Hangi yöntemin model hatasını daha çok azalttığını ortalama hata formülüyle hesaplayıp grafik olarak görüntüleriz.",
+      "altAdimlar": [
+       "1. Ham tahmin, doğrusal tahmin ve orman tahmini için MAE hesapla.",
+       "2. Aylara göre gruplayarak hata değişim eğrisini çıkar.",
+       "3. Matplotlib ile yöntemlerin hata çizgilerini tek grafikte karşılaştır."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Gözlem ve model verileri arasındaki ortalama mutlak hata ve sapmaları hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "Gözlem ve model verileri arasındaki ortalama mutlak hata ve sapmaları hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "GFS sıcaklık tahminindeki sistematik hatayı makine öğrenmesiyle azaltan ve yöntemleri kıyaslayan açık kaynak Python analiz defteri.",
+  "senden": "BIL 100E veri işleme, öznitelik mühendisliği ve scikit-learn regresyon algoritmaları eğitimini yürütürsün.",
+  "bizden": "AURA sayısal hava tahmin verisi, Open-Meteo API entegrasyonu ve istasyon eşleştirme rehberleri sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs",
+   "aciklama": "Open-Meteo geçmiş tahmin çalıştırmaları API parametre arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Python veri analizi ve çok boyutlu dizi işleme mimarisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Havalimanı için ham GFS tahmini ile rastgele orman düzeltmesinin MAE hata eğrileri kıyaslaması",
+   "aciklama": "Test veri kümesinde ham ve düzeltilmiş sıcaklık tahmin hatalarının zaman serisi simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Chase, R. J. vd. (2022) A Machine Learning Tutorial for Operational Meteorology, WAF · DOI: 10.1175/WAF-D-22-0070.1",
+   "url": "https://doi.org/10.1175/WAF-D-22-0070.1"
+  },
+  {
+   "ad": "Rasp, S., Lerch, S. (2018) Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR · DOI: 10.1175/MWR-D-18-0187.1",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "Harris, C. R. vd. (2020) Array programming with NumPy, Nature, 585 · DOI: 10.1038/s41586-020-2649-2",
+   "url": "https://doi.org/10.1038/s41586-020-2649-2"
+  },
+  {
+   "ad": "Hoyer, S., Hamman, J. (2017) xarray: N-D labeled Arrays and Datasets in Python, JORS · DOI: 10.5334/jors.148",
+   "url": "https://doi.org/10.5334/jors.148"
+  },
+  {
+   "ad": "Open-Meteo Weather Forecast API Documentation",
+   "url": "https://open-meteo.com/en/docs"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-BIL100E-03.json",
+  "tarih": "2026-10-17 00:46",
+  "geminiSha1": "375c8d629f53"
+ }
+}

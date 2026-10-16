@@ -1,0 +1,414 @@
+{
+ "id": "D-MTO222-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 222",
+  "dersAd": "Hidroloji",
+  "kol": "yazilim"
+ },
+ "ad": "GloFAS akımını ölçümle sına: NSE ve KGE karnesi",
+ "ne": "Küresel taşkın sistemi GloFAS'ın benzetim akımını CAMELS havzalarının ölçülen akımıyla kıyasla; hatayı KGE ile korelasyon, değişkenlik ve sapmaya ayır.",
+ "adimlar": [
+  "Google Colab'da not defteri aç; CAMELS'ten alanı 1000 km²'den büyük 5 havzanın günlük akımını ve ölçüm noktası koordinatını indir.",
+  "Open-Meteo Flood API'den bu koordinatlar için 1990–2014 günlük river_discharge serisini Python requests ile çek.",
+  "Akım beklenenden çok küçükse koordinatı 0,1° oynat; API belgesi 5 km ızgarada doğru nehrin kaçabileceğini belirtiyor.",
+  "İki seriyi pandas ile tarihe göre birleştir; CAMELS akımını ft³/s'den m³/s'ye çevir.",
+  "NSE ve KGE'yi tek fonksiyonda yaz; KGE'nin r, α (değişkenlik) ve β (sapma) bileşenlerini ayrı yazdır.",
+  "Beş havzanın bileşenlerini matplotlib ile yan yana çubuk grafikte çiz."
+ ],
+ "sonuc": "Beş havzalık KGE bileşen grafiği. 1'den en çok uzaklaşan bileşen hatanın kaynağıdır; NSE 0'ın altındaysa GloFAS o havzada ortalama akımdan bile zayıftır.",
+ "dayanak": "Gupta vd. 2009",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 222",
+    "ad": "Hidroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Flood ve Küresel Hidroloji API",
+   "ne": "Copernicus GloFAS küresel hidrolojik simülasyonlarını açık API üzerinden günlük nehir debisi olarak sunan açık veri servisi.",
+   "url": "https://open-meteo.com/en/docs/flood-api",
+   "ayrinti": {
+    "neYaptilar": "ECMWF GloFAS v4 nehir akım çıktılarını 0,05 derece çözünürlükte küresel ızgara üzerinde sorgulanabilir açık REST API servisine dönüştürdüler.",
+    "nasil": "MTO 222 havza su bütçesi, nehir yönlendirme algoritmaları ve LISFLOOD akış simülasyonu çıktılarını yüksek hızlı zaman serisi veritabanında indekslediler.",
+    "neEdindiler": "Günde milyonlarca hidrolojik akım sorgusuna yanıt veren, araştırmacılara ve mühendislere anlık taşkın verisi sunan açık küresel servis kurdular.",
+    "bizNasilKatki": "CAMELS havzalarının koordinatlarını Open-Meteo Flood API'ye gönderip GloFAS akımlarını otomatik indiren Python istemcisi yazarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Flood API Teknik Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/flood-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Copernicus GloFAS Küresel Taşkın Erken Uyarı Sistemi",
+      "url": "https://www.globalfloods.eu/technical-information/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/flood-api",
+      "aciklama": "Open-Meteo Flood API nehir akımı ve taşkın debisi sorgulama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Water_cycle.png",
+      "lisans": "kamu malı",
+      "aciklama": "Küresel hidrolojik döngü ve nehir havzası yüzey akış şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NCAR ve Bristol Üniversitesi Hidroloji Grubu",
+   "ne": "CAMELS veri setiyle kıta ölçeğinde havza özelliklerini, meteorolojik zorlamaları ve akım gözlemlerini derleyen akademik konsorsiyum.",
+   "url": "https://ral.ucar.edu/solutions/products/camels",
+   "ayrinti": {
+    "neYaptilar": "Amerika Birleşik Devletleri genelindeki 671 hidrolojik havzanın günlük akım ölçümlerini, havza alanlarını ve iklim indislerini standartlaştırdılar.",
+    "nasil": "MTO 222 akım ölçüm istasyonları, havza sınırları, toprak özellikleri ve yağış-akış bileşenlerini tutarlı bir veri yapısında topladılar.",
+    "neEdindiler": "Küresel hidroloji ve makine öğrenmesi topluluğunun en çok atıf alan standart kıyaslama (benchmark) veri setini bilim dünyasına kazandırdılar.",
+    "bizNasilKatki": "CAMELS veri setinden 1000 kilometrekareden büyük 5 havzayı seçip akım zaman serilerini m3/s birimine dönüştürerek analiz havuzumuza katarız.",
+    "referanslar": [
+     {
+      "ad": "Addor vd. 2017 CAMELS Havza Öznitelikleri ve Akım Veri Seti Makalesi",
+      "url": "https://doi.org/10.5194/hess-21-5293-2017",
+      "tur": "makale"
+     },
+     {
+      "ad": "NCAR CAMELS Açık Veri Portalı",
+      "url": "https://ral.ucar.edu/solutions/products/camels",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ral.ucar.edu/solutions/products/camels",
+      "aciklama": "NCAR CAMELS havza öznitelikleri ve hidrolojik veri portalı arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Hydrograph.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Havza hidrografı pik akım ve çekilme eğrisi bileşenleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Hidrolojik Tahmin ve Doğrulama Takımı",
+   "ne": "Küresel taşkın modellerinin yerel havzalardaki başarısını Kling-Gupta verimlilik analiziyle ölçen öğrenci araştırma ekibi.",
+   "url": "https://github.com/aura-itu/glofas-camels-kge-dogrulama",
+   "ayrinti": {
+    "neYaptilar": "GloFAS küresel nehir akımlarını CAMELS gözlemleriyle kıyaslayıp KGE'nin korelasyon, değişkenlik ve ortalama sapma bileşenlerini ayrıştırdılar.",
+    "nasil": "MTO 222 Kling-Gupta ve Nash-Sutcliffe denklemlerini Python vectorized numpy işlevleriyle kodlayıp 25 yıllık günlük serileri işlediler.",
+    "neEdindiler": "GloFAS'ın büyük havzalarda yüksek korelasyon yakalarken kurak dönemlerde sistematik hacim sapması yaptığını sayısal olarak ortaya koydular.",
+    "bizNasilKatki": "Hata kaynaklarını 5 farklı havza için karşılaştıran interaktif bir Jupyter karnesi ve çubuk grafik görselleştirmesi üretiriz.",
+    "referanslar": [
+     {
+      "ad": "AURA GloFAS CAMELS Doğrulama GitHub Deposu",
+      "url": "https://github.com/aura-itu/glofas-camels-kge-dogrulama",
+      "tur": "kod"
+     },
+     {
+      "ad": "Gupta vd. 2009 MSE ve KGE Ayrıştırma Makalesi",
+      "url": "https://doi.org/10.1016/j.jhydrol.2009.08.003",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/glofas-camels-kge-dogrulama",
+      "aciklama": "AURA hidrolojik analiz defteri ve KGE bileşenleri çubuk grafik çıktısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "CAMELS nehir havzası GloFAS simülasyonu ile ölçülen akım zaman serisi karşılaştırması",
+      "aciklama": "Günlük akım hidrografında simülasyon ve gözlem eğrilerinin zamanla örtüşmesi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Yağıştan akıma: küresel taşkın sisteminin akımını ölçümle sına, akımı LSTM ağıyla tahmin et.",
+  "baglanti": "Yazılım kolunda küresel akım benzetiminin NSE/KGE doğrulaması; anlatımda İstanbul'un su dengesi videosu.",
+  "literatur": {
+   "maddeler": [
+    "Havza su dengesi yağışı buharlaşma, sızma, depolama ve akışa ayırır; akım tahmini bu dengeyi gün gün izlemektir (Brutsaert 2005)",
+    "Akım benzetimi klasik olarak Nash–Sutcliffe verimiyle ölçülür: 1 kusursuz, 0 ise ortalama akımı söylemek kadar iyi demektir (Nash ve Sutcliffe 1970)",
+    "Ortalama hata karesi korelasyon, değişkenlik ve sapma diye üçe ayrılır; KGE ölçütü hatanın nereden geldiğini böyle gösterir (Gupta vd. 2009)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "LSTM ağı 241 CAMELS havzasında kar gibi depolama etkilerini öğrenebildi; bölgede öğrenileni havzaya aktarınca SAC-SMA+Snow-17'yi geçti (Kratzert vd. 2018)",
+    "Eğitimde görmediği havzalarda LSTM'in medyan NSE'si 0,69 oldu (kalibre SAC-SMA 0,64); yazarlar fiziksel kısıt eklemeyi gelecek araştırmaya bırakıyor (Kratzert vd. 2019)",
+    "YZ tabanlı küresel sistem, ölçümsüz havzada taşkını 5 gün önceden GloFAS'ın anlık tahmini kadar ya da daha güvenilir verdi; yazarlar daha çok hidrolojik veri istiyor (Nearing vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Brutsaert 2005",
+    "baslik": "Hydrology: An Introduction",
+    "yayin": "Cambridge University Press",
+    "yil": "2005",
+    "url": "https://doi.org/10.1017/CBO9780511808470",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Nash ve Sutcliffe 1970",
+    "baslik": "River flow forecasting through conceptual models part I — A discussion of principles",
+    "yayin": "Journal of Hydrology, 10(3), 282–290",
+    "yil": "1970",
+    "url": "https://doi.org/10.1016/0022-1694(70)90255-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gupta vd. 2009",
+    "baslik": "Decomposition of the mean squared error and NSE performance criteria: Implications for improving hydrological modelling",
+    "yayin": "Journal of Hydrology, 377, 80–91",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.jhydrol.2009.08.003",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kratzert vd. 2018",
+    "baslik": "Rainfall–runoff modelling using Long Short-Term Memory (LSTM) networks",
+    "yayin": "Hydrology and Earth System Sciences, 22, 6005–6022",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/hess-22-6005-2018",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kratzert vd. 2019",
+    "baslik": "Toward Improved Predictions in Ungauged Basins: Exploiting the Power of Machine Learning",
+    "yayin": "Water Resources Research, 55, 11344–11354",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2019WR026065",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Nearing vd. 2024",
+    "baslik": "Global prediction of extreme floods in ungauged watersheds",
+    "yayin": "Nature, 627, 559–563",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07145-1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GloFAS küresel taşkın sistemi akım simülasyonlarını CAMELS havza gözlemleriyle kıyaslayıp KGE ve NSE verimlilik metrikleriyle hata kaynaklarını ayrıştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 222",
+   "projeyeKatki": "Kling-Gupta (KGE) ve Nash-Sutcliffe (NSE) katsayılarıyla akım simülasyonlarının korelasyon, değişkenlik ve ortalama sapma hatalarını matematiksel olarak ayrıştırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Kling-Gupta verimlilik katsayısı",
+     "nerede": "GloFAS simülasyon akımı ile CAMELS ölçüm serisi arasındaki toplam uyumu korelasyon, değişkenlik ve sapma bileşenlerine ayırırken."
+    },
+    {
+     "formulAd": "Nash-Sutcliffe model verimlilik katsayısı",
+     "nerede": "Simülasyonun ortalama gözlem akımına kıyasla ne kadar kestirim gücü sağladığını standart hidrolojik ölçekte belirlerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "CAMELS havzalarından ölçülen akımla GloFAS simülasyonunu çekip KGE ve NSE ile beş havzanın hata bileşenlerini grafiklemek.",
+  "ayrinti": "CAMELS veri setinden alanı 1000 km2'den büyük 5 havzanın günlük akımları ve çıkış koordinatları alınır. Open-Meteo Flood API üzerinden 1990-2014 periyodu için GloFAS günlük debi serileri indirilir. Akımlar m3/s biriminde eşitlenip tarihe göre birleştirilir. Python ile KGE ve NSE fonksiyonları yazılarak korelasyon r, değişkenlik oranı alfa ve sapma oranı beta hesaplanır. Matplotlib ile beş havzanın karne grafiği çizilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "CAMELS havza verilerini ve koordinatları hazırlamak",
+    "oz": "Alanı 1000 km2'den büyük beş temsilci havzanın akım ve konum verilerini seçmek.",
+    "ayrinti": "CAMELS veri tabanından farklı iklim bölgelerindeki beş büyük havza belirlenir. Çıkış noktası enlem ve boylamları ile günlük akım serileri pandas tablosuna yüklenir.",
+    "nasil": [
+     {
+      "teknik": "camels_df = pd.read_csv('camels_streamflow.txt', sep='\\s+', parse_dates=['date']) ile günlük akım serilerini yüklemek.",
+      "sade": "CAMELS ölçüm dosyasından beş havzanın günlük akış değerlerini tarih bazında düzenli bir veri tablosuna aktarırız.",
+      "altAdimlar": [
+       "1. NCAR portalından CAMELS günlük akım metin dosyasını indir.",
+       "2. Havza kimlik numarası ve tarih sütunlarını pandas ile oku.",
+       "3. Seçilen beş havzayı filtreleyip akım değerlerini düzenle."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     },
+     {
+      "teknik": "camels_df['q_cms'] = camels_df['q_cfs'] * 0.0283168 ile debiyi fit küp bölü saniyeden metreküp bölü saniyeye dönüştürmek.",
+      "sade": "Amerikan birim sistemindeki fit küp akım değerlerini uluslararası standart birim olan metreküp bölü saniyeye çeviririz.",
+      "altAdimlar": [
+       "1. Akım sütunundaki sayısal değerleri dönüştürme katsayısıyla çarp.",
+       "2. Aşırı uç ve negatif değerleri kalite kontrolünden geçir.",
+       "3. Dönüştürülmüş seriyi birincil gözlem değişkeni olarak adlandır."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Birim hidrograf ve sentetik hidrograf yöntemleriyle pik akımları türetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Open-Meteo Flood API'den GloFAS akımlarını çekmek",
+    "oz": "Havza koordinatları için 1990-2014 günlük GloFAS nehir akımını indirmek.",
+    "ayrinti": "Python requests kütüphanesiyle API uç noktasına istek atılır. 5 km çözünürlüklü nehir ağıyla havza çıkış noktası eşleştirilerek 25 yıllık günlük simülasyon akımı çekilir.",
+    "nasil": [
+     {
+      "teknik": "requests.get('https://flood-api.open-meteo.com/v1/flood', params=payload).json() ile GloFAS debilerini çekmek.",
+      "sade": "Avrupa Taşkın Sistemi'nin matematiksel nehir akış hesaplarını internet servisinden otomatik olarak bilgisayara indiririz.",
+      "altAdimlar": [
+       "1. İstek parametrelerine enlem, boylam ve 1990-2014 tarih aralığını yaz.",
+       "2. river_discharge değişkenini belirleyip GET çağrısını gönder.",
+       "3. Dönen JSON yanıtındaki tarih ve akım dizilerini ayrıştır."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     },
+     {
+      "teknik": "glofas_df = pd.DataFrame(data['daily']).set_index('time') ile simülasyon zaman serisini tabloya işlemek.",
+      "sade": "İndirilen günlük simülasyon değerlerini tarih indeksiyle düzenleyip gözlem tablosuyla birleştirmeye hazır hale getiririz.",
+      "altAdimlar": [
+       "1. Gelen günlük veriyi pandas DataFrame yapısına dönüştür.",
+       "2. Zaman sütununu datetime formatına çevirip indeks yap.",
+       "3. Akım değerlerini sayısal dizi olarak doğrula."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "NSE ve KGE metriklerini ve bileşenlerini hesaplamak",
+    "oz": "Korelasyon r, değişkenlik alfa ve sapma beta terimlerini kodlamak.",
+    "ayrinti": "İki seri ortak tarihler üzerinden iç birleşimle hizalanır. Nash-Sutcliffe ve Kling-Gupta formülleri vektörel olarak çalıştırılır; KGE bileşenleri havza bazında hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "def calc_kge(obs, sim): r = np.corrcoef(obs, sim)[0,1]; alpha = np.std(sim)/np.std(obs); beta = np.mean(sim)/np.mean(obs) formülünü işletmek.",
+      "sade": "Matematiksel fonksiyonla simülasyonun gözlemle ne kadar uyumlu aktığını, tepe noktalarının ve toplam suyun sapmasını hesaplarız.",
+      "altAdimlar": [
+       "1. İki akım serisi arasındaki Pearson korelasyon katsayısı r'yi bul.",
+       "2. Simülasyon değişkenliğini gözleme oranlayarak alfa katsayısını türet.",
+       "3. Ortalama debi oranından beta katsayısını ve bileşik KGE skorunu bul."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Nash-Sutcliffe ve Kling-Gupta verimlilik katsayılarıyla akım performansını değerlendirmek."
+      }
+     },
+     {
+      "teknik": "nse = 1 - np.sum((obs - sim)**2) / np.sum((obs - np.mean(obs))**2) ile klasik Nash-Sutcliffe skorunu üretmek.",
+      "sade": "Modelin sabit ortalama tahminine göre fazladan ne kadar bilgi ve doğruluk sunduğunu test ederiz.",
+      "altAdimlar": [
+       "1. Model ve gözlem arasındaki farkların kareler toplamını al.",
+       "2. Gözlemin kendi ortalamasından sapmalarının kareler toplamına böl.",
+       "3. Birden çıkararak standart NSE performans değerini elde et."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Nash-Sutcliffe ve Kling-Gupta verimlilik katsayılarıyla akım performansını değerlendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Beş havzanın performans karnesini grafiklemek",
+    "oz": "KGE, r, alfa ve beta bileşenlerini yan yana çubuk grafikle sunmak.",
+    "ayrinti": "Beş havza için hesaplanan metrikler tek bir performans tablosunda birleştirilir. Matplotlib ile her havzanın NSE, KGE ve üç hata bileşeni görselleştirilerek raporlanır.",
+    "nasil": [
+     {
+      "teknik": "ax.bar(x, kge_vals, label='KGE') ve ax.axhline(1.0, color='r', linestyle='--') ile ideal referans çizgisi çekmek.",
+      "sade": "Her havzanın başarı puanını çubuk grafiğe döküp kusursuz simülasyonu simgeleyen 1 seviyesiyle kıyaslarız.",
+      "altAdimlar": [
+       "1. Beş havza için KGE, r, alfa ve beta değerlerini sütunlara yerleştir.",
+       "2. İdeal hedef olan 1 değerine yatay kırmızı kesikli çizgi ekle.",
+       "3. Eksen etiketlerini ve açıklama kutusunu düzenle."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Nash-Sutcliffe ve Kling-Gupta verimlilik katsayılarıyla akım performansını değerlendirmek."
+      }
+     },
+     {
+      "teknik": "plt.savefig('glofas_camels_kge_karne.png', dpi=300) ile analiz çıktısını görsel dosya olarak diske yazmak.",
+      "sade": "Elde edilen karşılaştırma karnesini ve hata dağılım grafiğini yüksek çözünürlükte diske aktarırız.",
+      "altAdimlar": [
+       "1. Grafiğin başlığına havza adlarını ve test dönemini yaz.",
+       "2. Düzeni sıkılaştırarak eksen yazılarının taşmasını engelle.",
+       "3. Çıktıyı 300 DPI netliğinde PNG formatında diske yaz."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Beş havza için GloFAS akımlarının NSE, KGE, korelasyon, değişkenlik ve hacim sapmasını gösteren karşılaştırma karnesi.",
+  "senden": "KGE ve NSE fonksiyonlarını yazmak, çubuk grafik tasarımını ve hata bileşenlerinin yorumunu hazırlamak.",
+  "bizden": "CAMELS veri setinden havzaları seçmek, Open-Meteo Flood API bağlantısını kurmak ve birimleri eşitlemek."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://open-meteo.com/en/docs/flood-api",
+   "aciklama": "Open-Meteo Flood API nehir debisi ve küresel taşkın modeli veri erişim paneli"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "CAMELS nehir havzası GloFAS simülasyonu ile ölçülen akım zaman serisi karşılaştırması",
+   "aciklama": "Günlük akım hidrografında GloFAS simülasyonu ve ölçülen nehir debisinin zamanla değişimi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Hydrograph.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Nehir hidrografı akış eğrisi ve taşkın pik debisi şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Gupta vd. 2009 MSE ve KGE Ayrıştırma Makalesi",
+   "url": "https://doi.org/10.1016/j.jhydrol.2009.08.003"
+  },
+  {
+   "ad": "Nash ve Sutcliffe 1970 Hidrolojik Model Doğrulama Makalesi",
+   "url": "https://doi.org/10.1016/0022-1694(70)90255-6"
+  },
+  {
+   "ad": "Addor vd. 2017 CAMELS Havza Öznitelikleri ve Akım Veri Seti Makalesi",
+   "url": "https://doi.org/10.5194/hess-21-5293-2017"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO222-01.json",
+  "tarih": "2026-10-17 01:19",
+  "geminiSha1": "93abb0610122"
+ }
+}

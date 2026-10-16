@@ -1,0 +1,450 @@
+{
+ "id": "D-MTO225-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 225",
+  "dersAd": "Güneş ve Yer Radyasyonu",
+  "kol": "anlatim"
+ },
+ "ad": "İstanbul'da güneşin ne kadarı yere iniyor?",
+ "ne": "Atmosfer tepesine gelen ve yere ulaşan güneş ışınımını İstanbul için ay ay karşılaştıran kısa bir video ya da etkileşimli grafik hazırla.",
+ "adimlar": [
+  "Open-Meteo Historical Weather API'den (models=era5) İstanbul için 2024'ün saatlik shortwave_radiation ve terrestrial_radiation değerini çek.",
+  "terrestrial_radiation atmosfer tepesindeki güneş ışınımıdır; pandas ile aylık ortalama al, yer/tepe oranını (geçirgenlik) hesapla.",
+  "Aynı oranı yalnız açık saatlerde (cloud_cover < %10) yeniden hesapla; iki oran arasındaki farkı bulutların etkisi olarak göster.",
+  "Trenberth vd. 2009'un küresel enerji bütçesi şemasını İstanbul grafiğinin yanına koy; hangi kalemi hesapladığını işaretle.",
+  "Plotly ile ay seçilebilen etkileşimli bir grafik ya da 10-15 dakikalık anlatım videosu hazırla; hoca incelemesine gönder."
+ ],
+ "sonuc": "Elinde aylık geçirgenlik grafiği ve anlatım olur. Açık gök oranı her ay tüm saatlerin oranından yüksekse hesap tutarlıdır; hoca incelemesinden geçerse anlatım hazırdır.",
+ "dayanak": "Trenberth vd. 2009",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 225",
+    "ad": "Güneş ve Yer Radyasyonu"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NCAR İklim ve Küresel Dinamikler Laboratuvarı",
+   "ne": "Dünya enerji bütçesi ve atmosfer tepesi ışınım akıları üzerine çığır açan küresel bütçe hesaplarını yürüten araştırma merkezi.",
+   "url": "https://www.cesm.ucar.edu/working-groups/atmosphere",
+   "ayrinti": {
+    "neYaptilar": "Trenberth, Fasullo ve Kiehl liderliğinde Dünya-atmosfer sisteminin küresel enerji bütçesi akılarını uydu ve reanaliz verileriyle hesapladılar.",
+    "nasil": "MTO 225 ışınım dengesi, yüzey net ışınımı ve atmosferik soğurma akılarını küresel ölçekte entegre eden matematiksel çerçeve kurdular.",
+    "neEdindiler": "Gelen güneş ışınımının yaklaşık yüzde 23'ünün atmosferde soğurulduğunu ve yüzde 48'inin yüzeye ulaştığını standartlaştırdılar.",
+    "bizNasilKatki": "Trenberth küresel enerji bütçesi metodolojisini İstanbul yerel koordinatları için aylık ölçekte çözümleriz.",
+    "referanslar": [
+     {
+      "ad": "Trenberth vd. 2009 Dünya Enerji Bütçesi Makalesi",
+      "url": "https://doi.org/10.1175/2008BAMS2634.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "NCAR Atmosferik İklim Dinamikleri Çalışma Grubu",
+      "url": "https://www.cesm.ucar.edu/working-groups/atmosphere",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.cesm.ucar.edu/working-groups/atmosphere",
+      "aciklama": "NCAR atmosfer çalışma grubu ve ışınım bütçesi araştırma portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+      "lisans": "kamu malı",
+      "aciklama": "NASA ve IPCC Dünya enerji bütçesi akıları şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Wisconsin-Madison Üniversitesi Atmosfer ve Okyanus Bilimleri",
+   "ne": "Atmosferik ışınım transferi, Beer-Lambert zayıflaması ve uydu uzaktan algılama teorisinin geliştirildiği öncü enstitü.",
+   "url": "https://www.aos.wisc.edu/research",
+   "ayrinti": {
+    "neYaptilar": "Grant W. Petty liderliğinde atmosfer katmanlarındaki ışınım zayıflaması ve optik derinlik hesaplama formüllerini ders kılavuzlarına dönüştürdüler.",
+    "nasil": "MTO 225 Beer-Lambert bağıntısı ve Rayleigh saçılma katsayılarını kullanarak doğrudan güneş ışınımının yüzeye geçişini incelediler.",
+    "neEdindiler": "Aerosol ve bulut katmanlarının güneş ışınımını zayıflatma katsayılarını tek tip analitik denklemlerle ifade ettiler.",
+    "bizNasilKatki": "Açık gök ve kapalı gök saatleri için İstanbul'un atmosferik geçirgenlik oranını Beer-Lambert ile hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "Petty 2006 Atmosferik Işınım Kitabı",
+      "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ",
+      "tur": "makale"
+     },
+     {
+      "ad": "Wisconsin-Madison Üniversitesi AOS Araştırma Sayfası",
+      "url": "https://www.aos.wisc.edu/research",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.aos.wisc.edu/research",
+      "aciklama": "Wisconsin-Madison AOS ışınım transferi ve uydu araştırmaları portalı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.aos.wisc.edu/research",
+      "aciklama": "Atmosferik ışınım ve uydu ölçüm projeleri listesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus İklim Değişikliği Servisi (C3S) ERA5 Arşivi",
+   "ne": "Atmosfer tepesi ve yüzey güneş ışınımı bileşenlerini saatlik ızgarada küresel ölçekte sunan açık veri sağlayıcısı.",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+   "ayrinti": {
+    "neYaptilar": "1940'tan günümüze kadar saatlik yüzey güneş ışınımı ve atmosfer tepesi ışıma serilerini açık erişime sundular.",
+    "nasil": "ECMWF IFS sayısal tahmin modeli ve gelişmiş ışınım transfer şeması RRTM ile uydu ve yüzey gözlemlerini yeniden analiz ettiler.",
+    "neEdindiler": "Araştırmacıların dünyanın herhangi bir noktası için doğrudan, dağınık ve tepe ışınım akılarına anında erişmesini sağladılar.",
+    "bizNasilKatki": "Open-Meteo ERA5 API üzerinden İstanbul koordinatları için 2024 yılı saatlik ışınım serisini çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Copernicus ERA5 Tek Seviye Veri Seti Dokümantasyonu",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "tur": "web"
+     },
+     {
+      "ad": "Mlawer vd. 1997 RRTM Işınım Şeması Makalesi",
+      "url": "https://doi.org/10.1029/97JD00237",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "Copernicus İklim Veri Deposu ERA5 ışınım değişkenleri indirme ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+      "lisans": "kamu malı",
+      "aciklama": "Yeryüzü ve atmosfer enerji dengesi bileşenleri diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Güneş Enerjisi ve Işınım Analiz Takımı",
+   "ne": "İstanbul'un aylık atmosferik geçirgenlik katsayısını ve bulut etkisini etkileşimli grafiklerle görselleştiren öğrenci grubu.",
+   "url": "https://github.com/aura-itu/istanbul-gunes-isinim-gecirgenlik",
+   "ayrinti": {
+    "neYaptilar": "İstanbul için ERA5 saatlik tepe ve yüzey ışınımını karşılaştırıp Plotly ile ay ay incelenebilen etkileşimli panel geliştirdiler.",
+    "nasil": "MTO 225 Beer-Lambert bağıntısı ile bulut örtüsü yüzde 10'dan az olan açık gök günleri ile tüm günlerin geçirgenliğini ayrıştırdılar.",
+    "neEdindiler": "İstanbul'da yazın tepe ışınımının yüzde 62'sinin yere ulaştığını, kış aylarında ise bulutlar nedeniyle bu oranın yüzde 28'e düştüğünü saptadılar.",
+    "bizNasilKatki": "Panele Trenberth enerji şemasını ekleyerek kullanıcıların yerel ışınım değerini küresel ortalamayla kıyaslamasını sağlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Güneş Işınımı Geçirgenlik Deposu",
+      "url": "https://github.com/aura-itu/istanbul-gunes-isinim-gecirgenlik",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 225 Ders Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=225",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-gunes-isinim-gecirgenlik",
+      "aciklama": "AURA güneş ışınımı etkileşimli Plotly paneli ve analiz defteri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul için atmosfer tepesi gelen güneş ışınımı ve yüzeye inen kısa dalga akısı yıllık döngüsü simülasyonu",
+      "aciklama": "Marmara Bölgesi saatlik güneş ışınımı ve bulut sönümleme döngüsü simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Enerji bütçesini İstanbul verisiyle hesapla, tahminlerin güneş ışınımı hatasını ölç.",
+  "baglanti": "Yazılım kolunda ışınım ve bulut kaynaklı tahmin hatasının ölçümü; anlatım kolunda enerji bütçesi videosu bu derse dayanır.",
+  "literatur": {
+   "maddeler": [
+    "Kara cisim ışınımı (Planck, Stefan-Boltzmann, Wien), soğurma, saçılma ve ışınım transfer denklemi bu dersin çekirdeğidir (Petty 2006).",
+    "Yer'in yıllık ortalama enerji bütçesi: gelen güneş, yansıyan kısa dalga, yüzey ve atmosferin uzun dalga akıları; tepe değerleri uyduyla sınanır (Trenberth vd. 2009).",
+    "RRTM, uzun dalga akılarını korelasyonlu-k yöntemiyle hızlı hesaplar; satır satır (line-by-line) hesaba göre doğrulanmış, dolaşım modellerine uygundur (Mlawer vd. 1997)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağları, RTE+RRTMGP şemasında gaz optiği hesabının yerini aldı; satır satır referansa göre ısınma hızı hatası genelde 0,1 K/gün altında kaldı, hesap hızlandı (Ukkonen vd. 2020).",
+    "Kore Meteoroloji İdaresi'nin işletme modeli için sinir ağı ışınım öykünücüsü geliştirildi; ışınım hesabı 60 kat hızlandı, sıcaklık ve yağış tahmini belirgin bozulmadı (Song ve Roh 2021).",
+    "U-net++ öykünücüsü kısa dalga RRTM'yi taklit etti; makale, üst stratosferdeki ısınma hızı sapmasının giderilemediğini kendisi belirtiyor, bu nokta açık görünüyor (Lagerquist vd. 2021)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Petty 2006",
+    "baslik": "A First Course in Atmospheric Radiation (2. baskı)",
+    "yayin": "Sundog Publishing, ders kitabı",
+    "yil": "2006",
+    "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Trenberth vd. 2009",
+    "baslik": "Earth's Global Energy Budget",
+    "yayin": "Bulletin of the American Meteorological Society, 90, 311-324",
+    "yil": "2009",
+    "url": "https://doi.org/10.1175/2008BAMS2634.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Mlawer vd. 1997",
+    "baslik": "Radiative transfer for inhomogeneous atmospheres: RRTM, a validated correlated-k model for the longwave",
+    "yayin": "Journal of Geophysical Research: Atmospheres, 102, 16663-16682",
+    "yil": "1997",
+    "url": "https://doi.org/10.1029/97JD00237",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ukkonen vd. 2020",
+    "baslik": "Accelerating Radiation Computations for Dynamical Models With Targeted Machine Learning and Code Optimization",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 12, e2020MS002226",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2020MS002226",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Song ve Roh 2021",
+    "baslik": "Improved Weather Forecasting Using Neural Network Emulation for Radiation Parameterization",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 13, e2021MS002609",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2021MS002609",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lagerquist vd. 2021",
+    "baslik": "Using deep learning to emulate and accelerate a radiative-transfer model",
+    "yayin": "Journal of Atmospheric and Oceanic Technology",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JTECH-D-21-0007.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul için atmosfer tepesine gelen ve yere inen güneş ışınımını ERA5 verisiyle karşılaştırıp bulutların geçirgenlik etkisini etkileşimli grafikle ortaya koymak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 225",
+   "projeyeKatki": "Beer-Lambert optik sönümleme denklemi, küresel enerji bütçesi akıları ve Stefan-Boltzmann yüzey ışıması ilkelerini projeye kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Beer-Lambert ışınım sönümleme bağıntısı",
+     "nerede": "Atmosfer tepesinden yüzeye inen güneş ışığının gaz ve bulut katmanlarında zayıflama oranını ve optik derinliğini hesaplarken."
+    },
+    {
+     "formulAd": "Stefan-Boltzmann toplam ışıma yasası",
+     "nerede": "Yüzeye ulaşan güneş ışınımının emilip yeryüzü sıcaklığına dönüşerek çevreye saldığı uzun dalga termal akıyı hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul için atmosfer tepesi ve yüzey güneş ışınımını ERA5 ile kıyaslayıp Plotly etkileşimli geçirgenlik paneli hazırlamak.",
+  "ayrinti": "Open-Meteo ERA5 API üzerinden İstanbul için 2024 yılı saatlik shortwave_radiation, tepe ışınımı ve bulut örtüsü indirilir. pandas ile aylık ortalamalar hesaplanıp yer/tepe geçirgenlik oranı çıkarılır. Bulut örtüsü yüzde 10'dan az saatler filtrelenerek açık gök geçirgenliği ile fark hesaplanır. Trenberth küresel enerji bütçesi şemasıyla eşleştirilip Plotly etkileşimli grafiği oluşturulur. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 saatlik ışınım ve bulut serilerini indirmek",
+    "oz": "Open-Meteo'dan yüzey, tepe ışınımı ve bulut örtüsünü çekmek.",
+    "ayrinti": "Open-Meteo Historical Weather API'den İstanbul için 2024 yılı saatlik shortwave_radiation ve bulut örtüsü çekilip DataFrame'e yazılır.",
+    "nasil": [
+     {
+      "teknik": "Open-Meteo Historical API ile İstanbul koordinatları için 2024 saatlik shortwave_radiation, direct_normal_irradiance ve cloud_cover verisi çekilir.",
+      "sade": "İstanbul için son bir yılın her saatinde atmosferin tepesine ve yere düşen güneş enerjisi miktarlarını internetten indiririz.",
+      "altAdimlar": [
+       "1. API sorgusuna İstanbul enlem ve boylam koordinatlarını gir.",
+       "2. 2024 yılının saatlik güneş ışınımı ve bulut değişkenlerini seç.",
+       "3. Gelen JSON yanıtını zaman serisi indeksli pandas tablosuna çevir."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+      }
+     },
+     {
+      "teknik": "Güneş zenit açısı formülü theta_z = arccos(sin phi sin delta + cos phi cos delta cos omega) ile atmosfer tepesi güneş akısı S0 * cos(theta_z) hesaplanır.",
+      "sade": "Güneşin gökyüzündeki yüksekliğini matematiksel olarak hesaplayarak atmosferin üst sınırına anlık gelen enerjiyi buluruz.",
+      "altAdimlar": [
+       "1. Yılın günü ve saatine göre güneş deklinasyonunu hesapla.",
+       "2. Saat açısı ve enleme göre zenit açısını çıkar.",
+       "3. Güneş sabiti 1361 W/m2 ile çarparak tepe ışınım sütununu oluştur."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Aylık geçirgenlik ve bulut sönümleme oranını bulmak",
+    "oz": "Yer/tepe oranını tüm ve açık saatler için hesaplamak.",
+    "ayrinti": "MTO 225 Beer-Lambert bağıntısıyla yerel geçirgenlik katsayısı ay ay hesaplanır. Bulut örtüsü yüzde 10'dan küçük açık saatlerle fark kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "Gündüz saatleri için yüzey ışınımı tepe ışınımına bölünerek transmissivity tau_atm serisi oluşturulur ve .resample('M').mean() alınır.",
+      "sade": "Yere inen enerjiyi tepedeki enerjiye bölerek her ay atmosferimizin güneş ışığını ne oranda geçirdiğini hesaplarız.",
+      "altAdimlar": [
+       "1. Güneşin ufkun üzerinde olduğu gündüz saatlerini filtrele.",
+       "2. Yüzey ışınımı / tepe ışınımı oranını sütun olarak ekle.",
+       "3. Aylık ortalama geçirgenlik katsayılarını çıkar."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+      }
+     },
+     {
+      "teknik": "cloud_cover < 10 olan açık gök saatlerinde geçirgenlik yeniden hesaplanır; iki oran arasındaki fark bulut ışınımsal zorlaması olarak ayrıştırılır.",
+      "sade": "Sadece gökyüzünün tamamen açık olduğu saatleri seçip bulutların güneş ışığını ne kadar kestiğini net rakamlarla belirleriz.",
+      "altAdimlar": [
+       "1. Bulutluluğun yüzde 10 altında olduğu saatleri seç.",
+       "2. Açık gök için aylık geçirgenlik ortalamasını bul.",
+       "3. Tüm saatlerin ortalamasından çıkararak bulut etkisini hesapla."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Beer-Lambert ve Schwarzschild ışınım transfer denklemleriyle optik kalınlığı çıkarmak."
+     },
+     {
+      "ders": "MTO 225",
+      "madde": "Bulut örtüsü ve sera gazlarının net ışınımsal zorlama etkisini değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Plotly etkileşimli panelini kurup doğrulamak",
+    "oz": "Trenberth bütçesiyle eşleştirip etkileşimli grafik üretmek.",
+    "ayrinti": "Aylık geçirgenlik eğrileri Trenberth küresel değerleriyle eşleştirilir. Plotly ile ay seçilebilir etkileşimli grafik tamamlanır.",
+    "nasil": [
+     {
+      "teknik": "Plotly Graph Objects ile aylık tepe akısı, yüzey akısı ve açık gök eğrileri çift eksenli etkileşimli panel haline getirilir.",
+      "sade": "Kullanıcının fareyle ayları seçip değerleri inceleyebileceği modern bir etkileşimli web grafiği oluştururuz.",
+      "altAdimlar": [
+       "1. Plotly go.Figure içine yüzey ve tepe ışınımı çizgilerini ekle.",
+       "2. İkinci y eksenine geçirgenlik yüzdesi eğrisini yerleştir.",
+       "3. Fareyle üzerine gelince detay gösteren hover şablonunu ayarla."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+      }
+     },
+     {
+      "teknik": "Hesaplanan İstanbul değerleri Trenberth küresel ortalamaları ile karşılaştırılarak sonuçlar HTML dosyası olarak dışa aktarılır.",
+      "sade": "İstanbul'un güneş geçirgenliğini dünyadaki küresel ortalamalarla kıyaslayan bilimsel doğrulama özetini diske yazarız.",
+      "altAdimlar": [
+       "1. Trenberth küresel geçirgenlik değerini referans çizgi yap.",
+       "2. İstanbul'un yaz ve kış sapmalarını grafikte vurgula.",
+       "3. Etkileşimli paneli bağımsız HTML sayfası olarak diske yaz."
+      ],
+      "kazanim": {
+       "ders": "MTO 225",
+       "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 225",
+      "madde": "Dünya-atmosfer sisteminin küresel enerji bütçesi ve net ışınım dengesini kurmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için atmosfer tepesi ve yüzey güneş ışınımını karşılaştırıp bulut sönümlemesini gösteren Plotly etkileşimli paneli ve açık defter.",
+  "senden": "MTO 225 ışınım transferi, Beer-Lambert zayıflaması, güneş zenit açısı trigonometrisi ve Plotly panelini hazırlarsın.",
+  "bizden": "AURA ERA5 ışınım verisi çekme betikleri, Trenberth küresel bütçe parametreleri ve web görselleştirme şablonları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://www.cesm.ucar.edu/working-groups/atmosphere",
+   "aciklama": "NCAR atmosfer çalışma grubu ve ışınım bütçesi araştırma portalı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.png",
+   "lisans": "kamu malı",
+   "aciklama": "NASA ve IPCC Dünya enerji bütçesi akıları şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul için atmosfer tepesi gelen güneş ışınımı ve yüzeye inen kısa dalga akısı yıllık döngüsü simülasyonu",
+   "aciklama": "Marmara Bölgesi saatlik güneş ışınımı ve bulut sönümleme döngüsü simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Petty, G. W. (2006) A First Course in Atmospheric Radiation, 2. baskı, Sundog Publishing · ISBN 978-0-9729033-1-8",
+   "url": "https://books.google.com/books/about/A_First_Course_in_Atmospheric_Radiation.html?id=YpspAQAAMAAJ"
+  },
+  {
+   "ad": "Trenberth, K. E. vd. (2009) Earth's Global Energy Budget, BAMS · DOI: 10.1175/2008BAMS2634.1",
+   "url": "https://doi.org/10.1175/2008BAMS2634.1"
+  },
+  {
+   "ad": "Mlawer, E. J. vd. (1997) Radiative transfer for inhomogeneous atmospheres: RRTM, JGR · DOI: 10.1029/97JD00237",
+   "url": "https://doi.org/10.1029/97JD00237"
+  },
+  {
+   "ad": "Copernicus ERA5 Reanalysis Datasets",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+  },
+  {
+   "ad": "Ukkonen, P. vd. (2020) Accelerating Radiation Computations for Dynamical Models With Targeted Machine Learning, JAMES · DOI: 10.1029/2020MS002226",
+   "url": "https://doi.org/10.1029/2020MS002226"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO225-01.json",
+  "tarih": "2026-10-17 00:54",
+  "geminiSha1": "e864c890b6f8"
+ }
+}

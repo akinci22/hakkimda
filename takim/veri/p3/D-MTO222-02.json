@@ -1,0 +1,413 @@
+{
+ "id": "D-MTO222-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 222",
+  "dersAd": "Hidroloji",
+  "kol": "yazilim"
+ },
+ "ad": "CAMELS havzasında LSTM ile akım tahmini",
+ "ne": "Kratzert vd.'nin deneyini küçült: günlük yağış ve sıcaklıktan akımı LSTM ağıyla tahmin et, CAMELS'teki SAC-SMA+Snow-17 çıktısıyla kıyasla.",
+ "adimlar": [
+  "Google Colab'a neuralhydrology kütüphanesini pip ile kur; belgelerindeki CAMELS-US başlangıç örneğini aç.",
+  "Bir karlı, bir karsız havza seç; eğitim ve test yıllarını ayır (ör. 1999–2008 eğitim, 1989–1999 test).",
+  "Girdi olarak Daymet yağış, sıcaklık ve ışınımını ver; LSTM'i Colab GPU'sunda eğit.",
+  "Test yıllarında NSE hesapla; aynı yıllar için CAMELS'teki SAC-SMA+Snow-17 akımının NSE'siyle yan yana koy.",
+  "Gözlem, LSTM ve SAC-SMA hidrograflarını matplotlib ile tek grafikte çiz."
+ ],
+ "sonuc": "İki havza için hidrograf grafiği ve NSE tablosu. LSTM'in NSE'si SAC-SMA'nınkinden yüksekse ağ o havzada klasik yöntemden iyi çalışıyor demektir.",
+ "dayanak": "Kratzert vd. 2018",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 222",
+    "ad": "Hidroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Johannes Kepler Üniversitesi ve Kratzert Hidroloji Laboratuvarı",
+   "ne": "Kratzert ve Klotz öncülüğünde LSTM ve derin öğrenme modellerini nehir akım tahmininde dünya standardı haline getiren araştırma grubu.",
+   "url": "https://neuralhydrology.github.io/",
+   "ayrinti": {
+    "neYaptilar": "CAMELS veri setindeki 531 havzada LSTM ağını eğiterek klasik kavramsal hidrolojik yöntemlerden daha yüksek NSE başarımı elde ettiler.",
+    "nasil": "MTO 222 havza su dengesi, kar erimesi gecikmeleri ve toprak depolama dinamiklerini LSTM hafıza hücreleriyle doğrudan zaman serisinden öğrendiler.",
+    "neEdindiler": "Açık kaynaklı NeuralHydrology kütüphanesini kurarak küresel hidroloji topluluğuna derin öğrenme tabanlı akım tahmin çerçevesi sundular.",
+    "bizNasilKatki": "Açık kaynaklı NeuralHydrology kodunu kullanarak karlı ve karsız iki pilot havzada hafifletilmiş LSTM deneylerini çalıştırırız.",
+    "referanslar": [
+     {
+      "ad": "Kratzert vd. 2018 LSTM ile Yağış-Akış Tahmini Makalesi",
+      "url": "https://doi.org/10.5194/hess-22-6005-2018",
+      "tur": "makale"
+     },
+     {
+      "ad": "NeuralHydrology Açık Kaynaklı Dokümantasyon Portalı",
+      "url": "https://neuralhydrology.github.io/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://neuralhydrology.github.io/",
+      "aciklama": "NeuralHydrology Python kütüphanesi dokümantasyonu ve eğitim mimarisi şeması"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Long_Short_Term_Memory.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "LSTM bellek hücresi iç yapısı giriş, unutma ve çıkış kapıları şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google Research Taşkın ve Hidrolojik Yapay Zekâ Girişimi",
+   "ne": "Nearing liderliğinde küresel ölçekte ölçümsüz havzalarda taşkın erken uyarısı için yapay zekâ tabanlı akım tahmin sistemi geliştiren ekip.",
+   "url": "https://sites.research.google/floods/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelinde nehir ölçüm istasyonu bulunmayan havzalarda 5 güne kadar güvenilir taşkın tahmini üreten yapay zekâ altyapısı kurdular.",
+    "nasil": "MTO 222 havza alanı, eğim, arazi örtüsü ve meteorolojik zorlama verilerini büyük ölçekli LSTM mimarisiyle küresel ızgarada eğittiler.",
+    "neEdindiler": "80'den fazla ülkede 460 milyondan fazla insana erken taşkın uyarısı sağlayan Flood Hub kamu bilgilendirme platformunu hayata geçirdiler.",
+    "bizNasilKatki": "Google taşkın yaklaşımındaki girdi değişkenlerini inceleyerek havza statik özniteliklerinin akım tahminine etkisini analiz ederiz.",
+    "referanslar": [
+     {
+      "ad": "Nearing vd. 2024 Nature Küresel Taşkın Tahmini Makalesi",
+      "url": "https://doi.org/10.1038/s41586-024-07145-1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Google Flood Hub Erken Taşkın Uyarı Platformu",
+      "url": "https://sites.research.google/floods/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://sites.research.google/floods/",
+      "aciklama": "Google Flood Hub küresel taşkın izleme ve nehir debisi haritası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Hydrograph.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Hidrograf akış eğrisi ve taşkın pik debisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Derin Öğrenme ve Hidroloji Grubu",
+   "ne": "Meteorolojik zaman serilerinden LSTM ile havza akım hidrografı üreten ve kavramsal modellerle sınayan öğrenci takımı.",
+   "url": "https://github.com/aura-itu/camels-lstm-akim-tahmini",
+   "ayrinti": {
+    "neYaptilar": "CAMELS veri setinden seçilen iki havzada günlük yağış ve sıcaklıkla LSTM eğitip SAC-SMA hidrograflarıyla doğruladılar.",
+    "nasil": "MTO 222 Nash-Sutcliffe ve Kling-Gupta metrikleriyle PyTorch tabanlı LSTM çıktılarının pik debi yakalama başarısını test ettiler.",
+    "neEdindiler": "Özellikle kar erimesi olan havzalarda LSTM'in klasik hidrolojik yapıdan 0,08 daha yüksek NSE ürettiğini kanıtladılar.",
+    "bizNasilKatki": "Eğitilmiş LSTM model ağırlıklarını ve hidrolojik karşılaştırma grafiklerini açık kaynaklı defterde paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA CAMELS LSTM Akım Tahmini GitHub Deposu",
+      "url": "https://github.com/aura-itu/camels-lstm-akim-tahmini",
+      "tur": "kod"
+     },
+     {
+      "ad": "Kratzert vd. 2019 Ölçümsüz Havzalarda Akım Tahmini Makalesi",
+      "url": "https://doi.org/10.1029/2019WR026065",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/camels-lstm-akim-tahmini",
+      "aciklama": "AURA CAMELS LSTM akım tahmin defteri ve eğitim kaybı grafiği"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "CAMELS havzasında LSTM akım tahmini ile SAC-SMA ve gözlem hidrografları karşılaştırması",
+      "aciklama": "Gözlem ve tahmin akım eğrilerinin mevsimsel tepe noktalarındaki dinamik örtüşmesi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Yağıştan akıma: küresel taşkın sisteminin akımını ölçümle sına, akımı LSTM ağıyla tahmin et.",
+  "baglanti": "Yazılım kolunda küresel akım benzetiminin NSE/KGE doğrulaması; anlatımda İstanbul'un su dengesi videosu.",
+  "literatur": {
+   "maddeler": [
+    "Havza su dengesi yağışı buharlaşma, sızma, depolama ve akışa ayırır; akım tahmini bu dengeyi gün gün izlemektir (Brutsaert 2005)",
+    "Akım benzetimi klasik olarak Nash–Sutcliffe verimiyle ölçülür: 1 kusursuz, 0 ise ortalama akımı söylemek kadar iyi demektir (Nash ve Sutcliffe 1970)",
+    "Ortalama hata karesi korelasyon, değişkenlik ve sapma diye üçe ayrılır; KGE ölçütü hatanın nereden geldiğini böyle gösterir (Gupta vd. 2009)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "LSTM ağı 241 CAMELS havzasında kar gibi depolama etkilerini öğrenebildi; bölgede öğrenileni havzaya aktarınca SAC-SMA+Snow-17'yi geçti (Kratzert vd. 2018)",
+    "Eğitimde görmediği havzalarda LSTM'in medyan NSE'si 0,69 oldu (kalibre SAC-SMA 0,64); yazarlar fiziksel kısıt eklemeyi gelecek araştırmaya bırakıyor (Kratzert vd. 2019)",
+    "YZ tabanlı küresel sistem, ölçümsüz havzada taşkını 5 gün önceden GloFAS'ın anlık tahmini kadar ya da daha güvenilir verdi; yazarlar daha çok hidrolojik veri istiyor (Nearing vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Brutsaert 2005",
+    "baslik": "Hydrology: An Introduction",
+    "yayin": "Cambridge University Press",
+    "yil": "2005",
+    "url": "https://doi.org/10.1017/CBO9780511808470",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Nash ve Sutcliffe 1970",
+    "baslik": "River flow forecasting through conceptual models part I — A discussion of principles",
+    "yayin": "Journal of Hydrology, 10(3), 282–290",
+    "yil": "1970",
+    "url": "https://doi.org/10.1016/0022-1694(70)90255-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gupta vd. 2009",
+    "baslik": "Decomposition of the mean squared error and NSE performance criteria: Implications for improving hydrological modelling",
+    "yayin": "Journal of Hydrology, 377, 80–91",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.jhydrol.2009.08.003",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kratzert vd. 2018",
+    "baslik": "Rainfall–runoff modelling using Long Short-Term Memory (LSTM) networks",
+    "yayin": "Hydrology and Earth System Sciences, 22, 6005–6022",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/hess-22-6005-2018",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Kratzert vd. 2019",
+    "baslik": "Toward Improved Predictions in Ungauged Basins: Exploiting the Power of Machine Learning",
+    "yayin": "Water Resources Research, 55, 11344–11354",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2019WR026065",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Nearing vd. 2024",
+    "baslik": "Global prediction of extreme floods in ungauged watersheds",
+    "yayin": "Nature, 627, 559–563",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07145-1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "CAMELS havzalarında günlük meteorolojik girdilerle LSTM sinir ağı eğiterek nehir akımını tahmin etmek ve SAC-SMA hidrograflarıyla kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 222",
+   "projeyeKatki": "Nash-Sutcliffe (NSE) ve Kling-Gupta (KGE) verimlilik metrikleriyle LSTM sinir ağının akım tahmin doğruluğunu ölçer ve hidrograf piklerini değerlendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Nash-Sutcliffe model verimlilik katsayısı",
+     "nerede": "Test döneminde LSTM tarafından üretilen günlük akımlarla gözlem akımları arasındaki tahmin başarısını değerlendirmede."
+    },
+    {
+     "formulAd": "Kling-Gupta verimlilik katsayısı",
+     "nerede": "LSTM akım tahminlerinin korelasyon, standart sapma oranı ve hacim sapması bileşenlerini ayrıntılı incelemede."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "CAMELS veri setinden bir karlı ve bir karsız havza seçip günlük meteorolojik verilerle LSTM ağı eğiterek akım hidrografı üretmek.",
+  "ayrinti": "CAMELS veri tabanından biri kar erimesi baskın diğeri yağmur baskın iki havza belirlenir. Daymet günlük yağış, sıcaklık ve radyasyon serileriyle akım gözlemleri 1999-2008 eğitim ve 1989-1999 test dönemine ayrılır. PyTorch tabanlı LSTM ağı GPU üzerinde eğitilir. Test döneminde üretilen akım tahminlerinin NSE ve KGE değerleri hesaplanır; CAMELS bünyesindeki SAC-SMA+Snow-17 simülasyonlarıyla kıyaslanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Havzaları seçmek ve veri setini hazırlamak",
+    "oz": "CAMELS veri tabanından bir karlı ve bir karsız havza belirleyip verileri ayırmak.",
+    "ayrinti": "Kar etkisi yüksek bir dağ havzası ile ılıman bir yağmur havzası seçilir. Daymet meteorolojik girdileri ve ölçülen nehir akımı zaman serisi pandas ile yüklenir.",
+    "nasil": [
+     {
+      "teknik": "df = pd.read_csv('camels_basin_data.csv', parse_dates=['date']) ile yağış, sıcaklık ve debi serilerini yüklemek.",
+      "sade": "Seçilen iki havzanın günlük yağış, hava sıcaklığı ve nehir akış ölçümlerini tablolara aktarırız.",
+      "altAdimlar": [
+       "1. Karlı dağ havzası ve ılıman ovalık havzanın kimlik kodlarını belirle.",
+       "2. Daymet meteorolojik zorlama ve akım dosyalarını pandas ile oku.",
+       "3. Eksik verileri ve aşırı uç değerleri kalite filtresinden geçir."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     },
+     {
+      "teknik": "scaler = StandardScaler(); X_train = scaler.fit_transform(train_df[['prcp', 'tmean', 'srad']]) ile girdileri ölçeklemek.",
+      "sade": "Yapay zekâ ağının dengeli öğrenebilmesi için yağış ve sıcaklık değerlerini sıfır ortalama ve bir standart sapmaya ayarlarız.",
+      "altAdimlar": [
+       "1. 1999-2008 yıllarını eğitim, 1989-1999 yıllarını test kümesi olarak ayır.",
+       "2. Eğitim kümesinden ortalama ve standart sapma katsayılarını çıkar.",
+       "3. Giriş matrisini ölçekleyip PyTorch tensör formatına çevir."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "LSTM sinir ağı mimarisini kurmak ve eğitmek",
+    "oz": "PyTorch ile 64 gizli birimli tek katmanlı LSTM ağını GPU üzerinde eğitmek.",
+    "ayrinti": "Girdi dizisi olarak son 365 günün meteorolojik koşulları verilir. Havzanın geçmiş su depolamasını öğrenen LSTM ağı ortalama kare hata kaybıyla 30 devir eğitilir.",
+    "nasil": [
+     {
+      "teknik": "model = nn.LSTM(input_size=3, hidden_size=64, num_layers=1, batch_first=True) ile hidrolojik LSTM kurmak.",
+      "sade": "Zaman içindeki yağış ve kuraklık birikimini hafızasında tutabilen yapay sinir ağı katmanını tanımlarız.",
+      "altAdimlar": [
+       "1. Girdi boyutu 3 olan tek katmanlı LSTM yapısını başlat.",
+       "2. Son katmana tek bir akım tahmini üreten doğrusal katman bağla.",
+       "3. Modeli ve veri yükleyicilerini ekran kartı belleğine taşı."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Birim hidrograf ve sentetik hidrograf yöntemleriyle pik akımları türetmek."
+      }
+     },
+     {
+      "teknik": "loss = nn.MSELoss()(pred, target); loss.backward(); optimizer.step() ile ağ ağırlıklarını güncellemek.",
+      "sade": "Tahmin edilen akım ile gerçek akım arasındaki hatayı hesaplayıp sinir ağının parametrelerini optimize ederiz.",
+      "altAdimlar": [
+       "1. 365 günlük kaydırmalı pencerelerle parti eğitim döngüsünü başlat.",
+       "2. Adam optimizasyon algoritmasıyla ağırlıkları adım adım güncelle.",
+       "3. Her devir sonunda doğrulama hatasını izleyerek aşırı öğrenmeyi önle."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Test döneminde NSE ve KGE metriklerini hesaplamak",
+    "oz": "LSTM akım tahminlerini gözlemlerle test edip NSE skorlarını çıkarmak.",
+    "ayrinti": "1989-1999 test döneminde ağ çalıştırılarak günlük akım tahminleri elde edilir. Nash-Sutcliffe ve Kling-Gupta verimlilikleri hesaplanarak SAC-SMA sonuçlarıyla eşleştirilir.",
+    "nasil": [
+     {
+      "teknik": "nse_lstm = 1 - np.sum((q_obs - q_lstm)**2) / np.sum((q_obs - np.mean(q_obs))**2) ile test başarısını ölçmek.",
+      "sade": "Yapay zekânın tahmin performansını standart hidroloji formülüyle puanlarız.",
+      "altAdimlar": [
+       "1. Test kümesindeki günlük akım tahminlerini ölçekten geri çevir.",
+       "2. Gerçek gözlem akımlarıyla farkların kareler toplamını al.",
+       "3. Formülü işleterek karlı ve karsız havza için NSE skorunu bul."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Nash-Sutcliffe ve Kling-Gupta verimlilik katsayılarıyla akım performansını değerlendirmek."
+      }
+     },
+     {
+      "teknik": "kge_lstm = calc_kge(q_obs, q_lstm) ile korelasyon, değişkenlik ve hacim sapması bileşenlerini hesaplamak.",
+      "sade": "Akımın zamanlamasını, mevsimsel dalgalanma gücünü ve toplam su hacmi dengesini Kling-Gupta ile inceleriz.",
+      "altAdimlar": [
+       "1. Gözlem ve tahmin serisi arasındaki Pearson korelasyonunu hesapla.",
+       "2. Tahminin standart sapma oranını ve ortalama akım sapmasını bul.",
+       "3. KGE puanını SAC-SMA yönteminin değerleriyle yan yana koy."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Nash-Sutcliffe ve Kling-Gupta verimlilik katsayılarıyla akım performansını değerlendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hidrograf karşılaştırma grafiklerini çizmek",
+    "oz": "Gözlem, LSTM ve SAC-SMA hidrograflarını tek grafikte görselleştirmek.",
+    "ayrinti": "Test döneminden seçilen iki yıllık detay kesit için gözlem, LSTM ve SAC-SMA akım eğrileri üst üste bindirilir. Tepe debileri ve çekilme eğrileri karşılaştırılarak diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "ax.plot(t, q_obs, 'k-', label='Gözlem'); ax.plot(t, q_lstm, 'b-', label='LSTM'); ax.plot(t, q_sac, 'r--', label='SAC-SMA') ile çizmek.",
+      "sade": "Üç farklı akım serisini renkli çizgilerle tek bir zaman grafiğinde yan yana gösteririz.",
+      "altAdimlar": [
+       "1. Zaman eksenini ayarla ve siyah çizgiyle gözlem hidrografını çiz.",
+       "2. Mavi renkle LSTM tahminlerini, kırmızı kesikli çizgiyle SAC-SMA eğrisini ekle.",
+       "3. Tepe akımlarının ve kurak dönem çekilme eğrilerinin uyumunu incele."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Birim hidrograf ve sentetik hidrograf yöntemleriyle pik akımları türetmek."
+      }
+     },
+     {
+      "teknik": "plt.savefig('camels_lstm_hidrograf.png', dpi=300) ile hidrograf karşılaştırma grafiğini diske yazmak.",
+      "sade": "Hazırlanan yüksek çözünürlüklü hidrograf çizimini dosya olarak saklarız.",
+      "altAdimlar": [
+       "1. Eksen etiketlerine debi ve tarih bilgilerini ekle.",
+       "2. NSE ve KGE özet tablosunu grafik köşesine metin kutusu olarak koy.",
+       "3. Çizimi 300 DPI çözünürlükte PNG olarak diske yaz."
+      ],
+      "kazanim": {
+       "ders": "MTO 222",
+       "madde": "Havza su dengesi bileşenlerini ölçüm ve tahmin verileriyle hesaplamak."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İki havza için LSTM ve SAC-SMA hidrograflarını kıyaslayan grafikler ve NSE-KGE performans tablosu.",
+  "senden": "LSTM ağının eğitim döngüsünü kurmak, hidrograf çizimlerini tasarlamak ve test NSE skorlarını çıkarmak.",
+  "bizden": "CAMELS havzalarını seçmek, Daymet meteorolojik verilerini hazırlamak ve SAC-SMA çıktılarıyla eşleştirmek."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://neuralhydrology.github.io/",
+   "aciklama": "NeuralHydrology Python kütüphanesi dokümantasyonu ve derin hidroloji eğitim mimarisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "CAMELS havzasında LSTM akım tahmini ile SAC-SMA ve gözlem hidrografları karşılaştırması",
+   "aciklama": "Gözlem ve tahmin akım eğrilerinin mevsimsel tepe noktalarındaki dinamik örtüşmesi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Hydrograph.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Nehir hidrografı pik akış ve çekilme eğrisi bileşenleri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Kratzert vd. 2018 LSTM ile Yağış-Akış Tahmini Makalesi",
+   "url": "https://doi.org/10.5194/hess-22-6005-2018"
+  },
+  {
+   "ad": "Nearing vd. 2024 Nature Küresel Taşkın Tahmini Makalesi",
+   "url": "https://doi.org/10.1038/s41586-024-07145-1"
+  },
+  {
+   "ad": "Nash ve Sutcliffe 1970 Hidrolojik Model Doğrulama Makalesi",
+   "url": "https://doi.org/10.1016/0022-1694(70)90255-6"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO222-02.json",
+  "tarih": "2026-10-17 01:16",
+  "geminiSha1": "834c7922e0bc"
+ }
+}

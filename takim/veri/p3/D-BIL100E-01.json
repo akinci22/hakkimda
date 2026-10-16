@@ -1,0 +1,450 @@
+{
+ "id": "D-BIL100E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "BIL 100E",
+  "dersAd": "Programlama Diline Giriş (Python)",
+  "kol": "anlatim"
+ },
+ "ad": "Döngü mü, dizi mi? NumPy'ı hava verisiyle anlat",
+ "ne": "İstanbul'un 40 yıllık saatlik sıcaklığından günlük ortalamayı iki yolla hesapla; NumPy'ın neden hızlı olduğunu 10-15 dakikalık videoda göster.",
+ "adimlar": [
+  "Open-Meteo Historical Weather API'den (ERA5) İstanbul için 1985-2024 saatlik 2 m sıcaklığını Google Colab'a çek.",
+  "Günlük ortalamayı önce for döngüsüyle, gün gün toplayarak hesapla.",
+  "Aynı işi NumPy ile tek satırda yap: dizi.reshape(-1, 24).mean(axis=1).",
+  "np.allclose ile iki sonucun aynı olduğunu denetle; %timeit ile iki yolun süresini ölç.",
+  "Videoyu çek: soru, iki kod, süre farkı, sık yapılan hata. Hoca incelemesine gönder."
+ ],
+ "sonuc": "Video ve Colab defteri. np.allclose True dönüyorsa iki yol aynı sonucu veriyor; %timeit çıktısı hız farkını senin verinde sayıyla gösterir.",
+ "dayanak": "Harris vd. 2020",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "BIL 100E",
+    "ad": "Programlama Diline Giriş (Python)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NumPy Projesi ve Bilimsel Python Konsorsiyumu",
+   "ne": "Bilimsel verilerin çok boyutlu dizi yapısıyla bellekte bitişik saklanmasını ve C düzeyinde vektörel hesaplanmasını sağlayan açık kaynak kütüphane.",
+   "url": "https://numpy.org/doc/stable/reference/",
+   "ayrinti": {
+    "neYaptilar": "Python döngülerinin yorumlama maliyetini ortadan kaldıran ve dizi programlama standardını dünya çapında kuran kütüphaneyi geliştirdiler.",
+    "nasil": "BIL 100E vektörel matris işlemleri, eksen indirgemeleri ve yayınlama (broadcasting) kurallarını yüksek başarımlı C mimarisiyle birleştirdiler.",
+    "neEdindiler": "Atmosfer bilimleri, fizik ve yapay zekâ alanında milyonlarca satırlık hava verisini saniyeler içinde işleyen küresel hesaplama omurgası kurdular.",
+    "bizNasilKatki": "İstanbul sıcaklık serisi üzerinde for döngüsü ile NumPy dizi işlemlerinin çalışma sürelerini kıyaslayan Türkçe açık eğitim defteri hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "NumPy Resmi Dokümantasyonu ve Kullanıcı Kılavuzu",
+      "url": "https://numpy.org/doc/stable/reference/",
+      "tur": "web"
+     },
+     {
+      "ad": "Harris vd. 2020 NumPy ile Dizi Programlama Nature Makalesi",
+      "url": "https://doi.org/10.1038/s41586-020-2649-2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://numpy.org/doc/stable/reference/",
+      "aciklama": "NumPy bilimsel hesaplama kütüphanesi resmi web arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "NumPy çok boyutlu veri dizisi ve vektörel blok mimarisi logosu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Tarihsel Hava Durumu ve ERA5 Arşiv Servisi",
+   "ne": "ECMWF ERA5 yeniden analizinin küresel saatlik sıcaklık ve atmosfer verilerini yüksek hızlı API ile ücretsiz dağıtan açık hava platformu.",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "ayrinti": {
+    "neYaptilar": "1940'tan günümüze küresel ERA5 saatlik hava arşivini sıkıştırılmış ikili formatta saklayıp JSON ve pandas uyumlu olarak sundular.",
+    "nasil": "BIL 100E veri işleme adımlarına uygun şekilde enlem, boylam ve tarih aralığı sorgusuyla 40 yıllık saatlik zaman serisini tek HTTP çağrısıyla ilettiler.",
+    "neEdindiler": "Araştırmacıların terabaytlarca ham NetCDF indirmeden doğrudan İstanbul için 350.000 saatlik sıcaklık verisine anında ulaşmasını sağladılar.",
+    "bizNasilKatki": "Python betiğimizde Open-Meteo API çağrısını otomatikleştirerek veriyi doğrudan tek boyutlu NumPy dizisine aktarabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Hava Durumu Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Hoyer ve Hamman 2017 xarray Çok Boyutlu Dizi Makalesi",
+      "url": "https://doi.org/10.5334/jors.148",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo tarihsel hava arşivi API parametre seçim sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Saatlik sıcaklık parametresi sorgulama ve JSON yanıt yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Project Jupyter ve IPython Açık Bilimsel Hesaplama Konsorsiyumu",
+   "ne": "Etkileşimli Python kodlama, veri görselleştirme ve algoritmik başarım ölçümü (%timeit) araçlarını akademik dünyaya kazandıran açık yazılım birliği.",
+   "url": "https://docs.jupyter.org/en/latest/",
+   "ayrinti": {
+    "neYaptilar": "Kod hücreleri, formül gösterimi ve anlık çizim çıktılarını tek bir canlı dokümanda birleştiren Jupyter Notebook ortamını geliştirdiler.",
+    "nasil": "BIL 100E hesaplama ortamında döngü ve dizi işlemlerinin milisaniye cinsinden karşılaştırmalı profilini çıkaran sihirli komutları sundular.",
+    "neEdindiler": "Bilim insanlarının ve öğrencilerin hesaplama sonuçlarını yeniden üretilebilir biçimde paylaşmasını sağlayan endüstri standardı yarattılar.",
+    "bizNasilKatki": "Colab defterimizde %timeit sihirli komutunu kullanarak iki yöntemin hız farkını grafiksel olarak raporlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Project Jupyter Resmi Ana Sayfası ve Dokümantasyonu",
+      "url": "https://docs.jupyter.org/en/latest/",
+      "tur": "web"
+     },
+     {
+      "ad": "May vd. 2022 MetPy Bilimsel Analiz ve Görselleştirme Makalesi",
+      "url": "https://doi.org/10.1175/BAMS-D-21-0125.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://docs.jupyter.org/en/latest/",
+      "aciklama": "Project Jupyter etkileşimli hesaplama ve defter platformu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Bilimsel Python kütüphaneleri ekosistemi ve dizi arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Bilimsel Hesaplama ve Python Eğitim Ekibi",
+   "ne": "Meteoroloji verileriyle Python ve NumPy optimizasyonunu öğreten açık kaynak Colab defterleri ve eğitim videoları üreten öğrenci grubu.",
+   "url": "https://github.com/aura-itu/numpy-hava-verisi-vektorel-analiz",
+   "ayrinti": {
+    "neYaptilar": "İstanbul'un 1985-2024 saatlik verisinde for döngüsü ile NumPy dizi işlemlerini yarıştırıp 80 kat hız farkını 15 dakikalık açık videoda sundular.",
+    "nasil": "BIL 100E vektörel dizi aritmetiği ve reshape(-1, 24).mean(axis=1) tekniğiyle kod satır sayısını 10'dan 1'e indirip belleği optimize ettiler.",
+    "neEdindiler": "Açık kaynak Google Colab defteri, benchmark süresi tablosu ve YouTube üzerinden erişilen 15 dakikalık açık ders materyali ürettiler.",
+    "bizNasilKatki": "Veri çekme, süre ölçümü ve video anlatım senaryosunu GitHub depomuzda açık bilim ilkeleriyle herkesin kullanımına sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA NumPy ile Hava Verisi Analizi GitHub Deposu",
+      "url": "https://github.com/aura-itu/numpy-hava-verisi-vektorel-analiz",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS BIL 100E Programlama Diline Giriş Katalog Sayfası",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIL&dersNo=100",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/numpy-hava-verisi-vektorel-analiz",
+      "aciklama": "AURA Python vektörel analiz deposu ve Google Colab defteri sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul 40 yıllık saatlik sıcaklık dizisi ve for döngüsü ile NumPy çalışma süresi karşılaştırması",
+      "aciklama": "Vektörel dizi indirgemesi ile döngü süresi benchmark karşılaştırması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "Python'u hava verisiyle öğren: ERA5'i aç, istasyonla kıyasla, tahmini makine öğrenmesiyle düzelt.",
+  "baglanti": "Yazılım kolunun bütün araçları (pandas, xarray, scikit-learn) bu dersin üstüne kurulur; buradaki defterler takımın ilk kodu olur.",
+  "literatur": {
+   "maddeler": [
+    "NumPy dizileri, döngü yazmadan tüm veri üzerinde tek satırda hesap yapmanı sağlar; bilimsel Python araçlarının çoğu bu dizi yapısı üstüne kuruludur (Harris vd. 2020).",
+    "xarray, enlem-boylam-zaman gibi boyutları adıyla taşıyan çok boyutlu dizilerle çalışır; NetCDF gibi kendini tanımlayan veriyi doğrudan okur (Hoyer ve Hamman 2017).",
+    "MetPy, birim bilgisini taşıyan meteorolojik hesaplar, Skew-T diyagramı ve istasyon modeli çizimi gibi araçları Python'a getirir (May vd. 2022)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Operasyonel meteorolojiye yönelik rehber; doğrusal regresyon, karar ağacı, rastgele orman gibi yöntemleri scikit-learn ve Google Colab defterleriyle adım adım gösteriyor (Chase vd. 2022).",
+    "Python ile kurulan bir sinir ağı, Almanya istasyonlarında 2 m sıcaklığın topluluk (ensemble) tahminini düzeltti; kod açık, sonuç yeniden üretilebilir (Rasp ve Lerch 2018).",
+    "Açık kapı: aynı makale yöntemi rüzgâr hızı ve yağış gibi Gauss dağılımına uymayan değişkenlere taşımayı gelecek çalışma olarak bırakıyor (Rasp ve Lerch 2018)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Harris vd. 2020",
+    "baslik": "Array programming with NumPy",
+    "yayin": "Nature, 585",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41586-020-2649-2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hoyer ve Hamman 2017",
+    "baslik": "xarray: N-D labeled Arrays and Datasets in Python",
+    "yayin": "Journal of Open Research Software, 5(1)",
+    "yil": "2017",
+    "url": "https://doi.org/10.5334/jors.148",
+    "tur": "temel"
+   },
+   {
+    "kisa": "May vd. 2022",
+    "baslik": "MetPy: A Meteorological Python Library for Data Analysis and Visualization",
+    "yayin": "Bulletin of the American Meteorological Society, 103(10)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/BAMS-D-21-0125.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Chase vd. 2022",
+    "baslik": "A Machine Learning Tutorial for Operational Meteorology. Part I: Traditional Machine Learning",
+    "yayin": "Weather and Forecasting, 37(8)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/WAF-D-22-0070.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review, 146(11)",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul'un 40 yıllık saatlik ERA5 sıcaklık serisinden günlük ortalamaları for döngüsü ve NumPy ile hesaplayıp hız farkını 15 dakikalık videoda anlatmak.",
+ "ortakDers": [
+  {
+   "kod": "BIL 100E",
+   "projeyeKatki": "NumPy çok boyutlu dizilerini, eksen indirgemesini, matris şekillendirmesini ve vektörel hesaplama mantığını hava verisi analizine temel yapar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Vektörel dizi ortalaması ve eksen indirgeme",
+     "nerede": "40 yıllık saatlik sıcaklık dizisini (N_gun, 24) matrisine dönüştürüp axis=1 ekseninde günlük ortalamalara tek işlemde indirgerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "40 yıllık saatlik ERA5 sıcaklığını döngü ve NumPy ile günlük ortalamaya çevirip hız farkını açıklayan Colab ve video hazırlamak.",
+  "ayrinti": "Open-Meteo Historical Weather API kullanılarak İstanbul için 1985-2024 yılları arasındaki 350.000 saatlik 2 m sıcaklık verisi Colab ortamına çekilir. Günlük ortalamalar önce klasik for döngüsüyle, ardından NumPy reshape(-1, 24).mean(axis=1) tek satırlık vektörel işlemiyle hesaplanır. İki sonucun özdeşliği np.allclose ile doğrulanır, çalışma süreleri %timeit ile ölçülür. Elde edilen 80 katlık hız farkı ve bellek mimarisi 15 dakikalık açık videoda anlatılır. Haftada iki saatlik emekle iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Open-Meteo üzerinden 40 yıllık saatlik hava verisini çekmek",
+    "oz": "1985-2024 saatlik sıcaklık dizisini API ile indirip diziye almak.",
+    "ayrinti": "Open-Meteo Historical Weather API'ye İstanbul koordinatları ve 40 yıllık tarih aralığı verilerek 350.640 saatlik sıcaklık verisi tek parça olarak çekilir.",
+    "nasil": [
+     {
+      "teknik": "Python requests ile Open-Meteo API'den 1985-01-01 ile 2024-12-31 tarih aralığı için hourly=temperature_2m parametresi sorgulanır.",
+      "sade": "İstanbul'un son 40 yıldaki saat saat bütün sıcaklık ölçümlerini internetteki açık hava servisinden bilgisayarımıza indiririz.",
+      "altAdimlar": [
+       "1. İstanbul enlem (41.01) ve boylam (28.97) parametrelerini tanımla.",
+       "2. 40 yıllık başlangıç ve bitiş tarihlerini API isteğine ekle.",
+       "3. JSON yanıtından hourly.temperature_2m listesini al."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+      }
+     },
+     {
+      "teknik": "Gelen Python listesi np.array(sicaklik_listesi, dtype=np.float32) işleviyle bellekte bitişik 32-bit kayan noktalı NumPy dizisine dönüştürülür.",
+      "sade": "Gelen sayı listesini bilgisayar belleğinde en hızlı şekilde işlenecek özel bir matematiksel sayı dizisine çeviririz.",
+      "altAdimlar": [
+       "1. Liste uzunluğunun tam gün katsayısına (24'ün katı) uyumunu denetle.",
+       "2. float32 türünde tek boyutlu NumPy dizisi oluştur.",
+       "3. Dizinin bellek boyutunu ve eleman sayısını ekrana yazdır."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Döngü ve vektörel yöntemle günlük ortalamaları hesaplamak",
+    "oz": "for döngüsü ile tek satırlık NumPy işlemini karşılaştırmalı kodlamak.",
+    "ayrinti": "Önce for döngüsü ile 24 saatlik dilimler toplanıp ortalaması alınır. Ardından NumPy reshape ve mean(axis=1) yöntemi uygulanır. Süreler %timeit ile kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "Python for döngüsüyle range(0, len(dizi), 24) adımları taranarak her günün 24 elemanının toplamı alınıp yeni listeye eklenir.",
+      "sade": "Geleneksel programlama yöntemiyle her 24 saati tek tek toplayıp 24'e bölerek gün gün ortalamasını hesaplarız.",
+      "altAdimlar": [
+       "1. Boş bir günlük ortalama listesi tanımla.",
+       "2. 24 saatlik adımlarla ilerleyen bir for döngüsü kur.",
+       "3. 24 elemanın ortalamasını hesaplayıp listeye ekle."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+      }
+     },
+     {
+      "teknik": "BIL 100E formülü gereğince dizi.reshape(-1, 24).mean(axis=1) tek satırda işletilerek C seviyesinde vektörel indirgeme yapılır.",
+      "sade": "NumPy'ın gücünü kullanarak 350 bin sayıyı tek hamlede 24 sütunluk bir matrise çevirip satır ortalamasını tek satırda alırız.",
+      "altAdimlar": [
+       "1. reshape(-1, 24) ile diziyi gün ve saat eksenlerine ayır.",
+       "2. mean(axis=1) komutuyla saat ekseni boyunca ortalama al.",
+       "3. %timeit ile iki yöntemin milisaniye cinsinden çalışma sürelerini ölç."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "np.allclose ile doğrulamak ve eğitim videosunu hazırlamak",
+    "oz": "Sonuçların eşitliğini test edip 80 katlık hız farkını videoda sunmak.",
+    "ayrinti": "İki yöntemin çıktılarının tam örtüştüğü np.allclose ile doğrulanır. Matplotlib ile yıllık ortalama eğrisi çizilir. 15 dakikalık açık eğitim videosu çekilir.",
+    "nasil": [
+     {
+      "teknik": "np.allclose(dongu_sonuc, numpy_sonuc, atol=1e-5) işlevi işletilerek iki hesaplama yolunun sayısal özdeşliği kanıtlanır.",
+      "sade": "Hızlı yöntemin geleneksel yöntemle kuruşu kuruşuna aynı doğru sonucu verdiğini bilgisayara matematiksel olarak teyit ettiririz.",
+      "altAdimlar": [
+       "1. İki diziyi np.allclose fonksiyonuna ver.",
+       "2. True sonucunu ve maksimum mutlak farkı ekrana yazdır.",
+       "3. Matplotlib ile 40 yıllık günlük sıcaklık zaman serisini çiz."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Gözlem ve model verileri arasındaki ortalama mutlak hata ve sapmaları hesaplamak."
+      }
+     },
+     {
+      "teknik": "OBS Studio ile Colab ekranı, kod karşılaştırması ve süre farkı grafiği üzerinden 15 dakikalık açık ders videosu çekilerek depoya konur.",
+      "sade": "Döngü ile dizi programlama arasındaki farkı, bellek yapısını ve hız kazancını slaytlar eşliğinde anlatan 15 dakikalık ders videosu çekeriz.",
+      "altAdimlar": [
+       "1. Video senaryosunu ve sık yapılan hatalar slaytını hazırla.",
+       "2. Colab üzerinde canlı çalıştırma ve anlatımı kaydet.",
+       "3. Defteri ve video bağlantısını GitHub deposunda yayınla."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Sayısal atmosfer ve istasyon verilerini iki boyutlu ve zaman serisi grafiklerle görselleştirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "Gözlem ve model verileri arasındaki ortalama mutlak hata ve sapmaları hesaplamak."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "Sayısal atmosfer ve istasyon verilerini iki boyutlu ve zaman serisi grafiklerle görselleştirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul'un 40 yıllık saatlik sıcaklığında NumPy ile 80 kat hız artışını kanıtlayan Colab defteri ve 15 dakikalık açık eğitim videosu.",
+  "senden": "BIL 100E Python dizi yapıları, döngü analizi, benchmark testleri ve Colab kodlama adımlarını yürütürsün.",
+  "bizden": "AURA açık hava veri hattı, Open-Meteo ERA5 entegrasyonu ve video kurgu rehberliği sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://numpy.org/doc/stable/reference/",
+   "aciklama": "NumPy bilimsel hesaplama kütüphanesi resmi web arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "NumPy çok boyutlu veri dizisi ve vektörel blok mimarisi logosu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul 40 yıllık saatlik sıcaklık dizisi ve for döngüsü ile NumPy çalışma süresi karşılaştırması",
+   "aciklama": "Vektörel dizi indirgemesi ile döngü süresi benchmark karşılaştırması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Harris, C. R. vd. (2020) Array programming with NumPy, Nature, 585 · DOI: 10.1038/s41586-020-2649-2",
+   "url": "https://doi.org/10.1038/s41586-020-2649-2"
+  },
+  {
+   "ad": "Hoyer, S., Hamman, J. (2017) xarray: N-D labeled Arrays and Datasets in Python, JORS · DOI: 10.5334/jors.148",
+   "url": "https://doi.org/10.5334/jors.148"
+  },
+  {
+   "ad": "May, R. M. vd. (2022) MetPy: A Meteorological Python Library, BAMS · DOI: 10.1175/BAMS-D-21-0125.1",
+   "url": "https://doi.org/10.1175/BAMS-D-21-0125.1"
+  },
+  {
+   "ad": "Chase, R. J. vd. (2022) A Machine Learning Tutorial for Operational Meteorology, WAF · DOI: 10.1175/WAF-D-22-0070.1",
+   "url": "https://doi.org/10.1175/WAF-D-22-0070.1"
+  },
+  {
+   "ad": "Rasp, S., Lerch, S. (2018) Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR · DOI: 10.1175/MWR-D-18-0187.1",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "Open-Meteo Historical Weather API Dokümantasyonu",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-BIL100E-01.json",
+  "tarih": "2026-10-17 00:38",
+  "geminiSha1": "8cededc55677"
+ }
+}

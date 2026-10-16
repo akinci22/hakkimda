@@ -1,0 +1,451 @@
+{
+ "id": "D-MTO223-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 223",
+  "dersAd": "Bilgisayar Grafiğine Giriş",
+  "kol": "anlatim"
+ },
+ "ad": "Gökkuşağı paleti neyi gizler? Aynı harita, iki palet",
+ "ne": "Aynı sıcaklık haritasını GrADS'ın varsayılan gökkuşağı paletiyle ve algıya uygun bir paletle çiz; farkı 10-15 dakikalık videoda göster.",
+ "adimlar": [
+  "Copernicus CDS'den Türkiye kutusu için bir günün ERA5 2 m sıcaklığını NetCDF olarak indir.",
+  "Dosyayı GrADS'ta sdfopen ile aç; açılmazsa xarray'de valid_time boyutunun adını time yapıp to_netcdf ile yeni dosyaya yaz.",
+  "GrADS'ta varsayılan renklerle gölgeli harita çiz (set gxout shaded), printim ile PNG al.",
+  "Aynı haritayı Python'da cartopy ve cmcrameri paketinin batlow paletiyle çiz.",
+  "İki görseli gri tona çevir ve bir renk körlüğü benzeticisinden (ör. Coblis) geçir.",
+  "Dört görseli yan yana koyup 10-15 dakikalık videoyu çek; hoca incelemesine gönder."
+ ],
+ "sonuc": "Dört görsel yan yana: iki palet, renkli ve gri. Gri tonda batlow sıcaklığı düzgün sıralarken gökkuşağı sahte sınırlar gösteriyorsa anlatımın kanıtı hazır.",
+ "dayanak": "Crameri vd. 2020",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 223",
+    "ad": "Bilgisayar Grafiğine Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "İsviçre Federal Araştırma Enstitüsü Bilimsel Renk Haritaları Girişimi",
+   "ne": "Bilimsel verilerde algısal tekdüzeliği koruyan ve renk körlüğüne duyarlı batlow paletlerini geliştiren açık araştırma konsorsiyumu.",
+   "url": "https://www.fabiocrameri.ch/colourmaps/",
+   "ayrinti": {
+    "neYaptilar": "Gökkuşağı paletinin yapay veri gradyanları üretmesini engelleyen ve parlaklığı doğrusal artan bilimsel renk haritaları ürettiler.",
+    "nasil": "MTO 223 renk teorisi ilkeleriyle CAM02-UCS algısal renk uzayında tekdüze gradyanlar ve cmcrameri Python kütüphanesini kodladılar.",
+    "neEdindiler": "Doğa bilimleri makalelerinde ve meteoroloji raporlarında hatalı veri yorumlarını önleyen evrensel renk standartları sağladılar.",
+    "bizNasilKatki": "cmcrameri batlow paletini Türkiye ERA5 2 m sıcaklık haritasına uygulayarak GrADS varsayılan renkleriyle kıyaslayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Crameri vd. 2020 Bilimde Yanlış Renk Kullanımı Makalesi",
+      "url": "https://doi.org/10.1038/s41467-020-19160-7",
+      "tur": "makale"
+     },
+     {
+      "ad": "Fabio Crameri Bilimsel Renk Haritaları Portalı",
+      "url": "https://www.fabiocrameri.ch/colourmaps/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.fabiocrameri.ch/colourmaps/",
+      "aciklama": "Bilimsel renk haritaları koleksiyonu ve batlow palet testleri arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Gökkuşağı paletinde parlaklık dalgalanması ve sahte gradyan analizi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Innsbruck Üniversitesi Meteoroloji ve HCL Renk Uzayı Grubu",
+   "ne": "Meteorolojik görselleştirmede gökkuşağı paletinin yanıltıcılığını kanıtlayan ve HCL palet standartlarını kuran enstitü.",
+   "url": "https://colorspace.r-forge.r-project.org/",
+   "ayrinti": {
+    "neYaptilar": "BAMS dergisinde gökkuşağı paletinin atmosferik cepheleri nasıl yanlış gösterdiğini yayınlayıp algısal renk araçları sundular.",
+    "nasil": "MTO 223 görsel algı ilkeleri uyarınca ton, kroma ve parlaklık bileşenlerini birbirinden ayıran HCL renk dönüşümlerini geliştirdiler.",
+    "neEdindiler": "Meteoroloji uzmanlarının ve hava tahmin sunucularının veriyi doğru yansıtan renk skalaları kullanmasını sağladılar.",
+    "bizNasilKatki": "Stauffer tarafından tanımlanan HCL tekdüzelik testlerini Türkiye sıcaklık haritasının gri tonlamasında doğrularız.",
+    "referanslar": [
+     {
+      "ad": "Stauffer vd. 2015 Meteorolojik Görselleştirmede Renk Kullanımı Makalesi",
+      "url": "https://doi.org/10.1175/BAMS-D-13-00155.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Innsbruck HCL Renk Uzayı Yazılım Dokümantasyonu",
+      "url": "https://colorspace.r-forge.r-project.org/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://colorspace.r-forge.r-project.org/",
+      "aciklama": "HCL renk uzayı ve algısal palet oluşturma kütüphanesi sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://colorspace.r-forge.r-project.org/",
+      "aciklama": "Algısal renk haritalarının spektrum analizi ve renk körlüğü simülasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Coblis Renk Körlüğü Simülasyon Platformu",
+   "ne": "Görselleri protanopi, döteranopi ve monokromatik görme kusurlarına göre filtreleyen çevrim içi erişilebilirlik aracı.",
+   "url": "https://www.color-blindness.com/coblis-color-blindness-simulator/",
+   "ayrinti": {
+    "neYaptilar": "Farklı renk körlüğü türlerinde haritaların ve grafiklerin nasıl algılandığını gösteren web tabanlı dönüştürücü kurdular.",
+    "nasil": "MTO 223 bilgisayar grafiği dalga boyu dönüşüm matrislerini piksel dizilerine uygulayarak göz filtreleme algoritmaları işlettiler.",
+    "neEdindiler": "Bilim insanlarının hazırladıkları haritaları yayına vermeden önce erişilebilirlik testinden geçirmelerini mümkün kıldılar.",
+    "bizNasilKatki": "GrADS gökkuşağı ve Cartopy batlow çıktılarını Coblis filtrelerinden geçirip video sunumunda yan yana gösterebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Coblis Çevrim İçi Renk Körlüğü Benzetim Sistemi",
+      "url": "https://www.color-blindness.com/coblis-color-blindness-simulator/",
+      "tur": "web"
+     },
+     {
+      "ad": "Crameri vd. 2020 Doğru Renk Kullanımı Makalesi",
+      "url": "https://doi.org/10.1038/s41467-020-19160-7",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.color-blindness.com/coblis-color-blindness-simulator/",
+      "aciklama": "Coblis renk körlüğü filtreleme ve görsel dönüştürme paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Spektral paletlerin algısal kontrast ve renk körlüğü test sonuçları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Bilim İletişimi ve Meteorolojik Görselleştirme Ekibi",
+   "ne": "Hava haritalarında doğru renk kullanımını video anlatımlarla yaygınlaştıran AURA öğrenci çalışma grubu.",
+   "url": "https://github.com/aura-itu/bilimsel-palet-karsilastirma",
+   "ayrinti": {
+    "neYaptilar": "GrADS gökkuşağı ile Python batlow sıcaklık haritalarını Türkiye verisiyle çizip renk körlüğü analiz videosu ürettiler.",
+    "nasil": "MTO 223 harita projeksiyonları, parlaklık formülü ve Python Cartopy kütüphanesiyle dörtlü karşılaştırma paneli kurdular.",
+    "neEdindiler": "Meteoroloji öğrencilerinin sahte gradyan yanılgısına düşmesini engelleyen açık kaynak eğitim materyali hazırladılar.",
+    "bizNasilKatki": "Harita karşılaştırma betiklerini tek tıklamayla çalışan Google Colab şablonuna dönüştürüp depoya ekleriz.",
+    "referanslar": [
+     {
+      "ad": "AURA Bilimsel Palet Karşılaştırma GitHub Deposu",
+      "url": "https://github.com/aura-itu/bilimsel-palet-karsilastirma",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 223 Bilgisayar Grafiğine Giriş Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=223",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/bilimsel-palet-karsilastirma",
+      "aciklama": "AURA palet karşılaştırma analiz deposu ve video senaryosu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Türkiye 2 m sıcaklık alanının gökkuşağı ve batlow bilimsel renk paletleri ile karşılaştırmalı görselleştirilmesi",
+      "aciklama": "Gökkuşağı ve batlow paletlerinin parlaklık ve renk körlüğü tepkilerini gösteren simülasyon"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Haritayı doğru paletle çiz, tahmin hatasını haritala, yapay zekânın neye baktığını göster.",
+  "baglanti": "Yazılım kolunun tahmin karnesi bu dersin haritalarıyla okunur; anlatım kolunda doğru renk seçimi her videonun şartıdır.",
+  "literatur": {
+   "maddeler": [
+    "Gökkuşağı (RGB) paleti parlaklığı düzensiz değiştirir ve algıyı yanıltır; HCL tabanlı sıralı ve ıraksak paletler algıya uygundur (Stauffer vd. 2015).",
+    "Algısal olarak düzgün ve renk körlüğüne uygun bilimsel renk haritaları veriyi bozmadan gösterir; gökkuşağı ve kırmızı-yeşil paletten kaçın (Crameri vd. 2020).",
+    "NCAR, analiz ve görselleştirme araçlarında Python'u ana dil seçti; NCL bakım moduna alındı, NCL örnekleri GeoCAT ile Python'a taşınıyor (NCAR 2019)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Permütasyon önemi, belirginlik (saliency) ve sınıf aktivasyon haritaları bir modelin neye baktığını gösterir; hortum, dolu ve kış yağış türü örneklerinde denendi (McGovern vd. 2019).",
+    "Önceki derin öğrenme yağış tahminleri ileri öngörü sürelerinde bulanıklaşıyordu; DGMR gerçekçi radar haritası üretti, 50'yi aşkın uzman olguların %89'unda onu öne koydu (Ravuri vd. 2021).",
+    "Açık kapı: açıklama (XAI) ısı haritaları yönteme göre yanıltıcı olabilir; makale bu haritaların güvenilirliğinin daha çok araştırılması gerektiğini vurguluyor (Mamalakis vd. 2022)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stauffer vd. 2015",
+    "baslik": "Somewhere Over the Rainbow: How to Make Effective Use of Colors in Meteorological Visualizations",
+    "yayin": "Bulletin of the American Meteorological Society, 96(2)",
+    "yil": "2015",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00155.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Crameri vd. 2020",
+    "baslik": "The misuse of colour in science communication",
+    "yayin": "Nature Communications, 11",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41467-020-19160-7",
+    "tur": "temel"
+   },
+   {
+    "kisa": "NCAR 2019",
+    "baslik": "NCL Pivot to Python (NCL'in geleceği üzerine NCAR açıklaması)",
+    "yayin": "NCAR/UCAR resmî duyuru",
+    "yil": "2019",
+    "url": "https://www.ncl.ucar.edu/Document/Pivot_to_Python/",
+    "tur": "temel"
+   },
+   {
+    "kisa": "McGovern vd. 2019",
+    "baslik": "Making the Black Box More Transparent: Understanding the Physical Implications of Machine Learning",
+    "yayin": "Bulletin of the American Meteorological Society, 100(11)",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/BAMS-D-18-0195.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Mamalakis vd. 2022",
+    "baslik": "Investigating the Fidelity of Explainable Artificial Intelligence Methods for Applications of Convolutional Neural Networks in Geoscience",
+    "yayin": "Artificial Intelligence for the Earth Systems, 1(4)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/AIES-D-22-0012.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Aynı sıcaklık haritasını GrADS gökkuşağı paleti ve batlow algısal paletiyle çizip renk körlüğü benzetiminde kıyaslayarak video anlatımı hazırlamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 223",
+   "projeyeKatki": "GrADS ve Cartopy harita çizimi, renk teorisi, algısal parlaklık tekdüzeliği ve renk körlüğü filtreleme tekniklerini projeye kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Göreceli parlaklık ve algısal kontrast",
+     "nerede": "Gökkuşağı ve batlow paletlerinin gri tona indirgenerek parlaklık tekdüzeliğinin ve yapay gradyan oluşumunun test edilmesinde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Türkiye ERA5 sıcaklığını GrADS ve Python batlow paletiyle çizip renk körlüğü benzetimiyle video dersine dönüştürmek.",
+  "ayrinti": "Copernicus CDS üzerinden Türkiye için 2024 yılı bir günlük ERA5 sıcaklık NetCDF verisi indirilir. GrADS ortamında açılarak klasik gökkuşağı paletiyle gölgeli harita çizilip PNG çıktısı alınır. Aynı veri Python Cartopy ve cmcrameri batlow paletiyle yeniden haritalanır. İki harita Pillow ile gri tona çevrilip Coblis filtrelerinden geçirilir. Dört panel yan yana getirilerek 15 dakikalık anlatım videosu hazırlanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 sıcaklık verisini indirip GrADS ile haritalamak",
+    "oz": "NetCDF verisini GrADS ortamında gökkuşağı paletiyle çizmek.",
+    "ayrinti": "Türkiye sınırlarını kapsayan ERA5 sıcaklık alanı indirilir. GrADS betiğiyle varsayılan gölgeli harita üretilip PNG formatında diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "Copernicus CDS üzerinden 35-43K, 25-45D Türkiye alanı era5-single-levels sıcaklığı NetCDF olarak yerel diske aktarılır.",
+      "sade": "Türkiye üzerindeki saatlik sıcaklık haritası verisini Avrupa meteoroloji merkezinden bilgisayarımıza indiririz.",
+      "altAdimlar": [
+       "1. CDS API ile Türkiye koordinat sınırlarını belirle.",
+       "2. 2 m sıcaklık değişkenini NetCDF olarak indir.",
+       "3. xarray ile zaman boyutunu GrADS uyumlu hale getir."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+      }
+     },
+     {
+      "teknik": "GrADS konsolunda sdfopen ile dosya açılıp set gxout shaded ve printim komutlarıyla varsayılan gökkuşağı sıcaklık haritası alınır.",
+      "sade": "Geleneksel meteoroloji yazılımı GrADS'ı açıp klasik çok renkli gökkuşağı paletiyle ilk sıcaklık haritamızı çizeriz.",
+      "altAdimlar": [
+       "1. GrADS terminalinde sdfopen ile veriyi yükle.",
+       "2. set gxout shaded komutuyla gölgeli harita modunu aç.",
+       "3. printim rainbow_tr.png komutuyla görseli kaydet."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "GrADS ve Python Cartopy ile meteorolojik alanları uygun harita projeksiyonlarında görselleştirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+     },
+     {
+      "ders": "MTO 223",
+      "madde": "GrADS ve Python Cartopy ile meteorolojik alanları uygun harita projeksiyonlarında görselleştirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Python Cartopy ve batlow paletiyle modern haritayı çizmek",
+    "oz": "Cartopy ve cmcrameri ile algısal tekdüze harita üretmek.",
+    "ayrinti": "Aynı sıcaklık verisi Python'da Cartopy PlateCarree projeksiyonunda açılır. cmcrameri batlow paletiyle bilimsel harita çizilir.",
+    "nasil": [
+     {
+      "teknik": "Python Cartopy kütüphanesinde ccrs.PlateCarree() projeksiyonu açılarak kıyı çizgileri ve ülke sınırları haritaya eklenir.",
+      "sade": "Python ile coğrafi harita altlığını kurup Türkiye kıyı ve sınır çizgilerini düzgün bir projeksiyonla yerleştiririz.",
+      "altAdimlar": [
+       "1. matplotlib ve cartopy.crs modüllerini çağır.",
+       "2. ax.coastlines() ile kıyı çizgilerini çiz.",
+       "3. ax.set_extent ile Türkiye koordinatlarına odaklan."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "GrADS ve Python Cartopy ile meteorolojik alanları uygun harita projeksiyonlarında görselleştirmek."
+      }
+     },
+     {
+      "teknik": "MTO 223 ilkeleri uyarınca ax.pcolormesh içinde cmap=cmc.batlow kullanılarak sıcaklık alanı algısal tekdüze paletle çizilir.",
+      "sade": "Bilim insanlarının geliştirdiği algıya uygun batlow renk haritasını seçip sıcaklığı sahte sınırlar olmadan haritalarız.",
+      "altAdimlar": [
+       "1. cmcrameri kütüphanesini içe aktar.",
+       "2. pcolormesh fonksiyonuna cmap=batlow parametresini ver.",
+       "3. Görseli batlow_tr.png adıyla yüksek çözünürlükte kaydet."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "GrADS ve Python Cartopy ile meteorolojik alanları uygun harita projeksiyonlarında görselleştirmek."
+     },
+     {
+      "ders": "MTO 223",
+      "madde": "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Gri ton ve renk körlüğü karşılaştırma videosu çekmek",
+    "oz": "İki haritayı griye ve renk körlüğüne çevirip farkı videoda sunmak.",
+    "ayrinti": "MTO 223 bağıntısıyla görseller gri tona dönüştürülür. Gökkuşağının ürettiği sahte sınırlar ve batlow'un doğrusal geçişi gösterilir.",
+    "nasil": [
+     {
+      "teknik": "MTO 223 göreceli parlaklık formülü uyarınca her iki harita PIL convert('L') ile gri tonlamaya çevrilerek parlaklık profili çıkarılır.",
+      "sade": "Renkleri kaldırıp siyah-beyaza çevirdiğimizde gökkuşağında sarının aniden parlayıp sahte sınır oluşturduğunu kanıtlarız.",
+      "altAdimlar": [
+       "1. Python Pillow ile her iki görseli gri moda dönüştür.",
+       "2. Sıcaklık gradyanı boyunca piksellerin parlaklığını tara.",
+       "3. Gökkuşağındaki parlaklık zıplamalarını grafikle göster."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek."
+      }
+     },
+     {
+      "teknik": "Coblis simülatörü filtreleriyle döteranopi görünümü çıkarılıp dört panel yan yana 15 dakikalık video sunumu haline getirilir.",
+      "sade": "Renk körü bireylerin haritayı nasıl gördüğünü gösterip bilimsel palet kullanımının önemini açıklayan video çekeriz.",
+      "altAdimlar": [
+       "1. Haritaları Coblis renk körlüğü süzgecinden geçir.",
+       "2. Dört haritayı tek görselde yan yana konumlandır.",
+       "3. Ekran kaydı alarak 10-15 dakikalık anlatım videosunu tamamla."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek."
+     },
+     {
+      "ders": "MTO 223",
+      "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Gökkuşağı ve batlow renk haritalarının algısal farklarını ve renk körlüğü tepkilerini gösteren dörtlü görsel ve anlatım videosu.",
+  "senden": "MTO 223 GrADS çizimleri, Cartopy harita üretimi, parlaklık hesapları ve video anlatımını yürütürsün.",
+  "bizden": "AURA açık ERA5 veri seti, bilimsel palet şablonları ve görselleştirme rehberleri sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://www.fabiocrameri.ch/colourmaps/",
+   "aciklama": "Bilimsel renk haritaları koleksiyonu ve batlow palet testleri arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Gökkuşağı paletinde parlaklık dalgalanması ve sahte gradyan analizi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye 2 m sıcaklık alanının gökkuşağı ve batlow bilimsel renk paletleri ile karşılaştırmalı görselleştirilmesi",
+   "aciklama": "Gökkuşağı ve batlow paletlerinin parlaklık ve renk körlüğü tepkilerini gösteren simülasyon"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Crameri, F. vd. (2020) The misuse of colour in science communication, Nature Communications, 11 · DOI: 10.1038/s41467-020-19160-7",
+   "url": "https://doi.org/10.1038/s41467-020-19160-7"
+  },
+  {
+   "ad": "Stauffer, R. vd. (2015) Somewhere Over the Rainbow: How to Make Effective Use of Colors in Meteorological Visualizations, BAMS · DOI: 10.1175/BAMS-D-13-00155.1",
+   "url": "https://doi.org/10.1175/BAMS-D-13-00155.1"
+  },
+  {
+   "ad": "Fabio Crameri Scientific Colour Maps Documentation",
+   "url": "https://www.fabiocrameri.ch/colourmaps/"
+  },
+  {
+   "ad": "Innsbruck Retaining Color in Meteorological Visualizations Documentation",
+   "url": "https://colorspace.r-forge.r-project.org/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO223-01.json",
+  "tarih": "2026-10-17 00:48",
+  "geminiSha1": "8f942c475526"
+ }
+}

@@ -1,0 +1,446 @@
+{
+ "id": "D-MTO223-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 223",
+  "dersAd": "Bilgisayar Grafiğine Giriş",
+  "kol": "yazilim"
+ },
+ "ad": "GFS'in Marmara sıcaklık hatası haritası",
+ "ne": "GFS'in bir gün önceki 2 m sıcaklık tahminini ERA5'le kıyasla; ortalama hatayı sıfırı ortalayan ıraksak bir HCL paletiyle haritala.",
+ "adimlar": [
+  "Marmara'yı 0,5° aralıklı nokta ızgarasına böl; Open-Meteo çoklu konum isteğiyle bir ayın GFS previous_day1 ve ERA5 değerini çek.",
+  "Veriyi xarray'de (zaman, enlem, boylam) dizisine çevir; ortalama hata = tahmin − ERA5 hesapla.",
+  "cartopy ile haritala; colorspace paketinin diverging_hcl paletini TwoSlopeNorm ile sıfıra ortala.",
+  "Aynı haritayı GrADS'ta da çiz; renk aralığını sıfıra göre simetrik ayarla.",
+  "Haritayı renk körlüğü benzeticisinden geçir; artı ve eksi hata hâlâ ayrışıyor mu bak."
+ ],
+ "sonuc": "Ortalama hata haritası: sıfır nötr renkte, artı ve eksi hata iki ayrı renkte. Kıyı ile iç kesim farkı seçiliyor ve benzeticide de ayrışıyorsa harita doğru kurulmuştur.",
+ "dayanak": "Stauffer vd. 2015",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 223",
+    "ad": "Bilgisayar Grafiğine Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Innsbruck Üniversitesi Meteoroloji ve HCL Görselleştirme Grubu",
+   "ne": "Sayısal hava modellerinin tahmin hatalarını sıfır merkezli ıraksak renk skalaları ile haritalayan araştırma birimi.",
+   "url": "https://colorspace.r-forge.r-project.org/",
+   "ayrinti": {
+    "neYaptilar": "Pozitif ve negatif sapmaların insan gözü tarafından eşit ağırlıkla algılanmasını sağlayan simetrik ıraksak paletler tasarladılar.",
+    "nasil": "MTO 223 renk teorisi kurallarıyla iki zıt rengin ortasında nötr gri kullanan HCL (Hue-Chroma-Luminance) algoritmaları geliştirdiler.",
+    "neEdindiler": "Sayısal model değerlendirme haritalarında artı ve eksi hataların abartılmadan yorumlanmasını sağlayan açık standart sundular.",
+    "bizNasilKatki": "Innsbruck diverging_hcl paletini Marmara Bölgesi GFS sıcaklık sapma haritasına TwoSlopeNorm ile uygulayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Stauffer vd. 2015 Meteorolojik Haritalarda Renk Makalesi",
+      "url": "https://doi.org/10.1175/BAMS-D-13-00155.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Innsbruck HCL Renk Skalaları Dokümantasyonu",
+      "url": "https://colorspace.r-forge.r-project.org/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://colorspace.r-forge.r-project.org/",
+      "aciklama": "Innsbruck HCL ıraksak palet oluşturma ve renk parametresi paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://colorspace.r-forge.r-project.org/",
+      "aciklama": "Iraksak paletlerin parlaklık simetrisi ve renk körlüğü tepki sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Çoklu Konum ve Hava Tahmin Arşivi API Servisi",
+   "ne": "GFS sayısal hava modeli tahminleri ile ERA5 yeniden analiz verilerini koordinat bazlı REST API ile sağlayan veri merkezi.",
+   "url": "https://open-meteo.com/en/docs",
+   "ayrinti": {
+    "neYaptilar": "Marmara Bölgesi'ndeki yüzlerce koordinat için bir gün önceki GFS tahminlerini ve ERA5 doğrulamalarını tek sorguda sundular.",
+    "nasil": "MTO 223 bilgisayar grafiği veri formatlarına uygun JSON ve CSV uç noktaları üzerinden çoklu konum sorgu mimarisi kurdular.",
+    "neEdindiler": "Araştırmacıların bölgesel sayısal tahmin hatalarını dakikalar içinde haritalayabilmesini sağlayan veri altyapısı sağladılar.",
+    "bizNasilKatki": "Marmara'yı kapsayan 0,5 derecelik ızgara noktalarını tek Python isteğiyle çekip xarray veri kümesine aktarabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Çoklu Konum API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     },
+     {
+      "ad": "Chase vd. 2022 Operasyonel Meteoroloji Makalesi",
+      "url": "https://doi.org/10.1175/WAF-D-22-0070.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo çoklu konum geçmiş tahmin sorgulama arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Hata haritalarında simetrik palet kullanımının algısal avantajları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF Sayısal Model Doğrulama ve Değerlendirme Bölümü",
+   "ne": "Küresel sayısal hava tahmin modellerinin sistematik sapmalarını standart hata haritalarıyla izleyen meteoroloji merkezi.",
+   "url": "https://www.ecmwf.int/en/forecasts/charts",
+   "ayrinti": {
+    "neYaptilar": "Sıcaklık ve geopotansiyel yükseklik tahmin hatalarını sıfır nötr merkezli mavi-kırmızı ıraksak paletlerle haritalandırdılar.",
+    "nasil": "MTO 223 harita projeksiyonları ve iki boyutlu ızgara enterpolasyonu algoritmalarıyla operasyonel doğrulama panelleri ürettiler.",
+    "neEdindiler": "Hava tahmin modellerinin kıyı ve dağlık topoğrafyadaki mikro ölçekli sapmalarını görünür kılan standartlar oluşturdular.",
+    "bizNasilKatki": "ECMWF doğrulama grafiklerindeki sıfıra simetrik renk ölçeği tasarımını Marmara GFS analizimize rehber alırız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Tahmin Doğrulama ve Harita Çizelgeleri",
+      "url": "https://www.ecmwf.int/en/forecasts/charts",
+      "tur": "web"
+     },
+     {
+      "ad": "Crameri vd. 2020 Bilimsel Renk Haritaları Makalesi",
+      "url": "https://doi.org/10.1038/s41467-020-19160-7",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/charts",
+      "aciklama": "ECMWF operasyonel tahmin değerlendirme ve hata haritaları ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sayısal tahmin doğrulamalarında kullanılan simetrik renk haritası yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sayısal Hava Tahmini ve Coğrafi Görselleştirme Ekibi",
+   "ne": "Marmara Bölgesi sayısal hava tahmin hatalarını HCL paletleri ve Cartopy ile haritalayan öğrenci araştırma grubu.",
+   "url": "https://github.com/aura-itu/gfs-marmara-sicaklik-hatasi",
+   "ayrinti": {
+    "neYaptilar": "GFS ve ERA5 sıcaklık verilerini 0,5 derecelik ızgarada eşleyip ortalama hata haritası çıkaran açık defter geliştirdiler.",
+    "nasil": "MTO 223 ortalama hata formülü, TwoSlopeNorm renk normalizasyonu ve Cartopy PlateCarree harita projeksiyonunu birleştirdiler.",
+    "neEdindiler": "GFS'in Marmara kıyılarında deniz etkisinden kaynaklanan soğuk, iç kesimlerde ise sıcak sapmalarını harita üzerinde kanıtladılar.",
+    "bizNasilKatki": "GrADS ortamında aynı renk aralığını simetrik tanımlayan gs betiğini hazırlayıp depoya ekleriz.",
+    "referanslar": [
+     {
+      "ad": "AURA Marmara Sıcaklık Hatası GitHub Deposu",
+      "url": "https://github.com/aura-itu/gfs-marmara-sicaklik-hatasi",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 223 Bilgisayar Grafiğine Giriş Formu",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=223",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/gfs-marmara-sicaklik-hatasi",
+      "aciklama": "AURA Marmara sıcaklık hatası analiz deposu ve harita çıktısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Marmara Bölgesi ızgarasında GFS sıcaklık tahmin hatasının sıfıra simetrik ıraksak paletle harita animasyonu",
+      "aciklama": "Aylık GFS 2 m sıcaklık ortalama hatasının coğrafi dağılımı simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Haritayı doğru paletle çiz, tahmin hatasını haritala, yapay zekânın neye baktığını göster.",
+  "baglanti": "Yazılım kolunun tahmin karnesi bu dersin haritalarıyla okunur; anlatım kolunda doğru renk seçimi her videonun şartıdır.",
+  "literatur": {
+   "maddeler": [
+    "Gökkuşağı (RGB) paleti parlaklığı düzensiz değiştirir ve algıyı yanıltır; HCL tabanlı sıralı ve ıraksak paletler algıya uygundur (Stauffer vd. 2015).",
+    "Algısal olarak düzgün ve renk körlüğüne uygun bilimsel renk haritaları veriyi bozmadan gösterir; gökkuşağı ve kırmızı-yeşil paletten kaçın (Crameri vd. 2020).",
+    "NCAR, analiz ve görselleştirme araçlarında Python'u ana dil seçti; NCL bakım moduna alındı, NCL örnekleri GeoCAT ile Python'a taşınıyor (NCAR 2019)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Permütasyon önemi, belirginlik (saliency) ve sınıf aktivasyon haritaları bir modelin neye baktığını gösterir; hortum, dolu ve kış yağış türü örneklerinde denendi (McGovern vd. 2019).",
+    "Önceki derin öğrenme yağış tahminleri ileri öngörü sürelerinde bulanıklaşıyordu; DGMR gerçekçi radar haritası üretti, 50'yi aşkın uzman olguların %89'unda onu öne koydu (Ravuri vd. 2021).",
+    "Açık kapı: açıklama (XAI) ısı haritaları yönteme göre yanıltıcı olabilir; makale bu haritaların güvenilirliğinin daha çok araştırılması gerektiğini vurguluyor (Mamalakis vd. 2022)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stauffer vd. 2015",
+    "baslik": "Somewhere Over the Rainbow: How to Make Effective Use of Colors in Meteorological Visualizations",
+    "yayin": "Bulletin of the American Meteorological Society, 96(2)",
+    "yil": "2015",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00155.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Crameri vd. 2020",
+    "baslik": "The misuse of colour in science communication",
+    "yayin": "Nature Communications, 11",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41467-020-19160-7",
+    "tur": "temel"
+   },
+   {
+    "kisa": "NCAR 2019",
+    "baslik": "NCL Pivot to Python (NCL'in geleceği üzerine NCAR açıklaması)",
+    "yayin": "NCAR/UCAR resmî duyuru",
+    "yil": "2019",
+    "url": "https://www.ncl.ucar.edu/Document/Pivot_to_Python/",
+    "tur": "temel"
+   },
+   {
+    "kisa": "McGovern vd. 2019",
+    "baslik": "Making the Black Box More Transparent: Understanding the Physical Implications of Machine Learning",
+    "yayin": "Bulletin of the American Meteorological Society, 100(11)",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/BAMS-D-18-0195.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Mamalakis vd. 2022",
+    "baslik": "Investigating the Fidelity of Explainable Artificial Intelligence Methods for Applications of Convolutional Neural Networks in Geoscience",
+    "yayin": "Artificial Intelligence for the Earth Systems, 1(4)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/AIES-D-22-0012.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GFS sayısal hava tahmin modelinin Marmara 2 m sıcaklık hatasını ERA5 ile kıyaslayıp sıfırı ortalayan ıraksak HCL renk paletiyle haritalamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 223",
+   "projeyeKatki": "İki boyutlu ızgarada ortalama hata hesaplama, ıraksak HCL paletleri, TwoSlopeNorm sıfır merkezleme ve harita projeksiyonlarını projeye kazandırır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ortalama hata (Mean Error / Bias)",
+     "nerede": "Marmara Bölgesi ızgara noktalarında GFS sıcaklık tahmini ile ERA5 referansı arasındaki ortalama sapmayı hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Open-Meteo GFS ve ERA5 verileriyle Marmara sıcaklık hatasını hesaplayıp sıfıra simetrik HCL paletiyle haritalamak.",
+  "ayrinti": "Marmara Bölgesi 40-42K ve 26-31D aralığında 0,5 derece aralıklı ızgaraya bölünür. Open-Meteo API'den son bir ayın günlük GFS tahmini ve ERA5 verisi çekilir. xarray ile dizilerek her ızgara hücresinin ortalama hatası hesaplanır. Matplotlib TwoSlopeNorm ve diverging_hcl paletiyle sıfır nötr renkte ortalanarak Cartopy haritası çizilir. GrADS ortamında simetrik renk skalası kurulup Coblis ile renk körlüğü doğrulanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Marmara ızgara verilerini Open-Meteo üzerinden çekmek",
+    "oz": "0,5 derece ızgara koordinatları için GFS ve ERA5 serilerini indirmek.",
+    "ayrinti": "Marmara koordinat kutusu 0,5 derece adımlarla taranır. Open-Meteo çoklu konum uç noktasından bir aylık saatlik tahmin ve analiz verisi alınır.",
+    "nasil": [
+     {
+      "teknik": "Python ile 40.0-42.0K ve 26.0-31.0D aralığında 0,5 derece adımlı enlem-boylam koordinat listesi üretilerek API sorgusuna dönüştürülür.",
+      "sade": "Marmara Bölgesi haritasını yarım derecelik karelere bölüp her noktanın koordinatını bilgisayara liste olarak hazırlarız.",
+      "altAdimlar": [
+       "1. np.arange ile enlem ve boylam dizilerini oluştur.",
+       "2. np.meshgrid ile ızgara koordinat çiftlerini türet.",
+       "3. Koordinatları Open-Meteo API sorgu formatına getir."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+      }
+     },
+     {
+      "teknik": "Open-Meteo Previous Runs API üzerinden her nokta için gfs_seamless ve era5 sıcaklıkları çekilip JSON'dan pandas tablosuna aktarılır.",
+      "sade": "Belirlediğimiz her ızgara noktası için hem dünkü GFS tahminini hem de gerçekleşen sıcaklığı internetten indiririz.",
+      "altAdimlar": [
+       "1. requests kütüphanesiyle API uç noktasına istek at.",
+       "2. Gelen JSON yanıtındaki saatlik sıcaklıkları ayıkla.",
+       "3. Verileri koordinat ve zaman etiketli DataFrame'e dönüştür."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Ortalama hatayı hesaplayıp xarray ızgarasına dizmek",
+    "oz": "Hata farkını alıp enlem, boylam ve zaman dizisi kurmak.",
+    "ayrinti": "MTO 223 ortalama hata formülü işletilerek her ızgara hücresi için tahmin eksi ERA5 farkının zaman ortalaması alınır.",
+    "nasil": [
+     {
+      "teknik": "MTO 223 formülü uyarınca hata = gfs - era5 tanımlanıp zaman ekseni boyunca .mean(dim='time') işletilerek iki boyutlu ME matrisi üretilir.",
+      "sade": "Modelin sıcaklık tahmininden referans değeri çıkarıp ay boyunca ortalama kaç derece saptığını her kare için hesaplarız.",
+      "altAdimlar": [
+       "1. Tahmin ve gözlem sütunlarının farkını al.",
+       "2. xarray DataArray yapısında zaman ortalamasını çıkar.",
+       "3. Enlem ve boylam koordinatlarını eksen olarak ata."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "İki boyutlu ızgara verilerinde sayısal model hata alanlarını sıfıra simetrik ıraksak paletlerle haritalamak."
+      }
+     },
+     {
+      "teknik": "Ortalama hata alanı enlem ve boylam matrisine yerleştirilerek NetCDF formatında diske yazılır ve GrADS sdfopen uyumlu kılınır.",
+      "sade": "Hesaplanan hata haritasını meteoroloji yazılımlarının doğrudan açabileceği standart NetCDF dosyası olarak kaydederiz.",
+      "altAdimlar": [
+       "1. xr.Dataset oluşturup koordinat boyutlarını tanımla.",
+       "2. Değişken adı olarak 'bias_t2m' etiketini ver.",
+       "3. to_netcdf('marmara_bias.nc') komutuyla diske yaz."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "İki boyutlu ızgara verilerinde sayısal model hata alanlarını sıfıra simetrik ıraksak paletlerle haritalamak."
+     },
+     {
+      "ders": "MTO 223",
+      "madde": "Çok boyutlu NetCDF veri setlerini GrADS ve xarray ile işleyip yayına hazır grafik çıktısı üretmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Iraksak HCL paletiyle harita çizip renk körlüğünü test etmek",
+    "oz": "TwoSlopeNorm ile sıfırı ortalayıp Cartopy ve GrADS ile çizmek.",
+    "ayrinti": "TwoSlopeNorm ile sıfır hata beyaz/gri nötr renge sabitlenir. Cartopy ve GrADS haritaları çizilip renk körlüğü testinden geçirilir.",
+    "nasil": [
+     {
+      "teknik": "Matplotlib TwoSlopeNorm(vmin=-3, vcenter=0, vmax=3) ve Cartopy PlateCarree ile sıfır merkezli ıraksak harita çizilir.",
+      "sade": "Sıfır hatayı nötr renge koyup artı hataları kırmızı, eksi hataları mavi gösteren dengeli harita üretiriz.",
+      "altAdimlar": [
+       "1. TwoSlopeNorm ile vcenter=0 normalizasyonu kur.",
+       "2. ax.pcolormesh ile Marmara koordinatlarına çiz.",
+       "3. Renk çubuğuna °C hata birimi etiketini ekle."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "İki boyutlu ızgara verilerinde sayısal model hata alanlarını sıfıra simetrik ıraksak paletlerle haritalamak."
+      }
+     },
+     {
+      "teknik": "Üretilen harita Coblis renk körlüğü filtresinden geçirilerek mavi ve kırmızı sapma bölgelerinin döteranopide ayırt edildiği doğrulanır.",
+      "sade": "Renk körlüğü simülatörünü çalıştırıp haritadaki hata bölgelerinin herkes tarafından rahatça okunabildiğini test ederiz.",
+      "altAdimlar": [
+       "1. Harita görselini Coblis arayüzüne yükle.",
+       "2. Döteranopi ve protanopi filtre çıktısını al.",
+       "3. Sıcak ve soğuk hata alanlarının ayrışmasını kontrol et."
+      ],
+      "kazanim": {
+       "ders": "MTO 223",
+       "madde": "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 223",
+      "madde": "İki boyutlu ızgara verilerinde sayısal model hata alanlarını sıfıra simetrik ıraksak paletlerle haritalamak."
+     },
+     {
+      "ders": "MTO 223",
+      "madde": "Bilimsel renk teorisine uygun, algısal olarak tekdüze ve renk körlüğünü gözeten paletler seçmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "GFS sıcaklık tahmininin Marmara Bölgesi'ndeki sistematik hatalarını sıfır merkezli ıraksak paletle gösteren açık kaynak haritalama defteri.",
+  "senden": "MTO 223 xarray ızgara işleme, ortalama hata hesabı, TwoSlopeNorm normalizasyonu ve Cartopy haritalamasını yürütürsün.",
+  "bizden": "AURA sayısal hava tahmin veri seti, Open-Meteo koordinat sorguları ve HCL palet şablonları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://colorspace.r-forge.r-project.org/",
+   "aciklama": "Innsbruck HCL ıraksak palet oluşturma ve renk parametresi paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Colormap_issue_-_Jet_and_spectral.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Hata haritalarında simetrik palet kullanımının algısal avantajları"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "gfs",
+   "konu": "Marmara Bölgesi ızgarasında GFS sıcaklık tahmin hatasının sıfıra simetrik ıraksak paletle harita animasyonu",
+   "aciklama": "Aylık GFS 2 m sıcaklık ortalama hatasının coğrafi dağılımı simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Stauffer, R. vd. (2015) Somewhere Over the Rainbow: How to Make Effective Use of Colors in Meteorological Visualizations, BAMS · DOI: 10.1175/BAMS-D-13-00155.1",
+   "url": "https://doi.org/10.1175/BAMS-D-13-00155.1"
+  },
+  {
+   "ad": "Crameri, F. vd. (2020) The misuse of colour in science communication, Nature Communications, 11 · DOI: 10.1038/s41467-020-19160-7",
+   "url": "https://doi.org/10.1038/s41467-020-19160-7"
+  },
+  {
+   "ad": "Chase, R. J. vd. (2022) A Machine Learning Tutorial for Operational Meteorology, WAF · DOI: 10.1175/WAF-D-22-0070.1",
+   "url": "https://doi.org/10.1175/WAF-D-22-0070.1"
+  },
+  {
+   "ad": "ECMWF Forecast Charts and Verification Products",
+   "url": "https://www.ecmwf.int/en/forecasts/charts"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO223-02.json",
+  "tarih": "2026-10-17 00:48",
+  "geminiSha1": "9d8b4490151b"
+ }
+}

@@ -1,0 +1,454 @@
+{
+ "id": "D-BIL100E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "BIL 100E",
+  "dersAd": "Programlama Diline Giriş (Python)",
+  "kol": "yazilim"
+ },
+ "ad": "ERA5 ızgarası istasyonu ne kadar temsil ediyor?",
+ "ne": "xarray ile ERA5 NetCDF dosyasını aç; İstanbul Havalimanı'na en yakın ızgara noktasını istasyon gözlemiyle karşılaştır.",
+ "adimlar": [
+  "Copernicus CDS'ye ücretsiz üye ol; cdsapi ile 2024 için Marmara kutusunun ERA5 saatlik 2 m sıcaklığını NetCDF indir.",
+  "xarray ile aç, Kelvin'i °C'ye çevir; .sel(latitude=41.28, longitude=28.75, method='nearest') ile LTFM'ye en yakın noktayı seç.",
+  "Iowa Environmental Mesonet'ten LTFM METAR sıcaklığını indir; pandas ile her ERA5 saatine en yakın gözlemi eşle.",
+  "Aylık ortalama farkı (ERA5 − istasyon) hesapla ve matplotlib ile çiz.",
+  "Denize bakan komşu bir ızgara noktasını da seçip aynı farkı hesapla."
+ ],
+ "sonuc": "Aylık fark grafiği ve kısa bir defter. Fark sıfıra yakınsa ERA5 bu noktada istasyonu iyi temsil ediyor; bazı aylarda büyüyorsa nedenini (deniz, yükselti) yaz.",
+ "dayanak": "Hoyer ve Hamman 2017",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "BIL 100E",
+    "ad": "Programlama Diline Giriş (Python)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Pangeo Açık Yer ve Çevre Bilimleri Hesaplama Topluluğu",
+   "ne": "Büyük ölçekli iklim ve hava ızgara verilerini xarray, Dask ve Jupyter ekosistemiyle bulutta analiz eden açık bilim konsorsiyumu.",
+   "url": "https://pangeo.io/architecture.html",
+   "ayrinti": {
+    "neYaptilar": "Çok boyutlu NetCDF ve Zarr formatındaki iklim verilerini paralel işleyen açık kaynaklı bir veri ekosistemi kurdular.",
+    "nasil": "BIL 100E xarray çok boyutlu dizi veri yapıları, koordinat tabanlı indeksleme ve en yakın komşu seçimi algoritmalarını entegre ettiler.",
+    "neEdindiler": "Dünya genelinde iklim araştırmacılarının terabaytlarca ERA5 verisini saniyeler içinde analiz etmesini sağlayan platform oluşturdular.",
+    "bizNasilKatki": "Pangeo mimarisine uygun xarray kodlama kalıplarını İstanbul Havalimanı istasyon eşleştirmesinde doğrudan kullanabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Pangeo Projesi Dokümantasyonu ve Mimarisi",
+      "url": "https://pangeo.io/architecture.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Hoyer ve Hamman 2017 xarray Çok Boyutlu Dizi Makalesi",
+      "url": "https://doi.org/10.5334/jors.148",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://pangeo.io/architecture.html",
+      "aciklama": "Pangeo açık iklim ve yer bilimleri hesaplama platformu arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Python veri analizi ve çok boyutlu dizi işleme mimarisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus İklim Değişikliği Servisi (C3S) CDS Veri Deposu",
+   "ne": "Avrupa Orta Vadeli Hava Tahminleri Merkezi'nin (ECMWF) ERA5 yeniden analizini küresel araştırmacılara sunan resmi veri merkezi.",
+   "url": "https://cds.climate.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "Küresel atmosferin 1940'tan bugüne saatlik 31 km ızgara çözünürlüklü fiziksel durumunu açık erişimli cdsapi ile dağıttılar.",
+    "nasil": "BIL 100E Python betikleriyle uyumlu CDS API istemcisi üzerinden alan kutusu (bounding box) kırpma ve NetCDF dışa aktarımı sağladılar.",
+    "neEdindiler": "İklim araştırmalarında ve mühendislik projelerinde kullanılan altın standart yeniden analiz arşivini kurdular.",
+    "bizNasilKatki": "cdsapi ile 2024 yılı Marmara Bölgesi 2 m sıcaklık NetCDF dosyasını tek bir Python komutuyla Colab ortamına indirebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Copernicus İklim Veri Deposu (CDS) Portalı",
+      "url": "https://cds.climate.copernicus.eu/",
+      "tur": "web"
+     },
+     {
+      "ad": "Rasp vd. 2024 WeatherBench 2 Kıyaslama Platformu Makalesi",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/",
+      "aciklama": "Copernicus CDS veri arama ve indirme ana ekranı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://cds.climate.copernicus.eu/",
+      "aciklama": "ERA5 saatlik yüzey verisi parametre seçim sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF Açık Veri ve ERA5 Yeniden Analiz Portalı",
+   "ne": "Sayısal hava modelleri ile küresel istasyon gözlemlerini veri asimilasyonuyla birleştiren Avrupa meteoroloji merkezi.",
+   "url": "https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5",
+   "ayrinti": {
+    "neYaptilar": "Yeryüzündeki tüm istasyon, uydu ve radar gözlemlerini fiziksel hareket denklemleriyle birleştirerek eksiksiz ızgara ürettiler.",
+    "nasil": "BIL 100E sayısal yöntemleri ve en küçük kareler optimizasyonunu dört boyutlu değişken veri asimilasyonu (4D-Var) ile çalıştırdılar.",
+    "neEdindiler": "Yerel mikro ölçek etkileri ile bölgesel model ızgarası arasındaki temsil farkını değerlendirme standardı sundular.",
+    "bizNasilKatki": "İstanbul Havalimanı pist rakımı ile ERA5 ızgara hücresinin ortalama topoğrafyası arasındaki farkı hesaba katabiliriz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF ERA5 Yeniden Analiz Veri Seti Dokümantasyonu",
+      "url": "https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5",
+      "tur": "web"
+     },
+     {
+      "ad": "Harris vd. 2020 NumPy ile Dizi Programlama Nature Makalesi",
+      "url": "https://doi.org/10.1038/s41586-020-2649-2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5",
+      "aciklama": "ECMWF ERA5 küresel veri kümesi genel bakış sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "NumPy ve xarray çok boyutlu koordinat dizisi yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA İklim Verisi ve CBS Analiz Ekibi",
+   "ne": "xarray ve pandas kullanarak ERA5 ızgara noktaları ile İstanbul METAR istasyonlarını eşleştiren öğrenci araştırma grubu.",
+   "url": "https://github.com/aura-itu/era5-istasyon-karsilastirma-xarray",
+   "ayrinti": {
+    "neYaptilar": "LTFM koordinatlarına en yakın ERA5 hücresini xarray nearest yöntemiyle seçip 2024 yılı saatlik gözlemleriyle eşleştirdiler.",
+    "nasil": "BIL 100E iki boyutlu ızgarada Öklid uzaklığı formülü ve pandas merge_asof zaman serisi birleştirme tekniğini kullandılar.",
+    "neEdindiler": "Aylık ortalama farkları (ERA5 - istasyon) ve kıyı hücrelerinin deniz etkisinden kaynaklanan sapmalarını ortaya koyan analiz defteri ürettiler.",
+    "bizNasilKatki": "Karadeniz kıyısındaki komşu ızgara hücresi ile havalimanı hücresinin farklarını karşılaştıran görsel grafikleri depoya ekleriz.",
+    "referanslar": [
+     {
+      "ad": "AURA ERA5 İstasyon Karşılaştırma GitHub Deposu",
+      "url": "https://github.com/aura-itu/era5-istasyon-karsilastirma-xarray",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS BIL 100E Programlama Diline Giriş Katalog Sayfası",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=BIL&dersNo=100",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/era5-istasyon-karsilastirma-xarray",
+      "aciklama": "AURA ERA5 istasyon karşılaştırma analiz deposu sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul Havalimanı koordinatlarında ERA5 ızgara sıcaklığı ile METAR ölçümlerinin aylık farkı, 2024",
+      "aciklama": "xarray ile seçilen en yakın ızgara hücresi ve istasyon sıcaklık farkları simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "Python'u hava verisiyle öğren: ERA5'i aç, istasyonla kıyasla, tahmini makine öğrenmesiyle düzelt.",
+  "baglanti": "Yazılım kolunun bütün araçları (pandas, xarray, scikit-learn) bu dersin üstüne kurulur; buradaki defterler takımın ilk kodu olur.",
+  "literatur": {
+   "maddeler": [
+    "NumPy dizileri, döngü yazmadan tüm veri üzerinde tek satırda hesap yapmanı sağlar; bilimsel Python araçlarının çoğu bu dizi yapısı üstüne kuruludur (Harris vd. 2020).",
+    "xarray, enlem-boylam-zaman gibi boyutları adıyla taşıyan çok boyutlu dizilerle çalışır; NetCDF gibi kendini tanımlayan veriyi doğrudan okur (Hoyer ve Hamman 2017).",
+    "MetPy, birim bilgisini taşıyan meteorolojik hesaplar, Skew-T diyagramı ve istasyon modeli çizimi gibi araçları Python'a getirir (May vd. 2022)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Operasyonel meteorolojiye yönelik rehber; doğrusal regresyon, karar ağacı, rastgele orman gibi yöntemleri scikit-learn ve Google Colab defterleriyle adım adım gösteriyor (Chase vd. 2022).",
+    "Python ile kurulan bir sinir ağı, Almanya istasyonlarında 2 m sıcaklığın topluluk (ensemble) tahminini düzeltti; kod açık, sonuç yeniden üretilebilir (Rasp ve Lerch 2018).",
+    "Açık kapı: aynı makale yöntemi rüzgâr hızı ve yağış gibi Gauss dağılımına uymayan değişkenlere taşımayı gelecek çalışma olarak bırakıyor (Rasp ve Lerch 2018)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Harris vd. 2020",
+    "baslik": "Array programming with NumPy",
+    "yayin": "Nature, 585",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41586-020-2649-2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hoyer ve Hamman 2017",
+    "baslik": "xarray: N-D labeled Arrays and Datasets in Python",
+    "yayin": "Journal of Open Research Software, 5(1)",
+    "yil": "2017",
+    "url": "https://doi.org/10.5334/jors.148",
+    "tur": "temel"
+   },
+   {
+    "kisa": "May vd. 2022",
+    "baslik": "MetPy: A Meteorological Python Library for Data Analysis and Visualization",
+    "yayin": "Bulletin of the American Meteorological Society, 103(10)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/BAMS-D-21-0125.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Chase vd. 2022",
+    "baslik": "A Machine Learning Tutorial for Operational Meteorology. Part I: Traditional Machine Learning",
+    "yayin": "Weather and Forecasting, 37(8)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/WAF-D-22-0070.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review, 146(11)",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "xarray ile ERA5 NetCDF ızgara verisini açıp İstanbul Havalimanı METAR istasyon gözlemiyle kıyaslayarak temsil yeteneğini ve sapmaları analiz etmek.",
+ "ortakDers": [
+  {
+   "kod": "BIL 100E",
+   "projeyeKatki": "xarray çok boyutlu veri setlerini okuma, koordinat tabanlı en yakın komşu seçimi, zaman serisi hizalaması ve ortalama mutlak hata hesaplarını projeye temel yapar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "İki boyutlu ızgarada en yakın komşu Öklid uzaklığı",
+     "nerede": "xarray sel nearest yöntemiyle İstanbul Havalimanı enlem ve boylamına en yakın ERA5 ızgara hücresini bulurken."
+    },
+    {
+     "formulAd": "Ortalama mutlak hata (MAE)",
+     "nerede": "ERA5 saatlik ızgara sıcaklığı ile METAR istasyon gözlemi arasındaki aylık hata büyüklüklerini hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "xarray ile ERA5 NetCDF sıcaklığını açıp İstanbul Havalimanı METAR gözlemiyle eşleştirerek aylık farkları analiz etmek.",
+  "ayrinti": "Copernicus CDS üzerinden 2024 yılı Marmara Bölgesi ERA5 saatlik 2 m sıcaklık verisi NetCDF olarak indirilir. xarray ile açılıp Kelvin değerleri santigrata çevrilir. İstanbul Havalimanı koordinatlarına en yakın ızgara hücresi nearest yöntemiyle çekilir. IEM METAR gözlemleriyle zaman bazında eşleştirilerek aylık ortalama fark (ERA5 - istasyon) ve MAE hesaplanır. Karadeniz'e bakan komşu hücre de dahil edilerek kıyı etkisi incelenir. Haftada iki saatlik emekle iki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 NetCDF ve LTFM METAR verilerini temin etmek",
+    "oz": "Marmara kutusu ERA5 dosyasını ve istasyon verisini indirmek.",
+    "ayrinti": "Copernicus CDS API ile 2024 yılı saatlik sıcaklık NetCDF formatında çekilir. Iowa Environmental Mesonet'ten LTFM METAR saatlik serisi indirilir.",
+    "nasil": [
+     {
+      "teknik": "Python cdsapi istemcisiyle Marmara kutusu (40.5-41.8K, 28.0-29.8D) 2024 yılı era5-single-levels sıcaklığı NetCDF olarak indirilir.",
+      "sade": "Marmara bölgesinin 2024 yılındaki saatlik sıcaklık haritasını Avrupa hava merkezinin veri tabanından bilgisayarımıza indiririz.",
+      "altAdimlar": [
+       "1. cdsapi istemcisine kullanıcı anahtarını tanıt.",
+       "2. Marmara kutusu coğrafi koordinat sınırlarını belirle.",
+       "3. NetCDF dosyasını yerel çalışma dizinine kaydet."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+      }
+     },
+     {
+      "teknik": "IEM servisinden LTFM istasyonunun 2024 METAR verisi pandas read_csv ile çekilerek sıcaklık sütunu santigrat birimine getirilir.",
+      "sade": "İstanbul Havalimanı'nın meteoroloji istasyonundaki gerçek ölçümleri internetten tablo olarak indirip düzenleriz.",
+      "altAdimlar": [
+       "1. IEM web arayüzünden LTFM istasyon kodunu sorgula.",
+       "2. Saatlik tmpf sıcaklık sütununu °C'ye dönüştür.",
+       "3. Zaman damgasını UTC olarak indeksle."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "Algoritmik akış ve fonksiyonel kod bloklarıyla yeniden üretilebilir bilimsel hesaplamalar kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "xarray ile en yakın ızgarayı seçip gözlemle eşleştirmek",
+    "oz": "Öklid uzaklığıyla LTFM hücresini bulup zaman serilerini birleştirmek.",
+    "ayrinti": "xarray open_dataset ile dosya açılır, Kelvin'den 273.15 çıkarılır. sel nearest ile LTFM hücresi seçilerek pandas merge_asof ile gözlemle eşleştirilir.",
+    "nasil": [
+     {
+      "teknik": "BIL 100E formülü uyarınca ds['t2m'] - 273.15 uygulanıp .sel(latitude=41.28, longitude=28.75, method='nearest') ile hücre zaman serisi çekilir.",
+      "sade": "xarray kütüphanesine havalimanının enlem ve boylamını vererek haritadaki en yakın ızgara kutusunu tek komutla seçeriz.",
+      "altAdimlar": [
+       "1. xr.open_dataset ile NetCDF dosyasını aç.",
+       "2. Sıcaklık değişkenini Kelvin'den santigrata çevir.",
+       "3. .sel nearest yöntemiyle LTFM'ye en yakın ızgara serisini al."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak."
+      }
+     },
+     {
+      "teknik": "pd.merge_asof işleviyle ERA5 saatlik serisi ile METAR gözlemleri 15 dakikalık toleransla tek bir analitik tabloda birleştirilir.",
+      "sade": "Modelin hesapladığı saatlik tahminler ile istasyonun dakikalık ölçümlerini aynı zaman çizelgesinde yan yana getiririz.",
+      "altAdimlar": [
+       "1. İki zaman serisini UTC saat damgasına göre sırala.",
+       "2. merge_asof ile en yakın zamanlı satırları eşleştir.",
+       "3. Eksik ölçüm içeren satırları temizle."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "NumPy dizileri ve vektörel işlemleri döngü kullanmadan yüksek başarımla çalıştırmak."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "Zaman serisi ve ızgara tabanlı atmosfer veri setlerini xarray ve pandas ile filtrelemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Aylık farkları hesaplayıp kıyı etkisini analiz etmek",
+    "oz": "Aylık fark eğrisi çizip denize komşu hücrenin sapmasını kıyaslamak.",
+    "ayrinti": "Aylık ortalama fark (ERA5 eksi istasyon) ve MAE hesaplanır. Karadeniz kıyısındaki komşu hücre de incelenerek deniz etkisinin temsile rolü belirlenir.",
+    "nasil": [
+     {
+      "teknik": "BIL 100E MAE formülü ve groupby(df.index.month).mean() işletilerek aylık ortalama fark ve mutlak hata grafiği çizilir.",
+      "sade": "Modelin her ay istasyondan kaç derece saptığını hesaplayıp yıl içindeki mevsimsel hata çizgisini grafiğe dökeriz.",
+      "altAdimlar": [
+       "1. fark = era5 - metar sütununu hesapla.",
+       "2. Aylara göre gruplayarak ortalama sapma ve MAE değerlerini çıkar.",
+       "3. Matplotlib ile aylık fark sütun grafiğini çiz."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Gözlem ve model verileri arasındaki ortalama mutlak hata ve sapmaları hesaplamak."
+      }
+     },
+     {
+      "teknik": "Deniz üzerindeki komşu ızgara noktası (41.50K, 28.75D) için analiz tekrarlanarak kara-deniz maskesinin sıcaklık temsiline etkisi raporlanır.",
+      "sade": "Denize denk gelen komşu ızgarayı da test ederek havalimanının deniz esintisinden nasıl etkilendiğini açıklarız.",
+      "altAdimlar": [
+       "1. Denize bakan komşu koordinatı xarray ile seç.",
+       "2. İstasyonla farkını hesaplayıp kara hücresiyle kıyasla.",
+       "3. Kıyı etkisi ve yükselti farkı yorumunu Colab defterine yaz."
+      ],
+      "kazanim": {
+       "ders": "BIL 100E",
+       "madde": "Sayısal atmosfer ve istasyon verilerini iki boyutlu ve zaman serisi grafiklerle görselleştirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "BIL 100E",
+      "madde": "Gözlem ve model verileri arasındaki ortalama mutlak hata ve sapmaları hesaplamak."
+     },
+     {
+      "ders": "BIL 100E",
+      "madde": "Sayısal atmosfer ve istasyon verilerini iki boyutlu ve zaman serisi grafiklerle görselleştirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "ERA5 model ızgarasının İstanbul Havalimanı istasyonunu temsil kabiliyetini ve kıyı etkisini ortaya koyan açık kaynak xarray analiz defteri.",
+  "senden": "BIL 100E xarray NetCDF işleme, en yakın komşu seçimi, zaman serisi hizalaması ve sapma analizlerini yürütürsün.",
+  "bizden": "AURA açık iklim veri hattı, Copernicus CDS API desteği ve istasyon eşleştirme şablonları sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://pangeo.io/architecture.html",
+   "aciklama": "Pangeo açık iklim ve yer bilimleri hesaplama platformu arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:NumPy_logo_2020.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Python veri analizi ve çok boyutlu dizi işleme mimarisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul Havalimanı koordinatlarında ERA5 ızgara sıcaklığı ile METAR ölçümlerinin aylık farkı, 2024",
+   "aciklama": "xarray ile seçilen en yakın ızgara hücresi ve istasyon sıcaklık farkları simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Hoyer, S., Hamman, J. (2017) xarray: N-D labeled Arrays and Datasets in Python, JORS · DOI: 10.5334/jors.148",
+   "url": "https://doi.org/10.5334/jors.148"
+  },
+  {
+   "ad": "Harris, C. R. vd. (2020) Array programming with NumPy, Nature, 585 · DOI: 10.1038/s41586-020-2649-2",
+   "url": "https://doi.org/10.1038/s41586-020-2649-2"
+  },
+  {
+   "ad": "May, R. M. vd. (2022) MetPy: A Meteorological Python Library, BAMS · DOI: 10.1175/BAMS-D-21-0125.1",
+   "url": "https://doi.org/10.1175/BAMS-D-21-0125.1"
+  },
+  {
+   "ad": "Chase, R. J. vd. (2022) A Machine Learning Tutorial for Operational Meteorology, WAF · DOI: 10.1175/WAF-D-22-0070.1",
+   "url": "https://doi.org/10.1175/WAF-D-22-0070.1"
+  },
+  {
+   "ad": "Rasp, S. vd. (2024) WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models, JAMES · DOI: 10.1029/2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "Copernicus Climate Data Store (CDS) ERA5 Dokümantasyonu",
+   "url": "https://cds.climate.copernicus.eu/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-BIL100E-02.json",
+  "tarih": "2026-10-17 00:38",
+  "geminiSha1": "a8a1c5a3ada1"
+ }
+}

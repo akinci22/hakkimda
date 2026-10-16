@@ -1,0 +1,455 @@
+{
+ "id": "D-MTO112-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 112",
+  "dersAd": "Meteoroloji Alet & Gözlem Usulleri",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul METAR'larında hatalı ölçüm avı",
+ "ne": "WMO kılavuzundaki rutin kalite kontrolü mantığıyla üç İstanbul havalimanının sıcaklık ve basınç gözlemlerini tara, şüpheli değerleri işaretle.",
+ "adimlar": [
+  "Iowa Environmental Mesonet'ten LTFM, LTBA ve LTFJ için son iki yılın tmpf, dwpf ve alti (QNH) sütunlarını CSV indir; °C ve hPa'ya çevir.",
+  "pandas ile üç test yaz: olası değer sınırı, yarım saatte ani sıçrama ve saatlerce hiç değişmeyen değer (kalıcılık).",
+  "Çiy noktasının sıcaklıktan yüksek olduğu satırları da işaretle.",
+  "Üç istasyonu aynı saatte karşılaştır; biri ötekilerden seçtiğin eşikten fazla saparsa işaretle.",
+  "İşaretlenen 20 değeri tek tek incele: cephe ya da sağanakla açıklanıyor mu, yoksa gerçek hata mı?",
+  "Bayrak sütunlu temiz veri dosyasını takımın ortak deposuna koy."
+ ],
+ "sonuc": "Bayrak sütunlu temiz veri ve şüpheli değer tablosu. İncelediğin işaretlerin çoğu gerçek hataysa testler iyi çalışıyor; çoğu gerçek hava olayıysa eşikleri gevşet.",
+ "dayanak": "WMO 2023",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 112",
+    "ad": "Meteorolojik Aletler ve Gözlem Usulleri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Iowa Environmental Mesonet (IEM) İstasyon Kalite Kontrol Sistemi",
+   "ne": "Küresel METAR ve ASOS istasyon gözlemlerini gerçek zamanlı toplayarak uç değer ve tutarsızlık filtreleriyle denetleyen açık veri merkezi.",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki binlerce havalimanı METAR istasyonundan gelen sıcaklık, çiğ noktası ve basınç raporlarını otomatik testlerle filtreleyip açık erişime sundular.",
+    "nasil": "MTO 112 gözlem standartları doğrultusunda fiziksel sınır kontrolü, kalıcılık testi ve komşu istasyon çapraz doğrulaması algoritmalarını işlettiler.",
+    "neEdindiler": "Havacılık ve iklim çalışmalarında güvenle kullanılan, saniyeler içinde sorgulanabilir temiz bir küresel yüzey gözlem arşivi oluşturdular.",
+    "bizNasilKatki": "İstanbul'un üç havalimanı (LTFM, LTBA, LTFJ) için IEM arşivinden veri çekerek yerel mikroklima sapmalarını ayrıştıran özel test eşikleri tanımlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "IEM METAR İndirme ve İstasyon Veri Servisi",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "tur": "web"
+     },
+     {
+      "ad": "WMO No. 8 Gözlem Usulleri ve Aletleri Kılavuzu",
+      "url": "https://library.wmo.int/records/item/68695-guide-to-instruments-and-methods-of-observation",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "IEM küresel METAR veritabanı indirme ve istasyon seçim arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "WMO standartlarında panjurlu meteoroloji siperliği ve alet yerleşimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Kalite Güvence ve Ham Gözlem Filtreleme Hattı",
+   "ne": "Yüzey istasyonlarından ve hava modellerinden gelen verileri anlık doğrulama algoritmalarıyla temizleyip JSON API olarak dağıtan meteoroloji girişimi.",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "ayrinti": {
+    "neYaptilar": "İstasyonlardan gelen ham basınç ve sıcaklık dizilerindeki anlık sensör sıçramalarını ve donmuş verileri otomatik tespit eden açık kaynak boru hattı geliştirdiler.",
+    "nasil": "MTO 112 standartlarındaki barometrik deniz seviyesi indirgemesi ve çiğ noktası doygunluk sınırlarını matematiksel kurallarla denetlediler.",
+    "neEdindiler": "Günde yüz milyonlarca API çağrısına hatasız ve filtrelenmiş atmosferik zaman serisi sunan küresel altyapı kurdular.",
+    "bizNasilKatki": "Geliştirdiğimiz Python kalite kontrol betiğini Open-Meteo veri akışıyla kıyaslayarak istasyon hatalarını gerçek zamanlı etiketleyebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Hava Durumu API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Sha vd. 2021 Derin Öğrenme ile Yağış Gözlem Kalite Kontrolü",
+      "url": "https://doi.org/10.1175/JTECH-D-20-0081.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo açık meteoroloji API sorgulama sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo saatlik hava parametreleri API dokümantasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "WMO Küresel Temel Gözlem Ağı (GBON) İzleme Birimi",
+   "ne": "Meteoroloji istasyonlarının veri kalitesini ve aletsel kaymalarını sürekli denetleyen uluslararası akademik ve teknik konsorsiyum.",
+   "url": "https://community.wmo.int/en/activity-areas/wigos/gbon",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelinde yüzey basıncı, rüzgâr ve sıcaklık sensörlerinin WMO No. 8 standartlarına uygunluğunu ölçen küresel denetim sistemi hayata geçirdiler.",
+    "nasil": "MTO 112 aletsel hata aralıkları, hidrostatik tutarlılık ve sensör tepki analizleriyle istasyonların veri güvenilirlik puanlarını hesapladılar.",
+    "neEdindiler": "Sayısal hava tahmin modellerine giren ham yüzey gözlemlerindeki hatalı istasyonları anında karantinaya alma kabiliyeti edindiler.",
+    "bizNasilKatki": "İstanbul havalimanı sensörlerinin uzun vadeli aletsel sürüklenme eğilimlerini GBON kriterleriyle analiz eden rapor şablonu hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "WMO WIGOS ve GBON İzleme Portalı",
+      "url": "https://community.wmo.int/en/activity-areas/wigos/gbon",
+      "tur": "web"
+     },
+     {
+      "ad": "Harrison 2014 Meteorolojik Ölçümler ve Aletler Kitabı",
+      "url": "https://doi.org/10.1002/9781118745793",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://community.wmo.int/en/activity-areas/wigos/gbon",
+      "aciklama": "WMO GBON küresel gözlem ağı standartları bilgi sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_sounding_skewT.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosferik gözlem ve termodinamik profil Skew-T diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Kalite Kontrol ve İstasyon Gözlem Analiz Grubu",
+   "ne": "İstanbul METAR raporlarını otomatik indirip sıcaklık, çiğ noktası ve basınç sıçramalarını WMO kurallarıyla denetleyen öğrenci çalışma ekibi.",
+   "url": "https://github.com/aura-itu/istanbul-metar-kalite-kontrol",
+   "ayrinti": {
+    "neYaptilar": "LTFM, LTBA ve LTFJ istasyonlarının iki yıllık verisini indirip olası aralık, adım değişimi ve kalıcılık testlerinden geçiren açık Python paketi yazdılar.",
+    "nasil": "MTO 112 dersindeki psikrometrik bağıntı ve barometrik indirgeme ilkelerini kullanarak fiziksel imkânsızlıkları (çiğ noktası sıcaklığı aşamaz kuralı) filtrelediler.",
+    "neEdindiler": "Şüpheli ölçümleri bayrak sütunuyla etiketleyen temiz bir açık veri seti ve interaktif analiz paneli ürettiler.",
+    "bizNasilKatki": "Bölüm öğrencileri test eşiklerini optimize ederken havalimanları arasındaki yerel sis ve deniz etkisi farklarını koda dahil eder.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul METAR Kalite Kontrol GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-metar-kalite-kontrol",
+      "tur": "kod"
+     },
+     {
+      "ad": "İTÜ ÖBS MTO 112 Meteorolojik Aletler Katalog Sayfası",
+      "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=112",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-metar-kalite-kontrol",
+      "aciklama": "AURA METAR kalite kontrol deposu ve veri filtreleme betiği arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul havalimanları sıcaklık ve basınç anlık değişimleri ile kalite bayrakları zaman serisi, 2026",
+      "aciklama": "Üç istasyonun sıcaklık farkları ve tespit edilen hatalı ölçüm bayraklarının simülasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "İstasyon verisinde hatalı ölçümü ayıkla, sensör tepkisini ölç, bulut fotoğraflarını sınıflandır.",
+  "baglanti": "Yazılım kolunda her karşılaştırma temiz gözlemle başlar; bu dersin kalite kontrolü takımın veri hattının ilk adımıdır.",
+  "literatur": {
+   "maddeler": [
+    "Hava sıcaklığı yerden 1,25-2 m yükseklikte, siper içinde ve tercihen çim üzerinde ölçülür; rüzgârın standart ölçüm yüksekliği 10 m'dir (WMO 2023).",
+    "Gerçek bir sensör değişime hep sınırlı bir sürede yanıt verir; tekrarlı ölçümün ortalaması rastgele hatayı azaltır ve belirsizliği tahmin ettirir (Harrison 2014).",
+    "Otomatik istasyonda kalite kontrolü değerin olası sınırda kalıp kalmadığına, değişim hızına ve donup kalmasına bakar; çiy noktası sıcaklığı aşamaz (WMO 2023)."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Evrişimli sinir ağları, insan denetiminden geçmiş etiketlerle eğitilip hatalı yağış gözlemlerini otomatik ayıklıyor; Kanada'nın dağlık, seyrek istasyon ağında denendi (Sha vd. 2021).",
+    "CloudNet, yerden çekilen bulut fotoğraflarını 11 sınıfa ayıran bir sinir ağı; uçak yoğuşma izini de ayrı sınıf olarak tanıyor (Zhang vd. 2018).",
+    "Açık kapı: WeatherBench 2 istasyonla doğrulamayı ileriye bırakıyor; makaleye göre istasyon verisi düzensiz dağılır ve dikkatli kalite kontrolü ister (Rasp vd. 2024)."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "WMO 2023",
+    "baslik": "Guide to Instruments and Methods of Observation (WMO-No. 8), Cilt I ve Cilt III",
+    "yayin": "Dünya Meteoroloji Örgütü (WMO), resmî kılavuz, 2023 baskısı",
+    "yil": "2023",
+    "url": "https://library.wmo.int/records/item/68695-guide-to-instruments-and-methods-of-observation",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Harrison 2014",
+    "baslik": "Meteorological Measurements and Instrumentation",
+    "yayin": "Wiley-Blackwell, ders kitabı",
+    "yil": "2014",
+    "url": "https://doi.org/10.1002/9781118745793",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sha vd. 2021",
+    "baslik": "Deep-learning-based precipitation observation quality control",
+    "yayin": "Journal of Atmospheric and Oceanic Technology, 38(5)",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JTECH-D-20-0081.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Zhang vd. 2018",
+    "baslik": "CloudNet: Ground-Based Cloud Classification With Deep Convolutional Neural Network",
+    "yayin": "Geophysical Research Letters, 45(16)",
+    "yil": "2018",
+    "url": "https://doi.org/10.1029/2018GL077787",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2024",
+    "baslik": "WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 16(6)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023MS004019",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "WMO standartlarındaki kalite kontrol testleriyle İstanbul havalimanlarının METAR sıcaklık ve basınç gözlemlerindeki hatalı verileri Python ile ayıklamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 112",
+   "projeyeKatki": "Meteorolojik aletlerin ölçüm sınırlarını, aletsel kalibrasyon ilkelerini, psikrometrik bağıntıyı ve barometrik deniz seviyesi indirgeme kurallarını kalite testlerine aktarır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Psikrometrik buhar basıncı bağıntısı",
+     "nerede": "METAR raporundaki kuru termometre sıcaklığı ve çiğ noktası değerlerinin fiziksel sınır denetiminde ve bağıl nem hesabında."
+    },
+    {
+     "formulAd": "Barometrik yükseklik indirgeme bağıntısı",
+     "nerede": "Farklı pist rakımlarına sahip LTFM, LTBA ve LTFJ istasyonlarının QNH basınç değerlerini aynı seviyede karşılaştırırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Üç İstanbul havalimanının METAR verisini WMO testlerinden geçirip şüpheli ölçümleri bayraklayan Python hattı kurmak.",
+  "ayrinti": "IEM veri tabanından LTFM, LTBA ve LTFJ için son iki yılın sıcaklık, çiğ noktası ve altimetre basıncı verileri indirilir. pandas ile fiziksel sınır, kalıcılık ve ani sıçrama testleri yazılır. Farklı rakımlardaki istasyonlar barometrik bağıntıyla kıyaslanır. Şüpheli bulunan noktalar incelenerek gerçek hava olayları alet hatalarından ayrıştırılır. Haftada iki saatlik emekle üç haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "IEM üzerinden METAR verilerini çekmek ve düzenlemek",
+    "oz": "İki yıllık sıcaklık ve basınç serilerini indirip metrik birimlere çevirmek.",
+    "ayrinti": "Iowa Environmental Mesonet arayüzünden İstanbul Havalimanı (LTFM), Atatürk Havalimanı (LTBA) ve Sabiha Gökçen Havalimanı (LTFJ) için saatlik METAR verileri CSV formatında alınır.",
+    "nasil": [
+     {
+      "teknik": "Python pandas read_csv ile IEM web servisinden LTFM, LTBA ve LTFJ istasyonlarının tmpf, dwpf ve alti sütunları çekilerek tek DataFrame'e alınır.",
+      "sade": "İstanbul'daki üç büyük havalimanının geçmiş hava ölçümlerini internetteki açık arşivden bilgisayarımıza tablo olarak indiririz.",
+      "altAdimlar": [
+       "1. İstasyon kodlarını ve iki yıllık tarih aralığını belirle.",
+       "2. Web servisinden CSV formatında ham verileri indir.",
+       "3. pandas ile zaman sütununu UTC zaman damgasına dönüştür."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+      }
+     },
+     {
+      "teknik": "Fahrenheit cinsindeki sıcaklık ve çiğ noktası santigrata (°C), inHg cinsindeki altimetre basıncı hektopaskala (hPa) dönüştürülür.",
+      "sade": "Havacılık standartlarında İngiliz ölçü birimleriyle yazılan hava değerlerini Türkiye ve WMO standartlarındaki metrik birimlere çeviririz.",
+      "altAdimlar": [
+       "1. (tmpf - 32) * 5/9 formülüyle sıcaklığı °C'ye dönüştür.",
+       "2. dwpf sütununa aynı dönüşümü uygulayarak çiğ noktasını bul.",
+       "3. alti değerini 33.8639 ile çarparak hPa basınç birimine getir."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 112",
+      "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+     },
+     {
+      "ders": "MTO 112",
+      "madde": "WMO No. 8 standartlarına uygun meteorolojik sensör yerleşimi ve istasyon sahası kriterlerini uygulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Fiziksel sınır, kalıcılık ve sıçrama testlerini kodlamak",
+    "oz": "WMO kurallarına göre üç aşamalı kalite kontrol filtrelerini işletmek.",
+    "ayrinti": "Ölçülen sıcaklığın -15 °C ile +45 °C arasında kalması, çiğ noktasının sıcaklığı aşamaması ve ardışık ölçümlerde sensörün takılı kalıp kalmadığı kontrol edilir.",
+    "nasil": [
+     {
+      "teknik": "MTO 112 psikrometrik sınır kuralı gereğince çiğ noktasının hava sıcaklığından büyük olduğu fiziksel imkânsız satırlar maskelenerek bayraklanır.",
+      "sade": "Havanın nem tutma kapasitesi sıcaklıkla sınırlı olduğundan, çiğ noktası hava sıcaklığını geçemez kuralını bilgisayara denetletiriz.",
+      "altAdimlar": [
+       "1. dewpoint > temperature olan koşulu filtrele.",
+       "2. Hatalı satırlara FLAG_PHYSICAL bayrağı ata.",
+       "3. Fiziksel sınır aşımı oranını raporla."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Psikrometrik bağıntı ile kuru ve ıslak termometre sıcaklıklarından buhar basıncı ve bağıl nemi türetmek."
+      }
+     },
+     {
+      "teknik": "Yarım saatlik iki gözlem arasında 5 °C'yi aşan ani sıcaklık değişimleri ve 6 saat boyunca 0.0 °C değişim gösteren sabit değerler işaretlenir.",
+      "sade": "Termometrenin birdenbire aşırı zıplamasını veya sensörün donup saatlerce hep aynı sayıyı göstermesini tespit ederiz.",
+      "altAdimlar": [
+       "1. diff() işleviyle ardışık ölçümler arası farkı hesapla.",
+       "2. Eşik değerini aşan sıçramalara FLAG_SPIKE bayrağı koy.",
+       "3. Değişmeyen periyotları tarayarak FLAG_STUCK bayrağı ekle."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 112",
+      "madde": "Psikrometrik bağıntı ile kuru ve ıslak termometre sıcaklıklarından buhar basıncı ve bağıl nemi türetmek."
+     },
+     {
+      "ders": "MTO 112",
+      "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "İstasyonlar arası çapraz karşılaştırma ve hata ayrıştırması",
+    "oz": "Üç istasyonun basınç ve sıcaklıklarını eşleştirip gerçek hava olaylarını ayırmak.",
+    "ayrinti": "Barometrik indirgeme ile basınçlar aynı referansa getirilir. Bir istasyon diğer ikisinden bariz saptığında radar ve uydu verisiyle cephe geçişi kontrolü yapılır.",
+    "nasil": [
+     {
+      "teknik": "MTO 112 barometrik indirgeme formülü kullanılarak üç havalimanının deniz seviyesine indirgenmiş basınçları aynı zaman diliminde kıyaslanır.",
+      "sade": "Pist yükseklikleri farklı olan havalimanlarının hava basınçlarını deniz seviyesine eşitleyerek birbirleriyle uyumunu ölçeriz.",
+      "altAdimlar": [
+       "1. İstasyon pist rakımlarını barometrik formülde tanımla.",
+       "2. İndirgenmiş deniz seviyesi basınç farklarını çıkar.",
+       "3. Belirgin sapma gösteren istasyonu işaretle."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Barometrik indirgeme formülüyle istasyon basıncını deniz seviyesi basıncına çevirmek."
+      }
+     },
+     {
+      "teknik": "İşaretlenen şüpheli 20 uç değer vaka analizine tabi tutularak yerel sağanak veya fırtına kaynaklı olup olmadığı doğrulanır.",
+      "sade": "İşaretlediğimiz şüpheli ölçümlerin gerçek bir fırtınadan mı yoksa bozulan bir sensörden mi kaynaklandığını ayıklarız.",
+      "altAdimlar": [
+       "1. En büyük 20 sapma anını zaman çizelgesinde listele.",
+       "2. Çevre sinoptik gözlemlerle tutarlılığı doğrula.",
+       "3. Temizlenmiş veri setini kalite bayraklarıyla dışa aktar."
+      ],
+      "kazanim": {
+       "ders": "MTO 112",
+       "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 112",
+      "madde": "Barometrik indirgeme formülüyle istasyon basıncını deniz seviyesi basıncına çevirmek."
+     },
+     {
+      "ders": "MTO 112",
+      "madde": "Otomatik istasyon veri toplama döngüsünde anlık ölçüm gürültülerini ve aletsel kaymaları tespit etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul'un üç havalimanı için WMO standartlarında kalite bayrakları içeren filtrelenmiş gözlem veri tabanı ve hata analiz raporu.",
+  "senden": "MTO 112 aletsel hata sınırları, psikrometrik tutarlılık ve istasyon karşılaştırma adımlarını yürütürsün.",
+  "bizden": "AURA açık veri boru hattı, IEM otomatik veri çekme betikleri ve görselleştirme desteği sağlarız."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+   "aciklama": "IEM küresel METAR veritabanı indirme ve istasyon seçim arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "WMO standartlarında panjurlu meteoroloji siperliği ve alet yerleşimi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul havalimanları sıcaklık ve basınç anlık değişimleri ile kalite bayrakları zaman serisi, 2026",
+   "aciklama": "Üç istasyonun sıcaklık farkları ve tespit edilen hatalı ölçüm bayraklarının simülasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders planı · Meteoroloji Mühendisliği",
+   "url": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2298"
+  },
+  {
+   "ad": "Guide to Instruments and Methods of Observation (WMO-No. 8), WMO, 2023 baskısı",
+   "url": "https://library.wmo.int/records/item/68695-guide-to-instruments-and-methods-of-observation"
+  },
+  {
+   "ad": "Harrison, R. G. (2014) Meteorological Measurements and Instrumentation, Wiley-Blackwell · DOI: 10.1002/9781118745793",
+   "url": "https://doi.org/10.1002/9781118745793"
+  },
+  {
+   "ad": "Sha, Y. vd. (2021) Deep-learning-based precipitation observation quality control, J. Atmos. Oceanic Technol. · DOI: 10.1175/JTECH-D-20-0081.1",
+   "url": "https://doi.org/10.1175/JTECH-D-20-0081.1"
+  },
+  {
+   "ad": "Zhang, J. vd. (2018) CloudNet: Ground-Based Cloud Classification With Deep Convolutional Neural Network, GRL · DOI: 10.1029/2018GL077787",
+   "url": "https://doi.org/10.1029/2018GL077787"
+  },
+  {
+   "ad": "Rasp, S. vd. (2024) WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models, JAMES · DOI: 10.1029/2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "Iowa Environmental Mesonet METAR Arşivi ve Veri İndirme Servisi",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO112-01.json",
+  "tarih": "2026-10-17 00:38",
+  "geminiSha1": "23377a4c8ba2"
+ }
+}
