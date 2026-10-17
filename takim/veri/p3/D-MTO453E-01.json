@@ -1,0 +1,503 @@
+{
+ "id": "D-MTO453E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 453E",
+  "dersAd": "İklim Dinamiği",
+  "kol": "yazilim"
+ },
+ "ad": "ENSO Türkiye'yi etkiliyor mu? Kompozit analiz",
+ "ne": "NOAA PSL yeniden analizi ve Niño3.4 indeksiyle El Niño/La Niña kışlarında Türkiye yağış ve sıcaklık anomalilerinin kompozitini çıkar; anlamlılığı sına.",
+ "adimlar": [
+  "Niño3.4 serisini al; El Niño/La Niña kışlarını (±0,5 °C) seç.",
+  "ERA5 ya da NCEP yağış/sıcaklık anomalilerini kompozitle.",
+  "t-testi ile anlamlı alanları tarala.",
+  "Kuzey Atlantik Salınımı etkisiyle karıştırma olasılığını kontrol et.",
+  "Sonucu iki haritalık poster yap."
+ ],
+ "sonuc": "Kompozit haritalar; uzaktan bağlantı analizini uygulamış olursun.",
+ "dayanak": "Saha vd. 2014",
+ "senden": "xarray ve istatistik.",
+ "bizden": "İndeks ve veri.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 453E",
+    "ad": "İklim Dinamiği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NOAA PSL ENSO sayfası",
+   "ne": "ENSO indeksleri, grafikleri ve güncel durum.",
+   "url": "https://psl.noaa.gov/enso/",
+   "ayrinti": {
+    "neYaptilar": "Fiziksel Bilimler Laboratuvarı bünyesinde ENSO iklim değişkenliğini izlemek için tarihi sıcaklık serilerini ve bültenleri açık erişime sundular.",
+    "nasil": "Okyanus şamandıraları ve uydu gözlemlerinden derlenen verilerle Niño 1+2, 3, 3.4 ve 4 bölgelerinin aylık anomalilerini standartlaştırdılar.",
+    "neEdindiler": "Küresel ölçekte araştırmacılara ve tahmin merkezlerine iklim salınımlarını takip edebilecekleri temel referans veri portalı sağladılar.",
+    "bizNasilKatki": "AURA bünyesinde NOAA PSL veri servisinden otomatik indeks çeken ve Türkiye anomalileriyle ilişkilendiren Python araçları geliştirebiliriz.",
+    "referanslar": [
+     {
+      "ad": "NOAA Physical Sciences Laboratory ENSO Information Portal",
+      "url": "https://psl.noaa.gov/enso/",
+      "tur": "web"
+     },
+     {
+      "ad": "Climate Indices: Monthly Atmospheric and Ocean Time Series",
+      "url": "https://psl.noaa.gov/data/climateindices/list/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://psl.noaa.gov/enso/dashboard.html",
+      "aciklama": "NOAA PSL ENSO kontrol paneli ve Pasifik sıcaklık zaman serisi grafiği"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:ENSO_normal_el_nino.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Pasifik Okyanusu normal ve El Niño evresi Walker sirkülasyonu şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA PSL gridded data",
+   "ne": "NCEP yeniden analizi ve onlarca gridli iklim verisi tek yerde.",
+   "url": "https://psl.noaa.gov/data/gridded/data.ncep.reanalysis.html",
+   "ayrinti": {
+    "neYaptilar": "1948 yılından günümüze atmosferik basınç, rüzgar ve sıcaklık değişkenlerini içeren küresel gridli yeniden analiz arşivini ücretsiz kullanıma açtılar.",
+    "nasil": "Gözlemleri sayısal hava tahmin modelleriyle birleştiren veri asimilasyonu teknikleriyle boşluksuz küresel atmosferik ızgara ürettiler.",
+    "neEdindiler": "İklim araştırmalarında telekoneksiyon ve kompozit analizlerinin yapılabilmesi için temel araştırma veri omurgasını oluşturdular.",
+    "bizNasilKatki": "Akdeniz havzası için 500 hPa jeopotansiyel yükseklik anomalilerini hızlı filtreleyen Python iş akışları kurgulayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "The NCEP/NCAR 40-Year Reanalysis Project",
+      "url": "https://doi.org/10.1175/1520-0477(1996)077<0437:TNYRP>2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "NOAA PSL Gridded Climate Datasets Archive",
+      "url": "https://psl.noaa.gov/data/gridded/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://psl.noaa.gov/data/gridded/data.ncep.reanalysis.html",
+      "aciklama": "NCEP/NCAR yeniden analiz verisi katalog ve indirme arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Global_atmospheric_circulation.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Küresel atmosferik sirkülasyon hücreleri ve Hadley-Ferrel-Kutup döngüleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA Climate Prediction Center",
+   "ne": "Haftalık-mevsimlik tahminler ve teleconnection indeksleri.",
+   "url": "https://www.cpc.ncep.noaa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Kuzey Yarımküre telekoneksiyon modelleri olan NAO, PNA ve AO indekslerini günlük ve aylık olarak hesaplayıp kamuoyuyla paylaştılar.",
+    "nasil": "Dönel temel bileşenler analizi (RPCA) ile 500 hPa jeopotansiyel yükseklik anomalisinden karakteristik salınım desenlerini izole ettiler.",
+    "neEdindiler": "Haftalık ve mevsimlik hava tahminlerinde küresel telekoneksiyonların operasyonel kullanımını standartlaştırdılar.",
+    "bizNasilKatki": "CPC telekoneksiyon indekslerini Türkiye yağış rejimleriyle çapraz korelasyona tabi tutan açık veri tabloları derleyebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Northern Hemisphere Teleconnection Patterns Overview",
+      "url": "https://www.cpc.ncep.noaa.gov/data/teledoc/telecontents.shtml",
+      "tur": "web"
+     },
+     {
+      "ad": "NOAA CPC Daily Teleconnection Indices Service",
+      "url": "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/teleconnections.shtml",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/MJO/mjo.shtml",
+      "aciklama": "NOAA CPC Madden-Julian Salınımı ve küresel telekoneksiyon tahmin paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Pacific-North_American_pattern.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kuzey Pasifik ve Amerika üzerinde PNA telekoneksiyon basınç anomalisi dalgası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "BoM ENSO Wrap-Up",
+   "ne": "Avustralya meteoroloji bürosunun ENSO raporu.",
+   "url": "https://www.bom.gov.au/climate/enso/",
+   "ayrinti": {
+    "neYaptilar": "Avustralya Meteoroloji Bürosu bünyesinde Pasifik Okyanusu alt yüzey sıcaklıkları ve SOI verileriyle iki haftada bir ENSO bülteni yayımladılar.",
+    "nasil": "Saha şamandıraları ve iklim kuplaj modellerini bir araya getirerek El Niño ve La Niña risk seviyelerini dört aşamalı uyarı sisteminde sundular.",
+    "neEdindiler": "Tarım, su yönetimi ve enerji sektörleri için kuraklık ve aşırı yağış risklerini önceden haber veren güvenilir bir servis oluşturdular.",
+    "bizNasilKatki": "BoM raporlama formatından esinlenerek Türkiye ve Doğu Akdeniz havzası için üç aylık telekoneksiyon özet bülteni hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Bureau of Meteorology Climate Driver Update: ENSO Outlook",
+      "url": "https://www.bom.gov.au/climate/enso/",
+      "tur": "web"
+     },
+     {
+      "ad": "Southern Oscillation Index (SOI) Technical Details",
+      "url": "https://www.bom.gov.au/climate/glossary/soi.shtml",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.bom.gov.au/climate/enso/",
+      "aciklama": "Avustralya BoM ENSO durum göstergesi ve deniz yüzeyi sıcaklık haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Tropikal Pasifik Niño 3.4 bölgesi deniz yüzeyi sıcaklık anomalisi zaman serisi döngüsü, 2024",
+      "aciklama": "El Niño sıcak fazından La Niña soğuk fazına geçişin okyanus yüzey animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "IRI Data Library",
+   "ne": "Tarayıcıda iklim verisi analiz dili.",
+   "url": "https://iridl.ldeo.columbia.edu/",
+   "ayrinti": {
+    "neYaptilar": "Columbia Üniversitesi Lamont-Doherty Gözlemevi bünyesinde petabaytlarca iklim verisini web tarayıcısında filtreleyen ve kompozitleyen sistem kurdular.",
+    "nasil": "Özel fonksiyonel veri manipülasyon diliyle NetCDF dosyalarını sunucu tarafında işleyip anında grafik ve korelasyon çıktıları ürettiler.",
+    "neEdindiler": "Gelişmekte olan ülkelerdeki iklim araştırmacılarının yüksek işlem gücüne ihtiyaç duymadan büyük verileri analiz edebilmesini sağladılar.",
+    "bizNasilKatki": "IRI veri kütüphanesindeki Türkiye yağış gridlerini AURA Jupyter defterlerine bağlayan veri çekiciler kodlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "The IRI Data Library: Enhancing Climate Data Accessibility",
+      "url": "https://doi.org/10.1175/BAMS-83-8-1129",
+      "tur": "makale"
+     },
+     {
+      "ad": "IRI Data Library Online Tutorial and Function Reference",
+      "url": "https://iridl.ldeo.columbia.edu/docfind/tutorial/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://iridl.ldeo.columbia.edu/",
+      "aciklama": "IRI Data Library web veri seçici ve korelasyon harita analiz ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rossby_wave_atmosphere.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Orta enlemlerde telekoneksiyon sinyali taşıyan gezegensel Rossby dalgaları"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "ENSO, MJO ve diğer değişkenlik kiplerini mekanizmalarıyla anlamak ve mevsimlik tahminle ilişkilendirmek.",
+  "baglanti": "Yazılım kolunda yeniden analiz ve mevsimlik tahmin verisi; Anlatım kolunda değişkenlik kipleri anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "ENSO, tropikal Pasifik'te okyanus-atmosfer bağlı salınımdır; Bjerknes geri beslemesi ve geri dönüşümlü yük mekanizması döngüyü sürdürür.",
+    "Mevsimlik tahmin sistemleri (CFSv2, C3S çoklu model) ENSO'nun uzaktan bağlantılarından öngörülebilirlik alır. (Saha vd. 2014)",
+    "ENSO kuzey kış stratosferini asimetrik ve doğrusal olmayan biçimde etkiler. (Rao ve Ren 2016)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Derin öğrenme ENSO'yu 18 aya kadar öngörebildi; dinamik modellerin bahar öngörülebilirlik bariyerini aştı. (Ham vd. 2019)",
+    "Nemli baroklinik kararsızlık muson depresyonlarının büyümesini açıklıyor. (Cohen ve Boos 2016)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Saha vd. 2014",
+    "baslik": "The NCEP Climate Forecast System Version 2",
+    "yayin": "Journal of Climate 27(6), 2185-2208",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/JCLI-D-12-00823.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Rao ve Ren 2016",
+    "baslik": "Asymmetry and nonlinearity of the influence of ENSO on the northern winter stratosphere",
+    "yayin": "Journal of Geophysical Research: Atmospheres 121(15), 9000-9027",
+    "yil": "2016",
+    "url": "https://doi.org/10.1002/2015JD024521",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Ham vd. 2019",
+    "baslik": "Deep learning for multi-year ENSO forecasts",
+    "yayin": "Nature 573, 568-572",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-1559-7",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Cohen ve Boos 2016",
+    "baslik": "Perspectives on Moist Baroclinic Instability: Implications for the Growth of Monsoon Depressions",
+    "yayin": "Journal of the Atmospheric Sciences 73(4), 1767-1788",
+    "yil": "2016",
+    "url": "https://doi.org/10.1175/JAS-D-15-0254.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sassi vd. 2001",
+    "baslik": "Relationship between upper tropospheric humidity and deep convection",
+    "yayin": "Journal of Geophysical Research: Atmospheres 106(D1), 1155-1164",
+    "yil": "2001",
+    "url": "https://doi.org/10.1029/2001JD900121",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Niño 3.4 deniz yüzeyi sıcaklığı indeksiyle ERA5 yeniden analiz verilerini birleştirerek El Niño ve La Niña kışlarının Türkiye iklimine etkisini incelemek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 453E",
+   "ad": "İklim Dinamiği",
+   "projeyeKatki": "Okyanus ve atmosfer arasındaki telekoneksiyon mekanizmaları ve Rossby dalga dinamikleriyle Pasifik salınımlarının Akdeniz havzasına etkisini inceler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Güney Salınım İndeksi (Southern Oscillation Index - SOI)",
+     "nerede": "Adım 1: Pasifik basınç anomalileri ve El Niño/La Niña kışlarının sınıflandırılmasında.",
+     "katki": "Tahiti ve Darwin basınç farkından türetilen indeksle aşırı salınım yıllarını objektif olarak gruplar."
+    },
+    {
+     "formulAd": "Kuzey Atlantik Salınımı (NAO) dipol basınç indeksi",
+     "nerede": "Adım 4: ENSO kompozit sinyali ile NAO dipol salınımının etkileşim testinde.",
+     "katki": "Azor ve İzlanda basınç gradyanını ayrıştırarak Türkiye kış yağışlarındaki karmaşık etkileri doğrular."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Niño 3.4 indeksiyle El Niño ve La Niña kışlarını belirleyip ERA5 verisinde Türkiye anomalilerini haritalamak.",
+  "ayrinti": "Son 40 yılın kış aylarında Niño 3.4 sıcaklık anomalisi eşikleri kullanılarak sıcak ve soğuk faz yılları ayrıştırılır. Türkiye üzerindeki yağış ve sıcaklık kompozitleri hesaplanarak t-testiyle anlamlılık kontrolü yapılır.",
+  "adimlar": [
+   {
+    "baslik": "Niño 3.4 serisiyle El Niño ve La Niña kışlarını seçmek",
+    "oz": "NOAA PSL arşivinden Niño 3.4 indeksini indirip kış dönemlerini gruplamak.",
+    "ayrinti": "Aralık-Ocak-Şubat (DJF) aylarında Niño 3.4 sıcaklık anomalisinin +0.5 C üzerine çıktığı yıllar El Niño, -0.5 C altına indiği yıllar La Niña olarak sınıflandırılır.",
+    "nasil": [
+     {
+      "teknik": "pandas ile NOAA PSL Niño 3.4 aylık metin serisini okuyup DJF mevsimlik ortalamalarını filtrelemek.",
+      "sade": "Pasifik Okyanusu'nun merkezindeki sıcaklık ölçümlerini indirip son 40 yılın kış aylarındaki değerleri gruplarız.",
+      "altAdimlar": [
+       "NOAA PSL sunucusundan nino34.data dosyasını çekin.",
+       "Yıllık tablodaki 12, 1 ve 2. ayları birleştirerek DJF ortalamasını hesaplayın.",
+       "Nötr yılları ayırıp pozitif ve negatif uç faz yıllarını iki ayrı listeye yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "ENSO göstergelerini (Niño 3.4 indeksi, SOI) okyanus sıcaklık anomalileriyle hesaplamak."
+      }
+     },
+     {
+      "teknik": "Gruplanan yılların örneklem büyüklüğünü ve standart sapmasını kontrol ederek dengeyi doğrulamak.",
+      "sade": "Seçilen sıcak ve soğuk kış sayısının istatistiksel karşılaştırma için yeterli olduğunu denetleriz.",
+      "altAdimlar": [
+       "El Niño sınıfına giren kış sayısını listeleyin.",
+       "La Niña sınıfına giren kış sayısını doğrulayın.",
+       "Her grubun ortalama indeks şiddetini kontrol tablosuna dökün."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "ENSO göstergelerini (Niño 3.4 indeksi, SOI) okyanus sıcaklık anomalileriyle hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 453E",
+      "madde": "ENSO göstergelerini (Niño 3.4 indeksi, SOI) okyanus sıcaklık anomalileriyle hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "ERA5 sıcaklık ve yağış verisinden anomali hesaplamak",
+    "oz": "Copernicus CDS üzerinden Türkiye kutusu kış verilerini çekip iklim normallerinden farkı almak.",
+    "ayrinti": "1980-2024 yılları arasındaki ERA5 2 metre sıcaklığı ve toplam yağış alanları indirilir. 30 yıllık klimatolojik referans ortalaması çıkarılarak her kış için anomali ızgarası üretilir.",
+    "nasil": [
+     {
+      "teknik": "xarray.open_dataset('era5_turkiye.nc') ile DJF ortalama gridlerini klimatolojik ortalamadan çıkarmak.",
+      "sade": "Türkiye üzerindeki her 25 kilometrelik noktanın o kıştaki sıcaklığını uzun yıllar ortalamasından düşeriz.",
+      "altAdimlar": [
+       "Copernicus CDS üzerinden Türkiye kapsama alanındaki aylık ERA5 verisini indirin.",
+       "1991-2020 referans periyodunun kış ortalamasını hesaplayarak temel normalleri kurun.",
+       "Her yılın kış ortalamasından normali çıkararak anomali dizilerini oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Rossby dalga trenleri ve telekoneksiyon desenlerini jeopotansiyel yükseklik anomalisinde analiz etmek."
+      }
+     },
+     {
+      "teknik": "El Niño ve La Niña yıllarına ait anomali gridlerinin aritmetik ortalamasını alarak kompozit matrisleri üretmek.",
+      "sade": "Tüm sıcak evre kışlarını ve tüm soğuk evre kışlarını ayrı ayrı üst üste koyup ortalamasını alırız.",
+      "altAdimlar": [
+       "El Niño yıllarına karşılık gelen anomali katmanlarını zaman ekseninde ortalayın.",
+       "La Niña yıllarına karşılık gelen anomali katmanlarını zaman ekseninde ortalayın.",
+       "İki kompozit arasındaki fark desenini Akdeniz havzası haritasında görselleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Rossby dalga trenleri ve telekoneksiyon desenlerini jeopotansiyel yükseklik anomalisinde analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 453E",
+      "madde": "Rossby dalga trenleri ve telekoneksiyon desenlerini jeopotansiyel yükseklik anomalisinde analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Öğrenci t-testi ile istatistiksel anlamlılığı haritalamak",
+    "oz": "Gözlenen sıcaklık ve yağış kompozit farklarının tesadüfi olmadığını kanıtlamak.",
+    "ayrinti": "Kompozit ortalamalarının rastlantısal hava dalgalanmalarından kaynaklanmadığını doğrulamak için her grid hücresinde iki bağımsız örneklem t-testi işletilir. p < 0.05 alanları taranır.",
+    "nasil": [
+     {
+      "teknik": "scipy.stats.ttest_ind(el_nino_grid, la_nina_grid, equal_var=False) ile p-değeri matrisi hesaplamak.",
+      "sade": "Haritadaki her nokta için sıcaklık farkının istatistiksel olarak gerçek bir sinyal olup olmadığını sınarız.",
+      "altAdimlar": [
+       "Her ızgara noktası için iki grubun varyanslarını ve serbestlik derecelerini belirleyin.",
+       "Welch t-testi fonksiyonunu ızgara üzerinde vektörel uygulayarak p-değerlerini bulun.",
+       "Yüzde 95 güven düzeyini (p < 0.05) sağlayan pikselleri mantıksal maske olarak ayırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Cartopy haritasında anlamlı grid hücrelerini noktalı tarama (stippling) katmanı olarak çizmek.",
+      "sade": "İstatistiki olarak kanıtlanan bölgeleri harita üzerinde belirgin noktalarla tarayarak gösteririz.",
+      "altAdimlar": [
+       "Anomali renklendirmesinin üzerine p < 0.05 maskesini siyah noktalarla serin.",
+       "Türkiye kıyı ve iç bölgelerinde sinyalin nerede güçlü çıktığını not edin.",
+       "Anlamsız gürültü bölgelerini raporda açıkça belirtin."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 453E",
+      "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kuzey Atlantik Salınımı ile çapraz etkileşimi denetlemek",
+    "oz": "ENSO etkisinin NAO fazlarıyla maskelenip maskelenmediğini kontrol etmek.",
+    "ayrinti": "Türkiye kış iklimi üzerindeki en güçlü doğrudan sürücü Kuzey Atlantik Salınımıdır. ENSO'nun pozitif ve negatif NAO kışlarıyla nasıl çakıştığı doğrusal regresyonla ayrıştırılır.",
+    "nasil": [
+     {
+      "teknik": "statsmodels OLS ile Türkiye kış yağışını hem Niño 3.4 hem de NAO indeksi üzerine çoklu regrese etmek.",
+      "sade": "Yağıştaki değişimin ne kadarının Atlantik'ten ne kadarının Pasifik'ten kaynaklandığını matematiksel formülle ayırırız.",
+      "altAdimlar": [
+       "CPC sunucusundan aynı kış dönemlerine ait NAO indeks değerlerini çekin.",
+       "Çoklu doğrusal regresyon modelini kurarak her iki indeksin katsayılarını hesaplayın.",
+       "Kısmi korelasyon analiziyle ENSO'nun bağımsız katkı payını raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Kuzey Atlantik Salınımı (NAO) fazlarının Türkiye kış sıcaklık ve yağışına etkisini belirlemek."
+      }
+     },
+     {
+      "teknik": "Sonuç kompozit haritalarını ve korelasyon katsayılarını iki panelli poster formatında dışa aktarmak.",
+      "sade": "Elde edilen bilimsel bulguları meteoroloji kongresi veya semineri için temiz bir sunum panosuna dönüştürürüz.",
+      "altAdimlar": [
+       "Sol panele sıcaklık anomalisi ve anlamlılık taramasını yerleştirin.",
+       "Sağ panele yağış anomalisi ve NAO etkileşim grafiğini ekleyin.",
+       "Grafiği 300 dpi kalitesinde PNG çıktısı olarak kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Kuzey Atlantik Salınımı (NAO) fazlarının Türkiye kış sıcaklık ve yağışına etkisini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 453E",
+      "madde": "Kuzey Atlantik Salınımı (NAO) fazlarının Türkiye kış sıcaklık ve yağışına etkisini belirlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "ENSO kışlarının Türkiye yağış ve sıcaklıklarına etkisini gösteren anlamlılık testli kompozit haritalar ve Python analiz kodları.",
+  "senden": "xarray kütüphanesi ve temel hipotez testi bilgisi.",
+  "bizden": "İklim indeksleri veri tablosu ve ERA5 anomali işleme betikleri."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Tropikal Pasifik Niño 3.4 bölgesi deniz yüzeyi sıcaklık anomalisi zaman serisi döngüsü, 2024",
+   "aciklama": "El Niño sıcak fazından La Niña soğuk fazına geçişin okyanus yüzey animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:ENSO_normal_el_nino.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Pasifik Okyanusu normal ve El Niño evresi Walker sirkülasyonu şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NOAA PSL Climate Indices Information and Data Repository",
+   "url": "https://psl.noaa.gov/data/climateindices/"
+  },
+  {
+   "ad": "Copernicus Climate Data Store ERA5 Monthly Averaged Data",
+   "url": "https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels-monthly-means"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO453E-01.json",
+  "tarih": "2026-10-17 04:34",
+  "geminiSha1": "4d4b76b70313"
+ }
+}

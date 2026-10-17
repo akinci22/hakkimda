@@ -1,0 +1,109 @@
+{
+ "kod": "MTO 455",
+ "ad": "Hidrometri",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "455",
+ "ozet": "Su akımlarının, debi ve su seviyesi ölçüm tekniklerini, akım gözlem istasyonu (AGİ) tasarımını, ADCP ve akustik hız ölçerleri, savak ve menfezler üzerinden debi hesaplarını ve anahtar eğrisi (rating curve) türetimini öğretir.",
+ "neOgrenirsin": [
+  "Akustik Doppler Akım Profilleyici (ADCP) ile nehir kesiti debi ölçümlerini yürütmek.",
+  "Su seviyesi-debi anahtar eğrilerini doğrusal olmayan regresyonla türetmek.",
+  "Optik ve lazer disdrometre verilerinden damla çapı dağılımını (DSD) hesaplamak.",
+  "Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek.",
+  "Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Debi-seviye anahtar eğrisi (Rating curve) güç bağıntısı",
+   "tex": "Q = a (h - h_0)^b",
+   "terimler": [
+    [
+     "Q",
+     "nehir akım debisi",
+     "m³/s"
+    ],
+    [
+     "h",
+     "ölçülen anlık su seviyesi",
+     "m"
+    ],
+    [
+     "h_0",
+     "akışın sıfırlandığı taban su seviyesi kotu",
+     "m"
+    ],
+    [
+     "a",
+     "kesit geometrisine bağlı kalibrasyon katsayısı",
+     "boyutsuz"
+    ],
+    [
+     "b",
+     "hidrolik rejim üssü (genellikle 1,5 ile 2,5 arası)",
+     "boyutsuz"
+    ]
+   ],
+   "sade": "Sürekli ölçülen su yüksekliğinden nehrin taşıdığı toplam su debisini anında hesaplamayı sağlayan temel hidrometrik bağıntıdır.",
+   "ornek": "Su seviyesi h=2,5 m, taban kotu h0=0,5 m, a=12 ve b=1,8 iken nehir debisi Q = 12 * (2)^1,8 ≈ 41,8 m3/s bulunur.",
+   "nerede": "D-MTO455-01'de akım gözlem istasyonu anahtar eğrisi kalibrasyonunda."
+  },
+  {
+   "ad": "Marshall-Palmer damla boyut dağılımı (DSD) denklemi",
+   "tex": "N(D) = N_0 \\exp(-\\Lambda D)",
+   "terimler": [
+    [
+     "N(D)",
+     "birim hacimdeki D çaplı damla sayısı konsantrasyonu",
+     "m⁻³ mm⁻¹"
+    ],
+    [
+     "N_0",
+     "başlangıç damla yoğunluk sabiti (8000)",
+     "m⁻³ mm⁻¹"
+    ],
+    [
+     "\\Lambda",
+     "yağış şiddetine bağlı eğim parametresi (4.1 R^{-0.21})",
+     "mm⁻¹"
+    ],
+    [
+     "D",
+     "yağmur damlası eşdeğer küresel çapı",
+     "mm"
+    ]
+   ],
+   "sade": "Yağmur yağarken havadaki damlaların boyutlarına göre nasıl dağıldığını göstererek radar reflektivite kalibrasyonunu sağlar.",
+   "ornek": "R = 10 mm/saat yağışta Lambda = 2,53 mm-1 hesaplanır; küçük damlalar baskın kalırken büyük damla sayısı hızla azalır.",
+   "nerede": "D-MTO455-02'de disdrometre damla dağılımı ve Z-R bağıntısı türetiminde."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:ADCP_discharge_measurement.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Nehirde tekneyle ADCP akustik debi ve akıntı profillemesi operasyonu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Nehir en kesiti boyunca akustik hız profili ve anlık debi hesabı animasyonu, 2024",
+   "aciklama": "ADCP'nin nehir tabanından yüzeye kadar ölçtüğü hız vektörlerinin zamansal geçişi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 455 (Hidrometri)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4432",
+   "tur": "resmi"
+  },
+  {
+   "ad": "USGS Su Kaynakları Hidrometrik Ölçüm ve AGİ Kılavuzu",
+   "url": "https://water.usgs.gov/osw/streamflow_measurement.html",
+   "tur": "web"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=455"
+}

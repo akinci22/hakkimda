@@ -1,0 +1,123 @@
+{
+ "kod": "MTO 354",
+ "ad": "Tarım & Orman Meteorolojisi II",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "354",
+ "ozet": "Orman yangını meteorolojisini, Yangın Hava İndeksini (FWI), pirokümülonimbus dinamiklerini, tarımsal ve ormancılık kuraklık risklerini, rüzgâr erozyonunu ve iklim değişikliğinin orman ekosistemlerine etkilerini öğretir.",
+ "neOgrenirsin": [
+  "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak.",
+  "Aşırı orman yangınlarında pirokümülonimbus bulutu gelişim mekanizmasını analiz etmek.",
+  "SPEI ve toprak nemi göstergeleriyle tarımsal kuraklık takibi yapmak.",
+  "Rüzgâr kırıcılar ve orman şeritlerinin mikroklima koruma etkisini simüle etmek.",
+  "Orman ekosistemlerinde karbon yutağı ve evapotranspirasyon dengesini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Yangın Yayılma İndeksi (Initial Spread Index - ISI)",
+   "tex": "\\mathrm{ISI} = 0.208 \\cdot f(W) \\cdot f(F)",
+   "terimler": [
+    [
+     "\\mathrm{ISI}",
+     "yangının ilk yayılma hızı göstergesi",
+     "boyutsuz"
+    ],
+    [
+     "f(W)",
+     "rüzgâr hızı etki fonksiyonu",
+     "boyutsuz"
+    ],
+    [
+     "f(F)",
+     "ince yakıt nem kodu (FFMC) fonksiyonu",
+     "boyutsuz"
+    ]
+   ],
+   "sade": "Rüzgâr şiddeti ve kuru yaprak örtüsünün nemsizliğini birleştirerek bir yangının alev alma ve yayılma hız potansiyelini gösterir.",
+   "ornek": "Rüzgâr 40 km/s ve FFMC 92 iken ISI değeri 16 üzerine fırlayarak kontrol dışı hızlı yayılma riskine işaret eder.",
+   "nerede": "D-MTO354-01'de Akdeniz orman yangını meteorolojisi erken uyarı sisteminde."
+  },
+  {
+   "ad": "Standartlaştırılmış Yağış-Evapotranspirasyon İndeksi (SPEI)",
+   "tex": "D_i = P_i - \\mathrm{PET}_i",
+   "terimler": [
+    [
+     "D_i",
+     "i ayındaki net iklimsel su bilançosu açığı",
+     "mm"
+    ],
+    [
+     "P_i",
+     "aylık toplam yağış",
+     "mm"
+    ],
+    [
+     "\\mathrm{PET}_i",
+     "aylık potansiyel evapotranspirasyon",
+     "mm"
+    ]
+   ],
+   "sade": "Yalnız yağışı değil sıcaklık kaynaklı buharlaşma talebini de katarak orman ve tarım arazilerinin kuraklık stresini belirler.",
+   "ornek": "Yaz aylarında yağış 10 mm iken buharlaşma 180 mm'ye ulaştığında su açığı -170 mm ile şiddetli tarımsal kuraklık seviyesine iner.",
+   "nerede": "D-MTO354-02'de orman kuraklığı ve verim kaybı analizinde."
+  },
+  {
+   "ad": "Byram yangın hattı yoğunluğu ve pirokonvektif ısı akısı",
+   "tex": "I = H_c \\cdot w \\cdot r",
+   "terimler": [
+    [
+     "I",
+     "yangın hattı ısı yoğunluğu",
+     "kW/m"
+    ],
+    [
+     "H_c",
+     "yanma ısısı sabiti",
+     "kJ/kg"
+    ],
+    [
+     "w",
+     "tüketilen kuru yakıt kütlesi",
+     "kg/m²"
+    ],
+    [
+     "r",
+     "yangının doğrusal yayılma hızı",
+     "m/s"
+    ]
+   ],
+   "sade": "Orman yangınının birim hat boyunca yaydığı termal ısı enerjisini hesaplar; bu aşırı ısı güçlü yukarı yönlü dikey hava akımları yaratarak pirokümülonimbus bulutunu tetikler.",
+   "ornek": "Yanma ısısı 18000 kJ/kg, yakıt yükü 2,5 kg/m2 ve yayılma hızı 0,8 m/s iken hat yoğunluğu I = 36000 kW/m seviyesine ulaşarak stratosfere uzanan duman bacası oluşturur.",
+   "nerede": "D-MTO354-03'te orman yangınının pirokümülonimbus bulutuna dönüşme mekanizmasını açıklarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wildfire_pyrocumulonimbus.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Büyük orman yangınının oluşturduğu pirokümülonimbus duman ve bulut sütunu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Akdeniz ve Ege havzasında FWI yangın tehlike indeksinin günlük yayılımı, 2024 Ağustos",
+   "aciklama": "Sıcak ve kuru poyraz rüzgârlarında orman yangını tehlike seviyesinin tırmanış animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 354 (Tarım & Orman Meteorolojisi II)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4424",
+   "tur": "resmi"
+  },
+  {
+   "ad": "EFFIS Avrupa Orman Yangını Bilgi Sistemi",
+   "url": "https://effis.jrc.ec.europa.eu/apps/firelog/",
+   "tur": "web"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=354"
+}

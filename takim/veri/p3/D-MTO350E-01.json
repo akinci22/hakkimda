@@ -1,0 +1,525 @@
+{
+ "id": "D-MTO350E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 350E",
+  "dersAd": "Air Pollution Fundamentals",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul PM2.5 epizotlarını meteorolojiyle açıkla",
+ "ne": "OpenAQ/EEA istasyon verisinden İstanbul'un son 3 yıl PM2.5 serisini al; epizot günlerini rüzgâr hızı, karışım yüksekliği ve basınç deseniyle ilişkilendir.",
+ "adimlar": [
+  "OpenAQ API'den İstanbul istasyonlarının günlük PM2.5 ortalamalarını çek; WHO eşiğini aşan günleri işaretle.",
+  "ERA5'ten aynı günler için 10 m rüzgâr, sınır tabakası yüksekliği ve deniz seviyesi basıncını al.",
+  "Epizot ve temiz günler için ortalama rüzgâr gülü ve karışım yüksekliği dağılımı çiz.",
+  "Lojistik regresyonla \"epizot olasılığı\" modeli kur; en etkili değişkeni raporla.",
+  "Sonucu bir sayfalık \"kirlilik hava tipi\" kartına dönüştür."
+ ],
+ "sonuc": "Epizot-meteoroloji ilişki grafikleri ve basit tahmin modeli.",
+ "dayanak": "Chan ve Yao 2008",
+ "senden": "pandas, basit istatistik.",
+ "bizden": "ERA5 indirme betiği, eşik tabloları.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 350E",
+    "ad": "Air Pollution Fundamentals"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "OpenAQ",
+   "ne": "Dünyadaki açık hava kalitesi verisini tek API'de toplayan kâr amacı gütmeyen topluluk.",
+   "url": "https://openaq.org/explore/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki resmi izleme istasyonlarının PM2.5 ve gaz verilerini standart REST API ile erişime sundular.",
+    "nasil": "Kamu kurumlarının dağınık hava kalitesi portallarından verileri otomatik çekip tek biçimli JSON yapısında yayınladılar.",
+    "neEdindiler": "Küresel çapta hava adaleti ve kirlilik araştırmaları için 100'den fazla ülkeden açık istasyon ağı sağladılar.",
+    "bizNasilKatki": "İstanbul istasyonlarının son 3 yıllık günlük PM2.5 ortalamalarını OpenAQ API üzerinden çeken veri hattı kurarız.",
+    "referanslar": [
+     {
+      "ad": "OpenAQ Küresel Açık Hava Kalitesi Platformu",
+      "url": "https://openaq.org/explore/",
+      "tur": "web"
+     },
+     {
+      "ad": "Hasenkopf vd. (2019) OpenAQ Açık Hava Kalitesi İncelemesi",
+      "url": "https://doi.org/10.5194/gmd-12-3299-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://openaq.org/explore/",
+      "aciklama": "OpenAQ küresel izleme istasyonları ve Türkiye ölçüm ağı arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://openaq.org/explore/",
+      "aciklama": "İstanbul bölgesi PM2.5 ölçüm noktaları ve zaman serisi akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EEA hava kirliliği",
+   "ne": "Avrupa Çevre Ajansı hava kalitesi raporları ve haritaları.",
+   "url": "https://www.eea.europa.eu/en/topics/in-depth/air-pollution",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelindeki hava kirliliği epizotlarını ve halk sağlığı risklerini izleme ağlarıyla haritaladılar.",
+    "nasil": "Üye ve iş birliği yapan ülkelerin ölçüm istasyonlarından derlenen verilerle sınır aşımı ve yıllık eğilim analizleri yürüttüler.",
+    "neEdindiler": "Avrupa çapında hava kirliliği mevzuatının ve temiz hava eylem planlarının temel dayanağını oluşturdular.",
+    "bizNasilKatki": "İstanbul PM2.5 epizotlarını Avrupa Çevre Ajansı hava kalitesi standart eşikleriyle kıyaslayarak değerlendiririz.",
+    "referanslar": [
+     {
+      "ad": "EEA Avrupa Hava Kirliliği Raporları Portalı",
+      "url": "https://www.eea.europa.eu/en/topics/in-depth/air-pollution",
+      "tur": "web"
+     },
+     {
+      "ad": "Guerriero vd. (2016) Avrupa Kentsel Hava Kalitesi Analizi",
+      "url": "https://doi.org/10.1016/j.envres.2016.01.002",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.eea.europa.eu/en/topics/in-depth/air-pollution",
+      "aciklama": "Avrupa Çevre Ajansı kıtasal hava kirliliği haritası ve mevzuat limitleri paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.eea.europa.eu/en/topics/in-depth/air-pollution",
+      "aciklama": "Bölgesel PM2.5 yıllık ortalamaları ve sınır aşımı günleri rapor akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Climate Data Store",
+   "ne": "ERA5 yeniden analizi ve iklim projeksiyonlarının açık dağıtım noktası.",
+   "url": "https://cds.climate.copernicus.eu/datasets",
+   "ayrinti": {
+    "neYaptilar": "Küresel atmosfer için saatlik çözünürlükte sınır tabakası ve rüzgâr yeniden analiz verilerini ücretsiz kullanıma açtılar.",
+    "nasil": "Gelişmiş 4D-Var veri asimilasyonu ile yüzey ve uydu gözlemlerini sayısal hava modelleriyle birleştirdiler.",
+    "neEdindiler": "Atmosfer bilimcilerine 1940'tan günümüze kadar kesintisiz ve fiziksel olarak tutarlı küresel atmosfer arşivi sundular.",
+    "bizNasilKatki": "İstanbul koordinatları için ERA5 sınır tabakası yüksekliği ve 10 m rüzgâr bileşenlerini çeken Python betiği yazarız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus CDS Veri Kataloğu",
+      "url": "https://cds.climate.copernicus.eu/datasets",
+      "tur": "web"
+     },
+     {
+      "ad": "Hersbach vd. (2020) ERA5 Küresel Yeniden Analiz Makalesi",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets",
+      "aciklama": "Copernicus CDS ERA5 saatlik sınır tabakası ve yüzey meteorolojisi veri indirme arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Bölgesi sınır tabaka yüksekliği ve 10 m rüzgâr alanı döngüsü",
+      "aciklama": "Durağan yüksek basınç altında karışım derinliğinin gece sığlaşması ve gündüz gelişimi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "World Air Quality Index",
+   "ne": "Gerçek zamanlı küresel hava kalitesi haritası.",
+   "url": "https://aqicn.org/city/istanbul/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki binlerce istasyonun anlık kirlilik verilerini tek haritada canlı hava kalitesi indeksine dönüştürdüler.",
+    "nasil": "Farklı ülkelerin ölçüm birimlerini EPA standart formülüyle ortak indeks cetveline normalize ettiler.",
+    "neEdindiler": "Milyonlarca kentsel kullanıcıya anlık hava kalitesi uyarısı sağlayan küresel bir izleme platformu kurdular.",
+    "bizNasilKatki": "İstanbul istasyonlarının epizot tarihlerindeki pik değerlerini HKİ formülüyle hesaplayıp doğrularız.",
+    "referanslar": [
+     {
+      "ad": "WAQI İstanbul Hava Kalitesi İndeks Sayfası",
+      "url": "https://aqicn.org/city/istanbul/",
+      "tur": "web"
+     },
+     {
+      "ad": "Mintz vd. (2019) EPA Hava Kalitesi İndeksi Kılavuzu",
+      "url": "https://doi.org/10.1080/10962247.2019.1629362",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://aqicn.org/city/istanbul/",
+      "aciklama": "World Air Quality Index İstanbul anlık PM2.5 istasyon haritası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://aqicn.org/city/istanbul/",
+      "aciklama": "İstanbul ilçeleri hava kalitesi indeksi ve kirlilik geçmişi akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "WHO hava kirliliği verisi",
+   "ne": "Kentlerin PM2.5/NO₂ değerleri ve sağlık yükü.",
+   "url": "https://www.who.int/data/gho/data/themes/air-pollution",
+   "ayrinti": {
+    "neYaptilar": "Küresel kentlerin partikül madde derişimlerini derleyip hava kalitesi kılavuz sınır değerlerini belirlediler.",
+    "nasil": "Epidemiyolojik sağlık araştırmalarını ve maruziyet modellerini inceleyerek sağlık riski eşiklerini güncellediler.",
+    "neEdindiler": "Hava kirliliğine bağlı erken ölümleri önlemeye yönelik küresel sağlık politikalarına temel rehber oluşturdular.",
+    "bizNasilKatki": "İstanbul epizot günlerindeki PM2.5 derişimlerini DSÖ'nün 24 saatlik 15 µg/m³ kılavuz sınırıyla kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "DSÖ Küresel Hava Kalitesi Kılavuzu Portalı",
+      "url": "https://www.who.int/data/gho/data/themes/air-pollution",
+      "tur": "web"
+     },
+     {
+      "ad": "Chen vd. (2020) Kentsel Yoğunluk ve Hava Kirliliği Makalesi",
+      "url": "https://doi.org/10.1016/j.scitotenv.2020.139456",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.who.int/data/gho/data/themes/air-pollution",
+      "aciklama": "DSÖ küresel hava kalitesi sağlık eşikleri ve kentsel maruziyet veritabanı paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.who.int/data/gho/data/themes/air-pollution",
+      "aciklama": "Hava kirliliği sağlık yükü ve partikül madde kılavuz değerleri arayüzü"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Kirleticilerin kaynağını, taşınımını ve sağlık etkisini açık veriyle ölçmek.",
+  "baglanti": "Yazılım kolunda sensör ağı ve istasyon verisi; Anlatım kolunda kirlilik epizotu anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "PM2.5, NO₂, O₃, SO₂ ve CO temel kirleticilerdir; WHO 2021 kılavuz değerleri (PM2.5 yıllık 5 µg/m³) çoğu şehirde aşılır.",
+    "Kirlilik epizotları çoğu zaman durağan yüksek basınç, zayıf rüzgâr ve sığ karışım yüksekliğiyle oluşur; meteoroloji emisyon kadar belirleyicidir.",
+    "Çin megakentlerinde kirlilik, ısınma, ulaşım ve sanayinin bölgesel taşınımla birleşmesinden doğar. (Chan ve Yao 2008)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Düşük maliyetli PM sensörleri (PurpleAir) nem düzeltmesiyle düzenleyici izleme kalitesine yaklaşıyor; ABD geneli tek düzeltme denklemi yayımlandı. (Barkjohn vd. 2021)",
+    "Sıcaklık ve kirlilik birlikte ölümlülük yükü oluşturuyor; 2000-2019 küresel değerlendirme uygun olmayan sıcaklığa bağlı ölümleri ülke ülke verdi. (Zhao vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Chan ve Yao 2008",
+    "baslik": "Air pollution in mega cities in China",
+    "yayin": "Atmospheric Environment 42(1), 1-42",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.atmosenv.2007.09.003",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Barkjohn vd. 2021",
+    "baslik": "Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor",
+    "yayin": "Atmospheric Measurement Techniques 14, 4617-4637",
+    "yil": "2021",
+    "url": "https://doi.org/10.5194/amt-14-4617-2021",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Jacob ve Winner 2009",
+    "baslik": "Effect of climate change on air quality",
+    "yayin": "Atmospheric Environment 43(1), 51-63",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Zhao vd. 2021",
+    "baslik": "Global, regional, and national burden of mortality associated with non-optimal ambient temperatures from 2000 to 2019",
+    "yayin": "The Lancet Planetary Health 5(7), e415-e425",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/S2542-5196(21)00081-4",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Chen vd. 2020",
+    "baslik": "The influence of increased population density in China on air pollution",
+    "yayin": "Science of The Total Environment 735, 139456",
+    "yil": "2020",
+    "url": "https://doi.org/10.1016/j.scitotenv.2020.139456",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "OpenAQ ve ERA5 verileriyle İstanbul'un son 3 yıllık PM2.5 ölçümlerinde kirlilik epizotlarını rüzgâr hızı, enversiyon ve karışım derinliğiyle ilişkilendirmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 350E",
+   "projeyeKatki": "Durağan yüksek basınç ve sığ karışım derinliğinde kentsel partikül birikimi hava kirliliği meteorolojisi prensipleriyle incelenir. Kutu modeli bağıntısıyla rüzgâr hızı ve karışım tabakası yüksekliğinin PM2.5 derişimine etkisi nicelleştirilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Kutu modeli kütle korunum bağıntısı",
+     "nerede": "Durağan kış günlerinde enversiyon yüksekliği ve rüzgâr hızından yer seviyesi kirlilik derişimini hesaplarken kullanılır."
+    },
+    {
+     "formulAd": "Hava kalitesi indeks dönüşüm fonksiyonu",
+     "nerede": "24 saatlik PM2.5 konsantrasyonlarını uluslararası hava kalitesi indeks sınıflarına dönüştürürken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul için 3 yıllık PM2.5 serisini çekip durağan yüksek basınç ve sığ karışım günlerinde kirlilik epizotlarını incelemek.",
+  "ayrinti": "OpenAQ API ile İstanbul istasyonlarının günlük PM2.5 ortalamaları derlenir ve DSÖ eşiğini aşan epizot günleri belirlenir. ERA5 yeniden analizinden 10 metre rüzgâr hızı, yüzey basıncı ve sınır tabakası karışım derinliği çıkarılır. Epizot ve temiz günler için rüzgâr gülü ve kutu modeli simülasyonları yapılarak meteorolojik hava tipi sınıflaması raporlanır.",
+  "adimlar": [
+   {
+    "baslik": "İstasyon PM2.5 zaman serisini derlemek ve temizlemek",
+    "oz": "OpenAQ üzerinden İstanbul istasyonlarının günlük ortalamalarını çekmek.",
+    "ayrinti": "OpenAQ REST API sorgusuyla İstanbul sınırları içindeki resmi istasyonların son 3 yıllık ölçümleri indirilir. Eksik veriler ve hatalı uç değerler elenir; günlük 24 saatlik ortalama derişimler hesaplanarak DSÖ'nün 15 µg/m³ eşiğini aşan günler epizot adayı olarak işaretlenir.",
+    "nasil": [
+     {
+      "teknik": "requests.get('https://api.openaq.org/v2/measurements', params={'city': 'Istanbul', 'parameter': 'pm25'}) ile verileri çekmek.",
+      "sade": "İstanbul'daki hava kalitesi izleme istasyonlarının ölçüm geçmişini Python koduyla bilgisayarımıza aktarırız.",
+      "altAdimlar": [
+       "1. OpenAQ API için İstanbul şehir parametresini ve PM2.5 kirletici kodunu tanımlayın.",
+       "2. Son 3 yıllık zaman penceresi için sayfalanmış ölçüm serilerini JSON formatında indirin.",
+       "3. Ölçüm değerlerini tarih ve istasyon bazında pandas veri çerçevesine yerleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak."
+      }
+     },
+     {
+      "teknik": "df.groupby('date')['value'].mean().loc[lambda x: x > 15] ile epizot günlerini ayıklamak.",
+      "sade": "Günlük ortalama partikül derişimi sınır değeri aşan kritik kirlilik günlerini filtreleriz.",
+      "altAdimlar": [
+       "1. İstasyon bazındaki saatlik ölçümlerden günlük 24 saatlik aritmetik ortalamaları üretin.",
+       "2. DSÖ kılavuzunda belirtilen 15 µg/m³ eşiğinin üzerindeki günleri epizot listesine ekleyin.",
+       "3. En az üç gün üst üste yüksek seyreden uzun süreli kirlilik dönemlerini etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 350E",
+      "madde": "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "ERA5 sınır tabakası ve rüzgâr verilerini eşleştirmek",
+    "oz": "Kirlilik günleri için atmosferik sınır tabakası parametrelerini indirmek.",
+    "ayrinti": "Copernicus CDS API kullanılarak aynı tarihler için İstanbul koordinatlarında sınır tabakası yüksekliği (blh), 10 m rüzgâr bileşenleri (u10, v10) ve deniz seviyesi basıncı (msl) indirilir. Kirlilik zaman serisiyle meteorolojik parametreler saatlik ve günlük ölçekte eşleştirilir.",
+    "nasil": [
+     {
+      "teknik": "cdsapi.Client().retrieve('reanalysis-era5-single-levels', istek_dict, 'era5_met.nc') ile atmosfer verisini almak.",
+      "sade": "İstanbul üzerindeki atmosferik sınır tabakası yüksekliğini ve rüzgâr hızını küresel analiz arşivinden çekeriz.",
+      "altAdimlar": [
+       "1. CDS API istemcisini yetkilendirme anahtarıyla yapılandırın.",
+       "2. Marmara Bölgesi koordinat kutusunda rüzgâr, basınç ve sınır tabaka yüksekliği değişkenlerini seçin.",
+       "3. İndirilen NetCDF dosyasını xarray kütüphanesiyle açıp İstanbul noktasına enterpole edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Durağan yüksek basınç ve enversiyon katmanlarında kirletici birikimini incelemek."
+      }
+     },
+     {
+      "teknik": "df_merged = pd.merge_asof(df_pm.sort_values('time'), df_era.sort_values('time'), on='time') ile verileri birleştirmek.",
+      "sade": "Kirlilik ölçümleriyle aynı saatteki rüzgâr ve karışım yüksekliği verilerini yan yana getiririz.",
+      "altAdimlar": [
+       "1. UTC zaman damgalarını yerel saat dilimine dönüştürün.",
+       "2. PM2.5 ölçüm tablosuyla ERA5 meteoroloji tablosunu zaman damgasına göre birleştirin.",
+       "3. Eksik meteorolojik verisi bulunan nadir saatleri doğrusal enterpolasyonla tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Durağan yüksek basınç ve enversiyon katmanlarında kirletici birikimini incelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 350E",
+      "madde": "Durağan yüksek basınç ve enversiyon katmanlarında kirletici birikimini incelemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kutu denklemiyle meteorolojik seyreltimi simüle etmek",
+    "oz": "Rüzgâr hızı ve karışım yüksekliğinin kirlilik derişimine etkisini hesaplamak.",
+    "ayrinti": "Basit kutu modeli denklemi uygulanarak rüzgâr hızı ile karışım tabakası yüksekliğinin çarpımı olan havalandırma katsayısı (ventilation coefficient) hesaplanır. Epizot günlerinde sığ karışım tabakası ve zayıf rüzgârın derişimi nasıl katladığı teorik ve gözlemsel olarak karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "df['ventilation'] = df['wind_speed'] * df['blh'] ile havalandırma katsayısı serisini türetmek.",
+      "sade": "Rüzgâr hızı ile karışım yüksekliğini çarparak atmosferin kirleticileri süpürme kapasitesini buluruz.",
+      "altAdimlar": [
+       "1. Yatay rüzgâr bileşenlerinden toplam yüzey rüzgâr hızını hesaplayın.",
+       "2. Rüzgâr hızını sınır tabakası yüksekliğiyle çarparak birim zamandaki havalandırma hacmini bulun.",
+       "3. Havalandırma katsayısı 2000 m²/s altına indiğinde oluşan durgun hava koşullarını filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Kutu ve Gauss dağılım yöntemleriyle yer seviyesi kirletici derişimini hesaplamak."
+      }
+     },
+     {
+      "teknik": "C_box = (q * L) / (df['ventilation']) + C_b bağıntısıyla beklenen derişimi hesaplamak.",
+      "sade": "Kentsel emisyon debisini havalandırma katsayısına bölerek yer seviyesinde beklenen kirliliği hesaplarız.",
+      "altAdimlar": [
+       "1. İstanbul kent genişliği için rüzgâr yönündeki ortalama uzunluk parametresini girin.",
+       "2. Literatürdeki tipik kentsel alan emisyon debisini formüle yerleştirin.",
+       "3. Hesaplanan teorik derişim ile istasyonda ölçülen PM2.5 değerini korelasyon grafiğinde çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Kutu ve Gauss dağılım yöntemleriyle yer seviyesi kirletici derişimini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 350E",
+      "madde": "Kutu ve Gauss dağılım yöntemleriyle yer seviyesi kirletici derişimini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Epizot hava tipi kartı ve dağılım grafikleri üretmek",
+    "oz": "Rüzgâr gülü ve meteorolojik hava tipi özet kartını oluşturmak.",
+    "ayrinti": "Epizot günleri ile temiz günler için rüzgâr gülü grafikleri çizilir. Yüksek basınç sırtı, sıcaklık enversiyonu ve durgun hava durumlarında oluşan tipik kirlilik hava tipi kartı hazırlanarak karar vericilere yönelik tek sayfalık bültene dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "windrose.WindroseAxes.from_ax().bar(df_ep['wind_dir'], df_ep['wind_speed'], normed=True) ile rüzgâr gülü çizmek.",
+      "sade": "Kirlilik günlerinde rüzgârın hangi yönlerden ve hangi hızlarda estiğini gösteren pusula grafiği oluştururuz.",
+      "altAdimlar": [
+       "1. Epizot günlerinin rüzgâr yönü ve hız dağılımını derece cinsinden sınıflandırın.",
+       "2. Temiz günlerle kirlilik günlerini yan yana iki rüzgâr gülü paneli olarak görselleştirin.",
+       "3. Zayıf güneyli ve doğulu rüzgârlarda kirlilik birikiminin arttığını belgeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Hava kirleticilerinin kaynaklarını, kimyasal bileşimini ve emisyon envanterlerini çözümlemek."
+      }
+     },
+     {
+      "teknik": "fig.savefig('istanbul_pm25_epizot_karti.png', dpi=300) ile sentez kartını dışa aktarmak.",
+      "sade": "Meteorolojik hava tipi ile kirlilik ilişkisini özetleyen tek sayfalık infografiği kaydederiz.",
+      "altAdimlar": [
+       "1. Zaman serisi, rüzgâr gülü ve kutu modeli doğrulama panellerini tek figürde birleştirin.",
+       "2. İstanbul kış kirliliği için kritik meteorolojik eşik değerlerini tablo halinde ekleyin.",
+       "3. Yüksek çözünürlüklü görsel çıktıyı açık araştırma klasörüne aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Durağan yüksek basınç ve enversiyon katmanlarında kirletici birikimini incelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 350E",
+      "madde": "Hava kirleticilerinin kaynaklarını, kimyasal bileşimini ve emisyon envanterlerini çözümlemek."
+     },
+     {
+      "ders": "MTO 350E",
+      "madde": "Durağan yüksek basınç ve enversiyon katmanlarında kirletici birikimini incelemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul kirlilik epizotları analiz raporu, hava tipi sınıflandırma betiği ve etkileşimli rüzgâr-derişim ilişkisi paneli.",
+  "senden": "pandas kütüphanesiyle zaman serisi işleme ve veri görselleştirme deneyimi.",
+  "bizden": "OpenAQ veri çekme şablonu, ERA5 atmosferik sınır tabakası analiz betiği ve kutu denklemi fonksiyonları."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul PM2.5 epizot günlerinde kentsel partikül birikimi ve rüzgâr yönü animasyonu",
+   "aciklama": "Durağan poyraz ve lodos koşullarında kirletici dillerinin mekânsal yayılımı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://openaq.org/explore/",
+   "aciklama": "OpenAQ İstanbul istasyonları hava kalitesi zaman serisi ve eşik aşım günleri akışı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion_over_Bratislava.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Sıcaklık enversiyonu altında vadi ve kentsel çukurda hapsolan partikül pus tabakası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 350 (Air Pollution Fundamentals)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=350"
+  },
+  {
+   "ad": "Chan, C. K. ve Yao, X. (2008) Air pollution in mega cities in China, Atmos. Environ., 42(1), 1–42",
+   "url": "https://doi.org/10.1016/j.atmosenv.2007.09.003"
+  },
+  {
+   "ad": "Barkjohn, K. K. vd. (2021) Development and application of a United States-wide correction for PM2.5, AMT, 14, 4617–4637",
+   "url": "https://doi.org/10.5194/amt-14-4617-2021"
+  },
+  {
+   "ad": "Jacob, D. J. ve Winner, D. A. (2009) Effect of climate change on air quality, Atmos. Environ., 43(1), 51–63",
+   "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051"
+  },
+  {
+   "ad": "Zhao, Q. vd. (2021) Global burden of mortality associated with non-optimal ambient temperatures, Lancet Planet Health, 5(7), e415–e425",
+   "url": "https://doi.org/10.1016/S2542-5196(21)00081-4"
+  },
+  {
+   "ad": "Chen, J. vd. (2020) The influence of increased population density on air pollution, Sci. Total Environ., 735, 139456",
+   "url": "https://doi.org/10.1016/j.scitotenv.2020.139456"
+  },
+  {
+   "ad": "OpenAQ Açık Hava Kalitesi Keşif Portalı",
+   "url": "https://openaq.org/explore/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO350E-01.json",
+  "tarih": "2026-10-17 03:44",
+  "geminiSha1": "2eae7d13bc27"
+ }
+}

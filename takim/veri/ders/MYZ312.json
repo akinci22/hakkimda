@@ -1,0 +1,109 @@
+{
+ "kod": "MYZ 312",
+ "ad": "Meteorolojide Makine Öğrenmesi",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "312",
+ "ozet": "Atmosfer bilimlerinde yapay zekâ ve derin öğrenme uygulamalarını, veri ön işlemeyi, konvektif nowcasting için U-Net mimarilerini, orta vadeli hava tahmini yapan küresel graf sinir ağlarını (GraphCast, Pangu-Weather) ve fizik güdümlü makine öğrenmesi (PINN) yöntemlerini öğretir.",
+ "neOgrenirsin": [
+  "Küresel YZ hava modellerini (GraphCast, Pangu) ERA5 verileriyle koşturup değerlendirmek.",
+  "Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak.",
+  "Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak.",
+  "Meteorolojik doğrulama metriklerini (RMSE, CSI, ETS, Taylor diyagramı) hesaplamak.",
+  "Fiziksel kütle ve enerji korunumunu yapay sinir ağı kayıp fonksiyonlarına entegre etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Kritik Başarı İndeksi (CSI - Critical Success Index)",
+   "tex": "\\mathrm{CSI} = \\frac{H}{H + M + F}",
+   "terimler": [
+    [
+     "\\mathrm{CSI}",
+     "şiddetli hava olayları için kritik başarı indeksi",
+     "0 ile 1 arası"
+    ],
+    [
+     "H",
+     "isabetli tahmin sayısı (Hits)",
+     "adet"
+    ],
+    [
+     "M",
+     "ıskalanan hadise sayısı (Misses)",
+     "adet"
+    ],
+    [
+     "F",
+     "yanlış alarm sayısı (False alarms)",
+     "adet"
+    ]
+   ],
+   "sade": "Radar tabanlı yağış ve oraj tahminlerinde doğru yakalanan olayların toplam hata ve uyarılara oranını ceza puanıyla ölçer.",
+   "ornek": "1 saatlik radar tahmininde 80 isabet, 15 ıskalama ve 25 yanlış alarm varsa CSI = 80 / (80 + 15 + 25) = 0,667 elde edilir.",
+   "nerede": "D-MYZ312-02'de radar görüntüsünden 1 saatlik yağış kestirimini değerlendirirken."
+  },
+  {
+   "ad": "Jeostrofik denge sapması ve ageostrofik rüzgâr bağıntısı",
+   "tex": "\\mathbf{v}_a = \\mathbf{v} - \\mathbf{v}_g = \\mathbf{v} - \\frac{1}{f} \\mathbf{k} \\times \\nabla \\Phi",
+   "terimler": [
+    [
+     "\\mathbf{v}_a",
+     "ageostrofik rüzgâr sapma vektörü",
+     "m/s"
+    ],
+    [
+     "\\mathbf{v}",
+     "YZ modeli tarafından tahmin edilen toplam rüzgâr vektörü",
+     "m/s"
+    ],
+    [
+     "\\mathbf{v}_g",
+     "geopotansiyel yükseklikten türetilen jeostrofik rüzgâr",
+     "m/s"
+    ],
+    [
+     "f",
+     "Coriolis parametresi (2 Omega sin phi)",
+     "1/s"
+    ],
+    [
+     "\\nabla \\Phi",
+     "sabit basınç yüzeyindeki geopotansiyel gradyanı",
+     "m²/s²"
+    ]
+   ],
+   "sade": "Yapay zekânın ürettiği rüzgâr ve basınç alanlarının temel atmosferik dinamik dengeleri koruyup korumadığını denetler.",
+   "ornek": "500 hPa seviyesinde jeostrofik dengeden aşırı sapan yapay zekâ tahminleri sahte gravite dalgaları ve fiziksel dengesizlik üretir.",
+   "nerede": "D-MYZ312-03'te YZ hava tahmin modelinin fizik bilip bilmediğini test ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Taylor_diagram.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Hava tahmin modelleri doğrulama ve karşılaştırma Taylor diyagramı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "GraphCast ve ECMWF IFS 500 hPa geopotansiyel tahminlerinin 1-10 günlük doğrulaması, 2024",
+   "aciklama": "Yapay zekâ modeli ile geleneksel sayısal modelin tahmin becerisinin zamansal kıyası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MYZ 312 (Meteorolojide Makine Öğrenmesi)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4427",
+   "tur": "resmi"
+  },
+  {
+   "ad": "ECMWF ai-models Açık Kaynaklı YZ Hava Tahmini Çerçevesi",
+   "url": "https://github.com/ecmwf-lab/ai-models",
+   "tur": "kod"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MYZ&dersNo=312"
+}

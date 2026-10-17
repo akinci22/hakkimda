@@ -1,0 +1,148 @@
+{
+ "kod": "MTO 362",
+ "ad": "İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "362",
+ "ozet": "İnsansız hava araçlarının (İHA/dron) meteorolojik gözlem platformu olarak kullanımını, sınır tabaka düşey profillemesini, pervane akımı ve sensör zaman sabiti düzeltmelerini, İHA ile hava kalitesi ve mikroklima haritalamasını öğretir.",
+ "neOgrenirsin": [
+  "Küçük İHA platformlarına entegre meteorolojik sensörlerin kalibrasyonunu yapmak.",
+  "Atmosferik sınır tabakasında sıcaklık, nem ve rüzgâr dikey profillerini çıkarmak.",
+  "Pervane rotor yıkama etkisini termal ve nem sensörü konumlandırmasıyla gidermek.",
+  "İHA ile toplanan verilerden karışma yüksekliği ve sınır tabaka inversiyonunu belirlemek.",
+  "Kentsel kanyonlarda ve sanayi bölgelerinde yüksek çözünürlüklü kirletici haritaları üretmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi",
+   "tex": "T_{\\mathrm{gerçek}} = T_{\\mathrm{ölçülen}} + \\tau \\frac{d T_{\\mathrm{ölçülen}}}{d t}",
+   "terimler": [
+    [
+     "T_{\\mathrm{gerçek}}",
+     "ortamın gerçek anlık sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{\\mathrm{ölçülen}}",
+     "sensörün bildirdiği gecikmeli sıcaklık",
+     "°C"
+    ],
+    [
+     "\\tau",
+     "sensörün dinamik zaman sabiti",
+     "s"
+    ],
+    [
+     "\\frac{d T}{d t}",
+     "ölçülen sıcaklığın zamana göre değişim hızı",
+     "°C/s"
+    ]
+   ],
+   "sade": "Hızlı yükselen bir dronun sensöründeki ısıl gecikmeyi düzelterek dik profildeki gerçek enverziyon tabakasını netleştirir.",
+   "ornek": "Dron 3 m/s hızla yükselirken tau=2 sn olan termistörün 0,5 °C'lik gecikme hatası türev terimiyle düzeltilir.",
+   "nerede": "D-MTO362-01'de İHA sınır tabaka düşey profili çıkarırken."
+  },
+  {
+   "ad": "Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği",
+   "tex": "z_i = \\arg\\max_z \\left( \\frac{\\partial \\theta}{\\partial z} \\right)",
+   "terimler": [
+    [
+     "z_i",
+     "atmosferik sınır tabakası karışma yüksekliği",
+     "m"
+    ],
+    [
+     "\\theta",
+     "kuru havanın potansiyel sıcaklığı",
+     "K"
+    ],
+    [
+     "z",
+     "yerden yükseklik",
+     "m"
+    ]
+   ],
+   "sade": "Dronla ölçülen potansiyel sıcaklığın aniden artmaya başladığı tavan seviyesini bularak kirleticilerin hapsolduğu yüksekliği saptar.",
+   "ornek": "Yerden 450 metrede dtheta/dz maksimuma ulaştığında sınır tabaka tavanı 450 m olarak belirlenir.",
+   "nerede": "D-MTO362-01'de sınır tabaka inversiyonu tespitinde."
+  },
+  {
+   "ad": "Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı",
+   "tex": "u = v_{\\mathrm{yer}} + \\sqrt{\\frac{m \\cdot g \\cdot \\tan\\theta}{0.5 \\cdot \\rho \\cdot C_D \\cdot A}}",
+   "terimler": [
+    [
+     "u",
+     "kestirilen yatay rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "v_{\\mathrm{yer}}",
+     "dronun yer bağıl GPS hızı",
+     "m/s"
+    ],
+    [
+     "m",
+     "dronun toplam kalkış kütlesi",
+     "kg"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi (9.81)",
+     "m/s²"
+    ],
+    [
+     "\\theta",
+     "gövde eğim (tilt) açısı",
+     "rad"
+    ],
+    [
+     "\\rho",
+     "hava yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "C_D",
+     "aerodinamik sürüklenme katsayısı",
+     "boyutsuz"
+    ],
+    [
+     "A",
+     "rüzgâra dik gövde referans alanı",
+     "m²"
+    ]
+   ],
+   "sade": "Sabit konumda duran çok rotorlu bir dronun rüzgâra karşı direnirken yaptığı gövde eğim açısını (tilt) ölçerek rüzgâr hızını mekanik bir anemometreye gerek kalmadan hesaplar.",
+   "ornek": "Hover konumundaki 2 kg kütleli dron 15 derece eğim açısıyla dururken rüzgâr hızı 7,2 m/s olarak kestirilir.",
+   "nerede": "D-MTO362-02'de otopilot uçuş günlüğünden sınır tabakası rüzgâr profilini çıkarırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Meteorological_drone_profiling.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Sınır tabakası dikey profillemesi yapan meteorolojik araştırma dronu"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İHA ile ölçülen 0-1000 m sınır tabakası sıcaklık ve nem profili zaman serisi, 2024",
+   "aciklama": "Günün doğuşundan öğleye kadar sınır tabakasının yükselme animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 362 (İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4428",
+   "tur": "resmi"
+  },
+  {
+   "ad": "ISARRA Uluslararası Atmosferik Araştırma Dronları Birliği",
+   "url": "https://www.isarra.org/conferences/",
+   "tur": "web"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=362"
+}

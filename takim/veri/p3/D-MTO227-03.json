@@ -1,0 +1,552 @@
+{
+ "id": "D-MTO227-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 227",
+  "dersAd": "Ekosistem Ekolojisi",
+  "kol": "ikisi"
+ },
+ "ad": "Belgrad Ormanı yeşeriyor mu? Uydudan fenoloji",
+ "ne": "MODIS/Sentinel-2 NDVI zaman serisinden İstanbul Belgrad Ormanı için 2015-2025 yeşerme ve sararma tarihlerini çıkar, sıcaklıkla ilişkilendir.",
+ "adimlar": [
+  "Earth Engine kataloğundan MODIS NDVI (MOD13Q1) ve Sentinel-2 görüntülerini seç; orman sınırını OpenStreetMap'ten al.",
+  "Bulut maskesi uygula; 16 günlük NDVI serisini çıkar ve yumuşat.",
+  "Her yıl için yeşerme (NDVI'nin %50 eşik tarihi) ve sararma tarihlerini bul.",
+  "ERA5 ya da Open-Meteo'dan ilkbahar sıcaklık ortalamasını al; yeşerme tarihiyle saçılım çiz.",
+  "Sonucu iNaturalist gözlemleriyle (ilk çiçeklenme) karşılaştır."
+ ],
+ "sonuc": "On yıllık fenoloji grafiği ve sıcaklık ilişkisi; iklim-ekosistem bağını yerelde görürsün.",
+ "dayanak": "Bolton vd. 2020",
+ "senden": "Earth Engine veya Python ile raster işleme.",
+ "bizden": "Orman sınırı, bulut maskesi örneği.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 227",
+    "ad": "Ekosistem Ekolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Google Earth Engine",
+   "ne": "Bulutta petabayt ölçekli uydu analizi.",
+   "url": "https://earthengine.google.com/platform/",
+   "ayrinti": {
+    "neYaptilar": "Gezegen ölçeğinde uydu verilerini ve iklim kataloglarını bulutta paralel işleyen devasa bir coğrafi analiz platformu geliştirdiler.",
+    "nasil": "Dağıtık bilgi işlem kümeleri ve JavaScript/Python API arayüzleriyle terabaytlarca pikseli saniyeler içinde filtreleyip birleştirdiler.",
+    "neEdindiler": "Ormansızlaşma, tarım izleme ve küresel iklim analizlerinde bilim insanlarına standart araştırma altyapısı sağladılar.",
+    "bizNasilKatki": "Belgrad Ormanı koordinat kutusu için MODIS ve Sentinel-2 NDVI serilerini Earth Engine Python API ile tek sorguda çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Google Earth Engine Platform Kılavuzu",
+      "url": "https://earthengine.google.com/platform/",
+      "tur": "web"
+     },
+     {
+      "ad": "Gorelick vd. 2017 Google Earth Engine Makalesi",
+      "url": "https://doi.org/10.1016/j.rse.2017.06.031",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://earthengine.google.com/platform/",
+      "aciklama": "Google Earth Engine Kod Editörü uydu koleksiyonu filtreleme ve haritalama arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://earthengine.google.com/platform/",
+      "aciklama": "Earth Engine bulut analiz mimarisi ve büyük coğrafi veri işleme sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Earth Engine veri kataloğu",
+   "ne": "ERA5, MODIS, Sentinel dahil hazır veri setleri.",
+   "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1",
+   "ayrinti": {
+    "neYaptilar": "MODIS MOD13Q1 250 metre 16 günlük bitki örtüsü indeksleri koleksiyonunu küresel ölçekte kullanıma sundular.",
+    "nasil": "Terra ve Aqua uydularının yüzey yansıma bantlarından NDVI ve EVI katmanlarını kalite güvence maskeleriyle birleştirdiler.",
+    "neEdindiler": "Yirmi yılı aşkın kesintisiz bitki örtüsü büyüme döngüsünü araştıran en kapsamlı açık veri arşivini sağladılar.",
+    "bizNasilKatki": "2015-2025 yılları arasındaki 250 metrelik MODIS NDVI zaman serisini Belgrad Ormanı üzerinde maskeleyerek çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "MOD13Q1 V6.1 Ürün Tanıtım ve Veri Kılavuzu",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1",
+      "tur": "web"
+     },
+     {
+      "ad": "Didan vd. MODIS Bitki Örtüsü İndeksleri Metodolojisi",
+      "url": "https://doi.org/10.5067/MODIS/MOD13Q1.061",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1",
+      "aciklama": "MOD13Q1 veri seti bant tanımları ve örnek kod blokları arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Belgrad Ormanı sahasında ilkbahar sıcaklıkları ve bitki fotosentez başlangıcı mevsimsel eğrisi",
+      "aciklama": "Yıllık sıcaklık birikimi ile orman kanopisinin yeşerme evreleri arasındaki zamansal ilişki"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA LP DAAC",
+   "ne": "MODIS/VIIRS arazi ürünleri (NDVI, LST, yangın).",
+   "url": "https://lpdaac.usgs.gov/product_search/",
+   "ayrinti": {
+    "neYaptilar": "NASA'nın kara gözlem uydularından elde edilen biofiziksel ürünleri arşivleyip araştırmacılara açık sundular.",
+    "nasil": "HDF ve GeoTIFF formatlarında standardize edilen arazi yüzey sıcaklığı ve bitki sağlığı ürünlerini dağıttılar.",
+    "neEdindiler": "Biyojeokimyasal döngülerin ve arazi örtüsü değişimlerinin izlenmesinde küresel referans veri merkezi oldular.",
+    "bizNasilKatki": "MODIS arazi yüzey sıcaklığı (LST) verisini fenoloji algoritmamıza büyüme derecesi günü girdisi olarak bağlarız.",
+    "referanslar": [
+     {
+      "ad": "NASA LP DAAC Ürün Arama ve Veri Servisi",
+      "url": "https://lpdaac.usgs.gov/product_search/",
+      "tur": "web"
+     },
+     {
+      "ad": "Bolton vd. 2020 Kıtasal Fenoloji Analizi",
+      "url": "https://doi.org/10.1016/j.rse.2020.111685",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://lpdaac.usgs.gov/product_search/",
+      "aciklama": "NASA LP DAAC arazi veri ürünleri arama ve indirme portalı arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://lpdaac.usgs.gov/product_search/",
+      "aciklama": "NASA uydu ürünleri spektral bant açıklamaları ve kalite kontrol sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "iNaturalist",
+   "ne": "Canlı gözlemi paylaşım topluluğu.",
+   "url": "https://www.inaturalist.org/observations",
+   "ayrinti": {
+    "neYaptilar": "Doğa gözlemcilerinin çektikleri fotoğraflarla türlerin çiçeklenme ve yapraklanma tarihlerini açık veri tabanında topladılar.",
+    "nasil": "Görsel yapay zekâ tür tanıma algoritmaları ve uzman topluluk teyidiyle gözlemleri araştırma kalitesinde etiketlediler.",
+    "neEdindiler": "Dünya genelinde yüz milyonu aşkın coğrafi etiketli biyoçeşitlilik ve fenoloji gözlem kütüphanesi kurdular.",
+    "bizNasilKatki": "Belgrad Ormanı'ndaki meşe ve gürgen ağaçları için bildirilen ilk çiçeklenme tarihlerini uydudan saptadığımız yeşerme günüyle kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "iNaturalist Açık Doğa Gözlemleri Portalı",
+      "url": "https://www.inaturalist.org/observations",
+      "tur": "web"
+     },
+     {
+      "ad": "Unger vd. iNaturalist Fenoloji Doğrulama Çalışması",
+      "url": "https://doi.org/10.1093/biosci/biaa098",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.inaturalist.org/observations",
+      "aciklama": "iNaturalist harita tabanlı bitki türü gözlemleri ve fenoloji fotoğrafları paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.inaturalist.org/observations",
+      "aciklama": "Topluluk tarafından doğrulanan araştırma kalitesinde gözlem verileri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "USA National Phenology Network",
+   "ne": "Gönüllü fenoloji gözlem ağı.",
+   "url": "https://www.usanpn.org/data/observatory",
+   "ayrinti": {
+    "neYaptilar": "İlkbahar yapraklanma indekslerini (SI-x) ve bitki fenolojisi istatistiklerini açık veri portalıyla sundular.",
+    "nasil": "Saha gözlem protokollerini klimatolojik sıcaklık toplamı modelleriyle birleştirip fenolojik anomali haritaları ürettiler.",
+    "neEdindiler": "İklim değişikliğinin mevsim başlangıçları üzerindeki etkisini belgeleyen ulusal gözlem ve uyarı sistemi kurdular.",
+    "bizNasilKatki": "NPN'in dinamik fenoloji eşik algoritmalarını Belgrad Ormanı zaman serimizi işlerken referans yöntem olarak uygularız.",
+    "referanslar": [
+     {
+      "ad": "USA NPN Fenoloji Gözlemevi ve Veri Servisi",
+      "url": "https://www.usanpn.org/data/observatory",
+      "tur": "web"
+     },
+     {
+      "ad": "Rosemartin vd. Ulusal Fenoloji İzleme Metodolojisi",
+      "url": "https://doi.org/10.1007/s00484-014-0804-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.usanpn.org/data/observatory",
+      "aciklama": "USA NPN fenolojik ilkbahar başlangıç anomali haritaları arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Orman ekosisteminde ilkbahar sıcaklık birikimi ve yaprak patlama eşiği grafiği",
+      "aciklama": "Günlük ortalama sıcaklıkların birikimli toplamı ile bitki uyanışı arasındaki ilişki"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Atmosferle ekosistem arasındaki karbon, su ve enerji alışverişini gerçek ölçümlerle görmek.",
+  "baglanti": "Yazılım kolunda akı kulesi verisi analizi; Anlatım kolunda fenoloji ve karbon döngüsü videoları.",
+  "literatur": {
+   "maddeler": [
+    "Net ekosistem değişimi (NEE), fotosentezle alınan ve solunumla verilen CO₂ arasındaki farktır; gece verisinden solunum, gündüz verisinden asimilasyon ayrıştırılır. (Reichstein vd. 2005)",
+    "Eddy kovaryans kuleleri ekosistem-atmosfer akılarını doğrudan ölçer; FLUXNET2015 veri seti 212 sahayı standart işleme ile sunar. (Pastorello vd. 2020)",
+    "Küresel karbon bütçesi: fosil emisyonların yaklaşık yarısı atmosferde kalır, geri kalanını kara ve okyanus yutakları alır. (Friedlingstein vd. 2023)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "1982-2016 arasında küresel ağaç örtüsü net olarak arttı ama tropik ormanlar azaldı; uydu zaman serileri bu dengeyi bölge bölge gösteriyor. (Song vd. 2018)",
+    "Uydudan fenoloji (yeşerme/sararma tarihleri) artık 30 m çözünürlükte kıta ölçeğinde çıkarılıyor. (Bolton vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Reichstein vd. 2005",
+    "baslik": "On the separation of net ecosystem exchange into assimilation and ecosystem respiration",
+    "yayin": "Global Change Biology 11(9), 1424-1439",
+    "yil": "2005",
+    "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pastorello vd. 2020",
+    "baslik": "The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data",
+    "yayin": "Scientific Data 7, 225",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41597-020-0534-3",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Friedlingstein vd. 2023",
+    "baslik": "Global Carbon Budget 2023",
+    "yayin": "Earth System Science Data 15, 5301-5369",
+    "yil": "2023",
+    "url": "https://doi.org/10.5194/essd-15-5301-2023",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Song vd. 2018",
+    "baslik": "Global land change from 1982 to 2016",
+    "yayin": "Nature 560, 639-643",
+    "yil": "2018",
+    "url": "https://doi.org/10.1038/s41586-018-0411-9",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Bolton vd. 2020",
+    "baslik": "Continental-scale land surface phenology from harmonized Landsat 8 and Sentinel-2 imagery",
+    "yayin": "Remote Sensing of Environment 240, 111685",
+    "yil": "2020",
+    "url": "https://doi.org/10.1016/j.rse.2020.111685",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Xiao vd. 2019",
+    "baslik": "Remote sensing of the terrestrial carbon cycle: A review of advances over 50 years",
+    "yayin": "Remote Sensing of Environment 233, 111383",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.rse.2019.111383",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Sentinel-2 ve MODIS NDVI serileriyle Belgrad Ormanı'nda on yıllık fenolojik yeşerme tarihlerini çıkarıp ilkbahar sıcaklıklarıyla ilişkilendirmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 227",
+   "projeyeKatki": "Bitki fenolojisinin iklimsel etkenleri ekosistem ekolojisi prensipleriyle çözümlenir. Michaelis ve Menten ışık yanıt eğrisi bağıntısı ile yeşerme evresinde orman kanopisinin fotosentetik kapasitesindeki artış açıklanırken, Net ekosistem karbon akısı dengesi ile ekosistemin net karbon tutma periyodunun başlangıcı saptanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Michaelis ve Menten ışık yanıt eğrisi bağıntısı",
+     "nerede": "İlkbahar yapraklanma sürecinde yaprak alanı indeksi arttıkça kanopi fotosentez doygunluğunu hesaplamada kullanılır."
+    },
+    {
+     "formulAd": "Net ekosistem karbon akısı dengesi",
+     "nerede": "Yeşerme eşiğinin aşıldığı tarihten itibaren ekosistemin net karbon yutağına dönüştüğü anı belirlemede kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Google Earth Engine ile Belgrad Ormanı NDVI serisini filtreleyip ilkbahar yeşerme ve sonbahar döküm tarihlerini belirlemek.",
+  "ayrinti": "OpenStreetMap'ten Belgrad Ormanı çokgeni çekilip Earth Engine ortamına aktarılır. MODIS MOD13Q1 ve Sentinel-2 MSI yüzey yansıma ürünlerinden bulutsuz NDVI zaman serisi üretilir; Savitzky-Golay filtresiyle eğri yumuşatılır. Yıllık yüzde elli dinamik eşik yöntemiyle yeşerme ve sararma günleri saptanır. ERA5 ilkbahar sıcaklık ortalamalarıyla fenolojik kaymalar regresyonla analiz edilir.",
+  "adimlar": [
+   {
+    "baslik": "Belgrad Ormanı sınırlarını ve uydu serisini seçmek",
+    "oz": "OpenStreetMap vektör sınırını alıp Earth Engine'de maskelemek.",
+    "ayrinti": "İstanbul'un kuzeyindeki Belgrad Ormanı koruma alanı poligonu OpenStreetMap Overpass API üzerinden GeoJSON formatında temin edilir. Earth Engine üzerinde ee.Geometry.Polygon nesnesine dönüştürülerek MODIS MOD13Q1 ve Sentinel-2 koleksiyonlarına uzamsal filtre uygulanır.",
+    "nasil": [
+     {
+      "teknik": "belgrad_poly = ee.Geometry.Polygon(geojson_coords); s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED').filterBounds(belgrad_poly) ile filtrelemek.",
+      "sade": "Belgrad Ormanı sınırlarını tanımlayıp bu bölgeye düşen Sentinel-2 uydu görüntülerini bulutta seçeriz.",
+      "altAdimlar": [
+       "1. Overpass API üzerinden Belgrad Ormanı sınır koordinatlarını indirin.",
+       "2. Earth Engine Python oturumunda geometrik poligon nesnesi oluşturun.",
+       "3. 2015-2025 tarih aralığı için görüntü koleksiyonunu mekânsal olarak sınırlandırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     },
+     {
+      "teknik": "def mask_s2(img): return img.updateMask(img.select('QA60').bitwiseAnd(1024).eq(0)) ile bulut maskesi uygulamak.",
+      "sade": "Görüntülerdeki bulut ve gölgeleri kalite bantlarını kullanarak temizleriz.",
+      "altAdimlar": [
+       "1. QA60 kalite bandındaki bulut ve sirrüs bitlerini inceleyin.",
+       "2. Bulutlu pikselleri maskeleyerek şeffaf hale getirin.",
+       "3. Yalnızca berrak gökyüzü koşullarındaki orman piksellerini tutun."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "On yıllık NDVI zaman serisini çıkarmak ve filtrelemek",
+    "oz": "16 günlük kompozitleri Savitzky-Golay ile pürüzsüzleştirmek.",
+    "ayrinti": "Her gözlem için normalize edilmiş fark bitki örtüsü indeksi (NDVI = (NIR - Kırmızı) / (NIR + Kırmızı)) hesaplanır. Belgrad Ormanı poligonu üzerinde mekânsal ortalama alınarak 2015-2025 zaman serisi oluşturulur. Atmosferik gürültüleri gidermek için Savitzky-Golay polinom filtresi uygulanır.",
+    "nasil": [
+     {
+      "teknik": "ndvi = img.normalizedDifference(['B8', 'B4']).rename('NDVI') formülüyle bant oranlaması yapmak.",
+      "sade": "Yakın kızılötesi ve kırmızı ışık yansımalarından bitki sağlığını gösteren indeks haritası üretiriz.",
+      "altAdimlar": [
+       "1. Sentinel-2 B8 ve B4 bantlarını seçin.",
+       "2. Piksel düzeyinde farkın toplama oranını hesaplayın.",
+       "3. Orman maskesi içindeki ortalama NDVI değerini çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     },
+     {
+      "teknik": "smooth_ndvi = scipy.signal.savgol_filter(ndvi_series, window_length=9, polyorder=2) ile seriyi yumuşatmak.",
+      "sade": "Hava koşullarından kaynaklanan ani sıçramaları ve gürültüleri matematiksel filtreyle temizleriz.",
+      "altAdimlar": [
+       "1. Zaman serisindeki eksik tarihleri doğrusal tamamlama ile doldurun.",
+       "2. Dokuz adımlık pencereyle ikinci derece Savitzky-Golay filtresi koşturun.",
+       "3. Pürüzsüz yıllık fenoloji dalgasını elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Yeşerme ve sararma tarihlerini dinamik eşikle saptamak",
+    "oz": "Yıllık NDVI genliğinin yüzde elli eşik gününü (SOS/EOS) bulmak.",
+    "ayrinti": "Her yıl için kış minimumu ve yaz maksimumu NDVI değerleri belirlenir. Yıllık genliğin tam ortasına denk gelen yüzde elli dinamik eşik seviyesi hesaplanır. İlkbaharda bu eşiğin aşıldığı gün yeşerme başlangıcı (Start of Season, SOS), sonbaharda altına düşüldüğü gün yaprak dökümü (End of Season, EOS) olarak saptanır.",
+    "nasil": [
+     {
+      "teknik": "threshold_50 = ndvi_min + 0.5 * (ndvi_max - ndvi_min) ile dinamik eşik hesaplamak.",
+      "sade": "Ormanın kış uykusu ile en yeşil hali arasındaki orta noktayı o yıla özel eşik olarak belirleriz.",
+      "altAdimlar": [
+       "1. Yıl içindeki taban ve tavan NDVI genliğini saptayın.",
+       "2. Yüzde elli artış noktasını sayısal olarak belirleyin.",
+       "3. Eğrinin bu değeri kestiği takvim gününü (yılın günü, DOY) çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     },
+     {
+      "teknik": "sos_day = np.interp(threshold_50, smooth_ndvi[spring_idx], days[spring_idx]) ile günü aradeğerlemek.",
+      "sade": "Yeşermenin başladığı takvim gününü matematiksel aradeğerleme ile tam olarak buluruz.",
+      "altAdimlar": [
+       "1. İlkbahar yükseliş periyodundaki gün dilimini ayırın.",
+       "2. Doğrusal enterpolasyonla eşiğin kesildiği günü ondalık gün hassasiyetinde belirleyin.",
+       "3. 2015-2025 arasındaki 10 yıllık SOS günleri dizisini kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "İlkbahar sıcaklıkları ile fenolojik kaymayı ilişkilendirmek",
+    "oz": "ERA5 Mart-Nisan sıcaklıkları ile SOS gününü saçılım grafiğinde karşılaştırmak.",
+    "ayrinti": "Copernicus ERA5 yeniden analizinden İstanbul Belgrad Ormanı için Mart ve Nisan ayları ortalama 2 metre sıcaklıkları çekilir. On yıllık yeşerme başlangıç günleri ile ortalama sıcaklıklar arasında doğrusal regresyon kurulur; her bir derecelik ısınmanın yapraklanmayı kaç gün öne çektiği hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "slope, r_val, p_val = scipy.stats.linregress(spring_temps, sos_days) ile sıcaklık duyarlılığı hesaplamak.",
+      "sade": "Hava sıcaklığı ile ormanın uyanış günü arasındaki istatistiksel bağıntıyı kurarız.",
+      "altAdimlar": [
+       "1. ERA5 Mart-Nisan ortalama sıcaklık değerlerini derleyin.",
+       "2. SOS günleriyle doğrusal regresyon analizi yapın.",
+       "3. Eğim katsayısından derece başına kaç gün erken yeşerme olduğunu bulun."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Sıcaklık ve toprak nemine bağlı ekosistem solunum eğrilerini (Lloyd-Taylor) parametrik olarak uydurmak."
+      }
+     },
+     {
+      "teknik": "plt.scatter(spring_temps, sos_days); plt.plot(spring_temps, slope*spring_temps + intercept) ile grafiği çizmek.",
+      "sade": "Sıcaklık artışının ormanı nasıl erken uyandırdığını gösteren iki eksenli saçılım grafiği üretiriz.",
+      "altAdimlar": [
+       "1. Saçılım noktalarını yıllara göre renklendirin.",
+       "2. Regresyon doğrusunu ve R-kare değerini grafiğe ekleyin.",
+       "3. Belgrad Ormanı'nın sıcaklık duyarlılık eşiğini raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Sıcaklık ve toprak nemine bağlı ekosistem solunum eğrilerini (Lloyd-Taylor) parametrik olarak uydurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Sıcaklık ve toprak nemine bağlı ekosistem solunum eğrilerini (Lloyd-Taylor) parametrik olarak uydurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "iNaturalist gözlemleriyle fenolojik yer doğrulama yapmak",
+    "oz": "Saha çiçeklenme bildirimlerini uydudan saptanan yeşerme günüyle karşılaştırmak.",
+    "ayrinti": "iNaturalist API üzerinden Belgrad Ormanı poligonunda meşe (Quercus petraea) ve gürgen (Carpinus betulus) türlerine ait ilkbahar fenoloji fotoğrafları taranır. Topluluk tarafından doğrulanmış araştırma kalitesindeki ilk yapraklanma bildirimleri uydu SOS günüyle örtüştürülür.",
+    "nasil": [
+     {
+      "teknik": "obs = requests.get('https://api.inaturalist.org/v1/observations', params={'taxon_id': 47851, 'nelat': 41.25, ...}) ile saha verisi çekmek.",
+      "sade": "Belgrad Ormanı'nda vatandaşlar tarafından yüklenen ağaç fotoğraflarını API ile sorgularız.",
+      "altAdimlar": [
+       "1. iNaturalist API arayüzünden orman sınırları koordinatlarını tanımlayın.",
+       "2. Meşe ve gürgen tür kimlik numaralarını sorgu parametresine ekleyin.",
+       "3. Mart-Mayıs aylarındaki gözlem fotoğraflarını ve tarih damgalarını indirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     },
+     {
+      "teknik": "compare_dates(satellite_sos=sos_day, field_observations=obs_dates) fonksiyonuyla hata farkını belgelemek.",
+      "sade": "Uydunun uzaydan gördüğü yeşerme günü ile yerdeki fotoğraf tarihlerini kıyaslayarak doğrularız.",
+      "altAdimlar": [
+       "1. İlk çiçeklenme ve yaprak açma fotoğraflarını takvim gününe dönüştürün.",
+       "2. Uydu SOS günü ile ortalama saha gözlemi farkını gün cinsinden hesaplayın.",
+       "3. Sonuçları interaktif fenoloji haritası üzerinde görselleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Belgrad Ormanı için on yıllık fenoloji takvimi, sıcaklık duyarlılığı grafiği ve iNaturalist saha gözlemleriyle doğrulanmış Python analiz defteri.",
+  "senden": "Earth Engine Python API kullanım deneyimi, zaman serisi filtreleme merakı ve uzaktan algılama ilgisi.",
+  "bizden": "Belgrad Ormanı vektör sınırları, dinamik eşikleme algoritma şablonu ve ERA5 sıcaklık hazırlık kodu."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1",
+   "aciklama": "Google Earth Engine MODIS bitki örtüsü indeksleri veri kataloğu arayüzü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Belgrad Ormanı bölgesinde on yıllık ilkbahar sıcaklık eğilimi ve bitki uyanış tarihleri",
+   "aciklama": "Mevsimsel ısınma ile orman örtüsünün yeşerme başlangıç günleri arasındaki etkileşim animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.inaturalist.org/observations",
+   "aciklama": "iNaturalist Belgrad Ormanı saha bitki gözlemleri ve fenoloji fotoğrafları sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 227 (Ekosistem Ekolojisi)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=227"
+  },
+  {
+   "ad": "Bolton, D. K. et al. (2020) Continental-scale land surface phenology, RSE, 240, 111685",
+   "url": "https://doi.org/10.1016/j.rse.2020.111685"
+  },
+  {
+   "ad": "Google Earth Engine MOD13Q1 Data Catalog",
+   "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD13Q1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO227-03.json",
+  "tarih": "2026-10-17 03:37",
+  "geminiSha1": "1f9ae93ce5ae"
+ }
+}

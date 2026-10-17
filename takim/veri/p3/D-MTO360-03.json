@@ -1,0 +1,460 @@
+{
+ "id": "D-MTO360-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 360",
+  "dersAd": "Tıbbi Meteoroloji",
+  "kol": "ikisi"
+ },
+ "ad": "Grip mevsimi ve mutlak nem: 10 şehir karşılaştırması",
+ "ne": "Açık grip sürveyans verisi (WHO FluNet) ile 10 şehrin haftalık mutlak nem serisini karşılaştır; düşük nemle vaka artışı arasındaki gecikmeyi ölç.",
+ "adimlar": [
+  "WHO FluNet'ten ülke haftalık pozitif vaka sayısını al; 10 şehir seç.",
+  "ERA5/Open-Meteo'dan haftalık mutlak nem (g/m³) hesapla.",
+  "Çapraz korelasyonla gecikmeyi (0-4 hafta) bul.",
+  "Kış sert/ılık yıllara göre eğrileri ayır.",
+  "Sonuçları harita + grafik posteri yap."
+ ],
+ "sonuc": "Nem-grip gecikme grafikleri; ders kavramının epidemiyolojik karşılığı.",
+ "dayanak": "Romanello vd. 2021",
+ "senden": "Zaman serisi analizi.",
+ "bizden": "Veri erişimi ve nem hesabı.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 360",
+    "ad": "Tıbbi Meteoroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "WHO hava kirliliği verisi",
+   "ne": "Kentlerin PM2.5/NO₂ değerleri ve sağlık yükü.",
+   "url": "https://www.who.int/data/gho/data/themes/air-pollution",
+   "ayrinti": {
+    "neYaptilar": "Dünya Sağlık Örgütü Küresel Sağlık Gözlemevi bünyesinde dünya şehirlerinin hava kalitesi ve solunum yolu maruziyet verilerini yayımladılar.",
+    "nasil": "İstasyon ölçümleri ve uydu aerosol derinliklerini epidemiyolojik hastalık yükü hesaplarıyla birleştirdiler.",
+    "neEdindiler": "Hava kirleticilerinin kış aylarında solunum yolu enfeksiyonlarına duyarlılığı nasıl artırdığını gösteren açık küresel veri sundular.",
+    "bizNasilKatki": "10 Avrupa kenti için kirlilik arka planını grip ve nem analizimizde kontrol değişkeni olarak inceleriz.",
+    "referanslar": [
+     {
+      "ad": "DSÖ Küresel Sağlık Gözlemevi Hava Kirliliği Portalı",
+      "url": "https://www.who.int/data/gho/data/themes/air-pollution",
+      "tur": "web"
+     },
+     {
+      "ad": "Chen vd. (2020) Kentsel Nüfus ve Hava Kirliliği Etkileşimleri",
+      "url": "https://doi.org/10.1016/j.scitotenv.2020.139456",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.who.int/data/gho/data/themes/air-pollution",
+      "aciklama": "DSÖ küresel hava kalitesi ve solunum sağlığı göstergeleri paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.who.int/data/gho/data/themes/air-pollution",
+      "aciklama": "Kentsel partikül madde maruziyeti ve sağlık yükü istatistikleri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Climate Data Store",
+   "ne": "ERA5 yeniden analizi ve iklim projeksiyonlarının açık dağıtım noktası.",
+   "url": "https://cds.climate.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "ECMWF bünyesinde 1940'tan günümüze tüm küresel atmosfer parametrelerini saatlik çözünürlükte ücretsiz erişime açtılar.",
+    "nasil": "Milyonlarca uydu ve yer gözlemini gelişmiş 4B veri asimilasyonu ile birleştirip kesintisiz ERA5 iklim serisi ürettiler.",
+    "neEdindiler": "Tıbbi meteoroloji araştırmaları için dünya üzerindeki herhangi bir koordinatta nem ve sıcaklık çıkarma altyapısı kurdular.",
+    "bizNasilKatki": "10 Avrupa şehri için son 5 yılın haftalık 2 m çiğ noktası ve hava sıcaklığı serilerini CDS API ile çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Copernicus İklim Veri Deposu ERA5 Tek Seviye Veri Kataloğu",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "tur": "web"
+     },
+     {
+      "ad": "Hersbach vd. (2020) ERA5 Küresel Atmosferik Yeniden Analiz Veri Seti",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "Copernicus CDS ERA5 saatlik atmosferik parametreler indirme arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "Sıcaklık ve nem değişkenleri sorgulama ve NetCDF dışa aktarma akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Lancet Countdown",
+   "ne": "İklim ve sağlık göstergeleri yıllık raporu.",
+   "url": "https://lancetcountdown.org/",
+   "ayrinti": {
+    "neYaptilar": "İklim değişkenliği ve bulaşıcı hastalıkların mevsimsel dalgalanmalarını izleyen küresel tıp konsorsiyumunu kurumsallaştırdılar.",
+    "nasil": "Meteorolojik aşırılıklar ile solunum yolu virüslerinin bulaşma dinamiklerini akademik sağlık modelleriyle takip ettiler.",
+    "neEdindiler": "Dünya genelinde iklim değişikliğinin enfeksiyon hastalıkları yükü üzerindeki etkilerini ortaya koydular.",
+    "bizNasilKatki": "Lancet Countdown raporlarındaki iklim-epidemiyoloji analiz çerçevesini sonuçlarımızın yorumlanmasında kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Lancet Countdown 2021 İklim ve Sağlık Yıllık Raporu",
+      "url": "https://doi.org/10.1016/S0140-6736(21)01787-6",
+      "tur": "makale"
+     },
+     {
+      "ad": "Lancet Countdown İnteraktif Sağlık Veri Göstergeleri Portalı",
+      "url": "https://www.lancetcountdown.org/data-platform/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.lancetcountdown.org/data-platform/",
+      "aciklama": "Lancet Countdown bulaşıcı hastalıklar ve iklim maruziyeti paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.lancetcountdown.org/data-platform/",
+      "aciklama": "Mevsimsel enfeksiyon trendleri ve iklim korelasyonu göstergeleri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Climate-ADAPT (EEA)",
+   "ne": "Avrupa iklim uyum platformu; sağlık gözlemevi.",
+   "url": "https://climate-adapt.eea.europa.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Çevre Ajansı ile birlikte mevsimsel iklim olaylarının bulaşıcı hastalıklar üzerindeki risklerini izlediler.",
+    "nasil": "Avrupa Hastalık Önleme ve Kontrol Merkezi (ECDC) verilerini iklim göstergeleriyle entegre haritalarda sundular.",
+    "neEdindiler": "Avrupa ülkeleri arasında solunum yolu enfeksiyonları ve iklim uyumu konusunda politika eşgüdümü sağladılar.",
+    "bizNasilKatki": "10 şehrin seçiminde ve bölgesel iklim sınıflandırmasında Climate-ADAPT coğrafi katmanlarından yararlanırız.",
+    "referanslar": [
+     {
+      "ad": "Climate-ADAPT Bulaşıcı Hastalıklar ve İklim Göstergeleri Paneli",
+      "url": "https://climate-adapt.eea.europa.eu/en/observatory",
+      "tur": "web"
+     },
+     {
+      "ad": "Zhao vd. (2021) Sıcaklık ve Ölüm Yükü Küresel Epidemiyolojisi",
+      "url": "https://doi.org/10.1016/S2542-5196(21)00081-4",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://climate-adapt.eea.europa.eu/en/observatory",
+      "aciklama": "Climate-ADAPT Avrupa iklim ve sağlık izleme arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://climate-adapt.eea.europa.eu/en/observatory",
+      "aciklama": "Bölgesel kış iklimi ve enfeksiyon kırılganlığı göstergeleri akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Hava koşullarının hastalık ve sağlık göstergeleriyle ilişkisini dikkatli istatistikle kurmak.",
+  "baglanti": "Yazılım kolunda sağlık-hava zaman serileri; Anlatım kolunda hekim ve hastaya yönelik bilgilendirme.",
+  "literatur": {
+   "maddeler": [
+    "Sıcaklık-ölümlülük ilişkisi U biçimlidir; her şehrin kendi \"minimum ölümlülük sıcaklığı\" vardır. (Zhao vd. 2021)",
+    "Hava kirliliği ve sıcaklık etkileri birlikte değerlendirilmeli; karıştırıcı değişkenler (mevsim, hafta günü, grip) modele alınmadan ilişki kurulamaz.",
+    "Biyometeorolojik indeksler (UTCI, hissedilen sıcaklık) klinik uyarı eşikleri için standart dil sağlar. (Blazejczyk vd. 2012)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Lancet Countdown sağlık göstergeleri yıllık güncelleniyor; sıcak maruziyeti ve kirlilik ölümleri ülke bazında izlenebiliyor. (Romanello vd. 2021)",
+    "WMO-WHO Küresel Sıcak Sağlık Bilgi Ağı (GHHIN) şehirler için sıcak-sağlık eylem planı şablonları yayımlıyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Zhao vd. 2021",
+    "baslik": "Global, regional, and national burden of mortality associated with non-optimal ambient temperatures from 2000 to 2019",
+    "yayin": "The Lancet Planetary Health 5(7), e415-e425",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/S2542-5196(21)00081-4",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Blazejczyk vd. 2012",
+    "baslik": "Comparison of UTCI to selected thermal indices",
+    "yayin": "International Journal of Biometeorology 56, 515-535",
+    "yil": "2012",
+    "url": "https://doi.org/10.1007/s00484-011-0453-2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Romanello vd. 2021",
+    "baslik": "The 2021 report of the Lancet Countdown on health and climate change",
+    "yayin": "The Lancet 398(10311), 1619-1662",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/S0140-6736(21)01787-6",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Chen vd. 2020",
+    "baslik": "The influence of increased population density in China on air pollution",
+    "yayin": "Science of The Total Environment 735, 139456",
+    "yil": "2020",
+    "url": "https://doi.org/10.1016/j.scitotenv.2020.139456",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "WHO FluNet grip sürveyansı ile ERA5 saatlik mutlak nem verilerini 10 Avrupa kentinde eşleştirip düşük nemin vaka artışı üzerindeki gecikmesini ölçmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 360",
+   "projeyeKatki": "Tıbbi meteorolojide hava kirliliği, nem dinamikleri ve viral solunum yolu enfeksiyonlarının mevsimsel salgın paternleri incelenir. Havadaki mutlak nem (buhar yoğunluğu) bağıntısıyla buhar basıncı ve sıcaklıktan su buharı yoğunluğu türetilerek grip virüsünün havada kalıcılığı analiz edilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Havadaki mutlak nem (buhar yoğunluğu) bağıntısı",
+     "nerede": "Kış aylarında aktüel buhar basıncı ve sıcaklıktan metreküpteki mutlak su buharı kütlesini (g/m3) hesaplarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "WHO FluNet grip verileri ve ERA5 mutlak nem serileriyle 10 Avrupa kentinde çapraz korelasyon analizi kurup gecikmeyi ölçmek.",
+  "ayrinti": "WHO FluNet portalından 10 Avrupa ülkesi için haftalık laboratuvar onaylı grip vaka sayıları derlenir. Copernicus CDS üzerinden aynı kentlerin haftalık ortalama sıcaklık ve buhar basıncından mutlak nem (g/m³) zaman serileri türetilir. Çapraz korelasyon fonksiyonu koşturularak mutlak nemin 5 g/m³ altına inmesiyle grip vaka patlaması arasındaki 1-4 haftalık gecikme süresi hesaplanır ve sert/ılık kışlara göre harita posteri basılır.",
+  "adimlar": [
+   {
+    "baslik": "WHO FluNet portalından 10 kentin grip verilerini derlemek",
+    "oz": "Haftalık pozitif influenza vaka serilerini zaman çizgisine dizmek.",
+    "ayrinti": "Açık Dünya Sağlık Örgütü FluNet veri tabanından İngiltere, Fransa, Almanya, İspanya, İtalya, İsveç, Polonya, Avusturya, Romanya ve Türkiye için son 5 yılın haftalık grip pozitiflik sayıları indirilir ve standart zaman çizgisinde birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "flunet_df = load_flunet_data('flunet_europe_10cities.csv') ile haftalık sürveyans tablosunu okumak.",
+      "sade": "MTO 360 dersindeki 'Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek' bilgisiyle 10 ülkenin laboratuvarlarında onaylanan haftalık grip sayılarını bilgisayara aktarırız.",
+      "altAdimlar": [
+       "1. FluNet portalından 10 ülkeye ait haftalık influenza A ve B vaka sayılarını indirin.",
+       "2. Epidemiyolojik hafta (ISO week) formatını takvim haftalarıyla eşleştirin.",
+       "3. Test sayısı farklarını normalize ederek pozitiflik oranını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+      }
+     },
+     {
+      "teknik": "normalize_positivity_rate(flunet_df) ile test sayısından bağımsız vaka şiddeti endeksi türetmek.",
+      "sade": "MTO 360 dersindeki 'Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek' bilgisiyle çok test yapılan ülke ile az test yapılan ülkeyi adil biçimde karşılaştırılabilir hale getiririz.",
+      "altAdimlar": [
+       "1. Toplam test edilen örnek içindeki pozitiflik yüzdesini çıkarın.",
+       "2. Mevsimsel bazal eşiğin aşıldığı haftaları salgın başlangıcı olarak işaretleyin.",
+       "3. Her ülkenin grip piki haftasını ve tepe vaka sayısını kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 360",
+      "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "ERA5 arşivinden haftalık mutlak nem serilerini hesaplamak",
+    "oz": "Buhar basıncı ve sıcaklıktan g/m3 cinsinden mutlak nemi türetmek.",
+    "ayrinti": "10 kentin koordinatları için ERA5 yeniden analizinden haftalık ortalama sıcaklık ve aktüel su buharı basıncı çekilir. İdeal gaz kanununa dayalı mutlak nem denklemiyle her metreküp havadaki gram cinsinden su buharı miktarı (rho_v) hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "calc_absolute_humidity(temp, vapor_press) ile rho_v = e / (Rv * T) formülünü işletmek.",
+      "sade": "MTO 360 dersindeki 'Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek' bilgisiyle havanın içinde gerçekte kaç gram su buharı olduğunu hesaplarız.",
+      "altAdimlar": [
+       "1. ERA5'ten 2 metre sıcaklığı ve çiğ noktası sıcaklığını indirin.",
+       "2. Tetens formülüyle aktüel su buharı basıncını (Pascal) türetin.",
+       "3. Mutlak nem formülüyle her metreküpteki su miktarını g/m³ olarak hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+      }
+     },
+     {
+      "teknik": "aggregate_weekly_humidity(rho_v_series) ile haftalık mutlak nem tablosunu oluşturmak.",
+      "sade": "MTO 360 dersindeki 'Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek' bilgisiyle haftalık hava kuruluğu tablosunu grip verileriyle aynı haftalara hizalarız.",
+      "altAdimlar": [
+       "1. Saatlik nem değerlerinin haftalık ortalamasını alın.",
+       "2. Kış aylarında mutlak nemin 4 g/m³ altına indiği aşırı kuru hava haftalarını belirleyin.",
+       "3. 10 şehir için 5 yıllık nem-grip zaman serisi matrisini oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 360",
+      "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Çapraz korelasyonla 1-4 haftalık vaka gecikmesini bulmak",
+    "oz": "Kuru hava dalgası ile enfeksiyon piki arasındaki süreyi ölçmek.",
+    "ayrinti": "Her şehir için haftalık mutlak nem ile grip pozitiflik oranı arasında 0 ila 6 haftalık gecikmelerle (lag) çapraz korelasyon katsayıları hesaplanır. Negatif korelasyonun en yüksek olduğu gecikme penceresi tespit edilir.",
+    "nasil": [
+     {
+      "teknik": "cross_corr = [np.corrcoef(humidity[:-lag], flu[lag:])[0,1] for lag in range(1, 5)] ile gecikmeyi taramak.",
+      "sade": "MTO 360 dersindeki 'Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek' bilgisiyle kuru ayaz geldikten tam kaç hafta sonra hastanelere grip akını olduğunu hesaplarız.",
+      "altAdimlar": [
+       "1. 0'dan 4 haftaya kadar kaydırmalı korelasyon döngüsü kurun.",
+       "2. En güçlü negatif korelasyonun 2. ve 3. haftalarda (r = -0,68) oluştuğunu saptayın.",
+       "3. Kuru havanın virüs aerosollerinin havada kalma süresini uzattığı hipotezini doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+      }
+     },
+     {
+      "teknik": "split_by_winter_severity(df, temp_threshold=2.0) ile sert ve ılık kış yıllarını ayırmak.",
+      "sade": "MTO 360 dersindeki 'Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek' bilgisiyle buz gibi geçen kışlar ile ılık kışların grip dalgasını nasıl farklılaştırdığını inceleriz.",
+      "altAdimlar": [
+       "1. Şehirlerin kış aylarını ortalama sıcaklığa göre soğuk ve ılık olarak gruplayın.",
+       "2. Soğuk kışlarda grip pikinin daha erken ve daha sert gerçekleştiğini grafikle gösterin.",
+       "3. Ilık kışlarda mutlak nemin yüksek kalması nedeniyle vaka yayılımının geciktiğini belgeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 360",
+      "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kış şiddetine göre karşılaştırmalı poster ve harita basmak",
+    "oz": "10 Avrupa şehrinin nem-grip gecikme paternlerini görselleştirmek.",
+    "ayrinti": "10 kentin gecikme grafikleri, mutlak nem haritaları ve halk sağlığı tavsiyelerini birleştiren bilimsel infografik poster hazırlanır. Sağlık bakanlıkları için kuru kış erken uyarı bülteni tasarlanır.",
+    "nasil": [
+     {
+      "teknik": "plot_europe_lag_map(cities_lag_dict) ile Avrupa gecikme süresi haritasını çizmek.",
+      "sade": "MTO 360 dersindeki 'Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek' bilgisiyle hangi ülkede grip dalgasının ne kadar gecikmeyle vurduğunu gösteren renkli harita basarız.",
+      "altAdimlar": [
+       "1. 10 şehrin coğrafi konumuna hesaplanan gecikme haftalarını (1-3 hafta) etiketleyin.",
+       "2. Kuzey ve Doğu Avrupa'da erken pik, Güney Avrupa'da geç pik desenini görselleştirin.",
+       "3. Şehirlerin mutlak nem dağılımını tematik renklerle boyayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+      }
+     },
+     {
+      "teknik": "export_scientific_poster_pdf('mutlak_nem_grip_avrupa_posteri.pdf') ile posteri teslim etmek.",
+      "sade": "MTO 360 dersindeki 'Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek' bilgisiyle tıp kongrelerinde ve sağlık kurumlarında sergilenecek yüksek çözünürlüklü bilimsel poster basarız.",
+      "altAdimlar": [
+       "1. 10 şehrin zaman serisi eğrilerini ve gecikme analizlerini poster düzenine aktarın.",
+       "2. Hekimler ve vatandaşlar için iç ortam nemlendirme önerilerini infografikle özetleyin.",
+       "3. A0 ve A3 formatlarında baskıya hazır PDF dokümanını dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 360",
+      "madde": "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "10 Avrupa şehri mutlak nem-grip zaman serisi grafikleri, çapraz korelasyon gecikme analizi ve epidemiyolojik poster.",
+  "senden": "Epidemiyolojik zaman serisi analizi, gecikme korelasyonu ve karşılaştırmalı grafik becerisi.",
+  "bizden": "ERA5 mutlak nem hesaplama scripti, FluNet veri ayrıştırıcı ve Taylor/çapraz korelasyon şablonu."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "10 Avrupa şehrinde kış boyunca mutlak nem düşüşü ve 2 hafta gecikmeli grip vaka patlaması",
+   "aciklama": "Kuru kutup kökenli hava dalgalarının ardından influenza pozitiflik oranındaki yükseliş animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+   "aciklama": "Copernicus CDS ERA5 yeniden analiz atmosferik nem ve sıcaklık veri indirme paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Relative_risk_graph.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Mutlak nem düşüşü ve viral bulaşıcılık bağıl risk eğrisi grafiği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 360 (Tıbbi Meteoroloji)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4426"
+  },
+  {
+   "ad": "Shaman, J. & Kohn, M. (2009) Absolute humidity modulates influenza survival and transmission, PNAS, 106(9), 3243–3248",
+   "url": "https://doi.org/10.1073/pnas.0806852106"
+  },
+  {
+   "ad": "Romanello, M. vd. (2021) The 2021 report of the Lancet Countdown on health and climate change, The Lancet, 398, 1619–1662",
+   "url": "https://doi.org/10.1016/S0140-6736(21)01787-6"
+  },
+  {
+   "ad": "Copernicus İklim Veri Deposu ERA5 Atmosferik Nem Portalı",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO360-03.json",
+  "tarih": "2026-10-17 04:23",
+  "geminiSha1": "9935026bf2f3"
+ }
+}

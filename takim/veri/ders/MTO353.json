@@ -1,0 +1,209 @@
+{
+ "kod": "MTO 353",
+ "ad": "Tarım ve Orman Meteorolojisi I",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "353",
+ "ozet": "Toprak-bitki-atmosfer sistemindeki enerji ve su döngüsünü, fotosentez ve fenolojik evreleri, don ve kuraklık gibi agrometeorolojik riskleri, Penman-Monteith ile evapotranspirasyon hesabını ve sulama planlamasını öğretir.",
+ "neOgrenirsin": [
+  "Tarım ve orman meteorolojisinin fiziksel ilkelerini ve atmosfer etkileşimlerini analiz etmek.",
+  "Toprak su içeriğini, su tutma kapasitesini ve toprak nemi bütçesini hesaplamak.",
+  "Mahsul büyümesi ile sıcaklık ve radyasyon arasındaki ilişkiyi ve fenolojik evreleri çözümlemek.",
+  "FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak.",
+  "Büyüme derece-günü (GDD) birikimiyle tarımsal don risk pencerelerini belirlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Büyüme derece-günü (GDD) birikim bağıntısı",
+   "tex": "GDD = \\sum_{i=1}^{n} \\max\\left( \\frac{T_{\\max,i} + T_{\\min,i}}{2} - T_{base}, 0 \\right)",
+   "terimler": [
+    [
+     "GDD",
+     "toplam birikimli büyüme derece-günü",
+     "°C gün"
+    ],
+    [
+     "T_{\\max,i}",
+     "i gününün ölçülen en yüksek hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{\\min,i}",
+     "i gününün ölçülen en düşük hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{base}",
+     "ilgili mahsul için taban gelişim sıcaklığı",
+     "°C"
+    ],
+    [
+     "n",
+     "ekim veya başlangıç tarihinden itibaren geçen gün sayısı",
+     "gün"
+    ]
+   ],
+   "sade": "Günlük ortalama sıcaklığın bitkinin gelişmeye başladığı taban sıcaklığın üzerinde kalan kısımlarını toplayarak fenolojik büyüme evrelerini ve hasat takvimini öngörür.",
+   "ornek": "Trakya kışlık buğdayı için taban sıcaklık 0 °C iken ekimden başaklanmaya kadar gereken 1100 °C gün birikimine Nisan ayı ortasında ulaşılır.",
+   "nerede": "D-MTO353-01'de buğday fenoloji takvimini ve ilkbahar geç don riskini çıkarırken."
+  },
+  {
+   "ad": "FAO-56 Penman-Monteith referans evapotranspirasyon denklemi",
+   "tex": "ET_0 = \\frac{0.408 \\Delta (R_n - G) + \\gamma \\frac{900}{T + 273} u_2 (e_s - e_a)}{\\Delta + \\gamma (1 + 0.34 u_2)}",
+   "terimler": [
+    [
+     "ET_0",
+     "günlük referans evapotranspirasyon",
+     "mm/gün"
+    ],
+    [
+     "R_n",
+     "mahsul yüzeyindeki net radyasyon",
+     "MJ/(m² gün)"
+    ],
+    [
+     "G",
+     "toprak ısı akısı yoğunluğu",
+     "MJ/(m² gün)"
+    ],
+    [
+     "T",
+     "2 metre yükseklikteki günlük ortalama hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "u_2",
+     "2 metre yükseklikteki ortalama rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "e_s - e_a",
+     "buhar basıncı açığı (VPD)",
+     "kPa"
+    ],
+    [
+     "\\Delta",
+     "buhar basıncı eğrisi eğimi",
+     "kPa/°C"
+    ],
+    [
+     "\\gamma",
+     "psikrometrik sabit",
+     "kPa/°C"
+    ]
+   ],
+   "sade": "Standart referans çim yüzeyinden atmosfere buharlaşan ve terleyen toplam su miktarını radyasyon, sıcaklık, rüzgâr ve atmosferik kuruluk verileriyle fiziksel olarak hesaplar.",
+   "ornek": "Yazın Edirne tarlasında net radyasyon 18 MJ/(m² gün), rüzgâr 2,5 m/s ve buhar basıncı açığı 1,8 kPa iken referans su kaybı ET0 = 5,4 mm/gün hesaplanır.",
+   "nerede": "D-MTO353-01 ve D-MTO353-02'de tarlanın günlük su tüketimini ve sulama bütçesini çıkarırken."
+  },
+  {
+   "ad": "Bitki su bütçesi ve kök bölgesi su açığı bağıntısı",
+   "tex": "D_r = D_{r,prev} - (P - RO) - CR + ET_c + DP",
+   "terimler": [
+    [
+     "D_r",
+     "kök bölgesindeki toprak su açığı",
+     "mm"
+    ],
+    [
+     "D_{r,prev}",
+     "bir önceki günün kök bölgesi su açığı",
+     "mm"
+    ],
+    [
+     "P",
+     "günlük toplam yağış miktarı",
+     "mm"
+    ],
+    [
+     "RO",
+     "yüzey akışıyla kaybedilen su",
+     "mm"
+    ],
+    [
+     "CR",
+     "taban suyundan kılcal yükselme",
+     "mm"
+    ],
+    [
+     "ET_c",
+     "mahsulün gerçek evapotranspirasyonu (Kc x ET0)",
+     "mm/gün"
+    ],
+    [
+     "DP",
+     "kök bölgesinin altına derin süzülme",
+     "mm"
+    ]
+   ],
+   "sade": "Tarlanın kök bölgesindeki su açığını günlük yağış girdisi ve mahsul terleme çıktısıyla adım adım takip ederek sulama zamanını ve gereken su miktarını belirler.",
+   "ornek": "Kök derinliği 60 cm olan tarlada kritik su açığı 45 mm eşiğini aştığında 50 mm sulama suyu verilmesi gerektiği hesaplanır.",
+   "nerede": "D-MTO353-02'de sulama takvimini ve toprak su bütçesi profilini oluştururken."
+  },
+  {
+   "ad": "Gece net uzun dalga kaybı ve yüzey soğuma bağıntısı",
+   "tex": "R_{nl} = \\sigma T^4 (0.34 - 0.14 \\sqrt{e_a}) (1.35 \\frac{R_s}{R_{so}} - 0.35)",
+   "terimler": [
+    [
+     "R_{nl}",
+     "gece yüzeyinden gökyüzüne net uzun dalga radyasyon kaybı",
+     "MJ/(m² gün)"
+    ],
+    [
+     "\\sigma",
+     "Stefan-Boltzmann sabiti (4.903 x 10^-9)",
+     "MJ/(K⁴ m² gün)"
+    ],
+    [
+     "T",
+     "mutlak hava sıcaklığı",
+     "K"
+    ],
+    [
+     "e_a",
+     "gerçek buhar basıncı",
+     "kPa"
+    ],
+    [
+     "\\frac{R_s}{R_{so}}",
+     "göreceli güneşlenme veya bulutsuzluk oranı",
+     "boyutsuz"
+    ]
+   ],
+   "sade": "Açık ve kuru gökyüzü altında yüzeyin uzaya yaydığı net ısı kaybını hesaplayarak radyasyon donunun şiddetini ve yer seviyesindeki sıcaklık düşüşünü açıklar.",
+   "ornek": "Açık ve nemsiz bir gecede sıcaklık 275 K ve buhar basıncı 0,5 kPa iken net radyasyon kaybı yüzey sıcaklığını sıfırın altına düşürerek zirai don oluşturur.",
+   "nerede": "D-MTO353-03'te açık gecelerde yüzey soğuması ve radyasyon donunun fiziksel mekanizmasını açıklarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wheat_field_in_Turkey.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Fenolojik gelişim evresindeki buğday tarlasında mikroiklim ve toprak nemi ortamı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Trakya Bölgesi buğday ekim alanlarında günlük referans evapotranspirasyon ve GDD birikim döngüsü",
+   "aciklama": "Sezon boyunca sıcaklık birikimi ve buharlaşma-terleme su kaybının zamansal değişimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 353 (Tarım ve Orman Meteorolojisi I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=353"
+  },
+  {
+   "ad": "Allen, R. G. vd. (1998) Crop evapotranspiration: Guidelines for computing crop water requirements, FAO Irrigation and drainage paper 56",
+   "url": "https://www.fao.org/3/x0490e/x0490e00.htm"
+  },
+  {
+   "ad": "Abatzoglou, J. T. (2013) Development of gridded surface meteorological data, Int. J. Climatol., 33, 121–131",
+   "url": "https://doi.org/10.1002/joc.3413"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=353"
+}

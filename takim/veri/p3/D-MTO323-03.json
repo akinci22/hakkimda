@@ -1,0 +1,548 @@
+{
+ "id": "D-MTO323-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 323",
+  "dersAd": "Atmosfer Kimyası",
+  "kol": "ikisi"
+ },
+ "ad": "Yangın dumanı nereye gitti? HYSPLIT + CAMS izi",
+ "ne": "Akdeniz havzasındaki büyük bir orman yangınının dumanını NASA FIRMS, HYSPLIT ileri yörüngeleri ve CAMS aerosol optik derinliğiyle izle; AERONET ölçümüyle doğrula.",
+ "adimlar": [
+  "FIRMS'ten yangın noktalarını ve tarihlerini al; en yoğun günü seç.",
+  "HYSPLIT web arayüzünde 72 saatlik ileri yörüngeler koştur (500, 1500, 3000 m).",
+  "CAMS AOD haritalarını aynı günler için indir; duman dilini yörüngeyle üst üste koy.",
+  "Yakın AERONET istasyonunda AOD sıçramasını gün gün tabloya işle.",
+  "Andreae 2019 emisyon faktörleriyle yakılan alandan kaba CO emisyonu hesapla."
+ ],
+ "sonuc": "Duman taşınım haritası ve AOD doğrulama grafiği; emisyon-taşınım-gözlem zincirini uçtan uca kurmuş olursun.",
+ "dayanak": "Andreae 2019",
+ "senden": "Harita üst üste koyma ve okuma.",
+ "bizden": "HYSPLIT kullanım adımları, AERONET istasyon listesi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 323",
+    "ad": "Atmosfer Kimyası"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NASA FIRMS",
+   "ne": "Uydudan aktif yangın noktaları, neredeyse gerçek zamanlı.",
+   "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+   "ayrinti": {
+    "neYaptilar": "MODIS ve VIIRS uydularının termal anomalilerini işleyerek dünya genelindeki aktif yangın odaklarını 3 saat içinde haritaladılar.",
+    "nasil": "Orta kızılötesi ve termal kızılötesi parlaklık sıcaklığı algoritmalarıyla yangın piksellerini ve yangın ışınım gücünü (FRP) tespit ettiler.",
+    "neEdindiler": "Orman yangınlarına müdahalede ve duman emisyonu hesaplarında küresel ölçekte en çok başvurulan gerçek zamanlı yangın sistemini kurdular.",
+    "bizNasilKatki": "Akdeniz yangın sahasındaki aktif piksel koordinatlarını ve yangın radyatif gücünü HYSPLIT kaynak noktası olarak içe aktarırız.",
+    "referanslar": [
+     {
+      "ad": "NASA FIRMS Aktif Yangın Bilgi Sistemi Portalı",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "tur": "web"
+     },
+     {
+      "ad": "Giglio vd. 2016 MODIS Yangın Algoritması Makalesi",
+      "url": "https://doi.org/10.1016/j.rse.2016.02.054",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "aciklama": "NASA FIRMS küresel aktif yangın haritası ve termal anomali tespit paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "aciklama": "Akdeniz havzası orman yangını odakları ve yangın radyatif güç zaman serisi akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA HYSPLIT",
+   "ne": "Yörünge ve dağılım modeli; web üzerinden de çalıştırılabiliyor.",
+   "url": "https://www.ready.noaa.gov/HYSPLIT.php",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik kirleticilerin, volkanik küllerin ve yangın dumanının üç boyutlu taşınımını hesaplayan evrensel bir yörünge sistemi kurdular.",
+    "nasil": "GFS ve reanaliz rüzgâr alanlarını kullanarak Lagrange ve Euler yaklaşımıyla hava parsellerinin ileri ve geri yörüngelerini çözdüler.",
+    "neEdindiler": "Acil durum meteorolojisinde ve sınır ötesi kirlilik taşınımı araştırmalarında dünya standardı haline gelen açık bir hesaplama platformu sağladılar.",
+    "bizNasilKatki": "Yangın merkezinden 500, 1500 ve 3000 metre irtifalardan başlayan 72 saatlik ileri yörüngeleri Python web servisiyle koştururuz.",
+    "referanslar": [
+     {
+      "ad": "NOAA READY HYSPLIT Hesaplama Portalı",
+      "url": "https://www.ready.noaa.gov/HYSPLIT.php",
+      "tur": "web"
+     },
+     {
+      "ad": "Stein vd. 2015 HYSPLIT Tanıtım Makalesi",
+      "url": "https://doi.org/10.1175/BAMS-D-14-00110.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ready.noaa.gov/HYSPLIT.php",
+      "aciklama": "NOAA HYSPLIT yörünge hesaplama parametreleri ve meteorolojik veri seçimi arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Orman yangını duman parselinin üç boyutlu ileri yörüngesi ve yükseklik profili animasyonu",
+      "aciklama": "Farklı irtifalarda rüzgâr kesmesiyle farklı yönlere dağılan hava parsellerinin hareketi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "NASA AERONET",
+   "ne": "Küresel güneş fotometresi ağı; aerosol optik derinliği açık veri.",
+   "url": "https://aeronet.gsfc.nasa.gov/new_web/aerosols.html",
+   "ayrinti": {
+    "neYaptilar": "Otomatik güneş fotometreleriyle aerosol optik derinliğini (AOD) ve boyut dağılımını dünya genelinde standart kalibrasyonla ölçtüler.",
+    "nasil": "Güneşin doğrudan ışınımını ve gök kubbe saçılımını spektral kanallarda izleyerek Beer-Lambert kanunuyla aerosol parametrelerini türettiler.",
+    "neEdindiler": "Uydu aerosol ürünlerinin ve kimyasal taşınım simülasyonlarının yer doğrulamasında tartışmasız referans gözlem ağı oluşturdular.",
+    "bizNasilKatki": "Yangın dumanı bulutunun geçtiği bölgedeki AERONET istasyonu verisinde AOD değerinin 0,2'den 1,8'e fırlamasını zaman serisinde doğrularız.",
+    "referanslar": [
+     {
+      "ad": "NASA AERONET Aerosol Optik Derinliği Veri Tabanı",
+      "url": "https://aeronet.gsfc.nasa.gov/new_web/aerosols.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Holben vd. 1998 AERONET Kurulum Makalesi",
+      "url": "https://doi.org/10.1016/S0034-4257(98)00031-5",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://aeronet.gsfc.nasa.gov/new_web/aerosols.html",
+      "aciklama": "AERONET güneş fotometresi istasyon haritası ve spektral AOD grafiği paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://aeronet.gsfc.nasa.gov/new_web/aerosols.html",
+      "aciklama": "İstasyon bazında aerosol optik özellikleri ve Ångström üssü zaman serisi sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Atmosphere Monitoring Service (CAMS)",
+   "ne": "Avrupa'nın küresel hava bileşimi ve hava kalitesi tahmin servisi.",
+   "url": "https://atmosphere.copernicus.eu/fire-monitoring",
+   "ayrinti": {
+    "neYaptilar": "Küresel Yangın Asimilasyon Sistemi (GFAS) ile orman yangınlarının biyokütle yanma emisyonlarını günlük olarak hesapladılar.",
+    "nasil": "MODIS FRP verilerini aerosol optik derinliği ve iz gaz simülasyonlarıyla birleştirip duman taşınımı tahminleri ürettiler.",
+    "neEdindiler": "Orman yangınlarının kıta ölçeğinde hava kalitesine etkisini ve partikül madde kirliliğini operasyonel haritalayan servis sağladılar.",
+    "bizNasilKatki": "CAMS toplam aerosol optik derinliği katmanlarını NetCDF formatında çekip HYSPLIT yörüngeleriyle mekânsal olarak çakıştırırız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus CAMS Küresel Yangın İzleme Portalı",
+      "url": "https://atmosphere.copernicus.eu/fire-monitoring",
+      "tur": "web"
+     },
+     {
+      "ad": "Kaiser vd. 2012 GFAS Yangın Emisyonu Makalesi",
+      "url": "https://doi.org/10.5194/bg-9-527-2012",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmosphere.copernicus.eu/fire-monitoring",
+      "aciklama": "CAMS yangın emisyonları izleme paneli ve biyokütle duman yayılım haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Akdeniz üzerinde yangın dumanı aerosol optik derinliği saatlik dağılım animasyonu",
+      "aciklama": "Orman yangını kaynaklı aerosol konsantrasyonunun rüzgârla taşınım dinamiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "EFFIS (JRC)",
+   "ne": "Avrupa orman yangını bilgi sistemi; yangın hava indeksi tahmini.",
+   "url": "https://effis.jrc.ec.europa.eu/apps/effis_current_situation/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa ve Akdeniz havzası için yangın tehlike indekslerini ve yanan alan sınırlarını uydu haritalarıyla sundular.",
+    "nasil": "Meteorolojik kuraklık ve rüzgâr analizlerini Kanada Yangın Hava İndeksi sistemiyle işleyip erken uyarı bültenleri ürettiler.",
+    "neEdindiler": "Avrupa Sivil Koruma Mekanizmasına ve orman idarelerine yangın risk yönetiminde standart karar destek sistemi kurdular.",
+    "bizNasilKatki": "EFFIS hızlı hasar değerlendirmesinden çıkarılan nihai yanmış alan poligonunu toplam biyokütle tüketimi hesabımıza katarız.",
+    "referanslar": [
+     {
+      "ad": "Avrupa Komisyonu JRC EFFIS Yangın Portalı",
+      "url": "https://effis.jrc.ec.europa.eu/apps/effis_current_situation/",
+      "tur": "web"
+     },
+     {
+      "ad": "San-Miguel-Ayanz vd. 2012 EFFIS Orman Yangınları Raporu",
+      "url": "https://doi.org/10.1016/j.envsoft.2012.01.013",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://effis.jrc.ec.europa.eu/apps/effis_current_situation/",
+      "aciklama": "EFFIS mevcut durum harita arayüzü ve yanan alan sınırları tespit paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://effis.jrc.ec.europa.eu/apps/effis_current_situation/",
+      "aciklama": "Yangın hava indeksi tahminleri ve Akdeniz bölgesel kuraklık risk haritaları sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Ozon, NO₂ ve aerosollerin nerede, neden oluştuğunu uydu ve yer ölçümüyle izlemek.",
+  "baglanti": "Yazılım kolunda Sentinel-5P ve CAMS verisi; Anlatım kolunda fotokimya animasyonları.",
+  "literatur": {
+   "maddeler": [
+    "Troposferik ozon, NOₓ ve uçucu organik bileşiklerin güneş ışığıyla tepkimesinden oluşur; Master Chemical Mechanism bu zinciri binlerce tepkimeyle tanımlar.",
+    "Aerosoller bulut damlacık sayısını artırarak dolaylı ışınımsal etki yaratır; bu etki iklim belirsizliğinin en büyük kalemlerinden biridir. (Lohmann ve Feichter 2005)",
+    "Biyokütle yanması CO, NOₓ, organik aerosol ve siyah karbon kaynağıdır; emisyon faktörleri yakıt türüne göre büyük fark gösterir. (Andreae 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sentinel-5P/TROPOMI, NO₂ ve CH₄ sütunlarını 5,5×3,5 km çözünürlükte günlük haritalıyor; şehir ve tesis ölçeğinde kaynak tespiti mümkün oldu.",
+    "N₂O'nun küresel bütçesi ilk kez kapsamlı çıkarıldı; tarımsal kaynaklar artışın ana sürücüsü. (Tian vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Lohmann ve Feichter 2005",
+    "baslik": "Global indirect aerosol effects: a review",
+    "yayin": "Atmospheric Chemistry and Physics 5, 715-737",
+    "yil": "2005",
+    "url": "https://doi.org/10.5194/acp-5-715-2005",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Andreae 2019",
+    "baslik": "Emission of trace gases and aerosols from biomass burning – an updated assessment",
+    "yayin": "Atmospheric Chemistry and Physics 19, 8523-8546",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/acp-19-8523-2019",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Tian vd. 2020",
+    "baslik": "A comprehensive quantification of global nitrous oxide sources and sinks",
+    "yayin": "Nature 586, 248-256",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41586-020-2780-0",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Jacob ve Winner 2009",
+    "baslik": "Effect of climate change on air quality",
+    "yayin": "Atmospheric Environment 43(1), 51-63",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Nasse vd. 2019",
+    "baslik": "Recent improvements of long-path DOAS measurements",
+    "yayin": "Atmospheric Measurement Techniques 12, 4149-4169",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/amt-12-4149-2019",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Hoesly vd. 2018",
+    "baslik": "Historical (1750–2014) anthropogenic emissions of reactive gases and aerosols from the Community Emissions Data System (CEDS)",
+    "yayin": "Geoscientific Model Development 11, 369-408",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/gmd-11-369-2018",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Akdeniz orman yangını dumanını NASA FIRMS ve HYSPLIT yörüngeleriyle izleyip CAMS ve AERONET aerosol optik derinliğiyle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 323",
+   "projeyeKatki": "Orman yangını dumanının kimyasal evrimi ve optik özellikleri atmosfer kimyası ilkeleriyle incelenir. Beer ve Lambert ışık soğurma bağıntısı ile duman içindeki aerosol optik derinliği (AOD) ve güneş ışığı zayıflaması hesaplanırken, Andreae emisyon faktörleriyle yakılan biyokütleden açığa çıkan karbon monoksit ve aerosol kütlesi belirlenir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Beer ve Lambert ışık soğurma bağıntısı",
+     "nerede": "Duman taşınım yolu boyunca AERONET yer fotometresi ve CAMS aerosol optik derinliği (AOD) doğrulamalarında kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "NASA FIRMS yangın verileriyle HYSPLIT ileri yörüngeleri koşturup CAMS AOD ve AERONET ölçümleriyle duman taşınımını haritalamak.",
+  "ayrinti": "NASA FIRMS MODIS ve VIIRS aktif yangın katmanından yangının en yoğun günü saptanır. NOAA HYSPLIT ile 500, 1500 ve 3000 metre seviyelerinde 72 saatlik ileri hava parseli yörüngeleri hesaplanır. CAMS aerosol optik derinliği (AOD) katmanları indirilerek duman dili yörünge yollarıyla üst üste bindirilir. En yakın AERONET istasyonunda AOD sıçraması doğrulanır ve kaba CO emisyonu hesaplanır.",
+  "adimlar": [
+   {
+    "baslik": "Yangın odaklarını ve en yoğun emisyon gününü seçmek",
+    "oz": "NASA FIRMS'ten termal anomali koordinatlarını ve FRP değerlerini çekmek.",
+    "ayrinti": "NASA FIRMS arşivinden Akdeniz havzasındaki büyük yangın olayı için CSV formatında yangın pikselleri indirilir. Yangın radyatif gücü (FRP) gün bazında toplanarak emisyonun zirve yaptığı tarih saptanır. Yangının ağırlıklı merkez koordinatı (enlem, boylam) hesaplanarak yörünge çıkış noktası belirlenir.",
+    "nasil": [
+     {
+      "teknik": "df_fire = pd.read_csv('fire_archive_M-C61.csv'); max_day = df_fire.groupby('acq_date')['frp'].sum().idxmax() ile en yoğun günü saptamak.",
+      "sade": "Uydunun tespit ettiği yangın odaklarını inceleyerek alevlerin en kuvvetli olduğu günü buluruz.",
+      "altAdimlar": [
+       "1. FIRMS veri portalından Akdeniz yangın alanına ait CSV tablosunu indirin.",
+       "2. Günlük toplam yangın radyatif gücünü (FRP) grafikleyin.",
+       "3. En yüksek termal salımın gerçekleştiği tarihi ana başlangıç anı seçin."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     },
+     {
+      "teknik": "lat_c, lon_c = df_fire.loc[df_fire['acq_date']==max_day, ['latitude', 'longitude']].mean() ile kaynak merkezini bulmak.",
+      "sade": "Yüzlerce aktif yangın pikselinin ağırlıklı orta noktasını duman çıkış koordinatı olarak belirleriz.",
+      "altAdimlar": [
+       "1. FRP değerlerine göre ağırlıklı ortalama koordinatı hesaplayın.",
+       "2. Yangın başlangıç saatini yerel güneş vaktine göre hizalayın.",
+       "3. Koordinatları HYSPLIT girdi dosyasına yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "HYSPLIT ile 72 saatlik ileri taşınım yörüngeleri koşturmak",
+    "oz": "500, 1500 ve 3000 metre kotlarında hava parseli yollarını simüle etmek.",
+    "ayrinti": "NOAA READY web arayüzü veya PyHYSPLIT kütüphanesi kullanılarak GFS 0.25 derece meteorolojik analiz dosyaları bağlanır. Yangın merkezinden üç farklı irtifada (500 m sınır tabaka içi, 1500 m karışma katmanı tepesi, 3000 m serbest troposfer) hava parselleri salınır ve 72 saat boyunca saatlik konumları diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "pysplit.HyControl(control_path).run_hysplit() komutuyla ileri Lagrange yörüngesi hesaplamak.",
+      "sade": "Farklı yüksekliklerdeki duman parçacıklarının rüzgârla nereye sürükleneceğini bilgisayarla hesaplarız.",
+      "altAdimlar": [
+       "1. Yangın koordinatını ve başlangıç tarih damgasını CONTROL dosyasına girin.",
+       "2. 500, 1500 ve 3000 metre başlangıç irtifalarını tanımlayın.",
+       "3. 72 saatlik ileri yörünge simülasyonunu koşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     },
+     {
+      "teknik": "traj_df = parse_tdump('tdump_file') ile saatlik enlem, boylam ve yükseklik koordinatlarını yüklemek.",
+      "sade": "Hesaplanan duman güzergâhlarını koordinat ve yükseklik tablosu olarak Python ortamına alırız.",
+      "altAdimlar": [
+       "1. HYSPLIT çıktı dosyasındaki başlık bilgilerini ayrıştırın.",
+       "2. Saatlik parsel koordinatlarını ve hava basıncını pandas tablosuna aktarın.",
+       "3. Parsellerin dikey salınımlarını ve çökme bölgelerini inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "CAMS aerosol optik derinliği haritalarıyla çakıştırmak",
+    "oz": "ECMWF CAMS 550 nm AOD katmanını yörünge çizgileriyle bindirmek.",
+    "ayrinti": "Copernicus Atmosfer Veri Deposu'ndan (ADS) ilgili 3 günün saatlik toplam aerosol optik derinliği (AOD at 550 nm) NetCDF rasterı olarak çekilir. Cartopy harita tuvalinde CAMS duman dili renk skalasıyla çizilir; üzerine HYSPLIT yörüngeleri farklı renklerle bindirilerek rüzgâr ile duman örtüşmesi doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "ds_cams = xr.open_dataset('cams_aod_202108.nc'); aod = ds_cams['aod550'].sel(time=max_time) ile katmanı okumak.",
+      "sade": "Avrupa uzay servisinin duman yoğunluğu haritasını NetCDF formatında açarız.",
+      "altAdimlar": [
+       "1. Copernicus ADS üzerinden yangın günlerine ait AOD verisini indirin.",
+       "2. xarray kütüphanesiyle Akdeniz havzasını kırpın.",
+       "3. Duman yoğunluğunun 1,0'ı aştığı kalın duman örtüsünü belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Atmosferik gaz ve aerosollerin Beer-Lambert yasasına göre ışık soğurma ve optik derinliklerini belirlemek."
+      }
+     },
+     {
+      "teknik": "ax.contourf(lons, lats, aod, cmap='YlOrBr'); ax.plot(traj['lon'], traj['lat'], color='cyan') ile haritayı üst üste koymak.",
+      "sade": "Duman haritasının üzerine rüzgâr yörünge çizgilerini çizerek dumanın nereye gittiğini doğrularız.",
+      "altAdimlar": [
+       "1. Cartopy harita projeksiyonunda sarı-kahverengi duman paleti uygulayın.",
+       "2. HYSPLIT 1500 metre yörüngesini parlayan mavi çizgiyle haritaya ekleyin.",
+       "3. Duman dilinin yörünge ekseniyle nasıl birebir örtüştüğünü görselleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Atmosferik gaz ve aerosollerin Beer-Lambert yasasına göre ışık soğurma ve optik derinliklerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Atmosferik gaz ve aerosollerin Beer-Lambert yasasına göre ışık soğurma ve optik derinliklerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "AERONET yer güneş fotometresiyle duman geçişini kanıtlamak",
+    "oz": "Duman altındaki AERONET istasyonunda AOD sıçramasını grafiklemek.",
+    "ayrinti": "HYSPLIT yörüngesinin geçtiği güzergâhtaki en yakın AERONET sahasının (örneğin Atina, Finokalia veya Antalya) Level 2.0 kalite onaylı güneş fotometresi verileri çekilir. Yangın öncesi AOD = 0,15 iken duman bulutunun tepe yaptığı saatlerde AOD = 1,95 seviyesine çıkışı ve Ångström üssünün 1,8 üzerine tırmanışı analiz edilir.",
+    "nasil": [
+     {
+      "teknik": "df_aero = read_aeronet('20210801_20210805_Finokalia.lev20', usecols=['AOD_500nm', '440-870_Angstrom_Exponent']) ile yer verisi yüklemek.",
+      "sade": "Yerdeki hassas güneş fotometresinin kaydettiği aerosol ölçümlerini programımıza aktarırız.",
+      "altAdimlar": [
+       "1. AERONET portalından ilgili istasyonun Level 2.0 dosyasını temin edin.",
+       "2. 500 nm dalga boyundaki optik derinlik ve Ångström katsayısını ayıklayın.",
+       "3. Zaman damgalarını duman geçiş saatleriyle hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Atmosferik gaz ve aerosollerin Beer-Lambert yasasına göre ışık soğurma ve optik derinliklerini belirlemek."
+      }
+     },
+     {
+      "teknik": "verify_beer_lambert(i_meas, i_clean, aod_peak) fonksiyonuyla ışık zayıflamasını belgelemek.",
+      "sade": "Güneş ışığının duman tabakasından geçerken ne kadar azaldığını Beer-Lambert kanunuyla kanıtlarız.",
+      "altAdimlar": [
+       "1. Berrak gökyüzü referans ışık şiddetini belirleyin.",
+       "2. Tepe AOD değerindeki ışık soğurma oranını hesaplayın.",
+       "3. İnce duman partiküllerinin karakteristik Ångström imzasını raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Atmosferik gaz ve aerosollerin Beer-Lambert yasasına göre ışık soğurma ve optik derinliklerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Atmosferik gaz ve aerosollerin Beer-Lambert yasasına göre ışık soğurma ve optik derinliklerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Andreae emisyon faktörleriyle kaba CO salımını hesaplamak",
+    "oz": "Yanan alan, biyokütle yoğunluğu ve emisyon katsayısıyla salınan gazı bulmak.",
+    "ayrinti": "EFFIS nihai raporundaki yanan orman alanı (hektar) alınır. Akdeniz kızılçamı için tipik biyokütle yükü (yaklaşık 120 ton/hektar) ve yanma verimi (0,5) tanımlanır. Andreae 2019 sentezindeki ılıman/Akdeniz ormanları karbon monoksit emisyon faktörü (EF_CO = 95 g/kg kuru biyokütle) kullanılarak atmosfere salınan toplam CO kütlesi hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "total_co_tons = burned_area_ha * biomass_density * combustion_factor * ef_co / 1000 formülünü işletmek.",
+      "sade": "Yanan ağaç miktarından atmosfere kaç bin ton karbon monoksit gazı karıştığını hesaplarız.",
+      "altAdimlar": [
+       "1. EFFIS uydusundan tespit edilen yanan hektar büyüklüğünü girin.",
+       "2. Akdeniz maki ve orman biyokütle katsayılarını uygulayın.",
+       "3. Andreae 2019 emisyon faktörüyle toplam CO ve ince partikül salımını bulun."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     },
+     {
+      "teknik": "export_full_summary(pdf_report='fire_smoke_transport_report.pdf') ile analiz özetini kaydetmek.",
+      "sade": "Haritaları, yörüngeleri ve emisyon hesabını tek bir görsel raporda birleştiririz.",
+      "altAdimlar": [
+       "1. Yörünge haritasını, CAMS duman dilini ve AERONET grafiğini tek sayfaya yerleştirin.",
+       "2. Hesaplanan emisyon büyüklüğünü özet kutuda sunun.",
+       "3. Analiz defterini açık bilim kurallarına uygun olarak diske yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Akdeniz orman yangını duman taşınım haritası, HYSPLIT yörünge eğrileri, AERONET AOD doğrulama grafiği ve açık Python analiz defteri.",
+  "senden": "HYSPLIT yörünge arayüzü kullanımı, raster ve vektör verileri haritada üst üste bindirme becerisi ve merak.",
+  "bizden": "HYSPLIT parametre kurulum şablonu, AERONET veri indirme kodu ve Andreae emisyon faktörleri tablosu."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+   "aciklama": "NASA FIRMS küresel aktif yangın ve duman izleme harita arayüzü"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Akdeniz havzası orman yangını dumanı aerosol optik derinliği ve yörünge animasyonu",
+   "aciklama": "Üç farklı irtifada rüzgâr akışıyla duman dilinin sınır ötesi taşınım simülasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://aeronet.gsfc.nasa.gov/new_web/aerosols.html",
+   "aciklama": "NASA AERONET aerosol optik özellikleri ve spektral AOD grafiği paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 323 (Atmosfer Kimyası)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=323"
+  },
+  {
+   "ad": "Andreae, M. O. (2019) Emission of trace gases and aerosols from biomass burning, ACP, 19, 8523–8546",
+   "url": "https://doi.org/10.5194/acp-19-8523-2019"
+  },
+  {
+   "ad": "Stein, A. F. et al. (2015) NOAA's HYSPLIT atmospheric transport and dispersion modeling system, BAMS, 96, 2059–2077",
+   "url": "https://doi.org/10.1175/BAMS-D-14-00110.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO323-03.json",
+  "tarih": "2026-10-17 03:37",
+  "geminiSha1": "9bf55f197a81"
+ }
+}

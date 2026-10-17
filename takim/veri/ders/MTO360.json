@@ -1,0 +1,138 @@
+{
+ "kod": "MTO 360",
+ "ad": "Tıbbi Meteoroloji",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "360",
+ "ozet": "Hava olayları, basınç dalgalanmaları, cephe geçişleri ve hava kirliliğinin insan patolojisi, migren atakları, kardiyovasküler rahatsızlıklar ve solunum yolu enfeksiyonları üzerindeki epidemiyolojik etkilerini ve istatistiksel ilişkilendirme yöntemlerini öğretir.",
+ "neOgrenirsin": [
+  "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek.",
+  "Aşırı sıcak ve soğuk dalgalarının kardiyovasküler mortalite üzerindeki etkisini çözümlemek.",
+  "Mutlak nem seviyelerinin mevsimsel grip ve viral solunum yolu enfeksiyonlarına etkisini analiz etmek.",
+  "Hava kalitesi parametreleri ve meteorolojik cephe geçişlerinin astım ataklarını tetiklemesini değerlendirmek.",
+  "Klinik karar vericiler ve birinci basamak sağlık hizmetleri için biyometeorolojik uyarı kartları hazırlamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Bağıl risk (Relative Risk) ve Poisson regresyon bağıntısı",
+   "tex": "\\log(E(Y_t)) = \\alpha + \\beta X_t + s(t, \\mathrm{df}) + \\sum \\gamma_k Z_{kt}",
+   "terimler": [
+    [
+     "E(Y_t)",
+     "t günündeki beklenen sağlık olayı veya ölüm sayısı",
+     "olay/gün"
+    ],
+    [
+     "\\alpha",
+     "temel regresyon kesişim katsayısı",
+     "boyutsuz"
+    ],
+    [
+     "\\beta",
+     "meteorolojik maruziyet katsayısı",
+     "birim maruziyet başına"
+    ],
+    [
+     "X_t",
+     "t günündeki meteorolojik değişken (sıcaklık, basınç değişimi)",
+     "°C veya hPa"
+    ],
+    [
+     "s(t, \\mathrm{df})",
+     "uzun dönem eğilim ve mevsimsellik düzeltme eğrisi",
+     "boyutsuz"
+    ],
+    [
+     "Z_{kt}",
+     "hava kirliliği ve gün faktörü gibi karıştırıcı değişkenler",
+     "değişken"
+    ]
+   ],
+   "sade": "Hava parametrelerindeki ani değişimlerin hastane başvurusu veya ölüm riskini mevsimsel etkilerden arındırarak nasıl katladığını hesaplar.",
+   "ornek": "Basıncın 24 saatte 10 hPa düşmesi durumunda migren atağı bağıl riski RR = 1,28 olarak hesaplanır.",
+   "nerede": "D-MTO360-01'de basınç düşüşünün baş ağrısı üzerindeki etkisini sınarken."
+  },
+  {
+   "ad": "Havadaki mutlak nem (buhar yoğunluğu) bağıntısı",
+   "tex": "\\rho_v = \\frac{e}{R_v (T + 273.15)} \\times 10^3",
+   "terimler": [
+    [
+     "\\rho_v",
+     "havadaki mutlak su buharı yoğunluğu",
+     "g/m³"
+    ],
+    [
+     "e",
+     "aktüel su buharı basıncı",
+     "Pa"
+    ],
+    [
+     "R_v",
+     "su buharı özgül gaz sabiti (461,5)",
+     "J/(kg·K)"
+    ],
+    [
+     "T",
+     "hava sıcaklığı",
+     "°C"
+    ]
+   ],
+   "sade": "Bir metreküp havanın içinde gerçekte kaç gram su buharı bulunduğunu hesaplar; düşük mutlak nem solunum yolu virüslerinin havada kalıcılığını artırır.",
+   "ornek": "Kışın sıcaklık 5 °C ve bağıl nem %60 iken mutlak nem 4,1 g/m3 seviyesine iner ve mevsimsel grip bulaşma riskini tepeye taşır.",
+   "nerede": "D-MTO360-03'te grip mevsimi ile mutlak nem ilişkisini incelerken."
+  },
+  {
+   "ad": "Termal rahatsızlık ve fizyolojik stres indeksi (DI)",
+   "tex": "\\mathrm{DI} = T_a - 0.55 \\cdot (1 - 0.01 \\cdot \\mathrm{RH}) \\cdot (T_a - 14.5)",
+   "terimler": [
+    [
+     "\\mathrm{DI}",
+     "termal rahatsızlık indeksi",
+     "°C"
+    ],
+    [
+     "T_a",
+     "kuru termometre hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "\\mathrm{RH}",
+     "bağıl nem yüzdesi",
+     "%"
+    ]
+   ],
+   "sade": "Hava sıcaklığı ve bağıl nemi birleştirerek insan vücudunun terlemeyle soğuma kapasitesini ve klinik ısı gerilimi eşiklerini belirler.",
+   "ornek": "Sıcaklık 34 °C ve bağıl nem %75 iken DI 31,5 °C çıkarak acil servisler ve risk grupları için tehlike seviyesine ulaşır.",
+   "nerede": "D-MTO360-02'de aile hekimleri için aşırı sıcak dalgası ve nem riski uyarı kartlarını hazırlarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Relative_risk_graph.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Meteorolojik aşırılıklarda sıcaklık maruziyeti ve bağıl risk eğrisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "10 Avrupa şehrinde haftalık mutlak nem düşüşü ve grip vaka artışı eşleşmesi, 2023-2024 kışı",
+   "aciklama": "Düşük mutlak nem dalgalarının solunum yolu viral salgınlarını tetikleme animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 360 (Tıbbi Meteoroloji)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4426",
+   "tur": "resmi"
+  },
+  {
+   "ad": "Lancet Countdown İklim Değişikliği ve İnsan Sağlığı Raporu",
+   "url": "https://www.lancetcountdown.org/data-platform/",
+   "tur": "web"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=360"
+}

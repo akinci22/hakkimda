@@ -1,0 +1,514 @@
+{
+ "id": "D-MTO353-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 353",
+  "dersAd": "Tarım ve Orman Meteorolojisi I",
+  "kol": "yazilim"
+ },
+ "ad": "Trakya buğdayı için GDD ve don takvimi",
+ "ne": "Open-Meteo/ERA5 ile Trakya için 30 yıllık günlük sıcaklıktan buğday GDD birikimi ve son ilkbahar donu tarihlerini hesapla; eğilimi çiz.",
+ "adimlar": [
+  "Edirne-Tekirdağ-Kırklareli için 1991-2024 günlük min/maks sıcaklığı Open-Meteo arşivinden çek.",
+  "Taban 0 °C ile 1 Ekim'den itibaren GDD birikimini hesapla; başaklanma eşiğine ulaşma tarihini bul.",
+  "Her yıl son −2 °C don tarihini çıkar; eğilim çizgisi uydur.",
+  "GDD eşiği tarihi ile don tarihi arasındaki \"risk penceresini\" yıl yıl çiz.",
+  "FAO GIEWS bültenleriyle büyük verim düşüşü yıllarını işaretle."
+ ],
+ "sonuc": "30 yıllık GDD ve don takvimi grafiği; iklim değişiminin tarım takvimine etkisini yerelde gösterir.",
+ "dayanak": "Abatzoglou 2013",
+ "senden": "pandas ile zaman serisi.",
+ "bizden": "GDD ve don tanımları, bölge koordinatları.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 353",
+    "ad": "Tarım ve Orman Meteorolojisi I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo",
+   "ne": "Açık model tahminlerini ücretsiz API olarak sunan girişim.",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "ayrinti": {
+    "neYaptilar": "Küresel yeniden analiz ve sayısal hava tahmin arşivlerini yüksek hızlı JSON API servisine dönüştürdüler.",
+    "nasil": "ERA5 ve küresel modelleri bulut üzerinde optimize ederek koordinat bazlı geçmiş hava durumu sorgularını saniyenin altında sundular.",
+    "neEdindiler": "Tarım teknolojileri girişimlerine ve bağımsız araştırmacılara kesintisiz iklim ve meteoroloji altyapısı sağladılar.",
+    "bizNasilKatki": "Edirne, Tekirdağ ve Kırklareli için 1991-2024 günlük minimum ve maksimum sıcaklık serilerini tek sorguda çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Geçmiş Hava Durumu API Rehberi",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Zippenfenig (2023) Açık Meteorolojik Veri Servisleri",
+      "url": "https://doi.org/10.5194/egusphere-2023-1183",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo geçmiş hava durumu API parametre seçim paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Trakya istasyonları günlük min-maks sıcaklık JSON çıktı akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Climate Data Store",
+   "ne": "ERA5 yeniden analizi ve iklim projeksiyonlarının açık dağıtım noktası.",
+   "url": "https://cds.climate.copernicus.eu/datasets",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelinde tarımsal iklim indislerini ve büyüme derece-günü göstergelerini gridli veri olarak sağladılar.",
+    "nasil": "Yüzey sıcaklık gözlemlerini fiziksel atmosfer simülasyonlarıyla asimile edip 30 km çözünürlükte sundular.",
+    "neEdindiler": "Kıta genelinde ürün rekoltesi tahminleri ve iklim risk haritaları için standart referans veri oluşturdular.",
+    "bizNasilKatki": "ERA5-Land yüksek çözünürlüklü yüzey sıcaklıklarını yerel istasyon doğrulamalarında referans zemin olarak kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus CDS Tarımsal İklim İndisleri Kataloğu",
+      "url": "https://cds.climate.copernicus.eu/datasets",
+      "tur": "web"
+     },
+     {
+      "ad": "Muñoz-Sabater vd. (2021) ERA5-Land Küresel Arazi Analizi",
+      "url": "https://doi.org/10.5194/essd-13-4349-2021",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets",
+      "aciklama": "Copernicus CDS ERA5-Land günlük yüzey sıcaklığı indirme paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Trakya buğday kuşağında kış ortalamaları ve ilkbahar don sıklığı döngüsü",
+      "aciklama": "30 yıllık zaman serisinde ilkbahar don tarihlerinin mart ayı sonuna doğru kayması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "FAO GIEWS",
+   "ne": "Küresel gıda erken uyarı sistemi; tarım meteorolojisi bültenleri.",
+   "url": "https://www.fao.org/giews/en/",
+   "ayrinti": {
+    "neYaptilar": "Dünyadaki tahıl üretim bölgelerinde aşırı sıcaklık ve don olaylarının rekolteye etkisini izlediler.",
+    "nasil": "Uydu bitki örtüsü indisleriyle zemin agrometeoroloji verilerini birleştirerek aylık bültenler hazırladılar.",
+    "neEdindiler": "Kuraklık ve don kaynaklı gıda arz krizlerini aylar öncesinden tespit eden küresel izleme sistemi kurdular.",
+    "bizNasilKatki": "Trakya buğdayında don kaynaklı tarihsel verim düşüşü yıllarını FAO bültenleriyle eşleştirip doğrularız.",
+    "referanslar": [
+     {
+      "ad": "FAO Küresel Gıda ve Tarım Bilgi Portalı",
+      "url": "https://www.fao.org/giews/en/",
+      "tur": "web"
+     },
+     {
+      "ad": "Rembold vd. (2019) FAO Küresel Tarımsal Kuraklık İzleme",
+      "url": "https://doi.org/10.1080/01431161.2019.1601287",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.fao.org/giews/en/",
+      "aciklama": "FAO GIEWS küresel tarımsal kuraklık ve don erken uyarı arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.fao.org/giews/en/",
+      "aciklama": "Türkiye ve Akdeniz havzası tahıl üretim bültenleri ve rekolte raporları akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "GEOGLAM Crop Monitor",
+   "ne": "Uydu tabanlı küresel ürün durumu bülteni.",
+   "url": "https://cropmonitor.org/index.php/cmreports/",
+   "ayrinti": {
+    "neYaptilar": "G20 tarım inisiyatifi kapsamında küresel buğday fenolojisini ve iklim stresini açık bültenlerle sundular.",
+    "nasil": "Çoklu uydu spektroskopisi ve yerel tarım uzmanı gözlemlerini ortak fenoloji takviminde haritaladılar.",
+    "neEdindiler": "Uluslararası tahıl piyasalarına şeffaf ve güvenilir ürün gelişim evresi raporları sağladılar.",
+    "bizNasilKatki": "Trakya buğdayının başaklanma ve çiçeklenme evresi tarihlerini GEOGLAM takvim standardıyla karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "GEOGLAM Küresel Ürün İzleme Raporları Portalı",
+      "url": "https://cropmonitor.org/index.php/cmreports/",
+      "tur": "web"
+     },
+     {
+      "ad": "Becker-Reshef vd. (2020) GEOGLAM Küresel Ürün Değerlendirmesi",
+      "url": "https://doi.org/10.1016/j.rse.2019.111412",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cropmonitor.org/index.php/cmreports/",
+      "aciklama": "GEOGLAM küresel kışlık buğday fenoloji takvimi ve stres haritası paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://cropmonitor.org/index.php/cmreports/",
+      "aciklama": "Bölgesel buğday gelişim evreleri ve agrometeorolojik koşullar bülteni akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Climate FieldView",
+   "ne": "Dijital tarım platformu (Bayer).",
+   "url": "https://climate.com/products/fieldview-platform",
+   "ayrinti": {
+    "neYaptilar": "Tarla ölçeğinde hava durumu ve büyüme derece-günü birikimini çiftçilerin akıllı cihazlarına taşıdılar.",
+    "nasil": "Radar yağış tahminleri ve gridli sıcaklık modellerini fenolojik ürün büyüme evreleriyle birleştirdiler.",
+    "neEdindiler": "Milyonlarca hektarlık tarım arazisinde ekim ve ilaçlama zamanlamasını optimize eden ticari servis kurdular.",
+    "bizNasilKatki": "Tarlaya özel büyüme derece-günü birikim hesabını açık kaynak Python betiği olarak çiftçiye sunarız.",
+    "referanslar": [
+     {
+      "ad": "Climate FieldView Dijital Tarım Çözümleri",
+      "url": "https://climate.com/products/fieldview-platform",
+      "tur": "web"
+     },
+     {
+      "ad": "Abatzoglou (2013) Ekolojik Uygulamalar İçin Gridli Meteoroloji",
+      "url": "https://doi.org/10.1002/joc.3413",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://climate.com/products/fieldview-platform",
+      "aciklama": "Climate FieldView tarla bazlı büyüme derece-günü ve hava durumu takip arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Trakya illerinde buğday birikimli GDD eğrisi ve fenolojik eşikler animasyonu",
+      "aciklama": "Ekimden itibaren biriken termal enerjinin başaklanma ve sarı olum evrelerine ulaşma grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Hava ile bitki arasındaki ilişkiyi (büyüme derece-günü, don, evapotranspirasyon) sayıya dökmek.",
+  "baglanti": "Yazılım kolunda uydu + istasyon verisiyle tarla ölçeği analiz; Anlatım kolunda çiftçiye yönelik kısa anlatımlar.",
+  "literatur": {
+   "maddeler": [
+    "Büyüme derece-günü (GDD), günlük ortalama sıcaklığın taban sıcaklığını aşan kısmının toplamıdır; fenolojik evreleri öngörmede temel ölçüttür.",
+    "Referans evapotranspirasyon FAO Penman-Monteith denklemiyle hesaplanır; net radyasyon, rüzgâr ve buhar basıncı açığı girdidir.",
+    "Ekolojik uygulamalar için gridli günlük meteoroloji (gridMET) istasyon verisini yeniden analizle birleştirir. (Abatzoglou 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Uydudan tarla ölçeğinde evapotranspirasyon (OpenET) sulama yönetiminde açık veri olarak kullanılıyor.",
+    "Sentinel-1/2 birleşimi ürün türünü sezon başında haritalıyor; tarım meteorolojisi uydu zaman serisiyle birleşti. (Valero vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Abatzoglou 2013",
+    "baslik": "Development of gridded surface meteorological data for ecological applications and modelling",
+    "yayin": "International Journal of Climatology 33(1), 121-131",
+    "yil": "2013",
+    "url": "https://doi.org/10.1002/joc.3413",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Holzkämper vd. 2013",
+    "baslik": "Identifying climatic limitations to grain maize yield potentials using a suitability evaluation approach",
+    "yayin": "Agricultural and Forest Meteorology 168, 149-159",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/j.agrformet.2012.09.004",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Valero vd. 2021",
+    "baslik": "Synergy of Sentinel-1 and Sentinel-2 Imagery for Early Seasonal Agricultural Crop Mapping",
+    "yayin": "Remote Sensing 13(23), 4891",
+    "yil": "2021",
+    "url": "https://doi.org/10.3390/rs13234891",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Friedrich vd. 2018",
+    "baslik": "Reservoir Evaporation in the Western United States",
+    "yayin": "Bulletin of the American Meteorological Society 99(1), 167-187",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/BAMS-D-15-00224.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Open-Meteo ve ERA5 verileriyle Trakya buğdayı için 30 yıllık sıcaklık serisinden birikimli GDD eğrisini ve ilkbahar geç don risk penceresini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 353",
+   "projeyeKatki": "Trakya buğday tarımında fenolojik evrelerin sıcaklık birikimiyle ilerleyişi ve kritik çiçeklenme döneminde don riski tarım meteorolojisi ilkeleriyle çözümlenir. Büyüme derece-günü (GDD) denklemiyle başaklanma tarihi ve son don tarihleri hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Büyüme derece-günü (GDD) birikim bağıntısı",
+     "nerede": "1 Ekim ekim tarihinden itibaren günlük sıcaklıkların 0 °C üzerindeki birikimini toplayarak başaklanma eşiğini hesaplarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Trakya'nın 30 yıllık sıcaklık serisiyle buğday GDD birikimini ve ilkbahar geç don risk pencerelerini hesaplamak.",
+  "ayrinti": "Edirne, Tekirdağ ve Kırklareli için 1991-2024 günlük minimum ve maksimum sıcaklıkları Open-Meteo arşivinden çekilir. Taban 0 °C kabul edilerek 1 Ekim'den itibaren kışlık buğdayın GDD birikimi hesaplanır ve 1100 °C gün başaklanma eşiğine ulaşma tarihi belirlenir. Her yılın son -2 °C ilkbahar don tarihi çıkarılarak don riski penceresi ve iklim eğilimi haritalanır.",
+  "adimlar": [
+   {
+    "baslik": "Trakya 30 yıllık sıcaklık serisini indirmek ve düzenlemek",
+    "oz": "Edirne, Tekirdağ ve Kırklareli için günlük min/maks sıcaklıkları çekmek.",
+    "ayrinti": "Open-Meteo Archive API sorgusuyla Trakya'nın üç tarım merkezi için 1991-2024 periyodu günlük t2m_min ve t2m_max değerleri indirilir. Eksik günler kontrol edilir ve her tarım yılı 1 Ekim başlangıçlı olacak şekilde zaman bloklarına ayrılır.",
+    "nasil": [
+     {
+      "teknik": "requests.get('https://archive-api.open-meteo.com/v1/archive', params=trakya_params) ile sıcaklıkları almak.",
+      "sade": "Trakya'daki üç il için son 30 yılın günlük en yüksek ve en düşük sıcaklıklarını bilgisayara çekeriz.",
+      "altAdimlar": [
+       "1. Edirne, Tekirdağ ve Kırklareli merkez tarım arazisi koordinatlarını tanımlayın.",
+       "2. 1991-01-01 ile 2024-12-31 aralığı için günlük sıcaklık ekstremumlarını sorgulayın.",
+       "3. İndirilen verileri tarih indeksli pandas tablosunda birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Mahsul büyümesi ile sıcaklık ve radyasyon arasındaki ilişkiyi ve fenolojik evreleri çözümlemek."
+      }
+     },
+     {
+      "teknik": "df['agri_year'] = df['date'].apply(lambda d: d.year if d.month >= 10 else d.year - 1) ile tarım yılı tanımlamak.",
+      "sade": "Buğday ekim ayı olan Ekim'den başlayıp ertesi yılın hasadına kadar süren tarım yıllarını oluştururuz.",
+      "altAdimlar": [
+       "1. Her takvim gününü buğdayın biyolojik ekim döngüsüne göre etiketleyin.",
+       "2. 1 Ekim tarihini her sezon için sıfırıncı gün olarak sabitleyin.",
+       "3. Sezon dışı yaz aylarını kışlık buğday gelişim penceresinden ayırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Mahsul büyümesi ile sıcaklık ve radyasyon arasındaki ilişkiyi ve fenolojik evreleri çözümlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 353",
+      "madde": "Mahsul büyümesi ile sıcaklık ve radyasyon arasındaki ilişkiyi ve fenolojik evreleri çözümlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Kışlık buğday için birikimli GDD eğrilerini hesaplamak",
+    "oz": "Taban 0 °C ile günlük büyüme derece-günlerini toplayıp başaklanmayı bulmak.",
+    "ayrinti": "GDD = max((Tmax + Tmin)/2 - Tbase, 0) formülü taban sıcaklık Tbase = 0 °C alınarak işletilir. 1 Ekim'den itibaren her günün katkısı toplanır; Trakya buğdayının başaklanma evresi için gerekli 1100 °C gün eşiğine ulaşılan gün (yılın günü) 30 yıl için tek tek hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "df['gdd'] = np.maximum((df['tmax'] + df['tmin']) / 2.0 - 0.0, 0.0) ile günlük derece-günü bulmak.",
+      "sade": "Günün ortalama sıcaklığı sıfırın üzerindeyse bitkinin büyümek için topladığı ısı miktarını hesaplarız.",
+      "altAdimlar": [
+       "1. Günlük en yüksek ve en düşük sıcaklıkların ortalamasını alın.",
+       "2. Taban sıcaklık olan 0 °C değerini çıkarıp negatif sonuçları sıfıra eşitleyin.",
+       "3. Günlük büyüme derece-günü değerlerini veri tablosuna yeni sütun olarak yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Büyüme derece-günü (GDD) birikimiyle tarımsal don risk pencerelerini belirlemek."
+      }
+     },
+     {
+      "teknik": "basaklanma_gunu = df_season[df_season['cum_gdd'] >= 1100].iloc[0]['doy'] ile eşik tarihini yakalamak.",
+      "sade": "Biriken toplam sıcaklık 1100 derece-güne ulaştığında buğdayın başak çıkardığı takvim gününü buluruz.",
+      "altAdimlar": [
+       "1. Her sezon için 1 Ekim'den itibaren kümülatif GDD toplamını hesaplayın.",
+       "2. Kümülatif toplamın 1100 eşiğini ilk aştığı tarihi tespit edin.",
+       "3. Başaklanma tarihinin 30 yıl boyunca Nisan ayı içinde nasıl öne çekildiğini listeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Büyüme derece-günü (GDD) birikimiyle tarımsal don risk pencerelerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 353",
+      "madde": "Büyüme derece-günü (GDD) birikimiyle tarımsal don risk pencerelerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Son ilkbahar don tarihlerini ve risk penceresini çıkarmak",
+    "oz": "Her yılın son -2 °C don olayını bulup başaklanma tarihiyle çakıştırmak.",
+    "ayrinti": "İlkbahar aylarında (1 Mart sonrası) minimum sıcaklığın -2 °C altına indiği son tarih her sezon için çıkarılır. Başaklanma evresindeki buğdayın dona karşı en hassas olduğu dönem ile son don tarihi arasındaki gün farkı hesaplanarak negatif ve pozitif risk pencereleri türetilir.",
+    "nasil": [
+     {
+      "teknik": "son_don = df_spring[df_spring['tmin'] <= -2.0]['doy'].max() ile son don gününü bulmak.",
+      "sade": "İlkbaharda ekinlere zarar veren sıfırın altındaki son tehlikeli soğuk günün tarihini çıkarırız.",
+      "altAdimlar": [
+       "1. Mart, Nisan ve Mayıs aylarında günlük minimum sıcaklığı -2 °C altında olan günleri filtreleyin.",
+       "2. Filtrelenen günlerin en sonuncusunu o sezonun son öldürücü don günü olarak kaydedin.",
+       "3. 30 yıllık son don tarihleri üzerine doğrusal eğilim çizgisi uydurarak değişimi saptayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Büyüme derece-günü (GDD) birikimiyle tarımsal don risk pencerelerini belirlemek."
+      }
+     },
+     {
+      "teknik": "risk_penceresi = basaklanma_gunu - son_don ile gün farkını hesaplamak.",
+      "sade": "Buğdayın başaklanması ile son don arasında kaç gün güvenlik payı kaldığını hesaplarız.",
+      "altAdimlar": [
+       "1. Başaklanma tarihi ile son don tarihi arasındaki gün farkını hesaplayın.",
+       "2. Farkın 10 günün altına indiği veya donun başaklanmadan sonra gerçekleştiği hasar yıllarını işaretleyin.",
+       "3. Risk penceresinin iklim ısınması nedeniyle daralıp daralmadığını istatistiksel olarak test edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Büyüme derece-günü (GDD) birikimiyle tarımsal don risk pencerelerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 353",
+      "madde": "Büyüme derece-günü (GDD) birikimiyle tarımsal don risk pencerelerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Tarımsal takvim grafiklerini ve çiftçi özet kartını üretmek",
+    "oz": "30 yıllık eğilim grafiğini çizip tarım takvimi erken uyarı kartına dönüştürmek.",
+    "ayrinti": "Yıllara göre başaklanma tarihi ve son don tarihi eğilimleri saçılım grafiğinde birleştirilir. FAO GIEWS verim düşüşü yılları grafik üzerine kırmızı uyarı noktası olarak işlenir. Çiftçilere erken ekim ve don risk dengesini anlatan tek sayfalık agrometeoroloji kartı oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "ax.plot(years, basak_list, 'g-', label='1100 GDD Başaklanma') ve ax.plot(years, don_list, 'b--') ile çizmek.",
+      "sade": "Başaklanma günlerinin erkene kayışı ile son don tarihlerini aynı zaman çizelgesinde gösteririz.",
+      "altAdimlar": [
+       "1. Yatay eksende 1991-2024 yıllarını, dikey eksende takvim günlerini tanımlayın.",
+       "2. Başaklanma ve son don serilerini güven aralıklarıyla birlikte çizin.",
+       "3. Don olayının başaklanmayı yakaladığı kritik yılları kırmızı şeritlerle vurgulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Mahsul büyümesi ile sıcaklık ve radyasyon arasındaki ilişkiyi ve fenolojik evreleri çözümlemek."
+      }
+     },
+     {
+      "teknik": "generate_agri_card(stats, 'trakya_bugday_don_karti.png') ile özet infografiği üretmek.",
+      "sade": "Trakya çiftçisine hangi tarihten önce ekim yapılmaması gerektiğini gösteren rehber kartı hazırlarız.",
+      "altAdimlar": [
+       "1. Trakya'nın üç ili için önerilen en güvenli ekim tarihi aralığını hesaplayın.",
+       "2. İklim değişimi kaynaklı yalancı bahar tehlikesini açıklayan kısa notlar ekleyin.",
+       "3. Yüksek çözünürlüklü kartı açık tarım platformunda erişime açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Tarım ve orman meteorolojisinin fiziksel ilkelerini ve atmosfer etkileşimlerini analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 353",
+      "madde": "Mahsul büyümesi ile sıcaklık ve radyasyon arasındaki ilişkiyi ve fenolojik evreleri çözümlemek."
+     },
+     {
+      "ders": "MTO 353",
+      "madde": "Tarım ve orman meteorolojisinin fiziksel ilkelerini ve atmosfer etkileşimlerini analiz etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Trakya buğdayı 30 yıllık GDD-don takvimi grafiği, fenoloji risk analizi Python defteri ve çiftçi için erken uyarı özet kartı.",
+  "senden": "pandas zaman serisi analizi, NumPy indeksleme ve matplotlib görselleştirme tecrübesi.",
+  "bizden": "Open-Meteo arşiv çekme kodu, buğday fenoloji eşik katsayıları ve don risk analizi fonksiyonları."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Trakya illerinde 30 yıllık son ilkbahar donu ve GDD başaklanma tarihi eğilimi animasyonu",
+   "aciklama": "İklim değişimiyle erken ısınan baharlar ve geç don risk penceresinin zamansal kayması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://cropmonitor.org/index.php/cmreports/",
+   "aciklama": "GEOGLAM Crop Monitor küresel ve bölgesel tarımsal fenoloji izleme bülteni akışı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wheat_field_in_Turkey.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Trakya buğday tarlasında başaklanma evresi ve mikrometeorolojik büyüme ortamı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 353 (Tarım ve Orman Meteorolojisi I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=353"
+  },
+  {
+   "ad": "Abatzoglou, J. T. (2013) Development of gridded surface meteorological data, Int. J. Climatol., 33, 121–131",
+   "url": "https://doi.org/10.1002/joc.3413"
+  },
+  {
+   "ad": "Holzkämper, A. vd. (2013) Identifying climatic limitations to grain maize yield potentials, Agric. For. Meteorol., 168, 149–159",
+   "url": "https://doi.org/10.1016/j.agrformet.2012.09.004"
+  },
+  {
+   "ad": "Valero, S. vd. (2021) Synergy of Sentinel-1 and Sentinel-2 Imagery for Crop Mapping, Remote Sens., 13(23), 4891",
+   "url": "https://doi.org/10.3390/rs13234891"
+  },
+  {
+   "ad": "Friedrich, K. vd. (2018) Reservoir Evaporation in the Western United States, BAMS, 99(1), 167–187",
+   "url": "https://doi.org/10.1175/BAMS-D-15-00224.1"
+  },
+  {
+   "ad": "Open-Meteo Geçmiş Hava Durumu API Dokümantasyonu",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  },
+  {
+   "ad": "GEOGLAM Küresel Tarımsal İzleme Raporları Portalı",
+   "url": "https://cropmonitor.org/index.php/cmreports/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO353-01.json",
+  "tarih": "2026-10-17 03:46",
+  "geminiSha1": "ccde31ca17ad"
+ }
+}

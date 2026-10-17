@@ -1,0 +1,466 @@
+{
+ "id": "D-MTO453E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 453E",
+  "dersAd": "İklim Dinamiği",
+  "kol": "ikisi"
+ },
+ "ad": "Küçük bir ENSO modeli: geri dönüşümlü yük osilatörü",
+ "ne": "Jin'in geri dönüşümlü yük osilatörü denklemlerini Python'da çöz; parametre değişimiyle döngü süresi ve genliğin nasıl değiştiğini göster; gözlemle kıyasla.",
+ "adimlar": [
+  "İki değişkenli (SST anomalisi, termoklin derinliği) model denklemlerini yaz.",
+  "Parametre taramasıyla salınım periyodunu hesapla.",
+  "Gürültü ekleyerek düzensizliği üret.",
+  "Gözlenen Niño3.4 spektrumuyla model spektrumunu kıyasla.",
+  "Derin öğrenme tahminiyle (Ham vd. 2019) bağlantı kur."
+ ],
+ "sonuc": "Basit model ve spektrum karşılaştırması.",
+ "dayanak": "Ham vd. 2019",
+ "senden": "Diferansiyel denklem çözme.",
+ "bizden": "Model kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 453E",
+    "ad": "İklim Dinamiği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "climlab",
+   "ne": "Python ile süreç tabanlı iklim simülasyon paketi (Brian Rose).",
+   "url": "https://climlab.readthedocs.io/",
+   "ayrinti": {
+    "neYaptilar": "Albany Üniversitesi araştırmacıları enerji dengesi, konvektif ışınım ve basit okyanus-atmosfer dinamiklerini simüle eden açık kaynak paket yazdılar.",
+    "nasil": "Modüler Python nesneleriyle termodinamik ve akışkan süreçlerini ayrıştırarak diferansiyel denklem integratörleriyle birleştirdiler.",
+    "neEdindiler": "İklim bilimi eğitiminde öğrencilerin karmaşık küresel modeller yerine süreç tabanlı yalın simülasyonları çalıştırmasını sağladılar.",
+    "bizNasilKatki": "climlab yapısına Jin şarj osilatörü denklemlerini ekleyen yeni bir süreç sınıfı geliştirip katkı sunabiliriz.",
+    "referanslar": [
+     {
+      "ad": "climlab: Process-Oriented Climate Modeling in Python",
+      "url": "https://doi.org/10.21105/joss.00659",
+      "tur": "makale"
+     },
+     {
+      "ad": "climlab Documentation and Interactive Examples",
+      "url": "https://climlab.readthedocs.io/en/stable/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://climlab.readthedocs.io/en/stable/intro.html",
+      "aciklama": "climlab süreç tabanlı iklim model mimarisi ve blok diyagramı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Thermocline_in_the_ocean.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Okyanus su kolonunda sıcak üst tabaka ve termoklin derinlik profili"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "The Climate Laboratory (Brian Rose)",
+   "ne": "Jupyter tabanlı açık iklim dinamiği ders kitabı.",
+   "url": "https://brian-rose.github.io/ClimateLaboratoryBook/",
+   "ayrinti": {
+    "neYaptilar": "Açık bilim prensibiyle iklim dinamiklerini, salınımları ve basit modelleri interaktif Python defterleriyle anlatan dijital ders kitabı kurdular.",
+    "nasil": "GitHub Pages ve Jupyter Book altyapısıyla matematiksel diferansiyel denklemleri canlı kod blokları ve etkileşimli grafiklerle sundular.",
+    "neEdindiler": "Dünya çapında yüzlerce üniversitede iklim dinamiği derslerinde kullanılan açık ve erişilebilir bir eğitim standardı oluşturdular.",
+    "bizNasilKatki": "Kitaptaki ENSO osilatör bölümü için parametre duyarlılık analizlerini içeren yeni bir bölüm katkısı hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "The Climate Laboratory: An Interactive Online Textbook",
+      "url": "https://brian-rose.github.io/ClimateLaboratoryBook/",
+      "tur": "web"
+     },
+     {
+      "ad": "Jupyter Notebooks for Climate Physics and Dynamics",
+      "url": "https://github.com/brian-rose/ClimateLaboratoryBook",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://brian-rose.github.io/ClimateLaboratoryBook/courseware/enso.html",
+      "aciklama": "The Climate Laboratory ENSO salınım dinamikleri defter ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Phase_space_trajectory.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Doğrusal olmayan osilatör sistemlerinde faz uzayı limit döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "CLIVAR",
+   "ne": "Okyanus-atmosfer değişkenliği programı.",
+   "url": "https://www.clivar.org/",
+   "ayrinti": {
+    "neYaptilar": "Dünya İklim Araştırma Programı (WCRP) çatısı altında okyanus-atmosfer etkileşimini ve ENSO kestirilebilirliğini araştıran küresel konsorsiyum yönettiler.",
+    "nasil": "Uluslararası çalışma gruplarıyla model karşılaştırmaları, gözlem ağları ve iklim mekanizma çalıştayları organize ettiler.",
+    "neEdindiler": "Küresel iklim modellerindeki ENSO asimetrisi ve biyolojik geri besleme eksikliklerini gideren bilimsel raporlar yayımladılar.",
+    "bizNasilKatki": "CLIVAR ENSO panelinin yayımladığı kavramsal simülasyon metriklerini kendi modelimizde test edip doğrulayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "CLIVAR Research Focus on Tropical Basin Interaction",
+      "url": "https://www.clivar.org/clivar-panels/tropical-basin-interaction",
+      "tur": "web"
+     },
+     {
+      "ad": "WCRP Climate and Ocean: Variability, Predictability and Change Reports",
+      "url": "https://www.clivar.org/resources/reports",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.clivar.org/panels-and-working-groups",
+      "aciklama": "CLIVAR küresel okyanus-atmosfer panelleri ve araştırma odakları panosu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Pasifik okyanus-atmosfer kuplajında deniz seviyesi basıncı ve rüzgar stresi döngüsü, 2024",
+      "aciklama": "Walker sirkülasyonu salınımında rüzgar gerilmesi ve deniz yüzeyi anomalisi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "IRI (Columbia)",
+   "ne": "Mevsimlik tahmin ve iklim-toplum araştırmaları.",
+   "url": "https://iri.columbia.edu/",
+   "ayrinti": {
+    "neYaptilar": "ENSO tahminlerini toplumun tarım, sağlık ve enerji planlamasında kullanabilmesi için operasyonel mevsimlik tahmin sistemleri kurdular.",
+    "nasil": "Dinamik modeller ile istatistiksel modellerin ENSO kestirimlerini konsensüs olasılık dağılımlarıyla her ay haritalandırdılar.",
+    "neEdindiler": "Küresel ölçekte El Niño ve La Niña başlangıçlarını aylar öncesinden duyuran en yetkin tahmin otoritesi haline geldiler.",
+    "bizNasilKatki": "Kavramsal yük osilatörü çıktılarımızı IRI'nin resmi çoklu model tahminleriyle kıyaslayan görselleştirme araçları yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "IRI/CPC ENSO Diagnostic Discussion and Model Forecasts",
+      "url": "https://iri.columbia.edu/our-expertise/climate/forecasts/enso/current/",
+      "tur": "web"
+     },
+     {
+      "ad": "Operational Climate and Society Decision Support Tools",
+      "url": "https://iri.columbia.edu/resources/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://iri.columbia.edu/our-expertise/climate/forecasts/enso/current/",
+      "aciklama": "IRI resmi ENSO olasılık çubuk grafiği ve model konsensüs sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Walker_Circulation.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Tropikal Pasifik boyunca Walker hava sirkülasyon hücresi mekanizması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "ENSO, MJO ve diğer değişkenlik kiplerini mekanizmalarıyla anlamak ve mevsimlik tahminle ilişkilendirmek.",
+  "baglanti": "Yazılım kolunda yeniden analiz ve mevsimlik tahmin verisi; Anlatım kolunda değişkenlik kipleri anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "ENSO, tropikal Pasifik'te okyanus-atmosfer bağlı salınımdır; Bjerknes geri beslemesi ve geri dönüşümlü yük mekanizması döngüyü sürdürür.",
+    "Mevsimlik tahmin sistemleri (CFSv2, C3S çoklu model) ENSO'nun uzaktan bağlantılarından öngörülebilirlik alır. (Saha vd. 2014)",
+    "ENSO kuzey kış stratosferini asimetrik ve doğrusal olmayan biçimde etkiler. (Rao ve Ren 2016)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Derin öğrenme ENSO'yu 18 aya kadar öngörebildi; dinamik modellerin bahar öngörülebilirlik bariyerini aştı. (Ham vd. 2019)",
+    "Nemli baroklinik kararsızlık muson depresyonlarının büyümesini açıklıyor. (Cohen ve Boos 2016)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Saha vd. 2014",
+    "baslik": "The NCEP Climate Forecast System Version 2",
+    "yayin": "Journal of Climate 27(6), 2185-2208",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/JCLI-D-12-00823.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Rao ve Ren 2016",
+    "baslik": "Asymmetry and nonlinearity of the influence of ENSO on the northern winter stratosphere",
+    "yayin": "Journal of Geophysical Research: Atmospheres 121(15), 9000-9027",
+    "yil": "2016",
+    "url": "https://doi.org/10.1002/2015JD024521",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Ham vd. 2019",
+    "baslik": "Deep learning for multi-year ENSO forecasts",
+    "yayin": "Nature 573, 568-572",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-1559-7",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Cohen ve Boos 2016",
+    "baslik": "Perspectives on Moist Baroclinic Instability: Implications for the Growth of Monsoon Depressions",
+    "yayin": "Journal of the Atmospheric Sciences 73(4), 1767-1788",
+    "yil": "2016",
+    "url": "https://doi.org/10.1175/JAS-D-15-0254.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sassi vd. 2001",
+    "baslik": "Relationship between upper tropospheric humidity and deep convection",
+    "yayin": "Journal of Geophysical Research: Atmospheres 106(D1), 1155-1164",
+    "yil": "2001",
+    "url": "https://doi.org/10.1029/2001JD900121",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Jin geri dönüşümlü yük osilatörü diferansiyel denklemlerini sayısal çözerek Pasifik okyanus-atmosfer kuplaj salınımlarının periyot ve genliğini simüle etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 453E",
+   "ad": "İklim Dinamiği",
+   "projeyeKatki": "Termoklin derinliği ve deniz yüzeyi sıcaklığı anomalileri arasındaki dinamik geri beslemeyi diferansiyel denklem sistemiyle çözmeyi öğretir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Güney Salınım İndeksi (Southern Oscillation Index - SOI)",
+     "nerede": "Adım 4: Model çıktısı deniz yüzeyi sıcaklıklarının gözlem spektrumuyla kıyaslanmasında.",
+     "katki": "Salınım genliği ve faz geçişlerinin gerçek atmosferik gözlemlerle uyumunu doğrular."
+    },
+    {
+     "formulAd": "Kuzey Atlantik Salınımı (NAO) dipol basınç indeksi",
+     "nerede": "Adım 3: Atmosferik gürültü ve dış zorlama terimlerinin modele entegre edilmesinde.",
+     "katki": "Okyanus baseni dışından gelen stokastik atmosferik dalgalanmaların salınıma etkisini simüle eder."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Jin geri dönüşümlü yük osilatörü denklemlerini Python ile çözüp periyot ve faz uzayını analiz etmek.",
+  "ayrinti": "Ekvatoral Pasifik'te termoklin derinliği ve deniz yüzeyi sıcaklığı arasındaki dinamik etkileşim iki boyutlu adi diferansiyel denklem sistemiyle ifade edilir. Parametre taraması ve gürültü eklenerek gözlemlerle kıyaslanır.",
+  "adimlar": [
+   {
+    "baslik": "İki değişkenli geri dönüşümlü yük denklemlerini kurmak",
+    "oz": "SST anomalisi (T) ve termoklin derinliği (h) diferansiyel denklem sistemini kodlamak.",
+    "ayrinti": "Fei-Fei Jin tarafından formüle edilen şarj osilatörü, sıcaklık değişimini okyanus dinamik geri beslemesine ve termoklinin batıdan doğuya su kütlesi taşımasına bağlar.",
+    "nasil": [
+     {
+      "teknik": "def enso_sistemi(t, y, r, c, b): dT_dt = r*y[0] + b*y[1]; dh_dt = -c*y[0] - r*y[1] şeklinde ODE fonksiyonunu tanımlamak.",
+      "sade": "Okyanus sıcaklığı ile sıcak su tabakasının derinliği arasındaki karşılıklı itme ve çekme denklemini Python fonksiyonu yaparız.",
+      "altAdimlar": [
+       "Bjerknes geri besleme katsayısı ve sönümleme sabitlerini belirleyin.",
+       "Sıcaklık ve termoklin derinliği için iki durum değişkeni atayın.",
+       "Türev ifadelerini vektörel çıktı üreten Python fonksiyonuna dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "ENSO göstergelerini (Niño 3.4 indeksi, SOI) okyanus sıcaklık anomalileriyle hesaplamak."
+      }
+     },
+     {
+      "teknik": "Model parametrelerini (r: sönüm, b: kuplaj, c: gecikmeli taşıma) literatür değerlerine (Jin 1997) göre başlatmak.",
+      "sade": "Denklemdeki sabit sayıları gerçek Pasifik Okyanusu ölçümlerine uygun fiziksel değerlerle doldururuz.",
+      "altAdimlar": [
+       "Okyanus baseni boyutlarına karşılık gelen dalga geçiş süresini girin.",
+       "Atmosferik rüzgar gerilmesi kuplaj kuvvetini sabitleyin.",
+       "Başlangıç koşulu olarak 0.5 derecelik hafif bir sıcaklık anomalisi verin."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "ENSO göstergelerini (Niño 3.4 indeksi, SOI) okyanus sıcaklık anomalileriyle hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 453E",
+      "madde": "ENSO göstergelerini (Niño 3.4 indeksi, SOI) okyanus sıcaklık anomalileriyle hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Runge-Kutta yöntemiyle periyot ve faz uzayını çözmek",
+    "oz": "scipy.integrate.solve_ivp ile sistemi 50 yıllık zaman ekseninde adım adım entegre etmek.",
+    "ayrinti": "Dördüncü mertebeden Runge-Kutta (RK45) algoritmasıyla doğrusal olmayan denklem sistemi çözülür. T ve h değişkenlerinin faz uzayında limit döngüsü (limit cycle) oluşturduğu gösterilir.",
+    "nasil": [
+     {
+      "teknik": "scipy.integrate.solve_ivp(enso_sistemi, (0, 50*365), y0, method='RK45', t_eval=zaman) ile sayısal çözümü üretmek.",
+      "sade": "Matematiksel çözücüyü çalıştırarak önümüzdeki 50 yıl boyunca okyanusun nasıl salınacağını gün gün hesaplarız.",
+      "altAdimlar": [
+       "Zaman aralığını 0 ile 50 yıl arasında günlük adımlarla tanımlayın.",
+       "RK45 sayısal integral çözücüsünü çağırarak durum vektörünü entegre edin.",
+       "Hesaplanan sıcaklık ve termoklin serilerini zaman dizisi olarak ayıklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "matplotlib ile T-h faz uzayı yörüngesini ve kapalı limit döngüsünün kararlılığını çizdirmek.",
+      "sade": "Sıcaklık ve derinliğin birbiri etrafında çizdiği dairesel dansı iki boyutlu faz grafiğinde gösteririz.",
+      "altAdimlar": [
+       "Yatay eksene sıcaklık anomalisini, dikey eksene termoklin derinliğini yerleştirin.",
+       "Sistemin zamanla oturduğu elips şeklindeki kapalı döngüyü çizin.",
+       "Salınımın periyodunu tepe noktaları arasındaki süreden hesaplayarak 3-4 yıl olduğunu doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 453E",
+      "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Stokastik rüzgâr gürültüsüyle doğal düzensizlik üretmek",
+    "oz": "Modele rastgele atmosferik rüzgar patlamaları ekleyerek gerçekçi kaotik yapı sağlamak.",
+    "ayrinti": "Saf matematiksel osilatör kusursuz periyodik dalga üretir. Ancak gerçek doğada atmosferik Madden-Julian Salınımı gibi gürültüler sisteme düzensizlik ve farklı genlikler katar.",
+    "nasil": [
+     {
+      "teknik": "dT_dt denklemine np.random.normal(0, sigma) beyaz gürültü terimi ekleyerek Euler-Maruyama yöntemiyle çözmek.",
+      "sade": "Modele her gün rastgele esen rüzgar fırtınaları katarak El Niño yıllarının birbirinden farklı şiddette çıkmasını sağlarız.",
+      "altAdimlar": [
+       "Sıfır ortalamalı ve ayarlanabilir standart sapmalı Gaussian gürültü üreteci yazın.",
+       "Her zaman adımında türeve rastgele dış zorlama darbesi ekleyin.",
+       "Stokastik diferansiyel denklemi Euler-Maruyama algoritmasıyla simüle edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Madden-Julian Salınımının (MJO) RMM faz uzayında küresel yayılımını izlemek."
+      }
+     },
+     {
+      "teknik": "Gürültü genliği arttıkça salınımın periyodik düzenden zayıf kaosa geçişini faz portresinde incelemek.",
+      "sade": "Rüzgar çalkantısının mükemmel saati nasıl bozup gerçeğe benzeyen karmaşık bir ritme dönüştürdüğünü gözlemleriz.",
+      "altAdimlar": [
+       "Gürültü seviyesini adım adım artırarak faz yörüngesindeki saçılmayı kaydedin.",
+       "Güçlü ve zayıf El Niño olaylarının düzensiz aralıklarla tetiklendiğini belgeleyin.",
+       "Elde edilen zaman serisini gerçek gözlem verisi formatına dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Madden-Julian Salınımının (MJO) RMM faz uzayında küresel yayılımını izlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 453E",
+      "madde": "Madden-Julian Salınımının (MJO) RMM faz uzayında küresel yayılımını izlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Gözlenen Niño 3.4 güç spektrumuyla modeli doğrulamak",
+    "oz": "scipy.signal.welch ile model çıktısının Fourier güç spektrumunu gerçek verilerle kıyaslamak.",
+    "ayrinti": "Modelden çıkan 100 yıllık sıcaklık serisinin Fourier güç yoğunluğu spektrumu hesaplanır. Gerçek Niño 3.4 verisindeki 2 ila 7 yıllık belirgin enerji tepesiyle örtüşmesi sınanır.",
+    "nasil": [
+     {
+      "teknik": "scipy.signal.welch(model_T, fs=12, nperseg=256) ile frekans ve güç spektral yoğunluğunu hesaplamak.",
+      "sade": "Modelimizin ürettiği dalgaların frekansını ölçüp gerçek doğadaki 4 yıllık ana tepeyle örtüşüp örtüşmediğini denetleriz.",
+      "altAdimlar": [
+       "Model sıcaklık dizisini aylık ortalamalara indirgeyin.",
+       "Welch spektrum fonksiyonuyla enerji yoğunluk eğrisini çıkarın.",
+       "Periyot eksenini yıl cinsine çevirerek ana tepe noktasını tespit edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Gözlenen NOAA PSL Niño 3.4 serisinin spektrumu ile model spektrumunu aynı grafikte üst üste çizdirmek.",
+      "sade": "Basit iki satırlık diferansiyel denklemin koca Pasifik Okyanusu'nun ana ritmini nasıl yakaladığını kanıtlarız.",
+      "altAdimlar": [
+       "Gerçek Niño 3.4 serisinin güç spektrumunu arka plana gri renkle serin.",
+       "Model spektrumunu kırmızı belirgin çizgiyle üstüne bindirin.",
+       "3-5 yıl arasındaki baskın periyot örtüşmesini değerlendirme metnine yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 453E",
+       "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 453E",
+      "madde": "Düşük frekanslı atmosferik dalgaların mevsimlik tahminlerdeki kestirilebilirliğini değerlendirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Pasifik ENSO döngüsünü simüle eden Jin geri dönüşümlü yük osilatörü Python modeli, faz portreleri ve spektrum analizi.",
+  "senden": "Diferansiyel denklemler ve NumPy/SciPy programlama temelleri.",
+  "bizden": "Osilatör diferansiyel denklem şablonu ve gözlem spektrumu karşılaştırma kodları."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Pasifik okyanus-atmosfer kuplajında deniz seviyesi basıncı ve rüzgar stresi döngüsü, 2024",
+   "aciklama": "Walker sirkülasyonu salınımında rüzgar gerilmesi ve deniz yüzeyi anomalisi animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Phase_space_trajectory.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Doğrusal olmayan osilatör sistemlerinde faz uzayı limit döngüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Jin, F.-F. (1997): An Equatorial Ocean Recharge Oscillator for ENSO",
+   "url": "https://doi.org/10.1175/1520-0469(1997)054<0811:AEOROF>2.0.CO;2"
+  },
+  {
+   "ad": "climlab: Process-oriented climate modeling package documentation",
+   "url": "https://climlab.readthedocs.io/en/stable/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO453E-02.json",
+  "tarih": "2026-10-17 04:34",
+  "geminiSha1": "c781959bace5"
+ }
+}

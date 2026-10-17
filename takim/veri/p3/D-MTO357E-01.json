@@ -1,0 +1,524 @@
+{
+ "id": "D-MTO357E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 357E",
+  "dersAd": "Physics of Upper Atmosphere",
+  "kol": "yazilim"
+ },
+ "ad": "Güneş döngüsü uydu sürtünmesini nasıl değiştirir? NRLMSIS ile",
+ "ne": "NRLMSIS 2.0'ı 400 km için 2008 (minimum) ve 2024 (maksimum) koşullarında koşturup yoğunluk farkını ve bir CubeSat'ın yörünge ömrüne etkisini hesapla.",
+ "adimlar": [
+  "CCMC web arayüzünden F10.7 ve ap girdileriyle 400 km yoğunluk profillerini al.",
+  "Basit sürtünme denklemiyle (ρ, hız, balistik katsayı) günlük yükseklik kaybını hesapla.",
+  "İki döngü evresi için yörünge ömrünü karşılaştır; grafik çiz.",
+  "Jeomanyetik fırtına günü (Kp ≥ 7) için yoğunluk sıçramasını ekle.",
+  "Sonuçları Spire veya TEKNOFEST model uydu takımlarının gereksinimleriyle ilişkilendir."
+ ],
+ "sonuc": "Yoğunluk-ömür grafiği; üst atmosferin uydu mühendisliğine etkisini sayıyla gösterir.",
+ "dayanak": "Picone vd. 2002",
+ "senden": "Temel fizik ve Python.",
+ "bizden": "Model çalıştırma adımları, sürtünme denklemi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 357E",
+    "ad": "Physics of Upper Atmosphere"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NRLMSIS 2.0 (CCMC)",
+   "ne": "Üst atmosfer yoğunluk/sıcaklık ampirik modeli; web üzerinden koşuluyor.",
+   "url": "https://ccmc.gsfc.nasa.gov/models/NRLMSIS~2.0/",
+   "ayrinti": {
+    "neYaptilar": "Yeryüzünden 1000 km irtifaya kadar nötr atmosfer yoğunluk ve sıcaklık profilini ampirik uydu verileriyle standartlaştırdılar.",
+    "nasil": "Güneş akısı F10.7 ve jeomanyetik ap indekslerini girdi alarak küresel küresel harmonik fonksiyonlarla çözdüler.",
+    "neEdindiler": "Uzay ajansları ve uydu operatörleri için yörünge ömrü tahminlerinde dünya standardı referans atmosfer modeli sundular.",
+    "bizNasilKatki": "CCMC arayüzü üzerinden 400 km irtifadaki termosferik yoğunluk değerlerini güneş minimum ve maksimum günleri için çekeriz.",
+    "referanslar": [
+     {
+      "ad": "NASA CCMC NRLMSIS 2.0 Model Portalı",
+      "url": "https://ccmc.gsfc.nasa.gov/models/NRLMSIS~2.0/",
+      "tur": "web"
+     },
+     {
+      "ad": "Picone vd. (2002) NRLMSISE-00 Ampirik Atmosfer Modeli",
+      "url": "https://doi.org/10.1029/2002JA009430",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ccmc.gsfc.nasa.gov/models/NRLMSIS~2.0/",
+      "aciklama": "NASA CCMC NRLMSIS 2.0 web simülasyon arayüzü ve parametre giriş formu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://ccmc.gsfc.nasa.gov/models/NRLMSIS~2.0/",
+      "aciklama": "Farklı irtifalarda termosferik gaz yoğunluğu ve sıcaklık grafikleri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA CCMC",
+   "ne": "Uzay havası modellerini herkesin çalıştırabildiği topluluk merkezi.",
+   "url": "https://ccmc.gsfc.nasa.gov/results/",
+   "ayrinti": {
+    "neYaptilar": "Güneş koronasından manyetosfer ve termosfere kadar uzanan karmaşık uzay havası simülasyonlarını açık kullanıma sundular.",
+    "nasil": "Süper bilgisayar kümelerinde çalışan plazma kodlarını web tabanlı istek kuyruklarıyla araştırmacılara bağladılar.",
+    "neEdindiler": "Dünya çapında üniversite ve araştırma takımlarının süper bilgisayar yatırımı yapmadan ileri uzay fiziği hesaplamasını sağladılar.",
+    "bizNasilKatki": "CCMC simülasyon çıktılarını çekerek CubeSat sürüklenme analizlerimizde bağımsız doğrulama referansı olarak kullanırız.",
+    "referanslar": [
+     {
+      "ad": "NASA Topluluk Koordineli Simülasyon Merkezi",
+      "url": "https://ccmc.gsfc.nasa.gov/results/",
+      "tur": "web"
+     },
+     {
+      "ad": "Kuznetsova vd. (2007) CCMC Uzay Havası Hizmetleri",
+      "url": "https://doi.org/10.1016/j.asr.2007.03.048",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ccmc.gsfc.nasa.gov/results/",
+      "aciklama": "NASA CCMC simülasyon sonuçları arşivi ve uzay havası görselleştirme paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://ccmc.gsfc.nasa.gov/results/",
+      "aciklama": "Manyetosferik plazma akışları ve termosferik yoğunluk dağılımı veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA Space Weather Prediction Center",
+   "ne": "Uzay havası uyarıları, jeomanyetik indeksler ve güneş gözlemleri.",
+   "url": "https://www.swpc.noaa.gov/products/geomagnetic-indices",
+   "ayrinti": {
+    "neYaptilar": "Güneş patlamaları, jeomanyetik fırtınalar ve F10.7 radyo akısını gerçek zamanlı operasyonel olarak izlediler.",
+    "nasil": "Yer manyetometre ağları ve GOES uydusu sensörlerinden gelen telemetriyi 3 saatlik Kp ve günlük ap indekslerine dönüştürdüler.",
+    "neEdindiler": "Havacılık, elektrik iletim şebekeleri ve uydu filoları için resmi uluslararası erken uyarı altyapısı sağladılar.",
+    "bizNasilKatki": "SWPC arşivinden 2008 ve 2024 yıllarına ait F10.7 ve Kp zaman serilerini indirip yoğunluk simülasyonuna girdi yaparız.",
+    "referanslar": [
+     {
+      "ad": "NOAA SWPC Jeomanyetik İndeksler Portalı",
+      "url": "https://www.swpc.noaa.gov/products/geomagnetic-indices",
+      "tur": "web"
+     },
+     {
+      "ad": "Matzka vd. (2021) Jeomanyetik Kp ve Türetilmiş İndeksler",
+      "url": "https://doi.org/10.1029/2020SW002641",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.swpc.noaa.gov/products/geomagnetic-indices",
+      "aciklama": "NOAA SWPC jeomanyetik Kp indeksi ve güneş akısı gösterge arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.swpc.noaa.gov/products/geomagnetic-indices",
+      "aciklama": "Gerçek zamanlı uzay havası fırtına uyarı bültenleri ve grafik akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Spire",
+   "ne": "Radyo okültasyonla atmosfer profili toplayan küçük uydu girişimi.",
+   "url": "https://spire.com/space-services/",
+   "ayrinti": {
+    "neYaptilar": "100'den fazla 3U CubeSat uydusundan oluşan LEMUR takımyıldızı ile küresel atmosfer ve termosfer profili topladılar.",
+    "nasil": "GNSS radyo okültasyonu sinyallerinin kırılmasından sıcaklık, basınç ve elektron yoğunluğu türettiler.",
+    "neEdindiler": "Hava tahmin merkezlerine ve savunma sanayisine yüksek frekanslı küresel gözlem verisi satan ticari lider oldular.",
+    "bizNasilKatki": "Spire uydularının 400-500 km yörünge ömrü verilerini hesapladığımız sürtünme ivmeleriyle kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "Spire Uzay Hizmetleri ve CubeSat Takımyıldızı",
+      "url": "https://spire.com/space-services/",
+      "tur": "web"
+     },
+     {
+      "ad": "Masterson vd. (2022) Spire GNSS Radyo Okültasyon Ağı",
+      "url": "https://doi.org/10.1175/WAF-D-21-0082.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://spire.com/space-services/",
+      "aciklama": "Spire LEMUR CubeSat takımyıldızı yörünge takip ve veri toplama paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://spire.com/space-services/",
+      "aciklama": "Küresel radyo okültasyonu atmosfer profilleri ve telemetri veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "TEKNOFEST",
+   "ne": "Türkiye'nin en büyük öğrenci teknoloji yarışması; roket, İHA, model uydu kategorileri.",
+   "url": "https://www.teknofest.org/tr/yarismalar/model-uydu-yarismasi/",
+   "ayrinti": {
+    "neYaptilar": "Üniversite mühendislik takımlarının özgün tasarım model uydu ve CubeSat görev yükleri geliştirmesini teşvik ettiler.",
+    "nasil": "Sensör entegrasyonu, telemetri haberleşmesi, mekanik dayanım ve irtifa kontrolü etaplarıyla yarışma düzenlediler.",
+    "neEdindiler": "Türkiye'de uzay mühendisliği alanında yetişmiş insan kaynağı ve yüzlerce öğrenci takımı ekosistemi kurdular.",
+    "bizNasilKatki": "Model uydu ve küp uydu takımlarına üst atmosfer sürtünmesi ve yörünge ömrü hesaplama rehberi hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "TEKNOFEST Model Uydu Yarışması Şartnamesi",
+      "url": "https://www.teknofest.org/tr/yarismalar/model-uydu-yarismasi/",
+      "tur": "web"
+     },
+     {
+      "ad": "Pirjola (2005) Jeomanyetik Fırtınalar ve Teknolojik Altyapı Etkileri",
+      "url": "https://doi.org/10.1016/j.jastp.2005.01.004",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.teknofest.org/tr/yarismalar/model-uydu-yarismasi/",
+      "aciklama": "TEKNOFEST Model Uydu Yarışması görev profili ve telemetri değerlendirme ekranı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.teknofest.org/tr/yarismalar/model-uydu-yarismasi/",
+      "aciklama": "Öğrenci uydularının uçuş mekaniği ve yörünge ömrü analizleri akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Termosfer-iyonosferin güneşe nasıl tepki verdiğini modeller ve açık uzay havası verisiyle görmek.",
+  "baglanti": "Yazılım kolunda NRLMSIS ve GNSS TEC analizi; Anlatım kolunda aurora ve uzay havası anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Termosfer yoğunluğu güneş EUV akısıyla (F10.7) ve jeomanyetik aktiviteyle (Kp/ap) değişir; NRLMSISE-00 bu bağımlılığı ampirik olarak verir. (Picone vd. 2002)",
+    "Kp indeksi, 13 istasyonun 3 saatlik manyetik bozulmasından türetilir; uzay havası ürünlerinin temel girdisidir. (Matzka vd. 2021)",
+    "Jeomanyetik fırtınalar yer tabanlı iletkenlerde indüklenmiş akım (GIC) üretir; güç şebekeleri için risk kaynağıdır. (Pirjola 2005)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "NASA GOLD ve ICON görevleri termosfer-iyonosferi küresel görüntüleyerek alt atmosferden gelen dalgaların etkisini ortaya koydu.",
+    "ESA Swarm üçlüsü iyonosfer akımlarını ve manyetik alanı eş zamanlı ölçüyor; açık veri."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Picone vd. 2002",
+    "baslik": "NRLMSISE-00 empirical model of the atmosphere: Statistical comparisons and scientific issues",
+    "yayin": "Journal of Geophysical Research: Space Physics 107(A12)",
+    "yil": "2002",
+    "url": "https://doi.org/10.1029/2002JA009430",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Matzka vd. 2021",
+    "baslik": "The Geomagnetic Kp Index and Derived Indices of Geomagnetic Activity",
+    "yayin": "Space Weather 19(5)",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2020SW002641",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pirjola 2005",
+    "baslik": "Averages of geomagnetically induced currents (GIC) in the Finnish 400 kV electric power transmission system",
+    "yayin": "Journal of Atmospheric and Solar-Terrestrial Physics 67(7), 701-708",
+    "yil": "2005",
+    "url": "https://doi.org/10.1016/j.jastp.2005.01.004",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Zhang vd. 2005",
+    "baslik": "Nightside detached auroras due to precipitating protons/ions during intense magnetic storms",
+    "yayin": "Journal of Geophysical Research: Space Physics 110(A2)",
+    "yil": "2005",
+    "url": "https://doi.org/10.1029/2004JA010498",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kress vd. 2021",
+    "baslik": "Observations From NOAA's Newest Solar Proton Sensor",
+    "yayin": "Space Weather 19(4)",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2021SW002750",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "NRLMSIS 2.0 ile güneş döngüsü uçlarında termosfer yoğunluk değişimini hesaplayıp CubeSat uydularının yörünge ömrü ve sürtünme kaybı profilini çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 357E",
+   "projeyeKatki": "Üst atmosfer fiziği kapsamında termosfer yoğunluğunun güneş döngüsü ve jeomanyetik aktiviteye duyarlılığı incelenir. Aerodinamik sürtünme ivmesi bağıntısıyla 400 km irtifadaki bir CubeSat uydusunun maruz kaldığı yavaşlama kuvveti ve irtifa kaybı hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Üst atmosfer uydu sürtünme ivmesi denklemi",
+     "nerede": "NRLMSIS yoğunluk profili ve balistik katsayı üzerinden uydunun günlük yörünge bozulma ivmesini hesaplarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "NRLMSIS 2.0 termosfer modeli ve aerodinamik sürtünme denklemiyle CubeSat yörünge ömrü ve irtifa kaybını hesaplamak.",
+  "ayrinti": "Güneş aktivitesinin en düşük olduğu 2008 yılı ile en yüksek olduğu 2024 yılına ait F10.7 radyo akısı ve ap jeomanyetik indeksleri derlenir. CCMC üzerinden NRLMSIS 2.0 çalıştırılarak 400 km irtifadaki termosferik gaz yoğunluğu çekilir. Aerodinamik sürtünme ivmesi integrali alınarak 3U CubeSat için yörünge ömrü grafiği üretilir ve jeomanyetik fırtına günündeki ani irtifa kaybı incelenir.",
+  "adimlar": [
+   {
+    "baslik": "Güneş döngüsü F10.7 ve ap indekslerini SWPC'den derlemek",
+    "oz": "2008 ve 2024 yıllarına ait uzay havası parametrelerini hazırlamak.",
+    "ayrinti": "Güneş döngüsü minimumu (2008, F10.7 ≈ 68 sfu, ap ≈ 4) ile güneş maksimumu (2024, F10.7 ≈ 210 sfu, ap ≈ 25) için günlük ortalama değerler derlenir. Kp ≥ 7 olan şiddetli jeomanyetik fırtına günleri ek uç senaryo olarak ayrıştırılır.",
+    "nasil": [
+     {
+      "teknik": "swpc_df = fetch_swpc_indices(['2008-06-15', '2024-05-10']) ile akı ve jeomanyetik seriyi çekmek.",
+      "sade": "Güneşin en sakin ve en fırtınalı olduğu dönemlerdeki uzay havası değerlerini arşivden indiririz.",
+      "altAdimlar": [
+       "1. NOAA SWPC indeks arşivinden ilgili yılların günlük F10.7 radyo akılarını çekin.",
+       "2. 3 saatlik jeomanyetik Kp ve günlük ap serilerini pandas tablosuna işleyin.",
+       "3. 2024 yılı Mayıs jeomanyetik fırtınasına ait pik günleri işaretleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Termosfer ve mezosferin dikey sıcaklık, bileşim ve yoğunluk yapısını analiz etmek."
+      }
+     },
+     {
+      "teknik": "validate_solar_inputs(f107, ap, bounds=(50, 300)) ile girdi sınırlarını kontrol etmek.",
+      "sade": "İndirilen değerlerin fiziksel sınırlar içinde olduğunu ve model formatına uyduğunu doğrularız.",
+      "altAdimlar": [
+       "1. F10.7 akısının güneş akısı birimi cinsinden doğruluğunu teyit edin.",
+       "2. Jeomanyetik ap indeksinin 0 ile 400 aralığındaki dağılımını gözden geçirin.",
+       "3. Eksik günleri doğrusal enterpolasyonla tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "NRLMSIS modeli ve uzay havası indeksleriyle termosferik yoğunluğu hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 357E",
+      "madde": "Termosfer ve mezosferin dikey sıcaklık, bileşim ve yoğunluk yapısını analiz etmek."
+     },
+     {
+      "ders": "MTO 357E",
+      "madde": "NRLMSIS modeli ve uzay havası indeksleriyle termosferik yoğunluğu hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "NRLMSIS 2.0 ile 400 km termosfer yoğunluğunu çözmek",
+    "oz": "Güneş minimum ve maksimum dönemlerinde yoğunluk farkını hesaplamak.",
+    "ayrinti": "CCMC NRLMSIS 2.0 arayüzüne veya yerel Python sarmalayıcısına F10.7 ve ap girdileri verilerek 400 km irtifada atomik oksijen, moleküler azot ve toplam kütle yoğunluğu hesaplanır. Güneş maksimumunda yoğunluğun 5 ila 8 kat arttığı kanıtlanır.",
+    "nasil": [
+     {
+      "teknik": "density_profile = run_nrlmsis2(altitude=400.0, f107=f107_val, ap=ap_val) fonksiyonunu koşturmak.",
+      "sade": "Üst atmosfer formülüyle 400 kilometre yukarıdaki seyreltik hava yoğunluğunu hesaplarız.",
+      "altAdimlar": [
+       "1. 400 km referans irtifasını ve enlem-boylam koordinatlarını fonksiyona tanımlayın.",
+       "2. Sakin ve aktif güneş senaryoları için toplam kütle yoğunluğunu (kg/m³) çıkarın.",
+       "3. İki dönem arasındaki yoğunluk artış oranını hesaplayarak tabloya aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "NRLMSIS modeli ve uzay havası indeksleriyle termosferik yoğunluğu hesaplamak."
+      }
+     },
+     {
+      "teknik": "compare_atmospheric_species(output_2008, output_2024) ile oksijen ve azot artışını kıyaslamak.",
+      "sade": "Güneş ışınlarıyla ısınan atmosferin genleşip uyduların geçtiği kata nasıl ulaştığını inceleriz.",
+      "altAdimlar": [
+       "1. Atomik oksijen yoğunluğunun irtifayla değişim grafiğini çizin.",
+       "2. Isınan termosferin genleşme katsayısını sıcaklık profili üzerinden bulun.",
+       "3. Fırtına günlerinde yoğunluğun anlık sıçramasını sayısal olarak belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Termosfer ve mezosferin dikey sıcaklık, bileşim ve yoğunluk yapısını analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 357E",
+      "madde": "NRLMSIS modeli ve uzay havası indeksleriyle termosferik yoğunluğu hesaplamak."
+     },
+     {
+      "ders": "MTO 357E",
+      "madde": "Termosfer ve mezosferin dikey sıcaklık, bileşim ve yoğunluk yapısını analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "CubeSat aerodinamik sürtünme ve irtifa kaybını hesaplamak",
+    "oz": "Basit sürtünme denklemiyle günlük yükseklik kaybını türetmek.",
+    "ayrinti": "Standart 3U CubeSat parametreleri (kütle m = 4 kg, kesit alanı A = 0,01 m², sürüklenme katsayısı Cd = 2,2) tanımlanır. Dairesel yörünge hızı v = sqrt(GM/r) hesaplanıp sürtünme ivmesi ve günlük enerji kaybı bulunur.",
+    "nasil": [
+     {
+      "teknik": "a_drag = 0.5 * Cd * (A / m) * rho * v**2 formülüyle sürtünme ivmesini hesaplamak.",
+      "sade": "Seyrek hava moleküllerinin hızlı giden küp uyduya uyguladığı fren kuvvetini hesaplarız.",
+      "altAdimlar": [
+       "1. 400 km irtifadaki yörünge hızını (yaklaşık 7670 m/s) formülle çıkarın.",
+       "2. CubeSat'ın balistik katsayısını kesit alanı ve kütle oranından bulun.",
+       "3. Yoğunluk değerini sürtünme ivmesi denklemine koyarak frenleme ivmesini hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Güneş radyasyonu ve parçacık akısının iyonosferik tabakalaşmadaki rolünü incelemek."
+      }
+     },
+     {
+      "teknik": "delta_r_per_day = -2 * np.pi * (a_drag / g) * r * (86400 / T_orbit) ile günlük alçalmayı bulmak.",
+      "sade": "Uydunun bir günde kaç metre irtifa kaybederek yeryüzüne doğru yaklaştığını buluruz.",
+      "altAdimlar": [
+       "1. Bir yörünge periyodunu (yaklaşık 92 dakika) hesaplayın.",
+       "2. Tur başına kaybedilen potansiyel enerjiyi irtifa düşüşüne dönüştürün.",
+       "3. Günlük alçalma miktarını güneş minimumu ve maksimumu için metre/gün olarak listeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Termosfer ve mezosferin dikey sıcaklık, bileşim ve yoğunluk yapısını analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 357E",
+      "madde": "Güneş radyasyonu ve parçacık akısının iyonosferik tabakalaşmadaki rolünü incelemek."
+     },
+     {
+      "ders": "MTO 357E",
+      "madde": "Termosfer ve mezosferin dikey sıcaklık, bileşim ve yoğunluk yapısını analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Yörünge ömrü karşılaştırma grafiği ve teknik not hazırlamak",
+    "oz": "Güneş döngüsünün yörünge ömrüne etkisini görselleştirip CubeSat ekiplerine sunmak.",
+    "ayrinti": "400 km'den 200 km atmosfer giriş irtifasına kadar olan yörünge sönümlenme integrali adım adım koşturulur. Güneş minimumunda 2,5 yıl süren yörünge ömrünün güneş maksimumunda 6 aya düştüğü grafikle belgelenip TEKNOFEST takımları için teknik bültene dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "plot_orbital_lifetime(altitudes, lifetimes_2008, lifetimes_2024, 'orbit_decay.png') üretmek.",
+      "sade": "Güneş patlamalarının uydunun ömrünü nasıl yarı yarıya kısalttığını gösteren grafik çizeriz.",
+      "altAdimlar": [
+       "1. İki farklı güneş dönemi için irtifa-zaman sönümlenme eğrilerini tek eksende çizin.",
+       "2. Jeomanyetik fırtına günündeki ani irtifa kaybı basamağını vurgulayın.",
+       "3. Grafiği yüksek çözünürlüklü PNG ve SVG olarak dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Jeomanyetik fırtınaların ve aurora oluşumunun fiziksel mekanizmalarını çözümlemek."
+      }
+     },
+     {
+      "teknik": "compile_cubesat_aeronomy_note('cubesat_suruklenme_rehberi.pdf') ile teknik bülteni derlemek.",
+      "sade": "Model uydu ve küp uydu tasarlayan öğrenci takımlarına yönelik tek sayfalık rehber basarız.",
+      "altAdimlar": [
+       "1. CubeSat tasarımında balistik katsayının yörünge ömrüne etkisini özetleyin.",
+       "2. Güneş maksimumu dönemlerinde fırlatılacak uydular için irtifa seçim önerilerini yazın.",
+       "3. Python hesaplama kodunu açık depoya eklenecek biçimde düzenleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "NRLMSIS modeli ve uzay havası indeksleriyle termosferik yoğunluğu hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 357E",
+      "madde": "Jeomanyetik fırtınaların ve aurora oluşumunun fiziksel mekanizmalarını çözümlemek."
+     },
+     {
+      "ders": "MTO 357E",
+      "madde": "NRLMSIS modeli ve uzay havası indeksleriyle termosferik yoğunluğu hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "NRLMSIS 2.0 termosferik yoğunluk analiz kodu, CubeSat yörünge sönümlenme simülasyonu ve uzay havası tasarım bülteni.",
+  "senden": "Python diferansiyel denklem çözümü ve yörünge mekaniği merakı.",
+  "bizden": "NRLMSIS model parametreleri, F10.7 arşiv verileri ve sürtünme ivmesi bağıntıları."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Güneş döngüsü boyunca 400 km termosferik yoğunluk ve uydu sürtünme ivmesi salınımı",
+   "aciklama": "Güneş maksimumu ve minimumu evrelerinde uydu yavaşlama ivmesinin zamansal değişimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://ccmc.gsfc.nasa.gov/models/NRLMSIS~2.0/",
+   "aciklama": "NASA CCMC NRLMSIS 2.0 web simülasyon arayüzü ve parametre giriş formu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_drag_on_satellite.png",
+   "lisans": "NASA",
+   "aciklama": "Alçak yer yörüngesindeki uydulara etki eden termosferik atmosferik sürtünme şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 357E (Physics of Upper Atmosphere)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=357"
+  },
+  {
+   "ad": "Picone, J. M. vd. (2002) NRLMSISE-00 empirical model of the atmosphere, J. Geophys. Res., 107(A12), 1468",
+   "url": "https://doi.org/10.1029/2002JA009430"
+  },
+  {
+   "ad": "Matzka, J. vd. (2021) The Geomagnetic Kp Index and Derived Indices, Space Weather, 19(5), e2020SW002641",
+   "url": "https://doi.org/10.1029/2020SW002641"
+  },
+  {
+   "ad": "Pirjola, R. (2005) Geomagnetically induced currents (GIC) in power systems, J. Atmos. Sol.-Terr. Phys., 67(7), 701–708",
+   "url": "https://doi.org/10.1016/j.jastp.2005.01.004"
+  },
+  {
+   "ad": "NASA CCMC NRLMSIS 2.0 Web Arayüzü ve Dokümantasyonu",
+   "url": "https://ccmc.gsfc.nasa.gov/models/NRLMSIS~2.0/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO357E-01.json",
+  "tarih": "2026-10-17 03:54",
+  "geminiSha1": "553fc6983eb7"
+ }
+}

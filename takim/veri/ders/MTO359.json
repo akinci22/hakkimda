@@ -1,0 +1,164 @@
+{
+ "kod": "MTO 359",
+ "ad": "Biyometeoroloji",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "359",
+ "ozet": "Atmosfer koşullarının insan sağlığı, hayvan fizyolojisi ve bitki fenolojisi üzerindeki etkilerini, termal konfor indekslerini (UTCI, PET), kentsel ısı adası mikroiklimini, hava kirliliği-sağlık epidemiyolojisini ve polen biyo-meteorolojisini öğretir.",
+ "neOgrenirsin": [
+  "İnsan enerji dengesi prensipleriyle termal konfor indekslerini (UTCI, PMV) hesaplamak.",
+  "Kentsel morfoloji ve ağaç örtüsünün ortalama ışınım sıcaklığına (Tmrt) etkisini analiz etmek.",
+  "Aşırı sıcak dalgaları ve soğuk hava olaylarının sağlık risklerini istatistiksel değerlendirmek.",
+  "UMEP ve SOLWEIG mikroklima araçlarıyla mahalle ölçeğinde termal harita üretmek.",
+  "Polen salınımı ve aeroalerjenlerin meteorolojik taşınım mekanizmalarını incelemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Ortalama ışınım sıcaklığı (Tmrt) enerji dengesi",
+   "tex": "T_{mrt} = \\left( \\frac{S_{str}}{\\sigma} \\right)^{0.25} - 273.15",
+   "terimler": [
+    [
+     "T_{mrt}",
+     "insan vücudunun maruz kaldığı ortalama ışınım sıcaklığı",
+     "°C"
+    ],
+    [
+     "S_{str}",
+     "vücut yüzeyine gelen tüm yönlü kısa ve uzun dalga radyasyon akısı",
+     "W/m²"
+    ],
+    [
+     "\\sigma",
+     "Stefan-Boltzmann sabiti (5.67 x 10^-8)",
+     "W/(m² K⁴)"
+    ]
+   ],
+   "sade": "Güneşten doğrudan gelen, binalardan yansıyan ve asfalttan yayılan tüm termal ışınımı insan vücudunun hissettiği eşdeğer radyasyon sıcaklığına dönüştürür.",
+   "ornek": "Güneşli bir yaz günü Kadıköy meydanında toplam ışınım akısı 750 W/m² iken ortalama ışınım sıcaklığı Tmrt yaklaşık 58 °C olarak hesaplanır.",
+   "nerede": "D-MTO359-01'de SOLWEIG algoritmasıyla gölge ve açık alanlardaki radyasyon stresini hesaplarken."
+  },
+  {
+   "ad": "Evrensel Termal İklim İndeksi (UTCI) polinom yaklaşımı",
+   "tex": "\\mathrm{UTCI} = T_a + f(T_a, T_{mrt}, v_{10}, e_a)",
+   "terimler": [
+    [
+     "\\mathrm{UTCI}",
+     "evrensel termal iklim eşdeğer sıcaklık indeksi",
+     "°C"
+    ],
+    [
+     "T_a",
+     "2 metre hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{mrt}",
+     "ortalama ışınım sıcaklığı",
+     "°C"
+    ],
+    [
+     "v_{10}",
+     "10 metre yükseklikteki rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "e_a",
+     "ortamdaki su buharı basıncı",
+     "kPa"
+    ]
+   ],
+   "sade": "İnsan ısı dengesi termoregülasyon simülasyonuna dayanarak hava sıcaklığı, güneş ışınımı, rüzgâr ve nemi birleştirip hissedilen termal stres seviyesini tek bir sıcaklık değeriyle verir.",
+   "ornek": "Hava sıcaklığı 32 °C, nem %60 ve Tmrt 60 °C iken hafif rüzgârda UTCI 41 °C çıkarak çok kuvvetli sıcak stresi uyarısı verir.",
+   "nerede": "D-MTO359-01'de kentsel mahalle ölçeğinde ağaçlandırma senaryolarının termal konfora katkısını haritalarken."
+  },
+  {
+   "ad": "Sıcak dalgası sağlık riski nispi risk (RR) bağıntısı",
+   "tex": "RR = \\exp\\left( \\beta \\cdot \\max(T_{gunluk} - T_{esik}, 0) \\right)",
+   "terimler": [
+    [
+     "RR",
+     "aşırı sıcağa bağlı acil başvuru veya vefat nispi riski",
+     "boyutsuz"
+    ],
+    [
+     "\\beta",
+     "sıcaklık-mortalite maruziyet katsayısı",
+     "1/°C"
+    ],
+    [
+     "T_{gunluk}",
+     "günlük ortalama veya maksimum hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{esik}",
+     "şehir için belirlenen minimum mortalite eşik sıcaklığı",
+     "°C"
+    ]
+   ],
+   "sade": "Hava sıcaklığının kentin alışık olduğu konfor eşiğini aştığı günlerde acil servis başvuruları ve sağlık risklerinin katlanarak nasıl arttığını istatistiksel olarak hesaplar.",
+   "ornek": "İstanbul için eşik 28 °C ve katsayı 0,04 iken 33 °C sıcaklık dalgasında nispi risk RR = 1,22 çıkar; acil başvurularda yüzde 22 artış öngörülür.",
+   "nerede": "D-MTO359-02'de aşırı sıcak dalgaları ile hastane acil servis başvuruları arasındaki epidemiyolojik ilişkiyi kurarken."
+  },
+  {
+   "ad": "Büyüme derece-gün (GDD) ve polen fenolojisi bağıntısı",
+   "tex": "\\mathrm{GDD} = \\sum_{i=1}^{n} \\max(T_i - T_{\\mathrm{taban}}, 0)",
+   "terimler": [
+    [
+     "\\mathrm{GDD}",
+     "kümülatif büyüme derece-gün toplamı",
+     "°C·gün"
+    ],
+    [
+     "T_i",
+     "i gününün ortalama hava sıcaklığı",
+     "°C"
+    ],
+    [
+     "T_{\\mathrm{taban}}",
+     "polen salınımı için taban biyolojik eşik sıcaklığı",
+     "°C"
+    ],
+    [
+     "n",
+     "kış sonundan polen mevsimine kadar geçen gün sayısı",
+     "gün"
+    ]
+   ],
+   "sade": "Bitkilerin ve ağaçların ilkbaharda polen üretip havaya salması için kış boyunca gereken toplam ısı miktarını hesaplar.",
+   "ornek": "Huş ağacı polenleri için taban 5 °C alınıp şubat ve mart aylarında toplam GDD 180 °C·gün değerini aştığında polen mevsimi başlar.",
+   "nerede": "D-MTO359-03'te 10 yıllık polen mevsimi başlangıç tarihlerini sıcaklık birikimiyle ilişkilendirirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Thermal_comfort_urban_canyon.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Kentsel kanyon yapısında bina gölgeleri ve ağaç örtüsünün termal konfora etkisi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul kent merkezinde sıcak dalgası esnasında saatlik UTCI ve hava sıcaklığı salınımı",
+   "aciklama": "Günün en sıcak saatlerinde ortalama ışınım sıcaklığıyla yükselen termal stres eğrisi döngüsü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 359 (Biyometeoroloji)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=359"
+  },
+  {
+   "ad": "Blazejczyk, K. vd. (2012) Comparison of UTCI to selected thermal indices, Int. J. Biometeorol., 56, 515–535",
+   "url": "https://doi.org/10.1007/s00484-011-0453-2"
+  },
+  {
+   "ad": "Zhao, Q. vd. (2021) Global, regional, and national burden of mortality associated with non-optimal ambient temperatures, Lancet Planet. Health, 5(7), e415–e425",
+   "url": "https://doi.org/10.1016/S2542-5196(21)00081-4"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=359"
+}

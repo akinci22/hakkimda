@@ -1,0 +1,503 @@
+{
+ "id": "D-MTO450-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 450",
+  "dersAd": "Meteorolojide Uzaktan Algılama",
+  "kol": "yazilim"
+ },
+ "ad": "Çift polarizasyon radarla dolu tespiti: Py-ART ile",
+ "ne": "NEXRAD/AWS'ten bir dolu fırtınası taramasını al; ZDR ve KDP ile dolu çekirdeğini belirle, SPC dolu raporlarıyla doğrula.",
+ "adimlar": [
+  "Py-ART ile Level II dosyasını oku; PPI ve kesit çiz.",
+  "Hidrometeor sınıflandırması uygula; dolu sınıfını haritala.",
+  "SPC fırtına raporlarıyla zaman-konum eşleştir.",
+  "ZDR sütunu ve dolu çekirdeğinin yüksekliğini ölç.",
+  "Sonucu tahminci için tek sayfalık \"dolu imzası\" kartı yap."
+ ],
+ "sonuc": "Radar ürün görüntüleri ve doğrulama tablosu.",
+ "dayanak": "Stubenrauch vd. 2013",
+ "senden": "Python ve radar kavramları.",
+ "bizden": "Veri erişimi ve kod.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 450",
+    "ad": "Meteorolojide Uzaktan Algılama"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Py-ART (ARM)",
+   "ne": "Radar verisi için Python kütüphanesi.",
+   "url": "https://github.com/ARM-DOE/pyart",
+   "ayrinti": {
+    "neYaptilar": "DOE ARM programı kapsamında hava radarı verilerini okumak, kalibre etmek ve haritalamak için açık kaynaklı Python kütüphanesi geliştirdiler.",
+    "nasil": "C/C++ çekirdek algoritmalarını NumPy ve SciPy ile birleştirerek CF-Radial ve NEXRAD Level II verilerini standart nesne yapısına dönüştürdüler.",
+    "neEdindiler": "Dünya genelinde yüzlerce atmosfer araştırmacısı ve hava tahmin merkezi tarafından kullanılan temel açık radar yazılım ekosistemini oluşturdular.",
+    "bizNasilKatki": "AURA bünyesinde açık kaynak depoya Türkiye radar koordinat projeksiyonları ve özel PPI görselleştirme eklentileri hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Py-ART: The Python ARM Radar Toolkit makalesi",
+      "url": "https://doi.org/10.5334/jors.119",
+      "tur": "makale"
+     },
+     {
+      "ad": "Py-ART GitHub kod deposu ve sürüm notları",
+      "url": "https://github.com/ARM-DOE/pyart/releases",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://arm-doe.github.io/pyart/examples/",
+      "aciklama": "Py-ART dokümantasyon sayfası PPI ve RHI reflektivite taraması örnekleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Dual_polarization_radar.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Hava radarı çift polarizasyon yayılımı ve hidrometeor saçılma geometrisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NEXRAD on AWS",
+   "ne": "ABD radar arşivi bulutta açık.",
+   "url": "https://registry.opendata.aws/noaa-nexrad/",
+   "ayrinti": {
+    "neYaptilar": "NOAA ve AWS iş birliğiyle tüm ABD NEXRAD radar ağının geçmişten günümüze Level II ve Level III hacim taramalarını S3 bulut havuzunda ücretsiz kullanıma açtılar.",
+    "nasil": "Petabaytlarca ham radar darbe verisini Chunked nesne depolama mimarisi ve bulut erişim protokolleriyle araştırmacılara dağıttılar.",
+    "neEdindiler": "Büyük veri analizleriyle fırtına iklimolojisi ve makine öğrenimi tabanlı dolu tespit modellerinin eğitilmesini sağladılar.",
+    "bizNasilKatki": "Seçilen tarihi dolu fırtınalarının radar arşivini S3 üzerinden otomatik çeken betikler hazırlayarak analiz sürecini hızlandırabiliriz.",
+    "referanslar": [
+     {
+      "ad": "NOAA Big Data Program NEXRAD on AWS Açık Veri Portalı",
+      "url": "https://registry.opendata.aws/noaa-nexrad/",
+      "tur": "veri"
+     },
+     {
+      "ad": "Accessing NEXRAD on AWS Open Data Kılavuzu",
+      "url": "https://docs.opendata.aws/noaa-nexrad/readme.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://registry.opendata.aws/noaa-nexrad/",
+      "aciklama": "NEXRAD AWS açık veri katalog sayfası ve S3 kova yapısı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "NEXRAD Oklahoma istasyonu süper hücre orajında Z ve ZDR taramaları, Mayıs 2024",
+      "aciklama": "Süper hücre fırtınasında dolu çekirdeğinin dikey kesit animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "wradlib",
+   "ne": "Açık kaynak hava radarı işleme kütüphanesi.",
+   "url": "https://docs.wradlib.org/",
+   "ayrinti": {
+    "neYaptilar": "Meteorologlar ve hidrolojistler için radar sinyal zayıflaması düzeltmesi, zemin ekosu filtreleme ve nicel yağış tahmini fonksiyonlarını bir araya getirdiler.",
+    "nasil": "Açık topluluk geliştirmesiyle polar koordinat dönüşümleri, clutter filtreleri ve çift kutup algoritmalarını modüler Python mimarisiyle yazdılar.",
+    "neEdindiler": "Akademik araştırmalardan ulusal operasyonel hidroloji merkezlerine kadar geniş bir topluluk tarafından benimsenen standart araç paketi sundular.",
+    "bizNasilKatki": "Topluluğun dokümantasyonuna Türkçe kullanım kılavuzları ve dolu tespit fonksiyon testleri hazırlayarak katkı sunabiliriz.",
+    "referanslar": [
+     {
+      "ad": "wradlib: An Open Source Library for Weather Radar Data Processing",
+      "url": "https://doi.org/10.5194/egusphere-egu21-16010",
+      "tur": "makale"
+     },
+     {
+      "ad": "wradlib açık kaynak yazılım kılavuzu",
+      "url": "https://docs.wradlib.org/en/stable/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://docs.wradlib.org/en/stable/notebooks.html",
+      "aciklama": "wradlib Jupyter defterleri radar PPI ve QPE analiz ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Weather_radar_echoes.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Konvektif fırtına hattının radar PPI yansıtırlık ekran görüntüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA Storm Prediction Center",
+   "ne": "Şiddetli konvektif hava için ürünler ve fırtına raporları arşivi.",
+   "url": "https://www.spc.noaa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Şiddetli konveksiyon tahminleri, mezoolçek tartışmaları ve yer gözlemcileri tarafından raporlanan dolu çapı bildirimlerini gerçek zamanlı arşivlediler.",
+    "nasil": "Yerel fırtına gözlemcilerinden, polis ve acil durum birimlerinden gelen dolu büyüklüğü ve konum bilgilerini coğrafi koordinatlarla veri tabanında topladılar.",
+    "neEdindiler": "Radar algoritmalarının sahadaki gerçek dolu hasarları ve çaplarıyla doğrulanmasını sağlayan altın standart fırtına veri tabanını kurdular.",
+    "bizNasilKatki": "Fırtına raporlarındaki dolu koordinatlarını radar grid hücreleriyle mesafe bazlı eşleştiren otomatik doğrulama modülü yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "The Storm Prediction Center Severe Weather Events Database",
+      "url": "https://www.spc.noaa.gov/climo/online/",
+      "tur": "veri"
+     },
+     {
+      "ad": "SPC Severe Weather Warning Guidelines",
+      "url": "https://www.spc.noaa.gov/about/severe.html",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.spc.noaa.gov/climo/reports/",
+      "aciklama": "SPC günlük şiddetli dolu ve fırtına rapor haritası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Large_hailstones.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Şiddetli oraj hücresi sonrası yüzeyde toplanan iri dolu taneleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Climavision",
+   "ne": "Özel radar ağı kuran girişim.",
+   "url": "https://climavision.com/",
+   "ayrinti": {
+    "neYaptilar": "Hava durumu tahmininde alçak irtifa radar kör noktalarını kapatmak için özel çift kutuplu X-band radar ağı kurarak yüksek çözünürlüklü veri servisi başlattılar.",
+    "nasil": "Yenilikçi radar donanımlarını bulut tabanlı veri işleme ve yapay zeka modelleriyle harmanlayarak boşluksuz atmosferik tarama sundular.",
+    "neEdindiler": "Havacılık, tarım ve sigorta sektörlerine yönelik fırtına ve dolu risk uyarılarında milyonlarca dolarlık ticari pazar payı elde ettiler.",
+    "bizNasilKatki": "Özel radar verilerinin kamu radarlarıyla entegre edilmesine yönelik veri kalitesi test senaryoları geliştirebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Climavision High Resolution Radar Technology Overview",
+      "url": "https://climavision.com/technology/",
+      "tur": "web"
+     },
+     {
+      "ad": "Closing the Low Altitude Radar Coverage Gap",
+      "url": "https://climavision.com/solutions/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://climavision.com/network/",
+      "aciklama": "Climavision takviye radar istasyonu kapsama haritası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Doppler_Radar_Antenna.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Döner tabla üzerinde çift kutuplu radar anten yapısı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Radar, uydu ve lidar verisini işleyip yorumlamak; algoritmanın nerede yanıldığını bilmek.",
+  "baglanti": "Yazılım kolunda radar/uydu veri işleme; Anlatım kolunda uydu görüntüsü anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Hava radarı yansıtırlığı (Z) damla boyut dağılımının altıncı momentidir; çift polarizasyon (ZDR, KDP) yağış türü ve şiddetini ayırt eder.",
+    "Jeosenkron uydular (GOES-R, MTG) 16 kanalla dakikalık görüntü verir; kanal farkları sis, kül ve konveksiyon tespitinde kullanılır.",
+    "Uydu bulut ürünleri arasında sistematik farklar vardır; GEWEX değerlendirmesi bulut oranının ürüne göre %10 değiştiğini gösterdi. (Stubenrauch vd. 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "EarthCARE (2024) lidar + radar + radyometreyle bulut-aerosol profillerini aynı anda ölçüyor.",
+    "OSSE çalışmaları yeni uydu takımyıldızlarının tahmine katkısını fırlatmadan önce ölçüyor. (McCarty vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stubenrauch vd. 2013",
+    "baslik": "Assessment of Global Cloud Datasets from Satellites",
+    "yayin": "Bulletin of the American Meteorological Society 94(7), 1031-1049",
+    "yil": "2013",
+    "url": "https://doi.org/10.1175/BAMS-D-12-00117.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "McCarty vd. 2021",
+    "baslik": "Observing System Simulation Experiments Investigating Atmospheric Motion Vectors and Radiances from a Constellation of 4–5-μm Infrared Sounders",
+    "yayin": "Journal of Atmospheric and Oceanic Technology 38(2), 331-347",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JTECH-D-20-0109.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Hou vd. 2014",
+    "baslik": "The Global Precipitation Measurement Mission",
+    "yayin": "Bulletin of the American Meteorological Society 95(5), 701-722",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00164.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Koner vd. 2016",
+    "baslik": "Hybrid cloud and error masking to improve the quality of deterministic satellite sea surface temperature retrieval",
+    "yayin": "Remote Sensing of Environment 174, 266-278",
+    "yil": "2016",
+    "url": "https://doi.org/10.1016/j.rse.2015.12.015",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature 597, 672-677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "NEXRAD çift polarizasyonlu radar verilerini Py-ART ile işleyerek diferansiyel yansıtırlık imzalarından dolu çekirdeklerini otomatik tespit etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 450",
+   "ad": "Meteorolojide Uzaktan Algılama",
+   "projeyeKatki": "Çift kutuplu radar parametreleri ve mikrodalga saçılma fiziğiyle şiddetli konvektif fırtınalarda dolu ve yağmur hidrometeor ayrımını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Doppler hava radarı temel denklem bağıntısı",
+     "nerede": "Adım 1: Radar hacimsel yansıtırlık (Z) ve radar donanım sabiti kalibrasyonunda.",
+     "katki": "Geri dönen mikrodalga darbe gücünden reflektivite faktörünü hesaplayarak yağışın şiddetini nicelleştirir."
+    },
+    {
+     "formulAd": "Çift kutuplu diferansiyel yansıtırlık (Differential Reflecti",
+     "nerede": "Adım 2: Diferansiyel yansıtırlık (ZDR) ve korelasyon katsayısı oranlama analizinde.",
+     "katki": "Dikey ve yatay kutuplu yansıtırlık farkından tanelerin basıklık oranını saptayarak dolu tanelerini ayıklar."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Py-ART ile çift kutuplu radar taramalarını okuyup ZDR ve reflektivite eşikleriyle dolu imzalarını haritalamak.",
+  "ayrinti": "AWS açık veri havuzundan indirilen NEXRAD Level II hacim verisi Py-ART ile taranır. Yatay ve dikey yansıtırlık oranları filtrelenerek dolu çekirdekleri üç boyutlu olarak izole edilir ve yer gözlemleriyle doğrulanır.",
+  "adimlar": [
+   {
+    "baslik": "Py-ART ile Level II radar hacim verisini okumak",
+    "oz": "AWS üzerinden fırtına anına ait Level II arşiv dosyasını indirip temel radar nesnesine yüklemek.",
+    "ayrinti": "Seçilen fırtına gününe ait NEXRAD radar verisi AWS açık deposundan çekilir. Py-ART kütüphanesinin okuyucusuyla reflektivite ve diferansiyel yansıtırlık dizileri belleğe alınır.",
+    "nasil": [
+     {
+      "teknik": "pyart.io.read_nexrad_archive(dosya_yolu) çağrısıyla Level II radar hacim taramasını Radar nesnesine dönüştürmek.",
+      "sade": "Fırtına anında radarın fırlattığı sinyallerin diske yazılmış ham dosyasını Python ortamında analiz edilebilir nesneye çeviririz.",
+      "altAdimlar": [
+       "AWS S3 bağlantısı üzerinden ilgili tarihli NEXRAD arşiv dosyasını belirleyin.",
+       "Py-ART kütüphanesini içe aktararak okuma fonksiyonunu çalıştırın.",
+       "Okunan radar nesnesindeki yükseklik açısı sweep katmanlarını listeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+      }
+     },
+     {
+      "teknik": "radar.fields['reflectivity']['data'] dizisini maskeli NumPy dizisi olarak ayıklayıp kalibrasyon sabitlerini kontrol etmek.",
+      "sade": "Geri dönen mikrodalga darbe sinyallerinin desibel cinsinden yansıtırlık değerlerini filtreleyerek analize hazır hale getiririz.",
+      "altAdimlar": [
+       "Reflektivite alanı içindeki geçersiz ve zayıf sinyalleri maskeleyin.",
+       "En alt yükseklik açısındaki (0.5 derece) PPI yansıtırlık matrisini seçin.",
+       "Maksimum yansıtırlık değerinin 50 dBZ eşiğini aşıp aşmadığını test edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 450",
+      "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "ZDR ve korelasyon katsayısıyla hidrometeor sınıflaması",
+    "oz": "Yüksek reflektivite ve sıfıra yakın ZDR değerlerini süzerek dolu çekirdeğini ayırmak.",
+    "ayrinti": "İri yağmur damlaları havada basıklaşarak pozitif ZDR verirken, dolu taneleri yuvarlandığı için ZDR sıfır civarında seyreder. Yüksek Z ve düşük ZDR kesişimiyle dolu taneleri haritalanır.",
+    "nasil": [
+     {
+      "teknik": "np.where((Z > 50) & (ZDR < 1.0) & (RhoHV < 0.95), 1, 0) mantıksal matrisiyle dolu piksellerini izole etmek.",
+      "sade": "Sinyalin yatay ve dikey güç farkını kıyaslayıp küresel takla atan dolu taşlarının yerini matematiksel filtreyle buluruz.",
+      "altAdimlar": [
+       "Radar sweep katmanından Z ve ZDR matrislerini çıkarın.",
+       "Gürültüyü temizlemek için korelasyon katsayısı (RhoHV) eşiğini uygulayın.",
+       "Dolu koşulunu sağlayan hücreleri ikili maske olarak etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Çift polarizasyon parametreleriyle (ZDR, KDP, RhoHV) hidrometeor sınıflaması yapmak."
+      }
+     },
+     {
+      "teknik": "pyart.retrieve.hydroclass_semisupervised(radar) işleviyle bulanık mantık tabanlı hidrometeor tür haritası üretmek.",
+      "sade": "Çift polarizasyon parametrelerini birlikte değerlendirerek her radar pikseline yağmur, kar veya dolu etiketini otomatik atarız.",
+      "altAdimlar": [
+       "Bulanık mantık üyelik fonksiyonlarını sıcaklık profiliyle birleştirin.",
+       "Her menzil hücresi için en yüksek olasılığa sahip hidrometeor türünü hesaplayın.",
+       "Dolu ve şiddetli dolu sınıflarını içeren renklendirilmiş PPI haritasını çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Çift polarizasyon parametreleriyle (ZDR, KDP, RhoHV) hidrometeor sınıflaması yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 450",
+      "madde": "Çift polarizasyon parametreleriyle (ZDR, KDP, RhoHV) hidrometeor sınıflaması yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "SPC fırtına gözlemleriyle dolu çekirdeğini eşleştirmek",
+    "oz": "Radarda saptanan dolu koordinatlarını yer fırtına raporlarıyla kıyaslamak.",
+    "ayrinti": "NOAA SPC yer raporlarındaki dolu saati, enlem-boylam koordinatı ve bildirilen dolu çapı alınır. Radar gridindeki tespitlerle mekansal mesafe hesaplanarak isabet oranı çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "scipy.spatial.cKDTree kullanarak radar dolu merkezleri ile SPC yer koordinatları arasındaki mesafeyi ölçmek.",
+      "sade": "Radarın dolu gördüğü yerler ile yerdeki insanların fırtına bildirdiği noktaları harita üzerinde eşleştiririz.",
+      "altAdimlar": [
+       "SPC web servisinden günlük CSV dolu raporlarını indirin.",
+       "Radar piksel koordinatlarını coğrafi enlem boylam sistemine dönüştürün.",
+       "10 km mesafe toleransı içinde kalan raporlarla doğrulama matrisini kurun."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+      }
+     },
+     {
+      "teknik": "sklearn.metrics.confusion_matrix ile tespit edilen dolu alanlarının doğruluk oranını ve yanlış alarm oranını hesaplamak.",
+      "sade": "Geliştirilen radar algoritmasının dolu vakalarını ne kadar başarılı yakaladığını istatistiksel skorlarla belgelendiririz.",
+      "altAdimlar": [
+       "Yer raporlarıyla örtüşen doğru tespit (POD) sayısını bulun.",
+       "Rapor bulunmayan yanlış alarmları (FAR) tespit edin.",
+       "Kritik başarı indeksi (CSI) değerini hesaplayarak doğrulama tablosuna ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 450",
+      "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Tahminciler için anlık dolu analiz kartı üretmek",
+    "oz": "Tespit edilen dolu boyutu ve fırtına rotasını tek sayfalık özet kartta derlemek.",
+    "ayrinti": "Operasyonel hava tahmincisinin saniyeler içinde karar vermesini sağlamak amacıyla en yüksek reflektivite, ZDR sütun boyutu ve beklenen dolu şiddeti infografik karta aktarılır.",
+    "nasil": [
+     {
+      "teknik": "matplotlib ve cartopy ile PPI arka planında dolu çekirdeğini ve fırtına ilerleme vektörünü görselleştirmek.",
+      "sade": "Meteoroloji uzmanının anında erken uyarı yayınlayabilmesi için temiz ve anlaşılır bir durum panosu çizeriz.",
+      "altAdimlar": [
+       "Cartopy harita projeksiyonu üzerine radar reflektivite katmanını serin.",
+       "Saptanan dolu çekirdeklerinin çevresine belirgin kontur çizgileri ekleyin.",
+       "Köşeye fırtınanın hareket yönü ve maksimum ZDR değerini tablo olarak yerleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+      }
+     },
+     {
+      "teknik": "fig.savefig('dolu_imzasi_karti.png', dpi=300, bbox_inches='tight') ile yüksek çözünürlüklü bülten çıktısı oluşturmak.",
+      "sade": "Oluşturulan grafik özet kartını operasyonel meteoroloji merkezine servis edilecek resim dosyasına dönüştürürüz.",
+      "altAdimlar": [
+       "Görsel üzerindeki etiketlerin ve renk skalasının okunurluğunu denetleyin.",
+       "Fırtınanın enlem ve boylam koordinat sınırlarını sabitleyin.",
+       "Çıktıyı PNG formatında diske yazarak tahmin ekranına iletin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 450",
+      "madde": "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Çift kutuplu radar taramalarıyla dolu tespit eden açık kaynak Python iş akışı ve doğrulama grafikleri.",
+  "senden": "Python programlama ve temel radar meteorolojisi kavramları.",
+  "bizden": "NEXRAD açık veri erişim kodları ve hidrometeor sınıflandırma algoritması."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "NEXRAD radarında süper hücre fırtınası dolu çekirdeği PPI reflektivite döngüsü, 2024",
+   "aciklama": "Dolu fırtınasında kanca eko ve yüksek reflektivite çekirdeğinin zaman serisi animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Dual_polarization_radar.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Çift polarizasyonlu hava radarı yatay ve dikey darbe yayılım geometrisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Py-ART: The Python ARM Radar Toolkit Documentation and Reference",
+   "url": "https://arm-doe.github.io/pyart/"
+  },
+  {
+   "ad": "NOAA SPC WSR-88D Dual-Polarization Radar Operations Guide",
+   "url": "https://www.spc.noaa.gov/exper/radar/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO450-01.json",
+  "tarih": "2026-10-17 04:29",
+  "geminiSha1": "3066f752db54"
+ }
+}

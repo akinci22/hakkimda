@@ -1,0 +1,516 @@
+{
+ "id": "D-MTO359-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 359",
+  "dersAd": "Biyometeoroloji",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul'da bir yaz günü UTCI haritası",
+ "ne": "UMEP/SOLWEIG ile bir mahalle için saatlik UTCI haritaları üret; gölge ve ağaç senaryolarını karşılaştır.",
+ "adimlar": [
+  "Bina yükseklik modelini OpenStreetMap'ten, ağaç örtüsünü Sentinel-2 NDVI'dan türet.",
+  "Sıcak bir gün için saatlik meteoroloji girdisini (Open-Meteo) hazırla.",
+  "SOLWEIG ile ortalama ışınım sıcaklığı ve UTCI haritalarını saat saat üret.",
+  "%20 daha fazla ağaç senaryosunu koşturup farkı haritala.",
+  "Sonuçları belediye ölçeğinde bir öneri kartına dönüştür."
+ ],
+ "sonuc": "Saatlik UTCI haritaları ve senaryo farkı; termal konforu mekânda gösterir.",
+ "dayanak": "Blazejczyk vd. 2012",
+ "senden": "QGIS ve raster işleme.",
+ "bizden": "UMEP kurulumu, girdi hazırlama.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 359",
+    "ad": "Biyometeoroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "UMEP",
+   "ne": "QGIS içinde kent iklimi araç kutusu (SOLWEIG, SUEWS).",
+   "url": "https://umep-docs.readthedocs.io/en/latest/",
+   "ayrinti": {
+    "neYaptilar": "Göteborg Üniversitesi ve Reading Üniversitesi öncülüğünde açık kaynaklı kentsel iklim ve termal konfor hesaplama platformu geliştirdiler.",
+    "nasil": "Bina yükseklikleri, bitki örtüsü ve meteorolojik zaman serilerini 2,5B grid ortamında SOLWEIG ışınım transfer algoritmasıyla çözdüler.",
+    "neEdindiler": "Şehir plancıları ve iklim araştırmacıları için lisans maliyetsiz açık CBS mikroiklim simülasyon standardı kurdular.",
+    "bizNasilKatki": "UMEP SOLWEIG aracını Kadıköy pilot mahallesi DSM verilerine uygulayarak saatlik termal konfor haritaları üretiriz.",
+    "referanslar": [
+     {
+      "ad": "UMEP Kentsel Çok Ölçekli Çevre Tahmin Aracı Kılavuzu",
+      "url": "https://umep-docs.readthedocs.io/en/latest/",
+      "tur": "web"
+     },
+     {
+      "ad": "Lindberg vd. (2018) UMEP Kent İklimi Araç Kutusu",
+      "url": "https://doi.org/10.1016/j.envsoft.2017.09.020",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://umep-docs.readthedocs.io/en/latest/",
+      "aciklama": "UMEP QGIS eklentisi kentsel morfoloji ve ışınım analizi kontrol arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://umep-docs.readthedocs.io/en/latest/",
+      "aciklama": "SOLWEIG ortalama ışınım sıcaklığı (Tmrt) ızgara haritası akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "UTCI",
+   "ne": "Evrensel termal iklim indeksi resmi sitesi ve hesaplayıcı.",
+   "url": "https://www.utci.org/",
+   "ayrinti": {
+    "neYaptilar": "COST Action 730 kapsamında insan vücudunun termal fizyolojisini simüle eden evrensel bir hissedilen sıcaklık indeksi tanımladılar.",
+    "nasil": "Fiala çok düğümlü insan ısı dengesi modelini 6. derece polinom yaklaşımına indirgeyerek operasyonel hesaplama sundular.",
+    "neEdindiler": "Rüzgâr, nem, radyasyon ve sıcaklığı tek bir konfor skalasında birleştiren dünya meteoroloji standardı oluşturdular.",
+    "bizNasilKatki": "UTCI Python kütüphanesini kentsel ızgara piksellerine vektörel olarak uygulayıp hissedilen sıcaklık haritaları çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Evrensel Termal İklim İndeksi Resmi Hesaplayıcı",
+      "url": "https://www.utci.org/utci-calculator/",
+      "tur": "web"
+     },
+     {
+      "ad": "Blazejczyk vd. (2012) UTCI Termal İndeks Karşılaştırması",
+      "url": "https://doi.org/10.1007/s00484-011-0453-2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.utci.org/utci-calculator/",
+      "aciklama": "UTCI hesaplama arayüzü ve termal stres kategorileri eşik göstergesi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.utci.org/utci-calculator/",
+      "aciklama": "Girdilerin hissedilen sıcaklık eşdeğeri üzerindeki hassasiyet analizi akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "OpenStreetMap",
+   "ne": "Gönüllülerin yaptığı dünya haritası.",
+   "url": "https://www.openstreetmap.org/",
+   "ayrinti": {
+    "neYaptilar": "Milyonlarca gönüllü haritacının katkısıyla binaların taban alanlarını, kat sayılarını ve ağaç noktalarını açık lisansla haritaladılar.",
+    "nasil": "Uydu fotoğrafları üzerinden çizilen vektör çokgenlere bina yükseklik etiketleri (height, building:levels) eklediler.",
+    "neEdindiler": "Mikroklima araştırmacıları için hiçbir ticari veri satın almadan mahalle 3B modelini kurabilecek altyapı sağladılar.",
+    "bizNasilKatki": "Kadıköy pilot mahallesinin bina taban geometrilerini ve kat bilgilerini OSM Overpass API ile otomatik çekeriz.",
+    "referanslar": [
+     {
+      "ad": "OpenStreetMap Veri Dışa Aktarma Portalı",
+      "url": "https://www.openstreetmap.org/export#map=16/40.9900/29.0250",
+      "tur": "web"
+     },
+     {
+      "ad": "Haklay & Weber (2008) OpenStreetMap Kullanıcı Katılımlı Coğrafi Bilgi",
+      "url": "https://doi.org/10.1109/MPRV.2008.80",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.openstreetmap.org/export#map=16/40.9900/29.0250",
+      "aciklama": "OpenStreetMap Kadıköy bina poligonları ve etiket sorgulama ekranı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.openstreetmap.org/export#map=16/40.9900/29.0250",
+      "aciklama": "Vektör bina yükseklik katmanları ve kentsel morfoloji veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ENVI-met",
+   "ne": "Mikro ölçek kent iklimi simülasyon yazılımı.",
+   "url": "https://www.envi-met.com/",
+   "ayrinti": {
+    "neYaptilar": "Akışkanlar mekaniği ve termodinamik denklemlerini 3 boyutlu kentsel mikro ölçekte çözerek bina ve bitki etkileşimini simüle ettiler.",
+    "nasil": "Rüzgâr türbülansı, yüzey enerji dengesi, bitki fotosentezi ve radyasyon akılarını 1-2 metre çözünürlükte hesapladılar.",
+    "neEdindiler": "Yeşil altyapı projeleri ve kentsel dönüşümde mikroiklim optimizasyonunun küresel ticari yazılım standardını oluşturdular.",
+    "bizNasilKatki": "ENVI-met yayınlarındaki kentsel kanyon ve ağaç gölgesi katsayılarını açık kaynaklı SOLWEIG analizlerimizde kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "ENVI-met 3B Mikroklima Simülasyon Yazılımı",
+      "url": "https://www.envi-met.com/software/",
+      "tur": "web"
+     },
+     {
+      "ad": "Bruse & Fleer (1998) ENVI-met Kentsel Mikroiklim Modeli",
+      "url": "https://doi.org/10.1016/S1364-8152(98)00042-5",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.envi-met.com/software/",
+      "aciklama": "ENVI-met 3B kentsel kanyon termal konfor ve rüzgâr simülasyonu paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.envi-met.com/software/",
+      "aciklama": "Yüzey sıcaklığı ve bitki örtüsü serinletme etkisi hesaplama akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "IAUC",
+   "ne": "Uluslararası kent iklimi birliği.",
+   "url": "https://urban-climate.org/",
+   "ayrinti": {
+    "neYaptilar": "Dünya çapında kent iklimi, kentsel ısı adası ve biyometeoroloji alanında çalışan araştırmacıları bir araya getirdiler.",
+    "nasil": "Kentsel İklim Bölgeleri (LCZ) sınıflandırması ve standart ölçüm kılavuzları yayınlayarak metot birliği sağladılar.",
+    "neEdindiler": "İklim değişikliğine dirençli şehir tasarımı için küresel açık bilim ve kılavuz doküman havuzu sundular.",
+    "bizNasilKatki": "IAUC yerel iklim bölgesi (LCZ) standartlarını Kadıköy mahallemizin yoğun kentsel morfoloji analizinde temel alırız.",
+    "referanslar": [
+     {
+      "ad": "Uluslararası Kent İklimi Birliği Kaynaklar Portalı",
+      "url": "https://urban-climate.org/resources/",
+      "tur": "web"
+     },
+     {
+      "ad": "Stewart & Oke (2012) Yerel İklim Bölgeleri (LCZ) Sınıflandırması",
+      "url": "https://doi.org/10.1175/BAMS-D-11-00019.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://urban-climate.org/resources/",
+      "aciklama": "IAUC kentsel iklim araştırma kaynakları ve açık yayınlar arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://urban-climate.org/resources/",
+      "aciklama": "Kentsel ısı adası ölçüm standartları ve LCZ rehber veri akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Havanın insan, hayvan ve bitki üzerindeki etkisini ölçülebilir indekslerle (UTCI, polen, sıcak dalgası) izlemek.",
+  "baglanti": "Yazılım kolunda termal konfor haritaları; Anlatım kolunda sıcak hava sağlık uyarıları.",
+  "literatur": {
+   "maddeler": [
+    "UTCI, insan ısı dengesi modeline dayanan evrensel termal iklim indeksidir; sıcaklık, nem, rüzgâr ve ortalama ışınım sıcaklığını tek \"hissedilen\" değere indirger. (Blazejczyk vd. 2012)",
+    "Uygun olmayan ortam sıcaklığına bağlı ölümler yılda milyonlarla ölçülür; soğuk kaynaklı yük sıcaktan büyük ama sıcak kaynaklı pay artıyor. (Zhao vd. 2021)",
+    "Lancet Countdown, iklim-sağlık göstergelerini (sıcak maruziyeti, iş gücü kaybı, polen mevsimi) yıllık izler. (Romanello vd. 2021)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Kent ölçeğinde UTCI haritaları (UMEP/SOLWEIG) ağaçlandırma kararlarında kullanılıyor.",
+    "Polen tahmini kimyasal taşınım modellerine (SILAM) eklendi; alerji takvimi hava tahminiyle birleşti."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Blazejczyk vd. 2012",
+    "baslik": "Comparison of UTCI to selected thermal indices",
+    "yayin": "International Journal of Biometeorology 56, 515-535",
+    "yil": "2012",
+    "url": "https://doi.org/10.1007/s00484-011-0453-2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Zhao vd. 2021",
+    "baslik": "Global, regional, and national burden of mortality associated with non-optimal ambient temperatures from 2000 to 2019",
+    "yayin": "The Lancet Planetary Health 5(7), e415-e425",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/S2542-5196(21)00081-4",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Romanello vd. 2021",
+    "baslik": "The 2021 report of the Lancet Countdown on health and climate change",
+    "yayin": "The Lancet 398(10311), 1619-1662",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/S0140-6736(21)01787-6",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Brosy vd. 2014",
+    "baslik": "Quantification of climate tourism potential of Croatia based on measured data and regional modeling",
+    "yayin": "International Journal of Biometeorology 58, 1369-1381",
+    "yil": "2014",
+    "url": "https://doi.org/10.1007/s00484-013-0738-8",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "UMEP SOLWEIG mikroklima modeliyle Kadıköy için saatlik UTCI haritaları üretip ağaçlandırmanın termal konfor stresini düşürme etkisini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 359",
+   "projeyeKatki": "Biyometeorolojik insan enerji dengesi ve kentsel mikroklima ilkeleri incelenir. Ortalama ışınım sıcaklığı (Tmrt) ve Evrensel Termal İklim İndeksi (UTCI) denklemleriyle mahalle ölçeğinde ağaç gölgesinin hissedilen sıcaklığı düşürme potansiyeli hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ortalama ışınım sıcaklığı (Tmrt) enerji dengesi",
+     "nerede": "Binalardan ve zemin kaplamalarından yansıyan kısa ve uzun dalga radyasyon akılarından Tmrt haritasını üretirken kullanılır."
+    },
+    {
+     "formulAd": "Evrensel Termal İklim İndeksi (UTCI) polinom yaklaşımı",
+     "nerede": "Sıcaklık, rüzgâr, nem ve Tmrt birleşiminden saatlik hissedilen termal stres alanlarını haritalarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "UMEP SOLWEIG aracı ve Open-Meteo verileriyle kentsel mahallede saatlik UTCI haritaları ve ağaçlandırma senaryosu üretmek.",
+  "ayrinti": "Kadıköy pilot mahallesi için OpenStreetMap tabanlı bina yükseklikleri (DSM) ve Sentinel-2 NDVI tabanlı ağaç örtüsü (CDSM) raster katmanları üretilir. Open-Meteo API üzerinden sıcak bir yaz gününün (örneğin 26 Temmuz) saatlik radyasyon, sıcaklık, nem ve rüzgâr serileri çekilir. UMEP SOLWEIG koşturularak gün boyunca Tmrt ve UTCI haritaları türetilir; yüzde 20 ağaçlandırma senaryosuyla gölgenin sağladığı serinlik farkı haritalanır.",
+  "adimlar": [
+   {
+    "baslik": "OpenStreetMap ve Sentinel-2 ile 3B mahalle rasterını üretmek",
+    "oz": "Bina yüksekliği (DSM) ve ağaç örtüsü (CDSM) katmanlarını oluşturmak.",
+    "ayrinti": "Kadıköy için OSM Overpass API ile bina poligonları ve kat bilgileri indirilir, 1 metre ızgarada bina yükseklik rasterına (DSM) çevrilir. Sentinel-2 yaz görüntüsünden NDVI eşiklenerek ağaç taç yüksekliği katmanı (CDSM) üretilir.",
+    "nasil": [
+     {
+      "teknik": "osm_buildings = ox.geometries_from_bbox(bbox, tags={'building': True}) ile bina poligonlarını çekmek.",
+      "sade": "Harita veri tabanından mahalledeki binaların sınırlarını ve kat sayılarını bilgisayara indiririz.",
+      "altAdimlar": [
+       "1. Kadıköy pilot mahallesinin coğrafi sınır koordinatlarını tanımlayın.",
+       "2. OSM üzerinden binaların taban alanlarını ve kat sayılarını GeoDataFrame olarak çekin.",
+       "3. Kat başına 3 metre yükseklik atayarak 1 metre çözünürlüklü bina yüzey rasterı oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 359",
+       "madde": "Kentsel morfoloji ve ağaç örtüsünün ortalama ışınım sıcaklığına (Tmrt) etkisini analiz etmek."
+      }
+     },
+     {
+      "teknik": "cdsm = np.where(ndvi >= 0.4, tree_height_est, 0.0) ile ağaç örtüsü rasterı türetmek.",
+      "sade": "Uydu fotoğrafından yeşil ağaçları tespit edip gölge yapacak ağaç katmanını hazırlarız.",
+      "altAdimlar": [
+       "1. Sentinel-2 kırmızı ve yakın kızılötesi bantlarından NDVI indeksi hesaplayın.",
+       "2. 0,4 eşiğini aşan pikselleri ortalama 6 metre yüksekliğinde ağaç tacı olarak işaretleyin.",
+       "3. Ağaç rasterını bina DSM rasterı ile aynı projeksiyon ve ızgara boyutunda kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 359",
+       "madde": "Kentsel morfoloji ve ağaç örtüsünün ortalama ışınım sıcaklığına (Tmrt) etkisini analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 359",
+      "madde": "Kentsel morfoloji ve ağaç örtüsünün ortalama ışınım sıcaklığına (Tmrt) etkisini analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Open-Meteo ile sıcak yaz günü meteorolojisini derlemek",
+    "oz": "Güneş radyasyonu, sıcaklık, nem ve rüzgâr saatlik dizilerini hazırlamak.",
+    "ayrinti": "Temmuz ayında İstanbul'da sıcak hava dalgası yaşanan bir gün için Open-Meteo arşivinden saatlik direkt/difüz güneş ışınımı, 2 m sıcaklığı, bağıl nem ve 10 m rüzgâr hızı çekilir. UMEP meteoroloji metin formatına dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "weather_df = fetch_hourly_meteo(lat=40.99, lon=29.02, date='2024-07-26') ile veriyi almak.",
+      "sade": "Günün 24 saati boyunca havanın ne kadar sıcak, nemli ve güneşli olduğunu hava arşivinden çekeriz.",
+      "altAdimlar": [
+       "1. Direkt güneşlenme, difüz radyasyon ve hava sıcaklığı değişkenlerini sorgulayın.",
+       "2. Nem verisinden buhar basıncını hesaplayarak eksik kolonları tamamlayın.",
+       "3. SOLWEIG gereksinimlerine uygun metin formatında girdi tablosunu dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 359",
+       "madde": "İnsan enerji dengesi prensipleriyle termal konfor indekslerini (UTCI, PMV) hesaplamak."
+      }
+     },
+     {
+      "teknik": "check_solar_zenith_angles(weather_df) ile güneş açısı ve gölge boyu tutarlılığını doğrulamak.",
+      "sade": "Güneşin gökyüzündeki konumunun doğru hesaplandığını ve gölgelerin doğru yöne düşeceğini kontrol ederiz.",
+      "altAdimlar": [
+       "1. Güneş tepe açısı ve azimut açılarını saat saat hesaplayın.",
+       "2. Öğle vaktinde güneşin en dik geldiği anın radyasyon pikiyle örtüştüğünü doğrulayın.",
+       "3. Veri setini simülasyon motoruna aktarılacak biçimde paketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 359",
+       "madde": "UMEP ve SOLWEIG mikroklima araçlarıyla mahalle ölçeğinde termal harita üretmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 359",
+      "madde": "İnsan enerji dengesi prensipleriyle termal konfor indekslerini (UTCI, PMV) hesaplamak."
+     },
+     {
+      "ders": "MTO 359",
+      "madde": "UMEP ve SOLWEIG mikroklima araçlarıyla mahalle ölçeğinde termal harita üretmek."
+     }
+    ]
+   },
+   {
+    "baslik": "SOLWEIG ile ortalama ışınım sıcaklığı ve UTCI hesaplamak",
+    "oz": "Saatlik Tmrt ve UTCI haritalarını 1 metre çözünürlükte koşturmak.",
+    "ayrinti": "SOLWEIG modeli bina gölgelerini ve çoklu yüzey yansımalarını simüle ederek her piksel için Tmrt hesaplar. Polinom yaklaşımıyla Tmrt, hava sıcaklığı, rüzgâr ve nem birleştirilerek hissedilen UTCI (°C) haritası saat saat üretilir.",
+    "nasil": [
+     {
+      "teknik": "tmrt_grid = run_solweig_simulation(dsm, cdsm, weather_df, hour=14) fonksiyonunu çalıştırmak.",
+      "sade": "Güneş ışınlarının binalardan ve asfalttan sekerek yaydığı toplam radyasyon sıcaklığını haritalarız.",
+      "altAdimlar": [
+       "1. Bina ve ağaç katmanlarını SOLWEIG ışınım motoruna girdi olarak verin.",
+       "2. Saat 14:00 için doğrudan, saçılan ve yansıyan akıları toplayarak Tmrt matrisini çıkarın.",
+       "3. Açık asfaltta Tmrt 65 °C'ye çıkarken ağaç gölgesinde 35 °C'ye indiğini tespit edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 359",
+       "madde": "Kentsel morfoloji ve ağaç örtüsünün ortalama ışınım sıcaklığına (Tmrt) etkisini analiz etmek."
+      }
+     },
+     {
+      "teknik": "utci_grid = compute_vectorized_utci(ta, tmrt_grid, v10, ea) ile konfor indeksini çözmek.",
+      "sade": "Fiziksel termal formülle insanların sokakta hissettiği gerçek sıcaklık stresini hesaplarız.",
+      "altAdimlar": [
+       "1. Tmrt gridini 2 metre hava sıcaklığı ve rüzgâr matrisiyle eşleştirin.",
+       "2. Vektörize edilmiş UTCI polinom fonksiyonunu tüm piksellere uygulayın.",
+       "3. Sonuçları 'kuvvetli sıcak stresi' ve 'aşırı sıcak stresi' kategorilerine ayırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 359",
+       "madde": "İnsan enerji dengesi prensipleriyle termal konfor indekslerini (UTCI, PMV) hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 359",
+      "madde": "Kentsel morfoloji ve ağaç örtüsünün ortalama ışınım sıcaklığına (Tmrt) etkisini analiz etmek."
+     },
+     {
+      "ders": "MTO 359",
+      "madde": "İnsan enerji dengesi prensipleriyle termal konfor indekslerini (UTCI, PMV) hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Ağaçlandırma senaryosu ile belediye öneri kartı basmak",
+    "oz": "%20 ağaç artışıyla kazanılan serinlik farkını haritalayıp raporlamak.",
+    "ayrinti": "Mevcut duruma yüzde 20 oranında sokak ağacı eklenen sentetik CDSM senaryosu hazırlanır. İki durum arasındaki UTCI fark haritası (delta UTCI) çıkarılarak sokaklarda 4-8 °C hissedilen serinleme sağlandığı belgelenir ve belediyeye öneri kartı hazırlanır.",
+    "nasil": [
+     {
+      "teknik": "delta_utci = baseline_utci - scenario_utci ile serinleme fark haritasını türetmek.",
+      "sade": "Ağaç dikildiğinde sokağın kaç derece serinleyeceğini gösteren etki fark haritasını çıkarırız.",
+      "altAdimlar": [
+       "1. Sokak koridorlarına 50 yeni ağaç poligonu ekleyerek senaryo ağaç katmanını kurun.",
+       "2. Aynı saat için SOLWEIG simülasyonunu yeni senaryo ile tekrar koşturun.",
+       "3. İki haritanın piksel farkını alarak gölgenin net serinletme gücünü hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 359",
+       "madde": "UMEP ve SOLWEIG mikroklima araçlarıyla mahalle ölçeğinde termal harita üretmek."
+      }
+     },
+     {
+      "teknik": "export_municipality_action_card('kadikoy_termal_konfor_onerisi.pdf') ile kartı teslim etmek.",
+      "sade": "Belediye fen işleri ve park bahçeler müdürlüğüne yönelik tek sayfalık somut öneri kartı basarız.",
+      "altAdimlar": [
+       "1. En yüksek termal stres altında kalan güneşli sokakları öncelikli eylem alanı ilan edin.",
+       "2. Ağaç gölgesinin hissedilen sıcaklığı 6 derece düşürdüğünü infografikle gösterin.",
+       "3. Kentsel dönüşümde cephe gölgeleme ve yeşil koridor tasarım kriterlerini özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 359",
+       "madde": "Aşırı sıcak dalgaları ve soğuk hava olaylarının sağlık risklerini istatistiksel değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 359",
+      "madde": "UMEP ve SOLWEIG mikroklima araçlarıyla mahalle ölçeğinde termal harita üretmek."
+     },
+     {
+      "ders": "MTO 359",
+      "madde": "Aşırı sıcak dalgaları ve soğuk hava olaylarının sağlık risklerini istatistiksel değerlendirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Kadıköy pilot mahallesi saatlik UTCI termal stres haritası, SOLWEIG radyasyon simülasyon kodu ve belediye ağaçlandırma öneri bülteni.",
+  "senden": "QGIS raster işleme, OpenStreetMap veri çekme ve kentsel mikroklima merakı.",
+  "bizden": "SOLWEIG ışınım parametreleri, UTCI hesaplama scripti ve Kadıköy meteoroloji girdi dosyaları."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Kadıköy mahallesinde yaz günü saatlik UTCI termal stres haritası ve ağaç gölgesi serinleme animasyonu",
+   "aciklama": "Gün boyunca güneş açısına bağlı olarak değişen gölgelerin hissedilen sıcaklık üzerindeki etkisi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://umep-docs.readthedocs.io/en/latest/",
+   "aciklama": "UMEP SOLWEIG kentsel ışınım ve mikroklima analiz dokümantasyon paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Urban_heat_island_surface_temperatures.jpg",
+   "lisans": "NASA",
+   "aciklama": "Kent merkezlerinde zemin kaplamaları ve bitki örtüsü arasındaki yüzey sıcaklık farkı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 359 (Biyometeoroloji)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=359"
+  },
+  {
+   "ad": "Blazejczyk, K. vd. (2012) Comparison of UTCI to selected thermal indices, Int. J. Biometeorol., 56, 515–535",
+   "url": "https://doi.org/10.1007/s00484-011-0453-2"
+  },
+  {
+   "ad": "Lindberg, F. vd. (2018) Urban Multi-scale Environmental Predictor (UMEP), Environ. Model. Softw., 99, 70–87",
+   "url": "https://doi.org/10.1016/j.envsoft.2017.09.020"
+  },
+  {
+   "ad": "Stewart, I. D. & Oke, T. R. (2012) Local Climate Zones for Urban Temperature Studies, BAMS, 93(12), 1879–1900",
+   "url": "https://doi.org/10.1175/BAMS-D-11-00019.1"
+  },
+  {
+   "ad": "UMEP Açık Kaynaklı Kentsel İklim Dokümantasyonu",
+   "url": "https://umep-docs.readthedocs.io/en/latest/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO359-01.json",
+  "tarih": "2026-10-17 04:12",
+  "geminiSha1": "881d88497281"
+ }
+}

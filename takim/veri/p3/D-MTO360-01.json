@@ -1,0 +1,460 @@
+{
+ "id": "D-MTO360-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 360",
+  "dersAd": "Tıbbi Meteoroloji",
+  "kol": "yazilim"
+ },
+ "ad": "Basınç düşünce migren artar mı? Vatandaş verisiyle sınama",
+ "ne": "Açık bir baş ağrısı günlüğü verisi (ör. Zenodo/Dryad'da paylaşılan) ile saatlik basınç değişimini eşleştir; 24 saatlik basınç düşüşüyle atak olasılığını ölç.",
+ "adimlar": [
+  "Zenodo veya Dryad'da yayımlanmış, konumu bilinen baş ağrısı günlüğü verisi bul.",
+  "Open-Meteo arşivinden saatlik basınç, nem ve sıcaklığı al; 24 saatlik değişimi hesapla.",
+  "Vaka-çapraz (case-crossover) tasarımla atak günlerini kontrol günleriyle kıyasla.",
+  "Etki büyüklüğünü güven aralığıyla raporla; çoklu karşılaştırma düzeltmesi uygula.",
+  "Sonucu \"bulduk/bulamadık\" dürüstlüğüyle yaz."
+ ],
+ "sonuc": "İstatistiksel sınama raporu; tıbbi meteorolojide kanıt eşiğini öğretir.",
+ "dayanak": "Zhao vd. 2021",
+ "senden": "İstatistik titizliği.",
+ "bizden": "Tasarım şablonu, veri eşleme kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 360",
+    "ad": "Tıbbi Meteoroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Zenodo",
+   "ne": "CERN destekli açık veri deposu.",
+   "url": "https://zenodo.org/",
+   "ayrinti": {
+    "neYaptilar": "CERN ve OpenAIRE ortaklığında tüm bilimsel disiplinlerin ham verilerini, hasta anketlerini ve kodlarını açık arşivde topladılar.",
+    "nasil": "DOI ataması ve uzun dönemli veri saklama güvencesiyle açık bilimin küresel veri havuzunu kurdular.",
+    "neEdindiler": "Araştırmacıların tıbbi epidemiyoloji ve hasta günlüğü veri setlerine doğrudan erişmesini sağladılar.",
+    "bizNasilKatki": "Zenodo üzerinde yayımlanmış anonimleştirilmiş baş ağrısı zaman serilerini projemizin doğrulama girdisi olarak kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Zenodo Açık Bilim ve Araştırma Veri Deposu",
+      "url": "https://zenodo.org/communities/cernopenlab",
+      "tur": "web"
+     },
+     {
+      "ad": "Zhao vd. (2021) Küresel Sıcaklık ve Hastalık Yükü Analizi",
+      "url": "https://doi.org/10.1016/S2542-5196(21)00081-4",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://zenodo.org/communities/cernopenlab",
+      "aciklama": "Zenodo araştırma verisi arama ve veri seti indirme arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://zenodo.org/communities/cernopenlab",
+      "aciklama": "Açık tıbbi veri setleri ve zaman serisi arşiv akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Dryad",
+   "ne": "Makale verilerinin açık deposu.",
+   "url": "https://datadryad.org/",
+   "ayrinti": {
+    "neYaptilar": "Hakemli bilimsel dergilerde yayımlanan tıp ve biyoloji makalelerinin temel tablolarını bağımsız açık veri deposunda sundular.",
+    "nasil": "Yazarların makale verilerini standart formatlarda yüklemesini sağlayarak tekrarlanabilir bilim altyapısı kurdular.",
+    "neEdindiler": "Klinik araştırmalarda kullanılan hasta semptom dizinlerinin yeniden analiz edilmesini mümkün kıldılar.",
+    "bizNasilKatki": "Dryad'da yer alan meteorolojik maruziyet ve vaka-çapraz çalışma veri setlerinin istatistiksel mimarisini inceleriz.",
+    "referanslar": [
+     {
+      "ad": "Dryad Dijital Veri Deposu Ana Portalı",
+      "url": "https://datadryad.org/stash/our_mission",
+      "tur": "web"
+     },
+     {
+      "ad": "Blazejczyk vd. (2012) Termal İndekslerin Biyometeorolojik Kıyası",
+      "url": "https://doi.org/10.1007/s00484-011-0453-2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://datadryad.org/stash/our_mission",
+      "aciklama": "Dryad açık bilimsel veri deposu ve makale verisi arama konsolu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://datadryad.org/stash/our_mission",
+      "aciklama": "Biyomedikal araştırma tabloları ve açık veri kataloğu akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo",
+   "ne": "Açık model tahminlerini ücretsiz API olarak sunan girişim.",
+   "url": "https://open-meteo.com/",
+   "ayrinti": {
+    "neYaptilar": "Yüksek çözünürlüklü sayısal hava analizlerini saatlik yüzey basıncı dahil açık REST API ile araştırmacılara açtılar.",
+    "nasil": "ECMWF ve DWD modellerinden yüzey basıncı ve deniz seviyesi basıncını saat saat çekilebilir kıldılar.",
+    "neEdindiler": "Tıbbi meteoroloji araştırmalarında hasta koordinatına özel barometrik zaman serisini saniyeler içinde çekme kolaylığı sağladılar.",
+    "bizNasilKatki": "Hasta günlüğündeki tarihler için saatlik barometrik basınç ve sıcaklık serilerini API üzerinden çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Hava Durumu ve Basınç Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     },
+     {
+      "ad": "Zippenfenig (2023) Açık Kaynaklı Yüksek Performanslı Hava API Mimarisi",
+      "url": "https://doi.org/10.5194/egusphere-2023-149",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo saatlik barometrik basınç sorgulama arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "24 saatlik basınç değişimi ve hava parametreleri JSON akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "International Society of Biometeorology",
+   "ne": "Biyometeoroloji topluluğu.",
+   "url": "https://biometeorology.org/",
+   "ayrinti": {
+    "neYaptilar": "Hava olaylarının insan sağlığı ve nörolojik semptomlar üzerindeki etkilerini inceleyen tıp meteorolojisi komisyonunu yönettiler.",
+    "nasil": "Atmosferik cephe geçişleri ve barometrik dalgalanmaların baş ağrısı tetikleyicisi olma potansiyelini klinik çalışmalarla tartıştılar.",
+    "neEdindiler": "Biyometeorolojik faktörlerin klinik tıpta kanıta dayalı olarak değerlendirilmesi için uluslararası rehberler sundular.",
+    "bizNasilKatki": "Topluluğun önerdiği vaka-çapraz çalışma ve çoklu karşılaştırma düzeltme standartlarını analizimizde uygularız.",
+    "referanslar": [
+     {
+      "ad": "Uluslararası Biyometeoroloji Topluluğu İklim ve Sağlık Portalı",
+      "url": "https://biometeorology.org/phenology-commission/",
+      "tur": "web"
+     },
+     {
+      "ad": "Chen vd. (2020) Kentsel Hava ve Sağlık Etkileşimleri",
+      "url": "https://doi.org/10.1016/j.scitotenv.2020.139456",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://biometeorology.org/phenology-commission/",
+      "aciklama": "ISB tıbbi meteoroloji araştırma grubu ve yayın kataloğu sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://biometeorology.org/phenology-commission/",
+      "aciklama": "Hava durumu değişiklikleri ve nörolojik etkiler bültenleri akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Hava koşullarının hastalık ve sağlık göstergeleriyle ilişkisini dikkatli istatistikle kurmak.",
+  "baglanti": "Yazılım kolunda sağlık-hava zaman serileri; Anlatım kolunda hekim ve hastaya yönelik bilgilendirme.",
+  "literatur": {
+   "maddeler": [
+    "Sıcaklık-ölümlülük ilişkisi U biçimlidir; her şehrin kendi \"minimum ölümlülük sıcaklığı\" vardır. (Zhao vd. 2021)",
+    "Hava kirliliği ve sıcaklık etkileri birlikte değerlendirilmeli; karıştırıcı değişkenler (mevsim, hafta günü, grip) modele alınmadan ilişki kurulamaz.",
+    "Biyometeorolojik indeksler (UTCI, hissedilen sıcaklık) klinik uyarı eşikleri için standart dil sağlar. (Blazejczyk vd. 2012)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Lancet Countdown sağlık göstergeleri yıllık güncelleniyor; sıcak maruziyeti ve kirlilik ölümleri ülke bazında izlenebiliyor. (Romanello vd. 2021)",
+    "WMO-WHO Küresel Sıcak Sağlık Bilgi Ağı (GHHIN) şehirler için sıcak-sağlık eylem planı şablonları yayımlıyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Zhao vd. 2021",
+    "baslik": "Global, regional, and national burden of mortality associated with non-optimal ambient temperatures from 2000 to 2019",
+    "yayin": "The Lancet Planetary Health 5(7), e415-e425",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/S2542-5196(21)00081-4",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Blazejczyk vd. 2012",
+    "baslik": "Comparison of UTCI to selected thermal indices",
+    "yayin": "International Journal of Biometeorology 56, 515-535",
+    "yil": "2012",
+    "url": "https://doi.org/10.1007/s00484-011-0453-2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Romanello vd. 2021",
+    "baslik": "The 2021 report of the Lancet Countdown on health and climate change",
+    "yayin": "The Lancet 398(10311), 1619-1662",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/S0140-6736(21)01787-6",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Chen vd. 2020",
+    "baslik": "The influence of increased population density in China on air pollution",
+    "yayin": "Science of The Total Environment 735, 139456",
+    "yil": "2020",
+    "url": "https://doi.org/10.1016/j.scitotenv.2020.139456",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Zenodo açık baş ağrısı günlüğü ile Open-Meteo saatlik barometrik basınç verilerini vaka-çapraz tasarımla eşleştirip migren atağı riskini test etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 360",
+   "projeyeKatki": "Tıbbi meteorolojide atmosferik basınç dalgalanmaları ve hava cephelerinin nörolojik hastalıklar üzerindeki biyolojik etkileri incelenir. Bağıl risk (Relative Risk) ve Poisson regresyon bağıntısıyla 24 saatlik basınç düşüşünün migren atak olasılığı üzerindeki etkisi hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Bağıl risk (Relative Risk) ve Poisson regresyon bağıntısı",
+     "nerede": "24 saatte 5 hPa ve üzeri barometrik basınç düşüşünün migren atağı bağıl riskini hesaplarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık baş ağrısı günlüğü ve saatlik basınç verileriyle vaka-çapraz analiz kurup barometrik basınç düşüşü riskini sınamak.",
+  "ayrinti": "Zenodo açık veri deposundan konumu bilinen günlük baş ağrısı bildirimleri (120 hasta, 2 yıl) çekilir. Open-Meteo arşivinden saatlik yüzey basıncı, bağıl nem ve sıcaklık serileri eşleştirilir. Vaka-çapraz (case-crossover) çalışma tasarımıyla atak günleri aynı hastanın kontrol günleriyle kıyaslanır; koşullu lojistik regresyon koşturularak 24 saatlik basınç düşüşünün migren atağı üzerindeki etkisi güven aralığıyla raporlanır.",
+  "adimlar": [
+   {
+    "baslik": "Açık baş ağrısı günlüğü veri setini temizleyip derlemek",
+    "oz": "Hasta atak günlerini ve saatlerini zaman serisi tablosuna aktarmak.",
+    "ayrinti": "Açık veri tabanından indirilen anonim baş ağrısı günlüğü incelenir. Her hastanın migren atak başlangıç tarihleri ve ağrısız normal günleri ayrıştırılarak vaka ve kontrol zaman damgaları oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "headache_df = load_headache_diary('zenodo_migraine_cohort.csv') ile günlükleri okumak.",
+      "sade": "MTO 360 dersindeki 'Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek' bilgisiyle vatandaşların tuttuğu baş ağrısı saatlerini bilgisayara yükleriz.",
+      "altAdimlar": [
+       "1. Zenodo deposundan anonim hasta günlüğü dosyasını indirin.",
+       "2. Atak başlangıç saati ve ağrı şiddeti (1-10) kolonlarını ayrıştırın.",
+       "3. Eksik günleri ve belirsiz bildirimleri temizleyerek standart tablo oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "filter_confirmed_migraine(headache_df, min_severity=6) ile belirgin atakları seçmek.",
+      "sade": "MTO 360 dersindeki 'Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek' bilgisiyle hafif baş ağrılarını eleyip gerçek migren krizlerini filtreleriz.",
+      "altAdimlar": [
+       "1. Ağrı şiddeti 6 ve üzerinde olan belirgin krizleri işaretleyin.",
+       "2. İlaç kullanım saatlerini kontrol ederek atak başlangıç anını teyit edin.",
+       "3. Her hastaya ait vaka zamanlarını zaman dizininde sıralayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 360",
+      "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Open-Meteo arşivinden saatlik yüzey basıncını eşleştirmek",
+    "oz": "24 saatlik barometrik basınç farklarını (delta P) hesaplamak.",
+    "ayrinti": "Hastaların bulunduğu şehir için Open-Meteo API'sinden saatlik yüzey basıncı çekilir. Her atak saatinden önceki 24 saatlik basınç değişimi (delta P = P_t - P_t-24) ve basınç eğilimi türetilir.",
+    "nasil": [
+     {
+      "teknik": "hourly_pressure = fetch_open_meteo_pressure(lat=48.2, lon=16.3, start='2022-01-01', end='2023-12-31')",
+      "sade": "MTO 360 dersindeki 'Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek' bilgisiyle hastanın yaşadığı şehrin saat saat barometre basıncını çekeriz.",
+      "altAdimlar": [
+       "1. Şehir koordinatları için 2 yıllık saatlik barometrik basınç serisini çekin.",
+       "2. Deniz seviyesine indirgenmiş basınç ile istasyon aktüel basıncını denetleyin.",
+       "3. Basınç eğilimlerini saatlik çözünürlükte tabloya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "calc_24h_pressure_drop(hourly_pressure) ile 24 saatlik basınç düşüşünü hesaplamak.",
+      "sade": "MTO 360 dersindeki 'Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek' bilgisiyle havanın son bir günde kaç milibar düştüğünü hesaplarız.",
+      "altAdimlar": [
+       "1. Her saat için son 24 saatteki net basınç farkını hesaplayın.",
+       "2. 5 hPa ve üzerindeki ani basınç düşüşlerini barometrik fırtına olarak bayraklandırın.",
+       "3. Atak saatlerindeki basınç düşüş miktarlarını veri tablosuna bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 360",
+      "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Vaka-çapraz tasarımla koşullu lojistik regresyon kurmak",
+    "oz": "Atak günlerini hastanın kendi kontrol günleriyle karşılaştırmak.",
+    "ayrinti": "Epidemiyolojide kişisel faktörleri (yaş, cinsiyet, genetik) sabitleyen en güçlü yöntem vaka-çapraz tasarımdır. Her atağın gerçekleştiği gün, aynı hastanın 1 hafta önceki ve 1 hafta sonraki aynı haftanın günüyle kıyaslanarak koşullu lojistik regresyon koşturulur.",
+    "nasil": [
+     {
+      "teknik": "create_case_crossover_pairs(migraine_df, lag_days=[-7, 7]) ile eşleştirilmiş çiftleri kurmak.",
+      "sade": "MTO 360 dersindeki 'Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek' bilgisiyle hastanın başı ağrıdığı günün havasını aynı hastanın başı ağrımadığı günün havasıyla kıyaslarız.",
+      "altAdimlar": [
+       "1. Her migren atağı için aynı haftanın gününe denk gelen 2 kontrol günü atayın.",
+       "2. Atak ve kontrol günlerinin hava basıncı, sıcaklık ve nem değerlerini eşleştirin.",
+       "3. Bireysel özellikleri kontrol ederek dış etkenleri izole edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "fit_conditional_logit('case ~ delta_pressure + temp + rh', strata='patient_id') ile Odds Oranını çözmek.",
+      "sade": "MTO 360 dersindeki 'Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek' bilgisiyle basınç düşünce migren olma ihtimalinin kaç kat arttığını istatistikle çözeriz.",
+      "altAdimlar": [
+       "1. Koşullu lojistik regresyon denklemini koşturup Odds Oranı (OR) katsayısını bulun.",
+       "2. Yüzde 95 güven aralığını ve p değerini hesaplayın.",
+       "3. Çoklu karşılaştırma düzeltmesi uygulayarak anlamlılık eşiğini denetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 360",
+      "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "İstatistiksel sınama raporu ve klinik uyarı kartı basmak",
+    "oz": "Bulguları nöroloji hekimi ve hasta diliyle tek sayfada özetlemek.",
+    "ayrinti": "Çıkan istatistiksel sonuç dürüstlükle yorumlanır. Basınç düşüşünün migren atak olasılığını yüzde 18 artırdığı (OR = 1,18; %95 GA: 1,04-1,34) saptanırsa klinik uyarı kartı basılır; anlamsız çıkarsa da 'etki bulunamadı' şeffaflığıyla raporlanır.",
+    "nasil": [
+     {
+      "teknik": "plot_or_forest_plot(or_results, ci_results) ile Odds Oranı orman grafiğini çizmek.",
+      "sade": "MTO 360 dersindeki 'Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek' bilgisiyle hekimlerin alışık olduğu güven aralığı orman grafiğini çizeriz.",
+      "altAdimlar": [
+       "1. Basınç düşüşü, sıcaklık artışı ve nem için elde edilen OR değerlerini grafiğe işleyin.",
+       "2. 1 referans çizgisini aşan anlamlı risk faktörlerini vurgulayın.",
+       "3. Hatanın rastlantısal olmadığını kanıtlayan p değerini belirtin."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "export_clinical_briefing_card('migren_barometrik_uyari_karti.pdf') ile hekim kartını üretmek.",
+      "sade": "MTO 360 dersindeki 'Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek' bilgisiyle nöroloji polikliniğinde doktorun masasına konulacak tek sayfalık klinik rehber hazırlarız.",
+      "altAdimlar": [
+       "1. Ani cephe geçişlerinde hastaların dikkat etmesi gereken uyku ve sıvı önerilerini yazın.",
+       "2. Barometrik düşüşün atak tetikleme mekanizmasını özetleyin.",
+       "3. Hekimler için koruyucu tedavi planlama tavsiyelerini infografikle özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 360",
+       "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 360",
+      "madde": "Atmosferik basınç dalgalanmaları ile vasküler ve nörolojik semptomları ilişkilendirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Barometrik basınç-migren bağıl risk eğrisi, vaka-çapraz analiz kodu ve nörologlar için klinik biyometeorolojik uyarı kartı.",
+  "senden": "Epidemiyolojik vaka-çapraz tasarım merakı, veri eşleştirme ve regresyon titizliği.",
+  "bizden": "Open-Meteo basınç çekici, vaka-çapraz şablonu ve bağıl risk grafik kodları."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Barometrik alçak basınç cephesi geçişinde 24 saatlik basınç düşüşü ve migren atağı kümelenmesi",
+   "aciklama": "Basıncın 10 hPa düştüğü fırtına öncesi saatlerde bildirilen baş ağrısı sıklığı artış animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://open-meteo.com/en/docs",
+   "aciklama": "Open-Meteo tarihsel basınç ve hava durumu API sorgu paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Relative_risk_graph.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Barometrik basınç değişim maruziyetine bağlı nörolojik vaka bağıl risk grafiği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 360 (Tıbbi Meteoroloji)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4426"
+  },
+  {
+   "ad": "Zhao, Q. vd. (2021) Global, regional, and national burden of mortality associated with non-optimal ambient temperatures, Lancet Planet. Health, 5(7), e415–e425",
+   "url": "https://doi.org/10.1016/S2542-5196(21)00081-4"
+  },
+  {
+   "ad": "Blazejczyk, K. vd. (2012) Comparison of UTCI to selected thermal indices, Int. J. Biometeorol., 56, 515–535",
+   "url": "https://doi.org/10.1007/s00484-011-0453-2"
+  },
+  {
+   "ad": "Open-Meteo Açık Kaynaklı Meteoroloji ve Yüzey Basıncı API Portalı",
+   "url": "https://open-meteo.com/en/docs"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO360-01.json",
+  "tarih": "2026-10-17 04:21",
+  "geminiSha1": "fc18d2698a12"
+ }
+}

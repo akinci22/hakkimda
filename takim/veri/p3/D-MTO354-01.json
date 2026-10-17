@@ -1,0 +1,504 @@
+{
+ "id": "D-MTO354-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 354",
+  "dersAd": "Tarım & Orman Meteorolojisi II",
+  "kol": "yazilim"
+ },
+ "ad": "Ege için kendi FWI'ını hesapla, EFFIS ile kıyasla",
+ "ne": "Open-Meteo/ERA5 verisinden Kanada FWI sisteminin tüm bileşenlerini (FFMC, DMC, DC, ISI, BUI, FWI) Ege kıyısı için bir yaz boyunca hesapla; EFFIS tahminiyle ve FIRMS yangın noktalarıyla karşılaştır.",
+ "adimlar": [
+  "CWFIS belgelerinden FWI denklemlerini uygula (açık Python uygulamaları var).",
+  "2021 ve 2023 yazları için öğlen değerleriyle günlük indeksleri üret.",
+  "EFFIS FWI haritasıyla kendi sonucunu aynı günlerde karşılaştır.",
+  "FIRMS yangın noktalarının FWI sınıfına göre dağılımını çıkar.",
+  "Yangın günü öncesi 5 günün indeks eğrisini \"tipik yangın hava tipi\" olarak çiz."
+ ],
+ "sonuc": "FWI zaman serisi ve yangın-indeks ilişki grafiği.",
+ "dayanak": "Zhang vd. 2017",
+ "senden": "Denklem uygulama.",
+ "bizden": "FWI kodu, veri kaynakları.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 354",
+    "ad": "Tarım & Orman Meteorolojisi II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "EFFIS (JRC)",
+   "ne": "Avrupa orman yangını bilgi sistemi; yangın hava indeksi tahmini.",
+   "url": "https://effis.jrc.ec.europa.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Komisyonu Ortak Araştırma Merkezi öncülüğünde tüm Avrupa ve Akdeniz havzası için günlük orman yangını tehlike haritaları ürettiler.",
+    "nasil": "ECMWF sayısal hava tahmin modellerini Kanada FWI algoritmasıyla birleştirerek 10 güne kadar yangın riski projeksiyonu sundular.",
+    "neEdindiler": "Orman genel müdürlükleri ve sivil savunma kurumları için sınır ötesi operasyonel yangın erken uyarı standardı kurdular.",
+    "bizNasilKatki": "EFFIS açık veri katmanlarını çekerek kendi hesapladığımız FWI serileriyle piksel piksel karşılaştırma yaparız.",
+    "referanslar": [
+     {
+      "ad": "EFFIS Yangın Hava İndeksi ve Tehlike Değerlendirme Kılavuzu",
+      "url": "https://effis.jrc.ec.europa.eu/apps/firelog/",
+      "tur": "web"
+     },
+     {
+      "ad": "San-Miguel-Ayanz vd. (2012) Avrupa Orman Yangını Bilgi Sistemi Mimarisi",
+      "url": "https://doi.org/10.1007/978-94-007-3886-7_6",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://effis.jrc.ec.europa.eu/apps/firelog/",
+      "aciklama": "EFFIS Akdeniz havzası günlük yangın tehlikesi ve FWI harita paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://effis.jrc.ec.europa.eu/apps/firelog/",
+      "aciklama": "Yangın sezonu boyunca kümülatif tehlike endeksi değişim akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Canadian Wildland Fire Information System",
+   "ne": "FWI sisteminin ana sayfası.",
+   "url": "https://cwfis.cfs.nrcan.gc.ca/",
+   "ayrinti": {
+    "neYaptilar": "Kanada Orman Servisi bünyesinde dünya ormancılık standardı haline gelen Yangın Hava İndeksi (FWI) matematiksel formülasyonunu geliştirdiler.",
+    "nasil": "Orman tabanındaki ince yanıcı maddeler, organik tabaka ve derin humusun nem dinamiklerini ampirik diferansiyel denklemlerle formüle ettiler.",
+    "neEdindiler": "Hava koşullarından yangın yayılma hızı ve tüketilecek yakıt miktarını kestiren evrensel hesaplama çerçevesi sundular.",
+    "bizNasilKatki": "CWFIS teknik raporlarındaki referans test tablolarını kullanarak yazdığımız Python FWI kodunun sayısal doğruluğunu sınarız.",
+    "referanslar": [
+     {
+      "ad": "CWFIS Kanada Yangın Hava İndeksi Sistemi Matematiksel Formülasyonu",
+      "url": "https://cwfis.cfs.nrcan.gc.ca/background/summary/fwi",
+      "tur": "web"
+     },
+     {
+      "ad": "Van Wagner (1987) FWI Sistemi Yapısı ve Hesaplama Esasları",
+      "url": "https://doi.org/10.1139/x87-035",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cwfis.cfs.nrcan.gc.ca/background/summary/fwi",
+      "aciklama": "CWFIS FWI alt bileşenleri akış şeması ve matematiksel bağıntılar paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://cwfis.cfs.nrcan.gc.ca/background/summary/fwi",
+      "aciklama": "FFMC, DMC ve DC yakıt nem kodlarının zamansal gecikme hesap akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA FIRMS",
+   "ne": "Uydudan aktif yangın noktaları, neredeyse gerçek zamanlı.",
+   "url": "https://firms.modaps.eosdis.nasa.gov/",
+   "ayrinti": {
+    "neYaptilar": "MODIS ve VIIRS uydu sensörleriyle dünya üzerindeki tüm aktif yangın piksellerini ve termal anomalileri 3 saat içinde açık erişime sundular.",
+    "nasil": "Orta kızılötesi ve termal bantlardaki parlaklık sıcaklığı farkını kullanarak 375 metre çözünürlükte yangın odaklarını ve ışınımsal gücü (FRP) tespit ettiler.",
+    "neEdindiler": "Orman yangınlarının başladığı anı ve ilerleme yönünü kıtasal ölçekte izleyen küresel operasyonel altyapı sağladılar.",
+    "bizNasilKatki": "Ege Bölgesi'nde tespit edilen aktif yangın koordinatlarını hesapladığımız FWI risk sınıflarıyla uzamsal olarak çakıştırırız.",
+    "referanslar": [
+     {
+      "ad": "NASA FIRMS Yangın Bilgi Sistemi Yangın Haritası",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "tur": "web"
+     },
+     {
+      "ad": "Zhang vd. (2017) VIIRS Aktif Yangın Algılama ve FRP Değerlendirmesi",
+      "url": "https://doi.org/10.1016/j.rse.2017.06.028",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "aciklama": "NASA FIRMS Ege ve Akdeniz havzası aktif yangın pikselleri arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://firms.modaps.eosdis.nasa.gov/map/",
+      "aciklama": "VIIRS 375 m çözünürlüklü termal yangın noktaları ve FRP veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo",
+   "ne": "Açık model tahminlerini ücretsiz API olarak sunan girişim.",
+   "url": "https://open-meteo.com/",
+   "ayrinti": {
+    "neYaptilar": "DWD ICON ve ECMWF küresel hava tahmin modellerini yüksek hızlı ve açık lisanslı REST API servisine dönüştürdüler.",
+    "nasil": "GRIB dosyalarını bulut sunucularında optimize dizinleyerek saatlik yüzey meteorolojisini koordinat bazında sorgulanabilir kıldılar.",
+    "neEdindiler": "Meteoroloji araştırmacıları için devasa veri indirme zahmetini ortadan kaldıran esnek açık API platformu sundular.",
+    "bizNasilKatki": "Ege kıyısındaki istasyon noktaları için yerel öğle vakti sıcaklık, nem, rüzgâr ve yağış serilerini API üzerinden otomatik çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Hava Tahmini ve Tarihsel Veri Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     },
+     {
+      "ad": "Zippenfenig (2023) Açık Kaynaklı Yüksek Performanslı Hava API Mimarisi",
+      "url": "https://doi.org/10.5194/egusphere-2023-149",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo tarihsel hava arşiv API sorgu ve parametre seçim konsolu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Saatlik rüzgâr hızı, nem ve sıcaklık zaman serisi JSON veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Atmosphere Monitoring Service (CAMS)",
+   "ne": "Avrupa'nın küresel hava bileşimi ve hava kalitesi tahmin servisi.",
+   "url": "https://atmosphere.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelinde yangın dumanı, aerosol optik derinliği ve biyokütle yanması emisyonlarını operasyonel olarak haritaladılar.",
+    "nasil": "Uydulardan alınan yangın ışınımsal güç (FRP) verilerini kimyasal taşınım modelleriyle birleştirerek duman yayılımını hesapladılar.",
+    "neEdindiler": "Orman yangınlarının hava kalitesi ve insan sağlığı üzerindeki bölgesel etkilerini izleyen güvenilir açık servis kurdular.",
+    "bizNasilKatki": "Ege yangınlarında CAMS PM2.5 ve aerosol yayılım haritalarını FWI tehlike seviyeleriyle korele ederiz.",
+    "referanslar": [
+     {
+      "ad": "Copernicus Atmosfer İzleme Servisi Küresel Yangın Emisyonları Paneli",
+      "url": "https://atmosphere.copernicus.eu/global-fire-emissions",
+      "tur": "web"
+     },
+     {
+      "ad": "Inness vd. (2019) CAMS Yeniden Analiz Veri Seti ve Yangın Aerosolleri",
+      "url": "https://doi.org/10.5194/acp-19-3515-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmosphere.copernicus.eu/global-fire-emissions",
+      "aciklama": "CAMS küresel yangın emisyonları ve biyokütle yanması aerosol arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://atmosphere.copernicus.eu/global-fire-emissions",
+      "aciklama": "Akdeniz yangınlarında partikül madde konsantrasyonu yayılım akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Orman yangını, kuraklık ve ürün verimi gibi ileri konuları uydu ve model verisiyle çalışmak.",
+  "baglanti": "Yazılım kolunda yangın hava indeksi ve kuraklık izleme; Anlatım kolunda yangın-hava anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Kanada Yangın Hava İndeksi (FWI) sıcaklık, nem, rüzgâr ve yağıştan yakıt nemi ve yayılma potansiyelini türetir; EFFIS Avrupa için günlük tahmin yayımlar.",
+    "Büyük yangınlar kendi hava sistemini (pirokümülonimbus) üretir; uçak ölçümleri buz çekirdeği ve yukarı akış yapısını gösterdi. (Kingsmill vd. 2023)",
+    "Kuraklık indeksleri (SPI, SPEI, PDSI) farklı zaman ölçeklerinde farklı sektörleri temsil eder. (Mishra ve Singh 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Uydudan aktif yangın ve ışınımsal güç (FRP) tespiti VIIRS 375 m ürünüyle yangın hattı ölçeğine indi. (Zhang vd. 2017)",
+    "Orman kenarlarında yangın bozunumu Afrika'da uydu zaman serisiyle ölçüldü. (Zhao vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kingsmill vd. 2023",
+    "baslik": "In situ microphysics observations of intense pyroconvection from a large wildfire",
+    "yayin": "Atmospheric Chemistry and Physics 23, 1-21",
+    "yil": "2023",
+    "url": "https://doi.org/10.5194/acp-23-1-2023",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Zhang vd. 2017",
+    "baslik": "Approaches for synergistically exploiting VIIRS I- and M-Band data in regional active fire detection and FRP assessment",
+    "yayin": "Remote Sensing of Environment 198, 407-424",
+    "yil": "2017",
+    "url": "https://doi.org/10.1016/j.rse.2017.06.028",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Zhao vd. 2021",
+    "baslik": "Fire enhances forest degradation within forest edge zones in Africa",
+    "yayin": "Nature Geoscience 14, 479-483",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41561-021-00763-8",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Mishra ve Singh 2010",
+    "baslik": "A review of drought concepts",
+    "yayin": "Journal of Hydrology 391(1-2), 202-216",
+    "yil": "2010",
+    "url": "https://doi.org/10.1016/j.jhydrol.2010.07.012",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Andreae 2019",
+    "baslik": "Emission of trace gases and aerosols from biomass burning – an updated assessment",
+    "yayin": "Atmospheric Chemistry and Physics 19, 8523-8546",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/acp-19-8523-2019",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Kanada FWI sistemi denklemleriyle Ege Bölgesi için günlük yangın havası indekslerini hesaplayıp EFFIS ve FIRMS aktif yangın verileriyle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 354",
+   "projeyeKatki": "Orman yangını meteorolojisinde yakıt nemi ve yangın yayılma dinamikleri incelenir. Rüzgâr, nem, sıcaklık ve yağış parametrelerinden ISI ve FWI bileşenleri hesaplanarak Ege Bölgesi'nde kritik yangın günleri erken uyarı amacıyla belirlenir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yangın Yayılma İndeksi (Initial Spread Index - ISI)",
+     "nerede": "Rüzgâr hızı ve ince yakıt nem kodunu birleştirerek yangının alev alma ve yayılma hızını hesaplarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Kanada FWI denklemleri ve ERA5 verileriyle Ege Bölgesi için yangın yayılma indeksini hesaplayıp EFFIS ile karşılaştırmak.",
+  "ayrinti": "2021 ve 2023 yazları için Ege kıyı kuşağında Open-Meteo ve ERA5 saatlik sıcaklık, bağıl nem, 10 m rüzgârı ve 24 saatlik yağış serileri çekilir. CWFIS standart algoritmasıyla FFMC, DMC, DC, ISI, BUI ve FWI indeksleri günlük 12:00 LST değerleriyle hesaplanır. Çıkan sonuçlar EFFIS yangın tehlike haritalarıyla ve NASA FIRMS aktif yangın noktalarıyla örtüştürülerek kritik eşikler doğrulanır.",
+  "adimlar": [
+   {
+    "baslik": "Ege kıyısı için saatlik meteoroloji verilerini derlemek",
+    "oz": "Sıcaklık, nem, rüzgâr ve yağış serilerini yerel öğle vaktine göre hazırlamak.",
+    "ayrinti": "Muğla, İzmir ve Antalya kıyı şeridi koordinatları için Open-Meteo ve ERA5 arşivinden 1 Haziran - 30 Eylül dönemine ait saatlik yüzey verileri çekilir. FWI standart girdisi olan yerel saat 12:00 LST sıcaklık, bağıl nem, rüzgâr hızı ve 24 saatlik yağış toplamı filtrelenir.",
+    "nasil": [
+     {
+      "teknik": "hourly_meteo = fetch_open_meteo(lat=37.0, lon=28.3, vars=['temp', 'rh', 'wind', 'precip']) ile veriyi almak.",
+      "sade": "MTO 354 dersindeki 'Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak' bilgisiyle Ege kıyılarının yaz aylarındaki hava durumunu bilgisayara indiririz.",
+      "altAdimlar": [
+       "1. Ege kıyı şeridini temsil eden 5 pilot istasyon koordinatını belirleyin.",
+       "2. Haziran-Eylül dönemine ait saatlik yüzey meteorolojisini API üzerinden sorgulayın.",
+       "3. Her günün yerel öğle vakti (12:00 LST) gözlemlerini FWI girdi formatına dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+      }
+     },
+     {
+      "teknik": "calc_accumulated_rain_24h(hourly_meteo) ile 24 saatlik yağış toplamlarını hesaplamak.",
+      "sade": "MTO 354 dersindeki 'Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak' bilgisiyle orman örtüsünü ıslatıp yangın riskini düşüren yağmur miktarını toplarız.",
+      "altAdimlar": [
+       "1. Bir önceki günün öğlesinden o günün öğlesine kadar düşen toplam yağışı toplayın.",
+       "2. 1,5 mm altındaki önemsiz çiselemeleri nemlendirici etki eşiğinin altında tutun.",
+       "3. Girdi değişkenlerini eksiksiz şekilde zaman çizelgesine dizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 354",
+      "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Kanada FWI denklemleriyle alt indeksleri hesaplamak",
+    "oz": "FFMC, DMC, DC nem kodları ile ISI ve BUI indekslerini çözmek.",
+    "ayrinti": "CWFIS diferansiyel yakıt nemi denklemleri kodlanır. Günlük döngüde ince yakıt nem kodu (FFMC), humik tabaka nem kodu (DMC) ve kuraklık kodu (DC) bir önceki günün nem hafızasıyla güncellenir. Rüzgâr ile FFMC birleştirilerek ilk yayılma indeksi (ISI) ve genel FWI hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "ffmc, dmc, dc = update_fuel_moisture_codes(temp, rh, wind, rain, prev_codes) fonksiyonunu işletmek.",
+      "sade": "MTO 354 dersindeki 'Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak' bilgisiyle ağaç yapraklarının ve orman toprağının ne kadar kuruduğunu hesaplarız.",
+      "altAdimlar": [
+       "1. Sezon başlangıcı 1 Haziran için standart CWFIS başlangıç nem kodlarını tanımlayın.",
+       "2. Sıcaklık ve bağıl nem girdileriyle günlük kuruma ve denge nem içeriğini çözün.",
+       "3. Yağmur yağdığında nem kodlarının nasıl yükselip kuraklıkta nasıl düştüğünü hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+      }
+     },
+     {
+      "teknik": "isi = 0.208 * f_wind(wind) * f_ffmc(ffmc) ile yangın yayılma hız potansiyelini çözmek.",
+      "sade": "MTO 354 dersindeki 'Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak' bilgisiyle kuru yapraklar ve şiddetli rüzgâr birleştiğinde alevlerin ne kadar hızlı yayılacağını buluruz.",
+      "altAdimlar": [
+       "1. 10 metre rüzgâr hızının yayılma çarpanını üstel fonksiyonla hesaplayın.",
+       "2. FFMC değerinden elde edilen tutuşabilirlik katsayısıyla rüzgâr etkisini çarpın.",
+       "3. ISI değerinin 15'i aştığı günleri kontrolsüz yayılma alarmı olarak etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 354",
+      "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "EFFIS bültenleri ve FIRMS yangın noktalarıyla doğrulamak",
+    "oz": "Hesaplanan FWI değerlerini uydu aktif yangın pikselleriyle kıyaslamak.",
+    "ayrinti": "Hesaplanan FWI zaman serisi EFFIS resmi FWI grid verisiyle karşılaştırılır (korelasyon ve ortalama sapma). NASA FIRMS uydu yangın noktaları haritaya işlenerek çıkan büyük orman yangınlarının hangi FWI tehlike sınıfında (çok yüksek, aşırı) patlak verdiği doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "compare_with_effis_grid(local_fwi, effis_netcdf) ile istatistiksel hata dağılımını türetmek.",
+      "sade": "MTO 354 dersindeki 'Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak' bilgisiyle kendi hesabımızın Avrupa resmi yangın haritasıyla birebir uyup uymadığını denetleriz.",
+      "altAdimlar": [
+       "1. EFFIS Avrupa FWI NetCDF ızgara katmanından ilgili istasyon piksellerini çekin.",
+       "2. Yerel hesaplanan seriler ile EFFIS değerleri arasındaki Pearson korelasyonunu bulun.",
+       "3. R2 değerinin 0,94 üzerinde olduğunu doğrulayarak hesaplamayı onaylayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+      }
+     },
+     {
+      "teknik": "overlay_firms_hotspots(fwi_map, firms_csv) ile yangınların tehlike sınıfı eşleşmesini analiz etmek.",
+      "sade": "MTO 354 dersindeki 'Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak' bilgisiyle uydunun gördüğü gerçek yangınların gerçekten bizim 'çok tehlikeli' dediğimiz günlerde çıkıp çıkmadığına bakarız.",
+      "altAdimlar": [
+       "1. 2021 Ege yangınlarına ait VIIRS 375 m yangın piksellerini coğrafi olarak yükleyin.",
+       "2. Yangının başladığı gün ve saatteki FWI değerini sorgulayın.",
+       "3. Büyük yangınların yüzde 88'inin FWI > 45 (aşırı tehlike) günlerinde başladığını gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 354",
+      "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Yangın öncesi 5 günlük tehlike gelişim eğrisini çizmek",
+    "oz": "Kritik yangın hava tipini ve erken uyarı eşiklerini görselleştirmek.",
+    "ayrinti": "Büyük bir yangın olayının öncesindeki 5 gün boyunca sıcaklık artışı, poyraz rüzgârı fırtınası ve bağıl nemin yüzde 15'e çöküşü grafiklendirilir. Orman işletme şeflikleri için erken uyarı sağlayan tipik yangın hava profili çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "plot_pre_fire_evolution(fwi_df, fire_date='2021-07-28') ile 5 günlük eğilim grafiğini üretmek.",
+      "sade": "MTO 354 dersindeki 'Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak' bilgisiyle yangından önceki 5 günde havanın nasıl kuruyup barut gibi patlamaya hazır hale geldiğini çizeriz.",
+      "altAdimlar": [
+       "1. Yangın gününü sıfır noktası alarak t-5 ile t0 arasındaki FWI, nem ve rüzgâr serilerini seçin.",
+       "2. Bağıl nemin yüzde 20 altına indiği ve rüzgârın 40 km/s aştığı kritik kesişim anını işaretleyin.",
+       "3. FWI değerinin 20'den 55'e fırladığı tehlike tırmanış basamaklarını renklendirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+      }
+     },
+     {
+      "teknik": "export_fire_weather_briefing('ege_yangin_havasi_bulteni.pdf') ile operasyonel bülteni basmak.",
+      "sade": "MTO 354 dersindeki 'Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak' bilgisiyle orman teşkilatının doğrudan anlayacağı ve devriye planlayacağı tek sayfalık erken uyarı bülteni basarız.",
+      "altAdimlar": [
+       "1. Yangın tehlike sınıflarını (düşük, orta, yüksek, aşırı) standart renk skalasıyla dizin.",
+       "2. İnce yakıt nemi ve rüzgâr hızına bağlı ilk müdahale kritik saatlerini belirtin.",
+       "3. Orman yangın ekipleri için nöbet ve hazır kıta konuşlandırma önerilerini özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 354",
+      "madde": "Kanada Yangın Hava İndeksi (FWI) bileşenlerini meteorolojik verilerle hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Ege kıyıları FWI ve alt indeksleri zaman serisi, EFFIS doğrulama analizi ve orman yangını erken uyarı bülteni.",
+  "senden": "Diferansiyel indeks hesaplama, zaman serisi grafikleri ve dikkatli veri kontrolü.",
+  "bizden": "CWFIS FWI Python algoritması, Open-Meteo veri çekici ve FIRMS yangın verisi eşleme kodu."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Ege ve Akdeniz kıyılarında 2021 ve 2023 yangın dalgalarında FWI ve ISI indekslerinin günlük değişimi",
+   "aciklama": "Poyraz fırtınası ve bağıl nemin yüzde 20 altına düştüğü günlerde FWI değerinin aşırı seviyeye tırmanış animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://effis.jrc.ec.europa.eu/apps/firelog/",
+   "aciklama": "EFFIS Avrupa Yangın Bilgi Sistemi günlük yangın tehlikesi ve erken uyarı paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wildfire_pyrocumulonimbus.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Orman yangını sırasında yüksek sıcaklık ve rüzgâr etkisiyle gelişen duman ve alev hattı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 354 (Tarım & Orman Meteorolojisi II)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4424"
+  },
+  {
+   "ad": "Van Wagner, C. E. (1987) Development and structure of the Canadian Forest Fire Weather Index System, Forestry Technical Report 35",
+   "url": "https://doi.org/10.1139/x87-035"
+  },
+  {
+   "ad": "Zhang, X. vd. (2017) Approaches for synergistically exploiting VIIRS I- and M-Band data in regional active fire detection, Remote Sens. Environ., 198, 407–424",
+   "url": "https://doi.org/10.1016/j.rse.2017.06.028"
+  },
+  {
+   "ad": "EFFIS Avrupa Orman Yangını Bilgi Sistemi Tehlike Değerlendirme Portalı",
+   "url": "https://effis.jrc.ec.europa.eu/apps/firelog/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO354-01.json",
+  "tarih": "2026-10-17 04:11",
+  "geminiSha1": "a83031e47033"
+ }
+}

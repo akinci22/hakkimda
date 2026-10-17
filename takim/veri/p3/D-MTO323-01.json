@@ -1,0 +1,552 @@
+{
+ "id": "D-MTO323-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 323",
+  "dersAd": "Atmosfer Kimyası",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul'un NO₂ haftası: TROPOMI ile hafta içi-hafta sonu",
+ "ne": "Sentinel-5P TROPOMI troposferik NO₂ sütununu İstanbul için bir yıl boyunca çek; hafta içi/hafta sonu ve rüzgâr yönüne göre ortalama haritaları çıkar.",
+ "adimlar": [
+  "Earth Engine veya Copernicus veri alanından TROPOMI L3 NO₂ ürününü al; bulut kalite bayrağı > 0,75 olanları kullan.",
+  "Günleri hafta içi/hafta sonu diye ayırıp ortalama haritaları üret; farkı yüzde olarak göster.",
+  "ERA5 10 m rüzgârına göre kuzey/güney rüzgârlı günleri ayır; kirlilik dilinin yer değiştirmesini haritala.",
+  "Bir yer istasyonunun (EEA ya da OpenAQ) NO₂ serisiyle uydu sütununu karşılaştır.",
+  "Sonuçları dört haritalık tek poster yap."
+ ],
+ "sonuc": "Hafta içi-hafta sonu NO₂ fark haritası; trafik kaynağının izini uydudan görürsün.",
+ "dayanak": "Nasse vd. 2019",
+ "senden": "Raster işleme ve istatistik.",
+ "bizden": "TROPOMI kalite bayrağı rehberi, rüzgâr sınıflandırma kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 323",
+    "ad": "Atmosfer Kimyası"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ESA Sentinel-5P",
+   "ne": "TROPOMI ile NO₂, CH₄, O₃ gibi gazların uzaydan haritası.",
+   "url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P",
+   "ayrinti": {
+    "neYaptilar": "Kutup yörüngeli Sentinel-5P uydusuyla küresel hava kalitesini ve sera gazlarını günlük 5,5x3,5 km çözünürlükte haritaladılar.",
+    "nasil": "Görünür ve morötesi tayf aralıklarında diferansiyel optik soğurma spektroskopisi algoritmalarıyla iz gaz sütunlarını ölçtüler.",
+    "neEdindiler": "Kentsel emisyon kaynaklarının, endüstriyel tesislerin ve taşınım dillerinin uzaydan net izlenmesini sağlayan devrim niteliğinde veri sundular.",
+    "bizNasilKatki": "İstanbul metropol alanı üzerindeki TROPOMI L3 çevrimdışı ürünlerini kalite bayraklarına göre filtreleyen Python kodu geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "ESA Sentinel-5P Görev ve Platform Portalı",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P",
+      "tur": "web"
+     },
+     {
+      "ad": "Veefkind vd. 2012 TROPOMI Görevi Makalesi",
+      "url": "https://doi.org/10.1016/j.rse.2011.09.027",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P",
+      "aciklama": "ESA Sentinel-5P uydu görevi tanıtımı ve atmosferik veri ürünleri sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P",
+      "aciklama": "Sentinel-5P TROPOMI küresel iz gaz haritaları ve atmosferik gözlem akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "TROPOMI",
+   "ne": "Sentinel-5P'nin ana aleti; veri ve algoritma belgeleri.",
+   "url": "https://www.tropomi.eu/data-products/nitrogen-dioxide",
+   "ayrinti": {
+    "neYaptilar": "Troposferik ve stratosferik NO2 sütunlarını ayrıştıran operasyonel DOAS veri işleme hattını geliştirdiler.",
+    "nasil": "405-465 nm aralığındaki soğurma spektrumlarını hava kütlesi faktörleri ve bulut geri kazanımlarıyla birleştirdiler.",
+    "neEdindiler": "Dünya çapında bilimsel hava kalitesi araştırmalarında ve emisyon denetiminde altın standart kabul edilen açık veri hattı sağladılar.",
+    "bizNasilKatki": "qa_value 0,75 eşiğini uygulayarak kar ve bulut bulaşması olmayan net troposferik NO2 verilerini ayıklarız.",
+    "referanslar": [
+     {
+      "ad": "TROPOMI Azot Dioksit Ürün Algoritma Dokümanı",
+      "url": "https://www.tropomi.eu/data-products/nitrogen-dioxide",
+      "tur": "web"
+     },
+     {
+      "ad": "van Geffen vd. 2022 TROPOMI NO2 Geri Kazanım Makalesi",
+      "url": "https://doi.org/10.5194/amt-15-2037-2022",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.tropomi.eu/data-products/nitrogen-dioxide",
+      "aciklama": "TROPOMI NO2 veri ürünü tanımları ve algoritma teorik temel dokümanları arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul üzerinde haftalık NO2 derişimi değişimi ve trafik yoğunluğu ilişkisi grafiği",
+      "aciklama": "Pazartesi-Cuma iş günleri ile hafta sonu dinlenme günleri arasındaki kirlilik farkı animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google Earth Engine",
+   "ne": "Bulutta petabayt ölçekli uydu analizi.",
+   "url": "https://earthengine.google.com/platform/",
+   "ayrinti": {
+    "neYaptilar": "Sentinel-5P TROPOMI L3 koleksiyonunu günlük güncellemelerle bulut kataloğuna entegre ettiler.",
+    "nasil": "Geniş raster koleksiyonlarını uzamsal ve zamansal filtrelerle saniyeler içinde mozaikleyen paralel mimari sundular.",
+    "neEdindiler": "Şehir ve bölge ölçeğinde uzun vadeli hava kirliliği eğilimlerinin yerel bilgisayara indirilmeden incelenmesini sağladılar.",
+    "bizNasilKatki": "İstanbul için 365 günlük TROPOMI görüntüsünü bulutta indirgemeci filtreyle hafta içi ve sonu kompozitlerine böleriz.",
+    "referanslar": [
+     {
+      "ad": "Google Earth Engine Sentinel-5P Koleksiyon Rehberi",
+      "url": "https://earthengine.google.com/platform/",
+      "tur": "web"
+     },
+     {
+      "ad": "Gorelick vd. 2017 Büyük Coğrafi Veri İşleme Makalesi",
+      "url": "https://doi.org/10.1016/j.rse.2017.06.031",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://earthengine.google.com/platform/",
+      "aciklama": "Google Earth Engine bulut harita arayüzü ve Sentinel-5P katman seçimi paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://earthengine.google.com/platform/",
+      "aciklama": "Bulutta hava kalitesi piksel işleme ve zaman serisi analizi sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "OpenAQ",
+   "ne": "Dünyadaki açık hava kalitesi verisini tek API'de toplayan kâr amacı gütmeyen topluluk.",
+   "url": "https://openaq.org/explore/",
+   "ayrinti": {
+    "neYaptilar": "Devletlerin ve araştırma kurumlarının yer istasyonu ölçümlerini standart REST API ile dünyaya açtılar.",
+    "nasil": "Farklı formatlardaki kamu istasyon verilerini otomatik kazıyıcılarla toplayıp tek tip JSON yapısında sundular.",
+    "neEdindiler": "Dünya çapında hava kirliliği adaleti ve halk sağlığı araştırmalarına evrensel açık veri sağladılar.",
+    "bizNasilKatki": "İstanbul'daki yer istasyonlarının NO2 mikrogram/metreküp serilerini uydu sütun yoğunluğuyla kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "OpenAQ Keşif Portalı ve Açık İstasyon Ağı",
+      "url": "https://openaq.org/explore/",
+      "tur": "web"
+     },
+     {
+      "ad": "Hasenkopf vd. Açık Hava Kalitesi Verisi İncelemesi",
+      "url": "https://doi.org/10.5194/gmd-12-3299-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://openaq.org/explore/",
+      "aciklama": "OpenAQ küresel hava kalitesi istasyonları ve gerçek zamanlı ölçüm haritası arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://openaq.org/explore/",
+      "aciklama": "İstanbul bölgesi yer istasyonları NO2 ve partikül madde zaman serileri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Atmosphere Monitoring Service (CAMS)",
+   "ne": "Avrupa'nın küresel hava bileşimi ve hava kalitesi tahmin servisi.",
+   "url": "https://atmosphere.copernicus.eu/air-quality",
+   "ayrinti": {
+    "neYaptilar": "Uydu gözlemlerini kimyasal taşınım simülasyonlarıyla asimile ederek Avrupa genelinde günlük hava kalitesi tahminleri sundular.",
+    "nasil": "Gelişmiş veri asimilasyonu teknikleriyle yer ve uydu gözlemlerini sayısal atmosfer kimyasıyla birleştirdiler.",
+    "neEdindiler": "Kıta ölçeğinde kirletici sınır ötesi taşınımını ve kentsel arka plan seviyelerini doğru öngören operasyonel servis sağladılar.",
+    "bizNasilKatki": "CAMS bölgesel NO2 analizlerini TROPOMI uydu haritalarımızın bağımsız referansı olarak doğrulamada kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus CAMS Hava Kalitesi Portalı",
+      "url": "https://atmosphere.copernicus.eu/air-quality",
+      "tur": "web"
+     },
+     {
+      "ad": "Inness vd. 2019 CAMS Yeniden Analiz Makalesi",
+      "url": "https://doi.org/10.5194/acp-19-3515-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmosphere.copernicus.eu/air-quality",
+      "aciklama": "CAMS Avrupa hava kalitesi haritası ve kirletici konsantrasyon tahmin paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Bölgesi rüzgâr akış çizgileri ve kirletici dağılım animasyonu",
+      "aciklama": "Kuzeydoğu poyraz ve güneybatı lodos rüzgârlarında kirlilik dilinin yönelimi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Ozon, NO₂ ve aerosollerin nerede, neden oluştuğunu uydu ve yer ölçümüyle izlemek.",
+  "baglanti": "Yazılım kolunda Sentinel-5P ve CAMS verisi; Anlatım kolunda fotokimya animasyonları.",
+  "literatur": {
+   "maddeler": [
+    "Troposferik ozon, NOₓ ve uçucu organik bileşiklerin güneş ışığıyla tepkimesinden oluşur; Master Chemical Mechanism bu zinciri binlerce tepkimeyle tanımlar.",
+    "Aerosoller bulut damlacık sayısını artırarak dolaylı ışınımsal etki yaratır; bu etki iklim belirsizliğinin en büyük kalemlerinden biridir. (Lohmann ve Feichter 2005)",
+    "Biyokütle yanması CO, NOₓ, organik aerosol ve siyah karbon kaynağıdır; emisyon faktörleri yakıt türüne göre büyük fark gösterir. (Andreae 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sentinel-5P/TROPOMI, NO₂ ve CH₄ sütunlarını 5,5×3,5 km çözünürlükte günlük haritalıyor; şehir ve tesis ölçeğinde kaynak tespiti mümkün oldu.",
+    "N₂O'nun küresel bütçesi ilk kez kapsamlı çıkarıldı; tarımsal kaynaklar artışın ana sürücüsü. (Tian vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Lohmann ve Feichter 2005",
+    "baslik": "Global indirect aerosol effects: a review",
+    "yayin": "Atmospheric Chemistry and Physics 5, 715-737",
+    "yil": "2005",
+    "url": "https://doi.org/10.5194/acp-5-715-2005",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Andreae 2019",
+    "baslik": "Emission of trace gases and aerosols from biomass burning – an updated assessment",
+    "yayin": "Atmospheric Chemistry and Physics 19, 8523-8546",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/acp-19-8523-2019",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Tian vd. 2020",
+    "baslik": "A comprehensive quantification of global nitrous oxide sources and sinks",
+    "yayin": "Nature 586, 248-256",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41586-020-2780-0",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Jacob ve Winner 2009",
+    "baslik": "Effect of climate change on air quality",
+    "yayin": "Atmospheric Environment 43(1), 51-63",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Nasse vd. 2019",
+    "baslik": "Recent improvements of long-path DOAS measurements",
+    "yayin": "Atmospheric Measurement Techniques 12, 4149-4169",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/amt-12-4149-2019",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Hoesly vd. 2018",
+    "baslik": "Historical (1750–2014) anthropogenic emissions of reactive gases and aerosols from the Community Emissions Data System (CEDS)",
+    "yayin": "Geoscientific Model Development 11, 369-408",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/gmd-11-369-2018",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Sentinel-5P TROPOMI verileriyle İstanbul'da troposferik NO2 sütununu çıkarıp hafta içi-sonu trafik farkını ve rüzgâr taşınımını haritalamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 323",
+   "projeyeKatki": "Troposferik azot dioksit kirliliği atmosfer kimyası ilkeleriyle incelenir. Diferansiyel optik soğurma sütun yoğunluğu bağıntısı ile TROPOMI L3 spektral verilerinden troposferik NO2 düşey sütun yoğunluğu çıkarılır ve rüzgâr yönüyle taşınım paterni analiz edilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Diferansiyel optik soğurma sütun yoğunluğu bağıntısı",
+     "nerede": "TROPOMI uydusunun troposferik NO2 düşey sütun yoğunluklarını spektral optik derinlikten hesaplarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Google Earth Engine ile bir yıllık TROPOMI NO2 görüntülerini çekip hafta içi-sonu ve rüzgâr yönü kompozitleri üretmek.",
+  "ayrinti": "Sentinel-5P TROPOMI L3 NO2 koleksiyonundan İstanbul için bir yıllık troposferik sütun verileri çekilir. Bulut fraksiyonu 0,25'ten küçük kaliteli pikseller maskelenir; günler hafta içi ve hafta sonu olarak gruplanır. ERA5 10 metre rüzgâr bileşenleriyle poyraz ve lodoslu günler filtrelenerek kirlilik dilinin hareketi haritalanır. Sonuçlar OpenAQ yer istasyonu ölçümleriyle doğrulanır.",
+  "adimlar": [
+   {
+    "baslik": "TROPOMI NO2 koleksiyonunu filtrelemek ve maskelemek",
+    "oz": "Earth Engine'den İstanbul için bir yıllık L3 verisini çekmek.",
+    "ayrinti": "COPERNICUS/S5P/OFFL/L3_NO2 koleksiyonu İstanbul koordinatları üzerinde filtrelenir. Kalite değeri (qa_value) 0,75'ten büyük olan pikseller seçilerek bulut, kar ve hatalı geometriler elenir. Tropospheric_NO2_column_number_density bandı mol/m² biriminden molekül/cm² birimine dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "collection = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_NO2').filterBounds(istanbul_box).filterDate('2023-01-01', '2023-12-31') ile koleksiyonu çağırmak.",
+      "sade": "İstanbul üzerindeki bir yıllık Sentinel-5P uydu görüntülerini bulutta listeleriz.",
+      "altAdimlar": [
+       "1. İstanbul metropol alanını kapsayan koordinat sınır kutusunu belirleyin.",
+       "2. Earth Engine üzerinde ilgili yılın çevrimdışı L3 NO2 koleksiyonunu süzün.",
+       "3. Troposferik NO2 düşey sütun yoğunluğu bandını seçin."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak."
+      }
+     },
+     {
+      "teknik": "def filter_qa(img): return img.updateMask(img.select('tropospheric_NO2_column_number_density_validity').gt(75)) ile kalite maskesi uygulamak.",
+      "sade": "Bulutlu veya güvenilir olmayan piksel ölçümlerini görüntüden ayıklarız.",
+      "altAdimlar": [
+       "1. Görüntünün kalite güvence (qa_value) katmanını inceleyin.",
+       "2. Yüzde 75 eşiğinin altındaki belirsiz pikselleri maskeleyin.",
+       "3. Yalnızca net gökyüzü koşullarındaki temiz kentsel pikselleri koruyun."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Hafta içi ve hafta sonu kompozit haritalarını üretmek",
+    "oz": "Günleri takvim gününe göre ayırıp fark oranını hesaplamak.",
+    "ayrinti": "Koleksiyon Pazartesi-Cuma (hafta içi) ve Cumartesi-Pazar (hafta sonu) olmak üzere iki alt kümeye ayrılır. Her iki kümenin yıllık medyan haritaları hesaplanır. Şehir merkezindeki ve ana arterlerdeki trafik azalmasının NO2 sütunundaki yüzde farkı ((Haftaİçi - HaftaSonu) / Haftaİçi * 100) mekânsal olarak türetilir.",
+    "nasil": [
+     {
+      "teknik": "weekday = collection.filter(ee.Filter.calendarRange(2, 6, 'day_of_week')).median() ile hafta içi medyanını almak.",
+      "sade": "İş günlerinde İstanbul semalarındaki ortalama azot dioksit kirliliğini hesaplarız.",
+      "altAdimlar": [
+       "1. Takvim filtreleriyle haftanın 2 ila 6 arasındaki iş günlerini ayırın.",
+       "2. Piksel düzeyinde medyan indirgeme fonksiyonu çalıştırın.",
+       "3. Kentsel sıcak noktaları ve karayolu güzergâhlarını haritalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak."
+      }
+     },
+     {
+      "teknik": "diff_pct = weekday.subtract(weekend).divide(weekday).multiply(100) ile bağıl fark haritası çıkarmak.",
+      "sade": "Hafta sonu trafiğinin azalmasıyla hava kirliliğinin ne kadar düştüğünü yüzde olarak buluruz.",
+      "altAdimlar": [
+       "1. Hafta sonu medyan haritasını hafta içinden çıkarın.",
+       "2. Değeri hafta içi seviyesine oranlayarak yüzdeye dönüştürün.",
+       "3. Farkın yüzde 30'u aştığı semtleri etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Uçucu organik bileşiklerin ve azot oksitlerin fotokimyasal rejim sınırlamasını analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak."
+     },
+     {
+      "ders": "MTO 323",
+      "madde": "Uçucu organik bileşiklerin ve azot oksitlerin fotokimyasal rejim sınırlamasını analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "ERA5 rüzgâr yönlerine göre kirlilik dilini sınıflandırmak",
+    "oz": "Kuzeydoğu (poyraz) ve güneybatı (lodos) günlerini ayırıp haritalamak.",
+    "ayrinti": "Copernicus ERA5 10 metre u ve v rüzgâr bileşenlerinden İstanbul üzerindeki günlük hâkim rüzgâr açısı hesaplanır. Poyrazlı (kuzeydoğu) günlerde kirlilik dilinin Marmara Denizi'ne, lodoslu (güneybatı) günlerde ise Karadeniz yönüne doğru nasıl sürüklendiği iki ayrı kompozit raster ile gösterilir.",
+    "nasil": [
+     {
+      "teknik": "wind_dir = (270 - np.arctan2(v10, u10) * 180 / np.pi) % 360 formülüyle rüzgâr yönünü bulmak.",
+      "sade": "ERA5 rüzgâr hız bileşenlerinden rüzgârın hangi yönden estiğini derece cinsinden hesaplarız.",
+      "altAdimlar": [
+       "1. ERA5 saatlik u10 ve v10 rüzgâr bileşenlerini indirin.",
+       "2. Trigonometrik dönüşümle meteorolojik rüzgâr yön açısını belirleyin.",
+       "3. Günleri poyraz ve lodos olarak iki temel meteorolojik sınıfa atayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     },
+     {
+      "teknik": "poyraz_no2 = collection.filter(ee.Filter.inList('date', poyraz_dates)).mean() ile taşınım dilini üretmek.",
+      "sade": "Kuzeyden esen rüzgârlarda kirliliğin şehrin güneyine doğru nasıl taşındığını haritalarız.",
+      "altAdimlar": [
+       "1. Poyrazlı günlerin tarihlerini görüntü koleksiyonuna filtre olarak uygulayın.",
+       "2. Ortalama NO2 katmanını oluşturun.",
+       "3. Sanayi ve trafik kaynaklı kirlilik dilinin Marmara üzerindeki uzanımını çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "OpenAQ yer istasyonlarıyla uydu sütununu karşılaştırmak",
+    "oz": "Yerel yüzey NO2 ölçümleriyle TROPOMI sütununu korele etmek.",
+    "ayrinti": "OpenAQ API üzerinden Kadıköy, Ümraniye ve Alibeyköy hava kalitesi istasyonlarının saatlik NO2 verileri çekilir. Uydunun geçiş saati olan 13:30 yerel saat civarındaki yer ölçümleriyle en yakın pikseldeki sütun yoğunlukları eşleştirilerek regresyon saçılım grafiği çizilir.",
+    "nasil": [
+     {
+      "teknik": "st_data = requests.get('https://api.openaq.org/v2/measurements', params={'city': 'Istanbul', 'parameter': 'no2'}).json() ile yer verisi almak.",
+      "sade": "İstanbul'daki zemin istasyonlarının ölçtüğü azot dioksit miktarlarını API üzerinden çekeriz.",
+      "altAdimlar": [
+       "1. OpenAQ arayüzünden İstanbul istasyon koordinatlarını listeleyin.",
+       "2. Yıl boyunca saat 13:00-14:00 arasındaki NO2 konsantrasyonlarını filtreleyin.",
+       "3. Mikrogram/metreküp cinsindeki değerleri zaman damgalarıyla tabloya aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak."
+      }
+     },
+     {
+      "teknik": "r_val = scipy.stats.pearsonr(station_no2, tropomi_column)[0] ile uydu-yer korelasyonunu hesaplamak.",
+      "sade": "Uydunun uzaydan gördüğü değer ile yerdeki sensörün ölçtüğü gaz miktarının uyumunu test ederiz.",
+      "altAdimlar": [
+       "1. İstasyon noktasına denk gelen TROPOMI piksel değerlerini çıkarın.",
+       "2. Eşleşen gün çiftleri için Pearson korelasyon katsayısını hesaplayın.",
+       "3. Saçılım grafiğinde güven aralıklarını gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Dört haritalı özet posteri ve açık analiz defterini derlemek",
+    "oz": "Hafta içi, hafta sonu, poyraz ve lodos haritalarını tek panelde birleştirmek.",
+    "ayrinti": "Matplotlib ve Cartopy ile İstanbul boğaz hattı, otoyollar ve kıyı sınırlarını içeren yüksek çözünürlüklü dört panelli poster figürü oluşturulur. Açıklayıcı renk çubukları, rüzgâr gülleri ve istatistik özetleri eklenerek GitHub deposuna açık Jupyter Notebook olarak diske yazılır.",
+    "nasil": [
+     {
+      "teknik": "fig, axes = plt.subplots(2, 2, figsize=(14, 12), subplot_kw={'projection': ccrs.PlateCarree()}) ile 4 panel kurmak.",
+      "sade": "Dört farklı analiz haritamızı yan yana ve alt alta içeren profesyonel bir poster şablonu hazırlarız.",
+      "altAdimlar": [
+       "1. Cartopy projeksiyonuyla 2x2 harita paneli düzeni oluşturun.",
+       "2. Kıyı sınırlarını ve ana karayollarını katman olarak ekleyin.",
+       "3. Renk paletini bilimsel viridis ve turbo skalalarıyla donatın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     },
+     {
+      "teknik": "plt.savefig('istanbul_tropomi_no2_quad.png', dpi=300, bbox_inches='tight') ile yüksek çözünürlüklü poster basmak.",
+      "sade": "Hazırladığımız harita posterini basıma ve paylaşıma hazır yüksek çözünürlükte dışa aktarırız.",
+      "altAdimlar": [
+       "1. Dört panele ortak renk skalası ve lejant yerleştirin.",
+       "2. Şehir merkezindeki fark yüzdelerini gösteren bilgi kutuları ekleyin.",
+       "3. Görseli 300 DPI kalitesinde diske yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 323",
+       "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 323",
+      "madde": "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için dört panelli NO2 fark ve rüzgâr taşınım posteri, raster işleme Python defteri ve yer istasyonu doğrulama analiz raporu.",
+  "senden": "Raster işleme tecrübesi, Earth Engine Python API bilgisi ve atmosfer kimyası taşınım süreçlerine ilgi.",
+  "bizden": "TROPOMI kalite bayrağı maskeleme şablonu, ERA5 rüzgâr sınıflandırma kodu ve OpenAQ istasyon listesi."
+ },
+ "gorseller": [
+  {
+   "tur": "ekran",
+   "url": "https://www.tropomi.eu/data-products/nitrogen-dioxide",
+   "aciklama": "TROPOMI azot dioksit veri ürünü algoritma ve spektral çözünürlük sayfası"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul üzerinde haftalık NO2 derişimi değişimi ve trafik yoğunluğu ilişkisi grafiği",
+   "aciklama": "Pazartesi-Cuma iş günleri ile hafta sonu dinlenme günleri arasındaki kirlilik farkı animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://openaq.org/explore/",
+   "aciklama": "OpenAQ İstanbul hava kalitesi izleme istasyonları ölçüm verileri akışı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 323 (Atmosfer Kimyası)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=323"
+  },
+  {
+   "ad": "van Geffen, J. et al. (2022) Sentinel-5P TROPOMI NO2 retrieval, AMT, 15, 2037–2060",
+   "url": "https://doi.org/10.5194/amt-15-2037-2022"
+  },
+  {
+   "ad": "Nasse, J.-M. et al. (2019) Recent improvements of long-path DOAS, AMT, 12, 4149–4169",
+   "url": "https://doi.org/10.5194/amt-12-4149-2019"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO323-01.json",
+  "tarih": "2026-10-17 03:37",
+  "geminiSha1": "158128c9b62c"
+ }
+}

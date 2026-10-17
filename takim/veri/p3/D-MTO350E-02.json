@@ -1,0 +1,521 @@
+{
+ "id": "D-MTO350E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 350E",
+  "dersAd": "Air Pollution Fundamentals",
+  "kol": "ikisi"
+ },
+ "ad": "Kendi PM sensörünü kur, düzeltme denklemini bul",
+ "ne": "Sensor.Community tasarımıyla bir PM sensörü kur; yakın resmi istasyonla 1 ay karşılaştırıp nem düzeltmeli kalibrasyon denklemi çıkar.",
+ "adimlar": [
+  "Sensor.Community parça listesiyle (SDS011/PMS5003 + ESP8266) sensörü kur; veriyi ağa gönder.",
+  "En yakın resmi istasyonun saatlik PM2.5 verisini al; sensörle zaman eşle.",
+  "Barkjohn vd. 2021 biçiminde nem içeren doğrusal düzeltme uydur; artıkları incele.",
+  "Yağmurlu, sisli ve kuru günlerde hatayı ayrı ayrı raporla.",
+  "Sensörü bölüm binasına sabitle; canlı grafiği takım sayfasına ekle."
+ ],
+ "sonuc": "Çalışan sensör, kalibrasyon denklemi ve canlı pano.",
+ "dayanak": "Barkjohn vd. 2021",
+ "senden": "Lehim ve temel elektronik.",
+ "bizden": "Parça, istasyon verisi ve kalibrasyon şablonu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 350E",
+    "ad": "Air Pollution Fundamentals"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "Sensor.Community",
+   "ne": "Gönüllülerin kendi yaptığı ince toz sensörleri ağı.",
+   "url": "https://sensor.community/en/sensors/airrohr/",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynaklı donanım bileşenleriyle vatandaşların kendi hava kirliliği istasyonlarını kurmasını sağladılar.",
+    "nasil": "SDS011 lazer partikül sensörü ve NodeMCU mikrodenetleyicisiyle WiFi üzerinden veri toplayan kit tasarladılar.",
+    "neEdindiler": "Dünya genelinde 15 binden fazla aktif açık sensörle en büyük sivil partikül izleme ağını kurdular.",
+    "bizNasilKatki": "Bölüm binamızın dış cephesine kuracağımız açık kaynak kit ile kampüs çevresinde gerçek zamanlı ölçüm üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Sensor.Community Donanım Montaj Rehberi",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "tur": "web"
+     },
+     {
+      "ad": "Wesseling vd. (2019) SDS011 Sensör Performans Değerlendirmesi",
+      "url": "https://doi.org/10.1016/j.atmosenv.2019.116846",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "aciklama": "Sensor.Community açık donanım sensör montaj adımları ve devre şeması"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://sensor.community/en/sensors/airrohr/",
+      "aciklama": "Açık kaynak sensör yazılımı flaşlama ve kablosuz ağ yapılandırma akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "PurpleAir",
+   "ne": "Düşük maliyetli PM sensör ağı girişimi.",
+   "url": "https://www2.purpleair.com/products/purpleair-pa-ii",
+   "ayrinti": {
+    "neYaptilar": "Çift lazer sayaçlı kompakt hava kalitesi sensörleriyle ticari ve kamusal izleme ağı oluşturdular.",
+    "nasil": "Lazer ışın saçılımı yöntemiyle parçacık sayımı yapıp EPA referans istasyonlarıyla nem düzeltme denklemleri geliştirdiler.",
+    "neEdindiler": "Orman yangınları ve kentsel kirlilik dönemlerinde resmi ağları tamamlayan yüksek mekânsal çözünürlüklü veri sundular.",
+    "bizNasilKatki": "PurpleAir için ABD genelinde doğrulanan Barkjohn bağıl nem düzeltme formülünü kendi sensörümüze uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "PurpleAir PA-II Teknik Ürün Kılavuzu",
+      "url": "https://www2.purpleair.com/products/purpleair-pa-ii",
+      "tur": "web"
+     },
+     {
+      "ad": "Barkjohn vd. (2021) PurpleAir Nem Düzeltme Denklemi",
+      "url": "https://doi.org/10.5194/amt-14-4617-2021",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www2.purpleair.com/products/purpleair-pa-ii",
+      "aciklama": "PurpleAir optik partikül sayacı iç yapısı ve sensör kalibrasyon arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www2.purpleair.com/products/purpleair-pa-ii",
+      "aciklama": "Hava kalitesi sensör verisi düzeltme katsayıları ve kalibrasyon paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "OpenAQ",
+   "ne": "Dünyadaki açık hava kalitesi verisini tek API'de toplayan kâr amacı gütmeyen topluluk.",
+   "url": "https://openaq.org/explore/",
+   "ayrinti": {
+    "neYaptilar": "Dünyadaki referans kamu hava izleme istasyonlarını standartlaştırıp sensör kalibrasyonu için açık referans sundular.",
+    "nasil": "Resmi ölçüm ağlarının ham veri akışlarını tek tip koordinat ve zaman formatına getirdiler.",
+    "neEdindiler": "Düşük maliyetli cihazların doğrulanması için evrensel açık yer istasyonu veritabanı oluşturdular.",
+    "bizNasilKatki": "Sensörümüzün yanındaki en yakın resmi istasyonun saatlik PM2.5 değerlerini referans zemin olarak çekeriz.",
+    "referanslar": [
+     {
+      "ad": "OpenAQ İstasyon Keşif ve Veri Erişim Portalı",
+      "url": "https://openaq.org/explore/",
+      "tur": "web"
+     },
+     {
+      "ad": "Hasenkopf vd. (2019) Açık Hava Kalitesi Verisi İncelemesi",
+      "url": "https://doi.org/10.5194/gmd-12-3299-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://openaq.org/explore/",
+      "aciklama": "OpenAQ haritasında İstanbul referans kamu hava kalitesi istasyonları"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://openaq.org/explore/",
+      "aciklama": "Referans istasyon saatlik PM2.5 ölçüm serileri ve zaman eşleme akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Smart Citizen",
+   "ne": "Açık donanım çevre sensör kiti topluluğu (Barselona).",
+   "url": "https://smartcitizen.me/kits",
+   "ayrinti": {
+    "neYaptilar": "Barselona İleri Mimarlık Enstitüsü bünyesinde kentsel çevre için modüler açık sensör kitleri tasarladılar.",
+    "nasil": "Gürültü, sıcaklık, nem ve partikül sensörlerini açık donanım anakartı üzerinde birleştirip kalibre ettiler.",
+    "neEdindiler": "Avrupa genelinde akıllı şehir ve katılımcı çevre araştırmalarında yaygın kullanılan açık platform geliştirdiler.",
+    "bizNasilKatki": "Nem ve sıcaklık değişimlerinin lazer saçılımına etkisini laboratuvar ortamında inceleyen test protokolünü uygularız.",
+    "referanslar": [
+     {
+      "ad": "Smart Citizen Açık Donanım ve Sensör Dokümanları",
+      "url": "https://smartcitizen.me/kits",
+      "tur": "web"
+     },
+     {
+      "ad": "Camprodon vd. (2019) Kentsel Açık Sensör Sistemleri",
+      "url": "https://doi.org/10.1109/JSEN.2019.2939796",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://smartcitizen.me/kits",
+      "aciklama": "Smart Citizen açık donanım çevre kiti sensör modülleri arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://smartcitizen.me/kits",
+      "aciklama": "Sensör kalibrasyon verileri ve mikroiklim etkileşimi paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Clarity",
+   "ne": "Şehirler için sensör ağı girişimi.",
+   "url": "https://www.clarity.io/products/sensing-as-a-service",
+   "ayrinti": {
+    "neYaptilar": "Güneş enerjili hava kalitesi sensörleriyle belediyelere hizmet olarak kentsel izleme altyapısı sundular.",
+    "nasil": "Makine öğrenmesi algoritmalarıyla sensörlerin kirlenme ve nem kaynaklı kaymalarını uzaktan otomatik düzelttiler.",
+    "neEdindiler": "Dünya genelinde 100'den fazla şehirde düşük bakım maliyetli mikro ölçekli hava kalitesi ağı kurdular.",
+    "bizNasilKatki": "Uzaktan veri toplayan sensörümüz için otomatik nem düzeltme rutinini Python ile çevrim içi hale getiririz.",
+    "referanslar": [
+     {
+      "ad": "Clarity Sensör Çözümleri Ürün Sayfası",
+      "url": "https://www.clarity.io/products/sensing-as-a-service",
+      "tur": "web"
+     },
+     {
+      "ad": "Giordano vd. (2021) Düşük Maliyetli Sensörlerde Kalibrasyon",
+      "url": "https://doi.org/10.5194/amt-14-3761-2021",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.clarity.io/products/sensing-as-a-service",
+      "aciklama": "Clarity kentsel hava izleme düğümü ve sensör veri platformu arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Sensör nem kalibrasyon eğrisi ve artık hata analizi animasyonu",
+      "aciklama": "Bağıl nem %70 üzerine çıktığında higroskopik büyüme teriminin düzeltme etkisi grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Kirleticilerin kaynağını, taşınımını ve sağlık etkisini açık veriyle ölçmek.",
+  "baglanti": "Yazılım kolunda sensör ağı ve istasyon verisi; Anlatım kolunda kirlilik epizotu anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "PM2.5, NO₂, O₃, SO₂ ve CO temel kirleticilerdir; WHO 2021 kılavuz değerleri (PM2.5 yıllık 5 µg/m³) çoğu şehirde aşılır.",
+    "Kirlilik epizotları çoğu zaman durağan yüksek basınç, zayıf rüzgâr ve sığ karışım yüksekliğiyle oluşur; meteoroloji emisyon kadar belirleyicidir.",
+    "Çin megakentlerinde kirlilik, ısınma, ulaşım ve sanayinin bölgesel taşınımla birleşmesinden doğar. (Chan ve Yao 2008)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Düşük maliyetli PM sensörleri (PurpleAir) nem düzeltmesiyle düzenleyici izleme kalitesine yaklaşıyor; ABD geneli tek düzeltme denklemi yayımlandı. (Barkjohn vd. 2021)",
+    "Sıcaklık ve kirlilik birlikte ölümlülük yükü oluşturuyor; 2000-2019 küresel değerlendirme uygun olmayan sıcaklığa bağlı ölümleri ülke ülke verdi. (Zhao vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Chan ve Yao 2008",
+    "baslik": "Air pollution in mega cities in China",
+    "yayin": "Atmospheric Environment 42(1), 1-42",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.atmosenv.2007.09.003",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Barkjohn vd. 2021",
+    "baslik": "Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor",
+    "yayin": "Atmospheric Measurement Techniques 14, 4617-4637",
+    "yil": "2021",
+    "url": "https://doi.org/10.5194/amt-14-4617-2021",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Jacob ve Winner 2009",
+    "baslik": "Effect of climate change on air quality",
+    "yayin": "Atmospheric Environment 43(1), 51-63",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Zhao vd. 2021",
+    "baslik": "Global, regional, and national burden of mortality associated with non-optimal ambient temperatures from 2000 to 2019",
+    "yayin": "The Lancet Planetary Health 5(7), e415-e425",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/S2542-5196(21)00081-4",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Chen vd. 2020",
+    "baslik": "The influence of increased population density in China on air pollution",
+    "yayin": "Science of The Total Environment 735, 139456",
+    "yil": "2020",
+    "url": "https://doi.org/10.1016/j.scitotenv.2020.139456",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Sensor.Community kitiyle düşük maliyetli PM sensörü kurup İstanbul resmi istasyonuyla karşılaştırarak bağıl neme bağlı kalibrasyon denklemi geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 350E",
+   "projeyeKatki": "Düşük maliyetli optik partikül sayaçlarının yüksek bağıl nem koşullarında su buharı yoğuşması nedeniyle oluşturduğu pozitif sapma hava kirliliği meteorolojisi prensipleriyle giderilir. Higroskopik düzeltme bağıntısıyla referans istasyon düzeyinde veri kalitesi elde edilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sensör bağıl nem higroskopik düzeltme bağıntısı",
+     "nerede": "Ham optik sensör PM2.5 ölçümlerini ortam bağıl nemine göre referans eşdeğer derişime kalibre ederken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Açık kaynak donanımla optik PM sensörü kurup resmi istasyon verisiyle nem düzeltmeli kalibrasyon denklemi çıkarmak.",
+  "ayrinti": "SDS011 ve ESP8266 donanımıyla Sensor.Community açık kaynak hava izleme kiti birleştirilir. Cihaz İTÜ Ayazağa kampüsünde çalıştırılarak en yakın resmi hava izleme istasyonunun saatlik PM2.5 ve bağıl nem ölçümleriyle eşleştirilir. Barkjohn denklemiyle higroskopik kalibrasyon modeli uydurularak hata payı raporlanır.",
+  "adimlar": [
+   {
+    "baslik": "Sensör donanımını birleştirmek ve bellenimi yüklemek",
+    "oz": "SDS011 partikül ve BME280 nem sensörlerini mikrodenetleyiciye bağlamak.",
+    "ayrinti": "SDS011 lazer partikül sayacı ile BME280 sıcaklık-nem sensörü ESP8266 kartına jumper kablolarla bağlanır. Sensor.Community açık kaynak bellenimi karta flaşlanır ve yerel WiFi ağına bağlanarak her 145 saniyede bir ölçüm göndermesi sağlanır.",
+    "nasil": [
+     {
+      "teknik": "esptool.py --port COM3 write_flash 0x00000 latest_tr.bin ile bellenimi yüklemek.",
+      "sade": "Açık kaynak sensör yazılımını USB kablosu üzerinden mikrodenetleyici çipine aktarırız.",
+      "altAdimlar": [
+       "1. ESP8266 kartını bilgisayara bağlayıp uygun seri haberleşme portunu belirleyin.",
+       "2. Sensor.Community hava izleme bellenim dosyasını komut satırından flaşlayın.",
+       "3. Cihazın ürettiği yerel erişim noktasına bağlanarak yerel kablosuz ağ şifresini girin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Hava kirleticilerinin kaynaklarını, kimyasal bileşimini ve emisyon envanterlerini çözümlemek."
+      }
+     },
+     {
+      "teknik": "wire_i2c(sda=D2, scl=D1) ve uart(rx=D5, tx=D6) ile sensör pin bağlantılarını kurmak.",
+      "sade": "Lazer parçacık sensörü ile sıcaklık-nem duyargacını devre kartına doğru kablolarla bağlarız.",
+      "altAdimlar": [
+       "1. SDS011 lazer modülünün veri pinlerini kartın seri iletişim pinlerine takın.",
+       "2. BME280 bağıl nem sensörünü I2C veri yolu hatlarına bağlayın.",
+       "3. Devreyi su geçirmez koruma kutusu içine yerleştirip bölüm binası penceresine sabitleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Düşük maliyetli partikül sensörü verilerine bağıl nem düzeltmesi uygulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 350E",
+      "madde": "Düşük maliyetli partikül sensörü verilerine bağıl nem düzeltmesi uygulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Sensör ve resmi istasyon verilerini eşzamanlamak",
+    "oz": "Kampüs sensörü ile en yakın kamu istasyonunun saatlik serilerini birleştirmek.",
+    "ayrinti": "Sensörümüzün buluta gönderdiği dakikalık PM2.5 ve bağıl nem ölçümleri çekilerek saatlik ortalamalara dönüştürülür. OpenAQ API üzerinden çekilen Sarıyer/Maslak resmi izleme istasyonu saatlik verileriyle zaman ekseninde birebir eşleştirilir.",
+    "nasil": [
+     {
+      "teknik": "df_sensor = pd.read_json(api_url).resample('1h', on='timestamp').mean() ile saatlik ortalama almak.",
+      "sade": "Dakika başı gelen ham sensör ölçümlerini saatlik tek bir ortalama değere dönüştürürüz.",
+      "altAdimlar": [
+       "1. Sensör veri tabanından bir aylık ham ölçüm zaman serisini indirin.",
+       "2. Saatlik zaman pencerelerine göre aritmetik ortalama alarak gürültüyü azaltın.",
+       "3. Ölçüm tablosundaki sıcaklık ve bağıl nem sütunlarını eşleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak."
+      }
+     },
+     {
+      "teknik": "df_kalib = pd.merge(df_sensor, df_ref, left_index=True, right_index=True) ile serileri eşleştirmek.",
+      "sade": "Kendi sensörümüz ile devletin resmi ölçüm aletinin aynı saatteki sonuçlarını yan yana koyarız.",
+      "altAdimlar": [
+       "1. Resmi kamu istasyonunun saatlik PM2.5 referans sütununu tabloya dahil edin.",
+       "2. Her iki cihazın da eksiksiz çalıştığı ortak saatleri filtreleyin.",
+       "3. Ham sensör okumasının resmi istasyondan ne kadar saptığını saçılım grafiğinde inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 350E",
+      "madde": "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Higroskopik bağıl nem düzeltme denklemini türetmek",
+    "oz": "Barkjohn regresyon modelini uydurarak kalibrasyon katsayılarını bulmak.",
+    "ayrinti": "Bağıl nem %70'i aştığında partiküllerin su çekerek büyümesi optik sensörün PM2.5 değerini yapay olarak yükseltir. Scikit-learn ile ham sensör verisi ve bağıl nem terimi [RH² / (1 - RH)] bağımsız değişken olarak referans PM2.5 derişimine çoklu doğrusal regresyonla uydurulur.",
+    "nasil": [
+     {
+      "teknik": "X = np.column_stack([df['pm_raw'], (df['rh']/100)**2 / (1 - df['rh']/100)]) ile öznitelik matrisi kurmak.",
+      "sade": "Sensörün ham değeriyle nemin karesel büyüme terimini matematiksel girdi olarak hazırlarız.",
+      "altAdimlar": [
+       "1. Yüzde cinsinden ölçülen bağıl nemi 0 ile 1 arasındaki ondalık fraksiyona çevirin.",
+       "2. Nem terimini higroskopik parçacık büyüme formülüne göre hesaplayın.",
+       "3. Model matrisine sabit terim için birler sütunu ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Düşük maliyetli partikül sensörü verilerine bağıl nem düzeltmesi uygulamak."
+      }
+     },
+     {
+      "teknik": "model = LinearRegression().fit(X, df['pm_ref']) ile kalibrasyon katsayılarını çözmek.",
+      "sade": "Resmi istasyon değerlerini hedef alarak sensörümüze özel kalibrasyon katsayılarını hesaplarız.",
+      "altAdimlar": [
+       "1. En küçük kareler algoritmasıyla a, b ve c regresyon katsayılarını çözün.",
+       "2. Kalibre edilmiş derişim ile referans ölçüm arasındaki R² başarı oranını belirleyin.",
+       "3. Düzeltme denklemini Python fonksiyonu haline getirerek sensör koduna gömün."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Düşük maliyetli partikül sensörü verilerine bağıl nem düzeltmesi uygulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 350E",
+      "madde": "Düşük maliyetli partikül sensörü verilerine bağıl nem düzeltmesi uygulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Artık hataları analiz etmek ve canlı panoya bağlamak",
+    "oz": "Kuru ve nemli günlerde hata farklarını raporlayıp canlı akışa geçirmek.",
+    "ayrinti": "Kuru, sisli ve yağmurlu günlerde ortalama mutlak hata (MAE) ve kök ortalama kare hata (RMSE) ayrı ayrı incelenir. Düzeltme denklemi uygulanmış temiz veri akışı takım web sitesindeki canlı gösterge paneline bağlanır.",
+    "nasil": [
+     {
+      "teknik": "rmse = np.sqrt(mean_squared_error(df['pm_ref'], df['pm_kor'])) ile hata metriklerini hesaplamak.",
+      "sade": "Kalibre edilmiş ölçümün resmi istasyona ne kadar yaklaştığını matematiksel hatayla ölçeriz.",
+      "altAdimlar": [
+       "1. Düzeltme öncesi ve sonrası RMSE ve MAE hata değerlerini hesaplayın.",
+       "2. Bağıl nemin %80'in üzerinde olduğu saatlerde hatanın yarı yarıya azaldığını doğrulayın.",
+       "3. Model artıklarının normal dağılım gösterip göstermediğini test edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak."
+      }
+     },
+     {
+      "teknik": "app.layout = html.Div([dcc.Graph(figure=live_fig)]) ile canlı panel oluşturmak.",
+      "sade": "Sensörün neme göre düzeltilmiş anlık hava kalitesi değerlerini takımın web paneline aktarırız.",
+      "altAdimlar": [
+       "1. Anlık gelen her ham ölçüme kalibrasyon fonksiyonunu uygulayın.",
+       "2. Hava kalitesi indeksi renk skalasıyla kampüs PM2.5 grafiğini çizin.",
+       "3. Paneli takım web sitesinin ilgili sekmesinde canlı yayına açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 350E",
+       "madde": "Hava kirleticilerinin kaynaklarını, kimyasal bileşimini ve emisyon envanterlerini çözümlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 350E",
+      "madde": "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak."
+     },
+     {
+      "ders": "MTO 350E",
+      "madde": "Hava kirleticilerinin kaynaklarını, kimyasal bileşimini ve emisyon envanterlerini çözümlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Kalibre edilmiş çalışan kampüs PM sensörü, nem düzeltme denklemi Python defteri ve canlı hava kalitesi gösterge panosu.",
+  "senden": "Temel elektronik birleştirme, mikrodenetleyici programlama ve Python regresyon deneyimi.",
+  "bizden": "Sensor.Community donanım listesi, resmi istasyon veri eşleme şablonu ve higroskopik düzeltme fonksiyonları."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul kampüs çevresi düşük maliyetli sensör ve bağıl nem zaman serisi düzeltme animasyonu",
+   "aciklama": "Sisli ve nemli saatlerdeki ham ölçüm ile kalibre edilmiş PM2.5 derişiminin dinamik karşılaştırması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://sensor.community/en/sensors/airrohr/",
+   "aciklama": "Sensor.Community açık kaynak sensör kurulum kılavuzu ve küresel harita arayüzü"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Particulate_matter_sensor_SDS011.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Lazer saçılım prensibiyle çalışan optik parçacık sensörü donanımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 350 (Air Pollution Fundamentals)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=350"
+  },
+  {
+   "ad": "Barkjohn, K. K. vd. (2021) Development and application of a United States-wide correction for PM2.5, AMT, 14, 4617–4637",
+   "url": "https://doi.org/10.5194/amt-14-4617-2021"
+  },
+  {
+   "ad": "Chan, C. K. ve Yao, X. (2008) Air pollution in mega cities in China, Atmos. Environ., 42(1), 1–42",
+   "url": "https://doi.org/10.1016/j.atmosenv.2007.09.003"
+  },
+  {
+   "ad": "Jacob, D. J. ve Winner, D. A. (2009) Effect of climate change on air quality, Atmos. Environ., 43(1), 51–63",
+   "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051"
+  },
+  {
+   "ad": "Zhao, Q. vd. (2021) Global burden of mortality associated with non-optimal ambient temperatures, Lancet Planet Health, 5(7), e415–e425",
+   "url": "https://doi.org/10.1016/S2542-5196(21)00081-4"
+  },
+  {
+   "ad": "Chen, J. vd. (2020) The influence of increased population density on air pollution, Sci. Total Environ., 735, 139456",
+   "url": "https://doi.org/10.1016/j.scitotenv.2020.139456"
+  },
+  {
+   "ad": "Sensor.Community Açık Donanım Dokümanları",
+   "url": "https://sensor.community/en/sensors/airrohr/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO350E-02.json",
+  "tarih": "2026-10-17 03:44",
+  "geminiSha1": "f31937f5cea6"
+ }
+}

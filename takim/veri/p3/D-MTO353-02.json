@@ -1,0 +1,465 @@
+{
+ "id": "D-MTO353-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 353",
+  "dersAd": "Tarım ve Orman Meteorolojisi I",
+  "kol": "ikisi"
+ },
+ "ad": "Bir tarlanın suyu: FAO Penman-Monteith ile sulama takvimi",
+ "ne": "Bir deneme tarlası için günlük referans evapotranspirasyonu hesapla, uydudan (OpenET/ECOSTRESS) gerçek ET ile karşılaştır, sulama takvimi öner.",
+ "adimlar": [
+  "Tarla konumunu ve ürünü seç; Open-Meteo'dan radyasyon, rüzgâr, nem, sıcaklık al.",
+  "FAO-56 Penman-Monteith ile ET₀ hesapla; ürün katsayısıyla ETc'ye çevir.",
+  "ECOSTRESS veya LSA SAF ET ürünüyle 10 günlük toplamları karşılaştır.",
+  "Yağışı düşerek toprak su bütçesini günlük yürüt; sulama günlerini belirle.",
+  "Arable gibi tarla sensörü firmalarının yöntemini kendi sonucunla kıyasla."
+ ],
+ "sonuc": "Su bütçesi defteri ve sulama takvimi; tarım meteorolojisinin en çok istenen ürünü.",
+ "dayanak": "Friedrich vd. 2018",
+ "senden": "Denklem uygulama ve veri birleştirme.",
+ "bizden": "ET₀ kodu, Kc tabloları.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 353",
+    "ad": "Tarım ve Orman Meteorolojisi I"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "OpenET",
+   "ne": "Uydudan tarla ölçeğinde evapotranspirasyon (ABD batısı).",
+   "url": "https://openetdata.org/",
+   "ayrinti": {
+    "neYaptilar": "Landsat ve Sentinel-2 uydularını çoklu yer yüzeyi enerji dengesi algoritmalarıyla birleştirerek çeyrek dönüm çözünürlükte günlük ve aylık tarla su tüketimi haritaları sundular.",
+    "nasil": "Altı farklı uydu tabanlı evapotranspirasyon modelini topluluk (ensemble) yaklaşımıyla işleyerek su hakları ve sulama yönetimi için tekil doğruluk sağladılar.",
+    "neEdindiler": "Kurak batı eyaletlerinde çiftçilerin ve su havzası yöneticilerinin sulama suyunu %15-20 oranında daha tasarruflu kullanmasını sağlayan açık platform kurdular.",
+    "bizNasilKatki": "OpenET topluluk mantığını yerel meteorolojik istasyon verileriyle kıyaslayarak Trakya mısır ve ayçiçeği tarlaları için açık referans doğrulama kütüphanesi yazarız.",
+    "referanslar": [
+     {
+      "ad": "Melton vd. (2021) OpenET Uydu Tabanlı Evapotranspirasyon Mimarisi",
+      "url": "https://doi.org/10.1111/1752-1688.12956",
+      "tur": "makale"
+     },
+     {
+      "ad": "OpenET Çiftlik Ölçeğinde Su Verisi Rehberi",
+      "url": "https://openetdata.org/methodologies/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Evapotranspiration_systems.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Toprak-bitki-atmosfer sisteminde evapotranspirasyon döngüsü ve su buharı akısı şeması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://openetdata.org/methodologies/",
+      "aciklama": "OpenET etkileşimli harita arayüzü ve tarla bazlı evapotranspirasyon zaman serisi paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA ECOSTRESS",
+   "ne": "ISS'ten bitki sıcaklığı ve evapotranspirasyon ölçümü.",
+   "url": "https://ecostress.jpl.nasa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Uluslararası Uzay İstasyonu üzerine yerleştirilen yüksek çözünürlüklü termal radyometre ile bitki örtüsünün sıcaklığını ve kuraklık stresini günün farklı saatlerinde ölçtüler.",
+    "nasil": "Termal kızılötesi bantlardan elde edilen yüzey sıcaklığı verisini enerji dengesi denklemlerine sokarak bitkilerin su stresine girdiği anları evapotranspirasyon düşüşüyle tespit ettiler.",
+    "neEdindiler": "Sulama ihtiyacını mahsulün solma noktasına ulaşmasından günler önce haber veren küresel termal tarım izleme ağı oluşturdular.",
+    "bizNasilKatki": "ECOSTRESS termal radyometre verilerini Penman-Monteith toprak su bütçesi çıktılarımızla eşleştirip su stresi indisi (CWSI) haritası üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Fisher vd. (2020) NASA ECOSTRESS Görevi ve Bitki Su Stresi",
+      "url": "https://doi.org/10.1029/2019WR026058",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA JPL ECOSTRESS Bilimsel Ürün Kataloğu",
+      "url": "https://ecostress.jpl.nasa.gov/science",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:ECOSTRESS_thermal_image.jpg",
+      "lisans": "NASA",
+      "aciklama": "NASA ECOSTRESS termal radyometresi ile taranan tarımsal havza sıcaklık dağılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://ecostress.jpl.nasa.gov/",
+      "aciklama": "NASA JPL ECOSTRESS tarımsal kuraklık izleme ve veri erişim portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "LSA SAF",
+   "ne": "Meteosat'tan arazi yüzeyi ürünleri (LST, evapotranspirasyon, yangın).",
+   "url": "https://landsaf.ipma.pt/",
+   "ayrinti": {
+    "neYaptilar": "EUMETSAT yer gözlem uyduları üzerinden 30 dakikalık periyotlarla arazi yüzey sıcaklığı ve günlük referans evapotranspirasyon ürünlerini operasyonel olarak ürettiler.",
+    "nasil": "Meteosat SEVIRI algılayıcısının güneş ve termal kanallarını fiziksel radyasyon aktarım modelleriyle işleyerek tüm Avrupa ve Akdeniz havzası için 3 km çözünürlükte ET haritaları sundular.",
+    "neEdindiler": "Kuraklık erken uyarısı ve kıtasal su kaynakları planlamasında sürekli 20 yıllık yüksek zamansal çözünürlüklü klimatolojik veri tabanı sağladılar.",
+    "bizNasilKatki": "LSA SAF 30 dakikalık ET verilerini FAO-56 Penman-Monteith günlük hesaplarımızla karşılaştırıp istasyon bazlı uydu doğrulaması gerçekleştiririz.",
+    "referanslar": [
+     {
+      "ad": "Trigo vd. (2011) EUMETSAT LSA SAF Arazi Yüzeyi Ürünleri",
+      "url": "https://doi.org/10.5194/acp-11-8571-2011",
+      "tur": "makale"
+     },
+     {
+      "ad": "LSA SAF Günlük Evapotranspirasyon (DMET) Algoritma Raporu",
+      "url": "https://landsaf.ipma.pt/en/products/energy-fluxes/dmet/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Meteosat_weather_satellite.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "EUMETSAT Meteosat geostationary meteoroloji uydusu yörünge görseli"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://landsaf.ipma.pt/en/products/energy-fluxes/dmet/",
+      "aciklama": "LSA SAF arazi yüzeyi analizleri ve günlük evapotranspirasyon dağılım paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Arable",
+   "ne": "Tarla içi hava + bitki sensörü girişimi.",
+   "url": "https://www.arable.com/product/",
+   "ayrinti": {
+    "neYaptilar": "Tarla ortasına çakılan hepsi-bir-arada Arable Mark IoT cihazıyla mikroiklim, net radyasyon, bitki taç sıcaklığı ve klorofil içeriğini eşzamanlı ölçen sistem kurdular.",
+    "nasil": "Termopil sensörler, aşağı/yukarı bakan spektrometre ve akustik yağmur algılayıcısını hücresel veriyle buluta bağlayıp Penman-Monteith denklemini yerinde çözdüler.",
+    "neEdindiler": "Dünya genelinde 40'tan fazla ülkede tarım işletmelerine parsel bazlı optimize sulama ve ilaçlama zamanlaması sağlayan pazar lideri AgTech şirketi oldular.",
+    "bizNasilKatki": "Arable'ın akustik ve optik sensör parametrelerini açık hava istasyonu verilerimizle sentetik olarak hesaplayıp sanal bir tarla sensörü Python sınıfı türetiriz.",
+    "referanslar": [
+     {
+      "ad": "Arable Akıllı Tarım ve Tarla Sensörü Mimarisi",
+      "url": "https://www.arable.com/product/",
+      "tur": "web"
+     },
+     {
+      "ad": "Bwambale vd. (2022) Akıllı Tarım IoT Sensörleri İncelemesi",
+      "url": "https://doi.org/10.1016/j.compag.2022.106832",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Trakya tarım arazisi günlük buharlaşma açığı ve sulama eşiği animasyonu",
+      "aciklama": "Net radyasyon ve buhar basıncı açığına bağlı günlük referans su tüketim salınımı grafiği"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.arable.com/product/",
+      "aciklama": "Arable tarla hava istasyonu ve ürün su stresi gösterge ekranı arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "FAO AQUASTAT",
+   "ne": "Küresel su ve tarım istatistikleri.",
+   "url": "https://www.fao.org/aquastat/en/databases/",
+   "ayrinti": {
+    "neYaptilar": "Birleşmiş Milletler Gıda ve Tarım Örgütü bünyesinde dünya ülkelerinin su kaynakları, tarımsal sulama alanları ve su çekim miktarlarını kapsayan standart küresel veri tabanı yönettiler.",
+    "nasil": "Ülkelerin hidrolojik istatistiklerini, ürün katsayılarını (Kc) ve nehir havzası sulama verimliliklerini FAO-56 standart metodolojisiyle derleyip kamuya açtılar.",
+    "neEdindiler": "Küresel su kıtlığı ve tarımsal su tüketimi politikalarında tüm akademik ve kamusal kuruluşların kullandığı ana referans kaynağını oluşturdular.",
+    "bizNasilKatki": "FAO AQUASTAT ürün katsayısı tablolarını ve Türkiye su kullanım kotalarını modelimizin sulama kısıtları modülüne dahil ederiz.",
+    "referanslar": [
+     {
+      "ad": "FAO AQUASTAT Küresel Su Bilgi Sistemi Portalı",
+      "url": "https://www.fao.org/aquastat/en/",
+      "tur": "web"
+     },
+     {
+      "ad": "Allen vd. (1998) FAO Sulama ve Drenaj Rehberi 56",
+      "url": "https://www.fao.org/land-water/databases-and-software/crop-information/crop-water-needs/en/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Center_pivot_irrigation.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Büyük ölçekli dairesel tarla sulama sistemi ve ürün su döngüsü uygulaması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.fao.org/aquastat/",
+      "aciklama": "BM FAO AQUASTAT küresel tarımsal su tüketimi ve sulama istatistikleri veri tabanı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Hava ile bitki arasındaki ilişkiyi (büyüme derece-günü, don, evapotranspirasyon) sayıya dökmek.",
+  "baglanti": "Yazılım kolunda uydu + istasyon verisiyle tarla ölçeği analiz; Anlatım kolunda çiftçiye yönelik kısa anlatımlar.",
+  "literatur": {
+   "maddeler": [
+    "Büyüme derece-günü (GDD), günlük ortalama sıcaklığın taban sıcaklığını aşan kısmının toplamıdır; fenolojik evreleri öngörmede temel ölçüttür.",
+    "Referans evapotranspirasyon FAO Penman-Monteith denklemiyle hesaplanır; net radyasyon, rüzgâr ve buhar basıncı açığı girdidir.",
+    "Ekolojik uygulamalar için gridli günlük meteoroloji (gridMET) istasyon verisini yeniden analizle birleştirir. (Abatzoglou 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Uydudan tarla ölçeğinde evapotranspirasyon (OpenET) sulama yönetiminde açık veri olarak kullanılıyor.",
+    "Sentinel-1/2 birleşimi ürün türünü sezon başında haritalıyor; tarım meteorolojisi uydu zaman serisiyle birleşti. (Valero vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Abatzoglou 2013",
+    "baslik": "Development of gridded surface meteorological data for ecological applications and modelling",
+    "yayin": "International Journal of Climatology 33(1), 121-131",
+    "yil": "2013",
+    "url": "https://doi.org/10.1002/joc.3413",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Holzkämper vd. 2013",
+    "baslik": "Identifying climatic limitations to grain maize yield potentials using a suitability evaluation approach",
+    "yayin": "Agricultural and Forest Meteorology 168, 149-159",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/j.agrformet.2012.09.004",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Valero vd. 2021",
+    "baslik": "Synergy of Sentinel-1 and Sentinel-2 Imagery for Early Seasonal Agricultural Crop Mapping",
+    "yayin": "Remote Sensing 13(23), 4891",
+    "yil": "2021",
+    "url": "https://doi.org/10.3390/rs13234891",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Friedrich vd. 2018",
+    "baslik": "Reservoir Evaporation in the Western United States",
+    "yayin": "Bulletin of the American Meteorological Society 99(1), 167-187",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/BAMS-D-15-00224.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Open-Meteo verileri ve FAO-56 Penman-Monteith formülüyle günlük referans evapotranspirasyonu hesaplayıp toprak su bütçesine göre dinamik sulama takvimi oluşturmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 353",
+   "projeyeKatki": "Toprak-bitki-atmosfer su döngüsünde referans evapotranspirasyon ve mahsul katsayıları agrometeoroloji bağıntılarıyla belirlenir. Penman-Monteith denklemi ve toprak su bütçesi formülleriyle tarlanın günlük net sulama açığı hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "FAO-56 Penman-Monteith referans evapotranspirasyon denklemi",
+     "nerede": "Net radyasyon, sıcaklık, rüzgâr ve buhar basıncı açığı girdileriyle standart yüzeyden günlük su kaybını mm cinsinden hesaplarken kullanılır."
+    },
+    {
+     "formulAd": "Bitki su bütçesi ve kök bölgesi su açığı bağıntısı",
+     "nerede": "Yağış, yüzey akışı ve mahsul evapotranspirasyonunu bir önceki günün rezervine ekleyerek sulama eşiğinin aşıldığı kritik günleri saptarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Open-Meteo verileri ve FAO-56 Penman-Monteith formülüyle günlük su bütçesini hesaplayıp sulama takvimi çıkarmak.",
+  "ayrinti": "Trakya'da seçilen bir mısır tarlası için Open-Meteo API üzerinden saatlik radyasyon, sıcaklık, nem ve rüzgâr verileri çekilir. FAO-56 Penman-Monteith denklemiyle günlük ET0 hesaplanarak fenolojik ürün katsayısı Kc ile ETc'ye dönüştürülür. Kök bölgesi toprak su bütçesi günlük işletilip kritik tükenme eşiği (%50) aşıldığında sulama tetikleyen otomatik sulama takvimi üretilir.",
+  "sonuc": "Tarlanın 120 günlük büyüme sezonu boyunca su tüketimini ve net sulama günlerini gösteren etkileşimli Python su bütçesi defteri.",
+  "adimlar": [
+   {
+    "baslik": "Meteorolojik verileri çekmek ve radyasyon bütçesini kurmak",
+    "oz": "Open-Meteo API'den saatlik radyasyon, sıcaklık, rüzgâr ve bağıl nemi indirmek.",
+    "ayrinti": "Trakya koordinatları için ekimden hasada kadar olan 120 günlük dönemde saatlik güneşlenme, 2 metre sıcaklığı, çiy noktası ve rüzgâr hızı verileri yerel DataFrame'e aktarılır. Günlük net radyasyon (Rn) ve toprak ısı akısı (G) FAO standartlarına göre türetilir.",
+    "nasil": [
+     {
+      "teknik": "requests.get ile Open-Meteo saatlik shortwave_radiation ve temperature_2m dizilerini indirmek.",
+      "sade": "MTO 353 dersindeki 'FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak' bilgisiyle tarlanın maruz kaldığı güneş enerjisi ve hava durumunu internetten çekeriz.",
+      "altAdimlar": [
+       "1. Tarlanın enlem ve boylam koordinatlarını belirleyip API sorgu parametrelerini yapılandırın.",
+       "2. Gelen saatlik JSON verisini Pandas DataFrame formatına dönüştürüp günlük toplamlara indirgeyin.",
+       "3. Eksik veya hatalı sensör ölçümlerini zaman serisi enterpolasyonuyla temizleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak."
+      }
+     },
+     {
+      "teknik": "Rn = (1 - alfa) * Rs - Rnl formülüyle günlük net radyasyon dengesini hesaplamak.",
+      "sade": "MTO 353 dersindeki 'Tarım ve orman meteorolojisinin fiziksel ilkelerini ve atmosfer etkileşimlerini analiz etmek' bilgisiyle güneşten gelen ısı ile topraktan uzaya kaçan ısının farkını buluruz.",
+      "altAdimlar": [
+       "1. Gelen kısa dalga güneş ışınımını referans çim albedosu (0.23) ile çarparak net kısa dalga akısını bulun.",
+       "2. Stefan-Boltzmann yasası ve buhar basıncı ile net uzun dalga radyasyon kaybını hesaplayın.",
+       "3. Net radyasyon dengesini MJ/(m² gün) birimine çevirerek Penman-Monteith için hazır hale getirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Tarım ve orman meteorolojisinin fiziksel ilkelerini ve atmosfer etkileşimlerini analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "FAO-56 Penman-Monteith ile referans ET0 hesaplamak",
+    "oz": "Günlük referans evapotranspirasyon değerini mm/gün olarak hesaplamak.",
+    "ayrinti": "Hava sıcaklığı, rüzgâr hızı, doymuş ve aktüel buhar basıncı ile psikrometrik katsayı birleştirilerek günlük ET0 serisi üretilir. Buhar basıncı açığının (VPD) buharlaşma üzerindeki aerodinamik sürükleme etkisi incelenir.",
+    "nasil": [
+     {
+      "teknik": "Delta = 4098 * es / (T + 237.3)^2 ve gamma = 0.665e-3 * P formülleriyle katsayıları hesaplamak.",
+      "sade": "MTO 353 dersindeki 'FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak' bilgisiyle havanın su tutma kapasitesinin sıcaklıkla nasıl değiştiğini formüle ederiz.",
+      "altAdimlar": [
+       "1. Günlük ortalama sıcaklığa bağlı olarak doymuş buhar basıncı eğrisinin eğimini (Delta) türetin.",
+       "2. İstasyon rakımına göre yerel atmosfer basıncını ve psikrometrik sabiti (gamma) hesaplayın.",
+       "3. Ölçülen bağıl nemden aktüel buhar basıncını çıkararak buhar basıncı açığını (es - ea) bulun."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak."
+      }
+     },
+     {
+      "teknik": "FAO-56 tam Penman-Monteith denkliğini vektörel NumPy dizileriyle çözmek.",
+      "sade": "MTO 353 dersindeki 'FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak' bilgisiyle tarlanın her gün havaya ne kadar su buharı saldığını milimetre cinsinden hesaplarız.",
+      "altAdimlar": [
+       "1. Radyasyon terimi ile aerodinamik terimi formülde yerlerine koyarak pay ve payda hesaplarını yapın.",
+       "2. Günlük referans evapotranspirasyonu (ET0) tüm büyüme dönemi boyunca hesaplayın.",
+       "3. Çıkan günlük ET0 eğrisini mevsimsel trend grafiğinde görselleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Ürün katsayısı Kc ile mahsul su tüketimini (ETc) türetmek",
+    "oz": "Fenolojik evrelere göre dinamik Kc eğrisi kurup ETc = Kc * ET0 hesaplamak.",
+    "ayrinti": "Mısır mahsulü için başlangıç (Kc_ini = 0.3), orta sezon (Kc_mid = 1.2) ve son sezon (Kc_end = 0.35) katsayıları gün bazında enterpolasyonla birleştirilir. Tarlanın gerçek günlük su ihtiyacı olan ETc serisi elde edilir.",
+    "nasil": [
+     {
+      "teknik": "np.piecewise ile başlangıç, gelişme, orta ve son dönem Kc katsayı fonksiyonunu kurmak.",
+      "sade": "MTO 353 dersindeki 'Mahsul büyümesi ile sıcaklık ve radyasyon arasındaki ilişkiyi ve fenolojik evreleri çözümlemek' bilgisiyle bitkinin büyüdükçe nasıl daha çok su tükettiğini adım adım modelleriz.",
+      "altAdimlar": [
+       "1. Mısır için ekimden çıkışa, tepe püskülü dönemine ve olgunlaşmaya kadar geçen gün sayılarını tanımlayın.",
+       "2. Evreler arasında doğrusal geçişler uygulayarak 120 günlük sürekli Kc eğrisi türetin.",
+       "3. Günlük ET0 değerlerini Kc katsayısı ile çarparak mahsul evapotranspirasyonunu (ETc) hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Mahsul büyümesi ile sıcaklık ve radyasyon arasındaki ilişkiyi ve fenolojik evreleri çözümlemek."
+      }
+     },
+     {
+      "teknik": "NASA ECOSTRESS veya LSA SAF uydu ET tahminleriyle hesaplanan ETc serisini doğrulamak.",
+      "sade": "MTO 353 dersindeki 'FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak' bilgisiyle matematiksel hesaplarımızı uydudan alınan gerçek ölçümlerle karşılaştırıp test ederiz.",
+      "altAdimlar": [
+       "1. Tarlanın bulunduğu piksel için uydu evapotranspirasyon ürününü indirip tarih bazında eşleştirin.",
+       "2. Penman-Monteith ETc ile uydu ET serisi arasındaki korelasyonu (R²) ve ortalama hatayı (RMSE) bulun.",
+       "3. Kurak yaz aylarında uydu ve model uyumunu karşılaştırmalı grafik üzerinde inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "FAO Penman-Monteith yöntemiyle referans ve bitki evapotranspirasyonunu hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Toprak su bütçesini işletmek ve sulama takvimi çıkarmak",
+    "oz": "Kök bölgesi su açığını takip edip %50 eşikte sulama tetiklemek.",
+    "ayrinti": "Toprağın faydalı su kapasitesi (TAW) ve kolay tüketilebilir su miktarı (RAW) belirlenir. Günlük yağış rezervi artırırken ETc rezervi azaltır. Kök su açığı RAW sınırını aştığında bitkinin kuraklık stresine girmemesi için sulama önerisi verilir.",
+    "nasil": [
+     {
+      "teknik": "TAW = 1000 * (FC - WP) * Zr ve RAW = p * TAW ile toprak su sınırlarını hesaplamak.",
+      "sade": "MTO 353 dersindeki 'Toprak su içeriğini, su tutma kapasitesini ve toprak nemi bütçesini hesaplamak' bilgisiyle toprağın ne kadar su depolayabileceğini ve bitkinin ne kadarını kolayca içebileceğini buluruz.",
+      "altAdimlar": [
+       "1. Tarlanın tınlı toprak yapısı için tarla kapasitesi (FC) ve solma noktasını (WP) belirleyin.",
+       "2. Mısır kök derinliğinin (Zr) büyüme boyunca 0.3 m'den 1.0 m'ye artışını hesaba katın.",
+       "3. Bitki su stres katsayısı p = 0.55 alarak kritik sulama açığı eşiğini (RAW) çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Toprak su içeriğini, su tutma kapasitesini ve toprak nemi bütçesini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Dr = max(0, min(TAW, Dr_prev - P_eff + ETc)) döngüsüyle sulama günlerini belirlemek.",
+      "sade": "MTO 353 dersindeki 'Bitki su bütçesi ve kök bölgesi su açığı bağıntısı' bilgisiyle her gün tarlada ne kadar su kaldığını takip eder, su bitmek üzereyken sulama uyarısı veririz.",
+      "altAdimlar": [
+       "1. Günlük etkili yağış miktarını hesaba katarak kök bölgesi su açığını günbegün hesaplayın.",
+       "2. Su açığı RAW eşiğine ulaştığında sisteme 40 mm'lik sulama suyu ilave edin.",
+       "3. Sezon boyunca gereken toplam sulama adedini, tarihlerini ve su tasarruf oranını özetleyen sulama takvimini yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 353",
+       "madde": "Bitki su bütçesi ve kök bölgesi su açığı bağıntısı."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Trakya mısır tarlası 120 günlük toprak su bütçesi ve sulama günleri animasyonu",
+   "aciklama": "Toprak su açığı seviyesinin kritik eşiğe ulaşması ve sulama ile yeniden doygunluğa çıkması eğrisi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://openetdata.org/methodologies/",
+   "aciklama": "OpenET açık uydu verisi ile tarla ölçeğinde evapotranspirasyon izleme platformu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "FAO-56 Crop Evapotranspiration Guidelines for Computing Crop Water Requirements",
+   "url": "https://www.fao.org/land-water/databases-and-software/crop-information/crop-water-needs/en/"
+  },
+  {
+   "ad": "Open-Meteo Historical Agricultural and Solar Weather API Docs",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO353-02.json",
+  "tarih": "2026-10-17 03:52",
+  "geminiSha1": "eaeee9740651"
+ }
+}

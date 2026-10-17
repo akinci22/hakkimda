@@ -1,0 +1,104 @@
+{
+ "kod": "MTO 450",
+ "ad": "Meteorolojide Uzaktan Algılama",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "450",
+ "ozet": "Meteorolojik uyduları (Meteosat, GOES, polar uydular), hava radarlarını (Doppler, çift kutuplu radar), lidar ve radyometre sistemlerini, elektromanyetik spektrumu, bulut sınıflandırmasını ve radar hidrolojisini öğretir.",
+ "neOgrenirsin": [
+  "Doppler hava radarı yansıtırlık (Z) ve radyal hız verilerini işlemek.",
+  "Çift polarizasyon parametreleriyle (ZDR, KDP, RhoHV) hidrometeor sınıflaması yapmak.",
+  "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek.",
+  "Doppler hız ikilemini (Nyquist hızı) hız açma algoritmalarıyla çözmek.",
+  "Lidar aerosol sönüm profillerinden sınır tabaka yüksekliğini tespit etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Doppler hava radarı temel denklem bağıntısı",
+   "tex": "P_r = \\frac{C \\cdot |K|^2 \\cdot Z}{r^2}",
+   "terimler": [
+    [
+     "P_r",
+     "radara geri dönen ortalama sinyal gücü",
+     "W"
+    ],
+    [
+     "C",
+     "radar donanım sabiti",
+     "boyutsuz"
+    ],
+    [
+     "|K|^2",
+     "hidrometeorun dielektrik faktörü (su için 0,93)",
+     "boyutsuz"
+    ],
+    [
+     "Z",
+     "eşdeğer radar yansıtırlık faktörü",
+     "mm⁶/m³"
+    ],
+    [
+     "r",
+     "hedefin radara olan radyal mesafesi",
+     "m"
+    ]
+   ],
+   "sade": "Radardan fırlatılan mikrodalga sinyallerinin yağmur damlalarına çarpıp dönen gücünden yağışın ne kadar kuvvetli olduğunu çıkarır.",
+   "ornek": "Radara 50 km mesafedeki oraj hücresinden gelen yüksek güç Z = 52 dBZ ile iri taneli dolu yağışına işaret eder.",
+   "nerede": "D-MTO450-01'de radar yansıtırlık analizi ve yağış kestiriminde."
+  },
+  {
+   "ad": "Çift kutuplu diferansiyel yansıtırlık (Differential Reflecti",
+   "tex": "Z_{\\mathrm{DR}} = 10 \\log_{10}\\left( \\frac{Z_H}{Z_V} \\right)",
+   "terimler": [
+    [
+     "Z_{\\mathrm{DR}}",
+     "diferansiyel yansıtırlık oranı",
+     "dB"
+    ],
+    [
+     "Z_H",
+     "yatay kutuplanmış dalga yansıtırlığı",
+     "mm⁶/m³"
+    ],
+    [
+     "Z_V",
+     "dikey kutuplanmış dalga yansıtırlığı",
+     "mm⁶/m³"
+    ]
+   ],
+   "sade": "Yatay ve dikey sinyalleri kıyaslayarak düşen tanelerin yassılaşmış yağmur damlası mı yoksa taklalar atan küresel dolu mu olduğunu anlar.",
+   "ornek": "İri yağmur damlası düşerken basıklaştığı için ZDR = +3,5 dB verirken yuvarlanan dolu taşında ZDR ≈ 0 dB ölçülür.",
+   "nerede": "D-MTO450-02'de çift polarizasyonlu radar ile dolu tespiti projesinde."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Dual_polarization_radar.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Çift polarizasyonlu hava radarı yatay ve dikey mikrodalga darbe yayılımı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "İstanbul Meteoroloji Radarı PPI ve RHI taramalarında süper hücre oraj geçişi, 2024",
+   "aciklama": "Reflektivite çekirdeğinin ve kanca eko oluşumunun radar animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 450 (Meteorolojide Uzaktan Algılama)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4439",
+   "tur": "resmi"
+  },
+  {
+   "ad": "WMO Radar Operasyonel Meteoroloji Rehberi",
+   "url": "https://community.wmo.int/en/activity-areas/instruments-and-methods-observation",
+   "tur": "rehber"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=450"
+}

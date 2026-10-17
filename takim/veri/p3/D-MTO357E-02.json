@@ -1,0 +1,512 @@
+{
+ "id": "D-MTO357E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 357E",
+  "dersAd": "Physics of Upper Atmosphere",
+  "kol": "ikisi"
+ },
+ "ad": "İyonosfer gün içinde nasıl şişer? GNSS TEC haritası",
+ "ne": "IGS GNSS ağından toplam elektron içeriği (TEC) haritalarını al; Türkiye üzerinde günlük ve fırtına günü değişimini çiz, GPS hatasına etkisini hesapla.",
+ "adimlar": [
+  "IGS küresel iyonosfer haritalarını (IONEX) indir; Türkiye kutusunu kes.",
+  "Sakin ve fırtınalı (Kp ≥ 6) iki gün için 2 saatlik TEC animasyonu yap.",
+  "TEC'ten tek frekanslı GPS için menzil hatasını hesapla (1 TECU ≈ 0,16 m L1).",
+  "SWPC Kp serisiyle TEC artışını saçılım grafiğinde ilişkilendir.",
+  "Sonucu haritalama/İHA takımları için bir sayfalık \"iyonosfer notu\" yap."
+ ],
+ "sonuc": "TEC animasyonu ve GPS hata grafiği.",
+ "dayanak": "Matzka vd. 2021",
+ "senden": "Dosya formatı okuma, harita çizimi.",
+ "bizden": "IONEX okuma kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 357E",
+    "ad": "Physics of Upper Atmosphere"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "International GNSS Service",
+   "ne": "GNSS ağı; iyonosfer TEC haritaları.",
+   "url": "https://igs.org/products-date/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelinde 500'den fazla sürekli gözlem istasyonundan aldıkları çift frekanslı GNSS verileriyle küresel iyonosfer haritaları (IONEX) ürettiler.",
+    "nasil": "L1 ve L2 taşıyıcı faz ölçümleri arasındaki dispersiyon farkından her 2 saatte bir 2,5x5 derecelik ızgarada toplam elektron içeriğini çıkardılar.",
+    "neEdindiler": "Jeodezi, sivil havacılık ve uzay araştırmaları için 1998'den günümüze kesintisiz açık iyonosfer referans veri tabanı sağladılar.",
+    "bizNasilKatki": "IGS IONEX veri formatını Python ortamında okuyup Türkiye coğrafi sınırları için iyonosferik gecikme analizleri geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "International GNSS Service İyonosfer Çalışma Grubu",
+      "url": "https://igs.org/products-date/",
+      "tur": "web"
+     },
+     {
+      "ad": "Hernández-Pajares vd. (2009) IGS İyonosfer Haritaları",
+      "url": "https://doi.org/10.1007/s00190-008-0266-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://igs.org/products-date/",
+      "aciklama": "IGS küresel toplam elektron içeriği (TEC) ürünleri ve veri erişim arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://igs.org/products-date/",
+      "aciklama": "Küresel IONEX ızgara haritaları ve istasyon bazlı artık gecikme veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA Space Weather Prediction Center",
+   "ne": "Uzay havası uyarıları, jeomanyetik indeksler ve güneş gözlemleri.",
+   "url": "https://www.swpc.noaa.gov/products/total-electron-content",
+   "ayrinti": {
+    "neYaptilar": "Gerçek zamanlı küresel ve bölgesel iyonosfer toplam elektron içeriği haritalarını 15 dakikalık aralıklarla sundular.",
+    "nasil": "GNSS yer istasyonları ile radyo okültasyonu verilerini ampirik ve fiziksel plazma modelleriyle asimile ettiler.",
+    "neEdindiler": "Uydu navigasyonu ve tek frekanslı GPS kullanıcılarının anlık konum hatalarını minimize eden operasyonel servis kurdular.",
+    "bizNasilKatki": "SWPC gerçek zamanlı TEC haritalarını jeomanyetik fırtına günlerinde Türkiye üzerindeki anomali tespiti için referans alırız.",
+    "referanslar": [
+     {
+      "ad": "NOAA SWPC Küresel TEC İzleme Portalı",
+      "url": "https://www.swpc.noaa.gov/products/total-electron-content",
+      "tur": "web"
+     },
+     {
+      "ad": "Matzka vd. (2021) Jeomanyetik Kp ve Türetilmiş İndeksler",
+      "url": "https://doi.org/10.1029/2020SW002641",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.swpc.noaa.gov/products/total-electron-content",
+      "aciklama": "NOAA SWPC dinamik iyonosfer toplam elektron içeriği harita paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.swpc.noaa.gov/products/total-electron-content",
+      "aciklama": "Gerçek zamanlı iyonosferik GPS sinyal kırılması ve gecikme dağılımı akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Bureau of Meteorology Space Weather",
+   "ne": "Avustralya uzay havası servisi; iyonosfer ürünleri.",
+   "url": "https://www.sws.bom.gov.au/Ionosphere/1/1",
+   "ayrinti": {
+    "neYaptilar": "Güney Yarımküre ve küresel ölçekte iyonosferik fırtınaları, T-indeksini ve kritik frekansları (foF2) izlediler.",
+    "nasil": "İyonosonda radar ağları ve yerel manyetometre verileriyle HF radyo frekans planlama servisleri sundular.",
+    "neEdindiler": "Havacılık ve denizcilikte yüksek frekanslı haberleşmenin kesilme riskini saatler öncesinden bildirdiler.",
+    "bizNasilKatki": "Avustralya Uzay Havası Servisi'nin iyonosferik bozulma sınıflandırma metodolojisini analizlerimizde kullanırız.",
+    "referanslar": [
+     {
+      "ad": "BoM Uzay Havası Servisi İyonosfer Gözlem Portalı",
+      "url": "https://www.sws.bom.gov.au/Ionosphere/1/1",
+      "tur": "web"
+     },
+     {
+      "ad": "Pirjola (2005) Uzay Havası ve Teknolojik Altyapı Etkileşimi",
+      "url": "https://doi.org/10.1016/j.jastp.2005.01.004",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.sws.bom.gov.au/Ionosphere/1/1",
+      "aciklama": "BoM iyonosonda kritik frekans haritaları ve radyo frekans planlama ekranı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.sws.bom.gov.au/Ionosphere/1/1",
+      "aciklama": "İyonosferik fırtına uyarıları ve bölgesel T-indeksi değişim veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ESA Swarm",
+   "ne": "Yer manyetik alanı ve iyonosferi ölçen üçlü uydu.",
+   "url": "https://earth.esa.int/eogateway/missions/swarm",
+   "ayrinti": {
+    "neYaptilar": "Üç uydudan oluşan takım ile yer manyetik alanının ve üst iyonosferdeki plazma yoğunluğunun yüksek çözünürlüklü haritasını çıkardılar.",
+    "nasil": "Langmuir sondaları, elektrik alan sensörleri ve hassas manyetometrelerle kutupsal yörüngede sürekli ölçüm yaptılar.",
+    "neEdindiler": "Manyetosfer-iyonosfer akım sistemlerini ve ekvatoral plazma kabarcıklarını uzaydan doğrudan tespit ettiler.",
+    "bizNasilKatki": "ESA Swarm Langmuir probu yerinde elektron yoğunluğu ölçümleriyle yer tabanlı TEC integrallerimizi doğrularız.",
+    "referanslar": [
+     {
+      "ad": "ESA Earth Online Swarm Görevi Resmi Portalı",
+      "url": "https://earth.esa.int/eogateway/missions/swarm",
+      "tur": "web"
+     },
+     {
+      "ad": "Olsen vd. (2013) ESA Swarm Görevi İlk Sonuçları",
+      "url": "https://doi.org/10.5047/eps.2013.07.001",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://earth.esa.int/eogateway/missions/swarm",
+      "aciklama": "ESA Swarm görevi yörünge izleme ve plazma yoğunluğu telemetri paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://earth.esa.int/eogateway/missions/swarm",
+      "aciklama": "Manyetik alan çizgileri ve iyonosfer elektron yoğunluğu zaman serisi akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ESA Space Weather",
+   "ne": "ESA uzay havası ofisi ve servisleri.",
+   "url": "https://www.esa.int/Space_Safety/Space_weather",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Uzay Ajansı bünyesinde uydu operasyonları ve telekomünikasyon sistemlerini güneş fırtınalarına karşı koruyan servis ağı kurdular.",
+    "nasil": "Güneş rüzgârı gözlemleri ve iyonosferik TEC modellerini birleştirerek gerçek zamanlı uzay havası tehlike haritaları sundular.",
+    "neEdindiler": "Havacılık, navigasyon ve enerji şebekeleri için operasyonel erken uyarı ve iyonosferik bozulma tahmin platformu sağladılar.",
+    "bizNasilKatki": "ESA uzay havası portalındaki iyonosferik fırtına uyarı eşiklerini kendi TEC analizlerimizde kıyaslama referansı olarak kullanırız.",
+    "referanslar": [
+     {
+      "ad": "ESA Uzay Güvenliği ve Uzay Havası Portalı",
+      "url": "https://www.esa.int/Space_Safety/Space_weather",
+      "tur": "web"
+     },
+     {
+      "ad": "Hernandez-Pajares vd. (2009) IGS İyonosfer Çalışma Grubu ve TEC",
+      "url": "https://doi.org/10.1007/s00190-008-0266-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.esa.int/Space_Safety/Space_weather",
+      "aciklama": "ESA uzay havası izleme merkezi ve iyonosferik aktivite paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.esa.int/Space_Safety/Space_weather",
+      "aciklama": "Güneş aktivitesi ve küresel TEC değişim tahmin akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Termosfer-iyonosferin güneşe nasıl tepki verdiğini modeller ve açık uzay havası verisiyle görmek.",
+  "baglanti": "Yazılım kolunda NRLMSIS ve GNSS TEC analizi; Anlatım kolunda aurora ve uzay havası anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Termosfer yoğunluğu güneş EUV akısıyla (F10.7) ve jeomanyetik aktiviteyle (Kp/ap) değişir; NRLMSISE-00 bu bağımlılığı ampirik olarak verir. (Picone vd. 2002)",
+    "Kp indeksi, 13 istasyonun 3 saatlik manyetik bozulmasından türetilir; uzay havası ürünlerinin temel girdisidir. (Matzka vd. 2021)",
+    "Jeomanyetik fırtınalar yer tabanlı iletkenlerde indüklenmiş akım (GIC) üretir; güç şebekeleri için risk kaynağıdır. (Pirjola 2005)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "NASA GOLD ve ICON görevleri termosfer-iyonosferi küresel görüntüleyerek alt atmosferden gelen dalgaların etkisini ortaya koydu.",
+    "ESA Swarm üçlüsü iyonosfer akımlarını ve manyetik alanı eş zamanlı ölçüyor; açık veri."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Picone vd. 2002",
+    "baslik": "NRLMSISE-00 empirical model of the atmosphere: Statistical comparisons and scientific issues",
+    "yayin": "Journal of Geophysical Research: Space Physics 107(A12)",
+    "yil": "2002",
+    "url": "https://doi.org/10.1029/2002JA009430",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Matzka vd. 2021",
+    "baslik": "The Geomagnetic Kp Index and Derived Indices of Geomagnetic Activity",
+    "yayin": "Space Weather 19(5)",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2020SW002641",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pirjola 2005",
+    "baslik": "Averages of geomagnetically induced currents (GIC) in the Finnish 400 kV electric power transmission system",
+    "yayin": "Journal of Atmospheric and Solar-Terrestrial Physics 67(7), 701-708",
+    "yil": "2005",
+    "url": "https://doi.org/10.1016/j.jastp.2005.01.004",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Zhang vd. 2005",
+    "baslik": "Nightside detached auroras due to precipitating protons/ions during intense magnetic storms",
+    "yayin": "Journal of Geophysical Research: Space Physics 110(A2)",
+    "yil": "2005",
+    "url": "https://doi.org/10.1029/2004JA010498",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kress vd. 2021",
+    "baslik": "Observations From NOAA's Newest Solar Proton Sensor",
+    "yayin": "Space Weather 19(4)",
+    "yil": "2021",
+    "url": "https://doi.org/10.1029/2021SW002750",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "IGS IONEX haritalarıyla Türkiye üzerindeki toplam elektron içeriği (TEC) değişimini inceleyip tek frekanslı GPS konumlandırma hatasını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 357E",
+   "projeyeKatki": "İyonosfer plazma fiziği ve serbest elektron yoğunluğu modelleri incelenir. İyonosferik GNSS L1 kod gecikmesi bağıntısıyla toplam elektron içeriğinin (TEC) metre cinsinden GPS konumlandırma hatasına etkisi hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "İyonosferik GNSS L1 kod gecikmesi bağıntısı",
+     "nerede": "IONEX haritalarından çekilen TEC değerlerinden tek frekanslı GPS L1 sinyalinde oluşan menzil hatasını hesaplarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "IGS IONEX haritalarından TEC zaman serisini çıkarıp plazma dispersiyon bağıntısıyla tek frekanslı GPS hatasını hesaplamak.",
+  "ayrinti": "IGS sunucularından sakin bir gün (Kp < 2) ile jeomanyetik fırtına yaşanan bir güne (Kp >= 6) ait küresel IONEX dosyaları indirilir. Türkiye coğrafi sınırları (35-43° K, 25-45° D) ızgarası kesilir. 2 saatlik zaman adımlarıyla TEC animasyonu oluşturulup tek frekanslı GPS L1 sinyali için metre cinsinden konum hatası grafiğe dönüştürülür.",
+  "adimlar": [
+   {
+    "baslik": "IGS IONEX küresel iyonosfer haritalarını indirmek",
+    "oz": "Sakin ve fırtınalı günler için 2 saatlik IONEX dosyalarını çekmek.",
+    "ayrinti": "CDDIS veya IGS FTP sunucularından standart IONEX formatında küresel toplam elektron içeriği haritaları indirilir. Başlık satırları ayrıştırılarak ızgara çözünürlüğü ve harita zaman damgaları doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "cddis_client.download_ionex(dates=['2024-05-09', '2024-05-11'], dest='data/ionex/') çalıştırmak.",
+      "sade": "Dünya genelindeki uydu alıcılarından hesaplanan iyonosfer harita dosyalarını veri arşivinden indiririz.",
+      "altAdimlar": [
+       "1. Sakin gün ve şiddetli jeomanyetik fırtına günü tarihlerini belirleyin.",
+       "2. IGS arşivinden günlük IONEX sıkıştırılmış dosyalarını yerel klasöre indirin.",
+       "3. Dosyaları açıp ASCII formatındaki TEC bloklarını ayrıştırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Toplam elektron içeriği (TEC) verileriyle GNSS sinyal gecikmesini belirlemek."
+      }
+     },
+     {
+      "teknik": "turkey_tec = parse_ionex_grid(filepath, lat_bounds=(35, 43), lon_bounds=(25, 45)) ile bölgeyi kesmek.",
+      "sade": "Küresel dünya haritasından sadece Türkiye üzerindeki iyonosfer elektron değerlerini ayıklarız.",
+      "altAdimlar": [
+       "1. Enlem ve boylam sınırlarını Türkiye kutusu için filtreleyin.",
+       "2. 2 saatlik zaman basamaklarındaki TEC değerlerini 2B matris olarak çıkarın.",
+       "3. Birimleri TECU (10¹⁶ elektron/m²) cinsinden kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Toplam elektron içeriği (TEC) verileriyle GNSS sinyal gecikmesini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 357E",
+      "madde": "Toplam elektron içeriği (TEC) verileriyle GNSS sinyal gecikmesini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Türkiye üzerinde 2 saatlik TEC animasyonunu üretmek",
+    "oz": "Günlük güneşlenme döngüsü ve fırtına sıçramasını haritalamak.",
+    "ayrinti": "Öğle saatlerinde güneş radyasyonuyla iyonosferin şişmesi ve gece soğuması harita üzerinde görselleştirilir. Jeomanyetik fırtına gününde gece vakti dahi 60 TECU seviyesine ulaşan anomali renk skalasıyla vurgulanır.",
+    "nasil": [
+     {
+      "teknik": "ax.contourf(lon, lat, tec_matrix, cmap='plasma', levels=np.linspace(5, 80, 16)) ile haritayı çizmek.",
+      "sade": "İyonosferdeki elektron yoğunluğunu Türkiye haritası üzerine renkli konturlar halinde çizeriz.",
+      "altAdimlar": [
+       "1. Coğrafi kıyı çizgilerini ve il sınırlarını harita tabanına yerleştirin.",
+       "2. 2 saatlik 12 zaman basamağı için TEC kontur haritalarını sırayla üretin.",
+       "3. Renk barını sabit tutarak sakin gün ile fırtına günü farkını netleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Güneş radyasyonu ve parçacık akısının iyonosferik tabakalaşmadaki rolünü incelemek."
+      }
+     },
+     {
+      "teknik": "create_animation_webm(frames, 'turkiye_tec_dongusu.webm') ile hareketli videoyu derlemek.",
+      "sade": "Haritaları peş peşe ekleyerek gün içinde iyonosferin nasıl şişip söndüğünü gösteren animasyon yaparız.",
+      "altAdimlar": [
+       "1. Üretilen 12 harita karesini zaman damgalarıyla sıraya dizin.",
+       "2. Saniyede 3 kare oynatma hızıyla WebM formatında döngüsel video oluşturun.",
+       "3. Öğle saatlerindeki tepe değer ile gece taban değerini etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Güneş radyasyonu ve parçacık akısının iyonosferik tabakalaşmadaki rolünü incelemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 357E",
+      "madde": "Güneş radyasyonu ve parçacık akısının iyonosferik tabakalaşmadaki rolünü incelemek."
+     }
+    ]
+   },
+   {
+    "baslik": "GPS L1 sinyal menzil gecikmesini hesaplamak",
+    "oz": "Dispersiyon bağıntısıyla TEC'i metre cinsinden konum hatasına çevirmek.",
+    "ayrinti": "İyonosferik dispersiyon formülü delta_s = (40.3 / f^2) * TEC uygulanır. L1 frekansı (1575.42 MHz) için 1 TECU değerinin yaklaşık 0.162 metre sinyal gecikmesi ürettiği matematiksel olarak kanıtlanır.",
+    "nasil": [
+     {
+      "teknik": "gps_error_m = (40.3 / (1.57542e9)**2) * (tec_values * 1e16) bağıntısını çözmek.",
+      "sade": "Plazma formülüyle uydudan gelen sinyalin kaç metre geciktiğini ve saptığını hesaplarız.",
+      "altAdimlar": [
+       "1. L1 taşıyıcı frekansını ve plazma dispersiyon sabitini formüle girin.",
+       "2. TECU birimini metrekaredeki elektron sayısına dönüştürün.",
+       "3. Sakin günde 2-3 metre olan hatanın fırtınada 10-15 metreye çıktığını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Toplam elektron içeriği (TEC) verileriyle GNSS sinyal gecikmesini belirlemek."
+      }
+     },
+     {
+      "teknik": "ax.scatter(kp_series, tec_peak_series, c='red') ile korelasyon grafiğini çizmek.",
+      "sade": "Güneş fırtınası şiddetlendikçe GPS hatasının nasıl fırladığını saçılım grafiğinde gösteririz.",
+      "altAdimlar": [
+       "1. NOAA SWPC Kp indeks serisi ile günlük tepe TEC değerlerini eşleştirin.",
+       "2. Kp 6 eşiği aşıldığında GPS hatasındaki sıçramayı grafik üzerinde gösterin.",
+       "3. Korelasyon katsayısını hesaplayarak grafik üzerine yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Jeomanyetik fırtınaların ve aurora oluşumunun fiziksel mekanizmalarını çözümlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 357E",
+      "madde": "Toplam elektron içeriği (TEC) verileriyle GNSS sinyal gecikmesini belirlemek."
+     },
+     {
+      "ders": "MTO 357E",
+      "madde": "Jeomanyetik fırtınaların ve aurora oluşumunun fiziksel mekanizmalarını çözümlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "İHA ve haritalama takımları için iyonosfer notu hazırlamak",
+    "oz": "Hassas GNSS kullanıcılarına yönelik tek sayfalık rehber basmak.",
+    "ayrinti": "Özellikle tek frekanslı GPS kullanan harita mühendisliği ve İHA takımlarının jeomanyetik fırtına günlerinde karşılaşabileceği konum kaymalarını açıklayan bir sayfalık uyarı notu derlenir.",
+    "nasil": [
+     {
+      "teknik": "generate_gnss_ionosphere_bulletin(results_dict, 'iha_iyonosfer_rehberi.pdf') çalıştırmak.",
+      "sade": "İHA uçuran veya arazi ölçümü yapan mühendisler için pratik bir uyarı rehberi basarız.",
+      "altAdimlar": [
+       "1. Fırtına günlerinde tek frekanslı RTK alıcılarında oluşabilecek santimetre-metre kaymalarını yazın.",
+       "2. Çift frekanslı alıcıların dispersiyon farkıyla bu hatayı nasıl sıfırladığını açıklayın.",
+       "3. Kp indeksine göre uçuş planlaması yapma kontrol listesini bültene ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Toplam elektron içeriği (TEC) verileriyle GNSS sinyal gecikmesini belirlemek."
+      }
+     },
+     {
+      "teknik": "export_tec_timeseries_csv(turkey_tec, 'turkiye_gunluk_tec_hatasi.csv') ile veriyi dışa aktarmak.",
+      "sade": "Araştırmacıların kullanabilmesi için saatlik Türkiye ortalama TEC ve hata değerlerini tablo olarak kaydederiz.",
+      "altAdimlar": [
+       "1. Saatlik Türkiye alanı ağırlıklı ortalama TEC değerlerini hesaplayın.",
+       "2. İlgili GPS L1 menzil gecikmesini sütun olarak ekleyin.",
+       "3. Tabloyu açık veri olarak CSV formatında dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 357E",
+       "madde": "Toplam elektron içeriği (TEC) verileriyle GNSS sinyal gecikmesini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 357E",
+      "madde": "Toplam elektron içeriği (TEC) verileriyle GNSS sinyal gecikmesini belirlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Türkiye 2 saatlik TEC değişim animasyonu, GPS L1 menzil hatası hesaplama kodu ve İHA ekipleri için iyonosfer teknik rehberi.",
+  "senden": "IONEX formatı okuma, matplotlib kontur haritalama ve uzay havası merakı.",
+  "bizden": "IONEX ayrıştırıcı fonksiyonları, Türkiye ızgara koordinatları ve GNSS plazma gecikme formülleri."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Sakin ve fırtınalı günlerde Türkiye üzerinde 2 saatlik TEC ve GPS menzil gecikmesi animasyonu",
+   "aciklama": "Günlük güneşlenme ve jeomanyetik fırtına esnasında iyonosfer elektron yoğunluğunun değişimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.swpc.noaa.gov/products/total-electron-content",
+   "aciklama": "NOAA SWPC dinamik toplam elektron içeriği harita paneli ve veri akışı"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Total_Electron_Content.png",
+   "lisans": "NOAA",
+   "aciklama": "Küresel iyonosfer toplam elektron içeriği (TEC) dağılım haritası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 357E (Physics of Upper Atmosphere)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=357"
+  },
+  {
+   "ad": "Hernández-Pajares, M. vd. (2009) The IGS VTEC maps: a reliable source for ionospheric research, J. Geod., 83, 263–275",
+   "url": "https://doi.org/10.1007/s00190-008-0266-1"
+  },
+  {
+   "ad": "Matzka, J. vd. (2021) The Geomagnetic Kp Index and Derived Indices, Space Weather, 19(5), e2020SW002641",
+   "url": "https://doi.org/10.1029/2020SW002641"
+  },
+  {
+   "ad": "Pirjola, R. (2005) Geomagnetically induced currents (GIC) in power systems, J. Atmos. Sol.-Terr. Phys., 67(7), 701–708",
+   "url": "https://doi.org/10.1016/j.jastp.2005.01.004"
+  },
+  {
+   "ad": "International GNSS Service İyonosfer Ürünleri Sayfası",
+   "url": "https://igs.org/products-date/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO357E-02.json",
+  "tarih": "2026-10-17 04:16",
+  "geminiSha1": "8b01fbf3e6a8"
+ }
+}

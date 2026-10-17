@@ -1,0 +1,109 @@
+{
+ "kod": "MTO 361",
+ "ad": "Hava Kirliliği Simülasyonu",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "361",
+ "ozet": "Atmosferik kirletici taşınımı ve kimyasal dönüşüm modellerini, Gauss duman dağılım modelini (AERMOD), Lagrange parçacık modellerini (FLEXPART), kimyasal taşınım modellerini (WRF-Chem, CMAQ) ve kaza kaynaklı salım simülasyonlarını öğretir.",
+ "neOgrenirsin": [
+  "Gauss duman dağılım denklemiyle baca kirletici konsantrasyonu yer profillerini hesaplamak.",
+  "AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak.",
+  "FLEXPART Lagrange parçacık modeliyle nükleer veya kimyasal kaza geri iz sürme analizi yapmak.",
+  "Atmosferik kararlılık sınıflarının (Pasquill-Gifford) duman dağılım katsayılarına etkisini çözümlemek.",
+  "Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Gauss duman dağılım (Gaussian Plume) denklemi",
+   "tex": "C(x,y,z) = \\frac{Q}{2 \\pi u \\sigma_y \\sigma_z} \\exp\\left( -\\frac{y^2}{2 \\sigma_y^2} \\right) \\left[ \\exp\\left( -\\frac{(z - H)^2}{2 \\sigma_z^2} \\right) + \\exp\\left( -\\frac{(z + H)^2}{2 \\sigma_z^2} \\right) \\right]",
+   "terimler": [
+    [
+     "C",
+     "x, y, z koordinatındaki kirletici konsantrasyonu",
+     "g/m³ veya mg/m³"
+    ],
+    [
+     "Q",
+     "baca kirletici emisyon salım debisi",
+     "g/s"
+    ],
+    [
+     "u",
+     "efektif baca yüksekliğindeki rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "\\sigma_y, \\sigma_z",
+     "yatay ve dikey Gauss dağılım standart sapmaları",
+     "m"
+    ],
+    [
+     "H",
+     "efektif baca yüksekliği (fiziksel boy + duman yükselmesi)",
+     "m"
+    ]
+   ],
+   "sade": "Bacanın ağzından çıkan dumanın rüzgâr yönünde sürüklenirken havaya nasıl yayıldığını ve yere ne kadar kirlilik indirdiğini hesaplar.",
+   "ornek": "100 metre yüksekliğindeki bacadan çıkan SO2 gazının rüzgâr altındaki 2. kilometrede zemin konsantrasyonu güvenli eşiğin altında kalır.",
+   "nerede": "D-MTO361-01'de sanayi bölgesi baca gazı dağılım simülasyonunda."
+  },
+  {
+   "ad": "Briggs duman yükselmesi (Plume Rise) bağıntısı",
+   "tex": "\\Delta h = \\frac{1.6 F_b^{1/3} x^{2/3}}{u}",
+   "terimler": [
+    [
+     "\\Delta h",
+     "sıcak dumanın batmazlık kuvvetiyle ilave yükselme miktarı",
+     "m"
+    ],
+    [
+     "F_b",
+     "baca çıkış batmazlık akısı parametresi",
+     "m⁴/s³"
+    ],
+    [
+     "x",
+     "bacadan rüzgâr yönündeki yatay mesafe",
+     "m"
+    ],
+    [
+     "u",
+     "rüzgâr hızı",
+     "m/s"
+    ]
+   ],
+   "sade": "Sıcak çıkan gazların çevresindeki soğuk havadan hafif kalarak bacadan çıktıktan sonra daha da yukarı tırmanmasını modeller.",
+   "ornek": "Fb = 80 m4/s3 olan sıcak baca gazı kuvvetli rüzgârda 65 metre ek yükseklik kazanarak yere iniş mesafesini öteler.",
+   "nerede": "D-MTO361-02'de efektif baca yüksekliği hesabında."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Gaussian_plume_model.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Bacadaki kirleticilerin Gauss duman modeliyle rüzgâr yönünde yayılım şeması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi'nde sanayi kazası kaynaklı kirletici dumanının 48 saatlik FLEXPART yayılımı, 2024",
+   "aciklama": "Rüzgâr yönü değişimiyle kirletici partiküllerin ilçe bazlı dağılım animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 361 (Hava Kirliliği Simülasyonu)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4438",
+   "tur": "resmi"
+  },
+  {
+   "ad": "EPA Destek Merkezi Hava Dağılım Modelleri (SCRAM) Portalı",
+   "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling",
+   "tur": "web"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=361"
+}

@@ -1,0 +1,165 @@
+{
+ "kod": "MTO 350E",
+ "ad": "Air Pollution Fundamentals",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "350",
+ "ozet": "Atmosferdeki gaz ve partikül kirleticilerin kaynaklarını, kimyasal dönüşümlerini, yerel ve bölgesel taşınımını, sınır tabaka meteorolojisiyle etkileşimini, hava kalitesi indeksi hesaplamasını ve emisyon azaltım yöntemlerini öğretir.",
+ "neOgrenirsin": [
+  "Hava kirleticilerinin kaynaklarını, kimyasal bileşimini ve emisyon envanterlerini çözümlemek.",
+  "Durağan yüksek basınç ve enversiyon katmanlarında kirletici birikimini incelemek.",
+  "Kirletici derişimlerinin istatistiksel analizini yaparak sınır değerlerle karşılaştırmak.",
+  "Düşük maliyetli partikül sensörü verilerine bağıl nem düzeltmesi uygulamak.",
+  "Kutu ve Gauss dağılım yöntemleriyle yer seviyesi kirletici derişimini hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Kutu modeli kütle korunum bağıntısı",
+   "tex": "C = \\frac{q \\cdot L}{u \\cdot H} + C_b",
+   "terimler": [
+    [
+     "C",
+     "karışım tabakası içindeki ortalama kirletici derişimi",
+     "µg/m³"
+    ],
+    [
+     "q",
+     "birim alandan atmosfere salınan kirletici emisyon debisi",
+     "µg/(m² s)"
+    ],
+    [
+     "L",
+     "şehrin veya kutunun rüzgâr yönündeki uzunluğu",
+     "m"
+    ],
+    [
+     "u",
+     "karışım tabakası boyunca ortalama rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "H",
+     "karışım tabakası tavan yüksekliği",
+     "m"
+    ],
+    [
+     "C_b",
+     "şehre giren arka plan kirletici derişimi",
+     "µg/m³"
+    ]
+   ],
+   "sade": "Şehir üzerindeki ortalama kirletici derişiminin emisyon debisiyle doğru, rüzgâr hızı ve karışım tabakası derinliğiyle ters orantılı olduğunu gösteren kütle korunum denklemidir.",
+   "ornek": "Uzunluğu 30 km olan İstanbul yerleşiminde emisyon debisi q = 1,2 µg/(m² s), rüzgâr hızı u = 2 m/s ve enversiyon nedeniyle karışım derinliği H = 300 m iken derişim 60 µg/m³ hesaplanır.",
+   "nerede": "D-MTO350E-01 ve D-MTO350E-03'te durağan hava tiplerinde kirletici birikimini ve seyreltimini incelerken."
+  },
+  {
+   "ad": "Sensör bağıl nem higroskopik düzeltme bağıntısı",
+   "tex": "PM_{2.5,kor} = a \\cdot PM_{2.5,raw} + b \\cdot \\left( \\frac{RH^2}{1 - RH} \\right) + c",
+   "terimler": [
+    [
+     "PM_{2.5,kor}",
+     "neme göre düzeltilmiş gerçek partikül madde derişimi",
+     "µg/m³"
+    ],
+    [
+     "PM_{2.5,raw}",
+     "optik sensörden okunan ham parçacık derişimi",
+     "µg/m³"
+    ],
+    [
+     "RH",
+     "fraksiyonel bağıl nem (0 ile 1 aralığında)",
+     "birimsiz"
+    ],
+    [
+     "a",
+     "sensör doğrusal kalibrasyon katsayısı",
+     "birimsiz"
+    ],
+    [
+     "b",
+     "higroskopik büyüme katsayısı",
+     "µg/m³"
+    ],
+    [
+     "c",
+     "sıfır noktası ofset düzeltme sabiti",
+     "µg/m³"
+    ]
+   ],
+   "sade": "Düşük maliyetli optik partikül sensörlerinin yüksek bağıl nemde su buharı yoğuşması nedeniyle parçacıkları olduğundan büyük ölçmesini engelleyen higroskopik kalibrasyon bağıntısıdır.",
+   "ornek": "Ham sensör okumasının 38 µg/m³ ve bağıl nemin %85 olduğu sisli bir kış gününde higroskopik düzeltmeyle gerçek PM2.5 seviyesi 22 µg/m³ olarak belirlenir.",
+   "nerede": "D-MTO350E-02'de düşük maliyetli sensör verilerini referans kamu istasyonuyla kalibre ederken."
+  },
+  {
+   "ad": "Hava kalitesi indeks dönüşüm fonksiyonu",
+   "tex": "I_p = \\frac{I_{hi} - I_{lo}}{BP_{hi} - BP_{lo}} (C_p - BP_{lo}) + I_{lo}",
+   "terimler": [
+    [
+     "I_p",
+     "hesaplanan hava kalitesi indeksi (HKİ)",
+     "birimsiz"
+    ],
+    [
+     "C_p",
+     "kirleticinin 24 saatlik ortalama derişimi",
+     "µg/m³"
+    ],
+    [
+     "BP_{hi}",
+     "C_p değerini kapsayan üst kırılma noktası derişimi",
+     "µg/m³"
+    ],
+    [
+     "BP_{lo}",
+     "C_p değerini kapsayan alt kırılma noktası derişimi",
+     "µg/m³"
+    ],
+    [
+     "I_{hi}",
+     "BP_{hi} kırılma noktasına karşılık gelen indeks değeri",
+     "birimsiz"
+    ],
+    [
+     "I_{lo}",
+     "BP_{lo} kırılma noktasına karşılık gelen indeks değeri",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Ölçülen kirletici kütle derişimini EPA standart eşik aralıklarına bölerek halk sağlığı riskini gösteren 0-500 arası normalize ölçeğe çevirir.",
+   "ornek": "24 saatlik ortalama PM2.5 derişimi 42 µg/m³ ölçüldüğünde indeks 117 olarak hesaplanır ve hassas gruplar için sağlıksız kategorisine işaret eder.",
+   "nerede": "D-MTO350E-01'de hava kirliliği epizot günlerini sınır değerlere göre sınıflandırırken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion_over_Bratislava.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Sıcaklık enversiyonu altında biriken kentsel duman ve partikül madde tabakası"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "İstanbul genelinde düşük maliyetli sensör ağından derlenen saatlik PM2.5 yayılım animasyonu",
+   "aciklama": "Kentsel emisyonların ve nemli kış gecelerinde partikül birikiminin zamansal evrimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 350 (Air Pollution Fundamentals)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=350"
+  },
+  {
+   "ad": "Seinfeld, J. H. ve Pandis, S. N. (2016) Atmospheric Chemistry and Physics, Wiley",
+   "url": "https://doi.org/10.1002/9781119295556"
+  },
+  {
+   "ad": "Barkjohn, K. K. vd. (2021) Development and application of a United States-wide correction for PM2.5, AMT, 14, 4617–4637",
+   "url": "https://doi.org/10.5194/amt-14-4617-2021"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=350"
+}

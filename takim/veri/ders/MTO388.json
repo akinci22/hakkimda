@@ -1,0 +1,104 @@
+{
+ "kod": "MTO 388",
+ "ad": "Coğrafi Bilgi Bilimi",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "388",
+ "ozet": "Meteorolojik ve iklimsel verilerin Coğrafi Bilgi Sistemleri (CBS) ortamında mekânsal analizini, raster ve vektör veri modellerini, jeoistatistiksel enterpolasyonu (Kriging, IDW), sayısal yükseklik modellerini (DEM) ve mekânsal karar destek sistemlerini öğretir.",
+ "neOgrenirsin": [
+  "Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak.",
+  "Sayısal yükseklik modellerinden eğim, bakı ve orografik sıcaklık düzeltmesi türetmek.",
+  "Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek.",
+  "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak.",
+  "Çok kriterli karar analiziyle (AHP) rüzgâr ve güneş santrali yer seçimi yapmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Sıradan Kriging (Ordinary Kriging) mekânsal tahmin denklemi",
+   "tex": "\\hat{Z}(s_0) = \\sum_{i=1}^{n} \\lambda_i Z(s_i)",
+   "terimler": [
+    [
+     "\\hat{Z}(s_0)",
+     "ölçüm olmayan s0 noktasındaki tahmin edilen meteorolojik değer",
+     "birim"
+    ],
+    [
+     "Z(s_i)",
+     "si konumundaki gözlenen istasyon değeri",
+     "birim"
+    ],
+    [
+     "\\lambda_i",
+     "semivaryogram modelinden türetilen mekânsal ağırlık",
+     "boyutsuz"
+    ],
+    [
+     "n",
+     "analize dahil edilen komşu istasyon sayısı",
+     "adet"
+    ]
+   ],
+   "sade": "Yakındaki istasyonların mesafesine ve mekânsal korelasyon yapısına göre ağırlıklı ortalama alarak haritanın her noktasına kesintisiz hava verisi üretir.",
+   "ornek": "5 çevre istasyonun yağış verisi semivaryogram ağırlıklarıyla toplanarak ölçüm yapılmayan vadideki yağış en az hatayla kestirilir.",
+   "nerede": "D-MTO388-01'de bölgesel yağış ve sıcaklık grid haritası üretiminde."
+  },
+  {
+   "ad": "Deneysel semivaryogram bağıntısı",
+   "tex": "\\gamma(h) = \\frac{1}{2 N(h)} \\sum_{i=1}^{N(h)} \\left( Z(s_i) - Z(s_i + h) \\right)^2",
+   "terimler": [
+    [
+     "\\gamma(h)",
+     "h mesafesindeki yarı varyans değeri",
+     "birim kare"
+    ],
+    [
+     "h",
+     "istasyonlar arası ayrım mesafesi vektörü",
+     "km"
+    ],
+    [
+     "N(h)",
+     "birbirinden h kadar uzakta bulunan istasyon çifti sayısı",
+     "adet"
+    ],
+    [
+     "Z(s_i)",
+     "istasyon ölçüm değeri",
+     "birim"
+    ]
+   ],
+   "sade": "İstasyonlar birbirinden uzaklaştıkça ölçülen sıcaklık veya basınç değerlerinin ne kadar farklılaştığını gösteren mekânsal değişim eğrisidir.",
+   "ornek": "Marmara Bölgesi'nde 50 km mesafeye kadar sıcaklık yarı varyansı düşük kalırken 150 km ötede eşik değerine (sill) ulaşır.",
+   "nerede": "D-MTO388-02'de jeoistatistiksel analiz ve enterpolasyon varyansı hesabında."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Kriging_interpolation.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Noktasal istasyon ölçümlerinden Kriging enterpolasyonu ile sürekli yüzey üretimi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye meteoroloji istasyonlarından türetilen 1 km sıcaklık ve yağış raster katmanları, 2024",
+   "aciklama": "Sayısal yükseklik modeliyle topoğrafik düzeltmeli CBS harita üretimi animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 388 (Coğrafi Bilgi Bilimi)",
+   "url": "https://obs.itu.edu.tr/e-ogrenci/ders-katalog/ders-bilgileri?dersId=4429",
+   "tur": "resmi"
+  },
+  {
+   "ad": "QGIS Açık Kaynaklı Coğrafi Bilgi Sistemi Dokümantasyonu",
+   "url": "https://docs.qgis.org/",
+   "tur": "web"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=388"
+}

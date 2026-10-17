@@ -1,0 +1,498 @@
+{
+ "id": "D-MTO450-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 450",
+  "dersAd": "Meteorolojide Uzaktan Algılama",
+  "kol": "ikisi"
+ },
+ "ad": "Meteosat kanal farklarıyla sis tespiti: Marmara'da bir kış",
+ "ne": "EUMETSAT Meteosat verisinden 3,9-10,8 µm kanal farkıyla gece sis maskesi üret; METAR görüş gözlemiyle 30 gün doğrula.",
+ "adimlar": [
+  "EUMETSAT Data Store'dan SEVIRI/FCI verisini al; Satpy ile oku.",
+  "Gece sis algoritmasını (kanal farkı eşiği) uygula.",
+  "İstanbul havalimanı METAR görüş verisiyle (IEM) karşılaştır.",
+  "POD/FAR hesapla; eşiği ayarla.",
+  "Havacılık için sis uyarı taslağı yaz."
+ ],
+ "sonuc": "Sis maskesi ürünü ve doğrulama skoru.",
+ "dayanak": "Koner vd. 2016",
+ "senden": "Uydu veri işleme.",
+ "bizden": "Algoritma ve veri.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 450",
+    "ad": "Meteorolojide Uzaktan Algılama"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "EUMETSAT",
+   "ne": "Avrupa meteoroloji uyduları (Meteosat, MTG, Metop).",
+   "url": "https://www.eumetsat.int/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa ve komşu havzalar için Meteosat ve Metop uydularıyla 15 dakikalık periyotlarla yüksek çözünürlüklü çok kanallı atmosfer gözlemleri sundular.",
+    "nasil": "SEVIRI ve FCI optik radyometreleriyle 16 farklı dalga boyunda ışıma ölçümü yaparak bulut mikrofiziği ve su buharı profilleri türettiler.",
+    "neEdindiler": "Operasyonel hava tahmin merkezlerinin ve havacılık otoritelerinin sis, konveksiyon ve fırtına uyarılarında temel referans veri ağını sağladılar.",
+    "bizNasilKatki": "EUMETSAT veri API üzerinden Marmara Bölgesi alt kesitlerini anlık çeken hafif istemciler kurgulayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "EUMETSAT Meteosat Meteorological Satellite Programmes",
+      "url": "https://www.eumetsat.int/our-satellites/meteosat-series",
+      "tur": "web"
+     },
+     {
+      "ad": "EUMETSAT Data Store User Guide and API Access",
+      "url": "https://www.eumetsat.int/data-access",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://user.eumetsat.int/dashboard",
+      "aciklama": "EUMETSAT kullanıcı veri portalı ve uydu indirme arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Meteosat_Second_Generation.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Yörüngede dönen Meteosat İkinci Nesil meteoroloji uydusu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Satpy (Pytroll)",
+   "ne": "Uydu verisi okuma ve görselleştirme kütüphanesi.",
+   "url": "https://satpy.readthedocs.io/",
+   "ayrinti": {
+    "neYaptilar": "Pytroll açık kaynak topluluğu çatısı altında çok sayıda yerli ve yabancı uydunun ham verilerini okuyan ve kompozit RGB üreten Python kütüphanesi yazdılar.",
+    "nasil": "Xarray ve Dask altyapısını kullanarak devasa uydu rasterlarını bellek dostu paralel bloklarla işleyip coğrafi projeksiyonlara dönüştürdüler.",
+    "neEdindiler": "Dünya çapında uydu meteorologlarının operasyonel ürün ve sis tespiti algoritmalarını geliştirdiği standart açık Python çatısı oldular.",
+    "bizNasilKatki": "Pytroll kütüphanesine Marmara ve Karadeniz gece sisi için özel renk paleti ve kompozit tarifleri ekleyebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Satpy: A Python Package for Earth-Observing Satellite Data Processing",
+      "url": "https://doi.org/10.5334/jors.306",
+      "tur": "makale"
+     },
+     {
+      "ad": "Satpy Documentation and Compositor Reference",
+      "url": "https://satpy.readthedocs.io/en/stable/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://satpy.readthedocs.io/en/stable/gallery.html",
+      "aciklama": "Satpy kompozit RGB ve çok kanallı uydu görsel galerisi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "eumetsat-ornek",
+      "konu": "Marmara Denizi ve Boğazlar çevresinde Meteosat gece sis maskesi döngüsü, Ocak 2024",
+      "aciklama": "Kanal farkı algoritmasıyla sis tabakasının alansal yayılım animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "EUMETView",
+   "ne": "Meteosat görüntülerini tarayıcıda izleme ve indirme.",
+   "url": "https://view.eumetsat.int/",
+   "ayrinti": {
+    "neYaptilar": "Hava analistleri ve araştırmacılar için uydulardan gelen anlık görüntüleri interaktif harita katmanlarıyla tarayıcıda sunan bulut servisini hayata geçirdiler.",
+    "nasil": "OGC WMS/WMTS standartlarında harita servisleri kurarak 15 dakikada bir güncellenen uydu katmanlarını vektör sınırlarla birleştirdiler.",
+    "neEdindiler": "Kullanıcıların karmaşık yazılımlar kurmadan anlık sis, toz taşınımı ve fırtına hareketlerini saniyeler içinde analiz etmesini sağladılar.",
+    "bizNasilKatki": "Web harita arayüzünden doğrudan sis alanlarını poligon olarak dışa aktaran API köprüleri tasarlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "EUMETView Web Map Service User Documentation",
+      "url": "https://view.eumetsat.int/productViewer/",
+      "tur": "web"
+     },
+     {
+      "ad": "EUMETSAT Web Map Services Specifications",
+      "url": "https://www.eumetsat.int/eumetview",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://view.eumetsat.int/productViewer/",
+      "aciklama": "EUMETView tarayıcı ekranı ve çoklu uydu katman seçici"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Fog_in_the_Bosphorus.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "İstanbul Boğazı ve Marmara Denizi üzerinde yoğun kış sisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Iowa Environmental Mesonet",
+   "ne": "METAR, radar ve uyarı arşivini açık API ile sunan üniversite servisi.",
+   "url": "https://mesonet.agron.iastate.edu/",
+   "ayrinti": {
+    "neYaptilar": "Iowa Eyalet Üniversitesi bünyesinde dünya genelindeki havalimanı METAR hava gözlem raporlarını saniyeler içinde toplayıp açık arşiv oluşturdular.",
+    "nasil": "Otomatik veri çekicilerle küresel WMO telekomünikasyon kanallarını dinleyerek görüş mesafesi, sıcaklık ve sis kodlarını veri tabanına işlediler.",
+    "neEdindiler": "Atmosferik doğrulama çalışmalarında on binlerce araştırmacıya hizmet veren güvenilir ve kesintisiz açık veri altyapısı kurdular.",
+    "bizNasilKatki": "İstanbul, Sabiha Gökçen ve Atatürk havalimanlarının görüş mesafesi düşüş anlarını otomatik listeleyen Python istemcisi yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Iowa Environmental Mesonet ASOS/METAR Data Download Service",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "tur": "veri"
+     },
+     {
+      "ad": "IEM API Services and Python Examples",
+      "url": "https://mesonet.agron.iastate.edu/api/",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "IEM küresel METAR havalimanı veri indirme arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Airport_runway_fog.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Yoğun sis altında havalimanı pisti ve yaklaşma ışıkları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EUMeTrain",
+   "ne": "Uydu meteorolojisi eğitim modülleri.",
+   "url": "https://eumetrain.org/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa ulusal meteoroloji servisleri ortaklığıyla operasyonel tahmincilere yönelik uydu RGB ve sis analizi kılavuzları hazırladılar.",
+    "nasil": "Vaka çalışmaları, interaktif kavram simülasyonları ve çok kanallı uydu yorumlama dersleriyle teoriyi pratik tahminle birleştirdiler.",
+    "neEdindiler": "Genç tahminciler ve meteoroloji öğrencileri için standart bir uzaktan algılama eğitim referans kütüphanesi meydana getirdiler.",
+    "bizNasilKatki": "EUMeTrain sis eğitim materyallerini Türkçe AURA wiki sayfalarına uyarlayarak takım içi eğitimi güçlendirebiliriz.",
+    "referanslar": [
+     {
+      "ad": "EUMeTrain Satellite RGB and Fog Manuals",
+      "url": "https://eumetrain.org/resources/",
+      "tur": "web"
+     },
+     {
+      "ad": "Operational Satellite Meteorology Case Studies",
+      "url": "https://eumetrain.org/case_studies/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://eumetrain.org/resources/",
+      "aciklama": "EUMeTrain uydu analiz eğitim modülleri ana katalog ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Radiation_fog_satellite.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Uydu görüntüsünde vadi ve ovaları dolduran radyasyon sisi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Radar, uydu ve lidar verisini işleyip yorumlamak; algoritmanın nerede yanıldığını bilmek.",
+  "baglanti": "Yazılım kolunda radar/uydu veri işleme; Anlatım kolunda uydu görüntüsü anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Hava radarı yansıtırlığı (Z) damla boyut dağılımının altıncı momentidir; çift polarizasyon (ZDR, KDP) yağış türü ve şiddetini ayırt eder.",
+    "Jeosenkron uydular (GOES-R, MTG) 16 kanalla dakikalık görüntü verir; kanal farkları sis, kül ve konveksiyon tespitinde kullanılır.",
+    "Uydu bulut ürünleri arasında sistematik farklar vardır; GEWEX değerlendirmesi bulut oranının ürüne göre %10 değiştiğini gösterdi. (Stubenrauch vd. 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "EarthCARE (2024) lidar + radar + radyometreyle bulut-aerosol profillerini aynı anda ölçüyor.",
+    "OSSE çalışmaları yeni uydu takımyıldızlarının tahmine katkısını fırlatmadan önce ölçüyor. (McCarty vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stubenrauch vd. 2013",
+    "baslik": "Assessment of Global Cloud Datasets from Satellites",
+    "yayin": "Bulletin of the American Meteorological Society 94(7), 1031-1049",
+    "yil": "2013",
+    "url": "https://doi.org/10.1175/BAMS-D-12-00117.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "McCarty vd. 2021",
+    "baslik": "Observing System Simulation Experiments Investigating Atmospheric Motion Vectors and Radiances from a Constellation of 4–5-μm Infrared Sounders",
+    "yayin": "Journal of Atmospheric and Oceanic Technology 38(2), 331-347",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/JTECH-D-20-0109.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Hou vd. 2014",
+    "baslik": "The Global Precipitation Measurement Mission",
+    "yayin": "Bulletin of the American Meteorological Society 95(5), 701-722",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00164.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Koner vd. 2016",
+    "baslik": "Hybrid cloud and error masking to improve the quality of deterministic satellite sea surface temperature retrieval",
+    "yayin": "Remote Sensing of Environment 174, 266-278",
+    "yil": "2016",
+    "url": "https://doi.org/10.1016/j.rse.2015.12.015",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature 597, 672-677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Meteosat kızılötesi kanal farklarını Satpy ile işleyerek Marmara Bölgesinde gece sis ve alçak bulut örtüsünü otomatik tespit edip doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 450",
+   "ad": "Meteorolojide Uzaktan Algılama",
+   "projeyeKatki": "Uydu kızılötesi ve su buharı kanallarının ışıma özelliklerinden yararlanarak gece sis tabakası ile yer yüzeyi arasındaki sıcaklık farkını ayırt eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Doppler hava radarı temel denklem bağıntısı",
+     "nerede": "Adım 2: Radar ve uydu kompozit sis katmanlarının kalibrasyon analizinde.",
+     "katki": "Mikrodalga ve kızılötesi algılama limitlerini kıyaslayarak sis kalınlığını doğrulamayı sağlar."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Meteosat 3.9 ve 10.8 µm kanal farkıyla gece sisini tespit edip METAR görüş verileriyle doğrulamak.",
+  "ayrinti": "Marmara Bölgesi kış aylarında sıkça radyasyon ve adveksiyon sisi etkisi altında kalır. Gece saatlerinde su damlacıklarının farklı ışıma yayma katsayıları kullanılarak sis katmanı yer yüzeyinden ayırt edilir.",
+  "adimlar": [
+   {
+    "baslik": "EUMETSAT veri portalından Meteosat verisini indirmek",
+    "oz": "EUMETSAT Data Store üzerinden Marmara odaklı SEVIRI arşiv dosyalarını temin etmek.",
+    "ayrinti": "Sis hadisesinin yaşandığı kış gecesine ait SEVIRI Seviye 1.5 verisi API ile indirilir. İlgili saat dilimindeki coğrafi kapsama alanı filtrelenerek yerel çalışma dizinine aktarılır.",
+    "nasil": [
+     {
+      "teknik": "eumetsat_data_tailor ile Marmara koordinat kutusuna göre kırpılmış SEVIRI HRIT dosyalarını indirmek.",
+      "sade": "Avrupa uydu merkezinden Türkiye üzerindeki gece görüntüsünü sadece Marmara bölgesini kapsayacak boyutta çekeriz.",
+      "altAdimlar": [
+       "EUMETSAT API anahtarını tanımlayarak istemci bağlantısını kurun.",
+       "Marmara koordinat sınırlarını coğrafi filtreye girin.",
+       "Gece 00:00 ile 06:00 UTC arasındaki saatlik SEVIRI paketlerini indirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+      }
+     },
+     {
+      "teknik": "Dosyaların MD5 sağlama toplamlarını kontrol ederek eksik ya da bozuk taramaları ayıklamak.",
+      "sade": "İndirilen devasa uydu dosyalarının hatasız aktarıldığını matematiksel kontrol koduyla denetleriz.",
+      "altAdimlar": [
+       "İndirilen HRIT dosyalarının boyutlarını metaveriyle karşılaştırın.",
+       "Sağlama toplamı tutmayan bozuk blokları tekrar indirmeye alın.",
+       "Hatasız doğrulanan veri setini arşiv klasöründe etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 450",
+      "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Satpy ile parlaklık sıcaklığı kanal farkını hesaplamak",
+    "oz": "3.9 µm ve 10.8 µm kanalları arasındaki ışıma farkıyla sis maskesini üretmek.",
+    "ayrinti": "Su damlacıklarından oluşan alçak sis bulutları 3.9 µm orta kızılötesi dalga boyunda tam siyah cisim gibi ışıma yapmaz. Bu özellik 10.8 µm ile fark alındığında negatif parlaklık sıcaklığı verir.",
+    "nasil": [
+     {
+      "teknik": "Scene(filenames=dosyalar, reader='seviri_l1b_hrit').load(['IR_039', 'IR_108']) ile parlaklık sıcaklıklarını yüklemek.",
+      "sade": "Satpy kütüphanesini kullanarak uydunun iki farklı kızılötesi gözünden ölçülen sıcaklık matrislerini belleğe alırız.",
+      "altAdimlar": [
+       "Satpy Scene nesnesini ilgili HRIT dosyalarıyla başlatın.",
+       "3.9 ve 10.8 mikron kızılötesi radyometre kanallarını çağırın.",
+       "Sıcaklık dizilerini Kelvin biriminde kalibre ederek matrise dökün."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+      }
+     },
+     {
+      "teknik": "fark = scene['IR_108'].values - scene['IR_039'].values; sis_maske = np.where(fark > 2.5, 1, 0) filtresini uygulamak.",
+      "sade": "İki kızılötesi kanal arasındaki sıcaklık farkını çıkararak eşik değeri aşan pikselleri sis olarak işaretleriz.",
+      "altAdimlar": [
+       "İki kanal dizisi arasındaki piksel bazında fark matrisini hesaplayın.",
+       "Gündüz güneş parlaması etkisini önlemek için gece saatlerini filtreleyin.",
+       "Eşik değeri aşan alanları coğrafi sis maskesi olarak rastera yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 450",
+      "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "IEM METAR görüş gözlemleriyle sis maskesini doğrulamak",
+    "oz": "Havalimanı yer istasyonlarının görüş mesafeleriyle uydu tespitlerini eşleştirmek.",
+    "ayrinti": "İstanbul Havalimanı (LTFM), Sabiha Gökçen (LTFJ) ve Çorlu (LTDA) meydanlarının METAR kodlarındaki görüş mesafesi 1000 metrenin altına indiğinde sis durumu teyit edilir.",
+    "nasil": [
+     {
+      "teknik": "IEM API üzerinden çekilen METAR verisinde vis1_coeff < 1000 m olan anları zaman damgasıyla eşleştirmek.",
+      "sade": "Yer istasyonlarındaki gözlemcilerin görüşün 1 kilometrenin altına düştüğünü bildirdiği saatleri uydu anıyla karşılaştırırız.",
+      "altAdimlar": [
+       "Marmara havalimanlarının METAR raporlarını CSV formatında çekin.",
+       "Görüş mesafesi 1000 metre altı olan anları sis vakası olarak etiketleyin.",
+       "Uydu geçiş zamanına en yakın METAR ölçümünü zaman ekseninde hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+      }
+     },
+     {
+      "teknik": "Meydan koordinatındaki piksel değerini alıp isabet oranı ve tehdit skorunu hesaplamak.",
+      "sade": "Uydunun sis dediği yer ile yer istasyonunun sis bildirdiği anları kıyaslayarak başarı yüzdesini çıkarırız.",
+      "altAdimlar": [
+       "Havalimanı enlem ve boylamına karşılık gelen piksel indisini bulun.",
+       "Uydu sis maskesi ile yer gözlemini ikili doğruluk tablosunda toplayın.",
+       "Yakalama oranı (POD) ve yanlış uyarı oranını (FAR) raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 450",
+      "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Havacılık operasyonları için sis risk bülteni hazırlamak",
+    "oz": "Sis yayılım haritasını ve beklenen dağılma trendini özet bültene dönüştürmek.",
+    "ayrinti": "Görüş kısıtlamasının uçuş planlamasına ve boğaz gemi trafiğine etkisini değerlendiren haritalı ve uyarı indeksli tek sayfalık durum bülteni oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "Cartopy ile Marmara kıyı hattı ve havalimanı lokasyonları üzerinde renklendirilmiş sis alanlarını çizmek.",
+      "sade": "Hava trafik kontrolörlerinin ve gemi kaptanlarının sis sınırlarını net görebileceği renkli harita basarız.",
+      "altAdimlar": [
+       "Marmara Bölgesi kıyı ve boğaz sınırlarını yüksek çözünürlükte ekleyin.",
+       "Sis piksellerini sarı-kırmızı şeffaf dolgu katmanıyla haritaya bindirin.",
+       "Havalimanı ve deniz feneri konumlarını işaretçi ikonlarla belirtin."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+      }
+     },
+     {
+      "teknik": "Güneş doğumuna bağlı olarak sisin beklenen dağılma saatini yüzey sıcaklık artışıyla tahmin edip bültene yazmak.",
+      "sade": "Sabah güneşin doğmasıyla sisin ne zaman kalkacağını tahmin edip operasyon bültenine tahmini saat olarak ekleriz.",
+      "altAdimlar": [
+       "Güneş doğuş saatini ve yüzey güneş ışıması artış trendini hesaplayın.",
+       "Sis katmanının buharlaşma süresini ampirik formülle kestirin.",
+       "Sonuç bültenini PDF ve PNG olarak otomatik üretim klasörüne aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 450",
+       "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 450",
+      "madde": "Meteorolojik uydu kızılötesi ve su buharı kanallarından bulut tepe sıcaklığını belirlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Meteosat kızılötesi kanal farkıyla gece sis tespiti yapan açık kaynak Python iş akışı ve havalimanı doğrulama analizleri.",
+  "senden": "Temel Python bilgisi ve raster veri manipülasyonu.",
+  "bizden": "Meteosat SEVIRI veri çekme betikleri ve sis eşikleme algoritması."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "eumetsat-ornek",
+   "konu": "Marmara Denizi ve Boğazlar çevresinde Meteosat gece sis maskesi döngüsü, Ocak 2024",
+   "aciklama": "Kanal farkı algoritmasıyla sis tabakasının alansal yayılım animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Fog_in_the_Bosphorus.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "İstanbul Boğazı ve Marmara Denizi üzerinde yoğun kış sisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "EUMETSAT Meteosat SEVIRI Data Guide and Products",
+   "url": "https://www.eumetsat.int/meteosat-services"
+  },
+  {
+   "ad": "Satpy Python Package for Earth-Observing Satellite Data",
+   "url": "https://satpy.readthedocs.io/en/stable/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO450-02.json",
+  "tarih": "2026-10-17 04:34",
+  "geminiSha1": "3c4b521a9d22"
+ }
+}
