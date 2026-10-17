@@ -1644,3 +1644,14 @@ html[data-kime="khsm"] #yz,html[data-kime="hoca"] #yz{display:none}   /* E02: re
 .test-kart[hidden]{display:none}
 .test-kart .tk-not{font-size:1rem;color:var(--murekkep-2)}
 .sss-daha{margin-top:12px}.sss-daha>.sss-kartlar{margin-top:10px}
+
+/* CLS (17 Eki, e7): aşama şeridi (#serit) JS ile dolar; dolmadan önce aynı yükseklik ayrılır, başlık 44 px aşağı kaymasın (CLS 0,947 → 0). Değerler ölçülen son yükseklikler. */
+.serit:empty{min-height:54px;box-sizing:border-box}
+@media (max-width:960px){.serit:empty{min-height:36px}}
+@media (max-width:700px){.serit:empty{min-height:29px}}
+@media (pointer:coarse){.serit:empty{min-height:51px}}
+@media (pointer:coarse) and (max-width:700px){.serit:empty{min-height:48px}}
+/* CLS (17 Eki, e7): "genelden özele" kademe listesi veriyle dolar; dolmadan yer ayrılır, altındaki klip ~160 px aşağı zıplamasın. Ölçülen son yükseklikler (dar: kapalı details, ≥860: açık). */
+.aura-kademe:empty{min-height:159px}
+@media (min-width:481px){.aura-kademe:empty{min-height:136px}}
+@media (min-width:860px){.aura-kademe:empty{min-height:calc(22.7vw + 15px)}}
