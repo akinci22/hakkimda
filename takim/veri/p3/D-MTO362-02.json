@@ -1,0 +1,462 @@
+{
+ "id": "D-MTO362-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 362",
+  "dersAd": "İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar",
+  "kol": "yazilim"
+ },
+ "ad": "Dron rüzgârı: hareket verisinden rüzgâr profili çıkar",
+ "ne": "Dronun duruş (eğim) ve hız verisinden rüzgâr vektörünü kestiren algoritma yaz; sonik anemometre ya da rüzgâr profilleyiciyle doğrula.",
+ "adimlar": [
+  "ArduPilot uçuş günlüğü dosyalarından eğim açısı, yönelim ve yer hızını çıkar.",
+  "Eğim-rüzgâr ilişkisini sabit konumda (hover) kalibre et.",
+  "Her 10 m için rüzgâr hızı ve yönünü hesapla.",
+  "Bir rüzgâr kulesi ya da SODAR verisiyle karşılaştır; hata payını ver.",
+  "Algoritmayı açık kaynak olarak paylaş."
+ ],
+ "sonuc": "Rüzgâr profili algoritması ve doğrulama grafiği.",
+ "dayanak": "Banakh vd. 2020",
+ "senden": "Sinyal işleme ve Python.",
+ "bizden": "Uçuş verisi ve referans ölçüm.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 362",
+    "ad": "İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "ArduPilot",
+   "ne": "Açık kaynak otopilot topluluğu.",
+   "url": "https://ardupilot.org/",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynaklı otopilot yazılımı içinde ataletsel ölçüm birimi (IMU) ve rüzgâr kestirim algoritmaları geliştirdiler.",
+    "nasil": "Gelişmiş Genişletilmiş Kalman Filtresi (EKF3) ile pusula, ivmeölçer ve GPS verilerinden dikey ve yatay hava hızını kestirdiler.",
+    "neEdindiler": "Çok rotorlu İHA'ların harici rüzgâr sensörü olmadan kendi gövde eğimleriyle rüzgârı ölçebilmesini sağladılar.",
+    "bizNasilKatki": "ArduPilot EKF3 rüzgâr kestirim parametrelerini uçuş günlüğü verilerimizle karşılaştırarak kalibre ederiz.",
+    "referanslar": [
+     {
+      "ad": "ArduPilot Otopilot EKF3 Rüzgâr Kestirimi Dokümantasyonu",
+      "url": "https://ardupilot.org/copter/docs/common-apm-navigation-extended-kalman-filter-overview.html",
+      "tur": "kod"
+     },
+     {
+      "ad": "Neumann vd. (2015) Çok Rotorlu İHA ile Gerçek Zamanlı Rüzgâr Ölçümü",
+      "url": "https://doi.org/10.1177/1756829315570889",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ardupilot.org/copter/docs/common-apm-navigation-extended-kalman-filter-overview.html",
+      "aciklama": "ArduPilot EKF3 durum kestirimi ve telemetri analiz konsolu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://ardupilot.org/copter/docs/common-apm-navigation-extended-kalman-filter-overview.html",
+      "aciklama": "Dron eğim açıları ve rüzgâr vektörü telemetri akış sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "METEK",
+   "ne": "Sonik anemometre ve rüzgâr profilleyici üreticisi.",
+   "url": "https://metek.de/",
+   "ayrinti": {
+    "neYaptilar": "Atmosfer sınır tabakası araştırmaları için yüksek hassasiyetli 3 eksenli ultrasonik sonik anemometreler ürettiler.",
+    "nasil": "Ultrasonik ses dalgalarının iletim süresi farkından rüzgâr bileşenlerini (u, v, w) 50 Hz frekansında ölçtüler.",
+    "neEdindiler": "Rüzgâr türbülansı ve akı ölçümlerinde dünya çapında referans kabul edilen ölçüm hassasiyeti sağladılar.",
+    "bizNasilKatki": "Dronla kestirdiğimiz rüzgâr vektörünü test sahasındaki METEK sonik anemometre kulesi verisiyle doğrularız.",
+    "referanslar": [
+     {
+      "ad": "METEK Meteoroloji Ultrasonik Anemometre Teknik Kılavuzu",
+      "url": "https://metek.de/product/uSonic-3-Omni/",
+      "tur": "web"
+     },
+     {
+      "ad": "Vogt vd. (2018) Sonik Anemometre ile Türbülans ve Rüzgâr Profili",
+      "url": "https://doi.org/10.1007/s10546-018-0348-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://metek.de/product/uSonic-3-Omni/",
+      "aciklama": "METEK ultrasonik sonik anemometre teknik özellikleri paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://metek.de/product/uSonic-3-Omni/",
+      "aciklama": "3 boyutlu rüzgâr bileşenleri ve türbülans ölçüm veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Scintec",
+   "ne": "Sintilometre ve SODAR üreticisi.",
+   "url": "https://www.scintec.com/",
+   "ayrinti": {
+    "neYaptilar": "Akustik ve optik uzaktan algılama sistemleriyle sınır tabakası rüzgâr profilleyici SODAR sistemleri kurdular.",
+    "nasil": "Ses dalgalarının atmosferik türbülans katmanlarından geri saçılmasından Doppler kaymasıyla dikey rüzgâr profili çıkardılar.",
+    "neEdindiler": "Havalimanları ve meteoroloji enstitülerine 500 metreye kadar kesintisiz rüzgâr kesmesi profili sundular.",
+    "bizNasilKatki": "Dron dikey tırmanış rüzgâr profilini eş zamanlı çalışan Scintec SODAR dikey katman verileriyle karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Scintec Akustik Rüzgâr Profilleyici SODAR Sistemleri Portalı",
+      "url": "https://www.scintec.com/products/flat-array-sodar-fas64/",
+      "tur": "web"
+     },
+     {
+      "ad": "Emeis vd. (2007) Akustik Uzaktan Algılama ile Rüzgâr Profilleri",
+      "url": "https://doi.org/10.1127/0941-2948/2007/0237",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.scintec.com/products/flat-array-sodar-fas64/",
+      "aciklama": "Scintec FAS64 düz dizilim SODAR akustik rüzgâr profilleyici paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.scintec.com/products/flat-array-sodar-fas64/",
+      "aciklama": "Sınır tabakası dikey rüzgâr hızı ve yönü katmanları veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "OpenDroneMap",
+   "ne": "Dron görüntülerinden harita üreten açık kaynak yazılım.",
+   "url": "https://www.opendronemap.org/",
+   "ayrinti": {
+    "neYaptilar": "Üniversite ve açık kaynak araştırma topluluğu desteğiyle dron telemetrisini ve hava fotoğraflarını işleyen yazılım kurdular.",
+    "nasil": "Fotogrametri ve uçuş rotası verilerini birleştirerek yer seviyesi yüzey pürüzlülüğü haritaları ürettiler.",
+    "neEdindiler": "Araştırmacılara açık kaynaklı arazi modeli ve rüzgâr sürtünme pürüzlülüğü türetme olanağı sundular.",
+    "bizNasilKatki": "Test alanının yüzey pürüzlülük uzunluğunu (z0) OpenDroneMap sayısal yükseklik modelinden çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "OpenDroneMap Açık Kaynak Fotogrametri ve Telemetri Portalı",
+      "url": "https://www.opendronemap.org/webodm/",
+      "tur": "web"
+     },
+     {
+      "ad": "Toffanin (2019) OpenDroneMap: Açık Kaynak İHA Veri İşleme Mimarisi",
+      "url": "https://doi.org/10.5281/zenodo.3377798",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.opendronemap.org/webodm/",
+      "aciklama": "WebODM açık hava fotogrametrisi ve 3D yüzey modeli konsolu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.opendronemap.org/webodm/",
+      "aciklama": "Dron uçuş telemetrisi ve topoğrafik pürüzlülük haritası akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "TEKNOFEST",
+   "ne": "Türkiye'nin en büyük öğrenci teknoloji yarışması; roket, İHA, model uydu kategorileri.",
+   "url": "https://www.teknofest.org/",
+   "ayrinti": {
+    "neYaptilar": "Üniversite öğrenci takımlarının otonom İHA ve meteorolojik sensör entegrasyonu kabiliyetlerini yarıştırdılar.",
+    "nasil": "Zorlu rüzgâr koşullarında otonom uçuş, görev icrası ve telemetri aktarımı kriterleriyle takımları değerlendirdiler.",
+    "neEdindiler": "Genç mühendislerin gerçek hava şartlarında dayanıklı insansız hava platformları geliştirmesini sağladılar.",
+    "bizNasilKatki": "Geliştirdiğimiz rüzgâr kestirim algoritmasını TEKNOFEST İHA takımlarının rüzgâr kompanzasyonunda test ederiz.",
+    "referanslar": [
+     {
+      "ad": "TEKNOFEST Havacılık Uzay ve Teknoloji Festivali Yarışma Şartnameleri",
+      "url": "https://www.teknofest.org/tr/yarismalar/",
+      "tur": "web"
+     },
+     {
+      "ad": "Karakaya vd. (2021) TEKNOFEST İHA Görev Performansı Değerlendirmesi",
+      "url": "https://doi.org/10.17671/gazibtd.847551",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.teknofest.org/tr/yarismalar/",
+      "aciklama": "TEKNOFEST insansız hava araçları yarışma pisti ve görev paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.teknofest.org/tr/yarismalar/",
+      "aciklama": "Öğrenci takımları telemetri verileri ve uçuş performansı akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Dronu sınır tabakasını ölçen bir platform olarak kullanmak; sensör, uçuş ve veri işleme zincirini kurmak.",
+  "baglanti": "Yazılım kolunda İHA profil verisi; Anlatım kolunda uçuş görüntüleriyle sınır tabakası anlatımı.",
+  "literatur": {
+   "maddeler": [
+    "Küçük İHA'lar sınır tabakasının alt 1-2 km'sini radyosonda/kuleyle doldurulamayan çözünürlükte profilleyebilir; sensör tepki süresi ve pervane ısınması temel hata kaynaklarıdır.",
+    "Sınır tabakası yapısı (karışım tabakası, kararlı gece tabakası, alçak seviye jeti) Stull 1988'de tanımlanan ölçeklerle yorumlanır.",
+    "İHA ile PM2.5 düşey dağılımı ölçümleri kirleticilerin karışım yüksekliğine bağlı katmanlaşmasını gösterdi. (Li vd. 2018)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Meteodrone gibi ticari meteoroloji dronları ulusal servislerde operasyonel profil alıyor.",
+    "Uçuş düzenlemeleri (SHGM, FAA) görüş hattı ve yükseklik sınırı getiriyor; meteorolojik uçuş planı bu sınırlar içinde kurulur."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Li vd. 2018",
+    "baslik": "Investigating vertical distribution patterns of lower tropospheric PM2.5 using unmanned aerial vehicle measurements",
+    "yayin": "Atmospheric Environment 173, 62-71",
+    "yil": "2018",
+    "url": "https://doi.org/10.1016/j.atmosenv.2017.11.009",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer (Springer), ders kitabı",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Müller vd. 2021",
+    "baslik": "Surveying fumarole sites and hydrothermal alteration by unoccupied aircraft systems (UAS) at the La Fossa cone, Vulcano Island (Italy)",
+    "yayin": "Journal of Volcanology and Geothermal Research 413, 107208",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.jvolgeores.2021.107208",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Banakh vd. 2020",
+    "baslik": "Wind–Temperature Regime and Wind Turbulence in a Stable Boundary Layer of the Atmosphere: Case Study",
+    "yayin": "Remote Sensing 12(6), 955",
+    "yil": "2020",
+    "url": "https://doi.org/10.3390/rs12060955",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Dronun otopilot eğim açısı ve hız verilerinden aerodinamik sürüklenme denklemiyle dikey rüzgâr profilini kestirip kuleyle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 362",
+   "projeyeKatki": "İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar dersindeki çok rotorlu İHA dinamik dengesi ve aerodinamik sürüklenme denklemleri rüzgâr kestiriminde kullanılır. Dronun havada asılı kalma (hover) durumundaki eğim açısı ve yönelim verisinden rüzgâr hızı ve yönü vektörel olarak hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı",
+     "nerede": "Dronun otopilot telemetrisindeki eğim açısı (pitch/roll) ve motor itki verilerinden yatay rüzgâr hızını türetirken kullanılır."
+    },
+    {
+     "formulAd": "Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği",
+     "nerede": "Hesaplanan rüzgâr hızının sınır tabaka içindeki dikey rüzgâr kesme (wind shear) katmanıyla ilişkisini incelerken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Dronun otopilot eğim ve hız verilerinden sürüklenme formülüyle rüzgâr kestirilip kuleyle doğrulanır.",
+  "ayrinti": "ArduPilot otopilot telemetri dosyalarından gövde eğim açıları (pitch, roll), pusula yönelimi ve yer hızı vektörleri ayıklanır. Sabit konumda havada asılı kalma (hover) sırasında gövdenin rüzgâra karşı direnç eğimi kalibre edilir. Dikey tırmanışta her 10 metre için rüzgâr hızı ve yönü türetilerek meteoroloji araştırma kulesindeki sonik anemometre ölçümleriyle doğrulanır.",
+  "adimlar": [
+   {
+    "baslik": "Uçuş telemetri verilerinin ayıklanması ve filtrelenmesi",
+    "oz": "ArduPilot günlük dosyasından eğim, pusula ve yer hızı verileri çıkarılır.",
+    "ayrinti": "Dronun mikro SD kartına yazılan bin formatındaki uçuş günlüğü Python dronekit ve pymavlink kütüphaneleriyle ayrıştırılır. 25 Hz hızındaki eğim açıları (pitch, roll), pusula yönelimi (yaw), GPS yer hızı ve barometrik irtifa serileri çıkarılarak sensör gürültüsü Butterworth düşük geçiren filtresiyle temizlenir.",
+    "nasil": [
+     {
+      "teknik": "pymavlink ile ATTITUDE ve GPS telemetri paketlerini Pandas tablosuna aktarmak.",
+      "sade": "MTO 362 dersindeki 'Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı' bilgisiyle dronun havada uçarken ne kadar yan yattığını ve hangi hızla gittiğini telemetri dosyasından okuruz.",
+      "altAdimlar": [
+       "1. Uçuş kontrol kartının dataflash log dosyasını (.bin) bilgisayara indirin.",
+       "2. Pitch, roll, yaw ve GPS koordinat serilerini ortak zaman damgasıyla eşleyin.",
+       "3. Motor titreşimlerinden kaynaklanan yüksek frekanslı gürültüleri filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı"
+      }
+     },
+     {
+      "teknik": "Sabit tırmanış irtifasını barometre ve GPS füzyonu ile 10 m katmanlara bölmek.",
+      "sade": "MTO 362 dersindeki 'Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği' bilgisiyle dronun tırmanış yolunu 10'ar metrelik dilimlere ayırarak her dilim için bağımsız rüzgâr verisi hazırlarız.",
+      "altAdimlar": [
+       "1. Barometrik irtifayı yer basıncına göre sıfırlayıp gerçek yüksekliği bulun.",
+       "2. 0-120 metre arasını 10 metrelik yükseklik pencerelerine ayrıştırın.",
+       "3. Her pencere içindeki telemetri örneklerini istatistiksel analize hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Aerodinamik sürüklenme modeli ve eğim kalibrasyonu",
+    "oz": "Havada asılı kalma sırasındaki eğim açısı rüzgâr vektörüne dönüştürülür.",
+    "ayrinti": "Dronun sabit konumda rüzgâra karşı direnirken gövdesini yatırma açısı (theta) ile rüzgârın aerodinamik sürüklenme kuvveti arasındaki denge denklemi kurulur. Dronun kütlesi, yerçekimi ivmesi ve aerodinamik sürtünme katsayısı kullanılarak v = sqrt((m * g * tan(theta)) / (0.5 * rho * C_d * A)) formülü işletilir.",
+    "nasil": [
+     {
+      "teknik": "v = sqrt((m*g*tan(theta))/(0.5*rho*C_d*A)) formülüyle rüzgâr hızını çözmek.",
+      "sade": "MTO 362 dersindeki 'Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı' bilgisiyle dronun rüzgârda yerinde durabilmek için ne kadar eğildiğine bakarak rüzgârın şiddetini hesaplarız.",
+      "altAdimlar": [
+       "1. Dronun kütlesini ve efektif ön kesit alanını (A) parametre olarak girin.",
+       "2. Toplam eğim açısını theta = arccos(cos(pitch)*cos(roll)) ile türetin.",
+       "3. Hava yoğunluğu (rho) düzeltmesiyle yatay rüzgâr hızını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı"
+      }
+     },
+     {
+      "teknik": "Pusula açısı ve eğim doğrultusundan yatay rüzgâr yönünü (derece) türetmek.",
+      "sade": "MTO 362 dersindeki 'Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı' bilgisiyle dronun hangi yöne doğru yattığını belirleyerek rüzgârın estiği yönü pusula derecesi olarak buluruz.",
+      "altAdimlar": [
+       "1. Pitch ve roll bileşenlerinin oranından gövde eğim yönünü belirleyin.",
+       "2. Dronun pusula yönelimini ekleyerek coğrafi rüzgâr geliş yönünü bulun.",
+       "3. 0-360 derece aralığındaki rüzgâr yönü açısını doğrusal olarak ölçekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "10 metrelik katmanlarda rüzgâr profilinin kestirimi",
+    "oz": "Dikey tırmanış boyunca her 10 metre için rüzgâr hızı ve yönü hesaplanır.",
+    "ayrinti": "Dron 120 metre irtifaya kadar tırmanırken anlık yer hızı vektörü rüzgâr hızından çıkarılarak bağıl hava hızı bulunur. Dronun baktığı pusula yönü ile eğim doğrultusu birleştirilerek her 10 metrelik dikey katman için ortalama rüzgâr hızı (m/s) ve rüzgâr yönü (derece) profili sayısal olarak elde edilir.",
+    "nasil": [
+     {
+      "teknik": "Yer hızı vektörünü rüzgâr hızından çıkararak gerçek hava hızı profilini üretmek.",
+      "sade": "MTO 362 dersindeki 'Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı' bilgisiyle dronun tırmanırken yaptığı kendi hareketini rüzgâr hesabından düşerek saf atmosferik rüzgârı buluruz.",
+      "altAdimlar": [
+       "1. GPS yer hızı vektörünü gövde koordinat eksenine dönüştürün.",
+       "2. Gövde eğiminden hesaplanan hız vektöründen yer hızını vektörel çıkarın.",
+       "3. Her 10 metrelik kot diliminde medyan rüzgâr hızını ve standart sapmasını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı"
+      }
+     },
+     {
+      "teknik": "Dikey rüzgâr kesmesi (wind shear) katsayısını logaritmik rüzgâr profiliyle uydurmak.",
+      "sade": "MTO 362 dersindeki 'Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği' bilgisiyle yerden yükseldikçe rüzgârın ne kadar hızlandığını gösteren sınır tabakası profil eğrisini çizeriz.",
+      "altAdimlar": [
+       "1. 10 m aralıklı hız noktalarını Prandtl logaritmik rüzgâr denklemine uydurun.",
+       "2. Yüzey sürtünme hızını (u_star) ve rüzgâr kesme üssünü belirleyin.",
+       "3. Dikey rüzgâr profili grafiğini ve yön değişim oklarını oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sonik anemometre ve kule ölçümleriyle doğrulama",
+    "oz": "Referans meteoroloji kulesi verisiyle kestirilen rüzgâr profili kıyaslanır.",
+    "ayrinti": "Meteoroloji araştırma kulesindeki sonik anemometre ve SODAR ölçümleriyle dondan elde edilen rüzgâr vektörleri eşleştirilir. Korelasyon katsayısı, ortalama mutlak hata (MAE) ve rüzgâr yönü sapmaları hesaplanarak geliştirilen algoritmanın rüzgâr enerjisi ve havacılık uygulamaları için güvenilirliği doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "Referans sonik anemometre verisiyle dron rüzgâr hızını saçılım grafiğinde test etmek.",
+      "sade": "MTO 362 dersindeki 'İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar' bilgisiyle dronumuzun hesapladığı rüzgârı direkteki hassas sonik anemometrenin ölçümüyle kıyaslayıp hata payını buluruz.",
+      "altAdimlar": [
+       "1. 10, 30 ve 60 metre kule sensör verilerini uçuş saatine göre senkronize edin.",
+       "2. Dron kestirimi ile kule ölçümü arasındaki fark serisini türetin.",
+       "3. Korelasyon katsayısı r > 0.90 ve RMSE < 0.6 m/s başarısını kanıtlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi"
+      }
+     },
+     {
+      "teknik": "Algoritmayı açık kaynak Python kütüphanesi olarak GitHub üzerinden paylaşmak.",
+      "sade": "MTO 362 dersindeki 'Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı' bilgisiyle yazdığımız rüzgâr hesaplama kodunu diğer meteoroloji ve havacılık araştırmacılarının kullanımına açarız.",
+      "altAdimlar": [
+       "1. Python hesaplama fonksiyonlarını modüler betik haline getirin.",
+       "2. Örnek telemetri dosyası ve Jupyter eğitim defterini hazırlayın.",
+       "3. Doğrulama raporunu ve açık kod deposunu yayımlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Dron hareket verisinden dikey rüzgâr profili kestiren açık kaynak algoritma ve kule doğrulama grafiği elde edilir.",
+  "senden": "Sinyal işleme ve Python programlama ilgisi.",
+  "bizden": "Dron uçuş telemetri verisi ve kule sonik anemometre ölçümleri."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Sınır tabakasında dikey rüzgâr hızı ve yön profili değişimi animasyonu, 2024",
+   "aciklama": "0-120 metre irtifa arasında logaritmik rüzgâr kesmesi ve rüzgâr vektörleri dağılımı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://ardupilot.org/copter/docs/common-apm-navigation-extended-kalman-filter-overview.html",
+   "aciklama": "ArduPilot otopilot EKF3 durum kestirimi ve rüzgâr hesaplama sistemi veri akışı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "ArduPilot EKF3 Navigasyon ve Rüzgâr Kestirimi Kılavuzu",
+   "url": "https://ardupilot.org/copter/docs/common-apm-navigation-extended-kalman-filter-overview.html"
+  },
+  {
+   "ad": "Wind-Temperature Regime and Wind Turbulence in a Stable Boundary Layer",
+   "url": "https://doi.org/10.3390/rs12060955"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO362-02.json",
+  "tarih": "2026-10-17 05:11",
+  "geminiSha1": "71ba2b07617b"
+ }
+}

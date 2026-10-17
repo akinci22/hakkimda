@@ -1,0 +1,471 @@
+{
+ "id": "D-MTO361-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 361",
+  "dersAd": "Hava Kirliliği Modellemesi",
+  "kol": "yazilim"
+ },
+ "ad": "Bir santralin dumanı nereye düşer? AERMOD benzeri Gauss modeli",
+ "ne": "Python'da Gauss dağılım modeli yaz; bir termik santral için yıllık ERA5 meteorolojisiyle SO₂ derişim haritası üret, EPA AERMOD mantığıyla karşılaştır.",
+ "adimlar": [
+  "Baca yüksekliği, çıkış hızı ve sıcaklığından duman yükselmesini (Briggs) hesapla.",
+  "Pasquill-Gifford yayılma parametrelerini kararlılık sınıfına göre uygula.",
+  "Yıllık saatlik rüzgâr/kararlılıkla derişim alanını topla.",
+  "En yüksek 24 saatlik ve yıllık ortalama haritalarını çiz.",
+  "EPA SCRAM belgeleriyle yöntem farklarını yaz."
+ ],
+ "sonuc": "Derişim haritaları ve yöntem raporu.",
+ "dayanak": "Stein vd. 2015",
+ "senden": "Python ve fizik.",
+ "bizden": "Model iskeleti.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 361",
+    "ad": "Hava Kirliliği Simülasyonu"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "US EPA tercih edilen dağılım modelleri",
+   "ne": "AERMOD ve diğer düzenleyici modellerin resmi sayfası.",
+   "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling-preferred-and-recommended-models",
+   "ayrinti": {
+    "neYaptilar": "Endüstriyel tesislerin duman dağılımını hesaplamak için yasal standart Gauss dağılım simülasyonları geliştirdiler.",
+    "nasil": "Pasquill-Gifford ve Briggs dağılım katsayılarını rüzgâr tüneli ve saha duman deneyleriyle kalibre ettiler.",
+    "neEdindiler": "Küresel ölçekte baca yüksekliklerinin ve çevre izin eşiklerinin bilimsel belirlenmesini sağladılar.",
+    "bizNasilKatki": "Briggs duman yükselmesi ve Gauss dağılım formüllerini modüler Python kütüphanesi olarak kodlarız.",
+    "referanslar": [
+     {
+      "ad": "EPA (2005) Hava Kalitesi Modelleri Kılavuzu: 40 CFR Ek W",
+      "url": "https://www.epa.gov/scram/clean-air-act-guideline-air-quality-models",
+      "tur": "rapor"
+     },
+     {
+      "ad": "US EPA SCRAM Dağılım Modelleri Portalı",
+      "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Gaussian_plume_model.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Bacadan çıkan kirletici duman konisi ve Gauss dağılım profili şeması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling",
+      "aciklama": "US EPA SCRAM hava kalitesi simülasyon dokümanları ve kılavuz paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "US EPA SCRAM",
+   "ne": "Hava kalitesi modelleri destek merkezi.",
+   "url": "https://www.epa.gov/scram",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik dağılım modelleri için kullanıcı destek merkezi ve açık kod deposu kurarak teknik yardım sağladılar.",
+    "nasil": "Meteorolojik ön işlemciler (AERMET) ve arazi işlemcileri (AERMAP) ile modellerin girdi hazırlığını standartlaştırdılar.",
+    "neEdindiler": "Mühendislik ekiplerine emisyon hesaplama kılavuzları ve açık doğrulama veri setleri sundular.",
+    "bizNasilKatki": "SCRAM test veri setlerini indirerek yazdığımız Python Gauss modelinin doğruluğunu test ederiz.",
+    "referanslar": [
+     {
+      "ad": "US EPA SCRAM Destek Merkezi Kullanıcı Dokümanları",
+      "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling-preferred-and-recommended-models",
+      "tur": "web"
+     },
+     {
+      "ad": "Cimorelli vd. (2005) AERMOD Dağılım Modeli Formülasyonu",
+      "url": "https://doi.org/10.1175/JAM2227.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling-preferred-and-recommended-models",
+      "aciklama": "US EPA SCRAM model dokümantasyonu ve test veri setleri arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling-preferred-and-recommended-models",
+      "aciklama": "AERMOD formülasyon raporları ve indirme listesi akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "CERC (ADMS)",
+   "ne": "Cambridge kökenli dağılım modeli şirketi.",
+   "url": "https://www.cerc.co.uk/",
+   "ayrinti": {
+    "neYaptilar": "Sanayi ve şehir alanlarında gelişmiş atmosferik dağılım simülasyonu yapan ADMS yazılım paketini ticarileştirdiler.",
+    "nasil": "Sınır tabaka türbülans yapısını ve bina kaynaklı duman çökmesi etkilerini sayısal algoritmalarla çözdüler.",
+    "neEdindiler": "Dünya genelinde yüzlerce çevre danışmanlık firmasına endüstriyel kirlilik etki analizi lisansı sağladılar.",
+    "bizNasilKatki": "ADMS modelinin bina altı duman çökmesi yaklaşımını Python kodumuza ek modül olarak uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "CERC ADMS Endüstriyel Dağılım Modeli Teknik Dokümanı",
+      "url": "https://www.cerc.co.uk/environmental-software/ADMS-model.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Carruthers vd. (1994) Karmaşık Arazi ve Dağılım Analizi",
+      "url": "https://doi.org/10.1016/1352-2310(94)90196-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.cerc.co.uk/environmental-software/ADMS-model.html",
+      "aciklama": "CERC ADMS endüstriyel dağılım yazılımı simülasyon konsolu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.cerc.co.uk/environmental-software/ADMS-model.html",
+      "aciklama": "Endüstriyel tesis duman yayılımı ve yer konsantrasyonu grafik akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Climate Data Store",
+   "ne": "ERA5 yeniden analizi ve iklim projeksiyonlarının açık dağıtım noktası.",
+   "url": "https://cds.climate.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Birliği Copernicus programı kapsamında saatlik atmosferik yeniden analiz verilerini açık API ile sundular.",
+    "nasil": "ECMWF veri merkezinden saatlik rüzgâr hızı, yönü, sıcaklık ve sınır tabaka yüksekliğini küresel gridde sağladılar.",
+    "neEdindiler": "İklim ve hava kalitesi modelcilerinin yüksek tutarlılıkta meteorolojik girdi verisine ücretsiz erişimini sağladılar.",
+    "bizNasilKatki": "Termik santral konumu için 1 yıllık saatlik rüzgâr ve sıcaklık serilerini CDS API ile indirip modele besleriz.",
+    "referanslar": [
+     {
+      "ad": "Copernicus CDS ERA5 Saatlik Basınç ve Yüzey Veri Portalı",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "tur": "web"
+     },
+     {
+      "ad": "Hersbach vd. (2020) ERA5 Küresel Yeniden Analiz Mimarisi",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "Copernicus CDS veri arama ve API sorgulama arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "ERA5 saatlik meteorolojik rüzgâr ve sınır tabaka veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EDGAR (JRC)",
+   "ne": "Küresel emisyon envanteri, gridli ve açık.",
+   "url": "https://edgar.jrc.ec.europa.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Komisyonu Ortak Araştırma Merkezi (JRC) bünyesinde sektör bazlı küresel hava kirletici emisyon envanteri kurdular.",
+    "nasil": "Ülke faaliyet verileri ve enerji santrali yakıt tüketimlerini emisyon faktörleriyle birleştirip 0.1 derece çözünürlükte gridlediler.",
+    "neEdindiler": "Küresel ölçekte termik santrallerin yıllık SO2 ve NOx baca salım miktarlarını açık veri olarak yayımladılar.",
+    "bizNasilKatki": "İncelediğimiz termik santralin yıllık SO2 salım debisini (g/s) EDGAR grid hücresinden doğrulayarak modele gireriz.",
+    "referanslar": [
+     {
+      "ad": "EDGAR Küresel Atmosferik Araştırma Emisyon Veri Tabanı",
+      "url": "https://edgar.jrc.ec.europa.eu/dataset_ap81",
+      "tur": "web"
+     },
+     {
+      "ad": "Crippa vd. (2018) EDGAR v4.3.2 Küresel Hava Kirletici Envanteri",
+      "url": "https://doi.org/10.5194/essd-10-1987-2018",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://edgar.jrc.ec.europa.eu/dataset_ap81",
+      "aciklama": "EDGAR küresel gridli emisyon veri seti indirme paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://edgar.jrc.ec.europa.eu/dataset_ap81",
+      "aciklama": "Sektörel SO2 ve NOx emisyon haritası veri akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Emisyondan derişime giden zinciri dağılım ve kimyasal taşınım modelleriyle hesaplamak.",
+  "baglanti": "Yazılım kolunda AERMOD/HYSPLIT/CMAQ koşuları; Anlatım kolunda model sonuçlarının anlatımı.",
+  "literatur": {
+   "maddeler": [
+    "Gauss dağılım modelleri (AERMOD) tek kaynaktan derişimi kararlılık sınıfına bağlı yayılma parametreleriyle verir; düzenleyici değerlendirmede standarttır.",
+    "HYSPLIT, yörünge ve Lagrange dağılımını yeniden analiz rüzgârıyla hesaplar; kaynak-alıcı ilişkisinde en yaygın araç. (Stein vd. 2015)",
+    "Kimyasal taşınım modelleri (CMAQ, WRF-Chem, CHIMERE) emisyon, meteoroloji ve kimyayı birlikte çözer; ozon ve ikincil aerosol ancak böyle hesaplanır."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Aurora gibi atmosfer temel modelleri hava kalitesi tahminine uyarlanıyor; CAMS'ın saatlik ürünleriyle sınanıyor.",
+    "Doğu Akdeniz toz epizotları sinoptik dinamikle açıklandı; model başarısı rüzgâr alanına bağlı. (Kaskaoutis vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stein vd. 2015",
+    "baslik": "NOAA's HYSPLIT Atmospheric Transport and Dispersion Modeling System",
+    "yayin": "Bulletin of the American Meteorological Society 96(12), 2059-2077",
+    "yil": "2015",
+    "url": "https://doi.org/10.1175/BAMS-D-14-00110.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kaskaoutis vd. 2019",
+    "baslik": "Atmospheric dynamics associated with exceptionally dusty conditions over the eastern Mediterranean and Greece in March 2018",
+    "yayin": "Atmospheric Research 218, 269-284",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.atmosres.2018.12.009",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Jacob ve Winner 2009",
+    "baslik": "Effect of climate change on air quality",
+    "yayin": "Atmospheric Environment 43(1), 51-63",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lu vd. 2000",
+    "baslik": "Cumulus transport of chemical tracers: 1. Cloud-resolving model simulations",
+    "yayin": "Journal of Geophysical Research: Atmospheres 105(D8), 10001-10021",
+    "yil": "2000",
+    "url": "https://doi.org/10.1029/2000JD900009",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Chan ve Yao 2008",
+    "baslik": "Air pollution in mega cities in China",
+    "yayin": "Atmospheric Environment 42(1), 1-42",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.atmosenv.2007.09.003",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Termik santral bacasından çıkan SO2 gazının zemin konsantrasyonunu Briggs duman yükselmesi ve Gauss dağılım denklemiyle hesaplayıp etki haritası üretmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 361",
+   "projeyeKatki": "Hava Kirliliği Simülasyonu dersinde öğrenilen atmosferik kararlılık sınıfları ve duman yayılım bağıntıları sanayi bacasının zemin konsantrasyonunu hesaplamak için kullanılır. Briggs denklemiyle efektif baca boyu, Gauss dağılım denklemiyle de yere inen maksimum SO2 derişimi belirlenir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Gauss duman dağılım (Gaussian Plume) denklemi",
+     "nerede": "Rüzgâr altı mesafede zemin seviyesindeki SO2 konsantrasyonu dağılım haritasını oluştururken kullanılır."
+    },
+    {
+     "formulAd": "Briggs duman yükselmesi (Plume Rise) bağıntısı",
+     "nerede": "Baca gazının sıcaklık ve hızından kaynaklanan duman yükselme yüksekliğini (delta h) hesaplarken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Sanayi bacası emisyonu Gauss dağılım modeli ve atmosferik kararlılık katsayılarıyla simüle edilir.",
+  "ayrinti": "Baca gazı sıcaklığı ve çıkış hızından Briggs formülleriyle duman yükselmesi Delta-h ve etkin baca yüksekliği H hesaplanır. Pasquill-Gifford sınıflarına göre yatay ve dikey dağılım katsayıları türetilip rüzgâr yönü boyunca yer seviyesindeki maksimum SO2 konsantrasyonu hesaplanır.",
+  "adimlar": [
+   {
+    "baslik": "Duman yükselmesi ve etkin baca yüksekliği hesabı",
+    "oz": "Briggs kaldırma formülüyle termal duman yükselmesi ve etkin baca boyu bulunur.",
+    "ayrinti": "Baca çapı, gaz çıkış hızı ve baca içi sıcaklık bilgileri kullanılarak termal kaldırma akısı (Fb) hesaplanır. Çevre rüzgâr hızına bağlı olarak dumanın bacadan çıktıktan sonra kazandığı ilave tepe yüksekliği (Delta-h) bulunur ve fiziksel baca boyuna eklenerek etkin yükseklik (H) belirlenir.",
+    "nasil": [
+     {
+      "teknik": "F_b = g * v_s * d_s^2 * (T_s - T_a) / (4 * T_s) bağıntısıyla kaldırma akısını hesaplamak.",
+      "sade": "MTO 361 dersindeki 'Gauss duman dağılım denklemiyle baca kirletici konsantrasyonu yer profillerini hesaplamak' bilgisiyle sıcacık baca dumanının gökyüzüne doğru kaç metre yükseleceğini hesaplarız.",
+      "altAdimlar": [
+       "1. Baca çapı, gaz çıkış hızı ve gaz sıcaklığı parametrelerini girin.",
+       "2. Çevre hava sıcaklığı ve rüzgâr hızından Briggs termal kaldırma akısını bulun.",
+       "3. Fiziksel baca yüksekliğine duman yükselmesini ekleyerek etkin baca boyunu (H) türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Gauss duman dağılım denklemiyle baca kirletici konsantrasyonu yer profillerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Delta_h = 1.6 * F_b^(1/3) * x^(2/3) / u formülüyle duman tepe yüksekliğini bulmak.",
+      "sade": "MTO 361 dersindeki 'Briggs duman yükselmesi (Plume Rise) bağıntısı' bilgisiyle rüzgâr hızının dumanın yükselmesini nasıl baskıladığını çözümleriz.",
+      "altAdimlar": [
+       "1. Baca çıkış debisi ve rüzgâr hızını bağıntıya uygulayın.",
+       "2. Farklı rüzgâr hızları için duman yükselme mesafesini hesaplayın.",
+       "3. Kararlı ve nötr atmosfer koşullarındaki nihai tepe noktasını belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Briggs duman yükselmesi (Plume Rise) bağıntısı"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Atmosferik kararlılık ve yayılma katsayıları",
+    "oz": "Pasquill-Gifford sınıflarıyla yatay ve düşey dispersiyon parametreleri türetilir.",
+    "ayrinti": "Güneş ışınımı, bulut kapalılığı ve yüzey rüzgârı verileriyle saatlik Pasquill kararlılık sınıfı (A-F) tespit edilir. Briggs ampirik formülasyonu uygulanarak rüzgâr altı mesafeye (x) bağlı yatay (sigma_y) ve düşey (sigma_z) dağılım standart sapmaları sürekli fonksiyon olarak hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "sigma_y = a * x * (1 + b*x)^c formülüyle Pasquill kararlılığına bağlı dağılım katsayılarını çözmek.",
+      "sade": "MTO 361 dersindeki 'Atmosferik kararlılık sınıflarının (Pasquill-Gifford) duman dağılım katsayılarına etkisini çözümlemek' bilgisiyle havanın çalkantısına göre dumanın yana ve yukarı ne kadar genişleyeceğini hesaplarız.",
+      "altAdimlar": [
+       "1. Güneş ışınımı ve rüzgâr hızından A'dan F'ye Pasquill kararlılık sınıfını belirleyin.",
+       "2. Kaynaktan uzaklığa (x) bağlı sigma_y ve sigma_z dispersiyon parametrelerini türetin.",
+       "3. Dağılım parametrelerinin mesafe fonksiyonu eğrilerini çizdirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Atmosferik kararlılık sınıflarının (Pasquill-Gifford) duman dağılım katsayılarına etkisini çözümlemek."
+      }
+     },
+     {
+      "teknik": "Kararlılık sınıfına göre sigma_z düşey yayılma katsayısını hesaplamak.",
+      "sade": "MTO 361 dersindeki 'Atmosferik kararlılık sınıflarının (Pasquill-Gifford) duman dağılım katsayılarına etkisini çözümlemek' bilgisiyle dumanın yere doğru ne hızla yaklaştığını tespit ederiz.",
+      "altAdimlar": [
+       "1. Termal inversiyon durumunda dikey yayılmanın baskılandığı F sınıfını uygulayın.",
+       "2. Kararsız gündüz koşullarında dikey genişlemenin arttığı A sınıfını karşılaştırın.",
+       "3. İki durum arasındaki zemin konsantrasyonu farklarını grafikleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Atmosferik kararlılık sınıflarının (Pasquill-Gifford) duman dağılım katsayılarına etkisini çözümlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Gauss duman dağılım denklemiyle konsantrasyon hesabı",
+    "oz": "Yer seviyesindeki kirletici iz düşümü ve maksimum konsantrasyon mesafesi çözülür.",
+    "ayrinti": "Sürekli nokta kaynak Gauss dağılım denklemi 2 boyutlu zemin ızgarası üzerinde işletilir. Zemin yansıması terimi dahil edilerek rüzgâr ekseni boyunca kirleticinin yere değdiği tepe noktası ve çevresel etki alanındaki derişim dağılımı miligram/metreküp cinsinden sayısal olarak elde edilir.",
+    "nasil": [
+     {
+      "teknik": "C(x,y,0) = (Q / (pi*u*sigma_y*sigma_z)) * exp(-y^2/(2*sigma_y^2)) * exp(-H^2/(2*sigma_z^2)) formülünü çözmek.",
+      "sade": "MTO 361 dersindeki 'Gauss duman dağılım denklemiyle baca kirletici konsantrasyonu yer profillerini hesaplamak' bilgisiyle bacadan çıkan zehirli gazların yerdeki insanların soluduğu havada ne yoğunlukta olacağını buluruz.",
+      "altAdimlar": [
+       "1. Emisyon debisi Q (g/s) ve rüzgâr hızını modele parametre olarak atayın.",
+       "2. Rüzgâr ekseni boyunca 100 m adımlarla zemin konsantrasyon profilini hesaplayın.",
+       "3. Yer seviyesindeki konsantrasyonun maksimuma ulaştığı tepe mesafesini (x_max) belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Gauss duman dağılım denklemiyle baca kirletici konsantrasyonu yer profillerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "np.where(C_grid > limit_deger, 1, 0) ile mevzuat eşik aşım alanlarını haritalamak.",
+      "sade": "MTO 361 dersindeki 'Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek' bilgisiyle fabrika çevresindeki yerleşimlerde hava kalitesi sınır değerinin aşıldığı tehlikeli bölgeleri haritada kırmızıyla gösteririz.",
+      "altAdimlar": [
+       "1. 2 boyutlu zemin ızgarası üzerinde kirletici yayılım konturlarını hesaplayın.",
+       "2. Çevre mevzuatı saatlik ve günlük SO2 limitleriyle konsantrasyonu karşılaştırın.",
+       "3. Etki sahası sınırlarını CBS poligonu olarak dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Yıllık meteorolojiyle kirlilik haritası ve mevzuat analizi",
+    "oz": "ERA5 rüzgâr serisiyle saatlik kirlilik toplanıp sınır değer aşımları haritalanır.",
+    "ayrinti": "Santral koordinatı için indirilen 8760 saatlik ERA5 rüzgâr ve kararlılık verisi modele sırayla verilir. 1 yıllık kümülatif SO2 birikimi toplanarak 24 saatlik en yüksek ve yıllık ortalama konsantrasyon konturları çizilir; hava kalitesi koruma yönetmeliği sınırlarıyla karşılaştırılır.",
+    "nasil": [
+     {
+      "teknik": "CDS API ile indirilen 8760 saatlik rüzgâr hız ve yön serilerini Gauss modeline döngüyle vermek.",
+      "sade": "MTO 361 dersindeki 'AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak' bilgisiyle santralin 1 yıllık duman dağılımını saat saat toplayarak kümülatif etkiyi çıkarırız.",
+      "altAdimlar": [
+       "1. ERA5 saatlik u ve v rüzgâr bileşenlerinden rüzgâr yönü ve hızını türetin.",
+       "2. Her saat için hesaplanan zemin konsantrasyon ızgaralarını kümülatif matriste toplayın.",
+       "3. Yıllık ortalama ve 99. yüzdelik SO2 haritalarını oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak."
+      }
+     },
+     {
+      "teknik": "plt.contourf ile 24 saatlik maksimum SO2 derişim eşiklerini çizdirip EPA standartlarıyla kıyaslamak.",
+      "sade": "MTO 361 dersindeki 'Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek' bilgisiyle dumanın en çok hangi köylere indiğini ve yasal sınırların aşılıp aşılmadığını gösteren sonuç haritası basarız.",
+      "altAdimlar": [
+       "1. En yüksek konsantrasyonlu ızgara noktalarının yerleşim yerlerine mesafesini ölçün.",
+       "2. Yıllık ortalama SO2 değerini mevzuat sınırlarıyla karşılaştırın.",
+       "3. Rapor ve görsel haritaları dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Zemin konsantrasyon eğrisi ve hava kalitesi limit değer aşım haritası üretilir.",
+  "senden": "Python ve temel atmosfer fiziği bilgisi.",
+  "bizden": "Gauss dağılım modeli iskeleti ve veri işleme betikleri."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Rüzgâr hızı ve kararlılık değişimine göre Gauss duman konisi ve zemin konsantrasyonu animasyonu",
+   "aciklama": "Bacadan çıkan dumanın rüzgâr altında yayılması ve yere temas eden maksimum konsantrasyon alanı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling-preferred-and-recommended-models",
+   "aciklama": "US EPA Hava Kalitesi Dağılım Simülasyonu ve Düzenleyici Destek Merkezi (SCRAM)"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "US EPA SCRAM Hava Kalitesi Dağılım Modelleri Rehberi",
+   "url": "https://www.epa.gov/scram/air-quality-dispersion-modeling-preferred-and-recommended-models"
+  },
+  {
+   "ad": "Fundamentals of Atmospheric Modeling and Dispersion",
+   "url": "https://doi.org/10.1017/CBO9781139164382"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO361-01.json",
+  "tarih": "2026-10-17 05:05",
+  "geminiSha1": "29ab9642d9d6"
+ }
+}

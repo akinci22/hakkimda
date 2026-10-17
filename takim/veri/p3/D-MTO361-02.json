@@ -1,0 +1,471 @@
+{
+ "id": "D-MTO361-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 361",
+  "dersAd": "Hava Kirliliği Modellemesi",
+  "kol": "ikisi"
+ },
+ "ad": "Sahra tozu İstanbul'a gelirken: HYSPLIT + CAMS doğrulama",
+ "ne": "Bir toz epizodu için HYSPLIT geri yörüngeleri ve CAMS toz AOD tahminini yer PM10 ve AERONET ölçümüyle doğrula; tahmin başarısını puanla.",
+ "adimlar": [
+  "Epizodu PM10 serisinden seç (OpenAQ/EEA).",
+  "HYSPLIT ile 120 saatlik geri yörüngeler koştur; kaynak bölgeyi belirle.",
+  "CAMS toz AOD ve yüzey PM10 tahminini indir.",
+  "Gözlemle karşılaştır; zamanlama ve büyüklük hatasını hesapla.",
+  "Kaskaoutis vd. 2019 ile sinoptik deseni kıyasla."
+ ],
+ "sonuc": "Doğrulama grafikleri ve puan tablosu.",
+ "dayanak": "Kaskaoutis vd. 2019",
+ "senden": "Model çıktısı okuma.",
+ "bizden": "Veri ve yöntem.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 361",
+    "ad": "Hava Kirliliği Simülasyonu"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NOAA HYSPLIT",
+   "ne": "Yörünge ve dağılım modeli; web üzerinden de çalıştırılabiliyor.",
+   "url": "https://www.ready.noaa.gov/HYSPLIT.php",
+   "ayrinti": {
+    "neYaptilar": "Atmosferde parsel ve toz taşınımını geriye dönük hesaplayan küresel standart Lagrange yörünge simülasyon sistemi kurdular.",
+    "nasil": "GFS ve ERA5 rüzgâr alanlarıyla saatlik geri iz sürme denklemlerini üç boyutlu koordinatlarda çözdüler.",
+    "neEdindiler": "Hava kirliliği ve çöl tozu taşınımı araştırmalarında kaynak-alıcı tespitinin temel açık aracını sağladılar.",
+    "bizNasilKatki": "İstanbul üzerine 500, 1500 ve 3000 metre irtifalarda 120 saatlik geriye yörünge koşturarak tozun rotasını çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "NOAA HYSPLIT Atmosferik Taşınım ve Dağılım Modeli Portalı",
+      "url": "https://www.ready.noaa.gov/HYSPLIT.php",
+      "tur": "web"
+     },
+     {
+      "ad": "Stein vd. (2015) NOAA HYSPLIT Model Sistemi Mimarisi",
+      "url": "https://doi.org/10.1175/BAMS-D-14-00110.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:HYSPLIT_backward_trajectories.png",
+      "lisans": "NOAA",
+      "aciklama": "İstanbul varışlı 120 saatlik HYSPLIT geri yörüngeleri ve yükseklik profili şeması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.ready.noaa.gov/HYSPLIT.php",
+      "aciklama": "NOAA Air Resources Laboratory HYSPLIT model hesaplama konsolu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Atmosphere Monitoring Service (CAMS)",
+   "ne": "Avrupa'nın küresel hava bileşimi ve hava kalitesi tahmin servisi.",
+   "url": "https://atmosphere.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "Küresel ölçekte aerosol optik derinliği ve çöl tozu yayılımını günlük operasyonel tahminlerle haritaladılar.",
+    "nasil": "Uydu gözlemleri (MODIS/Sentinel) ve kimyasal taşınım modellerini veri asimilasyonuyla birleştirdiler.",
+    "neEdindiler": "Akdeniz ve Avrupa genelinde Sahra tozu taşınım dalgalarını 5 gün önceden uyaran küresel izleme servisi kurdular.",
+    "bizNasilKatki": "İstanbul toz epizodu için CAMS saatlik toz AOD ve yüzey PM10 tahmin verilerini API üzerinden indiririz.",
+    "referanslar": [
+     {
+      "ad": "Copernicus Atmosfer İzleme Servisi Küresel Toz Tahmin Portalı",
+      "url": "https://atmosphere.copernicus.eu/global-forecast-plots",
+      "tur": "web"
+     },
+     {
+      "ad": "Inness vd. (2019) CAMS Yeniden Analiz ve Atmosferik Bileşim Verisi",
+      "url": "https://doi.org/10.5194/acp-19-3515-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://atmosphere.copernicus.eu/global-forecast-plots",
+      "aciklama": "CAMS küresel çöl tozu aerosol optik derinliği tahmin haritası paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://atmosphere.copernicus.eu/global-forecast-plots",
+      "aciklama": "Akdeniz havzası 5 günlük Sahra tozu hareket animasyonu veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "CAMS Atmosphere Data Store",
+   "ne": "CAMS hava kalitesi ve sera gazı ürünlerinin indirme noktası.",
+   "url": "https://ads.atmosphere.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Birliği adına operasyonel atmosferik veri dağıtım altyapısı kurarak açık API hizmeti verdiler.",
+    "nasil": "Yüksek çözünürlüklü NetCDF ve GRIB formatlı kirletici ve aerosol ızgara verilerini REST mimarisiyle sundular.",
+    "neEdindiler": "Çevre danışmanlık şirketleri ve araştırmacılara standartlaştırılmış açık hava kimyası verisi akıttılar.",
+    "bizNasilKatki": "ads-api kütüphanesi kullanarak İstanbul koordinatındaki toz konsantrasyon zaman serilerini çekeriz.",
+    "referanslar": [
+     {
+      "ad": "CAMS Atmosfer Veri Deposu Küresel Tahmin API Dokümantasyonu",
+      "url": "https://ads.atmosphere.copernicus.eu/how-to-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Peuch vd. (2022) Copernicus Atmosfer İzleme Servisi Uygulamaları",
+      "url": "https://doi.org/10.1175/BAMS-D-21-0314.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ads.atmosphere.copernicus.eu/how-to-api",
+      "aciklama": "CAMS ADS veri arama motoru ve API sorgulama arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://ads.atmosphere.copernicus.eu/how-to-api",
+      "aciklama": "Aerosol optik derinliği ve yüzey PM10 veri tablosu akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA AERONET",
+   "ne": "Küresel güneş fotometresi ağı; aerosol optik derinliği açık veri.",
+   "url": "https://aeronet.gsfc.nasa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Dünya çapında yüzlerce yer istasyonunda güneş fotometresiyle spektral aerosol optik derinliği ölçtüler.",
+    "nasil": "Doğrudan güneş ışınımı zayıflamasından Angstrom üssü ve 500 nm dalga boyu AOD değerlerini kalibre ettiler.",
+    "neEdindiler": "Uydu ve sayısal model aerosol tahminlerinin doğrulanmasında altın standart yer verisi sağladılar.",
+    "bizNasilKatki": "İTÜ Maslak veya Marmara istasyonunun AERONET Seviye 2.0 AOD verisini model tahminiyle eşleştiririz.",
+    "referanslar": [
+     {
+      "ad": "NASA AERONET Küresel Güneş Fotometresi Veri Portalı",
+      "url": "https://aeronet.gsfc.nasa.gov/new_web/data.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Giles vd. (2019) AERONET Sürüm 3 Doğrulama Algoritmaları",
+      "url": "https://doi.org/10.5194/amt-12-169-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://aeronet.gsfc.nasa.gov/new_web/data.html",
+      "aciklama": "NASA AERONET yer aerosol ölçümü zaman serisi grafik paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://aeronet.gsfc.nasa.gov/new_web/data.html",
+      "aciklama": "Spektral optik derinlik ve aerosol boyut dağılımı veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "OpenAQ",
+   "ne": "Dünyadaki açık hava kalitesi verisini tek API'de toplayan kâr amacı gütmeyen topluluk.",
+   "url": "https://openaq.org/",
+   "ayrinti": {
+    "neYaptilar": "Tüm ülkelerin kamu hava kalitesi istasyon ölçümlerini tek açık kaynaklı API ve platformda birleştirdiler.",
+    "nasil": "Resmi çevre bakanlıkları ve yerel ağlardan saatlik PM10 ve PM2.5 ham verilerini standardize ettiler.",
+    "neEdindiler": "Vatandaşların ve araştırmacıların yer seviyesi hava kirliliği ölçümlerine anlık erişimini mümkün kıldılar.",
+    "bizNasilKatki": "İstanbul istasyonlarının epizot tarihindeki saatlik PM10 sıçramalarını OpenAQ API üzerinden çekeriz.",
+    "referanslar": [
+     {
+      "ad": "OpenAQ Açık Hava Kalitesi Veri Platformu ve API Rehberi",
+      "url": "https://openaq.org/explore/",
+      "tur": "web"
+     },
+     {
+      "ad": "Hasenkopf vd. (2022) Küresel Açık Hava Kalitesi Veri Analizi",
+      "url": "https://doi.org/10.1016/j.envsoft.2022.105470",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://openaq.org/explore/",
+      "aciklama": "OpenAQ dünya hava kalitesi izleme haritası ve istasyon arama konsolu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://openaq.org/explore/",
+      "aciklama": "İstanbul yer istasyonları saatlik PM10 konsantrasyonu JSON akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Emisyondan derişime giden zinciri dağılım ve kimyasal taşınım modelleriyle hesaplamak.",
+  "baglanti": "Yazılım kolunda AERMOD/HYSPLIT/CMAQ koşuları; Anlatım kolunda model sonuçlarının anlatımı.",
+  "literatur": {
+   "maddeler": [
+    "Gauss dağılım modelleri (AERMOD) tek kaynaktan derişimi kararlılık sınıfına bağlı yayılma parametreleriyle verir; düzenleyici değerlendirmede standarttır.",
+    "HYSPLIT, yörünge ve Lagrange dağılımını yeniden analiz rüzgârıyla hesaplar; kaynak-alıcı ilişkisinde en yaygın araç. (Stein vd. 2015)",
+    "Kimyasal taşınım modelleri (CMAQ, WRF-Chem, CHIMERE) emisyon, meteoroloji ve kimyayı birlikte çözer; ozon ve ikincil aerosol ancak böyle hesaplanır."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Aurora gibi atmosfer temel modelleri hava kalitesi tahminine uyarlanıyor; CAMS'ın saatlik ürünleriyle sınanıyor.",
+    "Doğu Akdeniz toz epizotları sinoptik dinamikle açıklandı; model başarısı rüzgâr alanına bağlı. (Kaskaoutis vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stein vd. 2015",
+    "baslik": "NOAA's HYSPLIT Atmospheric Transport and Dispersion Modeling System",
+    "yayin": "Bulletin of the American Meteorological Society 96(12), 2059-2077",
+    "yil": "2015",
+    "url": "https://doi.org/10.1175/BAMS-D-14-00110.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kaskaoutis vd. 2019",
+    "baslik": "Atmospheric dynamics associated with exceptionally dusty conditions over the eastern Mediterranean and Greece in March 2018",
+    "yayin": "Atmospheric Research 218, 269-284",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.atmosres.2018.12.009",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Jacob ve Winner 2009",
+    "baslik": "Effect of climate change on air quality",
+    "yayin": "Atmospheric Environment 43(1), 51-63",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lu vd. 2000",
+    "baslik": "Cumulus transport of chemical tracers: 1. Cloud-resolving model simulations",
+    "yayin": "Journal of Geophysical Research: Atmospheres 105(D8), 10001-10021",
+    "yil": "2000",
+    "url": "https://doi.org/10.1029/2000JD900009",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Chan ve Yao 2008",
+    "baslik": "Air pollution in mega cities in China",
+    "yayin": "Atmospheric Environment 42(1), 1-42",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.atmosenv.2007.09.003",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Sahra çölü kaynaklı toz epizodunun İstanbul'a taşınımını HYSPLIT geri yörüngeleri ve CAMS AOD tahminleriyle modelleyip yer istasyonuyla doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 361",
+   "projeyeKatki": "Hava Kirliliği Simülasyonu dersindeki Lagrange parçacık iz sürme ve atmosferik taşınım ilkeleri Sahra tozu geri yörünge analizinde kullanılır. Çöl kaynaklı toz partiküllerinin Akdeniz üzerinden Türkiye'ye taşınım yüksekliği ve zemin AOD katkısı model denklemleriyle hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Briggs duman yükselmesi (Plume Rise) bağıntısı",
+     "nerede": "Termal konveksiyon ve sıcak hava yükselimiyle çöl tozunun serbest troposfere fırlatılma yüksekliğini incelerken kullanılır."
+    },
+    {
+     "formulAd": "Gauss duman dağılım (Gaussian Plume) denklemi",
+     "nerede": "Toz bulutunun İstanbul semalarında yer seviyesine çökelme konsantrasyonu profilini değerlendirirken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Sahra tozu dalgası HYSPLIT geri yörüngeleriyle izlenip CAMS AOD tahminleri yer istasyonlarıyla doğrulanır.",
+  "ayrinti": "Belirlenen toz epizodu için HYSPLIT modeliyle 120 saatlik geriye dönük Lagrange hava parseli yörüngeleri koşturulur. CAMS modelinin saatlik toz AOD ve yüzey PM10 tahmin serileri indirilir. Yer seviyesindeki OpenAQ PM10 ölçümleri ve NASA AERONET AOD verileriyle eşleştirilerek modelin zamanlama ve tepe değeri tahmin başarısı istatistiksel metriklerle puanlanır.",
+  "adimlar": [
+   {
+    "baslik": "Toz epizodu tespiti ve yer ölçümlerinin derlenmesi",
+    "oz": "OpenAQ ve AERONET verilerinden PM10 sıçraması gösteren epizot günü belirlenir.",
+    "ayrinti": "İstanbul hava kalitesi istasyonlarının yıllık PM10 zaman serisi incelenerek mevsim normallerinin 4 katına çıkan Sahra tozu geçiş günü seçilir. Eş zamanlı olarak AERONET güneş fotometresi verisinden 500 nm aerosol optik derinliği (AOD) ve Angstrom katsayısı çekilerek toz partiküllerinin varlığı doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "OpenAQ REST API ile İstanbul istasyonlarının saatlik PM10 verilerini sorgulamak.",
+      "sade": "MTO 361 dersindeki 'AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak' bilgisiyle yer istasyonlarında toz fırtınasının ne zaman başladığını saat saat belirleriz.",
+      "altAdimlar": [
+       "1. İstasyon koordinatlarını ve tarih aralığını API sorgusuna ekleyin.",
+       "2. Gelen saatlik PM10 değerlerini eşik seviyeleriyle filtreleyin.",
+       "3. En belirgin toz epizodunun pik yaptığı 48 saatlik aralığı seçin."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak."
+      }
+     },
+     {
+      "teknik": "AERONET Seviye 2.0 AOD verisini indirip Angstrom üssüyle kaba partikül oranını doğrulamak.",
+      "sade": "MTO 361 dersindeki 'FLEXPART Lagrange parçacık modeliyle nükleer veya kimyasal kaza geri iz sürme analizi yapmak' bilgisiyle gökyüzündeki toz tabakasının optik kalınlığını ve güneş ışığını ne kadar kestiğini ölçeriz.",
+      "altAdimlar": [
+       "1. AERONET Maslak istasyonunun doğrudan güneş ölçüm dosyasını çekin.",
+       "2. 440-870 nm Angstrom üssünün 0.5 altına indiği çöl tozu karakterini doğrulayın.",
+       "3. Saatlik AOD tepe noktalarını yer seviyesi PM10 zaman serisiyle hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "FLEXPART Lagrange parçacık modeliyle nükleer veya kimyasal kaza geri iz sürme analizi yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "HYSPLIT ile 120 saatlik geriye yörünge koşturulması",
+    "oz": "İstanbul semalarına ulaşan hava parsellerinin kaynak coğrafyası saptanır.",
+    "ayrinti": "GFS veya GDAS meteoroloji analiz verisi kullanılarak İstanbul üzerinde 500 m, 1500 m ve 3000 m kotlarında sonlanan 120 saatlik 3 boyutlu geriye yörüngeler hesaplanır. Parsellerin Sahra çölü üzerinde yüzeye ne kadar yaklaştığı ve termal konveksiyonla yükselip Akdeniz üzerinden geliş rotası haritalanır.",
+    "nasil": [
+     {
+      "teknik": "PyHYSPLIT veya web tabanlı READY aracıyla 120 saatlik geriye yörünge girdisini hazırlamak.",
+      "sade": "MTO 361 dersindeki 'FLEXPART Lagrange parçacık modeliyle nükleer veya kimyasal kaza geri iz sürme analizi yapmak' bilgisiyle İstanbul'a gelen rüzgârın 5 gün önce Afrika çölünün neresinden kalktığını adım adım geriye doğru izleriz.",
+      "altAdimlar": [
+       "1. Epizot pik saatini ve İstanbul enlem-boylam koordinatlarını girin.",
+       "2. Sınır tabaka içi ve serbest troposfer için 3 farklı varış yüksekliği tanımlayın.",
+       "3. Meteorolojik rüzgâr alanlarıyla geriye doğru entegrasyonu tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "FLEXPART Lagrange parçacık modeliyle nükleer veya kimyasal kaza geri iz sürme analizi yapmak."
+      }
+     },
+     {
+      "teknik": "Yörünge irtifa profili ve zemin temas noktalarını coğrafi haritada görselleştirmek.",
+      "sade": "MTO 361 dersindeki 'Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek' bilgisiyle toz parçacıklarının gökyüzündeki yolculuğunu harita üzerinde çizgilerle resmederiz.",
+      "altAdimlar": [
+       "1. Enlem, boylam ve irtifa dizilerini GeoPandas dataframe yapısına aktarın.",
+       "2. Parsellerin Sahra Çölü üzerindeki zemin temas alanlarını poligonla belirleyin.",
+       "3. Akdeniz geçişi sırasındaki çökme ve taşınım hızını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "CAMS model tahminlerinin indirilmesi ve eşleştirilmesi",
+    "oz": "CAMS küresel kimyasal taşınım modelinden AOD ve PM10 tahmin serileri alınır.",
+    "ayrinti": "Copernicus ADS API üzerinden epizot dönemi için 3 saatlik CAMS toz AOD ve yüzey seviyesi PM10 konsantrasyonu ızgara verisi indirilir. İstanbul koordinatına denk gelen grid hücresinden zaman serisi enterpole edilerek yer istasyonu ölçümleriyle aynı zaman çizelgesine oturtulur.",
+    "nasil": [
+     {
+      "teknik": "ads-api ile CAMS küresel atmosfer bileşimi ızgara tahmin dosyasını NetCDF formatında çekmek.",
+      "sade": "MTO 361 dersindeki 'AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak' bilgisiyle Avrupa uzay ajansının süper bilgisayarlarında çalışan toz modelinin tahminlerini bilgisayarımıza indiririz.",
+      "altAdimlar": [
+       "1. ADS kimlik anahtarıyla API istemcisini yetkilendirin.",
+       "2. Dust AOD ve yüzey PM10 parametrelerini kapsayan alan kutusunu seçin.",
+       "3. NetCDF dosyasından İstanbul ızgara noktasını xarray ile ayırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak."
+      }
+     },
+     {
+      "teknik": "Model grid verisini yer istasyonu koordinatına çift doğrusal enterpolasyonla eşleştirmek.",
+      "sade": "MTO 361 dersindeki 'Gauss duman dağılım denklemiyle baca kirletici konsantrasyonu yer profillerini hesaplamak' bilgisiyle modelin geniş kareler halindeki tahminini tam istasyonun bulunduğu noktaya uyarlarız.",
+      "altAdimlar": [
+       "1. Komşu 4 grid noktasının ağırlıklı ortalamasıyla istasyon değerini bulun.",
+       "2. Model ve yer gözlem serilerini saatlik ortak zaman indeksine getirin.",
+       "3. Tahmin ve gözlem zaman serilerini tek grafikte karşılaştırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Gauss duman dağılım denklemiyle baca kirletici konsantrasyonu yer profillerini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Model doğrulama metrikleri ve tahmin puanlaması",
+    "oz": "Korelasyon, RMSE ve zamanlama gecikmesi hesaplanarak model başarısı puanlanır.",
+    "ayrinti": "Model tahminleri ile yer gözlemleri arasındaki Pearson korelasyon katsayısı, ortalama mutlak hata (MAE), kök ortalama kare hata (RMSE) ve kesirli yanlılık (FB) metrikleri hesaplanır. Toz dalgasının varış saatindeki gecikme ve pik konsantrasyonu yakalama oranı tablo haline getirilerek akademik yayın standartlarında sunulur.",
+    "nasil": [
+     {
+      "teknik": "sklearn.metrics ve scipy.stats ile r, RMSE ve normalize ortalama yanlılık (NMB) hesaplamak.",
+      "sade": "MTO 361 dersindeki 'AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak' bilgisiyle modelin tozu ne kadar doğru tahmin ettiğini matematiksel puanlarla kanıtlarız.",
+      "altAdimlar": [
+       "1. Gözlem ve tahmin dizileri arasındaki fark vektörünü türetin.",
+       "2. Korelasyon katsayısını ve pik konsantrasyon yakalama yüzdesini bulun.",
+       "3. Modelin tozu erken mi geç mi getirdiğini tepe kaymasıyla belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "AERMOD ve CALPUFF gibi endüstriyel dağılım modellerini meteoroloji verisiyle çalıştırmak."
+      }
+     },
+     {
+      "teknik": "Taylor diyagramı ve saçılım grafiği üreterek CAMS toz modeli başarı karnesini çıkarmak.",
+      "sade": "MTO 361 dersindeki 'Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek' bilgisiyle elde ettiğimiz doğrulama sonuçlarını hekimler ve meteorologlar için anlaşılır bir grafik paneline dönüştürürüz.",
+      "altAdimlar": [
+       "1. Standart sapma ve korelasyonu Taylor diyagramında noktalandırın.",
+       "2. Zaman serisi üzerinde model ve gözlem tepe saatlerini işaretleyin.",
+       "3. Toz erken uyarı sisteminin güvenilirlik özetini hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 361",
+       "madde": "Şehir ölçeğinde trafik ve sanayi kaynaklı kirletici yayılım haritaları üretmek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Geri yörünge haritası, CAMS doğrulama grafikleri ve tahmin başarı puan tablosu elde edilir.",
+  "senden": "Model çıktısı okuma ve Python veri analizi becerisi.",
+  "bizden": "HYSPLIT yörünge betikleri ve CAMS doğrulama şablonu."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Akdeniz havzası Sahra tozu taşınımı ve aerosol optik derinliği animasyonu, 2024",
+   "aciklama": "Kuzey Afrika kaynaklı toz bulutunun Marmara Bölgesi üzerine 72 saatlik geçiş hareketi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://atmosphere.copernicus.eu/global-forecast-plots",
+   "aciklama": "CAMS küresel atmosferik bileşim ve çöl tozu tahmin sistemi veri akışı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NOAA HYSPLIT Model Dokümantasyonu ve Yörünge Kılavuzu",
+   "url": "https://www.ready.noaa.gov/HYSPLIT.php"
+  },
+  {
+   "ad": "Copernicus CAMS Küresel Toz ve Aerosol Tahmin Sistemi",
+   "url": "https://atmosphere.copernicus.eu/global-forecast-plots"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO361-02.json",
+  "tarih": "2026-10-17 05:07",
+  "geminiSha1": "244493054f3f"
+ }
+}

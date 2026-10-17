@@ -1,0 +1,462 @@
+{
+ "id": "D-MTO362-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 362",
+  "dersAd": "İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar",
+  "kol": "ikisi"
+ },
+ "ad": "Sabah inversiyonunu dronla profille",
+ "ne": "Çok rotorlu bir drona sıcaklık-nem sensörü (hızlı tepki) takıp gün doğumu-öğle arasında 120 m'ye kadar 6 profil al; inversiyonun kalkışını gözle.",
+ "adimlar": [
+  "PX4/ArduPilot otopilotuna otomatik düşey profil görevi yaz (1 m/s tırmanış).",
+  "Sensörü pervane akışından uzağa, ışınım siperli monte et; tepki süresini laboratuvarda ölç.",
+  "SHGM izinli alanda 6 uçuş yap; GPS ve sensör verisini zaman eşle.",
+  "Profil eğrilerini çiz; inversiyon tepesinin saatlik yükselişini ölç.",
+  "Aynı saatlerde ERA5 sınır tabakası yüksekliğiyle karşılaştır."
+ ],
+ "sonuc": "Altı düşey profil ve inversiyon kalkış grafiği.",
+ "dayanak": "Stull 1988",
+ "senden": "Dron pilotluğu ve elektronik.",
+ "bizden": "Otopilot görevi, sensör seçimi, izin süreci.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 362",
+    "ad": "İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "PX4 Autopilot",
+   "ne": "Açık kaynak dron uçuş denetleyicisi.",
+   "url": "https://px4.io/",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynaklı insansız hava aracı otopilot yazılımı ve donanım mimarisi geliştirerek otonom uçuş standartlarını kurdular.",
+    "nasil": "Gelişmiş Kalman filtreleri ve gerçek zamanlı uçuş denetim döngüleriyle sensör verilerini milisaniye hassasiyetinde işlediler.",
+    "neEdindiler": "Küresel ölçekte binlerce araştırma ekibine otonom dikey profil uçuş görevi planlama yeteneği kazandırdılar.",
+    "bizNasilKatki": "QGroundControl arayüzünde drona 1 m/s sabit tırmanışla 120 metre dikey profil görevi atayarak uçuşu yönetiriz.",
+    "referanslar": [
+     {
+      "ad": "PX4 Otopilot Açık Kaynak Uçuş Kontrol Dokümantasyonu",
+      "url": "https://px4.io/technology/",
+      "tur": "kod"
+     },
+     {
+      "ad": "Meier vd. (2015) PX4 Otopilot ve Mikro Hava Aracı Mimarisi",
+      "url": "https://doi.org/10.1109/ICRA.2015.7139607",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://px4.io/technology/",
+      "aciklama": "PX4 otopilot dikey görev planlama ve telemetri kontrol arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://px4.io/technology/",
+      "aciklama": "Dron otopilot uçuş parametreleri ve sensör entegrasyon akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "ArduPilot",
+   "ne": "Açık kaynak otopilot topluluğu.",
+   "url": "https://ardupilot.org/",
+   "ayrinti": {
+    "neYaptilar": "Dünyanın en yaygın açık kaynaklı otopilot platformunu kurarak hava araçlarının otonom seyrüseferini yönettiler.",
+    "nasil": "Uçuş verilerini yüksek frekansla dahili karta yazan ve telemetriyle yer istasyonuna aktaran veri protokolleri kurdular.",
+    "neEdindiler": "Meteorolojik araştırma dronları için güvenilir motor kontrolü ve hassas barometrik irtifa tutma sağladılar.",
+    "bizNasilKatki": "Dronun tırmanış hızını ve GPS zaman damgalarını harici meteoroloji sensörüyle senkronize etmek için kullanırız.",
+    "referanslar": [
+     {
+      "ad": "ArduPilot Copter Otopilot Mimari ve Görev Kılavuzu",
+      "url": "https://ardupilot.org/copter/",
+      "tur": "web"
+     },
+     {
+      "ad": "Bapst vd. (2020) İHA ile Atmosfer Sınır Tabakası Profillemesi",
+      "url": "https://doi.org/10.3390/rs12060955",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ardupilot.org/copter/",
+      "aciklama": "ArduPilot Mission Planner dikey seyrüsefer ve telemetri paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://ardupilot.org/copter/",
+      "aciklama": "Otopilot sensör kalibrasyonu ve uçuş telemetri veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "SHGM İHA portalı",
+   "ne": "Türkiye'de İHA uçuş izinleri portalı.",
+   "url": "https://iha.shgm.gov.tr/",
+   "ayrinti": {
+    "neYaptilar": "Sivil Havacılık Genel Müdürlüğü bünyesinde Türkiye hava sahasında ticari ve bilimsel İHA uçuş izin sistemini kurdular.",
+    "nasil": "Hava sahası kısıtlamalarını ve NOTAM sahalarını çevrim içi harita üzerinde pilotlara ve kurumlara sundular.",
+    "neEdindiler": "Meteorolojik araştırma uçuşlarının yasal mevzuata tam uyumlu ve güvenli şekilde icra edilmesini sağladılar.",
+    "bizNasilKatki": "Maslak kampüsü veya kırsal test sahası için yeşil bölge uçuş izni başvurusunu resmi portal üzerinden yaparız.",
+    "referanslar": [
+     {
+      "ad": "SHGM İnsansız Hava Aracı Yetkilendirme ve İzin İşlemleri Portalı",
+      "url": "https://iha.shgm.gov.tr/public/index",
+      "tur": "web"
+     },
+     {
+      "ad": "SHGM (2020) İnsansız Hava Aracı Sistemleri Talimatı (SHT-İHA)",
+      "url": "https://web.shgm.gov.tr/tr/mevzuat/2232-insansiz-hava-araci-sistemleri-talimati-sht-iha",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://iha.shgm.gov.tr/public/index",
+      "aciklama": "SHGM İHA uçuş sahası izin başvuru ve hava sahası haritası paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://iha.shgm.gov.tr/public/index",
+      "aciklama": "Uçuş planı onay süreçleri ve pilot yetkilendirme ekranı akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Meteodrones (Meteomatics)",
+   "ne": "Sınır tabakasını profilleyen meteoroloji dronları.",
+   "url": "https://www.meteomatics.com/en/meteodrones-weather-drones/",
+   "ayrinti": {
+    "neYaptilar": "Atmosfer sınır tabakasında 6 km irtifaya kadar otomatik dikey profil alan operasyonel hava durumu dronu ürettiler.",
+    "nasil": "Gelişmiş meteorolojik sensörler, buzlanma önleme sistemleri ve acil durum paraşütünü tek gövdede birleştirdiler.",
+    "neEdindiler": "Ulusal hava tahmin merkezlerine ve havalimanlarına saatlik sis, inversiyon ve rüzgâr profili sağladılar.",
+    "bizNasilKatki": "Meteodrone sensör yerleşim prensiplerini ve pervane rüzgârı koruma yöntemini öğrenci dronumuza uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Meteomatics Meteodrones Atmosferik Profil Dronu Portalı",
+      "url": "https://www.meteomatics.com/en/meteodrones-weather-drones/",
+      "tur": "web"
+     },
+     {
+      "ad": "Leuenberger vd. (2020) Operasyonel Meteorolojik Dron Ağları",
+      "url": "https://doi.org/10.5194/amt-13-5691-2020",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.meteomatics.com/en/meteodrones-weather-drones/",
+      "aciklama": "Meteodrones otomatik meteorolojik uçuş istasyonu ve profil paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.meteomatics.com/en/meteodrones-weather-drones/",
+      "aciklama": "Düşey sıcaklık, nem ve rüzgâr profili zaman serisi veri akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ISARRA",
+   "ne": "Atmosfer araştırmalarında insansız sistemler konferansı.",
+   "url": "https://www.isarra.org/",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik araştırmalarda insansız hava araçlarının kullanımı üzerine küresel bilim insanlarını bir araya getirdiler.",
+    "nasil": "Sınır tabakası profillemesi, sensör tepki süresi kalibrasyonu ve rüzgâr kestirimi bildirilerini yayımladılar.",
+    "neEdindiler": "Meteoroloji dronu geliştiricileri için uluslararası uçuş ve veri doğrulama standartları oluşturdular.",
+    "bizNasilKatki": "ISARRA bildiri kitaplarındaki sensör gecikme düzeltmesi formülasyonunu veri işleme kodumuza temel alırız.",
+    "referanslar": [
+     {
+      "ad": "Uluslararası Atmosferik Araştırma İHA Topluluğu Konferans Portalı",
+      "url": "https://www.isarra.org/conferences",
+      "tur": "web"
+     },
+     {
+      "ad": "Choukulkar vd. (2023) Sınır Tabakası İHA Gözlemleri ve Kıyaslama",
+      "url": "https://doi.org/10.1175/BAMS-D-22-0181.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.isarra.org/conferences",
+      "aciklama": "ISARRA atmosferik insansız hava sistemleri araştırma paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.isarra.org/conferences",
+      "aciklama": "Dron sınır tabakası sıcaklık profili sempozyum sunumları akışı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Dronu sınır tabakasını ölçen bir platform olarak kullanmak; sensör, uçuş ve veri işleme zincirini kurmak.",
+  "baglanti": "Yazılım kolunda İHA profil verisi; Anlatım kolunda uçuş görüntüleriyle sınır tabakası anlatımı.",
+  "literatur": {
+   "maddeler": [
+    "Küçük İHA'lar sınır tabakasının alt 1-2 km'sini radyosonda/kuleyle doldurulamayan çözünürlükte profilleyebilir; sensör tepki süresi ve pervane ısınması temel hata kaynaklarıdır.",
+    "Sınır tabakası yapısı (karışım tabakası, kararlı gece tabakası, alçak seviye jeti) Stull 1988'de tanımlanan ölçeklerle yorumlanır.",
+    "İHA ile PM2.5 düşey dağılımı ölçümleri kirleticilerin karışım yüksekliğine bağlı katmanlaşmasını gösterdi. (Li vd. 2018)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Meteodrone gibi ticari meteoroloji dronları ulusal servislerde operasyonel profil alıyor.",
+    "Uçuş düzenlemeleri (SHGM, FAA) görüş hattı ve yükseklik sınırı getiriyor; meteorolojik uçuş planı bu sınırlar içinde kurulur."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Li vd. 2018",
+    "baslik": "Investigating vertical distribution patterns of lower tropospheric PM2.5 using unmanned aerial vehicle measurements",
+    "yayin": "Atmospheric Environment 173, 62-71",
+    "yil": "2018",
+    "url": "https://doi.org/10.1016/j.atmosenv.2017.11.009",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer (Springer), ders kitabı",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Müller vd. 2021",
+    "baslik": "Surveying fumarole sites and hydrothermal alteration by unoccupied aircraft systems (UAS) at the La Fossa cone, Vulcano Island (Italy)",
+    "yayin": "Journal of Volcanology and Geothermal Research 413, 107208",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.jvolgeores.2021.107208",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Banakh vd. 2020",
+    "baslik": "Wind–Temperature Regime and Wind Turbulence in a Stable Boundary Layer of the Atmosphere: Case Study",
+    "yayin": "Remote Sensing 12(6), 955",
+    "yil": "2020",
+    "url": "https://doi.org/10.3390/rs12060955",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Drona takılı hızlı tepkili sıcaklık-nem sensörüyle 120 metreye kadar 6 düşey profil alıp sabah inversiyonunun kalkışını izlemek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 362",
+   "projeyeKatki": "İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar dersinde öğrenilen atmosferik sınır tabaka profilleme ve sensör kalibrasyon ilkeleri dron uçuşlarında uygulanır. Sensör dinamik tepki süresi gecikmesi düzeltilerek potansiyel sıcaklık gradyanından sabah inversiyon tabakasının tepe yüksekliği ve kalınlığı hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi",
+     "nerede": "Dronun 1 m/s tırmanışı sırasında sensörün termal ataletinden kaynaklanan sıcaklık sapmasını düzeltirken kullanılır."
+    },
+    {
+     "formulAd": "Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği",
+     "nerede": "Gün doğumundan öğleye kadar alınan 6 düşey profilde inversiyon tepesi ve karışım tabakası yüksekliğini belirlerken kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Drona bağlanan hızlı tepkili sensörle gün doğumu-öğle arası 6 profil alınıp inversiyon kalkışı ölçülür.",
+  "ayrinti": "Çok rotorlu drona pervanelerin hava akışından etkilenmeyecek bir kol üzerinde ışınım siperli sıcaklık-nem sensörü monte edilir. Sabah 06:00 ile 12:00 arasında saat başı 120 metreye sabit 1 m/s hızla tırmanılarak 6 dikey profil alınır. Sensör gecikme düzeltmesi uygulanarak potansiyel sıcaklık gradyanından inversiyon tabakasının kırılışı ve karışma yüksekliğinin artışı grafiklenir.",
+  "adimlar": [
+   {
+    "baslik": "Sensör entegrasyonu ve tepki süresi kalibrasyonu",
+    "oz": "Hızlı tepkili sıcaklık sensörü pervane akışından uzağa monte edilir.",
+    "ayrinti": "Dron gövdesinden 30 cm öne uzatılan karbon fiber bom üzerine hava sirkülasyonlu radyasyon siperi yerleştirilir. İçine yerleştirilen ince telli termokupl veya hızlı NTC termistörün laboratuvar adımıyla zaman sabiti (tau) ölçülerek dinamik tepki formülü parametreleri belirlenir.",
+    "nasil": [
+     {
+      "teknik": "Sensörü pervane yıkama akımının (propwash) dışında izole kola monte etmek.",
+      "sade": "MTO 362 dersindeki 'Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi' bilgisiyle pervanelerin motor sıcaklığının ve rüzgârının hava ölçümünü yanıltmasını önleriz.",
+      "altAdimlar": [
+       "1. Sensör muhafazasını dronun ön hücum kenarındaki karbon kola sabitleyin.",
+       "2. Güneş ışınımından koruyan beyaz havalandırmalı siperliği takın.",
+       "3. Sensör kablosunu otopilot telemetri girişine bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi"
+      }
+     },
+     {
+      "teknik": "Laboratuvarda sensörün 63.2% tepki süresini (tau) ölçüp kalibre etmek.",
+      "sade": "MTO 362 dersindeki 'Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi' bilgisiyle termometrenin hava değişimini kaç saniye gecikmeyle algıladığını hesaplarız.",
+      "altAdimlar": [
+       "1. Sensörü sıcak ortamdan soğuk hava akımına aniden maruz bırakın.",
+       "2. Sıcaklık düşüş eğrisinden zaman sabitini (tau = 1.2 sn) belirleyin.",
+       "3. Dikey tırmanışta kullanılacak gecikme düzeltme katsayısını not edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Otopilot dikey görev planlaması ve SHGM uçuş izni",
+    "oz": "Sabit 1 m/s tırmanışlı otonom uçuş profili tanımlanır.",
+    "ayrinti": "QGroundControl yazılımında kalkış noktasından 120 metre tavan irtifaya kadar sabit 1 m/s dikey tırmanış ve 0.8 m/s iniş görevi kurgulanır. SHGM İHA sisteminden gerekli koordinat uçuş izni alınarak gün doğumu öncesinde saha hazırlıkları tamamlanır.",
+    "nasil": [
+     {
+      "teknik": "Otopilot ara yüzünde 120 m dikey profil görev komutlarını programlamak.",
+      "sade": "MTO 362 dersindeki 'Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı' bilgisiyle dronun havada sarsılmadan dümdüz yukarı çıkmasını sağlayan otomatik uçuş rotası yazarız.",
+      "altAdimlar": [
+       "1. Görev tavan irtifasını yasal sınır olan 120 metreye ayarlayın.",
+       "2. Tırmanma hızını sensörün rahat ölçüm alacağı 1 m/s değerine sabitleyin.",
+       "3. Güvenli geri dönüş ve otomatik iniş parametrelerini denetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Dron eğim açısı ve aerodinamik sürüklenmeyle rüzgâr hızı"
+      }
+     },
+     {
+      "teknik": "SHGM İHA izin sistemi üzerinden uçuş onayı ve koordinat yetkisini almak.",
+      "sade": "MTO 362 dersindeki 'İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar' bilgisiyle uçuş sahasının yasal izinlerini alarak güvenli hava sahası oluştururuz.",
+      "altAdimlar": [
+       "1. Uçuş yapılacak koordinatın hava sahası NOTAM durumunu kontrol edin.",
+       "2. İHA pilot lisansı ve cihaz belgesiyle resmi izin başvurusunu yapın.",
+       "3. Uçuş öncesi meteorolojik görüş mesafesini yerinde onaylayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Saatlik dikey uçuşlar ve telemetri verisi toplama",
+    "oz": "06:00-12:00 arasında 6 dikey profil uçuşu icra edilir.",
+    "ayrinti": "Günün en soğuk anı olan gün doğumunda ilk profil alınır ve ardından 12:00'ye kadar saat başı uçuşlar tekrarlanır. Her uçuşta barometrik irtifa, GPS koordinatı, ortam sıcaklığı ve bağıl nem verisi saniyede 10 kez dahili mikro SD karta ve yer telemetrisine yazılır.",
+    "nasil": [
+     {
+      "teknik": "10 Hz örnekleme hızıyla sıcaklık, nem, basınç ve irtifayı depolamak.",
+      "sade": "MTO 362 dersindeki 'Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği' bilgisiyle her metre yükselişte havanın sıcaklık ve nemini anlık ölçümlerle hafızaya depolarız.",
+      "altAdimlar": [
+       "1. Dron kalkış yapmadan önce yer seviyesi sıfırlama ölçümünü alın.",
+       "2. Tırmanış boyunca sensör verilerini GPS zaman damgasıyla eşleyin.",
+       "3. İniş tamamlandığında telemetri dosyasını dizüstü bilgisayara aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği"
+      }
+     },
+     {
+      "teknik": "Tırmanış ve iniş profillerini sensör gecikme formülüyle senkronize etmek.",
+      "sade": "MTO 362 dersindeki 'Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi' bilgisiyle yukarı çıkarken ve aşağı inerken ölçülen değerleri çakıştırarak gecikme hatasını yok ederiz.",
+      "altAdimlar": [
+       "1. T_dogru = T_olculen + tau * (dT/dt) diferansiyel düzeltmesini uygulayın.",
+       "2. Tırmanış ve iniş eğrilerinin mükemmel örtüştüğünü doğrulayın.",
+       "3. Düzeltilmiş saatlik profil eğrilerini tek bir veri tablosunda birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Sensör dinamik tepki süresi ve sıcaklık gecikme düzeltmesi"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "İnversiyon tabakası kalkışının analizi ve grafiklenmesi",
+    "oz": "Potansiyel sıcaklık gradyanıyla inversiyon tepesi ve kalınlığı izlenir.",
+    "ayrinti": "Ölçülen basınç ve sıcaklıktan potansiyel sıcaklık (theta) profilleri türetilir. d(theta)/dz > 0 olan kararlı tabakanın üst sınırı inversiyon tepesi olarak işaretlenir. 6 saatlik periyotta güneş ışınımıyla yerin ısınıp termal konveksiyonun inversiyonu nasıl parçaladığı ve karışma yüksekliğinin artışı yayın kalitesinde grafiklenir.",
+    "nasil": [
+     {
+      "teknik": "theta = T * (1000 / P)^(R/c_p) ile potansiyel sıcaklık gradyanını hesaplamak.",
+      "sade": "MTO 362 dersindeki 'Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği' bilgisiyle soğuk zemin havasının güneş yükseldikçe nasıl ısınıp karıştığını bilimsel grafikle kanıtlarız.",
+      "altAdimlar": [
+       "1. Basınç ve sıcaklık dizilerinden potansiyel sıcaklık gradyanını türetin.",
+       "2. d(theta)/dz eğiminin sıfıra yaklaştığı karışma tabakası tavanını saptayın.",
+       "3. İnversiyon tepe irtifasının saatlik yükseliş hızını (m/saat) bulun."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği"
+      }
+     },
+     {
+      "teknik": "ERA5 sınır tabakası yüksekliği ile dron profil gözlemini karşılaştırmak.",
+      "sade": "MTO 362 dersindeki 'İnsansız Hava Sistemleri ile Meteorolojik Uygulamalar' bilgisiyle dronla ölçtüğümüz gerçek sis ve inversiyon tabakasını Avrupa hava modelinin tahminiyle kıyaslarız.",
+      "altAdimlar": [
+       "1. Aynı saatler için ERA5 boundary layer height (BLH) verisini çekin.",
+       "2. Dronla saptadığımız inversiyon kırılma saatiyle model çıktısını eşleştirin.",
+       "3. 6 profilin renkli katman grafiğini akademik raporda sunun."
+      ],
+      "kazanim": {
+       "ders": "MTO 362",
+       "madde": "Potansiyel sıcaklık gradyanı ile karışma tabakası yüksekliği"
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "6 saatlik düşey atmosfer profilleri, inversiyon kalkış grafiği ve sensör gecikme analiz raporu elde edilir.",
+  "senden": "Dron pilotluğu ve temel elektronik lehimleme ilgisi.",
+  "bizden": "Otopilot görev dosyaları, sensör siperi çizimleri ve veri işleme kodu."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Sabah sınır tabakası dikey sıcaklık profili ve inversiyon kalkış döngüsü animasyonu, 2024",
+   "aciklama": "Gün doğumundan öğleye kadar zemin ısınmasıyla dikey sıcaklık gradyanının değişimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.meteomatics.com/en/meteodrones-weather-drones/",
+   "aciklama": "Meteomatics Meteodrones operasyonel sınır tabakası meteoroloji dronu veri akışı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Meteomatics Meteodrones Operasyonel Sınır Tabakası Profilleme Portalı",
+   "url": "https://www.meteomatics.com/en/meteodrones-weather-drones/"
+  },
+  {
+   "ad": "An Introduction to Boundary Layer Meteorology (Roland B. Stull)",
+   "url": "https://doi.org/10.1007/978-94-009-3027-8"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO362-01.json",
+  "tarih": "2026-10-17 05:09",
+  "geminiSha1": "1a3f6733b028"
+ }
+}
