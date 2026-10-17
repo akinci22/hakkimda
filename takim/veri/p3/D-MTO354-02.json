@@ -1,0 +1,433 @@
+{
+ "id": "D-MTO354-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 354",
+  "dersAd": "Tarım & Orman Meteorolojisi II",
+  "kol": "ikisi"
+ },
+ "ad": "Kuraklık izleme panosu: SPI ve toprak nemi",
+ "ne": "CHIRPS yağışı ve GLEAM/ERA5 toprak nemiyle Türkiye için 1-3-12 aylık SPI haritaları üret; FEWS NET tarzı aylık kuraklık panosu kur.",
+ "adimlar": [
+  "CHIRPS aylık yağışı 1981-2024 indir; gamma dağılımıyla SPI hesapla.",
+  "GLEAM kök bölgesi toprak nemi anomalisini aynı grid'e getir.",
+  "Üç zaman ölçeğinde haritaları aylık üreten betik yaz.",
+  "FAO GIEWS ve Crop Monitor bültenleriyle 2023 kuraklığını doğrula.",
+  "Panoyu web sayfası olarak yayımla."
+ ],
+ "sonuc": "Aylık güncellenen kuraklık panosu.",
+ "dayanak": "Mishra ve Singh 2010",
+ "senden": "Dağılım uydurma ve harita.",
+ "bizden": "Veri hattı ve pano şablonu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 354",
+    "ad": "Tarım & Orman Meteorolojisi II"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "CHIRPS (UCSB)",
+   "ne": "Uydu + istasyon birleşik yağış verisi.",
+   "url": "https://chc.ucsb.edu/data/chirps",
+   "ayrinti": {
+    "neYaptilar": "Kaliforniya Üniversitesi Santa Barbara İklim Tehlikeleri Merkezi bünyesinde 40 yıllık küresel 0,05 derece çözünürlüklü yağış arşivi oluşturdular.",
+    "nasil": "Meteosat ve geostasyoner kızılötesi bulut soğukluk gözlemlerini yer istasyonu ölçümleriyle akıllı kalibrasyon süzgecinden geçirdiler.",
+    "neEdindiler": "Dünya genelinde tarımsal kuraklık takibi ve erken uyarı sistemleri için temel yağış veri standardını sundular.",
+    "bizNasilKatki": "CHIRPS aylık yağış ızgaralarını Türkiye tarım havzaları için indirip Standart Yağış İndeksi hesabına bağlarız.",
+    "referanslar": [
+     {
+      "ad": "Funk vd. 2015 The Climate Hazards Group Infrared Precipitation With Stations",
+      "url": "https://doi.org/10.1038/sdata.2015.66",
+      "tur": "makale"
+     },
+     {
+      "ad": "UCSB CHIRPS Veri İndirme Portalı",
+      "url": "https://chc.ucsb.edu/data/chirps",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://chc.ucsb.edu/data/chirps",
+      "aciklama": "CHIRPS küresel 0.05 derece yağış verisi arşivi ve indirme kataloğu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Drought_soil_cracks.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Şiddetli tarımsal kuraklık ve kök bölgesi toprak nemi tükenmesi çatlakları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "GLEAM",
+   "ne": "Uydudan evapotranspirasyon ve toprak nemi.",
+   "url": "https://www.gleam.eu/products/",
+   "ayrinti": {
+    "neYaptilar": "Ghent Üniversitesi ve Bristol araştırmacıları uydu mikrodalga sensörleriyle kök bölgesi toprak nemi veri setini geliştirdiler.",
+    "nasil": "Gözlenen mikrodalga parlaklık sıcaklıklarını çok katmanlı su bütçesi formülasyonuna sokarak evapotranspirasyon bileşenlerini çözdüler.",
+    "neEdindiler": "Tarım arazilerinde yağış açığı oluştuğunda kök bölgesindeki suyun tükenme hızını fiziksel olarak ölçtüler.",
+    "bizNasilKatki": "GLEAM kök bölgesi toprak nemi anomalisini indirip CHIRPS kuraklık indisleriyle yan yana haritalandırırız.",
+    "referanslar": [
+     {
+      "ad": "Miralles vd. 2011 Global Land Surface Evaporation GLEAM Model",
+      "url": "https://doi.org/10.5194/hess-15-453-2011",
+      "tur": "makale"
+     },
+     {
+      "ad": "GLEAM Ürün Kataloğu ve Dokümantasyonu",
+      "url": "https://www.gleam.eu/products/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.gleam.eu/products/",
+      "aciklama": "GLEAM buharlaşma ve kök bölgesi toprak nemi küresel ürün kataloğu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Türkiye genelinde 1-3-12 aylık SPI ve kök bölgesi toprak nemi anomalisi yıllık döngü animasyonu",
+      "aciklama": "İç Anadolu havzalarında meteorolojik kuraklığın tarımsal toprak kuraklığına dönüşüm haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "USGS FEWS NET",
+   "ne": "Kuraklık ve gıda güvenliği erken uyarı; uydu verisi.",
+   "url": "https://earlywarning.usgs.gov/fews",
+   "ayrinti": {
+    "neYaptilar": "USAID ve USGS ortaklığında küresel kıtlık ve tarımsal kuraklık erken uyarı sistemini kurdular.",
+    "nasil": "Uydu yağışları ve bitki örtüsü indekslerini tarım takvimleriyle eşleştirip bölgesel kuraklık izleme raporları hazırladılar.",
+    "neEdindiler": "Tarımsal rekolte kayıplarını ve kuraklık krizlerini aylar öncesinden tespit eden küresel izleme omurgasını sundular.",
+    "bizNasilKatki": "FEWS NET izleme panosu mimarisini Python Streamlit üzerinde Türkiye tarım havzalarına uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Funk vd. 2019 Examining the Science of FEWS NET Drought Monitoring",
+      "url": "https://doi.org/10.1175/BAMS-D-17-0233.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "USGS FEWS NET Erken Uyarı Veri Portalı",
+      "url": "https://earlywarning.usgs.gov/fews",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://earlywarning.usgs.gov/fews",
+      "aciklama": "USGS FEWS NET küresel kuraklık tehlikesi ve erken uyarı harita paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://earlywarning.usgs.gov/fews",
+      "aciklama": "Tarımsal kuraklık göstergeleri ve gıda güvenliği izleme raporları akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "FAO GIEWS",
+   "ne": "Küresel gıda erken uyarı sistemi; tarım meteorolojisi bültenleri.",
+   "url": "https://www.fao.org/giews/en/",
+   "ayrinti": {
+    "neYaptilar": "Birleşmiş Milletler Gıda ve Tarım Örgütü uzman takımı olarak tüm ülkelerin tarımsal kuraklık durumunu düzenli izlediler.",
+    "nasil": "Tarımsal Stres İndeksini (ASI) uydu verileriyle hesaplayıp kuraklıktan etkilenen ekili alan oranını yüzdesel olarak raporladılar.",
+    "neEdindiler": "Dünya genelinde tahıl üretim tahminleri ve kuraklık alarmlarıyla gıda arz güvenliğini güvenceye aldılar.",
+    "bizNasilKatki": "FAO GIEWS Türkiye ülke bültenlerini çekerek 2023 bahar kuraklığında buğday rekolte sapmalarını doğrularız.",
+    "referanslar": [
+     {
+      "ad": "Rojas vd. 2011 The Agricultural Stress Index System (ASIS) of FAO",
+      "url": "https://doi.org/10.1080/01431161.2011.554455",
+      "tur": "makale"
+     },
+     {
+      "ad": "FAO GIEWS Küresel Bilgi ve Erken Uyarı Sistemi",
+      "url": "https://www.fao.org/giews/en/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.fao.org/giews/en/",
+      "aciklama": "FAO GIEWS küresel kuraklık ve tarımsal üretim izleme bülteni arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.fao.org/giews/en/",
+      "aciklama": "Tarımsal stres indeksi ve ülke bazlı ürün gelişim değerlendirme sayfaları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "GEOGLAM Crop Monitor",
+   "ne": "Uydu tabanlı küresel ürün durumu bülteni.",
+   "url": "https://cropmonitor.org/reports/",
+   "ayrinti": {
+    "neYaptilar": "G20 Tarım Bakanları inisiyatifiyle kurulan küresel konsorsiyum olarak açık tarımsal piyasa bilgi sistemi sağladılar.",
+    "nasil": "Çoklu uydu gözlemleri ve yerel uzman saha değerlendirmelerini harmanlayarak aylık ürün durumu konsensüs haritaları ürettiler.",
+    "neEdindiler": "Uluslararası emtia piyasalarında tarımsal şeffaflığı artırıp fiyat dalgalanmalarını engellediler.",
+    "bizNasilKatki": "GEOGLAM izleme metodolojisini inceleyerek Türkiye için buğday ve mısır gelişim evrelerine duyarlı kuraklık panosu kurarız.",
+    "referanslar": [
+     {
+      "ad": "Becker-Reshef vd. 2020 The GEOGLAM Global Agricultural Monitoring Initiative",
+      "url": "https://doi.org/10.1016/j.rse.2019.111612",
+      "tur": "makale"
+     },
+     {
+      "ad": "GEOGLAM Crop Monitor Aylık Raporlar Arşivi",
+      "url": "https://cropmonitor.org/reports/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cropmonitor.org/reports/",
+      "aciklama": "GEOGLAM Crop Monitor küresel ürün izleme raporu ve haritalama ekranı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://cropmonitor.org/reports/",
+      "aciklama": "Tahıl ve yağlı tohumlar tarımsal kuraklık koşulları değerlendirme paneli"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Orman yangını, kuraklık ve ürün verimi gibi ileri konuları uydu ve model verisiyle çalışmak.",
+  "baglanti": "Yazılım kolunda yangın hava indeksi ve kuraklık izleme; Anlatım kolunda yangın-hava anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Kanada Yangın Hava İndeksi (FWI) sıcaklık, nem, rüzgâr ve yağıştan yakıt nemi ve yayılma potansiyelini türetir; EFFIS Avrupa için günlük tahmin yayımlar.",
+    "Büyük yangınlar kendi hava sistemini (pirokümülonimbus) üretir; uçak ölçümleri buz çekirdeği ve yukarı akış yapısını gösterdi. (Kingsmill vd. 2023)",
+    "Kuraklık indeksleri (SPI, SPEI, PDSI) farklı zaman ölçeklerinde farklı sektörleri temsil eder. (Mishra ve Singh 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Uydudan aktif yangın ve ışınımsal güç (FRP) tespiti VIIRS 375 m ürünüyle yangın hattı ölçeğine indi. (Zhang vd. 2017)",
+    "Orman kenarlarında yangın bozunumu Afrika'da uydu zaman serisiyle ölçüldü. (Zhao vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kingsmill vd. 2023",
+    "baslik": "In situ microphysics observations of intense pyroconvection from a large wildfire",
+    "yayin": "Atmospheric Chemistry and Physics 23, 1-21",
+    "yil": "2023",
+    "url": "https://doi.org/10.5194/acp-23-1-2023",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Zhang vd. 2017",
+    "baslik": "Approaches for synergistically exploiting VIIRS I- and M-Band data in regional active fire detection and FRP assessment",
+    "yayin": "Remote Sensing of Environment 198, 407-424",
+    "yil": "2017",
+    "url": "https://doi.org/10.1016/j.rse.2017.06.028",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Zhao vd. 2021",
+    "baslik": "Fire enhances forest degradation within forest edge zones in Africa",
+    "yayin": "Nature Geoscience 14, 479-483",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41561-021-00763-8",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Mishra ve Singh 2010",
+    "baslik": "A review of drought concepts",
+    "yayin": "Journal of Hydrology 391(1-2), 202-216",
+    "yil": "2010",
+    "url": "https://doi.org/10.1016/j.jhydrol.2010.07.012",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Andreae 2019",
+    "baslik": "Emission of trace gases and aerosols from biomass burning – an updated assessment",
+    "yayin": "Atmospheric Chemistry and Physics 19, 8523-8546",
+    "yil": "2019",
+    "url": "https://doi.org/10.5194/acp-19-8523-2019",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "CHIRPS yağışları ve GLEAM toprak nemiyle Türkiye için 1, 3, 12 aylık SPI ve kuraklık panosu üretip FAO bültenleriyle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 354",
+   "projeyeKatki": "Standartlaştırılmış Yağış-Evapotranspirasyon İndeksi (SPEI) ve su açığı denklemleriyle yağış ve buharlaşma dengesini kurarak kuraklık şiddetini hesaplar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Standartlaştırılmış Yağış-Evapotranspirasyon İndeksi (SPEI)",
+     "nerede": "Adım 2: Yağış ile potansiyel evapotranspirasyon farkını alarak kök bölgesi su açığını ve kuraklık anomalisini türetmede."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "CHIRPS ve GLEAM verileriyle Türkiye için 1-3-12 aylık SPI ve toprak nemi panosu kurup 2023 kuraklığını doğrulamak.",
+  "ayrinti": "CHIRPS 1981-2024 aylık yağışları üzerinden iki parametreli Gamma dağılımı uydurularak 1, 3 ve 12 aylık Standart Yağış İndeksi (SPI) gridleri üretilir. GLEAM kök bölgesi toprak nemi anomalisine dönüştürülür. İç Anadolu ve Güneydoğu'da 2023 baharında yaşanan tarımsal kuraklık FAO GIEWS rekolte bültenleriyle doğrulanarak FEWS NET benzeri açık izleme panosu kurulur.",
+  "sonuc": "Türkiye tarımsal kuraklığını üç farklı zaman ölçeğinde haritalayan açık kaynaklı kuraklık izleme panosu ve analitik defter.",
+  "adimlar": [
+   {
+    "baslik": "CHIRPS verisinden 1, 3, 12 aylık SPI haritalarını üretmek",
+    "oz": "Gamma dağılımı uydurarak 40 yıllık iklim normallerine göre SPI rasterlarını üretmek.",
+    "ayrinti": "Türkiye sınırları içindeki CHIRPS aylık yağış serisi kümülatif 1, 3 ve 12 aylık pencerelerde toplanır. SciPy gamma fonksiyonuyla kümülatif olasılık dağılımı bulunur ve standart normal dağılıma (Z) dönüştürülerek SPI indisleri türetilir.",
+    "nasil": [
+     {
+      "teknik": "scipy.stats.gamma.fit ile yağış serisine alfa ve beta parametrelerini uydurmak.",
+      "sade": "MTO 354 dersindeki 'SPEI ve toprak nemi göstergeleriyle tarımsal kuraklık takibi yapmak' bilgisiyle 40 yıllık yağış geçmişinden bölgenin kuraklık ve ıslaklık eşiklerini hesaplarız.",
+      "altAdimlar": [
+       "1. 1981-2024 CHIRPS aylık yağış NetCDF katmanlarını Türkiye sınırında maskeleyin.",
+       "2. 1, 3 ve 12 aylık yürüyen toplam yağış dizilerini her piksel için çıkarın.",
+       "3. Gamma dağılımını standart normal kümülatif olasılığa dönüştürerek SPI değerlerini elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "SPEI ve toprak nemi göstergeleriyle tarımsal kuraklık takibi yapmak."
+      }
+     },
+     {
+      "teknik": "SPI < -1.5 aşırı kuraklık piksellerini coğrafi olarak sınıflandırıp haritalamak.",
+      "sade": "MTO 354 dersindeki kuraklık izleme bilgisiyle ekili tarlalarda tehlike çanlarının çaldığı alanları kırmızı renkle boyayarak gösteririz.",
+      "altAdimlar": [
+       "1. WMO standartlarına göre: -1 hafif, -1,5 orta, -2 aşırı kuraklık eşiklerini belirleyin.",
+       "2. Konya ve Şanlıurfa ovalarındaki tarım alanlarında kuraklık yayılımını hesaplayın.",
+       "3. Geotiff formatında raster haritalar oluşturup CBS tabanına aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "SPEI ve toprak nemi göstergeleriyle tarımsal kuraklık takibi yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "GLEAM kök bölgesi toprak nemiyle SPEI su açığını eşlemek",
+    "oz": "GLEAM toprak nemi anomalisi ile MTO 354 SPEI su dengesini birleştirmek.",
+    "ayrinti": "MTO 354 dersindeki SPEI su açığı denklemiyle net iklimsel su bilançosu hesaplanır ve GLEAM kök bölgesi toprak nemi katmanıyla uzamsal olarak doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "D_i = P_i - PET_i formülüyle aylık iklimsel su bilançosu açığını hesaplamak.",
+      "sade": "MTO 354 dersindeki SPEI su açığı bağıntısıyla bitkilerin ihtiyaç duyduğu buharlaşma talebine karşılık ne kadar yağmur düştüğünü hesaplarız.",
+      "altAdimlar": [
+       "1. Aylık toplam yağıştan potansiyel evapotranspirasyon değerini çıkarın.",
+       "2. Su açığı negatif olan tarım bölgelerini kuraklık stresine göre derecelendirin.",
+       "3. GLEAM kök bölgesi nemiyle su açığı korelasyonunu test edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "SPEI ve toprak nemi göstergeleriyle tarımsal kuraklık takibi yapmak."
+      }
+     },
+     {
+      "teknik": "Toprak nemi anomalisini standart sapma biriminde hesaplayıp kuraklık stresini belirlemek.",
+      "sade": "MTO 354 dersindeki toprak nemi dinamikleri bilgisiyle kök derinliğindeki suyun bitkileri kurutacak seviyeye inip inmediğini kanıtlarız.",
+      "altAdimlar": [
+       "1. 40 yıllık GLEAM kök nemi aylık ortalama ve standart sapmasını çıkarın.",
+       "2. 2023 bahar ayları için zemin nemi anomali z-skorunu hesaplayın.",
+       "3. Yağış açığı ile toprak nemi tükenmesi arasındaki 4 haftalık gecikmeyi grafikleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "Orman ekosistemlerinde karbon yutağı ve evapotranspirasyon dengesini değerlendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "FAO GIEWS ile doğrulayıp kuraklık izleme panosu kurmak",
+    "oz": "2023 buğday rekolte raporlarıyla modeli doğrulayıp web paneli yayınlamak.",
+    "ayrinti": "Hesaplanan kuraklık haritaları FAO GIEWS ve GEOGLAM bültenleriyle karşılaştırılır. Streamlit ile aylık güncellenen açık kuraklık takip panosu tamamlanır.",
+    "nasil": [
+     {
+      "teknik": "FAO GIEWS ve GEOGLAM il bazlı rekolte raporlarıyla kuraklık indislerini doğrulamak.",
+      "sade": "MTO 354 dersindeki 'SPEI ve toprak nemi göstergeleriyle tarımsal kuraklık takibi yapmak' bilgisiyle haritadaki kırmızı alanların sahada gerçekten rekolte düşüşüne yol açtığını belgeleriz.",
+      "altAdimlar": [
+       "1. Tarım ve Orman Bakanlığı ile FAO buğday verim istatistiklerini indirin.",
+       "2. SPI ve kök nemi anomalisiyle il bazlı ürün kaybı arasındaki korelasyonu çıkarın.",
+       "3. Doğruluk skoru r > 0,78 ile modelin tarımsal erken uyarı gücünü onaylayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "SPEI ve toprak nemi göstergeleriyle tarımsal kuraklık takibi yapmak."
+      }
+     },
+     {
+      "teknik": "Streamlit ve Folium ile interaktif tarımsal kuraklık web panosu oluşturmak.",
+      "sade": "MTO 354 dersindeki kuraklık değerlendirme bilgisiyle çiftçilerin ve karar vericilerin cep telefonundan kuraklığı görebileceği web haritası sunarız.",
+      "altAdimlar": [
+       "1. Zaman kaydırıcısı (slider) ile 1, 3 ve 12 aylık SPI katmanlarını haritada dinamikleştirin.",
+       "2. İstenen ilçeye tıklandığında 40 yıllık kuraklık geçmişi grafiğini açın.",
+       "3. Erken uyarı bültenini otomatik PDF olarak indiren dışa aktarma modülü ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 354",
+       "madde": "SPEI ve toprak nemi göstergeleriyle tarımsal kuraklık takibi yapmak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Türkiye genelinde 1-3-12 aylık SPI ve kök bölgesi toprak nemi anomalisi yıllık döngü animasyonu",
+   "aciklama": "İç Anadolu havzalarında meteorolojik kuraklığın tarımsal toprak kuraklığına dönüşüm haritası"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://earlywarning.usgs.gov/fews",
+   "aciklama": "USGS FEWS NET kuraklık ve tarımsal gıda güvenliği izleme arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "USGS Kıtlık Erken Uyarı Sistemi Ağ Portalı (FEWS NET)",
+   "url": "https://earlywarning.usgs.gov/fews"
+  },
+  {
+   "ad": "Ghent Üniversitesi Küresel Arazi Yüzeyi Buharlaşması Veri Portalı (GLEAM)",
+   "url": "https://www.gleam.eu/products/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO354-02.json",
+  "tarih": "2026-10-17 04:53",
+  "geminiSha1": "d2073b671a2b"
+ }
+}

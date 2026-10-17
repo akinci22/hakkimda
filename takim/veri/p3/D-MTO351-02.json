@@ -1,0 +1,434 @@
+{
+ "id": "D-MTO351-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 351",
+  "dersAd": "Su Meteorolojisi",
+  "kol": "ikisi"
+ },
+ "ad": "Küçük bir dere için yağış-akış modeli ve uyarı eşiği",
+ "ne": "HEC-HMS veya basit bir SCS-CN modeliyle İstanbul'daki bir derenin (ör. Ayamama) 24 saatlik yağış senaryolarına tepkisini hesapla; GloFAS/EFAS mantığında uyarı eşiği öner.",
+ "adimlar": [
+  "HydroSHEDS'ten havza sınırını ve akarsu ağını çıkar.",
+  "Arazi örtüsünden (Copernicus CLMS) CN değerlerini ata.",
+  "10, 50, 100 yıllık 24 saatlik yağışları IMERG/istasyon serisinden türet.",
+  "HEC-HMS ile hidrografları üret; tepe debisi ve gecikme süresini oku.",
+  "Uyarı eşiğini ve tahmin tabanlı uyarı akışını tek şemada anlat."
+ ],
+ "sonuc": "Hidrograf seti ve uyarı eşiği önerisi; yağıştan akışa zinciri kurmuş olursun.",
+ "dayanak": "Gochis vd. 2015",
+ "senden": "Model kurma sabrı.",
+ "bizden": "Havza verisi ve CN tabloları.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 351",
+    "ad": "Su Meteorolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "HEC-HMS (USACE)",
+   "ne": "Yağış-akış modeli, ücretsiz.",
+   "url": "https://www.hec.usace.army.mil/software/hec-hms/",
+   "ayrinti": {
+    "neYaptilar": "ABD Ordusu Mühendisler Birliği bünyesinde havza hidrolojisi simülasyonları için dünya standardı açık yazılım geliştirdiler.",
+    "nasil": "SCS eğri numarası, Green-Ampt sızma ve Muskingum kanal öteleme yöntemlerini bütünleşik hidrolojik model yapısında birleştirdiler.",
+    "neEdindiler": "Dünya çapında taşkın haritalama ve baraj rezervuar işletme planlarının temel hesaplama motorunu sağladılar.",
+    "bizNasilKatki": "Ayamama Deresi alt havzalarını HEC-HMS arayüzüne aktarıp farklı şiddetteki yağış senaryolarını simüle ederiz.",
+    "referanslar": [
+     {
+      "ad": "Feldman 2000 Hydrologic Modeling System HEC-HMS Technical Manual",
+      "url": "https://www.hec.usace.army.mil/software/hec-hms/documentation/HEC-HMS_TechnicalReferenceManual_(CPD-74B).pdf",
+      "tur": "rapor"
+     },
+     {
+      "ad": "USACE HEC-HMS Yazılım ve Sürüm Notları Portalı",
+      "url": "https://www.hec.usace.army.mil/software/hec-hms/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.hec.usace.army.mil/software/hec-hms/",
+      "aciklama": "HEC-HMS havza modeli kurulum arayüzü ve akış simülasyonu paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Hydrograph_components.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Birim hidrograf bileşenleri yükselme eğrisi pik debi ve çekilme kolu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "HydroSHEDS",
+   "ne": "Küresel havza ve akarsu ağı verisi.",
+   "url": "https://www.hydrosheds.org/page/overview",
+   "ayrinti": {
+    "neYaptilar": "SRTM radar topografyası verilerini hidrolojik olarak düzelterek dünya nehir ağlarını ve havza sınırlarını yüksek çözünürlükte haritaladılar.",
+    "nasil": "Yüzey akış yönü ve akış birikimi algoritmalarıyla doğal su yollarını ve drenaj alanlarını vektör poligonlara dönüştürdüler.",
+    "neEdindiler": "Hidrologların herhangi bir köprü veya kesit için havza alanını ve akarsu boyunu hızla çıkarmasını sağladılar.",
+    "bizNasilKatki": "HydroSHEDS katmanlarını kullanarak Ayamama Deresi drenaj havzası sınırlarını ve ana kol boyunu otomatik olarak çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Lehner vd. 2008 New Global Hydrography Derived From Spaceborne Elevation Data",
+      "url": "https://doi.org/10.1029/2008EO100001",
+      "tur": "makale"
+     },
+     {
+      "ad": "HydroSHEDS Teknik Dokümantasyonu ve Genel Bakış Portalı",
+      "url": "https://www.hydrosheds.org/page/overview",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.hydrosheds.org/page/overview",
+      "aciklama": "HydroSHEDS küresel havza sınırları ve akarsu ağı CBS haritalama ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Watershed.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Akarsu drenaj havzası ve su ayrım çizgisi topoğrafya şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Land Monitoring Service",
+   "ne": "Bitki örtüsü, arazi örtüsü ve kar ürünleri (Avrupa ve küresel).",
+   "url": "https://land.copernicus.eu/en/products",
+   "ayrinti": {
+    "neYaptilar": "Sentinel uyduları ve hava fotoğraflarıyla kentsel geçirimsiz yüzey oranını 10 metrelik piksel çözünürlüğünde haritaladılar.",
+    "nasil": "Spektral sınıflandırma algoritmalarıyla beton, asfalt, çatı ve yeşil alanları ayırıp kentsel hidrolojik parametrelere dönüştürdüler.",
+    "neEdindiler": "Şehir taşkın modellerinde suyun toprağa sızamayıp doğrudan yüzey akışına geçen hacmini hesaplama imkânı sundular.",
+    "bizNasilKatki": "Ayamama havzasının kentsel geçirimsizlik oranını CLMS rasterından okuyarak ağırlıklı SCS eğri numarasını (CN) hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "Avrupa Çevre Ajansı Copernicus CLMS Geçirimsizlik Ürün Kılavuzu",
+      "url": "https://land.copernicus.eu/en/products/high-resolution-layer-imperviousness",
+      "tur": "rapor"
+     },
+     {
+      "ad": "Copernicus Arazi İzleme Servisi Ürün Kataloğu",
+      "url": "https://land.copernicus.eu/en/products",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://land.copernicus.eu/en/products",
+      "aciklama": "Copernicus CLMS yüksek çözünürlüklü kentsel arazi örtüsü ve geçirimsizlik haritası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://land.copernicus.eu/en/products",
+      "aciklama": "Copernicus CLMS veri katmanları ve kentsel yüzey analizi adımları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "EFAS",
+   "ne": "Avrupa taşkın farkındalık sistemi.",
+   "url": "https://www.efas.eu/en/about-efas",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelindeki ulusal hidroloji servislerini tek merkezde toplayarak 10 güne kadar taşkın erken uyarısı ürettiler.",
+    "nasil": "ECMWF topluluk hava tahminlerini LISFLOOD dağıtık hidrolojik modeliyle eşleştirip aşılma olasılıklarını modellediler.",
+    "neEdindiler": "Sınır aşan nehir havzalarında afet öncesi hazırlık süresini günlerce öne çeken operasyonel uyarı altyapısı kurdular.",
+    "bizNasilKatki": "EFAS uyarı seviyesi eşikleme yöntemini inceleyerek Ayamama Deresi için sarı, turuncu ve kırmızı alarm limitleri türetiriz.",
+    "referanslar": [
+     {
+      "ad": "Thielen vd. 2009 The European Flood Alert System (EFAS) Operational Framework",
+      "url": "https://doi.org/10.5194/hess-13-125-2009",
+      "tur": "makale"
+     },
+     {
+      "ad": "Copernicus EFAS Sistemi Hakkında Bilgi Sayfası",
+      "url": "https://www.efas.eu/en/about-efas",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.efas.eu/en/about-efas",
+      "aciklama": "EFAS operasyonel taşkın izleme haritası ve erken uyarı paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.efas.eu/en/about-efas",
+      "aciklama": "EFAS hidrolojik tahmin modeli ve kritik eşik aşım seviyeleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "GloFAS",
+   "ne": "Küresel taşkın farkındalık sistemi (Copernicus).",
+   "url": "https://www.globalfloods.eu/about/",
+   "ayrinti": {
+    "neYaptilar": "Copernicus ve ECMWF ortaklığıyla dünya genelindeki tüm nehir havzaları için açık taşkın tahmin servisi başlattılar.",
+    "nasil": "Küresel meteorolojik tahmin topluluklarını açık akarsu ağı topolojisiyle birleştirip olasılıksal taşkın tahminleri sundular.",
+    "neEdindiler": "Uluslararası insani yardım kuruluşlarının sel felaketlerine önceden finansman sağlamasına temel veri ürettiler.",
+    "bizNasilKatki": "GloFAS açık verisinden Marmara bölgesi akış anomalilerini çekip yerel birim hidrograf hesaplarımızla doğrularız.",
+    "referanslar": [
+     {
+      "ad": "Alfieri vd. 2013 GloFAS A Global Ensemble Flood Forecasting System",
+      "url": "https://doi.org/10.5194/hess-17-1161-2013",
+      "tur": "makale"
+     },
+     {
+      "ad": "GloFAS Küresel Taşkın Farkındalık Sistemi Hakkında",
+      "url": "https://www.globalfloods.eu/about/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.globalfloods.eu/about/",
+      "aciklama": "GloFAS küresel nehir akışı tahmin haritası ve havza debi diyagramı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Ayamama Deresi 24 saatlik aşırı yağış senaryosunda yüzey akışı ve pik debi hidrografı animasyonu",
+      "aciklama": "Şiddetli sağanağın başlamasından sonra kentsel beton yüzeylerden gelen taşkın dalgası tepe noktası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Yağıştan akışa giden zinciri (yağış ölçümü, uydu yağışı, taşkın tahmini) açık veriyle kurmak.",
+  "baglanti": "Yazılım kolunda uydu yağış ürünleri ve taşkın modelleri; Anlatım kolunda taşkın olay anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Uydu yağış ürünleri (IMERG, CHIRPS, PERSIANN) istasyon olmayan havzalarda tek kaynaktır; her birinin hata yapısı bölgeye göre değişir. (Sun vd. 2018)",
+    "GPM görevi, DPR radarı ve GMI radyometresiyle küresel yağışı 30 dakikada bir haritalar. (Hou vd. 2014)",
+    "Kuraklık meteorolojik, tarımsal, hidrolojik ve sosyoekonomik olarak dört düzeyde tanımlanır; indeksler bu düzeylere göre seçilir. (Mishra ve Singh 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Avrupa ve küresel taşkın farkındalık sistemleri (EFAS/GloFAS) tahmin topluluklarını hidrolojik modele sokarak 10 güne kadar taşkın olasılığı veriyor.",
+    "Dünyanın en büyük 100 ülkesi için taşkın haritası üreten girişimler (Fathom) sigorta ve planlamada kullanılıyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Sun vd. 2018",
+    "baslik": "A Review of Global Precipitation Data Sets: Data Sources, Estimation, and Intercomparisons",
+    "yayin": "Reviews of Geophysics 56(1), 79-107",
+    "yil": "2018",
+    "url": "https://doi.org/10.1002/2017RG000574",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hou vd. 2014",
+    "baslik": "The Global Precipitation Measurement Mission",
+    "yayin": "Bulletin of the American Meteorological Society 95(5), 701-722",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00164.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Funk vd. 2015",
+    "baslik": "The climate hazards infrared precipitation with stations — a new environmental record for monitoring extremes",
+    "yayin": "Scientific Data 2, 150066",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/sdata.2015.66",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Mishra ve Singh 2010",
+    "baslik": "A review of drought concepts",
+    "yayin": "Journal of Hydrology 391(1-2), 202-216",
+    "yil": "2010",
+    "url": "https://doi.org/10.1016/j.jhydrol.2010.07.012",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gochis vd. 2015",
+    "baslik": "The Great Colorado Flood of September 2013",
+    "yayin": "Bulletin of the American Meteorological Society 96(9), 1461-1487",
+    "yil": "2015",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00241.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Ayamama Deresi kentsel havzasında SCS-CN yağış-akış modeli kurup 10, 50, 100 yıllık pik taşkın debilerini ve erken uyarı yağış eşiğini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 351",
+   "projeyeKatki": "Rasyonel yöntem taşkın pik debisi denklemi ve birim hidrograf ilkeleriyle kentsel havzada aşırı yağışın pik akış debisine dönüşümünü hesaplar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Rasyonel yöntem taşkın pik debisi denklemi",
+     "nerede": "Adım 2: Havza alanı, akış katsayısı ve kritik yağış şiddeti girdileriyle Ayamama Deresi menfezi pik taşkın debisini hesaplamada."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Ayamama havzasında SCS-CN yöntemiyle 10, 50, 100 yıllık taşkın hidrograflarını çıkarıp erken uyarı eşiği türetmek.",
+  "ayrinti": "HydroSHEDS ile Ayamama Deresi havzası (65 km²) sınırlandırılır. Copernicus CLMS arazi örtüsü ve toprak grubuyla kompozit Eğri Numarası CN = 88 bulunur. Gumbel frekans analiziyle 10, 50 ve 100 yıllık 24 saatlik tasarım yağışları hesaplanır. SCS birim hidrograf yöntemiyle pik debiler türetilir; dere kesit kapasitesini (85 m³/s) aşan 3 saatlik 45 mm yağış eşiği taşkın alarm seviyesi olarak belirlenir.",
+  "sonuc": "Ayamama Deresi için 100 yıllık pik debinin 142 m³/s olduğunu ve erken uyarı eşiklerini gösteren hidrometeorolojik analiz defteri.",
+  "adimlar": [
+   {
+    "baslik": "Havza sınırını çıkarıp ağırlıklı CN değerini hesaplamak",
+    "oz": "HydroSHEDS ve CLMS geçirimsizlik verisiyle havza alanını ve CN = 88 değerini türetmek.",
+    "ayrinti": "Ayamama havzasının sayısal yükseklik modelinden drenaj alanı (65 km²) ve ana kol uzunluğu (21 km) çıkarılır. Kentsel yapılaşma oranı %78 olan havzada zemin geçirimsizliğine göre ağırlıklı SCS Eğri Numarası (CN) türetilir ve potansiyel tutma kapasitesi S hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "CN_agirlikli = sum(CN_i * A_i) / sum(A_i) ile kentsel havza eğri numarasını bulmak.",
+      "sade": "MTO 351 dersindeki 'Birim hidrograf yöntemleriyle taşkın pik debisini ve hidrometeorolojik akışı çözümlemek' bilgisiyle mahalledeki asfalt ve beton miktarını hesaba katarak suyun ne kadarının akıp gideceğini hesaplarız.",
+      "altAdimlar": [
+       "1. HydroSHEDS DEM üzerinde akış yönü ve akış toplanma matrisini oluşturun.",
+       "2. E-5 otoyolu kesitinde dere menfezi çıkış noktasını belirleyip havzayı poligon olarak ayırın.",
+       "3. Copernicus geçirimsizlik haritasıyla kesiştirip havza ortalama CN değerini 88 olarak saptayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Birim hidrograf yöntemleriyle taşkın pik debisini ve hidrometeorolojik akışı çözümlemek."
+      }
+     },
+     {
+      "teknik": "S = (25400 / CN) - 254 formülüyle zemin maksimum potansiyel su tutma payını çıkarmak.",
+      "sade": "MTO 351 dersindeki 'Havza ölçeğinde su bütçesi ve su kaynakları yönetimi senaryoları oluşturmak' bilgisiyle toprağın doymadan önce en fazla kaç milimetre yağmur emebileceğini buluruz.",
+      "altAdimlar": [
+       "1. CN = 88 için zemin su tutma kapasitesini S = 34,6 mm olarak hesaplayın.",
+       "2. Başlangıç kayıp payını Ia = 0.2 * S formülüyle 6,9 mm olarak belirleyin.",
+       "3. Yağış bu eşiği aştığında doğrudan yüzey akışının başlayacağını tanımlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Havza ölçeğinde su bütçesi ve su kaynakları yönetimi senaryoları oluşturmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Rasyonel yöntem ve birim hidrografla pik debiyi bulmak",
+    "oz": "Tasarım yağış şiddetini rasyonel formüle uygulayıp tepe debisini türetmek.",
+    "ayrinti": "MTO 351 dersindeki Rasyonel yöntem taşkın pik debisi formülü uygulanarak konsantrasyon süresi boyunca düşen yağışın oluşturacağı pik debi hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "Q_p = 0.278 * C * I * A formülüyle taşkın pik debisini hesaplamak.",
+      "sade": "MTO 351 dersindeki taşkın debisi denklemiyle kentsel havzanın şiddetli yağış altındaki en yüksek su tahliye ihtiyacını belirleriz.",
+      "altAdimlar": [
+       "1. Havza alanı A = 65 km² ve kentsel akış katsayısı C = 0,72 değerlerini formüle girin.",
+       "2. Konsantrasyon süresine karşılık gelen tasarım yağış şiddetini I = 42 mm/saat olarak saptayın.",
+       "3. Q_p = 0.278 * 0.72 * 42 * 65 bağıntısından pik debiyi 546 m³/s olarak türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Birim hidrograf yöntemleriyle taşkın pik debisini ve hidrometeorolojik akışı çözümlemek."
+      }
+     },
+     {
+      "teknik": "SCS boyutsuz birim hidrograf ordinatlarıyla zamana bağlı akış eğrisini kurmak.",
+      "sade": "MTO 351 dersindeki birim hidrograf ilkeleriyle suyun derede ne kadar sürede yükseleceğini ve çekileceğini hesaplarız.",
+      "altAdimlar": [
+       "1. Tepeye ulaşma süresini ve taban süresini Kirpich formülüyle hesaplayın.",
+       "2. Boyutsuz oranları pik debiyle çarparak saatlik debi ordinatlarını oluşturun.",
+       "3. Yağış pikinden akış pikine kadar geçen gecikme süresini 75 dakika olarak belgeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Birim hidrograf yöntemleriyle taşkın pik debisini ve hidrometeorolojik akışı çözümlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Tasarım yağışlarını hidrografa ve uyarı eşiğine çevirmek",
+    "oz": "10, 50, 100 yıllık pik debileri hesaplayıp taşkın erken uyarı şeması kurmak.",
+    "ayrinti": "Gumbel uç değer dağılımıyla 24 saatlik yağışlar (10 yıl: 85 mm, 50 yıl: 125 mm, 100 yıl: 145 mm) türetilir. SCS boyutsuz birim hidrografı ile pik debiler (10 yıl: 78 m³/s, 50 yıl: 118 m³/s, 100 yıl: 142 m³/s) hesaplanır. Dere taşkın yatağı kapasitesi olan 85 m³/s debiyi tetikleyen 3 saatlik 45 mm yağış miktarı kritik erken uyarı eşiği olarak atanır.",
+    "nasil": [
+     {
+      "teknik": "Q_akis = (P - Ia)^2 / (P - Ia + S) formülüyle net akış yüksekliğini ve hidrografı çözmek.",
+      "sade": "MTO 351 dersindeki 'Birim hidrograf yöntemleriyle taşkın pik debisini ve hidrometeorolojik akışı çözümlemek' bilgisiyle şiddetli yağmur yağdığında derenin dakikalar içinde kaç metreküp suyla taşacağını hesaplarız.",
+      "altAdimlar": [
+       "1. Tasarım yağışını SCS Tip-II 24 saatlik zaman dağılım eğrisine göre saatlik adımlara bölün.",
+       "2. Konsantrasyon süresini (Tc = 1,4 saat) Kirpich formülüyle ana kol eğiminden çıkarın.",
+       "3. Boyutsuz birim hidrografı net yağışla evriştirerek tepe debisini m³/s cinsinden türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Birim hidrograf yöntemleriyle taşkın pik debisini ve hidrometeorolojik akışı çözümlemek."
+      }
+     },
+     {
+      "teknik": "AKOM ve belediye için radar nowcasting tabanlı 3 kademeli erken uyarı akış şeması tasarlamak.",
+      "sade": "MTO 351 dersindeki 'Havza ölçeğinde su bütçesi ve su kaynakları yönetimi senaryoları oluşturmak' bilgisiyle radar bulutu yaklaşırken sel olmadan 2 saat önce alarm veren bir karar şeması hazırlarız.",
+      "altAdimlar": [
+       "1. 25 mm/3 saat için Sarı (Dikkat), 35 mm için Turuncu (Tehlike), 45 mm için Kırmızı (Taşkın) eşiği koyun.",
+       "2. Dere yatağındaki kritik alt geçitler ve metro girişleri için tahliye sürelerini ekleyin.",
+       "3. GloFAS/EFAS standartlarında tek sayfalık operasyonel taşkın uyarı rehberini yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Havza ölçeğinde su bütçesi ve su kaynakları yönetimi senaryoları oluşturmak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Ayamama Deresi kentsel havzasında farklı tekerrürlü tasarım yağışları ve taşkın debi hidrografı animasyonu",
+   "aciklama": "100 yıllık tasarım yağışında derenin taşıma kapasitesini aşarak taşkın yatağına taşma anı grafiği"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.hydrosheds.org/page/overview",
+   "aciklama": "HydroSHEDS küresel hidrolojik haritalama ve havza sınırlandırma platformu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "HydroSHEDS Küresel Drenaj Havzası ve Akarsu Ağı Dokümantasyonu",
+   "url": "https://www.hydrosheds.org/page/overview"
+  },
+  {
+   "ad": "Copernicus Arazi İzleme Servisi (CLMS) Kentsel Geçirimsizlik Veri Portalı",
+   "url": "https://land.copernicus.eu/en/products"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO351-02.json",
+  "tarih": "2026-10-17 04:51",
+  "geminiSha1": "552b30459ab6"
+ }
+}

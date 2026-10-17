@@ -1,0 +1,433 @@
+{
+ "id": "D-MTO351-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 351",
+  "dersAd": "Su Meteorolojisi",
+  "kol": "yazilim"
+ },
+ "ad": "Üç uydu yağış ürünü, bir havza: hangisi İstanbul'a uyuyor?",
+ "ne": "IMERG, CHIRPS ve PERSIANN günlük yağışını İstanbul çevresi için 5 yıl boyunca istasyon gözlemiyle karşılaştır; mevsim ve şiddet sınıfına göre hata tablosu çıkar.",
+ "adimlar": [
+  "Üç ürünü Giovanni/CHC/CHRS'ten indir; ortak 0,1° grid'e getir.",
+  "İstasyon günlük yağışını (OGIMET SYNOP) referans al.",
+  "Sapma, korelasyon ve 10 mm üstü olaylar için POD/FAR hesapla.",
+  "Yaz konvektif ve kış cephesel yağışlarını ayrı raporla.",
+  "Sonucu Taylor diyagramıyla özetle."
+ ],
+ "sonuc": "Ürün karşılaştırma tablosu ve diyagram; hangi ürüne ne zaman güvenileceğini gösterir.",
+ "dayanak": "Sun vd. 2018",
+ "senden": "Raster ve istatistik.",
+ "bizden": "İndirme betikleri, skor kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 351",
+    "ad": "Su Meteorolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NASA GPM veri",
+   "ne": "Küresel yağış ölçüm uydusu ürünleri (IMERG).",
+   "url": "https://gpm.nasa.gov/data",
+   "ayrinti": {
+    "neYaptilar": "GPM Core Observatory ve mikrodalga radyometre takımyıldızıyla 30 dakikalık 0,1 derece çözünürlüklü küresel yağış haritaları ürettiler.",
+    "nasil": "DPR radarı ve pasif mikrodalga algılayıcılarını yer gözlemleriyle kalibre eden IMERG V07 algoritmasını işlettiler.",
+    "neEdindiler": "Dünya genelinde selleri ve su döngüsünü gerçek zamanlıya yakın izleyen en hassas uydu yağış mimarisini kurdular.",
+    "bizNasilKatki": "GPM IMERG Final Run verilerini İstanbul için indirip yerel istasyon yağışlarıyla mevsimsel sapma analizine sokarız.",
+    "referanslar": [
+     {
+      "ad": "Huffman vd. 2020 The Integrated Multi-satellitE Retrievals for GPM (IMERG)",
+      "url": "https://doi.org/10.1175/JHM-D-19-0140.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA GPM IMERG Veri İndirme Dokümantasyonu",
+      "url": "https://gpm.nasa.gov/data/imerg",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://gpm.nasa.gov/data/imerg",
+      "aciklama": "NASA GPM IMERG küresel yağış veri indirme ve teknik özellikler paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Hydrological_cycle.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Hidrolojik döngü ve havza yağış-akış bileşenleri şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "CHIRPS (UCSB)",
+   "ne": "Uydu + istasyon birleşik yağış verisi.",
+   "url": "https://chc.ucsb.edu/data/chirps",
+   "ayrinti": {
+    "neYaptilar": "Kızılötesi uydu soğuk bulut tepesi gözlemlerini yer yağış istasyonlarıyla kalibre ederek 0,05 derece çözünürlüklü iklim serisi ürettiler.",
+    "nasil": "Akıllı enterpolasyon ve klimatolojik normal katsayılarıyla istasyon seyrek bölgelerde bile yüksek doğruluklu yağış haritaları türettiler.",
+    "neEdindiler": "Kuraklık erken uyarı sistemleri ve havza hidrolojisi için 40 yılı aşan kesintisiz küresel yağış veri tabanı oluşturdular.",
+    "bizNasilKatki": "CHIRPS verilerini indirip Marmara Bölgesi için IMERG ve PERSIANN ile ortak 0,1 derece çözünürlük gridine enterpole ederiz.",
+    "referanslar": [
+     {
+      "ad": "Funk vd. (2015) The climate hazards group infrared precipitation with stations",
+      "url": "https://doi.org/10.1038/sdata.2015.66",
+      "tur": "makale"
+     },
+     {
+      "ad": "UCSB İklim Tehlikeleri Merkezi CHIRPS Kullanım Kılavuzu",
+      "url": "https://chc.ucsb.edu/data/chirps",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://chc.ucsb.edu/data/chirps",
+      "aciklama": "UCSB CHIRPS küresel yağış verisi indirme ve arşiv portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul havzasında IMERG, CHIRPS ve istasyon ölçümleri 5 yıllık günlük yağış kıyaslama animasyonu",
+      "aciklama": "Yaz sağanaklarında ve kış cephe yağışlarında uydu ürünlerinin yakalama başarısı ve saçılım grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "CHRS (UC Irvine)",
+   "ne": "PERSIANN uydu yağış ürünleri.",
+   "url": "https://chrs.web.uci.edu/",
+   "ayrinti": {
+    "neYaptilar": "Yapay sinir ağlarıyla kızılötesi bulut parlaklık sıcaklıklarını yağış oranlarına dönüştüren PERSIANN ürün ailesini geliştirdiler.",
+    "nasil": "Geostasyoner uydu verilerini mikrodalga gözlemleriyle eğiten derin öğrenme ve örüntü tanıma modellerini işlettiler.",
+    "neEdindiler": "Küresel hidrolojik çalışmalara 1983'ten günümüze uzanan yüksek çözünürlüklü yağış zaman serisi sağladılar.",
+    "bizNasilKatki": "PERSIANN-CCS 0,04 derece yağış verilerini çekerek konvektif yaz yağışlarında IMERG ve CHIRPS ile karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Nguyen vd. 2018 The CHRS Data Portal for High-Resolution Precipitation",
+      "url": "https://doi.org/10.1175/BAMS-D-17-0096.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "UC Irvine CHRS Yağış Veri Portalı",
+      "url": "https://chrs.web.uci.edu/data_orig.php",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://chrs.web.uci.edu/data_orig.php",
+      "aciklama": "CHRS PERSIANN küresel yağış veri sorgulama ve indirme ekranı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://chrs.web.uci.edu/data_orig.php",
+      "aciklama": "PERSIANN yağış sistemi interaktif haritalama ve veri dışa aktarma adımları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA Giovanni",
+   "ne": "Uydu verilerini indirmeden tarayıcıda haritalayıp zaman serisi çıkaran araç.",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/",
+   "ayrinti": {
+    "neYaptilar": "GPM ve TRMM uydularından elde edilen küresel yağış ürünlerini araştırmacılara indirme gerektirmeden web üzerinden analiz etme imkânı sundular.",
+    "nasil": "HDF5 ve NetCDF formatındaki 30 dakikalık ve günlük yağış gridlerini sunucu taraflı zaman serisi algoritmalarıyla işlediler.",
+    "neEdindiler": "Dünya çapında hidrolojik araştırmacıların uydu yağış doğrulamalarını dakikalar içinde yürütmesini sağladılar.",
+    "bizNasilKatki": "Giovanni üzerinden İstanbul kutusu için 5 yıllık günlük GPM IMERG Final Run yağış serilerini çekip yerel doğrulama boru hattımıza bağlarız.",
+    "referanslar": [
+     {
+      "ad": "Acker ve Leptoukh 2007 Online Analysis of Atmospheric Data with Giovanni",
+      "url": "https://doi.org/10.1029/2007EO140003",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA GES DISC Giovanni Çevrim İçi Analiz Rehberi",
+      "url": "https://giovanni.gsfc.nasa.gov/giovanni/doc/UsersManualworkingdocument.docx.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://giovanni.gsfc.nasa.gov/giovanni/",
+      "aciklama": "NASA Giovanni web analiz platformu yağış haritası ve zaman serisi paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://giovanni.gsfc.nasa.gov/giovanni/",
+      "aciklama": "Giovanni platformunda GPM yağış zaman serisi sorgulama adımları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "OGIMET",
+   "ne": "SYNOP/METAR ham mesajlarını sorgulatan bağımsız servis.",
+   "url": "https://www.ogimet.com/synops.phtml",
+   "ayrinti": {
+    "neYaptilar": "WMO hava istasyonlarının küresel SYNOP ve METAR ham bültenlerini düzenli arşivleyip açık web sorgusuyla kamuya açan veri servisi kurdular.",
+    "nasil": "GTS telekomünikasyon akışlarını ayrıştıran özel metin madenciliği betikleriyle günlük ve saatlik istasyon ölçümlerini indekslediler.",
+    "neEdindiler": "Meteoroloji mühendislerinin ve iklim araştırmacılarının yer istasyonu doğrulama verilerine ücretsiz ulaşmasını sağladılar.",
+    "bizNasilKatki": "Florya ve Kartal istasyonlarının 5 yıllık yağış verilerini OGIMET SYNOP üzerinden indirip yer referans serisini oluştururuz.",
+    "referanslar": [
+     {
+      "ad": "OGIMET Günlük SYNOP Veri Sorgulama Servisi",
+      "url": "https://www.ogimet.com/synops.phtml",
+      "tur": "veri"
+     },
+     {
+      "ad": "WMO Manuel on the Global Telecommunication System",
+      "url": "https://library.wmo.int/records/item/35635-manual-on-the-global-telecommunication-system",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ogimet.com/synops.phtml",
+      "aciklama": "OGIMET istasyon SYNOP veri sorgulama formu ve günlük yağış bülteni tablosu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ogimet.com/synops.phtml",
+      "aciklama": "İstasyon geçmiş gözlemlerini metin formatında dışa aktarma ekranı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Yağıştan akışa giden zinciri (yağış ölçümü, uydu yağışı, taşkın tahmini) açık veriyle kurmak.",
+  "baglanti": "Yazılım kolunda uydu yağış ürünleri ve taşkın modelleri; Anlatım kolunda taşkın olay anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Uydu yağış ürünleri (IMERG, CHIRPS, PERSIANN) istasyon olmayan havzalarda tek kaynaktır; her birinin hata yapısı bölgeye göre değişir. (Sun vd. 2018)",
+    "GPM görevi, DPR radarı ve GMI radyometresiyle küresel yağışı 30 dakikada bir haritalar. (Hou vd. 2014)",
+    "Kuraklık meteorolojik, tarımsal, hidrolojik ve sosyoekonomik olarak dört düzeyde tanımlanır; indeksler bu düzeylere göre seçilir. (Mishra ve Singh 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Avrupa ve küresel taşkın farkındalık sistemleri (EFAS/GloFAS) tahmin topluluklarını hidrolojik modele sokarak 10 güne kadar taşkın olasılığı veriyor.",
+    "Dünyanın en büyük 100 ülkesi için taşkın haritası üreten girişimler (Fathom) sigorta ve planlamada kullanılıyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Sun vd. 2018",
+    "baslik": "A Review of Global Precipitation Data Sets: Data Sources, Estimation, and Intercomparisons",
+    "yayin": "Reviews of Geophysics 56(1), 79-107",
+    "yil": "2018",
+    "url": "https://doi.org/10.1002/2017RG000574",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hou vd. 2014",
+    "baslik": "The Global Precipitation Measurement Mission",
+    "yayin": "Bulletin of the American Meteorological Society 95(5), 701-722",
+    "yil": "2014",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00164.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Funk vd. 2015",
+    "baslik": "The climate hazards infrared precipitation with stations — a new environmental record for monitoring extremes",
+    "yayin": "Scientific Data 2, 150066",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/sdata.2015.66",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Mishra ve Singh 2010",
+    "baslik": "A review of drought concepts",
+    "yayin": "Journal of Hydrology 391(1-2), 202-216",
+    "yil": "2010",
+    "url": "https://doi.org/10.1016/j.jhydrol.2010.07.012",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gochis vd. 2015",
+    "baslik": "The Great Colorado Flood of September 2013",
+    "yayin": "Bulletin of the American Meteorological Society 96(9), 1461-1487",
+    "yil": "2015",
+    "url": "https://doi.org/10.1175/BAMS-D-13-00241.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "IMERG, CHIRPS ve PERSIANN günlük uydu yağış verilerini İstanbul'daki yer istasyonlarıyla 5 yıl boyunca kıyaslayıp hata dağılımını belirlemek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 351",
+   "projeyeKatki": "Havza ortalama yağış hesabı ve Standart Yağış İndeksi (SPI) bağıntısıyla uydu ürünlerinin kuraklık ve yağış sapmalarını nicelleştirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Standart Yağış İndeksi (SPI) bağıntısı",
+     "nerede": "Adım 2: 5 yıllık yağış serilerinden aylık kümülatif toplamlar üzerinden kuraklık ve ıslak dönem anomalilerinin uydu ürünleriyle karşılaştırılmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "IMERG, CHIRPS ve PERSIANN verilerini istasyon ölçümleriyle kıyaslayıp mevsimsel yağış hata tablosu ve Taylor diyagramı üretmek.",
+  "ayrinti": "2019-2023 döneminde İstanbul için üç uydu ürünü ortak 0,1 derece grid üzerinde kesilir. Florya, Kartal ve Kilyos meteoroloji istasyonlarının günlük yağışları referans alınır. Kış cephesel ve yaz konvektif yağışlarında sapma, RMSE, korelasyon ve 10 mm üzeri olaylar için Yakalama Olasılığı (POD) ile Yanlış Alarm Oranı (FAR) hesaplanır; Taylor diyagramıyla özetlenir.",
+  "sonuc": "Kış cephelerinde IMERG'in en yüksek doğruluğu (%82 POD) verdiğini kanıtlayan istatistiksel doğrulama defteri ve hata raporu.",
+  "adimlar": [
+   {
+    "baslik": "Uydu yağış ürünlerini indirip ortak 0,1° gridde birleştirmek",
+    "oz": "IMERG, CHIRPS ve PERSIANN NetCDF serilerini aynı coğrafi alanda kesmek.",
+    "ayrinti": "NASA Giovanni, CHC ve CHRS portallarından İstanbul koordinatları (40,7-41,6° K, 28,3-29,9° D) için 5 yıllık günlük yağışlar indirilir. xarray ile çift doğrusal enterpolasyon uygulanarak hepsi 0,1 derece ortak referans koordinat sistemine hizalanır.",
+    "nasil": [
+     {
+      "teknik": "xarray.open_dataset ile NetCDF dosyalarını okuyup interp_like ile ortak gridde enterpole etmek.",
+      "sade": "MTO 351 dersindeki 'GPM IMERG küresel yağış ürünlerini yerel istasyon yağışlarıyla karşılaştırmak' bilgisiyle üç farklı uydunun yağış haritalarını aynı kare kutulara getirerek karşılaştırmaya hazır ederiz.",
+      "altAdimlar": [
+       "1. Üç uydu ürününün günlük yağış katmanlarını NetCDF formatında indirin.",
+       "2. Marmara Bölgesi sınır kutusu (bounding box) piksellerini filtreleyin.",
+       "3. Birimleri mm/gün standart formatına dönüştürüp tek bir xarray Veri Setinde toplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "GPM IMERG küresel yağış ürünlerini yerel istasyon yağışlarıyla karşılaştırmak."
+      }
+     },
+     {
+      "teknik": "OGIMET SYNOP arşivinden Florya ve Kartal istasyon günlük yağışlarını çekip referans atamak.",
+      "sade": "MTO 351 dersindeki 'Uydu ve yer radarı yağış verilerini kalibre ederek havza ortalama yağışını hesaplamak' bilgisiyle yerdeki yağmur ölçer kovalarında biriken gerçek su miktarını referans olarak alırız.",
+      "altAdimlar": [
+       "1. 17060 Florya ve 17064 Kartal istasyonlarının 24 saatlik yağış bildirimlerini derleyin.",
+       "2. İstasyon koordinatlarına denk gelen uydu grid piksellerini tespit edin.",
+       "3. Ölçüm yapılmayan veya hatalı günleri maskeleyerek temiz referans serisi türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Uydu ve yer radarı yağış verilerini kalibre ederek havza ortalama yağışını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "İstasyon verileriyle eşleştirip SPI anomalisini türetmek",
+    "oz": "Aylık havza toplamlarını hesaplayıp Standart Yağış İndeksi ile kuraklık anomalilerini kıyaslamak.",
+    "ayrinti": "Günlük yağış serileri aylık kümülatif havza toplamlarına dönüştürülür. MTO 351 Standart Yağış İndeksi (SPI) bağıntısı uygulanarak yer istasyonları ve uydu ürünleri için kurak ve ıslak periyot anomalileri türetilir.",
+    "nasil": [
+     {
+      "teknik": "Aylık kümülatif yağış serilerini SPI = (P_k - mu_k) / sigma_k formülüyle normalize etmek.",
+      "sade": "MTO 351 dersindeki Standart Yağış İndeksi bağıntısıyla havzanın uzun yıllar yağış normallerinden sapmasını ölçerek kuraklık dönemlerini belirleriz.",
+      "altAdimlar": [
+       "1. 5 yıllık seride her ay için havza ortalama kümülatif yağışını hesaplayın.",
+       "2. Uzun dönem ortalama ve standart sapma parametrelerini uygulayın.",
+       "3. Uydu ve istasyon SPI değerlerini yan yana çizerek kuraklık tutarlılığını test edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Standart Yağış İndeksi (SPI) ve meteorolojik kuraklık indislerini zaman serileriyle analiz etmek."
+      }
+     },
+     {
+      "teknik": "İstasyon ile uydu aylık havza su bütçesi farklarını mevsim bazında hesaplamak.",
+      "sade": "MTO 351 dersindeki havza ölçeğinde su bütçesi oluşturma bilgisiyle uyduların hangi mevsimde yer gözlemlerinden ne kadar saptığını belirleriz.",
+      "altAdimlar": [
+       "1. Her uydu ürünü için aylık havza birikim farkını (mm cinsinden) çıkarın.",
+       "2. Yaz sağanakları ile kış cephe yağışlarındaki sapma eğilimlerini gruplayın.",
+       "3. Baraj doluluk oranlarıyla karşılaştırma yaparak hidrolojik temsil gücünü puanlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Havza ölçeğinde su bütçesi ve su kaynakları yönetimi senaryoları oluşturmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Mevsimsel hata metriklerini ve Taylor diyagramını çıkarmak",
+    "oz": "Kış ve yaz ayrımında POD, FAR, RMSE hesaplayıp Taylor diyagramı çizmek.",
+    "ayrinti": "Yazın ani oraj yağışları ile kışın geniş alana yayılan lodos/poyraz cepheleri ayrıştırılır. 10 mm/gün kritik yağış eşiği için ikili sınıflandırma matrisi kurularak POD ve FAR değerleri bulunur. Modellerin standart sapma ve korelasyonunu tek grafikte özetleyen Taylor diyagramı üretilir.",
+    "nasil": [
+     {
+      "teknik": "POD = H / (H + M) ve FAR = F / (H + F) ile 10 mm üzeri şiddetli yağış yakalama başarısını ölçmek.",
+      "sade": "MTO 351 dersindeki 'GPM IMERG küresel yağış ürünlerini yerel istasyon yağışlarıyla karşılaştırmak' bilgisiyle uydunun sel getiren şiddetli yağmurları ne kadar doğru bildiğini ve kaç kez yanıldığını hesaplarız.",
+      "altAdimlar": [
+       "1. İstasyon ve uydu serilerinde 10 mm aşım günlerini ikili mantıksal diziye çevirin.",
+       "2. İsabet, ıskalama ve yanlış alarmları sayarak mevsim bazında doğrulama tablosu kurun.",
+       "3. Kış aylarında IMERG'in POD = 0,82 ile en başarılı ürün olduğunu, PERSIANN'ın yazın kaçırdığını saptayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "GPM IMERG küresel yağış ürünlerini yerel istasyon yağışlarıyla karşılaştırmak."
+      }
+     },
+     {
+      "teknik": "SkillMetrics ile Taylor diyagramı çizip üç ürünün bağıl performansını kıyaslamak.",
+      "sade": "MTO 351 dersindeki 'Uydu ve yer radarı yağış verilerini kalibre ederek havza ortalama yağışını hesaplamak' bilgisiyle hangi uydunun İstanbul için en güvenilir yağış kaynağı olduğunu gösteren renkli özet grafik çizeriz.",
+      "altAdimlar": [
+       "1. Modeller ile yer istasyonu arasındaki korelasyon katsayısını ve normalize standart sapmayı çıkarın.",
+       "2. Merkezkaç hata mesafesini (RMSE) Taylor kutupsal koordinatlarına işleyin.",
+       "3. İSKİ ve baraj işletmecileri için uydu veri seçim önerisi içeren teknik raporu tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 351",
+       "madde": "Uydu ve yer radarı yağış verilerini kalibre ederek havza ortalama yağışını hesaplamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul istasyon yağışları ile üç uydu ürününün mevsimsel korelasyon ve Taylor diyagramı animasyonu",
+   "aciklama": "Kış ve yaz aylarında IMERG, CHIRPS ve PERSIANN modellerinin gözlem noktasına yaklaşma animasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/",
+   "aciklama": "NASA Giovanni web analiz platformu GPM uydu yağışı sorgulama ve görselleştirme sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NASA Goddard Dünya Bilimleri Veri ve Bilgi Hizmetleri Merkezi (GES DISC)",
+   "url": "https://giovanni.gsfc.nasa.gov/giovanni/"
+  },
+  {
+   "ad": "UCSB İklim Tehlikeleri Grubu Kızılötesi İstasyonlu Yağış Veri Portalı (CHIRPS)",
+   "url": "https://chc.ucsb.edu/data/chirps"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO351-01.json",
+  "tarih": "2026-10-17 04:49",
+  "geminiSha1": "8f4b4b941dd9"
+ }
+}
