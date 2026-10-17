@@ -1,0 +1,474 @@
+{
+ "id": "D-MTO388-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 388",
+  "dersAd": "Coğrafi Bilgi Bilimi",
+  "kol": "anlatim"
+ },
+ "ad": "Bir fırtınanın hikâye haritası",
+ "ne": "Bir Akdeniz siklonunun yolunu, yağışını ve etkilerini Leaflet/kepler.gl ile kaydırmalı hikâye haritası olarak anlat.",
+ "adimlar": [
+  "Uydu görüntülerini (EUMETView) ve yağış toplamlarını (IMERG) katman yap.",
+  "Siklon yolunu çizgi katmanı olarak çiz.",
+  "Etki noktalarını (haber, fotoğraf) işaretle.",
+  "Kaydırdıkça ilerleyen anlatım metni yaz.",
+  "Web sayfası olarak yayımla."
+ ],
+ "sonuc": "Etkileşimli hikâye haritası.",
+ "dayanak": "Song vd. 2018",
+ "senden": "Web ve tasarım.",
+ "bizden": "Veri katmanları.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 388",
+    "ad": "Coğrafi Bilgi Bilimi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "Leaflet",
+   "ne": "Hafif, mobil uyumlu ve modüler açık kaynak web haritalama kütüphanesi.",
+   "url": "https://leafletjs.com/",
+   "ayrinti": {
+    "neYaptilar": "Web tarayıcılarında hızlı, hafif ve etkileşimli harita sunmak için açık kaynaklı JavaScript kütüphanesi geliştirdiler.",
+    "nasil": "HTML5 ve CSS3 özelliklerini kullanarak farklı WMS ve GeoJSON katmanlarını dinamik olarak üst üste bindirdiler.",
+    "neEdindiler": "Dünya çapında milyonlarca web geliştiricisinin açık harita altlıklarını zahmetsizce kullanmasını sağladılar.",
+    "bizNasilKatki": "AURA bünyesinde meteorolojik fırtına yörüngelerini ve radar animasyonlarını oynatan özel Leaflet kontrol eklentileri geliştirebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Leaflet JavaScript Library API and Interactive Map Tutorials",
+      "url": "https://leafletjs.com/reference.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Leaflet Providers: Extension for Free Tile Providers",
+      "url": "https://github.com/leaflet-extras/leaflet-providers",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:OpenStreetMap_in_Leaflet.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Leaflet açık kaynak JavaScript kütüphanesi ile etkileşimli harita sunumu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://leafletjs.com/reference.html",
+      "aciklama": "Leaflet web harita katmanları ve koordinat kontrol arayüzü dokümantasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "kepler.gl (Uber)",
+   "ne": "Büyük coğrafi veri setlerini webGL tabanlı GPU hızlandırmasıyla görselleştiren platform.",
+   "url": "https://kepler.gl/",
+   "ayrinti": {
+    "neYaptilar": "Büyük ölçekli uzamsal zaman serilerini tarayıcıda akıcı şekilde görselleştiren WebGL tabanlı analiz motoru kurdular.",
+    "nasil": "Deck.gl altyapısını kullanarak milyonlarca koordinat noktasını ve zaman çizelgesini donanım hızlandırmasıyla işlediler.",
+    "neEdindiler": "Veri bilimcilerin tek satır kod yazmadan karmaşık fırtına ve hareket yörüngelerini 3 boyutlu canlandırmasını sağladılar.",
+    "bizNasilKatki": "Akdeniz siklonlarının 3 boyutlu rüzgâr vektörlerini ve basınç yüzeylerini kepler.gl JSON konfigürasyonuna aktarabiliriz.",
+    "referanslar": [
+     {
+      "ad": "kepler.gl User Guide and Geospatial Visualization Documentation",
+      "url": "https://docs.kepler.gl/docs/user-guides",
+      "tur": "web"
+     },
+     {
+      "ad": "kepler.gl GitHub Open Source Repository and React Components",
+      "url": "https://github.com/keplergl/kepler.gl",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://docs.kepler.gl/docs/user-guides",
+      "aciklama": "kepler.gl etkileşimli mekânsal analiz ve katman bindirme konsolu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Akdeniz siklonu fırtına rotası boyunca 850 hPa rüzgâr akım çizgileri ve basınç derinleşmesi, 2024",
+      "aciklama": "Siklon yörüngesi boyunca basınç merkezinin ve rüzgâr alanının dinamik zaman serisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EUMETView",
+   "ne": "EUMETSAT Meteosat geostationary uydu görüntülerini doğrudan web üzerinden görselleştirme servisi.",
+   "url": "https://view.eumetsat.int/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Meteoroloji Uyduları Teşkilatı verilerini Web Map Service (WMS) standartlarıyla genel erişime sundular.",
+    "nasil": "Meteosat kızılötesi, su buharı ve görünür kanal kompozitlerini coğrafi olarak referanslayıp harita sunucularına aktardılar.",
+    "neEdindiler": "Hava tahmincileri ve araştırmacıların doğrudan web tarayıcısından 15 dakikalık uydu animasyonlarına ulaşmasını sağladılar.",
+    "bizNasilKatki": "WMS uç noktasından siklonun fırtına anı bantlarını otomatik çekip Leaflet haritasına altlık olarak bağlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "EUMETSAT EUMETView Web Map Service (WMS) User Guide",
+      "url": "https://user.eumetsat.int/services/eumetview",
+      "tur": "web"
+     },
+     {
+      "ad": "Meteosat Second Generation (MSG) Imagery Interpretation Guidelines",
+      "url": "https://user.eumetsat.int/resources/user-guides",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://user.eumetsat.int/services/eumetview",
+      "aciklama": "EUMETView interaktif uydu görüntüleri ve WMS servis seçim ekranı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Medicane_Qendresa_2014-11-07.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Akdeniz siklonu kızılötesi ve görünür kanal Meteosat uydu görüntüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA GPM veri",
+   "ne": "Küresel Yağış Ölçüm Misyonu (GPM) IMERG yüksek çözünürlüklü uydu yağış ürünleri.",
+   "url": "https://gpm.nasa.gov/data",
+   "ayrinti": {
+    "neYaptilar": "Onlarca pasif mikrodalga ve kızılötesi uydu sensörünü birleştirerek küresel yarım saatlik yağış haritaları ürettiler.",
+    "nasil": "GPM çekirdek gözlemevi çift frekanslı radarıyla kalibre edilen IMERG algoritmasıyla 10 km çözünürlüklü ızgara kurdular.",
+    "neEdindiler": "Okyanuslar ve radar menzili dışındaki bölgelerde fırtına yağış birikimlerinin eksiksiz takip edilmesini sağladılar.",
+    "bizNasilKatki": "Akdeniz siklonunun Türkiye kıyılarına bıraktığı 48 saatlik birikimli yağışı IMERG verisinden çıkartıp haritalayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Huffman vd. (2020) Integrated Multi-satellitE Retrievals for GPM (IMERG) Technical Document",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0148.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA Precipitation Processing System (PPS) Data Access Directory",
+      "url": "https://gpm.nasa.gov/data/directory",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://gpm.nasa.gov/data/directory",
+      "aciklama": "NASA GPM IMERG küresel yağış veri erişim arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:GPM_Core_Observatory.jpg",
+      "lisans": "NASA",
+      "aciklama": "NASA Küresel Yağış Ölçümü (GPM) uydu gözlemevi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Natural Earth",
+   "ne": "Kartograflar için hazırlanmış kamu malı kıyı çizgisi, topoğrafya ve idari harita verileri.",
+   "url": "https://www.naturalearthdata.com/",
+   "ayrinti": {
+    "neYaptilar": "Gönüllü kartograflar tarafından ölçek duyarlı, temiz geometrili fiziki ve beşeri vektör harita paketleri hazırladılar.",
+    "nasil": "Dünya genelindeki kıyı çizgileri, göller ve idari sınırları 1:10m, 1:50m ve 1:110m ölçeklerinde kamu malı olarak lisansladılar.",
+    "neEdindiler": "Görselleştirme projelerinde telif kaygısı olmadan şık ve hafif altlık harita kullanımı sağladılar.",
+    "bizNasilKatki": "Akdeniz havzası kıyı sınırlarını ve batimetri katmanlarını hikâye haritamızın temel altlığı olarak entegre edebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Natural Earth Public Domain Map Dataset Documentation",
+      "url": "https://www.naturalearthdata.com/features/",
+      "tur": "web"
+     },
+     {
+      "ad": "Kelso ve Patterson (2010) Introducing Natural Earth Data",
+      "url": "https://doi.org/10.14714/CP64.505",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Natural_Earth_quick_start.png",
+      "lisans": "CC0",
+      "aciklama": "Natural Earth kamu malı fiziki ve idari vektör altlık harita katmanları"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.naturalearthdata.com/features/",
+      "aciklama": "Natural Earth vektör kıyı çizgileri ve batimetri veri indirme kataloğu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Meteorolojik veriyi harita katmanlarıyla birleştirip karar destek ürününe dönüştürmek.",
+  "baglanti": "Yazılım kolunda CBS ve bulut tabanlı coğrafi analiz; Anlatım kolunda hikâye haritaları.",
+  "literatur": {
+   "maddeler": [
+    "Coğrafi bilgi bilimi vektör (nokta, çizgi, poligon) ve raster veriyi koordinat sistemleri içinde birleştirir; projeksiyon seçimi alan ve mesafe hesabını belirler.",
+    "Google Earth Engine, petabayt ölçekli uydu arşivini tarayıcıdan analiz etmeyi sağladı. (Gorelick vd. 2017)",
+    "Kent yüzey malzemeleri çoklu uydu verisiyle sınıflandırılıp ısı adasıyla ilişkilendirilebilir. (Kamaraj vd. 2021)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Gönüllü haritacılık (HOT/OSM) afet sonrası saatler içinde harita üretiyor; meteorolojik uyarılarla birleşince etki tahmini mümkün oluyor.",
+    "Yerel iklim bölgesi (LCZ) haritaları topluluk yüklemeleriyle (WUDAPT) her şehir için üretilebiliyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Gorelick vd. 2017",
+    "baslik": "Google Earth Engine: Planetary-scale geospatial analysis for everyone",
+    "yayin": "Remote Sensing of Environment 202, 18-27",
+    "yil": "2017",
+    "url": "https://doi.org/10.1016/j.rse.2017.06.031",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kamaraj vd. 2021",
+    "baslik": "Detecting heat-inducing urban built-up surface material with multi remote sensing datasets",
+    "yayin": "Remote Sensing of Environment 264, 112591",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.rse.2021.112591",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Tornay vd. 2017",
+    "baslik": "GENIUS: A methodology to define a detailed description of buildings for urban climate and building energy consumption simulations",
+    "yayin": "Urban Climate 20, 75-93",
+    "yil": "2017",
+    "url": "https://doi.org/10.1016/j.uclim.2017.03.002",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Song vd. 2018",
+    "baslik": "Global land change from 1982 to 2016",
+    "yayin": "Nature 560, 639-643",
+    "yil": "2018",
+    "url": "https://doi.org/10.1038/s41586-018-0411-9",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Tarihi bir Akdeniz siklonunun uydu, radar ve yağış katmanlarını Leaflet ile birleştirerek kaydırmalı etkileşimli hikâye haritası hazırlamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 388",
+   "ad": "Coğrafi Bilgi Bilimi",
+   "projeyeKatki": "Zaman serili meteorolojik raster verilerin web tabanlı coğrafi bilgi katmanlarına dönüştürülmesini ve jeoistatistiksel görselleştirmesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıradan Kriging (Ordinary Kriging) mekânsal tahmin denklemi",
+     "nerede": "Adım 2: Fırtına süresince toplanan istasyon yağışlarının web haritası için sürekli katmana enterpolasyonunda."
+    },
+    {
+     "formulAd": "Deneysel semivaryogram bağıntısı",
+     "nerede": "Adım 3: Siklon merkezine olan mesafeye bağlı rüzgâr ve basınç değişimlerinin mekânsal korelasyon analizinde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Akdeniz fırtınasının uydu, yörünge ve yağış verilerini Leaflet üzerinde kaydırmalı hikâye haritasına dönüştürmek.",
+  "ayrinti": "Tarihi bir Akdeniz siklonunun gelişim evreleri saatlik EUMETSAT uydu görüntüleri ve GPM yağış katmanlarıyla hazırlanır. Fırtınanın merkez koordinatları çizgi geometriye aktarılır. Kullanıcı web sayfasında metni kaydırdıkça harita odağını değiştiren etkileşimli hikâye akışı kurulur.",
+  "adimlar": [
+   {
+    "baslik": "Siklon uydu ve radar verilerinin WMS formatında derlenmesi",
+    "oz": "EUMETView ve NASA GPM üzerinden fırtınanın saatlik görüntülerini toplamak.",
+    "ayrinti": "Akdeniz siklonunun doğduğu günden karaya çıktığı güne kadarki 72 saatlik Meteosat kızılötesi görüntüleri WMS protokolüyle çekilir. IMERG birikimli yağış katmanı GeoTIFF olarak indirilir.",
+    "nasil": [
+     {
+      "teknik": "OWSLib kütüphanesiyle EUMETSAT WMS servisinden fırtına zaman serisi katmanlarını sorgulamak.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle fırtınanın uydu görüntülerini otomatik indirip harita koordinatlarıyla eşleştiririz.",
+      "altAdimlar": [
+       "1. EUMETView WMS sunucu adresine bağlanıp kızılötesi kanal katmanını seçin.",
+       "2. Fırtınanın etkili olduğu 3 günlük zaman aralığı için 3 saatlik kareleri çekin.",
+       "3. Gelen GeoTIFF görüntülerini Web Mercator EPSG:3857 projeksiyonuna dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     },
+     {
+      "teknik": "NASA IMERG yağış birikimi katmanını renk skalasıyla stilize etmek.",
+      "sade": "MTO 388 dersindeki 'Sayısal yükseklik modellerinden eğim, bakı ve orografik sıcaklık düzeltmesi türetmek' bilgisiyle en çok yağış alan kıyı bölgelerini belirginleştiren renk paleti uygularız.",
+      "altAdimlar": [
+       "1. GPM IMERG 48 saatlik toplam yağış NetCDF dosyasını açın.",
+       "2. Yağış şiddetini mavi-yeşil-kırmızı renk geçişleriyle piksel bazında renklendirin.",
+       "3. Haritada şeffaf katman olarak açılacak PNG raster karoları türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Sayısal yükseklik modellerinden eğim, bakı ve orografik sıcaklık düzeltmesi türetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Fırtına yörüngesi ve merkez basıncı zaman serisi üretimi",
+    "oz": "Siklonun merkez koordinatlarını ve minimum basınç değerlerini GeoJSON yapmak.",
+    "ayrinti": "Siklonun göz koordinatları ve merkez basınç değerleri ERA5 yeniden analizinden çıkarılır. Noktalar zamansal sırayla birleştirilerek çizgi vektör katmanına dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "Pandas ile siklon merkez koordinatlarını LineString geometriye dönüştürüp GeoJSON üretmek.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle fırtınanın saat saat izlediği rotayı haritada çizgi olarak gösteririz.",
+      "altAdimlar": [
+       "1. Siklon merkezinin enlem, boylam ve basınç zaman serisini tabloya yükleyin.",
+       "2. Noktaları kronolojik sırayla Shapely LineString objesi olarak bağlayın.",
+       "3. Her noktaya zaman damgası ve merkez basınç özelliklerini ekleyip GeoJSON olarak kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     },
+     {
+      "teknik": "İstasyon basınç verilerini Kriging ile yüzeye yayarak fırtına merkezini doğrulamak.",
+      "sade": "MTO 388 dersindeki 'Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak' bilgisiyle kıyı barometrelerinden basınç çukurunu doğrulayarak siklon gözünü teyit ederiz.",
+      "altAdimlar": [
+       "1. Kıyı istasyonlarının barometrik basınç ölçümlerini çekin.",
+       "2. Kriging enterpolasyonuyla bölgesel eşbasınç (izobar) haritası çıkarın.",
+       "3. En derin basınç çukurunu siklon yörüngesiyle çakıştırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Saha etki noktaları ve medya verilerinin coğrafi kodlanması",
+    "oz": "Fırtınanın vurduğu kıyı kentlerindeki zarar noktalarını haritaya işlemek.",
+    "ayrinti": "Haber ajansları, fotoğraflar ve istasyon rüzgâr rekorları koordinatlandırılarak nokta katmanı oluşturulur. Tıklandığında açılan bilgi pencereleri tasarlanır.",
+    "nasil": [
+     {
+      "teknik": "GeoPandas ile etki fotoğrafları ve rüzgâr hamle değerlerini nokta katmanında birleştirmek.",
+      "sade": "MTO 388 dersindeki 'Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek' bilgisiyle fırtınanın hasar verdiği yerleri harita üzerinde işaretleriz.",
+      "altAdimlar": [
+       "1. Hasar gören liman, çatı uçması ve taşkın lokasyonlarının koordinatlarını belirleyin.",
+       "2. Maksimum rüzgâr hamlesi ve dalga yüksekliği verilerini nokta özelliklerine ekleyin.",
+       "3. Fotoğraf bağlantılarını içeren HTML popup şablonu oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek."
+      }
+     },
+     {
+      "teknik": "Nokta katmanını rüzgâr şiddetine göre dereceli sembollerle görselleştirmek.",
+      "sade": "MTO 388 dersindeki 'Çok kriterli karar analiziyle (AHP) rüzgâr ve güneş santrali yer seçimi yapmak' bilgisiyle tehlike seviyesine göre farklı renkte işaretleyiciler koyarız.",
+      "altAdimlar": [
+       "1. Rüzgâr hızı 100 km/s üzerindeki noktaları kırmızı dairelerle belirleyin.",
+       "2. Kıyı erozyonu ve taşkın alanlarını dalga simgeleriyle etiketleyin.",
+       "3. GeoJSON dosyasını web harita dizinine aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Çok kriterli karar analiziyle (AHP) rüzgâr ve güneş santrali yer seçimi yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Leaflet tabanlı kaydırmalı hikâye haritası arayüz tasarımı",
+    "oz": "Kullanıcı metni kaydırdıkça harita odağını değiştiren web sayfası kodlamak.",
+    "ayrinti": "Scrollama olaylarını (scroll-driven narrative) dinleyen JavaScript yapısı kurulur. Kullanıcı hikâyenin her bölümüne geldikçe harita ilgili fırtına evresine yumuşakça yakınlaşır.",
+    "nasil": [
+     {
+      "teknik": "Leaflet flyTo ve scrollama olay dinleyicileriyle hikâye akışını senkronize etmek.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle hazırladığımız haritayı modern web anlatımına dönüştürürüz.",
+      "altAdimlar": [
+       "1. Sol tarafa kaydırılabilir anlatım metin kutularını yerleştirin.",
+       "2. Sağ tarafa tam ekran Leaflet harita kapsayıcısını sabitleyin.",
+       "3. Her anlatım kartı ekrana girdiğinde haritanın flyTo ile hedef şehre kaymasını sağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     },
+     {
+      "teknik": "Zaman çizelgesi kontrolüyle uydu görüntüsü katmanlarını sırayla açıp kapatmak.",
+      "sade": "MTO 388 dersindeki 'Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek' bilgisiyle fırtınanın gelişimini sinematik harita animasyonu olarak sunarız.",
+      "altAdimlar": [
+       "1. Leaflet LayerGroup kullanarak her günün uydu karesini ayrı katman yapın.",
+       "2. Kaydırma konumuna bağlı olarak eski katmanı soluklaştırıp yenisini açın.",
+       "3. Web sitesini açık kaynak kodlu statik sayfa olarak yayına hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Web tarayıcısında çalışan kaydırmalı Akdeniz siklonu hikâye haritası ve açık kaynak kod deposu.",
+  "senden": "Web tasarım ve temel JavaScript.",
+  "bizden": "Fırtına uydu katmanları ve zaman serisi yörünge koordinatları."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Akdeniz tropikal benzeri siklonunun gelişim ve karaya çıkış döngüsü uydu animasyonu",
+   "aciklama": "Siklon sarmal bulut kollarının ve göz yapısının geostationary uydu animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Medicane_Qendresa_2014-11-07.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Akdeniz siklonu Meteosat kızılötesi ve yüksek çözünürlüklü görünür kanal görüntüsü"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://leafletjs.com/reference.html",
+   "aciklama": "Leaflet etkileşimli harita kütüphanesi dokümantasyon ve örnekler paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Leaflet Açık Kaynaklı Web Haritalama Kütüphanesi Dokümantasyonu",
+   "url": "https://leafletjs.com/reference.html"
+  },
+  {
+   "ad": "NASA Global Precipitation Measurement (GPM) IMERG Veri Portalı",
+   "url": "https://gpm.nasa.gov/data/directory"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO388-03.json",
+  "tarih": "2026-10-17 05:24",
+  "geminiSha1": "e3f7cff19cc4"
+ }
+}

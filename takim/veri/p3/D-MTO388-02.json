@@ -1,0 +1,474 @@
+{
+ "id": "D-MTO388-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 388",
+  "dersAd": "Coğrafi Bilgi Bilimi",
+  "kol": "ikisi"
+ },
+ "ad": "Taşkın uyarısı kimi etkiler? Nüfus + yükseklik + yağış",
+ "ne": "Bir yağış uyarı alanını HydroSHEDS yükseklik, GADM sınırları ve nüfus katmanıyla kesiştirip etkilenen nüfusu ve kritik tesisleri (OSM) sayan QGIS/GeoPandas iş akışı kur.",
+ "adimlar": [
+  "Uyarı poligonunu ve yağış rasterini al.",
+  "Yükseklik ve akış birikimiyle taşkına açık alanları belirle.",
+  "Nüfus rasterini (HDX) kesiştir; etkilenen nüfusu hesapla.",
+  "OSM'den hastane/okul noktalarını say.",
+  "Sonucu tek tıkla üreten araç yap."
+ ],
+ "sonuc": "Etki tahmini aracı; meteorolojik uyarıyı insan sayısına çevirir.",
+ "dayanak": "Gorelick vd. 2017",
+ "senden": "GeoPandas.",
+ "bizden": "Katman erişimi ve kod iskeleti.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 388",
+    "ad": "Coğrafi Bilgi Bilimi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "GeoPandas",
+   "ne": "Python ortamında vektör coğrafi veri işleme ve mekânsal kesişim kütüphanesi.",
+   "url": "https://geopandas.org/",
+   "ayrinti": {
+    "neYaptilar": "Pandas veri çerçevesi esnekliğini Shapely geometrisiyle birleştirerek Python içinde hızlı vektör analiz araçları geliştirdiler.",
+    "nasil": "C tabanlı GEOS kütüphanesini uzamsal indeksleme (R-tree) yapılarıyla sararak milyonlarca poligonu saniyeler içinde kesiştirdiler.",
+    "neEdindiler": "Açık veri bilimcilerin karmaşık masaüstü yazılımlara girmeden komut satırından mekânsal etki analizi yapmasını sağladılar.",
+    "bizNasilKatki": "AURA bünyesinde meteorolojik uyarı poligonlarını otomatik okuyup mahalle nüfuslarıyla birleştiren hızlı iş akışları yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "GeoPandas Documentation and Spatial Operations Guide",
+      "url": "https://geopandas.org/en/stable/docs/user_guide.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Jordahl vd. (2020) GeoPandas: Python Tools for Geographic Data",
+      "url": "https://doi.org/10.5281/zenodo.3946761",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Vector_spatial_overlay.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Vektör poligon katmanlarının uzamsal kesişim ve bindirme işlemleri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://geopandas.org/en/stable/docs/user_guide.html",
+      "aciklama": "GeoPandas mekânsal veri işleme kılavuzu ve bindirme fonksiyonları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "HydroSHEDS",
+   "ne": "Küresel hidrolojik havza sınırları, akarsu ağları ve akış birikim veri seti.",
+   "url": "https://www.hydrosheds.org/",
+   "ayrinti": {
+    "neYaptilar": "SRTM radar topoğrafya verisinden akarsu drenaj ağlarını, akış yönlerini ve alt havza sınırlarını küresel ölçekte türettiler.",
+    "nasil": "Çukur doldurma ve akış birikim algoritmalarıyla hidrolojik olarak tutarlı drenaj yolları ve havza poligonları inşa ettiler.",
+    "neEdindiler": "Dünya genelinde taşkın riski ve su kaynakları çalışmalarında kullanılan en kapsamlı hidrolojik topoğrafya referansını sundular.",
+    "bizNasilKatki": "Türkiye havzaları için HydroSHEDS katmanlarını yerel meteorolojik uyarı alanlarıyla çakıştıran filtreler geliştirebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Lehner vd. (2008) New Global Hydrography Derived From Spaceborne Elevation Data",
+      "url": "https://doi.org/10.1029/2008EO100001",
+      "tur": "makale"
+     },
+     {
+      "ad": "HydroSHEDS HydroBASINS Technical Documentation and Data Access",
+      "url": "https://www.hydrosheds.org/products/hydrobasins",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Amazon_basin_HydroSHEDS.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "HydroSHEDS sayısal yükseklik modelinden türetilen hidrolojik havza ağı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.hydrosheds.org/products/hydrobasins",
+      "aciklama": "HydroBASINS havza hiyerarşisi ve poligon veri tabanı paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "GADM",
+   "ne": "Küresel idari sınırlar, il ve ilçe poligonları açık coğrafi veri tabanı.",
+   "url": "https://gadm.org/",
+   "ayrinti": {
+    "neYaptilar": "Tüm ülkelerin eyalet, il, ilçe ve belediye idari sınırlarını yüksek geometrik doğrulukla sayısallaştırıp paylaştılar.",
+    "nasil": "Ulusal harita kurumlarının verilerini ortak koordinat sisteminde harmonize ederek çoklu seviyeli vektör paketleri oluşturdular.",
+    "neEdindiler": "Mekânsal analiz yapan araştırmacıların afet uyarısını doğrudan resmi idari birimlerle eşleştirmesini sağladılar.",
+    "bizNasilKatki": "Türkiye il ve ilçe sınırlarını Python üzerinde hızla yükleyen ve uyarı alanıyla kesiştiren hazır modüller kurgulayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "GADM Database of Global Administrative Areas Documentation",
+      "url": "https://gadm.org/data.html",
+      "tur": "veri"
+     },
+     {
+      "ad": "Hijmans vd. (2021) Spatial Data Analysis and Modeling with R and GADM",
+      "url": "https://rspatial.org/spatial/index.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Turkey_location_map.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Türkiye idari sınırları ve coğrafi il dağılımı haritası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://gadm.org/data.html",
+      "aciklama": "GADM küresel idari sınırlar vektör veri indirme platformu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Humanitarian Data Exchange",
+   "ne": "BM OCHA bünyesinde insani kriz, afet ve yüksek çözünürlüklü nüfus veri platformu.",
+   "url": "https://data.humdata.org/",
+   "ayrinti": {
+    "neYaptilar": "İnsani yardım kuruluşları ve araştırmacıların afet verilerini, nüfus yoğunluğu katmanlarını tek çatı altında topladılar.",
+    "nasil": "Yüksek çözünürlüklü uydu bina tespiti ile nüfus sayımlarını birleştiren 30 metrelik gridli nüfus rasterları yayınladılar.",
+    "neEdindiler": "Afet müdahale ekiplerinin bir fırtına öncesinde kaç kişinin etkileneceğini dakikalar içinde kestirmesini sağladılar.",
+    "bizNasilKatki": "HDX Türkiye nüfus rasterını indirip taşkın su basma derinliğiyle dinamik çarpan açık kodlar yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Humanitarian Data Exchange (HDX) Open Data Platform",
+      "url": "https://data.humdata.org/dataset",
+      "tur": "veri"
+     },
+     {
+      "ad": "High Resolution Settlement Layer (HRSL) Population Grid Technical Report",
+      "url": "https://data.humdata.org/dataset/turkey-high-resolution-population-density-maps-demographic-estimates",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://data.humdata.org/dataset",
+      "aciklama": "HDX afet izleme ve nüfus yoğunluğu veri indirme portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Taşkın riski altındaki yerleşimlerde anlık yağış birikimi ve nüfus yoğunluğu, 2024",
+      "aciklama": "Aşırı yağış alanı ile nüfus ızgarasının kesişim animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Humanitarian OpenStreetMap Team",
+   "ne": "Afet ve kriz anlarında kritik tesisleri haritalayan küresel gönüllü topluluğu.",
+   "url": "https://www.hotosm.org/",
+   "ayrinti": {
+    "neYaptilar": "Gönüllü haritacıları organize ederek afet öncesi ve sonrasında hastane, okul, köprü gibi kritik noktaları haritaya işlediler.",
+    "nasil": "Uydu görüntülerini görev dağıtım panelleriyle dilimleyip kitle kaynaklı etiketleme protokolleriyle doğrulanmış vektör katmanlar ürettiler.",
+    "neEdindiler": "Resmi haritalarda bulunmayan güncel bina ve altyapı verilerini afet koordinatörlerinin kullanımına açtılar.",
+    "bizNasilKatki": "Overpass API aracılığıyla taşkın uyarı bölgesindeki tüm sağlık tesislerini ve köprüleri otomatik çeken betikler hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Humanitarian OpenStreetMap Team Disaster Response Workflow",
+      "url": "https://www.hotosm.org/what-we-do/disaster-response",
+      "tur": "web"
+     },
+     {
+      "ad": "Herfort vd. (2021) The Evolution of Humanitarian Mapping in OpenStreetMap",
+      "url": "https://doi.org/10.1038/s41597-021-01032-z",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:OpenStreetMap_Logo.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "OpenStreetMap açık kaynaklı kitle kaynaklı haritalama projesi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.hotosm.org/what-we-do/disaster-response",
+      "aciklama": "HOT insani afet müdahalesi ve kritik altyapı haritalama ekranı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Meteorolojik veriyi harita katmanlarıyla birleştirip karar destek ürününe dönüştürmek.",
+  "baglanti": "Yazılım kolunda CBS ve bulut tabanlı coğrafi analiz; Anlatım kolunda hikâye haritaları.",
+  "literatur": {
+   "maddeler": [
+    "Coğrafi bilgi bilimi vektör (nokta, çizgi, poligon) ve raster veriyi koordinat sistemleri içinde birleştirir; projeksiyon seçimi alan ve mesafe hesabını belirler.",
+    "Google Earth Engine, petabayt ölçekli uydu arşivini tarayıcıdan analiz etmeyi sağladı. (Gorelick vd. 2017)",
+    "Kent yüzey malzemeleri çoklu uydu verisiyle sınıflandırılıp ısı adasıyla ilişkilendirilebilir. (Kamaraj vd. 2021)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Gönüllü haritacılık (HOT/OSM) afet sonrası saatler içinde harita üretiyor; meteorolojik uyarılarla birleşince etki tahmini mümkün oluyor.",
+    "Yerel iklim bölgesi (LCZ) haritaları topluluk yüklemeleriyle (WUDAPT) her şehir için üretilebiliyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Gorelick vd. 2017",
+    "baslik": "Google Earth Engine: Planetary-scale geospatial analysis for everyone",
+    "yayin": "Remote Sensing of Environment 202, 18-27",
+    "yil": "2017",
+    "url": "https://doi.org/10.1016/j.rse.2017.06.031",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kamaraj vd. 2021",
+    "baslik": "Detecting heat-inducing urban built-up surface material with multi remote sensing datasets",
+    "yayin": "Remote Sensing of Environment 264, 112591",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.rse.2021.112591",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Tornay vd. 2017",
+    "baslik": "GENIUS: A methodology to define a detailed description of buildings for urban climate and building energy consumption simulations",
+    "yayin": "Urban Climate 20, 75-93",
+    "yil": "2017",
+    "url": "https://doi.org/10.1016/j.uclim.2017.03.002",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Song vd. 2018",
+    "baslik": "Global land change from 1982 to 2016",
+    "yayin": "Nature 560, 639-643",
+    "yil": "2018",
+    "url": "https://doi.org/10.1038/s41586-018-0411-9",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Şiddetli yağış uyarı alanlarını HydroSHEDS sayısal yükseklik ve açık nüfus katmanlarıyla kesiştirerek taşkından etkilenecek insan ve kritik tesis sayısını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 388",
+   "ad": "Coğrafi Bilgi Bilimi",
+   "projeyeKatki": "Vektör ve raster katman çakıştırma teknikleri ve mekânsal analiz algoritmalarıyla taşkın etki alanını ve risk altındaki nüfusu belirler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıradan Kriging (Ordinary Kriging) mekânsal tahmin denklemi",
+     "nerede": "Adım 1: Noktasal radar ve istasyon yağış ölçümlerinden havza bazlı kesintisiz yağış rasterı üretilmesinde."
+    },
+    {
+     "formulAd": "Deneysel semivaryogram bağıntısı",
+     "nerede": "Adım 2: Yağış şiddetinin havza boyunca mekânsal varyans ve ayrım mesafesi yapısının incelenmesinde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Meteorolojik yağış uyarısını yükseklik, nüfus ve altyapı katmanlarıyla kesiştirip etkilenen insan ve tesis sayısını bulmak.",
+  "ayrinti": "MGM veya sayısal hava modellerinden gelen aşırı yağış uyarı alanı poligonlaştırılır. HydroSHEDS sayısal yükseklik modelinden türetilen eğim ve akış birikimi katmanlarıyla birleştirilerek taşkın yayılma riski yüksek alanlar sınırlandırılır. HDX nüfus ızgarası ve OpenStreetMap kritik tesisleriyle çakıştırılarak etki raporu üretilir.",
+  "adimlar": [
+   {
+    "baslik": "Meteorolojik uyarı poligonunun ve yağış katmanının temini",
+    "oz": "Radar tahminleri ve uyarı bültenlerinden şiddetli yağış alanını vektörleştirmek.",
+    "ayrinti": "Bölgesel radar yansıtırlık verileri ve 24 saatlik yağış tahminlerinden 50 mm üzerindeki aşırı yağış alanları poligon olarak sınırlandırılır. EPSG:4326 koordinat sisteminde GeoJSON formatına aktarılır.",
+    "nasil": [
+     {
+      "teknik": "GeoPandas ile yağış rasterından eşik değer poligonları türetip vektör katman oluşturmak.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle aşırı yağış beklenen vadi ve şehir sınırlarını harita poligonuna çeviririz.",
+      "altAdimlar": [
+       "1. NetCDF formatındaki yağış tahmin rasterını Rasterio kütüphanesiyle açın.",
+       "2. 50 mm eşik değerini aşan pikselleri maskeleyip vektör poligonlara dönüştürün.",
+       "3. Elde edilen taşkın uyarı geometrisini GeoDataFrame yapısına aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     },
+     {
+      "teknik": "İstasyon nokta ölçümlerini Kriging ile yüzeye yayarak radar alanını kalibre etmek.",
+      "sade": "MTO 388 dersindeki 'Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak' bilgisiyle yer gözlemleriyle radar alanını doğrulayıp uyarı poligonunu netleştiririz.",
+      "altAdimlar": [
+       "1. Otomatik meteoroloji istasyonlarının anlık yağış ölçümlerini çekin.",
+       "2. Semivaryogram parametreleriyle sıradan Kriging yüzeyi türetin.",
+       "3. Radar alanı ile istasyon yüzeyini birleştirerek düzeltilmiş yağış ızgarası elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "HydroSHEDS akış birikimiyle taşkın yayılımının belirlenmesi",
+    "oz": "Sayısal yükseklik modelinden drenaj ağı ve alçak vadi tabanlarını çıkarmak.",
+    "ayrinti": "HydroSHEDS 3 saniye çözünürlüklü yükseklik ve akış yönü katmanları kullanılır. Yüksek yağış alan havza kollarında suyun toplanacağı vadi tabanları ve çukur alanlar taşkın yayılma maskesi olarak belirlenir.",
+    "nasil": [
+     {
+      "teknik": "HydroSHEDS akış birikim rasterında eşikleme yaparak potansiyel su basma koridorunu hesaplamak.",
+      "sade": "MTO 388 dersindeki 'Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek' bilgisiyle dağlardan inen suların nerede gölleneceğini hesaplarız.",
+      "altAdimlar": [
+       "1. Uyarı alanını kapsayan HydroSHEDS akış birikim (flow accumulation) rasterını yükleyin.",
+       "2. Yüksek akış toplanma hücresi sayısına sahip dere yataklarını izole edin.",
+       "3. Topografik ıslaklık indeksi ile su basma olasılığı yüksek alçak kotları belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek."
+      }
+     },
+     {
+      "teknik": "Taşkın yayılma rasterını vektörleştirip uyarı poligonu ile kesiştirmek.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle suyun basacağı net etki alanını poligon olarak üretiriz.",
+      "altAdimlar": [
+       "1. Belirlenen su basma piksellerini vektör poligon geometriye dönüştürün.",
+       "2. Yağış uyarı poligonu ile mekânsal kesişim (spatial intersection) uygulayın.",
+       "3. Gereksiz izole küçük parçaları temizleyerek nihai etki alanını elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "HDX nüfus ızgarasıyla etkilenen kişi sayısının hesaplanması",
+    "oz": "Taşkın maskesini 30 m çözünürlüklü nüfus katmanıyla piksel bazında çarpmak.",
+    "ayrinti": "Humanitarian Data Exchange platformundaki yüksek çözünürlüklü yerleşim ve nüfus yoğunluğu rasterı taşkın poligonu ile maskelenir. Etkilenen toplam nüfus ilçe bazında toplanır.",
+    "nasil": [
+     {
+      "teknik": "rasterstats zonal_stats ile taşkın poligonu içindeki toplam nüfusu özetlemek.",
+      "sade": "MTO 388 dersindeki 'Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek' bilgisiyle su altında kalacak alanlarda kaç kişinin yaşadığını sayarız.",
+      "altAdimlar": [
+       "1. HDX Türkiye yüksek çözünürlüklü nüfus rasterını çalışma alanına göre kırpın.",
+       "2. Taşkın yayılma poligonunun kapsadığı piksel değerlerini toplayın.",
+       "3. Mahalle ve ilçe idari sınırlarına göre risk altındaki nüfusu ayrıştırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek."
+      }
+     },
+     {
+      "teknik": "GADM idari sınırlarıyla nüfus yoğunluğu risk haritası sentezlemek.",
+      "sade": "MTO 388 dersindeki 'Çok kriterli karar analiziyle (AHP) rüzgâr ve güneş santrali yer seçimi yapmak' bilgisiyle yerel yönetimler için öncelikli tahliye bölgeleri haritası hazırlarız.",
+      "altAdimlar": [
+       "1. GADM ilçe poligonları ile etkilenen nüfus tablosunu ilişkilendirin.",
+       "2. İlçe nüfusuna oranla taşkından etkilenme yüzdesini hesaplayın.",
+       "3. Kırmızı, turuncu, sarı uyarı seviyelerine göre tematik risk katmanı çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Çok kriterli karar analiziyle (AHP) rüzgâr ve güneş santrali yer seçimi yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "OSM kritik tesislerin mekânsal sorgulanması ve raporlama",
+    "oz": "Taşkın etki çemberindeki hastane, köprü ve trafo tesislerini filtrelemek.",
+    "ayrinti": "OpenStreetMap veri tabanından Overpass API ile hastaneler, itfaiye istasyonları, trafo merkezleri ve ana arter köprüleri çekilir. Taşkın alanında kalan tesisler öncelikli risk listesine yazılır.",
+    "nasil": [
+     {
+      "teknik": "osmnx ve Overpass API ile taşkın geometrisi içindeki kritik noktaları sorgulamak.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle haritadaki hastane ve köprü koordinatlarını afet alanıyla eşleştiririz.",
+      "altAdimlar": [
+       "1. Taşkın poligonu sınır kutusunu (bounding box) Overpass sorgusuna iletin.",
+       "2. amenity=hospital ve highway=bridge etiketli tüm noktaları çekin.",
+       "3. Taşkın poligonu içinde kalan tesisleri mekânsal filtreyle ayıklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     },
+     {
+      "teknik": "GeoPandas ile etki analizi özet tablosunu ve GeoJSON çıktı dosyasını dışa aktarmak.",
+      "sade": "MTO 388 dersindeki 'Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek' bilgisiyle acil durum ekiplerinin sahada anında kullanacağı etki raporunu üretiriz.",
+      "altAdimlar": [
+       "1. Etkilenen nüfus sayısı ve kritik tesis isimlerini özet tabloda birleştirin.",
+       "2. Katmanları web haritasında açılacak sıkıştırılmış GeoJSON formatında kaydedin.",
+       "3. Afet koordinasyon merkezi için tek sayfalık etki değerlendirme bülteni oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Afet yönetimi için taşkın ve heyelan mekânsal duyarlılık katmanlarını birleştirmek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Taşkın uyarı alanında etkilenen nüfus sayısı, kritik altyapı tesis listesi ve tematik risk haritası.",
+  "senden": "Python GeoPandas ve mekânsal analiz ortamı.",
+  "bizden": "Açık veri erişim fonksiyonları ve etki analizi kod iskeleti."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Marmara Bölgesi taşkın yağış fırtınasının havza drenaj ağı üzerindeki dinamik yayılımı",
+   "aciklama": "Radar yansıtırlık alanından taşkın su birikimi poligonlarına geçiş animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Vector_spatial_overlay.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Coğrafi bilgi sistemlerinde taşkın poligonu ve nüfus katmanı bindirme analizi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://geopandas.org/en/stable/docs/user_guide.html",
+   "aciklama": "GeoPandas mekânsal analiz ve vektör geometri işlem kılavuzu arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "HydroSHEDS Küresel Hidrolojik Veri Setleri Kılavuzu",
+   "url": "https://www.hydrosheds.org/products/hydrobasins"
+  },
+  {
+   "ad": "Humanitarian Data Exchange (HDX) Açık İnsani Veri Kataloğu",
+   "url": "https://data.humdata.org/dataset"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO388-02.json",
+  "tarih": "2026-10-17 05:22",
+  "geminiSha1": "c24f7da26093"
+ }
+}

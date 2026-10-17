@@ -1,0 +1,482 @@
+{
+ "id": "D-MTO454-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 454",
+  "dersAd": "Fiziksel Klimatoloji",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul'un yüzey enerji dengesi: ERA5 ile yıl boyu",
+ "ne": "ERA5 saatlik yüzey akılarından İstanbul için net radyasyon, duyulur ve gizli ısı akılarının günlük ve mevsimlik döngüsünü çıkar; Bowen oranını hesapla.",
+ "adimlar": [
+  "CDS'ten ERA5 yüzey net kısa/uzun dalga, duyulur ve gizli ısı akılarını 1 yıl için indir.",
+  "Birimleri W/m²'ye çevir (J/m² biriktirilmiş değerlerden).",
+  "Aylık ortalama günlük döngü grafikleri yap.",
+  "Kara ve deniz grid hücrelerini ayrı çiz; Bowen oranını karşılaştır.",
+  "SURFRAD benzeri bir istasyonun gerçek ölçümüyle büyüklükleri kıyasla."
+ ],
+ "sonuc": "Enerji dengesi döngü grafikleri; ders denklemlerini gerçek sayılarla görürsün.",
+ "dayanak": "Fick ve Hijmans 2017",
+ "senden": "NetCDF ve zaman serisi.",
+ "bizden": "ERA5 değişken listesi, birim notu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 454",
+    "ad": "Fiziksel Klimatoloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Copernicus Climate Data Store",
+   "ne": "ERA5 yeniden analizi ve iklim projeksiyonlarının açık dağıtım noktası.",
+   "url": "https://cds.climate.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Orta Vadeli Hava Tahminleri Merkezi (ECMWF) iklim arşivlerini açık bulut deposunda tüm dünyaya sundular.",
+    "nasil": "Gelişmiş CDS-API servisiyle saatlik atmosferik ve yüzey radyasyon akılarını kullanıcıların doğrudan indirmesini sağladılar.",
+    "neEdindiler": "İklim araştırmacılarının küresel ölçekte homojen saatlik yüzey enerji akılarına hızlı erişimini standartlaştırdılar.",
+    "bizNasilKatki": "AURA bünyesinde İstanbul koordinatlarını kırparak net radyasyon bütçesini otomatik hesaplayan Python araçları kurabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Copernicus Climate Data Store (CDS) API and Datasets Directory",
+      "url": "https://cds.climate.copernicus.eu/datasets",
+      "tur": "veri"
+     },
+     {
+      "ad": "Hersbach vd. (2020) The ERA5 Global Reanalysis",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets",
+      "aciklama": "Copernicus CDS iklim veri kataloğu ve Python API indirme konsolu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "İstanbul çevresinde 1 yıllık saatlik net radyasyon ve yüzey ısı akıları diurnal animasyonu",
+      "aciklama": "Mevsimsel ve günlük döngüde yüzey enerji akılarının dinamik değişimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA SURFRAD",
+   "ne": "ABD yüzey radyasyon bütçesi ağı; dakikalık kısa/uzun dalga ölçümleri açık.",
+   "url": "https://gml.noaa.gov/grad/surfrad/",
+   "ayrinti": {
+    "neYaptilar": "Farklı iklim bölgelerinde yüksek doğruluklu güneş ve yer radyasyonu ölçümleri yapan ulusal yüzey ağını kurdular.",
+    "nasil": "Termopil piranometreler ve pirjeometrelerle gelen ve yansıyan kısa/uzun dalga akılarını 1 dakikalık aralıklarla topladılar.",
+    "neEdindiler": "Uydu radyasyon algoritmalarını ve iklim modellerini zemin seviyesinde doğrulayan küresel referans ağını oluşturdular.",
+    "bizNasilKatki": "SURFRAD açık veri arşivini kullanarak ERA5 radyasyon kestirimlerinin hata paylarını karşılaştırmalı test edebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Augustine vd. (2000) SURFRAD: A National Surface Radiation Budget Network for Atmospheric Research",
+      "url": "https://doi.org/10.1175/1520-0477(2000)081<2341:SANSRB>2.3.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "NOAA Global Monitoring Laboratory SURFRAD Operational Data Archive",
+      "url": "https://gml.noaa.gov/grad/surfrad/datapage.html",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://gml.noaa.gov/grad/surfrad/datapage.html",
+      "aciklama": "NOAA SURFRAD yüzey radyasyon gözlem istasyonları ve veri erişim paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:SURFRAD_Station_Bondville.jpg",
+      "lisans": "NOAA",
+      "aciklama": "SURFRAD yüzey radyasyon bütçesi kulesi ve piranometre düzeneği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "NASA CERES",
+   "ne": "Yer'in radyasyon bütçesini ölçen uydu aletleri ve ürünleri konsorsiyumu.",
+   "url": "https://ceres.larc.nasa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Terra, Aqua ve Suomi-NPP uyduları üzerindeki CERES radyometreleriyle küresel radyasyon bütçesini uzaydan ölçtüler.",
+    "nasil": "Kısa dalga güneş yansıması ve uzun dalga yer ışımasını atmosfer üstünde (TOA) ve yüzeyde enerji dengeli (EBAF) olarak hesapladılar.",
+    "neEdindiler": "Gezegenin net enerji dengesizliğini (+0.9 W/m2) ve sera gazı kaynaklı ısı tutulumunu doğrudan kanıtladılar.",
+    "bizNasilKatki": "CERES yüzey net radyasyon ızgaralarını ERA5 verileriyle yan yana koyarak Marmara bölgesi sapmalarını grafikleyebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Wielicki vd. (1996) Clouds and the Earth's Radiant Energy System (CERES): An Overview",
+      "url": "https://doi.org/10.1175/1520-0477(1996)077<0853:CATERE>2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA CERES Energy Balanced and Filled (EBAF) Data Products Guide",
+      "url": "https://ceres.larc.nasa.gov/data/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ceres.larc.nasa.gov/data/",
+      "aciklama": "NASA CERES küresel radyasyon bütçesi uydu veri seçim arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Yer-atmosfer sistemi küresel radyasyon dengesi ve enerji akıları şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ARM (DOE)",
+   "ne": "Atmosferik radyasyon ölçüm sahaları; tüm veri açık.",
+   "url": "https://www.arm.gov/",
+   "ayrinti": {
+    "neYaptilar": "ABD Enerji Bakanlığı adına dünya genelinde kurulan sabit ve mobil istasyonlarda radyasyon ve akı ölçümleri yaptılar.",
+    "nasil": "Gelişmiş yüzey enerji dengesi sistemleri (SEBS) ile net radyasyon, toprak ısı akısı ve eddy akılarını entegre ettiler.",
+    "neEdindiler": "İklim modellerinin yüzey parametrizasyonlarını kalibre eden en detaylı yer gözlem veri tabanını oluşturdular.",
+    "bizNasilKatki": "ARM açık ölçüm verilerinden yararlanarak yüzey enerji dengesi kapanış hata paylarını inceleyen rehber hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Turner vd. (2016) The Ground-Based Atmospheric Radiation Measurement (ARM) Program",
+      "url": "https://doi.org/10.1175/AMSMONOGRAPHS-D-15-0029.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "DOE ARM Surface Energy Balance Systems (SEBS) Instrument Handbook",
+      "url": "https://www.arm.gov/capabilities/instruments/sebs",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.arm.gov/capabilities/instruments/sebs",
+      "aciklama": "ARM yüzey enerji dengesi ölçüm sistemleri teknik el kitabı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Eddy_covariance_tower.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Radyasyon ve türbülanslı akı sensörleriyle donatılmış mikrometeoroloji kulesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Kipp & Zonen",
+   "ne": "Piranometre ve radyometre üreticisi.",
+   "url": "https://www.kippzonen.com/",
+   "ayrinti": {
+    "neYaptilar": "Güneş enerjisi ve meteoroloji sahaları için ISO standartlarında hassas radyasyon ölçüm cihazları ürettiler.",
+    "nasil": "Termopil sensörler ve kuvars kubbelerle geniş spektral aralıkta gelen doğrudan ve dağınık ışınımı elektriksel gerilime çevirdiler.",
+    "neEdindiler": "Dünya Meteoroloji Teşkilatı standartlarında çalışan ulusal hava ajanslarının birincil radyasyon sensörü oldular.",
+    "bizNasilKatki": "Kipp & Zonen piranometrelerinin kalibrasyon formüllerini ve sıcaklık düzeltmelerini Python kodlarımıza entegre edebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Kipp & Zonen Solar Radiation and Net Radiometer Technical Brochure",
+      "url": "https://www.kippzonen.com/Products/Solar-Radiation",
+      "tur": "web"
+     },
+     {
+      "ad": "ISO 9060:2018 Solar Energy - Specification and Classification of Instruments",
+      "url": "https://www.kippzonen.com/News/ISO-9060-2018",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.kippzonen.com/Products/Solar-Radiation",
+      "aciklama": "Kipp & Zonen net radyometre ve piranometre ürün kataloğu paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Pyranometer_Kipp_Zonen.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Güneş ışınımını yüksek hassasiyetle ölçen termopil piranometre"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Enerji dengesi, yüzey-atmosfer etkileşimi ve iklim sınıflandırmasını ölçüm ve gridli veriyle çalışmak.",
+  "baglanti": "Yazılım kolunda radyasyon bütçesi ve iklim veri setleri; Anlatım kolunda enerji dengesi anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Yer'in enerji dengesi: tepede gelen ≈ 340 W/m², yansıyan ≈ 100, giden uzun dalga ≈ 240; CERES bu bütçeyi 20+ yıldır ölçüyor.",
+    "Yüzey enerji dengesi (net radyasyon = duyulur + gizli + toprak ısı akısı) SURFRAD/BSRN istasyonlarında dakika çözünürlüğünde ölçülür.",
+    "Küresel iklim yüzeyleri (WorldClim 2) istasyon + uydu birleşimiyle 1 km'de aylık sıcaklık ve yağış verir. (Fick ve Hijmans 2017)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Stratokümülüs tabakalarının yüksek CO₂'de parçalanabileceği LES simülasyonlarıyla gösterildi; büyük bir iklim geçişi adayı. (Schneider vd. 2019)",
+    "İklim duyarlılığı çoklu kanıt hattıyla 2,6-3,9 K aralığına daraltıldı. (Sherwood vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Fick ve Hijmans 2017",
+    "baslik": "WorldClim 2: new 1-km spatial resolution climate surfaces for global land areas",
+    "yayin": "International Journal of Climatology 37(12), 4302-4315",
+    "yil": "2017",
+    "url": "https://doi.org/10.1002/joc.5086",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Schneider vd. 2019",
+    "baslik": "Possible climate transitions from breakup of stratocumulus decks under greenhouse warming",
+    "yayin": "Nature Geoscience 12, 163-167",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41561-019-0310-1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Sherwood vd. 2020",
+    "baslik": "An Assessment of Earth's Climate Sensitivity Using Multiple Lines of Evidence",
+    "yayin": "Reviews of Geophysics 58(4)",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2019RG000678",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Stubenrauch vd. 2013",
+    "baslik": "Assessment of Global Cloud Datasets from Satellites",
+    "yayin": "Bulletin of the American Meteorological Society 94(7), 1031-1049",
+    "yil": "2013",
+    "url": "https://doi.org/10.1175/BAMS-D-12-00117.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kamaraj vd. 2021",
+    "baslik": "Detecting heat-inducing urban built-up surface material with multi remote sensing datasets",
+    "yayin": "Remote Sensing of Environment 264, 112591",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.rse.2021.112591",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "ERA5 saatlik yüzey akılarından İstanbul için net radyasyon, duyulur ve gizli ısı bileşenlerinin döngüsünü çıkarıp Bowen oranını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 454",
+   "ad": "Fiziksel Klimatoloji",
+   "projeyeKatki": "Net radyasyonun duyulur, gizli ve toprak ısı akılarına bölüşümünü ve Bowen oranı üzerinden yüzey kuraklık derecesini nicelendirir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yüzey enerji dengesi denklemi",
+     "nerede": "Adım 2: ERA5 net kısa ve uzun dalga radyasyonu ile duyulur ve gizli ısı akılarının yüzey enerji kapanışında."
+    },
+    {
+     "formulAd": "Bowen oranı denklemi",
+     "nerede": "Adım 4: İstanbul kara ve deniz piksellerinde duyulur ısının gizli ısıya oranlanmasıyla buharlaşma analizinde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 yüzey akılarını W/m2 birimine çevirip net radyasyon, duyulur ve gizli ısı döngülerini ve Bowen oranını hesaplamak.",
+  "ayrinti": "Copernicus CDS üzerinden İstanbul için 1 yıllık saatlik ERA5 yüzey akıları indirilir. Birikimli J/m2 değerleri saatlik ortalama W/m2 akılara dönüştürülür. Rn = H + LE + G yüzey enerji dengesi kapanışı kontrol edilir. Kara ve deniz ızgaraları için aylık ortalama diurnal döngüler ve Bowen oranı (H/LE) karşılaştırılır.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 yüzey akı verilerinin indirilmesi ve dönüştürülmesi",
+    "oz": "CDS API ile saatlik net radyasyon ve ısı akılarını indirip W/m2 yapmak.",
+    "ayrinti": "CDS API kullanılarak yüzey net güneş ışınımı (ssr), net termal ışıma (str), duyulur ısı akısı (sshf) ve gizli ısı akısı (slhf) indirilir. J/m2 birimi 3600 saniyeye bölünerek W/m2 akıya dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "cdsapi ile İstanbul koordinatları için 1 yıllık ERA5 saatlik yüzey akılarını NetCDF formatında çekmek.",
+      "sade": "MTO 454 dersindeki 'Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak' bilgisiyle güneşten gelen ve yere yayılan enerji verilerini indiririz.",
+      "altAdimlar": [
+       "1. cdsapi Python kütüphanesini API anahtarıyla yapılandırın.",
+       "2. İstanbul bölgesini kapsayan 40.5-41.5 N ve 28.5-29.5 E sınır kutusunu belirleyin.",
+       "3. ssr, str, sshf, slhf değişkenlerini saatlik çözünürlükte indirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Birikimli akı değerlerinin saatlik farkını alıp 3600 saniyeye bölerek anlık W/m2 akı türetmek.",
+      "sade": "MTO 454 dersindeki 'Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak' bilgisiyle modelin toplam enerji çıktısını anlık güç birimine çeviririz.",
+      "altAdimlar": [
+       "1. xarray ile NetCDF dosyasını açıp saatlik zaman eksenini kontrol edin.",
+       "2. Birikimli akı dizilerinde ardışık saat farklarını hesaplayın.",
+       "3. Değerleri 3600'e bölerek standart W/m2 akı dizisine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Net radyasyon ve yüzey enerji dengesi bileşenlerinin hesabı",
+    "oz": "Rn = H + LE + G yüzey enerji denklem kapanışını kontrol etmek.",
+    "ayrinti": "Net radyasyon Rn = ssr + str formülüyle bulunur. Yüzey enerji dengesi Rn = H + LE + G denkleminde toprak ısı akısı G artık terim olarak çıkarılarak enerji bütçesi kapanışı sağlanır.",
+    "nasil": [
+     {
+      "teknik": "Rn = ssr + str denklemiyle net yüzey radyasyon bütçesini hesaplamak.",
+      "sade": "MTO 454 dersindeki 'Yüzey enerji dengesi denklemi' bilgisiyle güneşten gelen net ışık ile yerin yaydığı kızılötesi ısı farkını toplarız.",
+      "altAdimlar": [
+       "1. Net kısa dalga radyasyonu ssr ile net uzun dalga radyasyonu str'yi toplayın.",
+       "2. Gündüz pozitif net radyasyon kazancını, gece negatif radyatif soğumayı doğrulayın.",
+       "3. Yaz ve kış aylarındaki maksimum net radyasyon değerlerini belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "G = Rn - (H + LE) bağıntısıyla toprak ısı akısını artık terim olarak hesaplamak.",
+      "sade": "MTO 454 dersindeki 'Yüzey enerji dengesi denklemi' bilgisiyle havanın ısınması ve buharlaşmadan arta kalan enerjinin toprağa ne kadar girdiğini buluruz.",
+      "altAdimlar": [
+       "1. Duyulur ısı akısı H ve gizli ısı akısı LE değerlerini toplayın.",
+       "2. Net radyasyon Rn'den bu toplamı çıkararak toprak ısı akısı G'yi elde edin.",
+       "3. Yüzey enerji dengesi kapanışının mükemmel sağlandığını kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Aylık ortalama ve diurnal döngü eğrilerinin çıkarılması",
+    "oz": "12 ay boyunca akıların saatlik ortalama salınım grafiklerini çizmek.",
+    "ayrinti": "1 yıllık veriler ocak, nisan, temmuz ve ekim temsili aylarına göre 24 saatlik ortalamalara bölünür. Her mevsimde radyasyon ve ısı akılarının tepe noktaları grafiklenir.",
+    "nasil": [
+     {
+      "teknik": "xarray groupby('time.hour') fonksiyonuyla aylık ortalama 24 saatlik diurnal döngü serisi çıkarmak.",
+      "sade": "MTO 454 dersindeki 'Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak' bilgisiyle sabah güneşinden geceye kadar havanın saat saat nasıl ısındığını çizeriz.",
+      "altAdimlar": [
+       "1. Veri kümesini aylara ve günün 24 saatine göre gruplayın.",
+       "2. Her saat için ortalama Rn, H, LE ve G değerlerini çıkarın.",
+       "3. Öğlen saat 13:00 civarında gerçekleşen maksimum akı zirvelerini saptayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile 4 mevsim için enerji akılarının diurnal profil panellerini oluşturmak.",
+      "sade": "MTO 454 dersindeki 'Yüzey enerji akılarını mikrometeorolojik yöntemlerle belirlemek' bilgisiyle kışın zayıf akılar ile yazın güçlü buharlaşma farkını görselleştiririz.",
+      "altAdimlar": [
+       "1. Ocak ve Temmuz ayları için yan yana 2 panelli grafik hazırlayın.",
+       "2. Rn, H, LE ve G eğrilerini standart renklerle çizdirin.",
+       "3. Mevsimler arası enerji bölüşümü değişimini raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yüzey enerji akılarını (Bowen oranı, duyulur ve gizli ısı) mikrometeorolojik yöntemlerle belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kara ve deniz piksellerinde Bowen oranı karşılaştırması",
+    "oz": "Toprak ve deniz suyu üzerinde H/LE oranlarını kıyaslayarak raporlamak.",
+    "ayrinti": "Marmara Denizi üzerindeki su pikseli ile İstanbul kenti ve Trakya tarım karasal pikselleri ayrıştırılır. Bowen oranı beta = H / LE hesaplanarak kara-deniz termal tezatı açıklanır.",
+    "nasil": [
+     {
+      "teknik": "beta = H / LE denklemiyle gündüz saatlerinde Bowen oranını hesaplamak.",
+      "sade": "MTO 454 dersindeki 'Bowen oranı denklemi' bilgisiyle yüzeyin gelen enerjiyi havayı ısıtmaya mı yoksa suyu buharlaştırmaya mı harcadığını kıyaslarız.",
+      "altAdimlar": [
+       "1. Gündüz net radyasyonun pozitif olduğu saatler için H/LE oranını hesaplayın.",
+       "2. Karada yazın kuruyan toprak nedeniyle beta > 1 olduğunu gösterin.",
+       "3. Deniz üzerinde sınırsız su kaynağı nedeniyle beta < 0.2 seviyesinde kaldığını kanıtlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yüzey enerji akılarını (Bowen oranı, duyulur ve gizli ısı) mikrometeorolojik yöntemlerle belirlemek."
+      }
+     },
+     {
+      "teknik": "Kara ve deniz enerji bölüşümü farklarını özetleyen karşılaştırma tablosu üretmek.",
+      "sade": "MTO 454 dersindeki 'Yüzey enerji dengesi denklemi' bilgisiyle denizlerin neden karalardan daha geç ısınıp soğuduğunu fiziksel olarak açıklarız.",
+      "altAdimlar": [
+       "1. Kara ve deniz ızgaraları için yıllık toplam enerji bütçesi tablosunu derleyin.",
+       "2. Deniz meltemi ve kıyı mikroklimasını Bowen oranı tezatıyla ilişkilendirin.",
+       "3. Sonuçları doğrulanmış bilimsel rapor formatında kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yer-atmosfer sistemi net radyasyon ve enerji dengesi bileşenlerini hesaplamak."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için 1 yıllık saatlik yüzey enerji dengesi bileşenleri grafiği ve kara-deniz Bowen oranı analizi.",
+  "senden": "NetCDF veri işleme ve Python grafik kütüphaneleri.",
+  "bizden": "ERA5 yüzey değişkenleri çekme betiği ve birim dönüşüm kılavuzu."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "İstanbul çevresinde 1 yıllık saatlik net radyasyon ve yüzey ısı akıları diurnal animasyonu",
+   "aciklama": "Mevsimsel ve günlük döngüde yüzey enerji akılarının dinamik değişimi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Earth_energy_budget.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Yer-atmosfer sistemi küresel radyasyon bütçesi ve enerji dengesi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://cds.climate.copernicus.eu/datasets",
+   "aciklama": "Copernicus İklim Veri Deposu ERA5 saatlik veri erişim paneli"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Copernicus İklim Veri Deposu ERA5 Saatlik Yüzey Veri Portalı",
+   "url": "https://cds.climate.copernicus.eu/datasets"
+  },
+  {
+   "ad": "NOAA SURFRAD Yüzey Radyasyon Bütçesi Ağı Dokümantasyonu",
+   "url": "https://gml.noaa.gov/grad/surfrad/datapage.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO454-01.json",
+  "tarih": "2026-10-17 05:29",
+  "geminiSha1": "f574851d47f2"
+ }
+}

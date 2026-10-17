@@ -1,0 +1,490 @@
+{
+ "id": "D-MTO408E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 408E",
+  "dersAd": "Mikrometeoroloji",
+  "kol": "ikisi"
+ },
+ "ad": "Kampüste rüzgâr profili: logaritmik yasa ve pürüzlülük",
+ "ne": "Üç yükseklikte (2, 5, 10 m) anemometreyle rüzgâr ölç; logaritmik profil uydurup pürüzlülük uzunluğu ve sürtünme hızını kararlılığa göre hesapla.",
+ "adimlar": [
+  "Taşınabilir bir direğe üç anemometre kur; 10 Hz veri topla.",
+  "Nötr saatler için ln(z)-u doğrusu uydur; z₀ ve u* bul.",
+  "Sıcaklık farkından Richardson sayısı hesapla; kararlılık sınıfla.",
+  "Kararlı/kararsız koşullarda profil sapmalarını MOST fonksiyonlarıyla açıkla.",
+  "Çevredeki bina/ağaç etkisini (iç sınır tabakası) tartış."
+ ],
+ "sonuc": "Profil grafikleri ve z₀ tablosu.",
+ "dayanak": "Stull 1988",
+ "senden": "Saha ölçümü.",
+ "bizden": "Direk ve anemometreler.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 408E",
+    "ad": "Mikrometeoroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "METEK",
+   "ne": "Sonik anemometre ve rüzgâr profilleyici üreticisi.",
+   "url": "https://metek.de/",
+   "ayrinti": {
+    "neYaptilar": "Yüzey tabakası rüzgâr profillerini ve akustik sıcaklığı ölçen ultrasonik anemometre sistemleri geliştirdiler.",
+    "nasil": "3 boyutlu sensör başlıklarıyla yüksek frekanslı sinyalleri işleyerek rüzgâr hız bileşenlerini eşzamanlı olarak elde ettiler.",
+    "neEdindiler": "Mikrometeoroloji ve rüzgâr enerjisi araştırmalarında yüksek irtifa kule ölçümleri için referans donanım altyapısı sağladılar.",
+    "bizNasilKatki": "AURA bünyesinde METEK sensör çıktılarından logaritmik profil parametrelerini hesaplayan analiz modülleri yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "METEK Ultrasonic Anemometer USA-1 Technical Documentation",
+      "url": "https://metek.de/product/usa-1/",
+      "tur": "web"
+     },
+     {
+      "ad": "Peters vd. (2002) Sonic Anemometer and RASS Profiling Comparisons",
+      "url": "https://doi.org/10.1175/1520-0426(2002)019<0555:SOAPIC>2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://metek.de/product/usa-1/",
+      "aciklama": "METEK USA-1 ultrasonik anemometre ve sıcaklık sensör başlığı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ultrasonic_anemometer_METEK.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Meteoroloji direğine monte edilmiş 3 boyutlu sonik anemometre"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Gill Instruments",
+   "ne": "Ultrasonik anemometreler.",
+   "url": "https://gillinstruments.com/",
+   "ayrinti": {
+    "neYaptilar": "Düşük güç tüketimli ve hareketli parçası olmayan dayanıklı ultrasonik anemometreler tasarladılar.",
+    "nasil": "Ses dalgalarının hava akımı içindeki ilerleme süresi farkını dijital sinyal işlemcileriyle yüksek hızda hesapladılar.",
+    "neEdindiler": "Havaalanları, araştırma kuleleri ve rüzgâr santrallerinde bakım gerektirmeyen kesintisiz rüzgâr profili ölçümü sundular.",
+    "bizNasilKatki": "Üç farklı yükseklikteki Gill sensörlerinden gelen verileri tek veri çerçevesinde birleştiren Python betikleri oluşturabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Gill Instruments 2D and 3D Ultrasonic Wind Sensors Manual",
+      "url": "https://gillinstruments.com/products/anemometers/",
+      "tur": "web"
+     },
+     {
+      "ad": "Cuerva ve Sanz-Andres (2000) Sonic Anemometry in the Atmospheric Boundary Layer",
+      "url": "https://doi.org/10.1007/s10546-000-4948-4",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://gillinstruments.com/products/anemometers/",
+      "aciklama": "Gill Instruments araştırma tipi ultrasonik rüzgâr sensörleri arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Gill_Sonic_Anemometer.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Saha gözlemlerinde kullanılan 3 eksenli ultrasonik araştırma sensörü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NCAR Earth Observing Laboratory",
+   "ne": "Saha kampanyaları, uçak ve radar gözlem altyapısı.",
+   "url": "https://www.eol.ucar.edu/",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik sınır tabakasında yüzey enerji dengesini ve rüzgâr profillerini inceleyen kule sistemleri kurdular.",
+    "nasil": "Entegre Yüzey Akı Tesisi (ISFF) kapsamında çok seviyeli kulelere hassas sıcaklık ve rüzgâr sensörleri yerleştirdiler.",
+    "neEdindiler": "Kompleks topoğrafya ve kent kanyonlarında logaritmik rüzgâr profilinin geçerlilik sınırlarını belirleyen veri sağladılar.",
+    "bizNasilKatki": "NCAR EOL açık saha veri setlerini kullanarak kampüs ölçümlerimiz için kıyaslama kütüphanesi hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "NCAR EOL Integrated Surface Flux Facility (ISFF) Operations",
+      "url": "https://www.eol.ucar.edu/instruments/integrated-surface-flux-facility",
+      "tur": "web"
+     },
+     {
+      "ad": "Horst vd. (2004) Surface Layer Flux Measurements in Complex Terrain",
+      "url": "https://doi.org/10.1023/B:BOUN.0000030656.34588.6b",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.eol.ucar.edu/instruments/integrated-surface-flux-facility",
+      "aciklama": "NCAR EOL yüzey akı direkleri ve kule ölçüm altyapısı paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_boundary_layer_tower.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Sınır tabakası profil ölçümleri yapan çok katlı araştırma kulesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Scintec",
+   "ne": "Sintilometre ve SODAR üreticisi.",
+   "url": "https://www.scintec.com/",
+   "ayrinti": {
+    "neYaptilar": "Akustik ve optik uzaktan algılama teknikleriyle atmosferin ilk 200 metresinde rüzgâr ve türbülans profili ölçtüler.",
+    "nasil": "SODAR ses darbelerinin Doppler frekans kaymasını ve sintilometre lazer ışını kırpışmasını birleştirerek profil çıkardılar.",
+    "neEdindiler": "Fiziksel kule dikilemeyen engebeli alanlarda sınır tabakası rüzgâr hızının dikey profilini elde ettiler.",
+    "bizNasilKatki": "Kampüs zemin pürüzlülüğü hesaplarımızı akustik SODAR profil verileriyle karşılaştıran analizler yapabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Scintec Boundary Layer Profilers and Scintillometer Technical Note",
+      "url": "https://www.scintec.com/products/scintillometers/",
+      "tur": "web"
+     },
+     {
+      "ad": "Beyrich vd. (2002) Area-Averaged Sensible Heat Fluxes from Scintillometer Data",
+      "url": "https://doi.org/10.1023/A:1015525000557",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.scintec.com/products/scintillometers/",
+      "aciklama": "Scintec optik sintilometre ve akustik rüzgâr profilleyici konsolu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Scintillometer_receiver.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosferik türbülans yapısını optik kırılmayla ölçen sintilometre"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "ARM (DOE)",
+   "ne": "Atmosferik radyasyon ölçüm sahaları; tüm veri açık.",
+   "url": "https://www.arm.gov/",
+   "ayrinti": {
+    "neYaptilar": "Farklı iklim bölgelerinde sabit ve mobil gözlemevleriyle mikrometeorolojik kule profillerini sürekli açık paylaştılar.",
+    "nasil": "10 metrelik ve 60 metrelik kuleler üzerinde çok seviyeli sonik anemometre ve termometre dizileri çalıştırdılar.",
+    "neEdindiler": "Küresel iklim modellerinin yüzey sürtünme parametrizasyonlarını kalibre eden kapsamlı veri arşivi oluşturdular.",
+    "bizNasilKatki": "ARM açık veri portalından çim ve çalılık yüzey verilerini çekip kampüs pürüzlülük hesaplarımızla kıyaslayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Atmospheric Radiation Measurement (ARM) User Facility Overview",
+      "url": "https://www.arm.gov/capabilities/observatories",
+      "tur": "web"
+     },
+     {
+      "ad": "Mather ve Voyles (2013) The ARM Climate Research Facility: A Review of Science and Strategy",
+      "url": "https://doi.org/10.1175/BAMS-D-11-00218.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.arm.gov/capabilities/observatories",
+      "aciklama": "DOE ARM atmosferik gözlemevi veri kataloğu ve akı direkleri"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Logarithmic_wind_profile.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Yüzey tabakası logaritmik rüzgâr hızı profili ve kararlılık eğrileri"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yüzeye yakın türbülanslı akıları ölçmek ve benzerlik kuramıyla yorumlamak.",
+  "baglanti": "Yazılım kolunda eddy kovaryans işleme ve LES; Anlatım kolunda türbülans anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Monin-Obukhov benzerlik kuramı yüzey tabakasında rüzgâr ve sıcaklık profillerini sürtünme hızı ve Obukhov uzunluğuyla ölçeklendirir. (Stull 1988)",
+    "Türbülans spektrumları, Kolmogorov -5/3 eylemsizlik alt aralığını gösterir; sonik anemometre 10-20 Hz ile bunu çözer. (Wyngaard 2010)",
+    "Eddy kovaryans akıları koordinat dönüşümü, eğilim giderme ve spektral düzeltmelerle işlenir; ONEFlux standart hattıdır. (Pastorello vd. 2020)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "PALM gibi LES modelleri kent sokak kanyonlarında türbülanslı akışı bina ölçeğinde çözüyor. (Maronga vd. 2020)",
+    "Kararlı sınır tabakasında lidar ölçümleri rüzgâr-sıcaklık rejimini ve aralıklı türbülansı ortaya koydu. (Banakh vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer (Springer), ders kitabı",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Wyngaard 2010",
+    "baslik": "Turbulence in the Atmosphere",
+    "yayin": "Cambridge University Press, ders kitabı",
+    "yil": "2010",
+    "url": "https://doi.org/10.1017/CBO9780511840524",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pastorello vd. 2020",
+    "baslik": "The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data",
+    "yayin": "Scientific Data 7, 225",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41597-020-0534-3",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Maronga vd. 2020",
+    "baslik": "Overview of the PALM model system 6.0",
+    "yayin": "Geoscientific Model Development 13, 1335-1372",
+    "yil": "2020",
+    "url": "https://doi.org/10.5194/gmd-13-1335-2020",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Banakh vd. 2020",
+    "baslik": "Wind–Temperature Regime and Wind Turbulence in a Stable Boundary Layer of the Atmosphere: Case Study",
+    "yayin": "Remote Sensing 12(6), 955",
+    "yil": "2020",
+    "url": "https://doi.org/10.3390/rs12060955",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kljun vd. 2015",
+    "baslik": "A simple two-dimensional parameterisation for Flux Footprint Prediction (FFP)",
+    "yayin": "Geoscientific Model Development 8, 3695-3713",
+    "yil": "2015",
+    "url": "https://doi.org/10.5194/gmd-8-3695-2015",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Kampüs açık alanında üç farklı seviyedeki anemometre ölçümlerine logaritmik rüzgâr profilini uydurarak yüzey pürüzlülük uzunluğu ve sürtünme hızını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 408E",
+   "ad": "Mikrometeoroloji",
+   "projeyeKatki": "Atmosferik sınır tabakasında rüzgâr hızının yükseklikle logaritmik değişimini ve termal kararlılık fonksiyonlarıyla profil düzeltmesini öğretir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Monin-Obukhov yüzey tabakası logaritmik rüzgâr profili",
+     "nerede": "Adım 2: Nötr ve kararsız atmosferik koşullarda ölçülen rüzgâr profiline teorik logaritmik eğri uydurulmasında."
+    },
+    {
+     "formulAd": "Eddy kovaryans duyulur ısı akısı bağıntısı",
+     "nerede": "Adım 3: Yüzey tabakası termal tabakalaşmasını belirlemek için duyulur ısı akısı ve Monin-Obukhov uzunluğu hesabında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Taşınabilir direkte 3 seviyede rüzgâr ölçüp logaritmik profil uydurarak z0 ve sürtünme hızını belirlemek.",
+  "ayrinti": "Açık kampüs alanında taşınabilir 10 metrelik ölçüm direğine 2, 5 ve 10 metre yüksekliklerde anemometre ve sıcaklık sensörleri yerleştirilir. Nötr atmosferik tabakalaşma saatleri filtrelenerek rüzgâr hızının doğal logaritma yüksekliğe karşı eğrisi çizilir. Doğrunun eğiminden sürtünme hızı u*, kesim noktasından pürüzlülük uzunluğu z0 bulunur.",
+  "adimlar": [
+   {
+    "baslik": "Taşınabilir meteoroloji direğinde 3 seviyeli sensör kurulumu",
+    "oz": "2, 5 ve 10 metre seviyelerine anemometre bağlayıp veri toplamak.",
+    "ayrinti": "Kampüs açık çim alanında rüzgârı engellemeyen yönde direk dikilir. 2 m, 5 m ve 10 m seviyelerine kalibre edilmiş anemometreler ve radyasyon kalkanlı sıcaklık sensörleri monte edilir. 10 Hz frekansında eşzamanlı veri toplanır.",
+    "nasil": [
+     {
+      "teknik": "Anemometreleri hâkim rüzgâr yönüne bakacak şekilde 2, 5 ve 10 metre kotlarına sabitlemek.",
+      "sade": "MTO 408E dersindeki 'Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek' bilgisiyle direğin kendi gövdesinin rüzgârı kesmesini önleyecek açıyla aletleri yerleştiririz.",
+      "altAdimlar": [
+       "1. Kampüs stadyum veya açık park alanında engellerden en az 100 m uzaklıkta direği kurun.",
+       "2. Su terazisi ile direğin dikey dengesini ve sensör kollarının yataylığını ayarlayın.",
+       "3. Sensör kablolarını veri toplama ünitesine bağlayıp 10 Hz ölçüm akışını başlatın."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek."
+      }
+     },
+     {
+      "teknik": "Sensör kanallarının ofset ve kazanç kalibrasyon katsayılarını kontrol etmek.",
+      "sade": "MTO 408E dersindeki 'Ultrasonik anemometre ölçümlerinden sürtünme hızı ve türbülans kinetik enerjisini hesaplamak' bilgisiyle üç alet arasındaki bağıl ölçüm farklarını sıfırlarız.",
+      "altAdimlar": [
+       "1. Rüzgârsız kapalı ortamda sıfır rüzgâr referans testini yapın.",
+       "2. Üç sensörün aynı yükseklikte yan yana okumalarını kıyaslayarak sapma tablosu çıkarın.",
+       "3. Doğrulanan kalibrasyon çarpanlarını veri toplama yazılımına işleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Ultrasonik anemometre ölçümlerinden sürtünme hızı (u*) ve türbülans kinetik enerjisini (TKE) hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Nötr saatlerde logaritmik profille pürüzlülük tayini",
+    "oz": "Güneş doğuş ve batış nötr saatlerinde ln(z)-u doğrusu uydurmak.",
+    "ayrinti": "Termal kaldırma kuvvetlerinin sıfır olduğu gün batımı ve doğumu saatlerinde u(z) = (u*/k) * ln(z/z0) bağıntısı tam geçerlidir. ln(z) değerlerine karşı rüzgâr hızı u regresyona tabi tutulur.",
+    "nasil": [
+     {
+      "teknik": "Scipy linregress ile ln(z) ve ortalama rüzgâr hızı u arasında doğrusal regresyon hesaplamak.",
+      "sade": "MTO 408E dersindeki 'Monin-Obukhov yüzey tabakası logaritmik rüzgâr profili' bilgisiyle zeminin çim ve pürüz yapısının rüzgârı ne kadar yavaşlattığını hesaplarız.",
+      "altAdimlar": [
+       "1. Nötr periyotlara ait 30 dakikalık ortalama u(2), u(5), u(10) hızlarını seçin.",
+       "2. Yüksekliklerin doğal logaritması ln(z) ile rüzgâr hızları arasında regresyon doğrusu kurun.",
+       "3. Doğrunun eğiminden sürtünme hızını u* = k * egim olarak hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Monin-Obukhov benzerlik kuramı fonksiyonlarıyla dikey rüzgâr ve sıcaklık profillerini çözmek."
+      }
+     },
+     {
+      "teknik": "ln(z) eksenini kesen noktadan yüzey aerodinamik pürüzlülük uzunluğu z0'ı türetmek.",
+      "sade": "MTO 408E dersindeki 'Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek' bilgisiyle rüzgâr hızının sıfıra indiği teorik zemin seviyesini buluruz.",
+      "altAdimlar": [
+       "1. u=0 olduğu andaki yükseklik değerini z0 = exp(kesim_noktasi / egim) formülüyle çekin.",
+       "2. Elde edilen z0 değerini çim boyu ve arazi pürüzlülük tablolarıyla karşılaştırın.",
+       "3. R2 belirleme katsayısının 0.99 üzerinde olduğunu raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Gradyan Richardson sayısı ve termal kararlılık hesabı",
+    "oz": "Sıcaklık ve rüzgâr gradyanından yüzey tabakası kararlılığını hesaplamak.",
+    "ayrinti": "Ri = (g/T) * (dT/dz) / (du/dz)^2 denklemiyle termal yüzey tabakalaşması hesaplanır. Ri negatifken kararsız konvektif, pozitifken kararlı inversiyonlu durumlar ayrıştırılır.",
+    "nasil": [
+     {
+      "teknik": "2 m ve 10 m sıcaklık ve rüzgâr farklarından gradyan Richardson sayısını hesaplamak.",
+      "sade": "MTO 408E dersindeki 'Kararlı ve kararsız atmosferik tabakalaşmada türbülans spektrumlarını analiz etmek' bilgisiyle güneş ısınmasının mı yoksa mekanik rüzgâr sürtünmesinin mi baskın olduğunu anlarız.",
+      "altAdimlar": [
+       "1. 10 m ve 2 m seviyeleri arasındaki potansiyel sıcaklık farkı Delta_theta'yı bulun.",
+       "2. Aynı seviyeler arasındaki rüzgâr hızı farkı Delta_u'nun karesini hesaplayın.",
+       "3. Richardson formülünü uygulayarak her saat için kararlılık rejimini etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Kararlı ve kararsız atmosferik tabakalaşmada türbülans spektrumlarını analiz etmek."
+      }
+     },
+     {
+      "teknik": "Ri değerlerine göre ölçüm periyotlarını kararsız, nötr ve kararlı sepetlere ayırmak.",
+      "sade": "MTO 408E dersindeki 'Monin-Obukhov benzerlik kuramı fonksiyonlarıyla dikey rüzgâr ve sıcaklık profillerini çözmek' bilgisiyle rüzgâr eğrilerini havanın ısınma durumuna göre gruplarız.",
+      "altAdimlar": [
+       "1. Ri < -0.05 periyotlarını kararsız (gündüz konveksiyonu) olarak ayırın.",
+       "2. -0.05 <= Ri <= 0.05 aralığını nötr mekanik türbülans grubu yapın.",
+       "3. Ri > 0.05 periyotlarını kararlı gece inversiyonu olarak etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Monin-Obukhov benzerlik kuramı fonksiyonlarıyla dikey rüzgâr ve sıcaklık profillerini çözmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "MOST benzerlik fonksiyonlarıyla profil sapmalarının analizi",
+    "oz": "Kararlı ve kararsız durumlarda Businger-Dyer fonksiyonlarını uygulamak.",
+    "ayrinti": "Kararsız gündüz koşullarında termal kabarcıklar rüzgâr profilini düzleştirirken, gece kararlı tabakalaşmada rüzgâr makası artar. Businger-Dyer Psi_m fonksiyonlarıyla teorik sapmalar doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "Businger-Dyer Psi_m(zeta) kararlılık düzeltme integralini rüzgâr denklemine eklemek.",
+      "sade": "MTO 408E dersindeki 'Monin-Obukhov benzerlik kuramı fonksiyonlarıyla dikey rüzgâr ve sıcaklık profillerini çözmek' bilgisiyle teorik eğriyi atmosferin termal yapısına tam uydururuz.",
+      "altAdimlar": [
+       "1. Monin-Obukhov kararlılık parametresi zeta = z/L oranını hesaplayın.",
+       "2. Kararsız durum için Psi_m = 2*ln((1+x)/2) + ln((1+x^2)/2) - 2*arctan(x) + pi/2 formülünü uygulayın.",
+       "3. Kararlı durum için Psi_m = -5*zeta düzeltmesini profile entegre edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Monin-Obukhov benzerlik kuramı fonksiyonlarıyla dikey rüzgâr ve sıcaklık profillerini çözmek."
+      }
+     },
+     {
+      "teknik": "Matplotlib ile ölçülen profil noktaları ile MOST teorik eğrilerini üst üste çizdirmek.",
+      "sade": "MTO 408E dersindeki 'Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek' bilgisiyle ders kitaplarındaki eğrilerin kampüs sahasında nasıl gerçekleştiğini gösteririz.",
+      "altAdimlar": [
+       "1. 24 saatlik ortalama profil eğrilerini farklı kararlılık sınıflarında grafikleyin.",
+       "2. Çevredeki binaların oluşturduğu iç sınır tabakası (internal boundary layer) etkisini tartışın.",
+       "3. Kampüs açık alanı için nihai pürüzlülük atlası tablosunu üretin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Kampüs yüzey pürüzlülük uzunluğu (z0), sürtünme hızı (u*) tablosu ve termal kararlılık profil grafikleri.",
+  "senden": "Saha ölçüm desteği ve taşınabilir direkte sensör montajı.",
+  "bizden": "3 adet kalibre edilmiş anemometre, sıcaklık sensörleri ve veri işleme yazılımı."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Yüzey tabakasında 2, 5 ve 10 metre rüzgâr hızlarının logaritmik profil diurnal döngüsü, 2024",
+   "aciklama": "Gündüz konvektif kararsızlıktan gece kararlı tabakalaşmaya profil eğrilerinin evrimi"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Logarithmic_wind_profile.svg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Yüzey tabakasında logaritmik rüzgâr hızı profili ve pürüzlülük uzunluğu gösterimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.eol.ucar.edu/instruments/integrated-surface-flux-facility",
+   "aciklama": "NCAR EOL entegre yüzey akı ve sınır tabakası direkleri dokümantasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "NCAR EOL Entegre Yüzey Akı Tesisi ve Mikrometeoroloji Dokümantasyonu",
+   "url": "https://www.eol.ucar.edu/instruments/integrated-surface-flux-facility"
+  },
+  {
+   "ad": "Amerikan Meteoroloji Derneği Logaritmik Rüzgâr Profili Kılavuzu",
+   "url": "https://glossary.ametsoc.org/wiki/Logarithmic_wind_profile"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO408E-02.json",
+  "tarih": "2026-10-17 05:26",
+  "geminiSha1": "8aa41937d250"
+ }
+}

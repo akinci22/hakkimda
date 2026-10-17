@@ -1,0 +1,490 @@
+{
+ "id": "D-MTO408E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 408E",
+  "dersAd": "Mikrometeoroloji",
+  "kol": "yazilim"
+ },
+ "ad": "Ham sonik verisinden akıya: kendi EddyPro'nu yaz",
+ "ne": "AmeriFlux'tan 10 Hz ham sonik + gaz analizörü verisini al; koordinat dönüşümü, eğilim giderme ve kovaryansla 30 dakikalık duyulur/gizli ısı ve CO₂ akılarını hesapla, EddyPro çıktısıyla kıyasla.",
+ "adimlar": [
+  "Ham veriyi oku; ani değerleri (spike) temizle.",
+  "Çift döndürme ile koordinat dönüşümü uygula.",
+  "Doğrusal eğilim gider; w'T', w'q', w'c' kovaryanslarını hesapla.",
+  "Spektral kayıp düzeltmesini basitçe uygula.",
+  "EddyPro/ONEFlux sonuçlarıyla saçılım grafiği çiz."
+ ],
+ "sonuc": "Kendi akı hesaplayıcın ve karşılaştırma grafiği.",
+ "dayanak": "Pastorello vd. 2020",
+ "senden": "Sinyal işleme.",
+ "bizden": "Ham veri ve adım rehberi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 408E",
+    "ad": "Mikrometeoroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "AmeriFlux",
+   "ne": "Amerika kıtası eddy kovaryans akı kuleleri ağı ve açık veri arşivi.",
+   "url": "https://ameriflux.lbl.gov/",
+   "ayrinti": {
+    "neYaptilar": "Kuzey ve Güney Amerika'daki yüzlerce akı kulesinden gelen yüksek frekanslı türbülans verilerini standartlaştırıp paylaştılar.",
+    "nasil": "Gelişmiş QA/QC filtreleme ve eksik veri tamamlama (gap-filling) protokolleri kurarak kıta ölçeğinde homojen akı serileri ürettiler.",
+    "neEdindiler": "Karbon döngüsü ve iklim değişikliği araştırmalarında küresel ölçekte doğrulama sağlayan temel veri tabanını kurdular.",
+    "bizNasilKatki": "AURA bünyesinde AmeriFlux ham 10 Hz dosyalarını indirip kendi Python algoritmamızla test eden boru hatları yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Novick vd. (2018) The AmeriFlux Network: A Coalition of the Willing",
+      "url": "https://doi.org/10.1016/j.agrformet.2017.10.009",
+      "tur": "makale"
+     },
+     {
+      "ad": "AmeriFlux Data Processing Protocols and Half-Hourly Flux Pipeline",
+      "url": "https://ameriflux.lbl.gov/data/data-processing-protocols/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Eddy_covariance_tower.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Orman ekosisteminde kurulu mikro ölçekli eddy kovaryans akı kulesi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://ameriflux.lbl.gov/data/data-processing-protocols/",
+      "aciklama": "AmeriFlux akı veri işleme protokolleri ve kalite kontrol paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "LI-COR",
+   "ne": "Açık ve kapalı yol gaz analizörleri ve EddyPro akı işleme yazılımı.",
+   "url": "https://www.licor.com/",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik araştırmalar için yüksek hızlı CO2/H2O gaz analizörleri ve standart EddyPro yazılımını geliştirdiler.",
+    "nasil": "Kızılötesi ışık soğurma fiziğiyle çalışan optik sensörleri 20 Hz örnekleme kartlarıyla mikroişlemciye bağladılar.",
+    "neEdindiler": "Mikrometeoroloji dünyasında akı hesaplamaları için endüstri standardı haline gelen donanım ve yazılım ekosistemini sağladılar.",
+    "bizNasilKatki": "Kendi geliştirdiğimiz Python akı kodlarını EddyPro standart çıktılarıyla hücre hücre kıyaslayarak doğrulayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "EddyPro Software for Eddy Covariance Flux Computation Manual",
+      "url": "https://www.licor.com/env/products/eddy-covariance/eddypro",
+      "tur": "web"
+     },
+     {
+      "ad": "Fratini ve Mauder (2014) Towards a Consistent Eddy-Covariance Processing: An Evaluation of the New EddyPro Software",
+      "url": "https://doi.org/10.5194/amt-7-2273-2014",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.licor.com/env/products/eddy-covariance/eddypro",
+      "aciklama": "EddyPro açık ve kapalı yol akı hesaplama arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Akı kulesi çevresinde 30 dakikalık duyulur ve gizli ısı akılarının diurnal salınımı, 2024",
+      "aciklama": "Güneş doğuşundan batışına türbülanslı yüzey akılarının saatlik dinamiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Campbell Scientific",
+   "ne": "Mikrometeorolojik ölçüm istasyonu ve türbülans sensör sistemleri.",
+   "url": "https://www.campbellsci.com/",
+   "ayrinti": {
+    "neYaptilar": "Zorlu iklim koşullarında çalışan düşük güç tüketimli veri toplama üniteleri ve eddy kovaryans istasyonları ürettiler.",
+    "nasil": "Gelişmiş analog-dijital çeviriciler ve sağlam gömülü işletim sistemleriyle sensör sinyallerini yüksek hızda topladılar.",
+    "neEdindiler": "Kutup sahalarından çöllere kadar binlerce gözlem istasyonunun kesintisiz yüksek frekanslı veri toplamasını sağladılar.",
+    "bizNasilKatki": "Campbell veri formatlarını doğrudan okuyan ve Pandas DataFrame yapısına dönüştüren Python kütüphanesi hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Campbell Scientific Eddy-Covariance Flux Systems Resource Manual",
+      "url": "https://www.campbellsci.com/eddy-covariance-systems",
+      "tur": "web"
+     },
+     {
+      "ad": "High-Frequency Data Processing and Flux Pipeline Technical Note",
+      "url": "https://www.campbellsci.com/technical-papers",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.campbellsci.com/eddy-covariance-systems",
+      "aciklama": "Campbell Scientific entegre eddy kovaryans donanım ve yazılım kataloğu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ultrasonic_anemometer_3D.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Üç eksenli ultrasonik anemometre akustik dönüştürücü kafası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Gill Instruments",
+   "ne": "3 eksenli yüksek hızlı ultrasonik araştırma anemometreleri.",
+   "url": "https://gillinstruments.com/",
+   "ayrinti": {
+    "neYaptilar": "Ultrasonik ses dalgalarının uçuş süresi prensibiyle 3 eksenli rüzgâr hızını ve sonik sıcaklığı ölçen sensörler ürettiler.",
+    "nasil": "Mekanik aşınma olmadan 32 Hz frekansında akustik darbeler yayarak dikey rüzgâr bileşenini milimetre hassasiyetinde yakaladılar.",
+    "neEdindiler": "Türbülans araştırmalarında pürüzsüz yüksek hızlı rüzgâr vektörü ölçüm standardını sağladılar.",
+    "bizNasilKatki": "Gill sonik anemometrelerinin ham ikili (binary) veri akışını Python seri portundan okuyan gerçek zamanlı görselleştirici yapabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Gill Instruments WindMaster 3-Axis Ultrasonic Anemometer Specifications",
+      "url": "https://gillinstruments.com/products/anemometers/windmaster/",
+      "tur": "web"
+     },
+     {
+      "ad": "Kaimal ve Gaynor (1991) Another Look at Sonic Anemometers",
+      "url": "https://doi.org/10.1007/BF00119215",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://gillinstruments.com/products/anemometers/windmaster/",
+      "aciklama": "Gill WindMaster 32 Hz ultrasonik anemometre teknik paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Gill_Sonic_Anemometer.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Araştırma kulesinde yüksek irtifada rüzgâr türbülansı ölçen ultrasonik sensör"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "ICOS",
+   "ne": "Avrupa ölçeğinde entegre karbon ve sera gazı gözlem konsorsiyumu.",
+   "url": "https://www.icos-cp.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelinde yüzlerce ekosistem kulesinde standartlaştırılmış sera gazı ve türbülanslı akı ölçümleri yürüttüler.",
+    "nasil": "Ortak kalibrasyon laboratuvarları ve otomatik veri işleme merkezleriyle ham 20 Hz verileri seviye-4 akı ürünlerine çevirdiler.",
+    "neEdindiler": "Avrupa Birliği iklim politikalarına ve karbon bütçesi hesaplamalarına temel oluşturan en güvenilir gözlem altyapısını sundular.",
+    "bizNasilKatki": "ICOS Karbon Portalı API üzerinden ham akı verilerini çekip Türkiye orman verileriyle kıyaslayan analizler kurgulayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Heiskanen vd. (2022) The Integrated Carbon Observation System in Europe",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0364.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "ICOS Carbon Portal Open Ecosystem Flux Data Repository",
+      "url": "https://www.icos-cp.eu/data-services",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.icos-cp.eu/data-services",
+      "aciklama": "ICOS Karbon Portalı açık ekosistem akı veri arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_carbon_cycle.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Atmosfer ve biyosfer arasında türbülanslı karbon ve ısı alışverişi şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yüzeye yakın türbülanslı akıları ölçmek ve benzerlik kuramıyla yorumlamak.",
+  "baglanti": "Yazılım kolunda eddy kovaryans işleme ve LES; Anlatım kolunda türbülans anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Monin-Obukhov benzerlik kuramı yüzey tabakasında rüzgâr ve sıcaklık profillerini sürtünme hızı ve Obukhov uzunluğuyla ölçeklendirir. (Stull 1988)",
+    "Türbülans spektrumları, Kolmogorov -5/3 eylemsizlik alt aralığını gösterir; sonik anemometre 10-20 Hz ile bunu çözer. (Wyngaard 2010)",
+    "Eddy kovaryans akıları koordinat dönüşümü, eğilim giderme ve spektral düzeltmelerle işlenir; ONEFlux standart hattıdır. (Pastorello vd. 2020)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "PALM gibi LES modelleri kent sokak kanyonlarında türbülanslı akışı bina ölçeğinde çözüyor. (Maronga vd. 2020)",
+    "Kararlı sınır tabakasında lidar ölçümleri rüzgâr-sıcaklık rejimini ve aralıklı türbülansı ortaya koydu. (Banakh vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer (Springer), ders kitabı",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Wyngaard 2010",
+    "baslik": "Turbulence in the Atmosphere",
+    "yayin": "Cambridge University Press, ders kitabı",
+    "yil": "2010",
+    "url": "https://doi.org/10.1017/CBO9780511840524",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pastorello vd. 2020",
+    "baslik": "The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data",
+    "yayin": "Scientific Data 7, 225",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41597-020-0534-3",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Maronga vd. 2020",
+    "baslik": "Overview of the PALM model system 6.0",
+    "yayin": "Geoscientific Model Development 13, 1335-1372",
+    "yil": "2020",
+    "url": "https://doi.org/10.5194/gmd-13-1335-2020",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Banakh vd. 2020",
+    "baslik": "Wind–Temperature Regime and Wind Turbulence in a Stable Boundary Layer of the Atmosphere: Case Study",
+    "yayin": "Remote Sensing 12(6), 955",
+    "yil": "2020",
+    "url": "https://doi.org/10.3390/rs12060955",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kljun vd. 2015",
+    "baslik": "A simple two-dimensional parameterisation for Flux Footprint Prediction (FFP)",
+    "yayin": "Geoscientific Model Development 8, 3695-3713",
+    "yil": "2015",
+    "url": "https://doi.org/10.5194/gmd-8-3695-2015",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "10 Hz ultrasonik anemometre ve gaz analizörü ölçümlerinden türbülanslı ısı ve karbondioksit akılarını açık kaynak Python koduyla hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 408E",
+   "ad": "Mikrometeoroloji",
+   "projeyeKatki": "Yüksek frekanslı türbülans ölçümlerinin istatistiksel kovaryans analizi ve yüzey enerji akılarına dönüştürülmesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Eddy kovaryans duyulur ısı akısı bağıntısı",
+     "nerede": "Adım 3: Dikey rüzgâr hızı ile sonik sıcaklık anlık sapmalarının çarpımından 30 dakikalık duyulur ısı akısının çıkarılmasında."
+    },
+    {
+     "formulAd": "Monin-Obukhov yüzey tabakası logaritmik rüzgâr profili",
+     "nerede": "Adım 4: Yüzey tabakası termal kararlılık fonksiyonları ile türbülans spektrumlarının doğrulanmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "10 Hz sonik ve gaz analizörü verisinden koordinat döndürme ve kovaryansla duyulur/gizli ısı akılarını hesaplamak.",
+  "ayrinti": "Ham ultrasonik anemometre ve gaz analizörü serileri okunur. Ani gürültü sıçramaları (spike) temizlendikten sonra çift döndürme yapılarak ortalama dikey hız sıfırlanır. Doğrusal eğilim çıkarılıp dikey hız ile sıcaklık ve nem sapmalarının kovaryansından 30 dakikalık duyulur ve gizli ısı akıları türetilir.",
+  "adimlar": [
+   {
+    "baslik": "10 Hz ham sonik verisinin okunması ve uç değer temizliği",
+    "oz": "AmeriFlux kulesinden ham sonik ve CO2 verisini alıp ani gürültüleri ayıklamak.",
+    "ayrinti": "Ham metin veya binary veri dosyasından u, v, w rüzgâr hızları, sonik sıcaklık ve gaz konsantrasyonları okunur. Vickers ve Mahrt algoritmasıyla fiziksel sınırların dışına çıkan anlık sinyal sıçramaları temizlenir.",
+    "nasil": [
+     {
+      "teknik": "Pandas ile 10 Hz zaman serisini okuyup 3.5 standart sapma dışındaki uç değerleri ayıklamak.",
+      "sade": "MTO 408E dersindeki 'Ultrasonik anemometre ölçümlerinden sürtünme hızı ve türbülans kinetik enerjisini hesaplamak' bilgisiyle sensörün anlık elektriksel hatalarını filtreleyip temiz hava verisi bırakırız.",
+      "altAdimlar": [
+       "1. Ham AmeriFlux 10 Hz CSV dosyasını Pandas veri çerçevesine yükleyin.",
+       "2. Hareketli pencere ortalaması ve standart sapmasını hesaplayarak uç değerleri saptayın.",
+       "3. Hatalı noktaları doğrusal enterpolasyonla temizleyip veri sürekliliğini koruyun."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Ultrasonik anemometre ölçümlerinden sürtünme hızı (u*) ve türbülans kinetik enerjisini (TKE) hesaplamak."
+      }
+     },
+     {
+      "teknik": "Temizlenmiş 10 Hz serisinde eksik veri oranını ve spektral kalite bayrağını belirlemek.",
+      "sade": "MTO 408E dersindeki 'Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak' bilgisiyle yarım saatlik periyodun akı hesaplamaya uygun olup olmadığını doğrularız.",
+      "altAdimlar": [
+       "1. 30 dakikalık blokta eksik veri yüzdesini kontrol edin.",
+       "2. Yüzde 5'in üzerinde eksik içeren blokları kalite değerlendirmesinde işaretleyin.",
+       "3. Zaman damgası sürekliliğini doğrulayarak sonraki analize hazırlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Koordinat döndürme ve ortalama dikey hızın sıfırlanması",
+    "oz": "Çift eksenli döndürme ile anemometreyi ortalama rüzgâr çizgisine hizalamak.",
+    "ayrinti": "Anemometre montaj eğikliği ve zemin eğiminden kaynaklanan yapay dikey akımları ortadan kaldırmak için çift eksenli koordinat döndürme (2D coordinate rotation) uygulanır.",
+    "nasil": [
+     {
+      "teknik": "Yatay rüzgâr yönü açısı ile z ekseni etrafında ilk döndürmeyi yaparak v ortalamasını sıfırlamak.",
+      "sade": "MTO 408E dersindeki 'Monin-Obukhov benzerlik kuramı fonksiyonlarıyla dikey rüzgâr ve sıcaklık profillerini çözmek' bilgisiyle rüzgârın estiği yönü ana eksenimiz yaparız.",
+      "altAdimlar": [
+       "1. 30 dakikalık ortalama u ve v hızlarından rüzgâr hücum açısını theta = arctan(v/u) hesaplayın.",
+       "2. Yatay koordinat eksenlerini theta açısı kadar döndürün.",
+       "3. Yeni eksende yanal rüzgâr hızı v'nin ortalamasının sıfır olduğunu teyit edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Monin-Obukhov benzerlik kuramı fonksiyonlarıyla dikey rüzgâr ve sıcaklık profillerini çözmek."
+      }
+     },
+     {
+      "teknik": "Dikey eğim açısı ile y ekseni etrafında ikinci döndürmeyi yaparak w ortalamasını sıfırlamak.",
+      "sade": "MTO 408E dersindeki 'Ultrasonik anemometre ölçümlerinden sürtünme hızı ve türbülans kinetik enerjisini hesaplamak' bilgisiyle aletin eğikliğini düzelterek gerçek yukarı-aşağı türbülansı buluruz.",
+      "altAdimlar": [
+       "1. Ortalama dikey hız ile yatay hızdan eğim açısını phi = arctan(w/u) bulun.",
+       "2. Koordinatları phi açısı kadar dikeyde döndürün.",
+       "3. Dikey ortalama rüzgâr hızı w'yi sıfırlayarak sadece türbülans sapmalarını bırakın."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Ultrasonik anemometre ölçümlerinden sürtünme hızı (u*) ve türbülans kinetik enerjisini (TKE) hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Türbülans kovaryansları ile duyulur ve gizli ısı hesabı",
+    "oz": "Dalgalanmaları çarpıp ortalayarak W/m2 cinsinden enerji akılarını bulmak.",
+    "ayrinti": "Reynolds ayrıştırmasıyla her değişkenin anlık sapması (w', T', q', c') bulunur. w' ile T' kovaryansından duyulur ısı (H), w' ile q' kovaryansından gizli ısı (LE) hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "H = rho * c_p * cov(w', T') denklemiyle duyulur ısı akısını Watt cinsinden hesaplamak.",
+      "sade": "MTO 408E dersindeki 'Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak' bilgisiyle havanın ısınma miktarını doğrudan türbülans hareketlerinden çıkarırız.",
+      "altAdimlar": [
+       "1. Dikey rüzgâr ve sonik sıcaklığın anlık ortalamadan sapma serilerini çıkarın.",
+       "2. w' ve T' dizilerinin noktasal çarpımını alıp 30 dakikalık ortalamasını hesaplayın.",
+       "3. Hava yoğunluğu ve özgül ısıyla çarparak H akısını W/m2 birimine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak."
+      }
+     },
+     {
+      "teknik": "LE = rho * lambda * cov(w', q') bağıntısıyla gizli ısı akısını ve buharlaşmayı belirlemek.",
+      "sade": "MTO 408E dersindeki 'Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak' bilgisiyle bitki ve topraktan havaya taşınan buharlaşma enerjisini buluruz.",
+      "altAdimlar": [
+       "1. Gaz analizöründen gelen su buharı yoğunluğu sapmalarını dikey rüzgâr sapmasıyla çarpın.",
+       "2. Suyun buharlaşma gizli ısısı sabitiyle çarparak LE akısını elde edin.",
+       "3. Günlük toplam buharlaşmayı mm/gün cinsine çevirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Spektral düzeltme ve EddyPro çıktılarıyla kıyaslama",
+    "oz": "Sensör tepki süresi kayıplarını düzeltip standart yazılımla çapraz doğrulamak.",
+    "ayrinti": "Boru hattı gecikmesi ve sensör ayrımı kaynaklı yüksek frekans kayıpları Moore transfer fonksiyonuyla düzeltilir. Elde edilen değerler ticari EddyPro yazılım çıktısıyla doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "Moore spektral zayıflama transfer fonksiyonlarını uygulayarak yüksek frekans akı kaybını telafi etmek.",
+      "sade": "MTO 408E dersindeki 'Kararlı ve kararsız atmosferik tabakalaşmada türbülans spektrumlarını analiz etmek' bilgisiyle aletlerin kaçırdığı çok küçük hava girdaplarının payını geri ekleriz.",
+      "altAdimlar": [
+       "1. Fourier dönüşümüyle 10 Hz verisinin güç spektrumunu ve kospektrumunu çıkarın.",
+       "2. Sensör yol boyu ortalaması kaynaklı yüksek frekans kaybı katsayısını hesaplayın.",
+       "3. Akı değerlerine yüzde 5-15 arasındaki spektral kazanç düzeltmesini uygulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Kararlı ve kararsız atmosferik tabakalaşmada türbülans spektrumlarını analiz etmek."
+      }
+     },
+     {
+      "teknik": "Python çıktısı ile EddyPro sonuçları arasında regresyon ve saçılım grafiği üretmek.",
+      "sade": "MTO 408E dersindeki 'Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak' bilgisiyle yazdığımız kodun dünya standardıyla birebir örtüştüğünü kanıtlarız.",
+      "altAdimlar": [
+       "1. EddyPro tarafından üretilen 30 dakikalık tam akı dosyasını okuyun.",
+       "2. Kendi hesapladığımız H ve LE değerleriyle EddyPro değerleri arasında regresyon doğrusu uydurun.",
+       "3. R2 > 0.98 uyumunu gösteren saçılım grafiğini ve hata raporunu kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "Açık kaynak Python eddy kovaryans akı hesaplama kütüphanesi ve EddyPro karşılaştırma raporu.",
+  "senden": "Sinyal işleme ve Python istatistik araçları.",
+  "bizden": "Ham 10 Hz AmeriFlux ölçüm serisi ve doğrulama parametreleri."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Akı kulesi 10 Hz dikey rüzgâr ve sonik sıcaklık anlık sapmalarının kovaryans animasyonu",
+   "aciklama": "Türbülanslı girdapların dikey ısı transferi dinamik zaman serisi animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Eddy_covariance_tower.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yüzey tabakasında türbülanslı akı ölçen eddy kovaryans kulesi ve sensörleri"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://ameriflux.lbl.gov/data/data-processing-protocols/",
+   "aciklama": "AmeriFlux açık veri protokolü ve kalite güvence kılavuzu arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "AmeriFlux Yüksek Frekanslı Eddy Kovaryans Veri Protokolleri",
+   "url": "https://ameriflux.lbl.gov/data/data-processing-protocols/"
+  },
+  {
+   "ad": "LI-COR EddyPro Açık Kaynak Akı Hesaplama Yazılımı Kılavuzu",
+   "url": "https://www.licor.com/env/products/eddy-covariance/eddypro"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO408E-01.json",
+  "tarih": "2026-10-17 05:24",
+  "geminiSha1": "9916e042940f"
+ }
+}

@@ -1,0 +1,474 @@
+{
+ "id": "D-MTO388-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 388",
+  "dersAd": "Coğrafi Bilgi Bilimi",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul LCZ haritası + gece yüzey sıcaklığı",
+ "ne": "WUDAPT/LCZ Generator ile İstanbul yerel iklim bölgesi haritasını üret; MODIS gece LST ile her sınıfın ortalama sıcaklığını hesapla.",
+ "adimlar": [
+  "Earth Engine'de 15 LCZ sınıfı için eğitim poligonları çiz.",
+  "LCZ Generator'a yükle; haritayı al; doğruluk raporunu oku.",
+  "MODIS MYD11A2 gece LST yaz ortalamasını aynı grid'e getir.",
+  "Sınıf başına LST kutu grafiği çiz; ısı adası şiddetini hesapla.",
+  "Haritayı belediye planlama diline çevir."
+ ],
+ "sonuc": "LCZ haritası ve sınıf-sıcaklık grafiği.",
+ "dayanak": "Kamaraj vd. 2021",
+ "senden": "CBS ve Earth Engine.",
+ "bizden": "Eğitim alanı rehberi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 388",
+    "ad": "Coğrafi Bilgi Bilimi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "WUDAPT",
+   "ne": "Yerel iklim bölgesi (LCZ) haritalarını toplulukla üreten küresel proje.",
+   "url": "https://www.wudapt.org/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki kentler için yerel iklim bölgesi sınıflarını kitle kaynaklı eğitim verileri ve Landsat uydu görüntüleriyle standartlaştırdılar.",
+    "nasil": "WUDAPT protokolü çerçevesinde kentsel yapı geometrisi, bina yüksekliği ve geçirimsiz yüzey oranlarını 17 standart sınıfta grupladılar.",
+    "neEdindiler": "Yüzlerce metropol için kentsel ısı adası ve iklim simülasyonlarında kullanılan açık erişimli LCZ harita arşivini kurdular.",
+    "bizNasilKatki": "AURA ekibi olarak İstanbul için en güncel Sentinel-2 verisiyle yüksek doğruluklu yerel eğitim poligonları hazırlayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "WUDAPT: An Urban Weather, Climate, and Environmental Modeling Infrastructure",
+      "url": "https://doi.org/10.1175/BAMS-D-16-0002.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "WUDAPT Project Portal and LCZ Mapping Guidelines",
+      "url": "https://www.wudapt.org/lcz/lcz-framework/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Local_Climate_Zones_LCZ.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Yerel iklim bölgesi (LCZ) standart kentsel yapı ve arazi örtüsü sınıfları"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.wudapt.org/lcz/lcz-framework/",
+      "aciklama": "WUDAPT kentsel iklim ve arazi kullanım haritalama çerçevesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "LCZ Generator (Bochum)",
+   "ne": "Eğitim alanı yükleyerek otomatik LCZ haritası ve doğruluk raporu üreten web platformu.",
+   "url": "https://lcz-generator.rub.de/",
+   "ayrinti": {
+    "neYaptilar": "Ruhr Üniversitesi Bochum bünyesinde kullanıcıların eğitim alanları yükleyerek bulut tabanlı otomatik LCZ haritaları üretmesini sağladılar.",
+    "nasil": "Google Earth Engine altyapısı üzerinde rastgele orman algoritmasını küresel uydu katmanlarıyla eşleştirdiler.",
+    "neEdindiler": "Kent iklimi araştırmacılarının birkaç saat içinde hakemli yayın kalitesinde doğrulanmış LCZ raster haritası edinmesini sağladılar.",
+    "bizNasilKatki": "İstanbul için hazırlanan eğitim poligonlarını platforma yükleyerek çapraz doğruluk skorlarını optimize edebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Demuzere vd. (2021) LCZ Generator A Web Application to Create Local Climate Zone Maps",
+      "url": "https://doi.org/10.3389/fenvs.2021.637455",
+      "tur": "makale"
+     },
+     {
+      "ad": "Ruhr University Bochum LCZ Generator Documentation",
+      "url": "https://lcz-generator.rub.de/factsheets",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://lcz-generator.rub.de/factsheets",
+      "aciklama": "LCZ Generator otomatik kentsel iklim bölgesi haritalama kontrol paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul kentsel ısı adası yerel iklim bölgeleri sıcaklık dağılımı, 2024",
+      "aciklama": "Farklı LCZ sınıflarında yüzey ve 2 m hava sıcaklığı farklarının saatlik döngüsü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google Earth Engine",
+   "ne": "Bulutta petabayt ölçekli uydu görüntüsü analizi ve jeoistatistiksel harita motoru.",
+   "url": "https://earthengine.google.com/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki uydu gözlemlerini petabayt ölçeğinde depolayarak tarayıcı üzerinden paralel jeoistatistiksel analize açtılar.",
+    "nasil": "Landsat, Sentinel ve MODIS arşivlerini Google bulut işlemcileri üzerinde piksel tabanlı haritalama boru hatlarına bağladılar.",
+    "neEdindiler": "Milyonlarca araştırmacının süper bilgisayar gereksinimi olmadan küresel çevre ve iklim haritaları üretmesini sağladılar.",
+    "bizNasilKatki": "Earth Engine JavaScript API ile İstanbul için çok yıllı Landsat termal kızılötesi kompozitlerini hızlıca derleyebiliriz.",
+    "referanslar": [
+     {
+      "ad": "Gorelick vd. (2017) Google Earth Engine: Planetary-Scale Geospatial Analysis",
+      "url": "https://doi.org/10.1016/j.rse.2017.06.031",
+      "tur": "makale"
+     },
+     {
+      "ad": "Google Earth Engine Landsat and Sentinel Data Catalog",
+      "url": "https://developers.google.com/earth-engine/datasets",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://developers.google.com/earth-engine/datasets",
+      "aciklama": "Google Earth Engine uydu veri kataloğu ve bulut kodlama konsolu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Landsat_8_spectral_bands.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Landsat 8 ve 9 termal ve optik bant spektral aralık şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA LP DAAC",
+   "ne": "MODIS ve VIIRS arazi yüzey sıcaklığı, albedo ve bitki örtüsü ürünleri veri merkezi.",
+   "url": "https://lpdaac.usgs.gov/",
+   "ayrinti": {
+    "neYaptilar": "NASA kara gözlem uydularından elde edilen arazi yüzey sıcaklığı ve bitki örtüsü indekslerini küresel kullanıma sundular.",
+    "nasil": "MODIS ve VIIRS sensörlerinin kızılötesi bantlarını split-window algoritmalarıyla kalibre edip 1 km ızgaralı ürünlere dönüştürdüler.",
+    "neEdindiler": "Kentsel ısı adası ve yüzey iklimi araştırmalarında küresel standart referans zaman serisi veri tabanını sağladılar.",
+    "bizNasilKatki": "İstanbul üzerine düşen MODIS MYD11A2 gece LST ürünlerini otomatik çekip kırpan Python araçları yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "NASA Land Processes Distributed Active Archive Center Data Catalog",
+      "url": "https://lpdaac.usgs.gov/dataset_discovery",
+      "tur": "veri"
+     },
+     {
+      "ad": "Wan (2014) New Refinements and Validation of the Collection-6 MODIS Land-Surface Temperature Products",
+      "url": "https://doi.org/10.1016/j.rse.2013.08.027",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://lpdaac.usgs.gov/dataset_discovery",
+      "aciklama": "NASA LP DAAC MODIS yüzey sıcaklığı ve bitki örtüsü ürünleri kataloğu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:MODIS_Terra_LST_Global.png",
+      "lisans": "NASA",
+      "aciklama": "MODIS uydusu küresel gündüz ve gece arazi yüzey sıcaklığı dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "QGIS",
+   "ne": "Açık kaynaklı coğrafi bilgi sistemi yazılımı ve mekânsal analiz platformu.",
+   "url": "https://qgis.org/",
+   "ayrinti": {
+    "neYaptilar": "Gönüllü geliştirici topluluğuyla masaüstü CBS ortamında raster ve vektör analizlerini ücretsiz ve açık kaynaklı sundular.",
+    "nasil": "GDAL, GEOS ve PROJ kütüphaneleri üzerinde zengin eklenti mimarisi ve Python programlama desteği inşa ettiler.",
+    "neEdindiler": "Milyonlarca haritacı ve araştırmacının ticari yazılımlara bağımlı olmadan mekânsal analiz yapabilmesini sağladılar.",
+    "bizNasilKatki": "QGIS grafik işlemcisi ile LCZ haritası ve LST rasterını otomatik çakıştıran özel işlem şablonu geliştirebiliriz.",
+    "referanslar": [
+     {
+      "ad": "QGIS User Guide and Spatial Analysis Documentation",
+      "url": "https://docs.qgis.org/3.34/en/docs/user_manual/",
+      "tur": "web"
+     },
+     {
+      "ad": "QGIS Python API (PyQGIS) Developer Cookbook",
+      "url": "https://docs.qgis.org/3.34/en/docs/pyqgis_developer_cookbook/",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://docs.qgis.org/3.34/en/docs/user_manual/",
+      "aciklama": "QGIS raster katman bindirme ve tematik harita düzenleyici paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:QGIS_screenshot.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "QGIS açık kaynaklı CBS arayüzünde çok katmanlı raster ve vektör analizi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Meteorolojik veriyi harita katmanlarıyla birleştirip karar destek ürününe dönüştürmek.",
+  "baglanti": "Yazılım kolunda CBS ve bulut tabanlı coğrafi analiz; Anlatım kolunda hikâye haritaları.",
+  "literatur": {
+   "maddeler": [
+    "Coğrafi bilgi bilimi vektör (nokta, çizgi, poligon) ve raster veriyi koordinat sistemleri içinde birleştirir; projeksiyon seçimi alan ve mesafe hesabını belirler.",
+    "Google Earth Engine, petabayt ölçekli uydu arşivini tarayıcıdan analiz etmeyi sağladı. (Gorelick vd. 2017)",
+    "Kent yüzey malzemeleri çoklu uydu verisiyle sınıflandırılıp ısı adasıyla ilişkilendirilebilir. (Kamaraj vd. 2021)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Gönüllü haritacılık (HOT/OSM) afet sonrası saatler içinde harita üretiyor; meteorolojik uyarılarla birleşince etki tahmini mümkün oluyor.",
+    "Yerel iklim bölgesi (LCZ) haritaları topluluk yüklemeleriyle (WUDAPT) her şehir için üretilebiliyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Gorelick vd. 2017",
+    "baslik": "Google Earth Engine: Planetary-scale geospatial analysis for everyone",
+    "yayin": "Remote Sensing of Environment 202, 18-27",
+    "yil": "2017",
+    "url": "https://doi.org/10.1016/j.rse.2017.06.031",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kamaraj vd. 2021",
+    "baslik": "Detecting heat-inducing urban built-up surface material with multi remote sensing datasets",
+    "yayin": "Remote Sensing of Environment 264, 112591",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.rse.2021.112591",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Tornay vd. 2017",
+    "baslik": "GENIUS: A methodology to define a detailed description of buildings for urban climate and building energy consumption simulations",
+    "yayin": "Urban Climate 20, 75-93",
+    "yil": "2017",
+    "url": "https://doi.org/10.1016/j.uclim.2017.03.002",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Song vd. 2018",
+    "baslik": "Global land change from 1982 to 2016",
+    "yayin": "Nature 560, 639-643",
+    "yil": "2018",
+    "url": "https://doi.org/10.1038/s41586-018-0411-9",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "WUDAPT yöntemiyle İstanbul yerel iklim bölgelerini sınıflandırıp MODIS gece LST verisiyle kentsel ısı adası sıcaklık farklarını haritalamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 388",
+   "ad": "Coğrafi Bilgi Bilimi",
+   "projeyeKatki": "Coğrafi Bilgi Sistemleri analizi ve jeoistatistiksel yöntemlerle kentsel ısı adası ve yerel iklim bölgelerinin mekânsal dağılımını inceler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sıradan Kriging (Ordinary Kriging) mekânsal tahmin denklemi",
+     "nerede": "Adım 3: MODIS LST ve istasyon yüzey sıcaklıklarının kentsel ızgara üzerinde sürekli yüzeye dönüştürülmesinde."
+    },
+    {
+     "formulAd": "Deneysel semivaryogram bağıntısı",
+     "nerede": "Adım 4: Kentsel morfoloji sınıfları ile yüzey sıcaklığı arasındaki mekânsal korelasyon ve varyans yapısının analizinde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Earth Engine ile LCZ eğitim verisi oluşturup harita üretmek ve MODIS gece LST ile yüzey sıcaklık farklarını çıkarmak.",
+  "ayrinti": "Earth Engine platformunda İstanbul geneli için Landsat ve Sentinel görüntüleri kullanılarak 15 LCZ sınıfında poligonlar çizilir. Poligonlar LCZ Generator'a aktarılarak harita üretilir. MODIS MYD11A2 gece yüzey sıcaklığı katmanıyla çakıştırılarak her kentsel sınıfın ısı adası katkısı hesaplanır.",
+  "adimlar": [
+   {
+    "baslik": "Earth Engine ile LCZ eğitim alanlarının hazırlanması",
+    "oz": "İstanbul için Sentinel-2 ve Landsat görüntülerinden eğitim poligonları çıkarmak.",
+    "ayrinti": "Kentsel yapı yoğunluğu, bina yüksekliği ve geçirimsiz yüzey oranına göre 15 farklı yerel iklim sınıfı için temsil edici eğitim alanları taranır. Koordinatlar KML formatında dışa aktarılır.",
+    "nasil": [
+     {
+      "teknik": "Google Earth Engine ortamında Sentinel-2 10 m kompozitleri üzerinde eğitim poligonları sayısallaştırmak.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle uydu görüntülerinden kentsel bina yoğunluğu ve yeşil alan poligonlarını çıkarırız.",
+      "altAdimlar": [
+       "1. İstanbul metropolitan alanını kapsayan bulutsuz yaz dönemi Sentinel-2 medyan kompozitini yükleyin.",
+       "2. 15 LCZ sınıfının her biri için en az 10 adet homojen eğitim poligonu çizin.",
+       "3. Çizilen vektör poligon katmanını KML formatında yerel diske aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     },
+     {
+      "teknik": "Eğitim poligonlarının alan ve spektral dağılım homojenliğini test etmek.",
+      "sade": "MTO 388 dersindeki 'Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak' bilgisiyle poligonların spektral varyansını hesaplayıp sınıflar arası karışımı engelleriz.",
+      "altAdimlar": [
+       "1. Poligon içindeki NDVI ve NDBI indekslerinin standart sapmasını kontrol edin.",
+       "2. Spektral karışım gösteren heterojen poligon sınırlarını budayın.",
+       "3. WUDAPT kalite kriterlerine uygunluk kontrolünü tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "LCZ Generator ile kentsel iklim haritasının üretilmesi",
+    "oz": "Eğitim poligonlarını sisteme yükleyip rastgele orman algoritmasıyla harita türetmek.",
+    "ayrinti": "Hazırlanan poligon seti LCZ Generator web servisine yüklenir. Rastgele orman sınıflandırmasıyla 100 m çözünürlüklü raster harita ve doğruluk matrisi elde edilir.",
+    "nasil": [
+     {
+      "teknik": "LCZ Generator API servisine eğitim KML dosyasını yükleyip rastgele orman sınıflandırması başlatmak.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle eğitim verilerimizi bulut sınıflandırma motoruna bağlarız.",
+      "altAdimlar": [
+       "1. lcz-generator.rub.de adresine KML eğitim dosyasını yükleyin.",
+       "2. Rastgele orman sınıflandırıcı parametrelerini ve çapraz doğrulama seçeneklerini belirleyin.",
+       "3. Üretilen 100 m çözünürlüklü LCZ GeoTIFF haritasını ve doğruluk raporunu indirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     },
+     {
+      "teknik": "Karmaşıklık matrisi üzerinden genel doğruluk ve Kappa katsayısını değerlendirmek.",
+      "sade": "MTO 388 dersindeki 'Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak' bilgisiyle haritanın güvenilirliğini istatistiksel hata analiziyle doğrularız.",
+      "altAdimlar": [
+       "1. Çapraz doğrulama hata matrisindeki sınıflar arası karışımları inceleyin.",
+       "2. Genel doğruluk oranının yüzde 75 üzerinde olduğunu doğrulayın.",
+       "3. Düşük doğruluklu sınıflar için ilave eğitim alanı ekleyip haritayı güncelleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "MODIS gece yüzey sıcaklığı verisinin işlenmesi",
+    "oz": "Yaz aylarına ait MYD11A2 gece LST görüntülerini indirip aynı ızgaraya getirmek.",
+    "ayrinti": "Temmuz ve ağustos aylarına ait MODIS gece arazi yüzey sıcaklıkları Kelvin biriminden Celsius değerine çevrilir. LCZ raster katmanı ile aynı projeksiyon ve piksel boyutuna dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "MODIS MYD11A2 8 günlük kompozit gece LST ürününü rasterio ile açıp Celsius birimine dönüştürmek.",
+      "sade": "MTO 388 dersindeki 'Sayısal yükseklik modellerinden eğim, bakı ve orografik sıcaklık düzeltmesi türetmek' bilgisiyle uydu sıcaklık verisini standart ölçek çarpanıyla gerçek dereceye çeviririz.",
+      "altAdimlar": [
+       "1. LP DAAC portalından Temmuz-Ağustos dönemi MYD11A2 HDF dosyalarını çekin.",
+       "2. 0.02 ölçek katsayısını uygulayıp 273.15 çıkararak Kelvin verisini Celsius dereceye dönüştürün.",
+       "3. Kalite güvence (QA) bayraklarını kullanarak bulutlu pikselleri maskeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Sayısal yükseklik modellerinden eğim, bakı ve orografik sıcaklık düzeltmesi türetmek."
+      }
+     },
+     {
+      "teknik": "LST rasterını LCZ haritası koordinat referans sistemine afine dönüşümle yeniden örneklemek.",
+      "sade": "MTO 388 dersindeki 'Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak' bilgisiyle iki farklı haritayı aynı piksel ızgarasında üst üste bindiririz.",
+      "altAdimlar": [
+       "1. MODIS Sinusoidal projeksiyonunu EPSG:32635 UTM Zone 35N koordinatına dönüştürün.",
+       "2. En yakın komşu yöntemiyle 100 m LCZ hücreleriyle birebir piksel örtüşmesi sağlayın.",
+       "3. İstanbul il sınırları maskesini uygulayarak analiz alanını kırpın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Python GDAL, Rasterio ve GeoPandas kütüphaneleriyle jeomekânsal boru hatları kurmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "LCZ sınıflarına göre ısı adası şiddetinin analizi",
+    "oz": "Her LCZ sınıfındaki yüzey sıcaklık ortalamasını ve standart sapmasını hesaplamak.",
+    "ayrinti": "Bina yoğunluğu yüksek kompakt alanlar ile açık ve yeşil alanlar arasındaki gece sıcaklık farkları kutu grafiğiyle görselleştirilir. Kentsel ısı adası şiddeti nicel olarak raporlanır.",
+    "nasil": [
+     {
+      "teknik": "rasterstats zonal_stats ile LCZ poligonları altında kalan gece LST istatistiklerini hesaplamak.",
+      "sade": "MTO 388 dersindeki 'Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak' bilgisiyle kentin beton ve yeşil alanları arasındaki sıcaklık farkını çıkarırız.",
+      "altAdimlar": [
+       "1. Her bir LCZ sınıfı için ortalama gece yüzey sıcaklığı ve medyan değerleri çıkarın.",
+       "2. Kompakt yüksek yapılı alanlar (LCZ 1) ile kırsal orman (LCZ A) arasındaki sıcaklık farkını hesaplayın.",
+       "3. Kentsel ısı adası şiddetini derece cinsinden tabloya aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Meteorolojik istasyon nokta verilerini Kriging ve kokriging ile yüzeye yaymak."
+      }
+     },
+     {
+      "teknik": "Seaborn ile LCZ sınıflarına göre LST dağılımını gösteren kutu grafiği çizmek.",
+      "sade": "MTO 388 dersindeki 'Çok kriterli karar analiziyle (AHP) rüzgâr ve güneş santrali yer seçimi yapmak' bilgisiyle şehir plancıları için anlaşılır ısı risk grafikleri sunarız.",
+      "altAdimlar": [
+       "1. 15 LCZ sınıfının gece sıcaklık dağılımını kutu grafiğinde yan yana görselleştirin.",
+       "2. Aşırı sıcaklık anomalisi gösteren kentsel mahalleleri harita üzerinde işaretleyin.",
+       "3. Belediye iklim eylem planı için LCZ bazlı yeşil alan öncelik listesi oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 388",
+       "madde": "Çok kriterli karar analiziyle (AHP) rüzgâr ve güneş santrali yer seçimi yapmak."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "100 m çözünürlüklü İstanbul LCZ haritası ve sınıflara göre gece yüzey sıcaklık anomalisi grafiği.",
+  "senden": "CBS yazılımı ve Python coğrafi veri işleme kütüphaneleri.",
+  "bizden": "Eğitim alanı seçim rehberi ve MODIS LST işleme kod şablonu."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul LCZ sınıflarında yaz ayları gece yüzey sıcaklık farkları döngüsü, 2024",
+   "aciklama": "Yerel iklim bölgelerinde gündüzden geceye kentsel ısı adası yoğunlaşma animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Local_Climate_Zones_LCZ.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yerel iklim bölgesi (LCZ) standart kentsel yapı ve arazi örtüsü sınıfları"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://lcz-generator.rub.de/factsheets",
+   "aciklama": "LCZ Generator kentsel iklim haritalama platformu etkileşimli doğrulama sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "WUDAPT Küresel Kentsel İklim ve Morfoloji Veri Girişimi",
+   "url": "https://www.wudapt.org/lcz/lcz-framework/"
+  },
+  {
+   "ad": "LCZ Generator Kentsel İklim Haritalama Platformu",
+   "url": "https://lcz-generator.rub.de/factsheets"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO388-01.json",
+  "tarih": "2026-10-17 05:20",
+  "geminiSha1": "3c176246d6a8"
+ }
+}

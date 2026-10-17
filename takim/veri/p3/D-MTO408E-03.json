@@ -1,0 +1,490 @@
+{
+ "id": "D-MTO408E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 408E",
+  "dersAd": "Mikrometeoroloji",
+  "kol": "anlatim"
+ },
+ "ad": "Sokak kanyonunda rüzgâr: PALM LES animasyonu",
+ "ne": "PALM ile basit bir sokak kanyonu (bina yüksekliği/genişlik = 1) simülasyonu koştur; girdap yapısını animasyonla anlat.",
+ "adimlar": [
+  "PALM'ı kur; hazır kent kanyonu örnek girdisini kullan.",
+  "Rüzgâr dik ve paralel iki durumu koştur.",
+  "Dikey kesitte akım çizgileri ve TKE animasyonu yap.",
+  "Kirleticinin kanyonda hapsolmasını izleyici ekleyerek göster.",
+  "2 dakikalık video."
+ ],
+ "sonuc": "LES animasyonu; kent türbülansını görünür kılar.",
+ "dayanak": "Maronga vd. 2020",
+ "senden": "Model kurma.",
+ "bizden": "Girdi dosyaları.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 408E",
+    "ad": "Mikrometeoroloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "PALM model sistemi",
+   "ne": "Büyük girdap simülasyonu (LES) modeli, kent uygulamaları.",
+   "url": "https://palm-model.org/",
+   "ayrinti": {
+    "neYaptilar": "Leibniz Üniversitesi Hannover bünyesinde kent iklimi ve atmosferik sınır tabakası için paralel LES sistemi kurdular.",
+    "nasil": "Navier-Stokes denklemlerini Fortran ve MPI ile yüksek çözünürlüklü kartezyen ızgarada çözerek binaları katı engel olarak modellediler.",
+    "neEdindiler": "Bina ölçeğinden tüm metropol ölçeğine kadar türbülanslı hava hareketlerini simüle eden küresel açık araştırma standardı sağladılar.",
+    "bizNasilKatki": "AURA bünyesinde basit sokak kanyonu girdi şablonlarını otomatik üreten Python arayüz araçları yazabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Maronga vd. (2020) The PALM Model System 6.0 for Atmospheric and Oceanic Boundary Layers",
+      "url": "https://doi.org/10.5194/gmd-13-1335-2020",
+      "tur": "makale"
+     },
+     {
+      "ad": "PALM Model System Online Documentation and User Tutorials",
+      "url": "https://palm.muk.uni-hannover.de/trac/wiki/doc",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://palm.muk.uni-hannover.de/trac/wiki/doc",
+      "aciklama": "PALM model sistemi açık kaynaklı kent simülasyonu dokümantasyon paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Street_canyon_vortex.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kent sokak kanyonunda bina geometrisi kaynaklı primer türbülans girdabı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "MicroHH",
+   "ne": "Hafif, GPU destekli LES/DNS kodu.",
+   "url": "https://microhh.github.io/",
+   "ayrinti": {
+    "neYaptilar": "Wageningen Üniversitesi araştırmacıları grafik işlemcilerde (GPU) olağanüstü hızlı koşan modern bir LES kodu geliştirdiler.",
+    "nasil": "C++ ve CUDA programlama dilleriyle türbülanslı akış denklemlerini yüzlerce kat hızlandırarak masaüstü GPU'larda çalışır kıldılar.",
+    "neEdindiler": "Büyük sunucu merkezlerine ihtiyaç duymadan öğrencilerin ve bağımsız araştırmacıların doğrudan girdap simülasyonu yapmasını sağladılar.",
+    "bizNasilKatki": "Tekil bina ve kanyon akışlarını kişisel iş istasyonumuzun GPU donanımında MicroHH ile koşturup video üretebiliriz.",
+    "referanslar": [
+     {
+      "ad": "van Heerwaarden vd. (2017) MicroHH 1.0: A Numerical Library for New Atmospheric Large-Eddy Simulations",
+      "url": "https://doi.org/10.5194/gmd-10-3145-2017",
+      "tur": "makale"
+     },
+     {
+      "ad": "MicroHH Computational Fluid Dynamics Source Code Repository",
+      "url": "https://github.com/microhh/microhh",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://microhh.github.io/",
+      "aciklama": "MicroHH GPU hızlandırmalı atmosferik türbülans çözücü sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Kent geometrisi üzerinde dikey türbülans kinetik enerjisi ve girdap spektrumu animasyonu",
+      "aciklama": "Bina çatı seviyesinde oluşan kayma gerilmesi ve türbülanslı akım çizgileri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "DALES",
+   "ne": "Hollanda atmosfer LES modeli.",
+   "url": "https://github.com/dalesteam/dales",
+   "ayrinti": {
+    "neYaptilar": "Hollanda araştırma konsorsiyumu konvektif sınır tabaka ve kent kanopisi etkilerini incelemek için DALES platformunu kurdu.",
+    "nasil": "Gelişmiş alt ızgara türbülans kapanışları (Deardorff 1.5 derece) ve radyasyon transferi modülleriyle atmosferi dilimlediler.",
+    "neEdindiler": "Kent çatıları üzerindeki pürüzlülük alt tabakası ve türbülans spektrumlarını net biçimde ortaya koydular.",
+    "bizNasilKatki": "DALES kanyon akışı test vakalarını inceleyip sokak içi akım çizgilerini Paraview ortamında canlandırabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Heus vd. (2010) Formulation of the Dutch Atmospheric Large-Eddy Simulation (DALES) and Overview of Its Applications",
+      "url": "https://doi.org/10.5194/gmd-3-415-2010",
+      "tur": "makale"
+     },
+     {
+      "ad": "DALES GitHub Codebase and Urban Canopy Extension",
+      "url": "https://github.com/dalesteam/dales",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/dalesteam/dales",
+      "aciklama": "DALES açık kaynaklı atmosferik büyük girdap simülasyonu deposu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Turbulent_kinetic_energy_profile.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kent sınır tabakasında yükseklikle türbülans kinetik enerjisi profili"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "OpenFOAM",
+   "ne": "Açık kaynak CFD hesaplamalı akışkanlar dinamiği platformu.",
+   "url": "https://www.openfoam.com/",
+   "ayrinti": {
+    "neYaptilar": "Mühendislik ve atmosfer bilimleri için serbestçe erişilebilen ve genişletilebilen genel hesaplamalı akışkanlar dinamiği motoru sundular.",
+    "nasil": "Sonlu hacimler yöntemiyle (FVM) karmaşık 3 boyutlu bina ve sokak ızgaraları üzerinde Navier-Stokes çözücüleri geliştirdiler.",
+    "neEdindiler": "Ticari CFD lisans maliyetlerini ortadan kaldırarak açık bilim topluluğunun rüzgâr konforu simülasyonları yapmasını sağladılar.",
+    "bizNasilKatki": "OpenFOAM snappyHexMesh aracıyla İstanbul sokak kanyonu geometrilerini hızla ızgaraya bölen şablonlar kurgulayabiliriz.",
+    "referanslar": [
+     {
+      "ad": "OpenFOAM User Guide: Atmospheric Boundary Layer and Wind Around Buildings",
+      "url": "https://www.openfoam.com/documentation/user-guide/",
+      "tur": "web"
+     },
+     {
+      "ad": "Weller vd. (1998) A Tensorial Approach to Computational Continuum Mechanics Using Object-Oriented Techniques",
+      "url": "https://doi.org/10.1063/1.168744",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.openfoam.com/documentation/user-guide/",
+      "aciklama": "OpenFOAM hesaplamalı akışkanlar dinamiği kanyon simülasyonu kılavuzu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:OpenFOAM_mesh_example.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Bina çevresinde yapısal olmayan hesaplama ızgarası geometrisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ENVI-met",
+   "ne": "Mikro ölçek kent iklimi simülasyon yazılımı.",
+   "url": "https://www.envi-met.com/",
+   "ayrinti": {
+    "neYaptilar": "Binalar, bitki örtüsü, yüzey malzemeleri ve atmosfer etkileşimini çözen mikro ölçekli kent iklimi yazılımı geliştirdiler.",
+    "nasil": "Termodinamik enerji dengesi, radyasyon akıları ve akışkanlar mekaniğini birleştiren entegre kentsel simülasyon motoru kurdular.",
+    "neEdindiler": "Şehir plancılarının kentsel ısı adası ve rüzgâr koridoru etkilerini yapılaşma öncesinde test etmesini sağladılar.",
+    "bizNasilKatki": "ENVI-met simülasyon sonuçlarını açık kaynak Paraview formatına çevirip görsel video kütüphanesine aktarabiliriz.",
+    "referanslar": [
+     {
+      "ad": "Bruse ve Fleer (1998) Simulating Surface-Plant-Air Interactions Inside Urban Environments",
+      "url": "https://doi.org/10.1016/S1364-8152(98)00042-5",
+      "tur": "makale"
+     },
+     {
+      "ad": "ENVI-met Science and Urban Microclimate Simulation Software Documentation",
+      "url": "https://www.envi-met.com/support/documentation/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.envi-met.com/support/documentation/",
+      "aciklama": "ENVI-met 3 boyutlu kentsel mikroiklim ve hava kalitesi analiz arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Urban_canyon_thermal_comfort.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sokak kanyonunda sıcaklık ve rüzgâr dağılımının mikrometeorolojik gösterimi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yüzeye yakın türbülanslı akıları ölçmek ve benzerlik kuramıyla yorumlamak.",
+  "baglanti": "Yazılım kolunda eddy kovaryans işleme ve LES; Anlatım kolunda türbülans anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Monin-Obukhov benzerlik kuramı yüzey tabakasında rüzgâr ve sıcaklık profillerini sürtünme hızı ve Obukhov uzunluğuyla ölçeklendirir. (Stull 1988)",
+    "Türbülans spektrumları, Kolmogorov -5/3 eylemsizlik alt aralığını gösterir; sonik anemometre 10-20 Hz ile bunu çözer. (Wyngaard 2010)",
+    "Eddy kovaryans akıları koordinat dönüşümü, eğilim giderme ve spektral düzeltmelerle işlenir; ONEFlux standart hattıdır. (Pastorello vd. 2020)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "PALM gibi LES modelleri kent sokak kanyonlarında türbülanslı akışı bina ölçeğinde çözüyor. (Maronga vd. 2020)",
+    "Kararlı sınır tabakasında lidar ölçümleri rüzgâr-sıcaklık rejimini ve aralıklı türbülansı ortaya koydu. (Banakh vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer (Springer), ders kitabı",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Wyngaard 2010",
+    "baslik": "Turbulence in the Atmosphere",
+    "yayin": "Cambridge University Press, ders kitabı",
+    "yil": "2010",
+    "url": "https://doi.org/10.1017/CBO9780511840524",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pastorello vd. 2020",
+    "baslik": "The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data",
+    "yayin": "Scientific Data 7, 225",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41597-020-0534-3",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Maronga vd. 2020",
+    "baslik": "Overview of the PALM model system 6.0",
+    "yayin": "Geoscientific Model Development 13, 1335-1372",
+    "yil": "2020",
+    "url": "https://doi.org/10.5194/gmd-13-1335-2020",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Banakh vd. 2020",
+    "baslik": "Wind–Temperature Regime and Wind Turbulence in a Stable Boundary Layer of the Atmosphere: Case Study",
+    "yayin": "Remote Sensing 12(6), 955",
+    "yil": "2020",
+    "url": "https://doi.org/10.3390/rs12060955",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kljun vd. 2015",
+    "baslik": "A simple two-dimensional parameterisation for Flux Footprint Prediction (FFP)",
+    "yayin": "Geoscientific Model Development 8, 3695-3713",
+    "yil": "2015",
+    "url": "https://doi.org/10.5194/gmd-8-3695-2015",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "PALM büyük girdap simülasyonu modeliyle sokak kanyonundaki türbülanslı hava girdaplarını ve kirletici hapsini sayısal animasyonla açıklamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 408E",
+   "ad": "Mikrometeoroloji",
+   "projeyeKatki": "Bina kanyonlarında türbülans kinetik enerjisi (TKE) dağılımını ve yüzey sürtünme hızının girdap oluşumuna etkisini kuramsal olarak inceler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Monin-Obukhov yüzey tabakası logaritmik rüzgâr profili",
+     "nerede": "Adım 1: Kent kanyonu üst sınırında serbest atmosfer rüzgâr giriş sınır koşulunun tanımlanmasında."
+    },
+    {
+     "formulAd": "Eddy kovaryans duyulur ısı akısı bağıntısı",
+     "nerede": "Adım 3: Bina cepheleri ile sokak tabanı arasındaki türbülanslı ısı ve kirletici akılarının hesaplanmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "PALM büyük girdap simülasyonu ile kent kanyonunda rüzgâr akım çizgilerini ve kirletici hapsini animasyon haline getirmek.",
+  "ayrinti": "Basit bir sokak kanyonu için bina yüksekliği ve genişliği 20 metre (H/W = 1) olarak tanımlanır. Üst sınırda nötr sınır tabaka rüzgârı uygulanarak 1 saatlik simülasyon koşturulur. Dikey kesitlerde akım çizgileri, türbülans kinetik enerjisi ve zemin araç emisyonu kirletici parçacıklarının hareketi Paraview ile animasyonlaştırılır.",
+  "adimlar": [
+   {
+    "baslik": "Sokak kanyonu hesaplama ızgarasının ve girdilerin kurulumu",
+    "oz": "Bina en-boy oranı 1 olan kanyon geometrisini ve rüzgâr sınırını oluşturmak.",
+    "ayrinti": "PALM konfigürasyon dosyasında 1 metrelik kübik ızgaralarla 100x100x60 metrelik hesaplama alanı kurulur. Sokak genişliği 20 m, bina yüksekliği 20 m olan kanyon sınırları tanımlanır.",
+    "nasil": [
+     {
+      "teknik": "PALM p3d namelist dosyasında 1 m ızgara adımı ve bina topoğrafyası matrisini tanımlamak.",
+      "sade": "MTO 408E dersindeki 'Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek' bilgisiyle sokak ve binaların dijital koordinatlarını kurarız.",
+      "altAdimlar": [
+       "1. nx=100, ny=100, nz=60 boyutlarında 1 metre hücreli kartezyen ızgara kurun.",
+       "2. İki bina kütlesi arasına H/W=1 oranında 20 metre genişliğinde sokak yerleştirin.",
+       "3. Periyodik yatay sınır koşullarını etkinleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek."
+      }
+     },
+     {
+      "teknik": "Üst atmosferik sınır tabakası rüzgâr hızını logaritmik profille başlatmak.",
+      "sade": "MTO 408E dersindeki 'Monin-Obukhov yüzey tabakası logaritmik rüzgâr profili' bilgisiyle çatı üstünden esen ana rüzgâr hızını belirleriz.",
+      "altAdimlar": [
+       "1. Çatı seviyesinde u_top = 5 m/s rüzgâr hızını tanımlayın.",
+       "2. Dikey logaritmik profil ile ilk rüzgâr alanını başlatın.",
+       "3. Girdap bozulmalarını tetiklemek için rastgele hız perturbasyonları ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Monin-Obukhov benzerlik kuramı fonksiyonlarıyla dikey rüzgâr ve sıcaklık profillerini çözmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kanyona dik ve paralel rüzgâr senaryolarının koşturulması",
+    "oz": "0 ve 90 derece rüzgâr açıları için LES simülasyonlarını tamamlamak.",
+    "ayrinti": "Rüzgârın kanyona dik (90 derece) estiği durumda oluşan kapalı sirkülasyon ile paralel (0 derece) estiği durumda oluşan kanal akışı karşılaştırmalı olarak koşturulur.",
+    "nasil": [
+     {
+      "teknik": "MPI paralel işlemcilerle Navier-Stokes denklemlerini 1 saatlik fiziksel süre için çözmek.",
+      "sade": "MTO 408E dersindeki 'Kararlı ve kararsız atmosferik tabakalaşmada türbülans spektrumlarını analiz etmek' bilgisiyle havanın çalkantılı hareketlerini zaman adımlarıyla çözeriz.",
+      "altAdimlar": [
+       "1. CFL kriterine göre otomatik uyarlanan zaman adımıyla (dt ≈ 0.05 s) çözücüyü başlatın.",
+       "2. İlk 20 dakikalık ısınma periyodunun ardından türbülansın dengeye ulaşmasını bekleyin.",
+       "3. Son 40 dakikalık zaman serisi 3D NetCDF çıktılarını diske aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Kararlı ve kararsız atmosferik tabakalaşmada türbülans spektrumlarını analiz etmek."
+      }
+     },
+     {
+      "teknik": "Kanyon tabanında pasif skaler kirletici salınımı kaynağı aktive etmek.",
+      "sade": "MTO 408E dersindeki 'Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak' bilgisiyle araç egzoz gazının kanyon içinde nasıl yayıldığını takip ederiz.",
+      "altAdimlar": [
+       "1. Sokak zeminine sürekli birim kirletici emisyon çizgisi tanımlayın.",
+       "2. Türbülanslı taşınım denklemleriyle kirleticinin 3 boyutlu konsantrasyonunu hesaplayın.",
+       "3. Karşı rüzgâr cephesinde biriken kirletici yoğunluğunu kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Akım çizgileri ve türbülans kinetik enerjisi hesaplanması",
+    "oz": "Dikey kesitte kanyon içi primer girdap ve TKE alanlarını çıkarmak.",
+    "ayrinti": "Zaman ortalamalı u ve w rüzgâr hızlarından dikey akım çizgileri (streamlines) çizilir. u', v', w' sapmalarından türbülans kinetik enerjisi TKE = 0.5*(u'^2 + v'^2 + w'^2) dağılımı haritalanır.",
+    "nasil": [
+     {
+      "teknik": "Python xarray ile 3D NetCDF çıktılarından zaman ortalamalı rüzgâr vektör kesiti türetmek.",
+      "sade": "MTO 408E dersindeki 'Ultrasonik anemometre ölçümlerinden sürtünme hızı ve türbülans kinetik enerjisini hesaplamak' bilgisiyle kanyonun ortasındaki sirkülasyon girdabını ortaya çıkarırız.",
+      "altAdimlar": [
+       "1. Kanyon ortasındaki dikey kesit düzlemini xarray ile dilimleyin.",
+       "2. u ve w bileşenlerinden iki boyutlu akım çizgilerini hesaplayın.",
+       "3. Girdap merkezinin (vortex core) bina yüksekliğine göre konumunu belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Ultrasonik anemometre ölçümlerinden sürtünme hızı (u*) ve türbülans kinetik enerjisini (TKE) hesaplamak."
+      }
+     },
+     {
+      "teknik": "Çatı seviyesi kayma gerilmesi bölgesinde maksimum TKE üretimini haritalamak.",
+      "sade": "MTO 408E dersindeki 'Kararlı ve kararsız atmosferik tabakalaşmada türbülans spektrumlarını analiz etmek' bilgisiyle en şiddetli çalkantının bina köşelerinde oluştuğunu kanıtlarız.",
+      "altAdimlar": [
+       "1. Her ızgara hücresinde hız varyanslarını toplayarak TKE matrisini oluşturun.",
+       "2. Çatı üstünde oluşan ayrılma tabakasındaki (shear layer) yüksek TKE bandını renklendirin.",
+       "3. Kanyon tabanındaki sakin bölgeler ile çatıdaki türbülans farkını grafikleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Kararlı ve kararsız atmosferik tabakalaşmada türbülans spektrumlarını analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kirletici parçacık dağılımının animasyonla gösterimi",
+    "oz": "Egzoz salınımının sokak tabanında hapsoluşunu video haline getirmek.",
+    "ayrinti": "Paraview görselleştirme yazılımında hacimsel duman renderı ve akım parçacıkları izlenir. Kanyondaki sirkülasyon nedeniyle kirleticinin rüzgâr altı duvarda hapsoluşunu anlatan 2 dakikalık video derlenir.",
+    "nasil": [
+     {
+      "teknik": "Paraview Glyph ve StreamTracer filtreleriyle 3D hareketli parçacık animasyonu oluşturmak.",
+      "sade": "MTO 408E dersindeki 'Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak' bilgisiyle görünmeyen hava akışını sinematik bir bilimsel videoya çeviririz.",
+      "altAdimlar": [
+       "1. NetCDF zaman serisini Paraview platformuna aktarın.",
+       "2. Parçacık izleyicilerini kanyon tabanındaki egzoz kaynağından serbest bırakın.",
+       "3. Partiküllerin girdap tarafından sürüklenip duvara çarparak yükselişini kare kare render edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Eddy kovaryans yöntemiyle doğrudan duyulur ve gizli ısı akılarını ayrıştırmak."
+      }
+     },
+     {
+      "teknik": "FFmpeg ile kareleri birleştirip açıklayıcı infografik etiketlerle video kurgulamak.",
+      "sade": "MTO 408E dersindeki 'Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek' bilgisiyle kent plancıları için etkileyici bir bilgilendirme videosu sunarız.",
+      "altAdimlar": [
+       "1. Render edilen PNG kare dizisini 60 fps akıcılıkta MP4 formatında sıkıştırın.",
+       "2. Ekrana girdap yönünü ve kirletici yoğunluk skalasını gösteren infografik ekleyin.",
+       "3. Kanyon havalandırma prensiplerini özetleyen son jenerik kartını yerleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 408E",
+       "madde": "Yüzey pürüzlülük parametrelerini ve sıfır düzlemi yer değiştirmesini belirlemek."
+      }
+     }
+    ]
+   }
+  ],
+  "sonuc": "2 dakikalık 3 boyutlu sokak kanyonu hava girdabı ve kirletici hapsi bilimsel animasyon videosu.",
+  "senden": "Temel CFD simülasyon merakı ve video kurgu araçları.",
+  "bizden": "PALM hazır kent kanyonu girdi dosyaları ve Paraview sahne şablonu."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Sokak kanyonunda bina geometrisi kaynaklı türbülanslı akım çizgileri ve girdap animasyonu",
+   "aciklama": "Kanyon tabanından çatı seviyesine dikey hava hareketlerinin ve girdabın akış animasyonu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Street_canyon_vortex.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Kent sokak kanyonunda bina yüksekliği ve genişlik oranına bağlı primer sirkülasyon girdabı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://palm.muk.uni-hannover.de/trac/wiki/doc",
+   "aciklama": "PALM büyük girdap simülasyonu kent kanyonu uygulama ve konfigürasyon arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "PALM Model Sistemi Açık Kaynaklı Dokümantasyon Portalı",
+   "url": "https://palm.muk.uni-hannover.de/trac/wiki/doc"
+  },
+  {
+   "ad": "MicroHH Hesaplamalı Türbülans ve LES Simülasyon Kılavuzu",
+   "url": "https://microhh.github.io/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO408E-03.json",
+  "tarih": "2026-10-17 05:28",
+  "geminiSha1": "e1371992b4f3"
+ }
+}
