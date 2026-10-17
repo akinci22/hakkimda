@@ -1,0 +1,160 @@
+{
+ "kod": "MTO 462",
+ "ad": "Şiddetli ve Tehlikeli Hava Olayları",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "462",
+ "ozet": "Derin konvektif fırtınaların dinamik ve termodinamik yapısını, radyosonde analizlerini (CAPE, CIN, rüzgâr kesmesi), süper hücre ve mezoolçek konvektif sistemleri, hortum, dolu ve ani sel mekanizmalarını ve modern radar nowcasting algoritmalarını öğretir.",
+ "neOgrenirsin": [
+  "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak.",
+  "Derin konvektif fırtınalarda 0-6 km dikey rüzgâr kesmesini ve helisiteyi belirlemek.",
+  "Ani sel ve şiddetli yağış potansiyelini yağışa geçebilir su miktarıyla çözümlemek.",
+  "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak.",
+  "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Konvektif Kullanılabilir Potansiyel Enerji (CAPE)",
+   "tex": "\\mathrm{CAPE} = \\int_{z_{\\mathrm{LFC}}}^{z_{\\mathrm{EL}}} g \\left( \\frac{T_{v,\\mathrm{parsel}} - T_{v,\\mathrm{ortam}}}{T_{v,\\mathrm{ortam}}} \\right) dz",
+   "terimler": [
+    [
+     "\\mathrm{CAPE}",
+     "parselin serbest konveksiyon ile denge seviyesi arasındaki pozitif batmazlık enerjisi",
+     "J/kg"
+    ],
+    [
+     "z_{\\mathrm{LFC}}",
+     "serbest konveksiyon seviyesi yüksekliği (LFC)",
+     "m"
+    ],
+    [
+     "z_{\\mathrm{EL}}",
+     "denge seviyesi yüksekliği (EL)",
+     "m"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi",
+     "m/s²"
+    ],
+    [
+     "T_{v,\\mathrm{parsel}}",
+     "yükselen hava parselinin sanal sıcaklığı",
+     "K"
+    ],
+    [
+     "T_{v,\\mathrm{ortam}}",
+     "çevreleyen atmosferin sanal sıcaklığı",
+     "K"
+    ]
+   ],
+   "sade": "Isınan veya nemlenen bir hava parselinin çevresinden hafif kalarak yukarıya doğru hızlanmasını sağlayan toplam pozitif enerjiyi ölçer; yüksek değerler şiddetli oraj habercisidir.",
+   "ornek": "İstanbul Kartal radyosondesinden hesaplanan parsel batmazlığıyla LFC (1200 m) ile EL (11500 m) arasında entegre edilen CAPE değeri 1850 J/kg olarak bulunur.",
+   "nerede": "D-MTO462E-01 ve D-MTO462E-02'de oraj günleri ile sakin günleri ayıran eşik analizinde."
+  },
+  {
+   "ad": "0-6 km dikey rüzgâr kesmesi",
+   "tex": "S_{0-6} = \\sqrt{(u_6 - u_0)^2 + (v_6 - v_0)^2}",
+   "terimler": [
+    [
+     "S_{0-6}",
+     "yüzey ile 6 km irtifa arasındaki vektörel rüzgâr kesmesi büyüklüğü",
+     "m/s"
+    ],
+    [
+     "u_6",
+     "6 km yükseklikteki zonal rüzgâr bileşeni",
+     "m/s"
+    ],
+    [
+     "u_0",
+     "yüzey seviyesindeki zonal rüzgâr bileşeni",
+     "m/s"
+    ],
+    [
+     "v_6",
+     "6 km yükseklikteki meridyonal rüzgâr bileşeni",
+     "m/s"
+    ],
+    [
+     "v_0",
+     "yüzey seviyesindeki meridyonal rüzgâr bileşeni",
+     "m/s"
+    ]
+   ],
+   "sade": "Yer seviyesi ile orta troposfer arasındaki rüzgâr hızı ve yönü farkını ölçer; yüksek kesme fırtına yükselici akımının çökücü yağış akımından ayrılmasını sağlayarak süper hücre oluşumuna yol açar.",
+   "ornek": "İstanbul'da yüzey rüzgârı poyrazdan (040°) 5 m/s iken 6 km seviyesinde lodos yönünden (220°) 22 m/s esiyorsa vektörel kesme 26,5 m/s hesaplanır ve süper hücre eşiğini aşar.",
+   "nerede": "D-MTO462E-01'de CAPE-kesme saçılım grafiğinde fırtına tiplerini sınıflandırırken."
+  },
+  {
+   "ad": "Yağışa geçebilir su miktarı (PWAT)",
+   "tex": "\\mathrm{PWAT} = \\frac{1}{\\rho_w g} \\int_{p_{\\mathrm{üst}}}^{p_{\\mathrm{yüzey}}} q \\, dp",
+   "terimler": [
+    [
+     "\\mathrm{PWAT}",
+     "atmosfer sütunundaki toplam yoğunlaşabilir su buharı eşdeğer sıvı yüksekliği",
+     "mm"
+    ],
+    [
+     "\\rho_w",
+     "sıvı suyun standart yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "g",
+     "yerçekimi ivmesi",
+     "m/s²"
+    ],
+    [
+     "p_{\\mathrm{yüzey}}",
+     "yüzey atmosferik basıncı",
+     "Pa"
+    ],
+    [
+     "p_{\\mathrm{üst}}",
+     "troposfer üst sınırı basıncı",
+     "Pa"
+    ],
+    [
+     "q",
+     "atmosferik özgül nem miktarı",
+     "kg/kg"
+    ]
+   ],
+   "sade": "Başımızın üzerindeki tüm atmosfer sütunundaki su buharının tamamı yağmura dönüşseydi yerde oluşacak su derinliğini milimetre cinsinden ifade eder; ani sel riskinin temel göstergesidir.",
+   "ornek": "İstanbul üzerinde yazın denizden gelen nem girişiyle sütun boyunca özgül nem entegre edildiğinde PWAT 42 mm bulunur; bu değer ani sağanak ve sel riskini yükseltir.",
+   "nerede": "D-MTO462E-01 ve D-MTO462E-02'de ani sel ve aşırı yağış potansiyelini belirlerken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Supercell_thunderstorm.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yüksek CAPE ve kuvvetli dikey rüzgâr kesmesi altında gelişen süper hücre fırtınası yapısı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "İstanbul ve Marmara bölgesi konvektif oraj hattı radar yansıtırlık döngüsü",
+   "aciklama": "Marmara denizi üzerinden İstanbul'a ilerleyen çok hücreli oraj hattının radar reflektivite animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 462 (Şiddetli ve Tehlikeli Hava Olayları)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=462"
+  },
+  {
+   "ad": "Johns, R. H. & Doswell, C. A. (1992) Severe Local Storms Forecasting, Wea. Forecasting, 7, 588-612",
+   "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2"
+  },
+  {
+   "ad": "Markowski, P. & Richardson, Y. (2010) Mesoscale Meteorology in Midlatitudes, Wiley-Blackwell",
+   "url": "https://doi.org/10.1002/9780470682104"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=462"
+}

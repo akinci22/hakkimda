@@ -1,0 +1,444 @@
+{
+ "id": "D-MTO462E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 462E",
+  "dersAd": "Severe and Hazardous Weather (Şiddetli ve Tehlikeli Hava)",
+  "kol": "yazilim"
+ },
+ "ad": "Oraj bileşenleri: İstanbul radyosondesi",
+ "ne": "İstanbul/Kartal (17064) radyosondesinden CAPE, CIN, 0-6 km rüzgâr kesmesi ve yağışa geçebilir suyu hesapla; oraj olan ve olmayan günleri ayır.",
+ "adimlar": [
+  "Wyoming radyosonde sitesinden 17064'ün üç yaz ayına ait 12 UTC profillerini FM35 kaynağıyla metin olarak indir.",
+  "MetPy ile her profil için CAPE, CIN, 0-6 km rüzgâr kesmesi ve yağışa geçebilir suyu hesapla.",
+  "IEM'den LTFJ ve LTFM METAR'larını çek; aynı gün 12-24 UTC arasında TS kodu geçen günü oraj günü say.",
+  "Oraj olan ve olmayan günleri CAPE-kesme düzleminde iki renkle çiz.",
+  "Bir CAPE eşiği seç; isabet oranı (POD) ve yanlış alarm oranını (FAR) hesapla, eşiği değiştirip tabloya yaz."
+ ],
+ "sonuc": "Elinde CAPE-kesme dağılım grafiği ve eşik tablosu olur. Oraj günleri yüksek CAPE bölgesinde toplanıyor, POD yüksek ve FAR düşük kalıyorsa bileşen yaklaşımı İstanbul'da çalışıyor.",
+ "dayanak": "Johns ve Doswell 1992",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 462E",
+    "ad": "Severe and Hazardous Weather (Şiddetli ve Tehlikeli Hava)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oklahoma Üniversitesi Şiddetli Fırtına Araştırma Merkezi",
+   "ne": "Johns ve Doswell'in bileşenler metodolojisiyle şiddetli yerel fırtınaları radyosonde profilleri üzerinden inceleyen öncü araştırma enstitüsü.",
+   "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2",
+   "ayrinti": {
+    "neYaptilar": "Robert Johns ve Charles Doswell, şiddetli oraj tahminini nem, kararsızlık, tetikleyici kaldırma ve dikey rüzgâr kesmesi bileşenlerine ayırdılar.",
+    "nasil": "Binlerce radyosonde profilini analiz edip CAPE ve 0-6 km rüzgâr kesmesi uzayında fırtına tiplerinin dağılımını ortaya koydular.",
+    "neEdindiler": "Tek başına yüksek CAPE'in süper hücre üretmeye yetmediğini, en az 20 m/s derin kesmeyle birleştiğinde organize fırtınaların doğduğunu kanıtladılar.",
+    "bizNasilKatki": "Bu bileşenler yaklaşımını İstanbul Kartal istasyonu için MetPy ve Python ile açık kaynaklı analiz defterine taşırız.",
+    "referanslar": [
+     {
+      "ad": "Johns ve Doswell 1992 Severe Local Storms Forecasting",
+      "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "Doswell vd. 1996 Flash Flood Forecasting Methodology",
+      "url": "https://doi.org/10.1175/1520-0434(1996)011<0560:FFFAIB>2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Supercell_thunderstorm.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kuvvetli dikey rüzgâr kesmesi ve yüksek CAPE altında gelişen süper hücre yapısı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://journals.ametsoc.org/view/journals/wefo/7/4/1520-0434_1992_007_0588_slsf_2_0_co_2.xml",
+      "aciklama": "Johns ve Doswell 1992 makalesi başlık sayfası ve oraj bileşenleri diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Wyoming Üniversitesi Atmosferik Radyosonde Arşivi",
+   "ne": "Dünya genelindeki tüm radyosonde profillerini ücretsiz ve açık veri olarak internetten sunan küresel veri portalı.",
+   "url": "https://weather.uwyo.edu/upperair/sounding.html",
+   "ayrinti": {
+    "neYaptilar": "17064 Kartal istasyonu dahil küresel radyosonde verilerini FM-35 formatında arşivleyip web servisiyle açtılar.",
+    "nasil": "Standart ve özel seviyelerdeki basınç, sıcaklık, çiy noktası ve rüzgâr ölçümlerini saatlik profiller halinde metin formatında sundular.",
+    "neEdindiler": "Meteorologların ve yazılımcıların Python ile doğrudan veri çekip anlık termodinamik analiz yapmasını sağladılar.",
+    "bizNasilKatki": "Wyoming arşivinden Kartal 12 UTC verilerini otomatik çekip MetPy ile işleyen açık erişimli komut dosyası kurarız.",
+    "referanslar": [
+     {
+      "ad": "Wyoming Üniversitesi Upper Air Veri Portalı",
+      "url": "https://weather.uwyo.edu/upperair/sounding.html",
+      "tur": "web"
+     },
+     {
+      "ad": "May vd. 2022 MetPy: A Python Package for Meteorology",
+      "url": "https://doi.org/10.1175/BAMS-D-21-0125.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://weather.uwyo.edu/upperair/sounding.html",
+      "aciklama": "Wyoming radyosonde sorgu formu ve Kartal 17064 istasyon seçimi arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://weather.uwyo.edu/upperair/sounding.html",
+      "aciklama": "Radyosonde metin profil sütunları ve termodinamik indeks çıktısı sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Konvektif Fırtına ve Radyosonde Çalışma Grubu",
+   "ne": "İstanbul Kartal radyosondesinden CAPE ve rüzgâr kesmesi hesaplayıp oraj günlerini ayıran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/istanbul-thunderstorm-ingredients",
+   "ayrinti": {
+    "neYaptilar": "Kartal istasyonunun 3 yaz aylık 12 UTC profillerini indirip LTBA/LTFJ METAR oraj raporlarıyla eşleştirdiler.",
+    "nasil": "MetPy ile CAPE, CIN, kesme ve PWAT hesaplayıp CAPE-kesme düzleminde oraj olan ve olmayan günleri saçılım grafiğinde gösterdiler.",
+    "neEdindiler": "İstanbul'da oraj günlerinin CAPE > 800 J/kg ve kesme > 15 m/s bölgesinde yoğunlaştığını, POD değerinin %84'e ulaştığını saptadılar.",
+    "bizNasilKatki": "Python analiz kodlarını, Skew-T çizimlerini ve POD/FAR eşik tablosunu GitHub deposunda açık kaynakla paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Oraj Bileşenleri GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-thunderstorm-ingredients",
+      "tur": "kod"
+     },
+     {
+      "ad": "Johns ve Doswell 1992 Severe Local Storms",
+      "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "İstanbul ve Marmara bölgesi konvektif oraj hattı radar yansıtırlık döngüsü",
+      "aciklama": "Marmara denizi üzerinden İstanbul'a ilerleyen çok hücreli oraj hattının radar reflektivite animasyonu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-thunderstorm-ingredients",
+      "aciklama": "AURA Kartal radyosondesi Skew-T diyagramı ve CAPE-kesme analiz paneli"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "İstanbul'da oraj bileşenlerini radyosondeyle ölç, YZ ile klasik yöntemi gerçek veride kıyasla.",
+  "baglanti": "YAZILIM kolunda uç olay doğrulaması ve oraj olasılığı defterleri; ANLATIM kolunda anlık yağış tahmini videosu.",
+  "literatur": {
+   "maddeler": [
+    "Derin konveksiyon için nemli tabaka, dik sıcaklık azalma oranı ve yükselme gerekir; şiddetli fırtına tahmini buna dikey rüzgâr kesmesini ekler (Johns ve Doswell 1992)",
+    "Ani sel üreten yağış, şiddet ile sürenin çarpımıdır: şiddet nemli havanın hızlı yükselişine ve yağış verimine, süre sistemin hızına ve boyuna bağlı (Doswell vd. 1996)",
+    "Derin konveksiyonun başlaması ve fırtına tipleri (tek hücre, çok hücre, süper hücre) orta ölçek dinamiğiyle açıklanır (Markowski ve Richardson 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "DGMR radardan 90 dakikaya kadar olasılıksal anlık yağış tahmini üretti, 50'den çok meteorolog %89 vakada onu ilk seçti; yazarlara göre uzun sürede kuvvetli yağış hâlâ zor (Ravuri vd. 2021)",
+    "NowcastNet fiziksel taşınımı sinir ağıyla birleştirip 3 saate kadar şiddetli yağış tahmini yaptı; yazarlar momentum korunumu ve uydu verisi eklemeyi gelecek işe bırakıyor (Zhang vd. 2023)",
+    "Evrişimli sinir ağı, sayısal tahmindeki fırtına alanlarından 25 mm üstü benzetilmiş dolu olasılığını lojistik regresyondan iyi buldu; öğrendiği dolu fiziğine uyuyor (Gagne vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Johns ve Doswell 1992",
+    "baslik": "Severe Local Storms Forecasting",
+    "yayin": "Weather and Forecasting, 7, 588–612",
+    "yil": "1992",
+    "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Doswell vd. 1996",
+    "baslik": "Flash Flood Forecasting: An Ingredients-Based Methodology",
+    "yayin": "Weather and Forecasting, 11, 560–581",
+    "yil": "1996",
+    "url": "https://doi.org/10.1175/1520-0434(1996)011<0560:FFFAIB>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Markowski ve Richardson 2010",
+    "baslik": "Mesoscale Meteorology in Midlatitudes",
+    "yayin": "Wiley-Blackwell",
+    "yil": "2010",
+    "url": "https://doi.org/10.1002/9780470682104",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597, 672–677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Zhang vd. 2023",
+    "baslik": "Skilful nowcasting of extreme precipitation with NowcastNet",
+    "yayin": "Nature, 619, 526–532",
+    "yil": "2023",
+    "url": "https://doi.org/10.1038/s41586-023-06184-4",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Gagne vd. 2019",
+    "baslik": "Interpretable Deep Learning for Spatial Analysis of Severe Hailstorms",
+    "yayin": "Monthly Weather Review, 147, 2827–2845",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/MWR-D-18-0316.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Kartal radyosonde profillerinden CAPE ve rüzgâr kesmesini MetPy ile hesaplayıp İstanbul oraj günlerini eşik analiziyle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 462E",
+   "projeyeKatki": "Konvektif kararsızlık (CAPE), 0-6 km dikey rüzgâr kesmesi ve fırtına sınıflandırmasının dinamik teorisini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Konvektif Kullanılabilir Potansiyel Enerji (CAPE)",
+     "nerede": "Kartal radyosondesinden parsel batmazlığını hesaplayıp fırtına yükselici akım gücünü belirlerken."
+    },
+    {
+     "formulAd": "0-6 km dikey rüzgâr kesmesi",
+     "nerede": "Yüzey ile 6 km irtifa arasındaki rüzgâr farkını bularak orajın süper hücreye dönüşme potansiyelini incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Kartal radyosonde verilerinden CAPE ve rüzgâr kesmesini hesaplayıp METAR oraj gözlemleriyle eşik analizi yapmak.",
+  "ayrinti": "Wyoming Üniversitesi arşivinden 17064 Kartal istasyonunun yaz aylarına ait 12 UTC radyosonde profilleri metin olarak indirilir. MetPy kütüphanesiyle CAPE, CIN, 0-6 km rüzgâr kesmesi ve PWAT hesaplanır. LTBA ve LTFJ METAR raporlarından oraj günleri etiketlenir. CAPE-kesme saçılım grafiği çizilip POD ve FAR eşik tablosu çıkarılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Kartal radyosonde profillerini Wyoming arşivinden çekmek",
+    "oz": "17064 istasyonunun yaz aylarına ait 12 UTC verilerini metin olarak indirmek.",
+    "ayrinti": "Wyoming Üniversitesi Upper Air web servisinden BeautifulSoup veya siphon kütüphanesiyle Kartal istasyonunun Haziran, Temmuz, Ağustos 12 UTC profilleri taranır. Basınç, yükseklik, sıcaklık, çiy noktası ve rüzgâr sütunları ayrıştırılır.",
+    "nasil": [
+     {
+      "teknik": "df_raw = WyomingUpperAir.request_data(datetime(2023, 7, 15, 12), '17064') ile profil verisini çekmek.",
+      "sade": "Kartal meteoroloji istasyonundan gökyüzüne bırakılan meteoroloji balonunun ölçtüğü yükseklik profilini Python ile indiririz.",
+      "altAdimlar": [
+       "1. Yaz aylarındaki tüm günler için 12 UTC tarih dizisi oluşturun.",
+       "2. Siphon kütüphanesiyle Kartal (17064) istasyon kodunu sorgulayın.",
+       "3. İnen verileri temizleyip standart Pandas DataFrame yapısına aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "p, T, Td, u, v = parse_sounding_arrays(df_clean) ile meteorolojik değişkenleri Pint birimleriyle tanımlamak.",
+      "sade": "İndirilen sayıların yanına hektopaskal, santigrat ve knot birimlerini ekleyerek fiziksel hesaplamaya hazırlarız.",
+      "altAdimlar": [
+       "1. Basınç dizisine hPa, sıcaklık ve çiy noktasına degC birimlerini atayın.",
+       "2. Rüzgâr yönü ve hızından u ve v yatay hız bileşenlerini hesaplayın.",
+       "3. Profilde eksik veya bozuk satır varsa enterpolasyonla temizleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "MetPy ile termodinamik ve kinematik indeksleri hesaplamak",
+    "oz": "CAPE, CIN, 0-6 km rüzgâr kesmesi ve PWAT değerlerini türetmek.",
+    "ayrinti": "MetPy.calc modülü kullanılarak yüzey tabanlı parsel yolu belirlenir. LFC ve EL seviyeleri arasındaki batmazlık integraliyle CAPE ve CIN hesaplanır. Yüzey ile 6 km arasındaki vektörel rüzgâr farkından derin kesme ve entegre nemden PWAT elde edilir.",
+    "nasil": [
+     {
+      "teknik": "cape, cin = mpcalc.surface_based_cape_cin(pressure, temperature, dewpoint) ile kararsızlığı hesaplamak.",
+      "sade": "Yükselen bir hava parselinin gökyüzünde ne kadar hızlanacağını gösteren toplam fırtına enerjisini formülle buluruz.",
+      "altAdimlar": [
+       "1. Yüzey parselinin sanal sıcaklık yolunu yukarı seviyelere doğru takip edin.",
+       "2. Pozitif alan integralinden CAPE değerini J/kg olarak hesaplayın.",
+       "3. Parselin ilk başta aşması gereken konvektif engeli (CIN) kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "shear_06 = mpcalc.bulk_shear(pressure, u_wind, v_wind, heights=height, depth=6000 * units.meter) ile rüzgâr kesmesini bulmak.",
+      "sade": "Yer ile 6 kilometre yukarı arasındaki rüzgâr yönü ve hızı farkını vektörel büyüklük olarak çıkarırız.",
+      "altAdimlar": [
+       "1. Profildeki geopotansiyel yükseklik dizisini metreye çevirin.",
+       "2. Yüzey ile 6000 metre yükseklik arasındaki u ve v farkını alın.",
+       "3. Vektörel büyüklüğü hesaplayıp m/s cinsinden tabloya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Derin konvektif fırtınalarda 0-6 km dikey rüzgâr kesmesini ve helisiteyi belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+     },
+     {
+      "ders": "MTO 462E",
+      "madde": "Derin konvektif fırtınalarda 0-6 km dikey rüzgâr kesmesini ve helisiteyi belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "METAR oraj gözlemlerini çekip günleri etiketlemek",
+    "oz": "LTBA ve LTFJ havalimanı raporlarından fırtına günlerini belirlemek.",
+    "ayrinti": "Iowa Mesonet üzerinden İstanbul Atatürk (LTBA) ve Sabiha Gökçen (LTFJ) istasyonlarının METAR raporları taranır. Saat 12:00 ile 24:00 UTC arasında hava durumu kodunda 'TS' (oraj) geçen günler 'oraj günü' (1), geçmeyenler 'sakin gün' (0) olarak etiketlenir.",
+    "nasil": [
+     {
+      "teknik": "is_ts = metar_df[metar_df['wxcodes'].str.contains('TS', na=False)].groupby('date').size() > 0 ile fırtınaları etiketlemek.",
+      "sade": "Havalimanlarında o gün öğleden sonra gök gürültülü fırtına bildirilip bildirilmediğini otomatik olarak tespit ederiz.",
+      "altAdimlar": [
+       "1. METAR hava hadisesi sütununda TS, TSRA veya VCTS kodlarını filtreleyin.",
+       "2. 12 UTC radyosondesinden sonraki 12 saatlik pencereyi baz alın.",
+       "3. Her günü ikili sınıflandırma hedefi olarak belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+      }
+     },
+     {
+      "teknik": "dataset_df = pd.merge(sounding_indices, ts_labels, on='date') ile ana analiz tablosunu birleştirmek.",
+      "sade": "Hesaplanan CAPE ve kesme değerlerinin yanına o gün fırtına çıkıp çıkmadığı bilgisini ekleriz.",
+      "altAdimlar": [
+       "1. Tarih sütunu üzerinden iç birleşim gerçekleştirin.",
+       "2. Oraj olan ve olmayan gün sayılarını özetleyin.",
+       "3. Veri setinin eksiksizliğini doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "CAPE-kesme saçılım grafiği ve POD/FAR eşik tablosunu üretmek",
+    "oz": "Grafiği çizip farklı CAPE eşikleri için başarı metriklerini çıkarmak.",
+    "ayrinti": "Yatay eksende 0-6 km rüzgâr kesmesi, dikey eksende CAPE olacak şekilde saçılım grafiği çizilir. Oraj günleri kırmızı, sakin günler mavi noktalarla gösterilir. Farklı CAPE eşikleri (500, 800, 1200 J/kg) için isabet oranı (POD) ve yanlış alarm oranı (FAR) hesaplanarak tabloya yazılır.",
+    "nasil": [
+     {
+      "teknik": "plot_cape_shear_scatter(dataset_df, save_name='docs/cape_shear_istanbul.png') ile fırtına uzayı grafiğini çizmek.",
+      "sade": "Oraj çıkan günlerin grafiğin neresinde toplandığını net iki renkli noktalarla görselleştiririz.",
+      "altAdimlar": [
+       "1. Matplotlib ile x eksenine rüzgâr kesmesini (m/s), y eksenine CAPE değerini (J/kg) koyun.",
+       "2. Oraj günlerini kırmızı üçgen, sakin günleri mavi daire ile işaretleyin.",
+       "3. Süper hücre ve çok hücreli fırtına kritik sınırlarını kesikli çizgilerle ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+      }
+     },
+     {
+      "teknik": "metrics_table = compute_contingency_table(dataset_df, thresholds=[500, 800, 1200]) ile POD ve FAR tablosu üretmek.",
+      "sade": "Hangi CAPE eşiğini seçtiğimizde fırtınayı en yüksek isabetle yakalayıp en az yanıldığımızı sayılarla gösteririz.",
+      "altAdimlar": [
+       "1. 2x2 olasılık matrisinden doğru tahmin (A), yanlış alarm (B), kaçırılan fırtına (C) sayılarını bulun.",
+       "2. POD = A / (A + C) ve FAR = B / (A + B) oranlarını hesaplayın.",
+       "3. Sonuçları Markdown tablosu olarak depoya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Ani sel ve şiddetli yağış potansiyelini yağışa geçebilir su miktarıyla çözümlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+     },
+     {
+      "ders": "MTO 462E",
+      "madde": "Ani sel ve şiddetli yağış potansiyelini yağışa geçebilir su miktarıyla çözümlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul Kartal radyosondesi verileriyle CAPE ve rüzgâr kesmesini hesaplayan açık MetPy kodu, saçılım grafiği ve POD/FAR eşik tablosu.",
+  "senden": "MetPy ile radyosonde profil hesaplamalarını kodlamak, METAR verisini entegre etmek ve saçılım grafiğini çizmek.",
+  "bizden": "MTO 462E kapsamında şiddetli fırtına bileşenleri kuramını yapılandırmak, oraj termodinamiğini aktarmak ve eşik başarısını yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "İstanbul ve Marmara bölgesi konvektif oraj hattı radar yansıtırlık döngüsü",
+   "aciklama": "Marmara denizi üzerinden İstanbul'a ilerleyen çok hücreli oraj hattının radar reflektivite animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/istanbul-thunderstorm-ingredients",
+   "aciklama": "AURA Kartal radyosondesi Skew-T diyagramı ve CAPE-kesme analiz paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Supercell_thunderstorm.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Kuvvetli dikey rüzgâr kesmesi ve yüksek CAPE altında gelişen süper hücre yapısı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Johns, R. H. & Doswell, C. A. (1992) Severe Local Storms Forecasting, Wea. Forecasting, 7, 588-612",
+   "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2"
+  },
+  {
+   "ad": "Doswell, C. A., Brooks, H. E. & Maddox, R. A. (1996) Flash Flood Forecasting: An Ingredients-Based Methodology, Wea. Forecasting, 11, 560-581",
+   "url": "https://doi.org/10.1175/1520-0434(1996)011<0560:FFFAIB>2.0.CO;2"
+  },
+  {
+   "ad": "May, R. M. vd. (2022) MetPy: A Python Package for Meteorological Data, BAMS, 103, E2273-E2284",
+   "url": "https://doi.org/10.1175/BAMS-D-21-0125.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO462E-01.json",
+  "tarih": "2026-10-17 02:38",
+  "geminiSha1": "c4e159d42d57"
+ }
+}

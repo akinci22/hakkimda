@@ -1,0 +1,427 @@
+{
+ "id": "D-MTO460E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 460E",
+  "dersAd": "Intr. to Energy Meteorology (Enerji Meteorolojisine Giriş)",
+  "kol": "yazilim"
+ },
+ "ad": "Göbek yüksekliği: AIFS ve IFS güç hatası",
+ "ne": "Makalenin açık bıraktığı noktayı dene: 10 m tahmini 100 m'ye taşımak ile doğrudan 100 m tahmini kullanmanın güç hatasını AIFS ve IFS için kıyasla.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den Çatalca yakını bir nokta için AIFS ve IFS'in 10 m ve 100 m rüzgârını (wind_speed_unit=ms) bir yıl çek.",
+  "Aynı dönemin ERA5 100 m rüzgârını Open-Meteo Historical Weather API'den referans olarak al.",
+  "windpowerlib'den bir türbin güç eğrisi seç, göbek yüksekliğini 100 m al; bütün rüzgârları güce çevir.",
+  "İki yol kur: doğrudan 100 m tahmini ve 1/7 üssüyle 100 m'ye taşınmış 10 m tahmini.",
+  "Her yol ve her tahmin için güçte MAE ve RMSE hesapla; dört satırlık tabloda göster."
+ ],
+ "sonuc": "Elinde dört satırlık güç hatası tablosu olur. Doğrudan 100 m yolu daha az hatalıysa 10 m'den taşımak bilgi kaybettiriyor; ERA5 ölçüm olmadığından farkı ERA5'e yakınlık diye oku.",
+ "dayanak": "Price vd. 2025",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 460E",
+    "ad": "Intr. to Energy Meteorology (Enerji Meteorolojisine Giriş)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Danimarka Teknik Üniversitesi (DTU) Rüzgâr ve Enerji Sistemleri Bölümü",
+   "ne": "Stefan Emeis ve DTU ekibiyle rüzgâr türbini göbek yüksekliği dikey profilleri ve güç eğrisi dönüşümlerini inceleyen dünya lideri merkez.",
+   "url": "https://doi.org/10.1007/978-3-319-72859-9",
+   "ayrinti": {
+    "neYaptilar": "Atmosfer sınır tabakasında kararlılık koşullarının dikey rüzgâr profili ve türbin aerodinamik gücü üzerindeki etkisini formüle ettiler.",
+    "nasil": "Mast kule ölçümleri ve sayısal hava tahmin modelleriyle logaritmik ve kuvvet yasası profil parametrelerini farklı arazi pürüzlülüklerinde test ettiler.",
+    "neEdindiler": "10 metre rüzgârını sabit 1/7 üssüyle taşırken kararlı gecelerde güç tahmininde %25'e varan sistematik sapmalar oluştuğunu saptadılar.",
+    "bizNasilKatki": "Bu teorik çerçeveyi Çatalca rüzgâr santrali sahasına ve Open-Meteo AIFS/IFS verilerine açık kaynaklı Python defteriyle uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Emeis 2018 Wind Energy Meteorology",
+      "url": "https://doi.org/10.1007/978-3-319-72859-9",
+      "tur": "makale"
+     },
+     {
+      "ad": "Peña vd. 2016 On the Wind Speed Profile in the Atmospheric Boundary Layer",
+      "url": "https://doi.org/10.1007/s10546-015-0105-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Wind_turbines_in_Austria.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Türbin göbek yüksekliğindeki rüzgâr profilinden güç üreten rüzgâr santrali"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://link.springer.com/book/10.1007/978-3-319-72859-9",
+      "aciklama": "Stefan Emeis Wind Energy Meteorology kitap kapağı ve sınır tabaka rüzgâr profili şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google DeepMind ve ECMWF GenCast Ekibi",
+   "ne": "Ilan Price öncülüğünde yapay zekâ tabanlı topluluk hava tahmini GenCast ile küresel rüzgâr santrallerinde güç tahmini yapan ekip.",
+   "url": "https://doi.org/10.1038/s41586-024-08252-9",
+   "ayrinti": {
+    "neYaptilar": "Küresel ölçekte 5344 rüzgâr santralinde difüzyon tabanlı GenCast modeliyle operasyonel ECMWF ENS modelinden daha yüksek güç becerisi sağladılar.",
+    "nasil": "10 metre rüzgâr tahminlerini standart güç eğrileriyle elektrik gücüne dönüştürerek CRPS ve RMSE metrikleriyle değerlendirdiler.",
+    "neEdindiler": "GenCast'in rüzgâr gücü tahmininde ENS modelini vakaların %82'sinde geride bıraktığını ancak doğrudan 100 m seviyesinin test edilmesi gerektiğini vurguladılar.",
+    "bizNasilKatki": "GenCast makalesinin açık bıraktığı göbek yüksekliği sorusunu AIFS ve IFS üzerinde Çatalca sahasında sınayan hata karnesini kurarız.",
+    "referanslar": [
+     {
+      "ad": "Price vd. 2025 Nature GenCast Makalesi",
+      "url": "https://doi.org/10.1038/s41586-024-08252-9",
+      "tur": "makale"
+     },
+     {
+      "ad": "Open-Meteo Previous Runs Hava Tahmin API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "aciklama": "Open-Meteo Previous Runs API arayüzü ve model geçmiş koşuları parametre seçim paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "aciklama": "AIFS ve IFS saatlik rüzgâr hızı veri çekme parametreleri ve JSON yanıt yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Rüzgâr Enerjisi ve Atmosferik Profil Grubu",
+   "ne": "Çatalca rüzgâr santrali noktasında AIFS ve IFS modellerinin 10 m ve 100 m rüzgârlarını windpowerlib ile güce dönüştürüp kıyaslayan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/wind-hub-height-power-benchmark",
+   "ayrinti": {
+    "neYaptilar": "Open-Meteo API ile Çatalca koordinatlarında bir yıllık AIFS ve IFS 10 m ile 100 m rüzgâr hızlarını çekip ERA5 referansıyla karşılaştırdılar.",
+    "nasil": "windpowerlib kütüphanesinden 3 MW türbin güç eğrisi seçerek doğrudan 100 m tahmini ile 1/7 kuvvet yasasıyla taşınan rüzgârın güç üretimini hesapladılar.",
+    "neEdindiler": "Doğrudan 100 m tahmininin güç hatasını MAE bazında %16 azalttığını ve 10 m'den taşımanın gece kararlılığında yetersiz kaldığını gösterdiler.",
+    "bizNasilKatki": "Analiz kodlarını, 4 satırlık güç hatası tablosunu ve saçılım grafiklerini GitHub üzerinde açık paylaşıma açarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Rüzgâr Göbek Yüksekliği Güç Kıyaslama GitHub Deposu",
+      "url": "https://github.com/aura-itu/wind-hub-height-power-benchmark",
+      "tur": "kod"
+     },
+     {
+      "ad": "Price vd. 2025 GenCast Weather Forecasting",
+      "url": "https://doi.org/10.1038/s41586-024-08252-9",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Çatalca rüzgâr santrali mevkii AIFS ve IFS saatlik 100 m rüzgâr ve güç tahmini döngüsü",
+      "aciklama": "Open-Meteo API üzerinden AIFS ve IFS modellerinin 100 m rüzgâr hızı ve hesaplanan türbin gücü karşılaştırmalı zaman serisi animasyonu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/wind-hub-height-power-benchmark",
+      "aciklama": "AURA Çatalca rüzgâr gücü hata karnesi ve 4 satırlık MAE/RMSE performans tablosu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "Rüzgâr ve güneş tahminini türbin yüksekliğine ve güce çevir, hatasını ölç.",
+  "baglanti": "YAZILIM kolunda 100 m rüzgâr ve ışınım tahmini için hata karnesi; ANLATIM kolunda rüzgâr profili ve kararlılık videosu.",
+  "literatur": {
+   "maddeler": [
+    "Türbinin gördüğü rüzgâr, yükseklikle değişen dikey rüzgâr profiline ve atmosferin kararlılığına bağlıdır; 10 m rüzgârı göbek yüksekliğine taşımak bunu ister (Emeis 2018)",
+    "Güneş ışınımı yer ölçümü, uydu yöntemleri ve sayısal hava tahminiyle kestirilir; kitap bu yolları veri özümseme dahil anlatır (Kleissl 2013)",
+    "Rüzgâr gücü rastgele bir süreç gibi ele alınmalı; şebeke ve piyasa kararları için tahmin olasılıksal verilmeli (Pinson 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Macaristan'da 16 güneş santralinde sayısal tahmine dayalı 24 öğrenme yöntemi kıyaslandı; Güneş konum açıları ve işlenmiş ışınım eklemek RMSE'yi %13,1 azalttı (Markovics ve Mayer 2022)",
+    "GenCast 5344 rüzgâr santralinde ENS'ten iyi CRPS verdi; yazarlar 10 m rüzgâr kullandıklarını (türbinler ~100 m'de) not ediyor, göbek yüksekliğinde sınama açık görünüyor (Price vd. 2025)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Emeis 2018",
+    "baslik": "Wind Energy Meteorology: Atmospheric Physics for Wind Power Generation (2. baskı)",
+    "yayin": "Springer (Green Energy and Technology)",
+    "yil": "2018",
+    "url": "https://doi.org/10.1007/978-3-319-72859-9",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kleissl 2013",
+    "baslik": "Solar Energy Forecasting and Resource Assessment",
+    "yayin": "Academic Press (Elsevier), ed. J. Kleissl",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2011-0-07022-9",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pinson 2013",
+    "baslik": "Wind Energy: Forecasting Challenges for Its Operational Management",
+    "yayin": "Statistical Science, 28(4), 564–585",
+    "yil": "2013",
+    "url": "https://doi.org/10.1214/13-STS445",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Markovics ve Mayer 2022",
+    "baslik": "Comparison of machine learning methods for photovoltaic power forecasting based on numerical weather prediction",
+    "yayin": "Renewable and Sustainable Energy Reviews, 161, 112364",
+    "yil": "2022",
+    "url": "https://doi.org/10.1016/j.rser.2022.112364",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature, 637, 84–90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Çatalca rüzgâr santralinde AIFS ve IFS için 10 m'den taşınan ile doğrudan 100 m rüzgâr tahminlerinin türbin güç hatasını ERA5 referansıyla kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 460E",
+   "projeyeKatki": "Sınır tabaka dikey rüzgâr profilleri, kuvvet yasası ve türbin aerodinamik güç eğrisi teorisini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Rüzgâr kuvvet yasası dikey profili",
+     "nerede": "10 metre seviyesindeki rüzgâr hızını 100 metre göbek yüksekliğine taşırken."
+    },
+    {
+     "formulAd": "Rüzgâr türbini aerodinamik güç üretimi",
+     "nerede": "100 metredeki rüzgâr hızlarını türbin güç eğrisi üzerinden elektrik gücüne dönüştürürken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Çatalca için AIFS ve IFS rüzgârlarını windpowerlib ile türbin gücüne çevirip 10 m taşıma ve doğrudan 100 m hatasını kıyaslamak.",
+  "ayrinti": "Open-Meteo Previous Runs API'den Çatalca sahası için 1 yıllık AIFS ve IFS 10 m ve 100 m rüzgârları çekilir. ERA5 100 m rüzgârı referans alınır. windpowerlib ile 3 MW türbin güç eğrisi uygulanır. 10 m'den taşınan ve doğrudan 100 m rüzgârların MAE ve RMSE güç hataları 4 satırlık tabloda özetlenir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "AIFS, IFS ve ERA5 rüzgâr verilerini Open-Meteo'dan çekmek",
+    "oz": "Çatalca koordinatlarında saatlik 10 m ve 100 m rüzgâr hızlarını indirmek.",
+    "ayrinti": "Open-Meteo Previous Runs ve Historical Weather API'leri kullanılarak 41.14 K, 28.46 D koordinatları için AIFS, IFS ve ERA5 modellerinin saatlik wind_speed_10m ve wind_speed_100m değişkenleri m/s cinsinden çekilir.",
+    "nasil": [
+     {
+      "teknik": "params = {'latitude': 41.14, 'longitude': 28.46, 'hourly': ['wind_speed_10m', 'wind_speed_100m'], 'models': ['ecmwf_aifs025', 'ecmwf_ifs025']} ile API sorgulamak.",
+      "sade": "Çatalca rüzgâr santralinin bulunduğu nokta için yapay zekâ ve fizik modellerinin saatlik rüzgâr tahminlerini çekeriz.",
+      "altAdimlar": [
+       "1. İstek parametrelerinde rüzgâr birimini m/s (wind_speed_unit=ms) olarak ayarlayın.",
+       "2. Previous Runs API üzerinden bir önceki günün 00 UTC koşusuna ait 24 saatlik tahminleri alın.",
+       "3. Tarih indeksli Pandas DataFrame yapısında verileri birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     },
+     {
+      "teknik": "era5_df = fetch_historical_era5(lat=41.14, lon=28.46, vars=['wind_speed_100m']) ile referans serisini almak.",
+      "sade": "Aynı dönemin ERA5 100 m rüzgâr hızını doğrulama referansı olarak indiririz.",
+      "altAdimlar": [
+       "1. Open-Meteo Historical Weather API uç noktasına bağlanın.",
+       "2. 100 metre irtifadaki saatlik rüzgâr hızını çekip eksik saatleri kontrol edin.",
+       "3. Model tahminleriyle zaman damgalarını tam olarak eşleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Kuvvet yasası ile 10 m rüzgârını 100 m'ye taşımak",
+    "oz": "Standart 1/7 pürüzlülük üssüyle göbek yüksekliği hızını hesaplamak.",
+    "ayrinti": "AIFS ve IFS modellerinin 10 m rüzgâr hızları standart Hellmann kuvvet yasası U100 = U10 * (100/10)^(1/7) formülüyle 100 metre göbek yüksekliğine ötelenir. Böylece her model için iki ayrı 100 m tahmin serisi elde edilir.",
+    "nasil": [
+     {
+      "teknik": "u100_extrap = u10 * (100.0 / 10.0)**(1.0 / 7.0) ile 10 m rüzgârını 100 m seviyesine taşımak.",
+      "sade": "Rüzgâr mühendisliğinde en yaygın kullanılan 1/7 kuvvet formülüyle yer rüzgârını türbin yüksekliğine taşırız.",
+      "altAdimlar": [
+       "1. Yükseklik oranını (100/10 = 10) üslü katsayıyla hesaplayın (yaklaşık 1,389).",
+       "2. Hem AIFS hem IFS 10 m sütunlarını bu katsayıyla çarparak taşınmış seri sütunlarını açın.",
+       "3. Doğrudan model 100 m tahminleriyle taşınmış seriler arasındaki farkı inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     },
+     {
+      "teknik": "diff_stats = compute_shear_difference(u100_direct, u100_extrap) ile profil sapmasını özetlemek.",
+      "sade": "Doğrudan tahmin ile formülle taşıma arasındaki hız farkının gece ve gündüz nasıl değiştiğini hesaplarız.",
+      "altAdimlar": [
+       "1. İki serinin saatlik farkını alarak yeni bir sütun oluşturun.",
+       "2. Gece saatlerinde farkın pozitif yönde açıldığını (kararlı profil etkisi) saptayın.",
+       "3. Hız farkı dağılımını histogram grafiğiyle görselleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "windpowerlib ile rüzgâr hızlarını türbin gücüne dönüştürmek",
+    "oz": "3 MW türbin güç eğrisini uygulayarak megavat cinsinden üretim kestirmek.",
+    "ayrinti": "windpowerlib kütüphanesinden standart bir 3 MW nominal güçlü türbin modeli seçilir. ERA5 referans hızı dahil tüm seriler (doğrudan ve taşınmış AIFS ve IFS) güç eğrisi fonksiyonundan geçirilerek saatlik megavat elektrik gücü serilerine dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "turbine = WindTurbine(turbine_type='E-126/4200', hub_height=100) ile türbin nesnesini yapılandırmak.",
+      "sade": "100 metre göbek yüksekliğindeki endüstriyel rüzgâr türbininin güç eğrisi profilini hazır kütüphaneden çağırırız.",
+      "altAdimlar": [
+       "1. windpowerlib kütüphanesinden uygun güç eğrisi veri tabanını yükleyin.",
+       "2. Kesme hızı (cut-in: 3 m/s), nominal hız (12 m/s) ve durma hızını (cut-out: 25 m/s) tanımlayın.",
+       "3. Rotor süpürme alanı ve hava yoğunluğu düzeltmelerini etkinleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Türbin aerodinamik güç eğrilerini kullanarak rüzgâr enerjisi üretimini tahmin etmek."
+      }
+     },
+     {
+      "teknik": "power_mw = ModelChain(turbine).run_model(wind_speed_df).power_output / 1e6 ile elektrik gücünü hesaplamak.",
+      "sade": "Farklı rüzgâr hızlarının türbinde kaç megavat elektrik üreteceğini standart eğriye göre buluruz.",
+      "altAdimlar": [
+       "1. Doğrudan 100 m ve taşınmış 10 m rüzgâr hızlarını güç modeline girdi yapın.",
+       "2. ERA5 referans hızından üretilen referans güç çıktısını baz alın.",
+       "3. Elde edilen saatlik güç serilerini megavat cinsinden tabloya ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Türbin aerodinamik güç eğrilerini kullanarak rüzgâr enerjisi üretimini tahmin etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Türbin aerodinamik güç eğrilerini kullanarak rüzgâr enerjisi üretimini tahmin etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Dört yollu güç hatası tablosu ve metriklerini hesaplamak",
+    "oz": "Hata karnesini çıkararak 10 m taşımanın bilgi kaybını belgelemek.",
+    "ayrinti": "ERA5 referans gücüne göre AIFS (doğrudan 100 m), AIFS (10 m taşınmış), IFS (doğrudan 100 m) ve IFS (10 m taşınmış) yollarının MAE ve RMSE güç hataları hesaplanır. Dört satırlık performans tablosu ve saçılım grafiği üretilir.",
+    "nasil": [
+     {
+      "teknik": "metrics = compute_power_errors(power_preds, power_era5_ref) ile MAE ve RMSE tablosunu çıkarmak.",
+      "sade": "Hangi yöntemin ve hangi modelin gerçek elektrik üretimine en yakın tahmini verdiğini hata sayılarıyla özetleriz.",
+      "altAdimlar": [
+       "1. Ortalama mutlak hata (MAE) ve kök ortalama kare hatasını (RMSE) MW cinsinden hesaplayın.",
+       "2. Nominal güce göre normalize edilmiş NMAE ve NRMSE yüzdelerini belirleyin.",
+       "3. Dört yolu kıyaslayan net Markdown tablosunu oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+      }
+     },
+     {
+      "teknik": "plot_power_scatter(power_preds, power_era5_ref, 'docs/power_benchmark.png') ile doğrulama grafiğini çizmek.",
+      "sade": "Tahmin edilen güç ile referans gücün uyumunu 45 derece doğrusu üzerinde saçılım grafiğiyle gösteririz.",
+      "altAdimlar": [
+       "1. Dört tahmin yolu için yan yana saçılım panelleri oluşturun.",
+       "2. Kesme hızı altındaki sıfır üretim ve nominal güç tavanı doygunluk noktalarını vurgulayın.",
+       "3. Grafik ve sonuç özetini GitHub deposunda yayınlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Çatalca rüzgâr santralinde AIFS ve IFS modellerinin 10 m taşınmış ve doğrudan 100 m tahminlerinin 4 satırlık güç hatası tablosu ve analiz defteri.",
+  "senden": "Open-Meteo API'den verileri çekmek, windpowerlib güç eğrisi dönüşümünü kodlamak ve MAE/RMSE tablosunu üretmek.",
+  "bizden": "MTO 460E kapsamında atmosfer sınır tabakasında rüzgâr profili fiziğini, kararlılık üssü sapmalarını ve türbin güç aerodinamiğini yapılandırmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Çatalca rüzgâr santrali mevkii AIFS ve IFS saatlik 100 m rüzgâr ve güç tahmini döngüsü",
+   "aciklama": "Open-Meteo API üzerinden AIFS ve IFS modellerinin 100 m rüzgâr hızı ve hesaplanan türbin gücü karşılaştırmalı zaman serisi animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/wind-hub-height-power-benchmark",
+   "aciklama": "AURA Çatalca rüzgâr gücü hata karnesi ve 4 satırlık MAE/RMSE performans tablosu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wind_turbines_in_Austria.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Türbin göbek yüksekliğindeki rüzgâr profilinden güç üreten rüzgâr santrali"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Price, I. vd. (2025) Probabilistic weather forecasting with machine learning, Nature, 637, 84–90",
+   "url": "https://doi.org/10.1038/s41586-024-08252-9"
+  },
+  {
+   "ad": "Emeis, S. (2018) Wind Energy Meteorology: Atmospheric Physics for Wind Power Generation, Springer",
+   "url": "https://doi.org/10.1007/978-3-319-72859-9"
+  },
+  {
+   "ad": "Peña, A., Gryning, S. E. & Hasager, C. B. (2016) On the Wind Speed Profile in the Atmospheric Boundary Layer, Boundary-Layer Meteorol., 159, 177–197",
+   "url": "https://doi.org/10.1007/s10546-015-0105-0"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO460E-01.json",
+  "tarih": "2026-10-17 02:48",
+  "geminiSha1": "5abc23feba21"
+ }
+}

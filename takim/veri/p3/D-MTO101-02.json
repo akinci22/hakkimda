@@ -1,0 +1,503 @@
+{
+ "id": "D-MTO101-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 101",
+  "dersAd": "Meteoroloji Müh. Giriş ve Etik",
+  "kol": "yazilim"
+ },
+ "ad": "İlk açık veri: İstanbul için son 24 saatin gözlemi",
+ "ne": "OGIMET ve Open-Meteo gibi açık kaynaklardan İstanbul istasyonlarının son 24 saatini çekip sıcaklık-basınç-rüzgâr grafiği çizen 50 satırlık Python betiği yaz.",
+ "adimlar": [
+  "Open-Meteo API'den İstanbul (41.0°K, 29.0°D) için saatlik 2 m sıcaklık, basınç ve rüzgâr iste; JSON'u pandas'a aktar.",
+  "OGIMET'ten aynı saatlerin SYNOP mesajlarını çek; iki kaynağı aynı eksene koy.",
+  "matplotlib ile üç panelli grafik çiz; eksenlere birim yaz (°C, hPa, m/s).",
+  "Betiği her sabah çalıştıran basit bir zamanlayıcı kur; çıktıyı PNG olarak sakla.",
+  "Bir haftalık PNG'leri yan yana koyup değişimi yorumla."
+ ],
+ "sonuc": "Çalışan bir veri çekme betiği ve haftalık grafik dizisi; sonraki tüm yazılım projelerinin iskeleti.",
+ "dayanak": "Reichstein vd. 2019",
+ "senden": "Temel Python; API kavramına ilk adım.",
+ "bizden": "Hazır örnek betik ve hata ayıklama desteği.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 101",
+    "ad": "Meteoroloji Müh. Giriş ve Etik"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo",
+   "ne": "Açık model tahminlerini ücretsiz API olarak sunan girişim.",
+   "url": "https://open-meteo.com/",
+   "ayrinti": {
+    "neYaptilar": "İstanbul koordinatları için saatlik 2 m sıcaklığı, yüzey basıncı, rüzgâr hızı ve yönü değişkenlerini JSON formatında sundular.",
+    "nasil": "Gelişmiş önbellek ve coğrafi arama mimarisiyle açık model verilerini milisaniyeler içinde geliştiricilere ilettiler.",
+    "neEdindiler": "Meteoroloji öğrencilerinin ve yazılımcıların API tabanlı veri çekme süreçlerini basitleştirdiler.",
+    "bizNasilKatki": "İstanbul için saatlik hava gözlemlerini otomatik çekip doğrulayan açık kaynaklı Python betiği ekleriz.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo API Geliştirici Kılavuzu",
+      "url": "https://open-meteo.com/en/docs",
+      "tur": "web"
+     },
+     {
+      "ad": "Reichstein vd. 2019 Deep Learning in Earth System Science",
+      "url": "https://doi.org/10.1038/s41586-019-0912-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs",
+      "aciklama": "Open-Meteo API veri arayüzü ve saatlik hava parametreleri seçim paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul son 24 saatlik sıcaklık, basınç ve rüzgâr hızı ölçüm akışı",
+      "aciklama": "Open-Meteo API üzerinden İstanbul koordinatları için çekilen saatlik meteorolojik parametreler animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "OGIMET",
+   "ne": "SYNOP/METAR ham mesajlarını sorgulatan bağımsız servis.",
+   "url": "https://www.ogimet.com/",
+   "ayrinti": {
+    "neYaptilar": "İstanbul Atatürk (17060) ve Kartal (17064) istasyonlarının ham SYNOP telgraf mesajlarını anlık olarak ayrıştırıp yayınladılar.",
+    "nasil": "WMO telekomünikasyon formatındaki kodlu mesajları çözerek sıcaklık, basınç ve rüzgâr değerlerini metin tablosuna dönüştürdüler.",
+    "neEdindiler": "Dünya genelindeki istasyonların resmi gözlem verilerine aracısız ve şeffaf biçimde erişim sağladılar.",
+    "bizNasilKatki": "SYNOP mesajlarını Python ile otomatik ayrıştırıp model tahminleriyle eşleştiren veri hattı kurarız.",
+    "referanslar": [
+     {
+      "ad": "OGIMET SYNOP Sorgulama Sistemi",
+      "url": "https://www.ogimet.com/synops.phtml.en",
+      "tur": "web"
+     },
+     {
+      "ad": "Bauer vd. 2015 Nature NWP Makalesi",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ogimet.com/synops.phtml.en",
+      "aciklama": "OGIMET SYNOP sorgulama formu ve istasyon verisi görüntüleme tablosu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ogimet.com/synops.phtml.en",
+      "aciklama": "İstanbul istasyonlarına ait ham SYNOP bültenleri ve çözümlenmiş meteorolojik parametreler"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Meteostat",
+   "ne": "Açık istasyon verisini Python kütüphanesi ve API ile sunan girişim.",
+   "url": "https://meteostat.net/",
+   "ayrinti": {
+    "neYaptilar": "Ulusal ve küresel hava istasyonlarının saatlik ölçümlerini Pandas uyumlu tekil bir Python kütüphanesinde topladılar.",
+    "nasil": "Gözlem boşluklarını en yakın istasyonlarla enterpole eden akıllı algoritmalarla kesintisiz zaman serileri sağladılar.",
+    "neEdindiler": "Veri bilimcilerin hava verisine ulaşma süresini saatlerden saniyelere indirdiler.",
+    "bizNasilKatki": "Meteostat Python kütüphanesini kullanarak İstanbul istasyonlarının son 24 saatini tek satırda çeken örnekler sunarız.",
+    "referanslar": [
+     {
+      "ad": "Meteostat Python Kütüphanesi Dokümantasyonu",
+      "url": "https://dev.meteostat.net/python/",
+      "tur": "kod"
+     },
+     {
+      "ad": "Hersbach vd. 2020 ERA5 Reanalysis",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://dev.meteostat.net/python/",
+      "aciklama": "Meteostat Python kütüphanesi dokümantasyonu ve kod örnekleri sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://dev.meteostat.net/python/",
+      "aciklama": "Saatlik istasyon verisi sorgulama komutları ve Pandas DataFrame çıktısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Iowa Environmental Mesonet",
+   "ne": "METAR, radar ve uyarı arşivini açık API ile sunan üniversite servisi.",
+   "url": "https://mesonet.agron.iastate.edu/",
+   "ayrinti": {
+    "neYaptilar": "İstanbul Atatürk (LTBA) ve Sabiha Gökçen (LTFJ) havalimanı METAR verilerini saatlik olarak arşivleyip açık API ile paylaştılar.",
+    "nasil": "Havacılık telekomünikasyon hatlarından gelen METAR bültenlerini ayrıştırıp veritabanına yazdılar.",
+    "neEdindiler": "Havacılık meteorolojisinde gerçek zamanlı doğrulama yapmayı sağlayan açık arşiv sundular.",
+    "bizNasilKatki": "LTBA METAR verilerini Open-Meteo tahminleriyle anlık karşılaştıran doğrulama paneli hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Iowa Mesonet ASOS METAR İndirme Servisi",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "tur": "veri"
+     },
+     {
+      "ad": "National Society of Professional Engineers Etik Kodları",
+      "url": "https://www.nspe.org/resources/ethics/code-ethics",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "Iowa Mesonet METAR indirme arayüzü ve havalimanı seçim paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:WMO_Headquarters_Geneva.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "WMO Cenevre genel merkezi ve küresel telekomünikasyon koordinasyon binası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Açık Veri Grubu",
+   "ne": "İstanbul için açık veri kaynaklarından anlık gözlemleri çekip 3 panelli grafik üreten öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/istanbul-hourly-weather-pipeline",
+   "ayrinti": {
+    "neYaptilar": "50 satırlık temiz bir Python betiğiyle Open-Meteo ve OGIMET verilerini her sabah çekip grafikleyen otomasyon kurdular.",
+    "nasil": "Requests ve Pandas ile verileri çekip Matplotlib ile sıcaklık, basınç ve rüzgâr panellerini tek görselde birleştirdiler.",
+    "neEdindiler": "Lisans birinci sınıf öğrencilerinin ilk haftada çalışan bir açık hava projesi üretmesini sağladılar.",
+    "bizNasilKatki": "Örnek veri çekme betiğini, grafik şablonunu ve doğrulama kodlarını GitHub deposunda açık kullanıma sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Saatlik Hava Veri Hattı GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-hourly-weather-pipeline",
+      "tur": "kod"
+     },
+     {
+      "ad": "Reichstein vd. 2019 Deep Learning in Earth System Science",
+      "url": "https://doi.org/10.1038/s41586-019-0912-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-hourly-weather-pipeline",
+      "aciklama": "AURA açık hava verisi otomasyon deposu ve 3 panelli grafik üretim scripti"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul istasyonları son 24 saatlik açık sıcaklık ve basınç ölçüm akışı",
+      "aciklama": "Açık veri API'leri üzerinden İstanbul yüzey gözlemlerinin saatlik güncellenen zaman serisi grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "Mesleğin ne olduğunu, kimlerin ne ürettiğini ve meteoroloji mühendisinin topluma karşı sorumluluğunu ilk dönemde somut işlerle görmek.",
+  "baglanti": "Anlatım kolunun giriş kapısı: mesleği anlatan kısa videolar ve bir meslek haritası; Yazılım kolunda ilk açık veri denemeleri.",
+  "literatur": {
+   "maddeler": [
+    "Meteoroloji mühendisliği, atmosfer bilimini gözlem ağı, tahmin sistemleri ve kullanıcı ihtiyaçları arasındaki köprüye dönüştürür; WMO kılavuzları bu zincirin standardını koyar.",
+    "Mühendislik etik kodları (NSPE, TMMOB) kamu güvenliğini, dürüst raporlamayı ve yetki alanında kalmayı ilk sıraya koyar; tahmin belirsizliğini saklamak etik ihlaldir.",
+    "Sayısal hava tahmini son 40 yılda \"sessiz devrim\" yaşadı: her on yılda yaklaşık bir gün daha uzun kullanılabilir tahmin. (Bauer vd. 2015)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast ve Pangu-Weather gibi makine öğrenmesi modelleri, 2023 itibarıyla orta vadeli tahminde operasyonel fizik modellerine yetişti; mesleğin araç kutusu değişiyor. (Lam vd. 2023; Bi vd. 2023)",
+    "ECMWF, AIFS'i 2025'te operasyonel hale getirdi; tahminci artık hem fizik hem veri odaklı sistemleri yorumlamak zorunda."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bi vd. 2023",
+    "baslik": "Accurate medium-range global weather forecasting with 3D neural networks",
+    "yayin": "Nature 619, 533-538",
+    "yil": "2023",
+    "url": "https://doi.org/10.1038/s41586-023-06185-3",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Reichstein vd. 2019",
+    "baslik": "Deep learning and process understanding for data-driven Earth system science",
+    "yayin": "Nature 566, 195-204",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-0912-1",
+    "tur": "yz"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Open-Meteo ve OGIMET açık servislerinden İstanbul istasyonlarının son 24 saatlik sıcaklık, basınç ve rüzgâr gözlemlerini çekip doğrulayan Python betiği geliştirmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 101",
+   "projeyeKatki": "Açık veri servislerini sorgulama, istasyon gözlem ağlarını anlama ve model-gözlem doğrulamasında MAE metriklerini uygulama temellerini öğretir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ortalama mutlak hata bağıntısı",
+     "nerede": "Open-Meteo model tahmini ile OGIMET SYNOP yer gözlemleri arasındaki saatlik sıcaklık sapmasını hesaplarken."
+    },
+    {
+     "formulAd": "Göreceli operasyonel tahmin beceri skoru",
+     "nerede": "Sayısal hava tahmininin kalıcılık referansına göre son 24 saatteki göreceli başarısını ölçerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul için Open-Meteo ve OGIMET verilerini çekip sıcaklık, basınç ve rüzgâr grafiği çizen Python betiği yazmak.",
+  "ayrinti": "Open-Meteo API'den İstanbul saatlik sıcaklık, basınç ve rüzgâr verileri çekilir. OGIMET üzerinden eşzamanlı SYNOP mesajları alınır. Pandas ile iki seri hizalanır. Matplotlib ile 3 panelli grafik çizilip MAE hata metriği hesaplanır. Zamanlayıcı ile otomatikleştirilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Open-Meteo API ile İstanbul son 24 saat verisini çekmek",
+    "oz": "Saatlik 2 m sıcaklığı, yüzey basıncı ve rüzgâr hızını indirmek.",
+    "ayrinti": "Python requests kütüphanesiyle Open-Meteo Forecast API uç noktasına 41.0 K, 29.0 D koordinatlarıyla sorgu atılır. temperature_2m, surface_pressure ve wind_speed_10m alanları son 24 saat için JSON formatında alınarak Pandas DataFrame'e dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "resp = requests.get(api_url, params={'latitude': 41.0, 'longitude': 29.0, 'hourly': vars, 'past_days': 1}).json() ile son 24 saatlik model tahminlerini almak.",
+      "sade": "İstanbul koordinatları için yapay zekâ ve sayısal modellerin son yirmi dört saatlik tahmin serisini çekeriz.",
+      "altAdimlar": [
+       "1. İstek parametrelerine İstanbul enlem ve boylamını girin.",
+       "2. Saatlik değişkenler listesine sıcaklık, basınç ve rüzgârı ekleyin.",
+       "3. past_days=1 parametresiyle son 24 saatin verisini çağırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 101",
+       "madde": "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+      }
+     },
+     {
+      "teknik": "df_model = pd.DataFrame(resp['hourly']).tail(24).set_index('time') ile tabloya dönüştürmek.",
+      "sade": "Gelen JSON yanıtını zaman damgalı Pandas tablosuna aktarıp son yirmi dört saati filtreleriz.",
+      "altAdimlar": [
+       "1. JSON içindeki hourly sözlüğünü DataFrame yapısına dönüştürün.",
+       "2. Zaman sütununu datetime tipine çevirip tablo indeksi yapın.",
+       "3. Son 24 saati temsil eden satırları dilimleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 101",
+       "madde": "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 101",
+      "madde": "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "OGIMET ile gerçek istasyon gözlemlerini almak",
+    "oz": "Atatürk Havalimanı (17060) saatlik SYNOP/METAR ölçümlerini indirmek.",
+    "ayrinti": "OGIMET veya Meteostat Python kütüphanesiyle İstanbul Atatürk Havalimanı istasyonunun son 24 saatlik gerçek ölçüm serisi çekilir. Eksik ölçümler kontrol edilir ve Open-Meteo zaman serisiyle aynı zaman adımlarında birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "data = Hourly('17060', start=start_time, end=end_time).fetch() ile istasyon ölçümlerini çekmek.",
+      "sade": "İstanbul istasyonunda termometre, barometre ve anemometrenin ölçtüğü gerçek değerleri indiririz.",
+      "altAdimlar": [
+       "1. Meteostat kütüphanesini içe aktarıp 17060 istasyon kodunu tanımlayın.",
+       "2. Son 24 saatin başlangıç ve bitiş zamanlarını belirleyin.",
+       "3. İstasyon gözlemlerini saatlik frekansta tabloya çekin."
+      ],
+      "kazanim": {
+       "ders": "MTO 101",
+       "madde": "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+      }
+     },
+     {
+      "teknik": "df_compare = df_model.join(data[['temp', 'pres', 'wspd']], how='inner') ile iki kaynağı hizalamak.",
+      "sade": "Tahmin serisi ile gerçek ölçüm serisini aynı zaman ekseninde yan yana getiririz.",
+      "altAdimlar": [
+       "1. Zaman indekslerini UTC formatında eşleştirin.",
+       "2. Basınç birimlerini hPa cinsinde ortak paydaya getirin.",
+       "3. Rüzgâr hızlarını m/s cinsine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 101",
+       "madde": "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 101",
+      "madde": "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Matplotlib ile 3 panelli karşılaştırma grafiği çizmek",
+    "oz": "Sıcaklık, basınç ve rüzgâr panellerini tek bir figürde görselleştirmek.",
+    "ayrinti": "Matplotlib ile 3 satır 1 sütunluk figür açılır. Üst panele sıcaklık (°C), orta panele basınç (hPa), alt panele rüzgâr hızı (m/s) yerleştirilir. Model tahmini kesikli çizgiyle, gerçek gözlem dolu noktalarla çizilir. Eksenlere uluslararası birimler yazılır.",
+    "nasil": [
+     {
+      "teknik": "fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 8), sharex=True) ile 3 panelli eksenleri açmak.",
+      "sade": "Üç farklı hava parametresini aynı zaman ekseninde alt alta gösterecek grafik penceresini kurarız.",
+      "altAdimlar": [
+       "1. Üç alt grafik panelini ortak X ekseniyle tanımlayın.",
+       "2. Izgara çizgilerini ve okunabilir font boyutlarını ayarlayın.",
+       "3. Başlığa istasyon adı ve doğrulama tarihini ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 101",
+       "madde": "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+      }
+     },
+     {
+      "teknik": "ax1.plot(df_compare['temperature_2m'], 'r--', label='Model'); ax1.plot(df_compare['temp'], 'ro', label='Gözlem') ile sıcaklığı çizmek.",
+      "sade": "Sıcaklık panelinde tahmin ile gerçek ölçümün uyumunu ve gün içindeki tepe noktasını gösteririz.",
+      "altAdimlar": [
+       "1. Sıcaklık verilerini kırmızı renk koduyla çizin.",
+       "2. Orta panelde basınç eğrilerini mavi renkle ekleyin.",
+       "3. Alt panelde rüzgâr hızını yeşil çizgiyle görselleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 101",
+       "madde": "Hava tahminlerindeki olasılıksal belirsizliği kullanıcılara şeffaf ve sorumlu biçimde aktarmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 101",
+      "madde": "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+     },
+     {
+      "ders": "MTO 101",
+      "madde": "Hava tahminlerindeki olasılıksal belirsizliği kullanıcılara şeffaf ve sorumlu biçimde aktarmak."
+     }
+    ]
+   },
+   {
+    "baslik": "MAE hata metriğini hesaplamak ve betiği zamanlamak",
+    "oz": "Tahmin hatasını sayısallaştırıp her gün çalışan otomasyonu kurmak.",
+    "ayrinti": "Model tahmini ile gerçek gözlem arasındaki Ortalama Mutlak Hata (MAE) sıcaklık, basınç ve rüzgâr için ayrı ayrı hesaplanır. Python betiği her sabah 08:00'de otomatik çalışacak şekilde zamanlanır ve çıktı grafiği PNG olarak arşive saklanır.",
+    "nasil": [
+     {
+      "teknik": "mae_temp = np.mean(np.abs(df_compare['temperature_2m'] - df_compare['temp'])) ile sıcaklık MAE değerini hesaplamak.",
+      "sade": "Modelin hava sıcaklığını kaç derece yanılma payıyla tahmin ettiğini ortalama mutlak hatayla buluruz.",
+      "altAdimlar": [
+       "1. Model ve gözlem arasındaki mutlak farklar dizisini alın.",
+       "2. Ortalama alarak tek bir MAE sayısı hesaplayın.",
+       "3. Grafik altına 'Sıcaklık MAE: 0,82 °C' bilgi kutusu olarak yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 101",
+       "madde": "Mühendislik etik kodlarını kamu güvenliği, veri doğruluğu ve mesleki dürüstlük ilkeleriyle uygulamak."
+      }
+     },
+     {
+      "teknik": "plt.savefig(f'archive/istanbul_obs_{today}.png', dpi=300, bbox_inches='tight') ile arşive yazmak.",
+      "sade": "Üretilen üç panelli analiz grafiğini yüksek çözünürlüklü resim olarak otomatik arşive kaydederiz.",
+      "altAdimlar": [
+       "1. Günün tarihiyle adlandırılan PNG dosyasını oluşturun.",
+       "2. Betiği işletim sistemi zamanlayıcısına (cron veya task scheduler) bağlayın.",
+       "3. Bir haftalık seriyi yan yana koyarak model performansını değerlendirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 101",
+       "madde": "Mühendislik etik kodlarını kamu güvenliği, veri doğruluğu ve mesleki dürüstlük ilkeleriyle uygulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 101",
+      "madde": "Mühendislik etik kodlarını kamu güvenliği, veri doğruluğu ve mesleki dürüstlük ilkeleriyle uygulamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için Open-Meteo ve istasyon gözlemlerini birleştiren 50 satırlık Python betiği, 3 panelli doğrulama grafiği ve MAE hata karnesi.",
+  "senden": "API sorgu betiğini yazmak, Meteostat/OGIMET verilerini birleştirmek ve 3 panelli Matplotlib görselleştirmesini tamamlamak.",
+  "bizden": "MTO 101 kapsamında açık meteorolojik veri standartlarını, istasyon gözlem protokollerini ve tahmin doğrulama etiğini yapılandırmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul son 24 saatlik sıcaklık, basınç ve rüzgâr hızı ölçüm akışı",
+   "aciklama": "Open-Meteo API üzerinden İstanbul koordinatları için çekilen saatlik meteorolojik parametreler animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/istanbul-hourly-weather-pipeline",
+   "aciklama": "AURA açık hava verisi otomasyon deposu ve 3 panelli grafik üretim scripti"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:WMO_Headquarters_Geneva.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "WMO Cenevre genel merkezi ve küresel telekomünikasyon koordinasyon binası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Reichstein, M. vd. (2019) Deep learning and process understanding for data-driven Earth system science, Nature, 566, 195–204",
+   "url": "https://doi.org/10.1038/s41586-019-0912-1"
+  },
+  {
+   "ad": "Bauer, P., Thorpe, A. & Brunet, G. (2015) The quiet revolution of numerical weather prediction, Nature, 525, 47–55",
+   "url": "https://doi.org/10.1038/nature14956"
+  },
+  {
+   "ad": "National Society of Professional Engineers (NSPE) Code of Ethics for Engineers",
+   "url": "https://www.nspe.org/resources/ethics/code-ethics"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO101-02.json",
+  "tarih": "2026-10-17 03:03",
+  "geminiSha1": "ba9cadab87ba"
+ }
+}

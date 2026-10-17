@@ -1,0 +1,130 @@
+{
+ "kod": "MTO 323",
+ "ad": "Atmosfer Kimyası",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "323",
+ "ozet": "Troposfer ve stratosferdeki kimyasal bileşenlerin kaynaklarını, dönüşümlerini, fotokimyasal tepkime mekanizmalarını, sera gazı döngülerini ve hava kirliliği taşınım dinamiklerini öğretir.",
+ "neOgrenirsin": [
+  "Fotokimyasal ozon oluşum döngüsünü ve Leighton fotostasyoner dengesini hesaplamak.",
+  "Atmosferik gaz ve aerosollerin Beer-Lambert yasasına göre ışık soğurma ve optik derinliklerini belirlemek.",
+  "Diferansiyel optik soğurma spektroskopisi (DOAS) ile uydu verilerinden troposferik NO2 sütun yoğunluğu çıkarmak.",
+  "Uçucu organik bileşiklerin ve azot oksitlerin fotokimyasal rejim sınırlamasını analiz etmek.",
+  "Biyokütle yanması ve kentsel emisyonların atmosferik taşınımını ve kimyasal ömrünü hesaplamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Leighton fotostasyoner durum ozon dengesi",
+   "tex": "[\\mathrm{O}_3] = \\frac{j_{\\mathrm{NO}_2} [\\mathrm{NO}_2]}{k_1 [\\mathrm{NO}]}",
+   "terimler": [
+    [
+     "[\\mathrm{O}_3]",
+     "troposferik fotokimyasal ozon derişimi",
+     "\\mathrm{ppb}"
+    ],
+    [
+     "j_{\\mathrm{NO}_2}",
+     "azot dioksit fotoliz hızı katsayısı",
+     "\\mathrm{s}^{-1}"
+    ],
+    [
+     "[\\mathrm{NO}_2]",
+     "azot dioksit hacimsel karışım oranı",
+     "\\mathrm{ppb}"
+    ],
+    [
+     "k_1",
+     "ozon ile azot monoksit tepkime hız sabiti",
+     "\\mathrm{ppb}^{-1} \\cdot \\mathrm{s}^{-1}"
+    ],
+    [
+     "[\\mathrm{NO}]",
+     "azot monoksit hacimsel karışım oranı",
+     "\\mathrm{ppb}"
+    ]
+   ],
+   "sade": "Güneş ışığı altında ozon oluşumu ile azot monoksit tarafından tüketilmesi arasındaki dinamik fotokimyasal dengeyi kurar.",
+   "ornek": "Öğle vaktinde fotoliz hızı j = 0,008 s⁻¹ iken NO2 = 25 ppb ve NO = 5 ppb ölçüldüğünde k1 = 0,04 ppb⁻¹s⁻¹ için denge ozon derişimi 100 ppb seviyesine çıkar.",
+   "nerede": "D-MTO323-02'de fotokimyasal döngü animasyonunda günlük ozon tepe konsantrasyonunu hesaplarken kullanılır."
+  },
+  {
+   "ad": "Beer ve Lambert ışık soğurma bağıntısı",
+   "tex": "I(\\lambda) = I_0(\\lambda) \\cdot \\exp(-\\tau(\\lambda))",
+   "terimler": [
+    [
+     "I(\\lambda)",
+     "ortamdan geçen monokromatik ışık şiddeti",
+     "\\mathrm{W}/(\\mathrm{m}^2 \\cdot \\mathrm{nm})"
+    ],
+    [
+     "I_0(\\lambda)",
+     "atmosfer tepesine gelen başlangıç ışık şiddeti",
+     "\\mathrm{W}/(\\mathrm{m}^2 \\cdot \\mathrm{nm})"
+    ],
+    [
+     "\\tau(\\lambda)",
+     "toplam atmosferik optik derinlik",
+     "\\mathrm{boyutsuz}"
+    ]
+   ],
+   "sade": "Güneş ışığının atmosfer boyunca ilerlerken gazlar ve aerosoller tarafından nasıl zayıflatıldığını üssel azalma ile tanımlar.",
+   "ornek": "AERONET güneş fotometresinde 500 nm dalga boyunda optik derinlik tau = 0,4 iken gelen ışık şiddeti başlangıç seviyesinin yaklaşık yüzde 67'sine geriler.",
+   "nerede": "D-MTO323-03'te yangın dumanı aerosol optik derinliği (AOD) ve ışık zayıflaması hesaplarında kullanılır."
+  },
+  {
+   "ad": "Diferansiyel optik soğurma sütun yoğunluğu bağıntısı",
+   "tex": "\\tau_{\\mathrm{gaz}}(\\lambda) = \\sigma'(\\lambda) \\cdot S",
+   "terimler": [
+    [
+     "\\tau_{\\mathrm{gaz}}(\\lambda)",
+     "hedef gaz molekülünün diferansiyel optik derinliği",
+     "\\mathrm{boyutsuz}"
+    ],
+    [
+     "\\sigma'(\\lambda)",
+     "hedef gazın diferansiyel soğurma tesir kesiti",
+     "\\mathrm{cm}^2/\\mathrm{molekul}"
+    ],
+    [
+     "S",
+     "atmosferik eğik veya düşey sütun yoğunluğu",
+     "\\mathrm{molekul}/\\mathrm{cm}^2"
+    ]
+   ],
+   "sade": "Uydu spektrometresine gelen ışıktaki dar soğurma çizgilerini analiz ederek atmosfer sütunundaki toplam gaz molekülü sayısını hesaplar.",
+   "ornek": "Sentinel-5P TROPOMI sensöründe NO2 diferansiyel tesir kesiti 5e-19 cm² iken diferansiyel optik derinlik 0,005 ölçüldüğünde sütun yoğunluğu 1e16 molekül/cm² çıkar.",
+   "nerede": "D-MTO323-01'de TROPOMI L3 NO2 troposferik düşey sütun yoğunluklarını hesaplarken kullanılır."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Photochemical_smog_formation.svg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Atmosferde fotokimyasal duman ve ozon oluşum tepkime zincirini gösteren şematik diyagram"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul üzerinde saatlik fotokimyasal ozon derişimi ve güneş radyasyonu günlük döngüsü",
+   "aciklama": "Güneş ışığıyla tetiklenen ozon birikimi ve akşam saatlerinde azot monoksit ile tükeniş animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 323 (Atmosfer Kimyası)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=323"
+  },
+  {
+   "ad": "Seinfeld, J. H. and Pandis, S. N. (2016) Atmospheric Chemistry and Physics, Wiley",
+   "url": "https://doi.org/10.1002/9781119221166"
+  },
+  {
+   "ad": "Jacob, D. J. (1999) Introduction to Atmospheric Chemistry, Princeton University Press",
+   "url": "https://doi.org/10.2307/j.ctt13x11f4"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=323"
+}

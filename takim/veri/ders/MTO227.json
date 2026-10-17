@@ -1,0 +1,140 @@
+{
+ "kod": "MTO 227",
+ "ad": "Ekosistem Ekolojisi",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "227",
+ "ozet": "Karasal ve sucul ekosistemler ile atmosfer arasındaki karbon, su ve enerji akılarının temel fiziksel ve biyogeokimyasal mekanizmalarını, eddy kovaryans ölçüm tekniklerini, fotosentez ve solunum dinamiklerini öğretir.",
+ "neOgrenirsin": [
+  "Net ekosistem değişimi (NEE) ölçümlerini brüt birincil üretim (GPP) ve ekosistem solunumu (RE) bileşenlerine ayrıştırmak.",
+  "Eddy kovaryans kulelerinden elde edilen yarım saatlik türbülanslı akı verilerini kalite kontrol testlerinden geçirmek.",
+  "Sıcaklık ve toprak nemine bağlı ekosistem solunum eğrilerini (Lloyd-Taylor) parametrik olarak uydurmak.",
+  "Işık yanıt eğrileriyle fotosentez kuantum verimini ve maksimum karbon asimilasyon kapasitesini hesaplamak.",
+  "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+ ],
+ "formuller": [
+  {
+   "ad": "Net ekosistem karbon akısı dengesi",
+   "tex": "\\mathrm{NEE} = R_e - \\mathrm{GPP}",
+   "terimler": [
+    [
+     "\\mathrm{NEE}",
+     "net ekosistem değişimi (atmosfere net CO2 akısı)",
+     "\\mu\\mathrm{mol}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ],
+    [
+     "R_e",
+     "toplam ekosistem solunumu (ototrof ve heterotrof)",
+     "\\mu\\mathrm{mol}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ],
+    [
+     "\\mathrm{GPP}",
+     "brüt birincil üretim (fotosentezle bağlanan karbon)",
+     "\\mu\\mathrm{mol}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ]
+   ],
+   "sade": "Ekosistemin atmosferden ne kadar net karbon tuttuğunu veya atmosfere ne kadar karbon saldığını, bitki fotosentezi ile toplam solunum farkıyla tanımlar.",
+   "ornek": "Öğle saatlerinde ormanda GPP = 18 µmol/(m²·s) ve solunum Re = 4 µmol/(m²·s) iken net akı NEE = -14 µmol/(m²·s) olarak hesaplanır.",
+   "nerede": "D-MTO227-01'de FLUXNET kulesi yarım saatlik net akı ölçümlerini fotosentez ve solunum parçalarına ayırırken kullanılır."
+  },
+  {
+   "ad": "Lloyd ve Taylor ekosistem solunum bağıntısı",
+   "tex": "R_e(T) = R_{\\mathrm{ref}} \\cdot \\exp\\left( E_0 \\left( \\frac{1}{T_{\\mathrm{ref}} - T_0} - \\frac{1}{T - T_0} \\right) \\right)",
+   "terimler": [
+    [
+     "R_e(T)",
+     "T sıcaklığındaki toplam ekosistem solunumu",
+     "\\mu\\mathrm{mol}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ],
+    [
+     "R_{\\mathrm{ref}}",
+     "referans sıcaklıktaki solunum hızı",
+     "\\mu\\mathrm{mol}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ],
+    [
+     "E_0",
+     "sıcaklık duyarlılığı aktivasyon enerjisi katsayısı",
+     "\\mathrm{K}"
+    ],
+    [
+     "T_{\\mathrm{ref}}",
+     "referans hava veya toprak sıcaklığı",
+     "\\mathrm{K}"
+    ],
+    [
+     "T_0",
+     "solunumun durduğu teorik alt sıcaklık eşiği",
+     "\\mathrm{K}"
+    ],
+    [
+     "T",
+     "ölçülen hava veya toprak sıcaklığı",
+     "\\mathrm{K}"
+    ]
+   ],
+   "sade": "Ekosistem solunumunun sıcaklık arttıkça katlanarak nasıl hızlandığını hesaplar; gece ölçümleriyle parametreler belirlenip gündüz solunumu kestirilir.",
+   "ornek": "Referans sıcaklık 10 °C'de Rref = 2,1 µmol/(m²·s) olan bir meşe ormanında sıcaklık 22 °C'ye çıktığında solunum 4,8 µmol/(m²·s) seviyesine ulaşır.",
+   "nerede": "D-MTO227-01'de gece NEE verisinden gündüz ekosistem solunumunu tahmin edip GPP'yi hesaplarken kullanılır."
+  },
+  {
+   "ad": "Michaelis ve Menten ışık yanıt eğrisi bağıntısı",
+   "tex": "\\mathrm{GPP} = \\frac{\\alpha \\cdot \\mathrm{PAR} \\cdot \\mathrm{GPP}_{\\max}}{\\alpha \\cdot \\mathrm{PAR} + \\mathrm{GPP}_{\\max}}",
+   "terimler": [
+    [
+     "\\mathrm{GPP}",
+     "brüt birincil üretim hızı",
+     "\\mu\\mathrm{mol}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ],
+    [
+     "\\alpha",
+     "fotosentezin başlangıç kuantum verimi",
+     "\\mu\\mathrm{mol}\\,\\mathrm{CO}_2 / \\mu\\mathrm{mol}\\,\\mathrm{foton}"
+    ],
+    [
+     "\\mathrm{PAR}",
+     "fotosentetik aktif ışınım akısı",
+     "\\mu\\mathrm{mol}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ],
+    [
+     "\\mathrm{GPP}_{\\max}",
+     "ışığa doymuş maksimum fotosentez kapasitesi",
+     "\\mu\\mathrm{mol}/(\\mathrm{m}^2 \\cdot \\mathrm{s})"
+    ]
+   ],
+   "sade": "Güneşten gelen fotosentetik aktif ışık miktarı arttıkça bitki örtüsünün karbon bağlama hızının nasıl doyuma ulaştığını matematiksel olarak ifade eder.",
+   "ornek": "PAR = 1200 µmol/(m²·s) altında alfa = 0,04 ve GPPmax = 25 µmol/(m²·s) olan bir ormanda GPP yaklaşık 16,4 µmol/(m²·s) olarak hesaplanır.",
+   "nerede": "Ekosistem karbon döngüsünde fotosentez doygunluğunu ve ışık kullanım verimliliğini analiz ederken kullanılır."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Eddy_covariance_tower_Harvard_Forest.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Orman ekosisteminde atmosferle karbon ve su alışverişini ölçen eddy kovaryans akı kulesi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Karasal orman sahasında saatlik fotosentetik ışınım PAR ve sıcaklık mevsimsel döngüsü",
+   "aciklama": "Ekosistem birincil üretimini tetikleyen güneş ışınımı ve sıcaklık akışlarının saatlik animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 227 (Ekosistem Ekolojisi)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=227"
+  },
+  {
+   "ad": "Reichstein, M. et al. (2005) On the separation of net ecosystem exchange, GCB, 11(9), 1424–1439",
+   "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x"
+  },
+  {
+   "ad": "Pastorello, G. et al. (2020) The FLUXNET2015 dataset and ONEFlux pipeline, Sci Data, 7, 225",
+   "url": "https://doi.org/10.1038/s41597-020-0534-3"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=227"
+}

@@ -1,0 +1,519 @@
+{
+ "id": "D-MTO227-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 227",
+  "dersAd": "Ekosistem Ekolojisi",
+  "kol": "yazilim"
+ },
+ "ad": "Bir akı kulesinin yılı: NEE'yi parçalara ayır",
+ "ne": "FLUXNET2015/AmeriFlux'tan bir orman sahasının bir yıllık yarım saatlik verisini al; gece-gündüz ayrımıyla solunum ve brüt birincil üretimi hesapla, mevsim döngüsünü çiz.",
+ "adimlar": [
+  "AmeriFlux'tan CC-BY lisanslı bir orman sahası seç; NEE, sıcaklık ve PAR sütunlarını pandas'a yükle.",
+  "Gece verisinden (PAR < 10 µmol/m²/s) sıcaklığa bağlı solunum eğrisi (Lloyd-Taylor) uydur.",
+  "Gündüz NEE'den solunumu çıkararak brüt birincil üretimi (GPP) elde et.",
+  "Günlük toplamları alıp yıllık NEE, GPP ve solunum eğrilerini tek grafikte çiz.",
+  "Yeşerme tarihini GPP eğrisinden oku; PhenoCam görüntüsüyle karşılaştır."
+ ],
+ "sonuc": "Bir yılın karbon bütçesi grafiği ve ayrıştırma defteri; dersteki kavramları sayıya dökmüş olursun.",
+ "dayanak": "Reichstein vd. 2005",
+ "senden": "pandas ve basit eğri uydurma.",
+ "bizden": "Saha seçimi, ONEFlux değişken adları rehberi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 227",
+    "ad": "Ekosistem Ekolojisi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "AmeriFlux",
+   "ne": "Amerika kıtası açık eddy kovaryans akı kuleleri ağı.",
+   "url": "https://ameriflux.lbl.gov/data/",
+   "ayrinti": {
+    "neYaptilar": "Kuzey ve Güney Amerika genelinde yüzlerce ekosistem kulesinden karbon, su ve enerji akısı verilerini standart açık formatta topladılar.",
+    "nasil": "ONEFlux standardizasyon hattı ve otomatik kalite kontrol filtreleriyle yarım saatlik kule mikrometeoroloji verilerini işlediler.",
+    "neEdindiler": "Küresel ekosistem modellerinin ve iklim simülasyonlarının kalibrasyonunda temel referans kabul edilen açık veri tabanı kurdular.",
+    "bizNasilKatki": "Harvard Forest veya Morgan Monroe sahasının bir yıllık açık verisini Python ayrıştırma hattımıza entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "AmeriFlux Açık Veri Portalı ve Kule Rehberi",
+      "url": "https://ameriflux.lbl.gov/data/",
+      "tur": "web"
+     },
+     {
+      "ad": "Pastorello vd. 2020 FLUXNET ve ONEFlux Makalesi",
+      "url": "https://doi.org/10.1038/s41597-020-0534-3",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://ameriflux.lbl.gov/data/",
+      "aciklama": "AmeriFlux veri portalı ekosistem sahaları ve kule lokasyonları arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Eddy_covariance_tower_Harvard_Forest.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "AmeriFlux üyesi Harvard Forest sahasında orman tepesi eddy kovaryans akı kulesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "FLUXNET",
+   "ne": "Küresel akı kulesi ağı.",
+   "url": "https://fluxnet.org/data/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki tüm bölgesel akı ağlarını birleştirerek ekosistem-atmosfer gaz alışverişinin küresel sentezini sundular.",
+    "nasil": "FLUXNET2015 veri setinde 212 sahadan toplanan yarım saatlik türbülanslı akıları standart boşluk doldurma algoritmalarıyla derlediler.",
+    "neEdindiler": "Yerküre yüzeyinin karbon tutma kapasitesini ve kuraklığa tepkisini belgeleyen en kapsamlı açık akı arşivini sağladılar.",
+    "bizNasilKatki": "FLUXNET2015 veri formatındaki değişken adlandırma standartlarını analiz kodlarımızda temel referans alırız.",
+    "referanslar": [
+     {
+      "ad": "FLUXNET Açık Veri Portalı ve Metodolojisi",
+      "url": "https://fluxnet.org/data/",
+      "tur": "web"
+     },
+     {
+      "ad": "Reichstein vd. 2005 NEE Ayrıştırma Yöntemi",
+      "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://fluxnet.org/data/",
+      "aciklama": "FLUXNET küresel akı kulesi sahaları ve veri indirme portalı arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://fluxnet.org/data/",
+      "aciklama": "FLUXNET veri işleme kılavuzları ve değişken tanımları sayfası akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ICOS",
+   "ne": "Avrupa karbon gözlem sistemi.",
+   "url": "https://www.icos-cp.eu/data-services",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelinde atmosfer, ekosistem ve okyanus karbon döngüsünü yüksek hassasiyetli standart istasyonlarla izlediler.",
+    "nasil": "Sıkı metrolojik kalibrasyon standartları ve açık veri portalıyla sera gazı bütçelerini gerçek zamanlıya yakın yayımladılar.",
+    "neEdindiler": "Avrupa sera gazı politikalarına ve iklim araştırmalarına temel oluşturan en güvenilir karbon gözlem altyapısını kurdular.",
+    "bizNasilKatki": "ICOS ekosistem kulelerinin kalite kontrol protokollerini kendi akı ayrıştırma filtremize kurallar bütünü olarak katarız.",
+    "referanslar": [
+     {
+      "ad": "ICOS Karbon Portalı Veri Servisleri",
+      "url": "https://www.icos-cp.eu/data-services",
+      "tur": "web"
+     },
+     {
+      "ad": "Friedlingstein vd. 2023 Küresel Karbon Bütçesi",
+      "url": "https://doi.org/10.5194/essd-15-5301-2023",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.icos-cp.eu/data-services",
+      "aciklama": "ICOS Karbon Portalı istasyon haritası ve sera gazı zaman serisi arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Avrupa ekosistem kulesi lokasyonunda saatlik CO2 akısı ve fotosentetik ışınım akışı",
+      "aciklama": "Ekosistem solunumu ve karbon tutumunun gün içi ve mevsimsel dalgalanma grafiği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "PhenoCam Network",
+   "ne": "Kameralarla bitki fenolojisi; görüntüler açık.",
+   "url": "https://phenocam.nau.edu/webcam/",
+   "ayrinti": {
+    "neYaptilar": "Akı kulelerine monte edilen yüksek çözünürlüklü kameralarla orman kanopisinin yeşerme, olgunlaşma ve sararma evrelerini belgelediler.",
+    "nasil": "Görüntü işleme algoritmalarıyla yaprakların yeşil kromatik koordinatını çıkararak günlük bitki aktivitesi zaman serisi ürettiler.",
+    "neEdindiler": "Eddy kovaryans kulelerindeki karbon alımının ne zaman başlayıp bittiğini doğrudan doğrulayan küresel fenoloji arşivi kurdular.",
+    "bizNasilKatki": "Hesaplanan GPP eğrisindeki ilkbahar yeşerme tarihini PhenoCam GCC zaman serisiyle karşılaştıran görsel doğrulama yaparız.",
+    "referanslar": [
+     {
+      "ad": "PhenoCam Açık Kamera ve Fenoloji Portalı",
+      "url": "https://phenocam.nau.edu/webcam/",
+      "tur": "web"
+     },
+     {
+      "ad": "Bolton vd. 2020 Kıtasal Fenoloji Analizi",
+      "url": "https://doi.org/10.1016/j.rse.2020.111685",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://phenocam.nau.edu/webcam/",
+      "aciklama": "PhenoCam web portalı orman kanopisi günlük kamera görüntüleri ve GCC grafiği"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://phenocam.nau.edu/webcam/",
+      "aciklama": "PhenoCam sahası bitki örtüsü zaman serisi ve fenolojik eğriler sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "LI-COR",
+   "ne": "Gaz analizörleri ve EddyPro yazılımı.",
+   "url": "https://www.licor.com/env/products/eddy-covariance/",
+   "ayrinti": {
+    "neYaptilar": "Açık ve kapalı yol kızılötesi CO2 ve H2O gaz analizörleriyle eddy kovaryans akı kulelerinin operasyonel donanım standardını belirlediler.",
+    "nasil": "Yüksek frekanslı türbülans ölçümlerini koordinat döndürme, WPL yoğunluk düzeltmesi ve spektral kayıp düzeltmeleriyle işlediler.",
+    "neEdindiler": "Küresel akı araştırmalarında yaygın kullanılan açık kaynaklı EddyPro yazılımını ve dayanıklı analizör donanımlarını ticarileştirdiler.",
+    "bizNasilKatki": "EddyPro çıktısı olan yarım saatlik NEE akılarını kalite bayraklarına göre ayıklayan filtre fonksiyonu geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "LI-COR Eddy Kovaryans ve EddyPro Rehberi",
+      "url": "https://www.licor.com/env/products/eddy-covariance/",
+      "tur": "web"
+     },
+     {
+      "ad": "Reichstein vd. 2005 NEE Ayrıştırma Metodolojisi",
+      "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.licor.com/env/products/eddy-covariance/",
+      "aciklama": "LI-COR kurumsal eddy kovaryans ölçüm aletleri ve sensör yerleşim sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Orman ekosisteminde yıllık sıcaklık, güneş ışınımı ve karbon tutumu mevsimsel döngüsü",
+      "aciklama": "İlkbahar yeşermesinden sonbahar yaprak dökümüne kadar ekosistem aktivitesi animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "2",
+  "yuz": "Atmosferle ekosistem arasındaki karbon, su ve enerji alışverişini gerçek ölçümlerle görmek.",
+  "baglanti": "Yazılım kolunda akı kulesi verisi analizi; Anlatım kolunda fenoloji ve karbon döngüsü videoları.",
+  "literatur": {
+   "maddeler": [
+    "Net ekosistem değişimi (NEE), fotosentezle alınan ve solunumla verilen CO₂ arasındaki farktır; gece verisinden solunum, gündüz verisinden asimilasyon ayrıştırılır. (Reichstein vd. 2005)",
+    "Eddy kovaryans kuleleri ekosistem-atmosfer akılarını doğrudan ölçer; FLUXNET2015 veri seti 212 sahayı standart işleme ile sunar. (Pastorello vd. 2020)",
+    "Küresel karbon bütçesi: fosil emisyonların yaklaşık yarısı atmosferde kalır, geri kalanını kara ve okyanus yutakları alır. (Friedlingstein vd. 2023)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "1982-2016 arasında küresel ağaç örtüsü net olarak arttı ama tropik ormanlar azaldı; uydu zaman serileri bu dengeyi bölge bölge gösteriyor. (Song vd. 2018)",
+    "Uydudan fenoloji (yeşerme/sararma tarihleri) artık 30 m çözünürlükte kıta ölçeğinde çıkarılıyor. (Bolton vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Reichstein vd. 2005",
+    "baslik": "On the separation of net ecosystem exchange into assimilation and ecosystem respiration",
+    "yayin": "Global Change Biology 11(9), 1424-1439",
+    "yil": "2005",
+    "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pastorello vd. 2020",
+    "baslik": "The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data",
+    "yayin": "Scientific Data 7, 225",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41597-020-0534-3",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Friedlingstein vd. 2023",
+    "baslik": "Global Carbon Budget 2023",
+    "yayin": "Earth System Science Data 15, 5301-5369",
+    "yil": "2023",
+    "url": "https://doi.org/10.5194/essd-15-5301-2023",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Song vd. 2018",
+    "baslik": "Global land change from 1982 to 2016",
+    "yayin": "Nature 560, 639-643",
+    "yil": "2018",
+    "url": "https://doi.org/10.1038/s41586-018-0411-9",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Bolton vd. 2020",
+    "baslik": "Continental-scale land surface phenology from harmonized Landsat 8 and Sentinel-2 imagery",
+    "yayin": "Remote Sensing of Environment 240, 111685",
+    "yil": "2020",
+    "url": "https://doi.org/10.1016/j.rse.2020.111685",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Xiao vd. 2019",
+    "baslik": "Remote sensing of the terrestrial carbon cycle: A review of advances over 50 years",
+    "yayin": "Remote Sensing of Environment 233, 111383",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.rse.2019.111383",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "FLUXNET orman kulesinden alınan bir yıllık akı verisini gece solunumu ve gündüz fotosentezine ayrıştırarak yıllık ekosistem karbon bütçesini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 227",
+   "projeyeKatki": "Atmosfer-biyosfer ara yüzeyindeki karbon alışverişi ekosistem ekolojisi prensipleriyle çözümlenir. Net ekosistem karbon akısı dengesi ile kule ölçümleri parçalanırken, Lloyd ve Taylor ekosistem solunum bağıntısı ile sıcaklığa bağlı solunum eğrisi uydurularak brüt birincil üretim (GPP) hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Net ekosistem karbon akısı dengesi",
+     "nerede": "Yarım saatlik kule NEE ölçümlerinden gündüz fotosentezini ve gece solunumunu ayrıştırma denkleminde kullanılır."
+    },
+    {
+     "formulAd": "Lloyd ve Taylor ekosistem solunum bağıntısı",
+     "nerede": "Gece sıcaklık ve NEE verisine üssel sıcaklık eğrisi uydurularak gündüz ekosistem solunumunu kestirmede kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "FLUXNET kule verisini pandas ile işleyip gece solunum eğrisi uydurarak bir yıllık ekosistem karbon bütçesini ayrıştırmak.",
+  "ayrinti": "AmeriFlux veya FLUXNET veri setinden kaliteli bir orman sahasının 17.520 satırlık yarım saatlik verisi çekilir. Işınımın sıfır olduğu gece saatlerinden sıcaklığa bağlı solunum fonksiyonu optimize edilir. Gündüz solunumu tahmin edilerek GPP çıkarılır. Yıllık kümülatif karbon tutumu ve PhenoCam fenoloji örtüşmesi grafikleştirilir.",
+  "adimlar": [
+   {
+    "baslik": "Akı kulesi verisini yüklemek ve kalite filtreleri uygulamak",
+    "oz": "AmeriFlux'tan NEE, sıcaklık ve ışınım verilerini ayıklamak.",
+    "ayrinti": "Seçilen meşe veya iğne yapraklı orman sahasının yarım saatlik veri seti pandas veri çerçevesine aktarılır. QC bayrakları taranarak türbülansın yetersiz olduğu veya aletsel gürültü içeren satırlar elenir. Eksik veriler doğrusal aradeğerleme ile tamamlanır.",
+    "nasil": [
+     {
+      "teknik": "df = pd.read_csv('AMF_US-Ha1_FLUXNET.csv', usecols=['TIMESTAMP_START', 'NEE', 'TA', 'PAR', 'USTAR']) ile yüklemek.",
+      "sade": "Orman akı kulesinin bir yıllık yarım saatlik ölçüm tablosunu Python ortamına aktarırız.",
+      "altAdimlar": [
+       "1. AmeriFlux veri tabanından Harvard Forest kulesine ait yıllık CSV dosyasını indirin.",
+       "2. pandas kütüphanesiyle zaman damgası, net akı, sıcaklık ve ışınım sütunlarını seçin.",
+       "3. Sürtünme hızı ustar 0,2 m/s altında kalan sakin gece satırlarını filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Eddy kovaryans kulelerinden elde edilen yarım saatlik türbülanslı akı verilerini kalite kontrol testlerinden geçirmek."
+      }
+     },
+     {
+      "teknik": "df_clean = apply_quality_flags(df, qc_col='NEE_QC', threshold=1) ile temizlemek.",
+      "sade": "Sensör arızası veya yağmur kaynaklı güvenilmez ölçümleri tablodan ayıklarız.",
+      "altAdimlar": [
+       "1. WMO standartlarındaki kalite kontrol kodlarını denetleyin.",
+       "2. Aykırı değerleri maskeleyin.",
+       "3. Zaman damgalarını kesintisiz 48 dilimlik günlük periyotlara hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Eddy kovaryans kulelerinden elde edilen yarım saatlik türbülanslı akı verilerini kalite kontrol testlerinden geçirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Eddy kovaryans kulelerinden elde edilen yarım saatlik türbülanslı akı verilerini kalite kontrol testlerinden geçirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Gece verisinden Lloyd-Taylor solunum fonksiyonunu uydurmak",
+    "oz": "Karanlık saatlerdeki akıdan sıcaklık duyarlılığını hesaplamak.",
+    "ayrinti": "PAR ışınımının 10 µmol/(m²·s) altında olduğu gece saatlerinde fotosentez sıfır olduğundan NEE doğrudan ekosistem solunumuna (Re) eşittir. scipy.optimize modülüyle Lloyd-Taylor üssel sıcaklık bağıntısı parametreleri uydurulur. Ekosistemin bazal solunum hızı belirlenir.",
+    "nasil": [
+     {
+      "teknik": "popt, _ = curve_fit(lloyd_taylor, df_night['TA'], df_night['NEE'], p0=[2.0, 200.0]) ile eğriyi uydurmak.",
+      "sade": "Gece hava soğukken ve sıcakken ormanın ne kadar CO2 saldığını formüle dökeriz.",
+      "altAdimlar": [
+       "1. Işık değerinin sıfır olduğu gece yarım saatlerini filtreleyerek gece alt kümesini kurun.",
+       "2. Sıcaklık ile gece NEE akısı arasındaki üssel ilişkiyi regresyonla çözün.",
+       "3. Referans sıcaklıktaki solunum katsayısını ve sıcaklık hassasiyeti parametresini elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Sıcaklık ve toprak nemine bağlı ekosistem solunum eğrilerini (Lloyd-Taylor) parametrik olarak uydurmak."
+      }
+     },
+     {
+      "teknik": "df['RE_est'] = lloyd_taylor(df['TA'], *popt) ile 24 saatlik solunumu kestirmek.",
+      "sade": "Elde edilen formülü gündüz saatlerine de uygulayarak günün 24 saatinde ormanın solunumunu tahmin ederiz.",
+      "altAdimlar": [
+       "1. Uydurulan parametreleri gündüz ölçülen hava sıcaklıklarıyla eşleştirin.",
+       "2. Her yarım saat için ekosistem solunumu sütununu hesaplayın.",
+       "3. Gece gözlemleriyle tahmin edilen Re arasındaki uyumu korelasyonla doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Sıcaklık ve toprak nemine bağlı ekosistem solunum eğrilerini (Lloyd-Taylor) parametrik olarak uydurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Sıcaklık ve toprak nemine bağlı ekosistem solunum eğrilerini (Lloyd-Taylor) parametrik olarak uydurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Brüt birincil üretimi (GPP) hesaplamak ve bütçeyi kurmak",
+    "oz": "Gündüz NEE'den solunumu çıkararak fotosentez miktarını bulmak.",
+    "ayrinti": "Net karbon dengesi formülü işletilerek GPP = Re - NEE bağıntısıyla her yarım saatte bitkilerin fotosentezle bağladığı brüt karbon hesaplanır. Gece saatlerinde GPP sıfıra eşitlenir. Günlük toplamlar alınarak gram karbon bölü metrekare birimine dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "df['GPP'] = np.maximum(0, df['RE_est'] - df['NEE']) ile fotosentezi hesaplamak.",
+      "sade": "Ormanın toplam solunumundan kuledeki net akıyı çıkararak fotosentezi açığa çıkarırız.",
+      "altAdimlar": [
+       "1. Formül uyarınca solunum sütunundan ölçülen net akıyı çıkarın.",
+       "2. Işık olmayan saatlerdeki negatif değerleri sıfıra sabitleyin.",
+       "3. Akı değerini gram karbon miktarına dönüştürmek için katsayıyla çarpın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Net ekosistem değişimi (NEE) ölçümlerini brüt birincil üretim (GPP) ve ekosistem solunumu (RE) bileşenlerine ayrıştırmak."
+      }
+     },
+     {
+      "teknik": "daily = df.resample('D', on='TIMESTAMP')[['NEE_gC', 'GPP_gC', 'RE_gC']].sum() ile günlük toplamak.",
+      "sade": "Yarım saatlik anlık akıları gün boyu toplayarak ormanın günlük karbon bilançosunu çıkarırız.",
+      "altAdimlar": [
+       "1. 48 adet yarım saatlik değeri gün bazında entegre edin.",
+       "2. Günlük net yutak ve kaynak günlerini işaretleyin.",
+       "3. Mevsimsel birincil üretim zirvesini yaz ortasında doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Net ekosistem değişimi (NEE) ölçümlerini brüt birincil üretim (GPP) ve ekosistem solunumu (RE) bileşenlerine ayrıştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Net ekosistem değişimi (NEE) ölçümlerini brüt birincil üretim (GPP) ve ekosistem solunumu (RE) bileşenlerine ayrıştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Yıllık kümülatif karbon eğrisi ve fenoloji karşılaştırması",
+    "oz": "Yıllık net karbon tutumunu çizip PhenoCam yeşermesiyle doğrulamak.",
+    "ayrinti": "365 günlük GPP, Re ve NEE kümülatif toplamları tek grafikte çizilir. Ormanın yılı net karbon yutağı mı yoksa kaynağı mı olarak tamamladığı belirlenir. GPP'nin ilkbaharda aniden yükselişe geçtiği tarih, PhenoCam kanopi yeşerme görüntüsüyle kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "plot_carbon_budget(daily.cumsum(), output='annual_carbon_budget.png') ile grafiği üretmek.",
+      "sade": "Yıl boyunca ormanda biriken toplam karbon miktarını üç ana eğriyle görselleştiririz.",
+      "altAdimlar": [
+       "1. Yıllık toplam GPP, Re ve NEE kümülatif serilerini hesaplayın.",
+       "2. Ormanın net yıllık yutak kapasitesini grafikte vurgulayın.",
+       "3. Kuraklık dönemlerindeki fotosentez duraklamalarını raporda açıklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Net ekosistem değişimi (NEE) ölçümlerini brüt birincil üretim (GPP) ve ekosistem solunumu (RE) bileşenlerine ayrıştırmak."
+      }
+     },
+     {
+      "teknik": "validate_sos(gpp_timeseries, phenocam_gcc_csv) ile fenolojik başlangıcı teyit etmek.",
+      "sade": "Fotosentezin başladığı ilkbahar gününü kameradan görülen ağaç yeşermesiyle test ederiz.",
+      "altAdimlar": [
+       "1. PhenoCam yeşil indeksinin eşiği aştığı yeşerme gününü bulun.",
+       "2. GPP eğrisinin sıfırdan yukarı koptuğu gün ile aradaki farkı hesaplayın.",
+       "3. Ekosistem ekolojisi ders özetine uygun açık kaynaklı analiz defterini kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 227",
+       "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 227",
+      "madde": "Net ekosistem değişimi (NEE) ölçümlerini brüt birincil üretim (GPP) ve ekosistem solunumu (RE) bileşenlerine ayrıştırmak."
+     },
+     {
+      "ders": "MTO 227",
+      "madde": "Uydu fenolojisi ve fenokamera görüntüleriyle ekosistem karbon bütçesini doğrulamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "FLUXNET kule verisinden üretilen bir yıllık karbon ayrıştırma Python defteri, kümülatif NEE/GPP/Re bütçe grafiği ve PhenoCam fenoloji doğrulama raporu.",
+  "senden": "pandas veri manipülasyonu bilgisi, ekosistem karbon döngüsüne merak ve grafik yorumlama isteği.",
+  "bizden": "FLUXNET2015 açık veri setleri, Lloyd-Taylor ayrıştırma fonksiyon şablonları ve PhenoCam doğrulama rehberi."
+ },
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Eddy_covariance_tower_Harvard_Forest.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "AmeriFlux ve FLUXNET ağında orman tepe seviyesinde karbon akısını ölçen eddy kovaryans kulesi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Karasal orman sahasında saatlik fotosentetik ışınım PAR ve sıcaklık mevsimsel döngüsü",
+   "aciklama": "Ekosistem birincil üretimini tetikleyen güneş ışınımı ve sıcaklık akışlarının saatlik animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://phenocam.nau.edu/webcam/",
+   "aciklama": "PhenoCam dijital kamera portalı orman kanopisi fenolojik yeşerme ve sararma arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 227 (Ekosistem Ekolojisi)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=227"
+  },
+  {
+   "ad": "Reichstein, M. et al. (2005) On the separation of net ecosystem exchange, GCB, 11(9), 1424–1439",
+   "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x"
+  },
+  {
+   "ad": "Pastorello, G. et al. (2020) The FLUXNET2015 dataset and ONEFlux pipeline, Sci Data, 7, 225",
+   "url": "https://doi.org/10.1038/s41597-020-0534-3"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO227-01.json",
+  "tarih": "2026-10-17 03:21",
+  "geminiSha1": "bc9543c25253"
+ }
+}

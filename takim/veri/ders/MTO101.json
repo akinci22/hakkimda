@@ -1,0 +1,135 @@
+{
+ "kod": "MTO 101",
+ "ad": "Meteoroloji Müh. Giriş ve Etik",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "101",
+ "ozet": "Meteoroloji mühendisliği mesleğinin tarihsel gelişimini, ulusal ve küresel servis zincirini, WMO ve NSPE mühendislik etik ilkelerini, tahmin belirsizliğinin topluma iletilmesini ve modern sayısal hava tahmininin evrimini öğretir.",
+ "neOgrenirsin": [
+  "Meteoroloji mühendisliğinin temel çalışma alanlarını, sektör paydaşlarını ve uluslararası teşkilatları tanımak.",
+  "Mühendislik etik kodlarını kamu güvenliği, veri doğruluğu ve mesleki dürüstlük ilkeleriyle uygulamak.",
+  "Sayısal hava tahmini modellerinin ve yapay zekâ sistemlerinin meslekteki rolünü kavramak.",
+  "Hava tahminlerindeki olasılıksal belirsizliği kullanıcılara şeffaf ve sorumlu biçimde aktarmak.",
+  "Açık meteorolojik veri servislerini ve istasyon gözlem ağlarını sorgulayarak analiz etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Brier olasılık skor bağıntısı",
+   "tex": "BS = \\frac{1}{N} \\sum_{n=1}^{N} (p_n - o_n)^2",
+   "terimler": [
+    [
+     "BS",
+     "Brier hata skoru",
+     "birimsiz"
+    ],
+    [
+     "N",
+     "değerlendirilen toplam tahmin sayısı",
+     "birimsiz"
+    ],
+    [
+     "p_n",
+     "olayın gerçekleşmesi için verilen tahmin olasılığı",
+     "birimsiz"
+    ],
+    [
+     "o_n",
+     "olayın gerçekte meydana gelme ikili durumu",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Hava hadiselerine verilen olasılık tahminlerinin doğruluğunu ve keskinliğini karesel fark ortalamasıyla ölçer; sıfıra yakın değerler mükemmel tahmini gösterir.",
+   "ornek": "İstanbul için verilen 10 günlük yağış olasılıkları tahmin serisinde hesaplanan BS = 0,08 değeri, tahminlerin gözlenen hadiselerle yüksek tutarlılık sergilediğini kanıtlar.",
+   "nerede": "D-MTO101-01'de mesleki tahmin doğrulaması ve etik sorumluluk metriklerini incelerken."
+  },
+  {
+   "ad": "Ortalama mutlak hata bağıntısı",
+   "tex": "MAE = \\frac{1}{N} \\sum_{i=1}^{N} |y_i - \\hat{y}_i|",
+   "terimler": [
+    [
+     "MAE",
+     "ortalama mutlak hata",
+     "ölçü birimiyle aynı"
+    ],
+    [
+     "N",
+     "doğrulanan toplam tahmin noktası sayısı",
+     "birimsiz"
+    ],
+    [
+     "y_i",
+     "istasyonda ölçülen gerçek atmosferik gözlem değeri",
+     "ölçü birimiyle aynı"
+    ],
+    [
+     "\\hat{y}_i",
+     "sayısal hava modeli veya tahmincinin kestirdiği değer",
+     "ölçü birimiyle aynı"
+    ]
+   ],
+   "sade": "Tahmin edilen sıcaklık, rüzgâr veya basınç değerlerinin gerçek ölçümden ortalama ne kadar saptığını mutlak farklar üzerinden şeffaf biçimde hesaplar.",
+   "ornek": "İstanbul Atatürk Havalimanı 24 saatlik sıcaklık tahmininde 24 ölçümün gerçek değerlerle farkı toplandığında MAE = 0,85 °C olarak bulunur.",
+   "nerede": "D-MTO101-02'de açık veri kaynaklarından çekilen 24 saatlik gözlemler ile model tahminlerini kıyaslarken."
+  },
+  {
+   "ad": "Göreceli operasyonel tahmin beceri skoru",
+   "tex": "SS = \\frac{A - A_{ref}}{A_{perf} - A_{ref}} \\times 100",
+   "terimler": [
+    [
+     "SS",
+     "yüzde cinsinden tahmin beceri skoru (Skill Score)",
+     "%"
+    ],
+    [
+     "A",
+     "değerlendirilen tahmin yönteminin doğruluk skoru",
+     "birimsiz"
+    ],
+    [
+     "A_{ref}",
+     "klimatoloji veya kalıcılık gibi referans yöntemin skoru",
+     "birimsiz"
+    ],
+    [
+     "A_{perf}",
+     "mükemmel tahminin alacağı teorik doğruluk değeri",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Geliştirilen hava tahmininin, sadece dünkü havayı tekrarlayan veya uzun yıllar ortalamasını kullanan basit referansa göre ne kadar katma değer sağladığını ölçer.",
+   "ornek": "Yeni kurulan yapay zekâ tahmin yönteminin doğruluğu 0,82 ve kalıcılık referansı 0,60 iken mükemmel değer 1,0 üzerinden beceri skoru %55 olarak hesaplanır.",
+   "nerede": "D-MTO101-01'de sayısal tahminin katma değerini ve etik bildirim standartlarını değerlendirirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:WMO_Headquarters_Geneva.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Dünya Meteoroloji Örgütü (WMO) Cenevre genel merkezi ve uluslararası atmosfer gözlem ağı koordinasyon binası"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul istasyonları son 24 saatlik açık sıcaklık ve basınç ölçüm akışı",
+   "aciklama": "Açık veri API'leri üzerinden İstanbul yüzey gözlemlerinin saatlik güncellenen zaman serisi grafiği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 101 (Meteoroloji Müh. Giriş ve Etik)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=101"
+  },
+  {
+   "ad": "Bauer, P., Thorpe, A. & Brunet, G. (2015) The quiet revolution of numerical weather prediction, Nature, 525, 47–55",
+   "url": "https://doi.org/10.1038/nature14956"
+  },
+  {
+   "ad": "National Society of Professional Engineers (NSPE) Code of Ethics for Engineers",
+   "url": "https://www.nspe.org/resources/ethics/code-ethics"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=101"
+}

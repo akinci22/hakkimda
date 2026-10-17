@@ -1,0 +1,180 @@
+{
+ "kod": "MTO 463E",
+ "ad": "Numerical Weather Prediction (Sayısal Hava Öngörüsü)",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "463",
+ "ozet": "Atmosferin ilkel denklemlerinin (primitive equations) sonlu farklar ve spektral yöntemlerle sayısal çözümünü, 3D/4D-Var veri özümseme tekniklerini, ızgara altı parametrizasyonları, topluluk tahminlerini ve modern yapay zekâ tabanlı çizge sinir ağı (GraphCast) hava modellerini kapsar.",
+ "neOgrenirsin": [
+  "Atmosferin ilkel denklemlerini sonlu farklar ve spektral dönüşümlerle sayısal olarak ayrıklaştırmak.",
+  "Sayısal hava modellerinde başlangıç alanlarını 3D-Var veri özümseme algoritmalarıyla kurmak.",
+  "Izgara altı fiziksel süreçleri parametrizasyon şemalarıyla dinamik çekirdeğe dahil etmek.",
+  "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak.",
+  "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+ ],
+ "formuller": [
+  {
+   "ad": "İlkel momentum denklemi",
+   "tex": "\\frac{\\partial u}{\\partial t} + u \\frac{\\partial u}{\\partial x} + v \\frac{\\partial u}{\\partial y} + w \\frac{\\partial u}{\\partial z} - f v = -\\frac{1}{\\rho} \\frac{\\partial p}{\\partial x} + F_x",
+   "terimler": [
+    [
+     "\\frac{\\partial u}{\\partial t}",
+     "x yönündeki rüzgâr ivmesi",
+     "m/s²"
+    ],
+    [
+     "u",
+     "x yönündeki zonal rüzgâr bileşeni",
+     "m/s"
+    ],
+    [
+     "v",
+     "y yönündeki meridyonal rüzgâr bileşeni",
+     "m/s"
+    ],
+    [
+     "w",
+     "z yönündeki düşey rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "f",
+     "Coriolis parametresi",
+     "s⁻¹"
+    ],
+    [
+     "\\rho",
+     "havanın yerel yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "\\frac{\\partial p}{\\partial x}",
+     "x yönündeki basınç gradyanı",
+     "Pa/m"
+    ],
+    [
+     "F_x",
+     "türbülans ve sürtünme kuvveti ivmesi",
+     "m/s²"
+    ]
+   ],
+   "sade": "Atmosferdeki yatay rüzgârın adveksiyon, Coriolis sapması, basınç gradyan kuvveti ve sürtünmeyle nasıl evrildiğini formüle eder; sayısal hava modellerinin temel hareket denklemidir.",
+   "ornek": "İstanbul üzerinde 500 hPa seviyesinde basınç gradyan kuvveti 0,0012 m/s² ve Coriolis ivmesi 0,0010 m/s² iken rüzgâr hızındaki net değişim ivmesi hesaplanır.",
+   "nerede": "D-MTO463E-01 ve D-MTO463E-02'de dinamik çekirdek adveksiyon çözümlerini değerlendirirken."
+  },
+  {
+   "ad": "Veri özümseme 3D-Var amaç fonksiyonu",
+   "tex": "J(\\mathbf{x}) = \\frac{1}{2} (\\mathbf{x} - \\mathbf{x}_b)^T \\mathbf{B}^{-1} (\\mathbf{x} - \\mathbf{x}_b) + \\frac{1}{2} (\\mathbf{y} - H(\\mathbf{x}))^T \\mathbf{R}^{-1} (\\mathbf{y} - H(\\mathbf{x}))",
+   "terimler": [
+    [
+     "J(\\mathbf{x})",
+     "optimize edilen toplam 3D-Var maliyet fonksiyonu",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{x}",
+     "tahmin edilen en uygun atmosferik analiz durum vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{x}_b",
+     "modelin arka plan (first guess) durum vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{B}",
+     "arka plan hata kovaryans matrisi",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{y}",
+     "istasyon, radar ve uydulardan alınan gerçek gözlem vektörü",
+     "birimsiz"
+    ],
+    [
+     "H",
+     "model durumunu gözlem uzayına projekte eden gözlem operatörü",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{R}",
+     "gözlem hata kovaryans matrisi",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Modelin önceki tahmini ile yeni gelen istasyon/uydu gözlemlerini hata paylarına göre ağırlıklandırıp en tutarlı başlangıç durumunu bulmayı sağlar.",
+   "ornek": "Model arka plan tahmini 14 °C (hata varyansı 1,0), METAR gözlemi 16 °C (hata varyansı 0,25) iken ağırlıklı ortalama ile en uygun başlangıç analizi 15,6 °C olarak bulunur.",
+   "nerede": "D-MTO463E-02 ve D-MTO463E-03'te sayısal hava modeline başlangıç durumu oluştururken."
+  },
+  {
+   "ad": "Çizge sinir ağı mesaj iletimi",
+   "tex": "\\mathbf{v}_i^{(l+1)} = \\gamma_v \\left( \\mathbf{v}_i^{(l)}, \\sum_{j \\in \\mathcal{N}(i)} \\phi_e \\left( \\mathbf{v}_i^{(l)}, \\mathbf{v}_j^{(l)}, \\mathbf{e}_{ji} \\right) \\right)",
+   "terimler": [
+    [
+     "\\mathbf{v}_i^{(l+1)}",
+     "i düğümünün bir sonraki katmandaki güncellenmiş durum vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{v}_i^{(l)}",
+     "i düğümünün mevcut katmandaki atmosferik durum vektörü",
+     "birimsiz"
+    ],
+    [
+     "\\gamma_v",
+     "düğüm durumunu güncelleyen çok katmanlı algılayıcı",
+     "birimsiz"
+    ],
+    [
+     "\\mathcal{N}(i)",
+     "i düğümüne bağlı komşu ızgara düğümleri kümesi",
+     "birimsiz"
+    ],
+    [
+     "\\phi_e",
+     "kenarlar boyunca mesaj üreten çok katmanlı algılayıcı",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{e}_{ji}",
+     "j düğümünden i düğümüne giden kenarın coğrafi mesafe ve yön öznitelikleri",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Küre üzerindeki komşu hava noktalarının birbiriyle mesajlaşarak fiziksel akışkan adveksiyonunu ve atmosferik etkileşimi sinir ağında simüle etmesini sağlar.",
+   "ornek": "İstanbul düğümü, komşusu olan Marmara ve Karadeniz düğümlerinden gelen sıcaklık ve rüzgâr mesajlarını toplayarak 6 saat sonraki yerel durumunu günceller.",
+   "nerede": "D-MTO463E-01'de GraphCast modelinin ızgara üzerinde durum güncellemesini açıklarken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Sayısal hava tahmininde topluluk yayılımı ve deterministik model yörüngesi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "ECMWF AIFS ve IFS küresel 500 hPa jeopotansiyel yükseklik ve 850 hPa sıcaklık tahmin döngüsü",
+   "aciklama": "Yapay zekâ ve fizik tabanlı sayısal tahmin modellerinin Avrupa ve Türkiye üzerindeki 10 günlük karşılaştırması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 463E (Numerical Weather Prediction)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=463"
+  },
+  {
+   "ad": "Kalnay, E. (2002) Atmospheric Modeling, Data Assimilation and Predictability, Cambridge University Press",
+   "url": "https://doi.org/10.1017/CBO9780511802270"
+  },
+  {
+   "ad": "Lam, R. vd. (2023) Learning skillful medium-range global weather forecasting, Science, 382, 1416-1421",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=463"
+}

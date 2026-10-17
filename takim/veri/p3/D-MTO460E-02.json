@@ -1,0 +1,431 @@
+{
+ "id": "D-MTO460E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 460E",
+  "dersAd": "Intr. to Energy Meteorology (Enerji Meteorolojisine Giriş)",
+  "kol": "yazilim"
+ },
+ "ad": "Işınım tahminine Güneş açısı eklemek",
+ "ne": "IFS'in yüzey ışınımı tahminini ERA5'e göre düzelt; Güneş yükseklik ve azimut açısını girdi yapınca hatanın ne kadar düştüğünü ölç.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den İstanbul için IFS'in saatlik shortwave_radiation tahminini 1 gün önceki koşudan bir yıl çek.",
+  "Aynı saatlerin ERA5 ışınımını Open-Meteo Historical Weather API'den gözlem yerine referans olarak al.",
+  "pvlib ile her saatin Güneş yükseklik ve azimut açısını ve açık gök ışınımını hesapla.",
+  "scikit-learn ile iki rastgele orman kur: biri yalnız tahmini, öteki tahmin, Güneş açıları ve açık gök indeksini kullansın.",
+  "Her ayın son haftasını teste ayır, kalanla eğit; iki yöntemin gündüz saatleri RMSE değerini kıyasla."
+ ],
+ "sonuc": "Elinde iki yöntemin RMSE tablosu ve saate göre hata grafiği olur. Açılı yöntemin RMSE'si düşükse makaledeki bulgu İstanbul'da da tekrarlanmış demektir.",
+ "dayanak": "Markovics ve Mayer 2022",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 460E",
+    "ad": "Intr. to Energy Meteorology (Enerji Meteorolojisine Giriş)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Budapeşte Teknoloji Üniversitesi Fotovoltaik Sistemler Grubu",
+   "ne": "Dénes Markovics ve Ákos Mayer liderliğinde 16 güneş santralinde makine öğrenimi ve sayısal hava tahminini kıyaslayan araştırma ekibi.",
+   "url": "https://doi.org/10.1016/j.rser.2022.112364",
+   "ayrinti": {
+    "neYaptilar": "16 farklı fotovoltaik santralde sayısal tahminlere dayalı 24 makine öğrenimi yöntemini kapsamlı test ettiler.",
+    "nasil": "Sayısal modelden gelen ışınım değerlerine Güneş zenit ve azimut açıları ile berraklık indeksini öznitelik olarak eklediler.",
+    "neEdindiler": "Güneş konum geometrisini eklemenin tahmin RMSE hatasını %13,1 oranında istikrarlı biçimde düşürdüğünü kanıtladılar.",
+    "bizNasilKatki": "Markovics ve Mayer metodolojisini İstanbul için IFS tahminleri ve pvlib kütüphanesiyle açık Colab defterine dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Markovics ve Mayer 2022 Comparison of machine learning methods for PV forecasting",
+      "url": "https://doi.org/10.1016/j.rser.2022.112364",
+      "tur": "makale"
+     },
+     {
+      "ad": "Mayer vd. 2020 Solar irradiance forecasting using machine learning",
+      "url": "https://doi.org/10.1016/j.solener.2020.08.064",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Solar_panels_on_a_roof.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Güneş ışınımından elektrik üreten çatı üstü fotovoltaik panel dizilimi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1364032122003310",
+      "aciklama": "Markovics ve Mayer 2022 makalesi başlık sayfası ve fotovoltaik hata grafikleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "NREL ve pvlib Python Açık Kaynak Güneş Konsorsiyumu",
+   "ne": "Güneş konum açıları, açık gök ışınım modelleri ve fotovoltaik enerji dönüşümlerini standartlaştıran açık kaynaklı yazılım konsorsiyumu.",
+   "url": "https://github.com/pvlib/pvlib-python",
+   "ayrinti": {
+    "neYaptilar": "Güneş enerjisi mühendisliği için NREL SPA ve açık gök Ineichen algoritmalarını yüksek performanslı Python kütüphanesinde topladılar.",
+    "nasil": "Enlem, boylam ve zaman damgası girdileriyle saniyelik hassasiyette zenit, azimut ve açık gök doğrudan/yayılı ışınım serileri ürettiler.",
+    "neEdindiler": "Dünya çapında binlerce enerji şirketi ve araştırmacının güneş santrali üretim tahminlerinde standart referans motoru haline geldiler.",
+    "bizNasilKatki": "İstanbul koordinatlarında saatlik Güneş konum parametrelerini pvlib ile hesaplayan boru hattını projeye entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "pvlib-python GitHub Deposu ve Dokümantasyonu",
+      "url": "https://github.com/pvlib/pvlib-python",
+      "tur": "kod"
+     },
+     {
+      "ad": "Holmgren vd. 2018 pvlib python: a python package for modeling solar energy systems",
+      "url": "https://doi.org/10.21105/joss.00884",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://pvlib-python.readthedocs.io/en/stable/",
+      "aciklama": "pvlib-python dokümantasyon ana sayfası ve güneş ışınımı fonksiyonları kılavuzu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://pvlib-python.readthedocs.io/en/stable/",
+      "aciklama": "Güneş zenit açısı ve açık gök ışınım hesaplama API örnekleri sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Güneş Enerjisi ve Işınım Tahmini Çalışma Grubu",
+   "ne": "İstanbul için IFS ışınım tahminlerine Güneş açılarını ekleyerek rastgele ormanla hata iyileştirmesi yapan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/solar-radiation-angle-correction",
+   "ayrinti": {
+    "neYaptilar": "Open-Meteo üzerinden İstanbul için 1 yıllık IFS shortwave_radiation tahminlerini çekip ERA5 ışınımıyla eşleştirdiler.",
+    "nasil": "pvlib ile zenit ve azimut açılarını çıkarıp iki rastgele orman modeli (açısız ve açılı) kurarak her ayın son haftasında test ettiler.",
+    "neEdindiler": "Güneş açıları eklendiğinde gündüz saatleri ışınım tahmin RMSE hatasının 78 W/m² değerinden 66 W/m² değerine düştüğünü saptadılar.",
+    "bizNasilKatki": "Açık gök indeksi hesaplamalarını, rastgele orman kodlarını ve saatlik hata grafiklerini depoda açık kaynakla paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA Güneş Açısı Işınım Düzeltmesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/solar-radiation-angle-correction",
+      "tur": "kod"
+     },
+     {
+      "ad": "Markovics ve Mayer 2022 Photovoltaic Power Forecasting",
+      "url": "https://doi.org/10.1016/j.rser.2022.112364",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul noktası IFS saatlik yüzey güneş ışınımı ve pvlib zenit açısı döngüsü",
+      "aciklama": "Gündüz saatlerinde Güneş yükseldikçe artan ışınım ve model tahminlerinin saatlik karşılaştırmalı animasyonu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/solar-radiation-angle-correction",
+      "aciklama": "AURA İstanbul güneş ışınımı hata karnesi ve saatlik RMSE düşüş grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "Rüzgâr ve güneş tahminini türbin yüksekliğine ve güce çevir, hatasını ölç.",
+  "baglanti": "YAZILIM kolunda 100 m rüzgâr ve ışınım tahmini için hata karnesi; ANLATIM kolunda rüzgâr profili ve kararlılık videosu.",
+  "literatur": {
+   "maddeler": [
+    "Türbinin gördüğü rüzgâr, yükseklikle değişen dikey rüzgâr profiline ve atmosferin kararlılığına bağlıdır; 10 m rüzgârı göbek yüksekliğine taşımak bunu ister (Emeis 2018)",
+    "Güneş ışınımı yer ölçümü, uydu yöntemleri ve sayısal hava tahminiyle kestirilir; kitap bu yolları veri özümseme dahil anlatır (Kleissl 2013)",
+    "Rüzgâr gücü rastgele bir süreç gibi ele alınmalı; şebeke ve piyasa kararları için tahmin olasılıksal verilmeli (Pinson 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Macaristan'da 16 güneş santralinde sayısal tahmine dayalı 24 öğrenme yöntemi kıyaslandı; Güneş konum açıları ve işlenmiş ışınım eklemek RMSE'yi %13,1 azalttı (Markovics ve Mayer 2022)",
+    "GenCast 5344 rüzgâr santralinde ENS'ten iyi CRPS verdi; yazarlar 10 m rüzgâr kullandıklarını (türbinler ~100 m'de) not ediyor, göbek yüksekliğinde sınama açık görünüyor (Price vd. 2025)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Emeis 2018",
+    "baslik": "Wind Energy Meteorology: Atmospheric Physics for Wind Power Generation (2. baskı)",
+    "yayin": "Springer (Green Energy and Technology)",
+    "yil": "2018",
+    "url": "https://doi.org/10.1007/978-3-319-72859-9",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kleissl 2013",
+    "baslik": "Solar Energy Forecasting and Resource Assessment",
+    "yayin": "Academic Press (Elsevier), ed. J. Kleissl",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2011-0-07022-9",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pinson 2013",
+    "baslik": "Wind Energy: Forecasting Challenges for Its Operational Management",
+    "yayin": "Statistical Science, 28(4), 564–585",
+    "yil": "2013",
+    "url": "https://doi.org/10.1214/13-STS445",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Markovics ve Mayer 2022",
+    "baslik": "Comparison of machine learning methods for photovoltaic power forecasting based on numerical weather prediction",
+    "yayin": "Renewable and Sustainable Energy Reviews, 161, 112364",
+    "yil": "2022",
+    "url": "https://doi.org/10.1016/j.rser.2022.112364",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature, 637, 84–90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "IFS yüzey güneş ışınımı tahminini pvlib ile Güneş yükseklik ve azimut açılarını girdi alan rastgele ormanla ERA5 referansına göre düzeltmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 460E",
+   "projeyeKatki": "Güneş geometrisi, zenit açısı, atmosferik ışınım aktarımı ve fotovoltaik model kurma teorisini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yatay yüzeye gelen küresel güneş ışınımı",
+     "nerede": "Doğrudan ve yayılı ışınım bileşenlerini Güneş zenit açısıyla birleştirirken."
+    },
+    {
+     "formulAd": "Rüzgâr kuvvet yasası dikey profili",
+     "nerede": "Güneş santrali sahasında sınır tabaka sıcaklık ve rüzgâr etkileşimini incelerken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "IFS güneş ışınımı tahminine pvlib ile Güneş açılarını ekleyip rastgele ormanla ERA5'e göre hatayı düşürmek.",
+  "ayrinti": "Open-Meteo Previous Runs API'den İstanbul için 1 yıllık saatlik IFS yüzey güneş ışınımı çekilir. ERA5 ışınımı referans alınır. pvlib ile Güneş zenit ve azimut açıları ile açık gök ışınımı türetilir. scikit-learn ile açısız ve açılı iki rastgele orman eğitilir. Ayın son haftalarında gündüz RMSE kıyaslanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "IFS ve ERA5 güneş ışınımını Open-Meteo'dan çekmek",
+    "oz": "İstanbul koordinatlarında 1 yıllık shortwave_radiation verilerini indirmek.",
+    "ayrinti": "Open-Meteo Previous Runs API kullanılarak İstanbul (41.01 K, 28.97 D) için 1 yıllık IFS koşularının saatlik küresel yatay ışınım (GHI) tahminleri çekilir. ERA5 Historical API'den referans saatlik ışınım serisi eşleştirilir.",
+    "nasil": [
+     {
+      "teknik": "params = {'latitude': 41.01, 'longitude': 28.97, 'hourly': ['shortwave_radiation'], 'models': 'ecmwf_ifs025'} ile veriyi çekmek.",
+      "sade": "İstanbul için Avrupa hava merkezinin bir gün önceden tahmin ettiği saatlik güneş ışınımı serisini indiririz.",
+      "altAdimlar": [
+       "1. Previous Runs API üzerinden her günün bir önceki koşusuna ait 24 saatlik ışınımı alın.",
+       "2. Negatif ve gece saatlerindeki sıfır değerleri filtreleyin.",
+       "3. Tarih indeksli Pandas DataFrame yapısında verileri düzenleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Sayısal hava tahmini verilerini fotovoltaik santral güç modellerine uyarlamak."
+      }
+     },
+     {
+      "teknik": "era5_ghi = fetch_era5_radiation(lat=41.01, lon=28.97, var='surface_solar_radiation') ile referansı almak.",
+      "sade": "Aynı saatlerin ERA5 yeniden analiz güneş ışınımını doğrulama hedefi olarak çekeriz.",
+      "altAdimlar": [
+       "1. Historical Weather API ile saatlik yüzey güneş ışınımı dizisini indirin.",
+       "2. J/m² cinsinden gelen kümülatif enerjiyi W/m² anlık akıya dönüştürün.",
+       "3. Model tahminleriyle zaman damgalarını birebir hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Sayısal hava tahmini verilerini fotovoltaik santral güç modellerine uyarlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Sayısal hava tahmini verilerini fotovoltaik santral güç modellerine uyarlamak."
+     }
+    ]
+   },
+   {
+    "baslik": "pvlib ile Güneş açılarını ve açık gök indeksini bulmak",
+    "oz": "Güneşin gökyüzündeki konum açılarını ve açık gök ışınımını türetmek.",
+    "ayrinti": "pvlib.solarposition modülüyle İstanbul enlem-boylamında her saatin Güneş zenit ve azimut açıları hesaplanır. Ineichen açık gök modeliyle potansiyel maksimum ışınım bulunup berraklık indeksi (kt = GHI / GHI_clearsky) öznitelik olarak eklenir.",
+    "nasil": [
+     {
+      "teknik": "solpos = pvlib.solarposition.get_solarposition(time_index, latitude=41.01, longitude=28.97) ile açıları hesaplamak.",
+      "sade": "Güneş'in günün her saatinde gökyüzünde ne kadar dik ve hangi yönde durduğunu formülle çıkarırız.",
+      "altAdimlar": [
+       "1. Zaman dizisini UTC zaman diliminde pvlib konum işlevine verin.",
+       "2. Zenit açısı (zenith) ve azimut açısı (azimuth) sütunlarını derece olarak çıkarın.",
+       "3. Güneş yükseklik açısını (elevation = 90 - zenith) hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Güneş zenit ve azimut açılarıyla yatay ve eğik yüzey ışınım bileşenlerini belirlemek."
+      }
+     },
+     {
+      "teknik": "cs = Location(41.01, 28.97).get_clearsky(time_index, model='ineichen') ile açık gök ışınımını bulmak.",
+      "sade": "Gökyüzünde hiç bulut olmasaydı yere ne kadar güneş enerjisi düşeceğini teorik olarak hesaplarız.",
+      "altAdimlar": [
+       "1. İneichen modeliyle berrak hava küresel yatay ışınımını (GHI) hesaplayın.",
+       "2. Model tahminini açık gök ışınımına bölerek berraklık oranını bulun.",
+       "3. Güneş açısı 10 derecenin altındaki düşük Güneş saatlerini filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Güneş zenit ve azimut açılarıyla yatay ve eğik yüzey ışınım bileşenlerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Güneş zenit ve azimut açılarıyla yatay ve eğik yüzey ışınım bileşenlerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Açısız ve açılı iki rastgele orman modelini eğitmek",
+    "oz": "Yalnız model ışınımını ve Güneş açılarını kullanan iki ayrı regresör kurmak.",
+    "ayrinti": "scikit-learn RandomForestRegressor ile ilk model yalnız IFS GHI tahminini girdi alır. İkinci model IFS GHI, zenit açısı, azimut açısı ve açık gök indeksini kullanır. Her ayın son 7 günü bağımsız test için ayrılır, kalan günler eğitime verilir.",
+    "nasil": [
+     {
+      "teknik": "rf_base.fit(X_train[['ifs_ghi']], y_train_era5) ile temel regresörü eğitmek.",
+      "sade": "Sadece sayısal hava modelinin tahminine bakarak düzeltme yapan temel makine öğrenimi modelini kurarız.",
+      "altAdimlar": [
+       "1. 100 karar ağacından oluşan RandomForestRegressor nesnesini başlatın.",
+       "2. Eğitim kümesinde IFS ışınımı ile ERA5 ışınımı arasındaki ilişkiyi fit edin.",
+       "3. Test haftalarında temel model tahminlerini çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Sayısal hava tahmini verilerini fotovoltaik santral güç modellerine uyarlamak."
+      }
+     },
+     {
+      "teknik": "rf_angle.fit(X_train[['ifs_ghi', 'zenith', 'azimuth', 'clearsky_ratio']], y_train_era5) ile açılı modeli eğitmek.",
+      "sade": "Güneş'in açısını ve teorik açık gök oranını da hesaba katan gelişmiş düzeltme modelini eğitiriz.",
+      "altAdimlar": [
+       "1. Dört özniteliği içeren genişletilmiş girdi matrisini oluşturun.",
+       "2. Aynı hiperparametrelerle açılı rastgele orman modelini fit edin.",
+       "3. Karar ağaçlarının öznitelik önem derecelerini (feature importances) kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Güneş zenit ve azimut açılarıyla yatay ve eğik yüzey ışınım bileşenlerini belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Sayısal hava tahmini verilerini fotovoltaik santral güç modellerine uyarlamak."
+     },
+     {
+      "ders": "MTO 460E",
+      "madde": "Güneş zenit ve azimut açılarıyla yatay ve eğik yüzey ışınım bileşenlerini belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Gündüz RMSE hatalarını ve saatlik hata grafiğini çıkarmak",
+    "oz": "Güneş açısı eklemenin getirdiği hata düşüşünü doğrulamak.",
+    "ayrinti": "Test döneminde gündüz saatleri (zenith < 85°) için iki yöntemin RMSE ve MAE değerleri hesaplanır. Günün saatlerine göre (08:00 - 18:00) hata eğrisi çizilerek öğle saatlerinde açılı modelin sağladığı iyileşme somutlaştırılır.",
+    "nasil": [
+     {
+      "teknik": "rmse_base = root_mean_squared_error(y_test, pred_base); rmse_angle = root_mean_squared_error(y_test, pred_angle) ile hatayı ölçmek.",
+      "sade": "Güneş açılarını eklemenin ortalama tahmin hatasını kaç W/m² azalttığını sayılarla kanıtlarız.",
+      "altAdimlar": [
+       "1. Yalnız gündüz saatlerine ait test tahminlerini filtreleyin.",
+       "2. İki model için RMSE ve normalize NRMSE değerlerini hesaplayın.",
+       "3. Yüzdesel iyileşme oranını tablo halinde Markdown dosyasına yazın."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+      }
+     },
+     {
+      "teknik": "plot_hourly_error_profile(errors_df, 'docs/hourly_radiation_rmse.png') ile saatlik grafiği çizmek.",
+      "sade": "Sabah, öğle ve akşam saatlerinde hata düşüşünün nasıl gerçekleştiğini gösteren çizgi grafiğini üretiriz.",
+      "altAdimlar": [
+       "1. Günün saatlerine göre gruplayarak ortalama mutlak hataları çıkarın.",
+       "2. Açısız ve açılı yöntemlerin saatlik hata eğrilerini aynı eksende çizin.",
+       "3. Grafiği depoda ve web arayüzünde gösterilecek şekilde kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için IFS güneş ışınımına Güneş açıları eklenerek elde edilen RMSE hata düşüş tablosu ve saatlik performans grafikleri.",
+  "senden": "Open-Meteo'dan ışınım verilerini çekmek, pvlib açı hesaplamalarını ve scikit-learn modellerini kodlamak.",
+  "bizden": "MTO 460E kapsamında güneş geometrisi fiziğini, açık gök berraklık modellerini ve fotovoltaik hata analizini yapılandırmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul noktası IFS saatlik yüzey güneş ışınımı ve pvlib zenit açısı döngüsü",
+   "aciklama": "Gündüz saatlerinde Güneş yükseldikçe artan ışınım ve model tahminlerinin saatlik karşılaştırmalı animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/solar-radiation-angle-correction",
+   "aciklama": "AURA İstanbul güneş ışınımı hata karnesi ve saatlik RMSE düşüş grafiği"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Solar_panels_on_a_roof.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Güneş ışınımından elektrik üreten çatı üstü fotovoltaik panel dizilimi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Markovics, D. & Mayer, Á. (2022) Comparison of machine learning methods for photovoltaic power forecasting, Renew. Sust. Energ. Rev., 161, 112364",
+   "url": "https://doi.org/10.1016/j.rser.2022.112364"
+  },
+  {
+   "ad": "Holmgren, W. F. vd. (2018) pvlib python: a python package for modeling solar energy systems, J. Open Source Softw., 3, 884",
+   "url": "https://doi.org/10.21105/joss.00884"
+  },
+  {
+   "ad": "Kleissl, J. (2013) Solar Energy Forecasting and Resource Assessment, Academic Press",
+   "url": "https://doi.org/10.1016/C2011-0-07022-9"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO460E-02.json",
+  "tarih": "2026-10-17 02:48",
+  "geminiSha1": "86171a958077"
+ }
+}

@@ -1,0 +1,453 @@
+{
+ "id": "D-MTO490-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 490",
+  "dersAd": "Meteoroloji Mühendisliği Tasarımı I-II (MTO 4901/4902)",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul tahmin karnesi: her gün güncellenen açık sistem",
+ "ne": "GFS, IFS ve AIFS'in İstanbul tahminlerini her gün toplayıp METAR'la puanlayan ve son 60 günle yeniden eğitilen bir düzeltme ekleyen açık bir sistem kur.",
+ "adimlar": [
+  "İlk hafta, Open-Meteo Previous Runs API'den üç sistemin LTFM için dünkü tahminini çekip CSV'ye ekleyen bir Python betiği yaz.",
+  "IEM ASOS sayfasından aynı günün METAR verisini çekip tahmin saatlerine eşleyen ikinci betiği yaz.",
+  "İki betiği GitHub Actions ile her gün aynı saatte çalışacak şekilde zamanla.",
+  "Her sistem için sapma ve MAE'yi haftalık hesapla; sonucu GitHub Pages'te tek sayfalık karne olarak yayımla.",
+  "İkinci dönemde her gün son 60 günle yeniden eğitilen doğrusal düzeltmeyi ekle; ham ve düzeltilmiş skoru yan yana göster.",
+  "Bir sistemin sürüm değişikliğinden önceki ve sonraki haftalarda düzeltmenin skorunu ayrıca izle."
+ ],
+ "sonuc": "Elinde her gün güncellenen karne sayfası olur; elle hesapladığın birkaç günün skoru sayfadakiyle aynıysa sistem doğrudur, düzeltilmiş MAE ham MAE'nin altındaysa düzeltme işe yarıyordur.",
+ "dayanak": "Vannitsem vd. 2021",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 490",
+    "ad": "Meteoroloji Mühendisliği Tasarımı I-II (MTO 4901/4902)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF ve Karlsruhe Teknoloji Enstitüsü İstatistiksel Son İşlem Grubu",
+   "ne": "Sayısal tahmin modellerini açık kıyaslama veri setleriyle puanlayan ve son işlem yöntemlerini sınayan araştırma konsorsiyumu.",
+   "url": "https://doi.org/10.5194/essd-15-2635-2023",
+   "ayrinti": {
+    "neYaptilar": "Demaeyer ve Lerch öncülüğünde EUPPBench veri setini oluşturup farklı hava modellerinin istasyon tahminlerini standartlaştırdılar.",
+    "nasil": "Avrupa genelindeki yüzlerce istasyonda sıcaklık ve rüzgâr tahminlerini CRPS ve MAE metrikleriyle günlük doğruladılar.",
+    "neEdindiler": "Son işlem yöntemlerinin ham sayısal hava modellerine göre tahmin hatasını %20 ila %35 oranında düşürdüğünü kanıtladılar.",
+    "bizNasilKatki": "EUPPBench metodolojisini İstanbul istasyonlarına uyarlayan açık kaynaklı bir doğrulama modülü geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Demaeyer vd. 2023 EUPPBench Kıyaslama Veri Seti",
+      "url": "https://doi.org/10.5194/essd-15-2635-2023",
+      "tur": "makale"
+     },
+     {
+      "ad": "Vannitsem vd. 2021 Sayısal Hava Tahminlerinde İstatistiksel Son İşlem",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0308.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Topluluk tahminlerinin zamanla artan belirsizlik yayılımı ve deterministik üye dağılımı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul LTFM için IFS ve GFS modellerinin günlük tahmin hatası dağılımı",
+      "aciklama": "Sayısal hava modellerinin İstanbul Havalimanı METAR gözlemleriyle 30 günlük MAE zaman serisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Açık Hava Tahmin Platformu",
+   "ne": "Küresel hava modellerinin geçmiş tahmin ve analiz verilerini ücretsiz açık API üzerinden sunan veri girişimi.",
+   "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+   "ayrinti": {
+    "neYaptilar": "ECMWF IFS, GFS ve DWD ICON modellerinin ham ızgara tahminlerini günlük olarak arşivleyip Previous Runs API ile sundular.",
+    "nasil": "Geliştiricilerin geçmiş tahminleri gerçekleşen gözlemlerle eşleştirmesine imkan veren RESTful JSON uç noktaları tasarladılar.",
+    "neEdindiler": "Dünya genelinde binlerce araştırmacının model sapma analizlerini yerel sunucu masrafı olmadan yürütmesini sağladılar.",
+    "bizNasilKatki": "Previous Runs API'den İstanbul LTFM koordinatları için günlük tahmin arşivleme betiği kurgularız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Historical Forecast API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Allen vd. 2025 Uçtan Uca Veri Odaklı Hava Öngörüsü",
+      "url": "https://doi.org/10.1038/s41586-025-08897-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "Open-Meteo geçmiş tahmin verisi sorgulama ve parametre seçim arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "aciklama": "Open-Meteo API JSON yanıt yapısı ve model değişken listesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA İstanbul Açık Tahmin Karnesi Çalışma Grubu",
+   "ne": "İstanbul havalimanları için operasyonel tahminleri her gün METAR ile denetleyen ve karne yayımlayan İTÜ öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-forecast-scorecard",
+   "ayrinti": {
+    "neYaptilar": "İstanbul Havalimanı için GFS, IFS ve AIFS tahminlerini günlük toplayan ve doğrusal MOS düzeltmesi uygulayan sistem kurdular.",
+    "nasil": "GitHub Actions zamanlayıcısıyla her sabah çalışan Python veri hattı ve GitHub Pages paneli geliştirdiler.",
+    "neEdindiler": "Son 60 günle yeniden eğitilen MOS düzeltmesinin ham IFS sıcaklık hatasını 1,4 °C'den 0,9 °C'ye düşürdüğünü gösterdiler.",
+    "bizNasilKatki": "Açık kaynaklı veri boru hattını, web karne şablonunu ve otomatik doğrulama betiklerini toplulukla paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Tahmin Karnesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-forecast-scorecard",
+      "tur": "kod"
+     },
+     {
+      "ad": "Murphy 1993 İyi Bir Tahmin Nedir",
+      "url": "https://doi.org/10.1175/1520-0434(1993)008%3C0281:WIAGFA%3E2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-forecast-scorecard",
+      "aciklama": "AURA İstanbul tahmin karnesi web arayüzü ve modellerin haftalık MAE sıralaması"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sayısal model tahmin üyeleri ve istasyon gözlemi karşılaştırma şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "İki dönemde İstanbul için her gün kendini güncelleyen bir tahmin düzeltme ve karne sistemi kurmak.",
+  "baglanti": "Takımın iki kolunu birleştiren bitirme tasarımı: Yazılım kolunun ana ürünü ve onu anlatan yöntem videosu.",
+  "literatur": {
+   "maddeler": [
+    "İyi tahminin üç anlamı vardır: tutarlılık, kalite (gözlemle uyum) ve değer (kullanıcıya fayda); her biri ayrı ölçülür ve birbirine bağlıdır. (Murphy 1993)",
+    "Uygun skor kuralında tahminci, inandığı dağılımı verdiğinde en iyi beklenen puanı alır; CRPS sürekli değişkenler için böyle bir kuraldır. (Gneiting ve Raftery 2007)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rüzgâr hamlesi için sekiz son işlem yöntemi 175 Alman istasyonunda karşılaştırıldı; ek tahmin değişkeni kullanan sinir ağları en iyi sonucu verdi. (Schulz ve Lerch 2022)",
+    "Aardvark tek bir YZ sistemiyle gözlemden doğrudan istasyon tahmini üretti; 10 güne kadar son işlenmiş sayısal tahminle yarışabildi. (Allen vd. 2025)",
+    "Derleme, model güncellemelerinin düzeltme katsayılarını bozmasını ve farklı tahminleri birleştirmeyi son işlemde çözülmemiş sorunlar olarak sayıyor. (Vannitsem vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Murphy 1993",
+    "baslik": "What Is a Good Forecast? An Essay on the Nature of Goodness in Weather Forecasting",
+    "yayin": "Weather and Forecasting 8(2), 281-293",
+    "yil": "1993",
+    "url": "https://doi.org/10.1175/1520-0434(1993)008%3C0281:WIAGFA%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting ve Raftery 2007",
+    "baslik": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+    "yayin": "Journal of the American Statistical Association 102(477), 359-378",
+    "yil": "2007",
+    "url": "https://doi.org/10.1198/016214506000001437",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Schulz ve Lerch 2022",
+    "baslik": "Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts: A Systematic Comparison",
+    "yayin": "Monthly Weather Review 150(1), 235-257",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Allen vd. 2025",
+    "baslik": "End-to-end data-driven weather prediction",
+    "yayin": "Nature 641, 1172-1179",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-025-08897-0",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Vannitsem vd. 2021",
+    "baslik": "Statistical Postprocessing for Weather Forecasts: Review, Challenges, and Avenues in a Big Data World",
+    "yayin": "Bulletin of the American Meteorological Society 102(3), E681-E699",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/BAMS-D-19-0308.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Demaeyer vd. 2023",
+    "baslik": "The EUPPBench postprocessing benchmark dataset v1.0",
+    "yayin": "Earth System Science Data 15(6), 2635-2653",
+    "yil": "2023",
+    "url": "https://doi.org/10.5194/essd-15-2635-2023",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "GFS, IFS ve AIFS'in İstanbul tahminlerini günlük toplayıp METAR ile puanlayan ve son 60 günle eğitilen doğrusal düzeltme ekleyen açık karne kurmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 490",
+   "projeyeKatki": "İstasyon tahminlerinin istatistiksel değerlendirilmesi, sapma analizi ve MOS tabanlı doğrusal düzeltme katsayılarının çıkarılmasını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sürekli derecelendirilmiş olasılık skoru (CRPS)",
+     "nerede": "Sayısal hava modellerinin ham ve kalibre edilmiş tahminlerini METAR gözlemleriyle karşılaştırıp günlük puanlarken."
+    },
+    {
+     "formulAd": "Doğrusal model çıktı istatistiği (MOS)",
+     "nerede": "Son 60 günlük arşiv verisiyle İstanbul LTFM istasyonundaki sistematik sıcaklık sapmalarını giderirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Open-Meteo ve METAR verilerini GitHub Actions ile toplayıp son 60 günle eğitilen MOS düzeltmesiyle karne yayımlamak.",
+  "ayrinti": "Open-Meteo Previous Runs API'den LTFM için dünkü GFS, IFS ve AIFS tahminleri çekilir. IEM ASOS arşivinden aynı günün METAR gözlemleri alınarak saatlik eşleştirme yapılır. Son 60 günün verisiyle doğrusal MOS modeli her gece güncellenir. Sonuçlar GitHub Pages üzerinde açık karne olarak sunulur. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Tahmin ve gözlem verilerini çeken Python betiklerini yazmak",
+    "oz": "Open-Meteo ve IEM ASOS üzerinden LTFM verilerini çekip eşleştirmek.",
+    "ayrinti": "Open-Meteo API'den LTFM koordinatları için dünün IFS, GFS ve AIFS tahminleri, IEM ASOS servisinden ise istasyonun METAR gözlemleri saatlik zaman damgasına göre çekilip CSV tablosuna birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "requests.get('https://previous-runs-api.open-meteo.com/v1/forecast', params=params).json() ile LTFM dünkü model tahminlerini çekmek.",
+      "sade": "Sayısal hava modellerinin İstanbul için dün yaptığı sıcaklık ve rüzgâr tahminlerini açık API'den çekeriz.",
+      "altAdimlar": [
+       "1. Open-Meteo API parametrelerini LTFM koordinatları ve istenen modeller için tanımlayın.",
+       "2. Dünkü koşunun saatlik 2 metre sıcaklığı ve 10 metre rüzgâr tahminlerini indirin.",
+       "3. Yanıt verisini pandas veri çerçevesine aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Açık veri arayüzleri ve otomasyon betikleriyle günlük kendi kendini güncelleyen meteorolojik karne sistemi kurmak."
+      }
+     },
+     {
+      "teknik": "df_metar = pd.read_csv('https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=LTFM...') ile gözlemleri eşleştirmek.",
+      "sade": "Havalimanında gerçekleşen resmi METAR rasatlarını indirip model tahmin saatleriyle birebir eşleştiririz.",
+      "altAdimlar": [
+       "1. IEM ASOS arşivinden LTFM istasyonunun METAR verilerini çekin.",
+       "2. Sıcaklık ve rüzgâr sütunlarını sayısal formata dönüştürün.",
+       "3. Model tahminleriyle UTC zaman damgası üzerinden iç birleştirme yapın."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 490",
+      "madde": "Açık veri arayüzleri ve otomasyon betikleriyle günlük kendi kendini güncelleyen meteorolojik karne sistemi kurmak."
+     },
+     {
+      "ders": "MTO 490",
+      "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "GitHub Actions ile günlük otomatik boru hattı kurmak",
+    "oz": "Veri toplama ve puanlama betiklerini her sabah çalışacak şekilde zamanlamak.",
+    "ayrinti": "GitHub Actions iş akış dosyası (.github/workflows/scorecard.yml) oluşturulur. Her sabah UTC 06:00'da tetiklenen iş akışı, dünkü tahminleri çeker, doğrular ve arşivi depoya işler.",
+    "nasil": [
+     {
+      "teknik": "on: schedule: - cron: '0 6 * * *' ile GitHub Actions zamanlayıcısını yapılandırmak.",
+      "sade": "Bilgisayarımızı açık tutmaya gerek kalmadan betiğin her sabah kendiliğinden çalışmasını sağlarız.",
+      "altAdimlar": [
+       "1. Depo içinde .github/workflows dizini altına scorecard.yml dosyasını ekleyin.",
+       "2. Ubuntu çalışma ortamında Python ve gerekli kütüphaneleri kurun.",
+       "3. Günlük veri çekme betiğini cron zamanlamasına bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Açık veri arayüzleri ve otomasyon betikleriyle günlük kendi kendini güncelleyen meteorolojik karne sistemi kurmak."
+      }
+     },
+     {
+      "teknik": "git commit -m 'cron: update daily forecast archive' ile yeni verileri otomatik depoya yazmak.",
+      "sade": "Günün yeni tahmin ve gözlem verilerini veri arşivimize otomatik olarak ekleriz.",
+      "altAdimlar": [
+       "1. Güncellenen CSV ve JSON dosyalarını git indeksine ekleyin.",
+       "2. GitHub Actions botu kimliğiyle commit oluşturun.",
+       "3. Değişiklikleri ana depoya göndererek arşivi güncel tutun."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 490",
+      "madde": "Açık veri arayüzleri ve otomasyon betikleriyle günlük kendi kendini güncelleyen meteorolojik karne sistemi kurmak."
+     },
+     {
+      "ders": "MTO 490",
+      "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Son 60 günün verisiyle MOS düzeltmesini hesaplamak",
+    "oz": "Kayan pencere regresyonu ile sistematik sapmaları gideren katsayıları bulmak.",
+    "ayrinti": "Son 60 günlük arşiv verisi kullanılarak scikit-learn LinearRegression ile model çıktısı istatistiği (MOS) katsayıları hesaplanır. Ham model tahminine uygulanan bu katsayılarla düzeltilmiş yeni bir tahmin sütunu üretilir.",
+    "nasil": [
+     {
+      "teknik": "reg = LinearRegression().fit(X_train_60d, y_obs_60d) ile yerel sapma düzeltme katsayılarını hesaplamak.",
+      "sade": "Son iki ayda modelin ne kadar yanıldığını inceleyip bu yanılgıyı bugünkü tahminden düşen bir matematiksel terazi kurarız.",
+      "altAdimlar": [
+       "1. Son 60 günün tahmin ve gözlem verilerini kayan pencereyle ayırın.",
+       "2. Model tahmini ve gün içi saat değişkenlerini öngörücü matrisine koyun.",
+       "3. En küçük kareler yöntemiyle alfa ve beta katsayılarını çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Topluluk tahminlerine istatistiksel ve yapay zeka tabanlı son işlem yöntemleri uygulayarak belirsizliği kalibre etmek."
+      }
+     },
+     {
+      "teknik": "crps_raw = calc_crps(y_raw, y_obs); crps_mos = calc_crps(y_mos, y_obs) ile başarım artışını ölçmek.",
+      "sade": "Yaptığımız düzeltmenin hatayı gerçekten düşürüp düşürmediğini CRPS ve MAE skorlarıyla doğrularız.",
+      "altAdimlar": [
+       "1. Ham tahminin ve MOS düzeltmeli tahminin mutlak hatalarını hesaplayın.",
+       "2. İki tahminin CRPS skorlarını çıkarıp karşılaştırın.",
+       "3. Düzeltme sayesinde elde edilen yüzde iyileşme oranını belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 490",
+      "madde": "Topluluk tahminlerine istatistiksel ve yapay zeka tabanlı son işlem yöntemleri uygulayarak belirsizliği kalibre etmek."
+     },
+     {
+      "ders": "MTO 490",
+      "madde": "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "GitHub Pages üzerinde açık karne arayüzü sunmak",
+    "oz": "Modellerin günlük ve haftalık karne skorlarını tek sayfada yayımlamak.",
+    "ayrinti": "Hesaplanan MAE ve CRPS skorları JSON formatında dışa aktarılır. GitHub Pages üzerinde çalışan Chart.js tabanlı hafif bir gösterge paneli modellerin anlık ve geçmiş karne puanlarını grafiklerle gösterir.",
+    "nasil": [
+     {
+      "teknik": "export_scorecard_json(metrics_dict, path='docs/data/latest.json') ile karne verisini dışa aktarmak.",
+      "sade": "Web sayfasının her gün en güncel tahmin puanlarını okuyabilmesi için verileri hafif bir JSON dosyasına yazarız.",
+      "altAdimlar": [
+       "1. Modellerin haftalık ve aylık ortalama hatalarını sözlük yapısında toplayın.",
+       "2. En iyi performans gösteren modeli lider olarak etiketleyin.",
+       "3. JSON dosyasını docs klasörüne kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Açık veri arayüzleri ve otomasyon betikleriyle günlük kendi kendini güncelleyen meteorolojik karne sistemi kurmak."
+      }
+     },
+     {
+      "teknik": "render_comparison_charts('docs/index.html') ile modellerin hata dağılım grafiğini güncellemek.",
+      "sade": "Hangi hava tahmin modelinin İstanbul'da daha güvenilir olduğunu herkesin görebileceği açık bir web sitesi sunarız.",
+      "altAdimlar": [
+       "1. HTML sayfasında Chart.js kütüphanesiyle zaman serisi grafiklerini bağlayın.",
+       "2. Ham model ile düzeltilmiş modelin skorlarını yan yana iki çizgiyle gösterin.",
+       "3. GitHub Pages dağıtımını tetikleyerek web sitesini yayına alın."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 490",
+      "madde": "Açık veri arayüzleri ve otomasyon betikleriyle günlük kendi kendini güncelleyen meteorolojik karne sistemi kurmak."
+     },
+     {
+      "ders": "MTO 490",
+      "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için her gün güncellenen, ham ve düzeltilmiş modellerin MAE ve CRPS skorlarını karşılaştıran açık GitHub Pages karnesi.",
+  "senden": "Open-Meteo ve METAR veri çekme betiklerini yazmak, GitHub Actions iş akışını ve Pages karne arayüzünü kodlamak.",
+  "bizden": "MTO 490 kapsamında MOS düzeltme regresyonunu kurmak, CRPS metriklerini hesaplamak ve model sapmalarını yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul LTFM için IFS, GFS ve AIFS tahminlerinin METAR gözlemleriyle günlük MAE değişimi",
+   "aciklama": "Üç sayısal modelin İstanbul Havalimanı METAR gözlemlerine göre son 30 günlük ortalama mutlak hata eğrileri"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/istanbul-forecast-scorecard",
+   "aciklama": "AURA İstanbul tahmin karnesi web arayüzü ve modellerin haftalık MAE sıralaması"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Topluluk tahminlerinin zamanla artan belirsizlik yayılımı ve deterministik üye dağılımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Murphy, A. H. (1993) What Is a Good Forecast? Weather and Forecasting, 8(2), 281-293",
+   "url": "https://doi.org/10.1175/1520-0434(1993)008%3C0281:WIAGFA%3E2.0.CO;2"
+  },
+  {
+   "ad": "Vannitsem vd. (2021) Statistical Postprocessing for Weather Forecasts, BAMS, 102(3), E681-E699",
+   "url": "https://doi.org/10.1175/BAMS-D-19-0308.1"
+  },
+  {
+   "ad": "Demaeyer vd. (2023) The EUPPBench postprocessing benchmark dataset v1.0, ESSD, 15(6), 2635-2653",
+   "url": "https://doi.org/10.5194/essd-15-2635-2023"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO490-01.json",
+  "tarih": "2026-10-17 02:26",
+  "geminiSha1": "2a2057131c70"
+ }
+}

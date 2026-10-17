@@ -1,0 +1,431 @@
+{
+ "id": "D-MTO463E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 463E",
+  "dersAd": "Numerical Weather Prediction (Sayısal Hava Öngörüsü)",
+  "kol": "anlatim"
+ },
+ "ad": "Kelebek etkisi: neden topluluk tahmini?",
+ "ne": "Küçük bir başlangıç hatasının nasıl büyüdüğünü etkileşimli grafikle göster; topluluk tahmininin mantığını 10-15 dakikada anlat.",
+ "adimlar": [
+  "Kitabın öngörülebilirlik bölümünü oku; başlangıç hatası, hata büyümesi ve topluluk kavramlarını birer cümleyle yaz.",
+  "Colab'da SciPy solve_ivp ile bölümde verilen üç değişkenli konveksiyon denklemlerini çöz.",
+  "Başlangıcı 0,001 farklı iki çözümü ve 20 üyeli bir topluluğu aynı grafikte çiz; ipywidgets ile hata sürgüsü ekle.",
+  "Open-Meteo Ensemble API'den İstanbul için ECMWF topluluk üyelerini çek; günler ilerledikçe yayılımı göster.",
+  "10-15 dakikalık videoyu hazırla; bilimsel inceleme için ders hocasına gönder, düzeltmeleri işle."
+ ],
+ "sonuc": "Elinde etkileşimli defter ve video olur. İzleyen, hata küçülse de çözümlerin bir süre sonra ayrıldığını görüp nedenini söyleyebiliyorsa anlatım amacına ulaşmıştır.",
+ "dayanak": "Kalnay 2002",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 463E",
+    "ad": "Numerical Weather Prediction (Sayısal Hava Öngörüsü)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Maryland Üniversitesi Atmosferik Kaos ve Öngörülebilirlik Grubu",
+   "ne": "Eugenia Kalnay öncülüğünde atmosferik kaos, başlangıç hatası büyümesi ve topluluk tahmin yöntemlerini inceleyen grup.",
+   "url": "https://doi.org/10.1017/CBO9780511802270",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik modellerde başlangıç koşulu perturbasyonlarının dinamik hata gelişimini incelediler.",
+    "nasil": "Lorenz üç değişkenli konveksiyon sistemini ve küresel modelleri bir arada çözerek deterministik tahmin sınırını açıkladılar.",
+    "neEdindiler": "Tek bir deterministik tahmin yerine perturbasyonlu topluluk ortalamasının uzun vadede her zaman daha yüksek beceri sunduğunu kanıtladılar.",
+    "bizNasilKatki": "Kalnay'ın kaos anlatımını SciPy solve_ivp ve ipywidgets ile interaktif Colab defterine ve 12 dakikalık videoya dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Kalnay 2002 Atmospheric Modeling, Data Assimilation and Predictability",
+      "url": "https://doi.org/10.1017/CBO9780511802270",
+      "tur": "makale"
+     },
+     {
+      "ad": "Bauer vd. 2015 The Quiet Revolution of NWP",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Topluluk tahmin demetinde zamanla artan üye ayrışması ve belirsizlik tüpleri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.cambridge.org/core/books/atmospheric-modeling-data-assimilation-and-predictability/127E3B5D7F05B8AC2799FA2CECA7AE40",
+      "aciklama": "Kalnay 2002 kitabı kaos ve öngörülebilirlik bölümü resmi sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ECMWF Topluluk Tahminleri (ENS) Merkezi",
+   "ne": "51 üyeli operasyonel küresel topluluk tahmin sistemiyle 15 günlük olasılıksal hava tahminleri sunan merkez.",
+   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/ensemble-prediction-system",
+   "ayrinti": {
+    "neYaptilar": "Kaotik atmosfer yapısını yansıtmak amacıyla 50 adet perturbe edilmiş üye ve 1 adet kontrol tahmini koşturan ENS sistemini kurdular.",
+    "nasil": "Tekil vektörler ve stokastik fizik parametrizasyonları kullanarak atmosferik belirsizliği ve başlangıç hatasını simüle ettiler.",
+    "neEdindiler": "Uç hava olaylarının ve fırtına yollarının tahmin edilebilirliğini deterministik modellere kıyasla 4-5 gün ileri taşıdılar.",
+    "bizNasilKatki": "Open-Meteo Ensemble API ile ECMWF ENS üyelerini İstanbul için çekip yayılımın gün gün büyümesini görselleştiririz.",
+    "referanslar": [
+     {
+      "ad": "ECMWF ENS Dokümantasyon Portalı",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/ensemble-prediction-system",
+      "tur": "web"
+     },
+     {
+      "ad": "Open-Meteo Ensemble API Belgelendirmesi",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "aciklama": "Open-Meteo Ensemble API sorgu arayüzü ve topluluk parametreleri"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/ensemble-api",
+      "aciklama": "Topluluk üyeleri sıcaklık ve yağış grafiklerinin belgelendirmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Atmosferik Kaos ve Topluluk Çalışma Grubu",
+   "ne": "Lorenz çekicisini ve ECMWF topluluk üyelerini etkileşimli araçlarla anlatan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/butterfly-effect-ensemble-explainer",
+   "ayrinti": {
+    "neYaptilar": "SciPy ile Lorenz denklemlerini çözüp sürgülü başlangıç hatası görselleştirmesi ve video hazırladılar.",
+    "nasil": "Başlangıcı 0,001 farklı iki yörüngeyi ve 20 üyeli demeti çizip Open-Meteo İstanbul ENS verisiyle gerçek hayata bağladılar.",
+    "neEdindiler": "Öğrencilerin kelebek etkisi kavramını popüler kültür efsanesinden çıkarıp sayısal tahminin zorunlu parçası olarak kavramasını sağladılar.",
+    "bizNasilKatki": "Etkileşimli Colab defterini, sunum slaytlarını ve video anlatımını GitHub'da açık olarak yayımlarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Kelebek Etkisi ve Topluluk Tahmini GitHub Deposu",
+      "url": "https://github.com/aura-itu/butterfly-effect-ensemble-explainer",
+      "tur": "kod"
+     },
+     {
+      "ad": "Kalnay 2002 Atmospheric Modeling Kitabı",
+      "url": "https://doi.org/10.1017/CBO9780511802270",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul için ECMWF ENS 50 üyesinin 15 günlük 2 metre sıcaklık yayılımı ve topluluk ortalaması",
+      "aciklama": "İstanbul'da ilk 3 gün sıkı olan topluluk demetinin 7. günden sonra kaos nedeniyle geniş bir yelpazeye dağılması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/butterfly-effect-ensemble-explainer",
+      "aciklama": "AURA etkileşimli Lorenz çözücüsü ve sürgülü hata büyümesi paneli"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "GraphCast ve AIFS gibi YZ tahminlerini İstanbul'da fizik tabanlı tahminle yarıştır.",
+  "baglanti": "YAZILIM kolunun kıyas tabanı bu ders: hangi küresel tahmin İstanbul'da kaç gün iyi; kaos anlatımı ANLATIM koluna gider.",
+  "literatur": {
+   "maddeler": [
+    "Sayısal hava tahmini bir başlangıç değer problemidir: denklemler sayısal çözülür, başlangıç durumu veri özümsemeyle kurulur, kaos öngörülebilirliği sınırlar (Kalnay 2002)",
+    "3-10 günlük tahmin becerisi on yıllar boyunca düzenli arttı; bunu fizik, veri özümseme, topluluk tahmini ve hesap gücündeki birikim sağladı (Bauer vd. 2015)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast, ERA5 ile eğitilen bir çizge sinir ağı; 10 günlük küresel tahminde 1380 hedefin %90'ında HRES'i geçti, uzun sürede belirsizliği bulanık çıktıyla ifade ediyor (Lam vd. 2023)",
+    "GenCast 15 günlük topluluk tahmininde ENS'i 1320 hedefin %97,2'sinde geçti; makale, son işlemin YZ ve fizik tabanlı tahmine etkisini kıyaslamayı gelecek işe bırakıyor (Price vd. 2025)",
+    "Aardvark gözlemden doğrudan küresel ve istasyon tahmini üretiyor, çalışırken fizik tabanlı tahmin gerekmiyor; yazarlara göre çözünürlük henüz IFS düzeyinde değil (Allen vd. 2025)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kalnay 2002",
+    "baslik": "Atmospheric Modeling, Data Assimilation and Predictability",
+    "yayin": "Cambridge University Press",
+    "yil": "2002",
+    "url": "https://doi.org/10.1017/CBO9780511802270",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature, 525, 47–55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382, 1416–1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature, 637, 84–90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Allen vd. 2025",
+    "baslik": "End-to-end data-driven weather prediction",
+    "yayin": "Nature, 641, 1172–1179",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-025-08897-0",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Başlangıç hatasının kaotik büyümesini Lorenz denklemleri ve İstanbul ECMWF topluluk verisiyle gösteren etkileşimli video eğitimi hazırlamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 463E",
+   "projeyeKatki": "Atmosferik kaos dinamiği, veri özümseme belirsizliği ve operasyonel topluluk tahmin sistemlerinin teorik altyapısını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "İlkel momentum denklemi",
+     "nerede": "Doğrusal olmayan hız adveksiyonunun küçük bir rüzgâr sapmasını günler içinde nasıl devasa bir hava farkına dönüştürdüğünü anlatırken."
+    },
+    {
+     "formulAd": "Veri özümseme 3D-Var amaç fonksiyonu",
+     "nerede": "Gözlem ve analizdeki kaçınılmaz varyansın topluluk üyelerine verilen başlangıç perturbasyonlarını nasıl meşrulaştırdığını açıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Lorenz denklemlerini SciPy ile çözüp Open-Meteo İstanbul topluluk verisiyle eşleştiren etkileşimli kaos video sunumu hazırlamak.",
+  "ayrinti": "SciPy solve_ivp ile Lorenz konveksiyon sistemi çözülür. 0,001 farklı başlangıç noktalarının üstel olarak ayrılması ipywidgets sürgüsüyle etkileşimli hale getirilir. Open-Meteo Ensemble API'den İstanbul için 50 üyeli ECMWF sıcaklık tahminleri çekilerek gerçek yayılım gösterilir. 12 dakikalık video ve Colab defteri üretilir. Bir haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Lorenz sistemini SciPy solve_ivp ile simüle etmek",
+    "oz": "Üç değişkenli atmosferik konveksiyon denklemlerini sayısal olarak çözmek.",
+    "ayrinti": "Edward Lorenz'in atmosferik konveksiyonu basitleştiren üç diferansiyel denklemi Python'da tanımlanır. SciPy solve_ivp kütüphanesiyle Runge-Kutta yöntemi kullanılarak yörünge adımları hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "sol = solve_ivp(lorenz_ode, (0, 40), [x0, y0, z0], args=(10.0, 28.0, 8.0/3.0), max_step=0.01) ile sistemi çözmek.",
+      "sade": "Atmosferin basitleştirilmiş minyatür bir modeli olan üç boyutlu kaotik denklemleri bilgisayarda adım adım koştururuz.",
+      "altAdimlar": [
+       "1. Lorenz diferansiyel denklem fonksiyonunu sigma=10, rho=28, beta=8/3 parametreleriyle yazın.",
+       "2. Başlangıç noktası olarak [1.0, 1.0, 1.0] koordinatını verin.",
+       "3. Zaman adımlarını yüksek çözünürlüklü dizi olarak saklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Atmosferin ilkel denklemlerini sonlu farklar ve spektral dönüşümlerle sayısal olarak ayrıklaştırmak."
+      }
+     },
+     {
+      "teknik": "sol_perturbed = solve_ivp(lorenz_ode, (0, 40), [x0 + 0.001, y0, z0], max_step=0.01) ile ikinci yörüngeyi hesaplamak.",
+      "sade": "Başlangıç değerini sadece binde bir değiştirerek yan yana koşan ikinci bir sanal hava durumu yaratırız.",
+      "altAdimlar": [
+       "1. İlk başlangıç noktasına 0,001 büyüklüğünde küçük bir perturbasyon ekleyin.",
+       "2. Aynı zaman aralığı için diferansiyel denklemi tekrar çözün.",
+       "3. İki çözüm arasındaki farkın zamana göre mutlak değerini çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Atmosferin ilkel denklemlerini sonlu farklar ve spektral dönüşümlerle sayısal olarak ayrıklaştırmak."
+     },
+     {
+      "ders": "MTO 463E",
+      "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Etkileşimli hata büyümesi ve demet görselini kurmak",
+    "oz": "ipywidgets ile sürgülü arayüz tasarlayıp ayrılma anını göstermek.",
+    "ayrinti": "Colab üzerinde ipywidgets kullanılarak kullanıcının perturbasyon büyüklüğünü (10⁻⁵ ile 10⁻¹ arası) değiştirebileceği bir sürgü eklenir. 20 üyeli bir başlangıç demeti oluşturularak çözümlerin kelebek kanatlarına dağılması canlandırılır.",
+    "nasil": [
+     {
+      "teknik": "@interact(eps=(1e-5, 0.1, 1e-4)) def plot_divergence(eps): ile etkileşimli arayüzü bağlamak.",
+      "sade": "Kullanıcının kaydıracağı bir sürgü ekleyerek başlangıç hatası değiştikçe tahminin kaçıncı günde koptuğunu anlık gösteririz.",
+      "altAdimlar": [
+       "1. Matplotlib çizim fonksiyonunu ipywidgets interact dekoratörüyle sarmalayın.",
+       "2. İki yörüngenin x değişkenini zaman ekseninde üst üste çizin.",
+       "3. Ayrılmanın başladığı kaotik ufuk çizgisini dikey işaretçiyle vurgulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "plot_ensemble_3d(trajectories_20, save_name='assets/lorenz_ensemble.png') ile 3B faz uzayı demetini çizmek.",
+      "sade": "Birbirine çok yakın başlayan 20 farklı havanın kelebek çekicisi üzerinde bir demet gibi dağılışını üç boyutlu çizeriz.",
+      "altAdimlar": [
+       "1. Normal dağılımlı 20 rastgele başlangıç noktası üretin.",
+       "2. Üç boyutlu eksende her yörüngeyi yarı saydam renklerle görselleştirin.",
+       "3. Demetin belirli bir zaman sonra tüm çekiciye yayıldığını gösteren kareyi dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "ECMWF topluluk verisiyle gerçek atmosfer yayılımını bağlamak",
+    "oz": "Open-Meteo Ensemble API ile İstanbul için 50 üyenin tahminlerini çekmek.",
+    "ayrinti": "Gerçek atmosferdeki karşılığı göstermek için Open-Meteo Ensemble API üzerinden İstanbul için ECMWF ENS modelinin 50 üyesine ait 15 günlük 2 metre sıcaklık tahminleri indirilir. İlk günlerdeki sıkı demetin 7-10. günlerde geniş bir yelpazeye açılması çizilir.",
+    "nasil": [
+     {
+      "teknik": "ens_data = fetch_open_meteo_ensemble(lat=41.0, lon=28.9, model='ecmwf_ifs025', members=50) ile topluluk üyelerini almak.",
+      "sade": "Avrupa Hava Merkezinin İstanbul için koşturduğu 50 farklı senaryonun sıcaklık tahminlerini tek bir veri yapısında çekeriz.",
+      "altAdimlar": [
+       "1. API sorgusuna ECMWF ensemble modelini ve 2 metre sıcaklık parametresini verin.",
+       "2. 50 üyenin saatlik serilerini pandas DataFrame sütunlarına dönüştürün.",
+       "3. Topluluk ortalamasını ve yüzde 10-90 belirsizlik aralıklarını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "plot_spaghetti_diagram(ens_data, save_path='assets/ecmwf_ens_istanbul.png') ile spagetti diyagramı çizmek.",
+      "sade": "Tüm üyeleri spagetti makarna çizgileri gibi çizerek tek bir tahmin yerine olasılık bandının nasıl açıldığını sergileriz.",
+      "altAdimlar": [
+       "1. 50 üyenin çizgilerini ince gri hatlarla çizin.",
+       "2. Deterministik kontrol tahminini kalın mavi, topluluk ortalamasını kalın kırmızı çizgi yapın.",
+       "3. Belirsizlik yayılımının 5. günden sonraki patlamasını metinle etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Video anlatımını çekip akran değerlendirmesini yapmak",
+    "oz": "12 dakikalık video çekimini tamamlayıp üç soruluk sınavla doğrulamak.",
+    "ayrinti": "Google Slaytlar ve Colab etkileşimli animasyonları kullanılarak 12 dakikalık video sunumu çekilir. İzleyen meteoroloji ve yazılım öğrencilerine 'Kelebek etkisi nedir, topluluk neden gereklidir?' konulu üç soru sorulup kavramsal anlaşılırlık test edilir.",
+    "nasil": [
+     {
+      "teknik": "produce_explainer_video(slides_pdf='assets/slides.pdf', notebook='lorenz_ens.ipynb', output='video.mp4') ile videoyu üretmek.",
+      "sade": "Hem matematiksel denklemleri hem de interaktif sürgüleri konuştuğumuz akıcı bir eğitim videosu hazırlarız.",
+      "altAdimlar": [
+       "1. Girişte hava tahmininin neden sonsuza kadar kesinleşemeyeceğini anlatın.",
+       "2. Lorenz sürgüsü üzerinden başlangıç hatasının üstel büyümesini canlı gösterin.",
+       "3. ECMWF spagetti grafiğiyle topluluk tahmininin karar vericiye faydasını özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "evaluate_audience_understanding(quiz_scores=[1.0, 0.9, 1.0]) ile pedagojik başarıyı ölçmek.",
+      "sade": "Videoyu izleyen arkadaşlarımızın tekil tahmin yerine neden topluluk sorulduğunu doğru yanıtlayıp yanıtlamadığını belgeleriz.",
+      "altAdimlar": [
+       "1. Üç kavramsal soru içeren form hazırlayın.",
+       "2. Katılımcıların cevaplarını inceleyip eksik kalan kavramları belirleyin.",
+       "3. Tüm materyalleri açık GitHub deposunda paylaşın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Lorenz çekicisinin kaotik doğasını ve operasyonel ECMWF topluluk tahmininin mantığını açıklayan açık kaynaklı interaktif Colab defteri ve 12 dakikalık video.",
+  "senden": "SciPy ve ipywidgets ile interaktif Lorenz arayüzünü kodlamak, Open-Meteo API entegrasyonunu sağlamak ve videoyu hazırlamak.",
+  "bizden": "MTO 463E kapsamında atmosferik kaos kuramını yapılandırmak, topluluk perturbasyon fiziğini aktarmak ve pedagojik testleri yürütmek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul için ECMWF ENS 50 üyesinin 15 günlük 2 metre sıcaklık yayılımı ve topluluk ortalaması",
+   "aciklama": "İstanbul'da ilk 3 gün sıkı olan topluluk demetinin 7. günden sonra kaos nedeniyle geniş bir yelpazeye dağılması"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/butterfly-effect-ensemble-explainer",
+   "aciklama": "AURA etkileşimli Lorenz çözücüsü ve sürgülü hata büyümesi paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Topluluk tahmin demetinde zamanla artan üye ayrışması ve belirsizlik tüpleri"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Kalnay, E. (2002) Atmospheric Modeling, Data Assimilation and Predictability, Cambridge University Press",
+   "url": "https://doi.org/10.1017/CBO9780511802270"
+  },
+  {
+   "ad": "Bauer, P., Thorpe, A. & Brunet, G. (2015) The quiet revolution of numerical weather prediction, Nature, 525, 47-55",
+   "url": "https://doi.org/10.1038/nature14956"
+  },
+  {
+   "ad": "Open-Meteo Ensemble API Belgelendirmesi",
+   "url": "https://open-meteo.com/en/docs/ensemble-api"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO463E-03.json",
+  "tarih": "2026-10-17 02:36",
+  "geminiSha1": "6fcba5153e02"
+ }
+}

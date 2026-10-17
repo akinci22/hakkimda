@@ -1,0 +1,427 @@
+{
+ "id": "D-MTO494-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 494",
+  "dersAd": "Araştırma Projesi",
+  "kol": "anlatim"
+ },
+ "ad": "Video: İyi tahmin ne demek?",
+ "ne": "İyi tahminin üç anlamını (tutarlılık, kalite, değer) İstanbul'dan gerçek bir tahmin örneğiyle 10-15 dakikada anlat.",
+ "adimlar": [
+  "Makaleyi oku; üç anlamı birer cümle ve birer İstanbul örneğiyle tek sayfaya yaz.",
+  "Open-Meteo Previous Runs API'den bir haftalık tahmini ve IEM'den aynı haftanın METAR sıcaklığını aynı grafikte çiz.",
+  "Google Slaytlar'da 8-10 sayfalık akış kur: soru, üç anlam, gerçek örnek, kısa özet.",
+  "10-15 dakikalık videoyu hazırla; bilimsel inceleme için ders hocasına gönder, düzeltmeleri işle.",
+  "Üç arkadaşına izletip üç soruluk kısa sınav uygula; yanlış cevaplanan kısmı yeniden anlat."
+ ],
+ "sonuc": "Elinde hoca incelemesinden geçmiş 10-15 dakikalık video olur. İzleyenler kısa sınavda üç anlamı doğru ayırabiliyorsa anlatım amacına ulaşmıştır.",
+ "dayanak": "Murphy 1993",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 494",
+    "ad": "Araştırma Projesi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Colorado Boulder Üniversitesi Atmosferik Doğrulama Grubu",
+   "ne": "Murphy'nin tahmin iyiliği çerçevesini tutarlılık, kalite ve değer boyutlarıyla inceleyen araştırma merkezi.",
+   "url": "https://doi.org/10.1175/1520-0434(1993)008<0281:WIAGFA>2.0.CO;2",
+   "ayrinti": {
+    "neYaptilar": "Allan Murphy öncülüğünde hava tahminlerinde doğruluk kavramını tahmincinin inancı (tutarlılık), gözlemle uyum (kalite) ve karar vericiye fayda (değer) olarak üç boyuta ayırdılar.",
+    "nasil": "Olasılıksal tahmin dağılımlarını karar kuramı ve hata ayrıştırmalarıyla birleştirerek her boyutun bağımsız matematiksel ölçümünü formüle ettiler.",
+    "neEdindiler": "Yüksek kaliteli bir tahminin her zaman en yüksek ekonomik değeri üretmeyebileceğini, kullanıcı karar matrisinin belirleyici olduğunu kanıtladılar.",
+    "bizNasilKatki": "Murphy'nin üç boyutlu doğrulama çerçevesini İstanbul için Open-Meteo ve METAR verisiyle 12 dakikalık açık anlatım videosuna dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Murphy 1993 What Is a Good Forecast",
+      "url": "https://doi.org/10.1175/1520-0434(1993)008<0281:WIAGFA>2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "Wilks 2019 Atmosfer Bilimlerinde İstatistiksel Yöntemler",
+      "url": "https://doi.org/10.1016/C2017-0-03921-6",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Olasılıksal hava tahmininde tahmin belirsizliği ve gerçekleşen gözlem doğrulaması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://journals.ametsoc.org/view/journals/wefo/8/2/1520-0434_1993_008_0281_wiagfa_2_0_co_2.xml",
+      "aciklama": "Murphy 1993 klasik makalesinin yayın sayfası ve üç boyutlu iyilik çerçevesi diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Tahmin ve Doğrulama Servisi",
+   "ne": "Önceki tahmin çalıştırmalarını Previous Runs API ile açıkça sunarak model kalitesini incelemeye olanak tanıyan hava servisi.",
+   "url": "https://open-meteo.com/en/docs/previous-runs-api",
+   "ayrinti": {
+    "neYaptilar": "Küresel sayısal modellerin geçmişte ürettiği tahmin çalıştırmalarını arşivleyip API ile serbest erişime açtılar.",
+    "nasil": "IFS ve GFS modellerinin farklı vadelerde ürettiği çıktılarla gerçekleşen yüzey ölçümlerini zaman ekseninde kıyaslama imkanı sundular.",
+    "neEdindiler": "Geliştiricilerin model sapmalarını ve tahmin tutarlılığını tek komutla test edebileceği açık bir doğrulama altyapısı kurdular.",
+    "bizNasilKatki": "Previous Runs API verisini Python ile çekip İstanbul METAR gözlemleriyle eşleştiren video gösterim kodlarını hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Previous Runs API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "tur": "web"
+     },
+     {
+      "ad": "ECMWF Tahmin Doğrulama Rehberi",
+      "url": "https://www.ecmwf.int/en/forecasts/charts",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "aciklama": "Open-Meteo geçmiş tahmin çalıştırmaları API parametre arayüzü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/previous-runs-api",
+      "aciklama": "Open-Meteo API zaman serisi ve model karşılaştırma belgelendirmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Atmosferik İletişim ve Doğrulama Çalışma Grubu",
+   "ne": "Hava tahmini kalitesini ve ekonomik değerini İstanbul halkına ve öğrencilere video sunumlarıyla aktaran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/forecast-verification-explainer",
+   "ayrinti": {
+    "neYaptilar": "Murphy'nin tutarlılık, kalite ve değer kavramlarını İstanbul kar fırtınası örnekleriyle açıklayan açık video ve sunum seti oluşturdular.",
+    "nasil": "Open-Meteo ve Iowa Mesonet METAR arşivini kullanarak tahmin-gözlem grafiklerini hazırlayıp akıcı görsel senaryolar yazdılar.",
+    "neEdindiler": "İzleyen öğrencilerin iyi tahmin ayrımını kavrayarak meteorolojik tahminleri salt yüzde olarak değil karar matrisiyle okumasını sağladılar.",
+    "bizNasilKatki": "Sunum slaytlarını, Python çizim komut dosyalarını ve seslendirme metnini açık GitHub deposunda paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA Tahmin Doğrulama Video Projesi GitHub Deposu",
+      "url": "https://github.com/aura-itu/forecast-verification-explainer",
+      "tur": "kod"
+     },
+     {
+      "ad": "Murphy 1993 What Is a Good Forecast",
+      "url": "https://doi.org/10.1175/1520-0434(1993)008<0281:WIAGFA>2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul LTFM için Open-Meteo önceki IFS tahminleri ile METAR sıcaklık gözleminin zaman serisi karşılaştırması",
+      "aciklama": "İstanbul Havalimanı için 7 günlük tahmin çalıştırmaları ve gerçekleşen sıcaklığın zaman ekseninde kıyaslanması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/forecast-verification-explainer",
+      "aciklama": "AURA video anlatım senaryosu ve sunum slaytları deposu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "İstanbul istasyonlarında küresel tahminin hatasını ölçüp düzelten küçük bir araştırma.",
+  "baglanti": "YAZILIM kolunun tahmin karnesi ve düzeltme defterleri bu dersin araştırma sorusu olur; bulgu ANLATIM kolunda videoya döner.",
+  "literatur": {
+   "maddeler": [
+    "İyi tahminin üç anlamı var: tutarlılık, kalite (gözlemle uyum) ve değer (kullanıcıya fayda); doğrulama hangisini ölçtüğünü söylemeli (Murphy 1993)",
+    "Yöntemin işe yaradığı, ayrı bir test döneminde referans tahmine (klimatoloji, kalıcılık) karşı beceri skoruyla gösterilir; RMSE, Brier ve CRPS temel ölçüdür (Wilks 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağıyla son işlem, Almanya istasyonlarında 2 m sıcaklık topluluk tahminini klasik son işlem yöntemlerinden iyi düzeltti; istasyon bilgisi gömme katmanıyla öğrenildi (Rasp ve Lerch 2018)",
+    "WeatherBench 2, YZ tahminlerini açık kod ve ortak skorlarla kıyaslıyor; istasyon gözlemiyle doğrulamayı ve son işlemli fizik tabanlı tahminle kıyası ileriye bırakıyor (Rasp vd. 2024)",
+    "Permütasyon önemi, belirginlik haritası gibi yorumlama araçları, makine öğrenmesinin fiziksel olarak anlamlı şey öğrenip öğrenmediğini sınamaya yarar (McGovern vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Murphy 1993",
+    "baslik": "What Is a Good Forecast? An Essay on the Nature of Goodness in Weather Forecasting",
+    "yayin": "Weather and Forecasting, 8, 281–293",
+    "yil": "1993",
+    "url": "https://doi.org/10.1175/1520-0434(1993)008<0281:WIAGFA>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Wilks 2019",
+    "baslik": "Statistical Methods in the Atmospheric Sciences (4. baskı)",
+    "yayin": "Elsevier",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/C2017-0-03921-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review, 146, 3885–3900",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2024",
+    "baslik": "WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 16, e2023MS004019",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023MS004019",
+    "tur": "yz"
+   },
+   {
+    "kisa": "McGovern vd. 2019",
+    "baslik": "Making the Black Box More Transparent: Understanding the Physical Implications of Machine Learning",
+    "yayin": "Bulletin of the American Meteorological Society, 100, 2175–2199",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/BAMS-D-18-0195.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İyi tahminin üç boyutunu (tutarlılık, kalite, değer) İstanbul'dan gerçek tahmin ve METAR verisiyle açıklayan bilimsel bir eğitim videosu hazırlamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 494",
+   "projeyeKatki": "Murphy'nin üç boyutlu doğrulama kuramı, tahmin beceri skoru (SS) hesaplaması ve bilimsel sunum metodolojisini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Tahmin beceri skoru (SS)",
+     "nerede": "Videoda kalıcılık tahminine karşı IFS modelinin sunduğu kalite artışını sayısal olarak izleyiciye açıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Murphy'nin tahmin iyiliği kuramını İstanbul verisiyle eşleştirip 12 dakikalık bilimsel anlatım videosu ve sunum seti hazırlamak.",
+  "ayrinti": "Murphy (1993) makalesindeki tutarlılık, kalite ve değer kavramları İstanbul hava olaylarıyla somutlaştırılır. Open-Meteo Previous Runs API ve METAR gözlemleriyle tahmin hatası ve beceri skoru grafiğe dönüştürülür. Google Slaytlar ile 10 slaytlık akış hazırlanıp video çekilir ve akran değerlendirmesiyle doğrulanır. Bir haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Murphy'nin üç kavramını İstanbul senaryolarıyla kurgulamak",
+    "oz": "Tutarlılık, kalite ve değer kavramlarını yerel örneklerle metne dökmek.",
+    "ayrinti": "Allan Murphy'nin 1993 tarihli klasik makalesi incelenir. Tutarlılık için tahmincinin dürüst bilgisi, kalite için gözlem-tahmin farkı, değer için ise belediye tuzlama kararı üzerinden somut senaryolar yazılır.",
+    "nasil": [
+     {
+      "teknik": "murphy_framework = summarize_concepts(paper='Murphy 1993', cases=['LTFM_temp', 'snow_clearing']) ile senaryo taslağı kurmak.",
+      "sade": "Havanın iyi tahmin edilmesinin tek bir sayıdan ibaret olmadığını, kullanıcının cebine ve güvenliğine etkisini anlatan örnekler kurgularız.",
+      "altAdimlar": [
+       "1. Makaledeki tutarlılık, kalite ve değer tanımlarını tek sayfalık özete aktarın.",
+       "2. İstanbul kar fırtınasında erken uyarı ile geç uyarının belediye maliyetine etkisini senaryolaştırın.",
+       "3. Her kavram için izleyicinin aklında kalacak tek cümlelik sloganlar belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+      }
+     },
+     {
+      "teknik": "script_text = build_storyboard(sections=['Giris', 'Uc_Boyut', 'Istanbul_Ornegi', 'Sonuc'], duration=720) ile video akışı oluşturmak.",
+      "sade": "On iki dakikalık videonun her dakikasında hangi görselin ve sesin geleceğini gösteren akış planını hazırlarız.",
+      "altAdimlar": [
+       "1. Giriş bölümünde yaygın yapılan hava tahmini yanılgılarını sıralayın.",
+       "2. Orta bölümde formül ve veri grafiklerine yer verecek zaman dilimlerini ayırın.",
+       "3. Sonuç bölümüne üç soruluk mini değerlendirme ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Open-Meteo ve METAR verisiyle kalite grafiğini çizmek",
+    "oz": "Tahmin çalıştırmaları ile gerçek ölçümleri zaman serisinde buluşturmak.",
+    "ayrinti": "Open-Meteo Previous Runs API kullanılarak İstanbul Havalimanı için 7 gün önceki IFS tahminleri çekilir. Iowa Mesonet METAR arşivindeki gerçek sıcaklıklarla çakıştırılarak tahmin hatası ve beceri skoru görselleştirilir.",
+    "nasil": [
+     {
+      "teknik": "resp = requests.get('https://previous-runs-api.open-meteo.com/v1/forecast', params=params).json() ile geçmiş tahminleri almak.",
+      "sade": "Modelin bir hafta boyunca gün gün ne söylediğini ve vadesi yaklaştıkça fikrinin nasıl değiştiğini açık API ile çekeriz.",
+      "altAdimlar": [
+       "1. İstanbul Havalimanı enlem ve boylam koordinatlarını belirleyin.",
+       "2. Farklı çalıştırma saatlerine ait 2 metre sıcaklık serilerini indirin.",
+       "3. Zaman damgalarını yerel saat dilimine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek."
+      }
+     },
+     {
+      "teknik": "plot_forecast_vs_obs(runs_df, metar_df, ss_val=0.67, save_path='assets/murphy_quality.png') ile kıyaslama görseli üretmek.",
+      "sade": "Gerçekleşen hava ile model tahminlerini aynı eksene koyup kalıcılık referansına göre beceri skorunu grafikte vurgularız.",
+      "altAdimlar": [
+       "1. Matplotlib ile tahmin çalıştırmalarını yarı saydam çizgilerle çizin.",
+       "2. METAR gözlemini kalın siyah çizgi olarak üstüne ekleyin.",
+       "3. Tahmin beceri skoru formülü ve hesaplanan değeri grafiğin köşesine yerleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek."
+     },
+     {
+      "ders": "MTO 494",
+      "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Sunum slaytlarını hazırlamak ve video anlatımını üretmek",
+    "oz": "Görsel slaytları oluşturup açık kaynak video anlatımını tamamlamak.",
+    "ayrinti": "Google Slaytlar üzerinde sade ve büyük puntolu 10 slaytlık sunum tasarlanır. Hazırlanan Python grafikleri yerleştirilir. OBS Studio veya ekran kaydedici yazılımla sunum akıcı biçimde seslendirilir.",
+    "nasil": [
+     {
+      "teknik": "slides = create_presentation(template='minimal_academic', slides_count=10, figures=['murphy_quality.png']) ile slaytları derlemek.",
+      "sade": "İzleyicinin dikkatini dağıtmayacak, net yazı ve yüksek çözünürlüklü grafikler içeren slayt destesi hazırlarız.",
+      "altAdimlar": [
+       "1. Her slaytta tek bir ana fikre odaklanan başlık ve iki cümlelik metin tutun.",
+       "2. Çizilen sıcaklık doğrulama grafiğini ve beceri skoru formülünü slayta yerleştirin.",
+       "3. Karar matrisi tablosuyla tahmin değerinin ekonomik yansımasını gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+      }
+     },
+     {
+      "teknik": "export_video(source='slides_and_voice', format='mp4', resolution='1080p') ile anlatım videosunu dışa aktarmak.",
+      "sade": "Slaytları konuşarak akıcı biçimde seslendirir ve yüksek çözünürlüklü video dosyasını açık erişime hazır hale getiririz.",
+      "altAdimlar": [
+       "1. Mikrofon seviyesini ve ekran çözünürlüğünü denetleyin.",
+       "2. Senaryo akışına uygun olarak sunumu 10-12 dakika arasında tamamlayın.",
+       "3. Video dosyasını ve altyazı metnini GitHub deposuna yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Akran incelemesi ve anlama testini uygulamak",
+    "oz": "Videoyu izleyen öğrencilere üç soruluk test uygulayıp anlatımı doğrulamak.",
+    "ayrinti": "Üretilen video meteoroloji ve mühendislik öğrencilerine izletilir. Tutarlılık, kalite ve değer farkını ölçen 3 soruluk mini test uygulanır. Anlaşılmayan noktalar slaytlara ek açıklamalar konularak revize edilir.",
+    "nasil": [
+     {
+      "teknik": "quiz_results = conduct_peer_evaluation(video_url='aura/video', questions=3, participants=10) ile anlama skorunu ölçmek.",
+      "sade": "Hazırladığımız anlatımın amacına ulaşıp ulaşmadığını arkadaşlarımızın verdiği test yanıtlarıyla nesnel olarak sınarız.",
+      "altAdimlar": [
+       "1. Tutarlılık, kalite ve değer kavramlarını sorgulayan üç çoktan seçmeli soru hazırlayın.",
+       "2. Katılımcıların cevaplarını toplayıp başarı yüzdesini çıkarın.",
+       "3. Hatalı anlaşılan kavramlar için videoya kısa açıklama kartları ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+      }
+     },
+     {
+      "teknik": "repo.publish(assets=['video.mp4', 'slides.pdf', 'data_script.py']) ile tüm materyalleri açık kaynakta yayımlamak.",
+      "sade": "Hem videoyu hem de çizim kodlarını herkesin erişebileceği bir GitHub deposunda derli toplu paylaşırız.",
+      "altAdimlar": [
+       "1. Depo ana sayfasına projenin amacını ve Murphy çerçevesini özetleyen benioku dosyası yazın.",
+       "2. Python çizim komut dosyasını ve slayt PDF belgesini depoya ekleyin.",
+       "3. Video bağlantısını proje web sayfasına işleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Allan Murphy'nin tahmin iyiliği boyutlarını İstanbul hava olaylarıyla açıklayan 12 dakikalık video, slaytlar ve açık Python doğrulama kodu.",
+  "senden": "Google Slaytlar şablonunu oluşturmak, Open-Meteo çizimlerini entegre etmek ve video çekimini akıcı şekilde tamamlamak.",
+  "bizden": "MTO 494 kapsamında Murphy kuramını açıklamak, tutarlılık-kalite-değer ayrımını kurgulamak ve akran testini yönetmek."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul LTFM için Open-Meteo önceki IFS tahminleri ile METAR sıcaklık gözleminin zaman serisi karşılaştırması",
+   "aciklama": "İstanbul Havalimanı için 7 günlük tahmin çalıştırmaları ve gerçekleşen sıcaklığın zaman ekseninde kıyaslanması"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/forecast-verification-explainer",
+   "aciklama": "AURA video anlatım senaryosu ve sunum slaytları deposu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Olasılıksal hava tahmininde tahmin belirsizliği ve gerçekleşen gözlem doğrulaması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Murphy, A. H. (1993) What Is a Good Forecast? An Essay on the Nature of Goodness in Weather Forecasting, Wea. Forecasting, 8, 281-293",
+   "url": "https://doi.org/10.1175/1520-0434(1993)008<0281:WIAGFA>2.0.CO;2"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences (4. baskı), Elsevier",
+   "url": "https://doi.org/10.1016/C2017-0-03921-6"
+  },
+  {
+   "ad": "Open-Meteo Previous Runs API Dokümantasyonu",
+   "url": "https://open-meteo.com/en/docs/previous-runs-api"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO494-03.json",
+  "tarih": "2026-10-17 02:32",
+  "geminiSha1": "57bce7fa0722"
+ }
+}

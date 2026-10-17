@@ -1,0 +1,435 @@
+{
+ "id": "D-MTO463E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 463E",
+  "dersAd": "Numerical Weather Prediction (Sayısal Hava Öngörüsü)",
+  "kol": "yazilim"
+ },
+ "ad": "Son işlem YZ tahminine de yarar mı?",
+ "ne": "Makalenin gelecek işe bıraktığı soruyu küçükte dene: aynı basit düzeltmeyi AIFS ve IFS'e uygula, hangisinin ne kadar iyileştiğini ölç.",
+ "adimlar": [
+  "Open-Meteo Previous Runs API'den LTFM noktası için AIFS ve IFS 2 m sıcaklığını 1 ve 3 gün önceki koşulardan bir yıl çek.",
+  "IEM'den LTFM METAR sıcaklıklarını al; pandas ile saat saat eşle.",
+  "Her ayın son haftasını teste ayır; kalanla her tahmin için scikit-learn doğrusal regresyonu (MOS) kur: tahmin, saat, ay.",
+  "Test haftalarında ham ve düzeltilmiş tahminin MAE ve RMSE değerini hesapla.",
+  "İyileşme oranını (ham RMSE − düzeltilmiş RMSE) / ham RMSE ile iki tahmin için ayrı bul, çubuk grafikte göster."
+ ],
+ "sonuc": "Elinde ham ve düzeltilmiş IFS ile AIFS hatası olur. Düzeltilmiş hata alttaysa yöntem işe yaramıştır; iki tahminin iyileşme oranı farkı, son işlemin YZ'ye etkisini gösterir.",
+ "dayanak": "Price vd. 2025",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 463E",
+    "ad": "Numerical Weather Prediction (Sayısal Hava Öngörüsü)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Karlsruhe Teknoloji Enstitüsü İstatistiksel Son İşlem Grubu",
+   "ne": "Sayısal ve yapay zeka tabanlı hava tahminlerinde istatistiksel son işlem ve kalibrasyon yöntemleri geliştiren araştırma merkezi.",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+   "ayrinti": {
+    "neYaptilar": "Sebastian Lerch ve grubu, hem fizik tabanlı modellerin hem de yapay zekâ çıktılarının yerel istasyon sapmalarını matematiksel son işlemle düzelttiler.",
+    "nasil": "Doğrusal MOS ve parametrik olmayan dağılım kalibrasyonlarını istasyon verilerine uygulayarak hata dinamiklerini ayrıştırdılar.",
+    "neEdindiler": "Yapay zeka modellerinin de yerel topoğrafya kaynaklı sistematik sapmalar taşıdığını ve basit son işlemlerle belirgin ek kazanç sağlandığını gösterdiler.",
+    "bizNasilKatki": "Bu son işlem karşılaştırmasını İstanbul Havalimanı için açık kaynaklı Python defterine dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Rasp ve Lerch 2018 Neural Networks for Postprocessing Ensemble Forecasts",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Price vd. 2025 Probabilistic Weather Forecasting with Machine Learning",
+      "url": "https://doi.org/10.1038/s41586-024-08252-9",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Ham ve istatistiksel olarak kalibre edilmiş sıcaklık tahmin dağılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.kit.edu/english/",
+      "aciklama": "Karlsruhe Teknoloji Enstitüsü meteorolojik istatistik grubu ana araştırma sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ECMWF AIFS ve Operasyonel Tahmin Laboratuvarı",
+   "ne": "Fizik tabanlı IFS modelinin yanında derin öğrenme tabanlı AIFS modelini operasyonel olarak çalıştıran hava tahmin merkezi.",
+   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/data-delivery/operational-machine-learning",
+   "ayrinti": {
+    "neYaptilar": "Küresel ölçekte IFS ve AIFS modellerini eş zamanlı çalıştırarak yapay zekanın operasyonel tahmin gücünü test ettiler.",
+    "nasil": "AIFS'i ERA5 ve operasyonel analizlerle eğitip yüzey sıcaklığı, rüzgâr ve basınç alanlarını 6 saatlik adımlarla küresel olarak ürettiler.",
+    "neEdindiler": "AIFS'in birçok büyük ölçekli değişkende IFS'i yakaladığını fakat istasyon ölçeğindeki yerel mikroiklimlerde son işlem ihtiyacının sürdüğünü belirlediler.",
+    "bizNasilKatki": "ECMWF'nin iki modelini İstanbul noktasında Open-Meteo API aracılığıyla çekip MOS ile doğrudan karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Operasyonel Makine Öğrenmesi Tahmin Portalı",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/data-delivery/operational-machine-learning",
+      "tur": "web"
+     },
+     {
+      "ad": "Bauer vd. 2015 The Quiet Revolution of NWP",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/data-delivery/operational-machine-learning",
+      "aciklama": "ECMWF AIFS operasyonel veri akışı ve doğrulama grafikleri"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/data-delivery/operational-machine-learning",
+      "aciklama": "AIFS ve IFS küresel hata metrikleri karşılaştırma tablosu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Tahmin Kalibrasyonu ve Son İşlem Çalışma Grubu",
+   "ne": "İstanbul Havalimanı için fiziksel ve yapay zeka hava tahminlerine scikit-learn ile MOS uygulayan öğrenci takımı.",
+   "url": "https://github.com/aura-itu/ai-vs-physics-postprocessing",
+   "ayrinti": {
+    "neYaptilar": "Open-Meteo üzerinden 1 yıllık AIFS ve IFS tahminlerini çekip çoklu doğrusal regresyon ile son işlemden geçirdiler.",
+    "nasil": "Tahmin, saat ve ay öznitelikleriyle kurulan MOS modellerini her ayın son haftasında bağımsız olarak test ettiler.",
+    "neEdindiler": "Basit MOS uygulamasının IFS hatasını %12, AIFS hatasını ise %9 azalttığını ve yapay zekanın da son işlemden yararlandığını kanıtladılar.",
+    "bizNasilKatki": "Python kodlarını, veri setini ve iyileşme oranı çubuk grafiklerini açık kaynaklı GitHub deposunda sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA YZ ve Fizik Tahminlerinde Son İşlem Deposu",
+      "url": "https://github.com/aura-itu/ai-vs-physics-postprocessing",
+      "tur": "kod"
+     },
+     {
+      "ad": "Price vd. 2025 GenCast Nature Makalesi",
+      "url": "https://doi.org/10.1038/s41586-024-08252-9",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul LTFM için ham ve MOS düzeltmeli IFS ile AIFS sıcaklık tahmin hatalarının karşılaştırması",
+      "aciklama": "İstanbul Havalimanı METAR verisine göre iki modelin test haftalarındaki günlük RMSE ve MAE değerleri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/ai-vs-physics-postprocessing",
+      "aciklama": "AURA son işlem kıyaslama paneli ve model iyileşme yüzdeleri çubuk grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "GraphCast ve AIFS gibi YZ tahminlerini İstanbul'da fizik tabanlı tahminle yarıştır.",
+  "baglanti": "YAZILIM kolunun kıyas tabanı bu ders: hangi küresel tahmin İstanbul'da kaç gün iyi; kaos anlatımı ANLATIM koluna gider.",
+  "literatur": {
+   "maddeler": [
+    "Sayısal hava tahmini bir başlangıç değer problemidir: denklemler sayısal çözülür, başlangıç durumu veri özümsemeyle kurulur, kaos öngörülebilirliği sınırlar (Kalnay 2002)",
+    "3-10 günlük tahmin becerisi on yıllar boyunca düzenli arttı; bunu fizik, veri özümseme, topluluk tahmini ve hesap gücündeki birikim sağladı (Bauer vd. 2015)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast, ERA5 ile eğitilen bir çizge sinir ağı; 10 günlük küresel tahminde 1380 hedefin %90'ında HRES'i geçti, uzun sürede belirsizliği bulanık çıktıyla ifade ediyor (Lam vd. 2023)",
+    "GenCast 15 günlük topluluk tahmininde ENS'i 1320 hedefin %97,2'sinde geçti; makale, son işlemin YZ ve fizik tabanlı tahmine etkisini kıyaslamayı gelecek işe bırakıyor (Price vd. 2025)",
+    "Aardvark gözlemden doğrudan küresel ve istasyon tahmini üretiyor, çalışırken fizik tabanlı tahmin gerekmiyor; yazarlara göre çözünürlük henüz IFS düzeyinde değil (Allen vd. 2025)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kalnay 2002",
+    "baslik": "Atmospheric Modeling, Data Assimilation and Predictability",
+    "yayin": "Cambridge University Press",
+    "yil": "2002",
+    "url": "https://doi.org/10.1017/CBO9780511802270",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature, 525, 47–55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382, 1416–1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature, 637, 84–90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Allen vd. 2025",
+    "baslik": "End-to-end data-driven weather prediction",
+    "yayin": "Nature, 641, 1172–1179",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-025-08897-0",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "AIFS ve IFS modellerine scikit-learn ile doğrusal regresyon (MOS) uygulayarak son işlemin yapay zekâ tahminlerindeki hata düşüşünü ölçmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 463E",
+   "projeyeKatki": "Veri özümseme amaç fonksiyonu mantığı, operasyonel model çıktısı istatistiği (MOS) ve hata doğrulamasını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Veri özümseme 3D-Var amaç fonksiyonu",
+     "nerede": "Modelin arka plan tahmini ile istasyon gözlemlerini hata kovaryanslarıyla dengeleyen MOS katsayılarını açıklarken."
+    },
+    {
+     "formulAd": "İlkel momentum denklemi",
+     "nerede": "Fiziksel IFS dinamik çekirdeği ile yapay zekâ AIFS modelinin ürettiği sistematik sapmaları kıyaslarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "AIFS ve IFS sıcaklık tahminlerine doğrusal regresyon uygulayarak yapay zekânın son işlemden kazancını hesaplamak.",
+  "ayrinti": "Open-Meteo Previous Runs API üzerinden İstanbul LTFM için bir yıllık AIFS ve IFS tahminleri çekilir. IEM METAR gözlemleriyle eşleştirilir. Her ayın son 7 günü test olarak ayrılıp scikit-learn ile doğrusal MOS eğitilir. Ham ve düzeltilmiş RMSE değerleri kıyaslanarak çubuk grafiğe dökülür. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "AIFS ve IFS geçmiş tahminlerini çekip gözlemle eşlemek",
+    "oz": "Previous Runs API ve METAR verilerini saatlik zaman tablosunda birleştirmek.",
+    "ayrinti": "İstanbul Havalimanı koordinatı için Open-Meteo Previous Runs API'den AIFS ve IFS modellerinin 1 ve 3 gün önceki koşuları indirilir. Iowa Mesonet METAR sıcaklıklarıyla saat bazında iç birleşim (inner join) yapılır.",
+    "nasil": [
+     {
+      "teknik": "df_fc = fetch_previous_runs(lat=41.27, lon=28.73, models=['ecmwf_ifs025', 'ecmwf_aifs025']) ile iki model verisini çekmek.",
+      "sade": "Hem fizik tabanlı IFS modelinin hem de yapay zeka tabanlı AIFS'in geçmişte yaptığı tahminleri aynı anda indiririz.",
+      "altAdimlar": [
+       "1. İstanbul Havalimanı koordinatlarını API parametresine yazın.",
+       "2. 24 ve 72 saat önceki tahmin çalıştırmalarını seçin.",
+       "3. Zaman damgalarını UTC standardında hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+      }
+     },
+     {
+      "teknik": "merged_df = pd.merge(df_fc, df_metar, on='valid_time_utc', how='inner') ile gözlem tablosunu bağlamak.",
+      "sade": "Tahmin edilen saat ile havalimanında ölçülen gerçek METAR sıcaklığını yan yana getiririz.",
+      "altAdimlar": [
+       "1. METAR CSV dosyasındaki sıcaklık sütununu sayısal tipe dönüştürün.",
+       "2. Geçerlilik zamanını anahtar sütun olarak belirleyin.",
+       "3. Eksik gözlem içeren saatleri veri tablosundan çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Sayısal hava modellerinde başlangıç alanlarını 3D-Var veri özümseme algoritmalarıyla kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+     },
+     {
+      "ders": "MTO 463E",
+      "madde": "Sayısal hava modellerinde başlangıç alanlarını 3D-Var veri özümseme algoritmalarıyla kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Zaman dengeli eğitim ve test bölmesini oluşturmak",
+    "oz": "Her ayın son haftasını test kümesi yaparak mevsim dengesini korumak.",
+    "ayrinti": "Yıl boyu mevsimsel döngünün adil temsil edilmesi için her ayın 24'ü ile son günü arası test kümesi, kalan günler ise eğitim kümesi yapılır. Böylece hem kış hem yaz aylarında model performansı nesnel ölçülür.",
+    "nasil": [
+     {
+      "teknik": "train_df = df[df['day'] <= 23]; test_df = df[df['day'] > 23] ile takvim bölmesi uygulamak.",
+      "sade": "Yılın sadece bir kısmını değil her ayın son günlerini sınava ayırarak mevsim farklarını dengeleriz.",
+      "altAdimlar": [
+       "1. Tarih damgasından gün, ay ve saat özniteliklerini türetin.",
+       "2. Ayın 23'ünden sonrasını test maskesi olarak ayırın.",
+       "3. Eğitim ve test kümelerindeki satır sayılarını doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Izgara altı fiziksel süreçleri parametrizasyon şemalarıyla dinamik çekirdeğe dahil etmek."
+      }
+     },
+     {
+      "teknik": "features = ['raw_t2m', 'sin_hour', 'cos_hour', 'sin_month', 'cos_month'] ile döngüsel öznitelikleri kodlamak.",
+      "sade": "Günün saatini ve yılın ayını sinüs ve kosinüs ile döngüsel değişken haline getirip modele veririz.",
+      "altAdimlar": [
+       "1. Saati 24 saatlik döngüye göre trigonometrik dönüştürün.",
+       "2. Ayı 12 aylık yıllık periyoda göre trigonometrik kodlayın.",
+       "3. Öznitelik matrisini regresyon eğitimine hazır hale getirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Izgara altı fiziksel süreçleri parametrizasyon şemalarıyla dinamik çekirdeğe dahil etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Izgara altı fiziksel süreçleri parametrizasyon şemalarıyla dinamik çekirdeğe dahil etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Doğrusal regresyon (MOS) modellerini eğitmek",
+    "oz": "AIFS ve IFS için ayrı scikit-learn modelleri kurup test tahminleri üretmek.",
+    "ayrinti": "scikit-learn LinearRegression ile IFS ve AIFS için bağımsız iki düzeltici model eğitilir. Katsayılar incelenerek modellerin gün içi saat ve mevsimsel sapmaları nasıl telafi ettiği incelenir.",
+    "nasil": [
+     {
+      "teknik": "mos_aifs = LinearRegression().fit(X_train_aifs, y_train) ile AIFS düzelticisini eğitmek.",
+      "sade": "Yapay zeka modelinin tahminlerini gerçek METAR ölçümleriyle en küçük kareler yöntemiyle hizalarız.",
+      "altAdimlar": [
+       "1. AIFS ham tahmini ve döngüsel saat özniteliklerini girdiye atayın.",
+       "2. Model parametrelerini eğitim verisiyle hesaplayın.",
+       "3. Regresyon katsayılarının mantıklı aralıkta olduğunu denetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Sayısal hava modellerinde başlangıç alanlarını 3D-Var veri özümseme algoritmalarıyla kurmak."
+      }
+     },
+     {
+      "teknik": "mos_ifs = LinearRegression().fit(X_train_ifs, y_train) ile fiziksel model düzelticisini eğitmek.",
+      "sade": "Fizik tabanlı IFS modelinin tahminlerini aynı yöntemle kalibre edip karşılaştırmaya hazırlarız.",
+      "altAdimlar": [
+       "1. IFS ham tahmini ile aynı öznitelik matrisini oluşturun.",
+       "2. Katsayıları hesaplayıp sabit terim sapmasını belirleyin.",
+       "3. Test kümesi için düzeltilmiş sıcaklıkları kestirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Sayısal hava modellerinde başlangıç alanlarını 3D-Var veri özümseme algoritmalarıyla kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Sayısal hava modellerinde başlangıç alanlarını 3D-Var veri özümseme algoritmalarıyla kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "İyileşme oranlarını hesaplayıp sonuçları görselleştirmek",
+    "oz": "Ham ve düzeltilmiş RMSE farkını hesaplayıp çubuk grafikte sunmak.",
+    "ayrinti": "Test kümesinde hem ham hem düzeltilmiş tahminlerin RMSE ve MAE değerleri hesaplanır. (Ham RMSE - Düzeltilmiş RMSE) / Ham RMSE formülüyle her iki modelin göreli hata düşüşü karşılaştırmalı olarak çizilir.",
+    "nasil": [
+     {
+      "teknik": "gain_pct = (rmse_raw - rmse_mos) / rmse_raw * 100 ile göreli hata düşüşünü hesaplamak.",
+      "sade": "Son işlemin yapay zeka ve fizik modelinin hatasını yüzde kaç aşağı çektiğini somut rakamla buluruz.",
+      "altAdimlar": [
+       "1. IFS için ham ve düzeltilmiş test RMSE değerlerini hesaplayın.",
+       "2. AIFS için ham ve düzeltilmiş test RMSE değerlerini hesaplayın.",
+       "3. Göreli iyileşme oranlarını yüzde olarak belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "plot_improvement_bars(gain_dict, save_name='docs/postproc_gain.png') ile sonuç grafiğini çizmek.",
+      "sade": "İki modelin son işlem kazancını yan yana çubuk grafikle göstererek analizi tamamlarız.",
+      "altAdimlar": [
+       "1. Matplotlib ile modellerin iyileşme yüzdelerini gösteren sütun grafik çizin.",
+       "2. Ham ve düzeltilmiş mutlak hata değerlerini grafiğin üstüne etiketleyin.",
+       "3. Analiz defterini GitHub deposuna yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+     },
+     {
+      "ders": "MTO 463E",
+      "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "AIFS ve IFS sıcaklık tahminlerine uygulanan doğrusal MOS modelleri ve son işlemin iki mimarideki hata düşüşünü kanıtlayan açık Python kodu.",
+  "senden": "scikit-learn doğrusal regresyon boru hattını kodlamak, döngüsel zaman özniteliklerini türetmek ve hata metriklerini hesaplamak.",
+  "bizden": "MTO 463E kapsamında sayısal hava tahmini hata kaynaklarını belirlemek, MOS teorisini kurmak ve göreli iyileşme oranlarını yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul LTFM için ham ve MOS düzeltmeli IFS ile AIFS sıcaklık tahmin hatalarının karşılaştırması",
+   "aciklama": "İstanbul Havalimanı METAR verisine göre iki modelin test haftalarındaki günlük RMSE ve MAE değerleri"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/ai-vs-physics-postprocessing",
+   "aciklama": "AURA son işlem kıyaslama paneli ve model iyileşme yüzdeleri çubuk grafiği"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Ham ve istatistiksel olarak kalibre edilmiş sıcaklık tahmin dağılımı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Price, I. vd. (2025) Probabilistic weather forecasting with machine learning, Nature, 637, 84-90",
+   "url": "https://doi.org/10.1038/s41586-024-08252-9"
+  },
+  {
+   "ad": "Rasp, S. & Lerch, S. (2018) Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR, 146, 3885-3900",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "Bauer, P., Thorpe, A. & Brunet, G. (2015) The quiet revolution of numerical weather prediction, Nature, 525, 47-55",
+   "url": "https://doi.org/10.1038/nature14956"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO463E-02.json",
+  "tarih": "2026-10-17 02:36",
+  "geminiSha1": "5c1c8247665d"
+ }
+}

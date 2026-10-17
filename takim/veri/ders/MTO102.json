@@ -1,0 +1,135 @@
+{
+ "kod": "MTO 102",
+ "ad": "Bilgisayarlı Teknik Resim",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "102",
+ "ozet": "Meteorolojik ölçüm sistemlerinin, alet parçalarının, sensör koruma yapılarının ve istasyon yerleşimlerinin bilgisayar destekli tasarım ilkeleriyle iki ve üç boyutlu çizilmesini, parametrik model kurma ve üretim standartlarını öğretir.",
+ "neOgrenirsin": [
+  "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak.",
+  "Parametrik CAD yazılımlarıyla meteorolojik alet gövdelerini ve ışınım siperlerini üç boyutlu çizmek.",
+  "Devrilen kova tipi yağmur ölçer ve akış sensörlerinin mekanik montaj ilişkilerini ve kinematik hareketini kurmak.",
+  "Patlatılmış montaj resimleri ve alet kesitleriyle karmaşık ölçüm sistemlerinin iç anatomisini görselleştirmek.",
+  "Hızlı prototipleme ve 3B yazıcı üretimi için STL ve STEP üretim dosyalarını ihraç etmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Işınım siperi sıcaklık hatası bağıntısı",
+   "tex": "\\Delta T = \\frac{\\alpha \\cdot S_0}{h_c \\cdot (1 + \\beta \\cdot v)}",
+   "terimler": [
+    [
+     "\\Delta T",
+     "siper içi sıcaklık sapması",
+     "°C"
+    ],
+    [
+     "\\alpha",
+     "siper yüzeyinin güneş soğurma katsayısı",
+     "birimsiz"
+    ],
+    [
+     "S_0",
+     "gelen toplam güneş ışınımı akısı",
+     "W/m^2"
+    ],
+    [
+     "h_c",
+     "doğal konveksiyonel ısı taşınım katsayısı",
+     "W/(m^2 \\cdot K)"
+    ],
+    [
+     "\\beta",
+     "rüzgâr havalandırma katsayısı",
+     "s/m"
+    ],
+    [
+     "v",
+     "siper etrafındaki ortam rüzgâr hızı",
+     "m/s"
+    ]
+   ],
+   "sade": "Güneş ışınım siperinin sensör ölçümünde yaratacağı ısınma sapmasını gelen ışınım, yüzey yansıtıcılığı ve rüzgâr hızı havalandırmasına bağlı olarak hesaplar.",
+   "ornek": "Güneş ışınımı 850 W/m² ve rüzgâr 1,5 m/s iken beyaz PLA ile basılan siperde hesaplanan sıcaklık sapması 0,35 °C seviyesinde tutulur.",
+   "nerede": "D-MTO102-01'de çok katlı ışınım siperi plaka mesafesi ve hava kanalı geometrisini tasarlarken kullanılır."
+  },
+  {
+   "ad": "Devrilen kova yağış yüksekliği bağıntısı",
+   "tex": "h = \\frac{V_k}{A_h} \\times 10",
+   "terimler": [
+    [
+     "h",
+     "her devrilmede belirlenen yağış yüksekliği",
+     "mm"
+    ],
+    [
+     "V_k",
+     "bir kova gözünün devrilme hacmi",
+     "cm^3"
+    ],
+    [
+     "A_h",
+     "toplama hunisinin yatay kesit alanı",
+     "cm^2"
+    ]
+   ],
+   "sade": "Yağmur ölçer hunisinin toplama alanı ile devrilen kovanın su hacmi arasındaki oranla, her kova hareketinin kaç milimetre yağışa karşılık geldiğini hesaplar.",
+   "ornek": "Toplama alanı 200 cm² ve kova hacmi 4 cm³ olan mekanik tasarımda her bir devrilme tam olarak 0,2 mm yağışa tekabül eder.",
+   "nerede": "D-MTO102-02'de OpenSCAD ile parametrik yağmur ölçer kova hacmi ve huni çapı boyutlandırılırken kullanılır."
+  },
+  {
+   "ad": "Teknik resim ölçek ve boyut bağıntısı",
+   "tex": "L_{\\mathrm{cizim}} = M \\cdot L_{\\mathrm{gercek}}",
+   "terimler": [
+    [
+     "L_{\\mathrm{cizim}}",
+     "çizim veya 3B model üzerindeki boyut",
+     "mm"
+    ],
+    [
+     "M",
+     "teknik resim ölçek katsayısı",
+     "birimsiz"
+    ],
+    [
+     "L_{\\mathrm{gercek}}",
+     "fiziksel meteorolojik aletin gerçek boyutu",
+     "mm"
+    ]
+   ],
+   "sade": "Büyük bir meteoroloji istasyonu kulesinin veya küçük bir radyosonde sensör parçasının teknik resim kağıdına ve 3B montaj alanına belirli bir oranda aktarılmasını sağlar.",
+   "ornek": "1200 mm uzunluğundaki bir meteorolojik alet direği 1:5 ölçeğinde teknik resim paftasına aktarıldığında çizim boyutu 240 mm olarak hesaplanır.",
+   "nerede": "D-MTO102-03'te radyosonda ve sensör parçalarının patlatılmış montaj görünümü ve teknik pafta yerleşiminde kullanılır."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen_open.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "WMO standartlarında Stevenson tipi ahşap ve kompozit meteorolojik ışınım siperi iç yapısı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "Açık donanım sıcaklık ve partikül sensörü istasyonlarının küresel ağındaki anlık veri akışı",
+   "aciklama": "Topluluk tarafından 3B basılan siperlerle kurulan açık istasyonların veri dağılım animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 102 (Bilgisayarlı Teknik Resim)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=102"
+  },
+  {
+   "ad": "WMO CIMO Guide to Meteorological Instruments and Methods of Observation (WMO-No. 8)",
+   "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation"
+  },
+  {
+   "ad": "Barkjohn, K. K. et al. (2021) Development and application of correction for PurpleAir sensor, AMT, 14, 4617–4637",
+   "url": "https://doi.org/10.5194/amt-14-4617-2021"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=102"
+}

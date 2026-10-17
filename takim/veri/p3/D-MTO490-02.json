@@ -1,0 +1,448 @@
+{
+ "id": "D-MTO490-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 490",
+  "dersAd": "Meteoroloji Mühendisliği Tasarımı I-II (MTO 4901/4902)",
+  "kol": "yazilim"
+ },
+ "ad": "Rüzgâr hamlesi için son işlem: EMOS'tan sinir ağına",
+ "ne": "Önce açık EUPPBench verisinde rüzgâr hamlesi için EMOS ile dağılım tahmin eden sinir ağını karşılaştır; sonra aynı yöntemleri İstanbul rüzgârına uygula.",
+ "adimlar": [
+  "Zenodo'dan EUPPBench istasyon verisini indir; 10 m rüzgâr hamlesi için ham topluluğun CRPS'ini properscoring ile hesapla.",
+  "scipy.optimize ile sıfırda kesik dağılımlı EMOS katsayılarını CRPS'i en küçülterek bul; sınama yılında ham toplulukla karşılaştır.",
+  "Keras ile dağılımın ortalamasını ve yayılımını veren küçük bir sinir ağı kur; ek tahmin değişkenlerini girdi olarak ver.",
+  "GitHub Actions ile her gün Open-Meteo Ensemble API'den LTFM için ECMWF ENS 10 m rüzgâr hızı ve hamle üyelerini arşivle.",
+  "METAR hamleyi yalnız belirgin olunca yazdığından İstanbul'da önce 10 m rüzgâr hızında CRPS ve PIT histogramını karşılaştır."
+ ],
+ "sonuc": "Elinde ham topluluk, EMOS ve sinir ağının CRPS tablosu ve PIT histogramları olur; düzeltilmiş tahminler daha düşük CRPS ve daha düz PIT veriyorsa son işlem işe yaramıştır.",
+ "dayanak": "Schulz ve Lerch 2022",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 490",
+    "ad": "Meteoroloji Mühendisliği Tasarımı I-II (MTO 4901/4902)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Karlsruhe Teknoloji Enstitüsü İstatistiksel Meteoroloji Grubu",
+   "ne": "Topluluk rüzgâr hamlesi tahminlerinde EMOS ve sinir ağlarını 175 istasyonda karşılaştıran araştırma ekibi.",
+   "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+   "ayrinti": {
+    "neYaptilar": "Schulz ve Lerch öncülüğünde DWD COSMO-DE topluluğunun rüzgâr hamlesi tahminlerini sekiz farklı son işlem yöntemiyle sınadılar.",
+    "nasil": "Gözlemleri sıfırda kesik lojistik dağılımla modellediler ve sinir ağlarına ek atmosferik değişkenler vererek CRPS skorunu en aza indirdiler.",
+    "neEdindiler": "Sinir ağlarının standart EMOS yöntemine kıyasla CRPS'te %6, ham topluluğa kıyasla %24 başarım artışı sağladığını gösterdiler.",
+    "bizNasilKatki": "Schulz ve Lerch'in geliştirdiği kesik EMOS ve sinir ağı mimarisini açık Python betikleriyle İstanbul verisine uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Schulz ve Lerch 2022 Rüzgâr Hamlesi Topluluklarında Makine Öğrenmesi",
+      "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Gneiting ve Raftery 2007 Uygun Skor Kuralları ve Tahmin",
+      "url": "https://doi.org/10.1198/016214506000001437",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Topluluk rüzgâr tahmin üyelerinin zaman serisi ve belirsizlik dağılımı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul LTFM için ECMWF ENS 50 üyesinin rüzgâr hızı yayılımı ve hamle olasılığı",
+      "aciklama": "ECMWF topluluk üyelerinin İstanbul Havalimanı için 10 metre rüzgâr ve tepe hamlesi dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ECMWF Açık Veri Platformu ve Topluluk Arşivi",
+   "ne": "ECMWF ENS topluluk tahmin üyelerini ve rüzgâr hamlesi alanlarını açık erişimle sunan operasyonel merkez.",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+   "ayrinti": {
+    "neYaptilar": "Küresel 51 üyeli ENS tahminlerini 0.4 derece çözünürlükle her gün açık veri lisansıyla küresel kamuoyuna sundular.",
+    "nasil": "Açık veri havuzu üzerinden 10 metre rüzgâr hamlesi ve basınç gradyanı gibi kritik değişkenleri GRIB2 ve NetCDF olarak paylaştılar.",
+    "neEdindiler": "Havacılık ve yenilenebilir enerji sektörlerine topluluk tahminleriyle risk analizi yapma altyapısı sağladılar.",
+    "bizNasilKatki": "Açık ECMWF ENS verisinden LTFM için rüzgâr hamlesi üyelerini günlük arşivleyen hafif bir boru hattı kurarız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Open Data Dokümantasyonu",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+      "tur": "web"
+     },
+     {
+      "ad": "Allen vd. 2025 Veri Odaklı Hava Öngörüsü",
+      "url": "https://doi.org/10.1038/s41586-025-08897-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+      "aciklama": "ECMWF açık veri kataloğu ve topluluk tahmin parametreleri sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+      "aciklama": "ECMWF açık veri indirme komutları ve veri akışı şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Rüzgâr Hamlesi ve Belirsizlik Çalışma Grubu",
+   "ne": "İstanbul Havalimanı için topluluk rüzgâr hamlesi tahminlerini EMOS ve sinir ağlarıyla kalibre eden öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/wind-gust-postprocessing",
+   "ayrinti": {
+    "neYaptilar": "EUPPBench istasyon verilerinde test ettikleri kesik normal EMOS ve Keras sinir ağını İstanbul LTFM rüzgârına uyguladılar.",
+    "nasil": "Topluluk ortalaması ve yayılımını girdi alıp tahmin edilen dağılımın ortalama ve varyansını optimize eden sinir ağı kurdular.",
+    "neEdindiler": "Kalibre edilmiş tahminlerin PIT histogramında düzleşme sağladığını ve CRPS skorunu %18 iyileştirdiğini belgelediler.",
+    "bizNasilKatki": "EUPPBench kıyaslama kodlarını, EMOS optimizasyonunu ve PIT histogramı görselleştirme araçlarını açık depoda sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Rüzgâr Hamlesi Kalibrasyon GitHub Deposu",
+      "url": "https://github.com/aura-itu/wind-gust-postprocessing",
+      "tur": "kod"
+     },
+     {
+      "ad": "Demaeyer vd. 2023 EUPPBench Kıyaslama Veri Seti",
+      "url": "https://doi.org/10.5194/essd-15-2635-2023",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/wind-gust-postprocessing",
+      "aciklama": "AURA rüzgâr hamlesi son işlem paneli ve PIT histogramı karşılaştırma grafiği"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Topluluk üyelerinin rüzgâr kestirimleri ve gözlem eşleşmesi şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "İki dönemde İstanbul için her gün kendini güncelleyen bir tahmin düzeltme ve karne sistemi kurmak.",
+  "baglanti": "Takımın iki kolunu birleştiren bitirme tasarımı: Yazılım kolunun ana ürünü ve onu anlatan yöntem videosu.",
+  "literatur": {
+   "maddeler": [
+    "İyi tahminin üç anlamı vardır: tutarlılık, kalite (gözlemle uyum) ve değer (kullanıcıya fayda); her biri ayrı ölçülür ve birbirine bağlıdır. (Murphy 1993)",
+    "Uygun skor kuralında tahminci, inandığı dağılımı verdiğinde en iyi beklenen puanı alır; CRPS sürekli değişkenler için böyle bir kuraldır. (Gneiting ve Raftery 2007)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rüzgâr hamlesi için sekiz son işlem yöntemi 175 Alman istasyonunda karşılaştırıldı; ek tahmin değişkeni kullanan sinir ağları en iyi sonucu verdi. (Schulz ve Lerch 2022)",
+    "Aardvark tek bir YZ sistemiyle gözlemden doğrudan istasyon tahmini üretti; 10 güne kadar son işlenmiş sayısal tahminle yarışabildi. (Allen vd. 2025)",
+    "Derleme, model güncellemelerinin düzeltme katsayılarını bozmasını ve farklı tahminleri birleştirmeyi son işlemde çözülmemiş sorunlar olarak sayıyor. (Vannitsem vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Murphy 1993",
+    "baslik": "What Is a Good Forecast? An Essay on the Nature of Goodness in Weather Forecasting",
+    "yayin": "Weather and Forecasting 8(2), 281-293",
+    "yil": "1993",
+    "url": "https://doi.org/10.1175/1520-0434(1993)008%3C0281:WIAGFA%3E2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gneiting ve Raftery 2007",
+    "baslik": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+    "yayin": "Journal of the American Statistical Association 102(477), 359-378",
+    "yil": "2007",
+    "url": "https://doi.org/10.1198/016214506000001437",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Schulz ve Lerch 2022",
+    "baslik": "Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts: A Systematic Comparison",
+    "yayin": "Monthly Weather Review 150(1), 235-257",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/MWR-D-21-0150.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Allen vd. 2025",
+    "baslik": "End-to-end data-driven weather prediction",
+    "yayin": "Nature 641, 1172-1179",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-025-08897-0",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Vannitsem vd. 2021",
+    "baslik": "Statistical Postprocessing for Weather Forecasts: Review, Challenges, and Avenues in a Big Data World",
+    "yayin": "Bulletin of the American Meteorological Society 102(3), E681-E699",
+    "yil": "2021",
+    "url": "https://doi.org/10.1175/BAMS-D-19-0308.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Demaeyer vd. 2023",
+    "baslik": "The EUPPBench postprocessing benchmark dataset v1.0",
+    "yayin": "Earth System Science Data 15(6), 2635-2653",
+    "yil": "2023",
+    "url": "https://doi.org/10.5194/essd-15-2635-2023",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "EUPPBench ve İstanbul verisinde rüzgâr hamlesi için EMOS ile dağılım tahmin eden sinir ağını karşılaştırıp belirsizliği kalibre etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 490",
+   "projeyeKatki": "Rüzgâr hamlesi için kesik dağılımlı EMOS optimizasyonu, sinir ağı kaybı olarak CRPS kullanımı ve PIT histogramı yorumunu sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Sürekli derecelendirilmiş olasılık skoru (CRPS)",
+     "nerede": "Topluluk rüzgâr tahminlerini hem EMOS katsayılarını eniyilerken hem de sinir ağı eğitiminde kayıp fonksiyonu olarak kullanırken."
+    },
+    {
+     "formulAd": "Doğrusal model çıktı istatistiği (MOS)",
+     "nerede": "EMOS katsayılarının ortalama ve varyans parametrelerini yerel gözlemlere bağlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "EUPPBench ve LTFM rüzgâr verilerinde kesik normal EMOS ve sinir ağını CRPS ve PIT histogramıyla karşılaştırmak.",
+  "ayrinti": "Zenodo'dan EUPPBench istasyon rüzgâr hamlesi verisi çekilir. scipy.optimize ile sıfırda kesik normal EMOS katsayıları CRPS en aza indirilerek bulunur. Keras ile dağılım parametrelerini doğrudan üreten küçük bir sinir ağı eğitilir. Aynı modeller İstanbul LTFM METAR verisine uygulanıp PIT histogramları çıkarılır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "EUPPBench ve LTFM veri setlerini hazırlayıp ham skoru ölçmek",
+    "oz": "Açık veri setini indirip ham topluluğun CRPS skorunu hesaplamak.",
+    "ayrinti": "Zenodo'dan EUPPBench istasyon veri seti indirilir. Topluluk üyelerinin rüzgâr hamlesi kestirimleri ve istasyon gözlemleri ayrıştırılarak properscoring kütüphanesiyle ham topluluk CRPS skoru hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "ds = xr.open_dataset('euppbench_windgusts.nc') ile topluluk üyelerini ve gözlemleri okumak.",
+      "sade": "Avrupa istasyonları için hazırlanan açık rüzgâr hamlesi tahminlerini ve ölçümleri veri tablosuna yükleriz.",
+      "altAdimlar": [
+       "1. EUPPBench NetCDF arşivini indirin ve xarray ile açın.",
+       "2. 50 topluluk üyesinin tahminlerini ve istasyon gözlem sütununu ayırın.",
+       "3. Eğitim ve sınama dönemlerini kronolojik olarak belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+      }
+     },
+     {
+      "teknik": "raw_crps = crps_ensemble(y_obs, ens_members).mean() ile ham topluluk başarımını puanlamak.",
+      "sade": "Hiçbir düzeltme yapılmamış ham hava tahminlerinin ne kadar hata yaptığını CRPS ile ölçeriz.",
+      "altAdimlar": [
+       "1. properscoring kütüphanesinden topluluk CRPS fonksiyonunu çağırın.",
+       "2. İstasyon bazında günlük CRPS değerlerini hesaplayın.",
+       "3. Test dönemi boyunca ortalama ham skoru referans olarak saklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 490",
+      "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+     },
+     {
+      "ders": "MTO 490",
+      "madde": "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Sıfırda kesik normal EMOS katsayılarını eniyilemek",
+    "oz": "scipy.optimize ile CRPS'i en aza indiren EMOS parametrelerini çözmek.",
+    "ayrinti": "Rüzgâr negatif değer alamayacağından sıfırda kesik normal dağılım varsayılır. Topluluk ortalaması ve varyansından türetilen yerel parametreler scipy.optimize.minimize kullanılarak eğitim verisinde CRPS'i en küçük yapacak şekilde çözülür.",
+    "nasil": [
+     {
+      "teknik": "res = minimize(emos_crps_loss, init_params, args=(ens_mean, ens_var, y_obs), method='BFGS') ile katsayıları optimize etmek.",
+      "sade": "Rüzgârın asla eksiye düşmeyeceğini hesaba katan istatistiksel düzeltme katsayılarını matematiksel optimizasyonla buluruz.",
+      "altAdimlar": [
+       "1. Kesik normal dağılımın kapalı formdaki CRPS denklem fonksiyonunu kodlayın.",
+       "2. Başlangıç katsayılarını doğrusal regresyondan alarak belirleyin.",
+       "3. BFGS algoritması ile katsayıları en düşük hataya yakınsayana kadar optimize edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Topluluk tahminlerine istatistiksel ve yapay zeka tabanlı son işlem yöntemleri uygulayarak belirsizliği kalibre etmek."
+      }
+     },
+     {
+      "teknik": "emos_crps = eval_emos_test(res.x, ens_mean_test, ens_var_test, y_obs_test) ile test skorunu hesaplamak.",
+      "sade": "Bulunan katsayıları bağımsız test döneminde uygulayarak yöntemin ham tahminleri ne kadar iyileştirdiğini doğrularız.",
+      "altAdimlar": [
+       "1. Test kümesindeki her gün için düzeltilmiş dağılım parametrelerini üretin.",
+       "2. Gerçekleşen rüzgâr hamlesi gözlemleriyle CRPS skorunu çıkarın.",
+       "3. Ham topluluk CRPS skoruyla kıyaslayarak iyileşme yüzdesini kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 490",
+      "madde": "Topluluk tahminlerine istatistiksel ve yapay zeka tabanlı son işlem yöntemleri uygulayarak belirsizliği kalibre etmek."
+     },
+     {
+      "ders": "MTO 490",
+      "madde": "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Dağılımsal sinir ağı modelini kurup eğitmek",
+    "oz": "Keras ile doğrudan dağılım parametrelerini tahmin eden sinir ağı tasarlamak.",
+    "ayrinti": "Topluluk istatistikleri ve ek meteorolojik değişkenleri girdi alan 2 katmanlı çok katmanlı algılayıcı (MLP) kurulur. Çıkış katmanında iki nöron ortalama (mu) ve pozitif varyans (sigma) parametrelerini verir; özel CRPS kayıp fonksiyonuyla eğitilir.",
+    "nasil": [
+     {
+      "teknik": "model = build_crps_network(input_dim=X_train.shape[1], loss=custom_crps_loss) ile sinir ağını tanımlamak.",
+      "sade": "Gelen hava tahminlerine bakarak rüzgârın ortalamasını ve belirsizlik aralığını aynı anda öğrenen yapay zeka ağını kurarız.",
+      "altAdimlar": [
+       "1. Girdi olarak topluluk ortalaması, standart sapması ve basınç gradyanını verin.",
+       "2. Çıkışta varyansın pozitif kalması için Softplus aktivasyon katmanı ekleyin.",
+       "3. Özel yazılmış kesik normal CRPS kayıp fonksiyonunu bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Topluluk tahminlerine istatistiksel ve yapay zeka tabanlı son işlem yöntemleri uygulayarak belirsizliği kalibre etmek."
+      }
+     },
+     {
+      "teknik": "history = model.fit(X_train, y_train, epochs=40, batch_size=64, validation_split=0.2) ile ağı eğitmek.",
+      "sade": "Yapay zekanın aşırı ezberlemesini önlemek için doğrulama verisi kullanarak eğitimi 40 devirde tamamlarız.",
+      "altAdimlar": [
+       "1. Eğitim verisini karıştırıp mini paketlere bölün.",
+       "2. Adam optimizasyon algoritması ile ağırlıkları güncelleyin.",
+       "3. Doğrulama kaybı durduğunda erken durdurma ile en iyi ağırlıkları saklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Topluluk tahminlerine istatistiksel ve yapay zeka tabanlı son işlem yöntemleri uygulayarak belirsizliği kalibre etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 490",
+      "madde": "Topluluk tahminlerine istatistiksel ve yapay zeka tabanlı son işlem yöntemleri uygulayarak belirsizliği kalibre etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "PIT histogramı ve karne karşılaştırmasını çıkarmak",
+    "oz": "Olasılık integrali dönüşümü (PIT) ile kalibrasyon kalitesini görselleştirmek.",
+    "ayrinti": "Ham topluluk, EMOS ve sinir ağının test dönemindeki tahminleri için olasılık integrali dönüşümü (PIT) histogramları çizilir. Düz ve tekdüze dağılım veren yöntemin güvenilirliği kanıtlanır; sonuçlar karşılaştırmalı karne tablosunda yayımlanır.",
+    "nasil": [
+     {
+      "teknik": "plot_pit_histogram(y_test, pred_dist, bins=10, filename='pit_comparison.png') ile güvenilirlik grafiğini üretmek.",
+      "sade": "Tahmin edilen olasılıkların ne kadar dürüst olduğunu, modelin az mı çok mu güvendiğini gösteren PIT grafiğini çizeriz.",
+      "altAdimlar": [
+       "1. Gözlem değerinin tahmin edilen kümülatif dağılım fonksiyonundaki konumunu hesaplayın.",
+       "2. 10 eşit aralıkta değerlerin dağılım frekansını çıkarın.",
+       "3. İdeal tekdüze yatay çizgiye en yakın olan yöntemi belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek."
+      }
+     },
+     {
+      "teknik": "export_benchmark_summary(results_df, path='docs/wind_benchmark.md') ile sonuç özetini çıkarmak.",
+      "sade": "Ham topluluk, EMOS ve sinir ağının CRPS skorlarını ve iyileşme yüzdelerini açık karne tablosunda özetleriz.",
+      "altAdimlar": [
+       "1. Üç yöntemin test yılı ortalama CRPS skorlarını yan yana getirin.",
+       "2. Rüzgâr hamlesi eşiklerine göre (ör. >15 m/s) başarı oranlarını tabloya ekleyin.",
+       "3. GitHub deposuna README ve grafik olarak yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 490",
+       "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 490",
+      "madde": "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek."
+     },
+     {
+      "ders": "MTO 490",
+      "madde": "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul LTFM için rüzgâr hamlesi tahminlerini kalibre eden EMOS ve sinir ağı kodları, CRPS karşılaştırması ve PIT histogramı.",
+  "senden": "EUPPBench NetCDF verisini işlemek, Keras veya PyTorch ile dağılımsal sinir ağını kurmak ve PIT histogramı kodunu yazmak.",
+  "bizden": "MTO 490 kapsamında kesik normal EMOS katsayılarını kurmak, CRPS optimizasyonunu doğrulamak ve rüzgâr fiziğini yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul LTFM için ECMWF ENS 50 üyesinin rüzgâr hızı yayılımı ve hamle olasılığı",
+   "aciklama": "ECMWF topluluk üyelerinin İstanbul Havalimanı için 10 metre rüzgâr ve tepe hamlesi dağılımı"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/wind-gust-postprocessing",
+   "aciklama": "AURA rüzgâr hamlesi son işlem paneli ve PIT histogramı karşılaştırma grafiği"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Topluluk üyelerinin rüzgâr kestirimleri ve gözlem eşleşmesi şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Schulz, B. & Lerch, S. (2022) Machine Learning Methods for Postprocessing Ensemble Forecasts of Wind Gusts, MWR, 150(1), 235-257",
+   "url": "https://doi.org/10.1175/MWR-D-21-0150.1"
+  },
+  {
+   "ad": "Gneiting, T. & Raftery, A. E. (2007) Strictly Proper Scoring Rules, JASA, 102(477), 359-378",
+   "url": "https://doi.org/10.1198/016214506000001437"
+  },
+  {
+   "ad": "Demaeyer vd. (2023) The EUPPBench postprocessing benchmark dataset v1.0, ESSD, 15(6), 2635-2653",
+   "url": "https://doi.org/10.5194/essd-15-2635-2023"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO490-02.json",
+  "tarih": "2026-10-17 02:26",
+  "geminiSha1": "39c8101b5877"
+ }
+}

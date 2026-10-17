@@ -1,0 +1,155 @@
+{
+ "kod": "MTO 490",
+ "ad": "Meteoroloji Mühendisliği Tasarımı I-II (MTO 4901/4902)",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "4901",
+ "ozet": "Meteoroloji mühendisliği problemlerine yönelik tasarım, veri analizi, operasyonel tahmin, son işlem sistemleri ve karar destek mekanizmalarının geliştirilmesini öğretir. Öğrenciler bitirme çalışması kapsamında atmosferik verileri toplar, istatistiksel ve yapay zeka tabanlı düzeltmeler uygular, doğrular ve mühendislik çözümleri üretir.",
+ "neOgrenirsin": [
+  "Operasyonel hava tahmin modellerinin çıktılarını istasyon gözlemleriyle karşılaştırarak sapma analizi yapmak.",
+  "Sürekli derecelendirilmiş olasılık skoru (CRPS) ve MAE ile tahmin sistemlerinin başarımını değerlendirmek.",
+  "Topluluk tahminlerine istatistiksel ve yapay zeka tabanlı son işlem yöntemleri uygulayarak belirsizliği kalibre etmek.",
+  "Tahmin kalitesi ile karar verici için ekonomik değer arasındaki ilişkiyi maliyet-zarar analizleriyle hesaplamak.",
+  "Açık veri arayüzleri ve otomasyon betikleriyle günlük kendi kendini güncelleyen meteorolojik karne sistemi kurmak."
+ ],
+ "formuller": [
+  {
+   "ad": "Sürekli derecelendirilmiş olasılık skoru (CRPS)",
+   "tex": "\\mathrm{CRPS}(F, y) = \\int_{-\\infty}^{\\infty} \\left(F(x) - \\mathbf{1}(x \\ge y)\\right)^2 dx",
+   "terimler": [
+    [
+     "\\mathrm{CRPS}",
+     "sürekli derecelendirilmiş olasılık skoru",
+     "m/s"
+    ],
+    [
+     "F(x)",
+     "tahmin edilen kümülatif olasılık dağılım fonksiyonu",
+     "birimsiz"
+    ],
+    [
+     "y",
+     "doğrulama için kullanılan gerçek gözlem ölçümü",
+     "m/s"
+    ],
+    [
+     "\\mathbf{1}(x \\ge y)",
+     "gösterge fonksiyonu (x büyükeşit y ise bir, aksi halde sıfır)",
+     "birimsiz"
+    ],
+    [
+     "x",
+     "entegrasyon değişkeni",
+     "m/s"
+    ],
+    [
+     "dx",
+     "diferansiyel değişken artımı",
+     "m/s"
+    ]
+   ],
+   "sade": "Tahmin edilen olasılık dağılımı ile tek bir gözlem arasındaki farkın karesel integralini alır. Değer sıfıra yaklaştıkça tahmin başarımı artar; deterministik tahminlerde doğrudan ortalama mutlak hataya eşitlenir.",
+   "ornek": "İstanbul LTFM istasyonunda rüzgâr hamlesi tahmini için topluluk dağılımı verildiğinde ve gözlem 18 m/s ölçüldüğünde CRPS = 1,42 m/s hesaplanır; bu skor ham modelin 2,15 m/s olan değerinden belirgin derecede iyidir.",
+   "nerede": "D-MTO490-01 ve D-MTO490-02'de ham ve düzeltilmiş tahmin sistemlerinin başarımını puanlarken."
+  },
+  {
+   "ad": "Nispi ekonomik değer (REV)",
+   "tex": "\\mathrm{REV} = \\frac{E_{\\mathrm{iklim}} - E_{\\mathrm{tahmin}}}{E_{\\mathrm{iklim}} - E_{\\mathrm{kusursuz}}}",
+   "terimler": [
+    [
+     "\\mathrm{REV}",
+     "tahmin sisteminin karar vericiye sağladığı nispi ekonomik değer",
+     "birimsiz"
+    ],
+    [
+     "E_{\\mathrm{iklim}}",
+     "iklimsel sıklığa dayalı kararın beklenen masrafı",
+     "TL"
+    ],
+    [
+     "E_{\\mathrm{tahmin}}",
+     "hava tahmin sistemine dayalı kararın beklenen masrafı",
+     "TL"
+    ],
+    [
+     "E_{\\mathrm{kusursuz}}",
+     "kusursuz tahmin varsayımı altındaki asgari masraf",
+     "TL"
+    ]
+   ],
+   "sade": "Bir hava tahmininin kullanıcıya sağladığı ekonomik tasarrufu iklimsel referansa göre oranlar. Hata oranı düşük bir tahmin bile kullanıcının maliyet-zarar oranına uygun eşikte kullanılmazsa ekonomik değer yaratamaz.",
+   "ornek": "İstanbul Boğazı vapur seferlerinde sefer iptal maliyeti 50 bin TL ve fırtına hasarı 500 bin TL iken REV = 0,68 bulunur; yani kusursuz tahmine göre elde edilebilecek azami kazancın yüzde 68'i elde edilir.",
+   "nerede": "D-MTO490-03'te kalite ile değer arasındaki farkı kullanıcı sürgüsüyle gösterirken."
+  },
+  {
+   "ad": "Doğrusal model çıktı istatistiği (MOS)",
+   "tex": "\\hat{y} = \\alpha + \\beta x_m + \\sum_{k=1}^K \\gamma_k z_k",
+   "terimler": [
+    [
+     "\\hat{y}",
+     "istasyon için kalibre edilmiş nihai tahmin değeri",
+     "°C"
+    ],
+    [
+     "\\alpha",
+     "regresyon sabiti ve sistematik yerel sapma düzeltmesi",
+     "°C"
+    ],
+    [
+     "\\beta",
+     "sayısal model kestirim katsayısı",
+     "birimsiz"
+    ],
+    [
+     "x_m",
+     "sayısal hava tahmin modelinin ham ızgara kestirimi",
+     "°C"
+    ],
+    [
+     "\\gamma_k",
+     "ek meteorolojik öngörücü katsayıları",
+     "birimsiz"
+    ],
+    [
+     "z_k",
+     "ek atmosferik öngörücüler",
+     "°C"
+    ]
+   ],
+   "sade": "Sayısal hava modellerinin kaba ızgaralı çıktılarını istasyon ölçümleriyle ilişkilendirerek yerel topoğrafya ve ölçek uyuşmazlığından kaynaklanan sistematik yanılgıları geçmiş verilerle giderir.",
+   "ornek": "LTFM için sayısal tahmin sistemi sıcaklığı 14,2 °C öngördüğünde, son 60 günün katsayılarıyla düzeltilmiş tahmin 12,8 °C olarak hesaplanır ve gözlenen 12,6 °C değerine başarıyla yaklaşır.",
+   "nerede": "D-MTO490-01'de günlük kendini güncelleyen tahmin karnesinde ham tahminleri düzeltirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Topluluk tahminlerinin zamanla artan belirsizlik yayılımı ve deterministik üye dağılımı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul LTFM istasyonu için ECMWF, GFS ve ICON tahminlerinin gerçek gözlemle karşılaştırılması, son 30 gün",
+   "aciklama": "Üç sayısal tahmin sisteminin günlük sıcaklık ve rüzgâr tahminlerinin METAR gözlemleriyle eş zamanlı hata grafiği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 4901 (Meteoroloji Mühendisliği Tasarımı I)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=4901"
+  },
+  {
+   "ad": "Murphy, A. H. (1993) What Is a Good Forecast? Weather and Forecasting, 8(2), 281-293",
+   "url": "https://doi.org/10.1175/1520-0434(1993)008%3C0281:WIAGFA%3E2.0.CO;2"
+  },
+  {
+   "ad": "Gneiting, T. & Raftery, A. E. (2007) Strictly Proper Scoring Rules, JASA, 102(477), 359-378",
+   "url": "https://doi.org/10.1198/016214506000001437"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=4901"
+}

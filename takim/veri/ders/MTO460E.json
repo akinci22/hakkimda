@@ -1,0 +1,145 @@
+{
+ "kod": "MTO 460E",
+ "ad": "Intr. to Energy Meteorology (Enerji Meteorolojisine Giriş)",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "460",
+ "ozet": "Rüzgâr ve güneş enerjisi üretiminde atmosfer fiziğini, sınır tabaka rüzgâr profillerini, atmosferik kararlılığı, göbek yüksekliği enterpolasyonunu, güneş konum açılarını, fotovoltaik ışınım modellerini ve enerji santralleri için sayısal tahmin doğrulamasını öğretir.",
+ "neOgrenirsin": [
+  "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak.",
+  "Türbin aerodinamik güç eğrilerini kullanarak rüzgâr enerjisi üretimini tahmin etmek.",
+  "Güneş zenit ve azimut açılarıyla yatay ve eğik yüzey ışınım bileşenlerini belirlemek.",
+  "Sayısal hava tahmini verilerini fotovoltaik santral güç modellerine uyarlamak.",
+  "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+ ],
+ "formuller": [
+  {
+   "ad": "Rüzgâr kuvvet yasası dikey profili",
+   "tex": "U(z) = U_r \\left( \\frac{z}{z_r} \\right)^\\alpha",
+   "terimler": [
+    [
+     "U(z)",
+     "z yüksekliğindeki rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "U_r",
+     "referans z_r yüksekliğindeki rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "z",
+     "rüzgâr hızının hesaplandığı göbek yüksekliği",
+     "m"
+    ],
+    [
+     "z_r",
+     "referans ölçüm yüksekliği (genellikle 10 m)",
+     "m"
+    ],
+    [
+     "\\alpha",
+     "yüzey pürüzlülüğü ve kararlılığa bağlı rüzgâr kesme üssü",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Yeryüzünden yukarıya doğru çıkıldıkça sürtünmenin azalmasıyla rüzgâr hızının nasıl arttığını üslü bir kuvvet fonksiyonuyla hesaplar; türbin göbeğindeki hızı kestirmede kullanılır.",
+   "ornek": "İstanbul Çatalca'da 10 metrede rüzgâr hızı 7,2 m/s ve kararlılık üssü α = 0,22 iken 100 metre göbek yüksekliğindeki rüzgâr hızı 11,9 m/s olarak bulunur.",
+   "nerede": "D-MTO460E-01 ve D-MTO460E-03'te 10 m rüzgârını 100 m türbin yüksekliğine taşırken."
+  },
+  {
+   "ad": "Rüzgâr türbini aerodinamik güç üretimi",
+   "tex": "P = \\frac{1}{2} \\rho A U^3 C_p",
+   "terimler": [
+    [
+     "P",
+     "rüzgâr türbininden elde edilen aerodinamik güç",
+     "W"
+    ],
+    [
+     "\\rho",
+     "nem ve sıcaklığa bağlı yerel hava yoğunluğu",
+     "kg/m³"
+    ],
+    [
+     "A",
+     "rotor kanatlarının süpürdüğü dairesel alan",
+     "m²"
+    ],
+    [
+     "U",
+     "göbek yüksekliğindeki anlık rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "C_p",
+     "türbin aerodinamik güç katsayısı (Betz sınırı en çok 0,593)",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Rüzgârın taşıdığı kinetik enerjinin kanatlar tarafından mekanik ve elektrik güce dönüştürülmesini hesaplar; üretilen güç rüzgâr hızının küpüyle doğrudan orantılıdır.",
+   "ornek": "Hava yoğunluğu 1,225 kg/m³, rotor çapı 110 m (süpürme alanı 9503 m²), güç katsayısı 0,42 iken 11 m/s rüzgârda türbin 3,26 MW elektrik gücü üretir.",
+   "nerede": "D-MTO460E-01'de tahmin edilen rüzgâr hızlarını türbin güç eğrisiyle elektrik gücüne çevirirken."
+  },
+  {
+   "ad": "Yatay yüzeye gelen küresel güneş ışınımı",
+   "tex": "G_h = G_b \\cos(\\theta_z) + G_d",
+   "terimler": [
+    [
+     "G_h",
+     "yatay yüzeydeki toplam küresel güneş ışınımı",
+     "W/m²"
+    ],
+    [
+     "G_b",
+     "Güneş yönünden gelen doğrudan ışınım (DNI)",
+     "W/m²"
+    ],
+    [
+     "\\theta_z",
+     "Güneş zenit açısı (tepe noktasıyla Güneş arasındaki açı)",
+     "derece"
+    ],
+    [
+     "G_d",
+     "atmosfer ve bulutlardan saçılan yayılı güneş ışınımı (DHI)",
+     "W/m²"
+    ]
+   ],
+   "sade": "Güneş panellerinin üzerine düşen toplam enerjiyi doğrudan gelen ışınlar ile gökyüzünden saçılan ışınların toplamı olarak hesaplar; zenit açısı saatin gün içindeki konumunu belirler.",
+   "ornek": "İstanbul'da öğle saatinde zenit açısı 35 derece, doğrudan ışınım 750 W/m² ve yayılı ışınım 180 W/m² iken yatay yüzey toplam ışınımı 794 W/m² hesaplanır.",
+   "nerede": "D-MTO460E-02'de Güneş konum açılarıyla fotovoltaik panel ışınım tahminini iyileştirirken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wind_turbines_in_Austria.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Sınır tabaka rüzgâr profilinden elektrik enerjisi üreten modern rüzgâr türbini tarlası"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara bölgesi 100 m rüzgâr hızı ve yüzey güneş ışınımı saatlik tahmin döngüsü",
+   "aciklama": "AIFS ve IFS modelleri tarafından üretilen saatlik rüzgâr ve ışınım alanlarının hareketli karşılaştırması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 460E (Intr. to Energy Meteorology)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=460"
+  },
+  {
+   "ad": "Emeis, S. (2018) Wind Energy Meteorology: Atmospheric Physics for Wind Power Generation, Springer",
+   "url": "https://doi.org/10.1007/978-3-319-72859-9"
+  },
+  {
+   "ad": "Kleissl, J. (2013) Solar Energy Forecasting and Resource Assessment, Academic Press",
+   "url": "https://doi.org/10.1016/C2011-0-07022-9"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=460"
+}

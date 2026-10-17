@@ -1,0 +1,170 @@
+{
+ "kod": "MTO 358E",
+ "ad": "Air Pollution Meteorology (Hava Kirliliği Meteorolojisi)",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "358",
+ "ozet": "Atmosfer sınır tabakasında hava kirleticilerinin taşınımını, difüzyonunu, kararlı ve karışım tabakası dikey profillerini, radyosonde ile karışma yüksekliği kestirimini, duman eğrisi yayılımını ve makine öğrenmesi ile meteorolojik etkileri ayıklayarak salım eğilimlerini belirlemeyi öğretir.",
+ "neOgrenirsin": [
+  "Radyosonde dikey sıcaklık profillerinden kuru adyabatik kesişimle günlük karışma yüksekliğini hesaplamak.",
+  "Gauss duman dağılım denklemiyle nokta kaynaklı kirleticilerin yer seviyesi derişimini kestirmek.",
+  "Atmosferik kararlılık sınıfları ve difüzyon katsayılarıyla kirletici seyreltimini çözümlemek.",
+  "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak.",
+  "Sınır tabaka enversiyon katmanlarının yerel hava kalitesi üzerindeki etkisini değerlendirmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Holzworth karışma yüksekliği kesişim bağıntısı",
+   "tex": "\\theta(z_i) = T_{\\max} \\left( \\frac{p_0}{p_s} \\right)^{R_d / c_p}",
+   "terimler": [
+    [
+     "z_i",
+     "karışma tabakası tavan yüksekliği",
+     "m"
+    ],
+    [
+     "\\theta(z_i)",
+     "z_i yüksekliğindeki potansiyel sıcaklık",
+     "K"
+    ],
+    [
+     "T_{\\max}",
+     "günün ölçülen en yüksek yüzey sıcaklığı",
+     "K"
+    ],
+    [
+     "p_0",
+     "standart referans basınç (1000 hPa)",
+     "hPa"
+    ],
+    [
+     "p_s",
+     "yüzey istasyon basıncı",
+     "hPa"
+    ],
+    [
+     "R_d",
+     "kuru hava gaz sabiti (287 J/(kg K))",
+     "J/(kg K)"
+    ],
+    [
+     "c_p",
+     "kuru havanın sabit basınçtaki özgül ısısı (1005 J/(kg K))",
+     "J/(kg K)"
+    ]
+   ],
+   "sade": "Günün en yüksek yüzey sıcaklığından yükselen kuru hava parselinin gece radyosonde potansiyel sıcaklık profilini kestiği yüksekliği bularak gündüz karışma derinliğini verir.",
+   "ornek": "İstanbul Kartal'da günün en yüksek sıcaklığı 28 °C (301,15 K) iken yüzeyden çıkan kuru adyabat 00 UTC radyosondesindeki potansiyel sıcaklık eğrisini 1450 metrede keserek karışma yüksekliğini verir.",
+   "nerede": "D-MTO358E-01 ve D-MTO358E-03'te günlük karışma yüksekliğini hesaplarken."
+  },
+  {
+   "ad": "Gauss duman dağılım modeli yer seviyesi derişimi",
+   "tex": "C(x,y,0) = \\frac{Q}{\\pi u \\sigma_y \\sigma_z} \\exp\\left( -\\frac{y^2}{2 \\sigma_y^2} \\right) \\exp\\left( -\\frac{H^2}{2 \\sigma_z^2} \\right)",
+   "terimler": [
+    [
+     "C(x,y,0)",
+     "yer seviyesindeki kirletici kütle derişimi",
+     "µg/m³"
+    ],
+    [
+     "Q",
+     "baca veya kaynak kirletici salım debisi",
+     "g/s"
+    ],
+    [
+     "u",
+     "baca ağzı yüksekliğindeki ortalama rüzgâr hızı",
+     "m/s"
+    ],
+    [
+     "\\sigma_y",
+     "rüzgâra dik yatay Pasquill difüzyon katsayısı",
+     "m"
+    ],
+    [
+     "\\sigma_z",
+     "düşey Pasquill difüzyon katsayısı",
+     "m"
+    ],
+    [
+     "y",
+     "rüzgâr eksenine dik yatay uzaklık",
+     "m"
+    ],
+    [
+     "H",
+     "etkin baca yüksekliği",
+     "m"
+    ]
+   ],
+   "sade": "Sürekli bir bacadan çıkan gaz ve parçacıkların rüzgâr yönünde taşınırken atmosferik türbülans nedeniyle iki yönde Gauss eğrisi şeklinde yayılarak yere ulaşan derişimini hesaplar.",
+   "ornek": "Etkin yüksekliği 60 m ve debisi 50 g/s olan bir bacadan 2 km uzakta, D kararlılık sınıfında (u = 4 m/s, σy = 140 m, σz = 65 m) rüzgâr eksenindeki yer seviyesi derişimi 21,8 µg/m³ hesaplanır.",
+   "nerede": "D-MTO358E-01 ve D-MTO358E-02'de kirletici dağılımını ve sınır tabaka seyreltimini açıklarken."
+  },
+  {
+   "ad": "Meteorolojik normalizasyon orman kestirimi",
+   "tex": "\\bar{C}_{norm}(t) = \\frac{1}{M} \\sum_{m=1}^{M} f_{RF}(\\mathbf{x}_{met}^{(m)}, \\mathbf{x}_{time}(t))",
+   "terimler": [
+    [
+     "\\bar{C}_{norm}(t)",
+     "meteorolojik etkilerden arındırılmış normalize kirletici derişimi",
+     "µg/m³"
+    ],
+    [
+     "M",
+     "rastgele çekilen meteorolojik durum sayısı (örneğin 300)",
+     "birimsiz"
+    ],
+    [
+     "f_{RF}",
+     "eğitilmiş rastgele orman regresyon fonksiyonu",
+     "birimsiz"
+    ],
+    [
+     "\\mathbf{x}_{met}^{(m)}",
+     "arşivden rastgele örneklenen rüzgâr, sıcaklık ve sınır tabaka yüksekliği vektörü",
+     "karışık"
+    ],
+    [
+     "\\mathbf{x}_{time}(t)",
+     "t anına ait saat, haftanın günü ve yılın günü zaman öznitelikleri vektörü",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Hava kalitesi ölçüm serisinden rüzgâr, sıcaklık ve sınır tabaka derinliği gibi meteorolojik dalgalanmaları rastgele örnekleme ile sabitleyerek gerçek emisyon ve insan kaynaklı eğilimi ayrıştırır.",
+   "ornek": "İstanbul Kadıköy istasyonunda 2020 bahar aylarında ham NO2 derişimi %42 düşerken, 300 meteorolojik durumla normalize edildiğinde gerçek emisyon kaynaklı düşüşün %24 olduğu belirlenir.",
+   "nerede": "D-MTO358E-02'de İstanbul NO2 zaman serisinde meteorolojik normalizasyon uygularken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion_over_Bratislava.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Sınır tabaka enversiyonu altında sıkışan kentsel hava kirliliği ve pus tabakası"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara Bölgesi saatlik sınır tabaka yüksekliği (blh) ve yüzey rüzgârı döngüsü",
+   "aciklama": "ERA5 yeniden analizinden elde edilen günlük konvektif karışım ve gece kararlı tabaka evrimi animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 358 (Air Pollution Meteorology)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=358"
+  },
+  {
+   "ad": "Stull, R. B. (1988) An Introduction to Boundary Layer Meteorology, Springer",
+   "url": "https://doi.org/10.1007/978-94-009-3027-8"
+  },
+  {
+   "ad": "Grange, S. K. vd. (2018) Random forest meteorological normalisation models for Swiss PM10 trend analysis, Atmos. Chem. Phys., 18, 6223–6239",
+   "url": "https://doi.org/10.5194/acp-18-6223-2018"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=358"
+}

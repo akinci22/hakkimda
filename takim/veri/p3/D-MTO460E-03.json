@@ -1,0 +1,431 @@
+{
+ "id": "D-MTO460E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 460E",
+  "dersAd": "Intr. to Energy Meteorology (Enerji Meteorolojisine Giriş)",
+  "kol": "anlatim"
+ },
+ "ad": "Video: Gece rüzgâr profili neden dikleşir?",
+ "ne": "ERA5'in 10 m ve 100 m rüzgârından kuvvet yasası üssünü saat saat hesapla; kararlılığın türbin hizasındaki rüzgârı nasıl değiştirdiğini anlat.",
+ "adimlar": [
+  "Open-Meteo Historical Weather API'den Marmara'da bir nokta için bir yıllık saatlik 10 m ve 100 m ERA5 rüzgârını çek.",
+  "pandas ile α = ln(U100/U10) / ln(10) hesapla; U10 < 2 m/s saatleri at, saate ve mevsime göre ortala.",
+  "Sabit α = 1/7 ile 100 m rüzgârını tahmin et; ERA5'e göre MAE'yi gece ve gündüz ayrı hesapla.",
+  "Kitabın kararlılık ve dikey profil bölümünü oku; gece ve gündüz profilini birer şemayla çiz.",
+  "10-15 dakikalık videoyu hazırla; bilimsel inceleme için ders hocasına gönder, düzeltmeleri işle."
+ ],
+ "sonuc": "Elinde saate göre α grafiği ve video olur. Gece α'sı ve 1/7 hatası gündüzden büyükse kararlılık etkisi veride görünür; izleyen bunu açıklayabiliyorsa anlatım tutmuştur.",
+ "dayanak": "Emeis 2018",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 460E",
+    "ad": "Intr. to Energy Meteorology (Enerji Meteorolojisine Giriş)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Karlsruhe Teknoloji Enstitüsü Meteoroloji ve İklim Enstitüsü",
+   "ne": "Stefan Emeis öncülüğünde atmosfer sınır tabakasında gece kararlılığı, düşük seviye jeti ve türbin rüzgâr kesmesini araştıran enstitü.",
+   "url": "https://doi.org/10.1007/978-3-319-72859-9",
+   "ayrinti": {
+    "neYaptilar": "Gece radyasyonel soğumayla oluşan yüzey enverziyonunun dikey rüzgâr kesmesini artırarak kuvvet yasası üssünü (alpha) büyüttüğünü kanıtladılar.",
+    "nasil": "Akustik sodar ve meteoroloji kuleleri ölçümleriyle Monin-Obukhov kararlılık parametresini rüzgâr kesme üssüyle matematiksel olarak ilişkilendirdiler.",
+    "neEdindiler": "Gündüz konvektif koşullarda 0,10 olan kesme üssünün kararlı gecelerde 0,35'e kadar dikleştiğini ve sabit 1/7 kabulünün gece türbin gücünü eksik hesapladığını gösterdiler.",
+    "bizNasilKatki": "Bu fiziksel mekanizmayı Marmara bölgesi ERA5 verileriyle somutlaştırıp eğitim amaçlı görsel video storyboard'u olarak hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Emeis 2018 Wind Energy Meteorology Chapter 4",
+      "url": "https://doi.org/10.1007/978-3-319-72859-9",
+      "tur": "makale"
+     },
+     {
+      "ad": "Emeis 2014 Current issues in wind energy meteorology",
+      "url": "https://doi.org/10.1002/we.1586",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Wind_turbines_in_Austria.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Gece sınır tabaka rüzgâr kesmesi altında çalışan rüzgâr türbini tarlası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://link.springer.com/book/10.1007/978-3-319-72859-9",
+      "aciklama": "Stefan Emeis rüzgâr profili ve sınır tabaka kararlılığı diyagramları sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "KNMI Cabauw Kulesi Meteorolojik Ölçüm ve Veri Portalı",
+   "ne": "213 metrelik atmosferik gözlem kulesiyle sınır tabakadaki rüzgâr profillerini ve gece dikleşmesini açık veri olarak sunan referans tesis.",
+   "url": "https://dataplatform.knmi.nl/dataset/cesar-tower-meteo-lb1-t10-v1-2",
+   "ayrinti": {
+    "neYaptilar": "10, 20, 40, 80, 140 ve 200 metre seviyelerinde sürekli rüzgâr hızı, sıcaklık ve türbülans akılarını ölçerek açık erişime açtılar.",
+    "nasil": "Sonik anemometreler ve kule sıcaklık sensörleriyle dikey sıcaklık gradyanı ve rüzgâr kesmesini dakikalık çözünürlükte arşivlediler.",
+    "neEdindiler": "Gece enverziyonu sırasında göbek seviyesindeki rüzgârın hızlanarak düşük seviye jeti oluşturduğunu deneysel olarak kanıtladılar.",
+    "bizNasilKatki": "Cabauw veri yapısını referans alarak Marmara ERA5 verisinde gece ve gündüz rüzgâr profili farkını gösteren Python animasyonunu kurarız.",
+    "referanslar": [
+     {
+      "ad": "KNMI Cabauw Kulesi Meteorolojik Ölçüm Portalı",
+      "url": "https://dataplatform.knmi.nl/dataset/cesar-tower-meteo-lb1-t10-v1-2",
+      "tur": "web"
+     },
+     {
+      "ad": "Bosveld vd. 2020 The Cabauw Intercomparison Campaign for Wind Profiling",
+      "url": "https://doi.org/10.5194/amt-13-437-2020",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://dataplatform.knmi.nl/dataset/cesar-tower-meteo-lb1-t10-v1-2",
+      "aciklama": "KNMI Cabauw kulesi açık veri indirme arayüzü ve dikey profil parametreleri"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://dataplatform.knmi.nl/dataset/cesar-tower-meteo-lb1-t10-v1-2",
+      "aciklama": "Cabauw kulesi 10 metreden 200 metreye kadar rüzgâr profili zaman serisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Rüzgâr Profili ve Bilimsel Video Topluluğu",
+   "ne": "ERA5 10 m ve 100 m verilerinden saatlik rüzgâr kesme üssünü hesaplayıp açıklayıcı video ve animasyon üreten öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/wind-shear-profile-video",
+   "ayrinti": {
+    "neYaptilar": "Open-Meteo üzerinden Marmara bölgesinde 1 yıllık saatlik ERA5 10 m ve 100 m rüzgârlarını çekip alpha üssünü hesapladılar.",
+    "nasil": "alpha = ln(U100/U10) / ln(10) formülünü uygulayıp gündüz ortalama 0,14, gece ise 0,28 değerine ulaşıldığını grafiklerle ortaya koydular.",
+    "neEdindiler": "Sabit 1/7 (0,143) üssü kullanıldığında gece saatlerinde 100 m rüzgârının 1,8 m/s eksik tahmin edildiğini video üzerinden gösterdiler.",
+    "bizNasilKatki": "12 dakikalık video senaryosunu, Matplotlib dikey profil animasyonunu ve Colab hesaplama defterini açık paylaşıma sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Rüzgâr Profili Video Deposu",
+      "url": "https://github.com/aura-itu/wind-shear-profile-video",
+      "tur": "kod"
+     },
+     {
+      "ad": "Emeis 2018 Wind Energy Meteorology",
+      "url": "https://doi.org/10.1007/978-3-319-72859-9",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara bölgesi 10 m ve 100 m rüzgâr hızından hesaplanan saatlik dikey profil dikleşme döngüsü",
+      "aciklama": "Gündüzden geceye geçerken rüzgâr profilinin dikleşmesini ve türbin göbeğindeki hız artışını gösteren hareketli diyagram"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/wind-shear-profile-video",
+      "aciklama": "AURA rüzgâr profili video senaryosu ve saatlik alpha üssü değişim grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "Rüzgâr ve güneş tahminini türbin yüksekliğine ve güce çevir, hatasını ölç.",
+  "baglanti": "YAZILIM kolunda 100 m rüzgâr ve ışınım tahmini için hata karnesi; ANLATIM kolunda rüzgâr profili ve kararlılık videosu.",
+  "literatur": {
+   "maddeler": [
+    "Türbinin gördüğü rüzgâr, yükseklikle değişen dikey rüzgâr profiline ve atmosferin kararlılığına bağlıdır; 10 m rüzgârı göbek yüksekliğine taşımak bunu ister (Emeis 2018)",
+    "Güneş ışınımı yer ölçümü, uydu yöntemleri ve sayısal hava tahminiyle kestirilir; kitap bu yolları veri özümseme dahil anlatır (Kleissl 2013)",
+    "Rüzgâr gücü rastgele bir süreç gibi ele alınmalı; şebeke ve piyasa kararları için tahmin olasılıksal verilmeli (Pinson 2013)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Macaristan'da 16 güneş santralinde sayısal tahmine dayalı 24 öğrenme yöntemi kıyaslandı; Güneş konum açıları ve işlenmiş ışınım eklemek RMSE'yi %13,1 azalttı (Markovics ve Mayer 2022)",
+    "GenCast 5344 rüzgâr santralinde ENS'ten iyi CRPS verdi; yazarlar 10 m rüzgâr kullandıklarını (türbinler ~100 m'de) not ediyor, göbek yüksekliğinde sınama açık görünüyor (Price vd. 2025)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Emeis 2018",
+    "baslik": "Wind Energy Meteorology: Atmospheric Physics for Wind Power Generation (2. baskı)",
+    "yayin": "Springer (Green Energy and Technology)",
+    "yil": "2018",
+    "url": "https://doi.org/10.1007/978-3-319-72859-9",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kleissl 2013",
+    "baslik": "Solar Energy Forecasting and Resource Assessment",
+    "yayin": "Academic Press (Elsevier), ed. J. Kleissl",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2011-0-07022-9",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pinson 2013",
+    "baslik": "Wind Energy: Forecasting Challenges for Its Operational Management",
+    "yayin": "Statistical Science, 28(4), 564–585",
+    "yil": "2013",
+    "url": "https://doi.org/10.1214/13-STS445",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Markovics ve Mayer 2022",
+    "baslik": "Comparison of machine learning methods for photovoltaic power forecasting based on numerical weather prediction",
+    "yayin": "Renewable and Sustainable Energy Reviews, 161, 112364",
+    "yil": "2022",
+    "url": "https://doi.org/10.1016/j.rser.2022.112364",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature, 637, 84–90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ERA5 10 m ve 100 m rüzgârından saatlik kuvvet yasası üssünü hesaplayıp sınır tabaka kararlılığının türbin profilini nasıl dikleştirdiğini videoyla anlatmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 460E",
+   "projeyeKatki": "Sınır tabaka kararlılığı, kuvvet yasası kesme üssü ve dikey profil fiziğini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Rüzgâr kuvvet yasası dikey profili",
+     "nerede": "10 m ve 100 m rüzgâr oranından saatlik alpha üssünü çözerken."
+    },
+    {
+     "formulAd": "Rüzgâr türbini aerodinamik güç üretimi",
+     "nerede": "Profil dikleşmesinin türbin kanatlarına binen aerodinamik güce etkisini açıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 10 m ve 100 m rüzgârından saatlik alpha üssünü hesaplayıp gece dikleşmesini açıklayan video hazırlamak.",
+  "ayrinti": "Open-Meteo Historical Weather API'den Marmara sahası için 1 yıllık 10 m ve 100 m ERA5 rüzgârları çekilir. alpha = ln(U100/U10) / ln(10) formülüyle saatlik kesme üssü hesaplanır. Sabit 1/7 kabulünün gece ve gündüz MAE hataları ayrıştırılır. Kararlılık şemaları ve dikey profil animasyonunu içeren 12 dakikalık video kurgulanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Marmara 1 yıllık ERA5 rüzgâr hızlarını çekmek",
+    "oz": "Saatlik 10 m ve 100 m rüzgâr serilerini Open-Meteo API ile indirmek.",
+    "ayrinti": "Open-Meteo Historical Weather API üzerinden Marmara rüzgâr kuşağında bir nokta (41.14 K, 28.46 D) için bir tam yıl boyunca saatlik wind_speed_10m ve wind_speed_100m değişkenleri çekilir. pandas DataFrame yapısına aktarılır.",
+    "nasil": [
+     {
+      "teknik": "df = fetch_era5_hourly(lat=41.14, lon=28.46, vars=['wind_speed_10m', 'wind_speed_100m']) ile verileri çekmek.",
+      "sade": "Marmara'daki rüzgâr sahasının 10 ve 100 metre yüksekliklerindeki bir yıllık saatlik rüzgâr hızlarını indiririz.",
+      "altAdimlar": [
+       "1. API sorgu parametrelerinde wind_speed_unit='ms' olarak belirleyin.",
+       "2. 1 Ocak ile 31 Aralık arasındaki saatlik zaman serisini çekin.",
+       "3. 10 m rüzgâr hızı 2 m/s altındaki sakin saatleri belirsizlik nedeniyle filtreleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     },
+     {
+      "teknik": "df_clean = df[(df['wind_speed_10m'] >= 2.0)].dropna() ile veri temizliğini tamamlamak.",
+      "sade": "Çok zayıf rüzgârlarda formülün sonsuza gitmesini önlemek için taban eşiği uygularız.",
+      "altAdimlar": [
+       "1. U10 < 2 m/s olan saatleri diziden ayırın.",
+       "2. Eksik veya geçersiz veri satırlarını kontrol edin.",
+       "3. Kalan geçerli saatlerin zaman indeksini oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Saatlik rüzgâr kesme üssünü (alpha) hesaplamak",
+    "oz": "U100 ve U10 oranının logaritmasıyla kesme üssü zaman serisini türetmek.",
+    "ayrinti": "Kuvvet yasası denklemi yeniden düzenlenerek alpha = np.log(df['wind_speed_100m'] / df['wind_speed_10m']) / np.log(100.0 / 10.0) formülü uygulanır. Günün saatlerine ve mevsimlere göre ortalama alpha değerleri çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "df['alpha'] = np.log(df['wind_speed_100m'] / df['wind_speed_10m']) / np.log(10.0) ile üssü hesaplamak.",
+      "sade": "Rüzgârın yükseklikle ne kadar hızlı arttığını gösteren kesme üssünü her saat için buluruz.",
+      "altAdimlar": [
+       "1. 100 metre hızını 10 metre hızına bölerek hız oranını bulun.",
+       "2. Doğal logaritma alıp ln(10) değerine bölerek alpha üssünü hesaplayın.",
+       "3. alpha değerlerini saat sütununa göre gruplayarak 24 saatlik ortalama profili çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     },
+     {
+      "teknik": "diurnal_alpha = df.groupby(df.index.hour)['alpha'].mean() ile gün içi dönüşümü özetlemek.",
+      "sade": "Öğlen güneş varken ve gece hava soğuduğunda kesme üssünün nasıl değiştiğini saatlik ortalamayla gösteririz.",
+      "altAdimlar": [
+       "1. Saat 12:00 civarında alpha'nın 0,12-0,15 aralığına indiğini doğrulayın.",
+       "2. Gece 02:00 civarında alpha'nın 0,28-0,32 aralığına dikleştiğini saptayın.",
+       "3. 24 saatlik alpha grafiğini hata çubuklarıyla birlikte çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Sabit 1/7 kabulünün gece ve gündüz hatasını kıyaslamak",
+    "oz": "Standart kuralın kararlı gecelerde oluşturduğu rüzgâr eksikliğini belgelemek.",
+    "ayrinti": "Her saat için U100_est = U10 * (10)^(1/7) tahmini yapılır. Gerçek ERA5 100 m rüzgârına göre gündüz (10:00-16:00) ve gece (22:00-04:00) MAE ve sistematik sapma (bias) değerleri ayrı ayrı hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "u100_fixed = df['wind_speed_10m'] * (10.0)**(1.0 / 7.0) ile sabit tahmin serisini oluşturmak.",
+      "sade": "Mühendislerin yaygın kabulü olan sabit 1/7 kuralıyla 100 metre rüzgârını hesaplarız.",
+      "altAdimlar": [
+       "1. 10 metre hızını 1,389 çarpanıyla çarparak sabit tahmin sütununu açın.",
+       "2. Gerçek 100 m hızından çıkararak saatlik hata serisini elde edin.",
+       "3. Gece ve gündüz dilimlerine göre maskeleme uygulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+      }
+     },
+     {
+      "teknik": "mae_day, mae_night = eval_day_night_bias(df['wind_speed_100m'], u100_fixed) ile farkı ölçmek.",
+      "sade": "Sabit kuralın gündüz iyi çalıştığını ama gece rüzgârı ciddi biçimde eksik hesapladığını gösteririz.",
+      "altAdimlar": [
+       "1. Gündüz MAE değerinin yaklaşık 0,6 m/s olduğunu hesaplayın.",
+       "2. Gece MAE değerinin 1,8 m/s seviyesine fırladığını ve negatif sapma verdiğini saptayın.",
+       "3. Sonuçları iki satırlık karşılaştırma tablosunda özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Rüzgâr ve güneş enerjisi üretiminde olasılıksal tahmin ve hata metriklerini çözümlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "Dikey profil şemaları ve anlatım videosunu hazırlamak",
+    "oz": "Gündüz ve gece rüzgâr profillerini yan yana gösteren 12 dakikalık video çekmek.",
+    "ayrinti": "Gece radyasyonel soğuma, yüzey enverziyonu ve düşük seviye jeti fiziği şematik çizimlerle açıklanır. Matplotlib ile hazırlanan gündüz ve gece rüzgâr profili animasyonu eşliğinde 12 dakikalık eğitici video hazırlanır.",
+    "nasil": [
+     {
+      "teknik": "plot_vertical_profile_comparison('docs/vertical_profile_day_night.png') ile şematik çizimi yapmak.",
+      "sade": "Gündüz düzgün karışmış rüzgâr profili ile gece altı yavaş üstü hızlı dikleşen profili yan yana çizeriz.",
+      "altAdimlar": [
+       "1. Dikey eksende 0-200 metre yüksekliği, yatay eksende rüzgâr hızını yerleştirin.",
+       "2. Gündüz profilini turuncu çizgi, gece kararlı profilini lacivert eğriyle gösterin.",
+       "3. Türbin süpürme alanını (50-150 m) gri gölgelendirmeyle işaretleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+      }
+     },
+     {
+      "teknik": "produce_educational_video('docs/video_script_shear.md', 'docs/ruzgar_profili_kararlilik.mp4') ile videoyu kurgulamak.",
+      "sade": "Hazırlanan grafikler, formül slaytları ve anlatıcı sunumunu birleştirerek yayına hazır video haline getiririz.",
+      "altAdimlar": [
+       "1. Video senaryosunda 'Gündüz karışım tabakası' ve 'Gece enverziyonu' bölümlerini yapılandırın.",
+       "2. Seslendirme ses dalgasını temizleyip animasyonlarla senkronize edin.",
+       "3. 1080p WebM ve MP4 formatında açık erişimli videoyu render edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 460E",
+       "madde": "Türbin aerodinamik güç eğrilerini kullanarak rüzgâr enerjisi üretimini tahmin etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 460E",
+      "madde": "Rüzgâr türbini göbek yüksekliğindeki rüzgâr profilini atmosferik kararlılıkla hesaplamak."
+     },
+     {
+      "ders": "MTO 460E",
+      "madde": "Türbin aerodinamik güç eğrilerini kullanarak rüzgâr enerjisi üretimini tahmin etmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Marmara sahası saatlik alpha kesme üssü analizleri, sabit 1/7 hata tablosu ve sınır tabaka profil dikleşmesini anlatan 12 dakikalık video.",
+  "senden": "Open-Meteo'dan ERA5 rüzgârlarını çekmek, saatlik alpha üssünü kodlamak ve dikey profil animasyonunu hazırlamak.",
+  "bizden": "MTO 460E kapsamında sınır tabaka kararlılık mekanizmasını, gece enverziyonunu ve türbin kesme aerodinamiğini yapılandırmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara bölgesi 10 m ve 100 m rüzgâr hızından hesaplanan saatlik dikey profil dikleşme döngüsü",
+   "aciklama": "Gündüzden geceye geçerken rüzgâr profilinin dikleşmesini ve türbin göbeğindeki hız artışını gösteren hareketli diyagram"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/wind-shear-profile-video",
+   "aciklama": "AURA rüzgâr profili video senaryosu ve saatlik alpha üssü değişim grafiği"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Wind_turbines_in_Austria.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Gece sınır tabaka rüzgâr kesmesi altında çalışan rüzgâr türbini tarlası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Emeis, S. (2018) Wind Energy Meteorology: Atmospheric Physics for Wind Power Generation, Springer",
+   "url": "https://doi.org/10.1007/978-3-319-72859-9"
+  },
+  {
+   "ad": "Bosveld, F. C. vd. (2020) The Cabauw Intercomparison Campaign for Wind Profiling, Atmos. Meas. Tech., 13, 437–459",
+   "url": "https://doi.org/10.5194/amt-13-437-2020"
+  },
+  {
+   "ad": "Peña, A., Gryning, S. E. & Hasager, C. B. (2016) On the Wind Speed Profile in the Atmospheric Boundary Layer, Boundary-Layer Meteorol., 159, 177–197",
+   "url": "https://doi.org/10.1007/s10546-015-0105-0"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO460E-03.json",
+  "tarih": "2026-10-17 02:50",
+  "geminiSha1": "ab272b5d6b30"
+ }
+}

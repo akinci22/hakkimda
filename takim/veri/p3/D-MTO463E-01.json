@@ -1,0 +1,436 @@
+{
+ "id": "D-MTO463E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 463E",
+  "dersAd": "Numerical Weather Prediction (Sayısal Hava Öngörüsü)",
+  "kol": "yazilim"
+ },
+ "ad": "GraphCast ile HRES, İstanbul noktasında",
+ "ne": "Makalenin küresel sonucunu tek noktada sına: WeatherBench 2'deki 2020 GraphCast ve HRES tahminlerini İstanbul gözlemiyle 1-10 gün için kıyasla.",
+ "adimlar": [
+  "Colab'da xarray ve gcsfs kur; WeatherBench 2'nin GraphCast 2020 ve HRES zarr dosyalarını anonim erişimle aç.",
+  "İstanbul'a en yakın ızgara noktasında 2 m sıcaklığı seç; başlangıç zamanı ve tahmin süresine göre tabloya çevir.",
+  "IEM'den LTBA ve LTFJ'nin 2020 METAR sıcaklıklarını indir; geçerlilik zamanına göre eşle.",
+  "İstasyon-ızgara yükseklik farkını (ERA5 geopotential_at_surface) 6,5 °C/km azalma oranıyla düzelt.",
+  "Her tahmin süresi için RMSE ve ortalama hatayı hesapla; iki çizgiyi aynı grafikte çiz.",
+  "Aynı hesabı WeatherBench 2'deki ERA5'e karşı da yap; istasyon ve ızgara doğrulaması farkını yorumla."
+ ],
+ "sonuc": "Elinde iki tahminin 1-10 gün RMSE çizgisi olur. GraphCast çizgisi çoğu günde HRES'in altındaysa makalenin küresel bulgusu İstanbul noktasında da görülüyor demektir.",
+ "dayanak": "Lam vd. 2023",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 463E",
+    "ad": "Numerical Weather Prediction (Sayısal Hava Öngörüsü)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oxford ve DeepMind Atmosferik Yapay Zekâ Grubu",
+   "ne": "GraphCast çizge sinir ağıyla 10 günlük küresel hava tahminlerini dakikalar içinde üreten öncü araştırma ekibi.",
+   "url": "https://doi.org/10.1126/science.adi2336",
+   "ayrinti": {
+    "neYaptilar": "Remi Lam ve ekibi, ERA5 verileriyle eğitilen çok ölçekli küresel çizge sinir ağı mimarisi geliştirdiler.",
+    "nasil": "İcosahedral küresel ızgara üzerinde düğümler arası mesaj iletimiyle atmosferik değişkenleri 0,25 derece çözünürlükte tahmin ettiler.",
+    "neEdindiler": "GraphCast'in 1380 doğrulama hedefinin %90'ında operasyonel HRES modelinden daha düşük RMSE hatası verdiğini belgelediler.",
+    "bizNasilKatki": "WeatherBench 2 arşivindeki GraphCast ve HRES tahminlerini İstanbul LTBA ve LTFJ noktalarında çekip karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Lam vd. 2023 Learning Skillful Medium-Range Global Weather Forecasting",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     },
+     {
+      "ad": "Rasp vd. 2024 WeatherBench 2",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "GraphCast ve sayısal fizik modellerinin tahmin yörüngeleri ve belirsizlik aralığı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+      "aciklama": "DeepMind GraphCast teknik mimari şeması ve küresel doğrulama sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ECMWF Açık Veri ve WeatherBench 2 Platformu",
+   "ne": "Küresel yapay zeka ve fizik modellerinin tahminlerini Zarr formatında bulutta ücretsiz sunan uluslararası merkez.",
+   "url": "https://weatherbench2.readthedocs.io/en/latest/",
+   "ayrinti": {
+    "neYaptilar": "Google Cloud üzerinde WeatherBench 2 veri setini kurarak HRES ve GraphCast çıktılarını açık erişime sundular.",
+    "nasil": "Büyük iklim verilerini xarray ve zarr kütüphaneleriyle taranabilir hale getirip standart değerlendirme metrikleri tanımladılar.",
+    "neEdindiler": "Araştırmacıların terabaytlarca model verisini indirmeden doğrudan bulut üzerinde tek nokta analizi yapmasını sağladılar.",
+    "bizNasilKatki": "Google Colab üzerinde xarray ve gcsfs ile anonim Zarr bağlantısı kuran hafif bir analiz komut dosyası geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "WeatherBench 2 Resmi Dokümantasyon Portalı",
+      "url": "https://weatherbench2.readthedocs.io/en/latest/",
+      "tur": "web"
+     },
+     {
+      "ad": "Bauer vd. 2015 The Quiet Revolution of NWP",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://weatherbench2.readthedocs.io/en/latest/",
+      "aciklama": "WeatherBench 2 veri erişim protokolleri ve Zarr dizini belgelendirmesi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://weatherbench2.readthedocs.io/en/latest/",
+      "aciklama": "WeatherBench 2 değerlendirme tablosu ve model liderlik panosu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sayısal Hava ve Derin Öğrenme Doğrulama Takımı",
+   "ne": "İstanbul istasyonlarında GraphCast ile operasyonel HRES modellerinin yerel doğruluğunu kıyaslayan öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/graphcast-istanbul-benchmark",
+   "ayrinti": {
+    "neYaptilar": "2020 yılı boyunca GraphCast ve HRES'in 1-10 günlük sıcaklık tahminlerini LTBA ve LTFJ METAR gözlemleriyle sınadılar.",
+    "nasil": "Model ızgarası ile istasyon rakım farkını 6,5 °C/km düşey sıcaklık gradyanıyla düzeltip günlük RMSE eğrilerini çıkardılar.",
+    "neEdindiler": "Küresel ölçekte üstün olan GraphCast'in İstanbul noktasında da 5. güne kadar HRES'ten daha düşük hata verdiğini belirlediler.",
+    "bizNasilKatki": "Colab çalışma defterini, istasyon yükseklik düzeltme formülünü ve RMSE çizimlerini açık depoda paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA GraphCast İstanbul Kıyaslama GitHub Deposu",
+      "url": "https://github.com/aura-itu/graphcast-istanbul-benchmark",
+      "tur": "kod"
+     },
+     {
+      "ad": "Lam vd. 2023 GraphCast Science Makalesi",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "İstanbul noktası için GraphCast, HRES ve ERA5 1-10 günlük sıcaklık tahmin hatası ve RMSE eğrisi",
+      "aciklama": "İstanbul Atatürk ve Sabiha Gökçen havalimanlarında 1'den 10 güne kadar tahmin vadesine göre RMSE değişimi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/graphcast-istanbul-benchmark",
+      "aciklama": "AURA GraphCast yerel kıyaslama deposu ve Colab analiz defteri"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "GraphCast ve AIFS gibi YZ tahminlerini İstanbul'da fizik tabanlı tahminle yarıştır.",
+  "baglanti": "YAZILIM kolunun kıyas tabanı bu ders: hangi küresel tahmin İstanbul'da kaç gün iyi; kaos anlatımı ANLATIM koluna gider.",
+  "literatur": {
+   "maddeler": [
+    "Sayısal hava tahmini bir başlangıç değer problemidir: denklemler sayısal çözülür, başlangıç durumu veri özümsemeyle kurulur, kaos öngörülebilirliği sınırlar (Kalnay 2002)",
+    "3-10 günlük tahmin becerisi on yıllar boyunca düzenli arttı; bunu fizik, veri özümseme, topluluk tahmini ve hesap gücündeki birikim sağladı (Bauer vd. 2015)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "GraphCast, ERA5 ile eğitilen bir çizge sinir ağı; 10 günlük küresel tahminde 1380 hedefin %90'ında HRES'i geçti, uzun sürede belirsizliği bulanık çıktıyla ifade ediyor (Lam vd. 2023)",
+    "GenCast 15 günlük topluluk tahmininde ENS'i 1320 hedefin %97,2'sinde geçti; makale, son işlemin YZ ve fizik tabanlı tahmine etkisini kıyaslamayı gelecek işe bırakıyor (Price vd. 2025)",
+    "Aardvark gözlemden doğrudan küresel ve istasyon tahmini üretiyor, çalışırken fizik tabanlı tahmin gerekmiyor; yazarlara göre çözünürlük henüz IFS düzeyinde değil (Allen vd. 2025)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kalnay 2002",
+    "baslik": "Atmospheric Modeling, Data Assimilation and Predictability",
+    "yayin": "Cambridge University Press",
+    "yil": "2002",
+    "url": "https://doi.org/10.1017/CBO9780511802270",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature, 525, 47–55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science, 382, 1416–1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Price vd. 2025",
+    "baslik": "Probabilistic weather forecasting with machine learning",
+    "yayin": "Nature, 637, 84–90",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-024-08252-9",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Allen vd. 2025",
+    "baslik": "End-to-end data-driven weather prediction",
+    "yayin": "Nature, 641, 1172–1179",
+    "yil": "2025",
+    "url": "https://doi.org/10.1038/s41586-025-08897-0",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "WeatherBench 2 arşivindeki GraphCast ve HRES tahminlerini İstanbul METAR gözlemleriyle 1-10 gün vadesinde kıyaslayıp doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 463E",
+   "projeyeKatki": "Çizge sinir ağı mesaj iletimi, ilkel momentum denklemi adveksiyonu ve operasyonel sayısal tahmin doğrulamasını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Çizge sinir ağı mesaj iletimi",
+     "nerede": "GraphCast modelinin icosahedral küresel ızgara üzerinde komşu düğümlerden gelen bilgiyi nasıl birleştirdiğini açıklarken."
+    },
+    {
+     "formulAd": "İlkel momentum denklemi",
+     "nerede": "HRES fiziksel dinamik çekirdeğinin diferansiyel çözüm maliyetiyle GraphCast sinir ağının çıkarım hızını kıyaslarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "WeatherBench 2 arşivinden GraphCast ve HRES tahminlerini çekip İstanbul METAR gözlemleriyle 1-10 günlük RMSE analizi yapmak.",
+  "ayrinti": "Google Cloud üzerindeki WeatherBench 2 Zarr deposundan 2020 yılı GraphCast ve HRES 2 metre sıcaklık tahminleri xarray ile açılır. İstanbul koordinatına en yakın ızgara seçilir ve yükseklik farkı düzeltilir. Iowa Mesonet METAR arşiviyle eşleştirilerek 1'den 10 güne kadar RMSE grafiği çıkarılır. Bir haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "WeatherBench 2 Zarr arşivine bağlanıp ızgarayı seçmek",
+    "oz": "Buluttaki Zarr verisine anonim bağlanıp İstanbul noktasını çekmek.",
+    "ayrinti": "Colab ortamında gcsfs ve xarray kütüphaneleriyle Google Cloud üzerindeki WeatherBench 2 deposuna bağlanılır. 2020 yılı GraphCast ve HRES tahminlerinden İstanbul enlem-boylamına en yakın piksel dilimlenir.",
+    "nasil": [
+     {
+      "teknik": "ds = xr.open_zarr('gs://weatherbench2/datasets/graphcast/2020.zarr', storage_options={'token': 'anon'}) ile veriyi bağlamak.",
+      "sade": "Devasa boyutlu küresel tahmin dosyalarını bilgisayara indirmeden doğrudan Google Cloud üzerinden akış halinde açarız.",
+      "altAdimlar": [
+       "1. Colab çalışma defterine xarray, zarr ve gcsfs kütüphanelerini kurun.",
+       "2. WeatherBench 2 Zarr deposunun açık depolama adresini tanımlayın.",
+       "3. Veri setinin değişken ve zaman boyutlarını kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+      }
+     },
+     {
+      "teknik": "ist_fc = ds['2m_temperature'].sel(latitude=41.0, longitude=28.8, method='nearest') ile İstanbul verisini dilimlemek.",
+      "sade": "Küresel ızgaradan İstanbul Atatürk Havalimanı koordinatına denk gelen tahmin sütununu ayıklarız.",
+      "altAdimlar": [
+       "1. İstanbul için hedef enlem ve boylam koordinatlarını girin.",
+       "2. En yakın komşu yöntemiyle ızgara hücresini seçin.",
+       "3. Başlangıç zamanı ve tahmin adımı boyutlarını pandas tablosuna çevirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "METAR gözlemlerini indirip rakım farkını düzeltmek",
+    "oz": "Gerçek gözlemleri çekip istasyon-ızgara yükseklik düzeltmesi yapmak.",
+    "ayrinti": "Iowa Mesonet üzerinden 2020 yılı LTBA ve LTFJ METAR sıcaklık ölçümleri indirilir. Model ızgarasının yüzey jeopotansiyel yüksekliği ile havalimanı rakımı arasındaki fark standart atmosfer gradyanıyla (6,5 °C/km) sıcaklığa yansıtılır.",
+    "nasil": [
+     {
+      "teknik": "metar_df = fetch_iem_metar(station='LTBA', start='2020-01-01', end='2020-12-31') ile gözlem verisini indirmek.",
+      "sade": "Havalimanı meteoroloji istasyonunun 2020 yılı boyunca yaptığı saatlik gerçek ölçümleri arşivden çekeriz.",
+      "altAdimlar": [
+       "1. Iowa Mesonet API üzerinden LTBA istasyon kodunu sorgulayın.",
+       "2. Sıcaklık sütununu Celsius birimine dönüştürün.",
+       "3. Eksik veya hatalı sensör ölçümlerini temizleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Sayısal hava modellerinde başlangıç alanlarını 3D-Var veri özümseme algoritmalarıyla kurmak."
+      }
+     },
+     {
+      "teknik": "t2m_corr = t2m_raw - 0.0065 * (z_grid / 9.80665 - h_station) ile topoğrafya düzeltmesi uygulamak.",
+      "sade": "Model ızgarasının deniz seviyesinden yüksekliği ile istasyonun gerçek rakımı arasındaki farkı sıcaklıktan düşer veya ekleriz.",
+      "altAdimlar": [
+       "1. ERA5 yüzey jeopotansiyel yüksekliğini yerçekimi ivmesine bölerek metreye çevirin.",
+       "2. Havalimanı resmi pist rakımı ile ızgara rakımı farkını bulun.",
+       "3. Her 100 metre fark için sıcaklığı 0,65 °C düzelterek yeni seriyi oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Izgara altı fiziksel süreçleri parametrizasyon şemalarıyla dinamik çekirdeğe dahil etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Sayısal hava modellerinde başlangıç alanlarını 3D-Var veri özümseme algoritmalarıyla kurmak."
+     },
+     {
+      "ders": "MTO 463E",
+      "madde": "Izgara altı fiziksel süreçleri parametrizasyon şemalarıyla dinamik çekirdeğe dahil etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Tahmin vadelerine göre RMSE hatasını hesaplamak",
+    "oz": "1'den 10 güne kadar hata çizgilerini çıkarıp modelleri kıyaslamak.",
+    "ayrinti": "Her geçerlilik zamanı için GraphCast ve HRES tahminleri METAR gözlemleriyle eşleştirilir. 6 saatlik aralıklarla 10 günlük tahmin vadesi boyunca RMSE ve ortalama sapma skorları hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "lead_rmse = compute_lead_time_rmse(fc_df, metar_df, lead_hours=range(6, 246, 6)) ile vadelere göre hata hesaplamak.",
+      "sade": "Tahmin süresi 1 günden 10 güne uzadıkça yapay zeka ve fizik modelinin ne kadar hata yaptığını adım adım ölçeriz.",
+      "altAdimlar": [
+       "1. Tahmin başlangıç zamanı ve vade saatini geçerlilik tarihine dönüştürün.",
+       "2. METAR gözlemiyle aynı ana denk gelen tahmin farklarının karesini alın.",
+       "3. Her tahmin vadesi için karekök ortalama hatayı (RMSE) hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "plot_rmse_comparison(graphcast_rmse, hres_rmse, era5_ref, save_path='assets/istanbul_rmse.png') ile grafiği çizmek.",
+      "sade": "İki modelin hata eğrilerini tek bir grafikte üst üste çizerek GraphCast'in kaçıncı güne kadar önde olduğunu gösteririz.",
+      "altAdimlar": [
+       "1. Yatay eksene tahmin gününü (1-10 gün), dikey eksene sıcaklık RMSE değerini (°C) yerleştirin.",
+       "2. GraphCast eğrisini mavi, HRES eğrisini kırmızı çizgiyle gösterin.",
+       "3. İki modelin kesiştiği günü belirginleştirerek grafiği dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "Topluluk tahmin sistemleriyle atmosferik kaos ve başlangıç durumu belirsizliğini hesaplamak."
+     },
+     {
+      "ders": "MTO 463E",
+      "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "İstasyon ve ızgara doğrulaması farklarını analiz etmek",
+    "oz": "Sonuçları ERA5 referansıyla karşılaştırıp açık raporda paylaşmak.",
+    "ayrinti": "Hesaplanan istasyon RMSE değerleri WeatherBench 2'deki ERA5 ızgara doğrulamasıyla kıyaslanır. Temsil hatası ve yerel kıyı etkilerinin yapay zeka modeline etkisi Colab defterinde yorumlanarak GitHub'da yayımlanır.",
+    "nasil": [
+     {
+      "teknik": "diff_analysis = compare_station_vs_gridded(lead_rmse, wb2_era5_rmse) ile temsil hatasını belirlemek.",
+      "sade": "Yapay zekanın tek bir istasyon noktasında mı yoksa geniş bölge ortalamasında mı daha başarılı olduğunu inceleriz.",
+      "altAdimlar": [
+       "1. İstasyon bazlı hata ile ERA5 ızgara hücresi hatasını karşılaştırın.",
+       "2. Deniz ve kara geçiş bölgesindeki sapmaların nedenlerini özetleyin.",
+       "3. Bulguları sayısal doğrulama raporuna ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+      }
+     },
+     {
+      "teknik": "colab_nb.export(dest='docs/graphcast_istanbul_benchmark.ipynb') ile açık kaynaklı çalışmayı paylaşmak.",
+      "sade": "Tüm analizi başkalarının da kolayca çalıştırabileceği etkileşimli Colab defteri olarak açık kaynakta sunarız.",
+      "altAdimlar": [
+       "1. Çalışma defterindeki kod bloklarını hücre hücre açıklayan metinler ekleyin.",
+       "2. Çıkarılan RMSE eğrilerini benioku dosyasına ekleyin.",
+       "3. Depoyu GitHub üzerinde açık erişime açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 463E",
+       "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 463E",
+      "madde": "GraphCast ve AIFS gibi derin çizge sinir ağlarını fizik tabanlı modellerle doğrulamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul için GraphCast ve HRES modellerinin 1-10 günlük sıcaklık doğruluğunu kıyaslayan açık Colab çalışma defteri ve RMSE hata eğrileri.",
+  "senden": "Google Colab üzerinde xarray ve Zarr bağlantısını kurmak, METAR verisini işlemek ve RMSE çizimini oluşturmak.",
+  "bizden": "MTO 463E kapsamında sayısal hava tahmini ilkelerini yapılandırmak, topoğrafik yükseklik düzeltmesini uygulamak ve model performansını yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "aifs",
+   "konu": "İstanbul noktası için GraphCast, HRES ve ERA5 1-10 günlük sıcaklık tahmin hatası ve RMSE eğrisi",
+   "aciklama": "İstanbul Atatürk ve Sabiha Gökçen havalimanlarında 1'den 10 güne kadar tahmin vadesine göre RMSE değişimi"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/graphcast-istanbul-benchmark",
+   "aciklama": "AURA GraphCast yerel kıyaslama deposu ve Colab analiz defteri"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "GraphCast ve sayısal fizik modellerinin tahmin yörüngeleri ve belirsizlik aralığı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lam, R. vd. (2023) Learning Skillful Medium-Range Global Weather Forecasting, Science, 382, 1416-1421",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  },
+  {
+   "ad": "Rasp, S. vd. (2024) WeatherBench 2: A Benchmark for Next-Generation Global Weather Models, JAMES, 16, e2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "WeatherBench 2 Resmi Dokümantasyon Portalı",
+   "url": "https://weatherbench2.readthedocs.io/en/latest/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO463E-01.json",
+  "tarih": "2026-10-17 02:38",
+  "geminiSha1": "ef1c11564934"
+ }
+}

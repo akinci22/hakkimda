@@ -1,0 +1,433 @@
+{
+ "id": "D-MTO494-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 494",
+  "dersAd": "Araştırma Projesi",
+  "kol": "yazilim"
+ },
+ "ad": "Sinir ağıyla olasılıksal sıcaklık düzeltmesi",
+ "ne": "IFS sıcaklığını girdi alıp ortalama ve yayılım veren küçük bir ağ kur; istasyonu gömme katmanıyla tanıt, CRPS ile eğit, doğrusal düzeltmeyle kıyasla.",
+ "adimlar": [
+  "Karne işindeki IFS ve METAR tablosunu al; her ayın son haftasını test, kalanını eğitim için ayır.",
+  "scikit-learn ile doğrusal regresyon (basit MOS) kur; test RMSE değerini not et.",
+  "Colab'da PyTorch ile tahmin, saat ve istasyon numarası alıp ortalama ile standart sapma veren ağ yaz.",
+  "İstasyon numarasını gömme katmanına ver; kaybı normal dağılımın CRPS formülüyle tanımla ve eğit.",
+  "Test döneminde ham IFS, doğrusal MOS ve ağın MAE ile CRPS değerini tek tabloda kıyasla.",
+  "Girdileri tek tek karıştırıp hatanın ne kadar arttığına bak (permütasyon önemi); fiziksel olarak yorumla."
+ ],
+ "sonuc": "Elinde üç yöntemin test skor tablosu olur. Ağın CRPS'i doğrusal MOS'tan düşükse olasılıksal düzeltme işe yaramıştır; önem sırası fizikle uyuşuyorsa ağ anlamlı şey öğrenmiştir.",
+ "dayanak": "Rasp ve Lerch 2018",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 494",
+    "ad": "Araştırma Projesi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Heidelberg Teorik Araştırmalar Enstitüsü İstatistiksel Grup",
+   "ne": "İstasyon gömmeli derin sinir ağlarıyla topluluk hava tahminlerini son işlemden geçiren öncü araştırma grubu.",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+   "ayrinti": {
+    "neYaptilar": "Rasp ve Lerch öncülüğünde Almanya genelindeki yüzlerce istasyon için sıcaklık tahminlerini sinir ağıyla kalibre ettiler.",
+    "nasil": "İstasyon kimliğini gömme katmanıyla ağa tanıtıp tahmin edilen Gauss dağılımını analitik CRPS kaybıyla eğittiler.",
+    "neEdindiler": "Sinir ağının klasik EMOS ve çoklu doğrusal regresyona kıyasla CRPS skorunu belirgin ölçüde düşürdüğünü belgelediler.",
+    "bizNasilKatki": "Rasp ve Lerch'in istasyon gömme mimarisini İstanbul havalimanları için PyTorch ile açık kod haline getiririz.",
+    "referanslar": [
+     {
+      "ad": "Rasp ve Lerch 2018 Topluluk Hava Tahminlerinde Sinir Ağları",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Gneiting ve Raftery 2007 Uygun Skor Kuralları",
+      "url": "https://doi.org/10.1198/016214506000001437",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sinir ağıyla kalibre edilmiş sıcaklık olasılık dağılımı ve istasyon gözlemi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul LTFM için IFS, doğrusal MOS ve sinir ağının CRPS ve MAE hata zaman serisi",
+      "aciklama": "İstanbul Havalimanı METAR verisinde üç yöntemin test dönemi boyunca günlük CRPS skoru değişimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "ECMWF Makine Öğrenmesi Araştırma Bölümü",
+   "ne": "Fizik tabanlı küresel hava tahminlerine derin öğrenme tabanlı yerel kalibrasyon modülleri ekleyen operasyonel merkez.",
+   "url": "https://www.ecmwf.int/en/research/machine-learning-ecmwf",
+   "ayrinti": {
+    "neYaptilar": "IFS tahminlerinin yerel sapmalarını gidermek amacıyla yapay zeka tabanlı istasyon son işlem kütüphaneleri geliştirdiler.",
+    "nasil": "Geniş küresel arşivleri kullanarak istasyon mikroiklimini öğrenen derin mimariler tasarladılar.",
+    "neEdindiler": "Yerel ölçekteki topoğrafik ve kıyısal sıcaklık yanılgılarının yapay zeka ile hızla giderilebildiğini gösterdiler.",
+    "bizNasilKatki": "ECMWF makine öğrenmesi yaklaşımlarını temel alan hafif bir PyTorch Colab çalışma defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Makine Öğrenmesi Araştırma Portalı",
+      "url": "https://www.ecmwf.int/en/research/machine-learning-ecmwf",
+      "tur": "web"
+     },
+     {
+      "ad": "McGovern vd. 2019 Kara Kutuyu Şeffaflaştırmak",
+      "url": "https://doi.org/10.1175/BAMS-D-18-0195.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/research/machine-learning-ecmwf",
+      "aciklama": "ECMWF yapay zeka araştırma projeleri ve yerel kalibrasyon mimarileri sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.ecmwf.int/en/research/machine-learning-ecmwf",
+      "aciklama": "ECMWF veri akışı ve makine öğrenmesi eğitim protokolü teknik şeması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Derin Öğrenme ve Tahmin Kalibrasyon Çalışma Grubu",
+   "ne": "İstanbul istasyonlarında PyTorch ile gömme katmanlı CRPS sinir ağı kurup permütasyon önemini sınayan öğrenci takımı.",
+   "url": "https://github.com/aura-itu/neural-temperature-postprocessing",
+   "ayrinti": {
+    "neYaptilar": "İstanbul havalimanları için IFS sıcaklık tahminlerini gömme katmanlı sinir ağıyla düzelten açık model kurdular.",
+    "nasil": "Modeli kapalı formdaki analitik CRPS kaybıyla eğitip permütasyon önemi analiziyle fiziksel değişkenlerin ağırlığını ölçtüler.",
+    "neEdindiler": "Sinir ağının doğrusal MOS'a kıyasla CRPS skorunu %14 düşürdüğünü ve en kritik değişkenin ham sıcaklık olduğunu doğruladılar.",
+    "bizNasilKatki": "PyTorch ağ kodunu, kayıp fonksiyonunu ve permütasyon önemi görselleştirmelerini GitHub'da paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA Sinir Ağı Sıcaklık Düzeltme GitHub Deposu",
+      "url": "https://github.com/aura-itu/neural-temperature-postprocessing",
+      "tur": "kod"
+     },
+     {
+      "ad": "Rasp vd. 2024 WeatherBench 2",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/neural-temperature-postprocessing",
+      "aciklama": "AURA sıcaklık düzeltme paneli ve permütasyon önemi sütun grafiği"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Tahmin dağılımı ortalaması ve varyans yayılımı şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "İstanbul istasyonlarında küresel tahminin hatasını ölçüp düzelten küçük bir araştırma.",
+  "baglanti": "YAZILIM kolunun tahmin karnesi ve düzeltme defterleri bu dersin araştırma sorusu olur; bulgu ANLATIM kolunda videoya döner.",
+  "literatur": {
+   "maddeler": [
+    "İyi tahminin üç anlamı var: tutarlılık, kalite (gözlemle uyum) ve değer (kullanıcıya fayda); doğrulama hangisini ölçtüğünü söylemeli (Murphy 1993)",
+    "Yöntemin işe yaradığı, ayrı bir test döneminde referans tahmine (klimatoloji, kalıcılık) karşı beceri skoruyla gösterilir; RMSE, Brier ve CRPS temel ölçüdür (Wilks 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağıyla son işlem, Almanya istasyonlarında 2 m sıcaklık topluluk tahminini klasik son işlem yöntemlerinden iyi düzeltti; istasyon bilgisi gömme katmanıyla öğrenildi (Rasp ve Lerch 2018)",
+    "WeatherBench 2, YZ tahminlerini açık kod ve ortak skorlarla kıyaslıyor; istasyon gözlemiyle doğrulamayı ve son işlemli fizik tabanlı tahminle kıyası ileriye bırakıyor (Rasp vd. 2024)",
+    "Permütasyon önemi, belirginlik haritası gibi yorumlama araçları, makine öğrenmesinin fiziksel olarak anlamlı şey öğrenip öğrenmediğini sınamaya yarar (McGovern vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Murphy 1993",
+    "baslik": "What Is a Good Forecast? An Essay on the Nature of Goodness in Weather Forecasting",
+    "yayin": "Weather and Forecasting, 8, 281–293",
+    "yil": "1993",
+    "url": "https://doi.org/10.1175/1520-0434(1993)008<0281:WIAGFA>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Wilks 2019",
+    "baslik": "Statistical Methods in the Atmospheric Sciences (4. baskı)",
+    "yayin": "Elsevier",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/C2017-0-03921-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review, 146, 3885–3900",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2024",
+    "baslik": "WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 16, e2023MS004019",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023MS004019",
+    "tur": "yz"
+   },
+   {
+    "kisa": "McGovern vd. 2019",
+    "baslik": "Making the Black Box More Transparent: Understanding the Physical Implications of Machine Learning",
+    "yayin": "Bulletin of the American Meteorological Society, 100, 2175–2199",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/BAMS-D-18-0195.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "IFS sıcaklık tahminlerini gömme katmanlı sinir ağıyla olasılıksal düzelterek CRPS kaybıyla eğitip doğrusal MOS ile kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 494",
+   "projeyeKatki": "Gömme katmanlı sinir ağı mimarisi, normal dağılımlı analitik CRPS kaybı ve permütasyon öznitelik önemi analizini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Normal dağılım için analitik CRPS",
+     "nerede": "PyTorch sinir ağını eğitirken özel türevlenebilir kayıp fonksiyonu olarak doğrudan kullanırken."
+    },
+    {
+     "formulAd": "Permütasyon öznitelik önemi",
+     "nerede": "Girdi değişkenlerini rastgele karıştırıp ağın fiziksel olarak hangi atmosferik faktörlere dayandığını sınarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "IFS tahminlerini gömme katmanlı PyTorch sinir ağıyla olasılıksal düzeltip permütasyon önemiyle fiziksel tutarlılığı sınamak.",
+  "ayrinti": "Karne arşivindeki IFS ve METAR verileri her ayın son haftası test olacak şekilde bölünür. scikit-learn ile doğrusal MOS kurularak temel hata belirlenir. PyTorch ile istasyon numarası için gömme katmanı içeren dağılımsal ağ kurulup analitik CRPS kaybıyla eğitilir. Permütasyon önemi testiyle değişkenlerin etkisi incelenir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Veri setini hazırlayıp doğrusal MOS referansını kurmak",
+    "oz": "Her ayın son haftasını test olarak ayırıp doğrusal regresyon kurmak.",
+    "ayrinti": "LTFM, LTFJ ve LTBA için IFS tahminleri ve METAR verileri alınır. Mevsimsel dengenin korunması için her ayın son 7 günü test, kalan günler eğitim kümesi yapılır; doğrusal MOS'un test RMSE skoru hesaplanarak saklanır.",
+    "nasil": [
+     {
+      "teknik": "train_df, test_df = split_by_month_last_week(df_all) ile dengeli zaman bölmesi oluşturmak.",
+      "sade": "Modelin hem yaz hem kış aylarındaki başarısını adil ölçmek için her ayın son haftasını sınav verisi olarak ayırırız.",
+      "altAdimlar": [
+       "1. Tarih damgasından ay ve gün bilgisini çıkarın.",
+       "2. Ayın 24'ünden sonraki günleri test, öncekileri eğitim kümesine atayın.",
+       "3. Eğitim ve test kümelerinde istasyon dağılımını doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek."
+      }
+     },
+     {
+      "teknik": "mos_reg = LinearRegression().fit(X_train[['t2m_ifs', 'hour']], y_train) ile doğrusal referansı eğitmek.",
+      "sade": "Gelişmiş yapay zeka kurmadan önce basit bir istatistiksel düzeltmenin ne kadar işe yaradığını referans olarak ölçeriz.",
+      "altAdimlar": [
+       "1. Model tahmini ve günün saatini öngörücü değişken olarak belirleyin.",
+       "2. En küçük kareler yöntemiyle katsayıları hesaplayın.",
+       "3. Test kümesindeki RMSE ve MAE değerlerini referans olarak belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek."
+     },
+     {
+      "ders": "MTO 494",
+      "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "İstasyon gömmeli PyTorch sinir ağını kodlamak",
+    "oz": "Gömme katmanı ve analitik CRPS kaybı içeren dağılımsal ağ kurmak.",
+    "ayrinti": "PyTorch ile sayısal meteorolojik girdileri yoğun katmanlara, istasyon kimliğini ise 2 boyutlu gömme katmanına (Embedding) alan bir sinir ağı tasarlanır. Model ortalama ve standart sapma çıktısı verir.",
+    "nasil": [
+     {
+      "teknik": "self.station_emb = nn.Embedding(num_embeddings=3, embedding_dim=2) ile istasyon katmanı kurmak.",
+      "sade": "Yapay zekanın İstanbul Havalimanı ile Sabiha Gökçen arasındaki coğrafi ve mikroiklimsel farkları öğrenmesini sağlarız.",
+      "altAdimlar": [
+       "1. Üç istasyon için 2 boyutlu vektör temsili üreten gömme katmanı ekleyin.",
+       "2. Meteorolojik özniteliklerle gömme vektörünü birleştirin.",
+       "3. İki gizli katmandan sonra ortalama ve pozitif standart sapma çıkışları verin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Derin öğrenme ve gömme katmanları kullanarak istasyon bazlı olasılıksal sıcaklık ve rüzgâr düzeltmesi geliştirmek."
+      }
+     },
+     {
+      "teknik": "loss = gaussian_crps_loss(pred_mu, pred_sigma, y_true).mean() ile özel kayıp fonksiyonunu işletmek.",
+      "sade": "Ağın tahmin ettiği ortalama ve belirsizliği tek bir matematiksel formülle gözlem ölçümüne göre puanlarız.",
+      "altAdimlar": [
+       "1. Normal dağılım için analitik kapalı formdaki CRPS fonksiyonunu PyTorch tensörleriyle yazın.",
+       "2. Geri yayılım ile gradyanları hesaplayarak ağ ağırlıklarını güncelleyin.",
+       "3. Eğitim kaybının düşüşünü adım adım izleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Derin öğrenme ve gömme katmanları kullanarak istasyon bazlı olasılıksal sıcaklık ve rüzgâr düzeltmesi geliştirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Derin öğrenme ve gömme katmanları kullanarak istasyon bazlı olasılıksal sıcaklık ve rüzgâr düzeltmesi geliştirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Test döneminde yöntemlerin performansını kıyaslamak",
+    "oz": "Ham IFS, doğrusal MOS ve sinir ağının skorlarını tek tabloda toplamak.",
+    "ayrinti": "Ayrılan test haftalarında ham IFS, doğrusal MOS ve eğitilen sinir ağının tahminleri üretilir. Hem deterministik metrikler (MAE, RMSE) hem de olasılıksal skor (CRPS) hesaplanarak karşılaştırma tablosu çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "metrics_df = evaluate_all_models(test_df, models=[ifs_raw, mos_linear, nn_prob]) ile skorları hesaplamak.",
+      "sade": "Yapay zekanın ham tahmine ve basit doğrusal modele göre ne kadar fark yarattığını net sayılarla ortaya koyarız.",
+      "altAdimlar": [
+       "1. Test kümesindeki her saat için üç yöntemin kestirimlerini türetin.",
+       "2. MAE, RMSE ve CRPS değerlerini istasyon bazında gruplayın.",
+       "3. Sinir ağının hata düşüş oranını yüzde olarak hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     },
+     {
+      "teknik": "plot_error_distributions(metrics_df, save_name='docs/error_distribution.png') ile hata dağılımını çizmek.",
+      "sade": "Hata yayılımının sıfır etrafında ne kadar daraldığını gösteren karşılaştırmalı yoğunluk grafiklerini oluştururuz.",
+      "altAdimlar": [
+       "1. Tahmin hatalarının histogram ve çekirdek yoğunluk eğrilerini çizin.",
+       "2. Sinir ağının uç hataları nasıl kestiğini vurgulayın.",
+       "3. Grafiği GitHub Pages arayüzüne ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Permütasyon önemi ile fiziksel tutarlılığı doğrulamak",
+    "oz": "Girdileri karıştırarak modelin kararlarını fiziksel açıdan yorumlamak.",
+    "ayrinti": "Test kümesindeki girdiler (ham sıcaklık, saat, istasyon kimliği) tek tek karıştırılarak CRPS artışı ölçülür. En çok hata artışına neden olan öznitelikler sıralanarak modelin atmosferik mantıkla uyumu denetlenir.",
+    "nasil": [
+     {
+      "teknik": "importances = compute_permutation_importance(nn_model, X_test, y_test, scoring=gaussian_crps_loss) ile önem sırasını çıkarmak.",
+      "sade": "Modelin bir değişkeni ezberleyip ezberlemediğini, o değişkeni bozduğumuzda hatanın ne kadar patladığına bakarak anlarız.",
+      "altAdimlar": [
+       "1. Her bir girdi sütununu satırlar arasında rastgele karıştırın.",
+       "2. Karıştırılmış veriyle test kaybındaki artış miktarını hesaplayın.",
+       "3. Değişkenleri önem sırasına göre büyükten küçüğe dizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Makine öğrenmesi modellerinin kararlarını permütasyon önemi analizi ile fiziksel açıdan yorumlamak."
+      }
+     },
+     {
+      "teknik": "plot_feature_importance_bar(importances, save_name='docs/permutation_importance.png') ile önem grafiğini çizmek.",
+      "sade": "Yapay zekanın en çok ham sıcaklığa ve saate güvendiğini gösteren açıklayıcı grafik ile analizi tamamlarız.",
+      "altAdimlar": [
+       "1. Öznitelik isimleri ve önem değerleriyle yatay çubuk grafik çizin.",
+       "2. Fiziksel beklentilerle modelin öğrendiği ilişkileri rapor metninde karşılaştırın.",
+       "3. Colab çalışma defterini açık kaynaklı depoda paylaşın."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Makine öğrenmesi modellerinin kararlarını permütasyon önemi analizi ile fiziksel açıdan yorumlamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Makine öğrenmesi modellerinin kararlarını permütasyon önemi analizi ile fiziksel açıdan yorumlamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul istasyonlarında sıcaklık tahminlerini olasılıksal kalibre eden açık kaynaklı PyTorch modeli ve permütasyon önemi tablosu.",
+  "senden": "PyTorch ile gömme katmanlı ağ mimarisini kodlamak, analitik CRPS kaybını ve permütasyon analizini çalıştırmak.",
+  "bizden": "MTO 494 kapsamında dağılımsal tahmin fiziğini yapılandırmak, istasyon mikroiklim etkilerini ve öznitelik önemini yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul LTFM için IFS, doğrusal MOS ve sinir ağının CRPS ve MAE hata zaman serisi",
+   "aciklama": "İstanbul Havalimanı METAR verisinde üç yöntemin test dönemi boyunca günlük CRPS skoru değişimi"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/neural-temperature-postprocessing",
+   "aciklama": "AURA sıcaklık düzeltme paneli ve permütasyon önemi sütun grafiği"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Tahmin dağılımı ortalaması ve varyans yayılımı şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Rasp, S. & Lerch, S. (2018) Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR, 146, 3885-3900",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  },
+  {
+   "ad": "McGovern, A. vd. (2019) Making the Black Box More Transparent, BAMS, 100, 2175-2199",
+   "url": "https://doi.org/10.1175/BAMS-D-18-0195.1"
+  },
+  {
+   "ad": "Gneiting, T. & Raftery, A. E. (2007) Strictly Proper Scoring Rules, JASA, 102(477), 359-378",
+   "url": "https://doi.org/10.1198/016214506000001437"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO494-02.json",
+  "tarih": "2026-10-17 02:32",
+  "geminiSha1": "6c245ff5ee23"
+ }
+}

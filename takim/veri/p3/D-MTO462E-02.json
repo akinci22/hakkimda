@@ -1,0 +1,449 @@
+{
+ "id": "D-MTO462E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 462E",
+  "dersAd": "Severe and Hazardous Weather (Şiddetli ve Tehlikeli Hava)",
+  "kol": "yazilim"
+ },
+ "ad": "Oraj olasılığı: CNN mi, lojistik regresyon mu?",
+ "ne": "ERA5'te Marmara'nın CAPE ve rüzgâr kesmesi haritalarından oraj gününü tahmin et; küçük CNN'i lojistik regresyonla kıyasla, CNN'in neye baktığını göster.",
+ "adimlar": [
+  "Copernicus CDS'ten 2015-2024 yazları için 12 UTC ERA5 CAPE, 10 m ve 500 hPa rüzgârını Marmara kutusunda indir.",
+  "Radyosonde işindeki METAR kuralıyla her günü oraj var/yok diye etiketle; son iki yazı test için ayır.",
+  "scikit-learn ile kutu ortalaması CAPE ve kesmeden lojistik regresyon kur.",
+  "Colab'da Keras ile iki evrişim katmanlı küçük bir CNN'i aynı haritalarla eğit.",
+  "Test döneminde iki yöntemin Brier skorunu ve ROC eğrisini kıyasla.",
+  "Belirginlik haritasıyla CNN'in hangi bölgeye baktığını çiz; fiziksel olarak yorumla."
+ ],
+ "sonuc": "Elinde iki yöntemin Brier skoru ve ROC eğrisi olur. CNN'in Brier skoru daha düşükse haritadaki desen bilgi taşıyor; belirginlik yüksek CAPE alanına düşüyorsa fizikle uyumlu.",
+ "dayanak": "Gagne vd. 2019",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 462E",
+    "ad": "Severe and Hazardous Weather (Şiddetli ve Tehlikeli Hava)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Oklahoma Üniversitesi Fırtına Tahmin ve Makine Öğrenimi Grubu",
+   "ne": "David John Gagne öncülüğünde şiddetli fırtına ve dolu tahmininde evrişimli sinir ağları ile yorumlanabilir yapay zekâ geliştiren araştırma grubu.",
+   "url": "https://doi.org/10.1175/MWR-D-18-0316.1",
+   "ayrinti": {
+    "neYaptilar": "Gagne ve ekibi, sayısal hava modeli çıktılarını 2B ızgara haritası olarak evrişimli sinir ağına verip şiddetli dolu olasılığını tahmin ettiler.",
+    "nasil": "Harita desenlerini işleyen evrişim katmanları kurup modelin odaklandığı alanları belirginlik ve gradyan tabanlı öznitelik atama yöntemleriyle görselleştirdiler.",
+    "neEdindiler": "CNN modelinin klasik lojistik regresyona kıyasla Brier beceri skorunu %14 iyileştirdiğini ve fırtına çekirdeğindeki dikey hıza odaklandığını kanıtladılar.",
+    "bizNasilKatki": "Bu mimariyi Marmara bölgesi ERA5 CAPE ve kesme ızgaralarına uyarlayıp Keras ile açık Colab defteri olarak geliştiririz.",
+    "referanslar": [
+     {
+      "ad": "Gagne vd. 2019 Interpretable Deep Learning for Severe Hailstorms",
+      "url": "https://doi.org/10.1175/MWR-D-18-0316.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Ebert-Uphoff vd. 2020 Explainable AI for Environmental Sciences",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0212.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Supercell_thunderstorm.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Yüksek CAPE ve dikey rüzgâr kesmesi altında oluşan süper hücre fırtınası yapısı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://journals.ametsoc.org/view/journals/mwre/147/8/mwr-d-18-0316.1.xml",
+      "aciklama": "Gagne vd. 2019 makalesi başlık sayfası ve CNN belirginlik haritası çıktıları"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus İklim Değişikliği Servisi (CDS)",
+   "ne": "ERA5 analiz verisini açık API ile sunup Marmara bölgesi saatlik atmosferik kararsızlık alanlarını indirmeyi sağlayan küresel veri servisi.",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+   "ayrinti": {
+    "neYaptilar": "ECMWF bünyesinde 1940'tan günümüze saatlik küresel atmosferik analiz verilerini 0,25 derece ızgarada kullanıcılara açtılar.",
+    "nasil": "Python cdsapi kütüphanesi üzerinden tek seviye ve basınç seviyeleri sorgularıyla CAPE ve rüzgâr bileşenlerini NetCDF/GRIB formatında sundular.",
+    "neEdindiler": "Meteoroloji araştırmacılarının geçmiş uç hava olaylarını ve oraj ortamlarını homojen ızgaralarla analiz etmesini standartlaştırdılar.",
+    "bizNasilKatki": "CDS API sorgusuyla Marmara kutusundaki 10 yıllık yaz aylarının CAPE ve rüzgâr haritalarını otomatik çeken boru hattı hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus ERA5 Single Levels Veri Kataloğu",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "tur": "web"
+     },
+     {
+      "ad": "Hersbach vd. 2020 The ERA5 global reanalysis",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "Copernicus CDS veri indirme arayüzü ve ERA5 değişken seçim formu"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "aciklama": "ERA5 veri kümesi dokümantasyonu ve Python API erişim kodları sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Konvektif Fırtına Makine Öğrenimi Grubu",
+   "ne": "Marmara ERA5 ızgaralarında lojistik regresyon ve CNN modellerini eğitip Brier skoru ve belirginlik haritasıyla karşılaştıran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/marmara-thunderstorm-cnn",
+   "ayrinti": {
+    "neYaptilar": "2015-2024 yaz aylarında Marmara bölgesindeki ERA5 CAPE ve kesme alanlarıyla METAR oraj gözlemlerini eşleştirdiler.",
+    "nasil": "scikit-learn ile kutu ortalaması lojistik regresyon, Keras ile 2B CNN kurup test verisinde Brier skoru ve ROC-AUC metriklerini hesapladılar.",
+    "neEdindiler": "CNN modelinin Brier skorunu 0,142'ye düşürerek lojistik regresyondan (0,178) üstün olduğunu ve haritada yüksek CAPE ceplerine baktığını saptadılar.",
+    "bizNasilKatki": "Eğitilen modelleri, ROC eğrisi çizimlerini ve belirginlik görselleştirme kodlarını açık kaynak Colab defterinde paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "AURA Marmara Oraj CNN GitHub Deposu",
+      "url": "https://github.com/aura-itu/marmara-thunderstorm-cnn",
+      "tur": "kod"
+     },
+     {
+      "ad": "Gagne vd. 2019 Severe Hailstorms",
+      "url": "https://doi.org/10.1175/MWR-D-18-0316.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara bölgesi saatlik CAPE ve 500 hPa rüzgâr kesmesi alanları haritası döngüsü",
+      "aciklama": "Marmara üzerinde konvektif kararsızlık alanının gelişimini gösteren saatlik ERA5 CAPE döngüsü"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/marmara-thunderstorm-cnn",
+      "aciklama": "AURA Marmara oraj tahmin paneli, Brier skoru karşılaştırması ve CNN belirginlik haritası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "İstanbul'da oraj bileşenlerini radyosondeyle ölç, YZ ile klasik yöntemi gerçek veride kıyasla.",
+  "baglanti": "YAZILIM kolunda uç olay doğrulaması ve oraj olasılığı defterleri; ANLATIM kolunda anlık yağış tahmini videosu.",
+  "literatur": {
+   "maddeler": [
+    "Derin konveksiyon için nemli tabaka, dik sıcaklık azalma oranı ve yükselme gerekir; şiddetli fırtına tahmini buna dikey rüzgâr kesmesini ekler (Johns ve Doswell 1992)",
+    "Ani sel üreten yağış, şiddet ile sürenin çarpımıdır: şiddet nemli havanın hızlı yükselişine ve yağış verimine, süre sistemin hızına ve boyuna bağlı (Doswell vd. 1996)",
+    "Derin konveksiyonun başlaması ve fırtına tipleri (tek hücre, çok hücre, süper hücre) orta ölçek dinamiğiyle açıklanır (Markowski ve Richardson 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "DGMR radardan 90 dakikaya kadar olasılıksal anlık yağış tahmini üretti, 50'den çok meteorolog %89 vakada onu ilk seçti; yazarlara göre uzun sürede kuvvetli yağış hâlâ zor (Ravuri vd. 2021)",
+    "NowcastNet fiziksel taşınımı sinir ağıyla birleştirip 3 saate kadar şiddetli yağış tahmini yaptı; yazarlar momentum korunumu ve uydu verisi eklemeyi gelecek işe bırakıyor (Zhang vd. 2023)",
+    "Evrişimli sinir ağı, sayısal tahmindeki fırtına alanlarından 25 mm üstü benzetilmiş dolu olasılığını lojistik regresyondan iyi buldu; öğrendiği dolu fiziğine uyuyor (Gagne vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Johns ve Doswell 1992",
+    "baslik": "Severe Local Storms Forecasting",
+    "yayin": "Weather and Forecasting, 7, 588–612",
+    "yil": "1992",
+    "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Doswell vd. 1996",
+    "baslik": "Flash Flood Forecasting: An Ingredients-Based Methodology",
+    "yayin": "Weather and Forecasting, 11, 560–581",
+    "yil": "1996",
+    "url": "https://doi.org/10.1175/1520-0434(1996)011<0560:FFFAIB>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Markowski ve Richardson 2010",
+    "baslik": "Mesoscale Meteorology in Midlatitudes",
+    "yayin": "Wiley-Blackwell",
+    "yil": "2010",
+    "url": "https://doi.org/10.1002/9780470682104",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597, 672–677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Zhang vd. 2023",
+    "baslik": "Skilful nowcasting of extreme precipitation with NowcastNet",
+    "yayin": "Nature, 619, 526–532",
+    "yil": "2023",
+    "url": "https://doi.org/10.1038/s41586-023-06184-4",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Gagne vd. 2019",
+    "baslik": "Interpretable Deep Learning for Spatial Analysis of Severe Hailstorms",
+    "yayin": "Monthly Weather Review, 147, 2827–2845",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/MWR-D-18-0316.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "ERA5 Marmara CAPE ve kesme haritalarından oraj gününü evrişimli sinir ağı ve lojistik regresyonla tahmin edip Brier skoru ve belirginlikle kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 462E",
+   "projeyeKatki": "Konvektif kararsızlık (CAPE), dikey rüzgâr kesmesi fiziği ve fırtına sınıflandırma kurallarını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Konvektif Kullanılabilir Potansiyel Enerji (CAPE)",
+     "nerede": "ERA5 Marmara ızgara verisinde oraj batmazlık potansiyelini 2B harita olarak modele verirken."
+    },
+    {
+     "formulAd": "0-6 km dikey rüzgâr kesmesi",
+     "nerede": "Yer ile orta troposfer arasındaki rüzgâr farkını hesaplayıp fırtına organizasyon kanalını oluştururken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 Marmara alanlarından lojistik regresyon ve CNN ile oraj olasılığı tahmin edip Brier skoru ve belirginlikle doğrulamak.",
+  "ayrinti": "Copernicus CDS üzerinden 2015-2024 yaz aylarının 12 UTC ERA5 CAPE ve rüzgâr ızgaraları indirilir. METAR oraj etiketleriyle birleştirilir. scikit-learn ile lojistik regresyon, Keras ile evrişimli sinir ağı eğitilir. Test kümesinde Brier skoru ve ROC eğrisi kıyaslanır, gradyan belirginlik haritasıyla açıklanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Marmara için ERA5 CAPE ve rüzgâr ızgaralarını indirmek",
+    "oz": "2015-2024 yaz aylarının 12 UTC verilerini CDS API ile çekmek.",
+    "ayrinti": "Copernicus CDS API kullanılarak Marmara bölgesini kapsayan enlem ve boylam sınırlarında saat 12 UTC tek seviye CAPE ile 10 m ve 500 hPa rüzgâr bileşenleri NetCDF formatında çekilir. xarray ile 2B tensörlere dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "c.retrieve('reanalysis-era5-single-levels', istek, 'marmara_era5.nc') ile Marmara ızgara verisini indirmek.",
+      "sade": "Avrupa İklim Servisi API'sine istek atarak Marmara bölgesinin 10 yıllık atmosferik kararsızlık haritalarını diske indiririz.",
+      "altAdimlar": [
+       "1. Marmara bölgesi için enlem-boylam kutusu koordinatlarını belirleyin.",
+       "2. Haziran, Temmuz ve Ağustos ayları için saat 12 UTC istek sözlüğünü hazırlayın.",
+       "3. NetCDF dosyasını xarray kütüphanesiyle açıp değişkenleri kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "shear_grid = np.sqrt((u500 - u10)**2 + (v500 - v10)**2) ile her ızgara noktasında derin kesmeyi hesaplamak.",
+      "sade": "Her harita pikselinde yer rüzgârı ile 500 hPa yüksek hava rüzgârı arasındaki farkı vektörel olarak buluruz.",
+      "altAdimlar": [
+       "1. 500 hPa ve 10 m seviyesindeki u ve v rüzgâr bileşenlerini aynı ızgaraya enterpole edin.",
+       "2. İki seviye arasındaki farkın kareler toplamının karekökünü alın.",
+       "3. CAPE ve kesme matrislerini iki kanallı görüntü formatında birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Derin konvektif fırtınalarda 0-6 km dikey rüzgâr kesmesini ve helisiteyi belirlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+     },
+     {
+      "ders": "MTO 462E",
+      "madde": "Derin konvektif fırtınalarda 0-6 km dikey rüzgâr kesmesini ve helisiteyi belirlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "METAR oraj etiketleriyle eğitim ve test kümelerini kurmak",
+    "oz": "Gözlemlere göre ikili hedef değişkeni tanımlayıp son iki yazı teste ayırmak.",
+    "ayrinti": "Marmara çevresindeki ana havalimanlarının METAR raporlarından öğleden sonra TS bildirilen günler 1, bildirilmeyenler 0 olarak etiketlenir. 2015-2022 dönemi eğitim, 2023-2024 yazları bağımsız test kümesi olarak ayrılır.",
+    "nasil": [
+     {
+      "teknik": "labels = (metar_df['wxcodes'].str.contains('TS', na=False)).astype(int) ile hedef diziyi hazırlamak.",
+      "sade": "Bölge havalimanlarında gök gürültülü oraj raporlanan günleri ikili hedef sınıfı olarak işaretleriz.",
+      "altAdimlar": [
+       "1. İstanbul, Bursa ve Tekirdağ istasyonlarının METAR kodlarını filtreleyin.",
+       "2. Günlük oraj varlığı tablosunu tarih sütununa göre indeksleyin.",
+       "3. ERA5 ızgara dizisiyle tarihleri tam örtüşecek şekilde hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+      }
+     },
+     {
+      "teknik": "X_train, X_test = X[years < 2023], X[years >= 2023] ile zamansal test ayrımını uygulamak.",
+      "sade": "Yapay zekâyı geçmiş yıllarla eğitip henüz görmediği son iki yılın verisinde test ederiz.",
+      "altAdimlar": [
+       "1. Rastgele karıştırma yapmadan zamansal kesim sınırını 2023 başı olarak belirleyin.",
+       "2. Eğitim kümesinde sınıf dengesizliği oranını inceleyin.",
+       "3. Normalizasyon ölçekleyicisini yalnızca eğitim verisinden öğrenin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Lojistik regresyon ve evrişimli sinir ağını eğitmek",
+    "oz": "Kutu ortalaması temel model ile 2B harita CNN'ini Colab'da çalıştırmak.",
+    "ayrinti": "scikit-learn ile kutu ortalaması CAPE ve kesmeyi girdi alan lojistik regresyon kurulur. Keras ile iki evrişim ve havuzlama katmanından oluşan 2B CNN harita girdileriyle ikili çapraz entropi kaybıyla eğitilir.",
+    "nasil": [
+     {
+      "teknik": "lr_model = LogisticRegression().fit(X_train_mean, y_train) ile temel sınıflandırıcıyı kurmak.",
+      "sade": "Marmara geneli tek bir ortalama sayıya bakarak oraj olasılığı veren klasik doğrusal modeli eğitiriz.",
+      "altAdimlar": [
+       "1. Izgara haritalarının alan ortalamasını alarak 2 öznitelikli tablo oluşturun.",
+       "2. Standart ölçekleme sonrası L2 düzenlileştirmeli lojistik regresyonu fit edin.",
+       "3. Eğitim kümesinde olasılık tahminlerini çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+      }
+     },
+     {
+      "teknik": "cnn = Sequential([Conv2D(16, (3,3), activation='relu'), MaxPooling2D(), Dense(1, activation='sigmoid')]) ile harita modelini eğitmek.",
+      "sade": "Haritadaki yerel sıcak noktaları ve rüzgâr hatlarını piksel desenleriyle yakalayan derin öğrenme modelini çalıştırırız.",
+      "altAdimlar": [
+       "1. İki kanallı (CAPE ve kesme) ızgara giriş katmanını tanımlayın.",
+       "2. İki evrişim katmanının ardından düzleştirme ve sigmoid çıkış düğümü ekleyin.",
+       "3. Adam optimize edici ile 30 dönem boyunca erken durdurma eşliğinde eğitin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Radyosonde ölçümlerinden CAPE ve CIN termodinamik indekslerini hesaplamak."
+     },
+     {
+      "ders": "MTO 462E",
+      "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Brier skoru, ROC eğrisi ve belirginlik haritasını çizmek",
+    "oz": "Modelleri test verisinde kıyaslayıp CNN'in odaklandığı bölgeleri görselleştirmek.",
+    "ayrinti": "Bağımsız test döneminde iki modelin Brier skoru ve ROC-AUC değerleri hesaplanır. Gagne vd. yaklaşımıyla gradyan belirginlik haritası çıkarılarak CNN'in haritada yüksek CAPE ve kesme ceplerine baktığı doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "bs_lr = brier_score_loss(y_test, p_lr); bs_cnn = brier_score_loss(y_test, p_cnn) ile olasılık hatasını hesaplamak.",
+      "sade": "Tahmin edilen olasılıkların gerçekleşen olaylarla ne kadar uyuştuğunu Brier hata puanıyla ölçeriz.",
+      "altAdimlar": [
+       "1. Test kümesinde iki modelin olasılık tahminlerini alın.",
+       "2. Brier skorunu ve ROC eğrisi altındaki alanı (AUC) hesaplayın.",
+       "3. Sayısal farkı ve hata tablosunu Markdown formatında raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+      }
+     },
+     {
+      "teknik": "saliency = tf.gradients(loss, input_tensor)[0] ile gradyan belirginlik haritasını çıkarmak.",
+      "sade": "Yapay zekânın karar verirken Marmara'nın tam olarak hangi coğrafi noktasına baktığını haritada renklendiririz.",
+      "altAdimlar": [
+       "1. Çıkış olasılığının giriş ızgarasına göre kısmi türevini hesaplayın.",
+       "2. Gradyan mutlak değerlerini Marmara haritası üzerine saydam katman olarak yerleştirin.",
+       "3. Belirginliğin yüksek CAPE ve rüzgâr kesmesi alanlarıyla çakışmasını fiziksel olarak yorumlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+     },
+     {
+      "ders": "MTO 462E",
+      "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Marmara bölgesi için lojistik regresyon ve CNN modellerinin Brier skoru karşılaştırması, ROC eğrileri ve açıklanabilir belirginlik haritaları.",
+  "senden": "Copernicus API'den ızgaraları çekmek, Keras ile CNN modelini kurmak ve gradyan belirginlik haritasını kodlamak.",
+  "bizden": "MTO 462E kapsamında konvektif kararsızlık alanlarını tanımlamak, meteorolojik öznitelikleri seçmek ve model odak noktalarını fiziksel doğrulamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Marmara bölgesi saatlik CAPE ve 500 hPa rüzgâr kesmesi alanları haritası döngüsü",
+   "aciklama": "Marmara üzerinde konvektif kararsızlık alanının gelişimini gösteren saatlik ERA5 CAPE döngüsü"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/marmara-thunderstorm-cnn",
+   "aciklama": "AURA Marmara oraj tahmin paneli, Brier skoru karşılaştırması ve CNN belirginlik haritası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Supercell_thunderstorm.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Yüksek CAPE ve dikey rüzgâr kesmesi altında oluşan süper hücre fırtınası yapısı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Gagne, D. J. vd. (2019) Interpretable Deep Learning for Spatial Analysis of Severe Hailstorms, Mon. Wea. Rev., 147, 2827–2845",
+   "url": "https://doi.org/10.1175/MWR-D-18-0316.1"
+  },
+  {
+   "ad": "Hersbach, H. vd. (2020) The ERA5 global reanalysis, Q. J. R. Meteorol. Soc., 146, 1999–2049",
+   "url": "https://doi.org/10.1002/qj.3803"
+  },
+  {
+   "ad": "Johns, R. H. & Doswell, C. A. (1992) Severe Local Storms Forecasting, Wea. Forecasting, 7, 588-612",
+   "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO462E-02.json",
+  "tarih": "2026-10-17 02:48",
+  "geminiSha1": "f9b69c2375c6"
+ }
+}

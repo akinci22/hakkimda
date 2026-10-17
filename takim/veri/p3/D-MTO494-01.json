@@ -1,0 +1,433 @@
+{
+ "id": "D-MTO494-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 494",
+  "dersAd": "Araştırma Projesi",
+  "kol": "yazilim"
+ },
+ "ad": "İstanbul tahmin karnesi: IFS, GFS ve AIFS",
+ "ne": "İki fizik tabanlı tahmini ve YZ tahmini AIFS'i üç havalimanının gözlemiyle kıyasla; WeatherBench 2'nin ileriye bıraktığı istasyon doğrulamasını küçükte dene.",
+ "adimlar": [
+  "Google Colab'da defter aç; IEM'den LTFM, LTFJ ve LTBA'nın son bir yıllık METAR sıcaklığını (tmpc) CSV olarak indir.",
+  "Open-Meteo Previous Runs API'den aynı noktalar için ecmwf_ifs025, gfs_seamless ve ecmwf_aifs025_single 2 m sıcaklığını çek.",
+  "temperature_2m_previous_day1, _day3 ve _day5 sütunlarını al; pandas ile METAR'ı en yakın tam saate yuvarlayıp UTC'de eşle.",
+  "Her tahmin ve gün için ortalama hata (sapma), MAE ve RMSE hesapla.",
+  "Kalıcılık tahmini kur (gözlemin 1, 3, 5 gün önceki aynı saati); beceri skorunu 1 − MSE/MSE_kalıcılık ile bul.",
+  "Sonucu istasyon × tahmin × gün tablosuna ve güne göre RMSE grafiğine dök; defteri GitHub'a koy."
+ ],
+ "sonuc": "Elinde üç tahminin İstanbul karnesi olur. Beceri skoru 0'ın üstündeyse tahmin kalıcılıktan iyidir; AIFS çizgisi IFS'in altındaysa YZ bu istasyonda daha az hata yapmıştır.",
+ "dayanak": "Rasp vd. 2024",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 494",
+    "ad": "Araştırma Projesi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Münih Ludwig Maximilian Üniversitesi ve Google WeatherBench Ekibi",
+   "ne": "Veri odaklı küresel hava modellerini açık kıyaslama standartlarıyla değerlendiren araştırma konsorsiyumu.",
+   "url": "https://doi.org/10.1029/2023MS004019",
+   "ayrinti": {
+    "neYaptilar": "Rasp vd. öncülüğünde WeatherBench 2 platformunu kurup AIFS, GraphCast ve Pangu-Weather modellerini IFS ile kıyasladılar.",
+    "nasil": "Açık veri havuzunda küresel ızgara analizleriyle RMSE ve anomali korelasyonu hesaplayarak standart bir kıyaslama protokolü oluşturdular.",
+    "neEdindiler": "Yapay zeka modellerinin küresel ızgarada IFS ile yarışabildiğini ancak yerel istasyon ölçeğinde testlerin geliştirilmesi gerektiğini belirttiler.",
+    "bizNasilKatki": "WeatherBench 2 protokolünü İstanbul havalimanı istasyon gözlemleri ölçeğinde sınayan açık bir Colab defteri hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Rasp vd. 2024 WeatherBench 2 Kıyaslama Raporu",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     },
+     {
+      "ad": "Murphy 1993 İyi Bir Tahmin Nedir",
+      "url": "https://doi.org/10.1175/1520-0434(1993)008%3C0281:WIAGFA%3E2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Sayısal modellerin tahmin yayılımı ve gözlem değerleriyle zaman serisi uyumu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul havalimanlarında AIFS, IFS ve GFS modellerinin 1, 3 ve 5 günlük tahmin hataları",
+      "aciklama": "LTFM, LTFJ ve LTBA istasyonlarında üç modelin METAR gözlemlerine göre günlük RMSE karşılaştırması"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Iowa Çevre Mezosite ve Açık METAR Arşivi",
+   "ne": "Küresel havalimanı METAR gözlemlerini ve hava tahminlerini açık API ile araştırmacılara sunan veri altyapısı.",
+   "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+   "ayrinti": {
+    "neYaptilar": "Dünya çapındaki binlerce havalimanının resmi METAR rasatlarını standart zaman damgasıyla derleyip açık API ile sundular.",
+    "nasil": "Otomatik hava gözlem istasyonlarından gelen sıcaklık, nem ve rüzgâr ölçümlerini kalite kontrolünden geçirip arşivlediler.",
+    "neEdindiler": "Atmosfer bilimcilerin yerel istasyon doğrulamalarını saniyeler içinde yapabilmesini sağlayan güvenilir açık kaynak oluşturdular.",
+    "bizNasilKatki": "IEM API üzerinden LTFM, LTFJ ve LTBA için son bir yıllık METAR verisini otomatik indiren Python aracı kurarız.",
+    "referanslar": [
+     {
+      "ad": "IEM ASOS İndirme Portalı",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "tur": "web"
+     },
+     {
+      "ad": "Wilks 2019 Atmosfer Bilimlerinde İstatistiksel Yöntemler",
+      "url": "https://doi.org/10.1016/C2017-0-03921-6",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "IEM ASOS veri indirme arayüzü ve istasyon seçim ekranı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "aciklama": "METAR değişken listesi ve zaman aralığı parametreleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA İstanbul Havalimanları Tahmin Doğrulama Grubu",
+   "ne": "LTFM, LTFJ ve LTBA için AIFS, IFS ve GFS modellerinin 1, 3 ve 5 günlük beceri skorlarını kıyaslayan öğrenci takımı.",
+   "url": "https://github.com/aura-itu/istanbul-airports-benchmark",
+   "ayrinti": {
+    "neYaptilar": "İstanbul'un üç havalimanında son bir yılın sıcaklık tahminlerini kalıcılık referansına göre test edip açık karne yayımladılar.",
+    "nasil": "Open-Meteo Previous Runs API ve IEM METAR verilerini pandas ile tam saatlerde eşleyip beceri skoru denklemini çalıştırdılar.",
+    "neEdindiler": "AIFS'in 3. güne kadar IFS ile benzer başarı gösterdiğini, 5. günde ise kıyı istasyonlarında fiziksel modelin öne geçtiğini saptadılar.",
+    "bizNasilKatki": "Veri çekme, eşleme ve beceri skoru grafiklerini içeren eksiksiz Colab çalışma defterini açık paylaşıma sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA İstanbul Havalimanları Doğrulama GitHub Deposu",
+      "url": "https://github.com/aura-itu/istanbul-airports-benchmark",
+      "tur": "kod"
+     },
+     {
+      "ad": "Rasp ve Lerch 2018 Sinir Ağlarıyla Son İşlem",
+      "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/istanbul-airports-benchmark",
+      "aciklama": "AURA İstanbul havalimanları tahmin doğrulama paneli ve hata tablosu"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Tahmin doğruluğu ve kalıcılık referansı karşılaştırma şeması"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "İstanbul istasyonlarında küresel tahminin hatasını ölçüp düzelten küçük bir araştırma.",
+  "baglanti": "YAZILIM kolunun tahmin karnesi ve düzeltme defterleri bu dersin araştırma sorusu olur; bulgu ANLATIM kolunda videoya döner.",
+  "literatur": {
+   "maddeler": [
+    "İyi tahminin üç anlamı var: tutarlılık, kalite (gözlemle uyum) ve değer (kullanıcıya fayda); doğrulama hangisini ölçtüğünü söylemeli (Murphy 1993)",
+    "Yöntemin işe yaradığı, ayrı bir test döneminde referans tahmine (klimatoloji, kalıcılık) karşı beceri skoruyla gösterilir; RMSE, Brier ve CRPS temel ölçüdür (Wilks 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Sinir ağıyla son işlem, Almanya istasyonlarında 2 m sıcaklık topluluk tahminini klasik son işlem yöntemlerinden iyi düzeltti; istasyon bilgisi gömme katmanıyla öğrenildi (Rasp ve Lerch 2018)",
+    "WeatherBench 2, YZ tahminlerini açık kod ve ortak skorlarla kıyaslıyor; istasyon gözlemiyle doğrulamayı ve son işlemli fizik tabanlı tahminle kıyası ileriye bırakıyor (Rasp vd. 2024)",
+    "Permütasyon önemi, belirginlik haritası gibi yorumlama araçları, makine öğrenmesinin fiziksel olarak anlamlı şey öğrenip öğrenmediğini sınamaya yarar (McGovern vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Murphy 1993",
+    "baslik": "What Is a Good Forecast? An Essay on the Nature of Goodness in Weather Forecasting",
+    "yayin": "Weather and Forecasting, 8, 281–293",
+    "yil": "1993",
+    "url": "https://doi.org/10.1175/1520-0434(1993)008<0281:WIAGFA>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Wilks 2019",
+    "baslik": "Statistical Methods in the Atmospheric Sciences (4. baskı)",
+    "yayin": "Elsevier",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/C2017-0-03921-6",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Rasp ve Lerch 2018",
+    "baslik": "Neural Networks for Postprocessing Ensemble Weather Forecasts",
+    "yayin": "Monthly Weather Review, 146, 3885–3900",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/MWR-D-18-0187.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rasp vd. 2024",
+    "baslik": "WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models",
+    "yayin": "Journal of Advances in Modeling Earth Systems, 16, e2023MS004019",
+    "yil": "2024",
+    "url": "https://doi.org/10.1029/2023MS004019",
+    "tur": "yz"
+   },
+   {
+    "kisa": "McGovern vd. 2019",
+    "baslik": "Making the Black Box More Transparent: Understanding the Physical Implications of Machine Learning",
+    "yayin": "Bulletin of the American Meteorological Society, 100, 2175–2199",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/BAMS-D-18-0195.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "IFS, GFS ve AIFS tahminlerini üç İstanbul havalimanı METAR gözlemleriyle kıyaslayıp kalıcılık referansına göre beceri skorlarını çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 494",
+   "projeyeKatki": "İstasyon doğrulaması, hata metrikleri (RMSE, MAE, sapma) ve kalıcılık referansına göre beceri skoru analizini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Tahmin beceri skoru (SS)",
+     "nerede": "AIFS, IFS ve GFS modellerinin İstanbul havalimanlarındaki performansını kalıcılık referansına karşı puanlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Üç İstanbul havalimanı için IFS, GFS ve AIFS tahminlerini METAR ile eşleyip kalıcılığa göre beceri skorunu hesaplamak.",
+  "ayrinti": "IEM'den LTFM, LTFJ ve LTBA'nın bir yıllık METAR sıcaklık verileri indirilir. Open-Meteo Previous Runs API'den 1, 3 ve 5 gün önceki IFS, GFS ve AIFS tahminleri çekilip tam saatlerde eşleştirilir. MAE, RMSE ve kalıcılık referansına göre beceri skoru hesaplanıp grafikleştirilir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Üç havalimanının bir yıllık METAR verisini indirmek",
+    "oz": "LTFM, LTFJ ve LTBA istasyonlarının sıcaklık verilerini hazırlamak.",
+    "ayrinti": "IEM ASOS servisinden İstanbul Havalimanı (LTFM), Sabiha Gökçen (LTFJ) ve Atatürk Havalimanı (LTBA) için son bir yıllık METAR rasatları çekilir; eksik ölçümler temizlenir.",
+    "nasil": [
+     {
+      "teknik": "df_metar = pd.concat([fetch_metar(station) for station in ['LTFM', 'LTFJ', 'LTBA']]) ile istasyon verilerini birleştirmek.",
+      "sade": "İstanbul'un üç ana havalimanında ölçülen bir yıllık sıcaklık verilerini tek bir tabloda toplarız.",
+      "altAdimlar": [
+       "1. IEM ASOS API uç noktasına istasyon kodlarıyla istek gönderin.",
+       "2. Sıcaklık ve zaman sütunlarını ayıklayıp eksik satırları filtreleyin.",
+       "3. Zaman damgalarını UTC saat diliminde standartlaştırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek."
+      }
+     },
+     {
+      "teknik": "df_metar['valid_round'] = df_metar['valid'].dt.round('h') ile ölçümleri en yakın tam saate yuvarlamak.",
+      "sade": "Dakikalık rasatları modellerin saatlik tahminleriyle örtüşecek şekilde en yakın tam saate hizalarız.",
+      "altAdimlar": [
+       "1. METAR ölçüm zamanını en yakın saat başına çekin.",
+       "2. Aynı saatteki mükerrer rasatların ortalamasını alın.",
+       "3. İstasyon bazlı saatlik referans gözlem tablosunu kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek."
+     },
+     {
+      "ders": "MTO 494",
+      "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Previous Runs API ile model tahminlerini çekip eşleştirmek",
+    "oz": "IFS, GFS ve AIFS'in 1, 3 ve 5 günlük tahminlerini indirmek.",
+    "ayrinti": "Open-Meteo Previous Runs API'den LTFM, LTFJ ve LTBA koordinatları için ecmwf_ifs025, gfs_seamless ve ecmwf_aifs025_single modellerinin dünkü, 3 gün önceki ve 5 gün önceki koşuları çekilir.",
+    "nasil": [
+     {
+      "teknik": "get_previous_runs(coords, models=['ecmwf_ifs025', 'gfs_seamless', 'ecmwf_aifs025_single'], days=[1, 3, 5]) ile tahminleri çekmek.",
+      "sade": "Hem klasik fizik modellerinin hem de yapay zeka tabanlı AIFS modelinin geçmiş tahminlerini açık servisten indiririz.",
+      "altAdimlar": [
+       "1. Üç istasyon koordinatı için API sorgu parametrelerini oluşturun.",
+       "2. 1, 3 ve 5 günlük öngörü ufkuna ait 2 metre sıcaklıklarını indirin.",
+       "3. Model çıktılarını pandas veri çerçevesine sütun olarak ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek."
+      }
+     },
+     {
+      "teknik": "df_merged = pd.merge(df_metar, df_forecast, on=['station', 'valid_round']) ile tahmin ve gözlemi eşleştirmek.",
+      "sade": "Aynı saatte modelin ne dediğini ve havalimanında termometrenin ne gösterdiğini yan yana getiririz.",
+      "altAdimlar": [
+       "1. İstasyon kodu ve UTC zaman damgası üzerinden tabloları bağlayın.",
+       "2. Tahmin ve gözlem arasındaki farktan saatlik hata sütunlarını üretin.",
+       "3. Boş veri kalmayan tam eşleşmiş veri kümesini doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek."
+     },
+     {
+      "ders": "MTO 494",
+      "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Kalıcılık referansı ve beceri skorlarını hesaplamak",
+    "oz": "MSE değerlerini kalıcılık tahminine oranlayarak beceri skorunu bulmak.",
+    "ayrinti": "Referans tahmin olarak kalıcılık (gözlemin 1, 3 ve 5 gün önceki aynı saatteki değeri) tanımlanır. Her model için MSE hesaplanır ve 1 - MSE_model / MSE_kalicilik formülüyle beceri skoru çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "df_merged['pers_day1'] = df_merged.groupby('station')['tmpc'].shift(24) ile kalıcılık tahminini oluşturmak.",
+      "sade": "Yarının havasının bugünküyle aynı olacağını varsayan en basit tahmin yöntemini referans çizgimiz olarak tanımlarız.",
+      "altAdimlar": [
+       "1. 1 gün için 24 saat, 3 gün için 72 saat önceki gözlemi referans sütununa yazın.",
+       "2. Referans kalıcılık tahmininin ortalama karesel hatasını (MSE) bulun.",
+       "3. Her istasyon için referans hata tablosunu çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     },
+     {
+      "teknik": "skill_score = 1 - (mse_model / mse_persistence) ile modellerin beceri skorlarını hesaplamak.",
+      "sade": "Gelişmiş modellerin basit bir tahminden ne kadar üstün olduğunu net bir yüzde puanıyla ortaya koyarız.",
+      "altAdimlar": [
+       "1. IFS, GFS ve AIFS için 1, 3 ve 5 günlük MSE skorlarını çıkarın.",
+       "2. Kalıcılık MSE değerine oranlayarak beceri skorlarını türetin.",
+       "3. Pozitif çıkan değerleri modellerin gerçek katma değeri olarak kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Kıyaslama tablosunu ve Colab defterini yayımlamak",
+    "oz": "Sonuçları istasyon bazlı karne tablosu ve grafiklerle paylaşmak.",
+    "ayrinti": "İstasyon, model ve gün bazındaki RMSE, MAE ve beceri skorları özet tabloda toplanır. Güne göre RMSE artışını gösteren grafikler üretilerek analiz Colab defteriyle açık GitHub deposuna yüklenir.",
+    "nasil": [
+     {
+      "teknik": "summary_table = df_merged.groupby(['station', 'model', 'lead_day']).agg({'rmse': calc_rmse, 'ss': calc_ss}) ile özet tablo çıkarmak.",
+      "sade": "Hangi havalimanında hangi modelin daha az hata yaptığını gösteren net karne tablosunu hazırlarız.",
+      "altAdimlar": [
+       "1. Üç havalimanı ve üç model için ortalama hata değerlerini gruplayın.",
+       "2. 1, 3 ve 5 günlük öngörü ufuklarındaki değişimleri sıralayın.",
+       "3. Tabloyu Markdown formatında rapor dosyasına dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     },
+     {
+      "teknik": "plot_forecast_lead_rmse(summary_table, save_path='docs/lead_rmse.png') ile öngörü ufkuna göre hata grafiğini çizmek.",
+      "sade": "Geleceğe gittikçe yapay zeka ile fizik tabanlı modellerin hatalarının nasıl açıldığını görsel bir grafikte sunarız.",
+      "altAdimlar": [
+       "1. Yatay eksende öngörü günü (1, 3, 5), dikey eksende RMSE olacak şekilde çizgileri çizin.",
+       "2. AIFS ve IFS çizgilerini farklı renklerle belirginleştirin.",
+       "3. Defteri ve grafikleri GitHub deposuna ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 494",
+       "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 494",
+      "madde": "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "İstanbul havalimanlarında fiziksel modeller ile yapay zekanın 1, 3 ve 5 günlük beceri skorlarını karşılaştıran açık Colab defteri.",
+  "senden": "Open-Meteo ve IEM METAR veri çekme betiklerini yazmak, pandas ile zaman serisi eşlemesi ve Colab grafiklerini kodlamak.",
+  "bizden": "MTO 494 istasyon doğrulama metodolojisini kurgulamak, kalıcılık referansını ve beceri skorlarını yorumlamak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul havalimanlarında AIFS, IFS ve GFS modellerinin 1, 3 ve 5 günlük tahmin hataları",
+   "aciklama": "LTFM, LTFJ ve LTBA istasyonlarında üç modelin METAR gözlemlerine göre günlük RMSE karşılaştırması"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/istanbul-airports-benchmark",
+   "aciklama": "AURA İstanbul havalimanları tahmin doğrulama paneli ve hata tablosu"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Tahmin doğruluğu ve kalıcılık referansı karşılaştırma şeması"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Rasp, S. vd. (2024) WeatherBench 2: A Benchmark for Next-Generation Global Weather Models, JAMES, 16, e2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "Murphy, A. H. (1993) What Is a Good Forecast? Weather and Forecasting, 8, 281–293",
+   "url": "https://doi.org/10.1175/1520-0434(1993)008%3C0281:WIAGFA%3E2.0.CO;2"
+  },
+  {
+   "ad": "Wilks, D. S. (2019) Statistical Methods in the Atmospheric Sciences, 4. baskı, Elsevier",
+   "url": "https://doi.org/10.1016/C2017-0-03921-6"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO494-01.json",
+  "tarih": "2026-10-17 02:30",
+  "geminiSha1": "176995103823"
+ }
+}

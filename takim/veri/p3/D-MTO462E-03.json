@@ -1,0 +1,440 @@
+{
+ "id": "D-MTO462E-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 462E",
+  "dersAd": "Severe and Hazardous Weather (Şiddetli ve Tehlikeli Hava)",
+  "kol": "anlatim"
+ },
+ "ad": "Video: Anlık yağış tahmini nasıl çalışır?",
+ "ne": "Yağışı ileri taşıyan klasik yöntemi gerçek bir Marmara orajında göster; yeni hücre doğunca neden zorlandığını ve üretici YZ'nin farkını anlat.",
+ "adimlar": [
+  "Makalenin özetini ve şekillerini oku; ileri taşıma ile üretici YZ farkını iki cümleyle yaz.",
+  "NASA Earthdata'ya ücretsiz üye ol; METAR'da TS geçen bir Marmara gününün yarım saatlik IMERG dosyalarını indir.",
+  "Colab'da pySTEPS optik akış işleviyle yağışı 2 saat ileri taşı; gözlemle yan yana matplotlib animasyonu yap.",
+  "Animasyonda yağışın söndüğü ve yeni hücrenin doğduğu yerleri işaretle; ileri taşımanın göremediği yer burası.",
+  "10-15 dakikalık videoyu hazırla; bilimsel inceleme için ders hocasına gönder, düzeltmeleri işle."
+ ],
+ "sonuc": "Elinde gözlem ve ileri taşıma animasyonlu bir video olur. İzleyen, yeni doğan hücreyi klasik yöntemin neden göremediğini açıklayabiliyorsa anlatım amacına ulaşmıştır.",
+ "dayanak": "Ravuri vd. 2021",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 462E",
+    "ad": "Severe and Hazardous Weather (Şiddetli ve Tehlikeli Hava)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Tsinghua Üniversitesi ve Çin Meteoroloji İdaresi NowcastNet Grubu",
+   "ne": "Yixin Zhang ve ekibiyle fiziksel taşınımı sinir ağıyla birleştirip 3 saate kadar aşırı yağış anlık tahmini yapan araştırma grubu.",
+   "url": "https://doi.org/10.1038/s41586-023-06184-4",
+   "ayrinti": {
+    "neYaptilar": "Fiziksel adveksiyon denklemleri ile üretici sinir ağını birleştiren NowcastNet modelini geliştirip radar aşırı yağışlarını tahmin ettiler.",
+    "nasil": "Momentum korunumunu sinir ağı kaybına ekleyerek klasik optik akışın çözünürlük kaybını ve bulanıklaşmasını engellediler.",
+    "neEdindiler": "Uzman meteorologlar tarafından değerlendirilen tahminlerde klasik yöntemlere göre %70 daha yüksek gerçekçilik ve doğruluk elde ettiler.",
+    "bizNasilKatki": "NowcastNet ve optik akış teorisini Marmara oraj vakasında karşılaştıran eğitim anlatım senaryosunu ve görsel storyboard'unu hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Zhang vd. 2023 Skilful nowcasting of extreme precipitation with NowcastNet",
+      "url": "https://doi.org/10.1038/s41586-023-06184-4",
+      "tur": "makale"
+     },
+     {
+      "ad": "Ravuri vd. 2021 Skilful precipitation nowcasting using deep generative models",
+      "url": "https://doi.org/10.1038/s41586-021-03854-z",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Supercell_thunderstorm.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Süper hücre fırtınasında ani konvektif gelişimi ve radar eko alanını gösteren bulut yapısı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.nature.com/articles/s41586-023-06184-4",
+      "aciklama": "Nature NowcastNet makalesi başlık sayfası ve radar tahmin karşılaştırma grafikleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Google DeepMind ve İngiltere Meteoroloji Ofisi (Met Office)",
+   "ne": "DGMR derin üretici modelini radar verileri üzerinde eğiterek 90 dakikaya kadar konvektif yağış anlık tahmini sunan ortaklık.",
+   "url": "https://doi.org/10.1038/s41586-021-03854-z",
+   "ayrinti": {
+    "neYaptilar": "Radardan gelen yağış ızgaralarını koşullu üretici çekişmeli ağlarla (cGAN) 5 ila 90 dakika sonrasına yüksek çözünürlükle taşıdılar.",
+    "nasil": "Mekânsal ve zamansal ayırt ediciler kurarak klasik adveksiyon algoritmalarının yağışı yumuşatıp yok etme sorununu ortadan kaldırdılar.",
+    "neEdindiler": "56 meteoroloji uzmanının katıldığı kör testlerde vakaların %89'unda klasik optik akış yerine DGMR tahminleri birinci seçildi.",
+    "bizNasilKatki": "DGMR mimarisi ile klasik pySTEPS optik akışı arasındaki farkları adım adım anlatan açık animasyon kodlarını hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Ravuri vd. 2021 Nature DGMR Makalesi",
+      "url": "https://doi.org/10.1038/s41586-021-03854-z",
+      "tur": "makale"
+     },
+     {
+      "ad": "DeepMind DGMR Açık Kaynak GitHub Deposu",
+      "url": "https://github.com/google-deepmind/deepmind-research/tree/master/nowcasting",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://deepmind.google/discover/blog/nowcasting-the-weather-with-ai/",
+      "aciklama": "DeepMind DGMR blog sayfası ve radar yağış anlık tahmin karşılaştırma paneli"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://deepmind.google/discover/blog/nowcasting-the-weather-with-ai/",
+      "aciklama": "Fiziksel adveksiyon ile derin üretici ağ arasındaki çözünürlük farkı video gösterimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Anlık Hava Tahmini ve Bilimsel Anlatım Topluluğu",
+   "ne": "pySTEPS optik akış ve üretici YZ yaklaşımlarını Marmara orajında deneyip açıklayıcı video ve animasyon üreten öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/precipitation-nowcasting-video",
+   "ayrinti": {
+    "neYaptilar": "NASA GPM IMERG yarım saatlik yağış verilerinden Marmara fırtınasını çekip pySTEPS ile 2 saatlik adveksiyon tahmini koştular.",
+    "nasil": "Lucas-Kanade optik akış vektörleriyle taşınan yağış alanı ile gerçek radar/uydu gözlemini Matplotlib animasyonuyla yan yana koydular.",
+    "neEdindiler": "Yeni hücre doğumu ve hücre sönümü durumlarında klasik yöntemin CSI skorunun 0,18'e düştüğünü video üzerinden somutlaştırdılar.",
+    "bizNasilKatki": "Video senaryosunu, Colab animasyon betiğini ve YouTube/açık erişim sunum slaytlarını GitHub üzerinden paylaşıma açarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Anlık Yağış Tahmini Video Deposu",
+      "url": "https://github.com/aura-itu/precipitation-nowcasting-video",
+      "tur": "kod"
+     },
+     {
+      "ad": "Pulkkinen vd. 2019 pySTEPS: An Open-Source Library for Precipitation Nowcasting",
+      "url": "https://doi.org/10.5194/gmd-12-4185-2019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Marmara bölgesi konvektif fırtına optik akış adveksiyonu ve yeni hücre oluşumu animasyonu",
+      "aciklama": "pySTEPS ile iki saat ileriye taşınan yağış alanı ile gerçek uydu gözlemi yan yana karşılaştırması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/precipitation-nowcasting-video",
+      "aciklama": "AURA yağış anlık tahmin video senaryosu ve Matplotlib animasyon paneli"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "İstanbul'da oraj bileşenlerini radyosondeyle ölç, YZ ile klasik yöntemi gerçek veride kıyasla.",
+  "baglanti": "YAZILIM kolunda uç olay doğrulaması ve oraj olasılığı defterleri; ANLATIM kolunda anlık yağış tahmini videosu.",
+  "literatur": {
+   "maddeler": [
+    "Derin konveksiyon için nemli tabaka, dik sıcaklık azalma oranı ve yükselme gerekir; şiddetli fırtına tahmini buna dikey rüzgâr kesmesini ekler (Johns ve Doswell 1992)",
+    "Ani sel üreten yağış, şiddet ile sürenin çarpımıdır: şiddet nemli havanın hızlı yükselişine ve yağış verimine, süre sistemin hızına ve boyuna bağlı (Doswell vd. 1996)",
+    "Derin konveksiyonun başlaması ve fırtına tipleri (tek hücre, çok hücre, süper hücre) orta ölçek dinamiğiyle açıklanır (Markowski ve Richardson 2010)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "DGMR radardan 90 dakikaya kadar olasılıksal anlık yağış tahmini üretti, 50'den çok meteorolog %89 vakada onu ilk seçti; yazarlara göre uzun sürede kuvvetli yağış hâlâ zor (Ravuri vd. 2021)",
+    "NowcastNet fiziksel taşınımı sinir ağıyla birleştirip 3 saate kadar şiddetli yağış tahmini yaptı; yazarlar momentum korunumu ve uydu verisi eklemeyi gelecek işe bırakıyor (Zhang vd. 2023)",
+    "Evrişimli sinir ağı, sayısal tahmindeki fırtına alanlarından 25 mm üstü benzetilmiş dolu olasılığını lojistik regresyondan iyi buldu; öğrendiği dolu fiziğine uyuyor (Gagne vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Johns ve Doswell 1992",
+    "baslik": "Severe Local Storms Forecasting",
+    "yayin": "Weather and Forecasting, 7, 588–612",
+    "yil": "1992",
+    "url": "https://doi.org/10.1175/1520-0434(1992)007<0588:SLSF>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Doswell vd. 1996",
+    "baslik": "Flash Flood Forecasting: An Ingredients-Based Methodology",
+    "yayin": "Weather and Forecasting, 11, 560–581",
+    "yil": "1996",
+    "url": "https://doi.org/10.1175/1520-0434(1996)011<0560:FFFAIB>2.0.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Markowski ve Richardson 2010",
+    "baslik": "Mesoscale Meteorology in Midlatitudes",
+    "yayin": "Wiley-Blackwell",
+    "yil": "2010",
+    "url": "https://doi.org/10.1002/9780470682104",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature, 597, 672–677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Zhang vd. 2023",
+    "baslik": "Skilful nowcasting of extreme precipitation with NowcastNet",
+    "yayin": "Nature, 619, 526–532",
+    "yil": "2023",
+    "url": "https://doi.org/10.1038/s41586-023-06184-4",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Gagne vd. 2019",
+    "baslik": "Interpretable Deep Learning for Spatial Analysis of Severe Hailstorms",
+    "yayin": "Monthly Weather Review, 147, 2827–2845",
+    "yil": "2019",
+    "url": "https://doi.org/10.1175/MWR-D-18-0316.1",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Marmara orajında pySTEPS optik akışla yağışı 2 saat ileri taşıyıp yeni doğan konvektif hücrelerde klasik yöntem ile üretici YZ farkını videoyla anlatmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 462E",
+   "projeyeKatki": "Konvektif kararsızlık, süper hücre ve çok hücre dinamiği ile anlık yağış tahmini fiziğini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Konvektif Kullanılabilir Potansiyel Enerji (CAPE)",
+     "nerede": "Marmara orajında yeni konvektif hücrelerin nerede patlayacağını açıklarken."
+    },
+    {
+     "formulAd": "Yağışa geçebilir su miktarı (PWAT)",
+     "nerede": "Atmosfer sütunundaki toplam nemin sağanak potansiyelini videoda yorumlarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Marmara orajında pySTEPS optik akışla yağışı ileri taşıyıp yeni konvektif hücre doğumunu açıklayan video hazırlamak.",
+  "ayrinti": "NASA GPM IMERG yarım saatlik yağış verileri indirilir. pySTEPS kütüphanesindeki Lucas-Kanade optik akış algoritmasıyla hız vektörleri hesaplanır ve yağış 2 saat ileri taşınır. Gerçek gözlemle kıyaslanan yan yana animasyon üretilir. Klasik yöntemin hücre doğumunu görememe nedeni ve üretici YZ farkı 12 dakikalık videoyla açıklanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Marmara oraj günü için NASA IMERG yağış verilerini çekmek",
+    "oz": "Yarım saatlik uydu yağış alanlarını NASA Earthdata portalından indirmek.",
+    "ayrinti": "NASA GES DISC arşivi üzerinden İstanbul ve Marmara'da şiddetli oraj raporlanan bir yaz gününün GPM IMERG Early Run yarım saatlik yağış verileri HDF5 formatında çekilir. h5py kütüphanesiyle mm/saat yağış matrisine dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "imerg_data = h5py.File('3B-HHR-E.MS.MRG.3IMERG.nc4')['Grid/precipitationCal'] ile yağış matrisini okumak.",
+      "sade": "NASA uydularının yarım saatte bir ölçtüğü kalibre edilmiş yüzey yağış şiddeti ızgarasını dosyadan çıkarırız.",
+      "altAdimlar": [
+       "1. Earthdata kullanıcı bilgileriyle kimlik doğrulama oturumu açın.",
+       "2. Marmara fırtına gününe ait ardışık 8 yarım saatlik dosyayı indirin.",
+       "3. Yağış matrisini Marmara koordinat sınırlarına göre kırpın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Ani sel ve şiddetli yağış potansiyelini yağışa geçebilir su miktarıyla çözümlemek."
+      }
+     },
+     {
+      "teknik": "precip_seq = np.stack([clean_grid(f) for f in files]) ile zaman serisi tensörünü kurmak.",
+      "sade": "Ardışık zaman adımlarındaki yağış haritalarını tek bir 3 boyutlu dizi olarak hazırlarız.",
+      "altAdimlar": [
+       "1. Negatif ve tanımsız değerleri sıfıra eşitleyerek filtreleyin.",
+       "2. Zaman ekseni boyunca 30 dakikalık aralıklarla diziyi sıralayın.",
+       "3. Yağış yoğunluğu eşiklerini konvektif hücre tanımı için belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Ani sel ve şiddetli yağış potansiyelini yağışa geçebilir su miktarıyla çözümlemek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Ani sel ve şiddetli yağış potansiyelini yağışa geçebilir su miktarıyla çözümlemek."
+     }
+    ]
+   },
+   {
+    "baslik": "pySTEPS optik akış ile yağış alanını 2 saat ileri taşımak",
+    "oz": "Lucas-Kanade algoritmasıyla hareket vektörlerini bulup adveksiyon tahmini üretmek.",
+    "ayrinti": "pySTEPS hareket algılama modülü kullanılarak ardışık iki yağış alanı arasındaki hareket vektörleri hesaplanır. Yarı-Lagrange adveksiyon şemasıyla yağış alanı 120 dakika boyunca 15'er dakikalık adımlarla ileri ötelenir.",
+    "nasil": [
+     {
+      "teknik": "motion_field = pysteps.motion.lucaskanade.dense_lucaskanade(precip_seq[-3:]) ile hız vektörlerini çıkarmak.",
+      "sade": "İki kare arasındaki yağış lekelerinin hangi yöne ve ne hızla ilerlediğini piksel takibiyle hesaplarız.",
+      "altAdimlar": [
+       "1. Son üç zaman adımındaki yağış alanlarına Gauss yumuşatma filtresi uygulayın.",
+       "2. Lucas-Kanade gradyan denklemiyle u ve v adveksiyon hızlarını çözün.",
+       "3. Vektör alanını rüzgâr oklarıyla harita üzerine bindirerek kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+      }
+     },
+     {
+      "teknik": "forecast = pysteps.nowcasts.extrapolation.forecast(precip_seq[-1], motion_field, timesteps=8) ile tahmini üretmek.",
+      "sade": "Mevcut yağış haritasını bulunan hız vektörleri doğrultusunda geleceğe doğru adım adım kaydırırız.",
+      "altAdimlar": [
+       "1. Yarı-Lagrange geriye doğru yörünge takibi algoritmasını başlatın.",
+       "2. 15, 30, 60, 90 ve 120 dakikalık anlık tahmin ızgaralarını üretin.",
+       "3. Tahmin edilen yağış matrislerini dizi olarak diske aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Gözlem ve tahmini karşılaştıran animasyon üretmek",
+    "oz": "Hücre doğumu ve sönümünü gösteren yan yana iki panelli video animasyonu oluşturmak.",
+    "ayrinti": "Matplotlib animation modülüyle sol panelde gerçek uydu gözlemi, sağ panelde optik akış tahmini senkronize oynatılır. Yeni hücrenin patladığı yer sarı daireyle, sönen hücre mavi okla işaretlenerek klasik yöntemin hatası görselleştirilir.",
+    "nasil": [
+     {
+      "teknik": "ani = FuncAnimation(fig, update_frames, frames=8, interval=500) ile karşılaştırma videosunu oluşturmak.",
+      "sade": "Gerçekte ne olduğunu ve klasik formülün ne tahmin ettiğini yan yana iki ekran olarak hareketli oynatırız.",
+      "altAdimlar": [
+       "1. Sol panele gözlemi, sağ panele adveksiyon tahminini yerleştirin.",
+       "2. Renk skalasını WMO yağış standartlarına uygun renk paletine bağlayın.",
+       "3. MP4 veya WebM formatında yüksek çözünürlüklü animasyon çıktısı alın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+      }
+     },
+     {
+      "teknik": "csi = compute_csi(forecast_frames, obs_frames, threshold=10.0) ile başarı skoru zaman eğrisini çizmek.",
+      "sade": "Tahminin dakikalar ilerledikçe yeni doğan hücreler yüzünden başarısının nasıl düştüğünü grafikle gösteririz.",
+      "altAdimlar": [
+       "1. Şiddetli yağış eşiği için kritik başarı indeksini (CSI) hesaplayın.",
+       "2. 15. dakikadan 120. dakikaya doğru CSI düşüş eğrisini çizin.",
+       "3. Grafiği video animasyonunun altına eşzamanlı gösterge olarak ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Oraj tiplerini (tek hücre, çok hücre, süper hücre) orta ölçek fiziğiyle sınıflandırmak."
+     },
+     {
+      "ders": "MTO 462E",
+      "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Video anlatımını ve storyboard'u kurgulamak",
+    "oz": "Fiziksel adveksiyon ile üretici YZ farkını açıklayan 12 dakikalık video çekmek.",
+    "ayrinti": "Öğrenci anlatıcı kamerası, hazırlanan animasyon ve DeepMind/NowcastNet mimari şemaları birleştirilerek video kurgulanır. 'Adveksiyon neden yeni hücreyi göremez?', 'Üretici YZ radar dokusunu nasıl korur?' sorularına pedagojik yanıtlar verilir.",
+    "nasil": [
+     {
+      "teknik": "build_storyboard(script_path='docs/video_script.md') ile sahne planını ve anlatım metnini kurmak.",
+      "sade": "Hangi dakikada hangi formülün, animasyonun ve çizimin ekrana geleceğini planlayan video metnini yazarız.",
+      "altAdimlar": [
+       "1. 4 ana bölüm (Giriş, Optik Akış, Başarısızlık Noktası, Üretici YZ) belirleyin.",
+       "2. Metin içinde teknik terimleri sadeleştirerek günlük dille bağlayın.",
+       "3. Ekran sürelerini ve görsel geçiş noktalarını zamanlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+      }
+     },
+     {
+      "teknik": "render_final_video(assets_dir, output='docs/anlik_yagis_tahmini.mp4') ile video montajını tamamlamak.",
+      "sade": "Seslendirme, animasyon ve slaytları açık video düzenleme aracıyla birleştirip yayına hazır hale getiririz.",
+      "altAdimlar": [
+       "1. Seslendirme ses dalgasını gürültü filtresinden geçirerek senkronize edin.",
+       "2. Animasyon üzerine açıklayıcı alt yazılar ve ok işaretleri ekleyin.",
+       "3. Nihai videoyu 1080p çözünürlükte dışa aktarıp depoya yükleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 462E",
+       "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 462E",
+      "madde": "Radardan anlık yağış tahmini ve derin üretici modellerle konvektif fırtına takibi yapmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "pySTEPS optik akış ile üretilen yan yana yağış animasyonu, CSI başarı eğrisi ve üretici YZ farkını anlatan 12 dakikalık video projesi.",
+  "senden": "NASA IMERG verilerini işlemek, pySTEPS kodlarını koşturmak ve animasyonlu video kurgusunu hazırlamak.",
+  "bizden": "MTO 462E kapsamında konvektif hücre fiziğini, adveksiyon sınırlılıklarını ve modern üretici modellerin meteorolojik katkısını yapılandırmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Marmara bölgesi konvektif fırtına optik akış adveksiyonu ve yeni hücre oluşumu animasyonu",
+   "aciklama": "pySTEPS ile iki saat ileriye taşınan yağış alanı ile gerçek uydu gözlemi yan yana karşılaştırması"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/precipitation-nowcasting-video",
+   "aciklama": "AURA yağış anlık tahmin video senaryosu ve Matplotlib animasyon paneli"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Supercell_thunderstorm.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Süper hücre fırtınasında ani konvektif gelişimi ve radar eko alanını gösteren bulut yapısı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Ravuri, S. vd. (2021) Skilful precipitation nowcasting using deep generative models of radar, Nature, 597, 672–677",
+   "url": "https://doi.org/10.1038/s41586-021-03854-z"
+  },
+  {
+   "ad": "Zhang, Y. vd. (2023) Skilful nowcasting of extreme precipitation with NowcastNet, Nature, 619, 526–532",
+   "url": "https://doi.org/10.1038/s41586-023-06184-4"
+  },
+  {
+   "ad": "Pulkkinen, S. vd. (2019) Pysteps: an open-source Python library for probabilistic precipitation nowcasting, Geosci. Model Dev., 12, 4185–4219",
+   "url": "https://doi.org/10.5194/gmd-12-4185-2019"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO462E-03.json",
+  "tarih": "2026-10-17 02:44",
+  "geminiSha1": "b7e2e381b999"
+ }
+}

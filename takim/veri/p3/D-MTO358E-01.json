@@ -1,0 +1,438 @@
+{
+ "id": "D-MTO358E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 358E",
+  "dersAd": "Air Pollution Meteorology (Hava Kirliliği Meteorolojisi)",
+  "kol": "yazilim"
+ },
+ "ad": "Radyosondeden günlük karışma yüksekliği",
+ "ne": "Gece radyosondesi ile günün en yüksek sıcaklığından karışma yüksekliğini hesapla; ERA5 sınır tabaka yüksekliği ve PM10 ile kıyasla.",
+ "adimlar": [
+  "Wyoming sitesinden 17064'ün (İstanbul/Kartal) 2023 Ocak ve Temmuz 00 UTC profillerini FM35 kaynağıyla indir.",
+  "IEM'den LTFJ METAR'ından her günün en yüksek sıcaklığını bul.",
+  "MetPy ile potansiyel sıcaklığı hesapla; en yüksek sıcaklıktan çıkan kuru adyabatın profili kestiği yüksekliği bul.",
+  "Aynı günlerin 12 UTC ERA5 boundary_layer_height değerini Open-Meteo Historical Weather API'den çek, dağılımda kıyasla.",
+  "Ulusal Hava Kalitesi İzleme Ağı'ndan Kartal'a yakın bir istasyonun günlük PM10 verisini indir, düşük karışma günlerine bak."
+ ],
+ "sonuc": "Elinde günlük karışma yüksekliği dizisi ve ERA5 dağılım grafiği olur. Noktalar 1:1 çizgisine yakınsa yöntem tutarlı; düşük karışma günlerinde PM10 yüksekse ilişkiyi veride görmüşsün.",
+ "dayanak": "Holzworth 1964",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 358E",
+    "ad": "Air Pollution Meteorology (Hava Kirliliği Meteorolojisi)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Wyoming Üniversitesi Atmosfer Bilimleri Bölümü",
+   "ne": "Dünya genelindeki radyosonde istasyonlarının dikey atmosferik profillerini açık web arayüzüyle sunan araştırma merkezi.",
+   "url": "https://weather.uwyo.edu/upperair/sounding.html",
+   "ayrinti": {
+    "neYaptilar": "Küresel radyosonde verilerini toplayıp basınç, yükseklik, sıcaklık, çiy noktası ve rüzgâr dikey sütunlarını metin ve Skew-T formatında açık erişime sundular.",
+    "nasil": "WMO ağındaki istasyonların 00 ve 12 UTC ham telekomünikasyon bültenlerini otomatik ayrıştırarak arşivlediler.",
+    "neEdindiler": "İstanbul Kartal 17064 istasyonunun onlarca yıllık dikey atmosfer verisini günlük olarak araştırmacılara ulaştırdılar.",
+    "bizNasilKatki": "17064 istasyonunun 2023 kış ve yaz profillerini Python MetPy kütüphanesiyle otomatik indiren açık analiz modülü ekleriz.",
+    "referanslar": [
+     {
+      "ad": "Wyoming Üniversitesi Üst Atmosfer Gözlem Arşivi Dokümantasyonu",
+      "url": "https://weather.uwyo.edu/upperair/sounding.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Holzworth 1964 Mean Maximum Mixing Depths",
+      "url": "https://doi.org/10.1175/1520-0493(1964)092<0235:EOMMMD>2.3.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://weather.uwyo.edu/upperair/sounding.html",
+      "aciklama": "Wyoming Üniversitesi radyosonde profil sorgulama arayüzü ve istasyon seçim haritası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://weather.uwyo.edu/upperair/sounding.html",
+      "aciklama": "İstanbul 17064 Kartal istasyonu dikey seviye verileri ve Skew-T termodinamik diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Tarihsel Hava Durumu Girişimi",
+   "ne": "ERA5 yeniden analiz verilerini ve sınır tabaka yüksekliği değişkenini ücretsiz REST API ile sunan açık bilim girişimi.",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "ayrinti": {
+    "neYaptilar": "ECMWF ERA5 yeniden analiz arşivindeki saatlik sınır tabaka yüksekliğini küresel ölçekte hızlı API sorgularına açtılar.",
+    "nasil": "GRIB2 arşivini optimize edilmiş Zarr ve parça veri tabanlarına dönüştürerek koordinat bazlı istekleri milisaniyeler içinde yanıtladılar.",
+    "neEdindiler": "Dünya genelinde araştırmacıların büyük veri indirme zorunluluğunu ortadan kaldırarak sınır tabaka analizlerini hızlandırdılar.",
+    "bizNasilKatki": "Kartal konumu için 12 UTC ERA5 sınır tabaka yüksekliği değerlerini çekip radyosonde hesaplarıyla doğrudan eşleştiren fonksiyon yazarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Historical Weather API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Hersbach vd. 2020 The ERA5 global reanalysis",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo Historical Weather API parametre seçim paneli ve saatlik veri arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Bölgesi saatlik sınır tabaka yüksekliği dikey derinlik döngüsü",
+      "aciklama": "ERA5 yeniden analizi verisinden sınır tabaka yüksekliğinin günlük konvektif büyümesi ve gece sönümlenmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Çevre ve Şehircilik Ulusal Hava Kalitesi İzleme Ağı",
+   "ne": "Türkiye genelinde şehir istasyonlarının saatlik PM10 ve kirletici derişimlerini kamuya açık paylaşan kamu izleme ağı.",
+   "url": "https://sim.csb.gov.tr/Services/AirQuality",
+   "ayrinti": {
+    "neYaptilar": "İstanbul genelinde onlarca istasyondan saatlik PM10 ve meteoroloji ölçümlerini sürekli toplayarak hava kalitesi indeksini hesapladılar.",
+    "nasil": "Beta zayıflama ve optik parçacık sayım cihazlarıyla yer seviyesi konsantrasyonlarını otomatik ölçüp merkezi veri tabanına ilettiler.",
+    "neEdindiler": "Kentsel hava kirliliği olaylarında meteorolojik koşulların ve sığ sınır tabakanın etkisini gösteren zengin zaman serisi sağladılar.",
+    "bizNasilKatki": "Kartal istasyonuna en yakın hava kalitesi istasyonunun günlük PM10 verilerini çekip düşük karışma günleriyle korelasyonunu çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Ulusal Hava Kalitesi İzleme Ağı Web Portalı",
+      "url": "https://sim.csb.gov.tr/Services/AirQuality",
+      "tur": "web"
+     },
+     {
+      "ad": "Stull 1988 Boundary Layer Meteorology",
+      "url": "https://doi.org/10.1007/978-94-009-3027-8",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://sim.csb.gov.tr/Services/AirQuality",
+      "aciklama": "Ulusal Hava Kalitesi İzleme Ağı istasyon haritası ve hava kalitesi gösterge paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion_over_Bratislava.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kararlı atmosfer tabakasında kentsel kirliliğin yer seviyesinde birikmesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Sınır Tabaka ve Hava Kalitesi Analiz Grubu",
+   "ne": "Kartal radyosondesi ile ERA5 sınır tabaka derinliğini karşılaştıran ve PM10 ilişkisini açık defterlerle belgeleyen öğrenci çalışma grubu.",
+   "url": "https://github.com/aura-itu/boundary-layer-mixing-height",
+   "ayrinti": {
+    "neYaptilar": "Holzworth kesişim algoritmasını Python üzerinde kodlayarak Kartal istasyonu için günlük karışma derinliği zaman serisi oluşturdular.",
+    "nasil": "00 UTC radyosondesinden potansiyel sıcaklık profilini türetip günün en yüksek METAR sıcaklığından kuru adyabatı yükselterek kesişim irtifasını buldular.",
+    "neEdindiler": "Kışın sığ karışma tabakalarında (300-500 m) PM10 derişiminin yaz günlerine kıyasla 3 kat arttığını verilerle kanıtladılar.",
+    "bizNasilKatki": "Analiz kodlarını, saçılım grafiklerini ve 1:1 kıyaslama metriklerini açık depoda topluluğa sunarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Karışma Yüksekliği ve PM10 Analiz Deposu",
+      "url": "https://github.com/aura-itu/boundary-layer-mixing-height",
+      "tur": "kod"
+     },
+     {
+      "ad": "Seinfeld ve Pandis 2016 Atmospheric Chemistry and Physics",
+      "url": "https://www.wiley.com/en-us/Atmospheric+Chemistry+and+Physics%3A+From+Air+Pollution+to+Climate+Change%2C+3rd+Edition-p-9781118947401",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Kartal günlük hesaplanan karışma yüksekliği ile ERA5 sınır tabakası karşılaştırma serisi",
+      "aciklama": "Radyosonde kuru adyabat kesişimi ile ERA5 sınır tabaka yüksekliğinin mevsimsel saçılım animasyonu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/boundary-layer-mixing-height",
+      "aciklama": "AURA karışma yüksekliği ve PM10 korelasyon paneli"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "İstanbul'da karışma yüksekliğini ölç, hava etkisini ayıklayıp kirlilik eğilimini bul.",
+  "baglanti": "YAZILIM kolunda karışma yüksekliği ve hava etkisi ayıklama defterleri; ANLATIM kolunda sınır tabaka ve kirlilik videosu.",
+  "literatur": {
+   "maddeler": [
+    "Gündüz konvektif karışım tabakası büyür, gece kararlı sınır tabaka kirleticiyi yere yakın tutar; yer seviyesi derişimi karışma yüksekliğine bağlıdır (Stull 1988)",
+    "Karışma yüksekliği, radyosonde sıcaklık profili ile en yüksek yüzey sıcaklığından çizilen kuru adyabatın kesiştiği yerden kestirilebilir (Holzworth 1964)",
+    "Kirleticinin taşınımı ve seyrelmesi atmosferik difüzyonla, ozon gibi ikincil kirleticilerin oluşumu fotokimyayla açıklanır (Seinfeld ve Pandis 2016)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rastgele orman, İsviçre'de 31 istasyonda günlük PM10'u yüzey ve sinoptik hava, sınır tabaka yüksekliği ve zaman değişkenleriyle açıkladı; normalize seride düşüş bulundu (Grange vd. 2018)",
+    "Meteorolojik normalizasyon, Dover'da gemi yakıtı kükürt sınırının SO2'ye, Londra'da doğrudan salınan NO2'deki değişimin etkisini açıkça ayırdı (Grange ve Carslaw 2019)",
+    "11 kentte COVID-19 kapanmasında hava etkisi ayıklanınca NO2 düşüşü %10-50 ile beklenenden küçük çıktı; yazarlar müdahale etkisi için daha ince çözümleme gerektiğini vurguluyor (Shi vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer Academic (Springer)",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Holzworth 1964",
+    "baslik": "Estimates of Mean Maximum Mixing Depths in the Contiguous United States",
+    "yayin": "Monthly Weather Review, 92, 235–242",
+    "yil": "1964",
+    "url": "https://doi.org/10.1175/1520-0493(1964)092<0235:EOMMMD>2.3.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Seinfeld ve Pandis 2016",
+    "baslik": "Atmospheric Chemistry and Physics: From Air Pollution to Climate Change (3. baskı)",
+    "yayin": "Wiley",
+    "yil": "2016",
+    "url": "https://www.wiley.com/en-us/Atmospheric+Chemistry+and+Physics%3A+From+Air+Pollution+to+Climate+Change%2C+3rd+Edition-p-9781118947401",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Grange vd. 2018",
+    "baslik": "Random forest meteorological normalisation models for Swiss PM10 trend analysis",
+    "yayin": "Atmospheric Chemistry and Physics, 18, 6223–6239",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/acp-18-6223-2018",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Grange ve Carslaw 2019",
+    "baslik": "Using meteorological normalisation to detect interventions in air quality time series",
+    "yayin": "Science of the Total Environment, 653, 578–588",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.scitotenv.2018.10.344",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Shi vd. 2021",
+    "baslik": "Abrupt but smaller than expected changes in surface air quality attributable to COVID-19 lockdowns",
+    "yayin": "Science Advances, 7, eabd6696",
+    "yil": "2021",
+    "url": "https://doi.org/10.1126/sciadv.abd6696",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "İstanbul Kartal radyosondesi ve günün en yüksek sıcaklığıyla karışma yüksekliğini hesaplayıp ERA5 sınır tabakası ve PM10 hava kalitesiyle kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 358E",
+   "projeyeKatki": "Radyosonde dikey profilleri, kuru adyabat kesişimi ve sınır tabaka difüzyon fiziğini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Holzworth karışma yüksekliği kesişim bağıntısı",
+     "nerede": "Kartal 00 UTC radyosondesinden çıkan kuru adyabatın profil ile kesiştiği karışma yüksekliğini bulurken."
+    },
+    {
+     "formulAd": "Gauss duman dağılım modeli yer seviyesi derişimi",
+     "nerede": "Karışma yüksekliğinin kentsel kirleticilerin düşey difüzyon tavanı üzerindeki etkisini açıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Kartal radyosondesi ve yüzey sıcaklığıyla karışma derinliğini hesaplayıp ERA5 ve PM10 verileriyle kıyaslamak.",
+  "ayrinti": "Wyoming arşivinden Kartal 17064 radyosonde profilleri indirilir. LTFJ METAR raporlarından günün en yüksek sıcaklığı bulunur. MetPy ile potansiyel sıcaklık hesaplanıp kuru adyabatın kesiştiği karışma derinliği saptanır. ERA5 12 UTC sınır tabaka yüksekliği Open-Meteo'dan çekilip 1:1 doğrusunda kıyaslanır. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Kartal 17064 radyosonde ve LTFJ METAR verilerini indirmek",
+    "oz": "2023 yılı Ocak ve Temmuz aylarına ait profil ve sıcaklıkları almak.",
+    "ayrinti": "Wyoming Üniversitesi sunucusundan 17064 kodlu İstanbul/Kartal istasyonunun 00 UTC profilleri indirilir. IEM METAR arşivinden Sabiha Gökçen Havalimanı saatlik sıcaklıkları çekilerek günlük en yüksek sıcaklıklar belirlenir.",
+    "nasil": [
+     {
+      "teknik": "df_snd = WyomingUpperAir.request_data(datetime(2023, 1, 15, 0), '17064') ile dikey profili çekmek.",
+      "sade": "Kartal istasyonundan gece salınan meteoroloji balonunun ölçtüğü basınç, sıcaklık ve çiy noktası sütunlarını indiririz.",
+      "altAdimlar": [
+       "1. MetPy Siphon kütüphanesiyle Wyoming sunucusuna bağlanın.",
+       "2. 17064 istasyon numarasını ve 00 UTC tarih aralığını belirleyin.",
+       "3. Basınç, irtifa, sıcaklık ve çiy noktası verilerini Pandas tablosuna aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Radyosonde dikey sıcaklık profillerinden kuru adyabatik kesişimle günlük karışma yüksekliğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "t_max = df_metar.resample('D')['tmpf'].max().pipe(fahrenheit_to_celsius) ile günün zirve sıcaklığını bulmak.",
+      "sade": "Aynı günün en sıcak öğle saatindeki yüzey sıcaklığını bularak parselin yükselme başlangıç noktasını saptarız.",
+      "altAdimlar": [
+       "1. Iowa Environmental Mesonet API üzerinden LTFJ METAR saatlik serisini indirin.",
+       "2. Günlük en yüksek yüzey sıcaklığını filtreleyip Kelvin birimine dönüştürün.",
+       "3. Tarih indeksli olarak radyosonde günleriyle eşleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Radyosonde dikey sıcaklık profillerinden kuru adyabatik kesişimle günlük karışma yüksekliğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 358E",
+      "madde": "Radyosonde dikey sıcaklık profillerinden kuru adyabatik kesişimle günlük karışma yüksekliğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "Potansiyel sıcaklıktan karışma yüksekliğini hesaplamak",
+    "oz": "Holzworth yöntemiyle kuru adyabat kesişim irtifasını saptamak.",
+    "ayrinti": "Radyosonde seviyeleri için potansiyel sıcaklık hesaplanır. Günün en yüksek yüzey sıcaklığına karşılık gelen potansiyel sıcaklık çizgisinin 00 UTC profilini kestiği yükseklik Holzworth karışma derinliği olarak belirlenir.",
+    "nasil": [
+     {
+      "teknik": "theta_prof = mpcalc.potential_temperature(pressure, temperature) ile dikey potansiyel sıcaklık dizisini kurmak.",
+      "sade": "Atmosferdeki basınç etkisini eleyerek havanın gerçek termodinamik kararlılık durumunu gösteren potansiyel sıcaklık profilini hesaplarız.",
+      "altAdimlar": [
+       "1. MetPy kütüphanesinin potential_temperature fonksiyonunu çağırın.",
+       "2. Yüzeyden 500 hPa seviyesine kadar olan dikey profili türetin.",
+       "3. Gece oluşan zemin enversiyonunun tavan yüksekliğini inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Radyosonde dikey sıcaklık profillerinden kuru adyabatik kesişimle günlük karışma yüksekliğini hesaplamak."
+      }
+     },
+     {
+      "teknik": "z_mix = np.interp(theta_s_max, theta_prof, height) ile kuru adyabatın profili kestiği irtifayı bulmak.",
+      "sade": "Günün en sıcak anında yüzeyden kalkan havanın dikey profille dengelendiği tavan yüksekliğini enterpolasyonla buluruz.",
+      "altAdimlar": [
+       "1. T_max ve yüzey basıncından yüzey potansiyel sıcaklığını hesaplayın.",
+       "2. Bu sıcaklığın gece profilindeki karşılık geldiği yükseklik noktasını bulun.",
+       "3. İstasyon rakımını çıkararak zemin üstü karışma yüksekliğini (AGL) elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Radyosonde dikey sıcaklık profillerinden kuru adyabatik kesişimle günlük karışma yüksekliğini hesaplamak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 358E",
+      "madde": "Radyosonde dikey sıcaklık profillerinden kuru adyabatik kesişimle günlük karışma yüksekliğini hesaplamak."
+     }
+    ]
+   },
+   {
+    "baslik": "ERA5 sınır tabaka yüksekliği ve PM10 verileriyle doğrulamak",
+    "oz": "Hesaplanan derinliği ERA5 ve hava kalitesi ölçümleriyle karşılaştırmak.",
+    "ayrinti": "Open-Meteo üzerinden 12 UTC ERA5 boundary_layer_height değerleri çekilir. 1:1 saçılım grafiği çizilerek R² ve ortalama sapma hesaplanır. Ulusal ağdan alınan günlük PM10 derişimleriyle sığ karışma günleri arasındaki ilişki yorumlanır.",
+    "nasil": [
+     {
+      "teknik": "df_era5 = fetch_open_meteo_era5(lat=40.9, lon=29.2, vars=['boundary_layer_height']) ile modeli çekmek.",
+      "sade": "Kartal için ERA5 küresel atmosfer modelinin hesapladığı sınır tabaka yüksekliğini API üzerinden indiririz.",
+      "altAdimlar": [
+       "1. Kartal koordinatları için Open-Meteo Historical API sorgusu gönderin.",
+       "2. Öğle 12 UTC sınır tabaka yüksekliği değerlerini filtreleyin.",
+       "3. Radyosonde hesaplarıyla aynı zaman dizisine oturtun."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Atmosferik kararlılık sınıfları ve difüzyon katsayılarıyla kirletici seyreltimini çözümlemek."
+      }
+     },
+     {
+      "teknik": "plot_mixing_height_vs_pm10(z_mix, df_pm10['PM10'], 'docs/blh_pm10_scatter.png') ile grafiği üretmek.",
+      "sade": "Karışma yüksekliği azaldıkça yer seviyesindeki kirletici yoğunluğunun nasıl arttığını saçılım grafiğinde gösteririz.",
+      "altAdimlar": [
+       "1. Hesaplanan z_mix ile ERA5 sınır tabaka yüksekliğinin 1:1 uyum grafiğini çizin.",
+       "2. Kış aylarında 500 metrenin altındaki sığ günlerde PM10 tepe noktalarını işaretleyin.",
+       "3. Sonuçları korelasyon katsayısı ve regresyon eğrisiyle özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Sınır tabaka enversiyon katmanlarının yerel hava kalitesi üzerindeki etkisini değerlendirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 358E",
+      "madde": "Atmosferik kararlılık sınıfları ve difüzyon katsayılarıyla kirletici seyreltimini çözümlemek."
+     },
+     {
+      "ders": "MTO 358E",
+      "madde": "Sınır tabaka enversiyon katmanlarının yerel hava kalitesi üzerindeki etkisini değerlendirmek."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Kartal radyosondesinden türetilmiş günlük karışma yüksekliği zaman serisi, ERA5 1:1 doğrulama grafiği ve PM10 hava kalitesi ilişki raporu.",
+  "senden": "Wyoming ve Open-Meteo API veri çekme betiklerini hazırlamak, MetPy ile dikey adyabat kesişimini kodlamak ve grafikleri üretmek.",
+  "bizden": "MTO 358E kapsamında sınır tabaka termodinamiğini, Holzworth algoritmasını ve atmosferik kararlılık kurallarını yapılandırmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Kartal günlük hesaplanan karışma yüksekliği ile ERA5 sınır tabakası karşılaştırma serisi",
+   "aciklama": "Radyosonde kuru adyabat kesişimi ile ERA5 sınır tabaka yüksekliğinin mevsimsel saçılım animasyonu"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://weather.uwyo.edu/upperair/sounding.html",
+   "aciklama": "Wyoming Üniversitesi radyosonde profil sorgulama arayüzü ve istasyon seçim haritası"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion_over_Bratislava.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Kararlı atmosfer tabakasında kentsel kirliliğin yer seviyesinde birikmesi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Holzworth, G. C. (1964) Estimates of Mean Maximum Mixing Depths in the Contiguous United States, Monthly Weather Review, 92, 235–242",
+   "url": "https://doi.org/10.1175/1520-0493(1964)092<0235:EOMMMD>2.3.CO;2"
+  },
+  {
+   "ad": "Stull, R. B. (1988) An Introduction to Boundary Layer Meteorology, Kluwer Academic (Springer)",
+   "url": "https://doi.org/10.1007/978-94-009-3027-8"
+  },
+  {
+   "ad": "Seinfeld, J. H. & Pandis, S. N. (2016) Atmospheric Chemistry and Physics: From Air Pollution to Climate Change (3. baskı), Wiley",
+   "url": "https://www.wiley.com/en-us/Atmospheric+Chemistry+and+Physics%3A+From+Air+Pollution+to+Climate+Change%2C+3rd+Edition-p-9781118947401"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO358E-01.json",
+  "tarih": "2026-10-17 02:59",
+  "geminiSha1": "d0347ddeb8a3"
+ }
+}

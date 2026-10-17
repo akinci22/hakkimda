@@ -1,0 +1,470 @@
+{
+ "id": "D-MTO102-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 102",
+  "dersAd": "Bilgisayarlı Teknik Resim",
+  "kol": "yazilim"
+ },
+ "ad": "Kodla çizilen yağmur ölçer: OpenSCAD + Arduino",
+ "ne": "Devrilen kova tipi yağmur ölçerin gövdesini OpenSCAD ile kodla tasarla, Arduino ile sayım yap, kova hacmini kalibre et.",
+ "adimlar": [
+  "OpenSCAD'de huni çapı ve kova hacmi değişken olan modeli yaz; 200 cm² toplama alanı hedefle.",
+  "Reed röle + mıknatısla devrilme sayan Arduino kodu yaz; her devrilmenin mm karşılığını hesapla.",
+  "Bilinen hacimde su dökerek 10 tekrarlı kalibrasyon yap; hata payını hesapla.",
+  "CoCoRaHS yöntemiyle elle okunan silindir ölçerle 5 yağış olayı karşılaştır.",
+  "Model dosyasını ve kodu GitHub'da paylaş; teknik resmi ekle."
+ ],
+ "sonuc": "Çalışan yağmur ölçer, kalibrasyon tablosu ve açık tasarım deposu.",
+ "dayanak": "Pastorello vd. 2020",
+ "senden": "Temel elektronik merakı.",
+ "bizden": "Parça listesi, kalibrasyon düzeneği.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 102",
+    "ad": "Bilgisayarlı Teknik Resim"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "OpenSCAD",
+   "ne": "Kodla 3B model oluşturan açık kaynak CAD aracı.",
+   "url": "https://openscad.org/documentation.html",
+   "ayrinti": {
+    "neYaptilar": "Metin tabanlı betik diliyle 3B katı geometri üreten ve tasarım parametrelerini değişkenlerle yöneten CAD ortamını geliştirdiler.",
+    "nasil": "CSG algoritması ve kod tabanlı derleme mimarisiyle parçaların matematiksel doğrulukla üretilmesini sağladılar.",
+    "neEdindiler": "Açık kaynak donanım geliştiricileri için sürüm kontrolü yapılabilen küresel bir programlanabilir tasarım standardı kurdular.",
+    "bizNasilKatki": "Huni çapı ve kova hacmini tek bir konfigürasyon dosyasından güncelleyen parametrik OpenSCAD kütüphanesi yazarız.",
+    "referanslar": [
+     {
+      "ad": "OpenSCAD Resmi Kullanıcı Kılavuzu",
+      "url": "https://openscad.org/documentation.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Pastorello vd. 2020 FLUXNET Veri Mimarisi",
+      "url": "https://doi.org/10.1038/s41597-020-0534-3",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://openscad.org/documentation.html",
+      "aciklama": "OpenSCAD kod editörü ve eşzamanlı 3B geometri derleme ekranı görünümü"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://openscad.org/documentation.html",
+      "aciklama": "OpenSCAD parametrik değişkenler ve CSG birleşim komutları doküman akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Arduino",
+   "ne": "Açık donanım mikrodenetleyici ve sensör ekosistemi.",
+   "url": "https://www.arduino.cc/en/hardware",
+   "ayrinti": {
+    "neYaptilar": "Mühendisler ve öğrenciler için açık kaynaklı mikrodenetleyici kartları ve kolay programlanabilir geliştirme ortamı sundular.",
+    "nasil": "Standart donanım pinleri, C++ kütüphaneleri ve kesme sinyalleriyle sensör darbelerini mikro saniye hassasiyetle saydılar.",
+    "neEdindiler": "Milyonlarca açık bilim projesine ve meteorolojik sensör prototipine güç veren küresel açık donanım standardı oluşturdular.",
+    "bizNasilKatki": "Devrilen kova reed röle darbelerini sıçrama önleyici filtreyle okuyan optimize Arduino kodu hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Arduino Donanım ve Kesme Referansı",
+      "url": "https://www.arduino.cc/en/hardware",
+      "tur": "web"
+     },
+     {
+      "ad": "Barkjohn vd. 2021 Düşük Maliyetli Sensörler",
+      "url": "https://doi.org/10.5194/amt-14-4617-2021",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.arduino.cc/en/hardware",
+      "aciklama": "Arduino açık donanım geliştirme platformu ve kesme girişleri pin şeması ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "İstasyon noktasında yağış şiddeti ve kova devrilme darbeleri eşzamanlı döngüsü",
+      "aciklama": "Radar yağış yansıması ile yerdeki dijital kova devrilmelerinin zaman uyumu simülasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "CoCoRaHS",
+   "ne": "Gönüllülerin standart yağış ölçtüğü Kuzey Amerika ağı.",
+   "url": "https://www.cocorahs.org/Content.aspx?page=aboutus",
+   "ayrinti": {
+    "neYaptilar": "Colorado Eyalet Üniversitesi bünyesinde binlerce gönüllünün standart ölçerlerle yerel yağış haritası çıkarmasını sağladılar.",
+    "nasil": "WMO kriterlerine uyumlu 4 inçlik şeffaf yağmur ölçerler ve günlük açık veri tabanıyla mikroklima yağış değişkenliğini belgelediler.",
+    "neEdindiler": "Ulusal hava servislerinin ve hidrolojik modellerin doğrulama için başvurduğu en yoğun halk bilimi yağış ağını kurdular.",
+    "bizNasilKatki": "Ürettiğimiz dijital ölçerin kalibrasyonunu CoCoRaHS standart tüp ölçümleriyle test edecek protokolü kurarız.",
+    "referanslar": [
+     {
+      "ad": "CoCoRaHS Yağış Ölçüm ve Kalibrasyon Standartları",
+      "url": "https://www.cocorahs.org/Content.aspx?page=aboutus",
+      "tur": "web"
+     },
+     {
+      "ad": "Bauer vd. 2015 Sayısal Tahmin Devrimi",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.cocorahs.org/Content.aspx?page=aboutus",
+      "aciklama": "CoCoRaHS günlük gönüllü yağış haritalama ve istasyon veri giriş arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen_open.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Meteoroloji istasyonlarında yağmur ölçer ve siper yerleşiminin açık arazi görünümü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Hackaday.io",
+   "ne": "Açık donanım proje günlükleri.",
+   "url": "https://hackaday.io/projects",
+   "ayrinti": {
+    "neYaptilar": "Açık donanım geliştiricilerinin sensör projelerini, şemalarını ve 3B modellerini adım adım belgelediği küresel platformu kurdular.",
+    "nasil": "Açık tasarım günlükleri, parça listeleri ve topluluk geri bildirim döngüleriyle mühendislik prototiplerini paylaştırdılar.",
+    "neEdindiler": "Dünya genelinde binlerce bağımsız çevre gözlem projesinin ve hava sensörünün açık kaynak deposunu oluşturdular.",
+    "bizNasilKatki": "OpenSCAD yağmur ölçerimizin yapım aşamalarını ve Arduino kalibrasyon kodlarını Hackaday üzerinde açık günlük olarak paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "Hackaday Açık Donanım Projeleri Portalı",
+      "url": "https://hackaday.io/projects",
+      "tur": "web"
+     },
+     {
+      "ad": "Barkjohn vd. 2021 Düşük Maliyetli Sensör Analizi",
+      "url": "https://doi.org/10.5194/amt-14-4617-2021",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://hackaday.io/projects",
+      "aciklama": "Hackaday açık kaynaklı donanım projeleri ve meteoroloji sensörleri arşivi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://hackaday.io/projects",
+      "aciklama": "Hackaday donanım geliştirme platformu proje akışı ve topluluk paylaşımları ekranı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "CAD'i kâğıt çizim olarak değil, kendi ölçüm aletini tasarlayıp üretmenin aracı olarak görmek.",
+  "baglanti": "Yazılım kolunda açık donanım hava istasyonu; Anlatım kolunda 3B modellerle alet anatomisi videoları.",
+  "literatur": {
+   "maddeler": [
+    "Teknik resim, bir parçanın ölçü, tolerans ve malzeme bilgisini herkesin aynı okuyacağı biçimde iletir; CAD bu bilgiyi doğrudan üretim dosyasına çevirir.",
+    "Meteorolojik aletlerin yerleşimi (ışınım siperi, 2 m sıcaklık yüksekliği, 10 m rüzgâr) WMO CIMO Kılavuzu'nda (WMO-No. 8) tanımlıdır; tasarım bu ölçülere uymalı.",
+    "Açık donanım (OSHWA) yaklaşımı, çizimi ve kodu paylaşarak aletin başkalarınca yeniden üretilebilmesini sağlar."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "3B yazıcıyla üretilen Stevenson tipi ışınım siperleri ve otomatik hava istasyonu gövdeleri, düşük maliyetli gözlem ağlarının parçası oldu.",
+    "Tarayıcıda çalışan parametrik CAD (Onshape) ve kodla modelleme (OpenSCAD) tasarımı sürüm takibine ve ekip çalışmasına açtı."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Abatzoglou 2013",
+    "baslik": "Development of gridded surface meteorological data for ecological applications and modelling",
+    "yayin": "International Journal of Climatology 33(1), 121-131",
+    "yil": "2013",
+    "url": "https://doi.org/10.1002/joc.3413",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Barkjohn vd. 2021",
+    "baslik": "Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor",
+    "yayin": "Atmospheric Measurement Techniques 14, 4617-4637",
+    "yil": "2021",
+    "url": "https://doi.org/10.5194/amt-14-4617-2021",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Devrilen kova tipi yağmur ölçeri OpenSCAD ile kod tabanlı tasarlayıp Arduino ile dijitalleştirerek laboratuvarda kalibre etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 102",
+   "projeyeKatki": "OpenSCAD kodlarıyla yağmur ölçer geometrisi bilgisayarlı teknik resim prensiplerine göre oluşturulur. Devrilen kova yağış yüksekliği bağıntısı ile huni alanı ve kova hacmi ilişkilendirilirken, teknik resim ölçek ve boyut bağıntısıyla montaj parçalarının üretim toleransları belirlenir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Devrilen kova yağış yüksekliği bağıntısı",
+     "nerede": "OpenSCAD tasarımında 200 cm² toplama alanına karşılık 0,2 mm yağış çözünürlüğü sağlayacak kova hacmini hesaplarken kullanılır."
+    },
+    {
+     "formulAd": "Teknik resim ölçek ve boyut bağıntısı",
+     "nerede": "Ölçer gövdesi, huni açısı, mafsal mili ve taban montaj flanşının teknik resim paftasında ölçülendirilmesinde kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Devrilen kova tipi yağmur ölçeri OpenSCAD ile kodlayıp Arduino sayacı ve kontrollü su akışıyla kalibre etmek.",
+  "ayrinti": "Toplama hunisi çapı ve devrilen çift hazneli kova geometrisi OpenSCAD dilinde parametrik değişkenlerle yazılır. 3B yazıcıda basılan gövdeye mıknatıs ve reed röle entegre edilir. Arduino kesme fonksiyonu ile devrilmeler sayılır. Hassas dereceli silindirden bilinen miktarda su damlatılarak darbe başına düşen milimetre yağış miktarı kalibre edilir.",
+  "adimlar": [
+   {
+    "baslik": "OpenSCAD ile parametrik yağmur ölçer gövdesini kodlamak",
+    "oz": "Huni çapı, filtre ızgarası ve kova yatağını betikle çizmek.",
+    "ayrinti": "OpenSCAD dosyasında huni yarıçapı, duvar et kalınlığı ve su tahliye deliği değişkenlerle kurulur. Toplama alanı WMO standardı olan 200 cm² değerine göre ayarlanır. İkili kova haznesinin devrilme ekseni ve pivot mili yatakları kod bloklarıyla matematiksel olarak modellenir.",
+    "nasil": [
+     {
+      "teknik": "module rain_gauge(funnel_r=79.8, wall_t=2.5) { difference() { cylinder(); cylinder(); } } ile gövdeyi kodlamak.",
+      "sade": "Yağmur toplama hunisinin silindirik ve konik parçalarını OpenSCAD kod bloklarıyla oluştururuz.",
+      "altAdimlar": [
+       "1. OpenSCAD editöründe yeni bir betik açarak huni yarıçapını 79,8 mm olarak tanımlayın.",
+       "2. difference komutuyla silindir içinden konik oyuğu çıkararak su yönlendirme hunisini oluşturun.",
+       "3. Alt çıkış ucuna su damlamasını merkezleyen nozül geometrisini ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Parametrik CAD yazılımlarıyla meteorolojik alet gövdelerini ve ışınım siperlerini üç boyutlu çizmek."
+      }
+     },
+     {
+      "teknik": "module tipping_bucket(vol_cm3=4.0) { union() { bucket_left(); bucket_right(); } } ile kovayı çizmek.",
+      "sade": "Su dolunca ağırlık merkezi değişip sağa sola yatan çift gözlü kovayı kodlarız.",
+      "altAdimlar": [
+       "1. İki adet simetrik su haznesini V şeklinde birleştirin.",
+       "2. Denge merkezinin tam altına pivot mil yuvasını konumlandırın.",
+       "3. Yan kanada neodimyum mıknatısın oturacağı yuva deliğini açın."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Devrilen kova tipi yağmur ölçer ve akış sensörlerinin mekanik montaj ilişkilerini ve kinematik hareketini kurmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 102",
+      "madde": "Parametrik CAD yazılımlarıyla meteorolojik alet gövdelerini ve ışınım siperlerini üç boyutlu çizmek."
+     },
+     {
+      "ders": "MTO 102",
+      "madde": "Devrilen kova tipi yağmur ölçer ve akış sensörlerinin mekanik montaj ilişkilerini ve kinematik hareketini kurmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Teknik resim paftasını ve üretim toleranslarını hazırlamak",
+    "oz": "Montaj eksenlerini, mafsal boşluklarını ve paftayı ölçülendirmek.",
+    "ayrinti": "Kovanın serbest salınım yapabilmesi için mil ile yatak arasında 0,3 mm çalışma boşluğu tanımlanır. Yağmur ölçerin kesit resmi, parçaların numaralandığı montaj tablosu ve vidalama kılavuzları ISO teknik resim standartlarına göre paftalanır.",
+    "nasil": [
+     {
+      "teknik": "dxf_export = generate_projection_views(cut_plane='Y=0') ile kesit görünümü almak.",
+      "sade": "Yağmur ölçerin içindeki su akış kanalını ve kova hareketini gösteren yan kesit resmini çıkarırız.",
+      "altAdimlar": [
+       "1. OpenSCAD projection komutuyla aletin düşey simetri kesitini iki boyuta indirin.",
+       "2. DXF formatındaki vektörel çizimi teknik resim yazılımına aktarın.",
+       "3. Kovanın devrilme açı sınırlarını pafta üzerinde açısal ölçülendirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Patlatılmış montaj resimleri ve alet kesitleriyle karmaşık ölçüm sistemlerinin iç anatomisini görselleştirmek."
+      }
+     },
+     {
+      "teknik": "apply_iso_tolerances(shaft_dia=3.0, hole_dia=3.3, fit='loose_running') ile tolerans vermek.",
+      "sade": "Milin yatak içinde sürtünmesiz dönmesi için gereken mekanik boşluk ölçüsünü belirleriz.",
+      "altAdimlar": [
+       "1. 3 mm paslanmaz çelik mil için yatak çapını 3,3 mm olarak sabitleyin.",
+       "2. Kova dayanma vidalarının yükseklik ayar dişlerini paftada gösterin.",
+       "3. STL ihracı öncesi üretim tolerans kontrol listesini onaylayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 102",
+      "madde": "Patlatılmış montaj resimleri ve alet kesitleriyle karmaşık ölçüm sistemlerinin iç anatomisini görselleştirmek."
+     },
+     {
+      "ders": "MTO 102",
+      "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Parçaları basmak ve Arduino kesme devresini kurmak",
+    "oz": "3B parçaları üretip reed röleli darbe sayacını bağlamak.",
+    "ayrinti": "Gövde ve kova suya dayanıklı PETG filament ile basılır. Kovanın yanına mini neodimyum mıknatıs yapıştırılır, gövde duvarına ise reed röle yerleştirilir. Kova her devrildiğinde mıknatıs röleyi kapatır. Arduino harici kesme piniyle sinyali yakalar.",
+    "nasil": [
+     {
+      "teknik": "attachInterrupt(digitalPinToInterrupt(2), countTip, FALLING) ile darbeleri saymak.",
+      "sade": "Kova her devrildiğinde Arduino'nun anında sinyali fark edip sayacı 1 artırmasını sağlarız.",
+      "altAdimlar": [
+       "1. Reed röleyi 10k ohm pull-up direnciyle Arduino'nun 2 numaralı pinine bağlayın.",
+       "2. Yazılımda mekanik sıçramaları filtreleyen 50 ms debounce kilidi kurun.",
+       "3. Seri monitörden her devrilmede zaman damgalı sayaç artışını izleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Devrilen kova tipi yağmur ölçer ve akış sensörlerinin mekanik montaj ilişkilerini ve kinematik hareketini kurmak."
+      }
+     },
+     {
+      "teknik": "export_stl_and_print(parts=['funnel', 'bucket', 'base'], filament='PETG') ile üretmek.",
+      "sade": "3B yazıcıda su sızdırmaz ve pürüzsüz yüzeyli parçaları basıp montajı yaparız.",
+      "altAdimlar": [
+       "1. Kova yüzeyini suyun tutunmasını önleyecek şekilde yüzde 100 dolulukta basın.",
+       "2. Paslanmaz mil üzerine kovayı oturtup serbest salınımını elle test edin.",
+       "3. Huni tabanındaki montaj tırnaklarını ana gövdeye kilitleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Hızlı prototipleme ve 3B yazıcı üretimi için STL ve STEP üretim dosyalarını ihraç etmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 102",
+      "madde": "Devrilen kova tipi yağmur ölçer ve akış sensörlerinin mekanik montaj ilişkilerini ve kinematik hareketini kurmak."
+     },
+     {
+      "ders": "MTO 102",
+      "madde": "Hızlı prototipleme ve 3B yazıcı üretimi için STL ve STEP üretim dosyalarını ihraç etmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Hacimsel su akışıyla kalibrasyon ve doğrulama yapmak",
+    "oz": "Dereceli silindirle su damlatıp devrilme katsayısını hesaplamak.",
+    "ayrinti": "Hassas büret ile 200 ml saf su huniye kontrollü damlatılır. Toplam devrilme sayısı Arduino tarafından sayılır. 200 cm² alanda 200 ml su 10 mm yağışa denktir. 10 mm toplam devrilme sayısına bölünerek kova başına net mm katsayısı ve hata payı çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "calib_factor = (total_water_ml / (area_cm2 * 0.1)) / tip_count ile mm katsayısını bulmak.",
+      "sade": "Dökülen suyun oluşturduğu teorik yağış yüksekliğini kova sayısına bölerek aleti kalibre ederiz.",
+      "altAdimlar": [
+       "1. Bürete 200 ml su doldurup damlama vanasını 10 dakikada boşalacak hıza ayarlayın.",
+       "2. Deneyi 5 kez tekrarlayarak ortalama devrilme sayısını (ör. 50 devrilme) bulun.",
+       "3. 10 mm / 50 = 0,20 mm/darbe kalibrasyon değerini yazılıma işleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Devrilen kova tipi yağmur ölçer ve akış sensörlerinin mekanik montaj ilişkilerini ve kinematik hareketini kurmak."
+      }
+     },
+     {
+      "teknik": "save_calibration_report(df_runs, output='rain_gauge_calibration.json') ile belgelemek.",
+      "sade": "Ölçüm hassasiyetini ve kalibrasyon eğrisini içeren teknik dosyayı repoya ekleriz.",
+      "altAdimlar": [
+       "1. Beş kalibrasyon tekrarındaki standart sapmayı yüzde 2'nin altında doğrulayın.",
+       "2. Yağış şiddetine göre devrilme hatasını gösteren kalibrasyon tablosunu derleyin.",
+       "3. OpenSCAD kaynak dosyalarıyla birlikte GitHub deposunda açık kullanıma sunun."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 102",
+      "madde": "Devrilen kova tipi yağmur ölçer ve akış sensörlerinin mekanik montaj ilişkilerini ve kinematik hareketini kurmak."
+     },
+     {
+      "ders": "MTO 102",
+      "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Açık kaynaklı OpenSCAD parametrik yağmur ölçer modeli, ISO teknik resim paftası, Arduino darbe sayıcı kodu ve laboratuvar kalibrasyon sertifikası.",
+  "senden": "Temel kodlama merakı, elektronik bileşenleri birleştirme hevesi ve suyla ölçüm yapma ilgisi.",
+  "bizden": "OpenSCAD şablon kütüphanesi, Arduino sayıcı devre şeması, hassas kalibrasyon büreti ve PETG filament."
+ },
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen_open.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Açık meteoroloji istasyonlarında yağmur ölçer hunisi ve alet yerleşim standardı"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "İstasyon noktasında radar yağış reflektivitesi ile kova devrilme sayımlarının eşzamanlı döngüsü",
+   "aciklama": "Radar anlık yağış tahmini ile yer seviyesindeki kova devrilmelerinin zaman serisi eşleşmesi"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://openscad.org/documentation.html",
+   "aciklama": "OpenSCAD kod tabanlı 3B tasarım ortamı ve yağmur ölçer parametreleri arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 102 (Bilgisayarlı Teknik Resim)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=102"
+  },
+  {
+   "ad": "WMO CIMO Guide to Meteorological Instruments and Methods of Observation (WMO-No. 8)",
+   "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation"
+  },
+  {
+   "ad": "Pastorello, G. et al. (2020) The FLUXNET2015 dataset and ONEFlux pipeline, Sci Data, 7, 225",
+   "url": "https://doi.org/10.1038/s41597-020-0534-3"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO102-02.json",
+  "tarih": "2026-10-17 03:21",
+  "geminiSha1": "0296c55315a3"
+ }
+}

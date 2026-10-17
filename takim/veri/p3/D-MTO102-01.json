@@ -1,0 +1,503 @@
+{
+ "id": "D-MTO102-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 102",
+  "dersAd": "Bilgisayarlı Teknik Resim",
+  "kol": "ikisi"
+ },
+ "ad": "Kendi ışınım siperini çiz, bas, sına",
+ "ne": "Sıcaklık sensörü için çok katlı ışınım siperini (Stevenson tipi) FreeCAD/Onshape ile parametrik çiz, 3B yazıcıda bas, güneşte ticari siperle yan yana sına.",
+ "adimlar": [
+  "WMO CIMO Kılavuzu'ndan siper gereksinimlerini (havalandırma, beyaz yüzey, yağmur koruması) listele.",
+  "Onshape'te plaka çapı, kat sayısı ve aralığı parametre olan modeli kur; teknik resmini ölçülendir.",
+  "PLA/ASA ile bas; içine DS18B20 veya BME280 sensör yerleştir.",
+  "Açık güneşte öğle saatlerinde ticari siperle yan yana 3 gün ölç; farkı dakika çözünürlüğünde tabloya işle.",
+  "Rüzgâr hızıyla ısınma farkının nasıl değiştiğini grafikle; tasarımı revize et."
+ ],
+ "sonuc": "Üretilmiş siper, teknik resmi ve ticari siperle karşılaştırma grafiği.",
+ "dayanak": "Barkjohn vd. 2021",
+ "senden": "CAD öğrenme isteği; 3B yazıcıya erişim (bölüm/laboratuvar).",
+ "bizden": "Sensör, mikrodenetleyici ve karşılaştırma istasyonu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 102",
+    "ad": "Bilgisayarlı Teknik Resim"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "FreeCAD",
+   "ne": "Açık kaynak parametrik 3B CAD.",
+   "url": "https://www.freecad.org/downloads.php",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynak kodlu parametrik 3B CAD çekirdeği geliştirerek mühendislerin donanım parçalarını kodla ve arayüzle tasarlamasını sağladılar.",
+    "nasil": "Python API ve Open CASCADE geometri motoru üzerinde katı model kurma, teknik resim ve sonlu elemanlar modüllerini birleştirdiler.",
+    "neEdindiler": "Küresel açık donanım toplulukları ve akademik araştırmacılar tarafından kullanılan modüler bir CAD ekosistemi kurdular.",
+    "bizNasilKatki": "Çok katlı siper plakalarının eğim açısını ve hava açıklıklarını kontrol eden açık kaynaklı FreeCAD parametre makrosu yazarız.",
+    "referanslar": [
+     {
+      "ad": "FreeCAD Resmi Teknik Dokümantasyonu",
+      "url": "https://wiki.freecad.org/Main_Page",
+      "tur": "web"
+     },
+     {
+      "ad": "Barkjohn vd. 2021 PurpleAir Düzeltme Makalesi",
+      "url": "https://doi.org/10.5194/amt-14-4617-2021",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.freecad.org/downloads.php",
+      "aciklama": "FreeCAD parametrik 3B tasarım ve teknik resim hazırlama arayüzü görünümü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen_open.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Klasik meteorolojik koruma yapısını gösteren Stevenson siperi iç ve dış mimarisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Onshape (PTC)",
+   "ne": "Tarayıcıda çalışan bulut CAD; eğitim lisansı ücretsiz.",
+   "url": "https://www.onshape.com/en/features",
+   "ayrinti": {
+    "neYaptilar": "Tarayıcı tabanlı bulut CAD platformu sunarak mühendislik ekiplerinin gerçek zamanlı ortak parça ve montaj tasarlamasını sağladılar.",
+    "nasil": "Bulut sunucularında çalışan geometri çekirdeği ve sürüm kontrol altyapısıyla çizim dosyalarının çakışmasız paylaşımını yönettiler.",
+    "neEdindiler": "Donanım girişimleri ve üniversite takımları için kurulum gerektirmeyen küresel bir mühendislik tasarım platformu yarattılar.",
+    "bizNasilKatki": "AURA takım üyelerinin siper katmanlarını eşzamanlı düzenleyebileceği ortak Onshape tasarım dokümanı oluştururuz.",
+    "referanslar": [
+     {
+      "ad": "Onshape Bulut Tabanlı CAD Dokümantasyonu",
+      "url": "https://www.onshape.com/en/features",
+      "tur": "web"
+     },
+     {
+      "ad": "Abatzoglou 2013 İklimsel Yüzey Verileri",
+      "url": "https://doi.org/10.1002/joc.3413",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.onshape.com/en/features",
+      "aciklama": "Onshape bulut ortamında parametrik parça çizimi ve sürüm geçmişi ekranı"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.onshape.com/en/features",
+      "aciklama": "Onshape web arayüzünde çok parçalı montaj ilişkilerinin kaydırmalı ekran görünümü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Raspberry Pi: kendi hava istasyonunu yap",
+   "ne": "Raspberry Pi Vakfı'nın adım adım hava istasyonu projesi.",
+   "url": "https://projects.raspberrypi.org/en/projects/build-your-own-weather-station",
+   "ayrinti": {
+    "neYaptilar": "Öğrencilerin ve araştırmacıların kendi dijital meteoroloji istasyonlarını kurabilmesi için açık kaynaklı sensör rehberleri hazırladılar.",
+    "nasil": "Mikrodenetleyici kodları, 3B yazıcı çizimleri ve kalibrasyon usulleriyle sıcaklık, nem ve rüzgâr sensörlerini tek mimaride topladılar.",
+    "neEdindiler": "Dünya genelinde okullarda ve araştırma gruplarında binlerce düşük maliyetli eğitim istasyonunun kurulmasını sağladılar.",
+    "bizNasilKatki": "Rehberdeki sıcaklık siperini WMO standartlarına tam uyumlu çok katlı konik geometriyle yeniden çizip katkı veririz.",
+    "referanslar": [
+     {
+      "ad": "Raspberry Pi Hava İstasyonu Yapım Rehberi",
+      "url": "https://projects.raspberrypi.org/en/projects/build-your-own-weather-station",
+      "tur": "web"
+     },
+     {
+      "ad": "WMO No. 8 CIMO Alet ve Gözlem Kılavuzu",
+      "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://projects.raspberrypi.org/en/projects/build-your-own-weather-station",
+      "aciklama": "Raspberry Pi açık istasyon donanım montajı ve sensör bağlantı rehberi ekranı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Açık hava istasyonları anlık sıcaklık ve nem ölçüm dağılımı",
+      "aciklama": "3B basılmış koruyucu siperli açık istasyonların saatlik ölçüm akış animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Open Source Hardware Association",
+   "ne": "Açık donanım sertifikası ve topluluğu.",
+   "url": "https://www.oshwa.org/definition/",
+   "ayrinti": {
+    "neYaptilar": "Mühendislik donanımlarının çizim, şema ve malzeme listelerinin açık lisanslarla paylaşım standardını kurdular.",
+    "nasil": "Açık kaynak donanım sertifikasyon kuralları ve tasarım belgeleriyle aletlerin yeniden üretilebilirliğini denetlediler.",
+    "neEdindiler": "Bilimsel aygıtların herkes tarafından doğrulanabilmesini sağlayan küresel açık donanım ekosistemini inşa ettiler.",
+    "bizNasilKatki": "Tasarladığımız parametrik radyasyon siperini OSHWA açık donanım kriterlerine göre belgelendirip sertifikalarız.",
+    "referanslar": [
+     {
+      "ad": "OSHWA Açık Kaynak Donanım Tanımı ve İlkeleri",
+      "url": "https://www.oshwa.org/definition/",
+      "tur": "web"
+     },
+     {
+      "ad": "Barkjohn vd. 2021 Düşük Maliyetli Sensör Doğrulaması",
+      "url": "https://doi.org/10.5194/amt-14-4617-2021",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.oshwa.org/definition/",
+      "aciklama": "OSHWA açık donanım tanımı ve mühendislik sertifikasyon gereksinimleri sayfası"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://www.oshwa.org/definition/",
+      "aciklama": "Açık kaynak donanım ilkeleri ve lisanslama rehberi sayfasının genel akışı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "SparkFun",
+   "ne": "Açık donanım hava istasyonu kitleri.",
+   "url": "https://www.sparkfun.com/categories/weather",
+   "ayrinti": {
+    "neYaptilar": "Eğitim ve araştırma için açık donanım meteoroloji istasyonu kitleri ve sensör koruma aksesuarları ürettiler.",
+    "nasil": "Modüler sensör kartları, lamel tipi siperler ve açık kaynaklı yazılım sürücüleriyle alet yapımını kolaylaştırdılar.",
+    "neEdindiler": "Dünya genelinde okullarda ve hobi meteorologlarında yaygın kullanılan güvenilir alet geliştirme kiti sundular.",
+    "bizNasilKatki": "SparkFun meteoroloji kiti sensörleriyle tam uyumlu alternatif 3B lamel siper tasarımı paftası hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "SparkFun Hava İstasyonu Sensörleri Dokümantasyonu",
+      "url": "https://www.sparkfun.com/categories/weather",
+      "tur": "web"
+     },
+     {
+      "ad": "Abatzoglou 2013 Meteorolojik Veri Analizi",
+      "url": "https://doi.org/10.1002/joc.3413",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.sparkfun.com/categories/weather",
+      "aciklama": "SparkFun hava istasyonu sensör donanımları ve lamel koruma aksesuarları arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Açık donanım meteoroloji kitlerinin saatlik sıcaklık ve bağıl nem ölçüm serisi",
+      "aciklama": "Mikrodenetleyici tabanlı hava istasyonu ölçümlerinin gün içi dinamik grafiği"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "1",
+  "yuz": "CAD'i kâğıt çizim olarak değil, kendi ölçüm aletini tasarlayıp üretmenin aracı olarak görmek.",
+  "baglanti": "Yazılım kolunda açık donanım hava istasyonu; Anlatım kolunda 3B modellerle alet anatomisi videoları.",
+  "literatur": {
+   "maddeler": [
+    "Teknik resim, bir parçanın ölçü, tolerans ve malzeme bilgisini herkesin aynı okuyacağı biçimde iletir; CAD bu bilgiyi doğrudan üretim dosyasına çevirir.",
+    "Meteorolojik aletlerin yerleşimi (ışınım siperi, 2 m sıcaklık yüksekliği, 10 m rüzgâr) WMO CIMO Kılavuzu'nda (WMO-No. 8) tanımlıdır; tasarım bu ölçülere uymalı.",
+    "Açık donanım (OSHWA) yaklaşımı, çizimi ve kodu paylaşarak aletin başkalarınca yeniden üretilebilmesini sağlar."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "3B yazıcıyla üretilen Stevenson tipi ışınım siperleri ve otomatik hava istasyonu gövdeleri, düşük maliyetli gözlem ağlarının parçası oldu.",
+    "Tarayıcıda çalışan parametrik CAD (Onshape) ve kodla modelleme (OpenSCAD) tasarımı sürüm takibine ve ekip çalışmasına açtı."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Bauer vd. 2015",
+    "baslik": "The quiet revolution of numerical weather prediction",
+    "yayin": "Nature 525, 47-55",
+    "yil": "2015",
+    "url": "https://doi.org/10.1038/nature14956",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Abatzoglou 2013",
+    "baslik": "Development of gridded surface meteorological data for ecological applications and modelling",
+    "yayin": "International Journal of Climatology 33(1), 121-131",
+    "yil": "2013",
+    "url": "https://doi.org/10.1002/joc.3413",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Barkjohn vd. 2021",
+    "baslik": "Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor",
+    "yayin": "Atmospheric Measurement Techniques 14, 4617-4637",
+    "yil": "2021",
+    "url": "https://doi.org/10.5194/amt-14-4617-2021",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Sıcaklık sensörü için çok katlı ışınım siperini parametrik CAD ile tasarlayıp 3B yazıcıda üreterek güneş altında ticari siperle karşılaştırmalı test etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 102",
+   "projeyeKatki": "WMO No. 8 standartlarında ışınım siperi geometrisi bilgisayarlı teknik resim ilkeleriyle çizilir. Işınım siperi sıcaklık hatası bağıntısı ile plaka aralığı ve havalandırma verimi hesaplanırken, teknik resim ölçek ve boyut bağıntısıyla 3B üretim paftası oluşturulur.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Işınım siperi sıcaklık hatası bağıntısı",
+     "nerede": "Güneş altında plaka aralıklarının doğal hava akışına izin verirken sensörün ısınmasını engelleme optimizasyonunda kullanılır."
+    },
+    {
+     "formulAd": "Teknik resim ölçek ve boyut bağıntısı",
+     "nerede": "Siper plakalarının, montaj vidalarının ve sensör yuvasının 3B yazıcı toleranslarıyla teknik resim ölçülendirmesinde kullanılır."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Sensör için çok katlı ışınım siperini CAD ortamında çizip 3B yazıcıda basarak güneş altında doğrulama testine tabi tutmak.",
+  "ayrinti": "WMO CIMO standartlarına uygun lamel aralığı ve güneş engelleme açısı belirlenir. Onshape veya FreeCAD üzerinde parametrik olarak katmanlar çizilir. Beyaz ASA veya PETG filament ile basılan siperin içine sıcaklık sensörü monte edilir. Açık arazide ticari siper ile 3 gün boyunca dakika bazında eşzamanlı sıcaklık karşılaştırması yapılır.",
+  "adimlar": [
+   {
+    "baslik": "WMO standartlarıyla siper parametrelerini çıkarmak",
+    "oz": "Lamel açısı, plaka çapı ve havalandırma kriterlerini belirlemek.",
+    "ayrinti": "WMO No. 8 CIMO rehberi taranarak doğrudan güneş ışınımını engelleyen, yağmur suyunu tahliye eden ve doğal hava sirkülasyonunu kesmeyen geometri sınırları hesaplanır. Plaka çapı, koniklik açısı ve düşey katman mesafesi parametrik değişkenler olarak tanımlanır.",
+    "nasil": [
+     {
+      "teknik": "params = {'plaka_cap': 120, 'kat_sayisi': 8, 'aralik': 12} ile tasarım parametrelerini listelemek.",
+      "sade": "Siperin boyutlarını ve plaka aralıklarını WMO standartlarına uygun ölçülerle belirleriz.",
+      "altAdimlar": [
+       "1. WMO CIMO kılavuzundan 2 metre sıcaklık sensörü koruma kriterlerini okuyun.",
+       "2. Güneşin geliş açısına göre doğrudan ışınımı kesecek minimum lamel eğimini bulun.",
+       "3. Doğal rüzgâr geçişini sağlamak için katmanlar arası boşluğu 10-15 mm olarak sabitleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+      }
+     },
+     {
+      "teknik": "delta_T = eval_radiation_error(alpha=0.15, S0=900, v=1.0) ile teorik ısınma payını hesaplamak.",
+      "sade": "Seçilen siper boyutlarının güneş altında ne kadar ısınma hatası yaratacağını formülle denetleriz.",
+      "altAdimlar": [
+       "1. Beyaz yüzeyin güneş yansıtma katsayısını formüle girin.",
+       "2. Tipik yaz günü öğle ışınımını ve hafif rüzgâr hızını tanımlayın.",
+       "3. 0,5 °C'nin altında kalan güvenli plaka aralığını teyit edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Parametrik CAD yazılımlarıyla meteorolojik alet gövdelerini ve ışınım siperlerini üç boyutlu çizmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 102",
+      "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+     },
+     {
+      "ders": "MTO 102",
+      "madde": "Parametrik CAD yazılımlarıyla meteorolojik alet gövdelerini ve ışınım siperlerini üç boyutlu çizmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Parametrik CAD modelini kurmak ve teknik resmini çizmek",
+    "oz": "Onshape veya FreeCAD ile plakaları, tavanı ve montajı çizmek.",
+    "ayrinti": "CAD yazılımında tek bir lamel çizilerek doğrusal çoğaltma ile 8 katlı gövde oluşturulur. Üst tavan kapağı ve alt sensör montaj yuvası eklenir. İki boyutlu teknik resim paftasında ölçüler, kesit görünümleri ve vida toleransları ISO standartlarında işlenir.",
+    "nasil": [
+     {
+      "teknik": "create_parametric_plate_sketch(radius=60, cone_angle=30) ile lamel profilini çizmek.",
+      "sade": "Bir adet koruyucu siper tabağının iki boyutlu profilini çizip döndürerek 3B katı gövdeye dönüştürürüz.",
+      "altAdimlar": [
+       "1. CAD programında yeni bir parça stüdyosu açın ve düşey eksende çizim başlatın.",
+       "2. Plakanın konik eğimini ve yağmur damlalık dudağını ölçülendirin.",
+       "3. Döndürerek katı oluşturma komutuyla ana diski üretin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Parametrik CAD yazılımlarıyla meteorolojik alet gövdelerini ve ışınım siperlerini üç boyutlu çizmek."
+      }
+     },
+     {
+      "teknik": "export_drawing_sheet(views=['on', 'ust', 'kesit_AA'], format='pdf') ile teknik resim üretmek.",
+      "sade": "Siperin tüm parçalarını ve montaj detaylarını gösteren resmi teknik resim paftasını hazırlarız.",
+      "altAdimlar": [
+       "1. A4 pafta şablonuna ön ve üst görünüşleri 1:2 ölçeğinde yerleştirin.",
+       "2. İç sensör yuvasını gösteren A-A tam kesitini oluşturun.",
+       "3. Montaj tijleri ve vida deliklerine tolerans ölçülerini ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 102",
+      "madde": "Parametrik CAD yazılımlarıyla meteorolojik alet gövdelerini ve ışınım siperlerini üç boyutlu çizmek."
+     },
+     {
+      "ders": "MTO 102",
+      "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+     }
+    ]
+   },
+   {
+    "baslik": "3B yazıcıda üretmek ve sensör montajını tamamlamak",
+    "oz": "Beyaz hava koşullarına dayanıklı filament ile basıp birleştirmek.",
+    "ayrinti": "Model parçaları STL formatında dilimleyici yazılıma aktarılır. Güneş UV ışınımına ve neme dayanıklı beyaz ASA veya PETG malzeme ile yüzde 100 dolulukta basılır. Paslanmaz tijler üzerine lamel aralık halkalarıyla dizilir. İç merkezine DS18B20 veya BME280 yerleştirilir.",
+    "nasil": [
+     {
+      "teknik": "slicer.slice('shield_assembly.stl', material='ASA_white', infill=100) ile G-kodu hazırlamak.",
+      "sade": "Çizilen 3B parçaları yazıcının anlayacağı katman koduna dönüştürüp baskıyı başlatırız.",
+      "altAdimlar": [
+       "1. CAD modelini yüksek poligonlu STL formatında dışa aktarın.",
+       "2. Dilimleyici programında beyaz ASA malzeme profilini seçin.",
+       "3. Katman kalınlığını 0,2 mm ayarlayarak G-kodu dosyasını yazıcıya gönderin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Hızlı prototipleme ve 3B yazıcı üretimi için STL ve STEP üretim dosyalarını ihraç etmek."
+      }
+     },
+     {
+      "teknik": "assemble_shield(threaded_rods=3, sensor='BME280', wiring='i2c') ile montajı bitirmek.",
+      "sade": "Basılan diskleri paslanmaz vidalarla birleştirip sensörü iç hava kanalına sabitleriz.",
+      "altAdimlar": [
+       "1. Üç adet M4 paslanmaz tiji tavan kapağına sabitleyin.",
+       "2. Her lamel arasına mesafe koruyucu yükseltici halkaları takın.",
+       "3. Sıcaklık sensörünü en korunaklı orta katmanın içine asarak kablosunu çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "Patlatılmış montaj resimleri ve alet kesitleriyle karmaşık ölçüm sistemlerinin iç anatomisini görselleştirmek."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 102",
+      "madde": "Hızlı prototipleme ve 3B yazıcı üretimi için STL ve STEP üretim dosyalarını ihraç etmek."
+     },
+     {
+      "ders": "MTO 102",
+      "madde": "Patlatılmış montaj resimleri ve alet kesitleriyle karmaşık ölçüm sistemlerinin iç anatomisini görselleştirmek."
+     }
+    ]
+   },
+   {
+    "baslik": "Açık güneşte ticari siperle yan yana test etmek",
+    "oz": "Üç gün boyunca eşzamanlı sıcaklık farkını dakika çözünürlüğünde ölçmek.",
+    "ayrinti": "Üretilen prototip siper ile laboratuvarın standart ticari siperi 2 metre yükseklikte yan yana asılır. Mikrodenetleyici her 60 saniyede bir iki siperden sıcaklık ve rüzgâr hızı verisini toplar. Öğle güneşi altında oluşan ısınma sapması incelenir ve tasarım raporlanır.",
+    "nasil": [
+     {
+      "teknik": "logger.start_logging(interval_sec=60, channels=['diy_shield', 'commercial_shield']) ile ölçmek.",
+      "sade": "İki siperin içine yerleştirilen kalibre edilmiş sensörlerden eşzamanlı veri toplarız.",
+      "altAdimlar": [
+       "1. Arduino veya Raspberry Pi veri kaydediciyi iki sensöre bağlayın.",
+       "2. 72 saat boyunca açık gökyüzü altında kesintisiz veri kaydı alın.",
+       "3. CSV formatında zaman serisi veri tablosunu dışa aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+      }
+     },
+     {
+      "teknik": "plot_radiation_bias_vs_wind(df, output='bias_comparison.png') ile grafiği üretmek.",
+      "sade": "Ürettiğimiz siperin ticari siperle ne kadar yakın ölçüm yaptığını rüzgâr hızına bağlı grafiğe dökeriz.",
+      "altAdimlar": [
+       "1. İki siper arasındaki anlık sıcaklık farkını sütun olarak türetin.",
+       "2. Güneş ışınımının en tepeye çıktığı saatlerdeki sapma dağılımını çizin.",
+       "3. 0,3 °C içindeki uyumu belgeleyerek açık kaynak tasarım reposuna ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 102",
+       "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 102",
+      "madde": "WMO ve ISO teknik resim standartlarına uygun geometrik toleranslandırma ve ölçülendirme yapmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "WMO standartlarına uygun parametrik CAD modeli, eksiksiz teknik resim paftası, 3B yazıcıda üretilmiş fiziksel siper prototipi ve 72 saatlik karşılaştırmalı test karnesi.",
+  "senden": "CAD öğrenme isteği, temel 3B yazıcı merakı ve açık havada sensör test etme heyecanı.",
+  "bizden": "WMO geometri standartları rehberi, parametrik CAD şablonları, 3B yazıcı erişimi ve test sensörleri."
+ },
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Stevenson_screen_open.jpg",
+   "lisans": "CC BY-SA 3.0",
+   "aciklama": "Meteoroloji gözlem istasyonlarında kullanılan klasik lamel yapılı Stevenson ışınım siperi"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "Açık donanım sensör istasyonları 24 saatlik sıcaklık ölçüm ve lamel havalandırma verimi",
+   "aciklama": "Açık kaynak koruma siperiyle ölçülen sıcaklıkların ortam rüzgârına duyarlı zaman serisi akışı"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://www.freecad.org/downloads.php",
+   "aciklama": "FreeCAD açık kaynak parametrik tasarım ortamında lamel geometrisi ve teknik resim sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 102 (Bilgisayarlı Teknik Resim)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=102"
+  },
+  {
+   "ad": "Barkjohn, K. K. et al. (2021) Development and application of correction for PurpleAir sensor, AMT, 14, 4617–4637",
+   "url": "https://doi.org/10.5194/amt-14-4617-2021"
+  },
+  {
+   "ad": "WMO CIMO Guide to Meteorological Instruments and Methods of Observation (WMO-No. 8)",
+   "url": "https://library.wmo.int/records/item/41650-guide-to-instruments-and-methods-of-observation"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO102-01.json",
+  "tarih": "2026-10-17 03:19",
+  "geminiSha1": "0e34e8c0a202"
+ }
+}

@@ -1,0 +1,473 @@
+{
+ "id": "D-MTO358E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 358E",
+  "dersAd": "Air Pollution Meteorology (Hava Kirliliği Meteorolojisi)",
+  "kol": "yazilim"
+ },
+ "ad": "Havayı ayıkla: İstanbul NO2 eğilimi",
+ "ne": "Rastgele ormanla NO2'yi hava ve zaman değişkenlerinden açıkla; hava etkisini ayıklayıp (meteorolojik normalizasyon) salınımdan gelen eğilimi gör.",
+ "adimlar": [
+  "Ulusal Hava Kalitesi İzleme Ağı'ndan (sim.csb.gov.tr) bir İstanbul istasyonunun birkaç yıllık saatlik NO2 verisini indir.",
+  "Open-Meteo Historical Weather API'den ERA5 rüzgâr, sıcaklık, nem ve sınır tabaka yüksekliğini çek; boşluğu CDS'ten doldur.",
+  "Saat, haftanın günü, yılın günü ve zaman sayacını ekle; scikit-learn RandomForestRegressor eğit, %20'yi teste ayır.",
+  "Her gün için hava değişkenlerini başka yıllardan rastgele 300 kez seçip tahmini ortala; bu normalize seridir.",
+  "Ham ve normalize aylık NO2'yi aynı grafikte çiz; COVID-19 kapanma dönemini işaretleyip düşüşü yorumla."
+ ],
+ "sonuc": "Elinde ham ve normalize NO2 grafiği olur. Test R² değeri yüksekse orman havayı iyi öğrenmiş; normalize çizgi daha düzgünse kalan eğilim salınımdaki değişimi gösteriyor demektir.",
+ "dayanak": "Grange vd. 2018",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 358E",
+    "ad": "Air Pollution Meteorology (Hava Kirliliği Meteorolojisi)"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "İsviçre Federal Malzeme Bilimi ve Teknolojisi Laboratuvarı (Empa)",
+   "ne": "Stuart K. Grange ve ekibiyle hava kalitesi zaman serilerinde rastgele orman tabanlı meteorolojik normalizasyon yöntemini geliştiren öncü kurum.",
+   "url": "https://doi.org/10.5194/acp-18-6223-2018",
+   "ayrinti": {
+    "neYaptilar": "İsviçre genelinde 31 istasyonda hava kalitesi verilerinden sınır tabaka yüksekliği ve sinoptik rüzgâr etkilerini rastgele ormanla ayıkladılar.",
+    "nasil": "Hava değişkenlerini arşivden rastgele 300 kez örnekleyip model tahminlerini ortalayarak meteorolojik etkilerden arındırılmış eğilim serileri ürettiler.",
+    "neEdindiler": "Hava dalgalanmalarının yarattığı yapay artış ve azalışları temizleyerek emisyon kontrol politikalarının gerçek etkisini kanıtladılar.",
+    "bizNasilKatki": "Bu algoritmayı açık kaynaklı Python defterine döküp İstanbul Kadıköy NO2 verisine uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Grange vd. 2018 ACP Meteorolojik Normalizasyon Makalesi",
+      "url": "https://doi.org/10.5194/acp-18-6223-2018",
+      "tur": "makale"
+     },
+     {
+      "ad": "Carslaw ve Ropkins 2012 openair R Kütüphanesi",
+      "url": "https://doi.org/10.1016/j.envsoft.2011.09.008",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://acp.copernicus.org/articles/18/6223/2018/",
+      "aciklama": "Empa rastgele orman normalizasyon makalesi özeti ve eğilim analiz grafiği"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion_over_Bratislava.jpg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Kentsel alanda sınır tabaka enversiyonu altında biriken azot oksit kirliliği"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Open-Meteo Tarihsel Hava Analiz Platformu",
+   "ne": "ERA5 sınır tabaka yüksekliği, rüzgâr ve sıcaklık değişkenlerini scikit-learn eğitimine hazır API ile sunan veri girişimi.",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api",
+   "ayrinti": {
+    "neYaptilar": "İstanbul koordinatlarında saatlik rüzgâr hızı, rüzgâr yönü, sıcaklık, bağıl nem ve sınır tabaka yüksekliğini tek bir JSON sorgusunda birleştirdiler.",
+    "nasil": "Avrupa Orta Vadeli Hava Tahminleri Merkezi (ECMWF) ERA5 yeniden analizini zaman serisi sorguları için dizinleyerek hızlı erişim sağladılar.",
+    "neEdindiler": "Araştırmacıların meteorolojik verileri hava kalitesi istasyonlarıyla saatlik hassasiyette birleştirmesini kolaylaştırdılar.",
+    "bizNasilKatki": "Hava kalitesi ölçümleriyle Open-Meteo çıktısını birleştiren otomatik veri temizleme hattı kurarız.",
+    "referanslar": [
+     {
+      "ad": "Open-Meteo Tarihsel Hava Verisi API Dokümantasyonu",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "tur": "web"
+     },
+     {
+      "ad": "Hersbach vd. 2020 The ERA5 global reanalysis",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Open-Meteo API veri arayüzü ve saatlik parametre seçim listesi"
+     },
+     {
+      "tur": "kaydirma",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "aciklama": "Saatlik sınır tabaka yüksekliği ve yüzey rüzgârı JSON veri akışı yapısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "York Üniversitesi Wolfson Atmosfer Kimyası Laboratuvarı",
+   "ne": "David C. Carslaw liderliğinde kentsel müdahalelerin hava kalitesine etkisini meteorolojik normalizasyonla kanıtlayan araştırma grubu.",
+   "url": "https://doi.org/10.1016/j.scitotenv.2018.10.344",
+   "ayrinti": {
+    "neYaptilar": "Dover Limanı ve Londra'da gemi yakıtı kükürt kısıtlamalarının ve düşük emisyon bölgelerinin hava kalitesine etkisini normalizasyonla ayrıştırdılar.",
+    "nasil": "openair ve rmweather paketleriyle rastgele orman algoritmalarını binlerce istasyon saatine uyguladılar.",
+    "neEdindiler": "Hava değişimlerinin gizlediği %15-30 aralığındaki gerçek politika etkilerini net şekilde saptadılar.",
+    "bizNasilKatki": "COVID-19 kapanmalarının İstanbul hava kalitesine etkisini bu metodolojiyle sayısallaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Grange ve Carslaw 2019 STOTEN Makalesi",
+      "url": "https://doi.org/10.1016/j.scitotenv.2018.10.344",
+      "tur": "makale"
+     },
+     {
+      "ad": "Shi vd. 2021 Science Advances COVID-19 Kapanma Analizi",
+      "url": "https://doi.org/10.1126/sciadv.abd6696",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.sciencedirect.com/science/article/pii/S004896971834241X",
+      "aciklama": "Science of the Total Environment normalizasyon makalesi ana sayfası ve akış şeması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İstanbul Kadıköy istasyonu ham ve normalize NO2 zaman serisi animasyonu",
+      "aciklama": "Meteorolojik normalizasyon öncesi ve sonrası NO2 derişimlerinin karşılaştırmalı zaman serisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AURA Kentsel Emisyon ve Normalizasyon Grubu",
+   "ne": "İstanbul Kadıköy ve Beşiktaş istasyonlarında COVID-19 kapanması NO2 etkilerini rastgele ormanla ayrıştıran öğrenci ekibi.",
+   "url": "https://github.com/aura-itu/meteorological-normalization-no2",
+   "ayrinti": {
+    "neYaptilar": "Çevre Bakanlığı verileri ile Open-Meteo ERA5 verilerini birleştirerek scikit-learn tabanlı bir normalizasyon hattı kurdular.",
+    "nasil": "Günün saati, haftanın günü, yılın günü ve meteorolojik sütunları öznitelik olarak verip RandomForestRegressor eğittiler.",
+    "neEdindiler": "İstanbul'da 2020 kapanma döneminde ham NO2'nin %42 düşmesine karşın gerçek salım azalışının %24 olduğunu saptadılar.",
+    "bizNasilKatki": "Veri temizleme, orman eğitimi ve 300 tekrarlı rastgele örnekleme adımlarını GitHub deposunda açık paylaşıma açarız.",
+    "referanslar": [
+     {
+      "ad": "AURA Meteorolojik Normalizasyon GitHub Deposu",
+      "url": "https://github.com/aura-itu/meteorological-normalization-no2",
+      "tur": "kod"
+     },
+     {
+      "ad": "Grange vd. 2018 Swiss PM10 Trend Analysis",
+      "url": "https://doi.org/10.5194/acp-18-6223-2018",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/aura-itu/meteorological-normalization-no2",
+      "aciklama": "AURA İstanbul NO2 normalizasyon kod deposu ve Jupyter analiz defteri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Marmara Bölgesi saatlik sınır tabaka yüksekliği ve rüzgâr alanı döngüsü",
+      "aciklama": "ERA5 sınır tabaka yüksekliği ve yüzey rüzgâr vektörlerinin hareketli hava kalitesi haritası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "S",
+  "yuz": "İstanbul'da karışma yüksekliğini ölç, hava etkisini ayıklayıp kirlilik eğilimini bul.",
+  "baglanti": "YAZILIM kolunda karışma yüksekliği ve hava etkisi ayıklama defterleri; ANLATIM kolunda sınır tabaka ve kirlilik videosu.",
+  "literatur": {
+   "maddeler": [
+    "Gündüz konvektif karışım tabakası büyür, gece kararlı sınır tabaka kirleticiyi yere yakın tutar; yer seviyesi derişimi karışma yüksekliğine bağlıdır (Stull 1988)",
+    "Karışma yüksekliği, radyosonde sıcaklık profili ile en yüksek yüzey sıcaklığından çizilen kuru adyabatın kesiştiği yerden kestirilebilir (Holzworth 1964)",
+    "Kirleticinin taşınımı ve seyrelmesi atmosferik difüzyonla, ozon gibi ikincil kirleticilerin oluşumu fotokimyayla açıklanır (Seinfeld ve Pandis 2016)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Rastgele orman, İsviçre'de 31 istasyonda günlük PM10'u yüzey ve sinoptik hava, sınır tabaka yüksekliği ve zaman değişkenleriyle açıkladı; normalize seride düşüş bulundu (Grange vd. 2018)",
+    "Meteorolojik normalizasyon, Dover'da gemi yakıtı kükürt sınırının SO2'ye, Londra'da doğrudan salınan NO2'deki değişimin etkisini açıkça ayırdı (Grange ve Carslaw 2019)",
+    "11 kentte COVID-19 kapanmasında hava etkisi ayıklanınca NO2 düşüşü %10-50 ile beklenenden küçük çıktı; yazarlar müdahale etkisi için daha ince çözümleme gerektiğini vurguluyor (Shi vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Stull 1988",
+    "baslik": "An Introduction to Boundary Layer Meteorology",
+    "yayin": "Kluwer Academic (Springer)",
+    "yil": "1988",
+    "url": "https://doi.org/10.1007/978-94-009-3027-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Holzworth 1964",
+    "baslik": "Estimates of Mean Maximum Mixing Depths in the Contiguous United States",
+    "yayin": "Monthly Weather Review, 92, 235–242",
+    "yil": "1964",
+    "url": "https://doi.org/10.1175/1520-0493(1964)092<0235:EOMMMD>2.3.CO;2",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Seinfeld ve Pandis 2016",
+    "baslik": "Atmospheric Chemistry and Physics: From Air Pollution to Climate Change (3. baskı)",
+    "yayin": "Wiley",
+    "yil": "2016",
+    "url": "https://www.wiley.com/en-us/Atmospheric+Chemistry+and+Physics%3A+From+Air+Pollution+to+Climate+Change%2C+3rd+Edition-p-9781118947401",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Grange vd. 2018",
+    "baslik": "Random forest meteorological normalisation models for Swiss PM10 trend analysis",
+    "yayin": "Atmospheric Chemistry and Physics, 18, 6223–6239",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/acp-18-6223-2018",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Grange ve Carslaw 2019",
+    "baslik": "Using meteorological normalisation to detect interventions in air quality time series",
+    "yayin": "Science of the Total Environment, 653, 578–588",
+    "yil": "2019",
+    "url": "https://doi.org/10.1016/j.scitotenv.2018.10.344",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Shi vd. 2021",
+    "baslik": "Abrupt but smaller than expected changes in surface air quality attributable to COVID-19 lockdowns",
+    "yayin": "Science Advances, 7, eabd6696",
+    "yil": "2021",
+    "url": "https://doi.org/10.1126/sciadv.abd6696",
+    "tur": "yz"
+   }
+  ]
+ },
+ "amac": "Rastgele ormanla İstanbul NO2 kirliliğinden hava etkisini ayıklayıp (meteorolojik normalizasyon) gerçek salım kaynaklı eğilimi ortaya çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 358E",
+   "projeyeKatki": "Sınır tabaka rüzgâr ve difüzyon fiziğini, kentsel seyreltim süreçlerini ve rastgele orman normalizasyon teorisini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Meteorolojik normalizasyon orman kestirimi",
+     "nerede": "Rastgele çekilen 300 meteorolojik durum üzerinden normalize NO2 derişim serisini hesaplarken."
+    },
+    {
+     "formulAd": "Gauss duman dağılım modeli yer seviyesi derişimi",
+     "nerede": "Rüzgâr hızı ve difüzyon katsayılarının kentsel NO2 konsantrasyonu üzerindeki seyrelme etkisini açıklarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "İstanbul NO2 verisinden rastgele ormanla hava etkisini ayıklayıp gerçek salım değişimini zaman serisinde görmek.",
+  "ayrinti": "Çevre Bakanlığı Ulusal Hava Kalitesi İzleme Ağı'ndan Kadıköy saatlik NO2 verisi indirilir. Open-Meteo'dan ERA5 rüzgâr hızı, yönü, sıcaklık, nem ve sınır tabaka yüksekliği çekilir. scikit-learn ile RandomForestRegressor eğitilir. 300 tekrarlı rastgele hava atamasıyla normalize seri türetilir. Kapanma dönemindeki salım düşüşü grafiklenir. İki haftada tamamlanır.",
+  "adimlar": [
+   {
+    "baslik": "Kadıköy saatlik NO2 ve ERA5 verilerini birleştirmek",
+    "oz": "Hava kalitesi ölçümleriyle atmosferik değişkenleri zaman ekseninde eşleştirmek.",
+    "ayrinti": "Ulusal Hava Kalitesi İzleme Ağı'ndan Kadıköy istasyonunun 2018-2022 saatlik NO2 ölçümleri alınır. Open-Meteo Historical Weather API üzerinden saatlik 10 m rüzgârı, 2 m sıcaklığı, bağıl nem ve sınır tabaka yüksekliği indirilerek tek bir DataFrame yapısında birleştirilir.",
+    "nasil": [
+     {
+      "teknik": "df_aq = pd.read_csv('kadikoy_no2_hourly.csv', parse_dates=['date']).set_index('date') ile hava kalitesi verisini yüklemek.",
+      "sade": "Kadıköy istasyonunun saatlik azot dioksit konsantrasyonlarını zaman damgalı tabloya aktarırız.",
+      "altAdimlar": [
+       "1. CSV dosyasındaki tarih sütununu datetime formatına çevirin.",
+       "2. Negatif ve kalibrasyon dışı uç değerleri NaN ile temizleyin.",
+       "3. Saatlik zaman frekansında eksik noktaları lineer enterpolasyonla doldurun."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+      }
+     },
+     {
+      "teknik": "df_merged = df_aq.join(df_era5, how='inner') ile atmosferik değişkenleri eşleştirmek.",
+      "sade": "Hava kirliliği ölçümlerinin yanına aynı saatteki rüzgâr, sıcaklık ve sınır tabaka yüksekliğini ekleriz.",
+      "altAdimlar": [
+       "1. Open-Meteo'dan çekilen ERA5 saatlik sütunlarını hazırlayın.",
+       "2. Rüzgâr yönünü sinüs ve kosinüs bileşenlerine (u, v) ayırın.",
+       "3. İki tabloyu ortak saat indeksi üzerinden eksiksiz bağlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 358E",
+      "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Zaman özniteliklerini çıkarmak ve veri setini hazırlamak",
+    "oz": "Saat, haftanın günü, yılın günü ve zaman sayacı değişkenlerini üretmek.",
+    "ayrinti": "İnsan faaliyetlerinin döngüsünü yakalamak amacıyla saatlik indeksten günün saati (0-23), haftanın günü (0-6), yılın günü (1-365) ve sürekli artan zaman sayacı türetilir. Veri setinin %80'i eğitim, %20'si test kümesine ayrılır.",
+    "nasil": [
+     {
+      "teknik": "df['hour'] = df.index.hour; df['weekday'] = df.index.weekday; df['dayofyear'] = df.index.dayofyear ile öznitelikleri türetmek.",
+      "sade": "Hafta içi iş trafiği, kış ısıtma döngüsü ve gün içi insan aktivitelerini yakalayan zaman sütunlarını oluştururuz.",
+      "altAdimlar": [
+       "1. Pandas DateTimeIndex özelliklerinden saat ve gün özniteliklerini çıkarın.",
+       "2. Sürekli trendi yakalamak için Unix zaman damgasından artan zaman sayacı üretin.",
+       "3. Açıklayıcı değişkenler matrisini (X) ve hedef NO2 sütununu (y) tanımlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+      }
+     },
+     {
+      "teknik": "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False) ile bölmek.",
+      "sade": "Modelin başarısını doğrulamak için verinin son yüzde yirmilik dilimini test için ayırırız.",
+      "altAdimlar": [
+       "1. Zaman serisi bütünlüğünü korumak için shuffle seçeneğini kapalı tutun.",
+       "2. Eğitim kümesinde eksik değer kontrolü yapın.",
+       "3. Test kümesinin başlangıç tarihini doğrulama için not edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 358E",
+      "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "Rastgele orman modelini eğitmek ve test başarısını ölçmek",
+    "oz": "RandomForestRegressor ile hava ve zaman değişkenlerinden NO2'yi öğrenmek.",
+    "ayrinti": "300 karar ağacından oluşan scikit-learn RandomForestRegressor modeli eğitilir. Test kümesinde R² ve kök ortalama kare hatası (RMSE) hesaplanarak modelin meteorolojiye bağlı kirlilik dalgalanmalarını ne kadar açıkladığı ölçülür.",
+    "nasil": [
+     {
+      "teknik": "rf = RandomForestRegressor(n_estimators=300, max_features='sqrt', random_state=42).fit(X_train, y_train) ile eğitmek.",
+      "sade": "Üç yüz ağaçtan oluşan rastgele orman modeline havanın ve zamanın NO2'yi nasıl etkilediğini öğretiriz.",
+      "altAdimlar": [
+       "1. Model hiperparametrelerini aşırı öğrenmeyi önleyecek şekilde yapılandırın.",
+       "2. Ağaçların paralel hesaplama yapabilmesi için n_jobs=-1 ayarını seçin.",
+       "3. Eğitim sürecini tamamlayıp öznitelik önem derecelerini inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+      }
+     },
+     {
+      "teknik": "r2 = r2_score(y_test, rf.predict(X_test)); print(f'Test R2: {r2:.3f}') ile performansı doğrulamak.",
+      "sade": "Modelin gerçek kirlilik ölçümlerini tahmin etmedeki doğruluk oranını test kümesinde hesaplarız.",
+      "altAdimlar": [
+       "1. Test kümesindeki hava koşullarıyla model kestirimlerini üretin.",
+       "2. R² skorunun 0,70 üzerinde olduğunu doğrulayarak modelin güvenilirliğini onaylayın.",
+       "3. Hata kalıntılarını saçılım grafiğinde kontrol edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 358E",
+      "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+     }
+    ]
+   },
+   {
+    "baslik": "300 tekrarlı meteorolojik normalizasyon serisini üretmek",
+    "oz": "Hava koşullarını rastgele örnekleyerek hava etkisinden arındırılmış eğilimi çizmek.",
+    "ayrinti": "Her saat için zaman öznitelikleri sabit tutulurken meteorolojik değişkenler arşivden 300 kez rastgele seçilir ve model kestirimleri ortalanır. Elde edilen normalize seri ile ham NO2 serisi aylık ortalamalarla kıyaslanarak COVID-19 dönemi net salım düşüşü saptanır.",
+    "nasil": [
+     {
+      "teknik": "pred_norm = np.mean([rf.predict(sample_random_weather(X, time_row)) for _ in range(300)], axis=0) ile normalizasyon yapmak.",
+      "sade": "Hava koşullarını rastgele karıştırarak havanın etkisini ortadan kaldırır ve sadece zamana bağlı insan etkisini ayıklarız.",
+      "altAdimlar": [
+       "1. Her bir zaman adımı için arşivden rastgele 300 hava durumu seçin.",
+       "2. Eğitilmiş modelle bu 300 durumun tahminini üretip ortalamasını alın.",
+       "3. Normalleştirilmiş saatlik NO2 serisini yeni bir sütun olarak tabloya kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+      }
+     },
+     {
+      "teknik": "plot_normalized_trend(df_monthly[['no2_raw', 'no2_norm']], 'docs/trend_comparison.png') ile grafiği kaydetmek.",
+      "sade": "Ham NO2 ile hava etkisinden temizlenmiş seriyi yan yana çizip kapanma dönemindeki gerçek salım düşüşünü gösteririz.",
+      "altAdimlar": [
+       "1. Ham ve normalize serileri aylık ortalamalar halinde özetleyin.",
+       "2. 2020 bahar aylarındaki kapanma dönemini dikey bantla işaretleyin.",
+       "3. Grafik çıktısını ve analiz sonuçlarını depoda yayınlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 358E",
+       "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+      }
+     }
+    ],
+    "kazanimlar": [
+     {
+      "ders": "MTO 358E",
+      "madde": "Makine öğrenmesi modelleriyle meteorolojik etkileri ayıklayarak emisyon eğilimlerini ayrıştırmak."
+     }
+    ]
+   }
+  ],
+  "sonuc": "Kadıköy istasyonu için eğitilmiş rastgele orman modeli, hava etkisinden arındırılmış normalize NO2 eğilim grafiği ve kentsel salım analiz defteri.",
+  "senden": "Kadıköy NO2 ve Open-Meteo verilerini birleştirmek, scikit-learn orman modelini eğitmek ve 300 tekrarlı normalizasyon fonksiyonunu kodlamak.",
+  "bizden": "MTO 358E kapsamında sınır tabaka kentsel difüzyon fiziğini, atmosferik kararlılık parametrizasyonunu ve emisyon normalizasyon ilkelerini yapılandırmak."
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul Kadıköy istasyonu ham ve normalize NO2 zaman serisi animasyonu",
+   "aciklama": "Meteorolojik normalizasyon öncesi ve sonrası NO2 derişimlerinin karşılaştırmalı zaman serisi"
+  },
+  {
+   "tur": "ekran",
+   "url": "https://github.com/aura-itu/meteorological-normalization-no2",
+   "aciklama": "AURA İstanbul NO2 normalizasyon kod deposu ve Jupyter analiz defteri"
+  },
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Atmospheric_inversion_over_Bratislava.jpg",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Kentsel alanda sınır tabaka enversiyonu altında biriken azot oksit kirliliği"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Grange, S. K. vd. (2018) Random forest meteorological normalisation models for Swiss PM10 trend analysis, Atmos. Chem. Phys., 18, 6223–6239",
+   "url": "https://doi.org/10.5194/acp-18-6223-2018"
+  },
+  {
+   "ad": "Grange, S. K. & Carslaw, D. C. (2019) Using meteorological normalisation to detect interventions in air quality time series, Sci. Total Environ., 653, 578–588",
+   "url": "https://doi.org/10.1016/j.scitotenv.2018.10.344"
+  },
+  {
+   "ad": "Shi, Z. vd. (2021) Abrupt but smaller than expected changes in surface air quality attributable to COVID-19 lockdowns, Science Advances, 7, eabd6696",
+   "url": "https://doi.org/10.1126/sciadv.abd6696"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO358E-02.json",
+  "tarih": "2026-10-17 03:01",
+  "geminiSha1": "475de48b33a6"
+ }
+}

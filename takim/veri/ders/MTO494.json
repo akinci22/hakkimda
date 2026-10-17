@@ -1,0 +1,145 @@
+{
+ "kod": "MTO 494",
+ "ad": "Araştırma Projesi",
+ "bolum": "Meteoroloji Mühendisliği",
+ "obsNo": "494",
+ "ozet": "Meteoroloji mühendisliğinde bağımsız bir araştırma sorusu tanımlama, literatür taraması, veri analizi, sayısal tahmin modelleri ve yapay zeka yöntemleriyle analiz yapma ve bulguları akademik raporlama becerisi kazandırır. Öğrenciler atmosferik gözlem ve model çıktılarını kullanarak hipotez kurar, istatistiksel doğrulama yöntemleriyle sınar ve bilimsel olarak sunar.",
+ "neOgrenirsin": [
+  "Sayısal hava tahminleri ve istasyon gözlemlerini kullanarak bağımsız bir araştırma sorusu formüle etmek.",
+  "Hata metrikleri (RMSE, MAE, sapma) ve beceri skoru (SS) ile model başarımını referans tahminlere karşı doğrulamak.",
+  "Derin öğrenme ve gömme katmanları kullanarak istasyon bazlı olasılıksal sıcaklık ve rüzgâr düzeltmesi geliştirmek.",
+  "Makine öğrenmesi modellerinin kararlarını permütasyon önemi analizi ile fiziksel açıdan yorumlamak.",
+  "Murphy'nin tahmin iyiliği çerçevesiyle tutarlılık, kalite ve kullanıcı değeri boyutlarını bilimsel sunuma dönüştürmek."
+ ],
+ "formuller": [
+  {
+   "ad": "Tahmin beceri skoru (SS)",
+   "tex": "\\mathrm{SS} = 1 - \\frac{\\mathrm{MSE}_{\\mathrm{tahmin}}}{\\mathrm{MSE}_{\\mathrm{referans}}}",
+   "terimler": [
+    [
+     "\\mathrm{SS}",
+     "referans tahmine göre normalize edilmiş beceri skoru",
+     "birimsiz"
+    ],
+    [
+     "\\mathrm{MSE}_{\\mathrm{tahmin}}",
+     "değerlendirilen model tahmininin ortalama karesel hatası",
+     "(°C)²"
+    ],
+    [
+     "\\mathrm{MSE}_{\\mathrm{referans}}",
+     "referans tahminin (kalıcılık veya iklim) ortalama karesel hatası",
+     "(°C)²"
+    ]
+   ],
+   "sade": "Tahmin sisteminin basit bir referansa (örneğin dünün havasının aynen sürmesi varsayımına) göre ne kadar katma değer ürettiğini ölçer. Skor pozitifse tahmin referanstan üstündür; 1 değeri kusursuz tahmini simgeler.",
+   "ornek": "İstanbul LTFM istasyonunda IFS modelinin MSE değeri 1,8 (°C)², kalıcılık tahmininin MSE değeri 5,4 (°C)² iken beceri skoru SS = 1 - (1,8 / 5,4) = 0,67 bulunur; model kalıcılığa göre %67 daha beceriklidir.",
+   "nerede": "D-MTO494-01'de IFS, GFS ve AIFS tahminlerinin kalıcılık referansına göre üstünlüğünü kıyaslarken."
+  },
+  {
+   "ad": "Normal dağılım için analitik CRPS",
+   "tex": "\\mathrm{CRPS} = \\sigma \\left[ \\frac{y - \\mu}{\\sigma} \\left( 2\\Phi\\left(\\frac{y - \\mu}{\\sigma}\\right) - 1 \\right) + 2\\phi\\left(\\frac{y - \\mu}{\\sigma}\\right) - \\frac{1}{\\sqrt{\\pi}} \\right]",
+   "terimler": [
+    [
+     "\\mathrm{CRPS}",
+     "tek değişkenli normal dağılım için analitik olasılık skoru",
+     "°C"
+    ],
+    [
+     "\\mu",
+     "tahmin edilen olasılık dağılımının ortalama değeri",
+     "°C"
+    ],
+    [
+     "\\sigma",
+     "tahmin edilen olasılık dağılımının standart sapması",
+     "°C"
+    ],
+    [
+     "y",
+     "doğrulama için kullanılan gerçek istasyon ölçümü",
+     "°C"
+    ],
+    [
+     "\\Phi",
+     "standart normal dağılımın kümülatif dağılım fonksiyonu",
+     "birimsiz"
+    ],
+    [
+     "\\phi",
+     "standart normal dağılımın olasılık yoğunluk fonksiyonu",
+     "birimsiz"
+    ]
+   ],
+   "sade": "Sinir ağının çıkardığı ortalama ve standart sapmanın tek bir formülle gerçek gözlemle ne kadar örtüştüğünü ölçer. Bu kapalı biçim, yapay zeka ağlarının türevlenebilir kayıp fonksiyonu olarak doğrudan kullanılır.",
+   "ornek": "İstanbul'da sinir ağı sıcaklığı ortalama 15,0 °C ve standart sapma 1,2 °C öngördüğünde, gerçekleşen gözlem 14,8 °C ise CRPS = 0,38 °C hesaplanır.",
+   "nerede": "D-MTO494-02'de sinir ağıyla olasılıksal sıcaklık düzeltmesi modelini eğitirken ve test ederken."
+  },
+  {
+   "ad": "Permütasyon öznitelik önemi",
+   "tex": "I_k = \\mathrm{Loss}(X^{\\mathrm{perm}(k)}, y) - \\mathrm{Loss}(X, y)",
+   "terimler": [
+    [
+     "I_k",
+     "k. meteorolojik özniteliğin model performansı üzerindeki önem artışı",
+     "°C"
+    ],
+    [
+     "\\mathrm{Loss}",
+     "test veri kümesinde hesaplanan tahmin hata metriği (MAE veya CRPS)",
+     "°C"
+    ],
+    [
+     "X^{\\mathrm{perm}(k)}",
+     "k. girdi değişkeninin satırları rastgele karıştırılmış öznitelik matrisi",
+     "birimsiz"
+    ],
+    [
+     "X",
+     "orijinal girdi değişkenleri matrisi",
+     "birimsiz"
+    ],
+    [
+     "y",
+     "doğrulama için kullanılan gerçek atmosferik gözlem vektörü",
+     "°C"
+    ]
+   ],
+   "sade": "Bir girdi değişkeninin değerleri rastgele karıştırıldığında model hatasının ne kadar fırladığını ölçer. Hata çok artıyorsa model o fiziksel değişkeni gerçekten öğrenmiş demektir.",
+   "ornek": "Sıcaklık tahmin modelinde 2 metre sıcaklık girdisi karıştırıldığında MAE 0,8 °C'den 2,6 °C'ye fırlayarak en kritik öznitelik olduğunu kanıtlar; istasyon kimliği karıştırıldığında ise MAE 0,8 °C'den 1,1 °C'ye çıkar.",
+   "nerede": "D-MTO494-02'de sinir ağının öğrendiği ilişkilerin fiziksel tutarlılığını test ederken."
+  }
+ ],
+ "gorseller": [
+  {
+   "tur": "kamu",
+   "url": "https://commons.wikimedia.org/wiki/File:Ensemble_forecast_plumes.png",
+   "lisans": "CC BY-SA 4.0",
+   "aciklama": "Sayısal hava modellerinin tahmin üyeleri ve istasyon gözlemi karşılaştırması"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "İstanbul LTFM, LTFJ ve LTBA için AIFS, IFS ve GFS sıcaklık tahminlerinin METAR ile karşılaştırılması",
+   "aciklama": "Üç İstanbul havalimanında yapay zeka ve fizik tabanlı modellerin günlük tahmin hataları zaman serisi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "İTÜ ÖBS ders katalog formu · MTO 494 (Araştırma Projesi)",
+   "url": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=494"
+  },
+  {
+   "ad": "Rasp, S. vd. (2024) WeatherBench 2: A Benchmark for Next-Generation Global Weather Models, JAMES, 16, e2023MS004019",
+   "url": "https://doi.org/10.1029/2023MS004019"
+  },
+  {
+   "ad": "Rasp, S. & Lerch, S. (2018) Neural Networks for Postprocessing Ensemble Weather Forecasts, MWR, 146, 3885-3900",
+   "url": "https://doi.org/10.1175/MWR-D-18-0187.1"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "obsUrl": "https://obs.itu.edu.tr/public/DersKatalog/DersKatalogBilgiBransDersKodu?bransKodu=MTO&dersNo=494"
+}
