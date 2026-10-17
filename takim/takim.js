@@ -450,6 +450,7 @@ function sesYerlestir() {
 }
 /* açılış v2: paragraf yok — başlık, tek satır vaat, kitle seçimi, zaman rozetleri, aranan bölümler */
 function acilis() {
+  const tv = $('#tg-v'); if (tv && matchMedia('(prefers-reduced-motion: reduce)').matches) { tv.loop = false; }   /* F01: azaltılmış harekette döngü yok, tek tur */
   const M = veri.metinler.acilis;
   /* AURA logotipi + genelden özele kademeler (12 Eki) */
   const AU = veri.metinler.aura;
@@ -536,7 +537,11 @@ function resmi() {
 }
 function sss() {
   const Q = veri.metinler.sss; if (!Q) return; $('#sss-baslik').textContent = Q.baslik; $('#sss-alt').textContent = Q.alt;
-  $('#sss-kartlar').replaceChildren(...Q.sorular.map(q => { const k = el('button', { class: 'olay-k sss-k', type: 'button' }, el('span', { class: 'k' }, q.s), el('p', { class: 'm' }, q.c)); etkilesim(k, () => ({ kaynaklar: kaynakAl(q), ust: 'sık sorulan', baslik: q.s, kisa: q.c, uzun: q.d })); return k; }));
+  const kart = q => { const k = el('button', { class: 'olay-k sss-k', type: 'button' }, el('span', { class: 'k' }, q.s), el('p', { class: 'm' }, q.c)); etkilesim(k, () => ({ kaynaklar: kaynakAl(q), ust: 'sık sorulan', baslik: q.s, kisa: q.c, uzun: q.d })); return k; };
+  const ilk = Q.sorular.slice(0, 3), kalan = Q.sorular.slice(3);   /* E14 (17 Eki): en sık 3 soru açık, kalanı katlı */
+  $('#sss-kartlar').replaceChildren(...ilk.map(kart));
+  $('#sss-daha')?.remove();
+  if (kalan.length) $('#sss-kartlar').after(el('details', { class: 'dm-devam sss-daha', id: 'sss-daha' }, el('summary', {}, 'diğer ' + kalan.length + ' soru'), el('div', { class: 'olay-kartlar sss-kartlar' }, ...kalan.map(kart))));
 }
 function olay() {
   const O = veri.metinler.olay; if (!O) return; $('#olay-baslik').textContent = O.baslik;
@@ -556,6 +561,8 @@ function kapi() {
   $('#kapi-kartlar').replaceChildren(...K.secenekler.map(s => { const sat = [['ne yaparsın', s.ne], ['kazancın', s.kazanc], ['zaman', s.saat]].filter(x => x[1]);
     const k = el('button', { class: 'kapi', type: 'button', role: 'radio', 'aria-checked': String(durum.grup === s.id), 'data-id': s.id, onclick: () => grupSec(s.id) }, el('span', { class: 'k-ikon' }, ikon[s.id]), el('b', {}, s.etiket), s.alt ? el('span', { class: 'k-alt' }, s.alt) : null, sat.length ? el('dl', { class: 'k-satir' }, ...sat.flatMap(([a, b]) => [el('dt', {}, a), el('dd', {}, b)])) : null);
     ipucuBagla(k, () => ({ baslik: s.etiket, metin: s.detay || s.alt })); return k; }));
+  const KC = $('#katilim-cip'), ks = sayiBul('katilim');   /* F10 (17 Eki): yalnız gerçek sayı varken; yoksa çip gizli kalır */
+  if (KC && ks && Number.isFinite(+ks.ogrenci) && +ks.ogrenci > 0 && Number.isFinite(+ks.bolum) && +ks.bolum > 0) { KC.textContent = `Şu an: ${ks.ogrenci} öğrenci · ${ks.bolum} bölüm`; KC.hidden = false; }
   const kn = $('#kapi-not'), kl = kaynakAl(...K.secenekler); if (kn && kl.length) kn.append(' ', kaynakMini(kl));   /* 8 Eki: kapı seçeneklerindeki dış bilgilerin kaynakları */
 }
 function grupSec(id) { durum.grup = id; ls('takim-grup', id); KOKEL.dataset.grup = id; $$('.kapi').forEach(k => k.setAttribute('aria-checked', String(k.dataset.id === id))); sonKart(); panelSen(); durum.etkilesim++; }
@@ -639,10 +646,35 @@ function deste() {
   document.addEventListener('keydown', e => { if (!D.closest('section').matches(':hover') && document.activeElement?.closest('#kaydir') == null) return; if (e.key === 'ArrowRight') karar(true); if (e.key === 'ArrowLeft') karar(false); });
   Promise.all(kartlar.map(k => arka.oyAl(k.id).catch(() => null))).then(onceki => { onceki.forEach((v, j) => { if (v && j === i) { const evet = v.secim === 'evet'; const uyum = (kartlar[j].id === 'k5') ? !evet : evet; durum.eslesme.toplam++; if (uyum) durum.eslesme.evet++; i++; } }); if (i > 0) $('#deste-tepki').textContent = i >= kartlar.length ? 'Bu desteyi daha önce bitirdin; kararların kayıtlı.' : `${i} kartı daha önce cevapladın, kaldığın yerden.`; ciz(); if (i > 0) { sonKart(); panelSen(); } });
 }
+/* F05 (17 Eki): paylaşılabilir sonuç kartı — istemcide canvas → PNG; Web Share varsa dosyayla paylaş. Sunucu yok. */
+async function testKartCiz(d, n, set) {
+  const W = 1080, H = 1080, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  try { await Promise.all(['700 64px "Barlow Condensed"', '600 220px "Barlow Condensed"', '400 40px "IBM Plex Sans"'].map(f => document.fonts.load(f))); } catch (e) { }
+  x.fillStyle = '#f4efe3'; x.fillRect(0, 0, W, H);
+  x.strokeStyle = 'rgba(162,85,43,.16)'; x.lineWidth = 2; for (let k = -H; k < W + H; k += 54) { x.beginPath(); x.moveTo(k, H); x.lineTo(k + H, 0); x.stroke(); }
+  x.strokeStyle = 'rgba(31,42,46,.12)'; for (let y = 120; y < H; y += 90) { x.beginPath(); x.moveTo(0, y); x.lineTo(W, y); x.stroke(); }
+  x.strokeStyle = '#1f2a2e'; x.lineWidth = 6; x.strokeRect(40, 40, W - 80, H - 80);
+  x.fillStyle = '#1f2a2e'; x.font = '700 64px "Barlow Condensed", "Arial Narrow", sans-serif'; x.fillText('AURA · İTÜ METEOROLOJİ', 90, 150);
+  x.fillStyle = '#4f5f66'; x.font = '400 40px "IBM Plex Sans", system-ui, sans-serif'; x.fillText(set === 'misafir' ? 'Başka bölüm testi · 5 soru' : 'Meteoroloji testi · 5 soru', 90, 215);
+  x.fillStyle = '#c0392b'; x.font = '600 300px "Barlow Condensed", "Arial Narrow", sans-serif'; x.fillText(`${d}/${n}`, 90, 560);
+  x.fillStyle = '#1f2a2e'; x.font = '700 64px "Barlow Condensed", "Arial Narrow", sans-serif';
+  x.fillText(d === n ? 'ANLATICI KOLTUĞU SENİN' : d >= 3 ? 'İYİ BİR BAŞLANGIÇ' : 'TAM DA BU YÜZDEN VARIZ', 90, 680);
+  x.lineWidth = 8; x.strokeStyle = '#a2552b'; x.beginPath(); x.moveTo(90, 740); x.lineTo(90 + (W - 180) * d / n, 740); x.stroke();
+  x.fillStyle = '#4f5f66'; x.font = '400 38px "IBM Plex Sans", system-ui, sans-serif'; x.fillText('Yapay zekâ ile hava tahmini düzeltme ve doğrulama', 90, 860);
+  x.fillStyle = '#1f2a2e'; x.font = '600 40px "IBM Plex Sans", system-ui, sans-serif'; x.fillText('akinci22.github.io/hakkimda/takim', 90, 950);
+  return new Promise(r => c.toBlob(r, 'image/png'));
+}
+function testKart(d, n, set) {
+  const K = $('#test-kart'); if (!K) return; const ad = `aura-test-${d}-${n}.png`;
+  const indir = el('button', { class: 'cip tk-b', type: 'button', onclick: async () => { const b = await testKartCiz(d, n, set); if (!b) return; const u = URL.createObjectURL(b); const a = el('a', { href: u, download: ad }); document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000); } }, 'Sonuç kartını indir (PNG)');
+  const pay = el('button', { class: 'cip tk-b', type: 'button', hidden: true, onclick: async () => { const b = await testKartCiz(d, n, set); if (!b) return; const f = new File([b], ad, { type: 'image/png' }); try { await navigator.share({ files: [f], title: 'AURA testi', text: `AURA testinde ${d}/${n}` }); } catch (e) { } } }, 'Paylaş');
+  try { if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([new Blob(['x'])], 'a.png', { type: 'image/png' })] })) pay.hidden = false; } catch (e) { }
+  K.replaceChildren(el('span', { class: 'tk-not' }, 'Sonucun kare bir kart olarak:'), indir, pay); K.hidden = false;
+}
 function test() {
   const T = veri.anket.test; $('#test-baslik').textContent = T.baslik;
   const ciz = (set) => {
-    durum.test = { dogru: 0, toplam: 0, set }; $('#test-sonuc').textContent = '';
+    durum.test = { dogru: 0, toplam: 0, set }; $('#test-sonuc').textContent = ''; const tk = $('#test-kart'); if (tk) { tk.hidden = true; tk.replaceChildren(); }
     $$('.test-sec .sec').forEach(b => { const a = b.dataset.set === set; b.classList.toggle('aktif', a); b.setAttribute('aria-selected', String(a)); });
     $('#test-sorular').replaceChildren(...T[set].map((s, qi) => {
       const ac = el('p', { class: 'aciklama', hidden: true }); const sur = el('p', { class: 'surpriz-satir', hidden: true });
@@ -651,9 +683,9 @@ function test() {
         const dogru = oi === s.dogru; e.currentTarget.classList.add(dogru ? 'dogru' : 'yanlis'); secenekler[s.dogru].classList.add('dogru'); secenekler.forEach(b => b.disabled = true);
         ac.textContent = (dogru ? '✓ ' : '✗ ') + s.aciklama; ac.hidden = false; if (s.surpriz) { sur.textContent = '▸ ' + s.surpriz; sur.hidden = false; }
         durum.test.toplam++; if (dogru) durum.test.dogru++; durum.etkilesim++; arka.oyVer(s.id, { secim: String(oi), grup: durum.grup }).catch(() => { }).finally(oranGoster);
-        if (durum.test.toplam === T[set].length) { const d = durum.test.dogru; $('#test-sonuc').textContent = d === 5 ? '5/5. Anlatıcı koltuğu senin.' : d >= 3 ? `${d}/5. İyi; eksikleri ilk üç video kapatır.` : `${d}/5. Tam da bu yüzden videolar var. Utanma, kimse görmedi.`; sonKart(); panelSen(); }
+        if (durum.test.toplam === T[set].length) { const d = durum.test.dogru; $('#test-sonuc').textContent = d === 5 ? '5/5. Anlatıcı koltuğu senin.' : d >= 3 ? `${d}/5. İyi; eksikleri ilk üç video kapatır.` : `${d}/5. Tam da bu yüzden videolar var. Utanma, kimse görmedi.`; testKart(d, T[set].length, set); sonKart(); panelSen(); }
       } }, o));
-      arka.oyAl(s.id).then(v => { if (!v) return; const oi = +v.secim; if (!(oi >= 0)) return; const dogru = oi === s.dogru; secenekler[oi].classList.add(dogru ? 'dogru' : 'yanlis'); secenekler[s.dogru].classList.add('dogru'); secenekler.forEach(b => b.disabled = true); oranGoster(); ac.textContent = (dogru ? '✓ ' : '✗ ') + s.aciklama + ' (daha önce cevapladın)'; ac.hidden = false; durum.test.toplam++; if (dogru) durum.test.dogru++; if (durum.test.toplam === T[set].length) { $('#test-sonuc').textContent = `${durum.test.dogru}/5 · daha önce çözdün; cevaplar kayıtlı.`; sonKart(); panelSen(); } }).catch(() => { });
+      arka.oyAl(s.id).then(v => { if (!v) return; const oi = +v.secim; if (!(oi >= 0)) return; const dogru = oi === s.dogru; secenekler[oi].classList.add(dogru ? 'dogru' : 'yanlis'); secenekler[s.dogru].classList.add('dogru'); secenekler.forEach(b => b.disabled = true); oranGoster(); ac.textContent = (dogru ? '✓ ' : '✗ ') + s.aciklama + ' (daha önce cevapladın)'; ac.hidden = false; durum.test.toplam++; if (dogru) durum.test.dogru++; if (durum.test.toplam === T[set].length) { $('#test-sonuc').textContent = `${durum.test.dogru}/5 · daha önce çözdün; cevaplar kayıtlı.`; testKart(durum.test.dogru, T[set].length, set); sonKart(); panelSen(); } }).catch(() => { });
       const oranGoster = () => arka.dinle(s.id, (say, n) => secenekler.forEach((b, oi) => { const y = n ? Math.round(100 * (say[String(oi)] || 0) / n) : 0; let t = b.querySelector('.oran'); if (!t) { t = el('span', { class: 'oran' }); b.append(t); } t.textContent = ` · %${y}`; }));
       return el('div', { class: 'soru' }, el('h3', {}, `${qi + 1}. ${s.soru}`), el('div', { class: 'secenekler' }, ...secenekler), ac, sur);
     }));
@@ -1272,7 +1304,9 @@ function derslerin() {
   const ciz = () => {
     YS.replaceChildren(...yillar.map(y => el('button', { type: 'button', class: 'yil-b', role: 'tab', 'aria-selected': String(y.id === secili), onclick: () => { if (secili === y.id) return; secili = y.id; ls('takim-yil', y.id); durum.etkilesim++; ciz(); } }, y.ad, el('small', {}, String(D.filter(d => d.yil === y.id).length)))));
     KK.replaceChildren(...D.filter(d => d.yil === secili).map(d => {
-      const k = el('button', { class: 'bk dk', type: 'button', 'data-k': d.kod }, el('span', { class: 'bk-ad' }, el('span', { class: 'dk-kod' }, d.kod), adTr(d)), el('p', { class: 'bk-yuz' }, d.yuz || ''));
+      const is0 = (d.isler || []).find(i => i && i.ad);   /* F08 (17 Eki): başlık = yapılacak iş (veriden); yoksa ders adı kalır */
+      const k = is0 ? el('button', { class: 'bk dk dk-is', type: 'button', 'data-k': d.kod }, el('span', { class: 'bk-ad' }, is0.ad), el('span', { class: 'dk-alt' }, el('span', { class: 'dk-kod' }, d.kod), adTr(d)), is0.cikti ? el('p', { class: 'bk-yuz dk-cikti' }, 'Elde kalan: ' + is0.cikti) : el('p', { class: 'bk-yuz' }, d.yuz || ''))
+        : el('button', { class: 'bk dk', type: 'button', 'data-k': d.kod }, el('span', { class: 'bk-ad' }, el('span', { class: 'dk-kod' }, d.kod), adTr(d)), el('p', { class: 'bk-yuz' }, d.yuz || ''));
       etkilesim(k, () => ({ ust: 'derslerine göre · ' + d.kod.toLowerCase(), baslik: adTr(d), kisa: d.yuz || '', p3: { tur: 'ders', dersKod: d.kod, kisaAd: d.kod },
         uzun: [d.baglanti, ...(d.isler || []).map((i, n) => `${n + 1}) ${i.ad}: ${i.ne} İlk adım: ${i.ilkAdim} Elde kalan: ${i.cikti}.`)].filter(Boolean).join(String.fromCharCode(10)),
         kaynaklar: [...kaynakca(d), ...(d.kaynaklar || []).filter(x => x && x.url), { ad: 'Bu bana uyar → bize katıl', url: '#son' }] }));

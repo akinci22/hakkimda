@@ -917,6 +917,8 @@ function kaydirDegis(k, src, yon) {
   if (!("IntersectionObserver" in window)) { v.forEach(ata); return; }
   var io = new IntersectionObserver(function (gs) { gs.forEach(function (g) { if (g.isIntersecting) { ata(g.target); io.unobserve(g.target); } }); }, { rootMargin: "1500px 0px" });
   v.forEach(function (x) { io.observe(x); });
+  /* G09 (17 Eki): her klibin kapağı garanti — sayfa yüklendikten sonra boşta kalan posterler de atanır (Samsung Internet) */
+  addEventListener("load", function () { var f = function () { document.querySelectorAll("video[data-poster]").forEach(ata); }; setTimeout(function () { ("requestIdleCallback" in window) ? requestIdleCallback(f, { timeout: 4000 }) : f(); }, 2500); });
 })();
 /* ZFIX (16 Eki 2026, yakınlaştırma): YolHava bulutu sabit konumda; bir başlık altına girince saydamlaşır, başlığı örtmez */
 (function () {
