@@ -1461,38 +1461,54 @@ function p3VideoIzle(v) {   /* görünür olunca oynar, çıkınca durur; geride
   if (!P3) return; if (!P3.io) P3.io = new IntersectionObserver(es => es.forEach(x => { const v = x.target; if (x.isIntersecting && !v.closest('.geride, .cikis, .gizli')) { const p = v.play(); if (p && p.catch) p.catch(() => { }); } else v.pause(); }), { threshold: .15 });
   P3.io.observe(v);
 }
+/* 18 Eki: SIRALI geçiş — eski ekran önce kısa çıkar (P3_CIK ms, opacity+hafif kayma), tamamen gidince yenisi P3_GIR ms ease-out ile girer;
+   iki ekranın metni aynı anda okunur halde görünmez. Takas anı (ikisi de görünmezken): yerleşim değişir, scroll anında ayarlanır, panel notu yenilenir.
+   Hızlı art arda tıklamada yarım geçiş p3GecisKapat ile anında tamamlanır (oturum sayacı S.gno; eski zamanlayıcılar etkisiz kalır). */
+const P3_CIK = azalt ? 40 : 140, P3_GIR = azalt ? 80 : 220;
+function p3Scroll(D, y) { try { D.scrollTo({ top: y, behavior: 'instant' }); } catch (e) { D.scrollTop = y; } }
+function p3PanelSol(acik) { const pn = $('#p-not'); if (pn) pn.classList.toggle('p3-degis', !!acik); }
+function p3GecisKapat() { const S = P3; if (S && S.takas) { const f = S.takas; S.takas = null; f(true); } }
+function p3Gir(S, sec, yon, y, no) {   /* takas sonrası: yeni ekran yerleşime girer, bir kare sonra görünür olur */
+  sec.classList.remove('bekle', 'gizli', 'geride', 'cikis'); sec.style.setProperty('--p3-dx', (yon * 16) + 'px'); sec.classList.add('giris'); sec.inert = false;
+  p3Scroll(S.D, y); p3PanelGuncelle(); p3PanelSol(false);
+  void sec.offsetWidth;   /* giriş başlangıç durumu boyansın */
+  sec.classList.remove('giris'); sec.classList.add('aktif');
+  requestAnimationFrame(() => { if (S.gno !== no || !P3) return; const r = sec.getRootNode(), a = r && r.activeElement; if (!a || !sec.contains(a)) p3Odakla(); });   /* inert'in odak düzeltmesi (eski ekrandaki düğme) bir kare sonra gövdeye atabiliyor: odak yeni başlığa geri */
+  setTimeout(() => { if (S.gno === no) sec.style.removeProperty('--p3-dx'); }, P3_GIR + 40);
+}
 function p3EkranAc(t, ilk) {
-  const S = P3; if (!S) return;
+  const S = P3; if (!S) return; p3GecisKapat();
   const onceki = S.ekranlar[S.ekranlar.length - 1];
   if (onceki) onceki.scroll = S.D.scrollTop;   /* geri dönünce önceki ekranın kaydırma konumu geri gelir */
-  const sec = el('section', { class: 'p3-ekr' + (ilk ? ' aktif' : ' giris'), 'data-ad': t.ad });
+  const sec = el('section', { class: 'p3-ekr' + (ilk ? ' aktif' : ' bekle'), 'data-ad': t.ad });
   const e = { ad: t.ad, el: sec, scroll: 0, veri: t.veri || null, ozet: t.ozet || null, onEk: t.onEk || '', onEkNo: t.onEkNo || '' };   /* onEk: kırıntıda bu ekranın önüne gelen ara parça (ör. "3. yarıyıl"; ayrı ekran değil) */
   const ic = t.kur(sec, e); if (Array.isArray(ic)) sec.append(...ic.filter(Boolean)); else if (ic) sec.append(ic);
-  S.ekranlar.push(e); S.yigin.append(sec); p3PanelGuncelle();
-  if (!ilk) { try { history.pushState({ tkDetay: 1, p3: S.ekranlar.length, id: (e.veri && e.veri.id) || '' }, ''); S.basamak++; } catch (err) { } }
-  if (onceki) { onceki.el.classList.add('geride'); onceki.el.inert = true; p3Videolar(onceki.el, false); }
-  p3KirintiCiz();
-  if (!ilk) {
-    S.D.scrollTop = 0; okSon = performance.now(); durum.etkilesim++;
-    const bitir = () => { sec.classList.add('aktif'); sec.classList.remove('giris'); if (onceki && onceki.el.classList.contains('geride')) onceki.el.classList.add('gizli'); };
-    if (azalt) bitir(); else requestAnimationFrame(() => requestAnimationFrame(() => { sec.classList.remove('giris'); setTimeout(bitir, 300); }));
+  S.ekranlar.push(e); S.yigin.append(sec);
+  if (ilk) { p3PanelGuncelle(); p3KirintiCiz(); return; }
+  sec.inert = true;
+  try { history.pushState({ tkDetay: 1, p3: S.ekranlar.length, id: (e.veri && e.veri.id) || '' }, ''); S.basamak++; } catch (err) { }
+  p3KirintiCiz(); okSon = performance.now(); durum.etkilesim++;
+  const no = S.gno = (S.gno || 0) + 1;
+  if (onceki) { onceki.el.inert = true; p3Videolar(onceki.el, false); onceki.el.style.setProperty('--p3-dx', '-12px'); onceki.el.classList.remove('aktif'); onceki.el.classList.add('cikis'); }
+  p3PanelSol(true);
+  S.takas = hemen => {
+    if (onceki) { onceki.el.classList.remove('cikis'); onceki.el.classList.add('geride', 'gizli'); onceki.el.style.removeProperty('--p3-dx'); }
+    p3Gir(S, sec, 1, 0, no); if (hemen) { sec.style.removeProperty('--p3-dx'); }
     p3Odakla(); p3Videolar(sec, true);
-  }
+  };
+  setTimeout(() => { if (S.gno === no && S.takas) { const f = S.takas; S.takas = null; f(false); } }, P3_CIK);
 }
 function p3Geriye(h) {   /* yığını h derinliğine indir (popstate'ten gelir) */
-  const S = P3; if (!S) return; h = Math.max(1, h | 0); p3BuyukKapat();   /* geri: açık büyütme de kapanır */
-  while (S.ekranlar.length > h) {
-    const giden = S.ekranlar.pop(); S.basamak = Math.max(0, S.basamak - 1);
-    const hedef = S.ekranlar[S.ekranlar.length - 1]; p3Videolar(giden.el, false);
-    if (S.ekranlar.length !== h) { giden.el.remove(); continue; }   /* ara ekranlar animasyonsuz gider */
-    hedef.el.inert = false; hedef.el.classList.remove('gizli', 'geride'); hedef.el.classList.add('geri-bas');
-    giden.el.inert = true; giden.el.classList.remove('aktif'); giden.el.classList.add('cikis');
-    S.D.scrollTop = hedef.scroll || 0;
-    const bitir = () => { hedef.el.classList.remove('geri-bas'); giden.el.classList.add('cikti'); };
-    if (azalt) { bitir(); giden.el.remove(); } else { requestAnimationFrame(() => requestAnimationFrame(bitir)); setTimeout(() => giden.el.remove(), 320); }
-    p3Videolar(hedef.el, true);
-  }
-  p3KirintiCiz(); p3Odakla(); p3PanelGuncelle(); okSon = performance.now();
+  const S = P3; if (!S) return; h = Math.max(1, h | 0); p3BuyukKapat(); p3GecisKapat();   /* geri: açık büyütme de kapanır; yarım geçiş önce tamamlanır */
+  if (S.ekranlar.length <= h) return;
+  const giden = S.ekranlar.pop(); S.basamak = Math.max(0, S.basamak - 1);
+  while (S.ekranlar.length > h) { const ara = S.ekranlar.pop(); S.basamak = Math.max(0, S.basamak - 1); p3Videolar(ara.el, false); ara.el.remove(); }   /* ara ekranlar görünmeden gider */
+  const hedef = S.ekranlar[S.ekranlar.length - 1];
+  const no = S.gno = (S.gno || 0) + 1;
+  p3Videolar(giden.el, false); giden.el.inert = true; giden.el.style.setProperty('--p3-dx', '12px'); giden.el.classList.remove('aktif'); giden.el.classList.add('cikis');
+  p3KirintiCiz(); p3PanelSol(true); okSon = performance.now();
+  S.takas = () => { giden.el.remove(); p3Gir(S, hedef.el, -1, hedef.scroll || 0, no); p3Odakla(); p3Videolar(hedef.el, true); };
+  setTimeout(() => { if (S.gno === no && S.takas) { const f = S.takas; S.takas = null; f(false); } }, P3_CIK);
 }
 function p3Geri() { const S = P3; if (!S) return; if (S.ekranlar.length <= 1) { S.D.close(); return; } if (S.basamak >= 1) { try { history.back(); return; } catch (e) { } } p3Geriye(S.ekranlar.length - 1); }
 function p3KirintiCiz() {

@@ -1347,13 +1347,13 @@ button.p3-kr{cursor:pointer} button.p3-kr:hover{color:var(--vurgu);text-decorati
 .p3-kr-ayrac{flex:none;color:var(--vurgu)}
 .p3-yigin{position:relative;overflow:clip;min-width:0}
 .p3 img,.p3 video{max-width:100%}
-.p3-ekr{--p3-gecis:300ms;position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-content:start;min-width:0;outline:none;transition:transform var(--p3-gecis) cubic-bezier(.2,.8,.2,1),opacity var(--p3-gecis) ease}   /* C03: p3 ekran geçişleri tek değişkenden */
-.p3-ekr.giris{transform:translateX(100%);opacity:0}
-.p3-ekr.geride,.p3-ekr.cikis{position:absolute;left:0;top:0;width:100%;pointer-events:none}
-.p3-ekr.geride{transform:translateX(-30%);opacity:.5}
+.p3-ekr{--p3-cik:140ms;--p3-gir:220ms;position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-content:start;min-width:0;outline:none;transition:transform var(--p3-gir) cubic-bezier(.16,1,.3,1),opacity var(--p3-gir) cubic-bezier(.2,.8,.2,1)}   /* 18 Eki: sıralı geçiş — önce çıkış (140 ms), sonra giriş (220 ms ease-out); süreler takim.js P3_CIK/P3_GIR ile eş */
+.p3-ekr.giris{transform:translateX(var(--p3-dx,16px));opacity:0;transition:none}
+.p3-ekr.cikis{transform:translateX(var(--p3-dx,-12px));opacity:0;pointer-events:none;transition:transform var(--p3-cik) cubic-bezier(.4,0,1,1),opacity var(--p3-cik) cubic-bezier(.4,0,1,1)}
+.p3-ekr.bekle,.p3-ekr.geride{position:absolute;left:0;top:0;width:100%;pointer-events:none;visibility:hidden;opacity:0;transition:none}
 .p3-ekr.gizli{visibility:hidden}
-.p3-ekr.geri-bas{transform:translateX(-30%);opacity:.5;transition:none}
-.p3-ekr.cikti{transform:translateX(100%);opacity:0}
+#p-not .panel-ust,#p-not .panel-m,#p-not-uzun,#p-not-gorsel{transition:opacity 220ms cubic-bezier(.2,.8,.2,1)}
+#p-not.p3-degis .panel-ust,#p-not.p3-degis .panel-m,#p-not.p3-degis #p-not-uzun,#p-not.p3-degis #p-not-gorsel{opacity:0;transition-duration:140ms}
 .p3-baslik{margin:0;font:700 clamp(1.7rem,3.2vw,2.5rem)/1.08 var(--baslik);letter-spacing:-.01em;text-wrap:balance;outline:none}
 .p3-dm .dm-baslik.p3-baslik{font-size:clamp(2rem,4vw,3.4rem);margin:0}
 .p3-dm .dm-ust{margin:0}
@@ -1464,7 +1464,7 @@ button.p3-kr{cursor:pointer} button.p3-kr:hover{color:var(--vurgu);text-decorati
 .p3-kazanim{margin:0;display:inline-block;padding:6px 12px 6px 10px;border:1px solid var(--cizgi-2);border-radius:999px;background:var(--panel-bg);font-size:.9em;line-height:1.5;color:var(--murekkep-2)} .p3-kazanim q{font-style:italic;color:var(--murekkep)}
 .p3-kazanimlar li{line-height:1.55}
 @media (max-width:860px){.p3-sat-g img{width:72px} .p3-nasil-ac{margin-left:4px;padding-left:10px} .p3-nasil-b{min-height:48px}}
-@media (prefers-reduced-motion:reduce){.p3-ekr,.p3-sat,.p3-parca,.p3-ok,.p3-geri,.p3-mini-k img,.p3-mini-k video,.p3-nasil-b{transition-duration:.15s!important} .p3-ekr.giris,.p3-ekr.geri-bas{transform:none}}   /* C01 kuralı: reduce kısaltır, kapatmaz (kaydırma yok, yalnız solma) */
+@media (prefers-reduced-motion:reduce){.p3-sat,.p3-parca,.p3-ok,.p3-geri,.p3-mini-k img,.p3-mini-k video,.p3-nasil-b{transition-duration:.15s!important} .p3-ekr{--p3-cik:40ms;--p3-gir:80ms;transition-duration:var(--p3-gir)!important} .p3-ekr.cikis{transition-duration:var(--p3-cik)!important} .p3-ekr.giris,.p3-ekr.bekle,.p3-ekr.geride,.p3-ekr.giris *,.p3-ekr.bekle *,.p3-ekr.geride *{transition:none!important} .p3-ekr.giris,.p3-ekr.cikis{transform:none} #p-not.p3-degis .panel-ust,#p-not.p3-degis .panel-m,#p-not.p3-degis #p-not-uzun,#p-not.p3-degis #p-not-gorsel{transition-duration:40ms!important} #p-not .panel-ust,#p-not .panel-m,#p-not-uzun,#p-not-gorsel{transition-duration:80ms!important}}   /* C01 kuralı: reduce kısaltır, kapatmaz (kaydırma yok, yalnız solma) */
 
 /* ===== TUR 10 (15 Eki) — §F ders planı ekranı (E0) · §G-4 imleç yok · §G-6 görsel belirme · §G-7 başlık harf animasyonu ===== */
 /* E0: yarıyıl katları (details) — masaüstünde hepsi açık, darda yalnız ilki (JS open); satırlar Faz 1 dili, projesi olmayan satır soluk ve tıklanmaz */
