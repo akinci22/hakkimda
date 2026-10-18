@@ -860,7 +860,7 @@ function ustHYaz() { const u = $('.ust'); if (!u || !GOVDE) return; const t = pa
 function ustHKur() { const u = $('.ust'); if (!u) return; ustHYaz(); if (window.ResizeObserver) new ResizeObserver(ustHYaz).observe(u); else addEventListener('resize', ustHYaz); }
 function ustPay() { const u = $('.ust'); if (!u) return 70; const t = parseFloat(getComputedStyle(u).top) || 0; return Math.max(70, t + u.offsetHeight + 16); }   /* yapışık hâldeki alt kenar: sticky top + yükseklik (şerit henüz yapışmamışken de doğru) */   /* iniş: yapışkan şeridin gerçek alt kenarı + 16 px (içkinde ana menü + şerit) */
 if(!window.__girdiKur){window.__girdiKur=1;window.__girdi=0;var __g=function(){window.__girdi=performance.now();};['wheel','touchstart','touchmove'].forEach(function(t){addEventListener(t,__g,{passive:true,capture:true});});addEventListener('keydown',function(e){if(/^(Arrow|Page|Home|End| )/.test(e.key)||e.key===' ')__g();},true);}   /* 7 Eki: kullanıcı kaydırmaya başladıysa gecikmeli 'iniş düzeltmeleri' onu yukarı geri çekmesin */
-function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = ustPay();
+function git(id) { let h = KOK.getElementById(id); if (!h) return; const pay = ustPay(); if (window.yerAtla) window.yerAtla(id);   /* 18 Eki: geri tuşu bir önceki konuma dönsün */
   if (h.dataset.katli && !h.getClientRects().length) katliAyarla(h.dataset.katli, true);   /* katlı bir bölüme gidiliyorsa önce aç */
   { const o = h.previousElementSibling; if (o && o.classList.contains('asama-baslik') && o.getClientRects().length) h = o; }   /* aşamanın başlığı görünsün */
   if (Math.abs(h.getBoundingClientRect().top - pay) > innerHeight) donusGoster(scrollY);
@@ -1057,6 +1057,7 @@ function kapanisKur() {
   }
   addEventListener('popstate', e => {
     const st = e.state;
+    if (!D.open && st && st.yer) return;   /* 18 Eki: sayfa içi konum basamağı (gecis.js yerAtla) — pencere kapalıyken kart konumuna çekme */
     if (D.open && st && st.tkDetay && p3Derinlik() > 1) {   /* kendi basamağımız: yığında bir (ya da n) ekran geri; dialog açık kalır */
       const h = st.p3 || 1, d = p3Derinlik();
       if (h < d) { p3Geriye(h); return; }

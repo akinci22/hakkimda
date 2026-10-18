@@ -44,3 +44,57 @@
   }
   window.gecisKur = kur; window.gecisTema = TEMA;
 })();
+
+/* Konum geçmişi (18 Eki 2026, Akın): sayfa içi atlamalar (menü, içindekiler, aşama şeridi, iç bağlantılar) tarayıcı geçmişine
+   bir basamak olarak yazılır. Telefonun geri tuşu / fare geri tuşu bir önceki konuma döner; açık pencere ya da iç içe ekran
+   varsa önce onlar birer birer kapanır (kendi basamakları var), sayfanın başına ya da siteden dışarı atlamaz.
+   Her basamak {yer:1, y, id}: y = o basamaktan ayrılırken (ya da kaydırma durunca) bulunulan konum. Hem ana sayfa hem /takim/ kullanır. */
+(function () {
+  if (window.__yerKur) return; window.__yerKur = 1;
+  try { history.scrollRestoration = 'manual'; } catch (e) { }
+  const st = () => history.state || {};
+  const yaz = (ek) => { try { history.replaceState(Object.assign({}, st(), ek), ''); } catch (e) { } };
+  if (!st().yer && !st().tkDetay && !st().fv && !st().buyuk) yaz({ yer: 1, y: scrollY });
+  let bekle = 0;   /* kaydırma durunca bu basamağın konumu güncellenir (geri dönünce tam kaldığın yer) */
+  addEventListener('scroll', () => { clearTimeout(bekle); bekle = setTimeout(() => { if (st().yer && !acikPencere()) yaz({ y: Math.round(scrollY) }); }, 250); }, { passive: true });
+  function acikPencere() {
+    if (document.querySelector('dialog[open], .fv.acik, .buyut:not([hidden]), .kat-acik.acik')) return true;
+    const ic = document.querySelector('#takim-ic'); const r = ic && ic.shadowRoot; return !!(r && r.querySelector('dialog[open]'));
+  }
+  window.yerAtla = function (id) {   /* bir atlamadan HEMEN ÖNCE çağrılır */
+    if (acikPencere() || performance.now() - (window.__yerTik || 0) < 400) return;   /* aynı tıklamayı bağlantı dinleyicisi zaten yazdı */
+    yaz({ yer: 1, y: Math.round(scrollY) });
+    try { history.pushState({ yer: 1, y: null, id: id || '' }, ''); } catch (e) { }
+  };
+  function bul(id) {
+    if (!id) return null; let h = document.getElementById(id);
+    if (!h) { const ic = document.querySelector('#takim-ic'); h = ic && ic.shadowRoot && ic.shadowRoot.getElementById(id); }
+    return h;
+  }
+  function kaydir(y) {
+    y = Math.max(0, Math.round(y));
+    if (window.__lenis) { window.__lenis.scrollTo(y, { duration: .55, force: true }); return; }
+    /* dokunmatik (Lenis yok): tarayıcı geri gezintisinde kendi parça kaydırmasını da yapar; bir kare sonra ve oturunca yeniden yazılır */
+    scrollTo({ top: y, behavior: 'instant' }); requestAnimationFrame(() => scrollTo({ top: y, behavior: 'instant' })); setTimeout(() => { if (Math.abs(scrollY - y) > 4) scrollTo({ top: y, behavior: 'instant' }); }, 120);
+  }
+  addEventListener('popstate', e => {
+    window.__girdi = performance.now();   /* geri/ileri bir kullanıcı eylemi: önceki atlamanın bekleyen düzeltmeleri (hareket.js duzelt, takım icGit) iptal */
+    const s = e.state; if (!s || !s.yer) return;
+    if (acikPencere()) return;                /* pencere kapanıyor: konuma dokunma, pencereyi kapatan kod halleder */
+    if (s.y != null) { kaydir(s.y); return; }
+    const h = bul(s.id); if (h) kaydir(h.getBoundingClientRect().top + scrollY - 70);
+  });
+  /* ana sayfa bağlantıları: <a href="#..."> tıklanınca önce basamak; tarayıcının kendi hash basamağı eklenirse birleştirilir */
+  document.addEventListener('click', ev => {
+    const a = ev.target.closest && ev.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute('href').slice(1); if (!id || !document.getElementById(id)) return;
+    if (acikPencere()) return;
+    window.__yerTik = performance.now();
+    const n0 = history.length, url0 = location.href;
+    yaz({ yer: 1, y: Math.round(scrollY) });
+    setTimeout(() => {
+      if (location.href !== url0 && history.length > n0) yaz({ yer: 1, y: null, id });   /* tarayıcı hash basamağını zaten ekledi */
+      else { try { history.pushState({ yer: 1, y: null, id }, ''); } catch (e) { } }
+    }, 0);
+  }, true);
+})();
