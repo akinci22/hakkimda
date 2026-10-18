@@ -280,7 +280,7 @@ function kaydirDegis(k, src, yon) {
   var okRaf = 0;   /* kendiliğinden iniş rAF kimliği (aşağıda kurulur) */
   addEventListener("scroll", function () { if (okRaf) return; kaydi = Date.now(); if (kat && kat._evre1) { kapat(); hedef = null; } }, { passive: true });   /* kendiliğinden iniş sırasındaki kaydırma "kullanıcı kaydırdı" sayılmaz */
   var pd = document.createElement("div");   // arka perde: büyürken kararıp bulanıklaşır, sonunda kapkara
-  pd.style.cssText = "position:fixed;inset:0;z-index:9998;pointer-events:none;background:#000;opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)";
+  pd.style.cssText = "position:fixed;inset:0;z-index:9998;pointer-events:none;background:#000;opacity:0;visibility:hidden;backdrop-filter:none;-webkit-backdrop-filter:none";   /* 18 Eki (kaydırma): boştayken tam ekran backdrop-filter her karede birleştirme maliyeti yapıyordu (opacity 0 olsa bile) → boşta none + gizli */
   document.body.appendChild(pd);
   // hizli = YolHava klipleri: 1 sn bekler, hızlı büyür, arka kararmaz yalnız bokeh gibi bulanıklaşır
   var yz = document.createElement("div"); yz.className = "kat-yazi"; yz.innerHTML = "<b></b><span>Ömer Faruk Akıncı</span>"; document.body.appendChild(yz);
@@ -302,6 +302,8 @@ function kaydirDegis(k, src, yon) {
     ak.classList.add("acik");
   }
   function perde(ac, hizli, hemen) {
+    if (ac || hizli === "bokeh") { clearTimeout(pd._k); if (pd.style.visibility === "hidden") { pd.style.transition = "none"; pd.style.visibility = "visible"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(0px)"; void pd.offsetWidth; } }
+    else { clearTimeout(pd._k); pd._k = setTimeout(function () { if (pd.style.opacity === "0") { pd.style.backdropFilter = pd.style.webkitBackdropFilter = "none"; pd.style.visibility = "hidden"; } }, 520); }
     if (hizli === "bokeh") {   // önce yalnız kararır; biraz bekleyince flu (bokeh) eklenir
       var kk = kat; pd.style.background = "rgba(0,0,0,.55)"; pd.style.transition = "opacity 1.8s cubic-bezier(.8,0,.95,.5), backdrop-filter .8s ease-out";   // kararma önce çok yavaş, sona doğru hızlı; sonra flu
       pd.style.opacity = "1"; pd.style.backdropFilter = pd.style.webkitBackdropFilter = "blur(0px)";
