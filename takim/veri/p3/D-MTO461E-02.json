@@ -1,0 +1,436 @@
+{
+ "id": "D-MTO461E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 461E",
+  "dersAd": "Gezegen Atmosferlerine Giriş",
+  "kol": "ikisi"
+ },
+ "ad": "Venüs'ün sera etkisi: tek sütun ışınımsal denge",
+ "ne": "Tek sütunlu gri atmosfer modeliyle Dünya, Mars ve Venüs yüzey sıcaklıklarını hesapla; PSG ile spektral sonuçları kıyasla.",
+ "adimlar": [
+  "Gri atmosfer ışınımsal denge çözümünü Python'da yaz (optik derinlik parametreli).",
+  "Üç gezegen için güneş sabiti, albedo ve optik derinlikle yüzey sıcaklığını hesapla.",
+  "PSG ile Venüs termal spektrumunu üret; model ile kıyasla.",
+  "Kaçak sera eşiğini optik derinlik taramasıyla bul.",
+  "Sonucu karşılaştırma tablosu yap."
+ ],
+ "sonuc": "Üç gezegen sıcaklık hesabı ve spektrum karşılaştırması.",
+ "dayanak": "Clough vd. 2005",
+ "senden": "Fizik ve Python.",
+ "bizden": "Model iskeleti.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 461E",
+    "ad": "Gezegen Atmosferlerine Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NASA Planetary Spectrum Generator",
+   "ne": "Gezegen atmosferleri için ışınımsal transfer/spektrum aracı, tarayıcıdan.",
+   "url": "https://psg.gsfc.nasa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Gezegenlerin ve uyduların atmosferik ışınım transferini yüksek çözünürlüklü çizgi veri tabanlarıyla simüle eden araç sundular.",
+    "nasil": "HITRAN ve GEISA spektral veri tabanlarını kullanarak karbondioksit ve su buharı soğurma katsayılarını hesapladılar.",
+    "neEdindiler": "Araştırmacıların tarayıcı üzerinden Venüs'ün kalın CO2 örtüsünün kızılötesi geçirgenliğini hesaplamasını sağladılar.",
+    "bizNasilKatki": "PSG API'sine Venüs atmosfer profili göndererek sentetik emisyon spektrumu üretip gri modelle kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "Villanueva vd. (2018) Planetary Spectrum Generator Kılavuzu",
+      "url": "https://doi.org/10.1016/j.jqsrt.2018.05.023",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA PSG Dokümantasyon ve Atmosferik Modeller Kılavuzu",
+      "url": "https://psg.gsfc.nasa.gov/help.php",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:AtmosphereofVenus.svg",
+      "lisans": "CC0",
+      "aciklama": "Venüs atmosferinde yükseklik ve basınca bağlı dikey sıcaklık profili"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Venüs atmosferinde CO2 kızılötesi soğurma bantları ve optik derinlik profili",
+      "aciklama": "NASA PSG spektral ışınım transferi simülasyonu ve termal akı dikey profili"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "climlab",
+   "ne": "Python ile süreç tabanlı iklim simülasyon paketi (Brian Rose).",
+   "url": "https://climlab.readthedocs.io/",
+   "ayrinti": {
+    "neYaptilar": "Işınımsal-konvektif denge modellerini modüler Python sınıfları olarak bir araya getiren açık kaynak yazılım geliştirdiler.",
+    "nasil": "RRTMG hızlı ışınım kodunu NumPy ve xarray yapılarıyla entegre ederek tek sütunlu atmosfer simülasyonları yaptılar.",
+    "neEdindiler": "İklim araştırmacılarının farklı sera gazı konsantrasyonlarında dikey sıcaklık profillerini saniyeler içinde çözmesini sağladılar.",
+    "bizNasilKatki": "climlab tek sütun ışınım sınıfını Venüs'ün yüksek albedo ve güneş sabiti değerleriyle çalıştırırız.",
+    "referanslar": [
+     {
+      "ad": "Rose (2018) climlab: Süreç Tabanlı İklim Simülasyon Kütüphanesi",
+      "url": "https://doi.org/10.21105/joss.00659",
+      "tur": "kod"
+     },
+     {
+      "ad": "climlab Tek Sütun ve Işınımsal Denge Modelleri Dokümantasyonu",
+      "url": "https://climlab.readthedocs.io/en/latest/models.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Greenhouse_Effect.svg",
+      "lisans": "CC0",
+      "aciklama": "Çok katmanlı atmosferde yukarı ve aşağı yönlü ışınım akıları ve sera etkisi"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "climlab tek sütun atmosfer modelinde dikey sıcaklık ve sera gazı profili",
+      "aciklama": "Sera gazı konsantrasyonu arttıkça yüzey sıcaklığının yükselişini gösteren 1B animasyon"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "The Climate Laboratory (Brian Rose)",
+   "ne": "Jupyter tabanlı açık iklim dinamiği ders kitabı.",
+   "url": "https://brian-rose.github.io/ClimateLaboratoryBook/",
+   "ayrinti": {
+    "neYaptilar": "Gezegenlerin sera etkisi ve kaçak sera eşiklerini analitik ve sayısal modellerle anlatan interaktif ders kitabı sundular.",
+    "nasil": "Stefan-Boltzmann yasası ve gri optik derinlik integralleriyle analitik yüzey sıcaklığı formüllerini türettiler.",
+    "neEdindiler": "Öğrencilere Venüs'ün Dünya'dan daha az güneş enerjisi soğurmasına rağmen neden daha sıcak olduğunu ispatladılar.",
+    "bizNasilKatki": "Rose modelindeki Eddington yaklaşımı formülasyonunu kodlayarak Venüs'ün 735 Kelvin yüzey sıcaklığını buluruz.",
+    "referanslar": [
+     {
+      "ad": "Rose (2021) The Climate Laboratory Açık Ders Kitabı Deposu",
+      "url": "https://github.com/brian-rose/ClimateLaboratoryBook",
+      "tur": "kod"
+     },
+     {
+      "ad": "Goldblatt ve Watson (2012) The Runaway Greenhouse",
+      "url": "https://doi.org/10.1098/rsta.2012.0004",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Spectral_Greenhouse_Effect.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Karbondioksit ve sera gazı soğurma spektrumu ve termal ışınım akısı şeması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Gri atmosfer Eddington yaklaşımında optik derinlik ve denge sıcaklığı eğrisi",
+      "aciklama": "Artan optik derinlik parametresiyle yüzey sıcaklığının analitik artış animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "NASA Exoplanet Exploration",
+   "ne": "Ötegezegen keşifleri ve atmosfer gözlemleri.",
+   "url": "https://exoplanets.nasa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Samanyolu galaksisinde keşfedilen binlerce kayalık ötegezegenin atmosferik yaşanabilirlik sınırlarını haritalandırdılar.",
+    "nasil": "Venüs benzeri aşırı sera etkisi altındaki sıcak süper-Dünyaların ışınımsal dengesini 1B modellerle simüle ettiler.",
+    "neEdindiler": "Yıldızına yakın kayalık gezegenlerde suyun tamamen buharlaşarak kaçak sera felaketini nasıl tetiklediğini gösterdiler.",
+    "bizNasilKatki": "Geliştirdiğimiz tek sütun modelini Venüs analogu TRAPPIST-1 gezegenlerinin yüzey sıcaklık kestiriminde test ederiz.",
+    "referanslar": [
+     {
+      "ad": "NASA Ötegezegen Karşılaştırmalı Gezegen Atmosferleri Kataloğu",
+      "url": "https://exoplanets.nasa.gov/what-is-an-exoplanet/planet-types/terrestrial/",
+      "tur": "web"
+     },
+     {
+      "ad": "Wordsworth (2015) The Climate of Terrestrial Planets",
+      "url": "https://doi.org/10.1016/j.pss.2015.06.012",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Cytherean_world_2_rend_1.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Venüs benzeri aşırı sera etkisi altındaki sıcak kayalık ötegezegen illüstrasyonu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://exoplanets.nasa.gov/what-is-an-exoplanet/planet-types/terrestrial/",
+      "aciklama": "NASA Karasal Gezegenler ve Venüs benzeri atmosferler sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Europlanet Society",
+   "ne": "Avrupa gezegen bilimi topluluğu.",
+   "url": "https://europlanet-society.org/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa uzay ajansları ve özel sektör ortaklığıyla gezegen atmosferi simülasyon altyapısını kurdular.",
+    "nasil": "Venüs Express ve EnVision görevlerinden elde edilen spektroskopik verileri ortak veri ambarında birleştirdiler.",
+    "neEdindiler": "Venüs bulut katmanlarının albedo üzerindeki etkisini ve ışınım soğurmasını en hassas şekilde parametrize ettiler.",
+    "bizNasilKatki": "Europlanet açık modellerinden Venüs sülfürik asit bulutlarının optik kalınlık katsayılarını çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Europlanet Araştırma Altyapısı (Europlanet 2024 RI) Portalı",
+      "url": "https://www.europlanet.org/europlanet-2024-ri/",
+      "tur": "web"
+     },
+     {
+      "ad": "Limaye vd. (2018) Venus Atmospheric Thermal Structure and Radiative Balance",
+      "url": "https://doi.org/10.1007/s11214-018-0525-2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Venus_from_Pioneer_Venus_in_1979.jpg",
+      "lisans": "NASA",
+      "aciklama": "Pioneer Venus tarafından ultraviyole dalgaboyunda görüntülenen kalın sülfürik asit bulut örtüsü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Venüs atmosferinde sülfürik asit bulut katmanları ve optik kalınlık dağılımı",
+      "aciklama": "Venüs'ün yüksek albedosunu ve sera ısınmasını belirleyen bulut tabakası animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Mars, Venüs, Titan ve ötegezegen atmosferlerini Dünya meteorolojisi araçlarıyla karşılaştırmak.",
+  "baglanti": "Yazılım kolunda gezegen verisi ve ışınımsal transfer; Anlatım kolunda gezegen havası anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Mars atmosferi %95 CO₂, 6 hPa; toz fırtınaları ışınım dengesini değiştirir; Mars Climate Database GCM tabanlı iklim verisi sunar.",
+    "Titan'ın metan döngüsü Dünya'nın su döngüsüne benzer; tropikal göllerin kararlılığı modellerle sınandı. (Tokano 2020)",
+    "Yaşanabilir bölgenin iç sınırı yüzey su dağılımına bağlıdır; 3B iklim modelleri bunu gösterir. (Kodama vd. 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Perseverance MEDA ve InSight, Mars yüzeyinde sürekli basınç/rüzgâr/sıcaklık ölçtü; toz şeytanı geçişleri basınç düşüşleriyle sayıldı.",
+    "NASA PSG ile gezegen spektrumları tarayıcıda hesaplanıyor; ötegezegen atmosfer geçiş spektrumları JWST ile ölçülüyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Tokano 2020",
+    "baslik": "Stable Existence of Tropical Endorheic Lakes on Titan",
+    "yayin": "Geophysical Research Letters 47(2)",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2019GL086166",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kodama vd. 2019",
+    "baslik": "Inner Edge of Habitable Zones for Earth-Sized Planets With Various Surface Water Distributions",
+    "yayin": "Journal of Geophysical Research: Planets 124(10), 2306-2324",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2019JE006037",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Clough vd. 2005",
+    "baslik": "Atmospheric radiative transfer modeling: a summary of the AER codes",
+    "yayin": "Journal of Quantitative Spectroscopy and Radiative Transfer 91(2), 233-244",
+    "yil": "2005",
+    "url": "https://doi.org/10.1016/j.jqsrt.2004.05.058",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Picone vd. 2002",
+    "baslik": "NRLMSISE-00 empirical model of the atmosphere: Statistical comparisons and scientific issues",
+    "yayin": "Journal of Geophysical Research: Space Physics 107(A12)",
+    "yil": "2002",
+    "url": "https://doi.org/10.1029/2002JA009430",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Tek sütunlu gri atmosfer ışınımsal denge modeliyle Dünya, Mars ve Venüs'ün sera etkisini çözüp yüzey sıcaklıklarını karşılaştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 461E",
+   "ad": "Gezegen Atmosferlerine Giriş",
+   "projeyeKatki": "Venüs'ün 92 bar yüzey basıncında hidrostatik ölçek yüksekliği ve kaçak sera gazı optik derinliğini çözümler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Atmosferik ölçek yüksekliği (Scale Height) denklemi",
+     "nerede": "Adım 2: Venüs'ün 735 K yüzey sıcaklığında H = R*T/g ölçek yüksekliğinin dikey katman kalınlıklarına etkisinde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Tek sütun ışınımsal denge denklemleriyle gezegenlerin sera gazı optik derinliği ve yüzey sıcaklığı çözülür.",
+  "ayrinti": "Güneş sabiti (S0), albedo (alpha) ve optik derinlik (tau) parametreleri kullanılarak tek sütunlu gri atmosfer denklemleri kurulur. Eddington yaklaşımı T_s^4 = T_e^4 * (1 + 0.75*tau) bağıntısıyla yüzey sıcaklıkları hesaplanır. Venüs'ün devasa optik derinliği (tau ≈ 70) simüle edilerek kaçak sera etkisi doğrulanır.",
+  "sonuc": "Mars, Dünya ve Venüs sera etkisi karşılaştırma tablosu ve 1B dikey sıcaklık profilleri.",
+  "senden": "Python model kodu ve grafik arayüz.",
+  "bizden": "Işınımsal transfer parametreleri ve kuramsal denklemler.",
+  "adimlar": [
+   {
+    "baslik": "Gri atmosfer ışınımsal denge denklemlerini kurmak",
+    "oz": "Tek sütunlu atmosferde yukarı ve aşağı yönlü termal akı denklemlerini yazmak.",
+    "ayrinti": "Atmosfer N adet eş-basınçlı dikey katmana ayrılır. Her katmanda soğurulan güneş ışınımı ile yayılan termal kızılötesi ışınım Schwarzchild denklemiyle dengelenir. Analitik çözüm için Eddington yaklaşımı uygulanır.",
+    "nasil": [
+     {
+      "teknik": "Python'da T_e = ((S0 * (1 - alpha)) / (4 * sigma))^(1/4) ile etkin sıcaklığı hesaplamak.",
+      "sade": "MTO 461E dersindeki 'Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek' bilgisiyle gezegenin hiç atmosferi olmasaydı uzaya yayacağı enerjiden kaç derece olacağını buluruz.",
+      "altAdimlar": [
+       "1. Mars (586 W/m2), Dünya (1361 W/m2) ve Venüs (2601 W/m2) güneş sabitlerini tanımlayın.",
+       "2. Gezegenlerin yansıtma katsayılarını (albedo: 0.25, 0.30, 0.77) belirleyin.",
+       "3. Stefan-Boltzmann sabitiyle sera gazsız denge sıcaklıklarını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek."
+      }
+     },
+     {
+      "teknik": "Eddington bağıntısı T_s^4 = T_e^4 * (1 + 0.75 * tau) ile sera ısınmasını çözmek.",
+      "sade": "MTO 461E dersindeki 'Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek' bilgisiyle atmosferdeki karbondioksitin battaniye gibi ısıyı tutarak yüzeyi nasıl kavurduğunu hesaplarız.",
+      "altAdimlar": [
+       "1. Her gezegenin atmosferik gaz miktarına göre gri optik derinliğini (tau) atayın.",
+       "2. Mars (tau=0.2), Dünya (tau=2) ve Venüs (tau=70) için yüzey sıcaklık formülünü çözün.",
+       "3. Venüs'ün yüksek albedoya rağmen neden 735 Kelvin olduğunu matematiksel olarak kanıtlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Dünya, Mars ve Venüs parametreleriyle sıcaklık çözmek",
+    "oz": "Üç gezegenin dikey sıcaklık profillerini çıkarıp karşılaştırmak.",
+    "ayrinti": "Hesaplanan optik derinlik dikey katmanlara dağıtılarak yüzeyden atmosfer tepesine kadar olan sıcaklık gradyanı elde edilir. Dikey konvektif adyabatik sıcaklık düşüş oranı (lapse rate) denetlenerek ışınımsal-konvektif profil kurulur.",
+    "nasil": [
+     {
+      "teknik": "dT/dz = -g / c_p kuru adyabatik gradyanı ile ışınımsal profili düzeltmek.",
+      "sade": "MTO 461E dersindeki 'Atmosferik ölçek yüksekliği (Scale Height) denklemi' bilgisiyle havanın aşırı ısınıp yukarı yükselerek sıcaklığı dengelediği konveksiyon katmanını modelleriz.",
+      "altAdimlar": [
+       "1. Gezegenlerin yerçekimi (g) ve özgül ısı (c_p) değerleriyle adyabatik gradyanı bulun.",
+       "2. Işınımsal sıcaklık gradyanının adyabatik sınırı aştığı katmanları tespit edin.",
+       "3. Konvektif düzeltmeyle gerçekçi troposfer kalınlığını ve tropopoz yüksekliğini hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Atmosferik ölçek yüksekliği (Scale Height) denklemi"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile üç gezegenin dikey sıcaklık profillerini tek bir grafikte karşılaştırmak.",
+      "sade": "MTO 461E dersindeki 'Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek' bilgisiyle Mars, Dünya ve Venüs'ün dikey atmosfer katmanlarını yan yana koyup farkı sergileriz.",
+      "altAdimlar": [
+       "1. Y eksenine normalize basıncı (P/P0), X eksenine Kelvin cinsinden sıcaklığı yerleştirin.",
+       "2. Üç gezegenin profil eğrilerini farklı renklerle çizin.",
+       "3. Yüzeydeki sera sıcaklık artış farklarını (Delta T = T_s - T_e) etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "NASA PSG ile Venüs spektrumu ve kaçak sera eşiği",
+    "oz": "NASA simülasyonuyla modelimizi doğrulayıp kaçak sera limitini bulmak.",
+    "ayrinti": "NASA Planetary Spectrum Generator arayüzünden Venüs için tam spektral ışınım çıktısı alınır. Basit gri model sonuçları PSG ile kıyaslanır. Optik derinlik artırılarak okyanusların buharlaşmasıyla tetiklenen kaçak sera (runaway greenhouse) eşik akısı belirlenir.",
+    "nasil": [
+     {
+      "teknik": "PSG API'sinden Venüs'ün 1-50 mikron dalga boyundaki kızılötesi akı spektrumunu çekmek.",
+      "sade": "MTO 461E dersindeki 'Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek' bilgisiyle NASA'nın karmaşık spektral hesaplarıyla bizim sade modelimizin örtüştüğünü gösteririz.",
+      "altAdimlar": [
+       "1. PSG web servisinden Venüs kızılötesi spektrum tablosunu indirin.",
+       "2. CO2 ve SO2 soğurma bantlarının uzaya kaçan termal akıyı nasıl kestiğini inceleyin.",
+       "3. Spektral integral alarak toplam uzaya giden akıyı (OLR) hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek."
+      }
+     },
+     {
+      "teknik": "Simpson-Nakajima kaçak sera limiti olan 280-310 W/m2 üst sınırını doğrulamak.",
+      "sade": "MTO 461E dersindeki 'Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek' bilgisiyle bir gezegenin soğurabileceği güneş enerjisi sınırını aşarsa tüm suyunun buharlaşıp cehenneme döneceğini açıklarız.",
+      "altAdimlar": [
+       "1. Modelde su buharı geri beslemesini ve doygunluk buhar basıncını aktif edin.",
+       "2. Güneş akısını adım adım artırarak yüzey sıcaklığının fırladığı noktayı belirleyin.",
+       "3. Venüs'ün geçmişte okyanuslarını nasıl kaybettiğini özetleyen sonuç raporu üretin."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Venüs'ün kontrolden çıkmış aşırı sera etkisini ışınımsal transfer dengesiyle analiz etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Venüs atmosferinde süper-rotasyon ve dikey ışınım dengesi animasyonu",
+   "aciklama": "Venüs'ün kalın karbondioksit örtüsünde kızılötesi ışınımın hapsolması ve aşırı sıcaklık"
+  },
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Venüs atmosferinde CO2 optik derinliği ve dikey ışınımsal akı dengesi",
+   "aciklama": "Venüs'ün aşırı sera etkisi altında yüzeyden troposfere sıcaklık ve kızılötesi akı animasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Limaye, S. S. vd. (2018) Venus Atmospheric Thermal Structure and Radiative Balance, Space Sci. Rev., 214, 90",
+   "url": "https://doi.org/10.1007/s11214-018-0525-2"
+  },
+  {
+   "ad": "Goldblatt, C. & Watson, A. J. (2012) The Runaway Greenhouse, Phil. Trans. R. Soc. A, 370, 4197–4216",
+   "url": "https://doi.org/10.1098/rsta.2012.0004"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO461E-02.json",
+  "tarih": "2026-10-19 05:03",
+  "geminiSha1": "fe41f1d3374d"
+ }
+}

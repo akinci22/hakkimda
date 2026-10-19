@@ -1,0 +1,392 @@
+{
+ "id": "D-MTO455-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 455",
+  "dersAd": "Hidrometri",
+  "kol": "anlatim"
+ },
+ "ad": "Disdrometre damlaları sayar: damla boyutundan radar yağışına",
+ "ne": "Damla boyut dağılımından Z-R ilişkisinin nasıl çıktığını örnek disdrometre verisiyle anlatan 3 dakikalık video.",
+ "adimlar": [
+  "Açık bir Parsivel veri setinden (ARM) bir yağış olayının dağılımını al.",
+  "Z ve R'yi dağılımdan hesapla; Z-R saçılımını çiz.",
+  "Marshall-Palmer ile karşılaştır.",
+  "Radar yağış tahminindeki hatanın bu ilişkiden nasıl doğduğunu anlat.",
+  "Sade animasyon."
+ ],
+ "sonuc": "Video ve Z-R grafiği.",
+ "dayanak": "Sun vd. 2018",
+ "senden": "Anlatım.",
+ "bizden": "Veri ve kod.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 455",
+    "ad": "Hidrometri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ARM (DOE)",
+   "ne": "Atmosferik radyasyon ölçüm sahaları; tüm veri açık.",
+   "url": "https://www.arm.gov/",
+   "ayrinti": {
+    "neYaptilar": "Lazer ışını arasından geçen her bir yağmur damlasının çapını ve düşme hızını milisaniye çözünürlüğünde ölçen sensör ağları işlettiler.",
+    "nasil": "Lazer demetinin kesilme süresi ve genlik düşüşünden damla çapı (0,2-8 mm) ve düşme terminal hızını 32 hız/çap matrisine dönüştürdüler.",
+    "neEdindiler": "Radar yansıtırlığı (Z) ile gerçek yağış şiddeti (R) arasındaki mikro fiziksel bağıntının sahada kanıtlanmasını sağladılar.",
+    "bizNasilKatki": "ARM açık Parsivel disdrometre veri setini indirip sağanak ve çisenti olayları için dinamik Z-R ilişkisi türetiriz.",
+    "referanslar": [
+     {
+      "ad": "Tokay vd. (2014) Parsivel2 Lazer Disdrometresi Saha Ölçüm Değerlendirmesi",
+      "url": "https://doi.org/10.1175/JTECH-D-13-00174.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "DOE ARM Disdrometre Veri Ürünleri Kılavuzu",
+      "url": "https://www.arm.gov/capabilities/instruments/vdis",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "DOE ARM disdrometre damla boyut dağılımı Marshall-Palmer logaritmik eğrisi animasyonu",
+      "aciklama": "Marshall-Palmer yağmur damla boyut dağılımı logaritmik eğrisi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.arm.gov/capabilities/instruments/vdis",
+      "aciklama": "DOE ARM disdrometre alet ve veri portalı sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "OTT HydroMet",
+   "ne": "Hidrometri aletleri (Parsivel disdrometre, akım ölçerler).",
+   "url": "https://www.ott.com/",
+   "ayrinti": {
+    "neYaptilar": "Optik lazer şeridiyle yağış tipini (yağmur, dolu, kar, çisenti) ayırt eden endüstriyel standart Parsivel2 sensörünü ürettiler.",
+    "nasil": "Düşen parçacığın çap ve hızını anlık eşleştirerek aerodinamik terminal hız sapmalarından hidrometeor sınıflandırması yaptılar.",
+    "neEdindiler": "Meteoroloji ve radar istasyonlarında radar zemin doğrulamasının dakikalık otomatik yürütülmesini sağladılar.",
+    "bizNasilKatki": "OTT Parsivel matris hesaplama kodlarını Python'da yeniden yazarak Z ve R integrallerini çözeriz.",
+    "referanslar": [
+     {
+      "ad": "OTT HydroMet Parsivel2 Lazer Yağış ve Disdrometre Kılavuzu",
+      "url": "https://www.ott.com/products/parsivel",
+      "tur": "web"
+     },
+     {
+      "ad": "Bringi ve Chandrasekar (2001) Polarimetrik Radar Meteorolojisi",
+      "url": "https://doi.org/10.1017/CBO9780511541094",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "OTT Parsivel lazer disdrometre 32 hız ve çap matrisinde damla dağılımı animasyonu",
+      "aciklama": "OTT Parsivel lazer disdrometre damla boyutu ölçüm cihazı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.ott.com/products/parsivel",
+      "aciklama": "OTT HydroMet Parsivel2 optik disdrometre tanıtım sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Vaisala",
+   "ne": "Radyosonda, disdrometre ve yıldırım ağı üreten Fin şirketi.",
+   "url": "https://www.vaisala.com/",
+   "ayrinti": {
+    "neYaptilar": "Optik saçılma ve yağış sensörleriyle havalimanları ve ulusal hava servisleri için modern disdrometreler ürettiler.",
+    "nasil": "Kızılötesi ışık zayıflamasıyla damla geçiş sürelerini analiz edip anlık yağış şiddetini ve tipini raporladılar.",
+    "neEdindiler": "Küresel ölçekte en yaygın kullanılan hava durumu ve görüş sensörleri portföyünü kurdular.",
+    "bizNasilKatki": "Vaisala hava sensörü algoritmalarını Parsivel lazer verisiyle karşılaştırarak aletler arası sapmayı inceleriz.",
+    "referanslar": [
+     {
+      "ad": "Vaisala Present Weather and Visibility Sensors PWD Series",
+      "url": "https://www.vaisala.com/en/products/weather-environmental-sensors/present-weather-detectors-visbility-sensors-pwd-series",
+      "tur": "web"
+     },
+     {
+      "ad": "Vaisala Hava Radarı ve Meteoroloji Gözlem Çözümleri",
+      "url": "https://www.vaisala.com/en/industries-applications/weather-and-environmental/meteorology",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Vaisala optik hava ve yağış tipi algılayıcı sensör sinyal dalgalanmaları animasyonu",
+      "aciklama": "Vaisala optik hava ve yağış tipi algılayıcı sensörü"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.vaisala.com/en/products/weather-environmental-sensors/present-weather-detectors-visbility-sensors-pwd-series",
+      "aciklama": "Vaisala optik yağış dedektörü teknik ürün sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "wradlib",
+   "ne": "Açık kaynak hava radarı işleme kütüphanesi.",
+   "url": "https://docs.wradlib.org/",
+   "ayrinti": {
+    "neYaptilar": "Radar yansıtırlık verilerini işleyen ve Z-R ilişkisiyle yağış haritalarına çeviren açık kaynak Python kütüphanesi yazdılar.",
+    "nasil": "Ham polar radar hacim taramalarını yerçekimi, zemin ekosu ve sönümlenme düzeltmelerinden geçirerek kartezyen ızgaralara aktardılar.",
+    "neEdindiler": "Dünya genelinde radar meteorologlarının kullandığı açık kaynaklı referans yazılım ekosistemini sağladılar.",
+    "bizNasilKatki": "wradlib kütüphanesinin zr modülünü kullanarak disdrometreden türettiğimiz yerel Z-R bağıntılarını test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Heistermann vd. (2013) wradlib: Açık Kaynak Hava Radarı Kütüphanesi",
+      "url": "https://doi.org/10.5194/hess-17-863-2013",
+      "tur": "makale"
+     },
+     {
+      "ad": "wradlib Z-R Dönüşümü ve Yağış Kestirimi Dokümantasyonu",
+      "url": "https://docs.wradlib.org/en/stable/zr.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "wradlib kütüphanesi hava radarı PPI yansıtırlık haritası ve konvektif hücreler animasyonu",
+      "aciklama": "Hava radarı PPI yansıtırlık haritası ve konvektif hücreler"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://docs.wradlib.org/en/stable/zr.html",
+      "aciklama": "wradlib radar veri işleme ve Z-R dönüşüm modülü sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yağış, buharlaşma ve akış ölçümünün nasıl yapıldığını, hatasının nereden geldiğini kendi ölçümüyle öğrenmek.",
+  "baglanti": "Yazılım kolunda ölçüm belirsizliği analizi; Anlatım kolunda ölçüm aleti anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Yağış ölçerler rüzgâr nedeniyle az ölçer; rüzgâr siperi ve düzeltme denklemleri WMO karşılaştırmalarıyla belirlenir.",
+    "Disdrometre damla boyut dağılımını ölçer; radar yansıtırlık-yağış (Z-R) ilişkisi bu dağılımdan türetilir.",
+    "Akım ölçümü hız-alan yöntemiyle (pervane, ADCP) ya da anahtar eğrisiyle yapılır; eğri taşkınlarda en belirsizdir."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Vatandaş yağış ağları (CoCoRaHS, WOW) resmi ağların boşluklarını dolduruyor; kalite kontrol ile araştırmada kullanılıyor.",
+    "Tibet Platosu \"su kulesi\" için kriyosfer-hidrometeoroloji gözlem birimleri kuruldu; dağ hidrometrisi yeni standart arıyor. (Liu vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Liu vd. 2024",
+    "baslik": "Cryosphere–Hydrometeorology Observations for a Water Tower Unit on the Tibetan Plateau",
+    "yayin": "Bulletin of the American Meteorological Society 105(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/BAMS-D-23-0001.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Sun vd. 2018",
+    "baslik": "A Review of Global Precipitation Data Sets: Data Sources, Estimation, and Intercomparisons",
+    "yayin": "Reviews of Geophysics 56(1), 79-107",
+    "yil": "2018",
+    "url": "https://doi.org/10.1002/2017RG000574",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Conway vd. 2018",
+    "baslik": "Challenges in Modeling Turbulent Heat Fluxes to Snowpacks in Forest Clearings",
+    "yayin": "Journal of Hydrometeorology 19(10), 1599-1616",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/JHM-D-18-0050.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Friedrich vd. 2018",
+    "baslik": "Reservoir Evaporation in the Western United States",
+    "yayin": "Bulletin of the American Meteorological Society 99(1), 167-187",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/BAMS-D-15-00224.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Optik disdrometre damla boyut dağılımından Z-R bağıntısını türetip radar yağış kestirimindeki belirsizlik mekanizmasını 3 dakikalık video ile anlatmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 455",
+   "ad": "Hidrometri",
+   "projeyeKatki": "Disdrometre lazer ölçümlerinden damla boyut dağılımının ve radar yansıtırlık (Z-R) denklemlerinin çıkarılmasını sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Marshall-Palmer damla boyut dağılımı (DSD) denklemi",
+     "nerede": "Adım 1: Optik disdrometrenin damla çapı spektrumuna N(D) = N0 exp(-Lambda D) üstel dağılımının uydurulmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Parsivel lazer disdrometre verisiyle damla boyut dağılımından Z-R bağıntısını türetip 3 dakikalık video hazırlamak.",
+  "ayrinti": "Açık ARM Parsivel disdrometre veri setinden konvektif ve stratiform yağış epizotları seçilir. 32 çap kanalındaki damla konsantrasyonundan 6. moment ile radar reflektivitesi Z = sum(N(D) * D^6 * dD) ve 3. moment ile yağış şiddeti R hesaplanır. Standart Marshall-Palmer (Z = 200 R^1.6) ile yerel Z-R bağıntısı kıyaslanır; radarların neden bazen yağmuru 2 kat fazla veya az ölçtüğü 3 dakikalık animasyonlu videoda anlatılır.",
+  "sonuc": "Damla boyut dağılımı ile radar yansıtırlığı arasındaki mikrofiziksel köprüyü anlatan analitik defter ve 3 dakikalık video senaryosu.",
+  "adimlar": [
+   {
+    "baslik": "DSD dağılımından Z ve R integrallerini hesaplamak",
+    "oz": "Parsivel ham matrisinden 6. moment ile Z (mm⁶/m³) ve hacim akısıyla R (mm/saat) türetmek.",
+    "ayrinti": "NetCDF disdrometre dosyasından her dakika için N(D) damla konsantrasyonu (m⁻³ mm⁻¹) çıkarılır. Radar dalgalarının damla çapının 6. kuvvetine duyarlı olması nedeniyle Z = sum(N(D) * D^6) ve terminal düşme hızıyla yağış debisi R hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "Disdrometre ham çap-hız matrisini kalite kontrolünden geçirip sahte damlaları temizlemek.",
+      "sade": "MTO 455 dersindeki 'Marshall-Palmer damla boyut dağılımı (DSD) denklemi' bilgisiyle rüzgârın savurduğu veya birbirine çarpmış bozuk damla ölçümlerini temizleriz.",
+      "altAdimlar": [
+       "1. Parsivel 32x32 boyutundaki ham çap-hız frekans tablosunu okuyun.",
+       "2. Gunn-Kinzer terminal hız eğrisinden %40'tan fazla sapan damlaları ayıklayın.",
+       "3. Her dakika için gerçek N(D) damla boyut spektrumunu çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Marshall-Palmer damla boyut dağılımı (DSD) denklemi"
+      }
+     },
+     {
+      "teknik": "Z = integral(N(D) * D^6 dD) ve R = (pi/6) * integral(N(D) * D^3 * v(D) dD) hesaplamak.",
+      "sade": "MTO 455 dersindeki 'Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek' bilgisiyle damla sayılarından radarın ne göreceğini ve yere kaç milimetre su düştüğünü hesaplarız.",
+      "altAdimlar": [
+       "1. Çapın 6. kuvvetiyle damla konsantrasyonunu çarparak reflektiviteyi (Z) bulun.",
+       "2. Çapın küpü ve düşme hızıyla birim alandaki su akısını (R) hesaplayın.",
+       "3. 60 dakikalık yağış boyunca dakika dakika Z ve R değerlerini listeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Z-R eğrisi uydurup saçılım grafiğini çizmek",
+    "oz": "Log-log ekseninde Z = a * R^b katsayılarını en küçük karelerle optimize etmek.",
+    "ayrinti": "Elde edilen Z ve R çiftleri log(Z) = log(a) + b*log(R) doğrusuna oturtulur. Sağanak yağışta a = 300, b = 1,4 bulunurken, sakin tabaka yağışında a = 200, b = 1,6 Marshall-Palmer standart değerine yaklaşıldığı saptanır.",
+    "nasil": [
+     {
+      "teknik": "scipy.optimize.curve_fit ile Z = a * R^b güç yasası katsayılarını türetmek.",
+      "sade": "MTO 455 dersindeki 'Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek' bilgisiyle radar görüntüsünü yağmur miktarına çeviren katsayıları o yağışa özel olarak hesaplarız.",
+      "altAdimlar": [
+       "1. Logaritmik eksende Z ve R saçılım noktalarını çizin.",
+       "2. Doğrusal regresyonla a ve b üs katsayılarını optimize edin.",
+       "3. Marshall-Palmer standart eğrisiyle yerel eğri arasındaki farkı gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek."
+      }
+     },
+     {
+      "teknik": "Konvektif ve stratiform yağış tiplerinde Z-R katsayılarının ayrışmasını analiz etmek.",
+      "sade": "MTO 455 dersindeki 'Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek' bilgisiyle yaz sağanağındaki dev damlalarla kış yağmurundaki küçük damlaların radarda nasıl farklı göründüğünü açıklarız.",
+      "altAdimlar": [
+       "1. Yağış şiddeti 10 mm/h üzerindeki anları konvektif olarak etiketleyin.",
+       "2. İki farklı yağış tipinde Z-R eğrilerinin nasıl ayrıştığını grafikte gösterin.",
+       "3. Tek bir sabit formül kullanmanın radarda yapacağı hatayı hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Radar yağış hatasını anlatan video senaryosu hazırlamak",
+    "oz": "Radarların neden yağışı 2 kat fazla veya az ölçtüğünü videoda canlandırmak.",
+    "ayrinti": "DSD spektrumundaki birkaç iri damlanın radar yansıtırlığını patlatarak sahte sel uyarısına yol açabileceği ya da milyonlarca küçük damlanın radardan kaçarak yağmuru eksik gösterebileceği 3 dakikalık anlaşılır bir animasyon senaryosuyla kurgulanır.",
+    "nasil": [
+     {
+      "teknik": "Damla çapının 6. kuvvetinin (D⁶) radar sinyalindeki ezici ağırlığını görselleştirmek.",
+      "sade": "MTO 455 dersindeki 'Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek' bilgisiyle 5 milimetrelik tek bir iri damlanın 1 milimetrelik 15 bin damla kadar güçlü radar sinyali verdiğini anlatan animasyon kurgularız.",
+      "altAdimlar": [
+       "1. Eşit hacimdeki tek bir büyük damla ile binlerce küçük damlanın Z farkını hesaplayın.",
+       "2. Video sahnesinde dev damlanın radar ekranını nasıl aydınlattığını canlandırın.",
+       "3. Bu fiziksel gerçeğin taşkın tahminlerindeki hayati rolünü seslendirme metnine ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek."
+      }
+     },
+     {
+      "teknik": "3 dakikalık video storyboard ve seslendirme akışını tamamlamak.",
+      "sade": "MTO 455 dersindeki 'Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek' bilgisiyle hava radarlarının ardındaki mikrofiziği herkesin anlayacağı bir belgesel senaryosu haline getiririz.",
+      "altAdimlar": [
+       "1. Birinci dakikada lazer disdrometrenin damlaları nasıl saydığını anlatın.",
+       "2. İkinci dakikada Z ve R formüllerinin arkasındaki fiziksel mantığı şemayla gösterin.",
+       "3. Son dakikada radar meteorolojisinde disdrometrenin neden vazgeçilmez olduğunu vurgulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Disdrometre ölçümleriyle radar yansıtırlık faktörü ve yağış şiddeti arasındaki Z-R ilişkisini türetmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Disdrometre damla boyutu dağılımı ve radar yansıtırlığı Z-R saçılım animasyonu",
+   "aciklama": "Damla çapı büyüdükçe radar reflektivitesinin 6. kuvvetle artışını gösteren dinamik eğri"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://docs.wradlib.org/en/stable/zr.html",
+   "aciklama": "wradlib radar kütüphanesi Z-R ilişkisi ve yağış kestirimi modülü dokümantasyonu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "DOE ARM Lazer Disdrometre Veri Ürünleri ve Kalibrasyon Kılavuzu",
+   "url": "https://www.arm.gov/capabilities/instruments/vdis"
+  },
+  {
+   "ad": "wradlib Açık Kaynak Radar Veri İşleme Kütüphanesi Dokümantasyonu",
+   "url": "https://docs.wradlib.org/en/stable/zr.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO455-03.json",
+  "tarih": "2026-10-17 14:56",
+  "geminiSha1": "1ce193d40d22"
+ }
+}

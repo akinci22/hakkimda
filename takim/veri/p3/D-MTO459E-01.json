@@ -1,0 +1,437 @@
+{
+ "id": "D-MTO459E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 459E",
+  "dersAd": "Dünya Atmosferinin Genel Sirkülasyonuna Giriş",
+  "kol": "yazilim"
+ },
+ "ad": "Hadley hücresi mevsim mevsim: ERA5 ile akım fonksiyonu",
+ "ne": "ERA5 aylık meridyonel rüzgârdan kütle akım fonksiyonunu hesapla; Hadley hücresinin genişliği ve şiddetinin mevsimsel döngüsünü ve 1980-2024 eğilimini çıkar.",
+ "adimlar": [
+  "ERA5 aylık v rüzgârını basınç seviyelerinde indir; zonal ortalama al.",
+  "Akım fonksiyonunu basınçla integre ederek hesapla.",
+  "Hücre sınırını (sıfır çizgisi) her ay bul.",
+  "Genişlik eğilimini yıl yıl çiz; genişleme var mı?",
+  "MERRA-2 ile aynı hesabı yapıp farkı raporla."
+ ],
+ "sonuc": "Akım fonksiyonu kesitleri ve eğilim grafiği.",
+ "dayanak": "Gelaro vd. 2017",
+ "senden": "xarray.",
+ "bizden": "Hesap kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 459E",
+    "ad": "Dünya Atmosferinin Genel Sirkülasyonuna Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Copernicus Climate Data Store",
+   "ne": "ERA5 yeniden analizi ve iklim projeksiyonlarının açık dağıtım noktası.",
+   "url": "https://cds.climate.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "1940'tan günümüze tüm atmosfer katmanlarında meridyonal ve düşey rüzgâr bileşenlerini içeren küresel ERA5 veri setini sundular.",
+    "nasil": "Gelişmiş 4D-Var veri asimilasyonu ile küresel kütle ve momentum korunumunu sağlayarak homojen ızgaralar ürettiler.",
+    "neEdindiler": "Hadley hücresi kütle akımının mevsimlik döngüsünü ve tepe şiddetini en yüksek doğrulukta hesaplama imkânı sağladılar.",
+    "bizNasilKatki": "CDS API üzerinden aylık zonal ortalama meridyonal rüzgâr verisini çekip dikey integrasyon kodunu çalıştırırız.",
+    "referanslar": [
+     {
+      "ad": "Hersbach vd. (2020) ERA5 Küresel Yeniden Analiz Veri Seti",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "tur": "makale"
+     },
+     {
+      "ad": "Copernicus CDS ERA5 Aylık Basınç Seviyeleri Kataloğu",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels-monthly-means",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_Global_Circulation.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Hadley, Ferrel ve Polar dolaşım hücrelerinin küresel atmosferdeki yapısı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels-monthly-means",
+      "aciklama": "Copernicus CDS ERA5 yeniden analiz veri kataloğu sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA MERRA-2",
+   "ne": "NASA'nın küresel yeniden analizi; aerosol dahil.",
+   "url": "https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/",
+   "ayrinti": {
+    "neYaptilar": "Modern uydu gözlemleri ve aerosol etkilerini birleştirerek küresel atmosfer sirkülasyonu yeniden analizini yayımladılar.",
+    "nasil": "Goddard Yer Gözlem Sistemi (GEOS) atmosfer modeli ile meridyonal kütle akımlarını 72 dikey katmanda çözdüler.",
+    "neEdindiler": "Hadley hücresi genişlemesinin ERA5 dışındaki bağımsız reanaliz kanıtlarını küresel araştırmacılara sundular.",
+    "bizNasilKatki": "MERRA-2 meridyonal rüzgâr çıktılarını indirerek ERA5 akım fonksiyonu sonuçlarıyla çapraz doğrulama yaparız.",
+    "referanslar": [
+     {
+      "ad": "Gelaro vd. (2017) NASA MERRA-2 Küresel Yeniden Analiz Değerlendirmesi",
+      "url": "https://doi.org/10.1175/JCLI-D-16-0758.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA GMAO MERRA-2 Veri ve Dokümantasyon Portalı",
+      "url": "https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/docs/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Tropikal meridyonal kütle akım fonksiyonu ve Hadley hücresi düşey kesiti",
+      "aciklama": "Zonal ortalama meridyonal rüzgârın dikey integraliyle hesaplanan Hadley hücresi kütle akım konturları"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/docs/",
+      "aciklama": "NASA MERRA-2 genel dolaşım ve yeniden analiz dokümantasyon sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "NOAA PSL gridded data",
+   "ne": "NCEP yeniden analizi ve onlarca gridli iklim verisi tek yerde.",
+   "url": "https://psl.noaa.gov/data/gridded/data.ncep.reanalysis.html",
+   "ayrinti": {
+    "neYaptilar": "Fiziksel Bilimler Laboratuvarı üzerinden uzun vadeli atmosferik dolaşım ve rüzgâr serilerini açık servis olarak sundular.",
+    "nasil": "NCEP/NCAR ve 20. Yüzyıl Yeniden Analizi veri setlerini standart NetCDF formatında kullanıcı sorgularına açtılar.",
+    "neEdindiler": "İklim dinamikçilerinin 100 yılı aşan genel sirkülasyon değişimlerini analiz etmesini sağlayan merkezi veri ambarını kurdular.",
+    "bizNasilKatki": "NOAA PSL üzerinden NCEP uzun vadeli meridyonal rüzgâr serilerini çekerek 20. yüzyıl başı hücre konumunu inceleriz.",
+    "referanslar": [
+     {
+      "ad": "Kalnay vd. (1996) NCEP/NCAR 40 Yıllık Yeniden Analiz Projesi",
+      "url": "https://doi.org/10.1175/1520-0477(1996)077<0437:TNYRP>2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "NOAA PSL Gridli Atmosfer Veri Koleksiyonu ve API Kılavuzu",
+      "url": "https://psl.noaa.gov/data/gridded/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Zonal ortalama meridyonal rüzgâr ve atmosferik kütle sirkülasyonu",
+      "aciklama": "Küresel atmosferik meridyonal sirkülasyon hücrelerinin mevsimlik ortalama dağılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://psl.noaa.gov/data/gridded/data.ncep.reanalysis.html",
+      "aciklama": "NOAA PSL NCEP yeniden analiz ızgaralı veri indirme sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NCAR Climate Data Guide",
+   "ne": "Hangi iklim verisinin neye uygun olduğunu uzman notlarıyla anlatan rehber.",
+   "url": "https://climatedataguide.ucar.edu/",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik genel dolaşım indisi ve yeniden analiz verilerinin güçlü ve zayıf yönlerini uzman değerlendirmeleriyle derlediler.",
+    "nasil": "Hadley hücresi sınır tespiti için kullanılan metrikleri (akım fonksiyonu sıfır geçişi, OLR sınırı, tropopoz yüksekliği) kıyasladılar.",
+    "neEdindiler": "İklim araştırmacılarının veri seçiminde rehberlik eden küresel iklim verisi standart kılavuzunu kurdular.",
+    "bizNasilKatki": "NCAR uzman notlarındaki akım fonksiyonu sıfır noktası enterpolasyon yöntemini analiz algoritmasında uygularız.",
+    "referanslar": [
+     {
+      "ad": "Schneider vd. (2014) Climate Data Guide Genel Dolaşım ve Reanaliz Rehberi",
+      "url": "https://doi.org/10.1175/BAMS-D-12-00213.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "NCAR Hadley Dolaşımı ve Akım Fonksiyonu Karşılaştırma Notları",
+      "url": "https://climatedataguide.ucar.edu/climate-data",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Kuzey ve Güney Yarımküre Hadley hücresi sınır tespiti ve sıfır geçiş çizgisi",
+      "aciklama": "Hadley hücresi sınırlarının akım fonksiyonu sıfır geçişiyle mevsimsel enlem değişimi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://climatedataguide.ucar.edu/climate-data",
+      "aciklama": "NCAR Climate Data Guide iklim ve atmosfer veri karşılaştırma portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Pangeo",
+   "ne": "Büyük yer bilimi verisi için açık Python topluluğu.",
+   "url": "https://pangeo.io/",
+   "ayrinti": {
+    "neYaptilar": "Büyük iklim ve atmosfer veri setlerini xarray ve Dask ile paralel işleyen açık kaynaklı yazılım topluluğunu kurdular.",
+    "nasil": "Zarr veri formatı ve bulut tabanlı hesaplama mimarisiyle terabaytlarca reanaliz verisinde hızlı dikey integrasyon sağladılar.",
+    "neEdindiler": "Yer bilimlerinde veri yoğun analizlerin kişisel bilgisayarlarda bile hızla çalıştırılmasını mümkün kıldılar.",
+    "bizNasilKatki": "Pangeo xarray fonksiyonlarıyla ERA5 3D tensöründen saniyeler içinde zonal ortalama ve kütle akımı çıkarırız.",
+    "referanslar": [
+     {
+      "ad": "Abernathey vd. (2021) Pangeo: Büyük Yer Bilimleri Verisi için Açık Ekosistem",
+      "url": "https://doi.org/10.1109/MCSE.2021.3059437",
+      "tur": "makale"
+     },
+     {
+      "ad": "Pangeo Açık Kaynak Yer Bilimleri Yazılım ve Seminer Vitrini",
+      "url": "https://pangeo.io/showcase",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Pangeo xarray ve Dask ile ERA5 çok boyutlu veri kümesinde paralel kütle akımı hesabı",
+      "aciklama": "Bulut tabanlı xarray mimarisiyle saniyeler içinde hesaplanan zonal ortalama kütle akım dağılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://pangeo.io/showcase",
+      "aciklama": "Pangeo büyük yer bilimi verisi açık yazılım ve uygulama vitrini sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Hadley hücresi, jetler ve girdap taşınımını yeniden analiz ve idealize modellerle incelemek.",
+  "baglanti": "Yazılım kolunda yeniden analiz analizleri ve idealize GCM; Anlatım kolunda genel dolaşım anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Genel dolaşım, ekvator-kutup ısınma farkını Hadley hücresi ve orta enlem girdaplarıyla taşır; açısal momentum korunumu subtropikal jeti doğurur. (Holton ve Hakim 2013)",
+    "İzentropik potansiyel girdaplılık haritaları orta enlem dinamiğini tek alanla özetler. (Hoskins vd. 1985)",
+    "Yeniden analizler (MERRA-2, ERA5) gözlem ve modeli birleştirerek 40+ yıllık tutarlı dolaşım verisi sağlar. (Gelaro vd. 2017)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "NeuralGCM, türevlenebilir dinamik çözücüyü öğrenilmiş fizikle birleştirip iklim istatistiklerini üretti. (Kochkov vd. 2024)",
+    "Isca gibi esnek idealize GCM'ler dolaşım kuramlarını denemeye açık."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press, ders kitabı",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hoskins vd. 1985",
+    "baslik": "On the use and significance of isentropic potential vorticity maps",
+    "yayin": "Quarterly Journal of the Royal Meteorological Society 111(470), 877-946",
+    "yil": "1985",
+    "url": "https://doi.org/10.1002/qj.49711147002",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gelaro vd. 2017",
+    "baslik": "The Modern-Era Retrospective Analysis for Research and Applications, Version 2 (MERRA-2)",
+    "yayin": "Journal of Climate 30(14), 5419-5454",
+    "yil": "2017",
+    "url": "https://doi.org/10.1175/JCLI-D-16-0758.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rienecker vd. 2011",
+    "baslik": "MERRA: NASA's Modern-Era Retrospective Analysis for Research and Applications",
+    "yayin": "Journal of Climate 24(14), 3624-3648",
+    "yil": "2011",
+    "url": "https://doi.org/10.1175/JCLI-D-11-00015.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "ERA5 aylık meridyonel rüzgâr verilerinden kütle akım fonksiyonunu hesaplayıp Hadley hücresinin mevsimsel döngüsünü ve genişleme eğilimini çıkarmak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 459E",
+   "ad": "Dünya Atmosferinin Genel Sirkülasyonuna Giriş",
+   "projeyeKatki": "Tropikal meridyonal kütle taşınımını ve Hadley hücresinin dikey basınç integraliyle matematiksel ifadesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)",
+     "nerede": "Adım 2: Zonal ortalama meridyonal rüzgârın basınç boyunca integraliyle kütle akım fonksiyonunun konturlanmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ERA5 meridyonal rüzgârından dikey basınç integraliyle kütle akım fonksiyonunu hesaplayıp hücre sınırlarını çıkarmak.",
+  "ayrinti": "ERA5 meridyonal rüzgâr bileşeni v boylam boyunca ortalanarak [v] zonal ortalaması bulunur. Hidrostatik denge ve süreklilik denklemi gereğince yer yüzeyinden üst atmosfere doğru dikey basınç integrali alınır. Psi(phi, p) kütle akım fonksiyonu konturlanarak Hadley, Ferrel ve Polar hücrelerinin merkezleri ve kütle taşınım debileri (10^10 kg/s) hesaplanır.",
+  "sonuc": "Düşey enlem kesitinde kütle akım fonksiyonu konturları ve Hadley hücresi kenar enlemleri elde edilir.",
+  "adimlar": [
+   {
+    "baslik": "ERA5 meridyonal rüzgârından zonal ortalama almak",
+    "oz": "v rüzgârını basınç seviyelerinde çekip boylam boyunca ortalamak.",
+    "ayrinti": "Copernicus CDS üzerinden 1980-2024 dönemi aylık ERA5 meridyonal rüzgâr (v) katmanları 1000 hPa'dan 10 hPa'ya kadar 27 standart basınç seviyesinde indirilir. xarray ile 360 boylam derecesi boyunca ortalama alınarak [v](enlem, basınç) zonal ortalama matrisi elde edilir.",
+    "nasil": [
+     {
+      "teknik": "xarray ile NetCDF dosyasını açıp v.mean(dim='longitude') ile boylamsal ortalama almak.",
+      "sade": "MTO 459E dersindeki 'Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)' bilgisiyle dünyanın her boylamındaki kuzey-güney rüzgârlarını toplayıp ortalama bir meridyonal kesit çıkarırız.",
+      "altAdimlar": [
+       "1. Copernicus CDS API ile 1980-2024 aylık meridyonal rüzgâr (v) NetCDF verilerini indirin.",
+       "2. Boylam ekseninde ortalama alarak enlem ve basınç koordinatlı [v] matrisi türetin.",
+       "3. Kış ve yaz mevsimleri için ortalama hız profillerini karşılaştırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)"
+      }
+     },
+     {
+      "teknik": "Kütle korunumunu denetleyip dikey basınç katmanlarında rüzgâr dengesini kurmak.",
+      "sade": "MTO 459E dersindeki 'Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek' bilgisiyle yukarı çıkan havanın aşağı inen havaya eşit olduğunu matematiksel olarak kontrol ederiz.",
+      "altAdimlar": [
+       "1. Yüzeyden tepeye kadar toplam kütle akısının sıfıra yakın olduğunu test edin.",
+       "2. Ekvatordaki yükselici hızlar ile subtropiklerdeki çökücü hızları eşleştirin.",
+       "3. Veri setindeki küçük kütle dengesizliklerini barotropik düzeltmeyle giderin."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kütle akım fonksiyonunu dikeyde integre etmek",
+    "oz": "Psi formülüyle yüzeyden tepeye kütle akım fonksiyonunu hesaplamak.",
+    "ayrinti": "Hidrostatik süreklilik denklemi uyarınca Psi(phi, p) = (2*pi*a*cos(phi)/g) * integral [v] dp formülü sayısal integrasyonla çözülür. Pozitif konturlar Kuzey Yarımküre saat yönünde dönen hücresini, negatif konturlar Güney Yarımküre ters yönlü hücresini verir.",
+    "nasil": [
+     {
+      "teknik": "scipy.integrate.cumtrapz ile Psi(phi, p) = (2*pi*a*cos(phi)/g) * int [v] dp hesaplamak.",
+      "sade": "MTO 459E dersindeki 'Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)' bilgisiyle rüzgâr hızlarını basınç boyunca toplayarak atmosferin dev motorunun akım çizgilerini çıkarırız.",
+      "altAdimlar": [
+       "1. Her enlem çemberinin çevresini 2*pi*a*cos(phi) formülüyle hesaplayın.",
+       "2. Yüzey basıncından yukarı doğru yamuk kuralıyla kümülatif integrali alın.",
+       "3. Akım fonksiyonu değerlerini saniyede 10 üzeri 10 kilogram birimine dönüştürün."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)"
+      }
+     },
+     {
+      "teknik": "Matplotlib contourf ile kütle akım fonksiyonunun enlem-basınç kesitini çizdirmek.",
+      "sade": "MTO 459E dersindeki 'Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek' bilgisiyle ekvatordan kutuplara kadar dönen 3 dev hava hücresini renkli harita kesitinde gösteririz.",
+      "altAdimlar": [
+       "1. X eksenine enlemleri (-90 ile +90 derece), Y eksenine logaritmik basıncı yerleştirin.",
+       "2. Hadley hücresinin kışın 15x10^10 kg/s tepe şiddetine ulaştığını konturlarla gösterin.",
+       "3. Ferrel ve Polar hücrelerinin zıt yönlü zayıf kütle dolaşımlarını etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Hadley hücresi sınırını ve eğilimini analiz etmek",
+    "oz": "Akım fonksiyonunun sıfır geçiş noktasından genişleme eğilimini çıkarmak.",
+    "ayrinti": "Subtropikal enlemlerde 500 hPa seviyesinde Psi = 0 çizgisi tespit edilerek Hadley hücresi kenar enlemi belirlenir. 1980-2024 yılları arasında hücre sınırının on yılda yaklaşık 0,5 derece kutuplara doğru genişlediği saptanır ve MERRA-2 ile kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "500 hPa seviyesinde Psi = 0 sıfır geçiş noktasını doğrusal enterpolasyonla bulmak.",
+      "sade": "MTO 459E dersindeki 'Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek' bilgisiyle Akdeniz havzasını kuraklaştıran çöl havası iniş sınırının tam olarak hangi enleme denk geldiğini hesaplarız.",
+      "altAdimlar": [
+       "1. 500 hPa katmanında subtropikal enlemlerdeki Psi işaret değişim noktasını saptayın.",
+       "2. Yıllık ortalama hücre ucu sınır enlemini her iki yarımküre için listeleyin.",
+       "3. Akdeniz havzasının hücre çökme bölgesine ne kadar yaklaştığını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek."
+      }
+     },
+     {
+      "teknik": "1980-2024 sınır serisine Theil-Sen regresyonu uygulayarak genişleme eğilimini çıkarmak.",
+      "sade": "MTO 459E dersindeki 'Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek' bilgisiyle küresel ısınmayla subtropikal kurak kuşakların Türkiye'ye doğru yaklaştığını istatistiksel eğilimle kanıtlarız.",
+      "altAdimlar": [
+       "1. 44 yıllık sınır serisine Mann-Kendall eğilim testi uygulayın.",
+       "2. On yılda 0,4 ile 0,6 derece kutuplara doğru genişleme eğilimini grafikleştirin.",
+       "3. MERRA-2 yeniden analiz sonuçlarıyla farkları bilimsel raporda özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Hadley hücresi kütle akım fonksiyonunun mevsimlik salınımı ve subtropikal genişleme animasyonu",
+   "aciklama": "Yaz ve kış mevsimlerinde tropikal yükselici kolun ve subtropikal kurak çökelme kuşağının dinamik kayması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels-monthly-means",
+   "aciklama": "Copernicus CDS ERA5 yeniden analiz genel sirkülasyon ve basınç seviyeleri arşivi"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Copernicus ERA5 Küresel Atmosferik Yeniden Analiz Veri Tabanı",
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels-monthly-means"
+  },
+  {
+   "ad": "NASA GMAO MERRA-2 Genel Dolaşım ve Reanaliz Dokümantasyonu",
+   "url": "https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/docs/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO459E-01.json",
+  "tarih": "2026-10-17 15:14",
+  "geminiSha1": "9dce1e265b0f"
+ }
+}

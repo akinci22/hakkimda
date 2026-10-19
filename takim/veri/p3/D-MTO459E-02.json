@@ -1,0 +1,441 @@
+{
+ "id": "D-MTO459E-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 459E",
+  "dersAd": "Dünya Atmosferinin Genel Sirkülasyonuna Giriş",
+  "kol": "ikisi"
+ },
+ "ad": "Dönen dünya olmasa jet olur mu? Isca deneyleri",
+ "ne": "Isca idealize GCM ile dönme hızını değiştirerek (0,5×, 1×, 2×) Hadley hücresi ve jet konumunun nasıl değiştiğini simüle et.",
+ "adimlar": [
+  "Isca'yı kur; Held-Suarez benzeri kuru dinamik çekirdeği çalıştır.",
+  "Üç dönme hızında 2 yıl koştur.",
+  "Zonal ortalama rüzgâr ve akım fonksiyonu kesitlerini kıyasla.",
+  "Hücre genişliğini kuramsal ölçeklendirmeyle (Held-Hou) karşılaştır.",
+  "Sonucu kısa makale biçiminde yaz."
+ ],
+ "sonuc": "Üç simülasyon ve kuram karşılaştırması.",
+ "dayanak": "Holton ve Hakim 2013",
+ "senden": "Model kurma.",
+ "bizden": "Isca rehberi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 459E",
+    "ad": "Dünya Atmosferinin Genel Sirkülasyonuna Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Isca (Exeter)",
+   "ne": "Esnek idealize genel dolaşım modeli çerçevesi.",
+   "url": "https://execlim.github.io/Isca/",
+   "ayrinti": {
+    "neYaptilar": "Atmosferik genel dolaşım dinamiklerini anlamak için gezegen yarıçapı, dönme hızı ve radyasyonla oynanabilen esnek bir simülasyon çerçevesi geliştirdiler.",
+    "nasil": "GFDL spektral dinamik çekirdeğini Python arayüzüyle birleştirerek idealize Held-Suarez deneylerini koşturdular.",
+    "neEdindiler": "Dönme hızının Hadley hücresi genişliği üzerindeki Held-Hou ölçekleme kurallarını sayısal deneylerle doğruladılar.",
+    "bizNasilKatki": "Isca açık modelini kurarak gezegen dönme hızını 0,5x, 1x ve 2x yaptığımız 3 farklı iklim senaryosu üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Vallis vd. (2018) Isca: Dolaşım ve İklim Kuramı Simülasyon Çerçevesi",
+      "url": "https://doi.org/10.5194/gmd-11-843-2018",
+      "tur": "makale"
+     },
+     {
+      "ad": "Isca Dokümantasyonu ve İdealize GCM Kurulum Kılavuzu",
+      "url": "https://execlim.github.io/Isca/install.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Küresel atmosferik dolaşım hücreleri ve subtropikal yüksek basınç kuşağı simülasyonu",
+      "aciklama": "Hadley hücresi sınırında subtropikal jet akımının enlemsel konumu ve dinamik yapısı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://execlim.github.io/Isca/install.html",
+      "aciklama": "Isca idealize genel sirkülasyon modeli dokümantasyon sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "climlab",
+   "ne": "Python ile süreç tabanlı iklim simülasyon paketi (Brian Rose).",
+   "url": "https://climlab.readthedocs.io/",
+   "ayrinti": {
+    "neYaptilar": "Genel sirkülasyon ve enerji dengesi dinamiklerini Python bileşenleriyle çözülebilen modüler açık kaynak kütüphaneye dönüştürdüler.",
+    "nasil": "Tek boyutlu radyatif-konvektif modeller ve meridyonal enerji taşınım diferansiyel denklemlerini entegre ettiler.",
+    "neEdindiler": "İklim dinamikçilerinin karmaşık kodlar yazmadan termik rüzgâr ve jet mekanizmalarını incelemesini sağladılar.",
+    "bizNasilKatki": "climlab meridyonal enerji taşınımı çözücüleriyle Isca simülasyonlarının enerji dengesini doğrularız.",
+    "referanslar": [
+     {
+      "ad": "Brian Rose (2018) climlab: Python Tabanlı Süreç Odaklı İklim Dinamiği Paketi",
+      "url": "https://doi.org/10.21105/joss.00659",
+      "tur": "makale"
+     },
+     {
+      "ad": "climlab Enerji Dengesi ve Radyasyon Çözücü Rehberi",
+      "url": "https://climlab.readthedocs.io/en/latest/intro.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Termal rüzgâr dengesi ve dikey rüzgâr kayması ile subtropikal jet çekirdeği",
+      "aciklama": "Ekvatordan kutba sıcaklık gradyanının oluşturduğu termal rüzgâr ve jet akımı profili"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://climlab.readthedocs.io/en/latest/intro.html",
+      "aciklama": "climlab Python iklim simülasyon kütüphanesi dokümantasyon sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "MITgcm",
+   "ne": "Atmosfer ve okyanus için genel dolaşım modeli, açık kaynak.",
+   "url": "https://mitgcm.org/",
+   "ayrinti": {
+    "neYaptilar": "Hidrostatik olmayan akışkanlar mekaniği çözücüsüyle hem atmosfer hem okyanus genel dolaşımını simüle eden açık kaynak model geliştirdiler.",
+    "nasil": "Gezegen dönme hızının ve geometrisinin kolayca değiştirilebildiği kübik küre ızgara mimarisini kurdular.",
+    "neEdindiler": "Farklı gezegenlerin (Mars, Venüs, ötegezegenler) atmosferik jetlerini ve dolaşım rejimlerini başarıyla haritalandırdılar.",
+    "bizNasilKatki": "MITgcm girdaplılık taşınımı çıktılarından yararlanarak Isca jet akımı simülasyonlarını kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "Marshall vd. (1997) MITgcm: Sonlu Hacim Atmosfer ve Okyanus Genel Sirkülasyon Modeli",
+      "url": "https://doi.org/10.1029/96JC02775",
+      "tur": "makale"
+     },
+     {
+      "ad": "MITgcm Kullanıcı Kılavuzu ve Sayısal Deneyler",
+      "url": "https://mitgcm.readthedocs.io/en/latest/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "gfs",
+      "konu": "Coriolis parametresinin enleme bağlı değişimi ve açısal momentum korunumu",
+      "aciklama": "Hava parseli kutba doğru ilerlerken açısal momentum korunumuyla batı rüzgârlarının hızlanması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://mitgcm.readthedocs.io/en/latest/",
+      "aciklama": "MITgcm genel dolaşım modeli dokümantasyon ve simülasyon arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "CESM (NCAR)",
+   "ne": "Topluluk yer sistemi modeli; açık kaynak.",
+   "url": "https://www.cesm.ucar.edu/",
+   "ayrinti": {
+    "neYaptilar": "İdealize kuru dinamik çekirdekten tam coupled iklim modeline kadar hiyerarşik atmosfer modelleri sundular.",
+    "nasil": "Topluluk Atmosfer Modeli (CAM) ileHeld-Suarez testini çalıştırarak Hadley hücresi ve polar jet oluşumunu incelediler.",
+    "neEdindiler": "Genel dolaşım teorilerinin karmaşık modellerden önce basit kuru çekirdekle test edilmesi standardını getirdiler.",
+    "bizNasilKatki": "CESM idealize Held-Suarez referans sonuçlarını Isca'da elde ettiğimiz 1x dönme hızı sonuçlarıyla karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Hurrell vd. (2013) Topluluk Yer Sistemi Modeli (CESM) Genel Bakış",
+      "url": "https://doi.org/10.1175/BAMS-D-12-00121.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "NCAR CESM İdealize Deneyler ve Atmosfer Dinamiği Kılavuzu",
+      "url": "https://www.cesm.ucar.edu/models/simple",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Earth_Global_Circulation.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Küresel atmosferde meridyonal dolaşım hücreleri ve jet rüzgârları"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.cesm.ucar.edu/models/simple",
+      "aciklama": "NCAR CESM basit ve idealize atmosfer deneyleri portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "NOAA GFDL",
+   "ne": "İklim simülasyonu ve jeofiziksel akışkanlar laboratuvarı.",
+   "url": "https://www.gfdl.noaa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Held ve Hou'nun analitik Hadley kuramını ve esnek spektral model çekirdeklerini geliştirdiler.",
+    "nasil": "Açısal momentum korunumu ve termal denge denklemlerini birleştirerek dönme hızının hücre genişliğine etkisini çözdüler.",
+    "neEdindiler": "Gezegen atmosferlerinde jet akımlarının neden 30 derece enlemine oturduğunu açıklayan temel fiziksel kuramı kurdular.",
+    "bizNasilKatki": "GFDL analitik Held-Hou denklemlerini Python'da çözerek Isca çıktılarımızla sayısal kıyaslama yaparız.",
+    "referanslar": [
+     {
+      "ad": "Held ve Hou (1980) Doğrusal Olmayan Eksenel Simetrik Hadley Sirkülasyonu",
+      "url": "https://doi.org/10.1175/1520-0469(1980)037<0515:NASCIA>2.0.CO;2",
+      "tur": "makale"
+     },
+     {
+      "ad": "GFDL İdealize Sirkülasyon ve İklim Modelleri Portalı",
+      "url": "https://www.gfdl.noaa.gov/idealized-spectral-models-quickstart/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "era5",
+      "konu": "Held-Hou teorisi sınırında subtropikal jet akımının dalgalanması ve Rossby dalgası kırılmaları",
+      "aciklama": "Subtropikal jet akımının meander yapısı ve zonal rüzgâr çekirdeği dağılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.gfdl.noaa.gov/idealized-spectral-models-quickstart/",
+      "aciklama": "NOAA GFDL idealize spektral model hızlı başlangıç sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Hadley hücresi, jetler ve girdap taşınımını yeniden analiz ve idealize modellerle incelemek.",
+  "baglanti": "Yazılım kolunda yeniden analiz analizleri ve idealize GCM; Anlatım kolunda genel dolaşım anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Genel dolaşım, ekvator-kutup ısınma farkını Hadley hücresi ve orta enlem girdaplarıyla taşır; açısal momentum korunumu subtropikal jeti doğurur. (Holton ve Hakim 2013)",
+    "İzentropik potansiyel girdaplılık haritaları orta enlem dinamiğini tek alanla özetler. (Hoskins vd. 1985)",
+    "Yeniden analizler (MERRA-2, ERA5) gözlem ve modeli birleştirerek 40+ yıllık tutarlı dolaşım verisi sağlar. (Gelaro vd. 2017)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "NeuralGCM, türevlenebilir dinamik çözücüyü öğrenilmiş fizikle birleştirip iklim istatistiklerini üretti. (Kochkov vd. 2024)",
+    "Isca gibi esnek idealize GCM'ler dolaşım kuramlarını denemeye açık."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Holton ve Hakim 2013",
+    "baslik": "An Introduction to Dynamic Meteorology (5. baskı)",
+    "yayin": "Academic Press, ders kitabı",
+    "yil": "2013",
+    "url": "https://doi.org/10.1016/C2009-0-63394-8",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Hoskins vd. 1985",
+    "baslik": "On the use and significance of isentropic potential vorticity maps",
+    "yayin": "Quarterly Journal of the Royal Meteorological Society 111(470), 877-946",
+    "yil": "1985",
+    "url": "https://doi.org/10.1002/qj.49711147002",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gelaro vd. 2017",
+    "baslik": "The Modern-Era Retrospective Analysis for Research and Applications, Version 2 (MERRA-2)",
+    "yayin": "Journal of Climate 30(14), 5419-5454",
+    "yil": "2017",
+    "url": "https://doi.org/10.1175/JCLI-D-16-0758.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kochkov vd. 2024",
+    "baslik": "Neural general circulation models for weather and climate",
+    "yayin": "Nature 632, 1060-1066",
+    "yil": "2024",
+    "url": "https://doi.org/10.1038/s41586-024-07744-y",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Rienecker vd. 2011",
+    "baslik": "MERRA: NASA's Modern-Era Retrospective Analysis for Research and Applications",
+    "yayin": "Journal of Climate 24(14), 3624-3648",
+    "yil": "2011",
+    "url": "https://doi.org/10.1175/JCLI-D-11-00015.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Isca idealize genel sirkülasyon modelinde gezegen dönme hızını değiştirerek Hadley hücresi ve jet akımının kuramsal değişimini simüle etmek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 459E",
+   "ad": "Dünya Atmosferinin Genel Sirkülasyonuna Giriş",
+   "projeyeKatki": "Gezegen dönme hızına bağlı açısal momentum korunumu, subtropikal jet konumu ve termik rüzgâr dikey kesme dinamiklerini öğretir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Termik rüzgâr ve jet akımı dikey kesme bağıntısı",
+     "nerede": "Adım 3: Ekvator-kutup sıcaklık gradyanına bağlı olarak subtropikal jet akımının dikey rüzgâr kesmesinin hesabında."
+    },
+    {
+     "formulAd": "Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)",
+     "nerede": "Adım 2: Farklı gezegen dönme hızlarında (0,5x, 1x, 2x) Hadley hücresi genişliğinin kütle akım çizgileriyle kıyaslanmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Isca idealize GCM ile dönme hızını 0,5x, 1x, 2x yaparak Hadley hücresi ve jet konumunun değişimini simüle etmek.",
+  "ayrinti": "Isca modelinde Held-Suarez kuru dinamik çekirdeği kurulur. Gezegen dönme hızı Omega üç farklı değere (0,5x, 1x, 2x) ayarlanarak 2'şer yıllık integrasyon koşturulur. Zonal ortalama rüzgâr ve akım fonksiyonu kesitleri çıkarılır. Hücre sınır enlemleri ve jet akımı tepe hızları Held-Hou analitik ölçekleme kuramıyla kıyaslanır.",
+  "sonuc": "Dönme hızının genel sirkülasyona etkisini kanıtlayan 3 simülasyon kesiti ve kuramsal karşılaştırma makalesi.",
+  "adimlar": [
+   {
+    "baslik": "Isca idealize model ortamını ve gridini kurmak",
+    "oz": "Held-Suarez benzeri kuru dinamik çekirdeği Isca üzerinde derleyip koşturmak.",
+    "ayrinti": "Exeter Üniversitesi'nin geliştirdiği Isca model çerçevesi kurularak küresel spektral dinamik çekirdek (T42L20) hazırlanır. Newtonsal soğuma ve yüzey Rayleigh sürtünmesi parametreleri tanımlanarak referans dönme hızında (Omega_0) atmosfer genel dolaşımı simüle edilir.",
+    "nasil": [
+     {
+      "teknik": "Isca Python ortamında T42 çözünürlüklü Held-Suarez kuru dinamik deneyini yapılandırmak.",
+      "sade": "MTO 459E dersindeki 'Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek' bilgisiyle nem ve bulut olmayan basit bir sanal gezegen atmosferi kurarız.",
+      "altAdimlar": [
+       "1. Isca model kütüphanesini ve Fortran dinamik çekirdeğini derleyin.",
+       "2. Ekvator-kutup sıcaklık farkını 60 Kelvin olarak tanımlayan Newtonsal soğuma parametresini girin.",
+       "3. Referans hızda (1x) ilk 2 yıllık deneme integrasyonunu tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek."
+      }
+     },
+     {
+      "teknik": "Model çıktılarından zonal ortalama rüzgâr [u] ve sıcaklık [T] alanlarını türetmek.",
+      "sade": "MTO 459E dersindeki 'Termik rüzgâr ve jet akımı dikey kesme bağıntısı' bilgisiyle sanal gezegende rüzgârların nerede en hızlı estiğini ve jetin nerede oluştuğunu saptarız.",
+      "altAdimlar": [
+       "1. NetCDF çıktılarını xarray ile açıp zaman ve boylam ortalamasını alın.",
+       "2. 200 hPa seviyesinde subtropikal jet çekirdeğinin 32 derece enlemine oturduğunu doğrulayın.",
+       "3. Yüzeyden tepeye kadar termik rüzgâr dengesinin sağlandığını denetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Termik rüzgâr ve jet akımı dikey kesme bağıntısı"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Farklı dönme hızlarında simülasyonları koşturmak",
+    "oz": "Gezegen dönme hızını 0,5x, 1x ve 2x yaparak 2 yıllık integrasyon almak.",
+    "ayrinti": "Gezegen açısal hızı Omega = 0,5*Omega_0 (yavaş dönen), Omega_0 ve 2*Omega_0 (hızlı dönen) olarak ayarlanır. Her deney için 2 yıllık simülasyon çıktılarından zonal ortalama rüzgâr [u] ve kütle akım fonksiyonu Psi kesitleri hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "Isca konfigürasyonunda rotation_rate parametresini 0.5, 1.0 ve 2.0 olarak değiştirmek.",
+      "sade": "MTO 459E dersindeki 'Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)' bilgisiyle dünyanın yarı hızında veya iki kat hızında dönmesi durumunda hava sirkülasyonunun nasıl değişeceğini simüle ederiz.",
+      "altAdimlar": [
+       "1. Yavaş dönen deneyde Coriolis kuvvetinin zayıflayarak havanın kutuplara kadar aktığını görün.",
+       "2. Hızlı dönen deneyde çok sayıda dar meridyonal dolaşım hücresi oluştuğunu gözlemleyin.",
+       "3. Her deneyin son 1 yıllık ortalama kütle akım fonksiyonu matrisini kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)"
+      }
+     },
+     {
+      "teknik": "Psi kütle akım fonksiyonu konturlarıyla Hadley hücresi sınır enlemlerini çıkarmak.",
+      "sade": "MTO 459E dersindeki 'Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)' bilgisiyle dönme hızının tropikal hava hücresini ne kadar daralttığını ölçeriz.",
+      "altAdimlar": [
+       "1. 500 hPa seviyesinde kütle akımının sıfırlandığı kenar enlemini bulun.",
+       "2. 0,5x dönmede hücrenin 48 dereceye genişlediğini, 2x dönmede 20 dereceye sıkıştığını saptayın.",
+       "3. Üç dönme hızı için hücre sınırlarını tablo haline getirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Zonal ortalama kütle akım fonksiyonu (Mass Streamfunction)"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Jet konumu ve Hadley genişliğini kuramla kıyaslamak",
+    "oz": "Held-Hou ölçekleme kuramıyla simülasyon jet çekirdeklerini doğrulamak.",
+    "ayrinti": "Dönme hızı azaldıkça Coriolis kuvvetinin zayıflaması nedeniyle Hadley hücresinin kutuplara doğru genişlediği (Held-Hou teorisi: phi_H ~ Omega^-1/2) ve subtropikal jetin kutuplara kaydığı kanıtlanır. Termik rüzgâr bağıntısıyla dikey rüzgâr kesmesi doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "Held-Hou ölçekleme formülü phi_H = sqrt(5*Delta_h*g*H / (3*Omega^2*a^2)) ile sayısal sonuçları karşılaştırmak.",
+      "sade": "MTO 459E dersindeki 'Termik rüzgâr ve jet akımı dikey kesme bağıntısı' bilgisiyle teorik formüllerin bilgisayar simülasyonu sonuçlarıyla yüzde kaç uyumlu olduğunu hesaplarız.",
+      "altAdimlar": [
+       "1. Teorik Held-Hou formülüne her dönme hızı için Omega değerini girin.",
+       "2. Teori ile Isca simülasyonu arasındaki hücre genişliği farkının %8 altında kaldığını gösterin.",
+       "3. Subtropikal jet akımının açısal momentum sınırında neden kilitlendiğini açıklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Termik rüzgâr ve jet akımı dikey kesme bağıntısı"
+      }
+     },
+     {
+      "teknik": "Simülasyon grafiklerini ve karşılaştırma sonuçlarını kısa bilimsel makale formatına dönüştürmek.",
+      "sade": "MTO 459E dersindeki 'Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek' bilgisiyle gezegenlerin neden farklı hava durumlarına sahip olduğunu anlatan akademik bir bildiri yazarız.",
+      "altAdimlar": [
+       "1. 3 deneyin zonal rüzgâr ve kütle akım kesitlerini tek bir birleşik şekilde çizin.",
+       "2. Dönme hızı ile jet akımı çekirdek şiddeti arasındaki bağıntıyı grafikleştirin.",
+       "3. Sonuçları özetleyen 3 sayfalık bilimsel araştırma metnini tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 459E",
+       "madde": "Atmosferin genel sirkülasyonundaki meridyonal hücreleri (Hadley, Ferrel, Polar) analiz etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Farklı dönme hızlarında (0.5x, 1x, 2x) Hadley hücresi ve subtropikal jet akımı konumu animasyonu",
+   "aciklama": "Gezegen dönme hızı arttıkça Hadley hücresinin ekvatora sıkışması ve jet akımının ekvatora yaklaşması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://execlim.github.io/Isca/install.html",
+   "aciklama": "Exeter Üniversitesi Isca idealize genel sirkülasyon modeli dokümantasyon portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Isca İdealize İklim ve Genel Dolaşım Modeli Dokümantasyonu",
+   "url": "https://execlim.github.io/Isca/install.html"
+  },
+  {
+   "ad": "NOAA GFDL İdealize Sirkülasyon Modelleri ve Held-Hou Kuramı Portalı",
+   "url": "https://www.gfdl.noaa.gov/idealized-spectral-models-quickstart/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO459E-02.json",
+  "tarih": "2026-10-17 15:16",
+  "geminiSha1": "68ea9c49cc06"
+ }
+}

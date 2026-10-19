@@ -40,7 +40,7 @@
    "tur": "girisim",
    "ad": "ECMWF AIFS (Artificial Intelligence Forecasting System)",
    "ne": "Küresel veri asimilasyonu ve derin öğrenme ile operasyonel sayısal tahmin üreten yapay zekâ hava modeli.",
-   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/aifs",
+   "url": "https://charts.ecmwf.int/products/aifs_single",
    "ayrinti": {
     "neYaptilar": "ECMWF, 2024 yılında operasyonel tahmin sistemine tamamen veri odaklı çalışan AIFS yapay zekâ modelini entegre etti. Model küresel atmosfer değişkenlerini saniyeler içinde simüle ediyor.",
     "nasil": "Grafik sinir ağları (GNN) ve transformatör mimarileri ERA5 ve operasyonel analiz verileriyle eğitildi. Küresel ölçekte fiziksel denklemleri çözmek yerine durum geçiş tensörlerini öğrendi.",
@@ -48,20 +48,21 @@
     "bizNasilKatki": "AIFS küresel ölçekte başarılı olsa da yerel Boğaz etkisi ve vadi topoğrafyasında sistematik sapmalar üretir. Biz bu yerel sapmayı düzelten hafif bir artık katman geliştiririz.",
     "referanslar": [
      {
-      "ad": "ECMWF AIFS resmi model kılavuzu ve teknik raporu",
-      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/aifs",
+      "ad": "ECMWF AIFS resmi model tahmin paneli",
+      "url": "https://charts.ecmwf.int/products/aifs_single",
       "tur": "rapor"
      },
      {
-      "ad": "ECMWF açık veri ve yapay zekâ tahmin bülteni",
-      "url": "https://www.ecmwf.int/en/about/media-centre/news/2024/ecmwf-releases-new-version-aifs",
+      "ad": "ECMWF açık veri ve yapay zekâ model bülteni",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
       "tur": "haber"
      }
     ],
     "gorseller": [
      {
-      "tur": "kaydirma",
-      "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/aifs",
+      "tur": "veri-anim",
+      "veri": "aifs",
+      "konu": "ECMWF AIFS modeli performans metrikleri ve tahmin paneli",
       "aciklama": "ECMWF AIFS modeli performans metrikleri ve tahmin paneli"
      },
      {
@@ -103,7 +104,7 @@
      },
      {
       "tur": "kamu",
-      "url": "https://commons.wikimedia.org/wiki/File:Residual_Block.svg",
+      "url": "https://commons.wikimedia.org/wiki/File:ResNet_block.svg",
       "lisans": "CC BY-SA 4.0",
       "aciklama": "Artık öğrenme bloğu ve atlama bağlantısı matematiksel şeması"
      }
@@ -112,30 +113,31 @@
   },
   {
    "tur": "takim",
-   "ad": "AURA Yerel Sapma Düzeltme Laboratuvarı",
-   "ne": "İstanbul yer istasyonlarında küresel model hatalarını hafif sinir ağlarıyla düzelten öğrenci projesi.",
-   "url": "https://github.com/aura-itu/artik-ogrenme-sicaklik",
+   "ad": "ClimateLearn Açık Kaynak İklim ve Yapay Zekâ Topluluğu",
+   "ne": "Sayısal hava ve iklim modellerinde derin öğrenme ile sapma düzeltme algoritmaları geliştiren açık kaynak topluluk ekibi.",
+   "url": "https://github.com/aditya-grover/climate-learn",
    "ayrinti": {
-    "neYaptilar": "AURA ekibi, küresel modellerin deniz etkisindeki İstanbul istasyonlarında yaptığı 1,5-2 °C'lik sistematik sıcaklık hatalarını gidermek için küçük bir PyTorch boru hattı geliştirdi.",
-    "nasil": "Girdi olarak ham model tahmini, rüzgâr yönü, saat ve güneş açısı verildi; hedef değişken olarak doğrudan tahmin hatası (e = T_istasyon - T_model) tanımlandı.",
-    "neEdindiler": "90 günlük test kümesinde ortalama mutlak hata 1,8 °C'den 1,2 °C'ye düşürüldü; tahmin güvenilirliği somut olarak arttı.",
-    "bizNasilKatki": "Projede artık öğrenme mantığını çok katmanlı algılayıcı mimarisiyle sıfırdan kurar ve takımın ortak tahmin motoruna bir mikro servis olarak bağlarız.",
+    "neYaptilar": "ClimateLearn topluluğu, ERA5 ve küresel hava tahmin modellerine PyTorch tabanlı makine öğrenmesi ve artık öğrenme katmanları ekleyen açık kütüphaneyi kurdu.",
+    "nasil": "Küresel ızgara verileri yerel istasyon koordinatlarına eşlenir; artık öğrenme mimarileri (ResNet/MLP) eğitilerek modelin sıcaklık ve rüzgâr sapmaları giderilir.",
+    "neEdindiler": "İklim ve meteoroloji yapay zekâ araştırmalarında standart kıyaslama veri kümeleri ve açık kaynaklı model ağırlıkları sağlandı.",
+    "bizNasilKatki": "İstanbul istasyonlarında AIFS tahmin hatasını hedefleyen hafif PyTorch artık öğrenme modülünü geliştirip topluluğa sunarız.",
     "referanslar": [
      {
-      "ad": "AURA artık öğrenme sıcaklık düzeltici kod deposu",
-      "url": "https://github.com/aura-itu/artik-ogrenme-sicaklik",
+      "ad": "ClimateLearn GitHub kaynak kod deposu",
+      "url": "https://github.com/aditya-grover/climate-learn",
       "tur": "kod"
      },
      {
-      "ad": "İTÜ Ayazağa meteoroloji istasyonu doğrulama kılavuzu",
-      "url": "https://aura-itu.github.io/istasyon-dogrulama",
+      "ad": "ClimateLearn resmi dokümantasyonu ve öğreticisi",
+      "url": "https://climatelearn.readthedocs.io/en/latest/",
       "tur": "web"
      }
     ],
     "gorseller": [
      {
-      "tur": "kaydirma",
-      "url": "https://github.com/aura-itu/artik-ogrenme-sicaklik",
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "PyTorch artık öğrenme modeli mimarisi ve eğitim kaybı analizi",
       "aciklama": "PyTorch model mimarisi ve eğitim döngüsü kodları"
      },
      {
@@ -247,9 +249,10 @@
     ],
     "gorseller": [
      {
-      "tur": "kaydirma",
-      "url": "https://github.com/aura-itu/artik-ogrenme-sicaklik",
-      "aciklama": "Veri hazırlama ve öznitelik mühendisliği kod bloğu"
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "ECMWF AIFS tahmin verisi ve istasyon gözlem farkı tablosu",
+      "aciklama": "İstasyon gözlem verisi ve model tahmini eşleme paneli"
      }
     ]
    },
@@ -294,9 +297,9 @@
     "gorseller": [
      {
       "tur": "kamu",
-      "url": "https://commons.wikimedia.org/wiki/File:Residual_Block.svg",
+      "url": "https://commons.wikimedia.org/wiki/File:ResNet_block.svg",
       "lisans": "CC BY-SA 4.0",
-      "aciklama": "Artık blok bağlantısı şeması"
+      "aciklama": "Artık öğrenme katmanı ve atlama bağlantısı matematiksel şeması"
      }
     ]
    },
@@ -412,15 +415,15 @@
   },
   {
    "tur": "kamu",
-   "url": "https://commons.wikimedia.org/wiki/File:Residual_Block.svg",
+   "url": "https://commons.wikimedia.org/wiki/File:ResNet_block.svg",
    "lisans": "CC BY-SA 4.0",
    "aciklama": "Artık öğrenme bloğu ve atlama bağlantısı matematiksel şeması"
   }
  ],
  "kaynaklar": [
   {
-   "ad": "ECMWF AIFS Model Documentation",
-   "url": "https://www.ecmwf.int/en/forecasts/documentation-and-support/evolution-ifs/cycles/aifs"
+   "ad": "ECMWF AIFS Operational Forecast Products",
+   "url": "https://charts.ecmwf.int/products/aifs_single"
   },
   {
    "ad": "PyTorch Optimization Documentation",
@@ -432,7 +435,7 @@
  "tarih": "2026-10-16",
  "_birlestirme": {
   "kaynak": "cikti/F-BBF-YZV-01.json",
-  "tarih": "2026-10-17 00:28",
-  "geminiSha1": "f3d4190d430b"
+  "tarih": "2026-10-19 05:35",
+  "geminiSha1": "645f43a85e5d"
  }
 }

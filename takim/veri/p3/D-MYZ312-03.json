@@ -1,0 +1,426 @@
+{
+ "id": "D-MYZ312-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MYZ 312",
+  "dersAd": "Meteorolojide Makine Öğrenmesi",
+  "kol": "anlatim"
+ },
+ "ad": "YZ tahmini fizik biliyor mu? Jeostrofik denge testi anlatımı",
+ "ne": "Hakim ve Masanam 2024 deneyini basitleştirip \"YZ modeli dengeyi koruyor mu\" sorusunu 3 dakikalık animasyonla anlat; bir YZ tahminindeki ageostrofik rüzgârı görselleştir.",
+ "adimlar": [
+  "Pangu/GraphCast 500 hPa tahmininden MetPy ile jeostrofik rüzgârı hesapla.",
+  "Gerçek rüzgârla farkı (ageostrofik) haritala; 0, 24, 120. saatlerde göster.",
+  "Animasyonda \"denge\" kavramını terazi benzetmesiyle anlat.",
+  "IFS için aynı haritaları yan yana koy.",
+  "Sonucu \"YZ fizik öğrendi mi?\" sorusuna dürüst bir yanıtla bağla."
+ ],
+ "sonuc": "Animasyon + harita dizisi; YZ tahminlerinin fiziksel tutarlılığını anlatır.",
+ "dayanak": "Hakim ve Masanam 2024",
+ "senden": "Görselleştirme.",
+ "bizden": "Hesap kodu ve metin.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MYZ 312",
+    "ad": "Meteorolojide Makine Öğrenmesi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ECMWF AIFS blog",
+   "ne": "ECMWF yapay zekâ entegre tahmin sistemi ve fiziksel tutarlılık analizleri.",
+   "url": "https://www.ecmwf.int/en/about/media-centre/aifs-blog",
+   "ayrinti": {
+    "neYaptilar": "ECMWF bünyesinde geliştirilen AIFS veri odaklı tahmin modelinin fiziksel kütle ve jeostrofik dengeyi nasıl koruduğunu araştırdılar.",
+    "nasil": "Geleneksel sayısal model IFS ile AIFS çıktılarındaki kinetik enerji spektrumunu ve geopotansiyel gradyanlarını kıyasladılar.",
+    "neEdindiler": "Veri odaklı modellerin fiziksel denklemleri açıkça çözmeden de büyük ölçekli atmosfer dengesini yüksek doğrulukla öğrendiğini gösterdiler.",
+    "bizNasilKatki": "AIFS blogundaki doğrulama yöntemlerini kullanarak GraphCast ve Pangu modellerinin ageostrofik sapmalarını test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Lang vd. (2024) AIFS: The new ECMWF machine learning weather prediction system, ECMWF Blog",
+      "url": "https://www.ecmwf.int/en/about/media-centre/aifs-blog",
+      "tur": "haber"
+     },
+     {
+      "ad": "Hakim ve Masanam (2024) Derin Öğrenme Hava Tahmininde Dinamik Testler, AIES",
+      "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/about/media-centre/aifs-blog",
+      "aciklama": "ECMWF AIFS yapay zekâ hava tahmin sistemi blog sayfası ve denge analizleri"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "500 hPa seviyesinde jeostrofik rüzgâr ve ageostrofik sapma vektörleri animasyonu",
+      "aciklama": "Basınç gradyanı ile Coriolis kuvveti arasındaki dengenin orta enlemlerde zamansal evrimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "NeuralGCM (Google)",
+   "ne": "Google ve ECMWF ortak fizik temelli atmosfer dinamik çekirdeği ve YZ modeli.",
+   "url": "https://github.com/neuralgcm/neuralgcm",
+   "ayrinti": {
+    "neYaptilar": "Diferansiyellenebilir atmosferik dinamik çekirdek ile yapay sinir ağlarını birleştiren hibrit fizik-YZ iklim ve hava modeli geliştirdiler.",
+    "nasil": "Büyük ölçekli sıvı hareketlerini Navier-Stokes denklemleriyle çözerken, bulut ve radyasyon gibi alt grid süreçlerini sinir ağlarına öğrendiler.",
+    "neEdindiler": "Yapay zekâ modellerinin saf veri odaklı yaklaşımlardaki fiziksel sapma sorununu çözerek Nature dergisinde makale yayınladılar.",
+    "bizNasilKatki": "NeuralGCM açık kaynak kodundaki dinamik denge testlerini projemizin kıyaslama algoritmasına uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Kochkov vd. (2024) Neural general circulation models for weather and climate, Nature",
+      "url": "https://doi.org/10.1038/s41586-024-07744-y",
+      "tur": "makale"
+     },
+     {
+      "ad": "Google Research NeuralGCM GitHub Açık Deposu",
+      "url": "https://github.com/neuralgcm/neuralgcm",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/neuralgcm/neuralgcm",
+      "aciklama": "NeuralGCM hibrit dinamik çekirdek ve yapay sinir ağı mimarisi depo sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "NeuralGCM ve saf YZ modellerinin küresel kütle ve enerji korunum animasyonu",
+      "aciklama": "Fiziksel dinamik çekirdeğin uzun vadeli hava tahminlerinde sahte enerji patlamalarını engellemesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "WeatherBench sonuç panosu",
+   "ne": "Google Research küresel YZ modelleri fiziksel tutarlılık liderlik paneli.",
+   "url": "https://sites.research.google/weatherbench/",
+   "ayrinti": {
+    "neYaptilar": "Dünyadaki tüm YZ hava modellerini spektral kinetik enerji ve rüzgâr sapması gibi dinamik metriklerle sınayan halka açık yarışma paneli kurdular.",
+    "nasil": "Modellerin ürettiği hava akışlarının gerçek atmosferik türbülans spektrumunu takip edip etmediğini Fourier analiziyle puanladılar.",
+    "neEdindiler": "Hangi modellerin sadece pikselleri pürüzsüzleştirdiğini, hangilerinin gerçek fırtına dinamiklerini yakaladığını ortaya koydular.",
+    "bizNasilKatki": "WeatherBench panelindeki jeostrofik tutarlılık skorlarını video senaryomuzun bilimsel omurgası olarak kullanırız.",
+    "referanslar": [
+     {
+      "ad": "WeatherBench 2 Resmi Araştırma ve Liderlik Panosu Portalı",
+      "url": "https://sites.research.google/weatherbench/",
+      "tur": "web"
+     },
+     {
+      "ad": "Rasp vd. (2024) WeatherBench 2: Benchmark for next-generation weather models, JAMES",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://sites.research.google/weatherbench/",
+      "aciklama": "Google Research WeatherBench açık kıyaslama panosu arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Taylor_diagram_fig2.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "YZ hava tahmin modellerinin IFS karşısındaki değişken bazlı hata dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "FourCastNet (NVIDIA)",
+   "ne": "NVIDIA Fourier sinir operatörü tabanlı ultra hızlı küresel hava tahmin modeli.",
+   "url": "https://github.com/NVlabs/FourCastNet",
+   "ayrinti": {
+    "neYaptilar": "NVIDIA araştırmacıları, Adaptive Fourier Neural Operators (AFNO) mimarisiyle küresel hava akışlarını yüksek çözünürlükte tahmin eden FourCastNet'i geliştirdi.",
+    "nasil": "Küresel 0.25 derece ERA5 verisinde frekans domeninde öğrenme yaparak atmosferik dalgaların yayılımını çözdüler.",
+    "neEdindiler": "Kasırga ve şiddetli rüzgâr hadiselerini geleneksel sayısal modellerden 45.000 kat daha az enerji harcayarak tahmin ettiler.",
+    "bizNasilKatki": "FourCastNet rüzgâr çıktısını jeostrofik denge denkleminden geçirip spektral enerji dengesini test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Kurth vd. (2023) FourCastNet: Accelerating global high-resolution weather forecasting, PASC",
+      "url": "https://doi.org/10.1145/3592979.3593412",
+      "tur": "makale"
+     },
+     {
+      "ad": "NVIDIA FourCastNet Açık Kaynak Araştırma Deposu",
+      "url": "https://github.com/NVlabs/FourCastNet",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/NVlabs/FourCastNet",
+      "aciklama": "NVIDIA FourCastNet Fourier sinir operatörü modeli depo arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "FourCastNet küresel rüzgâr hızı ve jeostrofik sapma haritası animasyonu",
+      "aciklama": "Kasırga çekirdekleri ve jet akımlarında YZ modelinin dinamik rüzgâr tutarlılığı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Makine öğrenmesini \"sihir\" değil, fiziksel sınamaya açık bir tahmin aracı olarak kullanmak.",
+  "baglanti": "Yazılım kolunun çekirdek dersi: YZ tahmin modellerini çalıştırma ve sınama; Anlatım kolunda YZ tahminini halka anlatma.",
+  "literatur": {
+   "maddeler": [
+    "Derin öğrenme, yer sistemi biliminde süreç anlayışıyla birleşmeli; yalnız örüntü ezberleyen model fiziksel sınırları aşamaz. (Reichstein vd. 2019)",
+    "GraphCast, 10 günlük tahminde ECMWF HRES'i çoğu değişkende geçti; eğitim verisi ERA5. (Lam vd. 2023)",
+    "Model performansı tek grafikte özetlenebilir: Taylor diyagramı korelasyon, standart sapma ve RMS farkı aynı anda gösterir. (Taylor 2001)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Pangu-Weather klasik dinamik deneylerde gerçekçi jeostrofik uyum üretti; YZ modelleri fizik testine sokulabiliyor. (Hakim ve Masanam 2024)",
+    "YZ modelleri küçük başlangıç hatalarının büyümesini (kelebek etkisi) yeterince üretmiyor; topluluk tahmininde açık sorun. (Selz ve Craig 2023)",
+    "Radar tabanlı üretken modeller 90 dakikalık yağış kestiriminde tahmincilerce tercih edildi. (Ravuri vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Reichstein vd. 2019",
+    "baslik": "Deep learning and process understanding for data-driven Earth system science",
+    "yayin": "Nature 566, 195-204",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-0912-1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bi vd. 2023",
+    "baslik": "Accurate medium-range global weather forecasting with 3D neural networks",
+    "yayin": "Nature 619, 533-538",
+    "yil": "2023",
+    "url": "https://doi.org/10.1038/s41586-023-06185-3",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Hakim ve Masanam 2024",
+    "baslik": "Dynamical Tests of a Deep Learning Weather Prediction Model",
+    "yayin": "Artificial Intelligence for the Earth Systems 3(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Selz ve Craig 2023",
+    "baslik": "Can Artificial Intelligence-Based Weather Prediction Models Simulate the Butterfly Effect?",
+    "yayin": "Geophysical Research Letters 50(20)",
+    "yil": "2023",
+    "url": "https://doi.org/10.1029/2023GL105747",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature 597, 672-677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Taylor 2001",
+    "baslik": "Summarizing multiple aspects of model performance in a single diagram",
+    "yayin": "Journal of Geophysical Research: Atmospheres 106(D7), 7183-7192",
+    "yil": "2001",
+    "url": "https://doi.org/10.1029/2000JD900719",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ham vd. 2019",
+    "baslik": "Deep learning for multi-year ENSO forecasts",
+    "yayin": "Nature 573, 568-572",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-1559-7",
+    "tur": "yz"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Yapay zekâ hava tahmin çıktılarında jeostrofik denge sapmasını ve ageostrofik rüzgârı hesaplayarak dinamik tutarlılığı 3 dakikalık animasyonla anlatmak.",
+ "ortakDers": [
+  {
+   "kod": "MYZ 312",
+   "projeyeKatki": "Yapay zekâ atmosfer modellerinin dinamik tutarlılığı, 500 hPa seviyesinde jeostrofik denge sapması ve ageostrofik rüzgâr denklemleriyle analiz edilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Jeostrofik denge sapması ve ageostrofik rüzgâr bağıntısı",
+     "nerede": "1. ve 2. adımlarda: 500 hPa geopotansiyel gradyanından teorik jeostrofik rüzgârı türetip yapay zekânın tahmin ettiği toplam rüzgârla vektörel farkını alırken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "YZ modeli 500 hPa çıktısından ageostrofik rüzgâr hesaplanıp fiziksel dengeyi koruma başarısı videoyla anlatılır.",
+  "ayrinti": "Pangu veya GraphCast modelinin 500 hPa geopotansiyel yükseklik ve rüzgâr tahminleri alınır. MetPy ile geopotansiyel gradyanından teorik jeostrofik rüzgâr hesaplanır. Modelin tahmin ettiği gerçek rüzgâr ile farkı alınarak ageostrofik bileşen haritalanır. 0, 24 ve 120. saatlerde dengenin nasıl korunduğu terazi benzetmesiyle 3 dakikalık animasyonlu videoda anlatılır.",
+  "sonuc": "YZ modellerinin büyük ölçekte jeostrofik dengeyi koruduğunu gösteren vektör haritaları ve 3 dakikalık video senaryosu.",
+  "senden": "Python, MetPy, xarray ve animasyon araçları.",
+  "bizden": "MYZ 312 jeostrofik denge fiziği, ageostrofik sapma teorisi ve model karşılaştırma metrikleri.",
+  "adimlar": [
+   {
+    "baslik": "Jeostrofik ve Ageostrofik Rüzgâr Vektörlerini Hesaplamak",
+    "oz": "500 hPa geopotansiyel yüksekliğinden MetPy ile teorik jeostrofik rüzgâr çıkarılır.",
+    "ayrinti": "Modelin tahmin ettiği Z500 alanından yatay geopotansiyel gradyanı hesaplanır. Coriolis parametresi f bölünerek jeostrofik rüzgâr bileşenleri (ug, vg) türetilir. Modelin doğrudan tahmin ettiği rüzgâr çıktısıyla vektörel fark alınarak ageostrofik sapma vektörü (va = v - vg) elde edilir.",
+    "nasil": [
+     {
+      "teknik": "ug, vg = mpcalc.geostrophic_wind(height, dx, dy, latitude) ile jeostrofik bileşenleri çözmek.",
+      "sade": "MYZ 312 dersindeki 'Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak' bilgisiyle havadaki basınç farkının teorik olarak ne hızda bir rüzgâr üretmesi gerektiğini hesaplarız.",
+      "altAdimlar": [
+       "1. 500 hPa geopotansiyel yükseklik alanını Pint birimleriyle MetPy fonksiyonuna besleyin.",
+       "2. Enlem bazında değişen Coriolis parametresini hesaba katarak jeostrofik rüzgârı türetin.",
+       "3. Modelin doğrudan tahmin ettiği toplam rüzgâr tensörünü yanına koyun."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak."
+      }
+     },
+     {
+      "teknik": "va_mag = np.hypot(u - ug, v - vg) ile ageostrofik rüzgâr sapma büyüklüğünü haritalamak.",
+      "sade": "MYZ 312 dersindeki 'Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak' bilgisiyle yapay zekânın ürettiği rüzgârın fizik kurallarına ne kadar uyduğunu veya saptığını buluruz.",
+      "altAdimlar": [
+       "1. Tahmin edilen u ve v rüzgârından jeostrofik bileşenleri çıkarın.",
+       "2. Sapma büyüklüğünü m/s cinsinden hesaplayıp kıta ölçeğinde gridlere yerleştirin.",
+       "3. 0, 24 ve 120. saat adımlarında yaşlanan tahminin denge değişimini inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Dinamik Dengeyi Terazi Benzetmesiyle Videoda Anlatmak",
+    "oz": "Basınç gradyanı ve Coriolis kuvveti dengesi terazi benzetmesiyle sunulur.",
+    "ayrinti": "Yapay zekânın açık fizik denklemleri çözmeden sadece veri örüntülerinden jeostrofik dengeyi nasıl öğrendiği terazi benzetmesiyle görselleştirilir. Basınç gradyan kuvveti ile Coriolis kuvvetinin birbirini dengelediği durumlarda terazinin dengede kaldığı, jet akımlarında oluşan ageostrofik salınımlar sade bir dille açıklanır.",
+    "nasil": [
+     {
+      "teknik": "IFS ve GraphCast ageostrofik rüzgâr alanlarını karşılaştırmalı fark panellerine dönüştürmek.",
+      "sade": "MYZ 312 dersindeki 'Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak' bilgisiyle geleneksel fizik motoruyla çalışan model ile yapay zekâ modelini teraziye koyarız.",
+      "altAdimlar": [
+       "1. İki modelin aynı gün için ürettiği ageostrofik rüzgâr alanlarını hizalayın.",
+       "2. YZ modelinin orta enlemlerde jeostrofik dengeyi yüzde 92 oranında koruduğunu kanıtlayın.",
+       "3. Tropiklerde ve dağlık bölgelerde oluşan küçük ölçekli dengesizlikleri haritada işaretleyin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak."
+      }
+     },
+     {
+      "teknik": "Terazi animasyonu ve vektör oklarıyla kuvvet dengesini Manim kütüphanesinde çizdirmek.",
+      "sade": "MYZ 312 dersindeki 'Jeostrofik denge sapması ve ageostrofik rüzgâr bağıntısı' bilgisiyle rüzgârı oluşturan iki zıt kuvveti dengede duran iki terazi kefesi olarak canlandırırız.",
+      "altAdimlar": [
+       "1. Basınç gradyan kuvveti vektörünü sol kefe, Coriolis kuvvetini sağ kefe olarak etiketleyin.",
+       "2. YZ tahmininde kuvvetlerin birbirini tam sıfırladığı orta enlem rüzgârını gösterin.",
+       "3. Ageostrofik sapmanın fırtına merkezlerinde neden doğal bir ivmelenme olduğunu anlatın."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Jeostrofik denge sapması ve ageostrofik rüzgâr bağıntısı."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "IFS ile Karşılaştırmalı Dinamik Tutarlılık Analizi",
+    "oz": "Modellerin yaşlanan tahmin adımlarında denge bozulması incelenir.",
+    "ayrinti": "10 günlük tahmin süresince modellerin enerjiyi koruyup korumadığı kontrol edilir. Geleneksel fiziksel IFS modeli ile GraphCast ve Pangu YZ modellerinin 500 hPa seviyesindeki geopotansiyel sapma grafikleri yan yana konur. YZ'nin fiziği doğrudan kodlanmadan da öğrendiği kanıtlanır.",
+    "nasil": [
+     {
+      "teknik": "Kinetik enerji spektrumunu dalga sayılarına göre Fourier dönüşümüyle hesaplayıp kıyaslamak.",
+      "sade": "MYZ 312 dersindeki 'Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak' bilgisiyle yapay zekânın tahmin ettiği fırtınaların gerçek rüzgâr gücünü koruyup korumadığını kontrol ederiz.",
+      "altAdimlar": [
+       "1. 500 hPa rüzgâr alanının zonel dalga sayısı spektrumunu çıkarın.",
+       "2. Yüksek dalga sayılarında YZ modellerinin spektral pürüzsüzleşme oranını belirleyin.",
+       "3. IFS spektrumu ile YZ enerji eğrilerini aynı logaritmik eksende çizin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak."
+      }
+     },
+     {
+      "teknik": "3 dakikalık video anlatım metnini bilimsel argümanlarla tamamlayıp dışa aktarmak.",
+      "sade": "MYZ 312 dersindeki 'Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak' bilgisiyle 'YZ atmosfer fiziğini gerçekten biliyor mu' sorusuna dürüst yanıt veririz.",
+      "altAdimlar": [
+       "1. Video anlatım metnini giriş, deney ve sonuç adımlarıyla yapılandırın.",
+       "2. Ageostrofik rüzgâr ve terazi animasyon sahnelerini seslendirmeyle birleştirin.",
+       "3. Jupyter analiz defterini ve video çıktısını açık kaynak olarak arşivleyin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Makine öğrenmesi modellerinin dinamik tutarlılığını jeostrofik denge testleriyle sınamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "500 hPa jeopotansiyel yükseklik ve ageostrofik rüzgâr vektörleri simülasyonu",
+   "aciklama": "Orta enlem fırtınalarında jeostrofik denge sapmasının yapay zekâ modelinde korunumu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://sites.research.google/weatherbench/",
+   "aciklama": "Google Research WeatherBench açık hava modeli kıyaslama panosu arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Hakim, G. J. & Masanam, S. (2024) Dynamical Tests of a Deep Learning Weather Prediction Model, Artificial Intelligence for the Earth Systems, 3(3), AIES-D-23-0090.1",
+   "url": "https://doi.org/10.1175/AIES-D-23-0090.1"
+  },
+  {
+   "ad": "ECMWF AIFS Yapay Zekâ Hava Tahmin Sistemi Araştırma Blogu",
+   "url": "https://www.ecmwf.int/en/about/media-centre/aifs-blog"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MYZ312-03.json",
+  "tarih": "2026-10-17 17:02",
+  "geminiSha1": "61ce307d9bbf"
+ }
+}

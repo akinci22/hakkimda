@@ -1,0 +1,441 @@
+{
+ "id": "D-MTO454-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 454",
+  "dersAd": "Fiziksel Klimatoloji",
+  "kol": "ikisi"
+ },
+ "ad": "Türkiye'nin Köppen haritası 1991-2020 ve 2071-2100",
+ "ne": "WorldClim/CHELSA ve CMIP6 projeksiyonlarıyla Türkiye için Köppen-Geiger sınıflarını iki dönem için hesapla; değişen alanları haritala.",
+ "adimlar": [
+  "CHELSA aylık sıcaklık ve yağış katmanlarını indir.",
+  "Köppen kurallarını Python'da uygula; 1991-2020 haritasını üret.",
+  "CMIP6 SSP2-4.5 ve SSP5-8.5 için aynı hesabı yap (GloH2O ile karşılaştır).",
+  "Sınıf değiştiren alan yüzdesini tablo yap.",
+  "Haritayı poster + etkileşimli web harita yap."
+ ],
+ "sonuc": "İki dönem Köppen haritası ve değişim tablosu.",
+ "dayanak": "Fick ve Hijmans 2017",
+ "senden": "Raster işleme.",
+ "bizden": "Kurallar ve veri.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 454",
+    "ad": "Fiziksel Klimatoloji"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "CHELSA",
+   "ne": "Yüksek çözünürlüklü küresel topoğrafik iklim katmanları.",
+   "url": "https://chelsa-climate.org/",
+   "ayrinti": {
+    "neYaptilar": "Yeniden analiz verilerini mekanik orografik rüzgâr ve sıcaklık algoritmalarıyla 1 km ince ızgaraya indirdiler.",
+    "nasil": "Dağlık bölgelerde vadileri ve sırtları hesaba katarak mikroklimatik yağış ve sıcaklık yüzeyleri ürettiler.",
+    "neEdindiler": "Ekolojistlerin ve klimatologların karmaşık arazilerde iklim analizi yapmasını sağlayan küresel veri tabanı sundular.",
+    "bizNasilKatki": "CHELSA V2 aylık sıcaklık ve yağış gridlerini Türkiye sınırlarında keserek Köppen algoritmasında kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Karger vd. (2017) CHELSA Yüksek Çözünürlüklü Küresel İklim Katmanları",
+      "url": "https://doi.org/10.1038/sdata.2017.122",
+      "tur": "makale"
+     },
+     {
+      "ad": "CHELSA İklim Veri Seti Teknik Kullanım Kılavuzu",
+      "url": "https://www.chelsa-climate.org/datasets",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:K%C3%B6ppen-Geiger_climate_classification_(1980-2016).png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Küresel Köppen-Geiger iklim sınıflandırması dünya haritası dağılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.chelsa-climate.org/datasets",
+      "aciklama": "CHELSA yüksek çözünürlüklü iklim veri tabanı dokümantasyon portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "WorldClim",
+   "ne": "1 km çözünürlüklü küresel iklim yüzeyleri ve biyoiklim değişkenleri.",
+   "url": "https://www.worldclim.org/",
+   "ayrinti": {
+    "neYaptilar": "Binlerce meteoroloji istasyon verisini uydu yüzey sıcaklığı ve kot verileriyle enterpole ederek küresel iklim katmanları oluşturdular.",
+    "nasil": "İnce plaka düzleştirme eğrisi (thin-plate spline) ve ANUSPLIN yöntemleriyle sıcaklık ve yağış ızgaralarını 30 yay saniyesinde hesapladılar.",
+    "neEdindiler": "Küresel ölçekte en çok atıf alan ve biyoçeşitlilik araştırmalarında standart kabul edilen açık iklim veri setini sağladılar.",
+    "bizNasilKatki": "WorldClim biyoiklim değişkenlerini indirerek Türkiye'deki Köppen sınıflarıyla karşılaştırmalı doğrulama yaparız.",
+    "referanslar": [
+     {
+      "ad": "Fick ve Hijmans (2017) WorldClim 2 Küresel İklim Yüzeyleri",
+      "url": "https://doi.org/10.1002/joc.5086",
+      "tur": "makale"
+     },
+     {
+      "ad": "WorldClim Veri Formatları ve İndirme Rehberi",
+      "url": "https://www.worldclim.org/data/worldclim21.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map_(2071%E2%80%932100)_no_borders.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "WorldClim ve iklim projeksiyonlarından türetilen 2071-2100 Köppen iklim kuşakları"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.worldclim.org/data/worldclim21.html",
+      "aciklama": "WorldClim 2.1 yüksek çözünürlüklü iklim verisi indirme sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Köppen-Geiger haritaları (GloH2O)",
+   "ne": "Güncel ve gelecek iklim sınıflandırma haritaları.",
+   "url": "https://www.gloh2o.org/koppen/",
+   "ayrinti": {
+    "neYaptilar": "CHIRPS, WorldClim ve CMIP6 verilerini birleştirerek 1980-2016 mevcut ve 2071-2100 gelecek Köppen haritalarını 1 km çözünürlükte yayımladılar.",
+    "nasil": "Gelişmiş karar ağacı algoritmalarıyla 30 iklim sınıfını küresel piksellere otomatik olarak kodladılar.",
+    "neEdindiler": "Küresel ısınma altında kurak ve tropikal iklimlerin kutuplara ve yükseklere doğru genişlemesini sayısallaştırdılar.",
+    "bizNasilKatki": "GloH2O kurallarını Python'da sıfırdan kodlayıp Türkiye'nin step ve Akdeniz iklimi sınırlarının değişimini hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "Beck vd. (2018) 1 km Çözünürlükte Küresel Köppen-Geiger İklim Sınıflandırması",
+      "url": "https://doi.org/10.1038/sdata.2018.214",
+      "tur": "makale"
+     },
+     {
+      "ad": "GloH2O Köppen-Geiger Harita ve Kod Dokümantasyonu",
+      "url": "https://www.gloh2o.org/koppen/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Türkiye Köppen iklim sınıflarının 1991-2020'den 2071-2100 SSP5-8.5 dönemine dönüşüm animasyonu",
+      "aciklama": "İç Anadolu ve Güneydoğu'da yarı-kurak BSk step alanlarının genişleme süreci"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.gloh2o.org/koppen/",
+      "aciklama": "GloH2O 1 km küresel Köppen-Geiger iklim projeksiyonları indirme paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "CMIP6 (PCMDI)",
+   "ne": "Küresel iklim modeli karşılaştırma projesi.",
+   "url": "https://pcmdi.llnl.gov/CMIP6/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki onlarca iklim araştırma merkezinin simülasyonlarını standart formatta toplayıp açık erişime sundular.",
+    "nasil": "Ortak deney protokolleri ve Grid Veri Doku mimarisi (ESGF) üzerinden yüzlerce petabaytlık iklim projeksiyon verisini koordine ettiler.",
+    "neEdindiler": "IPCC Altıncı Değerlendirme Raporu'nun temelini oluşturan SSP gelecek senaryoları simülasyon veri tabanını kurdular.",
+    "bizNasilKatki": "PCMDI ESGF düğümlerinden SSP2-4.5 ve SSP5-8.5 senaryo çıktılarını Python API ile çekip bölgesel ölçek küçültme yaparız.",
+    "referanslar": [
+     {
+      "ad": "Eyring vd. (2016) CMIP6 Genel Bakış ve Deney Tasarımı",
+      "url": "https://doi.org/10.5194/gmd-9-1937-2016",
+      "tur": "makale"
+     },
+     {
+      "ad": "PCMDI CMIP6 Veri Kullanıcı Rehberi ve Dokümantasyonu",
+      "url": "https://pcmdi.llnl.gov/CMIP6/Guide/dataUsers.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:SSPs-CMIP6.svg",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "CMIP6 çoklu model projeksiyonları küresel sıcaklık değişim senaryoları"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://pcmdi.llnl.gov/CMIP6/ArchiveStatistics/esgf_data_holdings/",
+      "aciklama": "PCMDI CMIP6 veri arşiv istatistikleri ve model veri varlığı panosu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "IPCC Interactive Atlas",
+   "ne": "Bölgesel projeksiyonları haritada inceleme aracı.",
+   "url": "https://interactive-atlas.ipcc.ch/",
+   "ayrinti": {
+    "neYaptilar": "Kullanıcıların CMIP6 ve CORDEX iklim projeksiyonlarını bölgesel ölçekte etkileşimli olarak haritalamasını ve zaman serilerini analiz etmesini sağladılar.",
+    "nasil": "Bulut tabanlı coğrafi veri sunucuları ve R/Shiny arayüzüyle sıcaklık, kuraklık ve yağış indislerini 1950-2100 aralığında görselleştirdiler.",
+    "neEdindiler": "Politika yapıcılar ve araştırmacılar için IPCC WGI raporu verilerini anlık analiz edilebilen küresel bir web atlasına dönüştürdüler.",
+    "bizNasilKatki": "Akdeniz havzası ve Türkiye bölgesi için Atlas API çıktısıyla projemizin Köppen değişim yüzdelerini karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Gutiérrez vd. (2021) IPCC Interactive Atlas",
+      "url": "https://interactive-atlas.ipcc.ch/documentation",
+      "tur": "web"
+     },
+     {
+      "ad": "IPCC Altıncı Değerlendirme Raporu Fiziksel Bilim Temeli",
+      "url": "https://www.ipcc.ch/report/ar6/wg1/",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:IPCC_WGI_reference_regions_(v4).png",
+      "lisans": "CC BY 4.0",
+      "aciklama": "IPCC Interactive Atlas bölgesel iklim analizi referans coğrafi bölgeleri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://interactive-atlas.ipcc.ch/documentation",
+      "aciklama": "IPCC Interactive Atlas veri ve yöntem dokümantasyon sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Enerji dengesi, yüzey-atmosfer etkileşimi ve iklim sınıflandırmasını ölçüm ve gridli veriyle çalışmak.",
+  "baglanti": "Yazılım kolunda radyasyon bütçesi ve iklim veri setleri; Anlatım kolunda enerji dengesi anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Yer'in enerji dengesi: tepede gelen ≈ 340 W/m², yansıyan ≈ 100, giden uzun dalga ≈ 240; CERES bu bütçeyi 20+ yıldır ölçüyor.",
+    "Yüzey enerji dengesi (net radyasyon = duyulur + gizli + toprak ısı akısı) SURFRAD/BSRN istasyonlarında dakika çözünürlüğünde ölçülür.",
+    "Küresel iklim yüzeyleri (WorldClim 2) istasyon + uydu birleşimiyle 1 km'de aylık sıcaklık ve yağış verir. (Fick ve Hijmans 2017)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Stratokümülüs tabakalarının yüksek CO₂'de parçalanabileceği LES simülasyonlarıyla gösterildi; büyük bir iklim geçişi adayı. (Schneider vd. 2019)",
+    "İklim duyarlılığı çoklu kanıt hattıyla 2,6-3,9 K aralığına daraltıldı. (Sherwood vd. 2020)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Fick ve Hijmans 2017",
+    "baslik": "WorldClim 2: new 1-km spatial resolution climate surfaces for global land areas",
+    "yayin": "International Journal of Climatology 37(12), 4302-4315",
+    "yil": "2017",
+    "url": "https://doi.org/10.1002/joc.5086",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Schneider vd. 2019",
+    "baslik": "Possible climate transitions from breakup of stratocumulus decks under greenhouse warming",
+    "yayin": "Nature Geoscience 12, 163-167",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41561-019-0310-1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Sherwood vd. 2020",
+    "baslik": "An Assessment of Earth's Climate Sensitivity Using Multiple Lines of Evidence",
+    "yayin": "Reviews of Geophysics 58(4)",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2019RG000678",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Stubenrauch vd. 2013",
+    "baslik": "Assessment of Global Cloud Datasets from Satellites",
+    "yayin": "Bulletin of the American Meteorological Society 94(7), 1031-1049",
+    "yil": "2013",
+    "url": "https://doi.org/10.1175/BAMS-D-12-00117.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kamaraj vd. 2021",
+    "baslik": "Detecting heat-inducing urban built-up surface material with multi remote sensing datasets",
+    "yayin": "Remote Sensing of Environment 264, 112591",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.rse.2021.112591",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "CHELSA iklim verileri ve CMIP6 projeksiyonlarıyla Türkiye'nin Köppen-Geiger iklim sınıflarını hesaplayıp değişen alanları haritalamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 454",
+   "ad": "Fiziksel Klimatoloji",
+   "projeyeKatki": "Köppen iklim sınırlarının belirlenmesinde ve kuraklık eşik yağışının yüzey enerji dengesiyle açıklanmasında fiziksel temeli sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yüzey enerji dengesi denklemi",
+     "nerede": "Adım 1: Kurak ve nemli iklim bölgelerinde net radyasyonun yüzeydeki bölüşümünün fiziksel analizinde."
+    },
+    {
+     "formulAd": "Bowen oranı denklemi",
+     "nerede": "Adım 2: Step ve Akdeniz iklimi ayrımında duyulur ve gizli ısı akısı oranının iklimsel değişiminde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "CHELSA ve CMIP6 verileriyle Köppen kurallarını Python'da çözüp 1991-2020 ile 2071-2100 arası sınıf değişimini haritalamak.",
+  "ayrinti": "1991-2020 iklim normalleri ve CMIP6 SSP2-4.5 ile SSP5-8.5 projeksiyonları indirilir. Sıcaklık eşikleri ve yağış rejimine göre Köppen karar ağacı uygulanır. Türkiye'de yarı-kurak step (BSk) alanlarının genişleyeceği ve Csa Akdeniz ikliminin İç Anadolu kenarlarına tırmanacağı saptanır; sınıf değiştiren alanlar haritalanır.",
+  "sonuc": "Türkiye'nin iklim kuşaklarının gelecekteki dönüşümünü gösteren yüksek çözünürlüklü Köppen haritası ve etkileşimli web panosu.",
+  "adimlar": [
+   {
+    "baslik": "CHELSA ve CMIP6 iklim verilerini hazırlamak",
+    "oz": "Türkiye için aylık 12 sıcaklık ve 12 yağış katmanını 1 km ızgarada kesmek.",
+    "ayrinti": "CHELSA V2.1 üzerinden 1991-2020 referans dönemi ile CMIP6 SSP2-4.5 ve SSP5-8.5 projeksiyonları çekilir. Rasterio ile Türkiye sınır poligonu maskelenerek her piksel için yıllık ortalama, en sıcak ay, en soğuk ay ve mevsimlik yağışlar hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "rasterio.mask ile Türkiye sınırları içindeki 24 iklim katmanını NumPy 3D tensörüne aktarmak.",
+      "sade": "MTO 454 dersindeki 'Köppen-Geiger iklim sınıflandırma algoritmalarını yüksek çözünürlüklü gridli verilere uygulamak' bilgisiyle Türkiye'nin her dağ ve ovasının 12 aylık sıcaklık ve yağmur haritalarını hazırlarız.",
+      "altAdimlar": [
+       "1. CHELSA aylık sıcaklık (°C) ve yağış (mm) GeoTIFF dosyalarını indirin.",
+       "2. Harita koordinatlarını EPSG:4326 standart coğrafi sistemine dönüştürün.",
+       "3. Her piksel için en kurak yaz ve en yağışlı kış ayı parametrelerini türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Köppen-Geiger iklim sınıflandırma algoritmalarını yüksek çözünürlüklü gridli verilere uygulamak."
+      }
+     },
+     {
+      "teknik": "P_threshold = 20 * T + [0, 140, 280] formülüyle kuraklık eşik yağışını hesaplamak.",
+      "sade": "MTO 454 dersindeki 'Köppen-Geiger iklim sınıflandırma algoritmalarını yüksek çözünürlüklü gridli verilere uygulamak' bilgisiyle bir yerin çöl veya bozkır mı yoksa orman iklimi mi olduğunu belirleyen kuraklık sınırını hesaplarız.",
+      "altAdimlar": [
+       "1. Yıllık yağışın %70'inin yazın mı kışın mı düştüğünü kontrol edin.",
+       "2. Yıllık ortalama sıcaklığa göre kuraklık eşik değerini piksel piksel bulun.",
+       "3. Yıllık yağış bu eşiğin altındaysa B grubuna, üstündeyse C veya D grubuna ayırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Köppen-Geiger iklim sınıflandırma algoritmalarını yüksek çözünürlüklü gridli verilere uygulamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Köppen karar ağacıyla 1991-2020 iklim haritasını üretmek",
+    "oz": "30 iklim sınıfının kurallarını Python'da kodlayarak referans dönemi haritalamak.",
+    "ayrinti": "Sıcaklık eşikleri (T_hot, T_cold) ve yağış rejimine (yaz kuraklığı, kış yağışı) göre Köppen kuralları işletilir. Türkiye referans haritasında Csa (Sıcak Akdeniz), BSk (Soğuk Step) ve Dfb (Nemli Karasal) bölgeleri yüksek doğrulukla ayrıştırılır.",
+    "nasil": [
+     {
+      "teknik": "NumPy select-conditions yapısıyla 30 iklim sınıfını vektörel olarak atamak.",
+      "sade": "MTO 454 dersindeki 'Köppen-Geiger iklim sınıflandırma algoritmalarını yüksek çözünürlüklü gridli verilere uygulamak' bilgisiyle Türkiye'nin her noktasına iklim kodunu veren formül zincirini çalıştırırız.",
+      "altAdimlar": [
+       "1. Sıcaklık ve yağış kurallarıyla piksellere 1'den 30'a kadar iklim sınıflarını atayın.",
+       "2. GloH2O resmi Türkiye Köppen haritasıyla %96 mekânsal doğruluk sağlandığını denetleyin.",
+       "3. Referans dönem için Türkiye iklim dağılım haritasını üretin."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Köppen-Geiger iklim sınıflandırma algoritmalarını yüksek çözünürlüklü gridli verilere uygulamak."
+      }
+     },
+     {
+      "teknik": "Kurak ve nemli bölgelerde Bowen oranıyla enerji dengesini karşılaştırmak.",
+      "sade": "MTO 454 dersindeki 'Yüzey enerji akılarını (Bowen oranı, duyulur ve gizli ısı) mikrometeorolojik yöntemlerle belirlemek' bilgisiyle step ve Akdeniz bölgelerinin buharlaşma farkını doğrularız.",
+      "altAdimlar": [
+       "1. BSk step alanlarında Bowen oranının 2 üzerinde olduğunu hesaplayın.",
+       "2. Csa Akdeniz kıyılarında gizli ısı akısının yazın kuraklıkla düşüşünü inceleyin.",
+       "3. İklim sınıflarını fiziksel enerji bütçesi bileşenleriyle eşleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Yüzey enerji akılarını (Bowen oranı, duyulur ve gizli ısı) mikrometeorolojik yöntemlerle belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "CMIP6 projeksiyonlarıyla sınıf değişimini haritalamak",
+    "oz": "2071-2100 senaryolarında sınıf değiştiren alanları belirleyip haritalamak.",
+    "ayrinti": "SSP5-8.5 senaryosunda BSk yarı-kurak step alanlarının İç Anadolu ve Ege'de genişlemesi, Karadeniz ve Doğu Anadolu yükseklerindeki Dfb ikliminin daralması saptanır. Sınıf dönüşüm matrisi hesaplanarak etkileşimli haritaya aktarılır.",
+    "nasil": [
+     {
+      "teknik": "2071-2100 CMIP6 iklim katmanlarında Köppen karar ağacını yeniden koşturmak.",
+      "sade": "MTO 454 dersindeki 'İklimsel geri besleme mekanizmalarını (su buharı, bulut, buz-albedo) değerlendirmek' bilgisiyle yüzyıl sonunda iklim sınırlarının ne kadar kayacağını hesaplarız.",
+      "altAdimlar": [
+       "1. 2071-2100 projeksiyon katmanları üzerinde aynı Köppen kurallarını işletin.",
+       "2. Referans dönemle gelecek dönemi karşılaştırarak sınıf değiştiren pikselleri saptayın.",
+       "3. Değişen alan yüzdelerini tablo yapıp web haritası olarak arşivleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "İklimsel geri besleme mekanizmalarını (su buharı, bulut, buz-albedo) değerlendirmek."
+      }
+     },
+     {
+      "teknik": "Değişen alan yüzdelerini tablo yapıp etkileşimli Leaflet web haritasına aktarmak.",
+      "sade": "MTO 454 dersindeki 'Köppen-Geiger iklim sınıflandırma algoritmalarını yüksek çözünürlüklü gridli verilere uygulamak' bilgisiyle gelecekte hangi şehirlerin çölleşeceğini gösteren renkli bir internet haritası kurarız.",
+      "altAdimlar": [
+       "1. Marmara ve Ege'de Akdeniz ikliminin kurak bozkıra dönüştüğü ilçeleri listeleyin.",
+       "2. İklim kuşağı kaymasının tarım ve su kaynakları üzerindeki etkilerini raporlayın.",
+       "3. Web tarayıcısında katman açıp kapatılabilen etkileşimli harita sayfasını tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 454",
+       "madde": "Köppen-Geiger iklim sınıflandırma algoritmalarını yüksek çözünürlüklü gridli verilere uygulamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Türkiye Köppen-Geiger iklim kuşaklarının 1991-2020'den 2100 yılına doğru kayma animasyonu",
+   "aciklama": "Yarı-kurak step sınırlarının kuzeye doğru genişlemesi ve soğuk karasal iklimlerin dağ zirvelerine çekilmesi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.gloh2o.org/koppen/",
+   "aciklama": "GloH2O küresel Köppen-Geiger iklim sınıflandırması resmi veri portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "GloH2O 1 km Çözünürlüklü Küresel Köppen-Geiger İklim Haritaları Arşivi",
+   "url": "https://www.gloh2o.org/koppen/"
+  },
+  {
+   "ad": "CHELSA Yüksek Çözünürlüklü İklim Katmanları Dokümantasyonu",
+   "url": "https://www.chelsa-climate.org/datasets"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO454-02.json",
+  "tarih": "2026-10-17 14:37",
+  "geminiSha1": "db211ab31520"
+ }
+}

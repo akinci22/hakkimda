@@ -1,0 +1,402 @@
+{
+ "id": "D-MTO465-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 465",
+  "dersAd": "Çevre Biyofiziği",
+  "kol": "yazilim"
+ },
+ "ad": "Yaprak sıcaklığı modeli: güneşte kaç derece ısınır?",
+ "ne": "Yaprak enerji dengesini Python'da çöz; radyasyon, rüzgâr ve stoma iletkenliğine göre yaprak-hava sıcaklık farkını hesapla, kızılötesi termometreyle doğrula.",
+ "adimlar": [
+  "Enerji dengesi denklemini (kısa+uzun dalga, duyulur, gizli) yaz; sınır tabakası iletkenliğini rüzgâra bağla.",
+  "Rüzgâr 0,5-5 m/s ve iletkenlik 0,05-0,5 mol/m²/s için çözüm yüzeyi çiz.",
+  "Kampüste güneşli günde kızılötesi termometreyle 20 yaprak ölç.",
+  "Model-ölçüm farkını raporla.",
+  "Kuraklık stresinde (stoma kapalı) senaryoyu ekle."
+ ],
+ "sonuc": "Yaprak sıcaklığı modeli ve doğrulama grafiği.",
+ "dayanak": "Béland vd. 2014",
+ "senden": "Denklem çözme.",
+ "bizden": "Model iskeleti ve ölçüm aleti.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 465",
+    "ad": "Çevre Biyofiziği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "LI-COR",
+   "ne": "Gaz analizörleri ve EddyPro yazılımı.",
+   "url": "https://www.licor.com/",
+   "ayrinti": {
+    "neYaptilar": "Taşınabilir yaprak gaz değişim odalarıyla stoma iletkenliğini ve transpirasyonu arazide ölçtüler.",
+    "nasil": "Kızılötesi gaz analizörü (IRGA) ve yaprak temas termokupllarıyla yaprak mikroiklimini kontrol ettiler.",
+    "neEdindiler": "Bitki fizyolojisi araştırmalarında stoma direnci ve enerji dengesi ölçümlerinde küresel altın standardı kurdular.",
+    "bizNasilKatki": "LI-COR yaprak haznesi enerji dengesi formüllerini temel alarak Python tek yaprak simülasyonu yazarız.",
+    "referanslar": [
+     {
+      "ad": "LI-COR LI-6800 Taşınabilir Fotosentez ve Yaprak Gaz Değişim Sistemi",
+      "url": "https://www.licor.com/env/products/photosynthesis/LI-6800/",
+      "tur": "web"
+     },
+     {
+      "ad": "Campbell ve Norman (1998) An Introduction to Environmental Biophysics",
+      "url": "https://doi.org/10.1007/978-1-4612-1626-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Yaprak yüzeyinde kısa ve uzun dalga radyasyon ile duyulur-gizli ısı dengesi",
+      "aciklama": "Yaprak yüzeyinde kısa ve uzun dalga radyasyon ile duyulur-gizli ısı dengesi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.licor.com/env/products/photosynthesis/LI-6800/",
+      "aciklama": "LI-COR LI-6800 fotosentez ve yaprak gaz değişimi ölçüm arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "NASA ECOSTRESS",
+   "ne": "ISS'ten bitki sıcaklığı ve evapotranspirasyon ölçümü.",
+   "url": "https://ecostress.jpl.nasa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Uluslararası Uzay İstasyonu'ndan yüksek çözünürlüklü termal radyometreyle tarla ölçeğinde bitki sıcaklığını izlediler.",
+    "nasil": "Gündüz ve gece farklı saatlerde ölçüm alarak bitkilerin su stresine girdiği anları sıcaklık artışıyla tespit ettiler.",
+    "neEdindiler": "Kuraklık vurduğunda stomasını kapatan yaprakların aniden kaç derece ısındığını uydudan belgelediler.",
+    "bizNasilKatki": "ECOSTRESS yüzey sıcaklığı pikselleriyle kampüsteki yaprak ölçüm sonuçlarımızı kıyaslarız.",
+    "referanslar": [
+     {
+      "ad": "Fisher vd. (2020) The ECOSTRESS Mission on the Space Station",
+      "url": "https://doi.org/10.1029/2019WR026058",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA JPL ECOSTRESS Bitki Su Stresi Veri Kataloğu",
+      "url": "https://ecostress.jpl.nasa.gov/data",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "ECOSTRESS termal radyometresiyle haritalanan bitki örtüsü evapotranspirasyonu",
+      "aciklama": "ECOSTRESS termal radyometresiyle haritalanan bitki örtüsü evapotranspirasyonu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://ecostress.jpl.nasa.gov/data",
+      "aciklama": "NASA ECOSTRESS bitki sıcaklığı ve su stresi veri erişim arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "OpenET",
+   "ne": "Uydudan tarla ölçeğinde evapotranspirasyon (ABD batısı).",
+   "url": "https://openetdata.org/",
+   "ayrinti": {
+    "neYaptilar": "Landsat ve Sentinel uydularından enerji dengesi algoritmalarıyla günlük tarla su tüketimi verisi sundular.",
+    "nasil": "SEBAL, METRIC ve PT-JPL gibi 6 farklı enerji dengesi modelini bulut bilişim üzerinde birleştirdiler.",
+    "neEdindiler": "Çiftçilerin ve su yöneticilerinin sulama ihtiyacını yaprak terleme hızına göre planlamasını sağladılar.",
+    "bizNasilKatki": "OpenET'nin kullandığı sınır tabakası direnci bağıntılarını tek yaprak simülasyon kodumuza entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "Melton vd. (2021) OpenET: Multisensor Evapotranspiration Mapping",
+      "url": "https://doi.org/10.1111/1752-1688.12956",
+      "tur": "makale"
+     },
+     {
+      "ad": "OpenET Uydu Tabanlı Evapotranspirasyon Kaynaklar ve Metodoloji Portalı",
+      "url": "https://openetdata.org/resources/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "OpenET tarla ölçeğinde uydu destekli evapotranspirasyon haritası",
+      "aciklama": "OpenET tarla ölçeğinde uydu destekli evapotranspirasyon haritası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://openetdata.org/resources/",
+      "aciklama": "OpenET enerji dengesi ve bitki su tüketimi metodoloji ve kaynaklar ekranı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "FLUXNET",
+   "ne": "Küresel akı kulesi ağı.",
+   "url": "https://fluxnet.org/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelindeki 500'den fazla ekosistem kulesinde duyulur ve gizli ısı akılarını sürekli ölçtüler.",
+    "nasil": "Eddy kovaryans yöntemiyle yüksek frekanslı düşey rüzgâr ve su buharı çalkantılarını entegre ettiler.",
+    "neEdindiler": "Orman ve tarım arazilerinin kuraklıkta atmosfere ne kadar su buharı saldığını standart veriyle sundular.",
+    "bizNasilKatki": "FLUXNET açık kule verilerinden yaprak örtüsü sıcaklığı ile kule ısı akıları arasındaki bağı doğrularız.",
+    "referanslar": [
+     {
+      "ad": "Pastorello vd. (2020) The FLUXNET2015 Dataset",
+      "url": "https://doi.org/10.1038/s41597-020-0534-3",
+      "tur": "makale"
+     },
+     {
+      "ad": "FLUXNET Küresel Akı Kuleleri Veri Topluluğu Kataloğu",
+      "url": "https://fluxnet.org/data/fluxnet2015-dataset/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Bitki örtüsü üzerinde duyulur ve gizli ısı akılarını ölçen eddy kovaryans kulesi",
+      "aciklama": "Bitki örtüsü üzerinde duyulur ve gizli ısı akılarını ölçen eddy kovaryans kulesi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://fluxnet.org/data/fluxnet2015-dataset/",
+      "aciklama": "FLUXNET küresel mikrometeoroloji kulesi veri arşivi sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yaprak, bitki örtüsü ve toprağın enerji-su-karbon alışverişini fiziksel denklemlerle ve ölçümle izlemek.",
+  "baglanti": "Yazılım kolunda yaprak enerji dengesi ve akı modelleri; Anlatım kolunda bitki-hava etkileşimi anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Yaprak enerji dengesi: soğurulan radyasyon = uzun dalga kaybı + duyulur + gizli ısı; stoma iletkenliği gizli ısıyı kontrol eder.",
+    "Eddy kovaryans akılarının \"ayak izi\" rüzgâr yönü ve kararlılıkla değişir; FFP modeli bunu iki boyutta verir. (Kljun vd. 2015)",
+    "Yaprak alanı dağılımı yersel lidar ile vokselleştirilerek ölçülür; voksel boyutu sonucu belirler. (Béland vd. 2014)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Kar örtüsüne türbülanslı ısı akıları orman açıklıklarında modellenmesi en zor bileşen. (Conway vd. 2018)",
+    "ECOSTRESS ve OpenET bitki su stresini uydudan tarla ölçeğinde izliyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kljun vd. 2015",
+    "baslik": "A simple two-dimensional parameterisation for Flux Footprint Prediction (FFP)",
+    "yayin": "Geoscientific Model Development 8, 3695-3713",
+    "yil": "2015",
+    "url": "https://doi.org/10.5194/gmd-8-3695-2015",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Béland vd. 2014",
+    "baslik": "On seeing the wood from the leaves and the role of voxel size in determining leaf area distribution of forests with terrestrial LiDAR",
+    "yayin": "Agricultural and Forest Meteorology 184, 82-97",
+    "yil": "2014",
+    "url": "https://doi.org/10.1016/j.agrformet.2013.09.005",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Conway vd. 2018",
+    "baslik": "Challenges in Modeling Turbulent Heat Fluxes to Snowpacks in Forest Clearings",
+    "yayin": "Journal of Hydrometeorology 19(10), 1599-1616",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/JHM-D-18-0050.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Reichstein vd. 2005",
+    "baslik": "On the separation of net ecosystem exchange into assimilation and ecosystem respiration",
+    "yayin": "Global Change Biology 11(9), 1424-1439",
+    "yil": "2005",
+    "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pastorello vd. 2020",
+    "baslik": "The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data",
+    "yayin": "Scientific Data 7, 225",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41597-020-0534-3",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Güneş radyasyonu, rüzgâr ve stoma iletkenliğine bağlı yaprak enerji dengesini Python ile çözüp kızılötesi termometre ölçümleriyle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 465",
+   "ad": "Çevre Biyofiziği",
+   "projeyeKatki": "Yaprak enerji dengesi denklemini çözerek güneş radyasyonu, rüzgâr hızı ve stoma iletkenliğine bağlı yaprak sıcaklığını hesaplar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yaprak enerji dengesi ve duyulur-gizli ısı alışverişi",
+     "nerede": "Adım 2: R_net = H + lambda*E enerji denkliğinden yaprak-hava sıcaklık farkı T_l - T_a analitik çözümünün elde edilmesinde."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Yaprak enerji dengesi denklemi çözülerek farklı rüzgâr ve stoma iletkenliklerinde yaprak-hava sıcaklık farkı hesaplanır.",
+  "ayrinti": "Güneş radyasyonu, yaprak emisyonu, duyulur ısı akısı ve stoma kontrollü transpirasyon denklemleri birleştirilir. R_net = H + lambda*E dengesi çözülür. Kampüste güneşli bir günde kızılötesi termometreyle 20 yaprak ölçülerek model sonuçları test edilir.",
+  "sonuc": "Yaprak-hava sıcaklık farkı çözüm yüzeyi grafiği ve arazide doğrulanmış biyofiziksel hesaplama aracı.",
+  "senden": "Python çözücü ve grafik arayüz.",
+  "bizden": "Çevre biyofiziği formülleri ve el tipi ölçüm donanımı desteği.",
+  "adimlar": [
+   {
+    "baslik": "Yaprak enerji dengesi denklemini kurmak",
+    "oz": "Net radyasyon, duyulur ısı ve gizli ısı akılarını analitik olarak bağlamak.",
+    "ayrinti": "Soğurulan kısa ve uzun dalga radyasyon R_abs belirlenir. Stefan-Boltzmann yasasıyla uzun dalga yaprak emisyonu çıkarılır. Duyulur ısı H = c_p * g_Ha * (T_l - T_a) ve gizli ısı lambda*E = lambda * g_v * (e_s(T_l) - e_a) / P denklemleri yazılır.",
+    "nasil": [
+     {
+      "teknik": "R_abs - epsilon*sigma*T_l^4 - c_p*g_Ha*(T_l - T_a) - lambda*g_v*(e_s(T_l) - e_a)/P = 0 denklemini kurmak.",
+      "sade": "MTO 465 dersindeki 'Yaprak enerji dengesi denklemini çözerek yaprak sıcaklığını ve transpirasyonu hesaplamak' bilgisiyle yaprağın güneşten aldığı ısının rüzgâr ve terlemeyle nasıl dengelendiğini formüle dökeriz.",
+      "altAdimlar": [
+       "1. Kısa dalga güneş radyasyonu ve yaprak soğurma katsayısını (0.5) tanımlayın.",
+       "2. Yaprak sınır tabakası iletkenliğini rüzgâr hızının karekökü g_Ha = 0.189 * sqrt(u / d) ile bağlayın.",
+       "3. Stoma iletkenliği (g_s) ile sınır tabakasını seri direnç formülüyle birleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Yaprak enerji dengesi denklemini çözerek yaprak sıcaklığını ve transpirasyonu hesaplamak."
+      }
+     },
+     {
+      "teknik": "e_s(T_l) doymuş buhar basıncını Tetens formülüyle sıcaklığa bağlı lineerleştirmek.",
+      "sade": "MTO 465 dersindeki 'Yaprak enerji dengesi denklemini çözerek yaprak sıcaklığını ve transpirasyonu hesaplamak' bilgisiyle yaprak ısındıkça içindeki suyun buharlaşma basıncının nasıl fırladığını hesaplarız.",
+      "altAdimlar": [
+       "1. Hava sıcaklığı T_a etrafında Taylor serisi açılımı yapın.",
+       "2. Doygunluk eğrisinin eğimini Delta = de_s/dT olarak çıkarın.",
+       "3. Denklemdeki T_l dördüncü kuvvet terimini birinci dereceye indirgeyerek analitik çözüme ulaşın."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Yaprak enerji dengesi denklemini çözerek yaprak sıcaklığını ve transpirasyonu hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Rüzgâr ve stoma iletkenliğiyle sıcaklık yüzeyi çizmek",
+    "oz": "Farklı rüzgâr ve terleme koşullarında yaprak sıcaklık değişimini haritalamak.",
+    "ayrinti": "Rüzgâr hızı 0.5 ile 5.0 m/s arasında, stoma iletkenliği 0.05 ile 0.5 mol/m2/s arasında taranır. scipy.optimize.brentq ile her nokta için yaprak sıcaklığı sayısal olarak çözülüp 3B yüzey grafiği oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "scipy.optimize.root_scalar ile doğrusal olmayan enerji dengesini çözüp T_l - T_a matrisini üretmek.",
+      "sade": "MTO 465 dersindeki 'Ball-Berry bağıntısıyla stoma iletkenliğinin fotosentez ve nemle değişimini çözümlemek' bilgisiyle rüzgâr durduğunda ve bitki susuzluktan gözeneklerini kapattığında yaprağın havadan 8 derece daha sıcak olacağını buluruz.",
+      "altAdimlar": [
+       "1. 50x50 boyutunda rüzgâr ve stoma iletkenliği ızgarası tanımlayın.",
+       "2. Her ızgara hücresinde kök bulma algoritmasıyla yaprak sıcaklığını hesaplayın.",
+       "3. Yaprak-hava sıcaklık farkını (T_l - T_a) iki boyutlu renkli kontur haritasına dökün."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Ball-Berry bağıntısıyla stoma iletkenliğinin fotosentez ve nemle değişimini çözümlemek."
+      }
+     },
+     {
+      "teknik": "Kuraklık stresi senaryosu (g_s -> 0) altında yaprak aşırı ısınma limitini belirlemek.",
+      "sade": "MTO 465 dersindeki 'Yaprak enerji dengesi ve duyulur-gizli ısı alışverişi' bilgisiyle bitkinin terleme yeteneği bittiğinde yalnızca rüzgârla soğuyabileceğini ve yaprak yanması eşiğini gösteririz.",
+      "altAdimlar": [
+       "1. Stoma iletkenliğini minimum kütiküler değere (0.005 mol/m2/s) düşürün.",
+       "2. Yaprağın aşırı ısınmasını önleyen minimum rüzgâr hızını saptayın.",
+       "3. Bitki su stres indeksi (CWSI) eğrilerini grafiğe ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Yaprak enerji dengesi ve duyulur-gizli ısı alışverişi"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kampüste kızılötesi termometreyle doğrulama yapmak",
+    "oz": "Güneşli günde 20 yaprak ölçüp model tahminleriyle karşılaştırmak.",
+    "ayrinti": "İTÜ Ayazağa kampüsünde açık bir öğle vaktinde el tipi kızılötesi termometre ve el anemometresiyle farklı ağaç türlerinden 20 yaprağın sıcaklığı ve çevre hava şartları ölçülür. Sonuçlar modelle kıyaslanır.",
+    "nasil": [
+     {
+      "teknik": "Kızılötesi pirometre ile yaprak yüzey sıcaklığını ve anemometreyle yerel rüzgârı ölçmek.",
+      "sade": "MTO 465 dersindeki 'Yaprak enerji dengesi denklemini çözerek yaprak sıcaklığını ve transpirasyonu hesaplamak' bilgisiyle teorik bilgisayar modelimizi kampüsteki gerçek ağaç yaprakları üzerinde test ederiz.",
+      "altAdimlar": [
+       "1. Güneşe dik bakan 20 farklı yaprağın kızılötesi sıcaklığını ölçün.",
+       "2. Eşzamanlı gölge hava sıcaklığı, bağıl nem ve anlık rüzgâr hızını diske yazın.",
+       "3. Yaprak genişliğini kumpasla ölçerek sınır tabakası karakteristik boyutunu bulun."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Yaprak enerji dengesi denklemini çözerek yaprak sıcaklığını ve transpirasyonu hesaplamak."
+      }
+     },
+     {
+      "teknik": "Ölçülen ve modellenen sıcaklıklar arasında saçılım grafiği (scatter plot) ve RMSE hesaplamak.",
+      "sade": "MTO 465 dersindeki 'Yaprak enerji dengesi ve duyulur-gizli ısı alışverişi' bilgisiyle modelimizin gerçeği 1 derece hata payıyla tutturduğunu bilimsel grafiklerle doğrularız.",
+      "altAdimlar": [
+       "1. X eksenine model sıcaklığını, Y eksenine ölçülen değerleri yerleştirin.",
+       "2. 1:1 mükemmel uyum doğrusunu ve R-kare korelasyon katsayısını çizin.",
+       "3. Sapma nedenlerini (açı farkı, rüzgâr dalgalanması) tartışarak sonuçlandırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Yaprak enerji dengesi ve duyulur-gizli ısı alışverişi"
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Güneş radyasyonu ve rüzgâr altında yaprak sıcaklığı dinamiği animasyonu",
+   "aciklama": "Yaprak enerji dengesi bileşenlerinin gün içindeki ısıl değişimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://ecostress.jpl.nasa.gov/data",
+   "aciklama": "NASA ECOSTRESS uydu tabanlı bitki sıcaklığı izleme portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Fisher vd. 2020 ECOSTRESS Görevi",
+   "url": "https://doi.org/10.1029/2019WR026058"
+  },
+  {
+   "ad": "NASA ECOSTRESS Veri Portalı",
+   "url": "https://ecostress.jpl.nasa.gov/data"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO465-01.json",
+  "tarih": "2026-10-17 16:06",
+  "geminiSha1": "702f4d9b3056"
+ }
+}

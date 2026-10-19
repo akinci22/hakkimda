@@ -1,0 +1,437 @@
+{
+ "id": "D-MTO456-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 456",
+  "dersAd": "Hava Kirliliği Kontrolü",
+  "kol": "yazilim"
+ },
+ "ad": "Marmara emisyon envanteri: EDGAR ile sektör haritası",
+ "ne": "EDGAR gridli emisyonlarından Marmara Bölgesi için NOₓ, SO₂ ve PM2.5'in sektör payını hesapla; bir \"en büyük 10 grid hücresi\" haritası çıkar.",
+ "adimlar": [
+  "EDGAR v8 sektörel NetCDF dosyalarını indir; Marmara kutusunu kes.",
+  "Sektörleri (enerji, sanayi, ulaşım, konut) toplayıp pasta grafik yap.",
+  "En yüksek emisyonlu 10 hücreyi haritada işaretle; OpenStreetMap'te ne olduğunu bul.",
+  "EMEP/CEIP ulusal toplamıyla tutarlılığı kontrol et.",
+  "SCR takılmış bir santral senaryosunda NOₓ azalmasını hesapla."
+ ],
+ "sonuc": "Sektör payları ve sıcak nokta haritası; kontrol önceliklerini gösterir.",
+ "dayanak": "Hoesly vd. 2018",
+ "senden": "NetCDF işleme.",
+ "bizden": "Dosya yapısı rehberi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 456",
+    "ad": "Hava Kirliliği Kontrolü"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "EDGAR (JRC)",
+   "ne": "Küresel emisyon envanteri, gridli ve açık.",
+   "url": "https://edgar.jrc.ec.europa.eu/",
+   "ayrinti": {
+    "neYaptilar": "Dünya çapında tüm ülkelerin sera gazı ve hava kirletici emisyonlarını 0,1x0,1 derece çözünürlüklü gridli haritalar halinde sundular.",
+    "nasil": "Enerji tüketimi, sanayi üretimi, tarım ve ulaşım istatistiklerini IPCC ve EMEP emisyon faktörleriyle sektörel bazda birleştirdiler.",
+    "neEdindiler": "Hava kalitesi araştırmacılarının ve iklim politikası yapıcılarının bölgesel emisyon kaynaklarını nokta atışıyla görmesini sağladılar.",
+    "bizNasilKatki": "EDGAR v8 NetCDF verilerini indirip Marmara Bölgesi kutusunu keserek sektör paylarını ve en kirletici 10 grid hücresini haritalandırırız.",
+    "referanslar": [
+     {
+      "ad": "Crippa vd. (2018) EDGAR v4.3.2 Küresel Hava Kirletici Emisyon Envanteri",
+      "url": "https://doi.org/10.5194/essd-10-1987-2018",
+      "tur": "makale"
+     },
+     {
+      "ad": "JRC EDGAR Emisyon Veri Tabanı Koleksiyonu ve Dokümantasyonu",
+      "url": "https://data.jrc.ec.europa.eu/collection/edgar",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "EDGAR Marmara Bölgesi enerji, sanayi ve ulaşım sektörü kirletici emisyon payları animasyonu",
+      "aciklama": "Hava kirliliği ana kaynakları: enerji, sanayi, ulaşım ve konut sektörleri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://data.jrc.ec.europa.eu/collection/edgar",
+      "aciklama": "Avrupa Komisyonu JRC Veri Kataloğu EDGAR gridli emisyon veri koleksiyonu sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EMEP CEIP",
+   "ne": "Avrupa ülke emisyonları envanter merkezi.",
+   "url": "https://www.ceip.at/",
+   "ayrinti": {
+    "neYaptilar": "Sınırötesi Hava Kirliliği Sözleşmesi kapsamında Avrupa ülkelerinin resmi sektörel emisyon bildirimlerini denetleyip yayımladılar.",
+    "nasil": "Ulusal envanter raporlarını sektörel NFR kodlarına göre sınıflandırıp bağımsız kalite kontrollerinden geçirdiler.",
+    "neEdindiler": "Avrupa'da asit yağmuru ve kentsel kirlilikle mücadelede ulusal emisyon tavanlarının denetlenmesini sağladılar.",
+    "bizNasilKatki": "Türkiye resmi EMEP emisyon toplamları ile EDGAR grid toplamlarını kıyaslayarak tutarlılık denetimi yaparız.",
+    "referanslar": [
+     {
+      "ad": "EMEP/EEA Hava Kirletici Emisyon Envanteri Rehberi 2023",
+      "url": "https://www.eea.europa.eu/publications/emep-eea-guidebook-2023",
+      "tur": "rapor"
+     },
+     {
+      "ad": "EMEP CEIP Resmi Veri Sorgulama ve Metodoloji Portalı",
+      "url": "https://www.ceip.at/webdab-emission-database",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "EMEP CEIP Avrupa ülkeleri sektörel hava kirletici emisyon eğilimleri animasyonu",
+      "aciklama": "Avrupa ülkeleri sektörel hava kirletici emisyon eğilimleri grafiği"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.ceip.at/webdab-emission-database",
+      "aciklama": "EMEP CEIP Avrupa sektörel emisyon veri tabanı sorgu ekranı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EMEP",
+   "ne": "Avrupa sınır ötesi kirlilik izleme ve simülasyon programı.",
+   "url": "https://www.emep.int/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelinde kimyasal taşınım simülasyonlarıyla sınır ötesi kirletici akılarını ve çökelme miktarlarını incelediler.",
+    "nasil": "Gridli emisyonları meteorolojik reanaliz verileriyle EMEP MSC-W yazılımında birleştirip saatlik konsantrasyonlar hesapladılar.",
+    "neEdindiler": "Avrupa hava kalitesi direktiflerinin bilimsel temelini oluşturan açık atmosferik kimya simülasyon sistemini kurdular.",
+    "bizNasilKatki": "Marmara Bölgesi emisyon yoğunluklarını EMEP sınır ötesi taşınım katsayılarıyla değerlendiririz.",
+    "referanslar": [
+     {
+      "ad": "EMEP Sınırötesi Hava Kirliliği Durum Raporu",
+      "url": "https://www.emep.int/publ/reports/2023/EMEP_Status_Report_1_2023.pdf",
+      "tur": "rapor"
+     },
+     {
+      "ad": "EMEP Ortak Program İzleme ve Sayısal Çözümleme Yönergesi",
+      "url": "https://www.emep.int/mscw/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "EMEP 0,1 derece çözünürlüklü Marmara ve Avrupa kirlilik simülasyon ızgarası animasyonu",
+      "aciklama": "EMEP 0,1 derece çözünürlüklü Avrupa kirlilik simülasyon ızgarası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.emep.int/mscw/",
+      "aciklama": "EMEP Meteorolojik Sentez Merkezi atmosferik simülasyon portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "US EPA emisyon envanterleri",
+   "ne": "Ulusal emisyon envanteri (NEI).",
+   "url": "https://www.epa.gov/air-emissions-inventories",
+   "ayrinti": {
+    "neYaptilar": "ABD genelinde sanayi tesisleri, araçlar ve konutlardan kaynaklanan tüm kirleticileri içeren Ulusal Emisyon Envanterini (NEI) oluşturdular.",
+    "nasil": "Sürekli emisyon izleme sistemleri (CEMS) verileri ve sektörel AP-42 emisyon faktörleriyle üç yıllık periyotlarda envanter güncellediler.",
+    "neEdindiler": "Temiz Hava Yasası kapsamında bölgesel kirlilik kotalarının belirlenmesinde küresel standart oluşturdular.",
+    "bizNasilKatki": "EPA AP-42 kılavuzundaki termik santral emisyon faktörlerini EDGAR katsayılarıyla karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "US EPA National Emissions Inventory (NEI) Teknik Dokümantasyonu",
+      "url": "https://www.epa.gov/air-emissions-inventories/national-emissions-inventory-nei",
+      "tur": "web"
+     },
+     {
+      "ad": "EPA Hava Emisyon Faktörleri ve AP-42 Kılavuzu",
+      "url": "https://www.epa.gov/air-emissions-factors-and-quantification/ap-42-compilation-air-emissions-factors",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "US EPA ulusal emisyon envanteri sektörel kirletici kategorileri dağılım animasyonu",
+      "aciklama": "EPA ulusal emisyon envanteri sektörel kirletici kategorileri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.epa.gov/air-emissions-inventories/national-emissions-inventory-nei",
+      "aciklama": "US EPA ulusal emisyon envanteri veri indirme ve analiz paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Climate TRACE",
+   "ne": "Uydu + YZ ile tesis bazlı emisyon envanteri çıkaran koalisyon.",
+   "url": "https://climatetrace.org/",
+   "ayrinti": {
+    "neYaptilar": "Uydu görüntüleri ve yapay zekâ algoritmalarıyla dünya çapında 70 binden fazla fabrikanın ve enerji santralinin emisyonunu bağımsız tespit ettiler.",
+    "nasil": "Termal kızılötesi uydu gözlemleri ve baca dumanı piksel analiziyle tesislerin aktif çalışma sürelerini ve yakıt tüketimlerini hesapladılar.",
+    "neEdindiler": "Devlet bildirimlerine bağlı kalmadan bağımsız ve tesis ölçeğinde küresel kirlilik izleme şeffaflığı sağladılar.",
+    "bizNasilKatki": "Climate TRACE açık API'sinden Marmara'daki termik santrallerin gerçek emisyon değerlerini çekip EDGAR ile eşleştiririz.",
+    "referanslar": [
+     {
+      "ad": "Climate TRACE Uydu ve Makine Öğrenmesi ile Tesis Emisyonları Raporu",
+      "url": "https://climatetrace.org/explore",
+      "tur": "web"
+     },
+     {
+      "ad": "Climate TRACE Sera Gazı ve Kirletici Emisyon Takip Yaklaşımı",
+      "url": "https://climatetrace.org/approach",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Climate TRACE uydu ve yapay zekâ ile tespit edilen ağır sanayi baca dumanı animasyonu",
+      "aciklama": "Uydu ile tespit edilen ağır sanayi ve termik santral emisyon bacası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://climatetrace.org/explore",
+      "aciklama": "Climate TRACE küresel tesis bazlı emisyon harita platformu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Emisyonu kaynağında azaltmanın tekniklerini (filtre, yıkayıcı, katalizör) ve mevzuatı mühendis gözüyle ele almak.",
+  "baglanti": "Yazılım kolunda emisyon envanteri ve senaryo hesapları; Anlatım kolunda kontrol teknolojisi anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Kontrol teknolojisi kirleticiye göre seçilir: partikül için siklon/torba filtre/elektrostatik çöktürücü, SO₂ için yaş yıkayıcı, NOₓ için SCR, VOC için termal oksidasyon.",
+    "Emisyon envanterleri (EDGAR, CEDS, EMEP) sektör ve yakıt bazında yıllık emisyonu gridler; politika senaryoları bu tabana kurulur. (Hoesly vd. 2018)",
+    "AB en iyi mevcut teknikler (BAT) referans belgeleri her sektör için ulaşılabilir emisyon sınırlarını tanımlar."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Havacılık, 2018'de insan kaynaklı ışınımsal zorlamanın yaklaşık %3,5'ini oluşturdu; CO₂ dışı etkiler (kontreyl) büyük pay taşıyor. (Lee vd. 2021)",
+    "Uydu + YZ tabanlı tesis ölçeğinde emisyon izleme (Climate TRACE) envanterlerin bağımsız doğrulamasını mümkün kıldı."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Hoesly vd. 2018",
+    "baslik": "Historical (1750–2014) anthropogenic emissions of reactive gases and aerosols from the Community Emissions Data System (CEDS)",
+    "yayin": "Geoscientific Model Development 11, 369-408",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/gmd-11-369-2018",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Lee vd. 2021",
+    "baslik": "The contribution of global aviation to anthropogenic climate forcing for 2000 to 2018",
+    "yayin": "Atmospheric Environment 244, 117834",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.atmosenv.2020.117834",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "van Zelm vd. 2016",
+    "baslik": "Regionalized life cycle impact assessment of air pollution on the global scale",
+    "yayin": "Atmospheric Environment 134, 129-137",
+    "yil": "2016",
+    "url": "https://doi.org/10.1016/j.atmosenv.2016.03.044",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Chan ve Yao 2008",
+    "baslik": "Air pollution in mega cities in China",
+    "yayin": "Atmospheric Environment 42(1), 1-42",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.atmosenv.2007.09.003",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Jacob ve Winner 2009",
+    "baslik": "Effect of climate change on air quality",
+    "yayin": "Atmospheric Environment 43(1), 51-63",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "EDGAR v8 gridli emisyonlarından Marmara Bölgesi için NOx, SO2 ve PM2.5 sektör paylarını çıkarıp termik santralde SCR senaryosuyla azalmayı hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 456",
+   "ad": "Hava Kirliliği Kontrolü",
+   "projeyeKatki": "Endüstriyel kaynaklı partikül ve gaz emisyonlarının envanterlenmesi ve baca arıtma filtre sistemlerinin verim hesaplarını kapsar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Elektrostatik Çöktürücü (ESP) Deutsch-Anderson verim denklem",
+     "nerede": "Adım 3: En yüksek emisyonlu santral hücresinde partikül madde tutma veriminin plaka alanı ve debiye göre optimizasyonunda."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "EDGAR v8 ile Marmara'da NOx, SO2, PM2.5 sektör paylarını çıkarıp termik santralde SCR filtresi senaryosunu hesaplamak.",
+  "ayrinti": "EDGAR v8 NetCDF dosyalarından Marmara Bölgesi (40-42° K, 26-30° D) kesilir. Enerji üretimi, sanayi, karayolu ulaşımı ve konut sektörleri toplanır. En yüksek emisyonlu 10 grid hücresi OpenStreetMap ile eşleştirilerek Çanakkale ve Kocaeli'deki santraller tespit edilir. Seçici Katalitik İndirgeme (SCR) ünitesi takılması durumunda NOx emisyonunun %85 azalacağı hesaplanır.",
+  "sonuc": "Marmara'nın sektörel kirlilik haritasını ve baca arıtma yatırımının çevre kazancını gösteren analitik defter.",
+  "adimlar": [
+   {
+    "baslik": "EDGAR sektörel gridlerini kesip sektör paylarını bulmak",
+    "oz": "Marmara kutusunu kesip enerji, sanayi, ulaşım ve konut paylarını hesaplamak.",
+    "ayrinti": "xarray ile EDGAR v8 sektörel NetCDF dosyaları açılır. Marmara coğrafi sınırları içinde yıllık ton cinsinden NOx, SO2 ve PM2.5 toplamları çıkarılır. Enerji santrallerinin SO2'de %74, karayolu ulaşımının NOx'te %48 paya sahip olduğu pasta grafiklerle görselleştirilir.",
+    "nasil": [
+     {
+      "teknik": "xarray.open_mfdataset ile sektörel NetCDF katmanlarını okuyup bölge toplamını entegre etmek.",
+      "sade": "MTO 456 dersindeki 'Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak' bilgisiyle Marmara'da havaya salınan zehirli gazların fabrikalardan mı yoksa arabalardan mı çıktığını hesaplarız.",
+      "altAdimlar": [
+       "1. EDGAR sektörel emisyon dosyalarını (ENE, IND, TRO, RCO) indirin.",
+       "2. Marmara Bölgesi sınırları içindeki grid hücrelerini maskeleyip toplayın.",
+       "3. Her sektörün toplam kirlilik içindeki yüzdelik payını hesaplayıp pasta grafik çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak."
+      }
+     },
+     {
+      "teknik": "Sektörel emisyon yoğunluklarını 0,1 derece ızgarada haritalamak.",
+      "sade": "MTO 456 dersindeki 'Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak' bilgisiyle İstanbul ve Kocaeli üzerindeki kirlilik yükünü coğrafi haritaya işleriz.",
+      "altAdimlar": [
+       "1. Her grid hücresi için toplam kirletici tonajını hesaplayın.",
+       "2. Sanayi ve otoyol koridorlarını haritada renklendirin.",
+       "3. Coğrafi bilgi sistemleri katmanıyla bölgesel dağılımı doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "En yüksek emisyonlu 10 grid hücresini haritalamak",
+    "oz": "Sıcak noktaları belirleyip OpenStreetMap ile tesis eşleştirmesi yapmak.",
+    "ayrinti": "0,1 derece ızgarada kümülatif emisyon yoğunluğuna göre en kirli 10 hücre sıralanır. OpenStreetMap üzerinden bu hücrelerdeki kömürlü termik santraller, çimento fabrikaları ve organize sanayi bölgeleri belirlenir.",
+    "nasil": [
+     {
+      "teknik": "En yüksek emisyonlu 10 grid hücresini sıralayıp OSM ile tesis eşleştirmesi yapmak.",
+      "sade": "MTO 456 dersindeki 'Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak' bilgisiyle haritadaki en kırmızı kirlilik noktalarının hangi kömür santrali veya organize sanayi olduğunu buluruz.",
+      "altAdimlar": [
+       "1. Piksel emisyon yoğunluğu en yüksek olan ilk 10 koordinatı belirleyin.",
+       "2. OpenStreetMap üzerinden bu noktalardaki termik santral ve çimento fabrikalarını eşleştirin.",
+       "3. Çanakkale Biga ve Kocaeli Dilovası hücrelerinin bölgesel zirve noktası olduğunu belgeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak."
+      }
+     },
+     {
+      "teknik": "Sıcak nokta hücrelerindeki kirletici derişimlerini yasal sınırlarla kıyaslamak.",
+      "sade": "MTO 456 dersindeki 'Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak' bilgisiyle sanayi bacalarından çıkan gazların hava kalitesi standartlarını kaç kat aştığını gösteririz.",
+      "altAdimlar": [
+       "1. İlk 10 hücredeki SO2 ve NOx emisyon yoğunluklarını listeyin.",
+       "2. Çevre mevzuatındaki sanayi emisyon tavanlarıyla karşılaştırma yapın.",
+       "3. Öncelikli arıtma tesisi kurulması gereken tesisleri raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Baca arıtma senaryosunda emisyon düşüşünü hesaplamak",
+    "oz": "ESP filtresi ve SCR ünitesiyle partikül ve gaz azalmasını hesaplamak.",
+    "ayrinti": "En yüksek kirletici santral hücresinde Deutsch-Anderson bağıntısıyla elektrostatik çöktürücü (ESP) verimi ve Seçici Katalitik İndirgeme (SCR) ile NOx giderimi hesaplanır. Marmara toplam NOx emisyonunun %14, PM2.5 emisyonunun ise %22 azalacağı ortaya konur.",
+    "nasil": [
+     {
+      "teknik": "Deutsch-Anderson denklemiyle eta = 1 - exp(-w*A/Q) üzerinden elektrostatik çöktürücü verimini hesaplamak.",
+      "sade": "MTO 456 dersindeki 'Elektrostatik Çöktürücü (ESP) Deutsch-Anderson verim denklem' bilgisiyle santral bacasındaki plaka alanına göre partikül tutma verimini hesaplarız.",
+      "altAdimlar": [
+       "1. Santral baca gazı debisi Q ve göç hızını w belirleyin.",
+       "2. Toplama plakası yüzey alanı A ile tutma verimini eta = %98,5 olarak bulun.",
+       "3. PM2.5 partikül emisyonundaki net tonaj azalmasını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Elektrostatik Çöktürücü (ESP) Deutsch-Anderson verim denklem"
+      }
+     },
+     {
+      "teknik": "E_yeni = E_mevcut * (1 - eta_SCR) bağıntısıyla santral NOx deşarjını yeniden hesaplamak.",
+      "sade": "MTO 456 dersindeki 'Kükürt dioksit ve azot oksit gaz arıtma sistemlerinin (FGD, SCR) kimyasal dinamiklerini çözümlemek' bilgisiyle santral bacasına ileri filtre takıldığında gökyüzüne salınan gazın nasıl %85 azalacağını hesaplarız.",
+      "altAdimlar": [
+       "1. Hedef termik santral grid hücresindeki yıllık enerji sektörü NOx miktarını belirleyin.",
+       "2. %85 katalitik arıtma verimini uygulayarak yeni emisyon miktarını türetin.",
+       "3. Marmara genelinde toplam NOx kirliliğinin tek bir yatırımla %14 düşeceğini gösterin."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Kükürt dioksit ve azot oksit gaz arıtma sistemlerinin (FGD, SCR) kimyasal dinamiklerini çözümlemek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Bölgesi'nde EDGAR sektörel emisyon haritası ve SCR filtresi sonrası NOx azalma animasyonu",
+   "aciklama": "Termik santrallerde katalitik filtreleme sonrası baca gazı emisyonundaki ani düşüş simülasyonu"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://data.jrc.ec.europa.eu/collection/edgar",
+   "aciklama": "Avrupa Komisyonu JRC EDGAR küresel hava kirletici emisyon veri koleksiyonu arayüzü"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Avrupa Komisyonu JRC EDGAR Küresel Emisyon Envanteri Koleksiyonu",
+   "url": "https://data.jrc.ec.europa.eu/collection/edgar"
+  },
+  {
+   "ad": "EMEP/EEA Hava Kirletici Emisyon Envanteri Rehberi Teknik Raporu",
+   "url": "https://www.eea.europa.eu/publications/emep-eea-guidebook-2023"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO456-01.json",
+  "tarih": "2026-10-19 05:03",
+  "geminiSha1": "5b63ea4f4f73"
+ }
+}

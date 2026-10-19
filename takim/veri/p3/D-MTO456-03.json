@@ -1,0 +1,437 @@
+{
+ "id": "D-MTO456-03",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 456",
+  "dersAd": "Hava Kirliliği Kontrolü",
+  "kol": "ikisi"
+ },
+ "ad": "Düşük emisyon bölgesi İstanbul'da işe yarar mı? Senaryo hesabı",
+ "ne": "Londra ULEZ ve Paris verileriyle düşük emisyon bölgesinin NO₂'ye etkisini özetle; İstanbul için araç filosu ve EDGAR ulaşım emisyonuyla kaba senaryo kur.",
+ "adimlar": [
+  "London Air ve Airparif raporlarından bölge öncesi/sonrası NO₂ değişimini çıkar.",
+  "İstanbul araç filosunu yaş ve yakıt türüne göre TÜİK açık verisinden al.",
+  "ICCT emisyon faktörleriyle filo emisyonunu hesapla; Euro 4 altı araçları çıkar.",
+  "EDGAR ulaşım hücreleriyle tutarlılık sağla.",
+  "Sonucu belediyeye yönelik 2 sayfalık özet yap."
+ ],
+ "sonuc": "Senaryo hesabı ve özet; mevzuat-teknoloji-meteoroloji bağını kurar.",
+ "dayanak": "Chan ve Yao 2008",
+ "senden": "Veri derleme ve hesap.",
+ "bizden": "Emisyon faktörleri.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 456",
+    "ad": "Hava Kirliliği Kontrolü"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "London Air (Imperial)",
+   "ne": "Londra hava kalitesi ağı ve tahmini.",
+   "url": "https://www.londonair.org.uk/",
+   "ayrinti": {
+    "neYaptilar": "Londra Ultra Düşük Emisyon Bölgesi (ULEZ) uygulamasının yol kenarı NO2 ve PM2.5 konsantrasyonlarına etkisini yüzlerce istasyonla izlediler.",
+    "nasil": "Eski dizel araçların şehre girişinin ücretlendirilmesiyle egzoz kaynaklı kirliliğin nasıl gerilediğini istatistiksel zaman serileriyle kanıtladılar.",
+    "neEdindiler": "Kentsel düşük emisyon bölgelerinin yol kenarı NO2 seviyelerini %44 oranında kalıcı düşürdüğünü belgelediler.",
+    "bizNasilKatki": "London Air ölçüm değerlendirme metodolojisini alarak İstanbul Tarihi Yarımada bölgesi için benzer bir trafik senaryosu kurarız.",
+    "referanslar": [
+     {
+      "ad": "Font vd. (2020) Londra Ultra Düşük Emisyon Bölgesinin Hava Kalitesine Etkisi",
+      "url": "https://doi.org/10.1016/j.envint.2020.106132",
+      "tur": "makale"
+     },
+     {
+      "ad": "Imperial College London Air Kentsel Kirlilik Veri Portalı",
+      "url": "https://www.londonair.org.uk/LondonAir/Default.aspx",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:UK_traffic_sign_LEZ_ULEZ.svg",
+      "lisans": "kamu malı",
+      "aciklama": "Londra ve Birleşik Krallık düşük emisyon bölgesi (LEZ/ULEZ) giriş trafik levhası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.londonair.org.uk/LondonAir/Default.aspx",
+      "aciklama": "Imperial College London Air kentsel hava kirliliği izleme ekranı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Airparif",
+   "ne": "Paris bölgesi hava kalitesi ağı.",
+   "url": "https://www.airparif.asso.fr/",
+   "ayrinti": {
+    "neYaptilar": "Büyük Paris bölgesinde Crit'Air araç etiketleme sistemiyle eski araç kısıtlamalarının hava kalitesine etkisini simülasyonla incelediler.",
+    "nasil": "Trafik sensörleri, araç filosu emisyon faktörleri (COPERT) ve kentsel dağılım analizlerini entegre ettiler.",
+    "neEdindiler": "Düşük emisyon bölgelerinin sokak kanyonlarında kirliliği kalıcı temizlediğini gösterdiler.",
+    "bizNasilKatki": "Crit'Air araç sınıflandırma mantığını TÜİK araç tescil yaş dağılımına uygulayarak Euro 4 altı araçların emisyon payını ayıklarız.",
+    "referanslar": [
+     {
+      "ad": "Airparif (2024) Büyük Paris Düşük Emisyon Bölgesi Değerlendirme Raporu",
+      "url": "https://www.airparif.fr/evaluer-les-zones-faibles-emissions",
+      "tur": "rapor"
+     },
+     {
+      "ad": "COPERT Kentsel Karayolu Ulaşımı Emisyon Hesaplama Kılavuzu",
+      "url": "https://www.emisia.com/utilities/copert/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Paris bölgesi düşük emisyon zonu NO2 konsantrasyonu dağılımı",
+      "aciklama": "Airparif Paris yol kenarı hava kalitesi ölçüm ve simülasyon haritası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.airparif.fr/evaluer-les-zones-faibles-emissions",
+      "aciklama": "Airparif Paris kentsel hava kalitesi izleme ve emisyon bölgeleri değerlendirme sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "ICCT",
+   "ne": "Ulaştırma emisyonları üzerine bağımsız araştırma kuruluşu.",
+   "url": "https://theicct.org/",
+   "ayrinti": {
+    "neYaptilar": "Ağır sanayi, denizcilik ve dizel motorlarda partikül filtreleri ve katalitik arıtma sistemlerinin gerçek verimini ölçtüler.",
+    "nasil": "Taşınabilir emisyon ölçüm cihazlarıyla (PEMS) egzoz ve baca arıtma filtrelerinin partikül yakalama oranlarını test ettiler.",
+    "neEdindiler": "Küresel emisyon skandallarını ortaya çıkaran bağımsız arıtma denetim metodolojisini kanıtladılar.",
+    "bizNasilKatki": "ICCT saha ölçüm verilerini kullanarak araçların teorik emisyon faktörlerinden sapmasını hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "ICCT Gerçek Sürüş Emisyonları ve Euro Standartları Raporu",
+      "url": "https://theicct.org/real-world-emissions/",
+      "tur": "rapor"
+     },
+     {
+      "ad": "O'Driscoll vd. (2018) Dizel Araç Gerçek Yol NOx Emisyonları",
+      "url": "https://doi.org/10.1016/j.envpol.2018.01.082",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Kentsel trafikte gerçek sürüş emisyonları ve partikül yoğunluğu",
+      "aciklama": "Taşınabilir emisyon ölçüm cihazı (PEMS) ve yol kenarı sensör verileriyle egzoz emisyonu dağılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://theicct.org/real-world-emissions/",
+      "aciklama": "ICCT gerçek dünya taşıt emisyonları ve kentsel politikalar sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Transport & Environment",
+   "ne": "Avrupa temiz ulaşım kampanya kuruluşu.",
+   "url": "https://www.transportenvironment.org/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa şehirlerinde düşük ve sıfır emisyonlu bölgelerin hava kirliliği ve halk sağlığı üzerindeki etkilerini araştırdılar.",
+    "nasil": "Şehirlerin düşük emisyon bölgesi uygulama verilerini ve hava kirliliği göstergelerini bağımsız raporlarla yayınladılar.",
+    "neEdindiler": "Avrupa'da 300'den fazla şehirde düşük emisyon bölgesi kurulmasında sivil toplum öncülüğü yaptılar.",
+    "bizNasilKatki": "Transport & Environment raporlarındaki kademeli geçiş modellerini İstanbul Fatih pilot bölgesi için uyarlarız.",
+    "referanslar": [
+     {
+      "ad": "Transport & Environment (2021) Avrupa Düşük Emisyon Bölgeleri Başarı Raporu",
+      "url": "https://www.transportenvironment.org/challenges/air-quality/",
+      "tur": "rapor"
+     },
+     {
+      "ad": "Avrupa Şehirlerinde Temiz Hava ve Sıfır Emisyonlu Ulaşım Verisi",
+      "url": "https://www.transportenvironment.org/topics/urban-mobility",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Avrupa şehirlerinde toplu taşıma elektrifikasyonu sonrası hava kalitesi değişimi",
+      "aciklama": "Düşük emisyon bölgesinde elektrikli toplu taşıma filosuyla kentsel NO2 azalımı simülasyonu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.transportenvironment.org/challenges/air-quality/",
+      "aciklama": "Transport & Environment kentsel hava kalitesi eylem sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EDGAR (JRC)",
+   "ne": "Küresel emisyon envanteri, gridli ve açık.",
+   "url": "https://edgar.jrc.ec.europa.eu/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelinde karayolu ulaşımı ve diğer sektörlerin hava kirletici emisyonlarını 0,1 derece ızgarada haritalandırdılar.",
+    "nasil": "Ülkelerin araç tescil sayıları ve yakıt tüketimlerini COPERT ve EMEP metodolojileriyle birleştirerek gridlere dağıttılar.",
+    "neEdindiler": "Büyükşehirlerdeki trafik kaynaklı kirlilik yoğunluklarını küresel ölçekte karşılaştırma imkânı sundular.",
+    "bizNasilKatki": "EDGAR karayolu ulaşımı verilerinden Tarihi Yarımada hücresini keserek taban emisyon yükünü belirleriz.",
+    "referanslar": [
+     {
+      "ad": "Crippa vd. (2018) EDGAR v4.3.2 Küresel Ulaşım Emisyonları Raporu",
+      "url": "https://doi.org/10.5194/essd-10-1987-2018",
+      "tur": "makale"
+     },
+     {
+      "ad": "Crippa vd. (2020) EDGAR Küresel Emisyon Envanteri Yüksek Çözünürlüklü Zaman Profili",
+      "url": "https://doi.org/10.1038/s41597-020-0462-2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Avrupa genelinde kentsel ulaşım kaynaklı NOx ve ince partikül grid yoğunluğu",
+      "aciklama": "EDGAR gridli emisyon katmanlarına dayalı kentsel ulaşım hava kirliliği haritası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://data.jrc.ec.europa.eu/collection/EDGAR",
+      "aciklama": "Avrupa Komisyonu JRC EDGAR küresel emisyon veri kataloğu koleksiyonu sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Emisyonu kaynağında azaltmanın tekniklerini (filtre, yıkayıcı, katalizör) ve mevzuatı mühendis gözüyle ele almak.",
+  "baglanti": "Yazılım kolunda emisyon envanteri ve senaryo hesapları; Anlatım kolunda kontrol teknolojisi anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Kontrol teknolojisi kirleticiye göre seçilir: partikül için siklon/torba filtre/elektrostatik çöktürücü, SO₂ için yaş yıkayıcı, NOₓ için SCR, VOC için termal oksidasyon.",
+    "Emisyon envanterleri (EDGAR, CEDS, EMEP) sektör ve yakıt bazında yıllık emisyonu gridler; politika senaryoları bu tabana kurulur. (Hoesly vd. 2018)",
+    "AB en iyi mevcut teknikler (BAT) referans belgeleri her sektör için ulaşılabilir emisyon sınırlarını tanımlar."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Havacılık, 2018'de insan kaynaklı ışınımsal zorlamanın yaklaşık %3,5'ini oluşturdu; CO₂ dışı etkiler (kontreyl) büyük pay taşıyor. (Lee vd. 2021)",
+    "Uydu + YZ tabanlı tesis ölçeğinde emisyon izleme (Climate TRACE) envanterlerin bağımsız doğrulamasını mümkün kıldı."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Hoesly vd. 2018",
+    "baslik": "Historical (1750–2014) anthropogenic emissions of reactive gases and aerosols from the Community Emissions Data System (CEDS)",
+    "yayin": "Geoscientific Model Development 11, 369-408",
+    "yil": "2018",
+    "url": "https://doi.org/10.5194/gmd-11-369-2018",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Lee vd. 2021",
+    "baslik": "The contribution of global aviation to anthropogenic climate forcing for 2000 to 2018",
+    "yayin": "Atmospheric Environment 244, 117834",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.atmosenv.2020.117834",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "van Zelm vd. 2016",
+    "baslik": "Regionalized life cycle impact assessment of air pollution on the global scale",
+    "yayin": "Atmospheric Environment 134, 129-137",
+    "yil": "2016",
+    "url": "https://doi.org/10.1016/j.atmosenv.2016.03.044",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Chan ve Yao 2008",
+    "baslik": "Air pollution in mega cities in China",
+    "yayin": "Atmospheric Environment 42(1), 1-42",
+    "yil": "2008",
+    "url": "https://doi.org/10.1016/j.atmosenv.2007.09.003",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Jacob ve Winner 2009",
+    "baslik": "Effect of climate change on air quality",
+    "yayin": "Atmospheric Environment 43(1), 51-63",
+    "yil": "2009",
+    "url": "https://doi.org/10.1016/j.atmosenv.2008.09.051",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Londra ULEZ tecrübesi ve TÜİK araç filosu verileriyle İstanbul Tarihi Yarımada'da düşük emisyon bölgesi senaryosu kurup NOx düşüşünü hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 456",
+   "ad": "Hava Kirliliği Kontrolü",
+   "projeyeKatki": "Şehir içi motorlu taşıt emisyonlarının azaltılması, Euro standartları ve partikül filtreleme sistemlerinin verim hesaplarını kapsar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Elektrostatik Çöktürücü (ESP) Deutsch-Anderson verim denklem",
+     "nerede": "Adım 3: Düşük emisyon bölgesinde egzoz partikül tutma verimi ve filtreleme optimizasyonu hesabında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Londra ve Paris verileriyle Tarihi Yarımada'da LEZ senaryosu kurup Euro 4 altı araçları kısıtlayarak NOx düşüşünü hesaplamak.",
+  "ayrinti": "Londra ULEZ ve Paris Airparif raporlarından kısıtlama sonrası NO2 düşüş oranları derlenir. TÜİK İstanbul araç tescil verisinden araç yaş ve yakıt dağılımı çıkarılır. Tarihi Yarımada (Fatih ilçesi) pilot bölge seçilerek Euro 4 altı dizel ve benzinli araçların bölgeye girişinin kısıtlanması durumunda trafik kaynaklı NOx emisyonunun %38 azalacağı COPERT katsayılarıyla hesaplanır.",
+  "sonuc": "İstanbul için düşük emisyon bölgesi uygulanabilirliğini ve hava kalitesi kazancını gösteren 2 sayfalık belediye politika notu.",
+  "adimlar": [
+   {
+    "baslik": "TÜİK filosu ve COPERT katsayılarıyla emisyonu bulmak",
+    "oz": "İstanbul araç filosunu Euro standartlarına ayırıp kilometre başına NOx emisyonunu bulmak.",
+    "ayrinti": "TÜİK tescil verisine göre İstanbul'daki binek ve hafif ticari araçların %26'sının 2006 öncesi (Euro 3 ve altı) olduğu saptanır. COPERT emisyon faktörleriyle Euro 3 bir dizel aracın Euro 6 araca göre kilometre başına 8 kat daha fazla NOx saldığı hesaplanır.",
+    "nasil": [
+     {
+      "teknik": "E_ulasim = sum(N_i * VKT_i * EF_i) formülüyle filo bazlı toplam emisyonu türetmek.",
+      "sade": "MTO 456 dersindeki 'Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak' bilgisiyle şehirdeki eski arabaların havayı yeni arabalara göre ne kadar daha çok kirlettiğini hesaplarız.",
+      "altAdimlar": [
+       "1. İstanbul'daki 3,5 milyon aracın yaş ve yakıt (dizel, benzin, LPG) oranlarını çıkarın.",
+       "2. EMEP/EEA COPERT tablosundan Euro 1-6 standartları için g/km emisyon katsayılarını eşleyin.",
+       "3. Filonun en eski %26'lık kısmının toplam egzoz kirliliğinin %62'sinden sorumlu olduğunu saptayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak."
+      }
+     },
+     {
+      "teknik": "EDGAR v8 Marmara karayolu ulaşımı grid hücreleriyle filo hesabını kalibre etmek.",
+      "sade": "MTO 456 dersindeki 'Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak' bilgisiyle hesapladığımız egzoz dumanı miktarını uluslararası hava kalitesi haritalarıyla test ederiz.",
+      "altAdimlar": [
+       "1. Fatih ve Tarihi Yarımada koordinatlarına denk gelen EDGAR ulaşım piksellerini çekin.",
+       "2. Yıllık 12.400 tonluk yerel ulaşım NOx emisyonu taban çizgisini doğrulayın.",
+       "3. Kentsel kanyonlarda egzoz gazının binalar arasında hapsolma katsayısını ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "EDGAR ulaşım verileriyle yerel emisyonu eşleştirmek",
+    "oz": "Fatih ve Tarihi Yarımada ulaşım pikselleriyle filo emisyonunu kalibre etmek.",
+    "ayrinti": "xarray ile EDGAR v8 karayolu ulaşımı katmanı açılır. Tarihi Yarımada koordinatlarındaki ulaşım hücresi çekilerek yıllık yerel ulaşım NOx emisyonu taban çizgisi doğrulanır. Kentsel kanyonlarda egzoz gazının binalar arasında sıkışması göz önüne alınır.",
+    "nasil": [
+     {
+      "teknik": "Tarihi Yarımada pikselinde yıllık NOx ve PM2.5 trafik emisyon yoğunluğunu hesaplamak.",
+      "sade": "MTO 456 dersindeki 'Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak' bilgisiyle yarımadadaki caddelerde her yıl kaç ton zehirli gaz çıktığını haritadan okuruz.",
+      "altAdimlar": [
+       "1. EDGAR 0,1 derece hücre sınırlarını Fatih ilçe sınırlarıyla çakıştırın.",
+       "2. Alan ağırlıklı enterpolasyonla ilçe içi karayolu emisyonunu ayırın.",
+       "3. Günlük trafik sayımlarıyla pik saat emisyon profillerini eşleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Ulusal ve bölgesel hava kirletici emisyon envanterlerini (EMEP/EEA) oluşturmak."
+      }
+     },
+     {
+      "teknik": "Egzoz partikül filtreleme verimini Deutsch-Anderson bağıntısıyla teorik kıyaslamak.",
+      "sade": "MTO 456 dersindeki 'Elektrostatik Çöktürücü (ESP) Deutsch-Anderson verim denklem' bilgisiyle dizel partikül filtrelerinin ince tozları tutma verimini inceleriz.",
+      "altAdimlar": [
+       "1. Euro 6 araçlardaki modern partikül filtreleme verimini %99 olarak belirleyin.",
+       "2. Euro 3 ve altı eski araçlardaki kontrolsüz partikül salımını hesaplayın.",
+       "3. Araç yenileme veya retrofitting filtreleme senaryolarını karşılaştırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Elektrostatik Çöktürücü (ESP) Deutsch-Anderson verim denklem"
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Tarihi Yarımada LEZ senaryosuyla karar notu yazmak",
+    "oz": "Euro 4 altı araçların çıkarılmasıyla NOx düşüşünü hesaplayıp karar notu hazırlamak.",
+    "ayrinti": "Tarihi Yarımada'da kurulacak kamera kontrollü Düşük Emisyon Bölgesi (LEZ) senaryosunda eski dizellerin çıkarılmasıyla bölge içi NOx emisyonunun %38, PM2.5 emisyonunun %46 azalacağı ortaya konur. İBB Ulaşım Daire Başkanlığı için 2 sayfalık yönetici özeti ve uygulama takvimi yazılır.",
+    "nasil": [
+     {
+      "teknik": "Senaryo fark matrisiyle kısıtlama sonrası sokak düzeyi NO2 düşüşünü tahmin etmek.",
+      "sade": "MTO 456 dersindeki 'Hava kalitesi yönetimi için kontrol senaryolarının maliyet-fayda analizini yapmak' bilgisiyle eski araçlar Tarihi Yarımada'ya sokulmadığında sokaklardaki havanın ne kadar temizleneceğini hesaplarız.",
+      "altAdimlar": [
+       "1. Pilot bölgeye giren günlük 180.000 aracın filo dönüşüm senaryosunu işletin.",
+       "2. Bölgedeki yol kenarı NO2 konsantrasyonunun 58 µg/m³'ten 36 µg/m³'e gerileyeceğini bulun.",
+       "3. Dünya Sağlık Örgütü yıllık sınır değerlerine (10 µg/m³) yaklaşma potansiyelini değerlendirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "Hava kalitesi yönetimi için kontrol senaryolarının maliyet-fayda analizini yapmak."
+      }
+     },
+     {
+      "teknik": "İstanbul Büyükşehir Belediyesi için 2 sayfalık LEZ fizibilite ve politika belgesi hazırlamak.",
+      "sade": "MTO 456 dersindeki 'En İyi Mevcut Teknikler (BAT) referans dokümanlarına göre deşarj sınırlarını denetlemek' bilgisiyle belediye başkanına ve meclisine sunulacak net ve uygulanabilir bir temiz hava planı hazırlarız.",
+      "altAdimlar": [
+       "1. Londra ve Paris'teki esnaf muafiyetleri ve kademeli geçiş takvimini İstanbul'a uyarlayın.",
+       "2. Toplu taşıma entegrasyonu ve elektrikli yük lojistiği önerilerini listeleyin.",
+       "3. İki sayfalık resmi karar destek brifingini Markdown ve PDF formatına aktarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 456",
+       "madde": "En İyi Mevcut Teknikler (BAT) referans dokümanlarına göre deşarj sınırlarını denetlemek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Tarihi Yarımada Düşük Emisyon Bölgesi senaryosunda yıllık NO2 konsantrasyonu düşüş animasyonu",
+   "aciklama": "Kentsel sokak kanyonlarında eski dizel araçların arındırılmasıyla kirlilik haritasının yeşile dönüşü"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.londonair.org.uk/LondonAir/Default.aspx",
+   "aciklama": "Imperial College London Air kentsel hava kirliliği ve ULEZ etki analiz platformu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Imperial College London Air Kentsel Hava Kalitesi ve ULEZ Değerlendirme Raporu",
+   "url": "https://www.londonair.org.uk/LondonAir/Default.aspx"
+  },
+  {
+   "ad": "Airparif Büyük Paris Kentsel Düşük Emisyon Bölgesi ve Emisyon Faktörleri",
+   "url": "https://www.airparif.fr/evaluer-les-zones-faibles-emissions"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO456-03.json",
+  "tarih": "2026-10-19 05:03",
+  "geminiSha1": "d5afdac39e2b"
+ }
+}

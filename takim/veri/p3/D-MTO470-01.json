@@ -1,0 +1,438 @@
+{
+ "id": "D-MTO470-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 470",
+  "dersAd": "Oşinografi",
+  "kol": "yazilim"
+ },
+ "ad": "Karadeniz'in sıcaklığı: Argo + uydu 20 yıl",
+ "ne": "Argo profillerinden ve Copernicus Marine SST'den Karadeniz üst 200 m sıcaklık eğilimini hesapla; soğuk ara tabakanın (CIL) inceliyor mu diye bak.",
+ "adimlar": [
+  "Argo GDAC'tan Karadeniz profillerini indir; kalite bayraklarını uygula.",
+  "Mevsimlik ortalama profiller çiz; 8 °C'nin altındaki CIL kalınlığını yıl yıl hesapla.",
+  "CMEMS SST serisiyle yüzey eğilimini kıyasla.",
+  "Eğilim ve belirsizliği raporla.",
+  "Karadeniz Komisyonu raporlarıyla karşılaştır."
+ ],
+ "sonuc": "Profil ve eğilim grafikleri; bölgesel okyanus ısınmasını ölçmüş olursun.",
+ "dayanak": "Roemmich vd. 2019",
+ "senden": "NetCDF ve istatistik.",
+ "bizden": "Veri erişimi ve CIL tanımı.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 470",
+    "ad": "Oşinografi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "Argo",
+   "ne": "Küresel okyanus gözlem şamandıra ağı ve açık CTD dikey profil veritabanı.",
+   "url": "https://argo.ucsd.edu/",
+   "ayrinti": {
+    "neYaptilar": "Dünya okyanuslarında ve bölgesel denizlerde serbest sürüklenen yaklaşık 4000 otonom şamandıra ile 2000 metre derinliğe kadar sıcaklık ve tuzluluk profilleri topladılar.",
+    "nasil": "Batabilen ve yüzeye çıkabilen hidrolik kontrollü şamandıralar üzerindeki yüksek duyarlıklı CTD sensörleriyle verileri uydu üzerinden gerçek zamanlı ilettiler.",
+    "neEdindiler": "Küresel okyanus ısı içeriği ve termohalin sirkülasyon değişiminin doğrudan yerinde izlenmesini sağlayan benzersiz bir gözlem altyapısı kurdular.",
+    "bizNasilKatki": "Argo Karadeniz şamandıra profillerini Python argopy kütüphanesiyle çekip 20 yıllık dikey sıcaklık anomalilerini hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "Roemmich vd. (2019) On the design and implementation of Argo, Frontiers in Marine Science",
+      "url": "https://doi.org/10.3389/fmars.2019.00439",
+      "tur": "makale"
+     },
+     {
+      "ad": "Argo Veri Yönetimi ve GDAC Profil Veri Portalı",
+      "url": "https://argo.ucsd.edu/data/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:BrnBld_ArgoFloat.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Otonom Argo oşinografi şamandırası yapısı ve bileşenleri teknik şeması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://argo.ucsd.edu/data/",
+      "aciklama": "Argo şamandıra veri merkezi dikey profil sorgulama ve filtreleme arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Copernicus Marine Service",
+   "ne": "Avrupa Birliği deniz izleme, analiz ve operasyonel tahmin servisi.",
+   "url": "https://marine.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "Uydu altimetresi, radyometreler ve yerinde gözlemleri oşinografik modellerle birleştirerek küresel ve bölgesel deniz analiz ürünleri ürettiler.",
+    "nasil": "Karadeniz ve Akdeniz için yüksek çözünürlüklü uydu SST verilerini optimal enterpolasyonla birleştirip günlük gridlenmiş yüzey sıcaklığı serileri oluşturdular.",
+    "neEdindiler": "Denizcilik, iklim araştırmaları ve kıyı yönetimi için 30 yılı aşkın operasyonel oşinografi veri kataloğu sağladılar.",
+    "bizNasilKatki": "CMEMS Karadeniz 20 yıllık uydu SST netCDF verilerini indirip Argo yüzey sıcaklık ölçümleriyle çapraz doğrularız.",
+    "referanslar": [
+     {
+      "ad": "Le Traon vd. (2019) From observation to information and users: Copernicus Marine Service, Frontiers",
+      "url": "https://doi.org/10.3389/fmars.2019.00234",
+      "tur": "makale"
+     },
+     {
+      "ad": "Copernicus Marine Service Karadeniz Fiziksel Analiz Kataloğu",
+      "url": "https://marine.copernicus.eu/services/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://marine.copernicus.eu/services/",
+      "aciklama": "Copernicus Marine Service Karadeniz analiz ürünleri veri indirme portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Karadeniz 20 yıllık deniz yüzeyi sıcaklığı (SST) mevsimsel döngü animasyonu",
+      "aciklama": "Yaz aylarında yüzey tabakasının ısınması ve kış aylarında CIL yenilenme dönemleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Karadeniz Komisyonu",
+   "ne": "Karadeniz'in Kirliliğe Karşı Korunması Komisyonu çevre çalışma grubu.",
+   "url": "https://blacksea-commission.org/",
+   "ayrinti": {
+    "neYaptilar": "Karadeniz kıyıdaş ülkelerinin ortak çevre durum raporlarını ve oşinografik izleme stratejilerini koordine ettiler.",
+    "nasil": "Kıyı istasyonları ve gemi seferlerinden toplanan verileri havza ölçeğinde sentezleyip soğuk ara tabaka değişimlerini raporladılar.",
+    "neEdindiler": "Karadeniz'in ekolojik ve fiziksel sağlık durumunu takip eden resmi uluslararası çevre izleme raporları yayınladılar.",
+    "bizNasilKatki": "Argo CIL kalınlığı analiz sonuçlarımızı Karadeniz Komisyonu geçmiş durum raporu eşikleriyle karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Karadeniz Komisyonu Çevre Raporları ve Yayınlar Portalı",
+      "url": "https://blacksea-commission.org/_publications.asp",
+      "tur": "rapor"
+     },
+     {
+      "ad": "Oguz vd. (2006) Long-term climatic variations and ecosystem response in the Black Sea, Oceanography",
+      "url": "https://doi.org/10.5670/oceanog.2006.43",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://blacksea-commission.org/_publications.asp",
+      "aciklama": "Karadeniz Komisyonu kirlilik ve iklim raporları resmi dokümantasyon sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Black_Sea_map.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Karadeniz derin havza batimetrisi ve ana akıntı dolaşım halkaları haritası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA CoastWatch",
+   "ne": "Kıyısal ve bölgesel denizler için yüksek çözünürlüklü uydu oşinografisi veri merkezi.",
+   "url": "https://coastwatch.noaa.gov/",
+   "ayrinti": {
+    "neYaptilar": "NOAA ve ortak kurumlar, küresel kıyılar ve iç denizler için yakın gerçek zamanlı uydu deniz yüzeyi sıcaklığı ve klorofil verisi sağladılar.",
+    "nasil": "VIIRS ve AVHRR radyometre verilerini bulut filtrelerinden geçirip kıyısal oşinografi kullanıcılarına açık veri servisleriyle sundular.",
+    "neEdindiler": "Bölgesel denizlerde denizel ısı dalgalarını ve kıyı akıntılarını takip eden açık oşinografik veri portalı kurdular.",
+    "bizNasilKatki": "CoastWatch yüksek çözünürlüklü SST verisiyle Karadeniz kıyısal yükselme alanlarını haritalayıp analiz ederiz.",
+    "referanslar": [
+     {
+      "ad": "NOAA CoastWatch Node Portalı ve Ürün Kataloğu",
+      "url": "https://coastwatch.noaa.gov/cw/",
+      "tur": "web"
+     },
+     {
+      "ad": "Walton vd. (1998) Operational Application of Nonlinear SST Algorithms, JGR Oceans",
+      "url": "https://doi.org/10.1029/98JC02370",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://coastwatch.noaa.gov/cw/",
+      "aciklama": "NOAA CoastWatch kıyısal deniz yüzeyi sıcaklığı sorgulama portalı"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Karadeniz kıyı hatları boyunca uydu SST anomali yayılımı",
+      "aciklama": "Kıyısal denizel ısı dalgalarının açık deniz profilleriyle etkileşimi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "EMODnet",
+   "ne": "Avrupa Deniz Gözlem ve Veri Ağı deniz fiziği portalı.",
+   "url": "https://emodnet.ec.europa.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelindeki şamandıra, kıyı radarı ve seyir istasyonlarının oşinografik ölçümlerini tek bir standart portalda birleştirdiler.",
+    "nasil": "Dağınık CTD ve akıntı verilerini SeaDataNet kalite kontrol kurallarıyla harmonize edip açık erişime sundular.",
+    "neEdindiler": "Karadeniz ve Akdeniz'de yüz binlerce dikey oşinografik profil içeren geniş bir veri havuzu oluşturdular.",
+    "bizNasilKatki": "EMODnet Physics platformundan Karadeniz kıyı şamandıra verilerini çekerek açık deniz profilleriyle entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "EMODnet Physics Veri Portalı ve Oşinografik API Dokümantasyonu",
+      "url": "https://emodnet.ec.europa.eu/en/data/",
+      "tur": "web"
+     },
+     {
+      "ad": "Martin vd. (2019) EMODnet: The European Marine Observation and Data Network, Frontiers",
+      "url": "https://doi.org/10.3389/fmars.2019.00458",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://emodnet.ec.europa.eu/en/data/",
+      "aciklama": "EMODnet Physics denizel ölçüm istasyonları ve zaman serisi arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:EkmanSpiral.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Rüzgâr sürtünmesiyle oluşan Ekman tabakası derinliği ve akıntı yönelimi"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Okyanusun atmosferle enerji ve karbon alışverişini gözlem ağları ve modellerle izlemek.",
+  "baglanti": "Yazılım kolunda Argo ve uydu verisi; Anlatım kolunda okyanus-atmosfer etkileşimi anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Argo ağı 4000'e yakın profil şamandırayla üst 2000 m'nin sıcaklık ve tuzluluğunu 10 günde bir ölçer; derin ve biyojeokimyasal genişleme sürüyor. (Roemmich vd. 2019)",
+    "Deniz yüzeyi sıcaklığı uydudan kızılötesi ve mikrodalgayla alınır; bulut ve hata maskeleme kaliteyi belirler. (Koner vd. 2016)",
+    "Deniz seviyesi senaryoları kıyı etki değerlendirmesinin temelidir; termal genleşme ve buz kaybı ana bileşenler. (Nicholls vd. 2014)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "İnsansız yelkenliler (Saildrone) okyanus-atmosfer akılarını gemi kalitesinde, uyarlanabilir rotayla ölçüyor. (Gentemann vd. 2020)",
+    "Haliç ve kapalı denizlerde iklim ısınmasıyla çözünmüş oksijen düşüşü projeksiyonu yapıldı. (Ni vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Roemmich vd. 2019",
+    "baslik": "On the Future of Argo: A Global, Full-Depth, Multi-Disciplinary Array",
+    "yayin": "Frontiers in Marine Science 6, 439",
+    "yil": "2019",
+    "url": "https://doi.org/10.3389/fmars.2019.00439",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Koner vd. 2016",
+    "baslik": "Hybrid cloud and error masking to improve the quality of deterministic satellite sea surface temperature retrieval",
+    "yayin": "Remote Sensing of Environment 174, 266-278",
+    "yil": "2016",
+    "url": "https://doi.org/10.1016/j.rse.2015.12.015",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Nicholls vd. 2014",
+    "baslik": "Sea-level scenarios for evaluating coastal impacts",
+    "yayin": "WIREs Climate Change 5(1), 129-150",
+    "yil": "2014",
+    "url": "https://doi.org/10.1002/wcc.253",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gentemann vd. 2020",
+    "baslik": "Saildrone: Adaptively Sampling the Marine Environment",
+    "yayin": "Bulletin of the American Meteorological Society 101(6), E744-E762",
+    "yil": "2020",
+    "url": "https://doi.org/10.1175/BAMS-D-19-0015.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Ni vd. 2019",
+    "baslik": "Large Projected Decline in Dissolved Oxygen in a Eutrophic Estuary Due to Climate Change",
+    "yayin": "Journal of Geophysical Research: Oceans 124(11), 8271-8289",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2019JC015274",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Argo şamandıraları ve Copernicus uydu verileriyle Karadeniz'de 20 yıllık deniz suyu sıcaklık eğilimini ve soğuk ara tabakayı incelemek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 470",
+   "projeyeKatki": "Deniz suyu termohalin katmanlaşması, dikey T-S profilleri ve Ekman taşınımı denklemleriyle Karadeniz soğuk ara tabakasının (CIL) incelmesi ve yüzey ısınması analiz edilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ekman kütle taşınımı (Ekman Transport) vektör denklemi",
+     "nerede": "2. adımda: Rüzgâr gerilmesi ve Ekman taşınımının yüzey suyu karışımına ve CIL tabakasının dikey kalınlık değişimine etkisini hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Argo T-S profilleri ve CMEMS SST verileriyle Karadeniz'de 20 yıllık CIL kalınlığı ve ısınma eğilimi çıkarılır.",
+  "ayrinti": "Argo küresel veri merkezinden (GDAC) Karadeniz şamandıra profilleri indirilip kalite kontrolünden geçirilir. 8 derece altındaki soğuk ara tabaka (CIL) çekirdek kalınlığı ve derinliği yıl bazında hesaplanır. Copernicus Marine Service 20 yıllık uydu SST serisiyle birleştirilerek termoklin ısınma eğilimi belirlenir.",
+  "sonuc": "Karadeniz'in üst 200 metresinde 20 yıllık sıcaklık değişimini ve CIL çekirdeğinin erimesini gösteren iklim raporu.",
+  "senden": "Python, xarray, netCDF4 ve oşinografik veri analizi kütüphaneleri (gsw).",
+  "bizden": "MTO 470 fiziksel oşinografi, termohalin su kütlesi analizi ve Ekman taşınım teorisi.",
+  "adimlar": [
+   {
+    "baslik": "Argo Şamandıra Verilerini Toplama ve Kalite Kontrolü",
+    "oz": "Karadeniz'deki Argo dikey CTD profilleri indirilip bayrak kontrolü yapılır.",
+    "ayrinti": "Argo GDAC sunucularından Karadeniz havzasında 2005-2025 yılları arasında toplanan profiller çekilir. netCDF formatındaki sıcaklık, tuzluluk ve basınç değişkenleri TEOS-10 standardında işlenir ve sadece kalite bayrağı 1 olan güvenilir ölçümler seçilir.",
+    "nasil": [
+     {
+      "teknik": "argopy veya xarray kütüphanesiyle Karadeniz poligonundaki Argo netCDF profillerini indirmek.",
+      "sade": "MTO 470 dersindeki 'Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek' bilgisiyle denize bırakılan robotik şamandıraların yüzeyden 200 metre derine kadar ölçtüğü sıcaklık ve tuzluluk değerlerini çekeriz.",
+      "altAdimlar": [
+       "1. Karadeniz enlem-boylam kutusundaki tüm profil dosyalarını listeleyin.",
+       "2. TEOS-10 gsw kütüphanesiyle pratik tuzluluktan mutlak tuzluluğu hesaplayın.",
+       "3. Kalite kontrol bayrağı hatalı olan şüpheli ölçümleri ayıklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek."
+      }
+     },
+     {
+      "teknik": "Profil derinliklerini standart 5 metrelik dikey ızgaraya enterpolasyonla aktarmak.",
+      "sade": "MTO 470 dersindeki 'Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek' bilgisiyle farklı derinliklerdeki ölçümleri düzenli aralıklarla hizalayarak karşılaştırılabilir hale getiririz.",
+      "altAdimlar": [
+       "1. 0-200 metre aralığını 5 metrelik basamaklarla tanımlayın.",
+       "2. Düşey sıcaklık profilini kübik spline ile enterpole edin.",
+       "3. Havza geneli için aylık ortalama sıcaklık matrisini oluşturun."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Soğuk Ara Tabaka (CIL) Kalınlığı ve Eğilimi Hesabı",
+    "oz": "8 °C altındaki CIL tabakasının çekirdek derinliği ve hacmi hesaplanır.",
+    "ayrinti": "Karadeniz'in karakteristik özelliği olan ve kış soğumasıyla yenilenen 8 °C altındaki Soğuk Ara Tabaka (CIL) sınırları her yıl için tespit edilir. Ekman taşınımı ve rüzgâr sürtünmesi ile CIL tabakasının kış sonu kalınlığı ilişkilendirilerek 20 yıldaki incelme trendi çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "T < 8.0 °C izoterm sınırlarını tespit ederek CIL üst ve alt derinliğini entegre etmek.",
+      "sade": "MTO 470 dersindeki 'Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek' bilgisiyle Karadeniz'in ortasında hapsolmuş soğuk su tabakasının kalınlığını bulup yıllar içinde eriyip erimediğine bakarız.",
+      "altAdimlar": [
+       "1. Her profilde sıcaklığın 8 derecenin altına indiği ilk derinliği bulun.",
+       "2. Sıcaklığın tekrar 8 dereceyi aştığı derinliği alt sınır olarak işaretleyin.",
+       "3. İki sınır arasındaki farktan yıllık ortalama CIL kalınlığını türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek."
+      }
+     },
+     {
+      "teknik": "Ekman kütle taşınımı formülüyle kış rüzgâr gerilmesinin CIL yenilenmesine etkisini hesaplamak.",
+      "sade": "MTO 470 dersindeki 'Ekman kütle taşınımı (Ekman Transport) vektör denklemi' bilgisiyle sert kış rüzgârlarının soğuk yüzey suyunu ne kadar derine karıştırdığını hesaplarız.",
+      "altAdimlar": [
+       "1. Deniz yüzeyi rüzgâr gerilmesi vektöründen Ekman derinliğini türetin.",
+       "2. Coriolis parametresiyle kütle taşınımını entegre edin.",
+       "3. Şiddetli kış fırtınalarının CIL kalınlığıyla korelasyonunu çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Copernicus Uydu SST ve Havza İklim Raporu",
+    "oz": "20 yıllık uydu SST trendi ile CIL incelmesi birleştirilerek doğrulanır.",
+    "ayrinti": "Copernicus Marine Service (CMEMS) 20 yıllık günlük uydu deniz yüzeyi sıcaklığı (SST) zaman serisi ile Argo CIL trendi birleştirilir. Karadeniz Komisyonu çevre raporlarıyla kıyaslanarak havza ısınma hızı santigrat derece/on yıl cinsinden belgelenir.",
+    "nasil": [
+     {
+      "teknik": "CMEMS SST 20 yıllık günlük veri setinden Theil-Sen eğim kestirimiyle yüzey ısınma trendini çıkarmak.",
+      "sade": "MTO 470 dersindeki 'Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek' bilgisiyle uydulardan alınan deniz yüzeyi sıcaklıklarının son 20 yılda ne kadar arttığını doğrularız.",
+      "altAdimlar": [
+       "1. Karadeniz havzası mekânsal ortalama günlük SST zaman serisini üretin.",
+       "2. Mevsimsel döngüyü çıkarıp sıcaklık anomali serisini türetin.",
+       "3. On yıllık ısınma eğilimini Mann-Kendall testiyle doğrulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek."
+      }
+     },
+     {
+      "teknik": "Argo CIL incelme hızı ile uydu SST artışını Karadeniz Komisyonu verileriyle sentezlemek.",
+      "sade": "MTO 470 dersindeki 'Termohalin döngü yavaşlama risklerini küresel iklim dengesiyle değerlendirmek' bilgisiyle yüzey ısınması ile derin soğuk tabakanın yok oluşu arasındaki bağı resmi raporlarla kıyaslarız.",
+      "altAdimlar": [
+       "1. Yüzey ısınması ile CIL çekirdek sıcaklığı artışını aynı grafikte gösterin.",
+       "2. Karadeniz Komisyonu kirlilik ve iklim raporu referans değerlerini ekleyin.",
+       "3. Deniz ekosistemi üzerindeki katmanlaşma risklerini özetleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Termohalin döngü yavaşlama risklerini küresel iklim dengesiyle değerlendirmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Karadeniz 20 yıllık dikey sıcaklık profili ve CIL erimesi animasyonu",
+   "aciklama": "Üst 200 metrede soğuk ara tabakanın incelmesi ve deniz suyu ısınma trendi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://marine.copernicus.eu/services/",
+   "aciklama": "Copernicus Marine Service Karadeniz oşinografik veri portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "TEOS-10 Gibbs SeaWater (GSW) Oşinografik Hesaplama Dokümantasyonu",
+   "url": "https://www.teos-10.org/pubs/gsw/html/gsw_contents.html"
+  },
+  {
+   "ad": "Argo Küresel Veri Merkezi Dokümantasyonu",
+   "url": "https://argo.ucsd.edu/data/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO470-01.json",
+  "tarih": "2026-10-17 16:28",
+  "geminiSha1": "eeeb3556da95"
+ }
+}

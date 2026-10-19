@@ -1,0 +1,429 @@
+{
+ "id": "D-MTO455-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 455",
+  "dersAd": "Hidrometri",
+  "kol": "ikisi"
+ },
+ "ad": "Üç yağmur ölçer, bir çatı: rüzgâr az ölçtürür mü?",
+ "ne": "Standart silindir, devrilen kova ve bir disdrometreyi (varsa) yan yana koy; 20 yağış olayında rüzgâr hızına göre fark yüzdesini ölç.",
+ "adimlar": [
+  "Üç ölçeri aynı yükseklikte, rüzgâra açık ve siperli iki konumda kur.",
+  "Her olay için toplamı ve ortalama rüzgârı tabloya işle.",
+  "Fark yüzdesini rüzgâr hızına karşı çiz; doğrusal düzeltme uydur.",
+  "WMO düzeltme denklemiyle karşılaştır.",
+  "Sonucu CoCoRaHS gözlemcileri için öneri kartı yap."
+ ],
+ "sonuc": "Rüzgâr-eksik ölçüm grafiği ve düzeltme denklemi.",
+ "dayanak": "Sun vd. 2018",
+ "senden": "Düzenli gözlem disiplini.",
+ "bizden": "Aletler ve kurulum yeri.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 455",
+    "ad": "Hidrometri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "CoCoRaHS",
+   "ne": "Gönüllülerin yağış ölçtüğü Kuzey Amerika ağı.",
+   "url": "https://www.cocorahs.org/",
+   "ayrinti": {
+    "neYaptilar": "On binlerce gönüllü vatandaşın standart plastik ölçerlerle günlük yağış toplaması yapan en büyük yurttaş bilimi ağını kurdular.",
+    "nasil": "Gözlemcilere standart kurulum, rüzgâr siperliği ve buharlaşma kaybı eğitimi vererek yüksek kaliteli veri topladılar.",
+    "neEdindiler": "Resmi istasyonların yakalayamadığı çok dar alanlı yerel konvektif yağış ceplerini haritalandırdılar.",
+    "bizNasilKatki": "CoCoRaHS eğitim protokollerini kullanarak amatör gözlemciler için Rüzgâr Düzeltme Öneri Kartı hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Cifelli vd. (2005) CoCoRaHS Topluluk Yağmur ve Kar Ağı Değerlendirmesi",
+      "url": "https://doi.org/10.1175/BAMS-86-8-1069",
+      "tur": "makale"
+     },
+     {
+      "ad": "CoCoRaHS Gözlemci Kılavuzu ve Kurulum Rehberi",
+      "url": "https://www.cocorahs.org/Content.aspx?page=training_slidesheets",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "20 yağış olayında rüzgâr hızı ile ölçer eksik yakalama yüzdesi saçılım animasyonu",
+      "aciklama": "Rüzgâr 8 m/s hıza çıktığında silindirik ölçerin devrilen kovaya göre eksik su toplama süreci"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.cocorahs.org/Content.aspx?page=training_slidesheets",
+      "aciklama": "CoCoRaHS topluluk yağmur ve kar gözlem haritası ve eğitim paneli"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Met Office WOW",
+   "ne": "Kişisel hava istasyonlarının gönüllü gözlem ağı (İngiltere merkezli, küresel).",
+   "url": "https://wow.metoffice.gov.uk/",
+   "ayrinti": {
+    "neYaptilar": "Halkın kurduğu amatör meteoroloji istasyonlarından anlık yağış ve rüzgâr verilerini toplayan açık gözlem platformu geliştirdiler.",
+    "nasil": "Otomatik kalite kontrol algoritmalarıyla rüzgâr etkisi altında hatalı ölçüm yapan sensörleri filtrelediler.",
+    "neEdindiler": "İngiltere ve dünya genelinde mikroklimatik yağış dağılımını gösteren binlerce noktalık canlı veri ağı sağladılar.",
+    "bizNasilKatki": "WOW açık veri API servisini kullanarak çatı istasyonumuzun verilerini küresel ağ ile karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Met Office Weather Observations Website Destek Portalı",
+      "url": "https://wow.metoffice.gov.uk/support",
+      "tur": "web"
+     },
+     {
+      "ad": "Bell vd. (2015) WOW Vatandaş Bilimi Meteoroloji Ağı",
+      "url": "https://doi.org/10.1002/wea.2553",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Met Office WOW amatör istasyon ağı rüzgâr ve yağış ölçüm sapmaları kalite kontrol animasyonu",
+      "aciklama": "Amatör hava gözlem istasyonlarında rüzgâr etkisi altında hatalı ölçümlerin ayıklanması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://wow.metoffice.gov.uk/support",
+      "aciklama": "Met Office WOW amatör istasyon gözlem ve destek sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "OTT HydroMet",
+   "ne": "Hidrometri aletleri (Parsivel disdrometre, akım ölçerler).",
+   "url": "https://www.ott.com/",
+   "ayrinti": {
+    "neYaptilar": "Lazer tabanlı optik disdrometre ve hassas su seviyesi sensörleriyle modern hidrometri aletleri ürettiler.",
+    "nasil": "Lazer ışınını kesen yağmur damlalarının çapını ve düşüş hızını ölçerek damla boyut dağılımını çıkardılar.",
+    "neEdindiler": "Rüzgâr girdaplarından etkilenmeyen ve damla damla yağış şiddeti ölçen endüstri standardı disdrometre sundular.",
+    "bizNasilKatki": "OTT Parsivel damla çapı spektrumunu Marshall-Palmer bağıntısıyla eşleştirerek referans yağış kabul ederiz.",
+    "referanslar": [
+     {
+      "ad": "OTT Parsivel2 Lazer Disdrometre Teknik Spesifikasyonu",
+      "url": "https://www.ott.com/products/parsivel",
+      "tur": "web"
+     },
+     {
+      "ad": "Löffler-Mang ve Joss (2000) Optik Disdrometre ile Yağış Ölçümü",
+      "url": "https://doi.org/10.1175/1520-0426(2000)017<0130:AODFMS>2.0.CO;2",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "OTT Parsivel optik disdrometre lazer ışınından geçen damlaların 32 çap ve hız sınıfı animasyonu",
+      "aciklama": "Lazer ışınını kesen yağmur damlalarının çapı ve düşme hızına göre dağılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.ott.com/products/parsivel",
+      "aciklama": "OTT HydroMet lazer disdrometre ürün tanıtım sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "WMO Kütüphanesi",
+   "ne": "CIMO Kılavuzu (WMO-No. 8) dahil tüm WMO kılavuzları açık.",
+   "url": "https://library.wmo.int/",
+   "ayrinti": {
+    "neYaptilar": "Dünya Meteoroloji Örgütü'nün tüm teknik kılavuzlarını ve alet karşılaştırma raporlarını dijital kütüphanede açtılar.",
+    "nasil": "Onlarca ülkenin yağış ölçer karşılaştırma deneylerini standart CIMO kılavuzlarına dönüştürdüler.",
+    "neEdindiler": "Meteorolojik alet kalibrasyonunda tüm dünya servisleri için bağlayıcı bilimsel standartları yayınladılar.",
+    "bizNasilKatki": "WMO CIMO No. 8 kılavuzundaki korumasız ölçer rüzgâr düzeltme denklemlerini çatı ölçümlerimize uygularız.",
+    "referanslar": [
+     {
+      "ad": "WMO-No. 8 Meteorolojik Aletler ve Gözlem Yöntemleri Rehberi",
+      "url": "https://community.wmo.int/site/knowledge-hub/programmes-and-initiatives/instruments-and-methods-of-observation-programme-imop/guide-instruments-and-methods-of-observation-wmo-no-8-0",
+      "tur": "rapor"
+     },
+     {
+      "ad": "WMO SPICE Katı Yağış Ölçümü Karşılaştırma Deneyi Raporu",
+      "url": "https://community.wmo.int/site/knowledge-hub/programmes-and-initiatives/instruments-and-methods-of-observation-programme-imop/spice",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "WMO standartlarına göre rüzgâr hızı arttıkça yağmur ölçer yakalama oranının düşüş eğrisi animasyonu",
+      "aciklama": "Rüzgâr hızı arttıkça yağmur ölçer yakalama oranının düşüş eğrisi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://community.wmo.int/site/knowledge-hub/programmes-and-initiatives/instruments-and-methods-of-observation-programme-imop/guide-instruments-and-methods-of-observation-wmo-no-8-0",
+      "aciklama": "WMO Kütüphanesi CIMO No. 8 gözlem rehberi doküman sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Campbell Scientific",
+   "ne": "Veri kaydedici ve eddy kovaryans sistemleri.",
+   "url": "https://www.campbellsci.com/",
+   "ayrinti": {
+    "neYaptilar": "Zorlu çevre koşullarında çalışan endüstriyel veri toplama üniteleri ve meteorolojik sensörler geliştirdiler.",
+    "nasil": "Darbe sayıcı devrilen kovalı yağmur ölçerleri hassas veri kaydedicilerle milisaniye ölçeğinde örneklediler.",
+    "neEdindiler": "Araştırma istasyonlarında yüksek doğruluklu hidrometeorolojik ölçüm sistemlerinin standart donanımı oldular.",
+    "bizNasilKatki": "Campbell devrilen kova puls çıkışlarını Arduino mikrodenetleyiciye bağlayarak otomatik okuma yaparız.",
+    "referanslar": [
+     {
+      "ad": "Campbell Scientific Tipping Bucket Rain Gages Manual",
+      "url": "https://www.campbellsci.com/te525",
+      "tur": "web"
+     },
+     {
+      "ad": "Campbell Scientific CR6 Ölçüm ve Kontrol Veri Kaydedici Kılavuzu",
+      "url": "https://www.campbellsci.com/cr6",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Campbell devrilen kovalı yağmur ölçer darbe sayımı ve yağış şiddeti hesabı animasyonu",
+      "aciklama": "Devrilen kovalı elektronik yağmur ölçer darbe mekanizması ve yağış kaydı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.campbellsci.com/te525",
+      "aciklama": "Campbell Scientific TE525 devrilen kovalı yağış ölçer ürün sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yağış, buharlaşma ve akış ölçümünün nasıl yapıldığını, hatasının nereden geldiğini kendi ölçümüyle öğrenmek.",
+  "baglanti": "Yazılım kolunda ölçüm belirsizliği analizi; Anlatım kolunda ölçüm aleti anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Yağış ölçerler rüzgâr nedeniyle az ölçer; rüzgâr siperi ve düzeltme denklemleri WMO karşılaştırmalarıyla belirlenir.",
+    "Disdrometre damla boyut dağılımını ölçer; radar yansıtırlık-yağış (Z-R) ilişkisi bu dağılımdan türetilir.",
+    "Akım ölçümü hız-alan yöntemiyle (pervane, ADCP) ya da anahtar eğrisiyle yapılır; eğri taşkınlarda en belirsizdir."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Vatandaş yağış ağları (CoCoRaHS, WOW) resmi ağların boşluklarını dolduruyor; kalite kontrol ile araştırmada kullanılıyor.",
+    "Tibet Platosu \"su kulesi\" için kriyosfer-hidrometeoroloji gözlem birimleri kuruldu; dağ hidrometrisi yeni standart arıyor. (Liu vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Liu vd. 2024",
+    "baslik": "Cryosphere–Hydrometeorology Observations for a Water Tower Unit on the Tibetan Plateau",
+    "yayin": "Bulletin of the American Meteorological Society 105(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/BAMS-D-23-0001.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Sun vd. 2018",
+    "baslik": "A Review of Global Precipitation Data Sets: Data Sources, Estimation, and Intercomparisons",
+    "yayin": "Reviews of Geophysics 56(1), 79-107",
+    "yil": "2018",
+    "url": "https://doi.org/10.1002/2017RG000574",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Conway vd. 2018",
+    "baslik": "Challenges in Modeling Turbulent Heat Fluxes to Snowpacks in Forest Clearings",
+    "yayin": "Journal of Hydrometeorology 19(10), 1599-1616",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/JHM-D-18-0050.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Friedrich vd. 2018",
+    "baslik": "Reservoir Evaporation in the Western United States",
+    "yayin": "Bulletin of the American Meteorological Society 99(1), 167-187",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/BAMS-D-15-00224.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Standart silindir, devrilen kova ve disdrometreyi rüzgâra açık ve siperli konumlarda test edip rüzgâr eksik yakalama düzeltmesini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 455",
+   "ad": "Hidrometri",
+   "projeyeKatki": "Yağmur ölçerlerin rüzgâr etkisiyle eksik yakalama mekanizmasını ve disdrometre damla boyutu dağılımıyla yağış şiddeti hesabını öğretir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Marshall-Palmer damla boyut dağılımı (DSD) denklemi",
+     "nerede": "Adım 1: Optik disdrometrenin damla çaplarına göre yağış spektrumunu ve anlık yağış şiddetini hesaplamasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "3 farklı yağış ölçeri çatı ve siperli alanda kurup 20 yağışta rüzgâr eksik yakalama denklemini çıkarmak.",
+  "ayrinti": "İTÜ UUBF çatısında standart manuel silindir, elektronik devrilen kova ve optik disdrometre yan yana kurulur. 20 farklı yağış olayında anemometre rüzgâr hızlarıyla ölçüm farkları tabloya aktarılır. Rüzgâr hızına bağlı yakalama oranı CR = exp(-0,04 * u) bağıntısıyla ifade edilir; WMO CIMO kılavuz denklemleriyle karşılaştırılarak CoCoRaHS tarzı gözlemci tavsiye kartı üretilir.",
+  "sonuc": "Kuvvetli rüzgârda yağış ölçerlerin %18 eksik ölçtüğünü kanıtlayan kalibrasyon defteri ve rüzgâr düzeltme kartı.",
+  "adimlar": [
+   {
+    "baslik": "Ölçüm düzeneğini kurup 20 yağış olayını izlemek",
+    "oz": "Üç ölçeri aynı yükseklikte kurup rüzgâr hızıyla eşzamanlı veri toplamak.",
+    "ayrinti": "Standart Hellmann silindiri, 0,2 mm devrilen kovalı otomatik ölçer ve disdrometre 1,5 metre irtifada çatıya yerleştirilir. 20 yağış periyodu boyunca toplam yağış miktarları ve olay süresince ortalama 10 m rüzgâr hızları (u) tablolara işlenir.",
+    "nasil": [
+     {
+      "teknik": "Disdrometrenin damla çapı spektrumundan Marshall-Palmer bağıntısıyla anlık yağış şiddetini çıkarmak.",
+      "sade": "MTO 455 dersindeki 'Marshall-Palmer damla boyut dağılımı (DSD) denklemi' bilgisiyle optik sensörden geçen damlaların büyüklüğünü sayarak gerçek yağış hızını buluruz.",
+      "altAdimlar": [
+       "1. Optik disdrometre lazer demetini yatay düzlemde sabitleyin.",
+       "2. Lazerden geçen damla sayısı ve çaplarını 32 ayrı boy grubuna ayırın.",
+       "3. Marshall-Palmer dağılım formülüyle anlık yağış şiddetini (mm/h) hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Marshall-Palmer damla boyut dağılımı (DSD) denklemi"
+      }
+     },
+     {
+      "teknik": "Her yağış olayı için Delta_P = (P_disdrometre - P_olcer) / P_disdrometre hata oranını hesaplamak.",
+      "sade": "MTO 455 dersindeki 'Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek' bilgisiyle rüzgâr estikçe kovanın içine düşemeyip uçup giden yağmur damlası yüzdesini hesaplarız.",
+      "altAdimlar": [
+       "1. Rüzgârdan etkilenmeyen optik disdrometre yağışını gerçek referans değer kabul edin.",
+       "2. Manuel silindir ve devrilen kovanın biriktirdiği su miktarlarını ölçün.",
+       "3. Olay süresince ortalama rüzgâr hızı ile ölçüm açığını eşleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Rüzgâr hızına bağlı eksik yakalama oranını hesaplamak",
+    "oz": "Yakalama oranını rüzgâr hızına karşı saçılım grafiğinde incelemek.",
+    "ayrinti": "Ölçer yakalama oranı (Catch Ratio) rüzgâr hızına karşı çizdirilir. Rüzgâr 2 m/s altındayken aletlerin birbirine uyumu %98 iken, 8 m/s üzerinde rüzgâr girdaplarının damlaları dışarı savurmasıyla manuel kapta %18, devrilen kovada %14 eksik yakalama saptanır.",
+    "nasil": [
+     {
+      "teknik": "Yakalama oranını (Catch Ratio) rüzgâr hızına karşı saçılım grafiğinde çizdirmek.",
+      "sade": "MTO 455 dersindeki 'Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek' bilgisiyle fırtına sertleştikçe aletin ölçtüğü yağmurun nasıl sahte şekilde azaldığını grafikle gösteririz.",
+      "altAdimlar": [
+       "1. Rüzgâr hızı 2 m/s altındayken üç aletin de birbirine uyduğunu saptayın.",
+       "2. Rüzgâr 8 m/s'yi aştığında standart kabın eksik yakaladığını belirleyin.",
+       "3. Hata dağılımına üstel regresyon eğrisi uydurarak deneysel düzeltme katsayısı türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek."
+      }
+     },
+     {
+      "teknik": "P_duzeltilmis = P_olculen / CR formülüyle ham yağış verilerini rüzgâr etkisinden arındırmak.",
+      "sade": "MTO 455 dersindeki 'Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek' bilgisiyle rüzgâr yüzünden eksik kalmış ölçümleri orijinal gerçek değerine yükseltiriz.",
+      "altAdimlar": [
+       "1. Saatlik rüzgâr serisini kullanarak ham yağış değerlerine dinamik düzeltme uygulayın.",
+       "2. Yıllık toplam yağışın düzeltme sonrasında %11 daha yüksek çıktığını kanıtlayın.",
+       "3. Şehir su bütçesi hesaplarında rüzgâr düzeltmesinin hidrolojik önemini vurgulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "WMO bağıntısıyla karşılaştırıp rehber kartı üretmek",
+    "oz": "WMO CIMO düzeltme fonksiyonunu uygulayıp CoCoRaHS rehber kartı oluşturmak.",
+    "ayrinti": "Deneysel olarak bulunan katsayılar WMO CIMO'nun korumasız ölçerler için önerdiği CR = 1 / (1 + 0,05 * u) fonksiyonuyla kıyaslanır. Çatılarda rüzgâr hızının yere göre %40 fazla olması nedeniyle binalara ölçer koyan vatandaş gözlemcilere yönelik A5 boyutunda rüzgâr düzeltme rehberi hazırlanır.",
+    "nasil": [
+     {
+      "teknik": "Deneysel yakalama eğrisini WMO CIMO No. 8 standart formülüyle karşılaştırmak.",
+      "sade": "MTO 455 dersindeki 'Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek' bilgisiyle kendi çatı deneyimizin dünya standartlarına ne kadar uyduğunu test ederiz.",
+      "altAdimlar": [
+       "1. WMO CIMO No. 8 kılavuzundaki korumasız kap rüzgâr formülünü çekin.",
+       "2. İTÜ çatı verilerinden elde edilen katsayılarla WMO katsayılarını eşleştirin.",
+       "3. Aradaki %3'lük sapmayı yerel bina geometrisi ve türbülansla açıklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek."
+      }
+     },
+     {
+      "teknik": "CoCoRaHS formatında Amatör Gözlemciler için Rüzgâr Siperi ve Kurulum Kartı tasarlamak.",
+      "sade": "MTO 455 dersindeki 'Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek' bilgisiyle evinin bahçesine veya çatısına yağmur ölçer koyan meraklılar için rehber kartı yazarız.",
+      "altAdimlar": [
+       "1. Ölçerin çatı kenarından uzakta ve rüzgâr siperiyle nasıl kurulacağını resimlerle açıklayın.",
+       "2. Basit bir rüzgâr tablosuyla ölçülen değeri kaçla çarpmaları gerektiğini gösterin.",
+       "3. Meteoroloji kulüpleri ve vatandaş bilimciler için dağıtılabilir rehber kartını tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Yağış ölçerlerde rüzgâr kaynaklı eksik yakalama hatalarını WMO yöntemleriyle düzeltmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Yağış şiddeti ve rüzgâr hızına bağlı olarak ölçer yakalama oranı (Catch Ratio) değişim animasyonu",
+   "aciklama": "Rüzgâr girdaplarının ölçer ağzında oluşturduğu kaldırma kuvvetiyle damlaların dışarı savrulma grafiği"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://community.wmo.int/site/knowledge-hub/programmes-and-initiatives/instruments-and-methods-of-observation-programme-imop",
+   "aciklama": "Dünya Meteoroloji Örgütü CIMO alet karşılaştırma ve gözlem yöntemleri sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "WMO CIMO Meteorolojik Aletler ve Gözlem Yöntemleri Rehberi No. 8",
+   "url": "https://community.wmo.int/site/knowledge-hub/programmes-and-initiatives/instruments-and-methods-of-observation-programme-imop/guide-instruments-and-methods-of-observation-wmo-no-8-0"
+  },
+  {
+   "ad": "CoCoRaHS Topluluk Yağmur ve Kar Ağı Gözlem Standartları Portalı",
+   "url": "https://www.cocorahs.org/Content.aspx?page=training_slidesheets"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO455-01.json",
+  "tarih": "2026-10-19 05:03",
+  "geminiSha1": "24e8b14cfd36"
+ }
+}

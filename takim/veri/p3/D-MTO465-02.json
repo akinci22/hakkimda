@@ -1,0 +1,439 @@
+{
+ "id": "D-MTO465-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 465",
+  "dersAd": "Çevre Biyofiziği",
+  "kol": "ikisi"
+ },
+ "ad": "Akı kulesinin ayak izi: FFP ile hangi tarlayı ölçüyoruz?",
+ "ne": "Bir AmeriFlux/ICOS sahası için Kljun FFP modeliyle saatlik ayak izi haritaları üret; arazi örtüsüyle çakıştırıp akıların hangi yüzeyden geldiğini hesapla.",
+ "adimlar": [
+  "FFP Python kodunu kur; kule yüksekliği, rüzgâr, kararlılık girdilerini saha verisinden al.",
+  "Bir ay için saatlik %80 ayak izi konturlarını üret.",
+  "Sentinel-2 arazi örtüsüyle çakıştır; yüzey tipi paylarını hesapla.",
+  "Gündüz/gece ve rüzgâr yönüne göre pay değişimini çiz.",
+  "Sonucu saha sorumlusuna gönderilecek kısa rapor yap."
+ ],
+ "sonuc": "Ayak izi haritaları ve yüzey payı tablosu.",
+ "dayanak": "Kljun vd. 2015",
+ "senden": "Python ve raster.",
+ "bizden": "FFP kodu, saha verisi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 465",
+    "ad": "Çevre Biyofiziği"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ICOS",
+   "ne": "Avrupa karbon gözlem sistemi.",
+   "url": "https://www.icos-cp.eu/",
+   "ayrinti": {
+    "neYaptilar": "Avrupa genelindeki ekosistem kulelerinin saatlik akı verilerini standart kalite kontrolleriyle sundular.",
+    "nasil": "Gelişmiş veri merkezinde (Carbon Portal) her kule için saatlik iki boyutlu ayak izi haritalarını hesapladılar.",
+    "neEdindiler": "Orman ve tarım alanlarındaki sera gazı yutaklarının sınırlarını metre hassasiyetinde belirleme standardı kurdular.",
+    "bizNasilKatki": "ICOS açık veri ambarından kule meteorolojisi ve sürtünme hızı verilerini otomatik çekip işleriz.",
+    "referanslar": [
+     {
+      "ad": "Heiskanen vd. (2022) The Integrated Carbon Observation System (ICOS)",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0364.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "ICOS Karbon Portalı Açık Akı ve Ayak İzi Veritabanı",
+      "url": "https://www.icos-cp.eu/data-services",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Avrupa ICOS ekosistem istasyonunda mikrometeorolojik akı kulesi ölçümleri",
+      "aciklama": "Avrupa ICOS ekosistem istasyonunda mikrometeorolojik akı kulesi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.icos-cp.eu/data-services",
+      "aciklama": "ICOS Karbon Portalı veri arama ve görselleştirme arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "AmeriFlux",
+   "ne": "Amerika kıtası eddy kovaryans ağı; veri açık.",
+   "url": "https://ameriflux.lbl.gov/",
+   "ayrinti": {
+    "neYaptilar": "Kuzey ve Güney Amerika'daki yüzlerce bağımsız kule ekibini ortak veri protokolünde birleştirdiler.",
+    "nasil": "Ham 10 Hz türbülans verisini standart FP-In ve BASE veri setlerine dönüştüren açık boru hattı geliştirdiler.",
+    "neEdindiler": "Farklı iklim bölgelerinde ayak izi dinamiklerinin ekosistem su dengesini nasıl değiştirdiğini kanıtladılar.",
+    "bizNasilKatki": "AmeriFlux sahalarından seçilen karma arazi kulesinin FLUXNET-CSV tablosunu analize girdi yaparız.",
+    "referanslar": [
+     {
+      "ad": "Novick vd. (2018) The AmeriFlux Network: A Coalition of the Willing",
+      "url": "https://doi.org/10.1016/j.agrformet.2017.10.009",
+      "tur": "makale"
+     },
+     {
+      "ad": "AmeriFlux Kule Saha Kataloğu ve Yüksek Çözünürlüklü Akı Verileri",
+      "url": "https://ameriflux.lbl.gov/data/download-data/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "AmeriFlux orman sahasında türbülanslı ısı akılarını ölçen kule verisi",
+      "aciklama": "AmeriFlux orman sahasında türbülanslı ısı akılarını ölçen kule"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://ameriflux.lbl.gov/data/download-data/",
+      "aciklama": "AmeriFlux açık veri indirme ve filtreleme sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "TERN / OzFlux",
+   "ne": "Avustralya ekosistem gözlem ağı.",
+   "url": "https://www.tern.org.au/",
+   "ayrinti": {
+    "neYaptilar": "Avustralya kıtasındaki savan, çöl ve okaliptüs ormanlarında mikrometeorolojik akı kuleleri işlettiler.",
+    "nasil": "Geniş coğrafyada kuraklık ve yangın sonrası ekosistem iyileşmesini ayak izi analizleriyle haritalandırdılar.",
+    "neEdindiler": "Aşırı sıcak ve kurak koşullarda türbülanslı taşınımın arazi heterojenliğinden nasıl etkilendiğini belgelediler.",
+    "bizNasilKatki": "OzFlux kulelerinde uygulanan Kljun FFP Python kütüphanesi yapılandırma parametrelerini kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Beringer vd. (2016) An Introduction to the Australian Flux Network (OzFlux)",
+      "url": "https://doi.org/10.5194/bg-13-5895-2016",
+      "tur": "makale"
+     },
+     {
+      "ad": "TERN Avustralya Ekosistem Araştırma Ağı Veri Keşif Portalı",
+      "url": "https://portal.tern.org.au/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "OzFlux savan ekosisteminde enerji ve karbon ayak izi ölçüm kulesi",
+      "aciklama": "OzFlux savan ekosisteminde enerji ve karbon ayak izi ölçüm kulesi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://portal.tern.org.au/",
+      "aciklama": "TERN ekosistem ve akı kulesi veri kataloğu sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Max Planck Biyojeokimya Enstitüsü",
+   "ne": "Eddy kovaryans ve karbon döngüsü araştırmaları (FLUXNET ev sahibi).",
+   "url": "https://www.bgc-jena.mpg.de/",
+   "ayrinti": {
+    "neYaptilar": "FLUXNET küresel veri sentezini koordine edip ayak izi ağırlıklı ekosistem akı ayrıştırma yazılımlarını sundular.",
+    "nasil": "Net ekosistem değişimini (NEE) brüt birincil üretim (GPP) ve ekosistem solunumu (RE) olarak ayrıştırdılar.",
+    "neEdindiler": "Kulenin baktığı tarlanın ürün desenindeki değişimin karbon tutma kapasitesine etkisini sayısallaştırdılar.",
+    "bizNasilKatki": "Max Planck BGC tarafından geliştirilen ayak izi ağırlıklı akı entegrasyonu algoritmasını kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Reichstein vd. (2005) Partitioning Eddy Covariance Net Ecosystem Exchange",
+      "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x",
+      "tur": "makale"
+     },
+     {
+      "ad": "Max Planck BGC Biyojeokimyasal Entegrasyon Bölümü",
+      "url": "https://www.bgc-jena.mpg.de/bgi",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "İki boyutlu akı ayak izi konturları ve rüzgâr yönü ilişkisi",
+      "aciklama": "İki boyutlu akı ayak izi konturları ve rüzgâr yönü ilişkisi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.bgc-jena.mpg.de/bgi",
+      "aciklama": "Max Planck Biyojeokimya Enstitüsü araştırma grubu portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Campbell Scientific",
+   "ne": "Ölçüm sistemleri ve eddy kovaryans istasyonları üreticisi.",
+   "url": "https://www.campbellsci.com/",
+   "ayrinti": {
+    "neYaptilar": "Akı kuleleri için 3 boyutlu sonik anemometre ve hızlı açık-kapalı yol gaz analizörleri ürettiler.",
+    "nasil": "Yüksek frekanslı veriyi arazide gerçek zamanlı işleyen EasyFlux ve CR6 veri toplama sistemlerini kurdular.",
+    "neEdindiler": "Araştırmacıların arazide anlık türbülans ve akı kalitesi izlemesini sağlayan endüstri standardı sundular.",
+    "bizNasilKatki": "Campbell Scientific istasyon formatındaki rüzgâr yönü ve sürtünme hızı verilerini FFP girdisine dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Campbell Scientific CSAT3B 3 Boyutlu Sonik Anemometre",
+      "url": "https://www.campbellsci.com/csat3b",
+      "tur": "web"
+     },
+     {
+      "ad": "Kljun vd. (2015) A Simple Two-Dimensional Parameterisation for Flux Footprint",
+      "url": "https://doi.org/10.5194/gmd-8-3695-2015",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Campbell Scientific 3 boyutlu sonik anemometre ve türbülans akıları",
+      "aciklama": "Campbell Scientific 3 boyutlu sonik anemometre ve gaz analizörü"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.campbellsci.com/csat3b",
+      "aciklama": "Campbell Scientific CSAT3B sonik anemometre ve eddy kovaryans sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yaprak, bitki örtüsü ve toprağın enerji-su-karbon alışverişini fiziksel denklemlerle ve ölçümle izlemek.",
+  "baglanti": "Yazılım kolunda yaprak enerji dengesi ve akı modelleri; Anlatım kolunda bitki-hava etkileşimi anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Yaprak enerji dengesi: soğurulan radyasyon = uzun dalga kaybı + duyulur + gizli ısı; stoma iletkenliği gizli ısıyı kontrol eder.",
+    "Eddy kovaryans akılarının \"ayak izi\" rüzgâr yönü ve kararlılıkla değişir; FFP modeli bunu iki boyutta verir. (Kljun vd. 2015)",
+    "Yaprak alanı dağılımı yersel lidar ile vokselleştirilerek ölçülür; voksel boyutu sonucu belirler. (Béland vd. 2014)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Kar örtüsüne türbülanslı ısı akıları orman açıklıklarında modellenmesi en zor bileşen. (Conway vd. 2018)",
+    "ECOSTRESS ve OpenET bitki su stresini uydudan tarla ölçeğinde izliyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Kljun vd. 2015",
+    "baslik": "A simple two-dimensional parameterisation for Flux Footprint Prediction (FFP)",
+    "yayin": "Geoscientific Model Development 8, 3695-3713",
+    "yil": "2015",
+    "url": "https://doi.org/10.5194/gmd-8-3695-2015",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Béland vd. 2014",
+    "baslik": "On seeing the wood from the leaves and the role of voxel size in determining leaf area distribution of forests with terrestrial LiDAR",
+    "yayin": "Agricultural and Forest Meteorology 184, 82-97",
+    "yil": "2014",
+    "url": "https://doi.org/10.1016/j.agrformet.2013.09.005",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Conway vd. 2018",
+    "baslik": "Challenges in Modeling Turbulent Heat Fluxes to Snowpacks in Forest Clearings",
+    "yayin": "Journal of Hydrometeorology 19(10), 1599-1616",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/JHM-D-18-0050.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Reichstein vd. 2005",
+    "baslik": "On the separation of net ecosystem exchange into assimilation and ecosystem respiration",
+    "yayin": "Global Change Biology 11(9), 1424-1439",
+    "yil": "2005",
+    "url": "https://doi.org/10.1111/j.1365-2486.2005.001002.x",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Pastorello vd. 2020",
+    "baslik": "The FLUXNET2015 dataset and the ONEFlux processing pipeline for eddy covariance data",
+    "yayin": "Scientific Data 7, 225",
+    "yil": "2020",
+    "url": "https://doi.org/10.1038/s41597-020-0534-3",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "AmeriFlux kule verileri ve Kljun FFP modeliyle iki boyutlu akı ayak izi konturlarını üretip ölçümlerin hangi arazi örtüsünden geldiğini mekânsal olarak hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 465",
+   "ad": "Çevre Biyofiziği",
+   "projeyeKatki": "Eddy kovaryans kulelerindeki türbülanslı ısı ve gaz akılarının hangi arazi örtüsünden kaynaklandığını iki boyutlu ayak iziyle çözümler.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Yaprak enerji dengesi ve duyulur-gizli ısı alışverişi",
+     "nerede": "Adım 2: Kulede ölçülen duyulur ve gizli ısı akılarının Monin-Obukhov kararlılık parametresiyle ayak izi alanına dağıtılmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "FFP modeliyle akı kulesi ayak izi çıkarılır ve Sentinel-2 arazi örtüsüyle çakıştırılarak yüzey katkı payları hesaplanır.",
+  "ayrinti": "Bir AmeriFlux veya ICOS kulesi seçilir. Kule yüksekliği, sürtünme hızı (u*), Obukhov uzunluğu (L) ve standart sapmalar (sigma_v) Kljun FFP Python paketine verilir. Üretilen yüzde 80 ayak izi poligonu Sentinel-2 arazi örtüsü haritasıyla çakıştırılarak ölçülen akıların kaynak yüzey payları hesaplanır.",
+  "sonuc": "Saatlik iki boyutlu akı ayak izi haritaları, arazi örtüsü örtüşme payı tablosu ve teknik değerlendirme notu.",
+  "senden": "Python coğrafi bilgi sistemi (GeoPandas, rasterio) kodları.",
+  "bizden": "FFP model parametreleri ve kule mikrometeoroloji veri seti.",
+  "adimlar": [
+   {
+    "baslik": "Akı kulesi mikrometeoroloji verilerini hazırlamak",
+    "oz": "Saha kule ölçümlerinden sürtünme hızı ve Obukhov uzunluğunu çekmek.",
+    "ayrinti": "AmeriFlux sahasından bir aylık saatlik veri çekilir. Ölçüm yüksekliği (z_m), yer değiştirme yüksekliği (d), rüzgâr hızı (u), yön (wd), sürtünme hızı (u_star) ve atmosferik kararlılık parametresi (z/L) ayıklanır.",
+    "nasil": [
+     {
+      "teknik": "pandas ile kule CSV dosyasından u_star, L, sigma_v ve wind_dir sütunlarını süzmek.",
+      "sade": "MTO 465 dersindeki 'Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak' bilgisiyle kulenin o saatte havanın ne kadar kararlı ve rüzgârın hangi hızda estiğini gösteren parametrelerini hazırlarız.",
+      "altAdimlar": [
+       "1. AmeriFlux sitesinden seçilen sahanın saatlik akı veri tablosunu indirin.",
+       "2. Düşük rüzgâr ve u_star < 0.1 m/s olan durgun gece saatlerini filtreleyin.",
+       "3. Gece kararlı (L > 0) ve gündüz kararsız (L < 0) saat dilimlerini sınıflandırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak."
+      }
+     },
+     {
+      "teknik": "z_m ve bitki boyundan yer değiştirme yüksekliği d = 0.67 * h_canopy hesaplamak.",
+      "sade": "MTO 465 dersindeki 'Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak' bilgisiyle sensörün yerden değil ağaçların veya ekinlerin tepesinden ne kadar yüksekte olduğunu doğru biçimde tanımlarız.",
+      "altAdimlar": [
+       "1. Kule sahasındaki ortalama ekin boyunu belirleyin.",
+       "2. Sıfır düzlemi yer değiştirme yüksekliğini ve pürüzlülük boyunu (z0) türetin.",
+       "3. Efektif ölçüm yüksekliğini z_e = z_m - d olarak formüle edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Kljun FFP ile saatlik ayak izi konturlarını üretmek",
+    "oz": "İki boyutlu ayak izi fonksiyonunu çözüp yüzde 80 etki alanını çıkarmak.",
+    "ayrinti": "Kljun vd. (2015) akı ayak izi parametrizasyonu Python kodu çalıştırılır. Kule merkezli kartezyen ızgarada yüzde 50, 70 ve 80 kaynak katkı elipsleri üretilerek coğrafi koordinatlara (WGS84 UTM) dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "calc_footprint_FFP_climatology fonksiyonuyla iki boyutlu ayak izi ızgarasını hesaplamak.",
+      "sade": "MTO 465 dersindeki 'Yaprak enerji dengesi ve duyulur-gizli ısı alışverişi' bilgisiyle kuledeki aletin kokladığı buhar ve ısının tam olarak arazinin hangi noktasından rüzgârla geldiğini hesaplarız.",
+      "altAdimlar": [
+       "1. FFP modeline sınır tabakası yüksekliği (h) ve türbülans değişkenlerini iletin.",
+       "2. İki boyutlu olasılık yoğunluk fonksiyonundan yüzde 80 kümülatif kontur sınırını bulun.",
+       "3. Rüzgâr yönü açısıyla konturu kule etrafında döndürerek coğrafi poligon yapın."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Yaprak enerji dengesi ve duyulur-gizli ısı alışverişi"
+      }
+     },
+     {
+      "teknik": "Gündüz konvektif ve gece kararlı şartlarda ayak izi mesafesini karşılaştırmak.",
+      "sade": "MTO 465 dersindeki 'Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak' bilgisiyle gündüz sadece 200 metrelik yakından gelen havanın gece 2 kilometre öteden kuleye ulaştığını gösteririz.",
+      "altAdimlar": [
+       "1. Gündüz öğle saatlerinde tepe katkı mesafesini (X_max) hesaplayın.",
+       "2. Gece kararlı atmosferde uzayan ayak izi kuyruğunun mesafesini bulun.",
+       "3. Ayak izi alanının diurnal büyüme ve küçülme döngüsünü haritalandırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sentinel-2 ile çakıştırıp arazi paylarını bulmak",
+    "oz": "Ayak izi poligonunu arazi örtüsüyle kesiştirip yüzey yüzdelerini hesaplamak.",
+    "ayrinti": "GeoPandas ile üretilen yüzde 80 ayak izi poligonu Sentinel-2 10 metre çözünürlüklü arazi örtüsü sınıflandırmasıyla örtüştürülür. Kule ölçümüne karışan mısır, buğday, çıplak toprak ve orman payları yüzdesel olarak raporlanır.",
+    "nasil": [
+     {
+      "teknik": "geopandas.overlay ile ayak izi poligonunu arazi örtüsü vektörüyle kesiştirmek.",
+      "sade": "MTO 465 dersindeki 'Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak' bilgisiyle kulemizin hedef tarlayı mı yoksa komşu tarlayı mı ölçtüğünü sayısal olarak belirleriz.",
+      "altAdimlar": [
+       "1. Sentinel-2 arazi örtüsü katmanını kule koordinatlarında kırpın.",
+       "2. overlay kesişim fonksiyonuyla poligon içindeki piksel alanlarını hesaplayın.",
+       "3. Her arazi sınıfının toplam ayak izi içindeki alan ve ağırlıklı payını bulun."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak."
+      }
+     },
+     {
+      "teknik": "Rüzgâr yönüne göre arazi örtüsü karışım oranını gösteren polar gül grafiği üretmek.",
+      "sade": "MTO 465 dersindeki 'Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak' bilgisiyle rüzgâr kuzeyden esince mısırı, güneyden esince buğdayı ölçtüğümüzü gösteren dairesel grafik çizeriz.",
+      "altAdimlar": [
+       "1. 16 ana ve ara rüzgâr yönü diliminde arazi paylarını gruplayın.",
+       "2. Polar eksende her yön için arazi yüzdelerini renkli yığın sütunlarla gösterin.",
+       "3. Kule verilerini kullanan araştırmacılar için kaynak belirsizlik notunu tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 465",
+       "madde": "Eddy kovaryans mikrometeorolojik kule akılarının iki boyutlu ayak izini (footprint) çıkarmak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Akı kulesi iki boyutlu Kljun FFP ayak izi günlük salınım animasyonu",
+   "aciklama": "Gündüz konvektif ve gece kararlı atmosfer koşullarında ayak izi alanının genişlemesi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.icos-cp.eu/data-services",
+   "aciklama": "ICOS Karbon Portalı akı kulesi ayak izi haritalama sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Kljun vd. 2015 İki Boyutlu Akı Ayak İzi Modeli (FFP)",
+   "url": "https://doi.org/10.5194/gmd-8-3695-2015"
+  },
+  {
+   "ad": "AmeriFlux Açık Veri Portalı",
+   "url": "https://ameriflux.lbl.gov/data/download-data/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO465-02.json",
+  "tarih": "2026-10-17 16:06",
+  "geminiSha1": "dc49fe658bdd"
+ }
+}

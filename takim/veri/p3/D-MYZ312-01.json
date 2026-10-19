@@ -1,0 +1,463 @@
+{
+ "id": "D-MYZ312-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MYZ 312",
+  "dersAd": "Meteorolojide Makine Öğrenmesi",
+  "kol": "yazilim"
+ },
+ "ad": "ai-models ile kendi GraphCast tahminini koştur, İstanbul'da sına",
+ "ne": "ecmwf-lab/ai-models ile GraphCast ya da Pangu tahminini ERA5 başlangıcından koştur; 1-10 gün İstanbul 2 m sıcaklık ve 10 m rüzgârını gözlemle ve IFS ile karşılaştır.",
+ "adimlar": [
+  "ai-models kur; ERA5 başlangıç koşulunu CDS'ten al (GPU yoksa Google Colab).",
+  "10 günlük tahmin üret; İstanbul grid noktasını çıkar.",
+  "IFS açık verisinin aynı başlangıçlı tahminini indir; iki modeli gözlemle (OGIMET) kıyasla.",
+  "RMSE ve Taylor diyagramıyla tahmin süresine göre skor çiz.",
+  "5 farklı başlangıç gününde tekrarla; ortalama skoru raporla."
+ ],
+ "sonuc": "YZ-IFS-gözlem karşılaştırma grafikleri; YZ tahmininin yerel performansını ölçmüş olursun.",
+ "dayanak": "Lam vd. 2023",
+ "senden": "Python, biraz GPU sabrı.",
+ "bizden": "Kurulum rehberi, skor kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MYZ 312",
+    "ad": "Meteorolojide Makine Öğrenmesi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ecmwf-lab/ai-models",
+   "ne": "ECMWF yapay zekâ hava tahmin modellerini koşturma açık kaynak çerçevesi.",
+   "url": "https://github.com/ecmwf-lab/ai-models",
+   "ayrinti": {
+    "neYaptilar": "ECMWF araştırmacıları, GraphCast, Pangu-Weather ve FourCastNet gibi önde gelen YZ hava tahmin modellerini tek bir komut satırıyla koşturan açık kaynak kütüphane yazdılar.",
+    "nasil": "CDS ve ECMWF açık veri servislerinden otomatik başlangıç verisi indirip ONNX ve PyTorch çalışma ortamlarında çıkarım adımlarını yönettiler.",
+    "neEdindiler": "Araştırmacıların karmaşık veri formatlarıyla uğraşmadan dakikalar içinde küresel YZ hava tahminleri üretmesini sağladılar.",
+    "bizNasilKatki": "ai-models kütüphanesini Google Colab üzerinde yapılandırıp İstanbul grid noktası için zaman serisi çıkaran otomasyon kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Lang vd. (2024) AIFS — ECMWF's data-driven forecasting system, arXiv",
+      "url": "https://doi.org/10.48550/arXiv.2406.01465",
+      "tur": "makale"
+     },
+     {
+      "ad": "ECMWF ai-models GitHub Deposu ve Dokümantasyonu",
+      "url": "https://github.com/ecmwf-lab/ai-models",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/ecmwf-lab/ai-models",
+      "aciklama": "ECMWF ai-models açık kaynak yapay zekâ hava tahmin çatısı depo sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "GraphCast modeli 500 hPa geopotansiyel yükseklik 10 günlük tahmin animasyonu",
+      "aciklama": "Kuzey Yarımküre orta enlemlerinde sinoptik trof ve sırtların zamansal ilerleyişi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "GraphCast (DeepMind)",
+   "ne": "Google DeepMind küresel graf sinir ağı hava tahmin modeli.",
+   "url": "https://github.com/google-deepmind/graphcast",
+   "ayrinti": {
+    "neYaptilar": "Google DeepMind ekibi, küresel atmosferi ikosahedral graf üzerinde modelleyen ve 10 günlük tahmini 1 dakikanın altında üreten GraphCast modelini geliştirdi.",
+    "nasil": "ERA5 yeniden analiz verileri üzerinde mesaj ileten graf sinir ağları (GNN) ile eğitip küresel atmosferik dinamikleri öğrendiler.",
+    "neEdindiler": "Geleneksel sayısal model IFS'i yüzlerce doğrulama metriğinde geride bırakarak Science dergisinde kapak makalesi yayınladılar.",
+    "bizNasilKatki": "GraphCast model ağırlıklarını ai-models köprüsüyle koşturup İstanbul rüzgâr hamlesi tahminlerini sınarız.",
+    "referanslar": [
+     {
+      "ad": "Lam vd. (2023) Learning skillful medium-range global weather forecasting, Science",
+      "url": "https://doi.org/10.1126/science.adi2336",
+      "tur": "makale"
+     },
+     {
+      "ad": "Google DeepMind GraphCast Model Deposu",
+      "url": "https://github.com/google-deepmind/graphcast",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/google-deepmind/graphcast",
+      "aciklama": "GraphCast graf sinir ağı hava tahmin modeli kaynak kodu ve mimari şeması"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "GraphCast 2 metre sıcaklık anomalisi küresel yayılım animasyonu",
+      "aciklama": "Yapay zekâ modeli ile üretilen 10 günlük sıcak ve soğuk hava dalgaları tahmini"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Pangu-Weather (Huawei)",
+   "ne": "Huawei Cloud 3B küresel hava tahmin yapay zekâ modeli.",
+   "url": "https://github.com/198808xc/Pangu-Weather",
+   "ayrinti": {
+    "neYaptilar": "Huawei Cloud araştırmacıları, 3B Earth-Specific Vision Transformer (3D-EST) mimarisiyle küresel hava tahminleri yapan Pangu-Weather modelini geliştirdi.",
+    "nasil": "Yükseklik katmanlarını 3 boyutlu tensörler olarak işleyen hiyerarşik transformer bloklarıyla 1, 3, 6 ve 24 saatlik önceden eğitilmiş modeller kurdular.",
+    "neEdindiler": "Geleneksel sayısal modellere kıyasla 10.000 kat daha hızlı tahmin üreterek Nature dergisinde yayımlandılar.",
+    "bizNasilKatki": "Pangu çıktısındaki geopotansiyel yükseklik gradyanını GraphCast ile çapraz karşılaştırmada ikinci YZ modeli olarak kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Bi vd. (2023) Accurate medium-range global weather forecasting with 3D neural networks, Nature",
+      "url": "https://doi.org/10.1038/s41586-023-06185-3",
+      "tur": "makale"
+     },
+     {
+      "ad": "Huawei Cloud Pangu-Weather Açık Model Deposu",
+      "url": "https://github.com/198808xc/Pangu-Weather",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/198808xc/Pangu-Weather",
+      "aciklama": "Huawei Pangu-Weather 3B transformer mimarisi ve model dokümantasyonu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Pangu-Weather 850 hPa rüzgâr ve sıcaklık adveksiyonu simülasyonu",
+      "aciklama": "3B transformer katmanlarının sinoptik cephe geçişlerini tahmin başarısı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "WeatherBench 2 (Google)",
+   "ne": "Yapay zekâ hava tahmin modelleri için açık kıyaslama ve değerlendirme çatısı.",
+   "url": "https://github.com/google-research/weatherbench2",
+   "ayrinti": {
+    "neYaptilar": "Google Research liderliğindeki küresel çalışma grubu, tüm yapay zekâ ve fiziksel hava modellerini standart metriklerle yarıştıran WeatherBench 2 platformunu kurdu.",
+    "nasil": "Zarr formatında terabaytlarca ERA5 ve operasyonel model verisini bulut üzerinde barındırıp RMSE, ACC ve spektral enerji metriklerini hesapladılar.",
+    "neEdindiler": "Hangi YZ modelinin hangi değişkende ve hangi coğrafyada daha başarılı olduğunu şeffafça gösteren küresel liderlik tablosu sundular.",
+    "bizNasilKatki": "WeatherBench 2 değerlendirme fonksiyonlarını projemize dahil ederek İstanbul için model skor kartı oluştururuz.",
+    "referanslar": [
+     {
+      "ad": "Rasp vd. (2024) WeatherBench 2: A benchmark for the next generation of data-driven weather models, JAMES",
+      "url": "https://doi.org/10.1029/2023MS004019",
+      "tur": "makale"
+     },
+     {
+      "ad": "Google Research WeatherBench 2 GitHub Deposu",
+      "url": "https://github.com/google-research/weatherbench2",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://github.com/google-research/weatherbench2",
+      "aciklama": "Google Research WeatherBench 2 kıyaslama çatısı ve liderlik paneli arayüzü"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Taylor_diagram_fig2.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Yapay zekâ hava modelleri korelasyon ve hata yayılımı Taylor diyagramı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "ECMWF Open Data",
+   "ne": "ECMWF açık hava tahmini veri servisi ve küresel operasyonel arşiv.",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+   "ayrinti": {
+    "neYaptilar": "Avrupa Orta Vadeli Hava Tahminleri Merkezi, operasyonel IFS sayısal hava tahmin modeli çıktılarını 0.4 ve 0.25 derece çözünürlükte herkese açık erişime açtı.",
+    "nasil": "Günde dört kez güncellenen tahmin dosyalarını AWS ve Azure açık veri havuzları üzerinden yüksek bant genişliğiyle sundular.",
+    "neEdindiler": "Yapay zekâ modellerinin operasyonel süper bilgisayar tahminleriyle gerçek zamanlı kıyaslanmasını sağlayan küresel açık veri altyapısı sağladılar.",
+    "bizNasilKatki": "ecmwf-opendata Python istemcisiyle anlık IFS verilerini çekerek GraphCast çıktısıyla yan yana koyarız.",
+    "referanslar": [
+     {
+      "ad": "ECMWF Open Data Servisi ve Veri Kataloğu Dokümantasyonu",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+      "tur": "web"
+     },
+     {
+      "ad": "Bauer vd. (2015) The quiet revolution of numerical weather prediction, Nature",
+      "url": "https://doi.org/10.1038/nature14956",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+      "aciklama": "ECMWF Open Data küresel operasyonel tahmin veri kataloğu arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "ECMWF IFS ve GraphCast 10 günlük sıcaklık tahminlerinin zamansal kıyası",
+      "aciklama": "Geleneksel sayısal model ile yapay zekâ modelinin sıcaklık eğrileri farkı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Makine öğrenmesini \"sihir\" değil, fiziksel sınamaya açık bir tahmin aracı olarak kullanmak.",
+  "baglanti": "Yazılım kolunun çekirdek dersi: YZ tahmin modellerini çalıştırma ve sınama; Anlatım kolunda YZ tahminini halka anlatma.",
+  "literatur": {
+   "maddeler": [
+    "Derin öğrenme, yer sistemi biliminde süreç anlayışıyla birleşmeli; yalnız örüntü ezberleyen model fiziksel sınırları aşamaz. (Reichstein vd. 2019)",
+    "GraphCast, 10 günlük tahminde ECMWF HRES'i çoğu değişkende geçti; eğitim verisi ERA5. (Lam vd. 2023)",
+    "Model performansı tek grafikte özetlenebilir: Taylor diyagramı korelasyon, standart sapma ve RMS farkı aynı anda gösterir. (Taylor 2001)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Pangu-Weather klasik dinamik deneylerde gerçekçi jeostrofik uyum üretti; YZ modelleri fizik testine sokulabiliyor. (Hakim ve Masanam 2024)",
+    "YZ modelleri küçük başlangıç hatalarının büyümesini (kelebek etkisi) yeterince üretmiyor; topluluk tahmininde açık sorun. (Selz ve Craig 2023)",
+    "Radar tabanlı üretken modeller 90 dakikalık yağış kestiriminde tahmincilerce tercih edildi. (Ravuri vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Reichstein vd. 2019",
+    "baslik": "Deep learning and process understanding for data-driven Earth system science",
+    "yayin": "Nature 566, 195-204",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-0912-1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bi vd. 2023",
+    "baslik": "Accurate medium-range global weather forecasting with 3D neural networks",
+    "yayin": "Nature 619, 533-538",
+    "yil": "2023",
+    "url": "https://doi.org/10.1038/s41586-023-06185-3",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Hakim ve Masanam 2024",
+    "baslik": "Dynamical Tests of a Deep Learning Weather Prediction Model",
+    "yayin": "Artificial Intelligence for the Earth Systems 3(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Selz ve Craig 2023",
+    "baslik": "Can Artificial Intelligence-Based Weather Prediction Models Simulate the Butterfly Effect?",
+    "yayin": "Geophysical Research Letters 50(20)",
+    "yil": "2023",
+    "url": "https://doi.org/10.1029/2023GL105747",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature 597, 672-677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Taylor 2001",
+    "baslik": "Summarizing multiple aspects of model performance in a single diagram",
+    "yayin": "Journal of Geophysical Research: Atmospheres 106(D7), 7183-7192",
+    "yil": "2001",
+    "url": "https://doi.org/10.1029/2000JD900719",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ham vd. 2019",
+    "baslik": "Deep learning for multi-year ENSO forecasts",
+    "yayin": "Nature 573, 568-572",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-1559-7",
+    "tur": "yz"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "ecmwf-lab/ai-models ile GraphCast tahminini koşturup İstanbul için 1-10 günlük sıcaklık ve rüzgâr başarısını IFS ve gözlemle karşılaştırmak.",
+ "ortakDers": [
+  {
+   "kod": "MYZ 312",
+   "projeyeKatki": "Küresel veri odaklı yapay zekâ hava tahmin modellerinin ERA5 verileriyle koşturulması ve Kritik Başarı İndeksi (CSI) ile meteorolojik doğrulama metriklerinin analizi sağlanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Kritik Başarı İndeksi (CSI - Critical Success Index)",
+     "nerede": "3. adımda: GraphCast ve IFS modellerinin 2 m sıcaklık ve rüzgâr eşiklerinde tahmin isabet oranını ve CSI skorunu hesaplarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "ai-models ile GraphCast modeli ERA5 girdisiyle koşturulup İstanbul istasyonunda IFS ve OGIMET gözlemleriyle doğrulanır.",
+  "ayrinti": "ECMWF'nin açık kaynaklı ai-models kütüphanesi kurularak CDS üzerinden çekilen ERA5 başlangıç analiziyle 10 günlük küresel tahmin üretilir. İstanbul grid noktasının 2 m sıcaklık ve 10 m rüzgâr bileşenleri çıkartılır. ECMWF IFS operasyonel tahmini ve OGIMET sinoptik yer gözlemleriyle kıyaslanarak RMSE ve CSI skorları hesaplanır.",
+  "sonuc": "Yapay zekâ hava tahmin modelinin 1-10 günlük başarımını geleneksel IFS ile kıyaslayan Jupyter analiz defteri.",
+  "senden": "Python, ai-models, CDS API ve PyTorch / ONNX çalışma ortamı.",
+  "bizden": "MYZ 312 yapay zekâ hava tahmin mimarileri, ERA5 veri yapısı ve doğrulama metrikleri.",
+  "adimlar": [
+   {
+    "baslik": "ai-models Ortam Kurulumu ve ERA5 Başlangıç Verisi",
+    "oz": "ai-models kütüphanesi kurulup CDS üzerinden ERA5 başlangıcı indirilir.",
+    "ayrinti": "GPU veya Google Colab üzerinde ecmwf-lab/ai-models paketi ve GraphCast ağırlıkları yüklenir. Copernicus İklim Değişikliği Servisi (CDS) API ile seçilen tarihe ait 0.25 derece çözünürlüklü ERA5 yüzey ve basınç seviyeleri başlangıç analizi olarak çekilir.",
+    "nasil": [
+     {
+      "teknik": "pip install ai-models ai-models-graphcast ile ortamı kurup cdsapi ile ERA5 analizini indirmek.",
+      "sade": "MYZ 312 dersindeki 'Küresel YZ hava modellerini ERA5 verileriyle koşturup değerlendirmek' bilgisiyle Google ve ECMWF'nin geliştirdiği yapay zekâ hava modelini çalıştıracak ortamı hazırlarız.",
+      "altAdimlar": [
+       "1. Google Colab GPU çalışma ortamında ai-models kütüphanesini yükleyin.",
+       "2. CDS API anahtarıyla 00 UTC başlangıçlı ERA5 sıcaklık ve rüzgâr alanlarını çekin.",
+       "3. İndirilen GRIB dosyasının bütünlüğünü ecCodes araçlarıyla denetleyin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Küresel YZ hava modellerini (GraphCast, Pangu) ERA5 verileriyle koşturup değerlendirmek."
+      }
+     },
+     {
+      "teknik": "ai-models --input cds --lead-time 240 graphcast komutuyla 10 günlük küresel tahmin üretmek.",
+      "sade": "MYZ 312 dersindeki 'Küresel YZ hava modellerini ERA5 verileriyle koşturup değerlendirmek' bilgisiyle yapay zekâ modeline tüm dünya atmosferini adım adım 10 gün sonrasına kadar tahmin ettiririz.",
+      "altAdimlar": [
+       "1. GraphCast model ağırlıklarını ONNX/PyTorch çalışma motoruna yükleyin.",
+       "2. 6 saatlik zaman adımlarıyla 240 saate kadar küresel tahmini koşturun.",
+       "3. Çıktı tensörlerini GRIB formatında yerel diske kaydedin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Küresel YZ hava modellerini (GraphCast, Pangu) ERA5 verileriyle koşturup değerlendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "İstanbul Grid Noktası ve Operasyonel IFS Karşılaştırması",
+    "oz": "İstanbul gridi çıkarılıp ECMWF IFS açık verisiyle eşleştirilir.",
+    "ayrinti": "GraphCast küresel GRIB çıktısından İstanbul koordinatlarına (41.0° K, 28.9° D) denk gelen en yakın grid hücresi seçilir. 2 m sıcaklık (2t) ve 10 m rüzgâr bileşenleri (10u, 10v) zaman serisine dönüştürülür. ECMWF Open Data servisinden aynı başlangıç anına ait IFS operasyonel tahmini çekilerek iki model senkronize edilir.",
+    "nasil": [
+     {
+      "teknik": "xarray ve cfgrib ile İstanbul koordinatındaki 2t ve 10u/10v zaman serisini filtrelemek.",
+      "sade": "MYZ 312 dersindeki 'Küresel YZ hava modellerini ERA5 verileriyle koşturup değerlendirmek' bilgisiyle tüm dünya haritasından sadece İstanbul'un üstüne düşen hava sıcaklığı ve rüzgâr tahminlerini çekeriz.",
+      "altAdimlar": [
+       "1. GRIB dosyasını xarray veri dizisine açıp enlem-boylam koordinatlarını indeksleyin.",
+       "2. 10 günlük süre boyunca 6 saatlik sıcaklık ve rüzgâr vektör serisini çıkarın.",
+       "3. Rüzgâr hızını u ve v bileşenlerinin kareler toplamının karekökünden hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Küresel YZ hava modellerini (GraphCast, Pangu) ERA5 verileriyle koşturup değerlendirmek."
+      }
+     },
+     {
+      "teknik": "ECMWF Open Data API ile eşzamanlı IFS operasyonel tahmin serisini indirip hizalamak.",
+      "sade": "MYZ 312 dersindeki 'Küresel YZ hava modellerini ERA5 verileriyle koşturup değerlendirmek' bilgisiyle yapay zekânın tahminini fiziksel süper bilgisayar modelinin tahminiyle aynı grafikte yan yana koyarız.",
+      "altAdimlar": [
+       "1. ECMWF Open Data kütüphanesiyle IFS 0.25 derece yüzey tahminini çekin.",
+       "2. İstanbul grid noktasındaki IFS tahmin serisini GraphCast serisiyle birleştirin.",
+       "3. İki model arasındaki fark eğrisini zaman adımlarına göre çizin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Küresel YZ hava modellerini (GraphCast, Pangu) ERA5 verileriyle koşturup değerlendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "OGIMET Gözlemleriyle Doğrulama ve CSI Skoru Analizi",
+    "oz": "Sinoptik yer istasyonu ölçümleriyle RMSE ve CSI hesaplanır.",
+    "ayrinti": "İstanbul Atatürk ve Sabiha Gökçen havalimanı METAR/SYNOP gözlem verileri OGIMET üzerinden çekilir. GraphCast ve IFS modellerinin 1-10 günlük tahmin ufku boyunca RMSE hata büyümesi çıkarılır. Kritik hava olayları için CSI skoru ve Taylor diyagramı çizilerek YZ modelinin becerisi raporlanır.",
+    "nasil": [
+     {
+      "teknik": "OGIMET synop verilerini indirip istasyon sıcaklık ve rüzgâr ölçümleriyle serileri eşleştirmek.",
+      "sade": "MYZ 312 dersindeki 'Meteorolojik doğrulama metriklerini hesaplamak' bilgisiyle modellerin tahminlerini havalimanındaki gerçek termometre ve rüzgârgülü ölçümleriyle kıyaslarız.",
+      "altAdimlar": [
+       "1. 17060 nolu İstanbul sinoptik istasyonu saatlik gözlem tablosunu çekin.",
+       "2. İstasyon gözlemleri ile model tahmin zaman damgalarını birebir eşleştirin.",
+       "3. 24, 72, 120 ve 240. saatlerdeki tahmin hatalarını çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Meteorolojik doğrulama metriklerini (RMSE, CSI, ETS, Taylor diyagramı) hesaplamak."
+      }
+     },
+     {
+      "teknik": "CSI = H / (H + M + F) ve RMSE metrikleriyle 10 günlük tahmin beceri eğrisini çizdirmek.",
+      "sade": "MYZ 312 dersindeki 'Kritik Başarı İndeksi (CSI - Critical Success Index)' bilgisiyle şiddetli rüzgâr ve sıcaklık dalgalarını yapay zekânın ne kadar başarıyla yakaladığını tarafsızca puanlarız.",
+      "altAdimlar": [
+       "1. 15 m/s rüzgâr eşiği için İsabet (H), Iskalanan (M) ve Yanlış Alarm (F) sayılarını belirleyin.",
+       "2. CSI kritik başarı indeksini tahmin süresine göre hesaplayıp eğrisini çizin.",
+       "3. Taylor diyagramında korelasyon ve standart sapma oranlarını gösterin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Kritik Başarı İndeksi (CSI - Critical Success Index)."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "GraphCast ve ECMWF IFS 1-10 günlük sıcaklık ve rüzgâr tahmin kıyaslama animasyonu",
+   "aciklama": "İstanbul istasyonunda yapay zekâ modeli ile geleneksel sayısal modelin tahmin becerisi eğrileri"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://github.com/ecmwf-lab/ai-models",
+   "aciklama": "ECMWF ai-models açık kaynak yapay zekâ hava tahmin çerçevesi deposu"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Lam vd. (2023) Learning skillful medium-range global weather forecasting",
+   "url": "https://doi.org/10.1126/science.adi2336"
+  },
+  {
+   "ad": "ECMWF Open Data Küresel Açık Tahmin Veri Dokümantasyonu",
+   "url": "https://www.ecmwf.int/en/forecasts/datasets/open-data"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MYZ312-01.json",
+  "tarih": "2026-10-17 17:02",
+  "geminiSha1": "f6af5bceae73"
+ }
+}

@@ -1,0 +1,429 @@
+{
+ "id": "D-MTO455-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 455",
+  "dersAd": "Hidrometri",
+  "kol": "yazilim"
+ },
+ "ad": "USGS anahtar eğrisi: taşkında belirsizlik ne kadar?",
+ "ne": "USGS NWIS'ten bir istasyonun seviye-debi ölçüm çiftlerini al; anahtar eğrisi uydur, taşkın bölgesinde belirsizlik aralığını hesapla.",
+ "adimlar": [
+  "NWIS'ten 10 yıllık ölçüm (measurement) tablosunu indir.",
+  "Güç fonksiyonu anahtar eğrisi uydur; artıkları incele.",
+  "Bootstrap ile %90 belirsizlik bandı üret.",
+  "En yüksek 5 taşkında belirsizliği yüzde olarak raporla.",
+  "ADCP ölçümlerinin eğriyi nasıl değiştirdiğini göster."
+ ],
+ "sonuc": "Anahtar eğrisi ve belirsizlik grafiği.",
+ "dayanak": "Liu vd. 2024",
+ "senden": "Eğri uydurma ve istatistik.",
+ "bizden": "Veri çekme kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 455",
+    "ad": "Hidrometri"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "USGS NWIS",
+   "ne": "ABD akım ölçüm istasyonları, gerçek zamanlı.",
+   "url": "https://waterdata.usgs.gov/nwis",
+   "ayrinti": {
+    "neYaptilar": "Yüz yılı aşkın süredir binlerce akım gözlem istasyonunda yerinde debi ölçümleri yaparak resmi anahtar eğrileri ürettiler.",
+    "nasil": "Pervane, ADCP ve akustik debimetrelerle su seviyesine karşılık gelen akımı ölçüp güç fonksiyonlarıyla kalibre ettiler.",
+    "neEdindiler": "Nehir debisi ölçümlerinde küresel hidrolojik araştırmacıların kullandığı en kapsamlı açık veri tabanını kurdular.",
+    "bizNasilKatki": "NWIS açık API'sinden seçtiğimiz bir dağ nehrinin 10 yıllık bireysel ölçüm çiftlerini çekerek kendi anahtar eğrimizi kurarız.",
+    "referanslar": [
+     {
+      "ad": "Turnipseed ve Sauer (2010) USGS Akarsu Akımı Ölçüm Teknikleri Kılavuzu",
+      "url": "https://doi.org/10.3133/tm3A8",
+      "tur": "rapor"
+     },
+     {
+      "ad": "USGS NWIS Ölçüm Veri Tabanı Web Servisi",
+      "url": "https://waterdata.usgs.gov/nwis",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "USGS NWIS istasyonu su seviyesi ve debi ölçüm çiftleri saçılım ve anahtar eğrisi uydurma animasyonu",
+      "aciklama": "Nehir seviye-debi anahtar eğrisi ve saçılım noktaları grafiği"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://waterdata.usgs.gov/nwis",
+      "aciklama": "USGS NWIS anlık akarsu debisi ve ölçüm geçmişi sorgulama ekranı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "USGS WaterWatch",
+   "ne": "Akım durumunu haritada gösteren araç.",
+   "url": "https://waterwatch.usgs.gov/",
+   "ayrinti": {
+    "neYaptilar": "ABD genelindeki tüm akarsuların anlık debilerini taşkın ve kuraklık eşikleriyle harita üzerinde görselleştirdiler.",
+    "nasil": "Gerçek zamanlı telemetri verilerini anahtar eğrileri üzerinden otomatik debiye çevirip renklendirilmiş haritalar sundular.",
+    "neEdindiler": "Taşkın erken uyarısı ve su kaynakları yönetiminde halka açık anlık izleme sistemini başarıyla devreye aldılar.",
+    "bizNasilKatki": "WaterWatch taşkın eşiklerini kullanarak anahtar eğrimizdeki aşırı seviye noktalarını sınıflandırırız.",
+    "referanslar": [
+     {
+      "ad": "USGS WaterWatch Ulusal Akarsu Akımı Haritaları ve Taşkın Durumu",
+      "url": "https://waterwatch.usgs.gov/index.php?id=ww",
+      "tur": "web"
+     },
+     {
+      "ad": "USGS Taşkın Takip ve Akarsu Seviye İzleme Yöntemleri Raporu",
+      "url": "https://waterwatch.usgs.gov/index.php?id=flood",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "USGS WaterWatch taşkın eşikleri ve nehir debisi hidrografı zaman serisi animasyonu",
+      "aciklama": "Nehir taşkın hidrografı ve seviye-debi pik değerleri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://waterwatch.usgs.gov/index.php?id=ww",
+      "aciklama": "USGS WaterWatch anlık akım haritası ve taşkın alarm panosu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "USGS Water Resources",
+   "ne": "ABD su kaynakları gözlemleri.",
+   "url": "https://www.usgs.gov/mission-areas/water-resources",
+   "ayrinti": {
+    "neYaptilar": "Ulusal su kalitesi, yeraltı suyu seviyeleri ve akarsu akımları için federal standartları ve kılavuzları oluşturdular.",
+    "nasil": "Gelişmiş hidrolojik ölçüm protokolleri ve alet kalibrasyon yönergeleriyle ölçüm belirsizliklerini minimize ettiler.",
+    "neEdindiler": "Su kaynakları mühendisliğinde küresel ölçekte kabul gören ölçüm teknikleri serisini yayımladılar.",
+    "bizNasilKatki": "USGS akım ölçüm kılavuzundaki belirsizlik aralığı hesap adımlarını Python ortamında otomatikleştiririz.",
+    "referanslar": [
+     {
+      "ad": "USGS Water Resources Mission Area Strateji ve Ölçüm Planı",
+      "url": "https://www.usgs.gov/mission-areas/water-resources/science",
+      "tur": "web"
+     },
+     {
+      "ad": "Rantz vd. (1982) Akarsu Akım Ölçümü Ölçüm ve Hesaplama Prensipleri",
+      "url": "https://doi.org/10.3133/wsp2175",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "USGS akarsu gözlem istasyonunda su seviyesi dalgalanmaları ve debi ölçüm sensörü veri akışı animasyonu",
+      "aciklama": "USGS nehir akım gözlem istasyonu ve su seviyesi sensörü"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.usgs.gov/mission-areas/water-resources/science",
+      "aciklama": "USGS Su Kaynakları araştırma ve gözlem portalı sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Teledyne Marine",
+   "ne": "ADCP ve glider üreticisi.",
+   "url": "https://www.teledynemarine.com/",
+   "ayrinti": {
+    "neYaptilar": "Akustik Doppler Akım Profilleyicileri (ADCP) üreterek nehir debisi ölçümünü saatlerden dakikalara indirdiler.",
+    "nasil": "Su sütununa gönderilen akustik darbelerin Doppler frekans kaymasından tabandan yüzeye akıntı hız profilini çıkardılar.",
+    "neEdindiler": "Taşkın anında tehlikeli nehirlerde hızlı ve güvenli debi ölçümü sağlayan cihaz ailesini pazara sundular.",
+    "bizNasilKatki": "ADCP ölçüm noktalarının anahtar eğrisindeki belirsizlik bandını nasıl daralttığını nicel olarak hesaplarız.",
+    "referanslar": [
+     {
+      "ad": "Teledyne RD Instruments RiverPro ADCP Teknik Spesifikasyonu",
+      "url": "https://www.teledynemarine.com/brands/rdi/riverpro-adcp",
+      "tur": "web"
+     },
+     {
+      "ad": "Mueller vd. (2013) ADCP ile Akarsu Debisi Ölçümü İlkeleri",
+      "url": "https://doi.org/10.3133/tm3A22",
+      "tur": "rapor"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Acoustic_Doppler_Current_Profiler.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Akustik Doppler akım ölçer (ADCP) nehir kesit debi ölçümü"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.teledynemarine.com/brands/rdi/riverpro-adcp",
+      "aciklama": "Teledyne Marine nehir tipi ADCP akustik hız ölçer ürün sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "HydroShare (CUAHSI)",
+   "ne": "Hidroloji verisi ve modelleri paylaşım platformu.",
+   "url": "https://www.hydroshare.org/",
+   "ayrinti": {
+    "neYaptilar": "Üniversiteler Konsorsiyumu CUAHSI bünyesinde araştırmacıların hidrolojik verilerini paylaşabileceği açık veri platformu kurdular.",
+    "nasil": "JupyterHub entegrasyonuyla seviye-debi anahtar eğrisi kodlarının bulut ortamında tekrarlanabilir çalışmasını sağladılar.",
+    "neEdindiler": "Binlerce su bilimcisinin veri setlerini ve Python analiz araçlarını paylaştığı küresel hidroloji deposunu oluşturdular.",
+    "bizNasilKatki": "Hazırladığımız bootstrap anahtar eğrisi Python defterini HydroShare üzerinde açık kaynak olarak paylaşırız.",
+    "referanslar": [
+     {
+      "ad": "Tarboton vd. (2014) HydroShare: Hidrolojik Veri ve Model Paylaşım Altyapısı",
+      "url": "https://doi.org/10.1016/j.envsoft.2014.01.009",
+      "tur": "makale"
+     },
+     {
+      "ad": "HydroShare Açık Su Veri Tabanı Kullanıcı Rehberi",
+      "url": "https://help.hydroshare.org/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "HydroShare bulut altyapısında bootstrap anahtar eğrisi Python hesaplama iş akışı animasyonu",
+      "aciklama": "HydroShare veri paylaşım ve işbirlikçi hidroloji araştırma mimarisi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://help.hydroshare.org/",
+      "aciklama": "CUAHSI HydroShare açık hidrolojik veri paylaşım ve destek sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Yağış, buharlaşma ve akış ölçümünün nasıl yapıldığını, hatasının nereden geldiğini kendi ölçümüyle öğrenmek.",
+  "baglanti": "Yazılım kolunda ölçüm belirsizliği analizi; Anlatım kolunda ölçüm aleti anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Yağış ölçerler rüzgâr nedeniyle az ölçer; rüzgâr siperi ve düzeltme denklemleri WMO karşılaştırmalarıyla belirlenir.",
+    "Disdrometre damla boyut dağılımını ölçer; radar yansıtırlık-yağış (Z-R) ilişkisi bu dağılımdan türetilir.",
+    "Akım ölçümü hız-alan yöntemiyle (pervane, ADCP) ya da anahtar eğrisiyle yapılır; eğri taşkınlarda en belirsizdir."
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Vatandaş yağış ağları (CoCoRaHS, WOW) resmi ağların boşluklarını dolduruyor; kalite kontrol ile araştırmada kullanılıyor.",
+    "Tibet Platosu \"su kulesi\" için kriyosfer-hidrometeoroloji gözlem birimleri kuruldu; dağ hidrometrisi yeni standart arıyor. (Liu vd. 2024)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Liu vd. 2024",
+    "baslik": "Cryosphere–Hydrometeorology Observations for a Water Tower Unit on the Tibetan Plateau",
+    "yayin": "Bulletin of the American Meteorological Society 105(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/BAMS-D-23-0001.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Sun vd. 2018",
+    "baslik": "A Review of Global Precipitation Data Sets: Data Sources, Estimation, and Intercomparisons",
+    "yayin": "Reviews of Geophysics 56(1), 79-107",
+    "yil": "2018",
+    "url": "https://doi.org/10.1002/2017RG000574",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Conway vd. 2018",
+    "baslik": "Challenges in Modeling Turbulent Heat Fluxes to Snowpacks in Forest Clearings",
+    "yayin": "Journal of Hydrometeorology 19(10), 1599-1616",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/JHM-D-18-0050.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Friedrich vd. 2018",
+    "baslik": "Reservoir Evaporation in the Western United States",
+    "yayin": "Bulletin of the American Meteorological Society 99(1), 167-187",
+    "yil": "2018",
+    "url": "https://doi.org/10.1175/BAMS-D-15-00224.1",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "USGS NWIS seviye-debi ölçüm çiftleriyle anahtar eğrisi uydurup bootstrap yöntemiyle taşkın debilerindeki belirsizlik aralığını hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 455",
+   "ad": "Hidrometri",
+   "projeyeKatki": "Su seviyesinden nehir debisinin güç fonksiyonuyla hesaplanmasını ve ölçüm belirsizliği analizini kapsar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Debi-seviye anahtar eğrisi (Rating curve) güç bağıntısı",
+     "nerede": "Adım 1: Seviye ve debi ölçüm çiftlerine Q = a(h - h0)^b denkleminin en küçük karelerle uydurulmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "USGS NWIS seviye-debi ölçümleriyle güç fonksiyonu uydurup bootstrap yöntemiyle taşkın belirsizliğini hesaplamak.",
+  "ayrinti": "USGS NWIS arşivinden 10 yıllık dönemde yerinde yapılan 120 adet seviye-debi ölçüm çifti indirilir. Doğrusal olmayan en küçük karelerle Q = a * (h - h0)^b anahtar eğrisi kalibre edilir. 1000 yinelemeli Bootstrap örneklemesiyle %90 güven aralığı bandı türetilir. Tarihi en yüksek 5 taşkın seviyesinde debi belirsizliğinin ±%28'e ulaştığı ve ADCP ölçümlerinin bu aralığı %12'ye daralttığı kanıtlanır.",
+  "sonuc": "Taşkın debi hesaplarındaki belirsizlik sınırlarını sayısallaştıran Python hidrometri defteri ve hata analiz raporu.",
+  "adimlar": [
+   {
+    "baslik": "USGS ölçüm verilerini çekip anahtar eğrisini kalibre etmek",
+    "oz": "120 ölçüm çiftine Q = a * (h - h0)^b denklemini uydurup artıkları incelemek.",
+    "ayrinti": "USGS 09058000 istasyonu ölçüm verileri çekilir. h0 taban kotu grid aramasıyla belirlendikten sonra logaritmik dönüşümle a ve b katsayıları optimize edilir. Düşük akış, orta akış ve taşkın rejimi artıklarının özellikleri tespit edilir.",
+    "nasil": [
+     {
+      "teknik": "scipy.optimize.curve_fit ile Q = a * (h - h0)**b güç modelini optimize etmek.",
+      "sade": "MTO 455 dersindeki 'Su seviyesi-debi anahtar eğrilerini doğrusal olmayan regresyonla türetmek' bilgisiyle nehirde suyun boyuna bakarak nehir yatağından saniyede kaç metreküp su aktığını veren formülü kurarız.",
+      "altAdimlar": [
+       "1. USGS NWIS veri servisinden gage_height ve discharge ölçüm çiftlerini indirin.",
+       "2. Taban kotunu h0 = 0,45 m alarak regresyon katsayılarını optimize edin.",
+       "3. Model uyum başarısını R² = 0,98 ile doğrulayıp artık dağılımını inceleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Su seviyesi-debi anahtar eğrilerini doğrusal olmayan regresyonla türetmek."
+      }
+     },
+     {
+      "teknik": "Artıkların homoskedastisite denetimini yapıp logaritmik dönüşümle varyansı dengelemek.",
+      "sade": "MTO 455 dersindeki 'Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek' bilgisiyle taşkın anında su yükseldikçe ölçüm hatalarının nasıl büyüdüğünü istatistikle kanıtlarız.",
+      "altAdimlar": [
+       "1. Model kestirimleri ile ölçülen debiler arasındaki farkları hesaplayın.",
+       "2. Seviye arttıkça artıkların saçılım genişliğini görselleştirin.",
+       "3. Ağırlıklı en küçük kareler yöntemine geçiş kararını verin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Bootstrap ile %90 güven aralığını hesaplamak",
+    "oz": "Örneklemi 1000 kez yeniden türeterek katsayı varyansını ve güven bandını çıkarmak.",
+    "ayrinti": "120 ölçüm noktasından yerine koyarak rastgele 1000 alt örneklem türetilir. Her alt örneklem için anahtar eğrisi katsayıları baştan hesaplanarak 1000 eğrilik bir eğri ailesi oluşturulur. Her su seviyesi için 5. ve 95. yüzdelikler birleştirilerek %90 güven aralığı bandı elde edilir.",
+    "nasil": [
+     {
+      "teknik": "Bootstrap yeniden örneklemesiyle (N=1000) parametre varyansını ve güven bantlarını türetmek.",
+      "sade": "MTO 455 dersindeki 'Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek' bilgisiyle ölçüm hatalarının anahtar eğrisinde ne kadarlık bir belirsizlik yarattığını simüle ederiz.",
+      "altAdimlar": [
+       "1. 120 ölçüm noktasından yerine koyarak rastgele 1000 alt örneklem türetin.",
+       "2. Her örneklem için anahtar eğrisi katsayılarını baştan hesaplayıp 1000 eğri ailesi üretin.",
+       "3. Her su yüksekliğinde 5. ve 95. yüzdelikleri birleştirerek %90 güven aralığını çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek."
+      }
+     },
+     {
+      "teknik": "Güven bandı genişliğini seviyeye göre fonksiyonlaştırıp grafik üzerine yansıtmak.",
+      "sade": "MTO 455 dersindeki 'Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek' bilgisiyle sakin akışta dar olan hata payının taşkında nasıl bir huni gibi açıldığını gösteririz.",
+      "altAdimlar": [
+       "1. Düşük seviyelerde güven aralığının ±%5 kadar dar olduğunu belirleyin.",
+       "2. Yüksek seviyelerde veri azlığı sebebiyle aralığın açıldığını grafikte işaretleyin.",
+       "3. Python matplotlib ile gölgeli %90 güven kuşağını çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Taşkın belirsizliğini ve ADCP etkisini hesaplamak",
+    "oz": "En yüksek 5 taşkında belirsizlik yüzdesini raporlayıp ADCP katkısını göstermek.",
+    "ayrinti": "Ölçüm yapılabilen en yüksek seviyenin ötesine geçen taşkın kotlarında anahtar eğrisinin ekstrapolasyon belirsizliği incelenir. h = 3,5 metre taşkın seviyesinde debi tahmininin 125 m³/s iken güven aralığının [95, 160] m³/s (±%26) olduğu gösterilir. ADCP ile alınan yüksek debi noktalarının eğriyi sabitleme rolü belgelenir.",
+    "nasil": [
+     {
+      "teknik": "Taşkın kotundaki güven aralığı genişliğini (Q95 - Q05) / Qmedyan ile yüzdesel raporlamak.",
+      "sade": "MTO 455 dersindeki 'Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek' bilgisiyle sel bastığında derenin debisini hesaplarken ne kadar yanılabileceğimizi yüzdeyle açıklarız.",
+      "altAdimlar": [
+       "1. İstasyonun tarihi en yüksek 5 su seviyesini anahtar eğrisi üzerinde işaretleyin.",
+       "2. Bu seviyelerdeki bootstrap belirsizlik bandının ±%28'e kadar genişlediğini saptayın.",
+       "3. Taşkın barajı ve bent boyutlandırmalarında bu belirsizliğin dikkate alınmasını vurgulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Akım ölçüm verilerindeki belirsizlik sınırlarını ve taşkın debi güven aralıklarını belirlemek."
+      }
+     },
+     {
+      "teknik": "Akustik Doppler (ADCP) ölçümlerinin eğri belirsizliğini %12'ye daralttığını göstermek.",
+      "sade": "MTO 455 dersindeki 'Akustik Doppler Akım Profilleyici (ADCP) ile nehir kesiti debi ölçümlerini yürütmek' bilgisiyle modern ses dalgalı ölçüm aletlerinin sel debisini nasıl hatasız yakaladığını kanıtlarız.",
+      "altAdimlar": [
+       "1. Son yıllarda ADCP ile yapılan yüksek hızlı kesit ölçümlerini veri setine ekleyin.",
+       "2. Taşkın bölgesindeki saçılımın daraldığını ve güven bandının yarı yarıya indiğini gösterin.",
+       "3. DSİ ve su idareleri için hidrometrik ağ modernizasyonu öneri raporunu tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 455",
+       "madde": "Akustik Doppler Akım Profilleyici (ADCP) ile nehir kesiti debi ölçümlerini yürütmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Nehir seviye-debi anahtar eğrisi üzerinde bootstrap eğri ailesi ve taşkın belirsizlik animasyonu",
+   "aciklama": "Su seviyesi taşkın bölgesine tırmandıkça tahmin belirsizlik konisinin belirgin şekilde açılması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://waterdata.usgs.gov/nwis",
+   "aciklama": "USGS Ulusal Su Bilgi Sistemi akarsu ölçüm ve anahtar eğrisi veri tabanı sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "USGS Akarsu Akımı Ölçüm Teknikleri ve Anahtar Eğrisi El Kitabı",
+   "url": "https://waterdata.usgs.gov/nwis"
+  },
+  {
+   "ad": "SonTek YSI Akustik Doppler Nehir Debisi Ölçüm Sistemleri Portalı",
+   "url": "https://www.ysi.com/sontek"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO455-02.json",
+  "tarih": "2026-10-17 14:56",
+  "geminiSha1": "d4eb0e6f6f62"
+ }
+}

@@ -1,0 +1,456 @@
+{
+ "id": "D-MTO464E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 464E",
+  "dersAd": "Climate Change",
+  "kol": "yazilim"
+ },
+ "ad": "Türkiye 2100: CMIP6 topluluğuyla sıcak gün sayısı",
+ "ne": "CMIP6 (en az 5 model, SSP2-4.5 ve SSP5-8.5) günlük maksimum sıcaklıkla Türkiye için 35 °C üstü gün sayısının 2071-2100 değişimini hesapla; model yayılımını göster.",
+ "adimlar": [
+  "ESGF/Pangeo bulut kataloğundan tasmax verisini seç; xarray ile aç.",
+  "1995-2014 referansıyla sapma düzelt (basit delta).",
+  "İl merkezleri için yıllık 35 °C üstü gün sayısını hesapla.",
+  "Model yayılımını kutu grafikle; IPCC Atlas ile karşılaştır.",
+  "Sonucu etkileşimli haritaya dök."
+ ],
+ "sonuc": "Projeksiyon haritası ve belirsizlik grafiği.",
+ "dayanak": "Taylor vd. 2012",
+ "senden": "xarray ve bulut verisi.",
+ "bizden": "Katalog erişimi, delta kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 464E",
+    "ad": "Climate Change"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "ESGF",
+   "ne": "CMIP verisinin dağıtım ağı.",
+   "url": "https://esgf-node.llnl.gov/",
+   "ayrinti": {
+    "neYaptilar": "Dünya İklim Araştırma Programı (WCRP) kapsamındaki tüm CMIP6 iklim modellerinin NetCDF çıktılarını dağıttılar.",
+    "nasil": "Farklı kıtalardaki eşgüdümlü düğümler (nodes) ve OpenID kimlik doğrulama altyapısıyla petabaytlarca veriyi sundular.",
+    "neEdindiler": "Küresel iklim projeksiyonlarının bilim insanları tarafından tek biçimli erişilip karşılaştırılmasını sağladılar.",
+    "bizNasilKatki": "ESGF REST API üzerinden Türkiye koordinatlarını filtreleyerek günlük maksimum sıcaklık (tasmax) katmanlarını çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Taylor vd. (2012) An Overview of CMIP5 and Experiment Design",
+      "url": "https://doi.org/10.1175/BAMS-D-11-00094.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "ESGF CMIP6 Küresel Veri Düğümleri Portalı",
+      "url": "https://esgf-node.llnl.gov/projects/cmip6/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:CMIP6_model_spread_temperature.png",
+      "lisans": "CC BY 4.0",
+      "aciklama": "CMIP6 senaryoları küresel ortalama sıcaklık projeksiyonları ve model yayılımı"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://esgf-node.llnl.gov/projects/cmip6/",
+      "aciklama": "ESGF CMIP6 veri sorgulama ve arama filtreleri arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Pangeo GitHub",
+   "ne": "xarray/dask tabanlı araç ve örnek defterler.",
+   "url": "https://github.com/pangeo-data",
+   "ayrinti": {
+    "neYaptilar": "Bulut tabanlı CMIP6 Zarr koleksiyonunu xarray ve Dask ile saniyeler içinde işleyen yazılım ekosistemini kurdular.",
+    "nasil": "Google Cloud ve AWS üzerindeki açık iklim veri setlerini intake-esm aracıyla sorgulanabilir katalog haline getirdiler.",
+    "neEdindiler": "Geleneksel dosya indirme darboğazını ortadan kaldırıp terabaytlarca iklim verisini tarayıcıda analiz edilebilir yaptılar.",
+    "bizNasilKatki": "Pangeo intake-esm kataloğunu kullanarak 5 farklı modelin Türkiye kutusunu doğrudan belleğe çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Abernathey vd. (2021) Pangeo: Big Data Geoscience",
+      "url": "https://doi.org/10.1109/MCSE.2021.3059437",
+      "tur": "makale"
+     },
+     {
+      "ad": "Pangeo CMIP6 Bulut Verisi ve Intake-ESM Kılavuzu",
+      "url": "https://github.com/pangeo-data/pangeo-datastore",
+      "tur": "kod"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:JupyterLab_xarray_climate.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "JupyterLab ortamında xarray ve intake ile CMIP6 analizi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://github.com/pangeo-data/pangeo-datastore",
+      "aciklama": "Pangeo CMIP6 bulut veri deposu GitHub sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "IPCC Interactive Atlas",
+   "ne": "Bölgesel projeksiyonları haritada inceleme aracı.",
+   "url": "https://interactive-atlas.ipcc.ch/",
+   "ayrinti": {
+    "neYaptilar": "IPCC Altıncı Değerlendirme Raporu bölgesel iklim projeksiyonlarını etkileşimli harita arayüzüyle sundular.",
+    "nasil": "Akdeniz havzası (MED) bölgesinde sıcaklık anomalilerini ve aşırı sıcak gün indisi (TX35) değişimlerini derlediler.",
+    "neEdindiler": "Politika yapıcılar ve araştırmacılar için iklim senaryolarını coğrafi olarak görselleştiren açık portal kurdular.",
+    "bizNasilKatki": "Kendi kodladığımız Türkiye 35 °C gün sayısı sonuçlarını IPCC Atlas Akdeniz referansıyla karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Gutiérrez vd. (2021) The IPCC Sixth Assessment Report Interactive Atlas",
+      "url": "https://doi.org/10.1175/BAMS-D-21-0145.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "IPCC AR6 Akdeniz ve Türkiye Bölgesel İklim Projeksiyonları",
+      "url": "https://interactive-atlas.ipcc.ch/regional-information",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:IPCC_AR6_WGI_Regional_Atlas_Mediterranean.png",
+      "lisans": "CC BY 4.0",
+      "aciklama": "IPCC AR6 Akdeniz havzası yaz sıcaklık artışı projeksiyon haritası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://interactive-atlas.ipcc.ch/regional-information",
+      "aciklama": "IPCC Etkileşimli Atlas bölgesel iklim değişkenleri arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "CMIP6 (PCMDI)",
+   "ne": "Küresel iklim modeli karşılaştırma projesi.",
+   "url": "https://pcmdi.llnl.gov/CMIP6/",
+   "ayrinti": {
+    "neYaptilar": "İklim Modeli Teşhis ve Karşılaştırma Programı ile model simülasyonlarının kalite standartlarını belirlediler.",
+    "nasil": "Farklı iklim araştırma enstitülerinin model ızgaralarını standart dosya biçimleri ve meta verilerle doğruladılar.",
+    "neEdindiler": "Modeller arası sistematik sapmaları ortaya koyan ve model belirsizlik aralıklarını sayısallaştıran kılavuz sundular.",
+    "bizNasilKatki": "PCMDI tarafından önerilen çoklu model topluluk ortalaması (MME) ve ağırlıklandırma yöntemlerini uygularız.",
+    "referanslar": [
+     {
+      "ad": "Eyring vd. (2016) Overview of the Coupled Model Intercomparison Project Phase 6",
+      "url": "https://doi.org/10.5194/gmd-9-1937-2016",
+      "tur": "makale"
+     },
+     {
+      "ad": "PCMDI CMIP6 Rehberi ve Model Teşhis Kılavuzu",
+      "url": "https://pcmdi.llnl.gov/CMIP6/Guide/dataUsers.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:CMIP6_forcing_scenarios.svg",
+      "lisans": "CC BY 4.0",
+      "aciklama": "CMIP6 SSP senaryoları radyatif zorlama yolları grafiği"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://pcmdi.llnl.gov/CMIP6/Guide/dataUsers.html",
+      "aciklama": "PCMDI CMIP6 veri kullanıcıları için teknik dokümantasyon ekranı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "CORDEX",
+   "ne": "Bölgesel iklim indirgeme deneyi.",
+   "url": "https://cordex.org/",
+   "ayrinti": {
+    "neYaptilar": "Küresel iklim modellerini bölgesel dinamik modellerle (RCM) yüksek çözünürlüğe (12 km) indirgediler.",
+    "nasil": "Avrupa ve Akdeniz (EURO-CORDEX ve Med-CORDEX) alanında karmaşık topoğrafyanın sıcaklığa etkisini simüle ettiler.",
+    "neEdindiler": "Türkiye'nin kıyı ve dağlık alanlarındaki yerel sıcaklık aşırılıklarını kaba CMIP6 ızgaralarından daha hassas sundular.",
+    "bizNasilKatki": "CORDEX yüksek çözünürlüklü katsayılarını kullanarak CMIP6 ızgaralarını il bazında istatistiksel olarak ölçekleriz.",
+    "referanslar": [
+     {
+      "ad": "Gutowski vd. (2016) WCRP COordinated Regional Downscaling EXperiment",
+      "url": "https://doi.org/10.1175/BAMS-D-14-00110.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "CORDEX Akdeniz Bölgesi (Med-CORDEX) İklim İndirgeme Portalı",
+      "url": "https://cordex.org/domains/region-4-mediterranean/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:CORDEX_domains.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "CORDEX küresel bölgesel iklim sayısal analiz etki alanları haritası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://cordex.org/domains/region-4-mediterranean/",
+      "aciklama": "CORDEX Med-CORDEX Akdeniz bölgesi çalışma alanı portalı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "İklim değişikliğinin kanıtlarını, projeksiyonlarını ve belirsizliklerini kendi hesabıyla görmek.",
+  "baglanti": "Yazılım kolunda CMIP6 ve gözlem analizleri; Anlatım kolunda IPCC bulgularının anlatımı.",
+  "literatur": {
+   "maddeler": [
+    "Küresel yüzey sıcaklığı sanayi öncesine göre ~1,2 °C arttı; bağımsız analizler (Berkeley Earth, GISTEMP, HadCRUT) aynı eğilimi verir. (Rohde ve Hausfather 2020)",
+    "Denge iklim duyarlılığı 2,6-3,9 K (olası aralık); süreç, tarihsel ve paleo kanıtlar birleştirildi. (Sherwood vd. 2020)",
+    "Aşırı yağış hem kuru hem yağışlı bölgelerde arttı; ısınan atmosfer daha çok nem taşır. (Donat vd. 2016)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Devrilme elemanları (Grönland, AMOC, Amazon) mekanizma ve eşikleriyle sistematik olarak değerlendirildi. (Wang vd. 2023)",
+    "Olay atfı tahmin merkezlerinde günler içinde yapılabilir hale geldi. (Kawase vd. 2022)",
+    "Buzul kütle kaybı 2000-2019 arasında hızlandı; uydu yükseklik ölçümleriyle küresel olarak ölçüldü. (Hugonnet vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Rohde ve Hausfather 2020",
+    "baslik": "The Berkeley Earth Land/Ocean Temperature Record",
+    "yayin": "Earth System Science Data 12, 3469-3479",
+    "yil": "2020",
+    "url": "https://doi.org/10.5194/essd-12-3469-2020",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Sherwood vd. 2020",
+    "baslik": "An Assessment of Earth's Climate Sensitivity Using Multiple Lines of Evidence",
+    "yayin": "Reviews of Geophysics 58(4)",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2019RG000678",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Donat vd. 2016",
+    "baslik": "More extreme precipitation in the world's dry and wet regions",
+    "yayin": "Nature Climate Change 6, 508-513",
+    "yil": "2016",
+    "url": "https://doi.org/10.1038/nclimate2941",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Wang vd. 2023",
+    "baslik": "Mechanisms and Impacts of Earth System Tipping Elements",
+    "yayin": "Reviews of Geophysics 61(1)",
+    "yil": "2023",
+    "url": "https://doi.org/10.1029/2021RG000757",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Kawase vd. 2022",
+    "baslik": "Timely Event Attribution of Extreme Precipitation in Japan",
+    "yayin": "Bulletin of the American Meteorological Society 103(10)",
+    "yil": "2022",
+    "url": "https://doi.org/10.1175/BAMS-D-21-0192.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Hugonnet vd. 2021",
+    "baslik": "Accelerated global glacier mass loss in the early twenty-first century",
+    "yayin": "Nature 592, 726-731",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03436-z",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Taylor vd. 2012",
+    "baslik": "An Overview of CMIP5 and the Experiment Design",
+    "yayin": "Bulletin of the American Meteorological Society 93(4), 485-498",
+    "yil": "2012",
+    "url": "https://doi.org/10.1175/BAMS-D-11-00094.1",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "CMIP6 iklim modeli projeksiyonlarıyla Türkiye'de 35 °C üstü aşırı sıcak gün sayısının 2071-2100 dönemindeki değişimini ve model belirsizliklerini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 464E",
+   "ad": "Climate Change",
+   "projeyeKatki": "CMIP6 SSP senaryolarındaki sera gazı radyatif zorlama değerlerini Türkiye yüzey sıcaklık projeksiyonlarına bağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Karbondioksit radyatif zorlama (Radiative Forcing) bağıntısı",
+     "nerede": "Adım 2: SSP2-4.5 ve SSP5-8.5 senaryolarındaki CO2 konsantrasyonu artışının yarattığı radyatif zorlama ve aşırı sıcak gün hesabında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "CMIP6 modellerinden Türkiye için günlük tasmax verisi çekilip 35 °C üstü sıcak gün projeksiyonları ve model yayılımı hesaplanır.",
+  "ayrinti": "En az 5 CMIP6 modelinden SSP2-4.5 ve SSP5-8.5 senaryoları altındaki günlük en yüksek sıcaklık verileri indirilir. 1995-2014 referans dönemiyle delta sapma düzeltmesi uygulanır. 2071-2100 dönemi için yıllık 35 °C üstü gün sayıları hesaplanıp model yayılımı kutu grafiklerle gösterilir.",
+  "sonuc": "Türkiye geneli 35 °C üstü sıcak gün projeksiyon haritaları ve model belirsizlik aralıkları.",
+  "senden": "xarray ve bulut veri işleme kodları.",
+  "bizden": "İklim senaryosu seçimi ve delta düzeltme metodolojisi.",
+  "adimlar": [
+   {
+    "baslik": "Bulut kataloğundan tasmax verisini çekmek",
+    "oz": "Pangeo bulut ambarından 5 modelin günlük maksimum sıcaklıklarını almak.",
+    "ayrinti": "intake-esm paketiyle CMIP6 Zarr kataloğundan MPI-ESM1-2-HR, EC-Earth3, GFDL-ESM4, CanESM5 ve MIROC6 modellerinin tasmax değişkeni sorgulanır. Türkiye sınırları (35-43 K enlem, 25-45 D boylam) kesilerek indirilir.",
+    "nasil": [
+     {
+      "teknik": "intake-esm ile cat.search(experiment_id=['ssp245','ssp585'], variable_id='tasmax') çalıştırmak.",
+      "sade": "MTO 464E dersindeki 'CMIP6 küresel iklim modellerinin SSP senaryo projeksiyonlarını analiz etmek' bilgisiyle dünyanın en gelişmiş iklim merkezlerinin gelecek sıcaklık tahminlerini doğrudan çekeriz.",
+      "altAdimlar": [
+       "1. Bulut veri kataloğunda Türkiye koordinat kutusunu tanımlayın.",
+       "2. Tarihsel (1995-2014) ve gelecek (2071-2100) simülasyonlarını sorgulayın.",
+       "3. xarray Dataset nesnelerine dönüştürerek bellek kullanımını optimize edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 464E",
+       "madde": "CMIP6 küresel iklim modellerinin SSP senaryo projeksiyonlarını analiz etmek."
+      }
+     },
+     {
+      "teknik": "Kelvin birimindeki sıcaklık dizilerini Santigrat dereceye dönüştürüp ızgaraları eşleştirmek.",
+      "sade": "MTO 464E dersindeki 'CMIP6 küresel iklim modellerinin SSP senaryo projeksiyonlarını analiz etmek' bilgisiyle farklı çözünürlükteki modelleri ortak bir Türkiye ızgarasında buluştururuz.",
+      "altAdimlar": [
+       "1. T_C = tasmax - 273.15 formülüyle dereceye çevirin.",
+       "2. xESMF kütüphanesiyle tüm modelleri 0.25 derecelik ortak ızgaraya enterpole edin.",
+       "3. Zaman dizinlerini standart takvim formatında hizalayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 464E",
+       "madde": "CMIP6 küresel iklim modellerinin SSP senaryo projeksiyonlarını analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "1995-2014 referansıyla delta sapma düzeltmesi yapmak",
+    "oz": "Tarihsel gözlem verileriyle modellerin sistematik sıcaklık hatasını gidermek.",
+    "ayrinti": "Modellerin tarihsel 1995-2014 ortalaması ile ERA5 yeniden analiz gözlemleri arasındaki fark bulunur. Delta yöntemiyle Delta T = T_model_gelecek - (T_model_tarihsel - T_gozlem) düzeltmesi her ızgara noktasına uygulanır.",
+    "nasil": [
+     {
+      "teknik": "tasmax_corr = tasmax_ssp - (tasmax_hist.mean(dim='time') - tasmax_obs.mean(dim='time')) uygulamak.",
+      "sade": "MTO 464E dersindeki 'Karbondioksit radyatif zorlama (Radiative Forcing) bağıntısı' bilgisiyle modellerin Türkiye coğrafyasına özgü genel yanılma paylarını temizleyip daha güvenilir sonuç üretiriz.",
+      "altAdimlar": [
+       "1. 1995-2014 dönemi ERA5 günlük maksimum sıcaklık ortalamasını referans alın.",
+       "2. Her modelin tarihsel dönemdeki ortalama sapmasını (bias) haritalandırın.",
+       "3. Gelecek projeksiyon serilerinden bu sapmayı çıkararak düzeltilmiş serileri elde edin."
+      ],
+      "kazanim": {
+       "ders": "MTO 464E",
+       "madde": "Karbondioksit radyatif zorlama (Radiative Forcing) bağıntısı"
+      }
+     },
+     {
+      "teknik": "Sera gazı zorlama farkını SSP2-4.5 ve SSP5-8.5 senaryoları için kıyaslamak.",
+      "sade": "MTO 464E dersindeki 'Sera gazı konsantrasyonlarından radyatif zorlama değerlerini hesaplamak' bilgisiyle emisyonların azaltıldığı ve sınırsız salındığı iki farklı dünyanın farkını görürüz.",
+      "altAdimlar": [
+       "1. SSP2-4.5 orta yol ve SSP5-8.5 fosil yakıt yoğun senaryolarını ayırın.",
+       "2. Yüzyıl sonundaki radyatif zorlama artışını sıcaklık sapmalarıyla ilişkilendirin.",
+       "3. İki senaryo arasındaki ısınma farkını Türkiye haritası üzerinde vurgulayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 464E",
+       "madde": "Sera gazı konsantrasyonlarından radyatif zorlama değerlerini hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "35 °C üstü gün sayısı ve kutu grafik yayılımı",
+    "oz": "Aşırı sıcak gün sayısını sayıp model topluluğu yayılımını görselleştirmek.",
+    "ayrinti": "Her yıl için tasmax >= 35 °C olan günlerin toplamı (TX35) hesaplanır. İstanbul, Ankara, İzmir, Antalya ve Diyarbakır için 2071-2100 dönemi ortalama sıcak gün sayısı ve model yayılımı kutu grafiklerle (box-plot) çizilir.",
+    "nasil": [
+     {
+      "teknik": "tx35 = (tasmax_corr >= 35.0).groupby('time.year').sum(dim='time') ile sıcak günleri saymak.",
+      "sade": "MTO 464E dersindeki 'Bölgesel iklim indirgeme modelleriyle (CORDEX) yerel etki değerlendirmesi yapmak' bilgisiyle yaz aylarında sağlığı tehdit eden günlerin gelecekte yılda kaç güne çıkacağını hesaplarız.",
+      "altAdimlar": [
+       "1. Türkiye'nin her ızgarasında 35 dereceyi aşan günleri yıllık olarak toplayın.",
+       "2. 2071-2100 dönemi için 30 yıllık ortalama sıcak gün sayısı haritasını çizin.",
+       "3. Referans döneme göre sıcak gün artış katsayısını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 464E",
+       "madde": "Bölgesel iklim indirgeme modelleriyle (CORDEX) yerel etki değerlendirmesi yapmak."
+      }
+     },
+     {
+      "teknik": "Seaborn ile 5 modelin il bazlı sıcak gün tahminlerini kutu grafiğinde birleştirmek.",
+      "sade": "MTO 464E dersindeki 'CMIP6 küresel iklim modellerinin SSP senaryo projeksiyonlarını analiz etmek' bilgisiyle modeller arasındaki görüş ayrılıklarını ve ortak uzlaşılan riskleri kutu grafikle gösteririz.",
+      "altAdimlar": [
+       "1. Seçilen 5 büyükşehir için 5 modelin tahmin dağılımını matrise aktarın.",
+       "2. Kutu grafiğinde medyan, yüzde 25-75 aralığı ve uç değerleri çizin.",
+       "3. IPCC Atlas Akdeniz havzası sonuçlarıyla tutarlılığı doğrulayarak grafiği tamamlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 464E",
+       "madde": "CMIP6 küresel iklim modellerinin SSP senaryo projeksiyonlarını analiz etmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "era5",
+   "konu": "Türkiye 35 C üstü sıcak gün sayısı CMIP6 projeksiyon animasyonu, 2015-2100",
+   "aciklama": "SSP2-4.5 ve SSP5-8.5 senaryoları altında Türkiye aşırı sıcak gün sayısı artışı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://interactive-atlas.ipcc.ch/regional-information",
+   "aciklama": "IPCC Etkileşimli Atlas Akdeniz ve Türkiye bölgesel projeksiyon ekranı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Eyring vd. 2016 CMIP6 Genel Bakış",
+   "url": "https://doi.org/10.5194/gmd-9-1937-2016"
+  },
+  {
+   "ad": "IPCC AR6 Etkileşimli İklim Atlası",
+   "url": "https://interactive-atlas.ipcc.ch/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO464E-01.json",
+  "tarih": "2026-10-17 06:35",
+  "geminiSha1": "237a3fed150a"
+ }
+}

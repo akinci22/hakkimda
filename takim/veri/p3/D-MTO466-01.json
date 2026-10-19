@@ -1,0 +1,428 @@
+{
+ "id": "D-MTO466-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 466",
+  "dersAd": "Atmosferde Optik ve Akustik",
+  "kol": "yazilim"
+ },
+ "ad": "Gök neden mavi, gün batımı neden kızıl? libRadtran ile spektrum",
+ "ne": "libRadtran ile farklı güneş zenit açıları ve aerosol yükleri için gök parlaklığı spektrumlarını hesapla; renk koordinatına çevirip gerçek fotoğrafla karşılaştır.",
+ "adimlar": [
+  "libRadtran kur; US standart atmosfer ve AERONET AOD girdisiyle uvspec koştur.",
+  "Zenit 0-90° için zenit gök parlaklığı spektrumlarını üret.",
+  "Spektrumu CIE XYZ → RGB'ye çevir; renk şeridi yap.",
+  "Aynı saatlerde çekilmiş gök fotoğrafının piksel rengiyle karşılaştır.",
+  "Tozlu bir günde (yüksek AOD) farkı göster."
+ ],
+ "sonuc": "Spektrum-renk grafikleri; saçılma fiziğini renkle doğrulamış olursun.",
+ "dayanak": "Clough vd. 2005",
+ "senden": "Komut satırı ve Python.",
+ "bizden": "Kurulum ve örnek girdi.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 466",
+    "ad": "Atmosferde Optik ve Akustik"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "libRadtran",
+   "ne": "Atmosferik ışınımsal transfer paketi, açık kaynak.",
+   "url": "https://www.libradtran.org/",
+   "ayrinti": {
+    "neYaptilar": "Münih Ludwig Maximilian Üniversitesi ve DLR araştırmacıları, atmosferde ışınım transferini dalgaboyu bazında çözen açık kaynaklı bir simülasyon kütüphanesi geliştirdiler.",
+    "nasil": "uvspec motoru ile discrete ordinates yöntemini birleştirerek gaz soğurumu, aerosol ve bulut saçılmasını spektral katmanlarda modellediler.",
+    "neEdindiler": "Küresel atmosfer fiziği camiasında binlerce atıf alan, uydu ve yer gözlemlerinin kalibrasyonunda standart kabul edilen açık kaynak yazılım paketi oluşturdular.",
+    "bizNasilKatki": "Python pyuvspec veya subprocess köprüsüyle libRadtran girdi dosyalarını otomatik üretip farklı güneş açılarında gökyüzü renk spektrumunu simüle ederiz.",
+    "referanslar": [
+     {
+      "ad": "Emde vd. (2016) The libRadtran software package for radiative transfer, GMD",
+      "url": "https://doi.org/10.5194/gmd-9-1647-2016",
+      "tur": "makale"
+     },
+     {
+      "ad": "libRadtran Resmi Dokümantasyon ve Araç Seti",
+      "url": "https://www.libradtran.org/doku.php?id=documentation",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rayleigh_sunlight_scattering.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Güneş ışığının atmosfer moleküllerinde dalgaboyuna bağlı saçılma mekanizması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.libradtran.org/doku.php?id=documentation",
+      "aciklama": "libRadtran ışınımsal transfer paketi dokümantasyon sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NASA AERONET",
+   "ne": "Küresel fotometre ağı ile aerosol optik derinliği ve saçılma ölçümleri.",
+   "url": "https://aeronet.gsfc.nasa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Güneş fotometreleri ile yüzlerce istasyonda doğrudan güneş ışığı ve gökyüzü saçılma parlaklığını ölçtüler.",
+    "nasil": "Farklı dalgaboylarında (340-1020 nm) optik derinlik ve faz fonksiyonlarını Mie saçılma algoritmalarıyla ters çözüme tabi tuttular.",
+    "neEdindiler": "Küresel aerosol ve optik sönüm araştırmalarında birincil yer doğrulama veri tabanını kurdular.",
+    "bizNasilKatki": "AERONET açık verilerini çekerek Rayleigh ve Mie saçılması teorik simülasyonumuzu ölçümlerle karşılaştırırız.",
+    "referanslar": [
+     {
+      "ad": "Holben vd. (1998) AERONET Küresel Aerosol İzleme Ağı İlkeleri",
+      "url": "https://doi.org/10.1016/S0034-4257(98)00031-5",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA AERONET Veri İndirme ve İstasyon Portalı",
+      "url": "https://aeronet.gsfc.nasa.gov/new_web/data.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rayleigh_sunlight_scattering.png",
+      "lisans": "CC BY-SA 4.0",
+      "aciklama": "Güneş ışınlarının atmosfer moleküllerinde Rayleigh saçılması prensip şeması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://aeronet.gsfc.nasa.gov/new_web/aerosols.html",
+      "aciklama": "AERONET küresel aerosol optik kalınlığı haritası arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "pvlib python",
+   "ne": "Güneş konumu, açık gökyüzü ışınımı ve PV simülasyon kütüphanesi.",
+   "url": "https://pvlib-python.readthedocs.io/",
+   "ayrinti": {
+    "neYaptilar": "Açık kaynak geliştirici takımı ve Sandia Ulusal Laboratuvarları, atmosferik ışınım ve güneş spektrumunu hesaplayan modüler bir Python kütüphanesi kurdular.",
+    "nasil": "Güneş zenit açısı, açık hava ışınım modelleri ve spektral uyumsuzluk algoritmalarını optimize edilmiş NumPy fonksiyonlarıyla kodladılar.",
+    "neEdindiler": "Güneş enerjisi mühendisliği ve atmosferik hesaplamalar alanında on binlerce aktif kullanıcıya ulaşan açık kaynak ekosistemi sağladılar.",
+    "bizNasilKatki": "pvlib fonksiyonlarıyla günün her saati için zenit açısını hesaplayıp saçılma fonksiyonuna girdi olarak besleriz.",
+    "referanslar": [
+     {
+      "ad": "Holmgren vd. (2018) pvlib python: a python package for modeling solar energy systems, JOSS",
+      "url": "https://doi.org/10.21105/joss.00884",
+      "tur": "makale"
+     },
+     {
+      "ad": "pvlib python Resmi Dokümantasyon ve Kullanım Rehberi",
+      "url": "https://pvlib-python.readthedocs.io/en/stable/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Solar_Spectrum.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Atmosfer dışı ve deniz seviyesi güneş ışınım spektrumu karşılaştırması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://pvlib-python.readthedocs.io/en/stable/",
+      "aciklama": "pvlib python atmosferik ışınım modelleri API dokümantasyon sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Atmospheric Optics (Les Cowley)",
+   "ne": "Hale, gökkuşağı, serap fiziğini simülasyonlarla anlatan referans site.",
+   "url": "https://atoptics.co.uk/",
+   "ayrinti": {
+    "neYaptilar": "Les Cowley, atmosferdeki optik olayların (hale, serap, korona, gökkuşağı) ışık kırılması ve saçılması ilkeleriyle simülasyonunu ve arşivini oluşturdu.",
+    "nasil": "Işın izleme simülasyonları ve Monte Carlo saçılma yöntemleriyle buz kristallerinde ve su damlacıklarında ışık yollarını modellediler.",
+    "neEdindiler": "Dünya genelinde atmosfer fizikçileri ve meteorologlar için en kapsamlı atmosferik optik referans portalını ve simülasyon araçlarını sundular.",
+    "bizNasilKatki": "Simülasyonlardan elde edilen açısal parlaklık verilerini libRadtran saçılma çıktılarıyla kıyaslayıp doğrulama kurgularız.",
+    "referanslar": [
+     {
+      "ad": "Laven (2003) Simulation of rainbows, coronas, and glories by use of Mie theory, Applied Optics",
+      "url": "https://doi.org/10.1364/AO.42.000436",
+      "tur": "makale"
+     },
+     {
+      "ad": "Atmospheric Optics Optics and Halos Guide",
+      "url": "https://atoptics.co.uk/halosim.htm",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Rainbow_formation.png",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Yağmur damlasında ışık kırılması ve gökkuşağı açılarının geometrik analizi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://atoptics.co.uk/halosim.htm",
+      "aciklama": "Atmospheric Optics haleleri ışın izleme simülasyon aracı sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Cimel Electronique",
+   "ne": "CE318-T güneş fotometresi ve optik ölçüm sistemleri üreticisi.",
+   "url": "https://www.cimel.fr/ce318-t/",
+   "ayrinti": {
+    "neYaptilar": "Güneş ve ay takip eden çok kanallı optik filtreli radyometrik sensör sistemleri geliştirdiler.",
+    "nasil": "Robotik motorize ayaklar üzerinde güneşi miliradyan hassasiyetle izleyip spektral ışınım akılarını belirlediler.",
+    "neEdindiler": "WMO ve AERONET standartlarında küresel iklim izleme donanım altyapısını sağladılar.",
+    "bizNasilKatki": "Cimel filtre dalgaboylarına denk gelen saçılma katsayılarını hesaplayan Python fonksiyonları yazarız.",
+    "referanslar": [
+     {
+      "ad": "Cimel CE318-T Güneş Fotometresi Teknik Dokümantasyonu",
+      "url": "https://www.cimel.fr/ce318-t/",
+      "tur": "web"
+     },
+     {
+      "ad": "Bohren ve Huffman (1983) Küçük Parçacıklarla Işık Saçılması",
+      "url": "https://doi.org/10.1002/9783527618156",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "380-780 nm dalgaboylarında Rayleigh saçılma kesiti ve gökyüzü tayf animasyonu",
+      "aciklama": "Mavi dalgaboyunda saçılmanın yüksekliğiyle mavi gökyüzü oluşumu"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.cimel.fr/ce318-t/",
+      "aciklama": "Cimel Electronique otomatik güneş fotometresi teknik veri sayfası"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Gökkuşağı, hale, serap, gök gürültüsü ve infrasesin fiziğini hesaplayıp gözlemek.",
+  "baglanti": "Yazılım kolunda ışınımsal transfer ve ses yayılımı hesapları; Anlatım kolunda gökyüzü olayları anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Rayleigh saçılması dalga boyunun dördüncü kuvvetiyle ters orantılıdır (mavi gök); Mie saçılması aerosol boyutunda beyaz pus verir.",
+    "Hale 22° buz kristali prizma kırılmasıyla, gökkuşağı su damlasında kırılma+yansımayla oluşur; her ikisi geometrik optikle hesaplanır.",
+    "Işınımsal transfer kodları (libRadtran, AER LBLRTM) gök parlaklığı ve ışınımı dalga boyu bazında hesaplar. (Clough vd. 2005)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Tüm gökyüzü kamera görüntülerinden bulut oranı otomatik çıkarılıyor; günlük döngü ve mevsimsellik ölçüldü. (Sunil vd. 2021)",
+    "Yıldırım, GOES GLM ve MTG LI ile uzaydan sürekli izleniyor; gönüllü ağlar (Blitzortung) yer tabanlı konumlama yapıyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Clough vd. 2005",
+    "baslik": "Atmospheric radiative transfer modeling: a summary of the AER codes",
+    "yayin": "Journal of Quantitative Spectroscopy and Radiative Transfer 91(2), 233-244",
+    "yil": "2005",
+    "url": "https://doi.org/10.1016/j.jqsrt.2004.05.058",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sunil vd. 2021",
+    "baslik": "Diurnal (24 h) cycle and seasonal variability of cloud fraction retrieved from a Whole Sky Imager",
+    "yayin": "Atmospheric Research 248, 105180",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.atmosres.2020.105180",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Stubenrauch vd. 2013",
+    "baslik": "Assessment of Global Cloud Datasets from Satellites",
+    "yayin": "Bulletin of the American Meteorological Society 94(7), 1031-1049",
+    "yil": "2013",
+    "url": "https://doi.org/10.1175/BAMS-D-12-00117.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lohmann ve Feichter 2005",
+    "baslik": "Global indirect aerosol effects: a review",
+    "yayin": "Atmospheric Chemistry and Physics 5, 715-737",
+    "yil": "2005",
+    "url": "https://doi.org/10.5194/acp-5-715-2005",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Rayleigh ve Mie saçılma kuramlarıyla gökyüzü renk tayfını ve görüş sönümünü simüle edip renkle doğrulamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 466",
+   "projeyeKatki": "Atmosferik optik saçılma mekanizmaları ve Koschmieder görüş mesafesi formülü ile havadaki aerosol yoğunluğunun spektral geçirgenliğe etkisi sayısal olarak hesaplanır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Koschmieder atmosferik görüş mesafesi formülü",
+     "nerede": "2. adımda: Toplam atmosferik sönüm katsayısından meteorolojik yatay görüş mesafesini metre cinsinden türetirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Rayleigh saçılması ve Mie teorisiyle güneş ışığının aerosollerde dağılımı hesaplanır.",
+  "ayrinti": "Güneş ışınımının dalgaboyu bağımlılığı ve aerosol tanecik büyüklük dağılımı Python kodu ile entegre edilir. Rayleigh saçılma katsayısı lambda^-4 bağıntısıyla hava molekülleri için türetilir. İri parçacıklar için Mie saçılma fonksiyonları çözülerek Koschmieder bağıntısıyla görüş mesafesi hesaplanır.",
+  "sonuc": "Atmosferdeki optik kalınlık ve ufuk hattı görüş mesafesi spektroskopik olarak doğrulanır.",
+  "adimlar": [
+   {
+    "baslik": "Rayleigh ve Mie Saçılma Katsayıları Hesabı",
+    "oz": "Hava yoğunluğu ve aerosol dağılımından dalgaboyuna bağlı saçılma katsayıları türetilir.",
+    "ayrinti": "Atmosferik gaz molekülleri ve aerosol parçacıkları için dalgaboyu bağımlı saçılma kesitleri hesaplanır. Rayleigh formülasyonu ile mavi ışığın kırmızıya göre daha fazla saçılması sayısal olarak türetilirken, iri partiküller için Mie saçılma algoritmaları çözülür.",
+    "nasil": [
+     {
+      "teknik": "sigma_r = (8*pi^3*(n^2-1)^2)/(3*N*lambda^4) formülüyle Rayleigh saçılma katsayısını hesaplamak.",
+      "sade": "MTO 466 dersindeki 'Rayleigh ve Mie saçılması algoritmalarıyla gökyüzü parlaklığı ve rengini analitik olarak çözmek' bilgisiyle mavi ışığın neden kırmızıdan çok saçıldığını sayısal olarak formüle ederiz.",
+      "altAdimlar": [
+       "1. 380-780 nm dalgaboyu aralığını 5 nm adımlarla dizileştirin.",
+       "2. Standart atmosfer basınç ve yoğunluğuna göre kırılma indisini belirleyin.",
+       "3. Her dalgaboyu için saçılma kesitini hesaplayıp renk spektrumunu türetin."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Rayleigh ve Mie saçılması algoritmalarıyla gökyüzü parlaklığı ve rengini analitik olarak çözmek."
+      }
+     },
+     {
+      "teknik": "x = 2*pi*r/lambda boyut parametresiyle Mie saçılma faz fonksiyonunu sayısal entegre etmek.",
+      "sade": "MTO 466 dersindeki 'Rayleigh ve Mie saçılması algoritmalarıyla gökyüzü parlaklığı ve rengini analitik olarak çözmek' bilgisiyle toz ve su damlacıklarının ışığı ileri yönde kırma davranışını çözeriz.",
+      "altAdimlar": [
+       "1. Aerosol parçacık yarıçap dağılımını log-normal eğriyle tanımlayın.",
+       "2. Bessel ve Hankel fonksiyonlarıyla Mie verimlilik faktörlerini hesaplayın.",
+       "3. İleri ve geri saçılma oranlarından asimetri parametresini çıkartın."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Rayleigh ve Mie saçılması algoritmalarıyla gökyüzü parlaklığı ve rengini analitik olarak çözmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Koschmieder Görüş Mesafesi Çözümü",
+    "oz": "Toplam optik sönüm katsayısından meteorolojik görüş uzaklığı kestirilir.",
+    "ayrinti": "Beer-Lambert kanunu ve Koschmieder bağıntısı birleştirilerek aerosol sönümleme katsayısının ufuk çizgisi görüş mesafesine etkisi simüle edilir. Sis ve pus katmanlarında görüş mesafesinin sönüm katsayısıyla ters orantılı değişimi incelenir.",
+    "nasil": [
+     {
+      "teknik": "V = 3.912 / beta_ext Koschmieder eşitliğiyle yatay görüş mesafesini metre cinsinden belirlemek.",
+      "sade": "MTO 466 dersindeki 'Atmosferik görüş mesafesi (Koschmieder bağıntısı) ile aerosol sönümünü ilişkilendirmek' bilgisiyle havadaki pus miktarından insan gözünün görebileceği ufuk mesafesini hesaplarız.",
+      "altAdimlar": [
+       "1. Gaz ve partikül sönüm katsayılarını toplayarak beta_ext değerini bulun.",
+       "2. Yüzde 5 kontrast eşiği kabulüyle Koschmieder formülünü uygulayın.",
+       "3. Sis ve pus koşullarında görüş menzili değişim grafiğini çizin."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Atmosferik görüş mesafesi (Koschmieder bağıntısı) ile aerosol sönümünü ilişkilendirmek."
+      }
+     },
+     {
+      "teknik": "I = I_0 * exp(-tau / mu) Beer-Lambert yasasıyla doğrudan güneş ışığı zayıflamasını hesaplamak.",
+      "sade": "MTO 466 dersindeki 'Atmosferik görüş mesafesi (Koschmieder bağıntısı) ile aerosol sönümünü ilişkilendirmek' bilgisiyle güneş ışınlarının dikey atmosfer sütununda katettiği optik yolu tespit ederiz.",
+      "altAdimlar": [
+       "1. Güneş zenit açısına bağlı bağıl optik hava kütlesini türetin.",
+       "2. Sütun optik derinliğini dalgaboyu katmanlarına göre toplayın.",
+       "3. Yer seviyesine ulaşan doğrudan ışınım akısını hesaplayıp saklayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Atmosferik görüş mesafesi (Koschmieder bağıntısı) ile aerosol sönümünü ilişkilendirmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Spektral Gökyüzü Parlaklığı ve Renk Doğrulaması",
+    "oz": "Hesaplanan tayf CIE renk koordinatlarına dönüştürülüp gözlemle kıyaslanır.",
+    "ayrinti": "Farklı güneş zenit açılarında gökyüzünden saçılan ışınım akısı dalgaboyuna göre toplanır. Elde edilen tayf CIE XYZ renk uzayına ve ardından sRGB değerlerine dönüştürülerek zenit gökyüzü rengi ve gün batımı kızıllığı simüle edilip AERONET verileriyle doğrulanır.",
+    "nasil": [
+     {
+      "teknik": "libRadtran ve uvspec çıktısını CIE renk eşleme fonksiyonlarıyla çarparak XYZ değerlerini çıkarmak.",
+      "sade": "MTO 466 dersindeki 'Rayleigh ve Mie saçılması algoritmalarıyla gökyüzü parlaklığı ve rengini analitik olarak çözmek' bilgisiyle fiziksel ışık dalgaboylarını bilgisayar renk koduna çeviririz.",
+      "altAdimlar": [
+       "1. 380-780 nm dalgaboyu aralığındaki spektrumu renk eşleme tablolarıyla ağırlıklandırın.",
+       "2. X, Y, Z integral değerlerini matris çarpımıyla sRGB koordinatlarına dönüştürün.",
+       "3. Güneş zenit açısı arttıkça gökyüzünün mavi renkten kızıla dönüşümünü görselleştirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Rayleigh ve Mie saçılması algoritmalarıyla gökyüzü parlaklığı ve rengini analitik olarak çözmek."
+      }
+     },
+     {
+      "teknik": "AERONET AOD ölçümleriyle sentetik gökyüzü parlaklık dağılımını karşılaştırmak.",
+      "sade": "MTO 466 dersindeki 'Atmosferik görüş mesafesi (Koschmieder bağıntısı) ile aerosol sönümünü ilişkilendirmek' bilgisiyle yer istasyonundan ölçülen optik kalınlık ile simülasyonu kıyaslarız.",
+      "altAdimlar": [
+       "1. İstasyon seviyesi güneş fotometresi aerosol optik kalınlık verisini zaman serisi olarak okuyun.",
+       "2. Simülasyon modeli spektral parlaklığı ile fotometre verisi arasındaki bağıl hatayı hesaplayın.",
+       "3. Yüksek aerosol yükünde görüş düşüşü ve renk doyumunu grafik üzerinde raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Atmosferik görüş mesafesi (Koschmieder bağıntısı) ile aerosol sönümünü ilişkilendirmek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Atmosferik optik kalınlık ve aerosol sönümü görüş mesafesi simülasyonu",
+   "aciklama": "Gün boyunca bağıl nem ve partikül yoğunluğuna bağlı görüş mesafesi değişimi"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://aeronet.gsfc.nasa.gov/new_web/aerosols.html",
+   "aciklama": "NASA AERONET küresel aerosol optik derinliği ve saçılma ölçüm ağı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Atmospheric Optics and Radiative Transfer",
+   "url": "https://doi.org/10.1002/9783527618156"
+  },
+  {
+   "ad": "NASA AERONET Aerosol Veri ve Algoritma Dokümantasyonu",
+   "url": "https://aeronet.gsfc.nasa.gov/new_web/data.html"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO466-01.json",
+  "tarih": "2026-10-17 16:24",
+  "geminiSha1": "6102e52090bd"
+ }
+}

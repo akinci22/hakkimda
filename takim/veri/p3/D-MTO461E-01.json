@@ -1,0 +1,432 @@
+{
+ "id": "D-MTO461E-01",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 461E",
+  "dersAd": "Gezegen Atmosferlerine Giriş",
+  "kol": "yazilim"
+ },
+ "ad": "Mars'ta bir sol: MEDA/InSight basınç ve toz şeytanları",
+ "ne": "PDS'ten InSight ya da Perseverance meteoroloji verisini al; günlük basınç döngüsünü çiz, ani basınç düşüşlerinden toz şeytanı geçişlerini say.",
+ "adimlar": [
+  "PDS Atmospheres'tan kalibre basınç/sıcaklık/rüzgâr verisini indir.",
+  "Sol bazında basınç döngüsünü ve termal gelgiti çiz.",
+  "Birkaç saniyelik basınç düşüşlerini (> 0,5 Pa) algılayan filtre yaz.",
+  "Geçiş sayısının yerel saat ve mevsime göre dağılımını çıkar.",
+  "Mars Climate Database tahminiyle karşılaştır."
+ ],
+ "sonuc": "Mars günlük döngü grafikleri ve toz şeytanı istatistiği.",
+ "dayanak": "Kodama vd. 2019",
+ "senden": "Veri formatı okuma.",
+ "bizden": "PDS erişimi ve kod.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 461E",
+    "ad": "Gezegen Atmosferlerine Giriş"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "PDS Atmospheres Node",
+   "ne": "Gezegen atmosferi verilerinin özel düğümü (NMSU).",
+   "url": "https://pds-atmospheres.nmsu.edu/",
+   "ayrinti": {
+    "neYaptilar": "NASA'nın tüm gezegen görevlerinden gelen atmosferik basınç, sıcaklık ve optik derinlik verilerini arşivlediler.",
+    "nasil": "Gezegen Veri Sistemi (PDS4) standartlarında kalibre edilmiş yüksek çözünürlüklü zaman serilerini açık erişime açtılar.",
+    "neEdindiler": "Mars atmosfer dinamiği araştırmacılarına onlarca yıllık standartlaştırılmış meteoroloji veri kütüphanesi kazandırdılar.",
+    "bizNasilKatki": "PDS API üzerinden InSight basınç sensörünün 20 Hz örnekleme hızındaki ham CSV akışlarını otomatik indiririz.",
+    "referanslar": [
+     {
+      "ad": "NASA PDS InSight Meteoroloji Arşivi Kataloğu",
+      "url": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/INSIGHT/insight.html",
+      "tur": "veri"
+     },
+     {
+      "ad": "Banfield vd. (2020) Mars InSight Meteoroloji Paketi Ölçüm Sonuçları",
+      "url": "https://doi.org/10.1038/s41561-020-0534-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Insight-instruments-deployed.png",
+      "lisans": "NASA",
+      "aciklama": "InSight iniş aracındaki hava durumu sensörleri ve yerleşim şeması"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/INSIGHT/insight.html",
+      "aciklama": "PDS Atmospheres Node InSight hava durumu veri arşivi sayfası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "NASA InSight",
+   "ne": "Mars yüzeyinde basınç/rüzgâr/sıcaklık ölçen görev.",
+   "url": "https://science.nasa.gov/mission/insight/",
+   "ayrinti": {
+    "neYaptilar": "Elysium Planitia ovasında 4 yıl boyunca sürekli yüksek frekanslı mikrometeorolojik ölçümler yaptılar.",
+    "nasil": "Ultra hassas barometre ve TWINS rüzgâr sensörleriyle saniyede 20 ölçüm alarak türbülansı izlediler.",
+    "neEdindiler": "Mars'ta binlerce toz şeytanı (vorteks) geçişini ve atmosferik yerçekimi dalgasını doğrudan tespit ettiler.",
+    "bizNasilKatki": "Sol 100 ile Sol 500 arasındaki barometre verilerinden fırtına sezonu basınç düşüş genliklerini inceleriz.",
+    "referanslar": [
+     {
+      "ad": "NASA InSight Mars Hava Durumu Günlük Raporları",
+      "url": "https://mars.nasa.gov/insight/weather/",
+      "tur": "web"
+     },
+     {
+      "ad": "Spiga vd. (2018) Atmospheric Science with InSight on Mars",
+      "url": "https://doi.org/10.1007/s11214-018-0543-0",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:InSight_Mars_Weather_Jan-2019_Through_Sep-2021.png",
+      "lisans": "NASA",
+      "aciklama": "InSight barometresiyle saklanan günlük Mars atmosferik basınç dalgalanmaları zaman serisi"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://mars.nasa.gov/insight/weather/",
+      "aciklama": "NASA InSight Elysium Planitia meteoroloji verileri ekranı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "NASA Perseverance",
+   "ne": "MEDA meteoroloji paketiyle Jezero kraterinde hava ölçümü.",
+   "url": "https://science.nasa.gov/mission/mars-2020-perseverance/",
+   "ayrinti": {
+    "neYaptilar": "Jezero kraterinde MEDA sensör paketiyle toz kaldırma mekanizmalarını ve radyasyon bütçesini incelediler.",
+    "nasil": "Rüzgâr sensörleri, optik toz sayacı (TIRS/RDS) ve basınç transdüserleriyle eşzamanlı ölçüm yaptılar.",
+    "neEdindiler": "Toz şeytanlarının iç basınç çekirdeği yapısını ve yüzeyden toz kaldırma verimini kanıtladılar.",
+    "bizNasilKatki": "Perseverance MEDA basınç düşüşleriyle InSight verilerini kıyaslayarak krater içi topoğrafya etkisini buluruz.",
+    "referanslar": [
+     {
+      "ad": "Rodriguez-Manfredi vd. (2021) The Mars Environmental Dynamics Analyzer (MEDA)",
+      "url": "https://doi.org/10.1007/s11214-021-00816-9",
+      "tur": "makale"
+     },
+     {
+      "ad": "NASA Mars 2020 Jezero Krateri MEDA Hava İstasyonu Kataloğu",
+      "url": "https://mars.nasa.gov/mars2020/mission/instruments/meda/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:25283_MEDA_booms_1024_Perseverance_rover.jpg",
+      "lisans": "NASA",
+      "aciklama": "Perseverance gezgini üzerindeki MEDA çevre dinamiği sensör bomları"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://mars.nasa.gov/mars2020/mission/instruments/meda/",
+      "aciklama": "NASA Perseverance MEDA hava istasyonu teknik portalı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Mars Climate Database (LMD)",
+   "ne": "Mars genel dolaşım modelinden üretilmiş iklim veri tabanı; web arayüzü var.",
+   "url": "https://www-mars.lmd.jussieu.fr/",
+   "ayrinti": {
+    "neYaptilar": "Fransa CNRS/LMD ekibi Mars atmosferinin 3 boyutlu genel dolaşım modelini (GCM) geliştirdi.",
+    "nasil": "Işınımsal transfer, CO2 yoğuşma döngüsü ve toz taşınımı denklemlerini sayısal ızgaralarda çözdüler.",
+    "neEdindiler": "Herhangi bir Mars yılı, mevsimi ve koordinatı için referans basınç ve sıcaklık simülasyonu sağladılar.",
+    "bizNasilKatki": "InSight iniş sahası koordinatları için MCD modelinden öngörülen diurnal basınç eğrisini çekeriz.",
+    "referanslar": [
+     {
+      "ad": "Millour vd. (2018) The Mars Climate Database (MCD version 5.3)",
+      "url": "https://www-mars.lmd.jussieu.fr/mcd_python/",
+      "tur": "veri"
+     },
+     {
+      "ad": "Forget vd. (1999) Improved General Circulation Models of the Martian Atmosphere",
+      "url": "https://doi.org/10.1029/1999JE001025",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Mars_general_circulation.png",
+      "lisans": "NASA",
+      "aciklama": "Mars atmosferinde gündüz-gece ısı farkıyla oluşan genel dolaşım ve rüzgâr hücreleri"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www-mars.lmd.jussieu.fr/mcd_python/",
+      "aciklama": "LMD Mars Climate Database web simülasyon arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Centro de Astrobiología (INTA-CSIC)",
+   "ne": "Perseverance MEDA ve Curiosity REMS meteoroloji aletlerinin merkezi.",
+   "url": "https://cab.inta-csic.es/rems/",
+   "ayrinti": {
+    "neYaptilar": "Mars yüzeyinde çalışan rüzgâr, basınç ve morötesi radyasyon sensör paketlerini tasarlayıp ürettiler.",
+    "nasil": "İspanya Ulusal Uzay Enstitüsü tesislerinde aşırı soğuk ve düşük basınçlı Mars odalarında kalibrasyon yaptılar.",
+    "neEdindiler": "Üç farklı Mars yüzey görevinde (Curiosity, InSight, Perseverance) başarıyla çalışan meteoroloji donanımı kurdular.",
+    "bizNasilKatki": "Sensörlerin gürültü eşiklerini ve sıcaklık sapma katsayılarını algoritma filtrelerine parametre yaparız.",
+    "referanslar": [
+     {
+      "ad": "Centro de Astrobiologia Mars Gezegen Meteorolojisi ve REMS Portalı",
+      "url": "https://cab.inta-csic.es/rems/",
+      "tur": "web"
+     },
+     {
+      "ad": "Gómez-Elvira vd. (2012) REMS: The Environmental Sensor Suite for the Mars Science Laboratory Rover",
+      "url": "https://doi.org/10.1007/s11214-012-9921-1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:25393_mars2020-2019-11-07-190750_-_IMG_0147_1400_MEDA%27s_Wind_Sensor_2_Perseverance_rover.jpg",
+      "lisans": "NASA",
+      "aciklama": "Centro de Astrobiologia tarafından geliştirilen MEDA rüzgâr sensörü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "Mars Jezero kraterinde MEDA sensörleriyle ölçülen günlük basınç düşüşleri",
+      "aciklama": "Mars yüzeyinde toz şeytanı girdaplarının neden olduğu ani mikro-basınç düşüşleri animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Mars, Venüs, Titan ve ötegezegen atmosferlerini Dünya meteorolojisi araçlarıyla karşılaştırmak.",
+  "baglanti": "Yazılım kolunda gezegen verisi ve ışınımsal transfer; Anlatım kolunda gezegen havası anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Mars atmosferi %95 CO₂, 6 hPa; toz fırtınaları ışınım dengesini değiştirir; Mars Climate Database GCM tabanlı iklim verisi sunar.",
+    "Titan'ın metan döngüsü Dünya'nın su döngüsüne benzer; tropikal göllerin kararlılığı modellerle sınandı. (Tokano 2020)",
+    "Yaşanabilir bölgenin iç sınırı yüzey su dağılımına bağlıdır; 3B iklim modelleri bunu gösterir. (Kodama vd. 2019)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Perseverance MEDA ve InSight, Mars yüzeyinde sürekli basınç/rüzgâr/sıcaklık ölçtü; toz şeytanı geçişleri basınç düşüşleriyle sayıldı.",
+    "NASA PSG ile gezegen spektrumları tarayıcıda hesaplanıyor; ötegezegen atmosfer geçiş spektrumları JWST ile ölçülüyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Tokano 2020",
+    "baslik": "Stable Existence of Tropical Endorheic Lakes on Titan",
+    "yayin": "Geophysical Research Letters 47(2)",
+    "yil": "2020",
+    "url": "https://doi.org/10.1029/2019GL086166",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Kodama vd. 2019",
+    "baslik": "Inner Edge of Habitable Zones for Earth-Sized Planets With Various Surface Water Distributions",
+    "yayin": "Journal of Geophysical Research: Planets 124(10), 2306-2324",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2019JE006037",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Clough vd. 2005",
+    "baslik": "Atmospheric radiative transfer modeling: a summary of the AER codes",
+    "yayin": "Journal of Quantitative Spectroscopy and Radiative Transfer 91(2), 233-244",
+    "yil": "2005",
+    "url": "https://doi.org/10.1016/j.jqsrt.2004.05.058",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Picone vd. 2002",
+    "baslik": "NRLMSISE-00 empirical model of the atmosphere: Statistical comparisons and scientific issues",
+    "yayin": "Journal of Geophysical Research: Space Physics 107(A12)",
+    "yil": "2002",
+    "url": "https://doi.org/10.1029/2002JA009430",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "PDS veri tabanından Mars InSight ve Perseverance meteoroloji ölçümlerini alarak sol bazında basınç döngüsünü ve toz şeytanı geçişlerini çözümlemek.",
+ "ortakDers": [
+  {
+   "kod": "MTO 461E",
+   "ad": "Gezegen Atmosferlerine Giriş",
+   "projeyeKatki": "Mars yüzey basıncı, hidrostatik ölçek yüksekliği ve diurnal termal gelgit döngüsünün sayısal çözümlenmesini sağlar.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Atmosferik ölçek yüksekliği (Scale Height) denklemi",
+     "nerede": "Adım 2: Mars yüzeyindeki 610 Pa ortalama basınç ve ölçek yüksekliği H = R*T/g ile dikey basınç profilinin çıkarılmasında."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Mars PDS meteoroloji verilerinden günlük basınç döngüsü ve ani basınç düşüşleriyle toz şeytanı geçiş sıklığı çıkarılır.",
+  "ayrinti": "InSight barometre zaman serisi okunur. Termal gelgitin yarattığı yarı-günlük ve günlük sinüzoidal basınç dalgaları Fourier analiziyle ayrıştırılır. Arka plan trendi çıkarıldıktan sonra 0,5 Pa üzerindeki ani düşüşler toz şeytanı girdabı olarak filtrelenir ve istatistiği çıkarılır.",
+  "sonuc": "Mars diurnal basınç eğrileri, termal gelgit harmonikleri ve sol bazında toz şeytanı frekans dağılımı.",
+  "senden": "PDS veri formatı ayrıştırma ve zaman serisi görselleştirme.",
+  "bizden": "Gezegen atmosferi fiziği ve filtreleme algoritmaları.",
+  "adimlar": [
+   {
+    "baslik": "PDS Atmospheres kalibre verilerini çekmek ve temizlemek",
+    "oz": "InSight basınç ve sıcaklık zaman serilerini indirip eksik verileri temizlemek.",
+    "ayrinti": "NASA PDS Atmospheres düğümünden InSight iniş aracının kalibre edilmiş barometre verileri indirilir. Zaman damgaları Mars yerel saatine (Local True Solar Time - LTST) ve sol numaralarına dönüştürülür.",
+    "nasil": [
+     {
+      "teknik": "pandas ile InSight 20 Hz ASCII veri tablolarını okuyup UTC zaman damgalarını Mars sol zamanına çevirmek.",
+      "sade": "MTO 461E dersindeki 'Gezegenlerin hidrostatik ölçek yüksekliğini (scale height) ve yüzey basınçlarını hesaplamak' bilgisiyle Dünya saatiyle gelen ölçümleri Mars'ın 24 saat 39 dakikalık günlerine dizeriz.",
+      "altAdimlar": [
+       "1. PDS Atmospheres InSight veri dizininden aylık meteoroloji dosyalarını indirin.",
+       "2. UTC zamanını Mars Areosantrik koordinatlarına göre LTST formatına dönüştürün.",
+       "3. Sensör kalibrasyon bayraklarını denetleyerek hatalı satırları temizleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Gezegenlerin hidrostatik ölçek yüksekliğini (scale height) ve yüzey basınçlarını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Basınç ve sıcaklık dizilerindeki aykırı değerleri 3-sigma filtresiyle ayıklamak.",
+      "sade": "MTO 461E dersindeki 'Gezegenlerin hidrostatik ölçek yüksekliğini (scale height) ve yüzey basınçlarını hesaplamak' bilgisiyle sensör gürültülerini temizleyip gerçek atmosfer basıncını elde ederiz.",
+      "altAdimlar": [
+       "1. 10 dakikalık kayar pencerelerde ortalama ve standart sapma hesaplayın.",
+       "2. 3-sigma bandının dışında kalan elektriksel sıçramaları maskeleyin.",
+       "3. Sürekli ve kesintisiz basınç serisini analize hazır hale getirin."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Gezegenlerin hidrostatik ölçek yüksekliğini (scale height) ve yüzey basınçlarını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sol bazında basınç döngüsünü ve termal gelgiti çizmek",
+    "oz": "Günlük 610 Pa civarındaki basınç salınımını ve harmoniklerini çözümlemek.",
+    "ayrinti": "Mars atmosferi çok ince olduğundan güneş ısınması devasa termal gelgit dalgaları yaratır. Günlük basınç değişimi ortalama basıncın %10'una kadar ulaşır. Hızlı Fourier Dönüşümü (FFT) ile diurnal (24 saat) ve semi-diurnal (12 saat) dalga genlikleri çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "SciPy FFT ile diurnal (S1) ve yarı-diurnal (S2) gelgit bileşenlerinin genlik ve fazını çıkarmak.",
+      "sade": "MTO 461E dersindeki 'Atmosferik ölçek yüksekliği (Scale Height) denklemi' bilgisiyle Mars güneş aldıkça genleşen atmosferin yüzeye yaptığı basıncın gündüz ve gece nasıl değiştiğini analiz ederiz.",
+      "altAdimlar": [
+       "1. Seçilen 30 sol boyunca basınç serisini 1 sol pencerelerine bölün.",
+       "2. FFT algoritmasıyla 1/24 saat ve 1/12 saat frekanslarındaki spektral tepeleri bulun.",
+       "3. LMD Mars Climate Database simülasyonlarıyla hesaplanan gelgit dalgalarıyla karşılaştırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Atmosferik ölçek yüksekliği (Scale Height) denklemi"
+      }
+     },
+     {
+      "teknik": "Matplotlib ile ortalama sol basınç eğrisini ve mevsimsel CO2 yoğuşma trendini görselleştirmek.",
+      "sade": "MTO 461E dersindeki 'Gezegenlerin hidrostatik ölçek yüksekliğini (scale height) ve yüzey basınçlarını hesaplamak' bilgisiyle kutup buzullarında donan karbondioksit yüzünden tüm gezegenin basıncının nasıl indiğini gösteririz.",
+      "altAdimlar": [
+       "1. Sol boyunca saatlik ortalama basınç ve standart sapma bandını çizin.",
+       "2. Mars yılı boyunca kışın kutuplarda CO2 donmasıyla düşen taban basıncını gösterin.",
+       "3. InSight ve Perseverance iniş alanları arasındaki irtifa farkı kaynaklı basınç farkını hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Gezegenlerin hidrostatik ölçek yüksekliğini (scale height) ve yüzey basınçlarını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Ani basınç düşüşü filtresiyle toz şeytanlarını saymak",
+    "oz": "Yüksek frekanslı veride vorteks geçişlerini tespit edip istatistiğini çıkarmak.",
+    "ayrinti": "Toz şeytanı (convective vortex) geçişleri barometrede birkaç saniye içinde 0,5 Pa ile 5 Pa arasında çan eğrisi şeklinde ani bir basınç çökmesi yaratır. Butterworth yüksek geçiren filtre veya kayar medyan farkı ile bu girdaplar otomatik tespit edilir.",
+    "nasil": [
+     {
+      "teknik": "Kayar medyan çıkarımıyla arka planı sıfırlayıp Delta P < -0.5 Pa piklerini yakalamak.",
+      "sade": "MTO 461E dersindeki 'Mars yüzeyinde rüzgâr sürtünmesi ve toz fırtınası başlangıç eşiklerini belirlemek' bilgisiyle iniş aracının üzerinden geçen küçük hortumların bıraktığı basınç izlerini sayarız.",
+      "altAdimlar": [
+       "1. 60 saniyelik kayar medyan penceresiyle arka plan termal gelgit dalgasını çıkarın.",
+       "2. -0,5 Pa eşiğini aşan negatif tepe noktalarını ve yarı-genişlik süresini bulun.",
+       "3. Her tespit edilen olayı yerel Mars saati (LTST) ve mevsimiyle etiketleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Mars yüzeyinde rüzgâr sürtünmesi ve toz fırtınası başlangıç eşiklerini belirlemek."
+      }
+     },
+     {
+      "teknik": "Toz şeytanı sıklığının gün içi saat dağılımını histogram olarak görselleştirmek.",
+      "sade": "MTO 461E dersindeki 'Mars yüzeyinde rüzgâr sürtünmesi ve toz fırtınası başlangıç eşiklerini belirlemek' bilgisiyle hortumların en çok güneşin en dik geldiği öğle saatlerinde çıktığını kanıtlarız.",
+      "altAdimlar": [
+       "1. Tespit edilen vorteksleri 1 saatlik LTST aralıklarına göre gruplayın.",
+       "2. Öğle saatlerindeki konvektif tepe ile rüzgâr hızındaki artış arasındaki korelasyonu hesaplayın.",
+       "3. Sezonluk vorteks frekans haritasını raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 461E",
+       "madde": "Mars yüzeyinde rüzgâr sürtünmesi ve toz fırtınası başlangıç eşiklerini belirlemek."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "goes",
+   "konu": "Mars yüzeyinde diurnal basınç salınımı ve yüksek frekanslı girdap animasyonu",
+   "aciklama": "Mars'ta güneş ısısıyla oluşan termal gelgit dalgaları ve basınç döngüsü"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://mars.nasa.gov/insight/weather/",
+   "aciklama": "NASA InSight Mars hava durumu ölçümleri ve basınç eğrileri sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Banfield vd. 2020 InSight Mars Meteorolojisi",
+   "url": "https://doi.org/10.1038/s41561-020-0534-0"
+  },
+  {
+   "ad": "Rodriguez-Manfredi vd. 2021 Perseverance MEDA Enstrümanı",
+   "url": "https://doi.org/10.1007/s11214-021-00816-9"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO461E-01.json",
+  "tarih": "2026-10-19 05:03",
+  "geminiSha1": "e483dd9c9de1"
+ }
+}

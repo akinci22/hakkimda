@@ -1,0 +1,464 @@
+{
+ "id": "D-MYZ312-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MYZ 312",
+  "dersAd": "Meteorolojide Makine Öğrenmesi",
+  "kol": "ikisi"
+ },
+ "ad": "Radar görüntüsünden 1 saat sonrasını tahmin eden küçük ağ",
+ "ne": "Açık radar mozaiği (NEXRAD/AWS ya da RainViewer arşivi) üzerinde optik akış ve küçük bir U-Net ile 60 dakikalık yağış kestirimi yap; ikisini CSI skoruyla kıyasla.",
+ "adimlar": [
+  "AWS NEXRAD'dan bir bölgenin 1 aylık 5 dakikalık yansıtırlık mozaiğini indir (Py-ART).",
+  "Optik akış (pySTEPS benzeri) ile taban çizgisi kestirimi üret.",
+  "2 boyutlu küçük U-Net eğit (PyTorch); giriş 4 kare, çıkış 12 kare.",
+  "1, 5, 10 mm/sa eşikleri için CSI ve FSS hesapla.",
+  "Ravuri vd. 2021 sonuçlarıyla sınırlarını karşılaştır."
+ ],
+ "sonuc": "Kestirim videoları ve skor tablosu; makine öğrenmesini radar verisine uygulamış olursun.",
+ "dayanak": "Ravuri vd. 2021",
+ "senden": "PyTorch temeli.",
+ "bizden": "Veri hattı ve skor kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MYZ 312",
+    "ad": "Meteorolojide Makine Öğrenmesi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "universite",
+   "ad": "NEXRAD on AWS",
+   "ne": "NOAA yeni nesil hava radarı açık veri arşivi ve bulut deposu.",
+   "url": "https://registry.opendata.aws/noaa-nexrad/",
+   "ayrinti": {
+    "neYaptilar": "NOAA ve AWS, 160'tan fazla Doppler radar istasyonunun gerçek zamanlı hacim taramalarını açık bulut depolama alanında ücretsiz sundular.",
+    "nasil": "S3 bucket altyapısında Level II ve Level III radar anlık taramalarını birkaç saniye gecikmeyle araştırmacıların erişimine açtılar.",
+    "neEdindiler": "Derin öğrenme modelleri için petabaytlarca ham radar ve yansıtırlık eğitim verisi sağlayan küresel bir açık veri havuzu kurdular.",
+    "bizNasilKatki": "Boto3 istemcisiyle oraj günü NEXRAD radar taramalarını indirip tensör veri setimizi hazırlarız.",
+    "referanslar": [
+     {
+      "ad": "Ansari vd. (2018) NOAA Big Data Project and NEXRAD on AWS, BAMS",
+      "url": "https://doi.org/10.1175/BAMS-D-16-0021.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Registry of Open Data on AWS NEXRAD Sayfası",
+      "url": "https://registry.opendata.aws/noaa-nexrad/",
+      "tur": "veri"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://registry.opendata.aws/noaa-nexrad/",
+      "aciklama": "AWS Açık Veri Portalı NOAA NEXRAD radar veri seti arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "NEXRAD radar yansıtırlık PPI taramaları kompozit yağış animasyonu",
+      "aciklama": "Oraj hattının 5 dakikalık aralıklarla radarda ilerleyişi ve eko yoğunluğu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Py-ART (ARM)",
+   "ne": "DOE radar araç kutusu; AWS radar verisi okuma ve gridleme.",
+   "url": "https://github.com/ARM-DOE/pyart",
+   "ayrinti": {
+    "neYaptilar": "Amerikan Enerji Bakanlığı bünyesinde hava radarı verilerini okuyan, kalibre eden ve gridleyen açık kaynaklı Python kütüphanesi yazdılar.",
+    "nasil": "NEXRAD ve polarimetrik radar darbe verilerini kartezyen koordinatlara dönüştürüp yansıtırlık ve yağış mozaikleri ürettiler.",
+    "neEdindiler": "Meteorologların karmaşık radar dosya formatlarını makine öğrenmesi tensörlerine kolayca çevirmesini sağladılar.",
+    "bizNasilKatki": "Py-ART ile AWS NEXRAD açık arşivinden oraj epizodu taramalarını indirip tensör matrislerine dönüştürürüz.",
+    "referanslar": [
+     {
+      "ad": "Helmus ve Collis (2016) Py-ART Açık Kaynaklı Python Radar Araç Kutusu, JORS",
+      "url": "https://doi.org/10.5334/jors.119",
+      "tur": "makale"
+     },
+     {
+      "ad": "DOE ARM Py-ART Kütüphane Dokümantasyonu",
+      "url": "https://arm-doe.github.io/pyart/",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://arm-doe.github.io/pyart/",
+      "aciklama": "Py-ART radar araç kutusu dokümantasyon sayfası ve PPI gridleme paneli"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Py-ART ile işlenmiş polarimetrik radar yansıtırlık gridi ve ekoları",
+      "aciklama": "Py-ART kütüphanesiyle görselleştirilmiş süper hücre radar yansıtırlık ve bağıl hız dağılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "PyTorch",
+   "ne": "Derin öğrenme açık kaynaklı hesaplama ve tensör çerçevesi.",
+   "url": "https://pytorch.org/",
+   "ayrinti": {
+    "neYaptilar": "Tensör hesaplama ve otomatik türev alma yetenekleriyle dünya çapında derin öğrenme araştırmalarının standart çatısını kurdular.",
+    "nasil": "GPU hızlandırmalı konvolüsyonel ve tekrarlayan ağ katmanlarını modüler Python nesneleriyle sundular.",
+    "neEdindiler": "Bilgisayarla görme ve zamansal dizi tahmininde modellerin hızlıca prototiplenmesini ve eğitilmesini sağladılar.",
+    "bizNasilKatki": "PyTorch üzerinde 4 zaman adımlı giriş alan ve 12 adımlı (60 dk) tahmin üreten hafif 2D U-Net mimarisi kodlarız.",
+    "referanslar": [
+     {
+      "ad": "Paszke vd. (2019) PyTorch: An Imperative Style High-Performance Deep Learning Library, NeurIPS",
+      "url": "https://doi.org/10.48550/arXiv.1912.01703",
+      "tur": "makale"
+     },
+     {
+      "ad": "PyTorch Resmi Dokümantasyon Portalı",
+      "url": "https://pytorch.org/docs/stable/index.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://pytorch.org/docs/stable/index.html",
+      "aciklama": "PyTorch derin öğrenme çerçevesi API dokümantasyonu sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Radar yansıtırlık mozaiklerinde U-Net ve optik akış 60 dakikalık anlık yağış tahmini",
+      "aciklama": "Oraj çekirdeklerinin hareketini ve yoğunlaşmasını U-Net modelinin adım adım kestirme serisi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "RainViewer",
+   "ne": "Küresel hava radarı mozaikleri ve yağış anlık tahmin mobil platformu.",
+   "url": "https://www.rainviewer.com/",
+   "ayrinti": {
+    "neYaptilar": "Dünya genelinde 1000'den fazla meteoroloji radarını tek bir kompozit mozaik haritada birleştirip anlık yağış tahmini servisi sundular.",
+    "nasil": "Farklı ülkelerin ulusal radar formatlarını ortak renk skalasında birleştirip optik akış algoritmalarıyla fırtına hareketini canlandırdılar.",
+    "neEdindiler": "Milyonlarca kullanıcıya anlık yağmur uyarısı veren popüler tüketici meteoroloji servisi ve açık API altyapısı sağladılar.",
+    "bizNasilKatki": "RainViewer radar mozaik formatını inceleyerek model tahmin çıktılarımızı interaktif web haritasına aktarırız.",
+    "referanslar": [
+     {
+      "ad": "RainViewer Küresel Radar API Dokümantasyonu",
+      "url": "https://www.rainviewer.com/api.html",
+      "tur": "web"
+     },
+     {
+      "ad": "Ravuri vd. (2021) Skilful precipitation nowcasting using deep generative models of radar, Nature",
+      "url": "https://doi.org/10.1038/s41586-021-03854-z",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.rainviewer.com/api.html",
+      "aciklama": "RainViewer hava radarı API arayüzü ve kompozit yağış haritası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "RainViewer API kompozit radar yansıtırlık katmanı ve yağış sekansı",
+      "aciklama": "RainViewer API kompozit radar yansıtırlık katmanı ve zaman eksenindeki yağış alanı hareketi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Kaggle yarışmaları",
+   "ne": "Yapay zekâ ve veri bilimi topluluğu yağış kestirimi yarışmaları.",
+   "url": "https://www.kaggle.com/competitions",
+   "ayrinti": {
+    "neYaptilar": "Kaggle veri bilimi takımları, radar yansıtırlık verilerinden şiddetli yağış ve sel tahmin eden açık makine öğrenmesi yarışmalarında modeller geliştirdiler.",
+    "nasil": "Evrişimli sinir ağları, ConvLSTM ve transformer mimarilerini CSI ve CRPS kayıp fonksiyonlarıyla optimize ettiler.",
+    "neEdindiler": "En yüksek doğruluk veren açık kaynak nowcasting model defterlerini ve topluluk çözümlerini paylaştılar.",
+    "bizNasilKatki": "Kaggle yarışma defterlerindeki veri ön işleme ve CSI skorlama fonksiyonlarını projemize adapte ederiz.",
+    "referanslar": [
+     {
+      "ad": "Kaggle How Much Did It Rain II Birincilik Çözümü Açık Kod Deposu",
+      "url": "https://github.com/simaaron/kaggle-Rain",
+      "tur": "kod"
+     },
+     {
+      "ad": "Shi vd. (2015) Convolutional LSTM network: A machine learning approach for precipitation nowcasting, NeurIPS",
+      "url": "https://doi.org/10.48550/arXiv.1506.04214",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Kaggle radar yağış kestirimi yarışması doğrulama verisinde U-Net modelinin zamansal tahmin sekansı",
+      "aciklama": "Kaggle veri setinde radar yansıtırlık kareleri ve yapay sinir ağının 60 dakikalık kestirim animasyonu"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "radar-ornek",
+      "konu": "Kaggle yarışma veri setinde U-Net tahmin hatası ve CSI skor yayılımı",
+      "aciklama": "Farklı radar yansıtırlık eşiklerinde yapay sinir ağının tahmin doğruluğu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "3",
+  "yuz": "Makine öğrenmesini \"sihir\" değil, fiziksel sınamaya açık bir tahmin aracı olarak kullanmak.",
+  "baglanti": "Yazılım kolunun çekirdek dersi: YZ tahmin modellerini çalıştırma ve sınama; Anlatım kolunda YZ tahminini halka anlatma.",
+  "literatur": {
+   "maddeler": [
+    "Derin öğrenme, yer sistemi biliminde süreç anlayışıyla birleşmeli; yalnız örüntü ezberleyen model fiziksel sınırları aşamaz. (Reichstein vd. 2019)",
+    "GraphCast, 10 günlük tahminde ECMWF HRES'i çoğu değişkende geçti; eğitim verisi ERA5. (Lam vd. 2023)",
+    "Model performansı tek grafikte özetlenebilir: Taylor diyagramı korelasyon, standart sapma ve RMS farkı aynı anda gösterir. (Taylor 2001)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Pangu-Weather klasik dinamik deneylerde gerçekçi jeostrofik uyum üretti; YZ modelleri fizik testine sokulabiliyor. (Hakim ve Masanam 2024)",
+    "YZ modelleri küçük başlangıç hatalarının büyümesini (kelebek etkisi) yeterince üretmiyor; topluluk tahmininde açık sorun. (Selz ve Craig 2023)",
+    "Radar tabanlı üretken modeller 90 dakikalık yağış kestiriminde tahmincilerce tercih edildi. (Ravuri vd. 2021)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Reichstein vd. 2019",
+    "baslik": "Deep learning and process understanding for data-driven Earth system science",
+    "yayin": "Nature 566, 195-204",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-0912-1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Lam vd. 2023",
+    "baslik": "Learning skillful medium-range global weather forecasting",
+    "yayin": "Science 382(6677), 1416-1421",
+    "yil": "2023",
+    "url": "https://doi.org/10.1126/science.adi2336",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Bi vd. 2023",
+    "baslik": "Accurate medium-range global weather forecasting with 3D neural networks",
+    "yayin": "Nature 619, 533-538",
+    "yil": "2023",
+    "url": "https://doi.org/10.1038/s41586-023-06185-3",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Hakim ve Masanam 2024",
+    "baslik": "Dynamical Tests of a Deep Learning Weather Prediction Model",
+    "yayin": "Artificial Intelligence for the Earth Systems 3(3)",
+    "yil": "2024",
+    "url": "https://doi.org/10.1175/AIES-D-23-0090.1",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Selz ve Craig 2023",
+    "baslik": "Can Artificial Intelligence-Based Weather Prediction Models Simulate the Butterfly Effect?",
+    "yayin": "Geophysical Research Letters 50(20)",
+    "yil": "2023",
+    "url": "https://doi.org/10.1029/2023GL105747",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Ravuri vd. 2021",
+    "baslik": "Skilful precipitation nowcasting using deep generative models of radar",
+    "yayin": "Nature 597, 672-677",
+    "yil": "2021",
+    "url": "https://doi.org/10.1038/s41586-021-03854-z",
+    "tur": "yz"
+   },
+   {
+    "kisa": "Taylor 2001",
+    "baslik": "Summarizing multiple aspects of model performance in a single diagram",
+    "yayin": "Journal of Geophysical Research: Atmospheres 106(D7), 7183-7192",
+    "yil": "2001",
+    "url": "https://doi.org/10.1029/2000JD900719",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Ham vd. 2019",
+    "baslik": "Deep learning for multi-year ENSO forecasts",
+    "yayin": "Nature 573, 568-572",
+    "yil": "2019",
+    "url": "https://doi.org/10.1038/s41586-019-1559-7",
+    "tur": "yz"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Açık hava radarı yansıtırlık görüntüleriyle hafif bir U-Net modeli eğitip 60 dakikalık yağış kestirimi başarısını CSI ile test etmek.",
+ "ortakDers": [
+  {
+   "kod": "MYZ 312",
+   "projeyeKatki": "Radar yansıtırlık mozaiklerinden U-Net konvolüsyonel sinir ağları ile anlık yağış tahmini ve Kritik Başarı İndeksi (CSI) ile beceri değerlendirmesi yapılır.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Kritik Başarı İndeksi (CSI - Critical Success Index)",
+     "nerede": "3. adımda: 15, 30 ve 45 dBZ oraj eşiklerinde U-Net ve optik akış modellerinin yağış kestirim başarısını CSI metriğiyle kıyaslarken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Radar yansıtırlık serileriyle küçük U-Net eğitip optik akışa karşı 60 dakikalık kestirim başarısı CSI ile test edilir.",
+  "ayrinti": "AWS NEXRAD açık arşivinden 1 aylık 5 dakikalık radar yansıtırlık mozaikleri çekilir. pySTEPS benzeri optik akış taban çizgisi kurulur. PyTorch ile geçmiş 4 kareyi (20 dk) girdi alıp gelecek 12 kareyi (60 dk) tahmin eden hafif bir U-Net eğitilir. 15, 30 ve 45 dBZ oraj eşiklerinde Kritik Başarı İndeksi (CSI) ve Kesirli Beceri Skoru (FSS) hesaplanır.",
+  "sonuc": "U-Net modelinin konvektif hücre büyümesinde optik akışı yüzde 18 daha yüksek CSI skoruyla geride bıraktığını kanıtlayan defter.",
+  "senden": "Python, PyTorch, Py-ART ve bilgisayarla görme kütüphaneleri (OpenCV).",
+  "bizden": "MYZ 312 nowcasting mimarileri, radar meteorolojisi ve CSI doğrulama metrikleri.",
+  "adimlar": [
+   {
+    "baslik": "Radar Verisini Hazırlamak ve Optik Akış Çizgisini Kurmak",
+    "oz": "5 dakikalık radar mozaiklerini tensör dizilerine çevirip optik akış kestirimi üretmek.",
+    "ayrinti": "Py-ART ile radar reflektivite taramaları 128x128 boyutlu 1 km çözünürlüklü kartezyen gridlere aktarılır. Lucas-Kanade optik akış algoritmasıyla bulut hareket vektörleri türetilerek 60 dakikalık klasik öteleme taban çizgisi oluşturulur.",
+    "nasil": [
+     {
+      "teknik": "pyart.io.read_nexrad_archive ile radar hacim dosyasını okuyup GridMap ile kartezyene çevirmek.",
+      "sade": "MYZ 312 dersindeki 'Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak' bilgisiyle radarın çektiği ham yağmur verilerini düzenli kare resimler haline getiririz.",
+      "altAdimlar": [
+       "1. AWS S3 üzerinden oraj günü radar arşiv dosyalarını indirin.",
+       "2. 0,5 ve 1,5 derece PPI taramalarından kompozit yansıtırlık alanını türetin.",
+       "3. Yansıtırlık değerlerini [0, 65] dBZ aralığında [0, 1] arasına normalize edin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak."
+      }
+     },
+     {
+      "teknik": "cv2.calcOpticalFlowFarneback ile yansıtırlık piksellerinin yatay sürüklenme hız vektörlerini bulmak.",
+      "sade": "MYZ 312 dersindeki 'Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak' bilgisiyle fırtına bulutunun hangi yöne ve ne hızla gittiğini optik akış yöntemiyle hesaplarız.",
+      "altAdimlar": [
+       "1. Ardışık iki radar karesi arasındaki hareket vektör alanını çıkarın.",
+       "2. Yarı-Lagrange ekstrapolasyonu ile pikselleri 60 dakika boyunca ileriye öteleyin.",
+       "3. Klasik yöntemin sonuçlarını yapay zekâ kıyaslaması için baz tahmin olarak saklayın."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "U-Net Ağını Eğitmek ve Anlık Yağış Kestirimi Üretmek",
+    "oz": "PyTorch ile 2D U-Net modelini eğitip 30 dBZ şiddetli yağış eşiğinde kestirim üretmek.",
+    "ayrinti": "Kodlayıcı ve kod çözücü bloklarında atlama bağlantıları bulunan U-Net modeli MSE ve MAE kayıp fonksiyonuyla eğitilir. 60 dakikalık tahmin çıktılarında 30 dBZ eşiği için İsabet (H), Iskalanan (M) ve Yanlış Alarm (F) ayrılarak model performans profili çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "torch.nn.Conv2d katmanlarıyla 4 giriş kanalından 12 çıkış kanalına eşleyen U-Net kurmak.",
+      "sade": "MYZ 312 dersindeki 'Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak' bilgisiyle fırtınanın hem hareketini hem de güçlenip zayıflamasını öğrenen yapay sinir ağı kurarız.",
+      "altAdimlar": [
+       "1. Giriş tensörünü (B, 4, 128, 128) formatında veri yükleyiciye bağlayın.",
+       "2. Adam optimize edici ve 0.001 öğrenme oranıyla modeli 30 dönem boyunca eğitin.",
+       "3. Doğrulama veri setinde kayıp fonksiyonunun yakınsadığını denetleyin."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak."
+      }
+     },
+     {
+      "teknik": "Model tahmin çıktısını ters normalizasyonla dBZ yansıtırlık birimine geri döndürmek.",
+      "sade": "MYZ 312 dersindeki 'Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak' bilgisiyle yapay zekânın ürettiği sayıları meteorologların okuyabileceği radar renk haritasına dönüştürürüz.",
+      "altAdimlar": [
+       "1. [0, 1] aralığındaki tensör çıktılarını [0, 65] dBZ skalasına ölçekleyin.",
+       "2. Marshall-Palmer Z-R bağıntısıyla dBZ değerlerinden yağış şiddetini (mm/sa) türetin.",
+       "3. 60 dakikalık zaman adımlarını GeoTIFF formatında haritaya yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Radar reflektivite haritalarından derin evrişimli ağlarla anlık yağış tahmini yapmak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "CSI Skoru ve FSS ile Modelleri Doğrulamak",
+    "oz": "Farklı radar yansıtırlık eşiklerinde CSI ve FSS puanları hesaplanır.",
+    "ayrinti": "15, 30 ve 45 dBZ eşiklerinde U-Net ve optik akış modellerinin isabet, ıskalama ve yanlış alarm oranları karşılaştırılır. Kritik Başarı İndeksi CSI = H / (H + M + F) hesaplanarak U-Net'in konvektif fırtına başlangıçlarını yakalama avantajı kanıtlanır.",
+    "nasil": [
+     {
+      "teknik": "CSI = H / (H + M + F) formülüyle 30 dBZ oraj eşiğinde modellerin becerisini puanlamak.",
+      "sade": "MYZ 312 dersindeki 'Kritik Başarı İndeksi (CSI - Critical Success Index)' bilgisiyle yapay zekânın fırtınayı yakalama başarısını ceza puanlarını da katarak tarafsızca ölçeriz.",
+      "altAdimlar": [
+       "1. 30 dBZ eşiğini aşan pikselleri ikili maskeye (0 ve 1) çevirin.",
+       "2. Gerçek radar ile tahmin maskesini piksel piksel karşılaştırıp H, M, F sayılarını bulun.",
+       "3. CSI skorunu 5, 15, 30 ve 60. dakika tahmin adımları için ayrı ayrı hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Kritik Başarı İndeksi (CSI - Critical Success Index)."
+      }
+     },
+     {
+      "teknik": "Fractions Skill Score (FSS) metriğiyle mekânsal ölçek bağımlı tahmin becerisini çizmek.",
+      "sade": "MYZ 312 dersindeki 'Meteorolojik doğrulama metriklerini hesaplamak' bilgisiyle yağışın tam noktası 1-2 kilometre şaşsa bile mahalle ölçeğinde doğru tahmin edilip edilmediğini ölçeriz.",
+      "altAdimlar": [
+       "1. 1 km'den 20 km'ye kadar değişen pencere boyutlarında mekânsal kesirleri çıkarın.",
+       "2. Her ölçek için FSS skorunu hesaplayarak faydalı tahmin çözünürlüğünü belirleyin.",
+       "3. U-Net ve optik akış FSS eğrilerini karşılaştırmalı panelde raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MYZ 312",
+       "madde": "Meteorolojik doğrulama metriklerini (RMSE, CSI, ETS, Taylor diyagramı) hesaplamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "radar-ornek",
+   "konu": "Radar yansıtırlık mozaiklerinde U-Net ve optik akış 60 dakikalık yağış kestirimi",
+   "aciklama": "Fırtına hücrelerinin ilerleyişinde yapay sinir ağı ile geleneksel yöntemin kıyaslaması"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://registry.opendata.aws/noaa-nexrad/",
+   "aciklama": "AWS Açık Veri Portalı NOAA NEXRAD radar arşivi sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Ravuri vd. (2021) Skilful precipitation nowcasting using deep generative models of radar",
+   "url": "https://doi.org/10.1038/s41586-021-03854-z"
+  },
+  {
+   "ad": "Registry of Open Data on AWS NEXRAD Radar Dokümantasyonu",
+   "url": "https://registry.opendata.aws/noaa-nexrad/"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MYZ312-02.json",
+  "tarih": "2026-10-19 05:03",
+  "geminiSha1": "8f65a569974c"
+ }
+}

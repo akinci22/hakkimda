@@ -1,0 +1,438 @@
+{
+ "id": "D-MTO470-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 470",
+  "dersAd": "Oşinografi",
+  "kol": "ikisi"
+ },
+ "ad": "Kendi dalga şamandıran: Spotter benzeri açık tasarım",
+ "ne": "Sofar Spotter mantığıyla ivmeölçer + GPS tabanlı küçük dalga şamandırası yap; Marmara'da bir günlük dalga yüksekliği spektrumu ölç, CMEMS dalga modeliyle kıyasla.",
+ "adimlar": [
+  "IMU + GPS + LoRa modülüyle su geçirmez gövde tasarla (3B baskı).",
+  "İvmeden yer değiştirmeye çift integral; spektrumu FFT ile hesapla.",
+  "Önemli dalga yüksekliği (Hs) ve tepe periyodunu çıkar.",
+  "CMEMS dalga modeli ile aynı saatlerde karşılaştır.",
+  "Tasarımı açık kaynak paylaş."
+ ],
+ "sonuc": "Çalışan şamandıra ve karşılaştırma grafiği.",
+ "dayanak": "Gentemann vd. 2020",
+ "senden": "Elektronik ve sinyal işleme.",
+ "bizden": "Parça listesi ve kod.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 470",
+    "ad": "Oşinografi"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "girisim",
+   "ad": "Sofar Ocean",
+   "ne": "Kompakt Spotter dalga şamandırası ve küresel açık okyanus veri ağı geliştiricisi.",
+   "url": "https://www.sofarocean.com/",
+   "ayrinti": {
+    "neYaptilar": "Basketbol topu boyutunda kompakt, güneş enerjili Spotter dalga şamandıraları geliştirerek küresel okyanuslarda dağıttılar.",
+    "nasil": "GPS dalga hareket sensörü ve hücresel/uydu telemetri ile dalga spektrumu, deniz suyu sıcaklığı ve rüzgâr tahminlerini anlık topladılar.",
+    "neEdindiler": "Dünyanın en büyük gerçek zamanlı açık okyanus dalga ve hava durumu gözlem ağını kurarak hava ve deniz tahminlerini iyileştirdiler.",
+    "bizNasilKatki": "Spotter şamandırasının açık kaynak hareket hesaplama mantığını IMU sensörüyle ucuz donanım üzerinde yeniden üretiriz.",
+    "referanslar": [
+     {
+      "ad": "Raghukumar vd. (2019) Performance characteristics of 'Spotter' wave buoy, JTECH",
+      "url": "https://doi.org/10.1175/JTECH-D-18-0151.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Sofar Ocean Spotter Dalga Şamandırası Donanım Sayfası",
+      "url": "https://www.sofarocean.com/products/spotter",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.sofarocean.com/products/spotter",
+      "aciklama": "Sofar Ocean Spotter kompakt oşinografi dalga şamandırası ürün arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Kıyısal dalga enerjisi spektrumu ve belirgin dalga yüksekliği değişimi",
+      "aciklama": "Farklı frekans bantlarında toplanan dalga enerjisinin zaman serisi animasyonu"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Saildrone",
+   "ne": "Rüzgâr gücüyle seyreden otonom okyanus insansız deniz araçları üreticisi.",
+   "url": "https://www.saildrone.com/",
+   "ayrinti": {
+    "neYaptilar": "Aşırı fırtına koşullarında ve kasırga gözünde aylarca seyredebilen otonom insansız yüzey araçları (USV) filosu tasarladılar.",
+    "nasil": "Kanat yelken tasarımı ve güneş panelleriyle çalışan araçlar üzerindeki akustik doppler akıntı ölçerler ve dalga sensörleriyle veri topladılar.",
+    "neEdindiler": "Geleneksel araştırma gemilerinin giremediği tehlikeli deniz fırtınalarında kesintisiz oşinografik veri toplayan küresel bir servis sundular.",
+    "bizNasilKatki": "Saildrone araçlarının yüzey dalgası ve rüzgâr stresi algoritmalarını mini şamandıramızın açık kod kütüphanesine entegre ederiz.",
+    "referanslar": [
+     {
+      "ad": "Reeves Eyre vd. (2023) Saildrone Direct Covariance Wind Stress, JTECH",
+      "url": "https://doi.org/10.1175/JTECH-D-22-0077.1",
+      "tur": "makale"
+     },
+     {
+      "ad": "Saildrone Okyanus Veri Çözümleri ve Araç Sayfası",
+      "url": "https://www.saildrone.com/solutions/ocean-data",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.saildrone.com/solutions/ocean-data",
+      "aciklama": "Saildrone otonom insansız yüzey aracı okyanus verisi toplama sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:EkmanSpiral.svg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Rüzgâr sürtünmesi ve deniz dalgalarının Ekman akıntı tabakasını tetiklemesi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "NOAA National Data Buoy Center",
+   "ne": "ABD Ulusal Veri Şamandıra Merkezi ve küresel deniz gözlem ağı.",
+   "url": "https://www.ndbc.noaa.gov/",
+   "ayrinti": {
+    "neYaptilar": "Açık okyanus ve kıyılarda yüzlerce demirli meteorolojik ve oşinografik şamandıra ile dalga boyu, frekansı ve yönünü izleyen ağ kurdular.",
+    "nasil": "İvmeölçer ve eğim sensörlerinden türetilen spektral dalga enerjisi verilerini uydu telemetrisi ile NOAA tahmin merkezlerine aktardılar.",
+    "neEdindiler": "Havacılık, denizcilik ve kasırga tahminlerinde kullanılan küresel standartta deniz durumu ve dalga spektrum arşivini oluşturdular.",
+    "bizNasilKatki": "NDBC spektral dalga işleme yöntemlerini ve kalite kontrol algoritmalarını şamandıra analiz kodumuzda referans alırız.",
+    "referanslar": [
+     {
+      "ad": "NOAA NDBC Dalga Ölçüm Prensipleri ve Teknik Kılavuzu",
+      "url": "https://www.ndbc.noaa.gov/measdes.shtml",
+      "tur": "web"
+     },
+     {
+      "ad": "Teng (2002) Wave measurements from NDBC buoys and C-MAN stations, MTS/IEEE Oceans",
+      "url": "https://doi.org/10.1109/OCEANS.2002.1193322",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.ndbc.noaa.gov/measdes.shtml",
+      "aciklama": "NOAA NDBC dalga şamandırası spektral ölçüm dokümantasyon sayfası"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:NOAA-NDBC-discus-buoy.jpg",
+      "lisans": "NOAA",
+      "aciklama": "Açık denizde konuşlu standart meteorolojik ve oşinografik dalga şamandırası"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Copernicus Marine Service",
+   "ne": "Avrupa Birliği operasyonel deniz ve dalga modelleri analiz servisi.",
+   "url": "https://marine.copernicus.eu/",
+   "ayrinti": {
+    "neYaptilar": "Küresel ve bölgesel denizler için WAM ve WAVEWATCH III dalga modellerini koşturarak belirgin dalga yüksekliği tahminleri sundular.",
+    "nasil": "Uydu altimetresi dalga verilerini sayısal dalga modellerine asimile edip saatlik yüksek çözünürlüklü dalga tahminleri ürettiler.",
+    "neEdindiler": "Denizcilik güvenliği ve kıyı erozyonu araştırmaları için kesintisiz operasyonel dalga yüksekliği ve periyodu verisi sağladılar.",
+    "bizNasilKatki": "CMEMS Akdeniz ve Karadeniz dalga modeli çıktısını çekerek kendi mini şamandıra ölçümlerimizle doğrularız.",
+    "referanslar": [
+     {
+      "ad": "Copernicus Marine Service Bölgesel Dalga Ürün Kataloğu",
+      "url": "https://marine.copernicus.eu/services/",
+      "tur": "web"
+     },
+     {
+      "ad": "Ravdas vd. (2018) Operational Wave Forecasting System of the Med-MFC, NHESS",
+      "url": "https://doi.org/10.5194/nhess-18-2675-2018",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://marine.copernicus.eu/services/",
+      "aciklama": "Copernicus Marine Service dalga yüksekliği tahmin kataloğu arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Marmara Denizi belirgin dalga yüksekliği ve tepe periyodu simülasyonu",
+      "aciklama": "Rüzgâr fırtınası sırasında dalga boylarının kıyı şeridinde yükseliş dinamikleri"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "Seabed 2030",
+   "ne": "Küresel okyanus tabanı haritalama ve kıyı batimetrisi araştırma girişimi.",
+   "url": "https://seabed2030.org/",
+   "ayrinti": {
+    "neYaptilar": "GEBCO ve Nippon Vakfı ortaklığıyla dünya okyanus tabanının yüzde yüzünü yüksek çözünürlükte haritalama hedefiyle veri topladılar.",
+    "nasil": "Araştırma gemileri, balıkçı tekneleri ve otonom araçlardan gelen iskandil verilerini kalite kontrolünden geçirip birleştirdiler.",
+    "neEdindiler": "Küresel batimetri haritasının kapsama oranını yüzde 6'dan yüzde 25'in üzerine çıkararak açık deniz haritaları yayınladılar.",
+    "bizNasilKatki": "Kıyı batimetrisi verilerini sığ su dalga dönüşümü (shoaling ve refraksiyon) simülasyonumuzda derinlik girdisi olarak kullanırız.",
+    "referanslar": [
+     {
+      "ad": "Seabed 2030 Küresel Batimetri Haritalama Projesi Portalı",
+      "url": "https://seabed2030.org/about/",
+      "tur": "web"
+     },
+     {
+      "ad": "Mayer vd. (2018) The Nippon Foundation-GEBCO Seabed 2030 Project, Geosciences",
+      "url": "https://doi.org/10.3390/geosciences8020063",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://seabed2030.org/about/",
+      "aciklama": "Seabed 2030 küresel okyanus tabanı batimetri haritalama portalı"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:NASA_bathymetric_world_map.jpg",
+      "lisans": "NASA",
+      "aciklama": "Küresel okyanus batimetrisi ve kıyısal derinlik haritası dağılımı"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Okyanusun atmosferle enerji ve karbon alışverişini gözlem ağları ve modellerle izlemek.",
+  "baglanti": "Yazılım kolunda Argo ve uydu verisi; Anlatım kolunda okyanus-atmosfer etkileşimi anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Argo ağı 4000'e yakın profil şamandırayla üst 2000 m'nin sıcaklık ve tuzluluğunu 10 günde bir ölçer; derin ve biyojeokimyasal genişleme sürüyor. (Roemmich vd. 2019)",
+    "Deniz yüzeyi sıcaklığı uydudan kızılötesi ve mikrodalgayla alınır; bulut ve hata maskeleme kaliteyi belirler. (Koner vd. 2016)",
+    "Deniz seviyesi senaryoları kıyı etki değerlendirmesinin temelidir; termal genleşme ve buz kaybı ana bileşenler. (Nicholls vd. 2014)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "İnsansız yelkenliler (Saildrone) okyanus-atmosfer akılarını gemi kalitesinde, uyarlanabilir rotayla ölçüyor. (Gentemann vd. 2020)",
+    "Haliç ve kapalı denizlerde iklim ısınmasıyla çözünmüş oksijen düşüşü projeksiyonu yapıldı. (Ni vd. 2019)"
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Roemmich vd. 2019",
+    "baslik": "On the Future of Argo: A Global, Full-Depth, Multi-Disciplinary Array",
+    "yayin": "Frontiers in Marine Science 6, 439",
+    "yil": "2019",
+    "url": "https://doi.org/10.3389/fmars.2019.00439",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Koner vd. 2016",
+    "baslik": "Hybrid cloud and error masking to improve the quality of deterministic satellite sea surface temperature retrieval",
+    "yayin": "Remote Sensing of Environment 174, 266-278",
+    "yil": "2016",
+    "url": "https://doi.org/10.1016/j.rse.2015.12.015",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Nicholls vd. 2014",
+    "baslik": "Sea-level scenarios for evaluating coastal impacts",
+    "yayin": "WIREs Climate Change 5(1), 129-150",
+    "yil": "2014",
+    "url": "https://doi.org/10.1002/wcc.253",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Gentemann vd. 2020",
+    "baslik": "Saildrone: Adaptively Sampling the Marine Environment",
+    "yayin": "Bulletin of the American Meteorological Society 101(6), E744-E762",
+    "yil": "2020",
+    "url": "https://doi.org/10.1175/BAMS-D-19-0015.1",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Ni vd. 2019",
+    "baslik": "Large Projected Decline in Dissolved Oxygen in a Eutrophic Estuary Due to Climate Change",
+    "yayin": "Journal of Geophysical Research: Oceans 124(11), 8271-8289",
+    "yil": "2019",
+    "url": "https://doi.org/10.1029/2019JC015274",
+    "tur": "uygulama"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Açık kaynaklı ivmeölçer ve GPS ile mini dalga şamandırası tasarlayıp Marmara'da ölçülen dalga spektrumunu CMEMS modeliyle kıyaslamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 470",
+   "projeyeKatki": "Rüzgâr dalgası fiziği, dalga enerjisi spektrumu ve Ekman kütle taşınımı denklemleriyle dalga şamandırasının ölçtüğü yüzey dalga spektrumu ve rüzgâr gerilmesi analiz edilir.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Ekman kütle taşınımı (Ekman Transport) vektör denklemi",
+     "nerede": "2. adımda: Şamandıranın ölçtüğü dalga yüksekliği ve periyodundan rüzgâr sürtünme gerilmesi ve Ekman yüzey taşınımını türetirken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "IMU tabanlı açık dalga şamandırasıyla dalga spektrumu ölçülüp FFT çift integrali ile Hs ve tepe periyodu çıkarılır.",
+  "ayrinti": "Sofar Spotter mimarisi örnek alınarak 3B baskı su geçirmez küre içinde IMU, GPS ve LoRa modülleri birleştirilir. Düşey ivme verisi çift integral ve FFT ile dalga spektrumuna dönüştürülüp belirgin dalga yüksekliği (Hs) ve tepe periyodu (Tp) hesaplanır. Marmara Denizi'nde yapılan test ölçümleri Copernicus dalga analiziyle kıyaslanır.",
+  "sonuc": "Açık donanımla deniz yüzeyinde dalga yüksekliği ve frekans spektrumunu gerçek zamanlı ölçen çalışan mini şamandıra.",
+  "senden": "Gömülü yazılım (Arduino veya C++), IMU sensör entegrasyonu ve 3B baskı prototipleme.",
+  "bizden": "MTO 470 rüzgâr dalgası fiziği, spektral dalga analizi ve CMEMS veri doğrulama.",
+  "adimlar": [
+   {
+    "baslik": "Şamandıra Donanımı ve Su Geçirmez Gövde Tasarımı",
+    "oz": "IMU, mikrodenetleyici ve LoRa modülü su geçirmez küreye yerleştirilir.",
+    "ayrinti": "Yüzebilen ve dalga hareketini sönümlemeden takip eden ağırlık dengeli 20 cm çaplı küresel gövde tasarlanır. 9 eksenli IMU ivmeölçer, GPS alıcısı ve batarya modülü ağırlık merkezi tabanda kalacak şekilde monte edilir. 10 Hz frekansında ivme verisi mikrodenetleyici belleğine alınır.",
+    "nasil": [
+     {
+      "teknik": "MPU-9250 veya BNO085 sensörüyle 10 Hz frekansta üç eksenli ivme ve yönelim verisini okumak.",
+      "sade": "MTO 470 dersindeki 'Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak' bilgisiyle denizin üstünde inip kalkan şamandıranın her saniyedeki ivmesini sensörlerle toplarız.",
+      "altAdimlar": [
+       "1. IMU sensörünü I2C hattı üzerinden mikrodenetleyiciye bağlayın.",
+       "2. Kalman filtresiyle yerçekimi ivmesi bileşenini düşey eksenden ayrıştırın.",
+       "3. 10 dakikalık zaman pencereleri halinde ivme zaman serisini belleğe alın."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak."
+      }
+     },
+     {
+      "teknik": "LoRa telemetri modülüyle kıyı istasyonuna dalga verisini ve GPS konumunu kablosuz aktarmak.",
+      "sade": "MTO 470 dersindeki 'Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek' bilgisiyle deniz ortasındaki küçük şamandıranın nerede olduğunu ve ne ölçtüğünü kıyıdan kablosuz izleriz.",
+      "altAdimlar": [
+       "1. 868 MHz LoRa paket yapısına anlık koordinat ve ivme istatistiğini ekleyin.",
+       "2. Düşük güç tüketimli uyku modlarıyla pil ömrünü 48 saate çıkarın.",
+       "3. Kıyı alıcısında gelen paketleri CSV dosyasına yazdırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Argo şamandıra verileriyle deniz suyu sıcaklık-tuzluluk profillerini analiz etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "İvmeden Yer Değiştirmeye Çift İntegral ve FFT Analizi",
+    "oz": "Frekans domeninde çift integral ile dalga enerji spektrumu çıkarılır.",
+    "ayrinti": "Zaman domeninde ivmeden yer değiştirmeye doğrudan integral almak kayma hataları üretir. Bu nedenle ivme verisi Hızlı Fourier Dönüşümü (FFT) ile frekans domenine aktarılır, omega kare değerine bölünerek yüzey yer değiştirme spektrumu S(f) hesaplanır. Spektrumun sıfırıncı momenti m0 üzerinden belirgin dalga yüksekliği Hs = 4 * sqrt(m0) türetilir.",
+    "nasil": [
+     {
+      "teknik": "scipy.fft ile ivme serisini frekans domenine aktarıp S_eta(f) = S_a(f) / (2*pi*f)^4 dönüşümü yapmak.",
+      "sade": "MTO 470 dersindeki 'Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak' bilgisiyle ivme sinyalinden deniz dalgalarının tepe ve çukur yüksekliklerini matematiksel olarak elde ederiz.",
+      "altAdimlar": [
+       "1. 1024 noktalık ivme serisine Hanning pencereleme fonksiyonu uygulayın.",
+       "2. FFT genlik spektrumunu frekansın dördüncü kuvvetine bölerek yer değiştirme spektrumunu bulun.",
+       "3. Düşük frekanslı gürültüleri 0.05 Hz yüksek geçiren filtreyle bastırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Hs = 4 * sqrt(m0) ve Tp = 1 / f_peak formülleriyle belirgin dalga parametrelerini hesaplamak.",
+      "sade": "MTO 470 dersindeki 'Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak' bilgisiyle denizcilerin kullandığı belirgin dalga yüksekliğini ve dalgaların geliş aralığını hesaplarız.",
+      "altAdimlar": [
+       "1. Spektrum eğrisi altındaki alanı entegre ederek sıfırıncı moment m0 değerini çıkarın.",
+       "2. 4*sqrt(m0) formülüyle belirgin dalga yüksekliği Hs değerini metre olarak bulun.",
+       "3. Spektrumun en yüksek enerjiye ulaştığı tepe frekansından periyot Tp değerini hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "CMEMS Dalga Modeli ile Karşılaştırma ve Doğrulama",
+    "oz": "Şamandıranın ölçtüğü spektrum Copernicus dalga analizleriyle kıyaslanır.",
+    "ayrinti": "Marmara Denizi'nde yapılan 24 saatlik deneme ölçümleri Copernicus Marine Service (CMEMS) bölgesel dalga modeli çıktısıyla yan yana konur. Rüzgâr sürtünme gerilmesi ve Ekman taşınımı denklemleri kullanılarak yerel rüzgâr hamlelerinin dalga büyümesine etkisi incelenir ve açık kaynak paylaşılır.",
+    "nasil": [
+     {
+      "teknik": "CMEMS Marmara dalga modeli Hs ve VHM0 parametrelerini şamandıra zaman serisiyle senkronize etmek.",
+      "sade": "MTO 470 dersindeki 'Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak' bilgisiyle kendi yaptığımız küçük şamandıranın ölçtüğü dalgaları Copernicus dalga modelleriyle kıyaslarız.",
+      "altAdimlar": [
+       "1. Şamandıranın yüzdüğü koordinattaki model grid noktasını seçin.",
+       "2. Modelin saatlik dalga yüksekliği ile şamandıra Hs değerini aynı grafikte çizin.",
+       "3. İki veri kaynağı arasındaki korelasyon ve RMSE hata farkını çıkarın."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Rüzgâr stresinden Ekman tabakası derinliğini ve yüzey taşınımını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Ekman kütle taşınımı bağıntısıyla ölçülen dalga enerjisinden rüzgâr yüzey gerilmesini denetlemek.",
+      "sade": "MTO 470 dersindeki 'Ekman kütle taşınımı (Ekman Transport) vektör denklemi' bilgisiyle rüzgârın denizi süpürürken suyu ne kadar ittiğini şamandıra hareketinden doğrularız.",
+      "altAdimlar": [
+       "1. Dalga periyodu ve yüksekliğinden yüzey pürüzlülük boyunu türetin.",
+       "2. Rüzgâr sürükleme katsayısı Cd ile rüzgâr gerilmesini hesaplayın.",
+       "3. Açık kaynak donanım ve yazılım dosyalarını GitHub deposunda belgeleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 470",
+       "madde": "Ekman kütle taşınımı (Ekman Transport) vektör denklemi."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Marmara Denizi açıklarında ölçülen belirgin dalga yüksekliği (Hs) ve yönlü enerji spektrumu",
+   "aciklama": "Gün boyunca lodos ve poyraz rüzgârlarıyla değişen dalga enerjisinin spektral dağılımı"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.sofarocean.com/products/spotter",
+   "aciklama": "Sofar Ocean Spotter mini oşinografi dalga şamandırası ürün sayfası"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Raghukumar vd. (2019) Performance characteristics of 'Spotter' wave buoy",
+   "url": "https://doi.org/10.1175/JTECH-D-18-0151.1"
+  },
+  {
+   "ad": "NOAA NDBC Dalga Ölçüm Prensipleri ve Teknik Dokümantasyonu",
+   "url": "https://www.ndbc.noaa.gov/measdes.shtml"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO470-02.json",
+  "tarih": "2026-10-17 16:30",
+  "geminiSha1": "cc26fa19c14e"
+ }
+}

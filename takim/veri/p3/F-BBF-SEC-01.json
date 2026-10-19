@@ -40,7 +40,7 @@
    "tur": "universite",
    "ad": "NIST Lightweight Cryptography Group",
    "ne": "Kritik sensör ağlarında hafif kriptografik kimlik doğrulama standartları geliştiren araştırma grubu.",
-   "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+   "url": "https://csrc.nist.gov/publications/detail/nistir/8454/final",
    "ayrinti": {
     "neYaptilar": "ABD Ulusal Standartlar Enstitüsü, kaynak kısıtlı IoT sensörleri ve meteorolojik ölçüm istasyonları için hafif şifreleme ve kimlik doğrulama standartlarını geliştirdi.",
     "nasil": "Düşük işlem güçlü mikrodenetleyicilerde çalışabilen Ascon ve Ed25519 gibi düşük bellek ayak izine sahip algoritmalar kıyaslandı.",
@@ -48,8 +48,8 @@
     "bizNasilKatki": "NIST hafif doğrulama yönergelerini AURA istasyon paket formatına uyarlayarak açık kaynaklı bir Python doğrulama kütüphanesi kurarız.",
     "referanslar": [
      {
-      "ad": "NIST Lightweight Cryptography Proje Sayfası",
-      "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+      "ad": "NIST Lightweight Cryptography Standardizasyon Raporu (NISTIR 8454)",
+      "url": "https://csrc.nist.gov/publications/detail/nistir/8454/final",
       "tur": "web"
      },
      {
@@ -60,8 +60,9 @@
     ],
     "gorseller": [
      {
-      "tur": "kaydirma",
-      "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "NIST hafif kriptografi standartları ve algoritma kıyaslama akışı",
       "aciklama": "NIST hafif kriptografi standartları ve algoritma kıyaslama tablosu"
      },
      {
@@ -77,7 +78,7 @@
    "tur": "girisim",
    "ad": "Cloudflare IoT Integrity Platform",
    "ne": "Uç cihazlardan gelen zaman serisi verilerini mTLS ve kriptografik imzalarla koruyan bulut güvenlik platformu.",
-   "url": "https://www.cloudflare.com/learning/security/what-is-iot-security/",
+   "url": "https://www.cloudflare.com/application-services/products/api-shield/",
    "ayrinti": {
     "neYaptilar": "Cloudflare, dünya genelindeki milyonlarca IoT sensöründen gelen telemetri verilerini API ağ geçidinde kriptografik anahtarlarla doğrulayan uç güvenlik mimarisi kurdu.",
     "nasil": "Sensörler her HTTP/MQTT isteğine Ed25519 imzası ve zaman damgası ekler; API ağ geçidi bu imzaları sabit zamanlı algoritmalarla mikrosaniyelerde denetler.",
@@ -85,8 +86,8 @@
     "bizNasilKatki": "Benzer bir JSON kanonikleştirmeli HMAC/Ed25519 doğrulayıcısını AURA veri hattına entegre ederek sahte istasyon paketlerini filtreleriz.",
     "referanslar": [
      {
-      "ad": "Cloudflare IoT Güvenliği Kılavuzu",
-      "url": "https://www.cloudflare.com/learning/security/what-is-iot-security/",
+      "ad": "Cloudflare IoT ve API Güvenliği Mimarisi",
+      "url": "https://www.cloudflare.com/application-services/products/api-shield/",
       "tur": "web"
      },
      {
@@ -103,8 +104,8 @@
      },
      {
       "tur": "kamu",
-      "url": "https://commons.wikimedia.org/wiki/File:Hmac.svg",
-      "lisans": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:SHAhmac.svg",
+      "lisans": "CC BY-SA 4.0",
       "aciklama": "HMAC mesaj doğrulama yapısı akış şeması"
      }
     ]
@@ -112,30 +113,31 @@
   },
   {
    "tur": "takim",
-   "ad": "AURA Sensör Güvenliği Takımı",
-   "ne": "Kampüs hava istasyonları için uçtan uca veri bütünlüğü ve şifreli iletim modülleri geliştiren öğrenci ekibi.",
-   "url": "https://github.com/aura-itu/sensor-imza-dogrulayici",
+   "ad": "PyCA Cryptography Açık Kaynak Geliştirici Ekibi",
+   "ne": "Python ekosisteminde güvenli ve tahrifata dirençli kriptografik temel kütüphaneleri geliştiren açık kaynak topluluk ekibi.",
+   "url": "https://github.com/pyca/cryptography",
    "ayrinti": {
-    "neYaptilar": "AURA bünyesindeki siber güvenlik ve meteoroloji öğrencileri, ESP32 tabanlı hava istasyonlarının ölçümlerini tahrifata karşı koruyan açık kaynak modül geliştirdi.",
-    "nasil": "İstasyon mikrodenetleyicisi JSON çıktısını kanonik sıraya sokup HMAC-SHA256 ile imzaladı. Sunucu tarafında FastAPI uç noktası bu imzayı kontrol etti.",
-    "neEdindiler": "Veri manipülasyonu ve sahte fırtına uyarısı riskleri tamamen önlendi; 1000 doğrulamada sadece 0,4 ms gecikme ölçüldü.",
-    "bizNasilKatki": "Python doğrulayıcı kodunu paket haline getirip açık kaynaklı bir kütüphane olarak topluluğa sunarız.",
+    "neYaptilar": "PyCA (Python Cryptographic Authority) ekibi, Python uygulamalarında Ed25519 dijital imzaları ve HMAC doğrulamasını C hızında sunan endüstri standardı kütüphaneyi geliştirdi.",
+    "nasil": "OpenSSL ve Rust kriptografik çekirdekleri üzerine modern Python sarmalayıcıları yazıldı; sabit zamanlı karşılaştırma ve bellek güvenliği sağlandı.",
+    "neEdindiler": "Dünya genelinde milyonlarca IoT ve sunucu sisteminde güvenli imza doğrulaması mikrosaniyeler mertebesine indirildi.",
+    "bizNasilKatki": "AURA istasyon veri paketlerini Ed25519 ile imzalayıp doğrulayan açık kaynaklı hafif bir entegrasyon modülü kodlarız.",
     "referanslar": [
      {
-      "ad": "AURA Sensör İmza Doğrulayıcı kod deposu",
-      "url": "https://github.com/aura-itu/sensor-imza-dogrulayici",
+      "ad": "PyCA Cryptography GitHub kaynak kod deposu",
+      "url": "https://github.com/pyca/cryptography",
       "tur": "kod"
      },
      {
-      "ad": "AURA IoT Güvenlik Mimarisi Kılavuzu",
-      "url": "https://aura-itu.github.io/sensor-guvenlik",
+      "ad": "PyCA Cryptography resmi dokümantasyonu",
+      "url": "https://cryptography.io/en/latest/",
       "tur": "web"
      }
     ],
     "gorseller": [
      {
-      "tur": "kaydirma",
-      "url": "https://github.com/aura-itu/sensor-imza-dogrulayici",
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Python doğrulama fonksiyonu ve birim test performansı analizi",
       "aciklama": "Python doğrulama fonksiyonu ve birim test sonuçları paneli"
      },
      {
@@ -251,8 +253,9 @@
     ],
     "gorseller": [
      {
-      "tur": "kaydirma",
-      "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Kanonik veri serileştirme ve paket yapısı akış şeması",
       "aciklama": "Kanonik veri serileştirme ve paket yapısı akış şeması"
      }
     ]
@@ -298,8 +301,8 @@
     "gorseller": [
      {
       "tur": "kamu",
-      "url": "https://commons.wikimedia.org/wiki/File:Hmac.svg",
-      "lisans": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:SHAhmac.svg",
+      "lisans": "CC BY-SA 4.0",
       "aciklama": "HMAC mesaj doğrulama algoritması blok diyagramı"
      }
     ]
@@ -344,8 +347,9 @@
     ],
     "gorseller": [
      {
-      "tur": "kaydirma",
-      "url": "https://github.com/aura-itu/sensor-imza-dogrulayici",
+      "tur": "veri-anim",
+      "veri": "sensor-community",
+      "konu": "Ed25519 eliptik eğri doğrulama işlem süresi ve gecikme dağılımı",
       "aciklama": "Ed25519 eliptik eğri doğrulama kod bloğu"
      }
     ]
@@ -404,8 +408,9 @@
  },
  "gorseller": [
   {
-   "tur": "kaydirma",
-   "url": "https://csrc.nist.gov/projects/lightweight-cryptography",
+   "tur": "veri-anim",
+   "veri": "sensor-community",
+   "konu": "NIST hafif kriptografi projesi ve sensör ağları mimari modeli",
    "aciklama": "NIST hafif kriptografi projesi ve sensör güvenliği mimarisi"
   },
   {
@@ -416,15 +421,15 @@
   },
   {
    "tur": "kamu",
-   "url": "https://commons.wikimedia.org/wiki/File:Hmac.svg",
-   "lisans": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:SHAhmac.svg",
+   "lisans": "CC BY-SA 4.0",
    "aciklama": "HMAC kriptografik mesaj doğrulama yapısı akış şeması"
   }
  ],
  "kaynaklar": [
   {
-   "ad": "NIST Lightweight Cryptography Project",
-   "url": "https://csrc.nist.gov/projects/lightweight-cryptography"
+   "ad": "NIST Lightweight Cryptography Project (NISTIR 8454)",
+   "url": "https://csrc.nist.gov/publications/detail/nistir/8454/final"
   },
   {
    "ad": "RFC 8032: Edwards-Curve Digital Signature Algorithm (EdDSA)",
@@ -436,7 +441,7 @@
  "tarih": "2026-10-16",
  "_birlestirme": {
   "kaynak": "cikti/F-BBF-SEC-01.json",
-  "tarih": "2026-10-17 00:28",
-  "geminiSha1": "f31f965c5824"
+  "tarih": "2026-10-19 05:35",
+  "geminiSha1": "f7e58ca93ba3"
  }
 }

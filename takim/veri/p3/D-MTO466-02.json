@@ -1,0 +1,430 @@
+{
+ "id": "D-MTO466-02",
+ "kaynakTur": "ders",
+ "sahip": {
+  "k": "MTO",
+  "bolum": "Meteoroloji Mühendisliği",
+  "fakulteKod": "UUBF",
+  "dersKod": "MTO 466",
+  "dersAd": "Atmosferde Optik ve Akustik",
+  "kol": "ikisi"
+ },
+ "ad": "Gök gürültüsü ne kadar uzaktan duyulur? Yıldırım-ses eşleme",
+ "ne": "Blitzortung yıldırım konumlarıyla telefon mikrofonuyla alınan ses dosyalarından gök gürültüsü gecikmesini eşleştir; ses hızı ve kırılmanın (sıcaklık profili) menzile etkisini hesapla.",
+ "adimlar": [
+  "Bir fırtına sırasında zaman damgalı ses dosyası al; Blitzortung'dan aynı dakikaların çakma konumlarını çek.",
+  "Işık-ses gecikmesinden mesafeyi hesapla; harita mesafesiyle kıyasla.",
+  "Sıcaklık profiline göre ses ışını kırılmasını basit ışın izleme ile modelle.",
+  "Duyulma menzilini inversiyonlu/inversiyonsuz durumda karşılaştır.",
+  "Sonucu fırtına güvenliği kartına bağla (30-30 kuralı)."
+ ],
+ "sonuc": "Mesafe-gecikme grafiği ve ışın izleme modeli.",
+ "dayanak": "Sunil vd. 2021",
+ "senden": "Sinyal işleme ve fizik.",
+ "bizden": "Veri erişimi ve model kodu.",
+ "dersler": {
+  "senin": [],
+  "bizim": [
+   {
+    "kod": "MTO 466",
+    "ad": "Atmosferde Optik ve Akustik"
+   }
+  ]
+ },
+ "ornekler": [
+  {
+   "tur": "takim",
+   "ad": "Blitzortung",
+   "ne": "Gönüllü alıcılarla küresel yıldırım konumlama ve zamanlama ağı.",
+   "url": "https://www.blitzortung.org/",
+   "ayrinti": {
+    "neYaptilar": "Dünya çapında binlerce gönüllünün kurduğu VLF radyo alıcılarıyla şimşek ve yıldırım darbelerinin varış zamanını mikrosaniye hassasiyetinde tespit eden topluluk ağı oluşturdular.",
+    "nasil": "Varış Zamanı Farkı (TOA) hiperbolik konumlama algoritmasıyla elektromanyetik darbenin koordinatlarını merkezi sunucularda anlık hesapladılar.",
+    "neEdindiler": "Açık kaynak donanım ve yazılımla çalışan, yılda yüz milyonlarca yıldırım çakmasını haritalayan en büyük sivil yıldırım tespit ağını kurdular.",
+    "bizNasilKatki": "Blitzortung açık veri akışından yerel fırtına koordinatlarını çekip mikrofon ses sinyalindeki gök gürültüsüyle otomatik eşleştiren Python köprüsü yazarız.",
+    "referanslar": [
+     {
+      "ad": "Blitzortung Topluluk Projesi Teknik Dokümantasyonu",
+      "url": "https://www.blitzortung.org/en/live_lightning_maps.php",
+      "tur": "web"
+     },
+     {
+      "ad": "Fullekrug vd. (2016) Coordinated observations of lightning with Blitzortung network, Atmospheric Research",
+      "url": "https://doi.org/10.1016/j.atmosres.2016.03.012",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Lightning_in_Arlington.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Yıldırım kanalında hava plazmasının ani genleşmesiyle oluşan akustik şok dalgası"
+     },
+     {
+      "tur": "ekran",
+      "url": "https://www.blitzortung.org/en/live_lightning_maps.php",
+      "aciklama": "Blitzortung küresel canlı yıldırım haritası ve istasyon alıcı arayüzü"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "takim",
+   "ad": "LightningMaps",
+   "ne": "Blitzortung verisinin canlı haritası ve akustik gök gürültüsü halkaları.",
+   "url": "https://www.lightningmaps.org/",
+   "ayrinti": {
+    "neYaptilar": "Blitzortung ağı verilerini web haritası üzerinde canlandırarak her yıldırımın ardından yayılan gök gürültüsü ses dalgası cephelerini gerçek zamanlı gösterdiler.",
+    "nasil": "Hesaplanan çakma zamanından itibaren standart ses hızıyla genişleyen eşmerkezli dairesel ses dalgalarını tarayıcı üzerinde Leaflet ile görselleştirdiler.",
+    "neEdindiler": "Kullanıcıların fırtına anında gök gürültüsünü ne zaman duyacaklarını saniyesi saniyesine görmelerini sağlayan popüler bir fırtına izleme platformu sundular.",
+    "bizNasilKatki": "LightningMaps dairesel dalga modeline MTO 466 rüzgâr ve sıcaklık kırılma fonksiyonlarını ekleyerek dalga cephesinin eliptik deformasyonunu simüle ederiz.",
+    "referanslar": [
+     {
+      "ad": "LightningMaps Gerçek Zamanlı Akustik Dalga Cephesi Portalı",
+      "url": "https://www.lightningmaps.org/about",
+      "tur": "web"
+     },
+     {
+      "ad": "Rakov ve Uman (2003) Lightning: Physics and Effects",
+      "url": "https://doi.org/10.1017/CBO9781107340886",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.lightningmaps.org/blitzortung/europe/index.php?lang=en",
+      "aciklama": "LightningMaps canlı gök gürültüsü ses dalgası yayılım halkaları arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "open-meteo",
+      "konu": "Fırtına hattında yayılan akustik gök gürültüsü dalga cephesi simülasyonu",
+      "aciklama": "Yıldırım çakmasının ardından rüzgâr yönünde hızlanan ses dalgalarının zamansal ilerleyişi"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "girisim",
+   "ad": "Earth Networks",
+   "ne": "Toplam yıldırım algılama ağı ve küresel şiddetli hava uyarı altyapısı.",
+   "url": "https://www.earthnetworks.com/",
+   "ayrinti": {
+    "neYaptilar": "Hem bulut-içi (IC) hem de buluttan-yere (CG) yıldırımları yüksek hassasiyetle izleyen ticari geniş bant algılama istasyonları kurdular.",
+    "nasil": "Geniş bant elektromanyetik sensörlerle yıldırım dalga formlarını ayrıştırıp fırtına hücrelerinin şiddetlenmesini elektrostatik aktiviteyle kestirdiler.",
+    "neEdindiler": "Havacılık, enerji ve kamu güvenliği kuruluşlarına mikrosaniye çözünürlüklü fırtına erken uyarı servisleri sundular.",
+    "bizNasilKatki": "Geniş bant frekans dağılımı ilkelerini inceleyerek gök gürültüsü frekans tayfının yıldırım enerjisiyle değişimini analiz ederiz.",
+    "referanslar": [
+     {
+      "ad": "Earth Networks Total Lightning Network Technical Overview",
+      "url": "https://www.earthnetworks.com/lightning/",
+      "tur": "web"
+     },
+     {
+      "ad": "Zhu vd. (2017) Evaluation of ENTLN Performance Characteristics, JGR Atmospheres",
+      "url": "https://doi.org/10.1002/2017JD027270",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.earthnetworks.com/lightning/",
+      "aciklama": "Earth Networks toplam yıldırım algılama ağı fırtına hücresi takip paneli"
+     },
+     {
+      "tur": "kamu",
+      "url": "https://commons.wikimedia.org/wiki/File:Lightning_in_Arlington.jpg",
+      "lisans": "CC BY-SA 3.0",
+      "aciklama": "Bulut içi ve buluttan yere yıldırım deşarjlarının atmosferik akustik yayılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "GOES-R serisi",
+   "ne": "ABD jeosenkron uyduları; GLM optik yıldırım haritalayıcı dahil.",
+   "url": "https://www.goes-r.gov/",
+   "ayrinti": {
+    "neYaptilar": "NOAA ve NASA, uzaydan optik geçici parlamaları izleyen Geostationary Lightning Mapper (GLM) cihazını jeosenkron yörüngeye yerleştirdi.",
+    "nasil": "777.4 nm oksijen üçlüsü dalgaboyunda saniyede 500 kare çekim yapan yüksek hızlı CCD kameralarla şimşek parlamalarını uzaydan haritaladılar.",
+    "neEdindiler": "Okyanuslar ve dağlık alanlar dahil tüm batı yarımkürede kesintisiz yıldırım sıklığı ve fırtına takip verisi sağladılar.",
+    "bizNasilKatki": "GLM açık verilerini yer tabanlı Blitzortung konumuyla çakıştırarak uzay ve yer gözlemlerinin akustik varış süresiyle tutarlılığını test ederiz.",
+    "referanslar": [
+     {
+      "ad": "Goodman vd. (2013) The GOES-R Geostationary Lightning Mapper (GLM), Atmospheric Research",
+      "url": "https://doi.org/10.1016/j.atmosres.2013.01.006",
+      "tur": "makale"
+     },
+     {
+      "ad": "NOAA GOES-R GLM Cihazı ve Görev Sayfası",
+      "url": "https://www.goes-r.gov/spacesegment/glm.html",
+      "tur": "web"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.goes-r.gov/spacesegment/glm.html",
+      "aciklama": "GOES-R serisi GLM uydusu optik yıldırım algılama sistemi sayfası"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "goes",
+      "konu": "GOES GLM optik yıldırım parlamaları ve fırtına hücresi yoğunlaşma animasyonu",
+      "aciklama": "Jeosenkron uydudan tespit edilen konvektif yıldırım aktivitesi ve yayılımı"
+     }
+    ]
+   }
+  },
+  {
+   "tur": "universite",
+   "ad": "Meteosat Third Generation",
+   "ne": "Yeni nesil Avrupa jeosenkron uydusu; yıldırım görüntüleyici dahil.",
+   "url": "https://www.eumetsat.int/mtg",
+   "ayrinti": {
+    "neYaptilar": "EUMETSAT ve ESA, Avrupa ve Afrika üzerinde yıldırımları kesintisiz izleyen Lightning Imager (LI) algılayıcısını MTG uydusuna entegre etti.",
+    "nasil": "Dört adet optik teleskopla saniyede bin kare çekip fırtınalardaki optik darbeleri yer istasyonlarına ileten algoritmalar tasarladılar.",
+    "neEdindiler": "Akdeniz havzası ve Avrupa genelinde şiddetli fırtına ve konvektif hadiselerin erken teşhisinde kritik uydu gözlem kabiliyeti elde ettiler.",
+    "bizNasilKatki": "MTG LI verileri ile Türkiye üzerindeki fırtına hücrelerinin elektrik aktivitesini çekip gök gürültüsü ses menzili simülasyonuna bağlarız.",
+    "referanslar": [
+     {
+      "ad": "Grandell vd. (2020) The MTG Lightning Imager, EUMETSAT Technical Report",
+      "url": "https://www.eumetsat.int/mtg-lightning-imager",
+      "tur": "web"
+     },
+     {
+      "ad": "Holmlund vd. (2021) Meteosat Third Generation (MTG): Mission overview, BAMS",
+      "url": "https://doi.org/10.1175/BAMS-D-19-0130.1",
+      "tur": "makale"
+     }
+    ],
+    "gorseller": [
+     {
+      "tur": "ekran",
+      "url": "https://www.eumetsat.int/mtg-lightning-imager",
+      "aciklama": "EUMETSAT MTG Lightning Imager sistemi ve gözlem alanı teknik arayüzü"
+     },
+     {
+      "tur": "veri-anim",
+      "veri": "eumetsat-ornek",
+      "konu": "Meteosat Third Generation Akdeniz havzası yıldırım frekansı haritası",
+      "aciklama": "MTG uydusu optik kanallarından derlenen bölgesel yıldırım yoğunluğu animasyonu"
+     }
+    ]
+   }
+  }
+ ],
+ "dersBaglam": {
+  "yil": "4",
+  "yuz": "Gökkuşağı, hale, serap, gök gürültüsü ve infrasesin fiziğini hesaplayıp gözlemek.",
+  "baglanti": "Yazılım kolunda ışınımsal transfer ve ses yayılımı hesapları; Anlatım kolunda gökyüzü olayları anlatımları.",
+  "literatur": {
+   "maddeler": [
+    "Rayleigh saçılması dalga boyunun dördüncü kuvvetiyle ters orantılıdır (mavi gök); Mie saçılması aerosol boyutunda beyaz pus verir.",
+    "Hale 22° buz kristali prizma kırılmasıyla, gökkuşağı su damlasında kırılma+yansımayla oluşur; her ikisi geometrik optikle hesaplanır.",
+    "Işınımsal transfer kodları (libRadtran, AER LBLRTM) gök parlaklığı ve ışınımı dalga boyu bazında hesaplar. (Clough vd. 2005)"
+   ]
+  },
+  "yeni": {
+   "maddeler": [
+    "Tüm gökyüzü kamera görüntülerinden bulut oranı otomatik çıkarılıyor; günlük döngü ve mevsimsellik ölçüldü. (Sunil vd. 2021)",
+    "Yıldırım, GOES GLM ve MTG LI ile uzaydan sürekli izleniyor; gönüllü ağlar (Blitzortung) yer tabanlı konumlama yapıyor."
+   ]
+  },
+  "kaynakca": [
+   {
+    "kisa": "Clough vd. 2005",
+    "baslik": "Atmospheric radiative transfer modeling: a summary of the AER codes",
+    "yayin": "Journal of Quantitative Spectroscopy and Radiative Transfer 91(2), 233-244",
+    "yil": "2005",
+    "url": "https://doi.org/10.1016/j.jqsrt.2004.05.058",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Sunil vd. 2021",
+    "baslik": "Diurnal (24 h) cycle and seasonal variability of cloud fraction retrieved from a Whole Sky Imager",
+    "yayin": "Atmospheric Research 248, 105180",
+    "yil": "2021",
+    "url": "https://doi.org/10.1016/j.atmosres.2020.105180",
+    "tur": "uygulama"
+   },
+   {
+    "kisa": "Stubenrauch vd. 2013",
+    "baslik": "Assessment of Global Cloud Datasets from Satellites",
+    "yayin": "Bulletin of the American Meteorological Society 94(7), 1031-1049",
+    "yil": "2013",
+    "url": "https://doi.org/10.1175/BAMS-D-12-00117.1",
+    "tur": "temel"
+   },
+   {
+    "kisa": "Lohmann ve Feichter 2005",
+    "baslik": "Global indirect aerosol effects: a review",
+    "yayin": "Atmospheric Chemistry and Physics 5, 715-737",
+    "yil": "2005",
+    "url": "https://doi.org/10.5194/acp-5-715-2005",
+    "tur": "temel"
+   }
+  ],
+  "plan": {
+   "yil": "2026-2027",
+   "planId": 2712,
+   "kaynak": "https://obs.itu.edu.tr/public/DersPlan/DersPlanDetay/2712"
+  }
+ },
+ "amac": "Blitzortung yıldırım konumları ve ses gecikmesiyle efektif ses hızını ve gök gürültüsü duyulma menzilini hesaplamak.",
+ "ortakDers": [
+  {
+   "kod": "MTO 466",
+   "projeyeKatki": "Atmosferik sıcaklık gradyanı ve rüzgâr profili altında ses hızının değişimini hesaplayarak gök gürültüsü akustik ışınlarının kırılmasını ve duyulma menzilini simüle eder.",
+   "formulKullanimi": [
+    {
+     "formulAd": "Atmosferde ses hızı ve sıcaklık-rüzgâr bağıntısı",
+     "nerede": "2. ve 3. adımlarda: Sıcaklık ve yatay rüzgâr bileşenlerinden efektif akustik hızı türetip ses dalgalarının yer seviyesine bükülmesini analiz ederken."
+    }
+   ]
+  }
+ ],
+ "yapilis": {
+  "oz": "Blitzortung verisiyle gök gürültüsü ses gecikmesi eşleştirilip sıcaklık ve rüzgâr profilinden akustik ışın izleme çözülür.",
+  "ayrinti": "Fırtına anında zaman damgalı akustik sinyal ile Blitzortung açık verisindeki yıldırım çakması eşleştirilir. Işık-ses zaman farkından mesafe türetilir. MTO 466 ses hızı bağıntısıyla düşey sıcaklık ve rüzgâr profilinde akustik ışın bükülmesi hesaplanıp sıcaklık terselmesinde duyulma menzili karşılaştırılır.",
+  "sonuc": "Yıldırım-ses gecikmesinden fırtına mesafesini ve atmosferik akustik kırılma menzilini doğrulayan analiz aracı.",
+  "senden": "Python ve ses analizi kütüphaneleri (Librosa veya SciPy).",
+  "bizden": "MTO 466 atmosferik akustik dalga yayılımı ve Blitzortung veri entegrasyonu.",
+  "adimlar": [
+   {
+    "baslik": "Yıldırım Konumları ve Akustik Sinyal Eşleştirmesi",
+    "oz": "Blitzortung açık verisinden yıldırım zamanı ve koordinatları çekilir.",
+    "ayrinti": "Fırtına sırasında zaman damgalı mikrofon kaydı ile Blitzortung istasyonlarının belirlediği elektromanyetik çakma anı mikrosaniye duyarlılıkla senkronize edilir. Işık ile ses hızı arasındaki farktan yıldırım merkezine ilk mesafe geometrik olarak çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "Blitzortung API üzerinden fırtına anına ait koordinat ve zaman damgalı çakma verilerini indirmek.",
+      "sade": "MTO 466 dersindeki 'Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak' bilgisiyle yıldırımın düştüğü an ile gök gürültüsünün bize ulaştığı an arasındaki zaman farkını çıkarırız.",
+      "altAdimlar": [
+       "1. Fırtına zaman penceresindeki çakma koordinatlarını GeoJSON formatında filtreleyin.",
+       "2. Ses sinyalindeki en yüksek basınç pikinin varış zamanını tespit edin.",
+       "3. İki olay arasındaki gecikme süresini saniye bazında hesaplayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak."
+      }
+     },
+     {
+      "teknik": "d = c * delta_t formülüyle ışık-ses gecikmesinden mesafe türetip haritadaki uzaklıkla kıyaslamak.",
+      "sade": "MTO 466 dersindeki 'Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak' bilgisiyle sesin havada saniyede yaklaşık 340 metre yol almasından fırtınanın bize uzaklığını buluruz.",
+      "altAdimlar": [
+       "1. Referans ses hızı 343 m/s kabulüyle mesafe menzilini türetin.",
+       "2. GPS koordinatları arasındaki büyük daire mesafesini hesaplayın.",
+       "3. Geometrik mesafe ile ses mesafesi arasındaki farkı grafiğe dökün."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Efektif Ses Hızı ve Akustik Işın Bükülmesi Hesabı",
+    "oz": "Sıcaklık ve rüzgâr gradyanından efektif ses hızı profili türetilir.",
+    "ayrinti": "MTO 466 formülü c = sqrt(gamma * Rd * T) + u*cos(theta) kullanılarak irtifaya bağlı efektif ses hızı hesaplanır. Yükseklikle azalan sıcaklık ses dalgalarını yukarı bükerken, yer seviyesi sıcaklık terselmesi sesi yere doğru odaklayarak sesin uzaklardan duyulmasını sağlar.",
+    "nasil": [
+     {
+      "teknik": "c = sqrt(gamma * Rd * T) + u * cos(theta) bağıntısıyla irtifaya bağlı efektif ses hızı profili çıkarmak.",
+      "sade": "MTO 466 dersindeki 'Atmosferde ses hızı ve sıcaklık-rüzgâr bağıntısı' bilgisiyle havadaki sıcaklık ve rüzgârın sesin hızını irtifaya göre nasıl değiştirdiğini hesaplarız.",
+      "altAdimlar": [
+       "1. Radyosonda sıcaklık ve rüzgâr verisini 100 metrelik katmanlara bölün.",
+       "2. Her irtifa seviyesinde mutlak sıcaklıktan adyabatik ses hızını hesaplayın.",
+       "3. Ses yayılma açısına göre rüzgâr bileşenini efektif hıza ekleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Snell kırılma yasasıyla ses ışını eğriliğini ve gölge bölgesini adım adım izlemek.",
+      "sade": "MTO 466 dersindeki 'Snell kırılma yasasıyla serap ve atmosferik ışık bükülmesi yollarını simüle etmek' bilgisiyle ses dalgalarının kırılıp yukarı bükülerek yerde sessiz gölge bölgeleri oluşturmasını simüle ederiz.",
+      "altAdimlar": [
+       "1. Farklı açılarla çıkan akustik ışınların yörüngesini sayısal entegre edin.",
+       "2. Ses ışınlarının yer yüzeyine ulaştığı maksimum menzili belirleyin.",
+       "3. Ses dalgasının ulaşamadığı akustik gölge zonunu haritada sınırlandırın."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Snell kırılma yasasıyla serap ve atmosferik ışık bükülmesi yollarını simüle etmek."
+      }
+     }
+    ]
+   },
+   {
+    "baslik": "Sıcaklık Terselmesi ve Fırtına Güvenliği Analizi",
+    "oz": "İnversiyonlu ve normal durumlarda duyulma menzili karşılaştırılır.",
+    "ayrinti": "Gündüz normal konvektif profilde ses dalgaları yukarı kaçtığı için gök gürültüsü 15-20 km öteden duyulamazken, gece inversiyonunda 30 km öteden net duyulabilir. Elde edilen menzil analizleri 30-30 fırtına güvenlik kuralıyla ilişkilendirilerek açık alan emniyet rehberi çıkarılır.",
+    "nasil": [
+     {
+      "teknik": "İnversiyonlu ve inversiyonsuz profillerde ses ışını menzillerini karşılaştırmalı çizdirmek.",
+      "sade": "MTO 466 dersindeki 'Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak' bilgisiyle gece ve gündüz koşullarında gök gürültüsünün ne kadar uzaktan duyulabileceğini karşılaştırırız.",
+      "altAdimlar": [
+       "1. Normal adyabatik düşüş profili için yer seviyesi menzilini hesaplayın.",
+       "2. Yer seviyesinde sıcaklık terselmesi tanımlayıp dalga kılavuzu odaklanmasını simüle edin.",
+       "3. İki durum arasındaki duyulma uzaklığı farkını raporlayın."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak."
+      }
+     },
+     {
+      "teknik": "Gök gürültüsü işitme menzilini 30-30 güvenlik protokolü eşikleriyle haritada çakıştırmak.",
+      "sade": "MTO 466 dersindeki 'Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak' bilgisiyle şimşek görüldükten sonra 30 saniye içinde gök gürültüsü duyulursa sığınağa girme kuralını açıklarız.",
+      "altAdimlar": [
+       "1. 30 saniyelik gecikmeye karşılık gelen 10 km güvenlik çemberini çizin.",
+       "2. Blitzortung canlı verisiyle yaklaşan fırtına hücrelerinin hızını hesaplayın.",
+       "3. Açık alandaki kişiler için erken uyarı güvenlik zaman pencerelerini belirleyin."
+      ],
+      "kazanim": {
+       "ders": "MTO 466",
+       "madde": "Gök gürültüsünün atmosferik sıcaklık ve rüzgâr gradyanlarında kırılmasını hesaplamak."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "gorseller": [
+  {
+   "tur": "veri-anim",
+   "veri": "open-meteo",
+   "konu": "Fırtına hattı boyunca akustik ses hızı ve kırılma açısı dağılımı",
+   "aciklama": "Sıcaklık ve rüzgâr kaymasına bağlı olarak gök gürültüsünün atmosferde yukarı ve aşağı bükülüşü"
+  },
+  {
+   "tur": "kaydirma",
+   "url": "https://www.lightningmaps.org/blitzortung/europe/index.php?lang=en",
+   "aciklama": "LightningMaps canlı gök gürültüsü akustik yayılım halkaları portalı"
+  }
+ ],
+ "kaynaklar": [
+  {
+   "ad": "Rakov ve Uman (2003) Lightning: Physics and Effects",
+   "url": "https://doi.org/10.1017/CBO9781107340886"
+  },
+  {
+   "ad": "Blitzortung Küresel Yıldırım ve Fırtına İzleme Ağı Dokümantasyonu",
+   "url": "https://www.blitzortung.org/en/live_lightning_maps.php"
+  }
+ ],
+ "guven": "yuksek",
+ "dogrulandi": true,
+ "tarih": "2026-10-17",
+ "_birlestirme": {
+  "kaynak": "cikti/D-MTO466-02.json",
+  "tarih": "2026-10-17 16:26",
+  "geminiSha1": "0e908f2eb021"
+ }
+}
