@@ -2,8 +2,10 @@
    Canlıya almak için (bkz. KURULUM.md): Firebase konsolundan web uygulaması ayarlarını buraya yaz.
    Örnek:
    window.TAKIM_FIREBASE = {
-     apiKey: "AIza...", authDomain: "nwp-takim.firebaseapp.com", projectId: "nwp-takim",
-     storageBucket: "nwp-takim.appspot.com", messagingSenderId: "123", appId: "1:123:web:abc"
-   };
-   apiKey burada herkese açık olur; bu normaldir — güvenlik Firestore kurallarıyla (firestore.rules) sağlanır. */
-window.TAKIM_FIREBASE = null;
+  "apiKey": "AIzaSyCXiEDUefwVguYdavAXf8njjgBqJvrTLGE",
+  "authDomain": "aura-takim-itu.firebaseapp.com",
+  "projectId": "aura-takim-itu",
+  "storageBucket": "aura-takim-itu.firebasestorage.app",
+  "messagingSenderId": "63246220439",
+  "appId": "1:63246220439:web:85b52142c5941e2b2dbdd2"
+};
