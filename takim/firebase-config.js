@@ -1,7 +1,8 @@
 /* Firebase bağlantısı. BOŞKEN sayfa "test modu"nda çalışır (oylar yalnız bu cihazda, localStorage).
    Canlıya almak için (bkz. KURULUM.md): Firebase konsolundan web uygulaması ayarlarını buraya yaz.
    Örnek:
-   window.TAKIM_FIREBASE = {
+*/
+window.TAKIM_FIREBASE = {
   "apiKey": "AIzaSyCXiEDUefwVguYdavAXf8njjgBqJvrTLGE",
   "authDomain": "aura-takim-itu.firebaseapp.com",
   "projectId": "aura-takim-itu",
