@@ -1655,3 +1655,64 @@ html[data-kime="khsm"] #yz,html[data-kime="hoca"] #yz{display:none}   /* E02: re
 .aura-kademe:empty{min-height:159px}
 @media (min-width:481px){.aura-kademe:empty{min-height:136px}}
 @media (min-width:860px){.aura-kademe:empty{min-height:calc(22.7vw + 15px)}}
+
+/* ===== TAKIM AĞI (19 Eki 2026, Akın) — #takim-agi + p3 ekranları (tur 'ag'). Genelden özele: sekme → kart → takım ekranı → ortak iş ekranı.
+   Yalnız transform/opacity geçişi; kalıcı will-change yok; balon imleç yok; bu bölümde klip yok. Renk yalnız rozet/nokta; her rozetin yazısı var. ===== */
+.takim-agi .ses{margin-inline:auto;width:100%;max-width:min(820px,100%)}
+.ag-kadro{margin:22px auto 0;max-width:min(820px,100%);padding:18px 20px 20px;border:1px solid var(--murekkep);border-left:4px solid var(--vurgu);box-shadow:var(--golge);background:var(--panel-bg);text-align:left}
+.ag-kadro[hidden]{display:none}
+.ag-kadro-b{margin:0 0 10px;font:700 clamp(1.3rem,2vw,1.6rem)/1.1 var(--baslik);text-transform:uppercase;letter-spacing:.02em;color:var(--murekkep)}
+.ag-kazanc{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:8px}
+.ag-kazanc li{position:relative;padding-left:22px;font:600 clamp(1.05rem,1.4vw,1.2rem)/1.45 var(--govde)}
+.ag-kazanc li::before{content:"";position:absolute;left:3px;top:.6em;width:9px;height:9px;border-radius:50%;background:var(--vurgu)}
+.ag-kadro-not{margin:6px 0 14px;padding:4px 0 4px 14px;border-left:2px dashed var(--cizgi-2);font-size:1.02rem;line-height:1.5;font-style:italic;color:var(--murekkep-2)}
+.ag-kadro-s{margin:14px 0 8px;font:600 .76rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--vurgu)}
+.ag-roller{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:10px}
+.ag-roller li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:center;min-width:0;padding:10px 12px;border:1px solid var(--cizgi-2);border-radius:12px;background:var(--kagit);font-size:1.02rem;line-height:1.4;overflow-wrap:anywhere}
+.ag-roller svg{width:28px;height:28px;fill:none;stroke:var(--vurgu);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ag-ortak-ust{margin:0 auto 6px;text-align:center}
+.ag-ust{margin:0;font:700 clamp(1.5rem,2.6vw,2rem)/1.1 var(--baslik);text-transform:uppercase;letter-spacing:.02em;color:var(--murekkep)}
+.ag-ust-alt{margin:6px auto 0;max-width:62ch;font-size:1.05rem;line-height:1.5;color:var(--murekkep-2)}
+.ag-ust-alt:empty{display:none}
+.ag-izgara{margin-top:14px}
+.ag-izgara>[hidden]{display:none!important}   /* .bk{display:flex} [hidden]'ı ezer */
+.ag-izgara>.ag-bos{flex:1 1 100%;max-width:100%}
+.ag-bos{text-align:center;padding:22px 16px;border:1px dashed var(--cizgi-2);border-radius:14px;background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(31,42,46,.035) 10px 20px);font:italic 500 1.05rem/1.5 var(--govde);color:var(--murekkep-2)}
+.ag-daha-sar{margin:12px 0 0;text-align:center}
+.ag-daha{min-height:44px;padding:8px 18px}
+.ag-daha[hidden]{display:none}
+.ag-sekme{justify-content:center;margin:36px 0 4px}
+.ag-k .bk-ad,.ag-ok .bk-ad{min-width:0;max-width:100%;overflow-wrap:anywhere;text-wrap:balance}
+.ag-k .bk-ad svg{width:34px;height:34px}
+.ag-ok .bk-ad{font-size:1.2rem;line-height:1.2;text-transform:none;font-weight:700}
+.ag-ok .bk-ad svg{width:30px;height:30px}
+.ag-k,.ag-ok{gap:10px}
+.ag-meta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px;font:500 .78rem var(--mono);color:var(--murekkep-3)}
+.ag-birim{font:500 .8rem/1.4 var(--mono);letter-spacing:.02em;color:var(--murekkep-3);text-align:center;overflow-wrap:anywhere}
+.ag-yil,.ag-sure{overflow-wrap:anywhere}
+.ag-k .bk-yuz.ag-ozet{margin:0;font:500 1.02rem/1.45 var(--govde);text-wrap:balance}
+.ag-say{margin-top:auto;display:inline-flex;align-items:center;padding:3px 12px;border:1px solid var(--vurgu);border-radius:999px;font:600 .8rem var(--mono);color:var(--vurgu)}
+.ag-say-yok{border-color:var(--cizgi-2);color:var(--murekkep-3);font-weight:500}
+.ag-roz{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border:1px solid currentColor;border-radius:999px;font:600 .7rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.ag-roz::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:currentColor}
+.ag-roz-aktif{color:var(--iyi)}
+.ag-roz-belirsiz{color:var(--uyari)} .ag-roz-belirsiz::before{background:transparent;box-shadow:inset 0 0 0 1.5px currentColor}
+.ag-zor{display:inline-flex;align-items:center;gap:7px;font:600 .76rem var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.ag-nokta{display:inline-flex;gap:3px} .ag-nokta i{display:block;width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor} .ag-nokta i.dolu{background:currentColor}
+.ag-zor[data-z="1"]{color:var(--iyi)} .ag-zor[data-z="2"]{color:var(--uyari)} .ag-zor[data-z="3"]{color:var(--kotu)}
+/* p3 ekranları */
+.ag-cipler{align-items:center}
+.ag-cipler .p3-cip{align-items:center}
+.ag-ortak-blok{display:grid;gap:12px;min-width:0}
+.ag-satir-meta{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;white-space:normal}
+.ag-akis{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px;max-width:56ch}
+.ag-m{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline;line-height:1.55}
+.ag-yil-r{flex:none;font:600 .8rem var(--mono);color:var(--vurgu)}
+.ag-teyitsiz{font:600 .66rem/1.6 var(--mono);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:var(--kotu);border:1px dashed currentColor;border-radius:999px;padding:0 8px;white-space:nowrap}
+.ag-kaynak{font-size:.82rem}
+.ag-tk-sar{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ag-tk{font:inherit;line-height:1.35;cursor:pointer;color:var(--murekkep);background:var(--panel-bg);display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px;text-align:left;transition:transform .2s}
+.ag-tk:hover{border-color:var(--vurgu);transform:translateY(-1px)} .ag-tk:active{transform:scale(.97)} .ag-tk:focus-visible{outline:2px solid var(--sicaklik);outline-offset:2px}
+.ag-tk-ok{flex:none;font:600 1.1rem/1 var(--mono);color:var(--vurgu)}
+.ag-dersler{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:6px 16px}
+@media (max-width:640px){.ag-kadro{padding:14px 14px 16px}.ag-roller{grid-template-columns:minmax(0,1fr)}.ag-sekme{margin-top:26px}.ag-k .bk-ad svg{width:30px;height:30px}}

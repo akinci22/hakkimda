@@ -61,9 +61,9 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '43';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '44';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -445,7 +445,7 @@ function ses(hirsli, rahat) {
   etkilesim(k, () => ({ ust: 'iki yol', baslik: 'Hangisi sana daha yakın?', kisa: 'Aynı şeyi iki şekilde anlattım. Sana yakın olanı oku, öbürünü geç.', uzun: `Daha çok istiyorsan: ${yerDoldur(hirsli)}\nAz vaktin varsa: ${yerDoldur(rahat)}\nAşağıda sana yakın olanı seçersen öbürü biraz silikleşir. Seçimin yalnız senin cihazında kalır.` })); return k;
 }
 function sesYerlestir() {
-  const M = veri.metinler; const harita = { acilis: [M.acilis.hirsli, M.acilis.rahat], sana: M.sana ? [M.sana.hirsli, M.sana.rahat] : null, bolumler: [M.bolumler.hirsli, M.bolumler.rahat], gercekcilik: [M.gercekcilik.hirsli, M.gercekcilik.rahat] };
+  const M = veri.metinler; const harita = { acilis: [M.acilis.hirsli, M.acilis.rahat], sana: M.sana ? [M.sana.hirsli, M.sana.rahat] : null, bolumler: [M.bolumler.hirsli, M.bolumler.rahat], ag: M.takimAgi ? [M.takimAgi.hirsli, M.takimAgi.rahat] : null, gercekcilik: [M.gercekcilik.hirsli, M.gercekcilik.rahat] };
   $$('.ses[data-ses]').forEach(k => { const p = harita[k.dataset.ses]; if (p) k.replaceWith(ses(p[0], p[1])); });
 }
 /* açılış v2: paragraf yok — başlık, tek satır vaat, kitle seçimi, zaman rozetleri, aranan bölümler */
@@ -1192,7 +1192,7 @@ async function kunye() {
   if (KIME) KOKEL.dataset.kime = KIME;
   await arkaKur();
   asamaYukle();
-  acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); merak(); sonKart(); panelSen();
+  acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); takimAgi(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); merak(); sonKart(); panelSen();
   katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
@@ -1285,7 +1285,7 @@ function yzSor() {
 /* ======== 8 Eki (Akın): bölüm ayrıklığı — her bloktan sonra boşluk + konsepte uygun çizgi animasyonu (gecis.js ortak) ======== */
 function gecisler() {
   if (!window.gecisKur) return;
-  const TEMA = { mezun: 'pusula', derslerin: 'kitap', yz: 'devre', olay: 'izobar', akis: 'rota', neden: 'devre', kapi: 'pusula', bolumler: 'kitap', fakulteler: 'fakulte', vizyon: 'bulut', merdiven: 'sinek', anlatilar: 'dalga', karne: 'izobar', mumkun: 'balon', gercek: 'saat', meraklisina: 'kitap', sss: 'mesaj', kaydir: 'pusula', test: 'izobar', coklu: 'devre', canli: 'dalga', baloncuk: 'bulut', resmi: 'balon' };
+  const TEMA = { mezun: 'pusula', derslerin: 'kitap', yz: 'devre', olay: 'izobar', akis: 'rota', neden: 'devre', kapi: 'pusula', bolumler: 'kitap', fakulteler: 'fakulte', 'takim-agi': 'devre', vizyon: 'bulut', merdiven: 'sinek', anlatilar: 'dalga', karne: 'izobar', mumkun: 'balon', gercek: 'saat', meraklisina: 'kitap', sss: 'mesaj', kaydir: 'pusula', test: 'izobar', coklu: 'devre', canli: 'dalga', baloncuk: 'bulut', resmi: 'balon' };
   const ana = $('.takim-main') || $('main'); if (!ana) return;
   const etiket = s => { let n = s.nextElementSibling; while (n && (n.classList.contains('gecis') || n.hidden)) n = n.nextElementSibling; if (!n) return ''; const b = n.matches('.asama-baslik') ? n.querySelector('b') : n.querySelector('h2'); const t = b ? b.textContent.trim() : ''; return t ? '↓ ' + t.slice(0, 34) : ''; };
   window.gecisKur(ana, ':scope > section.blok:not(.kapak-blok):not([data-katli]):not(.son)', s => TEMA[s.id] || 'izobar', { sinif: 'takim-gecis', etiket });
@@ -1383,6 +1383,7 @@ async function p3ProjeGorsel(p) {
 /* bölüm kartı paneli: o bölümün projelerinde benzerini yapanların görselleri (2-4): ornek-gorsel.json eşleşmesi + hazır projelerin gorsel.json → ornekler */
 const P3_PANEL_ONBELLEK = new Map();
 function p3PanelGorselleri(f) {
+  if (f && f.tur === 'ag') return Promise.resolve([]);   /* takım ağı kartlarında benzer-proje görseli yok */
   const anahtar = JSON.stringify(f); if (P3_PANEL_ONBELLEK.has(anahtar)) return P3_PANEL_ONBELLEK.get(anahtar);
   const soz = (async () => {
     const L = p3Filtre(f), out = [], gorulen = new Set(); const OG = await p3OG();
@@ -1421,7 +1422,7 @@ function p3PlanDersProjeler(d) { return p3Filtre({ tur: 'ders', dersKod: d.proje
 const p3PlanMi = f => !!f && (f.tur === 'plan' || (f.k === 'MTO' && (f.tur === 'bolum' || f.tur === 'fakulte')) );   /* Meteoroloji'ye her giriş (bölüm kartı, fakülte→bölüm) ders planından başlar */
 function p3Filtre(f) {
   const L = p3Index(); if (!f) return [];
-  if (f.tur === 'plan') return [];
+  if (f.tur === 'plan' || f.tur === 'ag') return [];   /* 19 Eki: 'ag' = takım ağı ekranları (proje filtresi yok) */
   if (f.tur === 'ders') { const n = kodNorm(f.dersKod), n3 = n.replace(/^([A-Z]+)(\d{3})\d$/, '$1$2'); let R = L.filter(p => p.kaynakTur === 'ders' && kodNorm(p.sahip.dersKod) === n); if (!R.length && n3 !== n) R = L.filter(p => p.kaynakTur === 'ders' && kodNorm(p.sahip.dersKod) === n3); return R; }   /* MTO 4901 → MTO 490 */
   if (f.tur === 'fakulte' && f.k !== 'MTO') return L.filter(p => p.kaynakTur === 'fakulte' && p.sahip.k === f.k);
   return L.filter(p => p.kaynakTur === 'bolum' && p.sahip.k === f.k);   /* fakülte→MTO kartı (F-UUBF-MTO-*) bölüm projelerinin kısa kopyası → bölüm projeleri gösterilir */
@@ -1451,6 +1452,7 @@ function p3Kur(d, D) {
   const kok = el('div', { class: 'p3' }, el('div', { class: 'p3-yol' }, geri, kirinti), yigin);
   P3 = { D, kok, kirinti, yigin, ekranlar: [], basamak: 0, buyuk: null, io: null };
   p3Jestler(yigin, D);
+  if (f.tur === 'ag') { p3EkranAc(agIlkEkran(f), true); return kok; }   /* 19 Eki: takım ağı — ilk ekran takım ya da ortak iş */
   if (p3PlanMi(f) && p3Plan().length) { const pf = { tur: 'plan', k: 'MTO' }; p3EkranAc({ ad: 'Meteoroloji', ozet: { baslik: 'Meteoroloji', kisa: kisalt(d.kisa || '', 120), satirlar: p3Ozet(pf) }, kur: sec => p3E0(sec, d) }, true); return kok; }
   p3EkranAc({ ad: kisaAd, ozet: { baslik: kisaAd, kisa: kisalt(d.kisa || (liste.length ? liste.length + ' proje' : ''), 120), satirlar: p3Ozet(f, liste), gorselSoz: p3PanelGorselleri(f) }, kur: sec => p3E1(sec, d, liste) }, true);
   return kok;
@@ -1559,7 +1561,7 @@ function p3MiniSerit(G) {   /* 3 mini görsel; basınca E6 galeri. Görsel yoksa
   const T = (G || []).filter(g => g && g.src), L = T.slice(0, 3); if (!L.length) return null;
   return el('div', { class: 'p3-mini' }, ...L.map(g => el('button', { class: 'p3-mini-k', type: 'button', 'aria-label': (g.alt || 'görsel') + ' — galeri', onclick: () => p3EkranAc({ ad: 'Görseller', ozet: p3OzetE6(T), kur: s => p3E6(s, T) }) }, p3Medya(g), g.alt ? el('span', { class: 'p3-alt' }, g.alt) : null)));
 }
-function p3KodLink(kod, no) { const u = obsUrl(kod, no); return u ? el('a', { class: 'p3-kod', href: u, target: '_blank', rel: 'noopener', onclick: e => e.stopPropagation() }, kod + ' ↗') : el('span', { class: 'p3-kod' }, kod); }
+function p3KodLink(kod, no) { const u = obsUrl(kod, no); return u ? el('a', { class: 'p3-kod', href: u, target: '_blank', rel: 'noopener noreferrer', onclick: e => e.stopPropagation() }, kod + ' ↗') : el('span', { class: 'p3-kod' }, kod); }
 /* ---- KaTeX (tembel; CSS belgeye + gömülüde gölge köke) ---- */
 let katexSoz = null;
 function katexYukle() {
@@ -1770,3 +1772,162 @@ function p3Buyuk(L, i) {   /* dialog içinde fixed katman (top layer); history'y
   S.D.append(kap); S.buyuk = { kap, acan, gez }; ciz(); requestAnimationFrame(() => kapat.focus({ preventScroll: true }));
 }
 function p3BuyukKapat() { if (!P3 || !P3.buyuk) return false; const b = P3.buyuk; P3.buyuk = null; b.kap.querySelectorAll('video').forEach(v => { try { v.pause(); } catch (e) { } }); b.kap.remove(); if (b.acan && b.acan.focus) { try { b.acan.focus({ preventScroll: true }); } catch (e) { } } return true; }
+
+/* ======== 19 Eki (Akın): TAKIM AĞI — "Başka takımlar ne yapıyor, biz onlara neyi nasıl kolaylaştırırız?" ========
+   Veri: veri/takim-agi.json (← _araclar/takim_agi_birlestir.py; şema ARASTIRMA/G-sema-takim-agi.md). Bölüm: #takim-agi (aşama 3, #fakulteler'den sonra).
+   Genelden özele: grup sekmesi → takım kartı → (p3 yığını, tur 'ag') takım ekranı → ortak iş ekranı. Yığın, kırıntı, geri tuşu (portföy içi + /takim/),
+   sıralı geçiş (140/220 ms), reduce-motion ve 120 fps kuralları p3EkranAc'tan gelir. Yeni pushState anahtarı YOK (state: tkDetay/p3/id; `yer` konmaz).
+   Yalnız transform/opacity; kalıcı will-change yok; balon imleç yok; bu bölümde klip yok. Dış bağlantılar rel="noopener noreferrer" target=_blank. */
+const AG_GRUP_AD = { meteoroloji: "Meteoroloji'deki takımlar", fakulte: 'Fakültemizdeki takımlar', 'itu-yeni': "İTÜ'nün yeni takımları" };
+const AG_ZOR = ['', 'kolay', 'orta', 'zor'];
+const AG_IKON = {
+  EKP: '<circle cx="8" cy="9" r="3"/><circle cx="16.5" cy="10" r="2.5"/><path d="M2.5 19c.6-3.2 3-5 5.5-5s4.9 1.8 5.5 5M14 15.2c.8-.5 1.6-.7 2.5-.7 2.2 0 4.2 1.5 5 4.5"/>',
+  ORT: '<circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/>',
+  SIB: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+  VER: '<path d="M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6"/>'
+};
+const AG = { V: { gruplar: [], ortak: [] }, T: new Map(), O: new Map(), grup: 'meteoroloji', tum: {} };   /* tum[grup]: tüm takımlar açık mı (varsayılan ilk 9) */
+function agIkon(k) { const t = document.createElement('template'); t.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${AG_IKON[k] || IKONLAR[k] || '<circle cx="12" cy="12" r="8"/>'}</svg>`; return t.content.firstChild; }
+const agUrl = u => (typeof u === 'string' && /^https?:\/\/[^\s<>"']{3,300}$/i.test(u)) ? u : '';
+const agLink = (u, t, sinif) => el('a', Object.assign({ href: u, target: '_blank', rel: 'noopener noreferrer' }, sinif ? { class: sinif } : {}), t);
+const agIlkCumle = (t, n = 150) => kisalt(cumleler(yerDoldur(t))[0] || '', n);
+const agDizi = x => Array.isArray(x) ? x.filter(Boolean) : [];
+function agKur() {   /* veri/takim-agi.json → dizinler; dosya yok/bozuksa boş yapı: boş durum ("veri geliyor") görünür */
+  const V = veri['takim-agi'], ok = !!(V && Array.isArray(V.gruplar));
+  const gruplar = Object.keys(AG_GRUP_AD).map(g => { const x = ok ? V.gruplar.find(y => y && y.grup === g) : null; return { grup: g, baslik: AG_GRUP_AD[g], takimlar: agDizi(x && x.takimlar).filter(t => t.id && t.ad) }; });
+  const ortak = ok ? agDizi(V.ortakIsler).filter(o => o.id && o.baslik) : [];
+  AG.V = { gruplar, ortak }; AG.T.clear(); AG.O.clear();
+  gruplar.forEach(g => g.takimlar.forEach(t => AG.T.set(t.id, { t, grup: g.grup }))); ortak.forEach(o => AG.O.set(o.id, o));
+}
+function agZorluk(z) { z = +z; if (!(z >= 1 && z <= 3)) return null; return el('span', { class: 'ag-zor', 'data-z': z }, el('span', { class: 'ag-nokta', 'aria-hidden': 'true' }, ...[1, 2, 3].map(i => el('i', { class: i <= z ? 'dolu' : '' }))), el('span', { class: 'ag-zor-t' }, AG_ZOR[z])); }
+const agRozet = t => el('span', { class: 'ag-roz ag-roz-' + (t.durum === 'aktif' ? 'aktif' : 'belirsiz') }, t.durum === 'aktif' ? 'aktif' : 'belirsiz');
+/* NOT: .etk>span kuralı (line-clamp) doğrudan alt <span>'lara uygulanır → kart içi meta/sayaç <div> */
+/* kadro / tanışma bloğu: kısa maddeler, kadro rol/alan olarak (isim, fotoğraf, iletişim yok) */
+function agKadro(M) {
+  const K = M.kadro, H = $('#ag-kadro'); if (!H) return; if (!K) { H.hidden = true; return; }
+  const R = agDizi(K.roller);
+  H.replaceChildren(el('p', { class: 'ag-kadro-b' }, K.baslik || ''),
+    el('ul', { class: 'ag-kazanc' }, ...agDizi(K.kazanc).map(t => el('li', {}, yerDoldur(t)))),
+    K.not ? el('p', { class: 'ag-kadro-not' }, K.not) : null,
+    R.length ? el('p', { class: 'ag-kadro-s' }, K.rollerBaslik || '') : null,
+    R.length ? el('ul', { class: 'ag-roller' }, ...R.map(r => el('li', {}, agIkon(r.ikon), el('span', {}, r.m)))) : null);
+}
+function agTakimSatirlari(t, grup) {
+  const O = [...agDizi(t.ortak), ...agDizi(t.ortakIsIds).map(id => AG.O.get(id)).filter(Boolean)];
+  return [[t.birim, t.durum === 'aktif' ? 'aktif' : 'belirsiz'].filter(Boolean).join(' · '), t.kurulus ? t.kurulus + ' yılından beri' : '', O.length ? O.length + ' ortak iş' + (O[0] ? ' · ' + kisalt(O[0].baslik, 56) : '') : 'Ortak iş önerisi henüz yok'].filter(Boolean);
+}
+function p3AgOzetTakim(t, grup) { return { baslik: kisalt(t.ad, 48), kisa: agIlkCumle(t.ozet, 120), satirlar: agTakimSatirlari(t, grup) }; }
+function p3AgOzetIs(o) {
+  const d = agDizi(o.ders), v = agDizi(o.veriArac).map(x => x.ad).filter(Boolean);
+  return { baslik: kisalt(o.baslik, 48), kisa: agIlkCumle(o.ne, 120), satirlar: [[AG_ZOR[+o.zorluk] ? AG_ZOR[+o.zorluk] : '', o.sure || ''].filter(Boolean).join(' · '), agDizi(o.nasil).length ? agDizi(o.nasil).length + ' adım' : '', d.length ? 'Dersler: ' + d.slice(0, 3).join(', ') : '', v.length ? 'Veri: ' + v.slice(0, 2).join(', ') : ''].filter(Boolean) };
+}
+const agIsUzun = o => [o.ne ? 'Ne yapılır: ' + o.ne : '', agDizi(o.nasil).length ? 'Nasıl: ' + agDizi(o.nasil).join(' · ') : '', agDizi(o.veriArac).length ? 'Veri ve araç: ' + agDizi(o.veriArac).map(x => x.ad).join(' · ') : ''].filter(Boolean).join('\n');
+function agTakimDetay(t, grup) {
+  const O = [...agDizi(t.ortak), ...agDizi(t.ortakIsIds).map(id => AG.O.get(id)).filter(Boolean)];
+  return { ust: (AG_GRUP_AD[grup] || 'takım ağı').toLocaleLowerCase('tr') + ' · ' + (t.durum === 'aktif' ? 'aktif' : 'belirsiz'), baslik: t.ad, kisa: agIlkCumle(t.ozet, 160),
+    uzun: [t.ozet ? 'Ne yapıyor: ' + t.ozet : '', O.length ? 'Birlikte yapabileceğimiz: ' + O.slice(0, 3).map(o => o.baslik).join(' · ') : ''].filter(Boolean).join('\n'),
+    ozet: { satirlar: agTakimSatirlari(t, grup) }, p3: { tur: 'ag', takim: t.id } };
+}
+function agKart(t, grup) {
+  const n = +t.ortakSayisi || 0;
+  const k = el('button', { class: 'bk ag-k', type: 'button', 'data-id': t.id },
+    el('span', { class: 'bk-ad' }, agIkon('EKP'), t.ad),
+    t.birim ? el('div', { class: 'ag-birim' }, t.birim) : null,
+    el('div', { class: 'ag-meta' }, agRozet(t), t.kurulus ? el('span', { class: 'ag-yil' }, t.kurulus + "'den beri") : null),
+    t.ozet ? el('p', { class: 'bk-yuz ag-ozet' }, agIlkCumle(t.ozet, 150)) : null,
+    el('div', { class: 'ag-say' + (n ? '' : ' ag-say-yok') }, n ? n + ' ortak iş' : 'ortak iş önerisi yok'));
+  etkilesim(k, () => agTakimDetay(t, grup));
+  return k;
+}
+function agOrtakKart(o) {
+  const nT = agDizi(o.takimlar).length;
+  const k = el('button', { class: 'bk ag-ok', type: 'button', 'data-id': o.id },
+    el('span', { class: 'bk-ad' }, agIkon('ORT'), o.baslik),
+    el('div', { class: 'ag-meta' }, agZorluk(o.zorluk), o.sure ? el('span', { class: 'ag-sure' }, o.sure) : null),
+    nT ? el('div', { class: 'ag-say' }, nT + ' takımın işine yarar') : null);
+  etkilesim(k, () => ({ ust: 'ortak iş' + (AG_ZOR[+o.zorluk] ? ' · ' + AG_ZOR[+o.zorluk] : ''), baslik: o.baslik, kisa: agIlkCumle(o.ne, 160), uzun: agIsUzun(o), ozet: p3AgOzetIs(o), p3: { tur: 'ag', is: o.id } }));
+  return k;
+}
+function takimAgi() {
+  const S = $('#takim-agi'); if (!S) return; agKur();
+  AG.grup = (AG.V.gruplar.find(g => g.takimlar.length) || AG.V.gruplar[0]).grup;   /* açılış: Meteoroloji (ilk grup); o boşsa veri olan ilk grup — sayfa boş durumla açılmasın */
+  const M = (veri.metinler && veri.metinler.takimAgi) || {};
+  $('#ag-baslik').textContent = M.baslik || 'Takım ağı'; $('#ag-alt').textContent = M.alt || 'Başka takımlar ne yapıyor, biz onlara neyi nasıl kolaylaştırırız?';
+  agKadro(M);
+  const OB = $('#ag-ortak-baslik'), OA = $('#ag-ortak-alt'); if (OB) OB.textContent = M.ortakBaslik || 'Ortak işler'; if (OA) OA.textContent = M.ortakAlt || '';
+  /* ortak işler şeridi: ilk 6, kalanı "daha fazla" ile */
+  const OK = $('#ag-ortak'), DH = $('#ag-daha'), L = AG.V.ortak.map(agOrtakKart), ILK = 6;
+  if (!L.length) { OK.replaceChildren(el('div', { class: 'bos ag-bos' }, M.ortakBos || 'Ortak işler veri gelince burada listelenecek.')); if (DH) DH.hidden = true; }
+  else {
+    OK.replaceChildren(...L); L.slice(ILK).forEach(k => { k.hidden = true; });
+    if (DH) { DH.hidden = L.length <= ILK; DH.setAttribute('aria-expanded', 'false'); DH.textContent = `+${Math.max(0, L.length - ILK)} ortak iş daha`;
+      DH.addEventListener('click', () => { const ac = DH.getAttribute('aria-expanded') === 'true'; L.slice(ILK).forEach(k => { k.hidden = ac; }); DH.setAttribute('aria-expanded', String(!ac)); DH.textContent = ac ? `+${L.length - ILK} ortak iş daha` : 'daha az göster'; durum.etkilesim++; }); }
+    maddele(OK);
+  }
+  /* grup sekmeleri (ilk: Meteoroloji, açık) → takım kartları */
+  const SK = $('#ag-sekme'), IZ = $('#ag-izgara'), DT = $('#ag-daha-t'), TILK = 9;
+  const izgara = () => {
+    const g = AG.V.gruplar.find(x => x.grup === AG.grup) || AG.V.gruplar[0], T = g.takimlar, tum = !!AG.tum[g.grup]; IZ.setAttribute('aria-labelledby', 'ag-sek-' + g.grup);
+    IZ.replaceChildren(...(T.length ? (tum ? T : T.slice(0, TILK)).map(t => agKart(t, g.grup)) : [el('div', { class: 'bos ag-bos' }, M.bos || 'Veri geliyor: bu gruptaki takımları hâlâ araştırıyoruz.')]));
+    if (DT) { DT.hidden = T.length <= TILK; DT.setAttribute('aria-expanded', String(tum)); DT.textContent = tum ? 'daha az göster' : `+${T.length - TILK} takım daha`; }
+    maddele(IZ);
+  };
+  if (DT) DT.addEventListener('click', () => { AG.tum[AG.grup] = !AG.tum[AG.grup]; izgara(); durum.etkilesim++; });
+  const sec = (grup, odak) => { AG.grup = grup; $$('.ag-sek', SK).forEach(b => { const a = b.dataset.grup === grup; b.setAttribute('aria-selected', String(a)); b.tabIndex = a ? 0 : -1; if (a && odak) b.focus({ preventScroll: true }); }); izgara(); durum.etkilesim++; };
+  SK.replaceChildren(...AG.V.gruplar.map(g => el('button', { type: 'button', class: 'yil-b ag-sek', role: 'tab', id: 'ag-sek-' + g.grup, 'data-grup': g.grup, 'aria-selected': String(g.grup === AG.grup), 'aria-controls': 'ag-izgara', tabindex: g.grup === AG.grup ? '0' : '-1', onclick: () => { if (AG.grup !== g.grup) sec(g.grup, false); } }, g.baslik, el('small', {}, String(g.takimlar.length)))));
+  SK.addEventListener('keydown', e => { const A = Object.keys(AG_GRUP_AD), i = A.indexOf(AG.grup); const y = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!y) return; e.preventDefault(); sec(A[(i + y + A.length) % A.length], true); });
+  izgara();
+  $('#ag-not').textContent = M.not || '';
+}
+/* ---- p3 ekranları (tur 'ag'): takım → ortak iş ---- */
+function agIlkEkran(f) {
+  const O = f.is ? AG.O.get(f.is) : null, T = f.takim ? AG.T.get(f.takim) : null;
+  if (O) return { ad: kisalt(O.baslik, 26), veri: { id: O.id }, ozet: p3AgOzetIs(O), kur: s => p3AgIs(s, O, null, true) };
+  if (T) return { ad: kisalt(T.t.ad, 26), veri: { id: T.t.id }, ozet: p3AgOzetTakim(T.t, T.grup), kur: s => p3AgTakim(s, T.t, T.grup, true) };
+  return { ad: 'Takım ağı', ozet: { baslik: 'Takım ağı', kisa: 'Veri geliyor', satirlar: [] }, kur: () => [el('h3', { id: 'detay-baslik', class: 'dm-baslik p3-baslik', tabindex: -1 }, 'Takım ağı'), el('p', { class: 'p3-not' }, 'Veri geliyor.')] };
+}
+function agTakimAc(t, grup) { if (!P3) return; p3EkranAc({ ad: kisalt(t.ad, 22), veri: { id: t.id }, ozet: p3AgOzetTakim(t, grup), kur: s => p3AgTakim(s, t, grup, false) }); }
+function agIsAc(o, t) { if (!P3) return; p3EkranAc({ ad: kisalt(o.baslik, 22), veri: { id: o.id }, ozet: p3AgOzetIs(o), kur: s => p3AgIs(s, o, t, false) }); }
+const agBaslikEkle = (out, ust, ad, ilk) => { if (ilk) out.push(el('p', { class: 'dm-ust' }, ust), el('h3', { id: 'detay-baslik', class: 'dm-baslik p3-baslik', tabindex: -1 }, ad)); else out.push(p3Baslik(ad)); };
+const agCip = (et, v) => v ? el('span', { class: 'p3-cip' }, el('i', {}, et), v) : null;
+const agTeyitsiz = () => el('i', { class: 'ag-teyitsiz' }, 'teyitsiz');
+function agBlokListe(et, L, cizim, sinif) { L = agDizi(L); return L.length ? el('div', { class: 'p3-blok' }, el('span', { class: 'p3-etiket' }, et), el('ul', { class: sinif || 'ag-akis' }, ...L.map(cizim))) : null; }
+function p3AgTakim(sec, t, grup, ilk) {
+  const out = []; agBaslikEkle(out, AG_GRUP_AD[grup] || 'Takım ağı', t.ad, ilk);
+  out.push(el('div', { class: 'p3-cipler ag-cipler' }, agRozet(t), agCip('birim', t.birim), agCip('kuruluş', t.kurulus), ...agDizi(t.yarisma).slice(0, 4).map(y => agCip('yarışma', y))));
+  if (t.ozet) out.push(el('p', { class: 'p3-amac-b' }, t.ozet));
+  const kn = t.kanal || {}, kl = [agUrl(kn.site) ? agLink(kn.site, kaynakAlan(kn.site) + ' ↗', 'p3-dis') : null, /^@?[A-Za-z0-9_.]{2,30}$/.test(kn.instagram || '') ? agLink('https://www.instagram.com/' + kn.instagram.replace(/^@/, '') + '/', '@' + kn.instagram.replace(/^@/, '') + ' ↗', 'p3-dis') : null].filter(Boolean);
+  if (kl.length) out.push(el('p', { class: 'p3-ust-satir' }, el('span', { class: 'p3-etiket' }, 'Kanal'), ...kl));
+  /* birlikte yapabileceğimiz işler: önce bu takıma özel, sonra çok takımlı ortak işler */
+  const L = [...agDizi(t.ortak).map(o => ({ o, ozel: true })), ...agDizi(t.ortakIsIds).map(id => AG.O.get(id)).filter(Boolean).map(o => ({ o, ozel: false }))];
+  out.push(L.length ? el('div', { class: 'ag-ortak-blok' }, el('span', { class: 'p3-etiket' }, 'Birlikte yapabileceğimiz işler'), el('ol', { class: 'p3-liste' }, ...L.map(({ o, ozel }) =>
+    el('li', {}, el('button', { class: 'p3-sat p3-sat-2', type: 'button', onclick: () => agIsAc(o, t) },
+      el('span', { class: 'p3-sat-ic' }, ozel ? null : el('i', { class: 'p3-tur' }, 'çok takımlı · ' + agDizi(o.takimlar).length + ' takım'), el('b', { class: 'p3-ad' }, o.baslik), o.ne ? el('span', { class: 'p3-amac p3-kirp' }, o.ne) : null,
+        el('span', { class: 'p3-ders ag-satir-meta' }, agZorluk(o.zorluk), o.sure ? el('span', {}, o.sure) : null)), p3Ok()))))) : el('p', { class: 'p3-not' }, 'Bu takım için ortak iş önerisi henüz yok.'));
+  const madde = x => el('li', { class: 'ag-m' }, x.yil ? el('b', { class: 'ag-yil-r' }, x.yil) : null, el('span', {}, x.is), x.teyitsiz ? agTeyitsiz() : null, agUrl(x.kaynak) ? agLink(x.kaynak, 'kaynak ↗', 'p3-dis ag-kaynak') : null);
+  out.push(agBlokListe('Geçmiş', t.gecmis, madde), agBlokListe('Hedefler', t.hedefler, madde));
+  if (!agDizi(t.gecmis).length && !agDizi(t.hedefler).length) out.push(el('p', { class: 'p3-not' }, 'Geçmiş ve hedefler teyit edildikçe eklenir.'));
+  const KY = agDizi(t.kaynaklar).filter(k => agUrl(k.url));
+  if (KY.length) out.push(el('div', { class: 'p3-blok p3-refler' }, el('span', { class: 'p3-etiket' }, 'Kaynaklar'), el('ul', { class: 'p3-ref' }, ...KY.map(k => el('li', {}, agLink(k.url, (k.ad || k.url) + ' ↗'), k.teyitsiz ? agTeyitsiz() : null)))));
+  return out;
+}
+function p3AgIs(sec, o, t, ilk) {
+  const out = []; agBaslikEkle(out, 'ortak iş' + (t ? ' · ' + t.ad : ''), o.baslik, ilk);
+  const Z = agZorluk(o.zorluk);
+  out.push(el('div', { class: 'p3-cipler ag-cipler' }, Z ? el('span', { class: 'p3-cip' }, el('i', {}, 'zorluk'), Z) : null, agCip('süre', o.sure)));
+  if (o.ne) out.push(el('p', { class: 'p3-oz-buyuk' }, o.ne));
+  const TK = agDizi(o.takimlar).map(id => AG.T.get(id)).filter(x => x && !(t && x.t.id === t.id));
+  if (TK.length) out.push(el('div', { class: 'p3-blok' }, el('span', { class: 'p3-etiket' }, t ? 'Aynı işe ihtiyacı olan diğer takımlar' : 'Hangi takımların işine yarar'),
+    el('div', { class: 'ag-tk-sar' }, ...TK.map(x => el('button', { type: 'button', class: 'p3-cip ag-tk', onclick: () => agTakimAc(x.t, x.grup) }, x.t.ad, el('span', { class: 'ag-tk-ok', 'aria-hidden': 'true' }, '›'))))));
+  /* nasıl: teknik ↔ sade çift; mevcut `nasil` bileşeni (p3Nasil): satır = teknik, açılınca sade */
+  const cift = agDizi(o.nasil).map((x, i) => ({ teknik: x, sade: agDizi(o.sade)[i] || '' }));
+  const nb = cift.length ? p3Nasil({ nasil: cift }) : null;
+  if (nb) { const et = nb.querySelector('.p3-etiket'); if (et) et.textContent = 'Nasıl yapılır'; const ol = nb.querySelector('ol'); if (ol) ol.before(el('p', { class: 'p3-not' }, 'Her adımın altında sade anlatımı açılır.')); out.push(nb); }
+  const VA = agDizi(o.veriArac).filter(x => agUrl(x.url));
+  if (VA.length) out.push(el('div', { class: 'p3-blok p3-refler' }, el('span', { class: 'p3-etiket' }, 'Veri ve araçlar'), el('ul', { class: 'p3-ref' }, ...VA.map(x => el('li', {}, agLink(x.url, (x.ad || x.url) + ' ↗'))))));
+  const DR = agDizi(o.ders);
+  if (DR.length) out.push(el('div', { class: 'p3-blok' }, el('span', { class: 'p3-etiket' }, 'Dersler · OBS'), el('p', { class: 'ag-dersler' }, ...DR.map(k => p3KodLink(k))), el('p', { class: 'p3-not' }, 'Kodlar İTÜ ders kataloğunu açar; işin dayandığı bilgi bu derslerden gelir.')));
+  const OR = agDizi(o.ornek).filter(x => agUrl(x.url));
+  if (OR.length) out.push(el('div', { class: 'p3-blok p3-refler' }, el('span', { class: 'p3-etiket' }, 'Benzer örnekler'), el('ul', { class: 'p3-ref' }, ...OR.map(x => el('li', {}, agLink(x.url, (x.ad || x.url) + ' ↗'))))));
+  return out;
+}

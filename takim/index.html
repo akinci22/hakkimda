@@ -17,8 +17,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <script>/* 15 Eki (CLS): 'sade dil' varsayılan açık; sınıf ilk boyamadan önce konur, sonradan eklenip sayfayı kaydırmasın (takim.js sadeKur ile aynı kural) */try{var k=localStorage.getItem('takim-sade');if(k==null||k==='1')document.documentElement.classList.add('sade')}catch(e){document.documentElement.classList.add('sade')}</script>
-<link rel="stylesheet" href="takim.css?v=1792377507">
-<link rel="stylesheet" href="akis.css?v=1792377507">
+<link rel="stylesheet" href="takim.css?v=1792380215">
+<link rel="stylesheet" href="akis.css?v=1792380215">
 <noscript><style>.aura-ad.hazir .a-h,.aura-ad.hazir .a-i{opacity:1}</style></noscript>
 <script src="firebase-config.js?v=1"></script>
 <script src="../gecis.js?v=3"></script>
@@ -271,6 +271,26 @@
     <div class="fak-izgara" id="fak-izgara" role="group" aria-label="Fakülteler"></div>
     <div class="fak-bolumler" id="fak-bolumler" hidden aria-live="polite"></div>
     <p class="not" id="fak-not"></p>
+  </div>
+</section>
+
+<!-- 19 Eki (Akın): takım ağı — başka takımlar ne yapıyor, biz onlara neyi nasıl kolaylaştırırız. Veri: veri/takim-agi.json (← _araclar/takim_agi_birlestir.py). Ekranlar takim.js p3 yığınında (tur 'ag'). -->
+<section id="takim-agi" class="blok takim-agi" data-asama="3" data-hpa="440">
+  <div class="sar">
+    <p class="seviye"><span class="hpa" data-seviye="500">440 hPa</span> 03 · takım ağı</p>
+    <h2 id="ag-baslik"></h2>
+    <p class="alt" id="ag-alt"></p>
+    <div class="ses" data-ses="ag"></div>
+    <div class="ag-kadro" id="ag-kadro"></div>
+  </div>
+  <div class="sar genis">
+    <div class="ag-ortak-ust"><h3 class="ag-ust" id="ag-ortak-baslik"></h3><p class="ag-ust-alt" id="ag-ortak-alt"></p></div>
+    <div class="bolum-kartlar ag-izgara ag-ortak" id="ag-ortak"></div>
+    <p class="ag-daha-sar"><button type="button" class="fak-geri ag-daha" id="ag-daha" aria-expanded="false" hidden></button></p>
+    <div class="yil-sec ag-sekme" id="ag-sekme" role="tablist" aria-label="Takım grupları"></div>
+    <div class="bolum-kartlar ag-izgara" id="ag-izgara" role="tabpanel"></div>
+    <p class="ag-daha-sar"><button type="button" class="fak-geri ag-daha" id="ag-daha-t" aria-expanded="false" hidden></button></p>
+    <p class="not" id="ag-not"></p>
   </div>
 </section>
 
@@ -602,6 +622,6 @@ addEventListener('load', function () { if (!window.Lenis || matchMedia('(hover: 
   var az = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var l = window.__lenis = new Lenis({ lerp: az ? .14 : .09, wheelMultiplier: .9, duration: az ? .7 : 1.2, easing: function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }, smoothWheel: true });
   (function r(t) { l.raf(t); requestAnimationFrame(r); })(performance.now()); });</script>
-<script type="module" src="takim.js?v=1792377507"></script>
+<script type="module" src="takim.js?v=1792380215"></script>
 </body>
 </html>
