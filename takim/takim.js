@@ -97,7 +97,7 @@ function panelNot(baslik, kisa, uzun, ipucu, ek) {
 function panelGorselYaz(G) {
   const U = $('#p-not-uzun'); if (!U) return; let K = $('#p-not-gorsel');
   if (!K) { K = el('div', { id: 'p-not-gorsel', hidden: true }); U.after(K); }
-  const L = (G || []).filter(g => g && g.src).slice(0, 4);
+  const L = (G || []).filter(g => g && g.src).slice(0, 3);
   K.replaceChildren(...L.map(g => { const f = el('figure', { class: 'pn-g' }, el('img', { src: yol(g.src), alt: g.ad || g.alt || '', loading: 'lazy', decoding: 'async', onerror: () => { f.remove(); if (!K.children.length) K.hidden = true; } }), el('figcaption', {}, [g.ad || g.alt || '', kaynakAlan(g.kaynak)].filter(Boolean).join(' · '))); return f; }));
   K.hidden = !L.length;
 }
@@ -109,7 +109,47 @@ function ipucuGoster(baslik, metin, x, y) {
   panelNot(baslik, metin, '', false);
 }
 const NOT_VARSAYILAN = ['Not · üzerine gel', 'Altı noktalı terimlere, kartlara ve ray üstündeki seviyelere gelince açıklaması burada belirir.'];
-let notZ; function notSifirla() { clearTimeout(notZ); notZ = setTimeout(() => { const pn = $('#p-not'); if (!pn || pn.classList.contains('canli') || P3) return; pn.querySelector('.panel-ust').textContent = NOT_VARSAYILAN[0]; $('#p-not-m').textContent = NOT_VARSAYILAN[1]; $('#p-not-uzun').replaceChildren(); panelGorselYaz(null); const ip = $('#p-not-ip'); if (ip) ip.hidden = true; }, 6000); }   /* p3 ekranı açıkken panel o ekranın özetini tutar, sıfırlanmaz */
+let notZ; function notSifirla() { clearTimeout(notZ); notZ = setTimeout(() => { const pn = $('#p-not'); if (!pn || pn.classList.contains('canli')) return; if (P3) { p3PanelGuncelle(); return; } if (sonOge && sonOge.isConnected) { grupOzYaz(sonOge); return; } pn.querySelector('.panel-ust').textContent = NOT_VARSAYILAN[0]; $('#p-not-m').textContent = NOT_VARSAYILAN[1]; $('#p-not-uzun').replaceChildren(); panelGorselYaz(null); const ip = $('#p-not-ip'); if (ip) ip.hidden = true; }, 380); }   /* 19 Eki: imleç ayrılınca 6 sn sonra genel metne değil, ~0,4 sn sonra o grubun özüne döner (panel boş/alakasız kalmaz); p3 açıkken ekran özeti */
+/* 19 Eki (Akın): sağ panel HER ZAMAN üzerine gelinen/odaklanılan öğeyi anlatır — tüm kart/satır türleri (bölüm, fakülte, ders satırı E0, p3 satırları, "birlikte yapabileceğimiz işler", takım ağı). etk kartları kendi zengin verisiyle (etkilesim) yazar; geri kalanı DOM'dan türetilir. */
+const PANEL_OGE = '.bk, .kart, .p3-sat, .p3-parca, .plan-giris, .dny-k, .olay-k, .akis-k, .sk, .vaka, .kapi, .p3-nasil';
+let sonOge = null;
+const panelTemiz = t => String(t || '').replace(/\s+/g, ' ').trim();
+function ogeBilgi(it) {
+  const bas = it.querySelector('.p3-ad, .bk-ad, .p3-nasil-b, h3, h4, b, strong');
+  const baslik = panelTemiz(it.dataset.panelBaslik || (bas ? bas.textContent : '') || it.getAttribute('aria-label') || '');
+  const c = it.cloneNode(true); c.querySelectorAll('.p3-ad, .bk-ad, .p3-nasil-b, h3, h4, .etk-roz, .p3-ok, .p3-sat-g, svg, script, style, [hidden], .p3-nasil-ac').forEach(x => x.remove());
+  if (bas) { const b2 = c.querySelector('b, strong'); if (b2 && panelTemiz(b2.textContent) === baslik) b2.remove(); }
+  const parca = []; c.querySelectorAll('.p3-tur, .p3-amac, .bk-yuz, .bk-k, p, li, .ag-birim, .ag-say, .p3-adim-meta, .p3-kod-satir, span').forEach(x => { if (x.querySelector('p, li, .p3-amac, .bk-yuz')) return; const t = panelTemiz(x.textContent); if (t && t.length > 2 && !parca.some(y => y.includes(t))) parca.push(t); });
+  if (!parca.length) { const t = panelTemiz(c.textContent); if (t) parca.push(t); }
+  const cumle = parca.flatMap(t => cumleBol(t)).filter(t => t !== baslik);
+  const gor = []; it.querySelectorAll('img, video[poster]').forEach(m => { const src = m.tagName === 'VIDEO' ? m.getAttribute('poster') : (m.currentSrc || m.getAttribute('src')); if (src && gor.length < 3 && !gor.some(g => g.src === src)) gor.push({ src, ad: m.getAttribute('alt') || baslik }); });
+  return { baslik: kisalt(baslik, 60), kisa: kisalt(cumle[0] || '', 120), satirlar: cumle.slice(1, 4).map(x => kisalt(x, 96)), gor };
+}
+function grupBilgi(it) {
+  const sec = it.closest('.p3-ekr, section[id]') || it.closest('section'); if (!sec) return null;
+  const h = sec.querySelector('h2, .p3-baslik, h3'); const baslik = panelTemiz(h ? h.textContent : '');
+  const lead = [...sec.querySelectorAll('h2 ~ p, .alt-sat, .giris, .p3-amac-b, .p3-oz-buyuk, .ag-kadro-b')].map(x => panelTemiz(x.textContent)).filter(Boolean).slice(0, 2).join(' ');
+  const L = cumleBol(lead), n = sec.querySelectorAll(PANEL_OGE).length;
+  const satir = L.slice(1, 3).map(x => kisalt(x, 96)); if (satir.length < 2 && n > 1) satir.push(n + ' kart · üzerine geldiğinin özü burada');
+  if (satir.length < 2) satir.push('Bir karta gelince onun özü burada belirir');
+  return { baslik: kisalt(baslik, 60), kisa: kisalt(L[0] || '', 120), satirlar: satir.slice(0, 3) };
+}
+function grupOzYaz(it) { if (P3) { p3PanelGuncelle(); return; } const g = grupBilgi(it); if (!g || !g.baslik) return; panelNot(g.baslik, g.kisa, '', false, { satirlar: g.satirlar, gorseller: [] }); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); }
+function panelOgeKur() {
+  if (dokunmatik) return;   /* dokunmatikte sağ panel yok; dokunma zaten ayrıntıyı açar */
+  let aktif = null, cikZ = 0;
+  const yaz = (it, zorla) => { const b = ogeBilgi(it); if (!b.baslik && !b.kisa) return; const g = grupBilgi(it);
+    const sat = b.satirlar.length >= 2 ? b.satirlar : [...b.satirlar, ...(g && g.baslik ? ['Bölüm: ' + g.baslik] : []), zorla ? 'Enter ile ayrıntısı açılır' : 'Basınca ayrıntısı açılır'].slice(0, Math.max(2, b.satirlar.length));
+    panelNot(b.baslik || b.kisa, b.baslik ? b.kisa : '', '', true, { satirlar: sat, gorseller: b.gor }); };
+  const gir = (it, klavye) => { if (it === aktif) return; aktif = it; sonOge = it; clearTimeout(cikZ); clearTimeout(notZ); if (it.classList.contains('etk') && !klavye) return; yaz(it, klavye); };   /* etk kartını fareyle etkilesim yazar */
+  const cik = (it, rel) => { if (!it || it !== aktif) return; if (rel && it.contains(rel)) return; aktif = null; clearTimeout(cikZ);
+    cikZ = setTimeout(() => { if (aktif) return; const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); if (P3 && it.closest('.p3')) p3PanelGuncelle(); else grupOzYaz(it); }, 380); };
+  const bul = t => (t && t.closest) ? t.closest(PANEL_OGE) : null;
+  KOK.addEventListener('pointerover', ev => { if (ev.pointerType && ev.pointerType !== 'mouse') return; const it = bul(ev.target); if (it) gir(it, false); }, { passive: true });
+  KOK.addEventListener('pointerout', ev => { if (ev.pointerType && ev.pointerType !== 'mouse') return; cik(bul(ev.target), ev.relatedTarget); }, { passive: true });
+  KOK.addEventListener('focusin', ev => { const it = bul(ev.target); if (!it) return; try { if (!ev.target.matches(':focus-visible')) return; } catch (e) { } aktif = null; gir(it, true); });
+  KOK.addEventListener('focusout', ev => cik(bul(ev.target), ev.relatedTarget));
+}
 function ipucuGizle() { $('#ipucu').hidden = true; const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); }
 function altNotKur() { const k = $('#alt-not-kapat'); if (k) k.addEventListener('click', () => { $('#alt-not').hidden = true; }); }
 function ipucuBagla(e, al) {
@@ -165,8 +205,10 @@ function odakYerlestir() {
     { ad: 'ust', w: genis, h: r.top - U - 2 * B, y: U + B },
   ].map(b => Object.assign(b, { puan: Math.max(0, b.w) * Math.max(0, b.h) * (b.w < 300 || b.h < 160 ? .15 : 1) * (b.yan && b.w >= 380 ? 1.6 : 1) })).sort((a, b) => b.puan - a.puan)[0];
   k.style.setProperty('--oy', bolge.w < 400 ? '1' : bolge.w < 540 ? '1.2' : '1.45');   /* Akın 6 Eki: tıklayınca yazılar çok daha büyük */   /* dar bölgede punto biraz küçülür, yine büyük */
+  const U2 = k.querySelector('.oy-uzun'); k.classList.toggle('iki', bolge.w >= 720 && !!U2 && U2.children.length >= 2);   /* 19 Eki: geniş boş alanda maddeler iki dengeli sütun */
   k.style.width = Math.max(220, bolge.w) + 'px'; k.style.maxHeight = Math.max(120, bolge.h) + 'px';
   for (let o = parseFloat(k.style.getPropertyValue('--oy')); o > .62 && k.scrollHeight > k.clientHeight + 2; o -= .08) k.style.setProperty('--oy', o.toFixed(2));   /* sığmazsa kademeli küçült */
+  if (k._buyuEl !== e) { k._buyuEl = e; const hMax = Math.max(120, bolge.h); for (let o = parseFloat(k.style.getPropertyValue('--oy')), i = 0; i < 10 && o < 1.85 && k.scrollHeight < hMax * .6; i++) { o += .08; k.style.setProperty('--oy', o.toFixed(2)); if (k.scrollHeight > k.clientHeight + 2) { k.style.setProperty('--oy', (o - .08).toFixed(2)); break; } } k._oyBuyu = k.style.getPropertyValue('--oy'); } else if (k._oyBuyu) k.style.setProperty('--oy', k._oyBuyu);   /* 19 Eki: az yazı geniş alanda küçük kalmasın — boşluğu dolduracak kadar büyür (kart başına bir kez) */
   const kh = k.offsetHeight, kw = k.offsetWidth; let x, y;
   if (bolge.yan) { x = bolge.x; y = Math.max(U + B, Math.min(Math.max(U + B, cy - kh / 2), vh - B - kh)); }
   else { x = Math.min(Math.max(solK + B, cx - kw / 2), sag - B - kw); y = bolge.ad === 'alt' ? bolge.y : Math.max(U + B, r.top - B - kh); }
@@ -174,8 +216,8 @@ function odakYerlestir() {
 }
 function odakGoster(e, d, goster = true) {
   if (dokunmatik || azalt) return;
-  clearTimeout(odakTemiz); odakEl = e; const k = odakKutu();
-  k.querySelector('.oy-ust').textContent = d.ust || ''; k.querySelector('.oy-baslik').textContent = d.baslik || ''; k.querySelector('.oy-kisa').textContent = d.kisa || '';
+  clearTimeout(odakTemiz); odakEl = e; const k = odakKutu(); k._buyuEl = null;
+  k.querySelector('.oy-ust').textContent = d.ust || ''; k.querySelector('.oy-baslik').textContent = d.baslik || ''; k.querySelector('.oy-kisa').textContent = d.kisa || kisalt(cumleBol(yerDoldur(String(d.uzun || '').replace(/\n+/g, ' '))).find(c => !/^(Kaynak|Güven)\s*:/i.test(c)) || '', 140);   /* 19 Eki: öz satırı hep dolu (1 kısa cümle, büyük) */
   /* 8 Eki: yapılı kartlarda ayrık bloklar; düz metinde de etiketli kısa bloklar (en çok 3 blok × 2 madde, madde ≤ 110 harf) — paragraf yığını yok */
   const kisaBlok = Array.isArray(d.bloklar) && d.bloklar.length ? d.bloklar : metinBloklar(d.uzun).filter(b => b.tip !== 'satir' || !/^(Kaynak|Güven)$/i.test(b.etiket)).slice(0, 3).map(b => b.tip === 'madde' ? { ...b, kisaGoster: true, maddeler: b.maddeler.slice(0, 2).map(x => x.length > 110 ? x.slice(0, 107).replace(/\s\S*$/, '') + '…' : x) } : b);
   k.querySelector('.oy-uzun').replaceChildren(...(kisaBlok.length ? blokCiz(kisaBlok, true) : maddeler(d.uzun, 4).map(p => el('p', { class: 'md' }, p))));
@@ -194,25 +236,26 @@ let odakKaydirMuaf = 0;   /* 7 Eki: hızlı kaydırıp hemen karta gelince Lenis
 const BOSTA = []; let bostaZ = 0; const bostaCalis = () => { bostaZ = 0; BOSTA.splice(0).forEach(f => f()); };
 function kaydirmaBitince(f) { BOSTA.push(f); if (!bostaZ) bostaZ = setTimeout(bostaCalis, 260); }   /* süs animasyonları (rozet sezdirme, başlık harfleri) kaydırma durunca başlar: kayarken kare bütçesi kaydırmanın */
 const KAYDIRMA = new Set(); let kayBusRaf = 0; addEventListener('scroll', () => { if (bostaZ) { clearTimeout(bostaZ); bostaZ = setTimeout(bostaCalis, 260); } if (!kayBusRaf) kayBusRaf = requestAnimationFrame(() => { kayBusRaf = 0; KAYDIRMA.forEach(f => f()); }); }, { passive: true });
-KAYDIRMA.add(() => { if (odakEl && performance.now() > odakKaydirMuaf) { GOVDE.classList.remove('odak', 'odak-son'); odakEl.classList.remove('odakli'); odakGizle(); } });   /* kaydırmada odak biter: tam ekran blur kaydırma karelerini yemesin */
+KAYDIRMA.add(() => { if (odakEl && performance.now() > odakKaydirMuaf) { const e0 = odakEl; GOVDE.classList.remove('odak', 'odak-son'); e0.classList.remove('odakli'); odakGizle(); kaydirmaBitince(() => { if (!odakEl && e0._ic && e0.isConnected && e0.matches(':hover')) e0.dispatchEvent(new PointerEvent('pointerenter', { pointerType: 'mouse' })); }); } });   /* 19 Eki: kaydırma durunca imleç hâlâ kartın üstündeyse yeniden açılır (eskiden imleç kıpırdamadıkça kapalı kalıyordu) */   /* kaydırmada odak biter: tam ekran blur kaydırma karelerini yemesin */
 /* kart etkileşimi: üzerinde dur → kararır + arka plan bulanır + "ne öğrenirsin" satırı; tıkla → ayrıntı (sayfa gibi döner) */
 const kaynakAl = (...o) => { const g = new Set(); return o.flatMap(x => !x ? [] : [...(x.kaynaklar || []), ...(x.kaynakUrl ? [{ ad: x.kaynakAdi || 'kaynak', url: x.kaynakUrl }] : []), ...(typeof x.kaynak === 'string' && /^https?:/.test(x.kaynak) ? [{ ad: 'kaynak', url: x.kaynak }] : [])]).filter(k => k && k.url && !g.has(k.url) && g.add(k.url)); };   /* 8 Eki: her bilgi kaynağıyla */
 const kaynakMini = (L, on = 'Kaynak: ') => { L = (L || []).filter(k => k && k.url); return L.length ? el('span', { class: 'kaynak-mini' }, on, ...L.flatMap((k, i) => [i ? ' · ' : '', el('a', { href: k.url, target: '_blank', rel: 'noopener' }, k.ad || 'kaynak')])) : null; };
-let odakZ, odakZ2, odakBirak, sonKapanis = -1e9; const ISRAR_SN = 3;   /* 8 Eki: son kapanıştan 3 sn içinde yeni kart → 3 sn ısrar */
+let odakZ, odakZ2, odakBirak, sonKapanis = -1e9; const ISRAR_SN = 1.2;   /* 19 Eki: 3 sn uzun geliyordu (imleç ufak kayınca açılmıyor sanılıyordu); zamanlayıcı artık kart başına (e._acZ) + :hover yerine giriş bayrağı (e._ic) — başka kartın girişi ya da gölge kökte :hover sapması bekleyeni iptal etmez */   /* 8 Eki: son kapanıştan 3 sn içinde yeni kart → 3 sn ısrar */
 function etkilesim(e, al) {
   e.classList.add('etk'); if (!e.querySelector('.etk-roz')) e.append(el('span', { class: 'etk-roz', 'aria-hidden': 'true' }));   /* sözsüz işaret: köşede açılır-ok (›), yazı yok */
   if (dokunmatik && !e.querySelector('.etk-on')) { try { const d = al(); const ilk = cumleler(String(d.uzun || '').replace(/\n+/g, ' ')).find(c => !/^(Kaynak|Güven)\s*:/i.test(c)) || ''; const cek = ilk.replace(/^[^:]{0,24}:\s*/, '').slice(0, 30); if (ilk && ilk !== d.kisa && !e.textContent.includes(cek)) e.append(el('span', { class: 'etk-on' }, ilk.length > 120 ? ilk.slice(0, 117).replace(/\s\S*$/, '') + '…' : ilk)); } catch (err) { } }   /* dokunmadan bilgi: ayrıntının ilk cümlesi kartta */
   if (!dokunmatik && !azalt) {
     /* Akın 8 Eki: imleç gelince HEMEN açılır; karttan çıkınca HEMEN kapanır. Az önce (3 sn içinde) bir kart kapandıysa yeni kart 3 sn ısrar ister:
        kartlar arasında gezinirken aç-kapa aç-kapa olmaz, kullanıcı imleci düşünmek zorunda kalmaz. */
-    e.addEventListener('pointerenter', () => { clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); odakKaydirMuaf = performance.now() + 900; const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true, d.ozet);
+    e.addEventListener('pointerenter', () => { sonOge = e; clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); odakKaydirMuaf = performance.now() + 900; const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true, d.ozet);
       if (d.p3) p3PanelGorselleri(d.p3).then(G => { if (G.length && e.matches(':hover') && !P3) panelGorselYaz(G); });   /* 14 Eki tur 9: bölüm kartında benzerini yapan projelerin görselleri */
       $$('.odakli').forEach(x => { if (x !== e) x.classList.remove('odakli'); });
-      const ac = () => { if (!e.matches(':hover')) return; e.classList.remove('bekliyor'); GOVDE.classList.add('odak'); e.classList.add('odakli'); odakGoster(e, d, false);
+      e._ic = true; clearTimeout(e._acZ);
+      const ac = () => { if (!e._ic || !e.isConnected) return; e.classList.remove('etk-bekliyor'); GOVDE.classList.add('odak'); e.classList.add('odakli'); odakGoster(e, d, false);
         odakZ2 = setTimeout(() => { GOVDE.classList.add('odak-son'); const k = $('#odak-yazi'); if (k && odakEl === e) k.classList.add('acik'); }, 240); };
-      const israr = performance.now() - sonKapanis < ISRAR_SN * 1000; e.classList.toggle('bekliyor', israr);
-      if (israr) odakZ = setTimeout(ac, ISRAR_SN * 1000); else ac(); });
-    e.addEventListener('pointerleave', () => { clearTimeout(odakZ); clearTimeout(odakZ2); e.classList.remove('bekliyor'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla();
+      const israr = performance.now() - sonKapanis < ISRAR_SN * 1000; e.classList.toggle('etk-bekliyor', israr);
+      if (israr) e._acZ = setTimeout(ac, ISRAR_SN * 1000); else ac(); });
+    e.addEventListener('pointerleave', () => { e._ic = false; clearTimeout(e._acZ); clearTimeout(odakZ); clearTimeout(odakZ2); e.classList.remove('etk-bekliyor'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla();
       if (GOVDE.classList.contains('odak')) sonKapanis = performance.now();
       GOVDE.classList.remove('odak', 'odak-son'); e.classList.remove('odakli'); odakGizle(); });
   } else if (!dokunmatik) {   /* tur 9: hareket azaltmada odak/bulanıklık yok ama panel notu (ve bölüm görselleri) yine gelir — hareketsiz */
@@ -225,6 +268,34 @@ function etkilesim(e, al) {
 }
 /* ayrıntı = zihin haritası: ortada tıklanan kart (kök), çevresinde dallar; dala tıkla → açılır, cümleleri alt budak olur; köke tıkla → geri */
 const cumleler = t => String(t || '').replace(/\s+/g, ' ').trim().split(/(?<=[.!?…])\s+(?=[A-ZÇĞİÖŞÜ0-9"(])/).filter(Boolean);
+/* 19 Eki (Akın, paragraf yasağı): metni maddelere böler — nokta/!/?/… (ardından büyük harf/rakam) ve noktalı virgülde; kısaltma (örn., vb., Dr.), sıra sayısı ("3. yarıyıl"), sayı içi nokta ("5.2", "×10⁻⁴") ve açık parantez bölünmez */
+const KISALTMA_RE = /(?:^|[\s(])(?:örn|ör|vb|vs|bkz|vd|Dr|Prof|Doç|Yrd|Öğr|Gör|Arş|St|No|yy|ss|c|s|M\.Ö|M\.S|ABD|Ing|Eng)\.$/i;
+function cumleBol(t) {
+  t = String(t || '').replace(/\s+/g, ' ').trim(); if (!t) return [];
+  const H = t.split(/(?<=[.!?…;])\s+/), out = [];
+  for (const p of H) {
+    const on = out[out.length - 1];
+    if (on != null) {
+      const ac = (on.match(/\(/g) || []).length > (on.match(/\)/g) || []).length;
+      const gecerli = !ac && (/;$/.test(on) || (/[.!?…]["”’)]?$/.test(on) && /^["“‘(]?[A-ZÇĞİÖŞÜ0-9]/.test(p) && !KISALTMA_RE.test(on) && !/(?:^|\s)\d{1,2}\.$/.test(on)));
+      if (!gecerli) { out[out.length - 1] = on + ' ' + p; continue; }
+    }
+    out.push(p);
+  }
+  return out.map(c => c.replace(/;$/, '').trim()).filter(c => c.length > 1);
+}
+/* p3 ekranlarındaki (ve takım ağı) düz metin blokları: ≥2 cümle → ince imli madde listesi; tek cümle → büyük "öz" satırı. Sınıflar korunur (seçiciler/QA aynı kalır). */
+const P3_MD_SEC = '.p3-blok > p, p.p3-amac-b, p.p3-nasil-sade, p.p3-baglam-d, p.p3-oz-buyuk, p.p3-not-uzun, p.ag-kadro-not, p.dny-ozet';
+function p3Maddele(kok) {
+  if (!kok || !kok.querySelectorAll) return;
+  kok.querySelectorAll(P3_MD_SEC).forEach(p => {
+    if (p.dataset.md || p.children.length) return; p.dataset.md = '1';
+    const L = cumleBol(p.textContent);
+    if (L.length < 2) { p.classList.add('p3-tek'); return; }
+    const ul = el('ul', { class: p.className + ' p3-md', 'data-md': '1' }, ...L.map(c => el('li', {}, c)));
+    p.replaceWith(ul);
+  });
+}
 /* ======== 8 Eki (Akın): ayrıntı ve odak yazısı paragraf DEĞİL, ayrık bloklar: eşleşme (sol → sağ), güncel örnek kutusu, numaralı işler, kısa maddeler, tek satır. ======== */
 function metinBloklar(uzun) {   /* düz metin ("Etiket: a · b", "1) ... 2) ...", cümleler) → bloklar; her paragraf ayrı blok, her cümle ayrı madde */
   const B = [];
@@ -850,7 +921,7 @@ function donusGoster(y) {
 }
 function donusKur() {
   const b = $('#donus'); if (!b || IC) return; const gizle = () => { donusY = null; b.classList.remove('acik'); setTimeout(() => { if (!b.classList.contains('acik')) b.hidden = true; }, 350); };
-  b.addEventListener('click', () => { if (donusY == null) return; const y = donusY; gizle(); kaydirHedef(y); });
+  b.addEventListener('click', () => { if (donusY == null) return; const y = donusY; gizle(); if (window.__lenis) { try { window.__lenis.start(); } catch (e) { } window.__lenis.scrollTo(Math.max(0, y), { duration: azalt ? 0 : .8, immediate: azalt, force: true }); } else kaydirHedef(y); });   /* 19 Eki: Lenis varken yerel scrollTo ezilir → Lenis'in kendisi, force ile (durdurulmuşsa bile) */
   KAYDIRMA.add(() => { if (donusY != null && !b.hidden && Math.abs(scrollY - donusY) < 200) gizle(); });
 }
 function gitEl(h, pay = 70) { if (!h) return; const y = h.getBoundingClientRect().top + scrollY - pay; if (Math.abs(y - scrollY) > innerHeight) donusGoster(scrollY);
@@ -878,6 +949,8 @@ function ilerleme() {
     const io2 = new IntersectionObserver(es => { es.forEach(e => { if (!e.isIntersecting && e.boundingClientRect.height && e.boundingClientRect.top > 0) altta.add(e.target); else altta.delete(e.target); }); gK(); });
     bloklar.forEach(b => { io1.observe(b); io2.observe(b); });
   }
+  /* 19 Eki (Akın: "kaydırırken iki balon"): açılıştaki büyük balon görünürken raydaki küçük balon (ve içkin moddaki sağ balon) saklanır; büyük balon ekrandan çıkınca görev tek balona — raydakine — devredilir */
+  { const bb = $('#buyuk-balon'), yb = $('#yan-balon'); if (bb && 'IntersectionObserver' in window) new IntersectionObserver(es => { const g = es[es.length - 1].isIntersecting; if (balon) balon.classList.toggle('devir', g); if (yb) yb.classList.toggle('devir', g); }, { threshold: 0 }).observe(bb.querySelector('svg') || bb); }
   bloklar.forEach(b => altta.add(b));   /* ilk IO geri çağrısına dek hepsi 'kalan' sayılır (rozet erken açılmasın) */   /* --yuk/--yukp kökte: her yazım tüm sayfayı yeniden stiller → yalnız %1'lik adımlarda yazılır (renk farkı gözle seçilmez) */
   const g = () => { const h = KOKEL; let p;
     /* akıcılık: önce tüm okumalar (yerleşim), sonra yazımlar → kare başına zorunlu yeniden yerleşim yok */
@@ -889,7 +962,7 @@ function ilerleme() {
     const pq = p.toFixed(3); if (bar && pq !== pSon) { pSon = pq; bar.style.transform = `scaleX(${pq})`; }
     const yuk = 1 - p;                                                   /* iniş: sayfa başı tropopoz (yuk=1), sonu yüzey (yuk=0) */
     if (!IC && !PARITE) { const yq = Math.round(yuk * 100); if (yq !== yukSon) { const ilk = yukSon < 0; yukSon = yq; if (ilk) yukYaz(); else if (!yukBekle) { yukBekle = true; kaydirmaBitince(yukYaz); } }   /* kök renk değişkeni kayarken yazılmaz (her yazım tüm sayfayı yeniden stiller + renk geçişlerini tetikler); kaydırma durunca son değer yazılır, geçişler rengi yumuşatır */ }   /* içkin: zemin sabit, değişken yazılmaz (yeniden boyama yok) */
-    if (balon) { if (!rayH) rayH = balon.parentNode.clientHeight || 0; balon.style.setProperty('--by', (p * .72 * rayH).toFixed(1) + 'px'); }   /* top yerine translate: yerleşim yok, yalnız birleştirme */
+    if (balon) { if (!rayH) rayH = balon.parentNode.clientHeight || 0; balon.style.setProperty('--by', (p * .72 * rayH).toFixed(1) + 'px'); const yd = p > .965; if (yd !== balon._yd) { balon._yd = yd; balon.classList.toggle('yerde', yd); } }   /* 19 Eki: sağ balonun işi (yere yaklaşınca paraşüte devret) tek balona taşındı */   /* top yerine translate: yerleşim yok, yalnız birleştirme */
     const P = basincTen(yuk * .7), km = yukseklik(P) / 1000, T = 15 - 6.5 * km;   /* .7 → 1000…200 hPa aralığı */
     const ok = `${Math.round(P)} hPa · ${km.toFixed(1)} km`; const io = $('#im-okuma'); if (io && !inisDurum && io.textContent !== ok) io.textContent = ok; const mb = $('#mb-okuma'); if (mb && mb.textContent !== ok) mb.textContent = ok; const bn = $('#bb-not'); if (bn) metinYaz(bn, `${km.toFixed(0)} km · ${Math.round(P)} hPa · ` + (p < .02 ? 'balon tam şişkin' : p < .5 ? 'balon küçülüyor' : 'balon neredeyse yerde'));
     const ph = $('#p-hpa'); if (ph) { metinYaz(ph, Math.round(P) + ' hPa'); metinYaz($('#p-km'), km.toFixed(1).replace('.', ',') + ' km'); metinYaz($('#p-t'), Math.round(T) + ' °C'); }
@@ -908,7 +981,7 @@ function ray() {
 }
 /* yumuşak tekerlek: hız sınırlı, yumuşatılmış kaydırma (fare/trackpad); dokunmatik ve hareket-azalt etkilenmez */
 let hedefY = null, kayRaf = 0;
-function kaydirHedef(y) { kaydirDur(); if (window.__lenis && !azalt) { window.__lenis.scrollTo(Math.max(0, y), { duration: .7 }); return; } scrollTo({ top: Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight)), behavior: azalt ? 'auto' : 'smooth' }); }   /* akıcılık: tarayıcının kendi yumuşak kaydırması (kompozitörde, ana iş parçacığını beklemez); eski rAF yolu kaydirAdim yedek */
+function kaydirHedef(y) { kaydirDur(); if (window.__lenis && !azalt) { window.__lenis.scrollTo(Math.max(0, y), { duration: .7, force: true }); return; } scrollTo({ top: Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight)), behavior: azalt ? 'auto' : 'smooth' }); }   /* akıcılık: tarayıcının kendi yumuşak kaydırması (kompozitörde, ana iş parçacığını beklemez); eski rAF yolu kaydirAdim yedek */
 let kayTakil = 0;
 function kaydirDur() { if (kayRaf) cancelAnimationFrame(kayRaf); kayRaf = 0; hedefY = null; kayTakil = 0; }
 function kaydirAdim() { if (hedefY == null) { kayRaf = 0; return; } const cur = scrollY; const fark = hedefY - cur; if (Math.abs(fark) < .6 || kayTakil > 6) { if (kayTakil <= 6) scrollTo(0, hedefY); kaydirDur(); return; } scrollTo(0, cur + fark * .11); kayTakil = Math.abs(scrollY - cur) < .3 ? kayTakil + 1 : 0; kayRaf = requestAnimationFrame(kaydirAdim); }
@@ -1193,7 +1266,7 @@ async function kunye() {
   await arkaKur();
   asamaYukle();
   acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); takimAgi(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); merak(); sonKart(); panelSen();
-  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
+  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); try { panelOgeKur(); } catch (e) { } yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
 
@@ -1451,6 +1524,7 @@ function p3Kur(d, D) {
   const yigin = el('div', { class: 'p3-yigin' });
   const kok = el('div', { class: 'p3' }, el('div', { class: 'p3-yol' }, geri, kirinti), yigin);
   P3 = { D, kok, kirinti, yigin, ekranlar: [], basamak: 0, buyuk: null, io: null };
+  { let r = 0; new MutationObserver(() => { if (!r) r = requestAnimationFrame(() => { r = 0; p3Maddele(yigin); }); }).observe(yigin, { childList: true, subtree: true }); }   /* geç dolan (await) bloklar da maddelenir */
   p3Jestler(yigin, D);
   if (f.tur === 'ag') { p3EkranAc(agIlkEkran(f), true); return kok; }   /* 19 Eki: takım ağı — ilk ekran takım ya da ortak iş */
   if (p3PlanMi(f) && p3Plan().length) { const pf = { tur: 'plan', k: 'MTO' }; p3EkranAc({ ad: 'Meteoroloji', ozet: { baslik: 'Meteoroloji', kisa: kisalt(d.kisa || '', 120), satirlar: p3Ozet(pf) }, kur: sec => p3E0(sec, d) }, true); return kok; }
@@ -1486,6 +1560,7 @@ function p3EkranAc(t, ilk) {
   const sec = el('section', { class: 'p3-ekr' + (ilk ? ' aktif' : ' bekle'), 'data-ad': t.ad });
   const e = { ad: t.ad, el: sec, scroll: 0, veri: t.veri || null, ozet: t.ozet || null, onEk: t.onEk || '', onEkNo: t.onEkNo || '' };   /* onEk: kırıntıda bu ekranın önüne gelen ara parça (ör. "3. yarıyıl"; ayrı ekran değil) */
   const ic = t.kur(sec, e); if (Array.isArray(ic)) sec.append(...ic.filter(Boolean)); else if (ic) sec.append(ic);
+  p3Maddele(sec);   /* 19 Eki: paragraf yok — cümleler maddeye */
   S.ekranlar.push(e); S.yigin.append(sec);
   if (ilk) { p3PanelGuncelle(); p3KirintiCiz(); return; }
   sec.inert = true;

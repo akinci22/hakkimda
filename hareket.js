@@ -278,7 +278,13 @@ function kaydirDegis(k, src, yon) {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var hedef = null, zam = null, cik = null, kat = null, son = { x: 0, y: 0 }, kaydi = 0;
   var okRaf = 0;   /* kendiliğinden iniş rAF kimliği (aşağıda kurulur) */
-  addEventListener("scroll", function () { if (okRaf) return; kaydi = Date.now(); if (kat && kat._evre1) { kapat(); hedef = null; } }, { passive: true });   /* kendiliğinden iniş sırasındaki kaydırma "kullanıcı kaydırdı" sayılmaz */
+  var px = -1, py = -1, durZ = null;
+  addEventListener("scroll", function () { if (okRaf) return; kaydi = Date.now(); if (kat && kat._evre1) { kapat(); hedef = null; }
+    clearTimeout(durZ); if (!dokun && px >= 0) durZ = setTimeout(kayDurdu, 220); }, { passive: true });
+  function kayDurdu() {   // 19 Eki: kaydırma bitince imleç kıpırdamasa da altındaki görsel bekle-aç'a girer (eskiden imleç oynamadıkça hiç açılmıyordu)
+    if (kat || okRaf) return; var u = document.elementFromPoint(px, py), el = u && u.closest && u.closest(".hl, video.gif, .montaj-ic img"); if (!el) return;
+    clearTimeout(zam); hedef = el; on(el);
+    zam = setTimeout(function () { if (hedef !== el || kat || Date.now() - kaydi < 200) return; var v = document.elementFromPoint(px, py); if (v && (v === el || el.contains(v))) buyut(); }, 260); }   /* kendiliğinden iniş sırasındaki kaydırma "kullanıcı kaydırdı" sayılmaz */
   var pd = document.createElement("div");   // arka perde: büyürken kararıp bulanıklaşır, sonunda kapkara
   pd.style.cssText = "position:fixed;inset:0;z-index:9998;pointer-events:none;background:#000;opacity:0;visibility:hidden;backdrop-filter:none;-webkit-backdrop-filter:none";   /* 18 Eki (kaydırma): boştayken tam ekran backdrop-filter her karede birleştirme maliyeti yapıyordu (opacity 0 olsa bile) → boşta none + gizli */
   document.body.appendChild(pd);
@@ -397,7 +403,7 @@ function kaydirDegis(k, src, yon) {
   document.addEventListener("pointermove", function (e) {
     if (e.pointerType !== "mouse") return;
     if (okRaf) return;   /* kendiliğinden inerken imleç sabitken de sahte pointermove gelebilir: katmanı kapatmasın */
-    var x = e.clientX, y = e.clientY;
+    var x = e.clientX, y = e.clientY; px = x; py = y;
     if (kat) {
       var r1 = kat.getBoundingClientRect(), r2 = hedef ? hedef.getBoundingClientRect() : r1;   // kart ile büyük görsel arası boşluk da "içeride" sayılır
       if (x >= Math.min(r1.left, r2.left) && x <= Math.max(r1.right, r2.right) && y >= Math.min(r1.top, r2.top) && y <= Math.max(r1.bottom, r2.bottom)) {   // içerideyken kare kaydırmayı büyük görsele de yansıt
@@ -416,8 +422,9 @@ function kaydirDegis(k, src, yon) {
     if (el === hedef) return;
     if (el && el.closest(".montaj-ic")) { var mk = el.closest(".montaj").querySelector(".montaj-kare"); mk.src = el.currentSrc || el.src; }   // şeritteki kare önce büyük çerçevede görünür
     clearTimeout(zam); hedef = el;
-    if (el) { on(el); if (Date.now() - kaydi < 350) { hedef = null; return; }   // tekerlek hızlı dönüyorsa tetikleme
-    zam = setTimeout(function () { if (hedef === el) buyut(); }, 260); }   // görseller arasında geçerken yanlışlıkla açılmasın: imleç ~0,26 sn durmalı
+    if (el) { on(el); var gec = Date.now() - kaydi < 350 ? 620 : 260;   // 19 Eki: tekerlek yeni durduysa vazgeçme, biraz daha bekle (eskiden hedef=null → imleç kıpırdamadıkça hiç açılmıyordu)
+    zam = setTimeout(function () { if (hedef !== el) return; if (Date.now() - kaydi < 300) return;   // hâlâ kayıyorsa şimdi açma; kaydırma bitince kayDurdu yeniden dener
+      var u = document.elementFromPoint(x, y); if (u && (u === el || el.contains(u) || u.contains(el))) buyut(); else hedef = null; }, gec); }   // görseller arasında geçerken yanlışlıkla açılmasın: imleç ~0,26 sn durmalı
   }, { passive: true });
   var yut = false;
   document.addEventListener("click", function (e) {
@@ -613,7 +620,9 @@ function kaydirDegis(k, src, yon) {
   function gizle() { g.classList.remove("acik"); setTimeout(function () { if (!g.classList.contains("acik")) g.hidden = true; }, 400); }
   window.__geriGoster = function (y) { donY = y; setTimeout(function () { if (donY === null) return; g.hidden = false; requestAnimationFrame(function () { g.classList.add("acik"); }); }, 900); };   // takım bölümü (gölge kök) içindeki atlamalar da aynı bulutu kullanır
   g.addEventListener("click", function () { if (donY === null) return; var y = donY; donY = null; gizle();
-    scrollTo({ top: y, behavior: "smooth" }); });
+    var L = window.__lenis;   // 19 Eki: sayfa Lenis kullanıyor — yerel scrollTo Lenis'in bir sonraki karesinde eziliyordu; Lenis'in kendisi, force ile
+    if (L && L.scrollTo) { try { L.start && L.start(); } catch (e) { } L.scrollTo(Math.max(0, y), { duration: matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : .9, force: true }); }
+    else scrollTo({ top: y, behavior: "smooth" }); });
   addEventListener("scroll", function () { if (donY !== null && !g.hidden && Math.abs(scrollY - donY) < 200) { donY = null; gizle(); } }, { passive: true });
 })();
 

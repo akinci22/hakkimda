@@ -1014,9 +1014,9 @@ html[data-kitle="mto"] .arananlar{display:none}   /* bölüm içi: aranan bölü
 .or-kutu{display:grid;gap:.35em;border-left:3px solid var(--vurgu);padding:.15em 1em} .or-ust{font:500 .72em var(--mono);color:var(--murekkep-3)} .or-kutu b{font:700 1.1em/1.25 var(--baslik)} .or-link{font:600 .8em var(--mono);color:var(--vurgu);text-decoration:none;justify-self:start;border-bottom:1px solid currentColor} .or-link:hover{color:var(--murekkep)}
 .blk-md{margin:0;padding:0;list-style:none;display:grid;gap:.5em} .blk-md li{position:relative;padding-left:1.15em;line-height:1.45} .blk-md li::before{content:"";position:absolute;left:0;top:.58em;width:.42em;height:.42em;border-radius:50%;background:var(--vurgu)}
 .blk-satir{display:flex;flex-wrap:wrap;gap:.2em .5em;align-items:baseline} .blk-satir .blk-b{margin:0}
-.etk.bekliyor .etk-roz::before{content:"";position:absolute;left:6px;right:6px;bottom:-1px;top:auto;height:2px;inset-inline:6px;border:0;border-radius:2px;background:var(--vurgu);opacity:0;animation:etk-bekle 3s linear forwards} @keyframes etk-bekle{from{opacity:0}to{opacity:1}}
+.etk.etk-bekliyor .etk-roz::before{content:"";position:absolute;left:6px;right:6px;bottom:-1px;top:auto;height:2px;inset-inline:6px;border:0;border-radius:2px;background:var(--vurgu);opacity:0;animation:etk-bekle 1.2s linear forwards} @keyframes etk-bekle{from{opacity:0}to{opacity:1}}
 @media (max-width:860px){.es-izgara{grid-template-columns:1fr;gap:.25em} .es-izgara .ok{display:none} .es-izgara .sag::before{content:"→ ";color:var(--vurgu)} .es-izgara .not{margin-bottom:.8em} .dm-uzun.blok{font-size:1rem;gap:20px}}
-@media (prefers-reduced-motion:reduce){.blk{animation:none}.etk.bekliyor .etk-roz::before{animation:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.blk{animation:none}.etk.etk-bekliyor .etk-roz::before{animation:none;opacity:1}}
 /* 8 Eki: odak perdesi daha örtücü — arkadaki yazı hayaletleri odak yazısıyla yarışmasın (ferah görünüm) */
 body.odak-son #perde,.odak-son #perde{background:rgba(248,245,238,.88);backdrop-filter:blur(18px) saturate(.8);-webkit-backdrop-filter:blur(18px) saturate(.8)}
 #odak-yazi .oy-uzun .blk{margin-bottom:1.1em}
@@ -1555,11 +1555,11 @@ li.p3-plan-sat{align-items:start}
 .gorunmuyor,.gorunmuyor *,.gorunmuyor *::before,.gorunmuyor *::after{animation-play-state:paused!important}
 /* 15 Eki: rozet/kapak oku dolgu rengi background geçişi yerine ::before opacity (kaydırmada kök renk değişince 20+ eşzamanlı boyamalı geçiş oluyordu) */
 .etk .etk-roz::after,.kapak-ok::after{position:relative;z-index:1}
-.etk:not(.bekliyor) .etk-roz::before,.kapak-ok::before{content:"";position:absolute;inset:0;border:0;border-radius:50%;background:var(--vurgu);opacity:0;animation:none;transition:opacity .25s;pointer-events:none}
+.etk:not(.etk-bekliyor) .etk-roz::before,.kapak-ok::before{content:"";position:absolute;inset:0;border:0;border-radius:50%;background:var(--vurgu);opacity:0;animation:none;transition:opacity .25s;pointer-events:none}
 .etk:hover .etk-roz,.etk.odakli .etk-roz{background:color-mix(in srgb,var(--vurgu) 10%,transparent)}
-.etk.bekliyor:hover .etk-roz,.etk.bekliyor.odakli .etk-roz{background:var(--vurgu)}
+.etk.etk-bekliyor:hover .etk-roz,.etk.etk-bekliyor.odakli .etk-roz{background:var(--vurgu)}
 .kapak-k:hover .kapak-ok{background:color-mix(in srgb,var(--vurgu) 12%,transparent)}
-.etk:not(.bekliyor):hover .etk-roz::before,.etk.odakli:not(.bekliyor) .etk-roz::before,.kapak-k:hover .kapak-ok::before{opacity:1}
+.etk:not(.etk-bekliyor):hover .etk-roz::before,.etk.odakli:not(.bekliyor) .etk-roz::before,.kapak-k:hover .kapak-ok::before{opacity:1}
 /* bağımsız sayfa: ekran dışı bölümler atlanır (boy bir kez çizilince hatırlanır) */
 main > section{contain-intrinsic-size:auto 1700px}
 main > section{content-visibility:auto}
@@ -1716,3 +1716,39 @@ html[data-kime="khsm"] #yz,html[data-kime="hoca"] #yz{display:none}   /* E02: re
 .ag-tk-ok{flex:none;font:600 1.1rem/1 var(--mono);color:var(--vurgu)}
 .ag-dersler{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:6px 16px}
 @media (max-width:640px){.ag-kadro{padding:14px 14px 16px}.ag-roller{grid-template-columns:minmax(0,1fr)}.ag-sekme{margin-top:26px}.ag-k .bk-ad svg{width:30px;height:30px}}
+
+/* ======== 19 Eki (Akın) ======== */
+/* (1) paragraf yasağı: p3 + takım ağı metin blokları madde; tek cümle büyük öz satırı */
+ul.p3-md{list-style:none;margin:8px 0 6px;padding:0;display:grid;gap:12px;max-width:62ch}
+ul.p3-md li{position:relative;padding-left:1.2em;line-height:1.7;text-wrap:pretty}
+ul.p3-md li::before{content:"";position:absolute;left:0;top:.84em;width:.62em;height:2px;border-radius:2px;background:var(--vurgu);opacity:.8}
+.p3-tek{font-size:1.1em;line-height:1.65;font-weight:500;text-wrap:balance;max-width:52ch}
+.p3-blok ul.p3-md{margin-top:6px}
+.ag-kadro-not.p3-md{font-style:normal}
+/* (3) tek balon: açılıştaki büyük balon görünürken raydaki küçük balon saklanır (yalnız opacity) */
+.ray .ray-balon{transition:translate .25s linear,transform .9s cubic-bezier(.2,.8,.2,1),opacity .35s ease}
+.ray .ray-balon.devir,.yan-balon.devir .yb-ic{opacity:0!important}
+/* (4) yumuşak köşe: sol renkli şerit kenar çizgisi değil, içte yuvarlak uçlu çubuk */
+.kart,.bk,.p3-sat,.p3-parca,.plan-giris,.ag-kadro,.panel-kutu.not,.yz-asil,.dny-sonuc,.ee-netlik,.kanit-serit,.soru.oylandi,.detay.dar .dugum.kok,.detay.dar .dugum.dal{--serit:var(--vurgu);--serit-w:4px;position:relative;border-radius:12px}
+.kart,.bk,.ag-kadro,.panel-kutu.not,.soru.oylandi,.detay.dar .dugum.kok{border-left:1px solid rgba(31,42,46,.12)}
+.ee-netlik{border-left:1.5px solid var(--cizgi-2)} .kanit-serit{border-left:1px solid var(--cizgi-2)}
+.p3-sat,.p3-parca,.plan-giris,.yz-asil,.dny-sonuc{border-left:0}
+.p3-sat,.plan-giris{--serit-w:3px;padding-left:20px} .p3-parca{--serit-w:2px;--serit:color-mix(in srgb,var(--vurgu) 45%,transparent);padding-left:18px}
+.p3-sat-duz{--serit:color-mix(in srgb,var(--vurgu) 45%,transparent)} .bk.fb.bekliyor{--serit:var(--cizgi-2)}
+.ee-netlik{--serit:var(--sicaklik)} .kanit-serit{--serit:var(--ciy)} .soru.oylandi{--serit:var(--iyi)} .yz-asil,.detay.dar .dugum.kok{--serit-w:6px}
+.kart::before,.bk::before,.p3-sat::before,.p3-parca::before,.plan-giris::before,.ag-kadro::before,.panel-kutu.not::before,.yz-asil::before,.dny-sonuc::before,.ee-netlik::before,.kanit-serit::before,.soru.oylandi::before,.detay.dar .dugum.kok::before{content:"";position:absolute;left:6px;top:10px;bottom:10px;width:var(--serit-w);border-radius:var(--serit-w);background:var(--serit);pointer-events:none;transition:background-color .4s}
+.panel-kutu.not{padding-left:18px}
+.ray .ray-balon rect,.ray-balon svg rect{rx:1.6px}
+.ray .ray-balon{filter:drop-shadow(1px 2px 1.5px rgba(31,42,46,.22))}
+/* (6) açılan odak yazısı: büyük öz + maddeler; geniş alanda iki dengeli sütun, ferah satır arası */
+#odak-yazi .oy-kisa{text-wrap:balance;line-height:1.38}
+#odak-yazi .oy-uzun p,#odak-yazi .blk-md li{line-height:1.6}
+#odak-yazi .blk-md{gap:.62em}
+#odak-yazi.iki .oy-uzun{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5em 2.4em;align-items:start}
+#odak-yazi.iki .oy-uzun .blk{margin:0}
+/* (7) sağ panel: büyük, ferah */
+#p-not-uzun p.md{font:500 1.18rem/1.72 var(--govde);margin:0 0 12px}
+#p-not .panel-m{font-size:1.24rem;line-height:1.7}
+/* (3) tek balon: ≥1000px'te soldaki raydaki balon tek başına (sağdaki .yan-balon gizli); ray yokken (860-999px) sağdaki kalır. Sağ balonun "yere yaklaşınca paraşüte devret" işi raydakine taşındı (.yerde) */
+@media (min-width:1000px){.yan-balon{display:none!important}}
+.ray .ray-balon.yerde{opacity:0}
