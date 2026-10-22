@@ -1318,7 +1318,7 @@ async function kunye() {
   await arkaKur();
   asamaYukle();
   acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); takimAgi(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); katilKur(); merak(); sonKart(); panelSen();
-  katliKur(); maddele(KOK); try { agDerinBag(); } catch (e) { } try { bolumDerinBag(); } catch (e) { } terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); try { panelOgeKur(); } catch (e) { } yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
+  katliKur(); maddele(KOK); try { agDerinBag(); } catch (e) { } try { bolumDerinBag(); } catch (e) { } try { bolumKartDerinBag(); } catch (e) { } terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); try { panelOgeKur(); } catch (e) { } yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
 
@@ -1974,6 +1974,13 @@ function agOrtakKart(o) {
     nT ? el('div', { class: 'ag-say' }, nT + ' takımın işine yarar') : null);
   etkilesim(k, () => ({ ust: 'ortak iş' + (AG_ZOR[+o.zorluk] ? ' · ' + AG_ZOR[+o.zorluk] : ''), baslik: o.baslik, kisa: agIlkCumle(o.ne, 160), uzun: agIsUzun(o), ozet: p3AgOzetIs(o), p3: { tur: 'ag', is: o.id } }));
   return k;
+}
+function bolumKartDerinBag() {   /* QR (22 Eki): ?bk=<bolum kodu, or. MAT> -> Butun fakulteler, o fakulte acik, bolumun karti acilir. Telegram: qr_<bolum adi> */
+  const k = (new URLSearchParams(location.search).get('bk') || '').toUpperCase(); if (!/^[A-Z]{2,4}$/.test(k)) return;
+  const F = ((veri.fakulteler && veri.fakulteler.fakulteler) || []).find(f => f.bolumler.some(b => b.k === k)); if (!F) return;
+  const fk = $('#fak-izgara .fk[data-kod="' + F.kod + '"]'); if (fk) fk.click();
+  setTimeout(() => { const kart = $('#fak-bolumler .fb[data-k="' + k + '"]'); if (!kart) return; try { git('fakulteler'); } catch (e) { }
+    setTimeout(() => { kart.scrollIntoView({ block: 'center' }); setTimeout(() => kart.click(), 900); }, 1200); }, 500);
 }
 function bolumDerinBag() {   /* QR baski (22 Eki): ?bolum=<section id> -> o bolume in (katliysa acilir). Afisler: PROJE TAKIMI/QR-BASKI */
   const id = new URLSearchParams(location.search).get('bolum'); if (!id || !/^[a-z0-9-]+$/.test(id) || !KOK.getElementById(id)) return;
