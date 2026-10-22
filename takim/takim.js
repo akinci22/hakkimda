@@ -1271,7 +1271,7 @@ async function kunye() {
   await arkaKur();
   asamaYukle();
   acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); takimAgi(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); katilKur(); merak(); sonKart(); panelSen();
-  katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); try { panelOgeKur(); } catch (e) { } yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
+  katliKur(); maddele(KOK); try { agDerinBag(); } catch (e) { } terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); try { panelOgeKur(); } catch (e) { } yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
 
@@ -1927,6 +1927,15 @@ function agOrtakKart(o) {
     nT ? el('div', { class: 'ag-say' }, nT + ' takımın işine yarar') : null);
   etkilesim(k, () => ({ ust: 'ortak iş' + (AG_ZOR[+o.zorluk] ? ' · ' + AG_ZOR[+o.zorluk] : ''), baslik: o.baslik, kisa: agIlkCumle(o.ne, 160), uzun: agIsUzun(o), ozet: p3AgOzetIs(o), p3: { tur: 'ag', is: o.id } }));
   return k;
+}
+function agDerinBag() {   /* QR (22 Eki): ?ag=<takım id> → takım ağı bölümü, doğru grup sekmesi, kart görünür ve ayrıntısı açık. QR'lar: PROJE TAKIMI/QR-TAKIMLAR (qr_takimlar.py) */
+  const id = new URLSearchParams(location.search).get('ag'); if (!id || !AG.T || !AG.T.has(id)) return;
+  const grup = AG.T.get(id).grup, sek = $('#ag-sek-' + grup);
+  if (sek && sek.getAttribute('aria-selected') !== 'true') sek.click();
+  const kart = () => $('#ag-izgara .ag-k[data-id="' + id + '"]');
+  if (!kart()) { const d = $('#ag-daha-t'); if (d && !d.hidden) d.click(); }
+  const k = kart(); if (!k) return;
+  setTimeout(() => { k.scrollIntoView({ block: 'center' }); setTimeout(() => k.click(), 900); }, 400);
 }
 function takimAgi() {
   const S = $('#takim-agi'); if (!S) return; agKur();
