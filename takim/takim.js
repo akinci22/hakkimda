@@ -882,7 +882,7 @@ function baloncuk() {
   });
 }
 function katilKur() {   /* sayfa başı "Bize katıl": WhatsApp topluluk bağlantısı (veri/metinler.json katil.wp_link; _araclar/katil_wp.py ile yazılır + QR üretir) */
-  const K = veri.metinler && veri.metinler.katil; if (!K) return; const a = $('#uk-wp'), q = $('#uk-qr'); $('#uk-baslik').textContent = K.baslik; $('#uk-alt').textContent = K.alt;
+  hapGuncelle(0); const K = veri.metinler && veri.metinler.katil; if (!K) return; const a = $('#uk-wp'), q = $('#uk-qr'); $('#uk-baslik').textContent = K.baslik; $('#uk-alt').textContent = K.alt;
   if (K.wp_link) { a.href = K.wp_link; a.target = '_blank'; a.textContent = K.dugme; if (q.dataset.src) q.src = yol(q.dataset.src); q.hidden = false; $$('#katil').forEach(k => { k.href = K.wp_link; k.target = '_blank'; k.rel = 'noopener'; }); }
   else { a.textContent = K.yakinda; a.classList.add('uk-yakinda'); a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); }
 }
@@ -1230,15 +1230,14 @@ function dunya() {
 /* F07: dar ekranda 3. aşamadan sonra alt kenarda ince "Bize katıl" hapı → öneri kutusu; son aşamada gizli, kapatılırsa oturum boyunca çıkmaz */
 let HAP = null;
 function hapGuncelle(asama) {
-  if (IC || KIME || !matchMedia('(max-width:760px)').matches) { if (HAP) HAP.hidden = true; return; }
-  let kapali = false; try { kapali = sessionStorage.getItem('takim-hap') === '0'; } catch (e) { }
-  if (kapali) { if (HAP) HAP.hidden = true; return; }
+  /* 22 Eki (Akın): her genişlikte, her aşamada kenarda minik; tıklayınca doğrudan WhatsApp topluluğu */
+  const K = veri.metinler && veri.metinler.katil, link = K && K.wp_link; if (!link) { if (HAP) HAP.hidden = true; return; }
   if (!HAP) {
-    const git2 = el('a', { class: 'hap-git', href: '#baloncuk', onclick: () => setTimeout(() => $('#balon-metin')?.focus({ preventScroll: true }), 900) }, 'Bize katıl · 30 sn');
-    const kapat = el('button', { class: 'hap-kapat', type: 'button', 'aria-label': 'kapat', onclick: () => { try { sessionStorage.setItem('takim-hap', '0'); } catch (e) { } HAP.hidden = true; } }, '✕');
-    HAP = el('div', { class: 'katil-hap', role: 'complementary', 'aria-label': 'Katılım' }, git2, kapat); HAP.hidden = true; GOVDE.append(HAP);
+    const ikon = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>';
+    const a = el('a', { class: 'hap-git', href: link, target: '_blank', rel: 'noopener', 'aria-label': (K.dugme || 'WhatsApp topluluğuna katıl') }); a.innerHTML = ikon + '<span>' + (K.baslik || 'Bize katıl') + '</span>';
+    HAP = el('div', { class: 'katil-hap', role: 'complementary', 'aria-label': 'Katılım' }, a); if (IC) { if (!document.getElementById('katil-hap-st')) { const st = document.createElement('style'); st.id = 'katil-hap-st'; st.textContent = '.katil-hap{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:90;display:flex;border-radius:999px;background:#1f8f3d;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:transform .2s}.katil-hap[hidden]{display:none}.katil-hap:hover{transform:translateY(-2px)}.katil-hap .hap-git{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 14px 0 11px;color:inherit;text-decoration:none;font:700 13px/1 "Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.06em;text-transform:uppercase}.katil-hap .hap-git:focus-visible{outline:2px solid #fff;outline-offset:-4px;border-radius:999px}@media (max-width:760px){.katil-hap{right:10px;bottom:calc(84px + env(safe-area-inset-bottom,0px))}.katil-hap .hap-git span{display:none}.katil-hap .hap-git{padding:0;width:44px;min-height:44px;justify-content:center}}@media (prefers-reduced-motion:reduce){.katil-hap{transition:none}}'; document.head.append(st); } document.body.append(HAP); } else GOVDE.append(HAP);
   }
-  HAP.hidden = !(asama >= 3 && asama < 7);
+  HAP.hidden = false;
 }
 /* E05: #neden altında tek satır kanıt şeridi (karnenin özeti, örnek veri) + karneye giden açıcı */
 function kanitSerit() {

@@ -1605,6 +1605,15 @@ html[data-kime="khsm"] #yz,html[data-kime="hoca"] #yz{display:none}   /* E02: re
 .ray-sayac{position:absolute;top:72px;left:0;right:0;font:600 max(.72rem,12.5px)/1.2 var(--mono);color:var(--murekkep-2);text-align:center;margin:4px 0 0;letter-spacing:.04em} .ray-sayac b{color:var(--sicaklik)}   /* F04: hPa yanında aşama sayacı */
 .katil-hap{position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;align-items:center;gap:2px;background:var(--murekkep);color:var(--panel-bg);border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.22);padding:0 4px 0 0}   /* F07 */
 .katil-hap[hidden]{display:none}
+/* 22 Eki (Akın): üstteki büyük "Bize katıl" kutusu yerine her zaman kenarda minik hap → doğrudan WhatsApp */
+.ust-katil{display:none!important}
+.katil-hap{left:auto;right:calc(var(--panel,0px) + 14px);bottom:calc(14px + env(safe-area-inset-bottom,0px));padding:0;background:#1f8f3d;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:transform .2s}
+.katil-hap:hover{transform:translateY(-2px)}
+.katil-hap .hap-git{gap:7px;min-height:38px;padding:0 14px 0 11px;font:700 max(.82rem,13px)/1 var(--baslik);letter-spacing:.06em}
+.katil-hap .hap-git:focus-visible{outline:2px solid #fff;outline-offset:-4px;border-radius:999px}
+@media (max-width:1179px){.katil-hap{right:14px}}
+@media (max-width:760px){.katil-hap{right:10px;bottom:calc(84px + env(safe-area-inset-bottom,0px))}.katil-hap .hap-git span{display:none}.katil-hap .hap-git{padding:0;width:44px;min-height:44px;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.katil-hap{transition:none}}
 .katil-hap .hap-git{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;font:700 max(1rem,16px)/1 var(--baslik);text-transform:uppercase;letter-spacing:.05em;color:inherit;text-decoration:none}
 .katil-hap .hap-kapat{min-width:44px;min-height:44px;border:0;background:none;color:inherit;font:600 16px var(--govde);cursor:pointer;opacity:.8}
 #kitle-blok .kb-cipler .kb-cip{width:auto;flex:0 0 auto;display:inline-flex;align-items:center;margin:0;text-align:left}
