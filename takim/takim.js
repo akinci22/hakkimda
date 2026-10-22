@@ -25,7 +25,7 @@ const NS = 'http://www.w3.org/2000/svg';
 const svgEl = (t, a, txt) => { const n = document.createElementNS(NS, t); for (const [k, v] of Object.entries(a)) n.setAttribute(k, v); if (txt !== undefined) n.textContent = txt; return n; };
 
 const veri = {};
-const durum = { grup: ls('takim-grup') || '', kitle: ls('takim-kitle') || '', eslesme: { evet: 0, toplam: 0 }, test: { dogru: 0, toplam: 0, set: 'mto' }, roller: [], etkilesim: 0, asama: 0 };
+const durum = { grup: ls('takim-grup') || '', kitle: ls('takim-kitle') || '', bolum: ls('takim-bolum') || '', eslesme: { evet: 0, toplam: 0 }, test: { dogru: 0, toplam: 0, set: 'mto' }, roller: [], etkilesim: 0, asama: 0 };
 
 /* ---------------- ARKA UÇ ---------------- */
 class Yerel {
@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '48';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '49';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -549,13 +549,22 @@ function acilis() {
 function girisKur() {
   const G = veri.metinler.giris, S = $('#giris-sec'); if (!G || !S) { const g = $('#giris'); if (g) g.hidden = true; return; }
   $('#giris-soru').textContent = G.soru || '';
-  S.replaceChildren(...G.secenekler.map(o => el('button', { class: 'giris-b', type: 'button', role: 'radio', 'aria-checked': String(durum.kitle === o.id), 'data-id': o.id, onclick: () => kitleSec(o.id) }, el('b', {}, o.etiket), o.alt ? el('span', {}, o.alt) : null)));
+  /* 22 Eki (Akın): ilk ekranın ana eylemi "Bölümünü seç" — bolumler.json listesi; seçim kitleyi (mto/dis) de belirler */
+  const L = (veri.bolumler || []).filter(b => b.k && (b.bolum || b.ad));
+  if (L.length) {
+    const sec = durum.bolum || '';
+    const cipler = L.map(b => el('button', { class: 'giris-b giris-bol', type: 'button', role: 'radio', 'aria-checked': String(sec === b.k), tabindex: (sec ? sec === b.k : b === L[0]) ? '0' : '-1', 'data-k': b.k, 'data-id': b.k === 'MTO' ? 'mto' : 'dis', onclick: () => bolumSec(b.k) }, ikon(b.k), el('b', {}, bolumKisaAd(b))));
+    S.replaceChildren(...cipler);
+    S.addEventListener('keydown', e => { const y = ['ArrowRight', 'ArrowDown'].includes(e.key) ? 1 : ['ArrowLeft', 'ArrowUp'].includes(e.key) ? -1 : 0; if (!y) return; e.preventDefault(); const i = cipler.indexOf(e.target); const n = cipler[(i + y + cipler.length) % cipler.length]; cipler.forEach(c => c.tabIndex = -1); n.tabIndex = 0; n.focus(); });
+    if (durum.bolum && L.some(b => b.k === durum.bolum)) { bolumSec(durum.bolum, true); return; }
+  } else S.replaceChildren(...G.secenekler.map(o => el('button', { class: 'giris-b', type: 'button', role: 'radio', 'aria-checked': String(durum.kitle === o.id), 'data-id': o.id, onclick: () => kitleSec(o.id) }, el('b', {}, o.etiket), o.alt ? el('span', {}, o.alt) : null)));
   if (durum.kitle) kitleGoster(durum.kitle, true);
 }
 /* Akın 6 Eki akşam: seçimden hemen sonra, seçimin altında madde madde kısa anlatım (bölüm dışı: ajan tabanlı ortak iş, kendi alanında uzmanlaşma, çok disiplinli çevre;
    bölüm içi: ajan tabanlı tahmin). Sayfa başka yere kaymaz; "devam" düğmesi sıradaki bölüme götürür, "ayrıntı" uzun hâlini açar. */
 function kitleGoster(id, sessiz) {
   const G = veri.metinler.giris, B = $('#kitle-blok'); if (!B) return; const K = G && G.kitle && G.kitle[id]; if (!K) { B.hidden = true; return; }
+  if (durum.bolum && bolumBul(durum.bolum)) { bolumBlok(B, durum.bolum, sessiz); return; }
   const ayr = el('button', { class: 'kb-ayrinti', type: 'button' }, 'Ayrıntı ›');
   const dev = K.devam ? el('button', { class: 'kb-devam', type: 'button', onclick: () => { durum.etkilesim++; git(K.devam); } }, K.devamEtiket || 'Devam ↓') : null;
   B.replaceChildren(el('p', { class: 'kb-baslik' }, K.baslik || ''), el('ul', {}, ...(K.maddeler || []).map(m => el('li', {}, m))), el('div', { class: 'kb-dugmeler' }, dev, id === 'mto' && $('#derslerin') ? el('button', { class: 'kb-devam kb-ders', type: 'button', onclick: () => { durum.etkilesim++; git('derslerin'); } }, 'Derslerine göre projeler · 340 hPa ↓') : null, K.detay ? ayr : null));   /* E13: MTO öğrencisi derslere tek adımda */
@@ -568,10 +577,48 @@ function kitleGoster(id, sessiz) {
   const V = $('#acilis-vaat'); if (V && K.vaat) V.textContent = K.vaat;
   B.hidden = false; B.classList.remove('flas'); if (!sessiz) { void B.offsetWidth; B.classList.add('flas'); }
 }
+/* ---- 22 Eki (Akın): bölüme göre ilerleyen anlatı ----
+   durum.bolum (localStorage takim-bolum) → ilk ekran başlığı + "sana göre" bloğu, bölüm kartı önde, bölümlere göre alt satırlar (metinler.kisisel),
+   takım ağında o bölüme yakın ortak işler önde (metinler.bolumOrtak). Seçim yokken genel ve kısa anlatım. */
+const bolumBul = k => (veri.bolumler || []).find(b => b.k === k) || null;
+const bolumKisaAd = b => (b.bolum || b.ad || '').replace(/\s*\(.*\)$/, '').replace(/ Mühendisliği$/, '').replace(/ Müh\.$/, '').replace(/ Fak\.$/, '').replace(/^İklim Bilimi ve /, '');
+function bolumAjan(k) { const A = (veri.metinler.bolumAjan || {})[k] || (veri.metinler.bolumAjan || {})._genel || {}; return A; }
+function bolumBlok(B, k, sessiz) {
+  const b = bolumBul(k), A = bolumAjan(k), ad = bolumKisaAd(b), G = veri.metinler.giris || {};
+  const ortak = agBolumIsler(k).slice(0, 2).map(o => o.baslik);
+  const madde = [A.yapar ? ['Ajan', A.yapar] : null, A.ogrenir ? ['Sen öğrenirsin', A.ogrenir] : null, b.ortakIs ? ['Ortak masada', b.ortakIs] : null, ortak.length ? ['Diğer takımlarla', ortak.join(' · ')] : null].filter(Boolean);
+  const dug = [el('button', { class: 'kb-devam', type: 'button', onclick: () => { durum.etkilesim++; bolumeGit(k); } }, (G.kartEtiket || 'Bölüm kartın') + ' ↓'),
+    el('button', { class: 'kb-devam kb-ortak', type: 'button', onclick: () => { durum.etkilesim++; git('takim-agi'); } }, (G.ortakEtiket || 'Ortak işler') + ' ↓'),
+    k === 'MTO' && $('#derslerin') ? el('button', { class: 'kb-devam kb-ders', type: 'button', onclick: () => { durum.etkilesim++; git('derslerin'); } }, 'Derslerine göre projeler ↓') : null];
+  B.replaceChildren(el('p', { class: 'kb-baslik' }, (G.bolumBaslik || '{ad} için').replace('{ad}', ad)), el('ul', { class: 'kb-ajan' }, ...madde.map(([e, m]) => el('li', {}, el('b', {}, e + ' → '), m))), el('div', { class: 'kb-dugmeler' }, ...dug.filter(Boolean)));
+  const H = $('#acilis-h1'); if (H) { H.replaceChildren(el('em', {}, ad), ' ' + (G.bolumH1 || 'için ajanlarla neler yapılır?')); H.hidden = false; }
+  const V = $('#acilis-vaat'); if (V) V.textContent = '';
+  B.hidden = false; B.classList.remove('flas'); if (!sessiz) { void B.offsetWidth; B.classList.add('flas'); }
+}
+/* bölüm başlıklarının altında "sana göre" tek satır — metinler.kisisel[bölüm id] şablonu: {ad} {yapar} {ogrenir} {ortakIs} {ortak} */
+function bolumKisisel() {
+  const T = veri.metinler.kisisel || {}, k = durum.bolum, b = k && bolumBul(k);
+  Object.keys(T).forEach(id => {
+    const S = $('#' + id); if (!S) return; let p = S.querySelector('.kisisel');
+    if (!b) { if (p) p.remove(); return; }
+    const A = bolumAjan(k), ortak = agBolumIsler(k)[0];
+    const m = T[id].replace('{ad}', bolumKisaAd(b)).replace('{yapar}', A.yapar || '').replace('{ogrenir}', A.ogrenir || '').replace('{ortakIs}', b.ortakIs || '').replace('{ortak}', ortak ? ortak.baslik : (b.ortakIs || ''));
+    if (!p) { p = el('p', { class: 'kisisel' }); const ref = S.querySelector('.alt') || S.querySelector('h2'); if (ref) ref.after(p); else return; }
+    p.replaceChildren(el('span', { class: 'kisisel-et' }, 'sana göre · ' + bolumKisaAd(b)), ' ' + m);
+  });
+}
+function bolumSec(k, sessiz) {
+  const b = bolumBul(k); if (!b) return;
+  durum.bolum = k; ls('takim-bolum', k); KOKEL.dataset.bolum = k;
+  $$('.giris-bol').forEach(c => { const a = c.dataset.k === k; c.setAttribute('aria-checked', String(a)); c.tabIndex = a ? 0 : -1; });
+  kitleSec(k === 'MTO' ? 'mto' : 'dis', sessiz);
+  bolumKisisel(); try { agOrtakCiz(); } catch (e) { }
+  try { panelSen(); } catch (e) { }
+}
 let testSetSec = null;
 function kitleSec(id, sessiz) {
   durum.kitle = id; ls('takim-kitle', id); KOKEL.dataset.kitle = id;
-  $$('.giris-b').forEach(b => b.setAttribute('aria-checked', String(b.dataset.id === id)));
+  $$('.giris-b:not(.giris-bol)').forEach(b => b.setAttribute('aria-checked', String(b.dataset.id === id)));
   katliAyarla('anlatilar', id === 'mto' || !!KIME);
   bolumler();
   if (testSetSec && durum.test.toplam === 0) testSetSec(id === 'mto' ? 'mto' : 'misafir');
@@ -807,6 +854,7 @@ function bolumler() {
   let B = (veri.bolumler || []).slice();
   if (!B.length) { $('#bolum-kartlar').replaceChildren(el('div', { class: 'bos' }, 'Bölümlerin ders planı karşılaştırmasını hâlâ araştırıyoruz.')); return; }
   const biz = B.filter(x => x.k === 'MTO'), oteki = B.filter(x => x.k !== 'MTO'); B = durum.kitle === 'mto' ? [...biz, ...oteki] : [...oteki, ...biz];   /* meteorolojiden gelen önce kendi kartını görür */
+  if (durum.bolum) B = [...B.filter(x => x.k === durum.bolum), ...B.filter(x => x.k !== durum.bolum)];   /* 22 Eki: seçilen bölüm önde */
   /* v2 (Akın 5 Eki): kart yüzünde paragraf yok — bölüm adı + büyük yazıyla tek, pratik örnek; dersler ve fikirler ayrıntıda */
   $('#bolum-kartlar').replaceChildren(...B.map(b => { const k = el('button', { class: 'bk', type: 'button', 'data-k': b.k }, el('span', { class: 'bk-ad' }, ikon(b.k), b.bolum), el('p', { class: 'bk-yuz' }, b.yuz || b.ortakIs || ''));
     const f = b.k === 'MTO' ? { tur: 'plan', k: 'MTO' } : { tur: 'bolum', k: b.k };   /* 15 Eki (tur9 §F): Meteoroloji kartı → E0 ders planı (yarıyıl › ders › projeler) */
@@ -911,13 +959,13 @@ function sonKart() {
 
 /* ---------------- PANEL · RAY · AŞAMA ---------------- */
 /* v2 sırası (Akın 5 Eki): önce çekim (kısaca · neden şimdi · sen · başka bölüm), sonra ne yapıyoruz, kanıt katlı, anketler sonda. metinler.json "asamalar" varsa onu kullanır. */
-const ASAMA_ADI = { 0: ['Başlangıç', 'Kısaca: ne yapıyoruz, sana ne var, kaç saat.'], 1: ['Neden şimdi', 'Kredi, diploma, network.'], 2: ['Sen', 'Hangisi sana yakın?'], 3: ['Başka bölüm', 'Senin dersin ↔ bizim işimiz.'], 4: ['Ne yapıyoruz', 'İki kol, 6 adım, atölyeler.'], 5: ['Meraklısına', 'Kanıt, karne, kaynaklar.'], 6: ['Anketler', 'Kaydır, 5 soru, oy ver.'], 7: ['Söz senin', 'Baloncuk, bize katıl.'] };
+const ASAMA_ADI = { 0: ['Bölümünü seç', 'Seçimine göre anlatı ilerler.'], 1: ['Neden şimdi', 'Ajanlar işi nasıl değiştiriyor.'], 2: ['Sen', 'Hangisi sana yakın?'], 3: ['Başka bölüm', 'Senin dersin ↔ ajanın işi.'], 4: ['Ortak', 'Diğer İTÜ takımlarıyla ortak işler.'], 5: ['Ne yapıyoruz', 'Ajan kurmak, 6 adım, atölyeler.'], 6: ['Meraklısına', 'Kanıt, karne, kaynaklar.'], 7: ['Anketler', 'Kaydır, 5 soru, oy ver.'], 8: ['Söz senin', 'Baloncuk, bize katıl.'] };
 function asamaYukle() { const A = veri.metinler.asamalar;
   if (A) { Object.entries(A).forEach(([n, v]) => { if (!Array.isArray(v)) return; ASAMA_ADI[n] = [v[0], v[1] || '']; if (v[2]) ASAMA_NE[n] = v[2]; }); $$('.asama-baslik').forEach(h => { const v = A[h.dataset.asama]; const b = h.querySelector('b'); if (v && b) b.textContent = v[0]; }); }
   const pa = $('#p-ad'), pm = $('#p-m'); if (pa) pa.textContent = ASAMA_ADI[0][0]; if (pm) pm.textContent = ASAMA_ADI[0][1]; }
 const basincTen = p => 1000 * Math.pow(0.1, p);                       /* 0→1000 hPa, 1→100 hPa (log) */
 const yukseklik = P => 44330 * (1 - Math.pow(P / 1013.25, 0.1903));  /* standart atmosfer, m */
-function panelSen() { const s = []; s.push(durum.grup ? `Seçimin: ${(veri.anket.kapi.secenekler.find(x => x.id === durum.grup) || {}).etiket || durum.grup}.` : 'Henüz seçim yapmadın (300 hPa).'); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
+function panelSen() { const s = []; { const b = durum.bolum && bolumBul(durum.bolum); s.push(b ? `Bölümün: ${bolumKisaAd(b)}.` : 'Henüz bölüm seçmedin; seçim en üstte.'); } if (durum.grup) s.push(`Seçimin: ${(veri.anket.kapi.secenekler.find(x => x.id === durum.grup) || {}).etiket || durum.grup}.`); if (durum.eslesme.toplam) s.push(`Eşleşme %${Math.round(100 * durum.eslesme.evet / durum.eslesme.toplam)}.`); if (durum.test.toplam) s.push(`Test ${durum.test.dogru}/${durum.test.toplam}.`); if (durum.roller.length) s.push('Rol: ' + durum.roller.join(', ') + '.'); const p = $('#p-sen'); if (p) p.textContent = s.join(' '); }
 /* kaldığın yere dön (Akın 5 Eki): şerit/akış/ray ile uzağa atlayınca, eski yere tek tıkla dönüş. İçkin modda ana sitenin "Kaldığın yere dön" bulutu kullanılır. */
 let donusY = null;
 function donusGoster(y) {
@@ -1947,15 +1995,7 @@ function takimAgi() {
   $('#ag-baslik').textContent = M.baslik || 'Takım ağı'; $('#ag-alt').textContent = M.alt || 'Başka takımlar ne yapıyor, biz onlara neyi nasıl kolaylaştırırız?';
   agKadro(M);
   const OB = $('#ag-ortak-baslik'), OA = $('#ag-ortak-alt'); if (OB) OB.textContent = M.ortakBaslik || 'Ortak işler'; if (OA) OA.textContent = M.ortakAlt || '';
-  /* ortak işler şeridi: ilk 6, kalanı "daha fazla" ile */
-  const OK = $('#ag-ortak'), DH = $('#ag-daha'), L = AG.V.ortak.map(agOrtakKart), ILK = 6;
-  if (!L.length) { OK.replaceChildren(el('div', { class: 'bos ag-bos' }, M.ortakBos || 'Ortak işler veri gelince burada listelenecek.')); if (DH) DH.hidden = true; }
-  else {
-    OK.replaceChildren(...L); L.slice(ILK).forEach(k => { k.hidden = true; });
-    if (DH) { DH.hidden = L.length <= ILK; DH.setAttribute('aria-expanded', 'false'); DH.textContent = `+${Math.max(0, L.length - ILK)} ortak iş daha`;
-      DH.addEventListener('click', () => { const ac = DH.getAttribute('aria-expanded') === 'true'; L.slice(ILK).forEach(k => { k.hidden = ac; }); DH.setAttribute('aria-expanded', String(!ac)); DH.textContent = ac ? `+${L.length - ILK} ortak iş daha` : 'daha az göster'; durum.etkilesim++; }); }
-    maddele(OK);
-  }
+  agOrtakCiz();
   /* grup sekmeleri (ilk: Meteoroloji, açık) → takım kartları */
   const SK = $('#ag-sekme'), IZ = $('#ag-izgara'), DT = $('#ag-daha-t'), TILK = 9;
   const izgara = () => {
@@ -1970,6 +2010,22 @@ function takimAgi() {
   SK.addEventListener('keydown', e => { const A = Object.keys(AG_GRUP_AD), i = A.indexOf(AG.grup); const y = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!y) return; e.preventDefault(); sec(A[(i + y + A.length) % A.length], true); });
   izgara();
   $('#ag-not').textContent = M.not || '';
+  if (durum.bolum && bolumBul(durum.bolum)) { bolumKisisel(); const KB = $('#kitle-blok'); if (KB) bolumBlok(KB, durum.bolum, true); }   /* 22 Eki: ağ verisi gelince bölüme göre blok/alt satırlar tamamlanır */
+}
+/* 22 Eki (Akın): ortak işler şeridi — ilk 6, kalanı "daha fazla" ile; bölüm seçiliyse o bölüme yakın işler (metinler.bolumOrtak) önde, rozetli */
+function agBolumIsler(k) { const ids = ((veri.metinler && veri.metinler.bolumOrtak) || {})[k] || []; return ids.map(id => AG.O.get(id)).filter(Boolean); }
+function agOrtakCiz() {
+  const OK = $('#ag-ortak'), DH = $('#ag-daha'), M = (veri.metinler && veri.metinler.takimAgi) || {}, ILK = 6; if (!OK) return;
+  const yakin = new Set(durum.bolum ? agBolumIsler(durum.bolum).map(o => o.id) : []);
+  const sira = [...(durum.bolum ? agBolumIsler(durum.bolum) : []), ...AG.V.ortak.filter(o => !yakin.has(o.id))];   /* yakın işler metinler.bolumOrtak sırasıyla */
+  const L = sira.map(o => { const k = agOrtakKart(o); if (yakin.has(o.id)) { k.classList.add('ag-senin'); k.querySelector('.ag-meta')?.prepend(el('span', { class: 'ag-senin-et' }, 'bölümüne yakın')); } return k; });
+  const OA = $('#ag-ortak-alt'), b = durum.bolum && bolumBul(durum.bolum);
+  if (OA) OA.textContent = b && yakin.size ? (M.ortakAltBolum || '{ad} için önce bunlar: {n} iş.').replace('{ad}', bolumKisaAd(b)).replace('{n}', yakin.size) : (M.ortakAlt || '');
+  if (!L.length) { OK.replaceChildren(el('div', { class: 'bos ag-bos' }, M.ortakBos || 'Ortak işler veri gelince burada listelenecek.')); if (DH) DH.hidden = true; return; }
+  OK.replaceChildren(...L); L.slice(ILK).forEach(k => { k.hidden = true; });
+  if (DH) { DH.hidden = L.length <= ILK; DH.setAttribute('aria-expanded', 'false'); DH.textContent = `+${Math.max(0, L.length - ILK)} ortak iş daha`;
+    DH.onclick = () => { const ac = DH.getAttribute('aria-expanded') === 'true'; L.slice(ILK).forEach(k => { k.hidden = ac; }); DH.setAttribute('aria-expanded', String(!ac)); DH.textContent = ac ? `+${L.length - ILK} ortak iş daha` : 'daha az göster'; durum.etkilesim++; }; }
+  maddele(OK);
 }
 /* ---- p3 ekranları (tur 'ag'): takım → ortak iş ---- */
 function agIlkEkran(f) {

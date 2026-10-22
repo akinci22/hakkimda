@@ -685,7 +685,7 @@ html[data-kime="khsm"] #test,html[data-kime="hoca"] #test,
 html[data-kime="khsm"] #coklu,html[data-kime="hoca"] #coklu,
 html[data-kime="khsm"] #canli,html[data-kime="hoca"] #canli,
 html[data-kime="khsm"] #baloncuk,html[data-kime="hoca"] #baloncuk,
-html[data-kime="khsm"] .asama-baslik[data-asama="6"],html[data-kime="hoca"] .asama-baslik[data-asama="6"]{display:none}
+html[data-kime="khsm"] .asama-baslik[data-asama="7"],html[data-kime="hoca"] .asama-baslik[data-asama="7"]{display:none}
 /* anketler: soru büyük; evet / fark etmez / hayır yan yana küçük bloklar */
 .soru h3{font-size:clamp(1.22rem,2vw,1.55rem);line-height:1.28}
 #canli-sorular .oylar,#anlatilar-sorular .oylar{grid-template-columns:repeat(auto-fit,minmax(min(100%,118px),1fr));gap:8px}
@@ -1769,3 +1769,34 @@ ul.p3-md li::before{content:"";position:absolute;left:0;top:.84em;width:.62em;he
 .uk-dugme.uk-yakinda{background:transparent;color:var(--murekkep-3);border:1px dashed currentColor;box-shadow:none;cursor:default}
 .uk-qr{width:96px;height:96px;background:#fff;padding:4px;border-radius:8px;border:1px solid rgba(31,42,46,.15)}
 @media (max-width:640px){.uk-qr{display:none}.uk-dugme{width:100%;text-align:center}}
+/* ==== 22 Eki (Akın): ilk ekran sade — küçük logotip ve balon, künye satırı yok, ana eylem "Bölümünü seç"; Ortak aşaması ==== */
+.acilis{padding-top:clamp(20px,3vw,40px)}
+.acilis h1.aura-ad,.aura-ad{font-size:clamp(3rem,7vw,6.4rem)}
+.acilis .kimlik-sat{font-size:clamp(1.1rem,1.6vw,1.4rem);margin:2px 0 10px}
+.acilis-ic{grid-template-columns:minmax(0,1fr) auto;gap:24px}
+.buyuk-balon{width:auto}
+.buyuk-balon svg{width:clamp(96px,11vw,160px)}
+.buyuk-balon .bb-not{display:none}
+.acilis .aura-is{font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.35;margin:0 0 12px;max-width:52ch}
+.giris{margin:0 0 12px}
+.giris-soru{font:700 clamp(1.1rem,1.6vw,1.35rem) var(--baslik);letter-spacing:.03em;color:var(--murekkep)}
+.giris-sec.giris-bolum{display:flex;flex-wrap:wrap;gap:8px;max-width:760px;grid-template-columns:none}
+.giris-b.giris-bol{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;min-height:44px;border-radius:999px;border-width:1.5px}
+.giris-b.giris-bol svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6}
+.giris-b.giris-bol b{font:600 .98rem var(--govde);text-transform:none;letter-spacing:0;line-height:1.2}
+.giris-b.giris-bol[aria-checked=true]{background:var(--vurgu);border-color:var(--vurgu);color:#fff;box-shadow:none}
+.giris-b.giris-bol[aria-checked=true] b::before{content:none}
+.giris-b.giris-bol:focus-visible{outline:3px solid var(--sicaklik);outline-offset:2px}
+.kitle-blok .kb-ajan li b{color:var(--vurgu)}
+.kademe-ac{margin:6px 0 10px;max-width:640px}
+.kademe-ac>summary{cursor:pointer;font:600 .9rem var(--mono);letter-spacing:.04em;color:var(--murekkep-2);padding:6px 0;min-height:44px;display:flex;align-items:center}
+.kademe-ac>summary:focus-visible{outline:2px solid var(--sicaklik);outline-offset:3px}
+.kademe-ac .aura-kademe:empty{min-height:0}
+.kademe-ac .nasil{display:grid}
+.kisisel{margin:6px 0 10px;padding:8px 12px;border-left:3px solid var(--vurgu);background:color-mix(in srgb,var(--vurgu) 6%,transparent);font-size:1rem;line-height:1.45;max-width:70ch}
+.kisisel-et{font:600 .74rem var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--vurgu);margin-right:4px}
+.ag-senin{border-color:var(--vurgu)!important}
+.ag-senin-et{font:600 .72rem var(--mono);letter-spacing:.04em;color:#fff;background:var(--vurgu);border-radius:999px;padding:2px 8px;margin-right:6px}
+@media (max-width:860px){.acilis-ic{grid-template-columns:1fr}.buyuk-balon svg{width:min(28vw,120px)}}
+@media (max-width:560px){.acilis h1.aura-ad,.aura-ad{font-size:clamp(2.6rem,13vw,3.8rem)} .acilis .kimlik-sat{font-size:1rem;margin-bottom:8px} .giris-b.giris-bol{padding:6px 10px;min-height:44px} .giris-b.giris-bol b{font-size:.9rem} .kademe-ac .nasil{grid-template-columns:1fr}}
+#bb-not{display:none!important}   /* 22 Eki (Akın): açılışta "12 km · 200 hPa · balon tam şişkin" künyesi görünmesin */
