@@ -883,7 +883,7 @@ function baloncuk() {
 }
 function katilKur() {   /* sayfa başı "Bize katıl": WhatsApp topluluk bağlantısı (veri/metinler.json katil.wp_link; _araclar/katil_wp.py ile yazılır + QR üretir) */
   const K = veri.metinler && veri.metinler.katil; if (!K) return; const a = $('#uk-wp'), q = $('#uk-qr'); $('#uk-baslik').textContent = K.baslik; $('#uk-alt').textContent = K.alt;
-  if (K.wp_link) { a.href = K.wp_link; a.target = '_blank'; a.textContent = K.dugme; q.hidden = false; $$('#katil').forEach(k => { k.href = K.wp_link; k.target = '_blank'; k.rel = 'noopener'; }); }
+  if (K.wp_link) { a.href = K.wp_link; a.target = '_blank'; a.textContent = K.dugme; if (q.dataset.src) q.src = yol(q.dataset.src); q.hidden = false; $$('#katil').forEach(k => { k.href = K.wp_link; k.target = '_blank'; k.rel = 'noopener'; }); }
   else { a.textContent = K.yakinda; a.classList.add('uk-yakinda'); a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); }
 }
 function merak() {
