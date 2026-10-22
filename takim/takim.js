@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '46';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '47';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
