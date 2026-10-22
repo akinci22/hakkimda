@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '45';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '46';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -874,12 +874,17 @@ function baloncuk() {
   const G = $('#gok'); let ilk = true; const gorulen = new Set();
   const tohum = (B.seed || []).filter(x => x.onay === 'tamam').map((x, i) => ({ id: 'tohum-' + i, gorunum: 'isim', ...x, ts: 0 }));   /* ilk baloncuk: kurucunun kendi cümlesi — yalnız Akın onayladıysa (onay: "tamam"); yalnız ekranda, veritabanına yazılmaz */
   arka.balonDinle(l0 => { const l = [...l0, ...tohum.filter(t => !l0.some(x => x.metin === t.metin))];
-    if (!l.length) { G.replaceChildren(el('div', { class: 'gok-bos' }, 'Henüz kimse bir şey söylemedi.\nİlk baloncuk seninki olsun.')); return; }
+    if (!l.length) { G.replaceChildren(); return; }
     G.replaceChildren(...l.slice(0, 40).map((b, i) => { const yeni = !ilk && !gorulen.has(b.id); gorulen.add(b.id);
       const kim = [b.gorunum === 'isim' && b.ad ? b.ad : 'anonim', b.org, b.unvan, b.grup].filter(Boolean).join(' · '); const h = [...(b.id || String(i))].reduce((a, c) => a + c.charCodeAt(0), 0);
       return el('div', { class: 'balon' + (yeni ? ' yeni' : ''), style: `left:${(h * 7) % 70}%;top:${(h * 13) % 78}%;--dx:${(h % 30) - 15}px;--dy:${(h % 22) - 11}px;--sure:${14 + h % 10}s` }, el('span', {}, b.metin), el('span', { class: 'kim' }, kim)); }));
     l.forEach(b => gorulen.add(b.id)); ilk = false;
   });
+}
+function katilKur() {   /* sayfa başı "Bize katıl": WhatsApp topluluk bağlantısı (veri/metinler.json katil.wp_link; _araclar/katil_wp.py ile yazılır + QR üretir) */
+  const K = veri.metinler && veri.metinler.katil; if (!K) return; const a = $('#uk-wp'), q = $('#uk-qr'); $('#uk-baslik').textContent = K.baslik; $('#uk-alt').textContent = K.alt;
+  if (K.wp_link) { a.href = K.wp_link; a.target = '_blank'; a.textContent = K.dugme; q.hidden = false; $$('#katil').forEach(k => { k.href = K.wp_link; k.target = '_blank'; k.rel = 'noopener'; }); }
+  else { a.textContent = K.yakinda; a.classList.add('uk-yakinda'); a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); }
 }
 function merak() {
   const M = veri.metinler.meraklisina; $('#merak-baslik').textContent = M.baslik; $('#merak-alt').textContent = M.alt;
@@ -1265,7 +1270,7 @@ async function kunye() {
   if (KIME) KOKEL.dataset.kime = KIME;
   await arkaKur();
   asamaYukle();
-  acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); takimAgi(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); merak(); sonKart(); panelSen();
+  acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); takimAgi(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); katilKur(); merak(); sonKart(); panelSen();
   katliKur(); maddele(KOK); terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); try { panelOgeKur(); } catch (e) { } yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
