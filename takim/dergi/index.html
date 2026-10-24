@@ -78,6 +78,10 @@ footer{margin-top:22px;color:var(--soluk);font-size:.85rem}footer a{color:var(--
 .sat{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;border-bottom:1px solid var(--cizgi);padding-right:4px}
 .sat:hover{background:var(--bg)}.sat .git{all:unset;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding:9px 6px;grid-column:1/2}
 .sat .git:focus-visible{outline:3px solid var(--vurgu)}.sat .ac{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.sicak{position:absolute;z-index:9;border-radius:6px;outline:2px dashed transparent;outline-offset:2px;cursor:pointer;background:rgba(232,112,95,0)}
+.sicak:hover,.sicak:focus-visible{outline-color:var(--vurgu);background:rgba(232,112,95,.14)}
+.sicak span{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);margin-bottom:6px;white-space:nowrap;font:600 .75rem var(--f-govde);background:var(--bg);color:var(--fg);border:1px solid var(--vurgu);border-radius:4px;padding:3px 7px;opacity:0;pointer-events:none}
+.sicak.sl span{left:0;transform:none}.sicak.sr span{left:auto;right:0;transform:none}.sicak:hover span,.sicak:focus-visible span{opacity:1}.book.donuyor .sicak{display:none}
 .book.tam{max-height:calc(100vh - 150px);max-width:calc((100vh - 150px)*297/210);margin:0 auto}
 @media (max-width:600px){.sat{grid-template-columns:1fr}.sat .ac{justify-content:flex-start;padding:0 6px 8px}.bsatir{grid-template-columns:1fr}.bsatir .ac{justify-content:flex-start}h1{font-size:1.6rem}.ipucu{display:none}.kontrol{gap:6px}.btn{padding:8px 10px}.masa{padding:12px 10px 16px;margin-left:-6px;margin-right:-6px}.cilt{padding:8px 8px 9px 14px}.book:after{width:16px}}
 </style>
@@ -95,6 +99,7 @@ footer{margin-top:22px;color:var(--soluk);font-size:.85rem}footer a{color:var(--
     <img class="pg" id="top" alt="Dergi sayfası">
     <div class="kenar sol" id="ksol" title="Önceki sayfa: tut ve sağa çek"></div>
     <div class="kenar sag" id="ksag" title="Sonraki sayfa: tut ve sola çek"></div>
+    <div id="sicaklar"></div>
   </div>
 </div></div></div>
 <div class="kontrol">
@@ -111,7 +116,7 @@ footer{margin-top:22px;color:var(--soluk);font-size:.85rem}footer a{color:var(--
 <div class="kucuk" id="kucuk" role="listbox" aria-label="Sayfa küçük resimleri"></div>
 <section class="baglar" id="baglar" aria-labelledby="bagbaslik" aria-live="polite">
   <h2 id="bagbaslik">Bu sayfanın bağlantıları</h2>
-  <p class="alt" id="bagalt">Sayfadaki QR'ların açtığı yerler: linki aç ya da kopyala.</p>
+  <p class="alt" id="bagalt">Sayfadaki QR'ın üstüne tıklamak da aynı yeri açar; ya da buradan linki aç / kopyala.</p>
   <div id="bagliste"></div>
 </section>
 <p id="durumcanli" class="gizli" aria-live="polite"></p>
@@ -158,8 +163,8 @@ function aci(A){const b=Math.sin(A*Math.PI/180)*0.95;const rad=A*Math.PI/180;
     strips[i].isik.style.background=A<90?`linear-gradient(90deg,${g(i/NS)},${g((i+1)/NS)})`:'none'}
   altgolge.style.opacity=String(Math.min(.9,Math.sin(rad)*1.1));altgolge.style.transform='translateX('+(Math.cos(rad)*8)+'%)'}
 function hazirla(yon){if(yon>0){if(cur>=N)return false;yaprakKur(src(cur));under.src=src(cur+1)}else{if(cur<=1)return false;yaprakKur(src(cur-1));under.src=src(cur)}
-  leaf.classList.add('on');top.style.visibility='hidden';return true}
-function bitir(yon,tamam){leaf.classList.remove('on');leaf.replaceChildren();altgolge.style.opacity=0;top.style.visibility='';if(tamam){goster(cur+yon);if(sesAcik)hisirti()}else goster(cur);busy=false}
+  leaf.classList.add('on');book.classList.add('donuyor');top.style.visibility='hidden';return true}
+function bitir(yon,tamam){leaf.classList.remove('on');book.classList.remove('donuyor');leaf.replaceChildren();altgolge.style.opacity=0;top.style.visibility='';if(tamam){goster(cur+yon);if(sesAcik)hisirti()}else goster(cur);busy=false}
 function tween(yon,a0,a1,ms,sonra){const t0=performance.now();busy=true;(function adim(t){const k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3);aci(a0+(a1-a0)*e);if(k<1)requestAnimationFrame(adim);else sonra()})(t0)}
 function cevir(yon){if(busy)return;if(azalt){if((yon>0&&cur<N)||(yon<0&&cur>1))goster(cur+yon);return}if(!hazirla(yon))return;busy=true;if(yon>0)tween(1,0,180,620,()=>bitir(1,true));else tween(-1,180,0,620,()=>bitir(-1,true))}
 /* sürükleme (fare, parmak, kalem) */
@@ -197,7 +202,12 @@ function baglantilar(d){const L=[];
 function eylem(u,ad,kucuk){const w=document.createElement('span');w.className='ac';
   const a=document.createElement('a');a.className='btn k'+(kucuk||'');a.href=u;a.target='_blank';a.rel='noopener';a.textContent='Linki aç ↗';a.setAttribute('aria-label',ad+': linki aç');
   const k=document.createElement('button');k.type='button';k.className='btn k';k.textContent='Kopyala';k.setAttribute('aria-label',ad+': linki kopyala');k.onclick=()=>kopyala(u,k);w.append(a,k);return w}
-function panel(d){const B=$('bagliste');B.replaceChildren();const L=baglantilar(d);
+function sicaklar(d){const S=$('sicaklar');S.replaceChildren();if(!d||!d.sicak)return;
+  d.sicak.forEach(h=>{const wp=/whatsapp/.test(h.u),a=document.createElement('a');a.className='sicak'+(h.r[0]<.25?' sl':h.r[0]>.7?' sr':'');a.href=h.u;a.target='_blank';a.rel='noopener';
+    const[x,y,w,hh]=h.r,pad=.006;a.style.cssText='left:'+((x-pad)*100)+'%;top:'+((y-pad*1.4)*100)+'%;width:'+((w+2*pad)*100)+'%;height:'+((hh+2.8*pad)*100)+'%';
+    const t=wp?'WhatsApp topluluğuna katıl':'Ortak işleri aç (takım sitesi)';a.setAttribute('aria-label',t);a.title=t;const sp=document.createElement('span');sp.textContent=t+' ↗';a.append(sp);
+    a.addEventListener('pointerdown',e=>e.stopPropagation());S.append(a)})}
+function panel(d){sicaklar(d);const B=$('bagliste');B.replaceChildren();const L=baglantilar(d);
   $('bagbaslik').textContent=d?d.ad+' — bağlantılar':'Bu sayfanın bağlantıları';
   if(!L.length){const p=document.createElement('p');p.className='alt';p.textContent='Bu sayfa için ayrı bağlantı yok.';B.append(p);return}
   L.forEach(x=>{const r=document.createElement('div');r.className='bsatir';const t=document.createElement('div');
