@@ -7,30 +7,45 @@
 <meta name="description" content="AURA İşbirliği Dergisi: İTÜ takımları, kulüpleri ve bölümleri için sayfa sayfa çevrilebilen dijital dergi; arama ile ilgili sayfaya atla.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-/* Düzen: üstte dergi (tek sayfa, yaprağı tutup çevir), altında arama: takım · kulüp · bölüm → ilgili sayfa */
-:root{--bg:#161c1e;--yuzey:#1f2a2e;--fg:#f6f1e7;--soluk:#9aa3a5;--cizgi:#34403f;--vurgu:#e8705f;--sari:#ffd27a;--kagit:#fffdf8;
+/* Düzen: masa üstünde duran kitapçık (cilt + sayfa kalınlığı + bükülen yaprak + gölge), altında arama: takım · kulüp · bölüm → ilgili sayfa */
+:root{--bg:#141a1c;--yuzey:#1f2a2e;--fg:#f6f1e7;--soluk:#9aa3a5;--cizgi:#34403f;--vurgu:#e8705f;--sari:#ffd27a;--kagit:#fbf8f1;--kagit2:#efe9dc;--cilt:#2b2420;--cilt2:#3d322b;
 --f-bas:'Barlow Condensed','Arial Narrow',sans-serif;--f-govde:'IBM Plex Sans',system-ui,sans-serif;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 var(--f-govde)}
+body{background:radial-gradient(120% 90% at 50% 0%,#232d31 0%,var(--bg) 60%)}
 .sar{max-width:1100px;margin:0 auto;padding-block:14px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 h1{font:800 2rem/1 var(--f-bas);margin:0;letter-spacing:.01em}h1 em{font-style:normal;color:var(--vurgu)}
 .alt{color:var(--soluk);font-size:.9rem;margin:0}
-.stage{perspective:2600px;position:relative;margin:6px 0 10px}
-.book{position:relative;width:100%;aspect-ratio:297/210;background:var(--yuzey);border-radius:6px;box-shadow:0 18px 50px rgba(0,0,0,.55);touch-action:pan-y;user-select:none;-webkit-user-select:none}
-.book img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;border-radius:6px;background:var(--kagit)}
+/* masa + cilt çerçevesi */
+.masa{padding:22px 26px 30px;margin:6px 0 10px;border-radius:14px;background:linear-gradient(180deg,#1b2326,#121819);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.cilt{position:relative;margin:0 auto;padding:12px 14px 14px 22px;border-radius:8px 12px 12px 8px;background:linear-gradient(90deg,#1e1816 0,#2b2420 14px,var(--cilt2) 40px,var(--cilt) 100%);
+box-shadow:0 30px 60px rgba(0,0,0,.6),0 8px 18px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.05)}
+.cilt:before{content:'';position:absolute;left:9px;top:10px;bottom:10px;width:3px;border-radius:2px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 40%,rgba(0,0,0,.35));pointer-events:none}
+.stage{perspective:2400px;position:relative}
+.book{position:relative;width:100%;aspect-ratio:297/210;background:var(--kagit);border-radius:3px 6px 6px 3px;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+box-shadow:0 2px 0 #e7e1d3,0 4px 0 #ddd6c7,0 6px 0 #d2cbbc,0 10px 24px rgba(0,0,0,.45)}
+.book:after{content:'';position:absolute;left:0;top:0;bottom:0;width:26px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.08) 40%,rgba(0,0,0,0));z-index:4;pointer-events:none}
+/* sağ kenarda kalan sayfaların, solda çevrilmiş sayfaların kalınlığı */
+.yigin{position:absolute;top:2px;bottom:2px;width:var(--k,8px);z-index:0;pointer-events:none;border-radius:2px;
+background:repeating-linear-gradient(90deg,#e9e3d5 0 1px,#f7f3ea 1px 2px)}
+.yigin.sag{right:calc(-1 * var(--k,8px));box-shadow:4px 0 8px rgba(0,0,0,.25)}.yigin.sol{left:calc(-1 * var(--k,0px));transform:translateX(-2px)}
+.book img.pg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;border-radius:3px 6px 6px 3px;background:var(--kagit)}
 #top{z-index:2}#under{z-index:1}
-.leaf{position:absolute;inset:0;z-index:5;transform-origin:left center;transform-style:preserve-3d;display:none;will-change:transform}
+#altgolge{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(0,0,0,.45) 0,rgba(0,0,0,.18) 18%,rgba(0,0,0,0) 48%)}
+/* bükülen yaprak: iç içe şeritler */
+.leaf{position:absolute;inset:0;z-index:6;display:none;transform-style:preserve-3d}
 .leaf.on{display:block}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:6px;overflow:hidden}
-.face.front img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--kagit)}
-.face.back{transform:rotateY(180deg);background:linear-gradient(90deg,#efe9dc 0%,#f7f3ea 55%,#d8d1c2 100%)}
-.leaf .golge{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.0),rgba(0,0,0,.35));opacity:0;pointer-events:none;border-radius:6px}
-.kenar{position:absolute;top:0;bottom:0;width:14%;z-index:6;cursor:grab}
+.strip{position:absolute;top:0;height:100%;transform-origin:left center;transform-style:preserve-3d;will-change:transform}
+.yuz{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background-repeat:no-repeat;background-color:var(--kagit)}
+.yuz.arka{transform:rotateY(180deg);background-color:var(--kagit2)}
+.yuz.arka:after{content:'';position:absolute;inset:0;background:inherit;opacity:.07;transform:scaleX(-1)}
+.yuz .isik{position:absolute;inset:0;pointer-events:none}
+.kenar{position:absolute;top:0;bottom:0;width:16%;z-index:7;cursor:grab}
 .kenar.sag{right:0}.kenar.sol{left:0}
 .kontrol{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
 .btn{font:600 .9rem var(--f-govde);padding:8px 14px;border-radius:5px;border:1.5px solid var(--fg);background:transparent;color:var(--fg);cursor:pointer;text-decoration:none}
-.btn.dolu{background:var(--fg);color:var(--bg)}.btn:disabled{opacity:.35;cursor:default}
+.btn.dolu{background:var(--fg);color:var(--bg)}.btn:disabled{opacity:.35;cursor:default}.btn[aria-pressed="true"]{background:var(--vurgu);border-color:var(--vurgu);color:#fff}
 .btn:focus-visible,input:focus-visible,.sonuc button:focus-visible,.cip:focus-visible{outline:3px solid var(--vurgu);outline-offset:2px}
 .sayac{font:700 1.1rem var(--f-bas);letter-spacing:.04em;min-width:90px;text-align:center}
 .sayac input{width:3.2em;font:700 1.1rem var(--f-bas);text-align:right;background:transparent;border:0;border-bottom:1px solid var(--soluk);color:var(--fg)}
@@ -50,29 +65,31 @@ h1{font:800 2rem/1 var(--f-bas);margin:0;letter-spacing:.01em}h1 em{font-style:n
 .etk{font:400 .7rem monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--vurgu);margin-right:6px}
 .gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 footer{margin-top:22px;color:var(--soluk);font-size:.85rem}footer a{color:var(--sari)}
-@media (max-width:600px){h1{font-size:1.6rem}.ipucu{display:none}.kontrol{gap:6px}.btn{padding:8px 10px}}
-@media (prefers-reduced-motion:reduce){.leaf{transition:none!important}}
+@media (max-width:600px){h1{font-size:1.6rem}.ipucu{display:none}.kontrol{gap:6px}.btn{padding:8px 10px}.masa{padding:12px 10px 16px;margin-left:-6px;margin-right:-6px}.cilt{padding:8px 8px 9px 14px}.book:after{width:16px}}
 </style>
 </head>
 <body>
 <div class="sar">
 <header><h1>AURA <em>Şenlik</em> Dergisi</h1><p class="alt">İTÜ takımları, kulüpleri ve bölümleri · yaprağı sağ kenarından tutup çevir ya da aşağıdan ara</p></header>
 
-<div class="stage">
+<div class="masa"><div class="cilt"><div class="stage">
   <div class="book" id="book" aria-label="Dergi sayfası">
-    <img id="under" alt="">
-    <div class="leaf" id="leaf" aria-hidden="true"><div class="face front"><img id="lf" alt=""></div><div class="face back"></div><div class="golge" id="golge"></div></div>
-    <img id="top" alt="Dergi sayfası">
+    <div class="yigin sol" id="ysol"></div><div class="yigin sag" id="ysag"></div>
+    <img class="pg" id="under" alt="">
+    <div id="altgolge"></div>
+    <div class="leaf" id="leaf" aria-hidden="true"></div>
+    <img class="pg" id="top" alt="Dergi sayfası">
     <div class="kenar sol" id="ksol" title="Önceki sayfa: tut ve sağa çek"></div>
     <div class="kenar sag" id="ksag" title="Sonraki sayfa: tut ve sola çek"></div>
   </div>
-</div>
+</div></div></div>
 <div class="kontrol">
   <button class="btn" id="onceki" type="button">‹ Önceki</button>
   <div class="sayac"><input id="sno" type="number" min="1" value="1" aria-label="Sayfa numarası"> / <span id="toplam">…</span></div>
   <button class="btn" id="sonraki" type="button">Sonraki ›</button>
   <a class="btn" id="buyut" href="s/001.jpg" target="_blank" rel="noopener">Büyüt ↗</a>
   <button class="btn" id="kopya" type="button">Bu sayfanın linkini kopyala</button>
+  <button class="btn" id="ses" type="button" aria-pressed="false" title="Sayfa sesi">Ses kapalı</button>
   <span class="ipucu">← → tuşları da çevirir</span>
 </div>
 <p id="durumcanli" class="gizli" aria-live="polite"></p>
@@ -96,32 +113,51 @@ footer{margin-top:22px;color:var(--soluk);font-size:.85rem}footer a{color:var(--
 const $=i=>document.getElementById(i);
 const norm=s=>(s||'').normalize('NFC').replace(/İ/g,'i').replace(/I/g,'ı').toLowerCase().replace(/[çğıöşüâî]/g,c=>'cgiosuai'['çğıöşüâî'.indexOf(c)]).normalize('NFKD').replace(/[^a-z0-9]+/g,' ').trim();
 const src=p=>'s/'+String(p).padStart(3,'0')+'.jpg';
-let N=0,D=[],cur=1,busy=false;
-const top=$('top'),under=$('under'),leaf=$('leaf'),lf=$('lf'),golge=$('golge');
+let N=0,D=[],cur=1,busy=false,sesAcik=false;
+const top=$('top'),under=$('under'),leaf=$('leaf'),altgolge=$('altgolge'),book=$('book');
+const azalt=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function onbellek(p){for(const q of [p-2,p-1,p+1,p+2]) if(q>=1&&q<=N){const im=new Image();im.src=src(q)}}
+function yigin(){const k=Math.min(14,Math.max(2,Math.round((N-cur)/N*14))),s=Math.min(10,Math.max(0,Math.round((cur-1)/N*10)));$('ysag').style.setProperty('--k',k+'px');$('ysol').style.setProperty('--k',s+'px')}
 function goster(p){cur=Math.max(1,Math.min(N,p));top.src=src(cur);$('sno').value=cur;$('buyut').href=src(cur);
   $('onceki').disabled=cur<=1;$('sonraki').disabled=cur>=N;try{history.replaceState(null,'','#p'+cur)}catch(e){}
-  const d=D.find(x=>x.p===cur);$('durumcanli').textContent='Sayfa '+cur+(d?': '+d.ad:'');top.alt=d?d.ad+' sayfası':'Dergi sayfası';onbellek(cur)}
-/* yaprak çevirme: ileri = geçerli sayfa sol kenar ekseninde sola döner, altından sonraki sayfa çıkar; geri = önceki sayfa soldan geri gelir */
-function hazirla(yon){if(yon>0){if(cur>=N)return false;lf.src=src(cur);under.src=src(cur+1)}else{if(cur<=1)return false;lf.src=src(cur-1);under.src=src(cur)}
+  const d=D.find(x=>x.p===cur);$('durumcanli').textContent='Sayfa '+cur+(d?': '+d.ad:'');top.alt=d?d.ad+' sayfası':'Dergi sayfası';onbellek(cur);yigin()}
+/* ---- kâğıt fiziği: yaprak 14 iç içe şerit; toplam açı A, bükülme ortada en çok (sin A) ---- */
+const NS=14;let strips=[];
+function yaprakKur(url){const W=book.clientWidth,H=book.clientHeight,sw=W/NS;leaf.replaceChildren();strips=[];let parent=leaf;
+  for(let i=0;i<NS;i++){const s=document.createElement('div');s.className='strip';s.style.width=(sw+0.6)+'px';s.style.left=(i?sw:0)+'px';
+    const on=document.createElement('div');on.className='yuz on';on.style.backgroundImage=`url(${url})`;on.style.backgroundSize=W+'px '+H+'px';on.style.backgroundPosition=(-i*sw)+'px 0';
+    const isik=document.createElement('div');isik.className='isik';on.append(isik);
+    const ar=document.createElement('div');ar.className='yuz arka';ar.style.backgroundImage=`url(${url})`;ar.style.backgroundSize=W+'px '+H+'px';ar.style.backgroundPosition=(-i*sw)+'px 0';
+    s.append(on,ar);parent.append(s);parent=s;strips.push({s,isik})}}
+function aci(A){const b=Math.sin(A*Math.PI/180)*0.95;const rad=A*Math.PI/180;
+  for(let i=0;i<NS;i++){const w=1+b*((2*i/(NS-1))-1)*0.9;strips[i].s.style.transform='rotateY('+(-(A/NS)*w)+'deg)';
+    /* sürekli ışık: şerit i'nin sol/sağ ucu komşu şeritle aynı değeri alır (bantlanma olmaz) */
+    const g=t=>{const s=Math.sin(rad);const k=0.22*s*(1-t)-0.10*s*t;return k>=0?`rgba(0,0,0,${k.toFixed(3)})`:`rgba(255,255,255,${(-k).toFixed(3)})`};
+    strips[i].isik.style.background=A<90?`linear-gradient(90deg,${g(i/NS)},${g((i+1)/NS)})`:'none'}
+  altgolge.style.opacity=String(Math.min(.9,Math.sin(rad)*1.1));altgolge.style.transform='translateX('+(Math.cos(rad)*8)+'%)'}
+function hazirla(yon){if(yon>0){if(cur>=N)return false;yaprakKur(src(cur));under.src=src(cur+1)}else{if(cur<=1)return false;yaprakKur(src(cur-1));under.src=src(cur)}
   leaf.classList.add('on');top.style.visibility='hidden';return true}
-function aci(a){leaf.style.transform='rotateY('+(-a)+'deg)';golge.style.opacity=String(Math.min(.6,Math.sin(a*Math.PI/180)*.6))}
-function bitir(yon,tamam){leaf.classList.remove('on');leaf.style.transform='';top.style.visibility='';if(tamam)goster(cur+yon);else goster(cur);busy=false}
+function bitir(yon,tamam){leaf.classList.remove('on');leaf.replaceChildren();altgolge.style.opacity=0;top.style.visibility='';if(tamam){goster(cur+yon);if(sesAcik)hisirti()}else goster(cur);busy=false}
 function tween(yon,a0,a1,ms,sonra){const t0=performance.now();busy=true;(function adim(t){const k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3);aci(a0+(a1-a0)*e);if(k<1)requestAnimationFrame(adim);else sonra()})(t0)}
-function cevir(yon){if(busy||!hazirla(yon))return;busy=true;if(yon>0)tween(1,0,180,520,()=>bitir(1,true));else tween(-1,180,0,520,()=>bitir(-1,true))}
-/* sürükleme */
+function cevir(yon){if(busy)return;if(azalt){if((yon>0&&cur<N)||(yon<0&&cur>1))goster(cur+yon);return}if(!hazirla(yon))return;busy=true;if(yon>0)tween(1,0,180,620,()=>bitir(1,true));else tween(-1,180,0,620,()=>bitir(-1,true))}
+/* sürükleme (fare, parmak, kalem) */
 let drag=null;
-function basla(e,yon){if(busy||!hazirla(yon))return;busy=true;drag={yon,x0:e.clientX,w:$('book').clientWidth,a:yon>0?0:180,t0:performance.now()};aci(drag.a);e.currentTarget.setPointerCapture&&e.currentTarget.setPointerCapture(e.pointerId)}
-function hareket(e){if(!drag)return;const dx=e.clientX-drag.x0,w=drag.w;let a=drag.yon>0?Math.max(0,Math.min(180,-dx/w*200)):Math.max(0,Math.min(180,180-dx/w*200));drag.a=a;aci(a)}
-function birak(e){if(!drag)return;const d=drag;drag=null;const hiz=(performance.now()-d.t0)<220;
-  if(d.yon>0){const tamam=d.a>55||(hiz&&d.a>12);tween(1,d.a,tamam?180:0,tamam?380:260,()=>bitir(1,tamam))}
-  else{const tamam=d.a<125||(hiz&&d.a<168);tween(-1,d.a,tamam?0:180,tamam?380:260,()=>bitir(-1,tamam))}}
+function basla(e,yon){if(busy||!hazirla(yon))return;busy=true;drag={yon,x0:e.clientX,w:book.clientWidth,a:yon>0?0:180,t0:performance.now()};aci(drag.a);e.currentTarget.setPointerCapture&&e.currentTarget.setPointerCapture(e.pointerId)}
+function hareket(e){if(!drag)return;const dx=e.clientX-drag.x0,w=drag.w;const a=drag.yon>0?Math.max(0,Math.min(180,-dx/w*200)):Math.max(0,Math.min(180,180-dx/w*200));drag.a=a;aci(a)}
+function birak(){if(!drag)return;const d=drag;drag=null;const hiz=(performance.now()-d.t0)<220;
+  if(d.yon>0){const tamam=d.a>55||(hiz&&d.a>12);tween(1,d.a,tamam?180:0,tamam?420:260,()=>bitir(1,tamam))}
+  else{const tamam=d.a<125||(hiz&&d.a<168);tween(-1,d.a,tamam?0:180,tamam?420:260,()=>bitir(-1,tamam))}}
 for(const [id,yon] of [['ksag',1],['ksol',-1]]){const k=$(id);k.addEventListener('pointerdown',e=>{e.preventDefault();basla(e,yon)});k.addEventListener('pointermove',hareket);k.addEventListener('pointerup',birak);k.addEventListener('pointercancel',birak);k.addEventListener('lostpointercapture',birak)}
-$('top').addEventListener('click',e=>{const r=$('book').getBoundingClientRect(),x=(e.clientX-r.left)/r.width;if(x>.75)cevir(1);else if(x<.25)cevir(-1)});
+top.addEventListener('click',e=>{const r=book.getBoundingClientRect(),x=(e.clientX-r.left)/r.width;if(x>.78)cevir(1);else if(x<.22)cevir(-1)});
 $('onceki').onclick=()=>cevir(-1);$('sonraki').onclick=()=>cevir(1);
 document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'||e.key==='PageDown')cevir(1);if(e.key==='ArrowLeft'||e.key==='PageUp')cevir(-1)});
 $('sno').addEventListener('change',()=>{const p=parseInt($('sno').value,10);if(p>=1&&p<=N)goster(p);else $('sno').value=cur});
-/* link kopyala: Clipboard API → yedek metin alanı → seçili bırak */
+/* sayfa hışırtısı: kısa, filtrelenmiş gürültü (yalnız açıksa) */
+let actx=null;function hisirti(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const n=actx.sampleRate*0.22,b=actx.createBuffer(1,n,actx.sampleRate),d=b.getChannelData(0);
+  for(let i=0;i<n;i++){const t=i/n;d[i]=(Math.random()*2-1)*Math.pow(Math.sin(Math.PI*t),2)*0.35}
+  const s=actx.createBufferSource();s.buffer=b;const f=actx.createBiquadFilter();f.type='bandpass';f.frequency.value=2600;f.Q.value=.7;s.connect(f);f.connect(actx.destination);s.start()}catch(e){}}
+$('ses').onclick=()=>{sesAcik=!sesAcik;$('ses').setAttribute('aria-pressed',String(sesAcik));$('ses').textContent=sesAcik?'Ses açık':'Ses kapalı';if(sesAcik)hisirti()};
+/* link kopyala: Clipboard API → yedek metin alanı → adresi göster */
 $('kopya').onclick=()=>{const b=$('kopya'),u=location.href.split('#')[0]+'#p'+cur,ilk=b.dataset.t||(b.dataset.t=b.textContent);
   const yaz=m=>{b.textContent=m;$('durumcanli').textContent=m;clearTimeout(b._z);b._z=setTimeout(()=>{b.textContent=ilk},2200)};
   const yedek=()=>{let ok=false;const ta=document.createElement('textarea');try{ta.value=u;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';document.body.append(ta);ta.select();ok=document.execCommand('copy')}catch(e){}finally{ta.remove();b.focus({preventScroll:true})}yaz(ok?'Kopyalandı':'Kopyalanamadı: '+u)};
@@ -142,7 +178,7 @@ function ara(){const s=norm($('q').value),S=$('sonuc');S.replaceChildren();
   L.slice(0,60).forEach(d=>{const b=document.createElement('button');b.type='button';
     const bb=document.createElement('b'),et=document.createElement('span');et.className='etk';et.textContent=d.tur;bb.append(et,document.createTextNode(d.ad));
     const sm=document.createElement('small');sm.textContent=(d.stant?'stant '+d.stant+' · ':'')+(d.oz||'');const i=document.createElement('i');i.textContent='s. '+d.p;
-    b.append(bb,sm,i);b.onclick=()=>{goster(d.p);$('book').scrollIntoView({behavior:'smooth',block:'start'})};S.append(b)})}
+    b.append(bb,sm,i);b.onclick=()=>{goster(d.p);book.scrollIntoView({behavior:'smooth',block:'start'})};S.append(b)})}
 $('q').addEventListener('input',ara);$('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const b=$('sonuc').querySelector('button');if(b)b.click()}});
 fetch('dizin.json').then(r=>r.json()).then(j=>{N=j.sayfa;D=j.dizin.map(d=>({...d,n:norm(d.ad)+' | '+(d.anahtar||'')}));$('toplam').textContent=N;$('sno').max=N;
   const m=/p(\d+)/.exec(location.hash);goster(m?+m[1]:1);const h=decodeURIComponent(location.hash.slice(1));if(h&&!m){$('q').value=h.replace(/[-_]/g,' ');ara()}})
