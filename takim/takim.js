@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '54';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '55';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -2229,6 +2229,7 @@ function p3AgTakim(sec, t, grup, ilk) {
   if (t.anlati) out.push(el('div', { class: 'p3-blok ag-anlati' }, el('span', { class: 'p3-etiket' }, 'AURA ağı sizin için'), el('p', { class: 'p3-amac' }, t.anlati)));   /* 24 Eki: bölüme/takıma özel agentic-AI anlatısı */
   const kn = t.kanal || {}, kl = [agUrl(kn.site) ? agLink(kn.site, kaynakAlan(kn.site) + ' ↗', 'p3-dis') : null, /^@?[A-Za-z0-9_.]{2,30}$/.test(kn.instagram || '') ? agLink('https://www.instagram.com/' + kn.instagram.replace(/^@/, '') + '/', '@' + kn.instagram.replace(/^@/, '') + ' ↗', 'p3-dis') : null].filter(Boolean);
   if (kl.length) out.push(el('p', { class: 'p3-ust-satir' }, el('span', { class: 'p3-etiket' }, 'Kanal'), ...kl));
+  if (t.senlik) out.push(el('p', { class: 'p3-ust-satir ag-plan' }, el('a', { href: TABAN + 'senlik/?kal#' + encodeURIComponent(t.senlik), class: 'p3-dis ag-plan-a' }, 'Adım adım plan: ajanın rolü, işin meteorolojisi, İTÜ dersleri →')));   /* 25 Eki: şenlik plan sayfası (?kal = yönlenmeden açılır) */
   /* birlikte yapabileceğimiz işler: önce bu takıma özel, sonra çok takımlı ortak işler */
   const L = [...agDizi(t.ortak).map(o => ({ o, ozel: true })), ...agDizi(t.ortakIsIds).map(id => AG.O.get(id)).filter(Boolean).map(o => ({ o, ozel: false }))];
   if (L.length) out.push(el('div', { class: 'ag-ortak-blok' }, el('span', { class: 'p3-etiket' }, 'Birlikte yapabileceğimiz işler'), el('ol', { class: 'p3-liste' }, ...L.map(({ o, ozel }) =>
