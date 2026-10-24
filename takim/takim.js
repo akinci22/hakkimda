@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '49';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '50';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -1905,7 +1905,7 @@ function p3BuyukKapat() { if (!P3 || !P3.buyuk) return false; const b = P3.buyuk
    Genelden özele: grup sekmesi → takım kartı → (p3 yığını, tur 'ag') takım ekranı → ortak iş ekranı. Yığın, kırıntı, geri tuşu (portföy içi + /takim/),
    sıralı geçiş (140/220 ms), reduce-motion ve 120 fps kuralları p3EkranAc'tan gelir. Yeni pushState anahtarı YOK (state: tkDetay/p3/id; `yer` konmaz).
    Yalnız transform/opacity; kalıcı will-change yok; balon imleç yok; bu bölümde klip yok. Dış bağlantılar rel="noopener noreferrer" target=_blank. */
-const AG_GRUP_AD = { meteoroloji: "Meteoroloji'deki takımlar", fakulte: 'Fakültemizdeki takımlar', 'itu-yeni': "İTÜ'nün yeni takımları" };
+const AG_GRUP_AD = { meteoroloji: "Meteoroloji'deki takımlar", fakulte: 'Fakültemizdeki takımlar', 'itu-yeni': "İTÜ'nün yeni takımları", 'itu-diger': "İTÜ'nün diğer takımları", kulupler: 'İTÜ kulüpleri' };
 const AG_ZOR = ['', 'kolay', 'orta', 'zor'];
 const AG_IKON = {
   EKP: '<circle cx="8" cy="9" r="3"/><circle cx="16.5" cy="10" r="2.5"/><path d="M2.5 19c.6-3.2 3-5 5.5-5s4.9 1.8 5.5 5M14 15.2c.8-.5 1.6-.7 2.5-.7 2.2 0 4.2 1.5 5 4.5"/>',
