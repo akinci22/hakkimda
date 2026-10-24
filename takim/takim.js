@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '50';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '51';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -2056,7 +2056,7 @@ function p3AgTakim(sec, t, grup, ilk) {
   /* birlikte yapabileceğimiz işler: önce bu takıma özel, sonra çok takımlı ortak işler */
   const L = [...agDizi(t.ortak).map(o => ({ o, ozel: true })), ...agDizi(t.ortakIsIds).map(id => AG.O.get(id)).filter(Boolean).map(o => ({ o, ozel: false }))];
   out.push(L.length ? el('div', { class: 'ag-ortak-blok' }, el('span', { class: 'p3-etiket' }, 'Birlikte yapabileceğimiz işler'), el('ol', { class: 'p3-liste' }, ...L.map(({ o, ozel }) =>
-    el('li', {}, el('button', { class: 'p3-sat p3-sat-2', type: 'button', onclick: () => agIsAc(o, t) },
+    el('li', {}, (!o.ne && !agDizi(o.nasil).length) ? el('span', { class: 'p3-sat p3-sat-2 ag-sade' }, el('span', { class: 'p3-sat-ic' }, el('b', { class: 'p3-ad' }, o.baslik))) : el('button', { class: 'p3-sat p3-sat-2', type: 'button', onclick: () => agIsAc(o, t) },
       el('span', { class: 'p3-sat-ic' }, ozel ? null : el('i', { class: 'p3-tur' }, 'çok takımlı · ' + agDizi(o.takimlar).length + ' takım'), el('b', { class: 'p3-ad' }, o.baslik), o.ne ? el('span', { class: 'p3-amac p3-kirp' }, o.ne) : null,
         el('span', { class: 'p3-ders ag-satir-meta' }, agZorluk(o.zorluk), o.sure ? el('span', {}, o.sure) : null)), p3Ok()))))) : el('p', { class: 'p3-not' }, 'Bu takım için ortak iş önerisi henüz yok.'));
   const madde = x => el('li', { class: 'ag-m' }, x.yil ? el('b', { class: 'ag-yil-r' }, x.yil) : null, el('span', {}, x.is), x.teyitsiz ? agTeyitsiz() : null, agUrl(x.kaynak) ? agLink(x.kaynak, 'kaynak ↗', 'p3-dis ag-kaynak') : null);
