@@ -824,7 +824,8 @@
       "oi-7-gunluk-ecmwf-acik-veri-arsivle",
       "oi-10-istanbul-yagis-dogrulama-seti"
      ],
-     "ortakSayisi": 4
+     "ortakSayisi": 4,
+     "anlati": "Bölümün kendi kulübü için en kısa yol havalimanı doğrulaması. Ajan her saat LTFM ve LTFJ METAR'larını ve yürürlükteki TAF'ları çeker; ECMWF açık verisi ve Open-Meteo'dan aynı saatlerin tahminini alır. Her sabah 'TAF ne dedi, METAR ne gösterdi' karnesi çıkar: görüş, tavan ve rüzgâr için isabet ve yanlış alarm oranı, model için 2 m sıcaklık ve çiy noktası sapması. Akşam koşusunda sis puanı hesaplar: sıcaklık–çiy noktası farkı, rüzgâr, bulutluluk ve radyosonda nem profili tek bir 0–6 saatlik risk tablosuna iner; eşik aşılırsa kulüp WhatsApp'ına tek satır düşer, aşılmazsa susar. WRF kursunda üretilen koşular da aynı karneye sokulur, 'benim koşum ECMWF'yi geçti mi' sorusu sayıyla cevaplanır; aynı sis uyarısı ağ üzerinden Havacılık, SİVEK ve UUBF takımlarına gider, METAR üyesi bu zincirin üreticisi olur. Üye olarak isabet/yanlış alarm metriklerini, Python ile METAR ayrıştırmayı ve bir tahmini sayıyla yargılama alışkanlığını öğrenirsin."
     },
     {
      "id": "arama-kurtarma",
@@ -918,7 +919,8 @@
      "ortakIsIds": [
       "oi-11-5-6-eylul-2023-vaka-dosyasi-te"
      ],
-     "ortakSayisi": 2
+     "ortakSayisi": 2,
+     "anlati": "Kulüp hava bilgisini üretmez, tüketir; Bursa orman yangını gibi sahalarda son kullanıcıdır, bu yüzden ajan brifing üretir. Operasyon sorumlusu bota konum ve saat aralığı yazar; ajan MGM uyarılarını, ECMWF ve GFS açık tahminini, en yakın havalimanının METAR'ını ve radyosondayı çeker. Yangın için saatlik yangın hava indeksi ve beklenen rüzgâr dönüş saatini, sel için 6 saatlik yağış toplamı ile ERA5-Land toprak neminden ani sel eşiğini, ekip için ısı stresi ve yıldırım riskini hesaplar. Çıktı tek sayfa: 24–48 saatlik saat-saat tablo ve en üstte 'kritik saatler' satırı; intikalden 12 saat önce operasyon WhatsApp'ına gider, sahada 6 saatte bir yenilenir. Dönüşte ekip gördüğünü üç satırla bota yazar (rüzgâr ne zaman döndü, yağış ne zaman başladı), ajan bunu tahminle karşılaştırır; kulüp ağda 'saha gözü' olur, aynı ajanı Dağcılık ve Mağara kulüpleriyle paylaşır. Üye olarak uyarı ile tahmin farkını, belirsizliği okumayı ve bir brifingi Python'la 10 dakikada üretmeyi öğrenirsin."
     },
     {
      "id": "coral",
@@ -1121,7 +1123,8 @@
      "ortakIsIds": [
       "oi-11-5-6-eylul-2023-vaka-dosyasi-te"
      ],
-     "ortakSayisi": 2
+     "ortakSayisi": 2,
+     "anlati": "Geomatik için giriş kapısı atmosferin GNSS sinyalini geciktirmesi. Ajan ISTA istasyonunun günlük troposfer çözümlerini (ZTD) indirir, MGM/Open-Meteo yüzey basıncı ve sıcaklığıyla ıslak gecikmeyi yağışa dönüşebilir su buharına (PWV, mm) çevirir; aynı saatler için ERA5 toplam sütun su buharını ve İstanbul radyosondasının bütünleşik nemini çekip ERA5 ile günlük modellerin nem sapmasını (bias, RMSE) hesaplar. Çıktı iki tablo: haftalık 'nem karnesi' ve PWV'nin birkaç saatte hızla yükseldiği anları işaretleyen 'sağanak öncüsü' listesi; işaret düştüğünde AURA kanalına ve kulüp WhatsApp'ına saatli bir satır gider. JFK'nin CBS gücü burada devreye girer: ajan her istasyonun tahmin hatasını GeoJSON katmanı olarak yazar, kulüp bunu İstanbul 'hata haritası'na çevirir; kıyı–iç kesim, tepe–vadi farkı harita üstünde görünür. Ağda bu nem serisi METAR kulübünün sis ajanına ve Çevre kulübünün kirlilik dağılım işine girdi olur. Üye olarak GNSS meteorolojisinin hesabını, xarray ile ERA5 okumayı ve bir modelin nereye yanıldığını haritayla göstermeyi öğrenirsin."
     },
     {
      "id": "yz-kulubu",
@@ -1217,7 +1220,8 @@
       "oi-7-gunluk-ecmwf-acik-veri-arsivle",
       "oi-10-istanbul-yagis-dogrulama-seti"
      ],
-     "ortakSayisi": 3
+     "ortakSayisi": 3,
+     "anlati": "Makine öğrenmesi eğitimleri için hava, zor bulunan şeyi verir: her gün yeni, etiketli, bedava bir veri noktası. Lig ajanı her sabah ECMWF/GFS açık verisini, Open-Meteo'yu ve MGM ile LTFM/LTFJ gözlemlerini çeker, öznitelik tablosunu (CSV) ortak depoya basar; katılımcı modeller 'yarın İstanbul'da yağış olasılığı' sayısını gönderir. Ertesi gün aynı ajan gerçek yağışı okur, Brier skoru ve güvenilirlik eğrisi hesaplar, ham ECMWF, klimatoloji ve 'bugün ne olduysa yarın da o' çizgilerini ekler, lig tablosunu kulüp kanalına yollar. Ajanın kendisi de eğitim malzemesidir: zamanlayıcı, veri doğrulama, yeniden deneme ve haftalık özeti doğal dille yazan LLM katmanı; üyeler ajan tasarımını slaytta değil çalışan sistemde görür. Ağda ligi kazanan düzeltme modeli AURA karnesine girer ve Dağcılık, Yelken gibi kulüplere giden bültenleri besler; kulübün modeli kampüste gerçek bir kararı etkiler. Üye olarak olasılık tahminini puanlamayı, model çıktısını sonradan düzeltmeyi (post-processing) ve xarray/pandas ile GRIB okumayı öğrenirsin."
     },
     {
      "id": "cevre-kulubu",
@@ -1314,7 +1318,8 @@
      "ortakIsIds": [
       "oi-13-sunger-sehir-veri-sayfasi-ilce"
      ],
-     "ortakSayisi": 2
+     "ortakSayisi": 2,
+     "anlati": "Çevre mühendisinin günlük sorusu 'kirlilik yarın dağılır mı' bir meteoroloji sorusudur; ajan bunu her akşam hesaplar. Ulusal hava kalitesi ağının İstanbul istasyonlarından saatlik PM10/PM2.5'i, Copernicus CAMS hava kalitesi tahminini, ECMWF açık verisinden rüzgâr ve sınır tabakası yüksekliğini, İstanbul radyosondasından inversiyon kalınlığını çeker. Havalandırma indeksini (karışım yüksekliği × rüzgâr) ve CAMS'in istasyon bazlı sapmasını hesaplar; düzeltilmiş 24–48 saatlik PM tahmini ve 'CAMS eşik aşımını tutturdu mu' karnesi üretir. İnversiyon ve düşük havalandırma günü görünüyorsa kulüp WhatsApp'ına 'yarın sabah ölçüm günü' mesajı düşer; Sürdürülebilir Ekosistem Günleri'nin açık hava oturumları için yağış ve hava kalitesi birlikte 'uygun/riskli' tablosuna girer. Su tarafında aynı ajan İSKİ baraj doluluğu ile MGM yağışını aylık karta çevirir; Suyun Gözyaşları eğitiminde çocuklara gösterilecek 'bu ay ne kadar yağdı, baraj ne kadar doldu' kartı elle değil otomatik çıkar. Ağda Kimya Kulübü'nün inversiyon günü ölçümleri bu karneye gözlem olarak eklenir; üye olarak dağılım meteorolojisini, CAMS/ERA5 verisini Python'la okumayı ve bir tahmini eşik bazında doğrulamayı öğrenirsin."
     },
     {
      "id": "kent-kulubu",
@@ -1349,7 +1354,8 @@
      "ortakIsIds": [
       "oi-13-sunger-sehir-veri-sayfasi-ilce"
      ],
-     "ortakSayisi": 1
+     "ortakSayisi": 1,
+     "anlati": "Planlamacının iki iklim sorusu var: kent nerede fazla ısınıyor, yağmur nerede yere sığmıyor; ajan ikisini de veriyle izler. Her gece MGM'nin kent içi ve kent dışı istasyonlarını eşleştirip ısı adası şiddetini (ΔT) hesaplar; aylık olarak Landsat/Sentinel yüzey sıcaklığı ve geçirimsiz yüzey oranıyla ilçe bazında 'ısı adası karnesi' çıkarır, ERA5'in kenti görmediğini sayıyla gösterir. Sünger şehir tarafında şiddetli yağış günlerini IMERG ve MGM saatlik yağışından yakalar, yoğunluk–süre tablosuna işler, JFK'den gelen yükseklik ve geçirimsizlik katmanıyla 'hangi mahalle önce taşar' göstergesini günceller. Climate Talks gibi etkinliklerden 48 saat önce komiteye tek sayfalık veri notu gider: son ayın ısı adası ve aşırı yağış istatistikleri, kaynaklarıyla; atölye ve saha yürüyüşü günleri için yağış/rüzgâr penceresi kulüp WhatsApp'ına düşer. Ağda Mimarlık Kulübü'nün mikroklima yürüyüşü ölçümleri ve Çevre Kulübü'nün hava kalitesi serisi aynı ilçe karnesine eklenir; kulüp bu karneyi planlama argümanına çevirir. Üye olarak istasyon verisiyle iklim okumayı, Python ve xarray ile ERA5/uydu verisi işlemeyi ve bir modelin kent ölçeğinde ne kadar yanıldığını ölçmeyi öğrenirsin."
     },
     {
      "id": "modelleme",
@@ -3928,7 +3934,8 @@
       }
      ],
      "ortakIsIds": [],
-     "ortakSayisi": 2
+     "ortakSayisi": 2,
+     "anlati": "Roket ve İHA günleri rüzgâra bağlıdır; ajanımız test sahası için ECMWF ve GFS'den saatlik 10 m ve 100 m rüzgârını, LTFM ve LTFJ METAR-TAF'ından bulut tavanı ile görüşü çeker. Pist yönüne göre yan rüzgâr bileşenini, hamle oranını ve yoğunluk irtifasını hesaplar; her saat için yeşil-sarı-kırmızı 'uçuş penceresi' tablosu üretir. Tabloyu etkinlikten 72 saat önce ve etkinlik sabahı komitenin WhatsApp grubuna atar; pencere değişirse yeni saat önerir. Test bitince METAR'daki gerçek rüzgârla tahmini karşılaştırıp karne çıkarır; ikinci etkinlikte hangi modelin o sahada daha iyi olduğunu biliriz. SAVTEK ve EUROAVIA ekipleri aynı ajanı kendi sahasına kopyalar, yalnız eşikleri değiştirir. Üye olarak METAR okumayı, Python'la tahmin doğrulamayı ve rüzgâr eşiği kararını veriyle savunmayı öğrenirsin."
     },
     {
      "id": "ituverse",
@@ -5205,19 +5212,26 @@
      },
      "ortak": [
       {
-       "baslik": "Yarış rotası için saatlik güneş ışınımı ve bulutluluk tahmini",
-       "ne": ""
+       "baslik": "Pist için saatlik ışınım ve bulut tablosu",
+       "ne": "Yarış günleri için saat saat beklenen Wh ve bulut riski tablosu; ECMWF, GFS ve ICON yan yana.",
+       "sure": "2 hafta",
+       "zorluk": 1
       },
       {
-       "baslik": "Rüzgâr yönü/hızına göre sürüş hızı ve enerji bütçesi optimizasyonu",
-       "ne": ""
+       "baslik": "Rüzgâr bileşenine göre hız bandı önerisi",
+       "ne": "Pist yönüne göre kafa/kuyruk rüzgâr bileşeni ve her saat için önerilen hız aralığı, strateji yazılımınıza CSV olarak.",
+       "sure": "3-4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Yarış sonrası tahmin-gerçek ışınım doğrulama raporu",
-       "ne": ""
+       "baslik": "Yarış sonrası ışınım tahmin karnesi",
+       "ne": "Panel akımınızla saatlik tahminin karşılaştırıldığı, model başına hata veren tek sayfalık karne.",
+       "sure": "1 hafta, yarış sonrası",
+       "zorluk": 1
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Rota ışınımı ve rüzgâr bütçesi ajanı, pistin koordinatı için ECMWF, GFS ve ICON tahminlerini Open-Meteo'dan saatlik çeker: yüzey ışınımı, katmanlı bulut, 10 m rüzgâr, sıcaklık. Işınımı panel alanıyla çarpıp saatlik Wh'e çevirir; üç modelin ayrıştığı saatleri 'belirsiz' işaretler; rüzgârı pist yönüne göre kafa/kuyruk bileşenine ayırır. Çıktı tek tablo: saat · beklenen Wh · bulut riski · rüzgâr bileşeni · önerilen hız bandı. Tablo her sabah stint öncesi takımın WhatsApp'ına düşer; bulut bandı tahminden erken gelirse ajan beklemez, o anda yazar. Yarış bitince panel akımınızı tahminle yan yana koyup karne çıkarırız: hangi model o pistte tuttu, hangisi tutmadı. Takımınız ARIBA'nın 24 saat etabı için hatası ölçülmüş bir enerji bütçesi kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5249,6 +5263,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5280,6 +5295,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5311,6 +5327,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5342,6 +5359,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5373,6 +5391,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5404,6 +5423,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5422,19 +5442,26 @@
      },
      "ortak": [
       {
-       "baslik": "Otomatik hava istasyonu sensör kartı tasarımı",
-       "ne": ""
+       "baslik": "Düşük maliyetli hava istasyonu sensör kartı",
+       "ne": "Sıcaklık, nem, basınç ve rüzgâr ölçen, seri ya da MQTT ile veri veren kart prototipi ve şeması.",
+       "sure": "6-8 hafta",
+       "zorluk": 3
       },
       {
-       "baslik": "Veri toplama için gömülü sistem desteği",
-       "ne": ""
+       "baslik": "Kart verisini AURA boru hattına bağlayan gömülü yazılım",
+       "ne": "Kart ölçümünü dakikalık JSON olarak sunucuya ileten firmware ve onu okuyan Python modülü.",
+       "sure": "3-4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Model kontrol çıktılarının robot görevlerine aktarımı",
-       "ne": ""
+       "baslik": "Ajan kararını robot görev planına aktaran köprü",
+       "ne": "Ajanın 'dene/bekle' tablosunu robotun görev zamanlayıcısına okutan küçük API ve örnek görev.",
+       "sure": "2-3 hafta",
+       "zorluk": 2
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Bir yazılım ajanı OTOKON'un iyi bildiği döngüdür: ölç, hatayı hesapla, karar ver, eyleme geç; biz bu döngüyü hava verisine kuruyoruz. Açık hava robot denemeleriniz için test günü ajanı en yakın MGM istasyonunun gözlemini, havalimanı METAR'ını ve Open-Meteo'nun saatlik tahminini çeker: yağış olasılığı, hamle rüzgârı, sıcaklık, güneş yükseklik açısı. Kamera için parlama saatlerini, lidar için yağmur riskini, batarya için soğuk saatleri hesaplar; her üç saatlik dilime 'dene / bekle' kararı yazar. Tablo denemeden önceki akşam WhatsApp grubunuza gider; sabah tahmin değişirse yalnız kararı değişen dilimler yeniden gelir. Tasarlayacağınız sensör kartı da aynı döngüye girer: ajan kartın ölçümünü komşu MGM istasyonuyla karşılaştırır, sapma eşiği aşılırsa kalibrasyon tablosunu güncelleyip haber verir. Takımınız her deneme günü için hesaplanmış bir hava penceresi ve kendi kartına ait bir doğruluk karnesi kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5464,6 +5491,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5493,6 +5521,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5524,6 +5553,7 @@
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5540,19 +5570,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "Yarış alanı için saatlik rüzgâr/dalga tahmini",
-       "ne": ""
+       "baslik": "Yarış alanı için saatlik rüzgâr-dalga pencere tablosu",
+       "ne": "Koşu günleri için saatlik rüzgâr, hamle, dalga ve yeşil/sarı/kırmızı pencere tablosu; WhatsApp'a otomatik.",
+       "sure": "2 hafta",
+       "zorluk": 1
       },
       {
-       "baslik": "Otonom algılama için sis ve yağmur riski",
-       "ne": ""
+       "baslik": "Kamera ve lidar için sis-yağmur-parlama risk puanı",
+       "ne": "METAR görüş, sıcaklık-çiy noktası farkı ve güneş-rota açısından saatlik algılama risk puanı.",
+       "sure": "3 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Tekne sensör verisiyle yerel tahmin doğrulama",
-       "ne": ""
+       "baslik": "Tekne IMU/GPS verisiyle yerel tahmin karnesi",
+       "ne": "Koşu loglarındaki heave ve sürüklenme ile tahminin karşılaştırıldığı, model başına hata tablosu.",
+       "sure": "3-4 hafta",
+       "zorluk": 2
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Vesselbee'nin kamerası sise, lidarı yağmura, rota tutuşu yan rüzgâra hassas; dalga-rüzgâr penceresi ajanı bu üçünü tek tabloya indirir. Ajan yarış alanının ya da test gölünün koordinatı için Open-Meteo'dan saatlik rüzgâr ve hamle, Open-Meteo Marine'den dalga yüksekliği ve periyodu, en yakın METAR'dan görüş ve yağışı çeker. Kapalı gölde dalgayı rüzgâr hızı ve açık su mesafesinden kendisi kestirir; tekne boyuna göre dalga eşiğini, kamera için güneş-rota açısını ve sis olasılığını, kontrolcü için yan rüzgâr bileşenini hesaplar. Her saat 'yeşil / sarı / kırmızı' pencere alır; tablo testten önceki akşam ve her pencereden bir saat önce WhatsApp grubunuza gider, yarış haftasında koşu saatinize göre yenilenir. Koşu bitince teknenin IMU ve GPS verisi tahminle karşılaştırılır; o su için hangi modelin rüzgârı, hangisinin dalgayı tuttuğu karneye işlenir. Takımınız her koşu öncesi algılama riskini sayıyla gören bir pencere tablosu ve o suya ait bir tahmin karnesi kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5569,19 +5606,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "Bina enerji simülasyonu için iklim verisi ve tipik meteorolojik yıl",
-       "ne": ""
+       "baslik": "ERA5 tabanlı TMY ve EPW iklim dosyası",
+       "ne": "Lübeck ve İstanbul koordinatları için ERA5'ten üretilmiş saatlik TMY, EPW biçiminde ve ısı adası düzeltmeli.",
+       "sure": "3 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Fotovoltaik üretim tahmini",
-       "ne": ""
+       "baslik": "Çatı PV için gün-öncesi üretim tahmini ajanı",
+       "ne": "Çatı eğimi ve yönüne göre saatlik kWh tahmini; sayaçla karşılaştırmalı günlük karne.",
+       "sure": "3-4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Isı adası ve iklim değişikliği senaryolarıyla tasarım",
-       "ne": ""
+       "baslik": "İklim değişikliği senaryolu gelecek EPW dosyası",
+       "ne": "CMIP6 senaryolarıyla 'morphing' yöntemiyle üretilen gelecek EPW dosyası ve konfor saati karşılaştırması.",
+       "sure": "4-6 hafta",
+       "zorluk": 3
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Enerji verimli bir ev önce iklim dosyasıyla tasarlanır, sonra yarışma haftasında saat saat işletilir; biz iki aşamaya da ajan koyuyoruz. Tasarım aşamasında ajan, İstanbul ya da Lübeck koordinatı için ERA5'ten saatlik sıcaklık, nem, ışınım ve rüzgârı çeker; tipik meteorolojik yılı üretir, şehir ve kırsal istasyon farkından ısı adası düzeltmesi ekler, EPW biçiminde simülasyon programınıza verir. Yarışma haftasında üretim tahmini ajanı ECMWF ve ICON'un gün-öncesi ışınımını çatı eğimi ve yönüne göre kWh'e çevirir; derece-saat ile ısıtma ve soğutma yükünü kestirir; dış sıcaklığın iç sıcaklığın altına indiği gece saatlerini havalandırma penceresi olarak işaretler. İşletme tablosu 'saat · PV kWh · beklenen yük · batarya kararı · havalandırma' her akşam WhatsApp grubunuza gider; bulut tahmini sabah değişirse öğleden önce yenisi düşer. Sayaç ve iç ortam sensörleriniz ölçtükçe ajan tahmini gerçekle karşılaştırır; hangi modelin o çatıda ışınımı tuttuğunu karneye yazar. Takımınız jüri önünde hatası ölçülmüş bir enerji dengesi ve gelecek iklime göre sınanmış bir tasarım kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5598,19 +5642,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "Hava verisinin görselleştirildiği sergi/sahne tasarımı",
-       "ne": ""
+       "baslik": "Canlı hava verisiyle sahne/sergi tasarım konsepti",
+       "ne": "Rüzgâr, sıcaklık ve tahmin hatasını ışık ya da hareketle gösteren sahne/sergi öğesinin konsept paftası ve veri bağlantı şeması.",
+       "sure": "4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "AURA tahmin panosu için arayüz tasarımı",
-       "ne": ""
+       "baslik": "AURA tahmin karnesi panosu arayüz tasarımı",
+       "ne": "Karar tablolarını ve model hata grafiğini telefonda okunur kılan Figma tasarımı ve stil kılavuzu.",
+       "sure": "3 hafta",
+       "zorluk": 1
       },
       {
-       "baslik": "Açık hava etkinlikleri için hava riski planı",
-       "ne": ""
+       "baslik": "Açık hava etkinlikleri için hava riski karar tablosu",
+       "ne": "Kurulum, etkinlik ve söküm saatleri için hamle, yağış ve parlama eşiğini veren tablo; 48 saat önce WhatsApp'a.",
+       "sure": "2 hafta",
+       "zorluk": 1
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Açık havaya kurulan bir sahnenin son girdisi havadır: afişe binen hamle rüzgârı, LED ekrana vuran güneş, kurulum gününün yağmuru. Etkinlik riski ajanı, kurulum ve etkinlik tarihleri için alanın koordinatına Open-Meteo'dan saatlik hamle, yağış ve sıcaklığı, MGM'den uyarıları çeker; güneşin yükseklik ve yön açısını kendisi hesaplar. Geçici strüktürleriniz için hamle eşiğinin aşılacağı saatleri, ekran ve vitrin için parlama saatlerini, ziyaretçi için gölge ve ısı stresi saatlerini çıkarır; kurulum ve söküm için kuru pencereleri işaretler. Karar tablosu 'gün · saat · hamle · yağış · güneş yönü · parlama · kurulum kararı' kurulumdan 48 saat önce WhatsApp'a gider; eşik aşımı yaklaşınca iki saat önce yeniden yazar. Karşılığında istediğimiz şey tasarım: ajanın tablosunu ve tahmin karnesini bir bakışta okutan bir pano, belki rüzgârı ışıkla gösteren bir sahne. Takımınız kurulum planını saatle hesaplayan bir hava tablosu ve veriyi mekâna taşıyan yeni bir tasarım konusu kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5629,19 +5680,26 @@
      },
      "ortak": [
       {
-       "baslik": "Polen ve hava kalitesi biyosensörü fikri",
-       "ne": ""
+       "baslik": "Polen/biyoaerosol biyosensörü için örnekleme takvimi ajanı",
+       "ne": "CAMS polen ve PM tahminiyle haftalık 'örnekle/bekle' tablosu; WhatsApp'a otomatik.",
+       "sure": "2-3 hafta",
+       "zorluk": 1
       },
       {
-       "baslik": "Mikrobiyal aktivitenin sıcaklık/nem ilişkisi",
-       "ne": ""
+       "baslik": "Mikrobiyal büyüme ile sıcaklık-nem ilişkisi veri seti",
+       "ne": "ERA5 ve MGM saatlik sıcaklık-nem serisini kültür büyüme ölçümlerinizle eşleyen tablo ve basit regresyon.",
+       "sure": "4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Biyosensör verisinin hava kalitesi tahminiyle karşılaştırması",
-       "ne": ""
+       "baslik": "Biyosensör ölçümü ile CAMS tahmini karşılaştırma karnesi",
+       "ne": "Biyosensör çıktısı ile CAMS PM/polen tahmininin gün gün karşılaştırıldığı hata tablosu.",
+       "sure": "3 hafta, sensör hazır olunca",
+       "zorluk": 2
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "iGEM projesi bizim işimize benzer: model kur, ölç, hatasını yaz; biz bunu atmosfere, siz hücreye yapıyorsunuz. Laboratuvar ortam ve biyoaerosol ajanı, kampüs koordinatı için Open-Meteo Hava Kalitesi (CAMS) servisinden günlük polen türlerini ve PM2.5/PM10'u, MGM ve Open-Meteo'dan sıcaklık, nem ve rüzgâr yönünü çeker. Polen ve partikülün yüksek olacağı günleri, rüzgârın örnekleme noktasına hangi yönden geleceğini, dış sıcaklığın laboratuvar ortamını zorlayacağı sıcak günleri hesaplar; biyosensör denemesi için 'örnekle / bekle' tablosu üretir. Tablo her hafta başı grubunuza gider; polen tahminden önce yükselirse ya da sıcak hava dalgası yaklaşırsa ajan 24 saat önceden yazar. Biyosensörünüz çalıştığında ölçümünü CAMS tahminiyle karşılaştırırız; hava kalitesi tahmininin kampüs ölçeğindeki karnesi böyle çıkar. Takımınız örnekleme gününü tahminle seçen bir takvim ve biyosensörünü sınayan bağımsız bir dış referans kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5658,19 +5716,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "UV indeksi tahmini ve cilt kanseri farkındalığı",
-       "ne": ""
+       "baslik": "UV indeksi ajanı ve hasta uyarı tablosu",
+       "ne": "Open-Meteo/CAMS UV tahmini TEMIS uydu verisiyle doğrulanır; ilçe × saat 'korun / gölgede kal / dışarı çıkma' tablosu JSON uçtan ürüne açılır.",
+       "sure": "3 hafta",
+       "zorluk": 1
       },
       {
-       "baslik": "Sıcak hava dalgası ile hasta riskleri analizi",
-       "ne": ""
+       "baslik": "Sıcak hava dalgası ve hasta riski analizi",
+       "ne": "ECMWF/GFS ile 3 günlük ısı indeksi ve ardışık sıcak gün sayısı hesaplanır, hasta grubuna göre eşikli 48 saat öncesi WhatsApp uyarısı kurulur.",
+       "sure": "4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Ortak YZ model doğrulama yöntemleri",
-       "ne": ""
+       "baslik": "Ortak YZ model doğrulama karnesi",
+       "ne": "Duyarlılık-özgüllük-ROC ile isabet-ıskalama-Brier skorlarını aynı şablonda gösteren tek sayfalık karne; iki takımın modeli aynı tabloda okunur.",
+       "sure": "2 hafta",
+       "zorluk": 2
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Onkoloji hastası için hava iki sayıya iner: UV indeksi ve sıcak yükü. UV ajanımız her sabah 06:30'da Open-Meteo'dan (CAMS kaynaklı) saatlik UV indeksi ve bulutluluk tahminini çeker, önceki günün tahminini TEMIS uydu UV verisiyle karşılaştırıp sapmayı düzeltir, ilçe × saat tablosu üretir: UV ≥ 3 'korun', ≥ 6 'gölgede kal', ≥ 8 'dışarı çıkma'. Sıcak ajanımız ECMWF ve GFS'ten 3 günlük sıcaklık-nem tahminini alır, ısı indeksini ve ardışık sıcak gün sayısını hesaplar; eşikleri hasta grubunuza göre siz koyarsınız. Günün en yüksek UV'si 6'yı aştığında ya da sıcak hava dalgasına 48 saat kaldığında ajan takımın WhatsApp'ına tek tablo bırakır, aynı tablo JSON uçtan ürününüze açılır; Güneş Arabası takımına ışınım veren ajanla aynı Open-Meteo çağrısından beslenir: bir çağrı, iki takım. Model doğrulamada ortak dil kurarız: siz duyarlılık-özgüllük ve ROC, biz isabet-ıskalama ve Brier skoru; ikisi aynı karne şablonuna girer. Takımınız ürününe sıfır maliyetli, ölçülmüş ve her gün yenilenen bir hava katmanı kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5687,19 +5752,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "Düşük maliyetli MEMS basınç/nem sensörlü hava istasyonu",
-       "ne": ""
+       "baslik": "Düşük maliyetli MEMS basınç/nem hava istasyonu",
+       "ne": "BME280 sınıfı MEMS sensörlü istasyon kurulur, verisi saatlik METAR (LTFM, LTFJ) ve MGM gözlemiyle yan yana tek tabloda yayımlanır.",
+       "sure": "6 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Giyilebilir sensörle sıcak stresi uyarısı",
-       "ne": ""
+       "baslik": "Giyilebilir sensörle WBGT sıcak stresi uyarısı",
+       "ne": "Tahminden saatlik WBGT hesabı ve giyilebilir ölçümle karşılaştırma; yeşil-sarı-turuncu-kırmızı saat tablosu ve 06:00 uyarı mesajı.",
+       "sure": "4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Sensör kalibrasyonu için referans istasyon verisi",
-       "ne": ""
+       "baslik": "Referans istasyonla sensör kalibrasyon tablosu",
+       "ne": "Deniz seviyesine indirgenmiş basınç ve nem için günlük sapma-eğim hesabı; sensör × değişken × sapma × durum tablosu ve eşik aşımında anlık uyarı.",
+       "sure": "3 hafta",
+       "zorluk": 1
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "MEMS basınç ve nem sensörü ucuzdur ama zamanla sürüklenir; referansı olmayan sensör sayı üretir, veri üretmez. Kalibrasyon ajanımız her saat en yakın METAR'ı (LTFM, LTFJ) ve MGM istasyon gözlemini çeker, ortak istasyonun basıncını deniz seviyesine indirger, 24 saatlik sapma ile eğimi hesaplar. Çıktı tek tablodur: sensör × değişken × sapma × kazanç × durum (OK / yeniden kalibre et); basınçta 1,5 hPa'yı, nemde yüzde 5'i aşan sapma anında WhatsApp'a düşer, pazartesi sabahı haftalık özet gelir; aynı referans akışı ağda sensör taşıyan her takıma açıktır. Sıcak stresi uyarısı için ikinci ajan ECMWF ve Open-Meteo'dan sıcaklık, nem, rüzgâr ve güneş ışınımı tahminini alır, saatlik WBGT (ıslak hazne küre sıcaklığı) hesaplar, günü yeşil-sarı-turuncu-kırmızı saat dilimlerine böler, turuncu saat varsa 06:00'da takımı uyarır. Giyilebilir sensörün gün içinde ölçtüğü değer akşam tahminle karşılaştırılır, fark cihazın karnesine işlenir. Takımınız jüriye 'sensörümüz referansla şu kadar uyumlu' diyebilen, kanıtı yanında bir cihaz kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5716,19 +5788,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "Hava kirliliği dağılım tahminleri",
-       "ne": ""
+       "baslik": "Hava kirliliği dağılım ve havalandırma indeksi ajanı",
+       "ne": "Open-Meteo sınır tabakası, CAMS kirletici tahmini ve radyosonda profilinden ertesi günün saat × bölge 'birikir / dağılır / temizler' tablosu, 18:00 mesajı.",
+       "sure": "4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Çevre sensörü verisinin meteoroloji ile eşleştirilmesi",
-       "ne": ""
+       "baslik": "Çevre sensörü ölçümünü meteorolojiyle eşleştirme",
+       "ne": "Her ölçüm satırına o dakikanın rüzgâr, nem ve kararlılık sınıfı eklenir; yüzde 85 üstü nemdeki PM ölçümleri işaretlenir.",
+       "sure": "2 hafta",
+       "zorluk": 1
       },
       {
-       "baslik": "Kampüs karbon/emisyon panosu",
-       "ne": ""
+       "baslik": "Isıtma derece-günüyle kampüs emisyon panosu",
+       "ne": "Aylık doğal gaz ve elektrik tüketimi ERA5 derece-günüyle normalleştirilir, iklim etkisi ayrılmış emisyon grafiği web panoda yayımlanır.",
+       "sure": "5 hafta",
+       "zorluk": 2
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Kirlilik ölçümü meteoroloji olmadan yarım kalır: aynı kaynak sabah sınırı aşar, öğlen temiz görünür; fark rüzgâr ve karışma yüksekliğidir. Dağılım ajanımız her akşam 18:00'de Open-Meteo'dan sınır tabakası yüksekliği, rüzgâr ve bulutluluğu, CAMS'tan PM2.5-NO₂-O₃ tahminini, İstanbul radyosondasından sıcaklık profilini çeker. Havalandırma indeksini (karışma yüksekliği × ortalama rüzgâr), inversiyon saatlerini ve Pasquill kararlılık sınıfını hesaplar; çıktı ertesi günün saat × bölge tablosudur: 'birikir / dağılır / temizler' ve beklenen PM2.5 aralığı. Havalandırma indeksi düşük ve inversiyon varsa mesaj aynı akşam takımın WhatsApp'ına gider, ölçüm günü nereye konuşlanılacağı akşamdan bellidir; Reaktify'ın saha dağılım analizi de aynı kararlılık sınıfını kullanır, ağ bunun için var. İkinci ajan çevre sensörünün her ölçümünü o dakikanın rüzgâr-nem değeriyle eşler, yüzde 85 üstü nemde düşük maliyetli PM sensörünün şişirdiği satırları işaretler; kampüs panosu içinse aylık doğal gaz tüketimini ısıtma derece-günüyle normalleştirir, 'soğuk kış mı, fazla tüketim mi' sorusu kapanır. Takımınız, ölçümü hava bağlamıyla birlikte gösteren, savunulabilir bir veri seti kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5745,19 +5824,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "Santral yer seçimi için atmosferik dağılım ve rüzgâr analizi",
-       "ne": ""
+       "baslik": "Saha seçimi için ERA5 rüzgâr-kararlılık frekans tablosu",
+       "ne": "Aday saha koordinatından 30 yıllık ERA5 ile 16 sektörlü rüzgâr gülü ve yön × hız × Pasquill sınıfı ortak frekans tablosu (χ/Q girdisi) üretilir.",
+       "sure": "4 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Soğutma suyu sıcaklığı-iklim ilişkisi",
-       "ne": ""
+       "baslik": "Soğutma suyu sıcaklığı ve iklim eğilimi",
+       "ne": "Copernicus Marine deniz yüzeyi sıcaklığından aylık yüzdelikler, eğilim ve tasarım eşiğini aşan gün sayısı tablosu çıkar.",
+       "sure": "3 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Ekstrem hava olayı risk değerlendirmesi",
-       "ne": ""
+       "baslik": "Ekstrem hava dönüş değerleri (100 / 10.000 yıl)",
+       "ne": "Rüzgâr, yağış ve sıcaklık ekstremlerine Gumbel/GEV uyumu; 100 ve 10.000 yıllık dönüş değerleri belirsizlik aralığıyla rapora hazır tablo.",
+       "sure": "4 hafta",
+       "zorluk": 3
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Nükleer santral tasarımında saha meteorolojisi süs değil, bölüm başlığıdır: dağılım hesabı (χ/Q), soğutma suyu sıcaklığı ve tasarım esası ekstremleri rapora sayı ister. Saha ajanımız WhatsApp'a yazılan koordinatı alır, ERA5'ten (1940'tan bugüne, saatlik) 30 yıllık rüzgâr, sıcaklık ve yağış serisini, Copernicus Marine'den deniz yüzeyi sıcaklığını çeker. Ürettiği tablolar: 16 sektörlü rüzgâr gülü; yön × hız × Pasquill kararlılık sınıfı ortak frekans tablosu (χ/Q girdisi); aylık soğutma suyu sıcaklığı yüzdelikleri ve tasarım eşiğini aşan gün sayısı; Gumbel/GEV uyumuyla 100 ve 10.000 yıllık rüzgâr-yağış-sıcaklık dönüş değerleri, yanında belirsizlik aralığı. Sonuç aday saha × değişken × değer × belirsizlik olarak birkaç dakikada aynı sohbete döner; iki sahayı yan yana koyduğunuzda hangisinin daha sık kararlı atmosfer (zayıf dağılım) gördüğü tek bakışta okunur. Ay kapanınca ajan ERA5'in yeni verisiyle (yaklaşık 5 gün gecikmeli ERA5T) tabloyu yeniler, yalnız değişen satırları mesajlar; aynı ERA5 kodu Deeply High'ın bina simülasyonuna tipik meteorolojik yılı üretir, ağ kodu paylaşmak demektir. Takımınız detaylı tasarım raporuna kaynağı belli, yeniden üretilebilir bir saha meteorolojisi bölümü kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5774,19 +5860,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "Düşük güçlü hava sensörü için analog ön uç tasarımı",
-       "ne": ""
+       "baslik": "Düşük güçlü hava sensörü için analog ön uç",
+       "ne": "WMO gereklerinden türetilen değişken × aralık × çözünürlük × belirsizlik şartnamesi; ön uç MEMS takımının istasyonunda referansla sınanır.",
+       "sure": "8 hafta",
+       "zorluk": 3
       },
       {
-       "baslik": "Sensör sinyal işleme",
-       "ne": ""
+       "baslik": "Sensör sinyal işleme ve hata karnesi",
+       "ne": "Düğüm ölçümü METAR/MGM referansıyla saatlik karşılaştırılır; gürültü, sapma ve sıcaklık bağımlılığı tek karnede raporlanır.",
+       "sure": "3 hafta",
+       "zorluk": 2
       },
       {
-       "baslik": "Uç cihazda küçük tahmin modeli fikri",
-       "ne": ""
+       "baslik": "Uç cihazda küçük düzeltme modeli",
+       "ne": "Tahmin–gözlem çiftlerinden eğitilen düzeltme modeli küçültülür; model × parametre × MAE × bellek (KB) tablosu ve MCU'da çalışan örnek teslim edilir.",
+       "sure": "6 hafta",
+       "zorluk": 3
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Analog devrede ofset sıcaklıkla gezer, çıplak yonga kuru havada statik boşalmayla ölür; ikisi de hava bilgisidir. Laboratuvar ajanımız her akşam ECMWF ve Open-Meteo'dan çiy noktası tahminini çeker, dış havanın 22 °C'ye ısıtılmış hâlindeki iç bağıl nemi hesaplar; yüzde 30'un altına inecek günleri 'ESD riski: bileklik ve iyonizer zorunlu' satırıyla haftalık lab tablosuna yazar, pazar akşamı WhatsApp'a bırakır. Ortak sensör düğümü sahaya çıkacağı gün aynı ajan test penceresindeki sıcaklık aralığını, yağışı ve kart yüzeyinde yoğuşma riskini (çiy noktası–kart sıcaklığı farkı) çıkarır; risk varsa bir akşam önce uyarır. Analog ön uç için şartnameyi biz getiririz: WMO ölçüm gereklerinden değişken × aralık × çözünürlük × belirsizlik tablosu (örnek: basınç 500–1080 hPa, 0,1 hPa çözünürlük; nem yüzde 0–100, yüzde ±3 belirsizlik); aynı tablo MEMS takımının istasyonuyla ortaktır, sizin ön ucunuz, onların kartı, bizim referansımız tek düğümde buluşur. Uç cihaz modeli için ajan, tahmin–gözlem çiftlerinden eğittiği düzeltme modelini küçültür ve model × parametre sayısı × MAE × bellek (KB) tablosu üretir; hangi boyun MCU'ya sığıp hatayı en çok düşürdüğünü siz seçersiniz. Takımınız çipini gerçek sinyalle, ölçülmüş hatayla ve belgeli şartnameyle sınayan bir test yatağı kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5803,19 +5896,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "AURA kod tabanı için hata ayıklama/test desteği",
-       "ne": ""
+       "baslik": "AURA boru hattı için nöbetçi ajan ve test desteği",
+       "ne": "Her adımın bitişi, satır sayısı ve NaN oranı izlenir; iki ardışık hatada tekrar üretilebilir girdiyle GitHub issue ve WhatsApp satırı üretilir.",
+       "sure": "3 hafta",
+       "zorluk": 2
       },
       {
        "baslik": "Açık kaynak meteoroloji araçlarını Pardus'a paketleme",
-       "ne": ""
+       "ne": "MetPy, xarray, cfgrib/ecCodes ve wgrib2 için .deb paketleri; Pardus sürümü × kurulum × içe aktarma × GRIB okuma test tablosu.",
+       "sure": "6 hafta",
+       "zorluk": 3
       },
       {
        "baslik": "Veri boru hattı otomasyonu",
-       "ne": ""
+       "ne": "GFS, ECMWF açık verisi, METAR ve radyosonda indirme-işleme zinciri zamanlayıcıya bağlanır; gecelik koşu ve karne üretimi insansız döner.",
+       "sure": "4 hafta",
+       "zorluk": 2
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Bizim ürünümüz koddur: her gece GFS ve ECMWF açık verisini, Open-Meteo'yu, METAR'ı ve radyosondayı çeken, hatayı ölçüp düzelten, karne basan bir Python boru hattı; ağdaki her takıma giden tablo bu hattan çıkar. Boru hattı kırılır: NOAA sunucusu yanıt vermez, GRIB şeması değişir, bir istasyon NaN döker, 00Z koşusu geç gelir; kırıldığı gece güneş arabasının rota tablosu da teknenin dalga penceresi de boş gider. Nöbetçi ajanımız her adımın bitişini, satır sayısını ve NaN oranını izler; iki ardışık başarısızlıkta hata türü × adım × son 7 gün sıklığı × tekrar üretme komutu tablosunu çıkarır, GitHub'da issue açar ve WhatsApp'a tek satır yazar: 'ecmwf-opendata indirme 2/2 başarısız, girdi dosyası ekte'. Pardus Hata Yakalama'da yaptığınız iş tam bu: başkasının kodunda tekrar üretilebilir hatayı bulmak; bize gelen her hata tekrar üretilebilir girdisiyle gelir. İkinci iş paketleme: MetPy, xarray, cfgrib/ecCodes ve wgrib2'yi Pardus için .deb yaparsınız, ajan her paketi Pardus sürümü × kurulum × içe aktarma × örnek GRIB okuma tablosuyla sınar, kırılan paketi aynı gün bildirir. Takımınız canlı veri akan, her gece kırılma fırsatı olan ve hatası tekrar üretilebilen bir açık kaynak sahası kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5840,19 +5940,26 @@
      },
      "ortak": [
       {
-       "baslik": "kampüs iklim/sıcaklık gözlem günü",
-       "ne": ""
+       "baslik": "Kampüs sıcaklık gözlem günü ve ısı adası haritası",
+       "ne": "Üyeler el termometreleriyle kampüsü aynı saatte tarar; ajan ERA5 ile farkı hesaplar, tek sayfalık ısı adası haritası çıkar.",
+       "sure": "1 hafta hazırlık + 1 saha günü, ~6 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "iklim değişikliği söyleşisinde AURA veri sunumu",
-       "ne": ""
+       "baslik": "İklim değişikliği söyleşisinde AURA veri sunumu",
+       "ne": "ERA5 ile İstanbul'un 1940'tan bugüne sıcaklık ve yağış eğilimini 10 slaytta, kulübün söyleşisine ek olarak anlatırız.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "doğa etkinliklerine hava penceresi bülteni",
-       "ne": ""
+       "baslik": "Doğa etkinliklerine hava penceresi bülteni",
+       "ne": "Her etkinlikten 48 saat önce yağış, UV ve rüzgâr tablosu kulüp WhatsApp'ına kendiliğinden düşer.",
+       "sure": "2 hafta kurulum, sonra otomatik",
+       "zorluk": 2
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Ekolojide zamanlama her şeydir: çiçeklenme, kuş göçü ve dikim günü havaya bağlıdır. Ajanımız ERA5'ten ve MGM'nin kampüse en yakın istasyonundan günlük sıcaklıkla yağışı çeker; derece-gün birikimini, son don tarihini ve 30 günlük yağış açığını (SPI) hesaplar. Buradan bir 'fenoloji takvimi' çıkar: kampüs ağaçlarının beklenen çiçeklenme haftası, kuraklık stresi günleri, dikim için uygun toprak nemi penceresi. Doğa yürüyüşü ya da dikim günü için ajan 48 saat önce yağış olasılığı, UV ve rüzgâr tablosunu kulüp WhatsApp'ına gönderir. Üyeler gördüklerini (ilk çiçek, ilk göçmen kuş) kısa bir forma yazar; ajan bunları tahminle karşılaştırıp karne çıkarır, iklim değişikliği söyleşisinde kampüsün kendi verisi konuşulur. Ne öğrenirsin: açık iklim verisini Python'la çekmeyi, derece-gün hesabını ve gözlemle tahmini doğrulamayı.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5869,19 +5976,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "sıcak hava/yağış günlerine göre atık toplama planı",
-       "ne": ""
+       "baslik": "Haftalık hava-duyarlı atık toplama planı",
+       "ne": "Pazar akşamı gruba düşen 7 günlük tablo: koku riski, ıslanma riski ve erken toplama günleri.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "iklim-atık ilişkisi ortak atölye",
-       "ne": ""
+       "baslik": "İklim-atık ilişkisi ortak atölyesi",
+       "ne": "Kulübün toplama miktarını MGM sıcaklığıyla eşleyip tek grafikte sıcak gün-atık ilişkisini gösteren 2 saatlik atölye.",
+       "sure": "1 hafta hazırlık + 1 atölye",
+       "zorluk": 1
       },
       {
-       "baslik": "şenlikte ortak sürdürülebilirlik standı",
-       "ne": ""
+       "baslik": "Şenlikte ortak stand: rüzgâr ve yağış planı",
+       "ne": "Şenlik günleri için saatlik rüzgâr-yağış tablosu ve stand kurulum/kapatma saati önerisi.",
+       "sure": "şenlik haftası, ~3 saat",
+       "zorluk": 1
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Atık yönetiminde hava üç şeyi belirler: koku, ıslanma ve saçılma. Ajanımız kampüs için MGM ve Open-Meteo'dan 7 günlük sıcaklık, nem, yağış ve rüzgâr tahminini çeker; organik atık için 'ayrışma-koku' puanı, kâğıt-karton noktaları için ıslanma riski, açık hava standları için saçılma riski hesaplar. Sonuç haftalık 'toplama planı' tablosudur: hangi gün organik kutular erken alınır, hangi gün karton noktaları örtülür, stand malzemesine hangi gün ağırlık konur. Tablo pazar akşamı kulübün operasyon grubuna düşer; tahmin değişirse ajan hafta içinde tek satırlık düzeltme atar. Kulüp toplama miktarlarını paylaşırsa ajan sıcaklıkla atık miktarı ilişkisini çıkarır; iklim-atık atölyesinin verisi hazır olur. Öğreneceğin şey: hava verisini bir operasyon kararına çevirmek, basit risk puanı tasarlamak ve Python'la tahminin tutup tutmadığını ölçmek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5900,19 +6014,26 @@
      },
      "ortak": [
       {
-       "baslik": "hava istasyonu sensör kiti ortak projesi",
-       "ne": ""
+       "baslik": "Kampüs hava istasyonu sensör kiti (ESP32 + BME280)",
+       "ne": "Kiti kurar, veriyi AURA uç noktasına akıtır, MGM ile saatlik karşılaştırma grafiği çıkar.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 2
       },
       {
        "baslik": "YZ ile tahmin doğrulama atölyesi",
-       "ne": ""
+       "ne": "Open-Meteo tahminini MGM gözlemiyle eşleyip MAE/RMSE hesaplayan ve küçük bir düzeltme modeli eğiten tek defter.",
+       "sure": "1 atölye, ~3 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "IEEE PES ile yenilenebilir enerji üretim tahmini",
-       "ne": ""
+       "baslik": "IEEE PES ile güneş-rüzgâr üretim tahmini karnesi",
+       "ne": "ECMWF ışınım ve rüzgârından pvlib ile üretim tahmini; EPİAŞ gerçek üretimiyle her gün karşılaştırılan karne.",
+       "sure": "6 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "IEEE'de iki iş birden yürür: sensör kiti ve PES'in enerji tahmini. Birincisi: ESP32 ve BME280 ile kurulan kampüs istasyonu veriyi bizim uç noktaya gönderir; ajan her saat MGM'nin en yakın istasyonuyla karşılaştırır, 1,5 derecenin üstünde sapma görünce 'sensör sapması' uyarısı atar, kit kalibre kalır. İkincisi: ajan ECMWF ve GFS'den ışınım (GHI) ile 100 m rüzgârı çeker, pvlib ile güneş üretimini, güç eğrisiyle rüzgâr üretimini hesaplar; EPİAŞ Şeffaflık Platformu'ndaki gerçek üretimle karşılaştırıp günlük 'üretim tahmini karnesi' çıkarır. Sıcaklıktan derece-gün hesaplayıp tüketim tahminine ekler; hangi modelin hangi mevsimde şaştığını her sabah tablo olarak PES grubuna bırakır. Düzenek sıfır lisans ücretiyle, açık veriyle çalışır: IEEE donanımı getirir, biz tahmin doğrulamayı. Burada öğrenilen: gömülü sistemden bulut uç noktasına veri akıtmak, enerji tahmini kurmak ve tahmin hatasını MAE ile RMSE üzerinden ölçmek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5931,19 +6052,26 @@
      },
      "ortak": [
       {
-       "baslik": "hava verisiyle YZ hackathonu",
-       "ne": ""
+       "baslik": "Hava verisiyle 24 saatlik YZ hackathonu",
+       "ne": "GFS/ECMWF tahmini ile MGM gözlemi veri setinde bias düzeltme yarışı; ajan her gece liderlik tablosu atar.",
+       "sure": "3 hafta hazırlık + 1 hafta sonu",
+       "zorluk": 3
       },
       {
-       "baslik": "model doğrulama veri seti paylaşımı",
-       "ne": ""
+       "baslik": "Model doğrulama veri setinin açık paylaşımı",
+       "ne": "Tahmin-gözlem eşleşmiş Parquet/CSV paketi, lisans ve README ile GitHub'da yayımlanır.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "ML eğitim serisinde meteoroloji örnek vakası",
-       "ne": ""
+       "baslik": "ML eğitim serisinde meteoroloji vakası",
+       "ne": "Zaman serisinde veri sızıntısı dersi: rastgele bölme ile zaman bölmesinin skor farkını gösteren tek defter.",
+       "sure": "1 ders, ~2 saat",
+       "zorluk": 1
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "ACM için ajan bir arayüz değil, yazılacak sistemin kendisidir. Hackathon kalıbı şu: biz eşleşmiş veri setini açarız (GFS ve ECMWF'nin İstanbul için 2 m sıcaklık ve yağış tahmini; karşısında MGM istasyonu ile METAR gözlemi), takımlar bias düzeltme modeli kurar (LightGBM, küçük bir sinir ağı). Ajan her gece takımların çıktısını alır, MAE ve Brier skorunu hesaplar, liderlik tablosunu üretir ve hackathon'un duyuru kanalına atar; kimin tahmini ham modeli geçti, kimin geçmedi görünür. Hackathon bitince kazanan model bizim üretim hattına girer: ajan her sabah yeni tahmini çeker, modeli koşturur, düzeltilmiş tahmini ve güven aralığını JSON olarak yayımlar. ML eğitim serisi için meteoroloji vakası hazır: zaman serisinde rastgele bölme yapanın skoru neden sahte yüksek çıkar, gerçek veride gösteririz. Sen ne öğrenirsin: veri hattı kurmayı, MLOps'u gerçek bir sorunda denemeyi ve tahmini CRPS ile Brier gibi olasılıksal metriklerle doğrulamayı.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5960,15 +6088,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "sayısal hava tahmini matematiği söyleşisi",
-       "ne": ""
+       "baslik": "Sayısal hava tahmini matematiği söyleşisi",
+       "ne": "İlkel denklemlerden ayrıklaştırmaya, Lorenz'den ensemble'a 60 dakikalık anlatı ve 10 satırlık Lorenz kodu.",
+       "sure": "2 hafta hazırlık, 1 söyleşi",
+       "zorluk": 1
       },
       {
-       "baslik": "istatistiksel doğrulama metrikleri atölyesi",
-       "ne": ""
+       "baslik": "İstatistiksel doğrulama metrikleri atölyesi",
+       "ne": "MAE, RMSE, Brier, CRPS ve güvenilirlik diyagramını gerçek ECMWF-MGM verisinde hesaplayan defter.",
+       "sure": "1 atölye, ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Haftalık ensemble güvenilirlik karnesi ajanı",
+       "ne": "Rank histogramı, spread-skill ve Kalman düzeltmesini hesaplayıp pazartesi gruba tablo atan Python betiği.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Bu kulüp için tahmin bir denklem ve bir istatistik sorusudur; ajan iki tarafı da hesaplar. Ajanımız ECMWF'nin açık ensemble çıktısından İstanbul için 50 üyenin sıcaklık ve yağış dağılımını, karşısına MGM gözlemini çeker. Her hafta rank histogramı, yayılım-hata (spread-skill) oranı, CRPS ve Brier skorunu hesaplar; 'güvenilirlik karnesi' çıkarır: ensemble fazla mı kendinden emin, yoksa fazla mı geniş. Sistematik sapma için Kalman filtresi tabanlı düzeltme koşar; katsayıları ve düzeltmenin kazandırdığı puanı tabloya yazar, tabloyu pazartesi kulübün grubuna bırakır. Üyelerin matematiği burada başlar: Lorenz sisteminde kaosun tahmin ufkunu neden sınırladığını, ensemble ortalamasının tek tahminden neden iyi olduğunu kendi kodlarıyla gösterir, ajanın karnesiyle sınarlar. Öğrenilenler: olasılıksal doğrulama metrikleri, Kalman filtresinin canlı veride uygulanması ve Python'la haftalık otomatik rapor üretimi.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -5985,15 +6124,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "AURA araçlarının açık kaynak yayımı",
-       "ne": ""
+       "baslik": "AURA doğrulama araçlarının açık kaynak yayımı",
+       "ne": "Tahmin karnesi betikleri lisans, README ve örnek veriyle GitHub'da herkese açık bir depo olur.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "Python/xarray meteoroloji veri atölyesi",
-       "ne": ""
+       "baslik": "Python/xarray ile açık hava verisi atölyesi",
+       "ne": "İki saatlik atölyede katılımcılar ERA5 NetCDF dosyasından İstanbul sıcaklık serisini çıkarıp grafikler.",
+       "sure": "1 akşam, 2 saat hazırlık",
+       "zorluk": 1
+      },
+      {
+       "baslik": "GitHub Actions ile günlük karne ajanı",
+       "ne": "Her sabah kendiliğinden çalışıp depoyu güncelleyen ve skor düşünce issue açan iş akışı.",
+       "sure": "2 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Özgür yazılım dünyasında ölçüt bellidir: kod açık, veri açık, süreç tekrarlanabilir. AURA tam bu ölçütle çalışır; bütün araçlarımız Python ve açık veri üzerine kurulu. Kulüp için önerimiz bir 'karne ajanı': her sabah GitHub Actions üzerinde çalışır, Open-Meteo'dan GFS ve ECMWF tahminlerini, MGM'den İstanbul istasyon gözlemlerini çeker. Her istasyon için sıcaklık ve yağış hatasını (MAE, sapma) hesaplar; sonucu depoda düz CSV ve Markdown karne olarak günceller. Bir modelin skoru üç gün üst üste kötüleşirse ajan kendi başına issue açar ve kulübün Matrix ya da Telegram kanalına tek satır düşer; kod GPL lisanslı, bağımlılıklar xarray, pandas, netCDF4, isteyen çatallayıp kendi şehrini ekler. Üye olarak ne öğrenirsin: tahmin doğrulama metriklerini, Python ile açık veri boru hattı kurmayı ve bir aracı açık kaynak olarak yayımlamayı.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6012,15 +6162,26 @@
      },
      "ortak": [
       {
-       "baslik": "hava tahmini temalı game jam",
-       "ne": ""
+       "baslik": "Gerçek hava verisiyle 48 saatlik game jam",
+       "ne": "Katılımcılar Open-Meteo API'sinden canlı veri çeken en az bir mekanikle oyun prototipi teslim eder.",
+       "sure": "1 hafta sonu, 4 hafta hazırlık",
+       "zorluk": 2
       },
       {
-       "baslik": "tahmin oyunu (kim daha iyi tahmin eder) prototipi",
-       "ne": ""
+       "baslik": "Kim daha iyi tahmin eder? lig prototipi",
+       "ne": "Oyuncu ile modelin günlük tahminini Brier skoruyla karşılaştıran web tabanlı lider tablosu.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Oyun içi hava sistemine ERA5 iklim verisi",
+       "ne": "İstanbul'un aylık rüzgâr, bulut ve yağış dağılımını oyun motorunun okuyabildiği JSON olarak veren paket.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Oyun geliştiricinin en güçlü aracı geri bildirim döngüsüdür: oyuncu tahmin eder, sonuç gelir, puan değişir. Biz bu döngüyü gerçek hava verisiyle besleriz. Önerdiğimiz 'lig ajanı' her akşam Open-Meteo'dan GFS ve ECMWF'nin yarınki İstanbul sıcaklık ve yağış tahminini çeker, oyuna soru olarak düşürür: oyuncu modelleri geçebilir mi? Ertesi gün aynı ajan MGM gözlemini alır, oyuncuları ve modelleri Brier skoruyla puanlar, lider tablosunu günceller ve haftalık sıralamayı kulübün Discord ya da WhatsApp grubuna atar. Game jam tarafında ERA5'ten çıkarılmış gerçek rüzgâr ve bulut iklimi oyun içi hava sistemine ham veri olur; sahte hava yerine İstanbul'un gerçek kasımı. Ne öğrenirsin: olasılık tahminini puanlamayı, bir REST API'den veri çekip oyun motoruna bağlamayı ve Python ile skor tablosu kurmayı.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6039,15 +6200,26 @@
      },
      "ortak": [
       {
-       "baslik": "hava/iklim verisi tabanlı girişim fikri mentorluğu",
-       "ne": ""
+       "baslik": "Hava verisi tabanlı girişim fikri mentorluğu",
+       "ne": "Üç ekip, haftalık pazar sinyali tablosuyla müşteri görüşmesi yapıp bulgularını tek sayfalık kanvasa döker.",
+       "sure": "6 hafta, haftada ~2 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "İTÜ Çekirdek başvurusu için AURA ürün sunumu",
-       "ne": ""
+       "baslik": "Çekirdek başvurusu için ortak ürün sunumu",
+       "ne": "Tahmin karnesini çekiş kanıtı olarak kullanan 10 slaytlık sunum ve 3 dakikalık pitch metni.",
+       "sure": "2 hafta, haftada ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Haftalık pazar sinyali ajanının kurulumu",
+       "ne": "Her pazartesi derece-gün ve yağışlı saati hesaplayıp ekiplere sektör risk tablosu yollayan Python betiği.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Bir girişimin ilk sorusu müşterinin gerçekten acı çekip çekmediğidir; hava verisi bu soruya sayı verir. Kulübe önerdiğimiz 'pazar sinyali ajanı' her pazartesi MGM ve Open-Meteo'dan İstanbul'un 7 günlük tahminini çeker; ısıtma ve soğutma derece-günlerini, yağışlı saat sayısını ve 40 km/sa üstü rüzgâr saatini hesaplar. Bunlardan 'bu hafta hangi sektör hava riskinde' karar tablosu çıkar: açık hava kafeleri, kurye operasyonu, etkinlik şirketleri, inşaat sahaları. Tablo fikir aşamasındaki ekiplere düşer; müşteri görüşmesine elde gerçek bir haftalık riskle gidilir, 'hava sizi etkiliyor mu' yerine 'geçen hafta 31 yağışlı saat vardı, cironuz ne oldu' sorulur. Aynı ajan AURA'nın kendi tahmin karnesini de besler; İTÜ Çekirdek gibi bir ön kuluçka başvurusunda 'ürün çalışıyor' kanıtı o karnedir. Bu işten ne öğrenirsin: bir hipotezi açık veriyle sınamayı, Python ile haftalık otomatik rapor kurmayı ve tahmin hatasını iş riskine çevirmeyi.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6066,15 +6238,26 @@
      },
      "ortak": [
       {
-       "baslik": "hava riskine göre lojistik/etkinlik planlama vaka çalışması",
-       "ne": ""
+       "baslik": "Hava riskine göre lojistik planlama vaka çalışması",
+       "ne": "Gerçek 72 saatlik ensemble tahminle kurulan rota × saat risk matrisi ve çözüm raporu.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "tahmin belirsizliğinde karar verme atölyesi",
-       "ne": ""
+       "baslik": "Tahmin belirsizliğinde karar verme atölyesi",
+       "ne": "Katılımcılar olasılık tahminiyle beklenen maliyeti hesaplar, karar ağacı çizer, sonucu gözlemle karşılaştırır.",
+       "sure": "1 akşam, 3 saat hazırlık",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Hava bağımlı talep için stok modeli",
+       "ne": "Derece-gün serisini talep girdisi alan gazeteci çocuk modeli ve emniyet stoku tablosu (Python).",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Endüstri mühendisi belirsizlik altında çizelge kurar; hava, o belirsizliğin ölçülebilir parçasıdır. AURA ağında kulübe 'lojistik risk ajanı' öneririz: ajan Open-Meteo'dan ECMWF ve GFS ensemble üyelerini, MGM'den İstanbul istasyon gözlemlerini çeker. Her 3 saatlik dilim için şiddetli yağış, kar ve fırtına olasılığını hesaplar, bunu 'rota × saat' risk matrisine döker, %30'u aşan dilimlere gecikme bedeli atar. Çıktı vaka ekibine düşen bir karar tablosudur: hangi vardiya ötelenir, hangi depo önce yüklenir, emniyet stoku kaç saat uzar. Ensemble yayılımı daraldığında ajan 'karar penceresi açık' mesajı atar; yayılım genişse 'bekle' der, çünkü erken verilen karar burada en pahalı hatadır. Ne öğrenirsin: tahmin hatasını maliyete çevirmeyi, gazeteci çocuk modelini hava bağımlı talebe uygulamayı ve Python ile belirsizlik altında karar tablosu üretmeyi.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6093,11 +6276,26 @@
      },
      "ortak": [
       {
-       "baslik": "havanın satış/talep üzerindeki etkisi vaka yarışması",
-       "ne": ""
+       "baslik": "Havanın talep üzerindeki etkisi vaka yarışması",
+       "ne": "Takımlar aynı hava duyarlılık tablosuyla bir perakende senaryosu çözer, jüri beklenen kâr farkına göre puanlar.",
+       "sure": "1 gün yarışma, 5 hafta hazırlık",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Hava duyarlılık tablosunun kurulumu",
+       "ne": "ERA5 ile İBB açık verisini birleştirip kategori başına yağış ve sıcaklık esnekliği veren Python defteri.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 3
+      },
+      {
+       "baslik": "Haftalık beklenen talep sapması notu",
+       "ne": "MGM 7 günlük tahminini esneklik tablosundan geçirip tek sayfalık sapma notu üreten ve komiteye yollayan ajan.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "İşletme mühendisliğinde soru nettir: havadaki bir derecelik sapma satışı, talebi ve stoku ne kadar oynatır? Bu soruyu tahminle değil ölçümle yanıtlarız. Kulübe önerdiğimiz 'talep-hava ajanı' ERA5'ten İstanbul'un günlük sıcaklık ve yağış serisini, İBB Açık Veri Portalı'ndan toplu taşıma yolcu ve İsbike kiralama sayılarını çeker, hepsini aynı takvime oturtur. Sonra her kategori için hava esnekliğini hesaplar: 1 mm yağış başına yüzde kaç düşüş, 25°C üstü her derece için yüzde kaç artış. Çıktı bir 'hava duyarlılık tablosu' ve MGM'nin gelecek hafta tahmininden türetilen 'beklenen talep sapması' notudur; her cuma vaka yarışması komitesine düşer, takımlar aynı tabloyla yarışır. Üye olarak ne öğrenirsin: iki açık veri setini birleştirip regresyon kurmayı, tahmin hatasının sapma tahminine nasıl yayıldığını ve Python ile haftalık rapor otomasyonunu.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6114,15 +6312,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "hava türevleri ve enerji fiyatı söyleşisi",
-       "ne": ""
+       "baslik": "Hava türevleri ve enerji fiyatı söyleşisi",
+       "ne": "Derece-gün sözleşmelerinin mantığını ve İstanbul HDD serisini gerçek grafiklerle anlatan 60 dakikalık oturum.",
+       "sure": "1 akşam, 4 saat hazırlık",
+       "zorluk": 1
       },
       {
-       "baslik": "tarım emtiası-hava ilişkisi analizi",
-       "ne": ""
+       "baslik": "Tarım emtiası ve yağış sapması analizi",
+       "ne": "Konya için ERA5 yağış anomalisi ile buğday fiyat serisini aynı grafikte karşılaştıran Python defteri ve kısa rapor.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Haftalık derece-gün ve fiyat brifingi ajanı",
+       "ne": "Her pazar 15 günlük tahminden derece-gün anomalisi ve EPİAŞ fiyat ilişkisini çıkarıp gruba tablo yollayan betik.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Finans piyasasında hava bir fiyat sürücüsüdür: soğuk bir hafta doğalgaz talebini, rüzgârsız bir gün elektrik fiyatını oynatır. AURA ağında kulübe 'derece-gün ajanı' öneririz: ajan Open-Meteo üzerinden ECMWF ve GFS'in 15 günlük sıcaklık tahminini İstanbul, Ankara ve İzmir için çeker; ERA5 iklimine göre sapmayı ve ısıtma/soğutma derece-günlerini hesaplar. Yanına EPİAŞ Şeffaflık Platformu'ndan gün öncesi elektrik fiyatını ve rüzgâr üretim tahminini ekler; derece-gün anomalisi ile fiyat arasındaki ilişkiyi her hafta yeniden hesaplar. Çıktı iki tablo: 'önümüzdeki hafta talep baskısı' (soğuk/sıcak sinyali, güven aralığıyla) ve tarım tarafında Konya ovası için ERA5 yağış sapmasından türetilen 'kuraklık izleme' satırı. Her pazar akşamı ajan bu brifingi kulübün WhatsApp grubuna atar; tahmin tutmazsa ertesi hafta aynı brifingin 'karne' bölümünde kendi hatasını yazar. Ne öğrenirsin: hava türevlerinin dayandığı derece-gün hesabını, iki zaman serisi arasında ilişki kurmayı ve tahmin hatasını güven aralığına çevirmeyi.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6141,11 +6350,26 @@
      },
      "ortak": [
       {
-       "baslik": "iklim ekonomisi panel ortaklığı",
-       "ne": ""
+       "baslik": "İklim ekonomisi paneli: AURA canlı veri oturumu",
+       "ne": "Panelde derece-gün ile elektrik fiyatı ilişkisini bir grafik ve bir tabloyla, canlı seriden sunarız.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Derece-gün ile elektrik talebi tahmin karnesi",
+       "ne": "ERA5 ve EPİAŞ verisiyle bir kış sezonu için haftalık derece-gün/talep tablosu ve tahmin hatası raporu çıkar.",
+       "sure": "6 hafta, haftada ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Kuraklık endeksi ve gıda enflasyonu mini analizi",
+       "ne": "ERA5 yağışından SPI hesaplanır, TÜİK gıda TÜFE alt kalemleriyle gecikmeli korelasyon tablosu üretilir.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Soğuk dalga haberi ekonomi öğrencisi için bir soru demektir: talep ve fiyat kaç gün sonra, ne kadar oynar? AURA ağındaki ajan bu soruyu her sabah veriyle kovalar: ERA5 ve MGM istasyon sıcaklıklarından İstanbul ve Ankara için 18 °C tabanlı ısıtma/soğutma derece-günü hesaplar, yanına EPİAŞ Şeffaflık Platformu'nun açık saatlik elektrik fiyatını (PTF) ve tüketimini koyar. Haftada bir 'derece-gün → talep → fiyat' tablosu üretir: ECMWF'nin 5 gün önce verdiği sıcaklık kaç derece saptı, bu sapma talep tahminine kaç MWh, fiyata kaç TL/MWh olarak yansıdı. ECMWF ve GFS aynı anda soğuk dalga gösteriyorsa panel komitesine 72 saat önceden kısa not düşer: 'Önümüzdeki hafta derece-gün yüzde kırk artıyor, doğal gaz talebi oturumu için güncel vaka hazır.' İklim ekonomisi panelinde gösterilen her grafik böyle canlı seriden gelir, hazır slayttan değil. Burada öğrendiğin şey: Python ile iki zaman serisini birleştirmek, bir tahmin hatasının ekonomik karşılığını hesaplamak ve tahmin karnesini bir iktisatçı gözüyle okumak.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6164,15 +6388,26 @@
      },
      "ortak": [
       {
-       "baslik": "meteoroloji mezunlarıyla kariyer buluşması",
-       "ne": ""
+       "baslik": "Meteoroloji mezunlarıyla kariyer buluşması",
+       "ne": "Bir akşam üç-dört mezun konuk; AURA 10 dakikalık canlı tahmin karnesi sunumuyla açılışı yapar.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "AURA'ya mezun mentor bağlantısı",
-       "ne": ""
+       "baslik": "AURA'ya sektörden mezun mentor bağlantısı",
+       "ne": "Havacılık, enerji ve sigorta alanından birer mezunla üç aylık görüşme takvimi ve soru–mentor eşleme tablosu kurulur.",
+       "sure": "6 hafta, haftada ~1 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Aylık tek sayfalık mezun brifingi otomasyonu",
+       "ne": "Ajan her ay hata tablosunu tek sayfalık PDF'e çevirir; komite onayıyla mentor listesine gider.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Ajan MDK için her ayın başında tek sayfalık bir 'mezun brifingi' hazırlar: İstanbul'da GFS, ECMWF ve MGM tahminlerinin o ayki hata tablosu (sıcaklık, rüzgâr, yağış var/yok) ve çözülemeyen üç soru. Aynı ajan bu soruları bir 'soru–mentor eşleme tablosu'na yazar: kuzeyli rüzgârda sıcaklığın sürekli yüksek tahmin edilmesi havalimanı işletmesindeki mezuna, kaçırılan rüzgâr rampaları enerji ticaretindeki mezuna, dolu ve sel hasarı soruları sigortadaki mezuna gider. Kariyer buluşmasından 48 saat önce komiteye gündem taslağı ve hatırlatma düşer; buluşma sonrası mentor yorumları aynı tabloya işlenir, ertesi ay karnede 'öneri denendi mi, hatayı düşürdü mü' sütunu görünür. AURA ağında MDK'nin köprüsü böylece sohbet listesi olmaktan çıkar, tahmin düzeltme döngüsünün ölçülebilir bir halkası olur; mezunlara da hazır cevap değil, gerçek bir açık soru gider. Üye burada bir teknik takımın verisini sektördeki bir profesyonele nasıl anlattığını, geri bildirimi nasıl sayıya çevirdiğini ve birkaç satır Python ile aylık rapor üretmeyi öğrenir.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6189,15 +6424,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "deniz meteorolojisi/rota havası söyleşisi",
-       "ne": ""
+       "baslik": "Deniz meteorolojisi ve rota havası söyleşisi",
+       "ne": "Gerçek bir Marmara fırtına vakası üzerinden tahmin–gözlem karşılaştırmalı 60 dakikalık sunum yapılır.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "dalga-rüzgâr tahmini atölyesi",
-       "ne": ""
+       "baslik": "Dalga–rüzgâr tahmini okuma atölyesi",
+       "ne": "Open-Meteo Marine ve GFS verisinden Beaufort/dalga tablosu kuran iki saatlik uygulamalı Python atölyesi.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Marmara 72 saatlik rota havası tablosu pilotu",
+       "ne": "Sekiz hafta boyunca günlük renkli tablo ve haftalık kaynak karnesi kulüp grubunda paylaşılır.",
+       "sure": "8 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Marmara'da sabah vardiyası başlarken AURA ağının deniz ajanı çoktan çalışmıştır: Open-Meteo Marine'den Marmara ve Karadeniz girişi için belirgin dalga yüksekliği, periyot ve yön; MGM'den denizlerde fırtına uyarısı; Boğaz'a yakın havalimanlarının METAR'ından görüş ve rüzgâr. Rüzgârı Beaufort'a, dalgayı küçük tekne eşiklerine, çiy noktası–rüzgâr ikilisini sis olasılığına çevirir; çıktı 72 saatlik 'rota havası tablosu'dur: her 6 saat için yeşil/sarı/kırmızı, yanında hangi kaynağın ne dediği. Üç gün sonra aynı tahmini kıyı istasyonu gözlemleriyle karşılaştırır ve 'kaynak karnesi' yazar: dalgada ECMWF mi GFS mi daha az şaştı, Boğaz sisini METAR eğilimi tahminden kaç saat önce yakaladı. Söyleşi öncesinde komiteye haftalık özet, uyarı rengi kırmızıya döndüğünde kulüp WhatsApp'ına tek satır gider. Denizcilik şirketlerinin güvertede istediği de bu: tahmini yalnız okuyan değil, doğrulayıp karar veren zabit. Sen de GRIB/marine verisini Python'da açmayı, rota havası tablosu kurmayı ve kendi tahminini gözlemle sınamayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6216,15 +6462,26 @@
      },
      "ortak": [
       {
-       "baslik": "rüzgâr/güneş üretim tahmini ortak projesi",
-       "ne": ""
+       "baslik": "Rüzgâr ve güneş üretim tahmini ortak projesi",
+       "ne": "Open-Meteo rüzgâr/GHI tahminini EPİAŞ gerçekleşen üretimle karşılaştıran, haftalık karne üreten Python betiği yazılır.",
+       "sure": "8 hafta, haftada ~3 saat",
+       "zorluk": 3
       },
       {
-       "baslik": "şebeke yükü-sıcaklık ilişkisi semineri",
-       "ne": ""
+       "baslik": "Şebeke yükü–sıcaklık ilişkisi semineri",
+       "ne": "Bir yaz puant günü vakasıyla sıcaklık tahmin hatasının yük tahminine etkisini gösteren 60 dakikalık seminer.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Gün öncesi rüzgâr üretimi tek satır bülteni",
+       "ne": "Her öğle kulüp grubuna düşen 'yarın rüzgâr üretimi + güven aralığı' mesajı ve aylık isabet özeti.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Rüzgâr gücü hızın küpüyle gider; 100 m rüzgârında 1 m/s'lik tahmin hatası orta hızlarda üretimde yüzde 30'u aşan sapma yaratır. AURA ağının enerji ajanı bu hatayı her gün ölçer: Open-Meteo ve GFS'ten 100 m rüzgâr hızı ile yatay yüzey ışınımını (GHI) çeker, basit güç eğrisiyle (devreye giriş 3 m/s, nominal 12 m/s, kesme 25 m/s) rüzgâr kapasite faktörü, panel sıcaklık katsayısıyla PV üretim beklentisi hesaplar. Ertesi gün EPİAŞ Şeffaflık Platformu'ndan saatlik gerçekleşen rüzgâr ve güneş üretimini indirir; haftalık 'üretim karnesi'nde kaynak başına MAE, en çok şaşan saat dilimi ve kaçırılan rampa sayısı yazar. Sıcaklık tahminini ERA5 iklim ortalamasıyla kıyaslayıp puant yük riskini de ekler; 35 °C üzeri gün sayısı artıyorsa seminer komitesine 'şebeke yükü–sıcaklık oturumu için güncel vaka hazır' notu düşer. Gün öncesi piyasa kapanışından önce kulüp grubuna tek satır gider: yarının rüzgâr üretimi beklentisi ve güven aralığı. Öğreneceğin şey rüzgâr hızından megavata geçişin matematiği, EPİAŞ verisini Python'da işlemek ve bir tahmin hatasının şebekeye maliyetini sayıyla göstermek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6241,15 +6498,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "rüzgâr türbini/HVAC için hava verisi semineri",
-       "ne": ""
+       "baslik": "Rüzgâr türbini ve HVAC için hava verisi semineri",
+       "ne": "Hava yoğunluğu ve derece-saat hesabını gerçek MGM verisiyle gösteren 60 dakikalık uygulamalı seminer.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "MEC Summit'te iklim oturumu",
-       "ne": ""
+       "baslik": "MEC Summit iklim oturumu: canlı tahmin karnesi",
+       "ne": "Oturumda bir haftalık HVAC yük tahmini ile gerçekleşen değer tek slayt, tek tablo olarak karşılaştırılır.",
+       "sure": "5 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Kampüs binası için 7 günlük HVAC yük tahmini",
+       "ne": "Derece-saat tabanlı tahmin betiği ve haftalık model karnesi üretilir; sonuçlar kulüp grubunda paylaşılır.",
+       "sure": "8 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Makina Mühendisliği Kulübü'nün AURA ağındaki akışı iki tabloya odaklanır: bir kampüs binasının 7 günlük HVAC yük tahmini ve bir rüzgâr sahasının yoğunluk düzeltmeli güç beklentisi. Ajan her saat MGM istasyonlarından sıcaklık, bağıl nem ve basıncı, ileriye dönük olarak ECMWF ve GFS'ten aynı değişkenleri çeker; psikrometrik hesapla yaş termometre sıcaklığını, p/(R·T) ile hava yoğunluğunu, 18 °C tabanıyla ısıtma ve soğutma derece-saatlerini üretir. 10 °C'lik bir sıcaklık hatası yoğunlukta, dolayısıyla türbin gücünde yaklaşık yüzde üç buçuk hata demektir; karne bunu saat saat gösterir, hafta sonunda da hangi modelin soğutma yükünü sistematik düşük verdiğini yazar. Yaş termometre tahmini tasarım eşiğine yaklaştığında kulüp grubuna 'soğutma kulesi yaklaşımı daralıyor' türünden kısa bir teknik not, MEC Summit hazırlığında ise komiteye iklim oturumu için canlı vaka seti gider. Derste çizdiğin psikrometrik diyagram burada çalışan bir Python fonksiyonuna dönüşür; tahmin hatasını kW cinsinden okumayı ve HVAC ya da türbin tasarımında belirsizliği hesaba katmayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6268,15 +6536,26 @@
      },
      "ortak": [
       {
-       "baslik": "hava kirliliği ve atmosfer kimyası söyleşisi",
-       "ne": ""
+       "baslik": "Hava kirliliği ve atmosfer kimyası söyleşisi",
+       "ne": "İstanbul'un bir inversiyon vakasını radyosonda profili ve PM2.5 serisiyle anlatan 60 dakikalık söyleşi.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "inversiyon günlerinde PM ölçüm etkinliği",
-       "ne": ""
+       "baslik": "İnversiyon günlerinde PM ölçüm etkinliği",
+       "ne": "Ajanın 48 saat önce açtığı pencerede SİM istasyonlarının saatlik ölçümleri canlı izlenir, CAMS tahminiyle aynı tabloya düşer.",
+       "sure": "6 hafta, haftada ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "CAMS–SİM haftalık kirletici karnesi",
+       "ne": "CAMS PM2.5/NO2/O3 tahminini SİM gözlemleriyle karşılaştıran otomatik haftalık tablo ve inversiyon işareti doğrulaması üretilir.",
+       "sure": "6 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Kimyacı için atmosfer bir reaktördür; tepkime hızını sıcaklık, güneş ve karışma yüksekliği belirler. Ağın kimya ajanı her gece İstanbul radyosondasından sıcaklık profilini, ERA5'ten sınır tabakası yüksekliğini, Copernicus CAMS'tan 72 saatlik PM2.5, NO2 ve O3 tahminini, Çevre Bakanlığı SİM istasyonlarından gerçekleşen saatlik ölçümleri çeker. Profilde ilk 500 metrede sıcaklık yükseliyorsa 'inversiyon' işareti koyar; karışma yüksekliği × ortalama rüzgârdan havalandırma indeksini hesaplar; yazın yüksek sıcaklık–zayıf rüzgâr–açık gök üçlüsünü fotokimyasal ozon riski olarak ayrı sütuna yazar. Her hafta 'kirletici karnesi' çıkar: CAMS'ın PM2.5'i hangi istasyonda kaç µg/m³ şaştı, inversiyon günleri kaç saat önceden görüldü. Havalandırma indeksi düşük ve inversiyon güçlü bir gün 48 saat önceden belirirse etkinlik komitesine 'PM ölçüm günü için pencere açıldı' mesajı gider; o gün izlenen saatlik ölçümler aynı tabloya işlenir, hem CAMS tahmini hem ajanın inversiyon işareti aynı anda sınanır. Radyosonda profili okumayı, Python ile hava kalitesi verisini birleştirmeyi ve bir kimyasal tahmini gözlemle doğrulamayı burada öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6295,11 +6574,26 @@
      },
      "ortak": [
       {
-       "baslik": "emisyon dağılımı-meteoroloji semineri",
-       "ne": ""
+       "baslik": "Emisyon dağılımı ve meteoroloji semineri",
+       "ne": "Pasquill kararlılık sınıfı, karışma yüksekliği ve Gauss duman modelini İstanbul verisiyle anlatan 90 dakikalık ortak seminer; çıktı canlı dağılım karnesi gösterimi ve not defteri.",
+       "sure": "3 hafta hazırlık, haftada ~2 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Günlük havalandırma indeksi ajanı",
+       "ne": "MGM ve ERA5'ten karışma yüksekliği ile rüzgârı çekip saatlik havalandırma indeksi tablosu üreten, kötü dağılım günlerinde WhatsApp'a mesaj atan Python ajanı.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Soğutma kulesi için yaş termometre tahmin karnesi",
+       "ne": "GFS, ECMWF ve Open-Meteo'nun yaş termometre sıcaklığı hatasını bir ay boyunca MGM gözlemiyle ölçen ve model seçimini tablolayan karne.",
+       "sure": "6 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Kimya mühendisinin baca gazı, soğutma kulesi ve kurutma hesapları hep atmosferle başlar. Ajanımız her sabah MGM istasyon verisini, METAR rüzgârını ve ERA5 sınır tabaka yüksekliğini çeker; Pasquill kararlılık sınıfını ve havalandırma indeksini (karışma yüksekliği × ortalama rüzgâr) hesaplar. Çıktı, sanayi bölgesi (ör. Dilovası) için saatlik 'dağılım karnesi': hangi saatte baca dumanı yere çöker, hangi saatte dağılır; aynı tablo AURA ağında Çevre Mühendisliği Kulübü'nün PM tahmin işine girdi olur. Aynı ajan GFS ve ECMWF'in yaş termometre sıcaklığı hatasını ölçer; soğutma kulesi yaklaşım sıcaklığı için hangi modele güvenileceğini tabloya yazar. Kararlı tabaka beklenen günlerde kulüp WhatsApp'ına 'inversiyon uyarısı' düşer; seminer ya da ölçüm günü ona göre seçilir. Üye olarak Gauss dağılım modelini Python'da kurmayı, kararlılık sınıfı tahminini gözlemle doğrulamayı ve açık hava verisini süreç hesabına bağlamayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6318,15 +6612,26 @@
      },
      "ortak": [
       {
-       "baslik": "dalga ve rüzgâr tahmini atölyesi",
-       "ne": ""
+       "baslik": "Dalga ve rüzgâr tahmini atölyesi",
+       "ne": "Hs, Tp, JONSWAP ve Beaufort ilişkisini Open-Meteo Marine verisiyle Python'da kuran 2 saatlik uygulamalı atölye; çıktı Marmara için çalışan dalga not defteri.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "deniz testleri için hava penceresi",
-       "ne": ""
+       "baslik": "Deniz testleri için hava penceresi ajanı",
+       "ne": "Haftalık Hs ve rüzgâr eşiklerine göre uygun deneme saatlerini listeleyen, pencere kapanınca ekibe mesaj atan ajan.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Marmara dalga tahmin karnesi",
+       "ne": "ERA5 ve Open-Meteo Hs tahminlerini kıyı istasyonu rüzgârı ve saha gözlemiyle iki ay karşılaştıran model-model hata tablosu.",
+       "sure": "8 hafta, haftada ~2 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Direnç, denize elverişlilik ve yalpa hesabının girdisi dalga spektrumudur; spektrumun girdisi de rüzgâr tahmini. Ajan, Open-Meteo Marine ve ERA5 dalga alanlarından belirgin dalga yüksekliği (Hs), tepe periyodu (Tp) ve dalga yönünü alır; rüzgârı METAR ve MGM kıyı istasyonlarından tamamlar. Marmara için JONSWAP spektrumunu kurar, Douglas deniz durumunu ve dalgadan gelen ilave direnci hesaplar; sakin su isteyen seyir denemeleri için 'deniz test penceresi' tablosu üretir (Hs < 0,5 m ve Beaufort ≤ 3 olan saatler). Hafta başında tablo deneme ekibine gider, pencere kapanırsa ajan 24 saat önce uyarı mesajı atar; aynı dalga ajanı AURA ağında Yelken Kulübü ve Kürek Takımı'na da hizmet eder. Deneme sonrası gözlenen dalga ve rüzgâr tahminle karşılaştırılır, her modelin Hs hatası karneye işlenir. Burada dalga spektrumunu Python'da kurmayı, ERA5 deniz alanlarını okumayı ve bir dalga tahmininin ne kadar güvenilir olduğunu sayıyla söylemeyi öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6345,15 +6650,26 @@
      },
      "ortak": [
       {
-       "baslik": "kentsel ısı adası ve iklime duyarlı tasarım söyleşisi",
-       "ne": ""
+       "baslik": "Kentsel ısı adası ve iklime duyarlı tasarım söyleşisi",
+       "ne": "MGM şehir–kır istasyon farkından çıkarılan İstanbul ısı adası grafiğiyle açılan, pasif tasarım kararlarını veriye bağlayan ortak söyleşi.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "mikroklima ölçüm yürüyüşü",
-       "ne": ""
+       "baslik": "Mikroklima ölçüm yürüyüşü ve tahmin karşılaştırması",
+       "ne": "Taşkışla çevresinde el sensörüyle sıcaklık, nem ve rüzgâr ölçen yürüyüş; çıktı ölçüm–tahmin farkı tablosu ve nokta haritası.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Stüdyo için EPW iklim dosyası ajanı",
+       "ne": "ERA5'ten seçilen konum için EnergyPlus EPW dosyası ve yıllık UTCI konfor takvimi üreten Python ajanı.",
+       "sure": "5 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Cephe yönü, gölgeleme ve avlu kararı yerel iklimle verilir; ERA5'in ~30 km'lik hücresi ise bir sokağı çözmez. Bizim ajan ERA5 saatlik sıcaklık, nem, rüzgâr ve güneş ışınımını MGM'nin şehir içi ve kıyı istasyonlarıyla yan yana getirir; gece kent ısı adası şiddetini (şehir–kır farkı), ısıtma ve soğutma derece-günlerini, seçilen avlu için UTCI termal konfor indeksini hesaplar. Çıktı, tasarım atölyesi için 'mikroklima karnesi': avlu hangi saatte konforlu, hangi cephe gölgesiz kalıyor, yılda kaç derece-gün soğutma yükü var; aynı ısı adası grafiği AURA ağında Kent ve Kentlileşme Kulübü'nün iklim söyleşisine de gider. Aynı ajan yılın verisini EnergyPlus'ın okuduğu EPW dosyasına yazar; Ladybug'da gerçek yerel iklimle simülasyon kurulur. Mikroklima ölçüm yürüyüşünde el sensörüyle alınan değerler ajanın tahminiyle karşılaştırılır, sapma tabloya girer; ölçüm sabahı atölye komitesine rota ve saat mesajı düşer. Bu işte iklim verisini tasarım aracına taşımayı, konfor indeksini Python'da hesaplamayı ve bir tahminin sokak ölçeğinde ne kadar şaştığını ölçmeyi öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6372,15 +6688,26 @@
      },
      "ortak": [
       {
-       "baslik": "arazi gezileri için hava bülteni",
-       "ne": ""
+       "baslik": "Arazi gezileri için hava bülteni ajanı",
+       "ne": "Gezi tarihinden 48 saat önce yağış, yıldırım, sıcaklık ve rüzgâr tablosunu gezi sorumlusuna gönderen ajan.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "şiddetli yağış-heyelan ilişkisi semineri",
-       "ne": ""
+       "baslik": "Şiddetli yağış–heyelan ilişkisi semineri",
+       "ne": "Yağış şiddeti–süre eşiği ve ERA5-Land toprak nemiyle örnek heyelan olaylarını inceleyen ortak seminer; çıktı eşik grafiği ve not defteri.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Heyelan eşik tahmin karnesi",
+       "ne": "Seçilen ilçeler için model yağış tahminlerinin eşik aşımını MGM ölçerleriyle iki ay karşılaştıran karne tablosu.",
+       "sure": "8 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Arazi günü ile heyelan analizi aynı iki sayıya bakar: ne kadar yağmur, kaç saatte düştü. Ajanımız MGM istasyon yağışını, GPM uydu yağışını, ERA5-Land toprak nemini ve Open-Meteo 72 saatlik tahminini çeker; önceki 15 günün birikimli yağış indeksini ve yağış şiddeti–süre eşiğini (Caine tipi eğri) hesaplar. Heyelana yatkın ilçeler için 'eşik karnesi' üretir: hangi model eşik aşımı dedi, MGM ölçeri gerçekte ne gördü, kaç saat erken ya da geç. Arazi gezisinden 48 saat önce gezi sorumlusuna brifing düşer: yağış penceresi, yıldırım riski, mostranın ıslak kalma süresi, don–çözülme döngü sayısı; aynı yağış ajanı AURA ağında Arama Kurtarma Kulübü'nün saha brifingini de besler. Dönem sonunda karne 'şiddetli yağış–heyelan' seminerinde tartışılır; oturumun verisi hazır gelir. Üye olarak uydu ve istasyon yağışını Python'da birleştirmeyi, bir eşik modelini gözlemle doğrulamayı ve arazi riskini sayıyla konuşmayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6399,11 +6726,26 @@
      },
      "ortak": [
       {
-       "baslik": "yer-atmosfer etkileşimi ortak semineri",
-       "ne": ""
+       "baslik": "Yer–atmosfer etkileşimi ortak semineri",
+       "ne": "Mikrosismik gürültü, basınç yüklemesi ve jeomanyetik fırtına etkisini canlı istasyon verisiyle anlatan ortak seminer; çıktı not defteri ve grafikler.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Sismik gürültü–dalga karnesi",
+       "ne": "Bir istasyonun 0,1–1 Hz gürültü gücünü ERA5 dalga yüksekliği ve rüzgârla iki ay karşılaştıran korelasyon tablosu.",
+       "sure": "6 hafta, haftada ~3 saat",
+       "zorluk": 3
+      },
+      {
+       "baslik": "Arazi ölçümü için Kp ve rüzgâr uyarı ajanı",
+       "ne": "NOAA Kp tahmini ile rüzgâr tahminini çekip manyetik ve gravite ölçüm günlerini kırmızı-yeşil işaretleyen, ekibe mesaj atan ajan.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Sismometre fırtınayı duyar, manyetometre güneş fırtınasını görür; atmosfer her jeofizik ölçümün içine sızar. Ajan FDSN açık servislerinden istasyon gürültü spektrumunu, ERA5'ten yüzey basıncı, rüzgâr ve Karadeniz dalga yüksekliğini, NOAA SWPC'den Kp indeksini indirir. 0,1–1 Hz mikrosismik gürültü gücünü dalga ve rüzgârla ilişkilendirir; hangi günün verisinin havadan gelen gürültüyle kirlendiğini 'gürültü–hava karnesi' olarak işaretler. Manyetik ya da gravite arazi ölçümü planlanan hafta Kp ≥ 5 ve kuvvetli rüzgâr beklenen günleri tabloda kırmızıya boyar, ölçüm ekibine iki gün önce mesaj atar; basınç ve dalga alanları AURA ağında Gemi ve Deniz Mühendisliği Kulübü'nün dalga ajanıyla aynı ajandan gelir. Fırtına geçtikten sonra tahmin edilen gürültü artışı gerçekleşti mi, kaç saat şaştı, karneye işlenir. Bu işte sismik veriyi xarray ile hava alanlarının yanına koymayı, iki zaman serisi arasındaki ilişkiyi Python'da ölçmeyi ve bir hava tahmininin yer gözlemine ne kadar yansıdığını doğrulamayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6422,11 +6764,26 @@
      },
      "ortak": [
       {
-       "baslik": "açık ocak tozu ve rüzgâr tahmini semineri",
-       "ne": ""
+       "baslik": "Açık ocak tozu ve rüzgâr tahmini semineri",
+       "ne": "Toz kalkma eşiği, rüzgâr gülü ve sulama planı üzerine örnek ocak verisiyle ortak seminer; çıktı toz riski indeksi not defteri.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Vardiya bazlı ocak hava karnesi ajanı",
+       "ne": "Rüzgâr, kuruluk, inversiyon ve basınç düşüşünü üç vardiyaya bölen tabloyu her gün üreten ve WhatsApp'a atan ajan.",
+       "sure": "5 hafta, haftada ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Patlatma günü rüzgâr yönü tahmin karnesi",
+       "ne": "GFS, ECMWF ve MGM rüzgâr yönü tahminlerinin seçilen istasyonda iki aylık yön hatası ve yanlış sektör oranı tablosu.",
+       "sure": "8 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Açık ocakta hava üç şeydir: toz bulutunun yönü, patlatma sesini taşıyan sabah inversiyonu, yer altı gaz çıkışını tetikleyen basınç düşüşü. Ajanımız MGM istasyon rüzgârını ve yağışını, ERA5-Land toprak nemini, ERA5 sınır tabaka yüksekliğini ve Open-Meteo saatlik tahmini toplar; toz riski indeksi (rüzgâr hızı × kuru gün sayısı), inversiyonda gürültü taşınma riski ve 3 saatlik basınç düşüş hızını hesaplar. Çıktı vardiya bazlı 'ocak hava karnesi': sulama gereken saatler, patlatma penceresi, basınç uyarısı, yıldırım riski; inversiyon hesabı AURA ağında Kimya Kulübü'nün PM ölçüm günüyle aynı ajandan çıkar. Rüzgâr yönü tahmini ertesi gün istasyon gözlemiyle karşılaştırılır; toz bulutunun yerleşim tarafına gitme ihtimalini hangi modelin daha iyi bildiği karneye işlenir. Teknik gezi ya da seminer günü yaklaşırken kulüp yönetimine tek sayfalık brifing mesajı düşer. Üye olarak rüzgâr tahminini gözlemle doğrulamayı, toprak nemi ve rüzgârdan bir toz indeksi kurmayı ve işletme kararını bir Python tablosuna bağlamayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6445,11 +6802,26 @@
      },
      "ortak": [
       {
-       "baslik": "hava durumuna göre giyim/teknik tekstil söyleşisi",
-       "ne": ""
+       "baslik": "Hava–giyim söyleşisi: clo, rüzgâr soğutması, nem",
+       "ne": "Bir akşamlık söyleşi; çıktı, kampüs için \"hangi havada kaç kat\" diyen tek sayfalık giyim kartı.",
+       "sure": "2 hafta hazırlık, 1 akşam",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Haftalık kampüs giyim indeksi ajanı",
+       "ne": "Open-Meteo ve MGM verisinden clo tabanlı 7 günlük giyim tablosu üretip kulüp WhatsApp'ına kendi başına gönderen Python ajanı.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Teknik tekstil dış test günü penceresi",
+       "ne": "Yağış, UV ve rüzgâr tahminlerinden su iticilik ve UV solma testleri için \"uygun gün\" takvimi.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Tekstilde hava iki yerde iş yapar: kumaşın kullanım koşulu ve üretim salonunun nemi. AURA ağında bu kulübün ajanı her gece MGM ve Open-Meteo'dan İstanbul için saatlik sıcaklık, rüzgâr, bağıl nem ve UV indeksini çeker; rüzgâr soğutması ve nem düzeltmesiyle gerekli giysi yalıtımını (clo) hesaplar, bunu haftalık giyim indeksi tablosuna çevirir ve pazar akşamı kulüp WhatsApp'ına atar. Aynı ajan dış ortam çiy noktasından iplikhane ve dokuma salonunun nem yükünü çıkarır; iplik kopuşunun arttığı kuru günleri önceden işaretler. Teknik tekstil testleri için yağış, UV ve rüzgâr pencerelerini birleştirip bir dış test takvimi üretir: hangi gün su iticilik, hangi gün UV solma testi. ERA5'ten çıkardığı ısıtma derece-gün serisiyle sezon ürün talebinin erken mi geç mi açılacağını karneye koyar; tahmin tutmazsa farkı kulüple birlikte ölçeriz. Üye olarak şunu öğrenirsin: açık veriden konfor indeksi hesaplamak, Python'da hava-ürün ilişkisini çizmek ve bir tahminin ne zaman güvenilir olduğunu sayıyla söylemek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6466,19 +6838,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "zirve günü hava penceresi ve rüzgâr/donma seviyesi bülteni",
-       "ne": ""
+       "baslik": "Zirve günü penceresi: rüzgâr, donma seviyesi, yıldırım",
+       "ne": "Rota ve yüksekliğe göre 5 günlük git/bekle/vazgeç tablosu üreten ve çıkıştan 72–48–24 saat önce lidere mesaj atan ajan.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 3
       },
       {
-       "baslik": "çığ riski ve kar tahmini eğitimi",
-       "ne": ""
+       "baslik": "Çığ ve kar eşiği eğitimi",
+       "ne": "Yeni kar, rüzgâr taşıması ve sıcaklık verisinden tek eşik puanı çıkaran bir akşamlık atölye ve cebe sığan çalışma kartı.",
+       "sure": "2 hafta hazırlık, 1 akşam",
+       "zorluk": 2
       },
       {
-       "baslik": "tırmanış sonrası tahmin doğrulama geri bildirimi",
-       "ne": ""
+       "baslik": "Tırmanış sonrası tahmin karnesi formu",
+       "ne": "Ekibin gözlediği rüzgâr, bulut tabanı ve kar sınırını toplayan kısa form; her çıkış sonrası model başına otomatik karne.",
+       "sure": "sezon boyu, çıkış başı ~15 dk",
+       "zorluk": 1
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Dağda tahmin hatası vadide değil sırtta ölçülür; AURA ağının dağcılık düğümü bunu bilerek kurulur. Zirve ajanı, rota ve hedef yükseklik girildiğinde GFS ve ECMWF açık çıktılarından basınç seviyesi rüzgârını, en yakın radyosondadan 0 °C ve donma seviyesini, MGM istasyonlarından yağış ve kar derinliğini çeker. Bunlardan rüzgâr soğutması, zirve seviyesi rüzgâr, yeni kar miktarı ve yıldırım riskini (CAPE) hesaplar; her gün için git / bekle / vazgeç satırı olan bir zirve penceresi tablosu üretir ve kampa çıkıştan 72, 48 ve 24 saat önce tırmanış liderine mesaj atar. Çığ tarafında yeni kar, rüzgâr taşıması ve sıcaklık sıçramasını tek bir eşik puanına indirir; eğitimde bu puanın nasıl okunduğunu birlikte çalışırız. Dönüşte ekip gözlediği rüzgârı, bulut tabanını ve kar sınırını kısa bir forma yazar; ajan bunları tahminle karşılaştırıp hangi modelin hangi dağda şaştığını karneye işler ve bu karne aynı ağdaki Mağara ve Orienteering kulüplerinin dağlık arazi tahminlerini de düzeltir. Üye olarak şunu öğrenirsin: bir tahmini yüksekliğe göre okumak, model çıktısını Python'la rotana indirgemek ve \"bu kaynağa dağda ne kadar güvenilir\" sorusuna veriyle cevap vermek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6497,15 +6876,26 @@
      },
      "ortak": [
       {
-       "baslik": "ani sel/yağış uyarısı bülteni",
-       "ne": ""
+       "baslik": "Havza yağışı ve ani sel uyarı ajanı",
+       "ne": "Mağara üstü havza için 6-24-72 saatlik yağış toplamı ve API hesaplayıp gir/girme tablosu üreten, sefer liderine mesaj atan ajan.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 3
       },
       {
-       "baslik": "sefer öncesi hava brifingi",
-       "ne": ""
+       "baslik": "Sefer öncesi 48 saatlik hava brifingi",
+       "ne": "Yağış, sıcaklık, kar erimesi ve rüzgârı tek sayfada toplayan, her sefer için kendi kendine dolan brifing şablonu.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Mağara su seviyesi–yağış eşik defteri",
+       "ne": "Her seferde su durumunu not eden ortak defter; birikince mağara başına sel eşiği ve uyarı karnesi çıkar.",
+       "sure": "sezon boyu, sefer başı ~10 dk",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Mağarada tehlike içeride değil, yukarıdaki havzada başlar: karst arazide saatler önce yağan yağmur sifonları ve galerileri doldurur. Bu yüzden AURA ağındaki mağara ajanı her mağara için bir beslenme havzası çokgeni tutar; MGM istasyon yağışını, radar ve uydu yağış kestirimini, ECMWF ile GFS'in 72 saatlik yağış tahminini bu çokgen üzerinde toplar. Önceki yağış indeksini (API), 6-24-72 saatlik toplamları ve kar erimesi katkısını hesaplar; her mağara için gir / kısa gir / girme sütunu olan günlük bir karar tablosu üretir, sefer liderine çıkıştan 48 saat önce ve seferde her sabah mesaj atar. Eşik değerlerini biz uydurmayız: kulübün geçmiş seferlerinde \"su yükseldi / yükselmedi\" notları varsa ajan bunları yağış toplamlarıyla eşleştirip her mağaranın kendi eşiğini öğrenir. Dış sıcaklık ile mağara içi sıcaklık farkından hava akımı yönünü de kestirir; bu hat ağdaki Jeoloji kulübünün karst ve heyelan eşiği çalışmalarıyla aynı veriyi paylaşır. Üye olarak şunu öğrenirsin: bir havza için yağış toplamı hesaplamak, eşiği gözlemle kalibre etmek ve sel uyarısının ne zaman tuttuğunu karneyle göstermek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6522,19 +6912,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "yarış günü rüzgâr/hamle tahmini",
-       "ne": ""
+       "baslik": "Yarış günü rüzgâr ve hamle tablosu ajanı",
+       "ne": "ECMWF, GFS ve METAR'dan saatlik rüzgâr, hamle yönü, sağanak ve meltem saati tablosu üretip cuma akşamı ve yarış sabahı takıma gönderen ajan.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "Boğaz rüzgâr eğitimi",
-       "ne": ""
+       "baslik": "Boğaz rüzgârı eğitimi: poyraz, lodos, meltem",
+       "ne": "Model çıktısı ile kıyı gözlemini yan yana koyan iki saatlik eğitim ve tekneye asılacak rüzgâr dönüş kartı.",
+       "sure": "2 hafta hazırlık, 1 akşam",
+       "zorluk": 1
       },
       {
-       "baslik": "tahmin-gözlem karşılaştırma defteri",
-       "ne": ""
+       "baslik": "Tahmin–gözlem rüzgâr defteri ve karne",
+       "ne": "Dümencinin antrenman sonrası tek satırlık rüzgâr girişi; ay sonunda model başına hız/yön sapma karnesi.",
+       "sure": "sezon boyu, antrenman başı ~5 dk",
+       "zorluk": 1
       }
      ],
      "ortakSayisi": 3,
+     "anlati": "Yelkende kazandıran rüzgârın kendisi değil, dönüşünün (hamle) kaç dakika önce bilindiğidir. AURA ağının yelken ajanı yarış alanı ve saat aralığı girildiğinde ECMWF ve GFS'in 10 m rüzgârını, MGM kıyı istasyonlarını ve İstanbul havalimanlarının METAR rüzgâr gözlemlerini çeker; saatlik hız, hamle açısı, sağanak katsayısı ve kara-deniz sıcaklık farkından deniz meltemi başlama saatini hesaplar. Çıktı tek bir yarış günü tablosudur: her saat için rüzgâr, hamle yönü, sağanak ve \"iki model aynı fikirde mi\" sütunu; cuma akşamı takım WhatsApp'ına, yarış sabahı güncellenmiş hâliyle bir kez daha düşer. Boğaz'da poyraz ve lodosun kıyı biçimiyle nasıl büküldüğünü eğitimde model çıktısı ve gözlem yan yana konarak çalışırız. Her antrenmandan sonra dümenci ölçtüğü rüzgârı bir satırla deftere yazar; ajan bunu tahminle karşılaştırır ve hangi modelin Marmara'da hız ya da yönde ne kadar saptığını karneye işler; Kürek ve Sualtı düğümleri aynı rüzgâr hattını kullandığı için bu karne üç kulübü birden düzeltir. Üye olarak şunu öğrenirsin: rüzgâr tahminini saat saat okumak, iki modeli Python'la karşılaştırmak ve kendi gözleminle bir tahminin hatasını ölçmek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6551,15 +6948,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "antrenman günü rüzgâr/dalga uyarısı",
-       "ne": ""
+       "baslik": "Antrenman saati rüzgâr–dalga karar tablosu",
+       "ne": "Parkur yönüne göre çapraz rüzgâr bileşeni ve dalga kestirimi hesaplayıp sabah/akşam seansları için çık/çıkma tablosu üreten, antrenöre mesaj atan ajan.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "yarış sabahı hava brifingi",
-       "ne": ""
+       "baslik": "Yarış sabahı brifingi ve kulvar rüzgâr farkı",
+       "ne": "Yarış günü saatlik rüzgâr, sağanak ve kulvarlar arası farkı içeren tek sayfalık, kendi kendine dolan brifing.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "İptal kararı karnesi",
+       "ne": "Antrenörün tek tıkla işaretlediği iptal ve kısaltma kararlarını tahminle eşleştiren aylık isabet karnesi.",
+       "sure": "sezon boyu, seans başı ~1 dk",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Kürekte iki şey antrenmanı bozar: palayı yakalayan çapraz rüzgâr ve tekneyi dövmeye başlayan kısa dalga. AURA ağındaki kürek ajanı, parkur yönü bir kez girildikten sonra Open-Meteo ve MGM'den saatlik rüzgâr ve sağanak verisini çeker; rüzgârı parkura göre baş-kıç ve çapraz bileşene ayırır, su yüzeyi uzunluğu (fetch) ve rüzgâr süresinden dalga yüksekliğini kestirir, hava ve su sıcaklığından soğuk su uyarısını ekler. Sabah ve akşam antrenman saatleri için saat saat çık / kısa çık / çıkma tablosu üretir ve bir gece önce antrenöre mesaj atar; yarış sabahı aynı ajan kulvarlar arası rüzgâr farkını da hesaplayıp kısa bir brifing düşürür. Antrenör iptal ettiği ya da yarıda kestiği her seansı tek tıkla işaretler; ajan bu kararı tahminle karşılaştırır ve \"iptal doğru muydu, erken mi uyardık\" karnesini ay sonunda çıkarır. Bu düğüm Yelken ve Sualtı ile aynı kıyı rüzgâr hattında çalışır; biri düzeltildiğinde üçü de iyileşir. Üye olarak şunu öğrenirsin: rüzgârı bileşenlerine ayırmak, dalga kestirimini açık veriyle hesaplamak ve bir iptal kararının isabetini sayıyla ölçmek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6578,15 +6986,26 @@
      },
      "ortak": [
       {
-       "baslik": "dalış günü dalga/rüzgâr penceresi",
-       "ne": ""
+       "baslik": "Dalış noktası dalga–rüzgâr penceresi ajanı",
+       "ne": "Noktanın açık yönüne göre dalga, rüzgâr ve bulanıklık puanı hesaplayıp hafta sonu için yeşil/sarı/kırmızı tablo üreten, koordinatöre perşembe mesaj atan ajan.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "deniz suyu sıcaklığı gözlem paylaşımı",
-       "ne": ""
+       "baslik": "Dalış bilgisayarı sıcaklık profili paylaşımı",
+       "ne": "Her dalışın derinlik–sıcaklık profilini toplayan basit form ve aylık termoklin derinliği–model karşılaştırma grafiği.",
+       "sure": "sezon boyu, dalış başı ~5 dk",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Görüş tahmini karnesi",
+       "ne": "Dalış sonrası girilen gözlenen görüş mesafesi ile bulanıklık kestirimini eşleştiren, uyarının ne sıklıkla tuttuğunu gösteren karne.",
+       "sure": "2 hafta kurulum, sonra dalış başı ~1 dk",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Dalışta hava kararı üç soruyla biter: dalga tekneyi ve çıkış noktasını zorlar mı, su altında görüş ne olur, suyun kaçıncı metresinde soğuyacağız. AURA ağındaki dalış ajanı her dalış noktası için açık yönü ve derinliği bir kez tutar; Open-Meteo deniz modelinden dalga yüksekliği, periyodu ve yönünü, ECMWF ile GFS'ten rüzgârı, uydu deniz yüzeyi sıcaklığını ve son 48 saatin yağışını çeker. Dalgayı noktanın açık yönüyle çarpıştırıp çıkış zorluğunu puanlar, yağış ve dalga karışımından bulanıklık (görüş) kestirimi yapar, deniz yüzeyi sıcaklığından sezonluk termoklin beklentisini ekler; sonuç hafta sonu için noktaları yeşil/sarı/kırmızı sıralayan bir tablodur ve perşembe akşamı dalış koordinatörüne mesaj olarak gider. Dalgıçların bilgisayarları her dalışta derinliğe göre sıcaklık ölçer; bu profiller forma girilince ajan uydu ve model sıcaklığıyla karşılaştırır, termoklin derinliğini ve modelin kaç derece şaştığını karneye yazar. Derinlik profili açık veri setlerinde seyrektir; dalgıç gözlemi bu boşluğu doldurur ve ağdaki Yelken ile Kürek düğümleri de aynı deniz hattından beslenir. Üye olarak şunu öğrenirsin: deniz tahminini dalış noktasına göre okumak, kendi dalış verini Python'la bir doğrulama setine çevirmek ve \"görüş kötü olacak\" tahmininin ne sıklıkla tuttuğunu ölçmek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6605,11 +7024,26 @@
      },
      "ortak": [
       {
-       "baslik": "parkur günü hava ve yıldırım riski bülteni",
-       "ne": ""
+       "baslik": "Parkur günü yıldırım ve sağanak risk tablosu",
+       "ne": "Kontrol noktası koordinatları için saatlik yıldırım, sağanak ve ısı stresi skoru ile start dilimi başına başlat/geç start/kısa parkur önerisi.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Arazi ıslaklığı ve sabah sisi skoru",
+       "ne": "Son 72 saatlik yağış ve çiy noktası farkından parkur alanı için ıslak zemin ve sis olasılığı veren tek satırlık günlük skor.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Yarış sonrası tahmin karnesi",
+       "ne": "Koşucuların üç soruluk arazi geri bildirimini tahminle karşılaştıran tek sayfalık karne.",
+       "sure": "1 hafta, ~3 saat",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Oryantiringde parkur ormanda ve açık arazide kurulur; yıldırım, sağanak ve sis hem güvenlik hem harita okuma sorunudur. AURA ağında bu kulübe bir 'parkur günü ajanı' düşer: parkuru kuran ekibin verdiği kontrol noktası koordinatlarını alır, Open-Meteo ve ECMWF'den saatlik CAPE, yağış ve sıcaklık tahminini, en yakın MGM istasyonundan son gözlemleri, yarış sabahı da radar görüntüsünü çeker. Bunlardan üç skor hesaplar: yıldırım riski (CAPE × yağış olasılığı), koşucu için ısı stresi ve sabah çiy noktası farkından sis olasılığı; son 72 saatlik yağıştan arazi ıslaklığını da ekler. Çıktı tek bir karar tablosudur: her start dilimi için yeşil/sarı/kırmızı ve 'başlat / geç start / kısa parkur' önerisi; tablo iki gün önce parkur ekibinin WhatsApp grubuna, güncellemesi start'tan iki saat önce düşer. Yarış bitince koşucular arazide ne gördüğünü üç soruyla bildirir, ajan tahminle karşılaştırıp karneyi çıkarır; yıldırım modülü aynı iskeletle ağdaki Dağcılık ve Frizbi ajanlarında da çalışır. Üye olarak nokta tahminini araziyle doğrulamayı, CAPE gibi konvektif göstergeleri okumayı ve bunları Python'da bir karar tablosuna çevirmeyi öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6628,11 +7062,26 @@
      },
      "ortak": [
       {
-       "baslik": "turnuva günü rüzgâr tahmini",
-       "ne": ""
+       "baslik": "Turnuva günü saha eksenli rüzgâr tablosu",
+       "ne": "Maç saatlerine göre rüzgâr hızı, hamle ve kale yönüne göre boyuna/yanal bileşen tablosu.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Kaptan geri bildirimiyle rüzgâr karnesi",
+       "ne": "Her maç sonrası kaptanın rüzgâr notu ve en yakın METAR ile ECMWF–GFS tahminini puanlayan karne.",
+       "sure": "4 hafta, haftada ~1 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Haftalık antrenman rüzgâr takvimi",
+       "ne": "Antrenman saatleri için 'sakin / taktik rüzgâr / zone rüzgârı' etiketi veren otomatik haftalık mesaj.",
+       "sure": "1 hafta, ~3 saat",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Ultimate'ta disk rüzgârla uçar: rüzgâr arttıkça uzun pas (huck) azalır, zone savunması ve kısa pas oyunu başlar; eşiği kulüp koyar. Bu yüzden kulübe düşen ajan bir 'saha ekseni rüzgâr ajanı'dır: turnuva sahasının koordinatını ve kale yönünü alır, ECMWF ile GFS'ten saatlik 10 m rüzgâr ve hamle tahminini, en yakın havalimanı METAR'ından gerçekleşen rüzgârı çeker. Rüzgârı saha eksenine göre boyuna ve yanal bileşene ayırır, hamle katsayısını çıkarır, yağmurlu diskin kaygan olacağı saatleri ve açık sahada yıldırım riski için CAPE eşiğini işaretler. Maç programına oturan karar tablosu turnuvayı düzenleyen ekibe ve kaptanlara gider: hangi saatte hangi kaleye rüzgâr altında hücum edilir, hangi maçta su molası sıklaşır, hangi dilim riskli. Her maçtan sonra kaptanın bildirdiği rüzgâr notu ve METAR, iki modelden hangisinin o saha için daha az şaştığını gösteren 'rüzgâr karnesi'ne dönüşür; ağdaki Yelken ve Kürek ajanları aynı karneden beslenir. Burada rüzgâr vektörünü bileşenlere ayırmayı, iki küresel modeli tek bir saha için karşılaştırmayı ve gözlemle tahmini puanlamayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6649,15 +7098,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "METAR/TAF okuma atölyesi",
-       "ne": ""
+       "baslik": "METAR/TAF okuma atölyesi: koddan karara",
+       "ne": "Ham METAR/TAF'ı Python ile çözüp görüş, tavan ve rüzgâr eşiklerine göre VFR/marjinal/IFR tablosu çıkaran iki saatlik atölye.",
+       "sure": "1 hafta hazırlık + 1 atölye, ~3 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "türbülans ve buzlanma tahmini semineri",
-       "ne": ""
+       "baslik": "İstanbul havalimanları için haftalık TAF karnesi",
+       "ne": "TAF'ın görüş, tavan ve rüzgâr öngörülerini saatlik METAR ile eşleyen isabet ve yanlış alarm tablosu.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Radyosondadan buzlanma ve türbülans katmanı",
+       "ne": "İstanbul radyosondasından 0/−15 °C nemli bandı ve rüzgâr kesmesini skew-T üzerinde işaretleyen günlük profil.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 3
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Havacılıkta hava METAR ve TAF kodlarıyla konuşur; AURA bu kodları kendi tahmin karnesi için zaten kullanır. Kulüp için kurulan 'TAF karnesi ajanı' İstanbul ve Sabiha Gökçen havalimanlarının TAF'larını alır, her saatin METAR'ıyla eşler; görüş, tavan ve rüzgârın eşik altına ineceği öngörülerinde isabet ve yanlış alarm oranını hesaplar. İkinci ajan İstanbul radyosondasını ve GFS/ECMWF üst seviye rüzgârlarını çeker; 0 ile −15 °C arasındaki nemli katmandan buzlanma bandını, seviyeler arası rüzgâr kesmesinden türbülans katmanını çıkarır ve skew-T üzerinde işaretler. Çıktılar iki tablodur: haftalık TAF isabet tablosu ve o günün 'simülatör, gezi ya da uçuş için VFR uygun – marjinal – uygun değil' kararı; ikisi de kulübün WhatsApp grubuna sabah mesajı olarak gider. Kulüp pist yönü, minimumlar ve operasyon bilgisini getirir; biz çözücü kodu, doğrulama metriğini ve veri hattını getiririz, ağdaki SİVEK ve UUBF kulüpleri aynı hattı paylaşır. Öğreneceğin şey: ham METAR/TAF'ı Python ile çözmek, bir tahminin isabetini ve yanlış alarmını saymak, radyosonda profilinden buzlanma yüksekliği okumak.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6676,15 +7136,26 @@
      },
      "ortak": [
       {
-       "baslik": "havacılık meteorolojisi (HAVAMET360 konuları) söyleşisi",
-       "ne": ""
+       "baslik": "Model uçak günü uçuş penceresi tablosu",
+       "ne": "Uçuş sahası için üç günlük saatlik rüzgâr/hamle tahmini ve kulüp eşiklerine göre yeşil-sarı-kırmızı pencere.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "model uçak uçuş günü rüzgâr bülteni",
-       "ne": ""
+       "baslik": "Havacılık meteorolojisi söyleşisi: sis ve pist değişimi",
+       "ne": "İstanbul havalimanlarının gerçek METAR/TAF örnekleriyle sis, rüzgâr kesmesi ve pist değişimini anlatan ortak söyleşi.",
+       "sure": "3 hafta hazırlık, tek etkinlik",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Teknik gezi sabahı operasyon hava brifingi",
+       "ne": "Gezi günü havalimanı METAR/TAF'ından görüş, tavan, rüzgâr ve olası aksama riskini tek sayfada özetleyen brifing.",
+       "sure": "1 hafta, ~3 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Sivil havacılıkta hava operasyonun kendisidir: sis pist kapasitesini düşürür, rüzgâr pist yönünü değiştirir, hamle model uçağı yere çakar. SİVEK'in model uçak günü için kurulan 'uçuş penceresi ajanı' uçuş sahasının koordinatını alır; Open-Meteo üzerinden ECMWF, GFS ve ICON'un saatlik rüzgâr, hamle ve yağış tahminini çeker, en yakın METAR ile sabah düzeltmesi yapar. Kulübün eğitim ve ileri model için koyduğu rüzgâr eşiklerine göre üç günlük saatlik yeşil-sarı-kırmızı tablo üretir; tabloyu atölye WhatsApp grubuna iki gün önce ve uçuş sabahı bırakır, uçuş sonrası pilotların 'uçuldu / zor uçuldu / iptal' yanıtını tahminle eşleyip hangi modelin hamleyi kaçırdığını gösteren karneyi çıkarır. Teknik gezi günleri için aynı ajan havalimanı METAR/TAF'ından görüş, tavan ve rüzgâr kesmesi riskini tek sayfalık operasyon brifingine çevirir; söyleşi için o mevsimin gerçek sis ve pist değişimi örneklerini derler. Havacılık Kulübü'nün TAF çözücüsüyle aynı veri hattını paylaşır; ağın mantığı budur, bir kulüpte kurulan hat ötekinde yeniden yazılmaz. Üye olarak hamle ile ortalama rüzgâr farkını, üç modelin aynı saat için neden farklı konuştuğunu ve bir uçuş kararını veriyle savunmayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6703,15 +7174,26 @@
      },
      "ortak": [
       {
-       "baslik": "gözlem gecesi bulutluluk/seeing tahmini",
-       "ne": ""
+       "baslik": "Gözlem gecesi bulut, seeing ve çiy tablosu",
+       "ne": "Üç modelin kat kat bulutluluğu, jet rüzgârı ve çiy riskini tek gözlem skoruna indiren yedi gecelik tablo.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "gökyüzü-atmosfer optiği semineri",
-       "ne": ""
+       "baslik": "ERA5 ile İstanbul açık gece klimatolojisi",
+       "ne": "ERA5 gece bulutluluğundan hafta hafta açık gece oranı grafiği; gözlem takvimi buna göre kurulur.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Gökyüzü ve atmosfer optiği semineri",
+       "ne": "Hale, alacakaranlık renkleri, pırıltı ve seeing'in atmosfer fiziğini gerçek gözlem gecesi verisiyle anlatan ortak seminer.",
+       "sure": "2 hafta hazırlık, tek etkinlik",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Gözlem gecesini bulut, seeing ve çiy belirler; üçü de atmosfer sorunudur ve üçü de açık veride vardır. Kulübün 'gözlem gecesi ajanı' Open-Meteo'dan ECMWF, GFS ve ICON'un alçak-orta-yüksek bulut katmanlarını, GFS'ten 200 hPa jet rüzgârını, İstanbul radyosondasından nem profilini, CAMS'tan aerosol optik kalınlığını çeker; akşam da uydu kızılötesi görüntüsüyle son düzeltmeyi yapar. Her gece için bir gözlem skoru hesaplar: bulutsuz saat sayısı, jet ve yüzey rüzgârından seeing kestirimi, aerosol ve su buharından saydamlık, sıcaklık–çiy noktası farkından optikte çiylenme riski, rüzgârdan teleskop titreşimi; üç modelin ayrıştığı geceleri 'belirsiz' diye işaretler. Yedi gecelik tablo gözlem gecesini düzenleyen ekibe üç gün önce gider, gitme/kalma kararı bir akşam önce, bulut hareketi notu alacakaranlıkta mesajla düşer. Gözlemciler geceyi bulutluluk ve seeing puanıyla bildirir; ajan bunu tahminle karşılaştırıp İstanbul gecesi için hangi modelin bulutu daha iyi bildiğini gösteren karneyi tutar, ERA5'ten de yılın hangi haftalarında açık gece oranının yüksek olduğunu çıkarıp gözlem takvimine girdi verir. Bu işte çok modelli tahmini tek skora indirmeyi, kendi gözlemini doğrulama verisine çevirmeyi ve xarray ile ERA5 okumayı öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6730,11 +7212,26 @@
      },
      "ortak": [
       {
-       "baslik": "atmosfer fiziği/kaos ve tahmin edilebilirlik söyleşisi",
-       "ne": ""
+       "baslik": "Kaos ve tahmin edilebilirlik söyleşisi: Lorenz'den GEFS'e",
+       "ne": "Lorenz-63 oyuncak modeliyle gerçek topluluk tahmininin hata büyümesini yan yana çizen ortak söyleşi ve Python defteri.",
+       "sure": "3 hafta hazırlık, tek etkinlik",
+       "zorluk": 2
+      },
+      {
+       "baslik": "İstanbul sıcaklığı için yayılım–hata karnesi",
+       "ne": "GEFS ve ECMWF topluluk yayılımını gerçek hatayla gün gün karşılaştıran haftalık grafik ve rank histogramı.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 3
+      },
+      {
+       "baslik": "Açık gece soğuması: ışınım bütçesi mini deneyi",
+       "ne": "Bulutsuz gecelerde MGM sıcaklık düşüşünü basit ışınım denge modeliyle karşılaştıran tek sayfalık rapor.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Fizikçi için hava tahmini bir kaos problemidir: başlangıç hatası üstel büyür, Lorenz'in çekicisi her gün gökyüzünde döner. Kulüp için kurulan 'öngörülebilirlik ajanı' NOAA'nın açık GEFS topluluğunu ve ECMWF açık veri topluluğunu çeker, ERA5 ile MGM istasyon sıcaklığını gerçek sayar; her öncü gün için topluluk yayılımını, hata karekökünü ve ikisinin oranını hesaplar, rank histogramı ve CRPS ile topluluğun fazla mı az mı dağıldığını ölçer. Çıktı haftalık 'belirsizlik karnesi'dir: İstanbul sıcaklığı için hatanın ikiye katlanma süresi, yayılımın doygunluğa ulaştığı gün ve o haftanın akış rejimine göre 'öngörülebilirlik yüksek/düşük' bayrağı; grafik kulübün WhatsApp grubuna her hafta aynı gün düşer. Söyleşi için ajan bir de Lorenz-63 oyuncak modelini aynı eksende çizer: öğrenci kendi yazdığı üç denklemdeki hata büyümesini gerçek topluluğun hata büyümesinin yanında görür. Kulüp dinamik sistemler, istatistiksel mekanik ve ışınım fiziğini getirir; biz veriyi, doğrulama metriğini ve ağdaki öteki kulüplerin karnelerini getiririz, böylece kaos dersi gerçek sayılarla işlenir. Sen burada olasılıksal tahmini puanlamayı, yayılım–hata ilişkisini kodlamayı ve xarray ile topluluk verisi işlemeyi öğrenirsin.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6753,15 +7250,26 @@
      },
      "ortak": [
       {
-       "baslik": "haftalık hava bülteni kuşağı",
-       "ne": ""
+       "baslik": "Haftalık hava bülteni kuşağı",
+       "ne": "Ajanın yazdığı 60 saniyelik sunucu metni ve geçen haftanın isabet karnesi her hafta aynı kuşakta yayına girer.",
+       "sure": "2 hafta kurulum, sonra haftada ~1 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "iklim/meteoroloji podcast bölümü",
-       "ne": ""
+       "baslik": "İklim ve meteoroloji podcast bölümü",
+       "ne": "AURA üyesinin konuk olduğu, o haftanın İstanbul hava olayını veriyle ve tek grafikle anlatan bir bölüm.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Dinleyici tahmin oyunu: yarın kaç derece?",
+       "ne": "Dinleyici tahminleri MGM gözlemiyle karşılaştırılır; haftanın kazananı ve ‘insan mı model mi’ tablosu yayında okunur.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Radyoda hava, kuşağın başında okunan 60 saniyelik metindir; biz bu metni ajana yazdırırız. Bülten ajanı her yayın sabahı MGM günlük tahminini, Open-Meteo saatlik verisini ve ECMWF açık topluluk tahminini çeker; İstanbul için sıcaklık, yağış olasılığı ve rüzgâr yönünü tek sayfalık sunucu metnine döker. Aynı ajan geçen haftanın bültenini havalimanı METAR gözlemleriyle karşılaştırır ve isabet yüzdesini ‘tahmin karnesi’ olarak metnin sonuna ekler; dinleyici hangi güne güveneceğini duyar. Metin kuşaktan iki saat önce yayın sorumlusunun kanalına düşer; okumak, kısaltmak, müzik seçimine bağlamak sunucunun kararıdır. Podcast bölümü için ajan konuyu kendi günlüğünden önerir: o hafta İstanbul'u etkileyen lodos ya da sis olayı, üç soru ve bir grafik hazır gelir. AURA ağında aynı bülten çekirdeği Basın Yayın köşesine ve sosyal medya kartına da akar; radyo üyesi verinin nasıl çekildiğini, tahminin nasıl doğrulandığını ve Python'da bir metnin nasıl üretildiğini mikrofon başında öğrenir.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6780,15 +7288,26 @@
      },
      "ortak": [
       {
-       "baslik": "kampüs gazetesinde haftalık hava köşesi",
-       "ne": ""
+       "baslik": "Kampüs gazetesinde haftalık hava köşesi",
+       "ne": "Ajanın verisiyle yazılan, tek grafikli ve isabet karneli haftalık köşe; taslak yayın kapanışından bir gün önce hazır.",
+       "sure": "2 hafta kurulum, sonra haftada ~1 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "AURA tanıtım haberi",
-       "ne": ""
+       "baslik": "Hava haberi doğrulama masası",
+       "ne": "Dolaşımdaki abartılı hava iddiaları için ‘iddia – veri – olasılık’ tablosu ve kısa doğrulama notu.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "AURA tanıtım haberi ve röportaj",
+       "ne": "Takımı, tahmin karnesini ve ajan akışını anlatan bir haber ile veri grafikli bir röportaj sayfası.",
+       "sure": "1 hafta, ~3 saat",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Habercilikte havanın zayıf noktası abartılı başlıktır: ‘kutup soğuğu geliyor’ denir, iki gün sonra güneş açar. Doğrulama ajanı böyle bir iddia dolaşıma girince ECMWF ve GFS açık topluluk tahminlerini ve MGM uyarılarını çeker; ‘iddia – verinin dediği – olasılık’ tablosunu üretip editör masasının kanalına yollar. Haftalık hava köşesi için aynı ajan İstanbul'un geçen haftasını özetler: en soğuk sabah, en kuvvetli hamle, yağış toplamı, tahminlerin isabet karnesi ve tek grafik. Köşe taslağı yayın kapanışından bir gün önce yazı kanalına düşer; başlık, dil ve yayımlama kararı editörün. Ay sonunda ‘manşet karnesi’ çıkar: hangi hava haberi tuttu, hangisi tutmadı; bu tablo AURA ağında radyo bültenine ve sosyal medya kartına da kaynak olur. Üye veri gazeteciliğini yaparak öğrenir: açık veriyi çekmek, bir tahmini doğrulamak, Python ile grafiğe dökmek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6807,15 +7326,26 @@
      },
      "ortak": [
       {
-       "baslik": "bulut/gökyüzü fotoğraf yarışması",
-       "ne": ""
+       "baslik": "Altın saat ve sis çekim takvimi",
+       "ne": "Ajanın her akşam kulüp WhatsApp'ına yolladığı, gün ve saat öneren haftalık çekim takvimi ile sis sabahı uyandırma mesajı.",
+       "sure": "2 hafta kurulum, sonra haftada ~1 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "altın saat ve sis tahmini ile çekim günleri",
-       "ne": ""
+       "baslik": "Bulut ve gökyüzü fotoğraf yarışması",
+       "ne": "Her karenin o günün tahminiyle etiketlendiği yarışma ve sonunda bulut tahmini isabet karnesi.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Fotoğrafla bulut gözlem arşivi",
+       "ne": "EXIF saati ve konumla etiketlenmiş gökyüzü kareleri, AURA'nın bulut tahmini doğrulama setine açık veri olarak eklenir.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Fotoğrafçının sorusu nettir: yarın sabah sis var mı, akşam gökyüzü yanar mı. Çekim penceresi ajanı her akşam Open-Meteo'dan saatlik alçak, orta ve yüksek bulut oranını, MGM ve havalimanı METAR'larından görüş ile çiy noktası farkını çeker; ‘gün batımında yüksek bulut var, ufukta alçak bulut yok’ eşiğiyle altın saat skoru, sakin ve açık geceler için sis olasılığı hesaplar. Çıktı haftalık çekim takvimidir: gün başına tek senaryo (sis sabahı, yanan gökyüzü, fırtına bulutu, berrak gece) ve en iyi iki saat; takvim kulüp WhatsApp'ına akşamdan, sis sabahı ise çekimden iki saat önce uyandırma mesajı olarak düşer. Çekilen her kare gözleme dönüşür: EXIF saati ve konumu tahminle eşleştirilir, bulut tahmininin isabet karnesi fotoğraflarla tutulur. Gökyüzü fotoğraf yarışmasında her kareye o günün tahmini etiket olarak eklenir; AURA ağında bu kareler radyo ve gazete bültenlerinin görseli olur. Üyenin kazanımı: fotoğrafla tahmin doğrulama, bulut verisini okuma ve çekim takvimini üreten Python betiği.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6835,10 +7365,25 @@
      "ortak": [
       {
        "baslik": "AURA sosyal medya hava içerikleri ortak üretimi",
-       "ne": ""
+       "ne": "Ajanın verisiyle hazırlanan haftalık kart serisi ve uyarı günlerinde hızlı çıkan story şablonu.",
+       "sure": "2 hafta kurulum, sonra haftada ~2 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Hava–etkileşim karnesi",
+       "ne": "Gönderi erişimini günün hava değişkenleriyle eşleştiren, en iyi paylaşım saatini öneren haftalık tablo.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Hava tetikli kampanya penceresi vakası",
+       "ne": "Derece-gün ve ilk soğuk gün tetikleyicileriyle örnek bir e-ticaret kampanya takvimi ve sunumu.",
+       "sure": "4 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Sosyal medyada hava içeriğinin ömrü saatlerle ölçülür; kart yağış başladıktan sonra çıkarsa geç kalmıştır. İçerik ajanı her sabah MGM uyarılarını ve ECMWF açık topluluk tahminini çeker; yağış olasılığı eşiği aşılır ya da uyarı yayımlanırsa grafiği hazır üç kart taslağını (A/B başlık ve tek cümlelik veri notuyla) kulübün içerik kanalına düşürür. Paylaşım kararı ve marka dili kulübün; ajan yalnız veriyi ve zamanlamayı getirir. Haftalık ‘hava–etkileşim karnesi’ iki tabloyu birleştirir: gönderi erişimi ve o günün hava değişkenleri; hangi havada hangi saatte hangi format daha çok okunuyor, sayıyla görülür. E-ticaret tarafında aynı ajan derece-gün ve mevsimin ilk soğuk günü gibi tetikleyicilerden ‘kampanya penceresi’ tablosu üretir: hangi hafta kışlık ürün, hangi gün şemsiye, hangi hafta sonu piknik içeriği. AURA ağında kulüp, radyo bülteni ve gazete köşesiyle aynı veri çekirdeğini paylaşır; üye veri okuma, belirsizliği kitleye anlatma ve Python ile otomatik içerik üretme becerisi kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6857,11 +7402,26 @@
      },
      "ortak": [
       {
-       "baslik": "iklim/afet temalı film gösterimi ve söyleşi",
-       "ne": ""
+       "baslik": "İklim ve afet temalı gösterim ve söyleşi",
+       "ne": "Film seçkisi, ERA5 haritalı ‘film ile gerçek’ kartı ve AURA üyesinin konuk olduğu gösterim sonrası söyleşi.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Açık hava gösterimi karar tablosu",
+       "ne": "48 ve 6 saat önce komiteye düşen yeşil–sarı–kırmızı tablo ve gösterim sonrası tek satırlık isabet notu.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Kısa film çekimi için ışık ve bulut takvimi",
+       "ne": "Çekim günleri için bulut sürekliliği, altın saat ve mavi saat aralıklarını gösteren tablo.",
+       "sure": "2 hafta, haftada ~1 saat",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "Açık hava gösteriminde tek düşman yağmur değildir; hamleli rüzgâr perdeyi sallar, serin akşam izleyiciyi erken kaldırır. Gösterim gecesi ajanı etkinlikten 48 ve 6 saat önce kampüs koordinatı için Open-Meteo saatlik tahminini ve ECMWF açık topluluk yağış olasılığını çeker; hamle eşiği, yağış olasılığı ve hissedilen sıcaklığı tek karar tablosunda birleştirir: açık havada göster, kapalı salona taşı, ertele. Tablo gerekçesiyle etkinlik komitesinin kanalına gider; karar komitenin. İklim ve afet temalı gösterimlerde ajan söyleşi için ‘film ile gerçek’ kartı hazırlar: filmdeki olayın gerçek karşılığı ERA5 reanaliz haritasıyla gösterilir, abartılan ve doğru anlatılan sahneler iki sütunda listelenir. Kısa film çekmek isteyen üye için aynı ajan ışık ve bulut sürekliliği tablosu üretir: hangi sabah bulut oranı sabit kalır, hangi öğleden sonra ışık kaçar. AURA ağında gösterim gecesi tablosu konser ve şenlik gibi diğer açık hava etkinliklerine de taşınır; üye olasılığın karara nasıl çevrildiğini, etkinlik tahmininin sonradan nasıl doğrulandığını ve bunu üreten Python akışını öğrenir.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6878,15 +7438,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "hava verisi görselleştirme/infografik ortak tasarımı",
-       "ne": ""
+       "baslik": "Kampüs hava ekranı tasarımı",
+       "ne": "Ajanın her saat doldurduğu SVG şablonu, piktogram seti ve uyarı bandıyla çalışan canlı ekran yüzü.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "kampüs hava ekranı tasarımı",
-       "ne": ""
+       "baslik": "Hava verisi infografik ve görselleştirme dili",
+       "ne": "AURA'nın tahmin karnesi ve bültenleri için renk paleti, ikon seti ve erişilebilir grafik şablonları.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Belirsizlik nasıl gösterilir? okunabilirlik testi",
+       "ne": "Olasılık ve yayılımın beş farklı gösterimi kampüste kısa bir anketle sınanır, en okunur olanı şablona girer.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Tasarımcı için hava verisi bir okunurluk sorunudur: ‘yüzde 40 yağış olasılığı’ yazısını kimse okumaz, doğru piktogramı herkes anlar. Kampüs hava ekranı için ajan her saat MGM ve Open-Meteo tahminini ve en yakın havalimanı METAR gözlemini çeker, kulübün çizdiği SVG şablonunun alanlarını doldurur: şu an, önümüzdeki altı saat, ‘şemsiye lazım mı’ satırı ve uyarı bandı. Belirsizlik gizlenmez: topluluk tahmininin yayılımı şablona renk tonu olarak verilir; bunu okunur kılmak kulübün tasarım işidir. Aynı ajan ikon seti ve renk paletini sınamak için sis, kar, fırtına, sıcak dalga gibi otuz hava durumunu üretip test sayfası çıkarır, renk körlüğü kontrastını tutmayan kombinasyonları listeler. MGM uyarısı yayımlandığında ekran uyarı şablonuna geçer, veri kesilirse tasarım ekibinin kanalına ‘ekran boş kalmasın’ mesajı düşer; ay sonunda tahmin karnesi tek sayfalık infografik olarak basılır. AURA ağında bu görsel dil radyo, gazete ve sosyal medya bültenlerinin ortak kimliği olur; üye gerçek veriyle görselleştirme yapmayı, bir tahmin karnesini okumayı ve şablonu dolduran Python akışını öğrenir.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6903,15 +7474,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "sıcak/soğuk hava dalgasında duyarlılık kampanyası",
-       "ne": ""
+       "baslik": "Hava dalgası kampanya ajanı",
+       "ne": "MGM uyarısı ve hissedilen sıcaklık eşiği aşıldığında kulüp WhatsApp'ına hedef ilçe listesi ve hazır paylaşım metni düşüren Python betiği.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
       },
       {
-       "baslik": "okullara meteoroloji eğitimi",
-       "ne": ""
+       "baslik": "Okullarda tahmin karnesi ders saati",
+       "ne": "Ziyaret edilen okulun semtine ait bir haftalık tahmin-gözlem karşılaştırmasını çocukların kendilerinin puanladığı tek sayfalık çalışma kâğıdı ve 40 dakikalık ders akışı.",
+       "sure": "2 hafta hazırlık, ziyaret başına ~1 saat",
+       "zorluk": 1
+      },
+      {
+       "baslik": "Saha günü git/ertele karar tablosu",
+       "ne": "Kulüp etkinlik takvimindeki her saha gününe 48 saat önce yağış, rüzgâr ve hissedilen sıcaklıkla 'git / ertele / kapalıya al' kararı veren ve ekip sorumlusuna mesaj atan ajan.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "Gönüllülük işi çoğu zaman sahada geçer: okul ziyareti, kampüs standı, çevre temizliği, yardım dağıtımı. Bizim hava dalgası ajanı her sabah MGM günlük tahminini ve Open-Meteo üzerinden ECMWF ile GFS çıktısını çeker, İstanbul için beş günlük hissedilen sıcaklığı (sıcaklık indeksi ve rüzgâr soğutması) hesaplar, MGM uyarılarıyla çaprazlar; eşik aşılan gün kulüp WhatsApp grubuna 'kampanya penceresi' düşer: hangi günler, hangi ilçeler, hangi kırılgan grup (yaşlı, evsiz, sokak hayvanı) ve hazır paylaşım metni. Saha günü ajanı kulübün etkinlik takvimini okur, her dış etkinlik için yağış olasılığı, rüzgâr ve hissedilen sıcaklıktan 'git / ertele / kapalı alana al' karar tablosu üretir ve 48 saat önce ekip sorumlusuna mesaj atar. Okullara meteoroloji eğitiminde ajan o okulun semtindeki MGM istasyonunun son bir haftalık gözlemini tahminle yan yana koyar; çocuklar tahmin karnesini kendileri puanlar, doğrulamayı oyun olarak yaşar. Karşılığında gönüllülerin saha notu ('yerde gerçekten ne oldu') bizim karnemizin yer gerçeği olur; ağ iki yöne çalışır. Üye olarak öğrendiğin: açık hava verisini Python ile çekmek, hissedilen sıcaklık hesaplamak ve bir tahminin tutup tutmadığını sayıyla söylemek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6930,11 +7512,26 @@
      },
      "ortak": [
       {
-       "baslik": "iklim temalı BEST kursu/mühendislik yarışması ortaklığı",
-       "ne": ""
+       "baslik": "İklim temalı mühendislik yarışması veri paketi",
+       "ne": "ERA5 İstanbul serisinden derece-gün ve aşırı yağış göstergeleriyle hazırlanmış, takımlara dağıtılacak temiz veri seti, karne şablonu ve jüri puanlama betiği.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 3
+      },
+      {
+       "baslik": "Kurs haftası İngilizce hava brifingi ajanı",
+       "ne": "Kurs takvimindeki dış etkinliklere 72 saat önce MGM–ECMWF karşılaştırmalı 'yap / değiştir / kapalıya al' kararı veren ve organizatör kanalına İngilizce kısa brifing atan betik.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Avrupa şehirleri tahmin karnesi karşılaştırması",
+       "ne": "Misafir öğrencilerin şehirleri için Open-Meteo'dan aynı hata metrikleriyle çıkarılan tek sayfalık 'hangi şehir daha zor tahmin edilir' karnesi.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "BEST'in işi Avrupa'nın başka yerel gruplarından gelen mühendislik öğrencilerini kurs, vaka yarışması ve şehir programıyla ağırlamak; biz bu programı ajanla donatıyoruz. Yarışma ajanı iklim temalı vaka için ERA5'ten İstanbul'un otuz yıllık sıcaklık ve yağış serisini çeker, ısıtma ve soğutma derece-günlerini ve aşırı yağış günlerini hesaplar, takımlara temiz veri paketi ile tek sayfalık karne şablonu dağıtır; teslimlerdeki tahmin hatasını da aynı ajan puanlayıp jüriye sıralı tablo olarak verir. Program ajanı kurs takvimindeki her dış etkinlik (şehir turu, Boğaz gezisi, açık hava gecesi) için 72 saat önceden MGM ile ECMWF'yi karşılaştırır, 'yap / saatini değiştir / kapalıya al' kararını İngilizce kısa brifing olarak organizatör kanalına atar. Misafirler yabancı olduğu için ajan Open-Meteo ile onların kendi şehirlerine aynı karneyi çıkarır; İstanbul'u tahmin etmek Münih'i tahmin etmekten daha mı zor, sayıyla görülür. Böylece AURA'nın kulüp ağı BEST üzerinden Avrupa'ya açılır: aynı doğrulama aracı başka yerel grupların kurslarında da çalışır. Bu işte öğreneceğin şey: ERA5 ve Open-Meteo'dan Python ile veri çekmek, derece-gün hesaplamak ve bir mühendislik vakasını açık veriyle kurup takım çözümlerini sayıyla kıyaslamak.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6951,15 +7548,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "yabancı stajyerlere İstanbul iklimi tanıtımı",
-       "ne": ""
+       "baslik": "Gelen stajyere İngilizce İstanbul iklim kartı",
+       "ne": "Stajyerin kalış aylarına göre ERA5/MGM normallerinden otomatik üretilen tek sayfalık İngilizce iklim ve giyim kartı.",
+       "sure": "2 hafta, haftada ~2 saat",
+       "zorluk": 1
       },
       {
-       "baslik": "meteoroloji staj imkânları duyurusu",
-       "ne": ""
+       "baslik": "Meteoroloji staj ilanı süzme ajanı",
+       "ne": "Staj teklif listesini anahtar kelimeyle tarayıp eşleşen ilanları son başvuru tarihine göre sıralı tabloyla bölüm kulüplerine mesajlayan betik.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Stajyer gezi penceresi ve geri bildirim döngüsü",
+       "ne": "Hafta sonu sosyal programına iki gün önce yağış/rüzgâr penceresi veren ve gezi sonrası 'tuttu / tutmadı' geri bildirimini tahmin karnesine işleyen akış.",
+       "sure": "3 hafta, haftada ~2 saat",
+       "zorluk": 2
       }
      ],
-     "ortakSayisi": 2,
+     "ortakSayisi": 3,
+     "anlati": "IAESTE'nin iki yüzü var: İTÜ'lüyü yurt dışı teknik staja gönderir, yurt dışından gelen stajyeri İstanbul'da ağırlar; ikisi için ayrı ajan kuruyoruz. Karşılama ajanı gelen stajyerin kalış aylarını okur, ERA5 ve MGM normallerinden o aylar için İstanbul'un sıcaklık aralığını, yağışlı gün sayısını, nemini ve hâkim rüzgârını (poyraz, lodos) hesaplar, 'ne giyilir, hangi hafta sonu neye uygun' başlıklı İngilizce iklim kartı olarak karşılama mesajına ekler. Sosyal program ajanı Adalar, Boğaz ya da orman gezisi gibi hafta sonu planlarına iki gün önceden yağış ve rüzgâr penceresi verir; stajyer gezi sonrası tek tıkla 'tahmin tuttu / tutmadı' işaretler, bu geri bildirim bizim karnemize dışarıdan bir gözlemci notu ekler. İlan ajanı yerel komitenin paylaştığı staj teklif listesini tarar; meteoroloji, iklim, atmosfer, hidroloji, rüzgâr ve güneş enerjisi anahtar kelimeleriyle eşleşen ilanları süzer, son başvuru gününe göre sıralı tabloyla bölüm kulüplerinin WhatsApp'ına düşürür. Ağ böylece iki yönlü olur: misafir stajyer bizim karnemize gözlemci, bizim üyemiz yurt dışı meteoroloji stajına aday. Buradan çıkan beceri: ERA5'ten iklim normali hesaplamak, İngilizce teknik özet yazmak ve bir ilan akışını anahtar kelimeyle süzen küçük bir ajan kurmak.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
@@ -6976,11 +7584,26 @@
      "kanal": {},
      "ortak": [
       {
-       "baslik": "iklim komitesi simülasyonunda bilimsel danışmanlık",
-       "ne": ""
+       "baslik": "İklim komitesi için ülke iklim karnesi paketi",
+       "ne": "Komitedeki her ülke için ERA5'ten hesaplanan sıcaklık anomalisi, aşırı sıcak gün sayısı ve yağış eğilimini içeren tek sayfalık İngilizce karne seti.",
+       "sure": "3 hafta, haftada ~3 saat",
+       "zorluk": 2
+      },
+      {
+       "baslik": "Karar taslağı sayısal iddia kontrol ajanı",
+       "ne": "Pozisyon belgeleri ve karar taslaklarındaki sayısal iklim iddialarını ERA5 ile çaprazlayıp başkanlığa 'uyumlu / abartılı / kaynak yok' tablosu veren betik.",
+       "sure": "4 hafta, haftada ~3 saat",
+       "zorluk": 3
+      },
+      {
+       "baslik": "Komitede AURA bilim danışmanı sandalyesi",
+       "ne": "İklim komitesinde delegelerin veri sorularını yanıtlayan, karneleri sunan bir AURA üyesi ve 10 dakikalık açılış brifingi.",
+       "sure": "1 hafta hazırlık, konferans başına ~1 gün",
+       "zorluk": 1
       }
      ],
-     "ortakSayisi": 1,
+     "ortakSayisi": 3,
+     "anlati": "MUN'da kazanan delege en çok konuşan değil, pozisyon belgesine en sağlam veriyi koyandır; biz iklim komitesine o veriyi ajanla taşıyoruz. Komiteden önce ülke karnesi ajanı her delegenin temsil ettiği ülke için ERA5'ten uzun dönem sıcaklık anomalisini, aşırı sıcak gün sayısını ve yağış eğilimini hesaplar, İngilizce 'ülke iklim karnesi' olarak delegelere ve komite başkanlığına gönderir. Komite boyunca gerçeklik kontrolü ajanı pozisyon belgelerindeki ve karar taslaklarındaki sayısal iklim iddialarını aynı veriyle çaprazlar; başkanlık kuruluna 'veriyle uyumlu / abartılı / kaynak yok' kartı verir, münazara retorikten kanıta döner. Konferansın açık havaya çıkan ayakları için pencere ajanı MGM–ECMWF karşılaştırmasını bir gün önce sekretaryaya düşürür. Bu düzende AURA üyesi komitede bilim danışmanı sandalyesine oturur, MUN'cu da iklim diplomasisinin İngilizce dilini bizim ağımıza taşır. Delege ya da danışman olarak öğrendiğin: ERA5'ten iklim anomalisi hesaplamak, bir iddiayı açık veriyle sınamak ve bunu Python'la tekrarlanabilir hâle getirmek.",
      "kaynaklar": [
       {
        "ad": "Kaynak",

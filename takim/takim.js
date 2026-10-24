@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '51';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '52';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -2051,6 +2051,7 @@ function p3AgTakim(sec, t, grup, ilk) {
   const out = []; agBaslikEkle(out, AG_GRUP_AD[grup] || 'Takım ağı', t.ad, ilk);
   out.push(el('div', { class: 'p3-cipler ag-cipler' }, agRozet(t), agCip('birim', t.birim), agCip('kuruluş', t.kurulus), ...agDizi(t.yarisma).slice(0, 4).map(y => agCip('yarışma', y))));
   if (t.ozet) out.push(el('p', { class: 'p3-amac-b' }, t.ozet));
+  if (t.anlati) out.push(el('div', { class: 'p3-blok ag-anlati' }, el('span', { class: 'p3-etiket' }, 'AURA ağı sizin için'), el('p', { class: 'p3-amac' }, t.anlati)));   /* 24 Eki: bölüme/takıma özel agentic-AI anlatısı */
   const kn = t.kanal || {}, kl = [agUrl(kn.site) ? agLink(kn.site, kaynakAlan(kn.site) + ' ↗', 'p3-dis') : null, /^@?[A-Za-z0-9_.]{2,30}$/.test(kn.instagram || '') ? agLink('https://www.instagram.com/' + kn.instagram.replace(/^@/, '') + '/', '@' + kn.instagram.replace(/^@/, '') + ' ↗', 'p3-dis') : null].filter(Boolean);
   if (kl.length) out.push(el('p', { class: 'p3-ust-satir' }, el('span', { class: 'p3-etiket' }, 'Kanal'), ...kl));
   /* birlikte yapabileceğimiz işler: önce bu takıma özel, sonra çok takımlı ortak işler */
