@@ -145,8 +145,10 @@ const top=$('top'),under=$('under'),leaf=$('leaf'),altgolge=$('altgolge'),book=$
 const azalt=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function onbellek(p){for(const q of [p-2,p-1,p+1,p+2]) if(q>=1&&q<=N){const im=new Image();im.src=src(q)}}
 function yigin(){const k=Math.min(14,Math.max(2,Math.round((N-cur)/N*14))),s=Math.min(10,Math.max(0,Math.round((cur-1)/N*10)));$('ysag').style.setProperty('--k',k+'px');$('ysol').style.setProperty('--k',s+'px')}
-function goster(p){cur=Math.max(1,Math.min(N,p));top.src=src(cur);$('sno').value=cur;$('buyut').href=src(cur);
-  $('onceki').disabled=cur<=1;$('sonraki').disabled=cur>=N;try{history.replaceState(null,'','#p'+cur)}catch(e){}
+/* 25 Eki (Akın): her çevirme bir geçmiş basamağı — geri tuşu bir önceki sayfaya döner, dergiden çıkmaz (ilk yükleme ve geri/ileri hareketi basamak eklemez) */
+let gecmisModu='replace';
+function goster(p){const yeni=Math.max(1,Math.min(N,p)),degisti=yeni!==cur;cur=yeni;top.src=src(cur);$('sno').value=cur;$('buyut').href=src(cur);
+  $('onceki').disabled=cur<=1;$('sonraki').disabled=cur>=N;try{if(gecmisModu==='push'&&degisti)history.pushState({p:cur},'','#p'+cur);else history.replaceState({p:cur},'','#p'+cur)}catch(e){}
   const d=D.find(x=>x.p===cur);$('durumcanli').textContent='Sayfa '+cur+(d?': '+d.ad:'');top.alt=d?d.ad+' sayfası':'Dergi sayfası';onbellek(cur);yigin();panel(d);kucukIsaret()}
 /* ---- kâğıt fiziği: yaprak 14 iç içe şerit; toplam açı A, bükülme ortada en çok (sin A) ---- */
 const NS=14;let strips=[];
@@ -243,9 +245,10 @@ function ara(){const s=norm($('q').value),S=$('sonuc');S.replaceChildren();
     if(d.ortak)sat.append(eylem(d.ortak,d.ad+' ortak işler'));S.append(sat)})}
 $('q').addEventListener('input',ara);$('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const b=$('sonuc').querySelector('button');if(b)b.click()}});
 fetch('dizin.json').then(r=>r.json()).then(j=>{N=j.sayfa;D=j.dizin.map(d=>({...d,n:norm(d.ad)+' | '+(d.anahtar||'')}));$('toplam').textContent=N;$('sno').max=N;
-  const m=/p(\d+)/.exec(location.hash);goster(m?+m[1]:1);const h=decodeURIComponent(location.hash.slice(1));if(h&&!m){$('q').value=h.replace(/[-_]/g,' ');ara()}})
-  .catch(()=>{$('durum').textContent='Dizin yüklenemedi; sayfalar yine de çevrilebilir.';N=134;goster(1)});
-window.addEventListener('hashchange',()=>{const m=/p(\d+)/.exec(location.hash);if(m&&+m[1]!==cur&&N)goster(+m[1])});
+  const m=/p(\d+)/.exec(location.hash);goster(m?+m[1]:1);gecmisModu='push';const h=decodeURIComponent(location.hash.slice(1));if(h&&!m){$('q').value=h.replace(/[-_]/g,' ');ara()}})
+  .catch(()=>{$('durum').textContent='Dizin yüklenemedi; sayfalar yine de çevrilebilir.';N=134;goster(1);gecmisModu='push'});
+window.addEventListener('popstate',()=>{const m=/p(\d+)/.exec(location.hash);if(!N)return;gecmisModu='replace';goster(m?+m[1]:1);gecmisModu='push'});
+window.addEventListener('hashchange',()=>{const m=/p(\d+)/.exec(location.hash);if(m&&+m[1]!==cur&&N){gecmisModu='replace';goster(+m[1]);gecmisModu='push'}});
 })();
 </script>
 </body>

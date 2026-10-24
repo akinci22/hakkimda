@@ -1,6 +1,6 @@
 {
  "surum": 1,
- "guncelleme": "2026-10-24",
+ "guncelleme": "2026-10-25",
  "gruplar": [
   {
    "grup": "meteoroloji",
@@ -5194,6 +5194,40 @@
       "oi-3-ortak-gunluk-arsivleyici-ecmwf"
      ],
      "ortakSayisi": 3
+    },
+    {
+     "id": "aday-eris",
+     "ad": "ERİS (aday takım)",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 17",
+     "ozet": "",
+     "kanal": {},
+     "ortak": [],
+     "ortakSayisi": 2,
+     "kaynaklar": [],
+     "ortakIsIds": [
+      "oi-12-itu-kampus-hava-istasyonu-agi",
+      "oi-3-ortak-gunluk-arsivleyici-ecmwf"
+     ]
+    },
+    {
+     "id": "aday-h2bee-ice",
+     "ad": "H2BEE ICE (aday takım)",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 17",
+     "ozet": "Ne üzerinde çalıştığı standda öğrenilecek.",
+     "kanal": {
+      "instagram": "@h2beeice"
+     },
+     "ortak": [],
+     "ortakSayisi": 2,
+     "kaynaklar": [],
+     "ortakIsIds": [
+      "oi-12-itu-kampus-hava-istasyonu-agi",
+      "oi-3-ortak-gunluk-arsivleyici-ecmwf"
+     ]
     }
    ]
   },
@@ -5204,7 +5238,7 @@
     {
      "id": "t-itu-zes-gunes-arabasi-takimi",
      "ad": "İTÜ ZES Güneş Arabası Takımı",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Ulaşım & Araç · Güneş arabası",
      "ozet": "2004'ten beri ARIBA serisi güneş enerjili yarış arabaları tasarlayıp üretiyor. iLumen European Solar Challenge 2022 '24 saat' etabında 3.lük (257 tur); 20'den fazla ödül",
      "kanal": {
@@ -5228,16 +5262,60 @@
        "ne": "Panel akımınızla saatlik tahminin karşılaştırıldığı, model başına hata veren tek sayfalık karne.",
        "sure": "1 hafta, yarış sonrası",
        "zorluk": 1
+      },
+      {
+       "baslik": "Yarış ve test sahası için düzeltilmiş güneş ışınımı tahmini ve karnesi",
+       "ne": "Panel düzlemine düşen saatlik ışınımı birkaç modelden alıp yapay zekâ ile düzeltmek ve hata karnesini yayımlamak.",
+       "nasil": [
+        "Hedef noktalar seçilir: Circuit Zolder, ekibin İstanbul'daki test alanı ve gündeme gelirse BWSC rotası üzerindeki birkaç nokta.",
+        "Geçmiş 2-3 yıl için Open-Meteo Historical Forecast'ten ECMWF IFS, ICON ve GFS'nin saatlik GHI tahminleri; doğrulama için CAMS uydu türevli ışınım serisi ve ERA5 indirilir.",
+        "pvlib ile güneş konumu hesaplanır; GHI doğrudan (DNI) ve yayılı (DHI) bileşenlere ayrılıp aracın panel eğimine göre panel düzlemi ışınımına (POA) çevrilir.",
+        "Model hatası saat, mevsim ve bulutluluğa göre çıkarılır; gradyan artırma (gradient boosting) ile düzeltme modeli eğitilip ham tahminle karşılaştırılır (RMSE, yanlılık, beceri skoru).",
+        "Sonuç 'ışınım karnesi' olarak yayımlanır: hangi model hangi koşulda daha iyi, düzeltme ne kadar kazandırıyor."
+       ],
+       "sure": "3 hafta, haftada ~4 saat",
+       "neden": "Güneş arabasının toplayacağı enerji doğrudan ışınıma bağlı; enerji stratejisi (hangi hızla gidileceği, bataryanın ne kadar harcanacağı) ışınım tahmini kadar iyidir. Hava modelleri bulutluluğu ve ışınımı sistematik hatayla tahmin edebilir; AURA'nın asıl işi bu hatayı ölçmek ve düzeltmek. Ekip iESC (Belçika) ve BWSC'yi (Avustralya) hedef yarışlar olarak görüyor; aynı araç İstanbul'daki testlerde de kullanılabilir.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "24 saatlik yarış için saat saat hava destekli enerji planı",
+       "ne": "Işınım, sıcaklık, rüzgâr ve yağış tahminini saatlik enerji bütçesine çevirip yarış boyunca hız ve batarya önerisini güncelleyen ajan.",
+       "nasil": [
+        "Strateji ekibiyle enerji modelinin değişkenleri belirlenir: panel alanı ve verimi, panel sıcaklık katsayısı, batarya kapasitesi ve sıcaklık sınırları, hıza göre tüketim eğrisi.",
+        "Yarış saatleri için düzeltilmiş POA ışınımı (1. iş), 2 m sıcaklık, rüzgâr hızı/yönü ve yağış olasılığı saatlik tabloya alınır.",
+        "Panel sıcaklığı basit bir modelle (ortam sıcaklığı + ışınım − rüzgâr soğutması) hesaplanıp panel gücü düzeltilir; pist düzlüklerinin yönüne göre karşı/arka rüzgâr payı tüketime eklenir.",
+        "Saatlik enerji bütçesi (kazanç − tüketim) ve batarya doluluk eğrisi çıkarılır; farklı hız profilleri için yarış sonu tur sayısı karşılaştırılır.",
+        "Yarış boyunca ajan her saat yeni tahmini ve aracın gerçek telemetrisini birleştirip planı günceller; sapma büyürse uyarır.",
+        "Yarıştan sonra tahmin ile gerçekleşen karşılaştırılır ve enerji modeli katsayıları düzeltilir."
+       ],
+       "sure": "4 hafta, haftada ~4 saat",
+       "neden": "iESC, Circuit Zolder'de 24 saat süren bir dayanıklılık yarışı; güneş batınca iş güneş kazancından batarya yönetimi ve sürücü stratejisine döner. Bulutun geleceği saat, gece sıcaklığı ve yağmurun pisti ıslatacağı an hız kararını değiştirir. Ekip 2026'da bu yarışta 'National Champion' oldu; strateji tarafını sayısal hava girdisiyle güçlendirmek bir sonraki adım.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Otonom araç testleri için hava ve güneş konumu etiketleri",
+       "ne": "ARIBA Autonomous test günlüklerine yağış, görüş, bulut ve güneş açısı etiketi ekleyip algılama hatalarının hangi havada arttığını bulmak.",
+       "nasil": [
+        "Otonom test günlüklerinden (tarih-saat, konum, araç yönü, algılama/karar hataları) özet tablo çıkarılır.",
+        "Her test anı için güneş yükseklik ve azimut açısı pvlib ile hesaplanır; araç yönüyle karşılaştırılıp 'güneş kameranın görüş alanında mı' etiketi üretilir.",
+        "Aynı anlar için METAR ve ERA5'ten yağış, görüş, bulutluluk, sıcaklık ve rüzgâr etiketleri eklenir.",
+        "Hata oranı etiketlere göre karşılaştırılır (ör. güneş önde/arkada, kuru/ıslak yol); belirgin farklar raporlanır.",
+        "Ajan, eksik kalan koşulları (ör. hiç ıslak yol testi yok) önümüzdeki 7 günün tahminindeki uygun günlerle eşleştirip test takvimi önerir."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Ekip ARIBA Autonomous II ile TEKNOFEST 2026'da yarıştı ve aracı farklı koşullarda sınadığını belirtiyor. Kamera ve lidar tabanlı algılama; alçak güneşin kameraya doğrudan girmesi, ıslak yolda yansıma, yağmur ve sis gibi koşullarda bozulur. Test verisini hava etiketiyle ayırmak, hangi hatanın yazılımdan hangisinin koşullardan geldiğini gösterir ve test planını hedefli yapar.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 6,
      "anlati": "Rota ışınımı ve rüzgâr bütçesi ajanı, pistin koordinatı için ECMWF, GFS ve ICON tahminlerini Open-Meteo'dan saatlik çeker: yüzey ışınımı, katmanlı bulut, 10 m rüzgâr, sıcaklık. Işınımı panel alanıyla çarpıp saatlik Wh'e çevirir; üç modelin ayrıştığı saatleri 'belirsiz' işaretler; rüzgârı pist yönüne göre kafa/kuyruk bileşenine ayırır. Çıktı tek tablo: saat · beklenen Wh · bulut riski · rüzgâr bileşeni · önerilen hız bandı. Tablo her sabah stint öncesi takımın WhatsApp'ına düşer; bulut bandı tahminden erken gelirse ajan beklemez, o anda yazar. Yarış bitince panel akımınızı tahminle yan yana koyup karne çıkarırız: hangi model o pistte tuttu, hangisi tutmadı. Takımınız ARIBA'nın 24 saat etabı için hatası ölçülmüş bir enerji bütçesi kazanır.",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://ari24.com/haber/itunun-en-iyi-proje-takimlari-bolum-1-2883"
       }
-     ]
+     ],
+     "stantSenlik": "D 2"
     },
     {
      "id": "t-itu-solar-car-team-itusct",
@@ -5274,7 +5352,7 @@
     {
      "id": "t-itu-racing",
      "ad": "İTÜ Racing",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Ulaşım & Araç · Formula Student elektrikli/otonom",
      "ozet": "Formula Student için elektrikli ve sürücüsüz prototip yarış arabaları üretiyor. Türkiye'nin ilk Formula Student aracı F-Bee 01 (2010) ve ilk sürücüsüz FS aracı",
      "kanal": {
@@ -5292,21 +5370,64 @@
       {
        "baslik": "Test günü planlaması için kısa vadeli tahmin",
        "ne": ""
+      },
+      {
+       "baslik": "Dayanıklılık etabı için akü sıcaklık payı tahmini",
+       "ne": "BMS verisi ve hava tahminiyle 22 km'lik dayanıklılık etabında akünün 60 °C sınırına ne kadar yaklaşacağını önceden hesaplarız.",
+       "nasil": [
+        "Geçmiş test ve yarış günlerinden BMS hücre sıcaklığı, akım, hız ve fan/soğutma verisi alınır.",
+        "Aynı saatler için Open-Meteo/ERA5'ten hava sıcaklığı, küresel ışınım (GHI) ve rüzgâr eklenir.",
+        "Basit toplu-kapasite ısı modeli kurulur: ısınma = akımın ürettiği ısı − soğutma (hava sıcaklığı ve hava akışına bağlı) + güneş yükü; katsayılar geçmiş veriye uydurulur.",
+        "Yarış günü tahminiyle (FSAE Italy eylül başı, FS Türkiye eylül sonu) farklı başlangıç sıcaklığı ve sürüş temposu senaryolarında etap sonu en sıcak hücre değeri hesaplanır.",
+        "Strateji tablosu hazırlanır: 'hava şu sıcaklıktaysa ön soğutma şu kadar, tempo şu sınırda' önerileri ve güvenlik payı."
+       ],
+       "sure": "3-4 hafta, haftada ~3 saat",
+       "neden": "FS 2026 kurallarına göre hücre sıcaklığı 60 °C'yi (ya da hücre katalog sınırını) aşamaz; aşım 1 saniyeden uzun sürerse akü yönetim sistemi aracın yüksek gerilim devresini kapatır (EV5.8.5, EV5.8.7). Dayanıklılık etabı ~22 km ve en çok puan getiren etap. Takımın kendi BMS'i olduğu için sıcaklık verisi zaten üretiliyor; hava sıcaklığı, güneşlenme ve rüzgâr bu payı doğrudan değiştiriyor.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Kuru-nemli-ıslak pist kararı için yağış ve pist sıcaklığı paneli",
+       "ne": "Yarış günü 15 dakikalık yağış tahmini ve pist sıcaklığı kestirimiyle lastik seçimi ve etap zamanlaması için canlı panel kurarız.",
+       "nasil": [
+        "Varano de' Melegari (FSAE Italy) ve TOSFED Körfez (FS Türkiye) pistleri için son 10 yılın etkinlik haftası saatlik yağış ve sıcaklık iklimi (ERA5) çıkarılır.",
+        "Pist yüzeyi sıcaklığı için basit model kurulur (hava sıcaklığı + ışınım + rüzgâr); takımın kızılötesi termometreyle pistte aldığı ölçümlerle ayarlanır.",
+        "Yarış günü için Open-Meteo'nun 15 dakikalık yağış verisi ve Ensemble API olasılıkları birleştirilir; ülkenin radar görüntüleri insan gözüyle izlenir.",
+        "Karar tablosu üretilir: önümüzdeki 30-60 dakikada yağış olasılığı, beklenen pist durumu, önerilen lastik ve etap sırası.",
+        "Etkinlik sonrası tahminler, gerçekte ilan edilen pist durumuyla karşılaştırılıp karne çıkarılır."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "FS kurallarına göre pist 'kuru, nemli, ıslak' ilan edilir; nemli pistte dayanıklılık etabına yeşil bayraktan önce lastik değiştirilebilir ve dinamik etaplarda her türden yalnız bir lastik takımı kullanılabilir (D3). Takım FS Türkiye 2026'nın ilk gününün yağmurlu geçtiğini paylaştı; yanlış lastik ya da yanlış zamanlama doğrudan süre ve puan kaybı demek.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Test verisini havaya göre normalize etme",
+       "ne": "Test günlerindeki tur süresi ve enerji tüketimini sıcaklık, hava yoğunluğu ve rüzgâra göre düzeltip tasarım etkisini ayırırız.",
+       "nasil": [
+        "Test günlerinin veri toplayıcı dosyaları (tur süresi, tur başına enerji, hız, akü sıcaklığı) toplanır; her tura zaman damgası eklenir.",
+        "Test alanı için saatlik hava sıcaklığı, basınç, nem, rüzgâr ve ışınım (Open-Meteo/ERA5; mümkünse sahada küçük bir sensör) eklenir, hava yoğunluğu hesaplanır.",
+        "Regresyon modeliyle tur süresi ve tur başına enerji, hava değişkenleri ve araç ayarlarıyla açıklanır.",
+        "'Standart güne' (ör. 20 °C, 1013 hPa, rüzgârsız) düzeltilmiş tur süresi ve enerji grafikleri çıkarılır.",
+        "Tasarım sunumuna girecek tek sayfalık 'havadan arındırılmış gelişim' grafiği hazırlanır."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım tasarım (EDE) sunumlarında aracın gelişimini veriyle savunuyor. Farklı günlerdeki testlerde hava sıcaklığı, hava yoğunluğu ve rüzgâr; tur süresini, enerji tüketimini ve aerodinamik yükü değiştiriyor. Hava etkisi ayrılmazsa yeni bir parçanın katkısı yanlış ölçülür.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 6,
      "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://ari24.com/haber/itunun-en-iyi-proje-takimlari-bolum-1-2883"
       }
-     ]
+     ],
+     "stantSenlik": "C 19"
     },
     {
      "id": "t-itu-elektrikli-arac-takimi-ituev",
      "ad": "İTÜ Elektrikli Araç Takımı (ITUEV)",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Ulaşım & Araç · Verimli elektrikli araç",
      "ozet": "Enerji verimli bataryalı elektrikli araçlar tasarlıyor; hidrojen yakıt hücresi hedefi var. Shell Eco-marathon 2017'de 3.lük",
      "kanal": {
@@ -5324,21 +5445,64 @@
       {
        "baslik": "Batarya performansı-sıcaklık ilişkisi analizi",
        "ne": ""
+      },
+      {
+       "baslik": "Yarış günü rüzgâr-sıcaklık enerji stratejisi",
+       "ne": "Pistin her düzlüğündeki karşı ve arka rüzgârı tur enerji modeline verip yarış günü için gaz-süzülme stratejisi hazırlamak.",
+       "nasil": [
+        "Hedef yarışın pist haritasından her düzlük ve virajın yönünü (derece) ve uzunluğunu çıkar; takımdan aracın CdA'sını (hava direnci katsayısı × ön alan), yuvarlanma direncini ve motor-sürücü verim eğrisini al.",
+        "Pist koordinatı için yarış haftasının son 10 yılına ait ERA5 saatlik 10 m rüzgâr, 2 m sıcaklık ve güneş ışınımı (GHI) dağılımını indir; rüzgârı araç yüksekliğine logaritmik profille indirge.",
+        "Basit tur enerji modeli kur: her pist parçasında bağıl hava hızı = araç hızı ± rüzgâr bileşeni; aerodinamik güç, yuvarlanma gücü ve verim kayıplarını topla.",
+        "Rüzgâr yönüne ve saatine göre tur enerjisinin nasıl değiştiğini tablo yap; hangi rüzgârda hangi düzlükte gaz verip hangisinde süzülmenin (pulse-and-glide) daha verimli olduğunu çıkar.",
+        "Yarış haftası ECMWF ve ICON tahminiyle her sabah yeni strateji tablosunu üret; yarıştan sonra joulemetre ölçümüyle modeli karşılaştırıp katsayıları güncelle."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "Verimlilik yarışında puan, harcanan enerji başına gidilen mesafedir; araç çok düşük hızda gittiği için rüzgârın payı büyüktür. 2026 Shell Eco-marathon Avrupa ayağında (Silesia Ring, Polonya, 24-28 Haziran) sıcaklık 40 °C'yi aşınca hakemler yarışı 11 turdan 7 tura ve 22 dakikaya indirdi; yani hava stratejiyi doğrudan değiştiriyor. Takım yeni aracını Shell Eco-marathon için üretiyor.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Test turlarında hava etkisini ayıran tüketim modeli",
+       "ne": "Test turlarının enerji verisini o anki rüzgâr ve sıcaklıkla eşleyip hava etkisini ayıran, aracın gerçek gelişimini gösteren model kurmak.",
+       "nasil": [
+        "Takımın son test turlarına ait enerji, hız ve zaman verisini topla; her turun saatini ve yerini not et.",
+        "Her tur için o saatin rüzgârını, sıcaklığını ve basıncını en yakın METAR istasyonundan ve Open-Meteo geçmiş verisinden ekle; mümkünse araca ucuz bir anemometre (rüzgâr ölçer) takılır.",
+        "Önce fiziksel modelle (aerodinamik + yuvarlanma) beklenen tüketimi hesapla; sonra kalan farkı rüzgâr, sıcaklık ve araç ayarı değişkenleriyle açıklayan basit bir makine öğrenmesi modeli (doğrusal regresyon ya da gradyan artırmalı ağaç) kur.",
+        "Her test için 'hava düzeltmeli tüketim' (standart koşula indirgenmiş km/kWh) hesapla; değişikliklerin gerçek etkisini grafikle göster.",
+        "Modeli yarış günü tahminiyle çalıştırarak beklenen tüketim aralığını ver."
+       ],
+       "sure": "3-4 hafta, haftada ~3 saat",
+       "neden": "Takım batarya, BMS ve motor kontrol yazılımını kendisi geliştiriyor ve test turlarında enerji ölçüyor. Bir değişiklik (yeni sürücü yazılımı, lastik basıncı) tüketimi gerçekten düşürdü mü, yoksa o gün rüzgâr mı azdı? Hava etkisi ayrılmadan bu sorunun cevabı yanıltıcı olur; yeni araç yapılırken her denemeden doğru ders çıkarmak için bu ayrım gerekir.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Batarya ve pilot için sıcaklık-ışınım uyarısı",
+       "ne": "Yarış ve test günleri için sıcaklık, güneş ışınımı ve pist ısısı tahminini BMS sınırlarıyla karşılaştırıp erken uyarı vermek.",
+       "nasil": [
+        "Takımdan hücre tipini, BMS'in sıcaklık sınırlarını ve paketin araçtaki yerini (güneş alıyor mu, hava akışı var mı) al.",
+        "Hedef pist için son 10 yılın yarış haftasına ait ERA5 2 m sıcaklık ve güneş ışınımı dağılımını çıkar; en sıcak %10'luk günleri belirle.",
+        "Basit bir ısıl denge hesabıyla (güneş ışınımı + iç ısı üretimi - taşınımla kayıp) farklı hava koşullarında paket sıcaklığının nereye çıkabileceğini tahmin et; varsa test ölçümüyle katsayıları ayarla.",
+        "Yarış haftası tahminine göre her gün için 'paket sıcaklığı sınırı aşabilir mi' riskini yeşil-sarı-kırmızı olarak ver; gölgeleme, başlangıç sıcaklığı ve sürüş saati önerisi ekle.",
+        "Sonuçları yeni aracın soğutma tasarım dosyasına girdi olarak ekle."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım kendi batarya paketini ve BMS'ini tasarlıyor; aşırı sıcakta BMS gücü kısar ya da aracı durdurabilir. 2026 Shell Eco-marathon'da 40 °C'yi aşan sıcaklık yarış formatını kısalttı; kapalı kabuklu bir araçta pilot ve elektronik de ısınır. Yeni aracın soğutması ve paket yerleşimi tasarlanırken hedef yarışın olası sıcaklık aralığını bilmek gerekir.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 6,
      "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://ari24.com/haber/itunun-en-iyi-proje-takimlari-bolum-1-2883"
       }
-     ]
+     ],
+     "stantSenlik": "D 14"
     },
     {
      "id": "t-itu-facilis",
      "ad": "İTÜ Facilis",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Ulaşım & Araç · Yakıt verimliliği prototipi",
      "ozet": "Shell Eco-marathon için Macaw serisi içten yanmalı yüksek verimli prototip araçlar üretiyor. 1 litre benzinle 300 km ile Türkiye birinciliği; Avrupa'da 861 km/l ile 9.luk",
      "kanal": {
@@ -5356,21 +5520,64 @@
       {
        "baslik": "Yarış haftası hava riski özeti",
        "ne": ""
+      },
+      {
+       "baslik": "Yarış ve test günü hava brifingi: rüzgâr, sıcaklık ve en iyi deneme penceresi",
+       "ne": "Pist için saatlik rüzgâr bileşeni, sıcaklık ve yağış tahmininden her deneme hakkı için en verimli saat penceresini önermek.",
+       "nasil": [
+        "Silesia Ring pist geometrisi (düzlüklerin yönü, tur uzunluğu) haritadan çıkarılır; her düzlük için rüzgârın pist boyunca (karşı/arka) ve yan bileşenini hesaplayan tablo hazırlanır.",
+        "Yarış haftası için Open-Meteo'dan ECMWF IFS ve ICON saatlik 10 m rüzgâr, hamle, 2 m sıcaklık, basınç, yağış ve güneş ışınımı çekilir; yakın havalimanlarının (Katowice EPKT, Wrocław EPWR) METAR'ı ve IMGW istasyon verisiyle karşılaştırılır.",
+        "Takımın geçmiş koşu verisinden (tur süresi, tüketim) basit düzeltme katsayısı kurulur: tur başına ek direnç, rüzgâr bileşeni ve hava yoğunluğunun fonksiyonu olarak.",
+        "Her deneme hakkı için 'en düşük ortalama karşı rüzgâr + uygun sıcaklık + kuru pist' penceresi sıralanır; sıcak günlerde motor, lastik ve sürücü için ısıl risk satırı eklenir.",
+        "Yarış sonrası gerçekleşen hava ile tahmin kıyaslanıp karneye işlenir; ertesi yıl için 'hangi saatler genelde sakin' iklim notu çıkarılır."
+       ],
+       "sure": "2 hafta, haftada ~3 saat (yarıştan önce kurulur, yarış haftası otomatik çalışır)",
+       "neden": "Shell Eco-marathon'da sonuç, belirli tur sayısını en az yakıtla bitirmeye bağlı; yüzlerce km/L düzeyinde rüzgâr ve hava yoğunluğu farkı sıralamayı değiştirir. 2026 Avrupa yarışında Kamień Śląski'de gölgede 40 °C'ye, pistte 75 °C'ye varan sıcak dalgası yaşandı ve birçok takım koşuyu tamamlayamadı. Hangi saatte piste çıkılacağını hava tahminiyle seçmek, aracı değiştirmeden puan kazandırabilir.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Havadan arındırılmış tüketim analizi: gelişme mi, hava mı?",
+       "ne": "Geçmiş koşu ve testlerde tüketimi sıcaklık, basınç ve rüzgârla ilişkilendirip araç gelişimini havanın etkisinden ayırmak.",
+       "nasil": [
+        "Takımdan geçmiş yarış ve test koşularının verisi istenir: tarih-saat, tur süreleri, yakıt tüketimi, motor çalışma süresi, varsa telemetri (hız, motor sıcaklığı).",
+        "Her koşunun saati için ERA5 (Open-Meteo Historical Weather) ve en yakın METAR'dan sıcaklık, basınç, nem, rüzgâr hızı ve yönü eklenir; hava yoğunluğu ve pist yönüne göre rüzgâr bileşeni hesaplanır.",
+        "Fizik tabanlı basit model kurulur: tüketim ~ yuvarlanma direnci + sürükleme (ρ, bağıl rüzgâr) + motor verimi (emme havası sıcaklığı); katsayılar regresyonla bulunur.",
+        "Her koşu bir 'standart güne' (ör. 20 °C, 1013 hPa, rüzgârsız) indirgenir; düzeltilmiş tüketim sezonlar arası karşılaştırılır.",
+        "Sonuç tek sayfada sunulur: farkın yaklaşık ne kadarı hava, ne kadarı araç/strateji; hangi hava koşulunda hangi hız profilinin seçileceğine dair öneri."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Takımın en iyi sonucu 861 km/L (2025); 2026 yarışından sonra paylaşılan sonuç 728,1 km/L. Bu farkın araçtan mı, sürüş stratejisinden mi, yoksa 2026'daki aşırı sıcak gibi hava koşullarından mı geldiğini sayıyla ayırmak, bir sonraki sezonun mühendislik önceliklerini doğru seçmeyi sağlar.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "66 cc motor için emme havası koşulları ve test düzeltme tablosu",
+       "ne": "Kendi 66 cc enjeksiyonlu motorlarının test sonuçlarını ortam sıcaklığı, basınç ve neme göre standart koşula indirgemek.",
+       "nasil": [
+        "Motor ekibinden test düzeneği verisi istenir: tarih-saat, devir, tork/güç, yakıt debisi, varsa emme havası sıcaklığı ve basıncı (MAP/IAT) ve lambda değerleri.",
+        "Test saatleri için ortam sıcaklığı, basınç ve nem en yakın istasyondan (İstanbul METAR) ve test odasındaki ölçerden eşlenir; hava yoğunluğu ve kuru hava kısmi basıncı hesaplanır.",
+        "Güç ve özgül yakıt tüketimi, motor testlerinde kullanılan atmosfer düzeltme yaklaşımıyla (SAE J1349 türü) referans koşula indirgenir; düzeltme öncesi ve sonrası testten teste dağılım karşılaştırılır.",
+        "Yarış sahası için iklim ve tahmin verisinden beklenen emme havası yoğunluğu aralığı çıkarılır; motor ekibine 'yoğunluk şu kadar düşerse enjeksiyon süresi şu yönde düzeltilmeli' tablosu verilir.",
+        "Yarış ve test günleri ajan, tahmini ortam koşullarını bu tabloya yerleştirip motor ekibine sabah notu gönderir."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım kendi 66 cc enjeksiyonlu motorunu üretiyor; motor testleri İstanbul'da farklı mevsimlerde yapılıyor, yarış ise Polonya'da bambaşka koşullarda (2026'da aşırı sıcak) koşuluyor. Emme havasının yoğunluğu değişince aynı yakıt haritası farklı hava/yakıt oranı verir. Testleri standart koşula indirgemek ve yarış günü için düzeltme yönü önermek motor ekibinin ayarını sağlamlaştırır.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 6,
      "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://mkn.itu.edu.tr/en/students/project-teams/itu-facilis"
       }
-     ]
+     ],
+     "stantSenlik": "C 7"
     },
     {
      "id": "t-itu-hyperbee",
      "ad": "İTÜ HyperBee",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Ulaşım & Araç · Hyperloop",
      "ozet": "Hyperloop kapsül, itki ve manyetik levitasyon sistemleri geliştiriyor. TEKNOFEST Hyperloop 2024'te 2.lik; 2025'te Elektromanyetik Levitasyon Geliştirme Ödülü",
      "kanal": {
@@ -5388,21 +5595,50 @@
       {
        "baslik": "Elektronik soğutma için ortam koşulu tahmini",
        "ne": ""
+      },
+      {
+       "baslik": "Koşu verisi hattı ve otomatik koşu raporu",
+       "ne": "Her test koşusunun sensör verisini standart biçimde toplayıp otomatik koşu raporu ve anomali uyarısı üreten bir veri hattı kuracağız.",
+       "nasil": [
+        "Kapsülün ürettiği veriler listelenir (akım, gerilim, bobin ve batarya sıcaklığı, levitasyon aralığı sensörü, ivme, hız) ve tek bir dosya biçiminde (CSV/Parquet + kanal açıklama dosyası) anlaşılır.",
+        "Her koşudan sonra veri ortak klasöre bırakılır; betik temel özetleri çıkarır: en yüksek akım, en yüksek bobin sıcaklığı, levitasyon aralığındaki sapma, hızlanma profili.",
+        "Önceki koşularla karşılaştırılır: benzer koşular için normal aralık hesaplanır, dışına çıkan değer işaretlenir (önce basit istatistik, sonra küçük bir anomali modeli).",
+        "Ortam koşulları eklenir: koşu saatindeki dış sıcaklık ve nem (Open-Meteo/METAR) ve varsa tünel içi ölçüm; ısınma farkının bir kısmı böyle açıklanır.",
+        "Tek sayfalık koşu raporu (grafik + özet + uyarılar) kendiliğinden üretilir; sezon sonunda tüm koşuların karnesi çıkar."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "Kapsül kapalı tünelde ve rayda çalıştığı için hava doğrudan etkili değil; ortak değer veri tarafında. TEKNOFEST 2026'da kapsül yapısal-mekanik, güvenlik, levitasyon ve itki kontrolleri art arda geçildi; her koşudan sonra hızlı ve düzenli bir rapor, sorunun bir sonraki denetimden önce görülmesini sağlar. AURA'nın günlük tutan ajan altyapısı doğrudan buraya taşınabilir.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Isıl pay kartı: bobin ve batarya için ortam sıcaklığı",
+       "ne": "Yarışma ve test günlerinin saatlik sıcaklık-ışınım tahminiyle bobin ve batarya ısıl payını hesaplayıp en uygun koşu saatlerini önereceğiz.",
+       "nasil": [
+        "Takımın koşu verilerinden koşu başına sıcaklık artışı (bobin, batarya, sürücü) ve soğuma süresi çıkarılır (1. işin veri hattından).",
+        "Yarışma sahası için 2016-2025 Ağustos sonu-Eylül başı saatlik 2 m sıcaklık ve güneş ışınımı (Open-Meteo Historical, ERA5 tabanlı) indirilir; günün saatine göre tipik sıcaklık eğrisi çıkarılır.",
+        "Isıl pay hesaplanır: bileşen sınırı − (başlangıç sıcaklığı + koşu başına artış); sınırlar bileşen veri sayfalarından alınır.",
+        "Saatlik kart hazırlanır: hangi saatlerde koşu rahat, hangi saatlerde koşular arası soğuma beklemesi gerekir; gölgeleme ve fan önerisi.",
+        "Yarışma haftası 72/24/3 saatlik tahminle kart güncellenir; hafta sonunda gerçekleşen sıcaklıkla karşılaştırılır."
+       ],
+       "sure": "1-2 hafta, haftada ~3 saat (1. iş bittikten sonra)",
+       "neden": "Elektromanyetik levitasyon bobinleri ve lineer motor yüksek akımda ısınır, Li-ion bataryanın çalışma sıcaklığı sınırları vardır. TEKNOFEST Hyperloop haftası (2026'da TÜBİTAK Gebze Kampüsü, 6 Eylül'e kadar) yılın sıcak dönemine denk geliyor ve performans kategorisinde kapsül 20 dakikalık yarış süresinde test ediliyor; başlangıç sıcaklığı yüksekse sınıra daha çabuk yaklaşılır.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 5,
      "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://haberler.itu.edu.tr/haberdetay/2024/08/22/itu-hyperbee-takiminin-iki-yarismadaki-basarisi"
       }
-     ]
+     ],
+     "stantSenlik": "D 4"
     },
     {
      "id": "t-itu-rover-takimi",
      "ad": "İTÜ Rover Takımı",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Robotik & Otonom · Gezegen keşif aracı",
      "ozet": "2016'dan beri Mars koşullarına uygun gezegen keşif araçları (rover) geliştiriyor. European Rover Challenge 2021 genel 2.lik, 2022 genel 3.lük",
      "kanal": {
@@ -5420,16 +5656,43 @@
       {
        "baslik": "Mars atmosferi verileriyle görev planlama çalışması",
        "ne": ""
+      },
+      {
+       "baslik": "Saha görevi günleri için hava, ısıl yük ve drone rüzgâr brifingi",
+       "ne": "Yarışma sahası için saatlik sıcaklık, güneş, rüzgâr ve yağış tahminiyle elektronik/batarya ısıl riskini ve drone uçuş uygunluğunu bildirmek.",
+       "nasil": [
+        "Takımdan elektronik kutu ve batarya sıcaklık sınırları, varsa geçmiş saha görevlerindeki iç sıcaklık verisi ve drone'un rüzgâr sınırı alınır.",
+        "Görev saatleri ve saha koordinatı için Open-Meteo'dan saatlik 2 m sıcaklık, güneş ışınımı, 10 m rüzgâr ve hamle, yağış olasılığı çekilir; Kraków için EPKK, Ankara için LTAC METAR'ı ile karşılaştırılır.",
+        "Basit kural tablosu yazılır: sıcaklık ve ışınım yüksek, rüzgâr zayıfsa 'gölgeleme/soğutma molası'; yağış varsa 'su geçirmezlik kontrolü'; hamle drone sınırını aşarsa 'drone görevini daha sakin saate al' önerisi.",
+        "Görevden sonra rover ve drone'un kendi sensör verisi (iç sıcaklık, batarya sıcaklığı, drone rüzgâr kestirimi) tahminle karşılaştırılır ve eşikler güncellenir."
+       ],
+       "sure": "1-2 hafta, haftada ~3 saat",
+       "neden": "ERC 2026'da (4-6 Eylül, Kraków) navigasyon görevinde noktalar arasında bir drone da dâhil otonom sistemlerle ilerleniyor; bilim, bakım ve sonda toplama görevleri de Marsyard parkurunda yapılıyor. Takımın profilinde ARC'26 (Anatolian Rover Challenge, Ankara, yaz) başlığı da var. Temmuz-Ağustos'ta Ankara'da güneş altında elektronik ısınır, Eylül'de Kraków'da yağmur ve serin hava görülebilir. Görev saatine göre soğutma, batarya ve drone kararlarını önceden vermek görev puanını korur.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Rover'a çevre ölçüm paketi ve tahmin karnesi",
+       "ne": "Rover'a sıcaklık-nem-basınç sensörü ekleyip ölçümleri METAR ve ERA5 ile doğrulayan küçük bir veri hattı kurmak.",
+       "nasil": [
+        "Takımla sensör seçilir (ör. BME280 sınıfı sıcaklık-nem-basınç; güneşten koruyan küçük radyasyon siperi), veri biçimi (zaman, konum, değer) ve örnekleme sıklığı belirlenir.",
+        "Sensör paketi kampüste sınanır: aynı saatin en yakın METAR'ı (LTBA/LTFM) ve ERA5 değeriyle kıyaslanıp sabit sapma (yanlılık) ve tepki gecikmesi ölçülür.",
+        "Rover'ın güneşte ve hareket halinde sensörü ne kadar ısıttığı (kendinden ısınma) test edilir; siper ve montaj yeri buna göre düzeltilir.",
+        "Saha testlerinde toplanan veri otomatik olarak tahminle karşılaştırılır; hata tablosu AURA karnesine ve takımın bilim raporuna eklenir."
+       ],
+       "sure": "3-4 hafta, haftada ~3 saat",
+       "neden": "Gerçek Mars rover'ları (Curiosity'de REMS, Perseverance'ta MEDA) yüzeydeki havayı ölçen istasyonlar taşır; takımın bilim görevinde araziyi incelemek ve örnek toplamak var. Ucuz bir çevre ölçüm paketi bilim görevine ek bir veri katmanı ve sunumda güçlü bir anlatı sağlar; AURA için de yerinde ölçümle tahmin doğrulama verisi olur.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 5,
      "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://haberler.itu.edu.tr/en/newsdetail/2022/09/29/itu-rover-team-returns-from-europe-with-another-award"
       }
-     ]
+     ],
+     "stantSenlik": "D 11"
     },
     {
      "id": "t-itu-otokon",
@@ -5472,7 +5735,7 @@
     {
      "id": "t-itu-rov-takimi",
      "ad": "İTÜ ROV Takımı",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Deniz · Uzaktan kumandalı sualtı aracı",
      "ozet": "2016'da Gemi İnşaatı ve Deniz Bilimleri Fakültesi'nde kurulan, insansız sualtı araçları üreten takım.",
      "kanal": {},
@@ -5488,21 +5751,64 @@
       {
        "baslik": "Kıyı akıntısı riski bülteni",
        "ne": ""
+      },
+      {
+       "baslik": "TAC Challenge ve liman testleri için açık su görev paneli",
+       "ne": "Tau (Norveç) ve izinli liman testleri için rüzgâr, dalga, akıntı ve yağışla aracı suya indirme günü paneli ve Haziran iklim kartı.",
+       "nasil": [
+        "Tau Autonomy Centre koordinatı için Open-Meteo Historical Weather (ERA5) ile 2016-2025 Haziran saatlik rüzgâr, hamle, yağış ve sıcaklık; Copernicus Marine ya da Open-Meteo Marine'dan dalga yüksekliği ve su sıcaklığı indirilir.",
+        "Takımdan operasyon sınırları alınır: indirme-alma için azami rüzgâr, dalga ve akıntı; ekip için yağış ve soğuk sınırları.",
+        "Her saat için ‘operasyon yapılabilir’ olasılığı hesaplanır ve Haziran iklim kartı çıkarılır.",
+        "Yarışma haftası için MET Norway Locationforecast ve Oceanforecast, liman testleri için Open-Meteo Forecast ve Marine ile 3 günlük saatlik yeşil-sarı-kırmızı panel kurulur.",
+        "Her test ve görevde sahada gözlenen koşul (rüzgâr, dalga, akıntının kabloya etkisi, su sıcaklığı) panele girilir; tahmin karnesi tutulur."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Takım TAC Challenge'a 2023, 2024 ve 2026'da katıldı ve 2027'ye hazırlanıyor. 2024 düzeninde üç uygulamalı görevin ikisi Tau Autonomy Centre'ın doğal açık sularında (soğuk fiyort suyu, bulanıklık, akıntı ve dalga), biri tatlı su havuzunda yapılıyor. Açık suda aracı iskeleden indirip almak, göbek kablosunu (tether) yönetmek ve ekibin güvenliği yüzey koşuluna bağlı; takım ayrıca izin aldığı liman alanında test yapıyor.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Tatlı su ve deniz suyu arasında yüzerlik (trim) kartı",
+       "ne": "Havuz (tatlı su) ve fiyort (tuzlu, katmanlı su) için sıcaklık-tuzluluk profilinden su yoğunluğu ve ROV balast ayarı tablosu.",
+       "nasil": [
+        "Aracın hacmi, kütlesi ve mevcut balast/şamandıra düzeni takımdan alınır.",
+        "Tau çevresi için MET Norway NorKyst kıyı okyanus modelinden ya da Copernicus Marine'dan Haziran sıcaklık ve tuzluluk profili (0-30 m) indirilir; liman test alanı için Copernicus Marine ya da sahada basit ölçüm kullanılır.",
+        "TEOS-10 (gsw kütüphanesi) ile derinliğe göre su yoğunluğu hesaplanır; havuz için tatlı su yoğunluğu su sıcaklığına göre alınır.",
+        "Her ortam ve derinlik için gereken balast değişimi (gram) hesaplanır; ‘havuz → deniz’ geçişi için ayar tablosu hazırlanır.",
+        "İlk deniz dalışında sıcaklık-iletkenlik ölçümü ya da aracın derinlik tutarken harcadığı itici gücü ile hesap doğrulanır."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "TAC'ta görevlerin biri tatlı su havuzunda (2024'te havuz tabanındaki bir platforma konma), ikisi fiyortun açık sularında yapılıyor. Deniz suyu tatlı sudan yaklaşık yüzde 2-3 daha yoğundur; havuzda nötr yüzerliğe ayarlanmış araç denizde fazladan kaldırma kuvveti kazanır, fiyortun daha az tuzlu yüzey katmanından tuzlu alt katmana inerken de yüzerliği değişir. Bu durum platforma konma ve sabit derinlikte durma gibi hassas işlerde iticileri boşa yorar.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Açık suda görüntü kalitesi: ışık ve bulanıklık kestirimi",
+       "ne": "Uydu bulanıklık verisi (Kd490), bulut ve güneş yüksekliğiyle açık su dalışında kamera görüşünü önceden kestiren not ve koşul tablosu.",
+       "nasil": [
+        "Tau çevresi ve liman test alanı için Copernicus Marine okyanus rengi ürünlerinden Kd490 (ışık sönümlenme katsayısı) ve klorofil serisi indirilir; kıyıda çözünürlük yetmezse en yakın açık su pikseli kullanılır.",
+        "Aynı günler için Open-Meteo'dan bulutluluk, kısa dalga ışınım ve son 3 günün yağışı çekilir; güneş yüksekliği pvlib ile hesaplanır.",
+        "Takımın önceki açık su dalış videolarından örnek kareler seçilir; görüntü netliği (kontrast, kenar keskinliği) ve tespit başarısı ölçülür.",
+        "Görüntü ölçütleri ile Kd490, ışınım ve yağış arasındaki ilişki kurulur; basit bir ‘görüş iyi/orta/kötü’ sınıflayıcısı eğitilir.",
+        "Dalış günü için görüş tahmini notu ve ışık/kamera ayarı önerisi üretilir; dalıştan sonra gerçek görüş karneye işlenir."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "TAC 2026'nın görev alanları arasında boru hattı ve görsel denetim, nesne tespiti ve manipülasyon, su altı seyir ve konumlandırma var; düzenleyicilerin anlatımına göre açık su görevleri bulanıklık, akıntı, dalga ve dipteki çökeli kaldırma riski olan gerçekçi bir ortamda yapılıyor. Görüş kalitesi önceden bilinirse ışık ayarı, kamera ayarı ve görev sırası buna göre seçilir.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 6,
      "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://www.ituvakif.org.tr/destek-ve-yardimlar"
       }
-     ]
+     ],
+     "stantSenlik": "D 9"
     },
     {
      "id": "t-itu-auv-takimi",
      "ad": "İTÜ AUV Takımı",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Deniz · Otonom sualtı aracı",
      "ozet": "Otonom sualtı araçları tasarlıyor ve uluslararası yarışmalara katılıyor. Singapore AUV Challenge'da 42 takım arasında 1.lik; TEKNOFEST 2025 3.lük ve En Özgün Yazılım Ödülü",
      "kanal": {},
@@ -5518,21 +5824,64 @@
       {
        "baslik": "Görüş mesafesi-bulanıklık ilişkisi çalışması",
        "ne": ""
+      },
+      {
+       "baslik": "Deniz testi ve yarışma günü deniz durumu paneli",
+       "ne": "İstanbul deniz testleri, TEKNOFEST Mavi Vatan ve TAC Challenge fiyort görevleri için rüzgâr-dalga tabanlı test günü karar paneli kurarız.",
+       "nasil": [
+        "Takımın deniz test noktaları ve yarışma alanlarının (Gölcük, Tau/Stavanger) koordinatları alınır.",
+        "Her nokta için son 5 yılın saatlik verisi indirilir: 10 m rüzgâr ve hamle (ERA5), önemli dalga yüksekliği ve tepe periyodu (Open-Meteo Marine, Copernicus Marine), yağış.",
+        "Kapalı koylarda dalga modeli yetersiz kalırsa rüzgâr hızı, süresi ve fetch (rüzgârın estiği açık su mesafesi) ile kıyı dalga hesabı yapılır.",
+        "Takımla eşikler belirlenir: suya indirme/alma için hamle ve dalga sınırı, yüzey bağlantısı ve güvenlik botu için ek sınırlar; ay ve saat bazında 'uygun test penceresi' takvimi çıkarılır.",
+        "Testten 72/24/3 saat önce yeşil-sarı-kırmızı tablo verilir; test sonrası gözlenen deniz durumu forma girilir ve tahmin karnesi tutulur."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım TEKNOFEST 2026'ya havuz ve deniz testleriyle hazırlandı; TAC Challenge'da (Norveç, Stavanger yakını) 2024'te üç pratik görevin ikisi açık fiyort suyunda yapıldı. Aracı suya indirip almak, yüzey bağlantısı ve güvenlik botu operasyonu rüzgâr ve dalgaya bağlı; yanlış günde denize çıkmak test saatini boşa harcıyor.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Kamera görüşü için ışık ve yüzey koşulu günlüğü",
+       "ne": "Her havuz/deniz koşusuna güneş açısı, bulutluluk ve rüzgârı ekleyip görüntü işleme başarısının ışık koşuluna göre değişimini ölçeriz.",
+       "nasil": [
+        "Son havuz ve deniz testlerinden görüntüler ve algılama sonuçları (doğru/yanlış tespit, güven skoru, zaman damgası) toplanır.",
+        "Her zaman damgası için güneş yükseklik ve azimut açısı pvlib ile hesaplanır; Open-Meteo'dan bulut örtüsü, kısa dalga ışınımı ve rüzgâr eklenir.",
+        "Algılama başarısı (kesinlik, duyarlılık) güneş açısı, bulutluluk ve rüzgâr (yüzey dalgacıkları) sınıflarına göre ayrılır; zayıf koşullar belirlenir.",
+        "Zayıf koşullar için veri artırma önerileri (parlama, kostik deseni, renk sapması benzetimi) ve test saati planı hazırlanır.",
+        "Yarışma haftası için saatlik güneş açısı ve bulut tahmini tablosu çıkarılır; koşu saatine göre beklenen ışık koşulu not edilir."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "RoboSub görevleri görüntüye dayalı hedef ve nesne algılamaya dayanıyor; 2026 yarışması Irvine'deki Woollett Aquatics Center'da yapıldı. Güneş ışığı alan havuzlarda yüzeyden kırılan ışığın tabanda oluşturduğu hareketli desenler (kostikler) şekil tanımayı zorlaştırıyor. Algılama modelinin hangi ışıkta zayıfladığını bilmek veri artırma ve test saati seçimini yönlendirir.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Havuzdan denize geçiş: su yoğunluğu ve ses hızı kartı",
+       "ne": "Havuz, Marmara ve fiyort suyunun sıcaklık-tuzluluk farkından aracın kaldırma (trim) ve akustik ses hızı düzeltmesini çıkarırız.",
+       "nasil": [
+        "Aracın hacmi, kütlesi ve havuzdaki trim durumu alınır; araçta derinlik-sıcaklık sensörü verisi varsa test günlüklerinden çekilir.",
+        "Test ve yarışma noktaları için deniz suyu sıcaklığı ve tuzluluk profilleri alınır: Copernicus Marine ürünleri, Norveç fiyortları için MET Norway NorKyst kıyı modeli, Marmara için ölçüm ve literatür değerleri.",
+        "TEOS-10 (gsw Python paketi) ile derinliğe göre yoğunluk ve ses hızı hesaplanır; havuz suyuna göre kaldırma farkı ve gereken balast değişimi bulunur.",
+        "Ses hızı farkının hidrofon dizilimindeki yön/mesafe hatasına etkisi takımın dizilim ölçüleriyle hesaplanır.",
+        "Tek sayfalık kart: nokta ve aya göre yoğunluk, ses hızı, balast önerisi ve denize inmeden önce kontrol listesi."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım havuzda ayarladığı aracı denizde ve TAC Challenge'da hem fiyortta hem tatlı su havuzunda koşturuyor; RoboSub'da akustik haberleşme görevleri var. Tatlı sudan tuzlu suya geçişte kaldırma kuvveti değişir; su sıcaklığı ve tuzluluk ses hızını değiştirerek hidrofonla yön bulma hesabını etkiler.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 6,
      "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://ari24.com/haber/itunun-en-iyi-proje-takimlari-bolum-1-2883"
       }
-     ]
+     ],
+     "stantSenlik": "D 3"
     },
     {
      "id": "t-itu-otonom-tekne-takimi-asteam",
      "ad": "İTÜ Otonom Tekne Takımı (ASTEAM)",
-     "durum": "belirsiz",
+     "durum": "aktif",
      "birim": "Deniz · İnsansız su üstü aracı",
      "ozet": "Otonom insansız su üstü araçları (BEE-Ast) geliştiriyor. RobotX 2022 (Sidney) Deniz Taşıtları ve Tasarım Modelleme Ödülü ile jüri özel ödülü",
      "kanal": {
@@ -5550,16 +5899,60 @@
       {
        "baslik": "Kıyı rüzgâr tahminlerinin tekne verisiyle doğrulanması",
        "ne": ""
+      },
+      {
+       "baslik": "Njord görev günü paneli ve Trondheim iklim kartı",
+       "ne": "Njord'un yapıldığı Trondheim fiyordu için rüzgâr, hamle, dalga ve gelgitle görev günü paneli ve 10 yıllık Ağustos iklim kartı.",
+       "nasil": [
+        "Nyhavna (Trondheim) koordinatı için Open-Meteo Historical Weather (ERA5) ile 2016-2025 Ağustos saatlik 10 m rüzgâr, hamle, yağış ve sıcaklık indirilir; Trondheim çevresindeki MET Norway istasyonlarının gözlemleriyle (Frost API) karşılaştırılır.",
+        "Dalga için Copernicus Marine dalga ürünleri ya da Open-Meteo Marine'dan önemli dalga yüksekliği ve periyodu, gelgit için Kartverket su seviyesi verisi alınır.",
+        "Takımdan aracın sınırları alınır (azami rüzgâr, hamle, dalga; yanaşmada kabul edilen sapma); her saat için ‘görev yapılabilir’ olasılığı ve gün-saat tablosu çıkarılır.",
+        "Yarışma haftası için MET Norway Locationforecast (rüzgâr, hamle, yağış) ve Oceanforecast (dalga, akıntı, su sıcaklığı) API'leriyle saatlik yeşil-sarı-kırmızı panel kurulur.",
+        "Testlerde ve yarışmada sahada gözlenen koşul ile aracın kendi rüzgâr/yalpa verisi panele girilir; tahmin hatası karnesi sonraki sezona aktarılır."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Takım Ağustos 2026'da NTNU'nun düzenlediği Njord Challenge'a katıldı. Njord'da yanaşma (docking), çarpışmadan kaçınma, manevra ve rota bulma görevleri gerçek fiyort suyunda, Trondheim Nyhavna'da yapılıyor (2023'ten beri, 2024 hariç). Küçük bir otonom teknede rüzgâr ve kısa periyotlu dalga yanaşmayı ve hassas manevrayı doğrudan bozar; koşul önceden bilinirse test planı ve kontrol ayarları buna göre hazırlanır.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Test verisine hava etiketi: algılama ve rota takibi analizi",
+       "ne": "Her su testinin verisine rüzgâr, dalga, yağış ve güneş açısı ekleyip algılama ile rota takibinin hangi koşulda bozulduğunu gösteren analiz.",
+       "nasil": [
+        "Mevcut test günlüklerinden (GPS izi, hedef rota, algılama sonuçları, zaman) tek bir tablo kurulur; her teste tarih-saat ve konum eklenir.",
+        "Her test zamanı için Open-Meteo'dan rüzgâr hızı-yönü, hamle, yağış, bulutluluk ve görüş, Open-Meteo Marine'dan dalga yüksekliği ve yüzey akıntısı çekilir; pvlib ile güneş yüksekliği ve azimutu hesaplanır.",
+        "Rota takip hatası (rotadan yanal sapma, metre) ve algılama başarısı (doğru tespit oranı) hesaplanır; teknenin yönü ile rüzgâr ve güneş arasındaki açı bulunur (ör. güneşe doğru seyir).",
+        "Başarı koşul sınıflarına göre karşılaştırılır (ör. dalga yüksekliği, güneş yüksekliği ve güneşe karşı seyir); basit bir karar ağacı ya da regresyonla en etkili koşul bulunur.",
+        "Sonuç yazılım ekibine ‘koşul - başarı’ tablosu ve öneri listesi olarak verilir (ör. alçak güneşte kamera pozlaması, yan rüzgârda kontrol kazancı).",
+        "Yeni her test kendiliğinden etiketlenir; sezon sonunda karne güncellenir."
+       ],
+       "sure": "3 hafta, haftada ~3 saat; sonra her testte kendiliğinden çalışır",
+       "neden": "Takımın İDA'sı çarpışmadan kaçınma, yanaşma ve rota takibi gibi otonom görevler yapıyor; ICMTC'de ‘En İyi Saha Performansı’ ödülü aldı. Sahada başarısızlığın nedeni çoğu zaman koşuldur: su yüzeyindeki güneş yansıması kamerayı yanıltır, yan rüzgâr ve akıntı tekneyi rotadan iter. Testler hava bilgisiyle etiketlenirse yazılım ekibi hangi koşulda neyi iyileştirmesi gerektiğini veriyle görür.",
+       "kaynak": "senlik"
+      },
+      {
+       "baslik": "Sıcak saha ısıl bütçesi (Kahire, Temmuz)",
+       "ne": "Temmuz'da Kahire gibi sıcak sahalar için güneş ışınımı ve hava sıcaklığından gövde içi elektronik ve batarya ısınma riskini veren kart.",
+       "nasil": [
+        "Yarışma alanının koordinatı takımdan alınır; Open-Meteo Historical Weather (ERA5) ile 2016-2025 Temmuz saatlik hava sıcaklığı, güneş ışınımı (GHI), rüzgâr ve nem indirilir.",
+        "İstanbul'daki testlerde gövde içine ucuz bir sıcaklık sensörü konur; iç sıcaklık, dış sıcaklık, güneş ışınımı ve rüzgârla birlikte 1 dakikalık aralıkla tutulur.",
+        "Bu verilerle basit bir ısıl model kurulur: iç sıcaklık artışı = f(güneş ışınımı, dış sıcaklık, rüzgârla soğuma, iç güç tüketimi).",
+        "Model Kahire Temmuz koşullarına uygulanır; saat saat iç sıcaklık tahmini batarya ve elektronik parçaların üretici sınırlarıyla karşılaştırılır.",
+        "Sonuç kısa bir ısıl yönetim kartıdır: hangi saatlerde gölgelik/havalandırma şart, hangi saatler test için uygun, hangi parçalar riskli."
+       ],
+       "sure": "3 hafta, haftada ~3 saat (ölçümler testlerle birlikte)",
+       "neden": "Takım 2026'da ICMTC için Temmuz'da Kahire'de hem İDA hem ROV ile yarıştı, 2025'te de Mısır'daki UMVC'deydi. Öğle güneşinde kapalı bir gövdenin içi hava sıcaklığının belirgin üstüne çıkabilir; ısınma sahada açıklanamayan yeniden başlamalara ve batarya kapasitesi kaybına yol açar. Risk önceden sayıyla bilinirse havalandırma, gölgelik ve test saati planlanır.",
+       "kaynak": "senlik"
       }
      ],
-     "ortakSayisi": 3,
+     "ortakSayisi": 6,
      "anlati": "",
      "kaynaklar": [
       {
        "ad": "Kaynak",
        "url": "https://www.hurriyet.com.tr/gundem/itunun-odullu-botu-42182703"
       }
-     ]
+     ],
+     "stantSenlik": "D 1"
     },
     {
      "id": "t-itu-autobee",
@@ -5921,6 +6314,1054 @@
        "ad": "Kaynak",
        "url": "https://haber.itu.edu.tr/haberdetay/2025/09/26/itu-teknofest-2025-istanbul-da-gelecege-iz-birakti"
       }
+     ]
+    },
+    {
+     "id": "apig-tech",
+     "ad": "APİG Tech Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 10",
+     "ozet": "Görüntü işleme ve yapay zekâ odaklı İTÜ Ar-Ge takımı; dost-düşman ayrımı yapan Agile Hunter yazılımıyla 2024'te uluslararası robot yarışmalarında derece aldı. 2026'da 11.",
+     "kanal": {
+      "instagram": "@apigtech"
+     },
+     "ortak": [
+      {
+       "baslik": "Model uydu: konum koruma ve iniş için rüzgâr profili",
+       "ne": "Model uydunun 200 m'de konum koruma ve iniş testleri için fırlatma sahasının saatlik rüzgâr, hamle ve türbülans profilini çıkarmak.",
+       "nasil": [
+        "Takımdan geçmiş ve olası fırlatma sahalarının koordinatı, fırlatma saatleri, uydunun kütlesi, rotor yapısı ve iniş hızı bilgisi alınır (2026 finali: Aksaray Hisar Atış Alanı).",
+        "Open-Meteo Historical (ERA5) ile 2016-2025 eylül ayları için saatlik 10 m ve 100 m rüzgâr ile 10 m hamle indirilir; ERA5 basınç seviyelerinden (900-825 hPa) yerden yaklaşık 700 m'ye kadar rüzgâr profili, ERA5 tek seviyeden sınır tabaka yüksekliği çıkarılır.",
+        "Saat dilimine göre (sabah, öğle, öğleden sonra) 200 m'deki ortalama rüzgâr, hamle faktörü ve rüzgâr kesmesi istatistiği hesaplanır; konum koruma için en sakin saat aralığı tablosu çıkar.",
+        "İniş hızı ve katman rüzgârlarıyla sürüklenme mesafesi hesaplanır; olası iniş elipsi haritaya çizilir (kurtarma ekibinin yerleşimi için).",
+        "Seçilen rüzgâr sınıfları (ortalama rüzgâr + hamle dizisi) takımın simülasyonuna ya da test düzeneğine girdi olarak verilir; kontrolcünün 10 saniyelik tutma başarısı rüzgâr sınıfına göre raporlanır.",
+        "Yarışma haftasında sahaya özel tahmin paneli üretilir; uçuştan sonra telemetrideki konum sapması tahminle karşılaştırılıp tahmin karnesine eklenir."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "2026 Model Uydu Yarışması'nda uydudan 200 m irtifada rüzgâr ve sarsıntıya rağmen 10 saniye dengede kalması (konum koruma) ve eş eksenli rotor, tek rotor ya da mekanik tetiklemeli bir iniş sistemi isteniyordu. Takım finali 5. sırada bitirdi; rotor kontrolcüsünü gerçekçi rüzgâr ve hamle dizileriyle sınamak bir sonraki sezonda puan farkı yaratabilir. Aksaray Hisar Atış Alanı gibi İç Anadolu sahalarında açık eylül günlerinde öğleden sonra konvektif türbülans genellikle güçlenir; fırlatma saati sonucu etkiler."
+      },
+      {
+       "baslik": "Basınçtan irtifa hesabının düzeltilmesi",
+       "ne": "Uydunun basınçtan irtifa hesabını yer basıncı ve gerçek sıcaklıkla düzelterek ayrılma ve 200 m tutma eşiklerini sağlamlaştırmak.",
+       "nasil": [
+        "Takımdan uçuş yazılımındaki irtifa formülü (standart atmosfer mi, kalkışta sıfırlama mı) ve 2026 uçuşlarının ham basınç-sıcaklık telemetrisi alınır.",
+        "Uçuş saatleri için en yakın METAR istasyonundan (ör. Nevşehir Kapadokya LTAZ) ve Open-Meteo'dan yüzey basıncı ile sıcaklık çekilir; saha yüksekliğine göre yer basıncı (QFE: sahadaki gerçek basınç) kestirilir.",
+        "Hipsometrik denklemle (katmanın ortalama sanal sıcaklığı kullanılarak) gerçek irtifa yeniden hesaplanır; standart atmosfer formülüyle fark tablosu çıkarılır.",
+        "Fark üç kaleme ayrılır: sıcaklığın standarttan sapması, sıfırlama ile fırlatma arasındaki basınç değişimi, sensörün ısınması.",
+        "Uçuş yazılımına fırlatma öncesi yer basıncı ve sıcaklık girişiyle çalışan basit bir düzeltme eklenir; düzeltme bilinen yükseklikteki bir binada ya da basınç odasında sınanır."
+       ],
+       "sure": "1-2 hafta, haftada ~3 saat",
+       "neden": "2026 yarışmasında uydunun basınç, zaman ve uçuş durumu verisini işleyerek görev senaryosunu otonom yönetmesi ve irtifa geçişlerinde aşamalı ayrılması isteniyordu. İrtifa standart atmosfer formülüyle hesaplanırsa sıcak bir İç Anadolu öğleden sonrasında ve gün içi basınç değişiminde hata birkaç metreden onlarca metreye varabilir; bu, ayrılma anını ve 200 m tutma görevini doğrudan bozar."
+      },
+      {
+       "baslik": "Agile Hunter için hava ve ışık koşullu doğrulama seti",
+       "ne": "Agile Hunter test görüntülerini güneş açısı, bulut, görüş ve yağışla etiketleyip model hatasını hava koşuluna göre ölçmek.",
+       "nasil": [
+        "Takımın geçmiş test ve gösterilerinden tarih-saat, konum, kamera yönü ve kare bazında model çıktıları (doğru/yanlış tanıma) toplanır.",
+        "Her kare için pvlib ile güneş yükseklik ve azimut açısı, kamera yönüne göre ters ışık açısı hesaplanır.",
+        "Aynı saatler için Open-Meteo Historical'dan bulutluluk (alçak/orta/yüksek) ve yağış, Open-Meteo Air Quality'den (CAMS) aerosol optik derinliği, yakın METAR'dan görüş ve hadise kodları (BR pus, FG sis, RA yağmur) eklenir.",
+        "Hata oranı koşul sınıflarına göre ayrılır (açık-kapalı, düşük-yüksek güneş, puslu-temiz hava) ve güven aralıklarıyla tablolanır.",
+        "En zayıf koşullar için yeni veri toplama ve veri artırma (augmentation: görüntüyü yapay olarak çeşitlendirme) önerisi ile bu koşulda insan onayı zorunlu eşikleri yazılır."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Agile Hunter dış mekân görüntüsünden dost-düşman ayrımı yapıyor; sis, pus, yağış, ters ışık ve alçak güneş kamerada kontrastı düşürür. Hangi koşulda yanlış tanımanın arttığını bilmek hem yarışma ve fuar gösterilerinde hem de güvenli kullanımda (insan onayının zorunlu olması gereken koşulları belirlemek) kritik. AURA'nın tahmin karnesi yöntemi, model hatasını koşula göre ayırmaya doğrudan uyar."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "arf",
+     "ad": "ARF Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 14",
+     "ozet": "Takım sitesine göre yıllık uluslararası CanSat (model uydu) yarışması için uydu tasarlayan İTÜ proje takımı. Instagram'da PDR (ön tasarım incelemesi) sunumu hazırlığını paylaşmış.",
+     "kanal": {
+      "instagram": "@itu_arf"
+     },
+     "ortak": [
+      {
+       "baslik": "İniş sürüklenmesi ve fırlatma günü rüzgâr kartı",
+       "ne": "Paraşütle inen CanSat'ın rüzgârla ne kadar sürükleneceğini katman katman hesaplayıp fırlatma günü için renkli karar kartı üretmek.",
+       "nasil": [
+        "Takımdan güncel görev rehberindeki bırakma ve ayrılma yüksekliklerini, tasarlanan iniş hızlarını (paraşüt öncesi ve sonrası evreler) ve hedef yarışma yılını al.",
+        "Fırlatma sahasının koordinatı için son 10 yılın haziran ayına ait ERA5 saatlik rüzgârını 10 m'de ve yerden yaklaşık 1,5 km yukarıya kadar olan basınç seviyelerinde (sahanın rakımına göre seçilir) indir.",
+        "Her saat için basit sürüklenme hesabı yap: her katmanda geçen süre = katman kalınlığı / iniş hızı; yatay kayma = o katmanın rüzgârı × süre; katmanları topla.",
+        "Sonuçları sürüklenme mesafesi ve yönü dağılımı (medyan ve %90'lık değer) olarak haritaya dök; saat dilimine göre en az sürüklenen pencereleri çıkar.",
+        "Fırlatma haftası aynı hesabı ECMWF açık verisi ve HRRR (ABD için 3 km çözünürlüklü model, Open-Meteo üzerinden) tahminleriyle her gün tekrarla; yeşil-sarı-kırmızı kartı tasarım raporundaki iniş hızı gerekçesine ve kurtarma planına ekle.",
+        "Uçuştan sonra telemetrideki GPS iniş noktasını tahminle karşılaştır; hata payını bir sonraki sezon için arşivde sakla."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım Instagram'da #CanSat etiketiyle PDR (ön tasarım incelemesi) çalışmalarını paylaşıyor; eski bir kaynakta da uydunun roketten ayrılıp paraşütle indiği yazıyor. Paraşütlü inişte iniş noktası tamamen rüzgâr profiline bağlıdır: sürüklenme tahmini hem tasarım raporunda iniş hızı seçimini sayıyla savunmaya hem de fırlatma günü kurtarma ekibini doğru yere göndermeye yarar. Yarışmanın 2027 ayağı 10-13 Haziran'da Monterey (Virginia, ABD) yakınındaki bir arazide yapılacak; takım katılırsa hedef saha bellidir."
+      },
+      {
+       "baslik": "Basınçtan irtifa: gün basıncına göre düzeltme",
+       "ne": "Uydunun basınçtan hesapladığı irtifayı o günün yer basıncı ve sıcaklığıyla düzelterek ayrılma tetikleme hatasını göstermek.",
+       "nasil": [
+        "Takımın uçuş yazılımındaki basınç-irtifa formülünü ve tetikleme yüksekliklerini al (standart atmosfer mi, fırlatma öncesi yer basıncı referansı mı kullanılıyor).",
+        "Fırlatma sahasına en yakın METAR istasyonunun son yıllara ait haziran basınç (QNH) ve sıcaklık değerlerini IEM arşivinden indir; günden güne ve saatten saate yer basıncı değişimini çıkar.",
+        "Hipsometrik denklemle (iki basınç seviyesi arasındaki kalınlığı katmanın ortalama sıcaklığından hesaplayan bağıntı) sıcak, normal ve serin gün için 'gerçek irtifa - formül irtifası' farkını hesapla.",
+        "Yer referansı fırlatmadan hemen önce sıfırlanırsa ve sıfırlanmazsa tetikleme yüksekliğinin ne kadar değiştiğini tabloya dök.",
+        "Varsa önceki deneme uçuşu telemetrisini aynı günün METAR ve ERA5 değerleriyle karşılaştırıp sensör sapmasını (sabit kayma) bul.",
+        "Sonucu tek sayfalık 'irtifa hata bütçesi' olarak tasarım raporuna ekle."
+       ],
+       "sure": "1 hafta, haftada ~3 saat",
+       "neden": "CanSat görevlerinde ayrılma ve paraşüt açılması çoğunlukla basınç sensöründen hesaplanan irtifayla tetiklenir (güncel görev rehberinde teyit edilecek). Yer basıncı yanlış alınırsa ya da standart atmosfer varsayılırsa tetikleme yüksekliği şaşar; PDR ve CDR (kritik tasarım incelemesi) sunumlarında bu hata payını sayıyla göstermek tasarımın güvenilirliğini artırır."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "astrobee",
+     "ad": "Astrobee Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 16",
+     "ozet": "İTÜ Astrobee, Uçak ve Uzay Bilimleri Fakültesi'nde kurulan yeni bir roket takımı; alt ekiplerini kuruyor, sponsor desteği alıyor ve yarışma, hackathon ve girişim programları için bir topluluk oluşturuyor.",
+     "kanal": {
+      "instagram": "@itu.astrobee"
+     },
+     "ortak": [
+      {
+       "baslik": "İlk test ve atışlar için hava kontrol listesi ve uyarı ajanı",
+       "ne": "Motor testi ve ilk atış günleri için rüzgâr, hamle, bulut tabanı, yağış ve şimşek riskini tek tabloda veren uyarı ajanı kurmak.",
+       "nasil": [
+        "Takımla eşikler yazılır: azami yer rüzgârı ve hamle (yüksek güç roket güvenlik kurallarında 20 mph, yaklaşık 9 m/s üst sınır var; takım daha sıkı bir değer seçebilir), asgari bulut tabanı ve görüş, yağış ve şimşek yasağı.",
+        "Test/atış sahası koordinatı için Open-Meteo'dan 10 m rüzgâr ve hamle, alçak/orta bulut örtüsü, yağış, CAPE ve 925-500 hPa rüzgârları saatlik çekilir; aynı saatler en yakın havalimanının METAR/TAF'ı ile karşılaştırılır.",
+        "Her saat yeşil/sarı/kırmızı boyanır ve hangi eşiğin aşıldığı yazılır (ör. 'hamle 11 m/s → kırmızı').",
+        "Atış günü geçince gerçekleşen METAR ile tahmin kıyaslanıp AURA karnesine işlenir; eşikler ilk deneyime göre güncellenir."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım ilk roketine hazırlanıyor ('We are coming' paylaşımı). Yeni bir takımın ilk atışında sık yaşanan sorun gün seçimidir: güçlü yer rüzgârı ve hamle, alçak bulut ya da konvektif fırtına atışı iptal ettirir veya roketi rampadan çıkarken saptırır. Kontrol listesini baştan sayıya bağlamak, sahaya boşuna gitmeyi ve güvenlik riskini azaltır."
+      },
+      {
+       "baslik": "Tasarım benzetiminde gerçek atmosfer: rüzgâr ve sıcaklık duyarlılığı",
+       "ne": "İlk roket tasarımını RocketPy'da standart atmosfer yerine gerçek sondaj ve ERA5 profilleriyle sınayıp duyarlılık tablosu çıkarmak.",
+       "nasil": [
+        "Takımın taslak roket verisi (kütle, ağırlık merkezi, sürükleme katsayısı tahmini, motor itki eğrisi) RocketPy'a girilir; standart atmosferle temel uçuş hesaplanır.",
+        "İstanbul (IGRA2 17064) ve Ankara (IGRA2 17130) radyosonda arşivinden farklı mevsimlerden 20 sondaj ile ERA5 basınç seviyesi profilleri seçilir: sakin, rüzgârlı, sıcak ve soğuk günler.",
+        "Her profil için benzetim tekrarlanır; apoje, rampa çıkış hızı, azami hücum açısı ve iniş noktası sapması tabloya yazılır.",
+        "Yer rüzgârı 0-10 m/s ve sıcaklık ±15 °C taranarak duyarlılık eğrileri çizilir; 'hangi rüzgârdan sonra rampa çıkış hızı yetersiz kalıyor' sorusu cevaplanır.",
+        "Sonuç tasarım incelemesine tek sayfa olarak girer; atış sahası belli olunca aynı akış o sahanın profilleriyle yeniden koşturulur."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Takım tasarım aşamasında; kanatçık boyu, kararlılık payı ve rampa çıkış hızı gibi kararlar şimdi veriliyor. Yalnız standart atmosferle yapılan benzetim, rüzgârlı ya da sıcak bir günde apojenin ve sapmanın ne kadar değişeceğini göstermez. Gerçek profillerle erken deneme, ileride tasarımı yeniden yapmayı önler."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "blue-space-advanced-marine-technologies",
+     "ad": "Blue Space Advanced Marine Technologies Team",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 3",
+     "ozet": "Ekim 2025'te İTÜ Elektrik-Elektronik Fakültesi bünyesinde kurulan, su altı ve su üstü deniz araçlarını sıfırdan üreten takım. TEKNOFEST Su Altı Roket kategorisine hazırlanıyor; MiniBee aracını ilk kez suya indirdi.",
+     "kanal": {
+      "instagram": "@itubluespace"
+     },
+     "ortak": [
+      {
+       "baslik": "Deneme ve yarışma günü deniz-rüzgâr kartı",
+       "ne": "Deneme sahası ve Gölcük yarışma alanı için dalga, rüzgâr ve hamle tahminini her gün yeşil-sarı-kırmızı karta çevirmek.",
+       "nasil": [
+        "Takımdan deneme sahasının koordinatını, aracın yüzeyde güvenle kalabildiği dalga sınırını ve roket fırlatma için rüzgâr sınırını al (bilinmiyorsa ilk denemelerle birlikte belirlenir).",
+        "Open-Meteo Marine API'den önemli dalga yüksekliği, dalga periyodu ve yönünü; Open-Meteo Forecast API'den 10 m rüzgâr ve hamleyi saatlik olarak çek.",
+        "Gölcük'e en yakın METAR istasyonu olan Kocaeli Cengiz Topel'in (LTBQ) gözlemlerini ve geçmiş ağustos verisini IEM arşivinden indir; tahminin bu bölgedeki sapmasını ölç.",
+        "Takımın sınırlarına göre her saat için yeşil (uygun), sarı (dikkat), kırmızı (deneme yok) kararını veren betiği yaz.",
+        "Her denemeden sonra sahada gözlenen dalga ve rüzgârı (göz kestirimi, fotoğraf ya da el anemometresi) tahminle karşılaştıran bir tahmin karnesi tut."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım TEKNOFEST Su Altı Roket kategorisine hazırlanıyor; 2026'da bu yarışmanın finali TEKNOFEST Mavi Vatan kapsamında Gölcük Tersanesi Komutanlığı'nda (İzmit Körfezi) denizde yapıldı. Görevlerden biri aracın yunuslama hareketiyle yüzeye çıkıp kapağını atması ve içindeki model roketi fırlatması: yüzeydeki dalga aracın duruşunu, rüzgâr da roketin uçuşunu etkiler. MiniBee'nin su testleri de yeni başladı; denize açık denemelerde güvenli gün seçimi gerekiyor."
+      },
+      {
+       "baslik": "Deniz suyu yoğunluğu ile yüzerlik ayarı",
+       "ne": "Havuzda dengelenen aracın denizde farklı yüzmemesi için yarışma suyunun yoğunluğunu hesaplayıp balast tablosu çıkarmak.",
+       "nasil": [
+        "Aracın hacmini, kütlesini ve havuzdaki son denge ayarını takımdan al.",
+        "Copernicus Marine Karadeniz fizik ürününden (Marmara için U-TSS modeli ek veri seti olarak verilir; İzmit Körfezi kapsaması kontrol edilir) yarışma ayına ait yüzeyden birkaç metre derinliğe kadar sıcaklık ve tuzluluk profilini indir.",
+        "TEOS-10 deniz suyu denklemiyle (Python gsw kütüphanesi) her derinlik için yoğunluğu hesapla; havuz suyuyla farkı bul.",
+        "Fark kadar ek ağırlık (balast) ya da yüzdürücü hacmi hesapla; sıcak-serin ve az-çok tuzlu senaryolar için tablo hazırla.",
+        "Yarışma öncesi denemede basit bir hidrometre ya da tuzluluk ölçerle yerinde ölçüm alıp model değerini doğrula; balastı sahada son kez ayarla."
+       ],
+       "sure": "1-2 hafta, haftada ~3 saat",
+       "neden": "Takım aracını atölyede ve ilk su testlerinde dengeliyor; yarışma ise Marmara'nın bir kolu olan İzmit Körfezi'nde. Deniz suyu tatlı sudan daha yoğun olduğu için havuzda nötr yüzerliğe (ne batan ne çıkan) ayarlanan araç denizde fazla yüzer; su altında 50 m gidip U dönüşü yapma ve yunuslamayla yüzeye çıkma görevlerinde bu fark derinlik tutmayı ve kontrolü bozar."
+      },
+      {
+       "baslik": "Yüzeyden roket fırlatma anında dalga ve rüzgâr etkisi",
+       "ne": "Yüzeye çıkan aracın dalgada sallanmasını ve rüzgârın model roketi saptırmasını benzetip güvenli fırlatma koşulunu bulmak.",
+       "nasil": [
+        "Takımdan roketin kütlesi, motor itki eğrisi, fırlatma tüpü açısı ve aracın yüzeydeki doğal salınım periyodunu (havuz testinden) al.",
+        "Gölcük için ağustos ayı dalga yüksekliği-periyodu ve 10 m rüzgâr dağılımını Open-Meteo Marine geçmiş verisi ve ERA5'ten çıkar.",
+        "Dalga periyodunu aracın doğal periyoduyla karşılaştır; ikisi yakınsa sallanmanın büyüyeceği (rezonans) durumları işaretle.",
+        "RocketPy ile roketin uçuşunu farklı rüzgâr hızları ve fırlatma açısı sapmalarıyla benzet; yatay sürüklenmeyi ve ulaştığı en yüksek noktayı tabloya yaz.",
+        "Sonuçtan 'şu dalga ve rüzgârın üstünde fırlatma' ve 'araç dik konumdayken fırlat' kurallarını çıkar; yarışma raporuna ekle."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Görevin ikinci aşamasında araç yunuslama hareketiyle yüzeye çıkıp kapağını atıyor ve model roketi fırlatıyor. Bu anda araç dalgayla yalpa ve baş-kıç vurma hareketi yapar, fırlatma açısı değişir; roket havaya çıktıktan sonra da yan rüzgârla yönünü değiştirir. Takım hidrodinamik ve kontrol sistemlerini kendisi üretiyor; bu benzetim fırlatma yazılımına 'araç dik konumdayken fırlat' kuralı eklemeye yarar."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "bortek",
+     "ad": "Bortek Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 10",
+     "ozet": "Kendini ‘tüvenan cevherden uç ürün teknolojilerine bir öğrenci inisiyatifi’ olarak tanımlayan, bor mineralleri üzerine laboratuvar çalışması ve deneysel analiz yapan İTÜ takımı. Alım duyurusuna göre Savunma Sanayi, Enerji ve Tarım Teknolojileri ekipleri var; son görünen paylaşım Aralık 2024.",
+     "kanal": {
+      "instagram": "@itubortek"
+     },
+     "ortak": [
+      {
+       "baslik": "Laboratuvar ölçüm verisi hattı ve belirsizlik karnesi",
+       "ne": "Deney sonuçlarını tek tabloda toplayan, tekrarlanabilirlik ve ölçüm belirsizliğini hesaplayan, aykırı değeri işaretleyen ajanlı veri hattı.",
+       "nasil": [
+        "Takımdan bir deney türüne ait örnek ölçüm tablosu alınır (numune, yöntem, tekrar sayısı, cihaz, tarih).",
+        "Ortak bir veri şablonu (CSV) ve birim/adlandırma kuralı belirlenir; eski veriler bu şablona aktarılır.",
+        "Python betiği her deney için ortalama, standart sapma, tekrarlanabilirlik ve (varsa referans değere göre) sapma ile RMSE'yi hesaplar; kalibrasyon eğrisi varsa doğrusal regresyon ve belirsizliğini çıkarır.",
+        "Aykırı değerler istatistiksel bir kuralla (ör. Grubbs testi ya da çeyrekler arası açıklık) işaretlenir; deneyi yapandan neden notu istenir.",
+        "Her deney için tek sayfalık ‘ölçüm karnesi’ ve dönem sonu özet grafikleri üretilir."
+       ],
+       "sure": "1-2 hafta, haftada ~3 saat",
+       "neden": "Takım bor mineralleri üzerinde deneysel analiz ve testler yapıyor. AURA'nın tahmin karnesindeki yöntem (ölçümü beklenen değerle kıyaslayıp hatayı açıkça göstermek) laboratuvar verisine birebir uyar: aynı numunenin tekrar ölçümleri, kalibrasyon eğrisi ve yöntem karşılaştırması aynı hata ölçüleriyle (ortalama sapma, RMSE, güven aralığı) raporlanabilir. İşin hava ile doğrudan ilişkisi zayıf; ortaklık veri ve yazılım tarafında."
+      },
+      {
+       "baslik": "Laboratuvar ortam günlüğü: sıcaklık-nem ve numune kararlılığı",
+       "ne": "Laboratuvara ucuz sıcaklık-nem sensörü koyup deney sonuçlarıyla ve dış hava verisiyle ilişkisini sınayan ortam günlüğü.",
+       "nasil": [
+        "Takımla hangi deneylerin neme ve sıcaklığa duyarlı olabileceği konuşulur (tartım, kurutma, numune saklama).",
+        "Laboratuvara ve numune dolabına ucuz sıcaklık-nem sensörü (mikrodenetleyiciyle) konur; 10 dakikalık değerler tutulur.",
+        "Aynı dönem için dış hava sıcaklığı, bağıl nem ve çiy noktası Open-Meteo'dan çekilir; iç ve dış ortam arasındaki ilişki çıkarılır.",
+        "Deney sonuçları (ör. tartım farkları, tekrarlar arası sapma) ortam koşuluyla eşleştirilir; korelasyon ve basit regresyonla anlamlı etki aranır.",
+        "Etki bulunursa ‘numune saklama ve tartım için ortam aralığı’ kuralı yazılır; bulunmazsa sonuç ‘ortam etkisi görülmedi’ diye arşivlenir."
+       ],
+       "sure": "4 hafta (ölçüm süresi dahil), haftada ~2 saat",
+       "neden": "Bazı bor mineralleri kristal suyu içerir (ör. tinkal, yani boraks); kuru ve sıcak havada su kaybedip kütlesi değişebilir, nemli havada da numune nem çekebilir. Takımın deneyleri tartım, kurutma ya da hidratlı mineral içeriyorsa ortam nemi ve sıcaklığı sonuçlarda gizli bir hata kaynağı olabilir. Bu ilişki takımla teyit edilmeden varsayılmaz; iş, etkinin olup olmadığını veriyle sınar."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "databees",
+     "ad": "Databees Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 13",
+     "ozet": "Dijital ikiz, yapay zekâ ve veri temelli teknolojiler odağında çalışan disiplinlerarası İTÜ öğrenci proje takımı; Dijital İkiz ve Simülasyon, Yapay Zekâ ve Veri, Kuantum Teknolojileri, Sağlık Teknolojileri dahil yedi alt ekipten oluşuyor.",
+     "kanal": {
+      "instagram": "@itudatabees"
+     },
+     "ortak": [
+      {
+       "baslik": "Dijital ikize canlı hava katmanı",
+       "ne": "Dijital ikiz simülasyonlarına saatlik gözlem, çok modelli tahmin ve belirsizlik bandı veren otomatik hava katmanı kurmak.",
+       "nasil": [
+        "İkizin kapsamı (ör. İTÜ Ayazağa kampüsü), zaman adımı ve ihtiyaç duyduğu değişkenler takımla belirlenir.",
+        "Open-Meteo'dan ECMWF IFS, AIFS ve GFS saatlik tahminleri, Iowa Mesonet'ten en yakın meydanların (LTFM, LTBA) METAR gözlemleri günlük çekilir.",
+        "Modellerin son 30 gündeki hatası (yanlılık: sistematik sapma; RMSE: ortalama hata büyüklüğü) hesaplanır; basit yanlılık düzeltmesi ve modeller arası yayılımdan belirsizlik bandı çıkarılır.",
+        "Veri, ikizin okuyacağı biçimde (JSON/CSV ya da MQTT akışı) ve CF standart adlarıyla yayımlanır; eksik veri bayrakları eklenir.",
+        "İkizde örnek bir senaryo (ör. sıcak bir günün öğle saatinde açık alan konforu ya da bina soğutma yükü) hava katmanıyla çalıştırılır, sonuç gözlemle karşılaştırılır."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "Dijital İkiz ve Simülasyon ekibi gerçek dünya verisini simülasyona bağlayıp farklı senaryoları test etmeyi hedefliyor; bina enerjisi, kalabalık, ulaşım ya da sağlık senaryolarının çoğu sıcaklık, rüzgâr, yağış ve güneş ışınımına bağlı. AURA'nın zaten çektiği açık tahminler ve hata ölçümü, ikize ne kadar güvenilir olduğu bilgisiyle birlikte hazır girdi olur."
+      },
+      {
+       "baslik": "Sağlık Teknolojileri için ısı stresi (UTCI) katmanı",
+       "ne": "İstanbul için ERA5 tabanlı UTCI ısı stresi geçmişi ve 7 günlük tahmini çıkarıp sağlık ve ikiz senaryolarına katman yapmak.",
+       "nasil": [
+        "Copernicus CDS'ten ERA5-HEAT (UTCI ve ortalama ışınım sıcaklığı) İstanbul kutusu için 1991-2025 saatlik indirilir.",
+        "Yıllık ve aylık güçlü ısı stresi ve üstü saat sayıları ile sıcak hava dalgası olayları (ardışık sıcak günler) çıkarılır.",
+        "Open-Meteo'dan sıcaklık, nem, rüzgâr ve ışınım tahmini alınıp pythermalcomfort kütüphanesiyle 7 günlük UTCI tahmini hesaplanır.",
+        "Tahmin edilen UTCI, ERA5-HEAT güncellendikçe sonradan hesaplananla karşılaştırılarak tahmin karnesi tutulur.",
+        "Sonuç dijital ikizde ızgara bazlı ısı stresi kategorisi katmanı olarak gösterilir; sağlık ekibi katmanı kendi modellerine girdi olarak alır (kişisel sağlık verisi kullanılmaz)."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "Sağlık Teknolojileri ekibi hastalık süreçlerini modelleyip veri temelli karar sistemleri kurmayı hedefliyor; sıcak hava dalgaları sağlık riskinin en iyi bilinen meteorolojik sürücülerinden biri. Profillerindeki COP31 başlıklı öne çıkan bölüm ve too hot to process temalı hediyelikler iklim ve sıcaklık konusuna ilgiyi gösteriyor; UTCI katmanı bu ilgiyi ölçülebilir bir ürüne çevirir."
+      },
+      {
+       "baslik": "Klasik ve kuantum makine öğrenmesi için açık kıyas deneyi",
+       "ne": "AURA'nın tahmin hatası veri setinde klasik ve kuantum makine öğrenmesi modellerini aynı ölçütle kıyaslayan ortak deney.",
+       "nasil": [
+        "AURA bir istasyon için (ör. LTFM) 2-3 yıllık model tahmini + gözlem tablosu hazırlar: girdiler ECMWF/GFS tahmin değerleri, saat ve mevsim; hedef 2 m sıcaklık hatası.",
+        "Eğitim ve sınama zamana göre ayrılır (son 6 ay sınama); veri sızıntısı kontrol edilir.",
+        "Klasik taban çizgileri kurulur: ham model, persistans (bugün = dün), doğrusal regresyon, gradient boosting.",
+        "Kuantum ekibi aynı veride değişken kuantum devresi ya da kuantum çekirdek modelini simülatörde (Qiskit/PennyLane) eğitir; az özellikli bir alt problemle başlanır.",
+        "Tüm modeller aynı ölçütlerle (RMSE, yanlılık, aşırı hata oranı) tek karneye yazılır; sonuç Araştırma ve Akademik Yayın ekibiyle kısa bir teknik not ya da poster olur."
+       ],
+       "sure": "4 hafta, haftada ~3 saat",
+       "neden": "Kuantum Teknolojileri ekibi kuantum makine öğrenmesi, optimizasyon ve simülasyon algoritmaları geliştirmeyi hedefliyor; gerçek, küçük ve iyi tanımlı bir regresyon problemi bu iş için doğru sınama alanı. AURA tarafında ise tahmin düzeltme modellerinin bağımsız bir ekip tarafından sınanması kazanç. Kuantum avantajı beklenmez; amaç yöntemi öğrenmek ve dürüst kıyas yapmaktır."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "deniz-harp-araclari",
+     "ad": "Deniz Harp Araçları Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant D 8",
+     "ozet": "2019'da kurulan, insansız su üstü ve su altı araçları geliştiren takım (22 kişi). Araçları: kayıcı gövdeli BARBAROS, deniz ve göl görevleri için otonom BEE-02 ve 150 m derinliğe inebilen LEVENT.",
+     "kanal": {
+      "instagram": "@itudeha"
+     },
+     "ortak": [
+      {
+       "baslik": "Küçük insansız deniz aracı için test günü rüzgâr-dalga seçici",
+       "ne": "BEE-02 ve BARBAROS için rüzgâr, hamle ve dalga eşikli test günü paneli; kapalı sularda fetch tabanlı dalga hesabı ekleriz.",
+       "nasil": [
+        "Takımın test noktaları (göl, koy, açık deniz) ve araç sınırları (BEE-02: 0,8 m, 24,6 kg, 6 knot; BARBAROS) belirlenir.",
+        "Her nokta için son 5 yılın saatlik 10 m rüzgârı ve hamlesi (ERA5), açık deniz noktalarında dalga yüksekliği ve periyodu (Open-Meteo Marine, Copernicus Marine) indirilir.",
+        "Göl ve kapalı koylarda dalga modeli çalışmadığı için rüzgâr hızı, süresi ve fetch'ten kıyı mühendisliği formülleriyle dalga yüksekliği ve periyodu hesaplanır; rüzgâr yönüne göre fetch haritası çıkarılır.",
+        "Araç başına eşikler konur (BEE-02 için rüzgâr/hamle/dalga sınırı, BARBAROS için kayma hızına çıkış sınırı); ay ve saat bazında uygun test penceresi takvimi çıkarılır.",
+        "Testten 72/24/3 saat önce yeşil-sarı-kırmızı panel verilir; test sonrası gözlenen koşul kısa formla girilir."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "BEE-02 yalnız 80 cm boyunda, 24,6 kg ve en fazla 6 knot hızlı; rüzgârın sürüklemesi aracın kendi hızıyla kıyaslanabilir hale gelir, boyuna göre küçük dalgalar bile seyir doğruluğunu ve görüntü işlemeyi bozar. BARBAROS'un V tabanlı kayıcı gövdesi dalgalı deniz için tasarlandı; hangi deniz durumunda güvenle kayma (planing) hızına çıktığını bilmek test planının temelidir."
+      },
+      {
+       "baslik": "Aracın IMU'sundan deniz durumu ölçümü ve tahmin karnesi",
+       "ne": "Test sırasında aracın IMU verisinden dalga yüksekliği ve periyodunu kestirip model dalga tahminiyle karşılaştırırız.",
+       "nasil": [
+        "Aracın IMU verisi (ivme, yalpa ve baş-kıç vurma açıları) ve GPS'i, motorların durduğu 5-10 dakikalık 'serbest yüzme' bölümleriyle birlikte toplanır.",
+        "Düşey ivmeden spektral analizle önemli dalga yüksekliği ve tepe periyodu kestirilir; aracın kendi salınım frekansı ayıklanır.",
+        "Aynı saat ve nokta için Open-Meteo Marine/Copernicus Marine dalga tahmini ve fetch hesabı çekilir.",
+        "Fark, hata ve sapma (bias) karnesi çıkarılır; aracın güvenilir ölçtüğü periyot aralığı belirlenir.",
+        "Otonomi başarısı (rota sapması, hedef tespiti) deniz durumuna göre gruplanır ve tasarım raporuna girecek grafikler üretilir."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "Takımın araçları otonom seyir ve görüntü işleme yapıyor; yazılım başarımını değerlendirmek için o anki deniz durumunu bilmek gerekiyor ama sahada dalga ölçer yok. Aracın kendi hareket sensörü (IMU) ucuz bir dalga ölçere dönüşebilir; böylece her testin 'hangi denizde yapıldığı' sayıyla belgelenir."
+      },
+      {
+       "baslik": "BEE-02 su kalitesi görevleri için hava bağlamı",
+       "ne": "BEE-02'nin su kalitesi ölçümlerini önceki günlerin yağış, rüzgâr, güneşlenme ve su sıcaklığıyla eşleştiren bir veri hattı kurarız.",
+       "nasil": [
+        "BEE-02'deki sensörler ve ölçüm noktaları takımla netleştirilir (ör. sıcaklık, bulanıklık, pH).",
+        "Her ölçüm için önceki 72 saatin yağışı, rüzgârı, küresel ışınımı ve hava sıcaklığı (Open-Meteo, ERA5-Land) ile deniz suyu sıcaklığı (Copernicus Marine) eklenir.",
+        "Ölçümler 'yağış sonrası', 'sakin-güneşli', 'rüzgârlı-karışmış' gibi hava sınıflarına ayrılır ve farklar grafiklenir.",
+        "Sonraki görevler için 'hangi havada ölçüm alınmalı' planı ve standart ölçüm formu hazırlanır."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takım BEE-02'yi deniz ve göl ekosistemlerinde su kalitesi ölçümü yapabilen bir araç olarak tanımlıyor. Bulanıklık, sıcaklık ya da çözünmüş oksijen gibi ölçümlerin anlamı, önceki günlerin yağışına, rüzgârına ve güneşlenmesine bağlı; hava bağlamı olmadan farklı günlerin ölçümleri karşılaştırılamaz."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "ekim",
+     "ad": "Ekim Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 7",
+     "ozet": "İTÜ Eklemeli İmalat Takımı: kendi 3 boyutlu yazıcı projelerini geliştiriyor ve eklemeli imalatı yaygınlaştırmak için 'Eklemeli Düşünmek' konferansını düzenliyor (ikincisi 16-17 Kasım 2023'te İTÜ Süleyman Demirel Kültür Merkezi'nde).",
+     "kanal": {
+      "instagram": "@ituekim"
+     },
+     "ortak": [
+      {
+       "baslik": "3B baskılı radyasyon siperi: ucuz sensöre güneş kalkanı",
+       "ne": "Ucuz sıcaklık-nem sensörü için 3B baskılı radyasyon siperi tasarlayıp güneşli ve rüzgârsız saatlerde referansa karşı hatasını ölçeceğiz.",
+       "nasil": [
+        "Açık tasarımlar incelenir (ör. HardwareX 2022'deki PLA/ASA siper); 2-3 aday seçilir: çok katlı tabak tipi siper, farklı tabak aralığı ve havalandırma açıklığı.",
+        "UV'ye dayanıklı ASA ya da beyaz PETG ile basılır; dış yüzey açık renkli ve mat tutulur, karşılaştırma için bir adet PLA basılır.",
+        "Aynı direğe, yerden 1,25-2 m yükseklikte siperli sensörler, siperi olmayan bir sensör ve referans olarak fanlı (aspirasyonlu) siperdeki bir sensör yan yana takılır; mümkünse yakındaki resmî istasyonla da kıyaslanır.",
+        "En az 3-4 hafta dakikalık ölçüm alınır; aynı saatler için güneş ışınımı (GHI) ve 10 m rüzgâr Open-Meteo'dan eklenir.",
+        "Siper-referans farkı ışınım ve rüzgâr sınıflarına göre (güneşli-rüzgârsız, bulutlu-rüzgârlı, gece) tablo ve grafiğe dökülür; en iyi tasarım seçilir.",
+        "Kazanan tasarımın baskı dosyası (STL), baskı ayarları ve sonuç notu açık lisansla yayımlanır; okul istasyonu gibi ortak işlerde kalkan olarak kullanılır."
+       ],
+       "sure": "4-5 hafta (1 hafta tasarım-baskı, 3-4 hafta ölçüm), haftada ~3 saat",
+       "neden": "Takımın asıl becerisi (tasarım, baskı, malzeme seçimi) meteorolojik ölçümün bilinen bir sorununa, güneşin sensörü ısıtmasına doğrudan uygulanabilir. AURA'nın tahmin karnesi ucuz ama güvenilir yer ölçümü ister; açık donanım literatüründe PLA ve ASA siperlerin sınandığı örnekler var, takım kendi tasarımını bu çizgide geliştirip yayımlayabilir. Havayla ilişkisi zayıf bir takım için en doğal ortak iş budur."
+      },
+      {
+       "baslik": "Atölye nem günlüğü ve filament kurutma uyarısı",
+       "ne": "Atölye ve filament dolabındaki nemi dış havanın çiy noktasıyla birlikte izleyip nem artınca kurutma uyarısı veren bir ajan kuracağız.",
+       "nasil": [
+        "Atölyeye ve filament dolabına birer ucuz sıcaklık-nem sensörü (ör. SHT31 + ESP32) konur.",
+        "Dış hava için Open-Meteo'dan saatlik sıcaklık, bağıl nem ve çiy noktası çekilir; iç ve dış ölçümler aynı günlükte birleştirilir.",
+        "Her baskı için kısa form doldurulur: filament türü, makaranın açıkta kalma süresi, sonuç (iyi, kabarcık, ip çekme, katman ayrılması).",
+        "4-6 hafta sonra baskı sonucu ile iç nem, dış çiy noktası ve açıkta kalma süresi arasındaki ilişki basit istatistikle incelenir; filament türüne göre 'kurut' eşiği önerilir.",
+        "Eşikler ajana işlenir; kış (ısıtmalı, kuru iç hava) ve yaz (nemli) dönemleri ayrı değerlendirilir."
+       ],
+       "sure": "1 hafta kurulum + 4-6 hafta gözlem, haftada ~2 saat",
+       "neden": "Takım 3B yazıcı geliştiriyor; nem çeken (higroskopik) filamentler (naylon, PETG, TPU gibi) nemlenince baskıda kabarcık, ip çekme ve zayıf katman bağı görülür. Havayla ilişki dolaylı ama ölçülebilir: atölye nemi dış havanın nem içeriğine ve ısıtmaya bağlı. Bu iş daha çok veri hattı ve ajan altyapısı ortaklığıdır."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "endustriyel-robot",
+     "ad": "Endüstriyel Robot Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 2",
+     "ozet": "",
+     "kanal": {},
+     "ortak": [],
+     "ortakSayisi": 2,
+     "kaynaklar": [],
+     "ortakIsIds": [
+      "oi-12-itu-kampus-hava-istasyonu-agi",
+      "oi-3-ortak-gunluk-arsivleyici-ecmwf"
+     ]
+    },
+    {
+     "id": "flora",
+     "ad": "Flora Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 9",
+     "ozet": "Elektronik ile biyolojiyi buluşturan yeni kurulmuş İTÜ öğrenci takımı; sensör, kontrol ve otomasyon altyapısıyla mikroalg yetiştiriciliği için otonom fotobiyoreaktör sistemleri geliştirmeyi hedefliyor.",
+     "kanal": {
+      "instagram": "@itu.flora"
+     },
+     "ortak": [
+      {
+       "baslik": "Güneş ve sıcaklık tahminiyle fotobiyoreaktör kontrol planı",
+       "ne": "Fotobiyoreaktörün LED, soğutma ve besleme planını 48 saatlik güneş ışınımı ve sıcaklık tahminine göre önceden ayarlayan ajan.",
+       "nasil": [
+        "Reaktörün konumu, yönü ve hangi ışık/sıcaklık sensörlerinin olduğu takımla belirlenir; hedef alg türünün uygun sıcaklık ve ışık aralığı literatürden alınır.",
+        "Open-Meteo'dan konum için 48 saatlik saatlik kısa dalga ışınım (doğrudan ve yaygın), bulutluluk ve 2 m sıcaklık tahmini çekilir.",
+        "Işınımdan fotosentetik aktif ışınım (PAR) ve günlük ışık integrali (DLI) kestirilir; reaktör içi sıcaklık için basit bir ısıl model (güneş kazancı + çevreye kayıp) kurulur.",
+        "Kural tablosu yazılır: DLI hedefin altındaysa LED takviyesi, öngörülen reaktör sıcaklığı eşiği aşıyorsa gölgeleme veya soğutma, uygun saatlerde besleme.",
+        "Sensör ölçümleri ile tahmin her gün karşılaştırılır (tahmin karnesi); ısıl model ve eşikler 2-3 haftada bir güncellenir."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "Takım mikroalg için otonom fotobiyoreaktör geliştirmeyi hedefliyor. Mikroalg büyümesini en çok ışık ve sıcaklık belirler; reaktör güneş alan bir yerde (dış ortam, sera ya da pencere önü) çalışacaksa bulutlu günde ışık yetersiz kalır, güneşli öğleden sonra ise kapalı reaktörde aşırı ısınma riski doğar. Tahmini bilen bir kontrolcü LED takviyesini ve soğutmayı önceden planlayıp enerji ve kültür kaybını azaltır."
+      },
+      {
+       "baslik": "Düşük maliyetli sensörlerin doğrulanması ve kalibrasyonu",
+       "ne": "Işık ve sıcaklık-nem sensörlerini açık gökyüzü modeli ve referans ölçümle sınayıp hata karnesi ve kalibrasyon katsayısı çıkarmak.",
+       "nasil": [
+        "Kullanılan sensör modelleri, örnekleme sıklığı ve yerleşimi (güneşte mi, kalkanlı mı) listelenir.",
+        "Işık sensörü açık gökyüzü günlerinde pvlib açık gökyüzü modeli ve Open-Meteo ışınım değerleriyle karşılaştırılır; çevrim katsayısı (lux'tan W/m² ya da PAR'a) çıkarılır.",
+        "Sıcaklık-nem sensörü ışınım kalkanlı ve kalkansız iki konumda yan yana çalıştırılıp güneşin yarattığı ısınma hatası ölçülür; yakın METAR değerleri kaba referans olarak eklenir.",
+        "Hata karnesi (yanlılık, RMSE, güneşli/bulutlu ayrımı) ve kalibrasyon katsayıları yazılır; kontrol yazılımına düzeltme eklenir.",
+        "Sensör sürüklenmesi (zamanla yavaş sapma) haftalık izlenir; sapma eşiği aşılırsa yeniden kalibrasyon önerilir."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "FLORA'nın odakları arasında sensör, kontrol ve otomasyon var; otonom reaktörün sensörü yanlış ölçerse yanlış karar verir. AURA'nın tahmin hatasını ölçtüğü yöntem (yanlılık, RMSE, koşula göre hata) sensörlere birebir uygulanabilir."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "galen",
+     "ad": "Galen Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 8",
+     "ozet": "Biyoteknoloji ve sentetik biyoloji alanında proje geliştiren lisans takımı. 2026 Küresel Açık Genetik Mühendisliği Yarışması'nda (GOGEC) majör depresif bozukluğa yönelik probiyotik projesiyle altın madalya aldı; alt ekibi Oncosphere TEKNOFEST finalisti oldu.",
+     "kanal": {
+      "instagram": "@itugalenteam"
+     },
+     "ortak": [
+      {
+       "baslik": "Tanı modelleri için 'tahmin karnesi' doğrulama kiti",
+       "ne": "Hava tahmini doğrulamasındaki Brier skoru, güvenilirlik diyagramı ve ROC araçlarını tanı/biyosensör modellerine uyarlayan kit kurarız.",
+       "nasil": [
+        "Takımın bir projesinden örnek veri seti alınır: her örnek için modelin verdiği olasılık ve gerçek sonuç (pozitif/negatif).",
+        "AURA'nın tahmin karnesi kodu uyarlanır: karışıklık tablosu (isabet, yanlış alarm, kaçırma), POD (duyarlılık), FAR (yanlış alarm oranı), CSI, Brier skoru ve Brier beceri skoru hesaplanır.",
+        "Güvenilirlik diyagramı ('model %70 diyorsa gerçekte ne sıklıkla doğru?') ve ROC eğrisi çizilir; gerekirse izotonik veya Platt kalibrasyonu denenir.",
+        "Farklı karar eşiklerinde yanlış alarm ve kaçırma sayılarını gösteren eşik seçimi tablosu çıkarılır.",
+        "Tek sayfalık 'model karnesi' şablonu ve 1 günlük ortak atölye (40 satır Python) hazırlanır."
+       ],
+       "sure": "2 hafta, haftada ~3 saat (atölye 1 gün)",
+       "neden": "Takım daha önce Alzheimer erken teşhis projesiyle GOGEC 2024'te altın madalya aldı; tanı ve biyosensör projelerinde 'model ne kadar güvenilir?' sorusu jüri önünde savunulmak zorunda. Olasılık tahmini doğrulama yöntemleri meteorolojide doğdu ve AURA'nın tahmin karnesiyle aynı kodu kullanır; iki takım tek bir doğrulama aracını paylaşır."
+      },
+      {
+       "baslik": "Literatür ve yarışma takvimi ajanı",
+       "ne": "PubMed ve bioRxiv'deki yeni yayınları ve yarışma tarihlerini alt ekiplere göre haftalık özetleyip takım kanalına gönderen ajan kurarız.",
+       "nasil": [
+        "Her alt ekip için anahtar kelime listesi hazırlanır (hastalık adı, organizma, yöntem).",
+        "PubMed E-utilities ve bioRxiv API'sinden son 7 günün yeni yayınları çekilir; yinelenenler ayıklanır.",
+        "Her yayın için 3 satırlık Türkçe özet ve 'projeyle ilgisi' notu üretilir, bağlantısıyla listelenir.",
+        "GOGEC, TEKNOFEST ve benzeri yarışmaların duyurulan tarihleri bir takvim dosyasında tutulur; teslimden 14/7/2 gün önce hatırlatma kurulur.",
+        "Haftalık özet takım kanalına gönderilir; ekip 'faydalı / değil' işaretiyle anahtar kelimeleri iyileştirir."
+       ],
+       "sure": "1-2 hafta, haftada ~3 saat",
+       "neden": "Takımın alt ekipleri (ör. MOOD, Oncosphere) aynı anda farklı hastalık ve yöntemler üzerinde çalışıyor; literatürü elle izlemek zaman alıyor ve teslim tarihleri kaçabiliyor. AURA'nın veri çeken, özetleyen ve mesaj atan ajan altyapısı bu işe doğrudan uyarlanabilir."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "green-ship",
+     "ad": "Green Ship Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 9",
+     "ozet": "İTÜ Gemi İnşaatı ve Deniz Bilimleri Fakültesi'nde 2022'de kurulan, yenilenebilir enerjiyi gemi inşaatıyla birleştiren tekne takımı; modüler ve kademeli (step) gövde prototipleri geliştiriyor. İkinci prototip hız testinde yaklaşık 8 knota çıktı (ilki yaklaşık 5 knot); Ağustos 2025'te Trondheim'daki Njord Challenge'da yarıştı.",
+     "kanal": {
+      "instagram": "@itugreenship"
+     },
+     "ortak": [
+      {
+       "baslik": "Prototip hızlarını adil kıyaslama: rüzgâr, dalga ve akıntı düzeltmesi",
+       "ne": "Hız testlerinde GPS hızından rüzgâr, dalga ve akıntı etkisini ayırıp prototipleri aynı koşula indiren ‘düzeltilmiş hız’ analizi.",
+       "nasil": [
+        "Geçmiş hız testlerinin tarih, saat, yer ve GPS hız verisi toplanır; mümkünse her test aynı hatta iki yönde (gidiş-dönüş) yapılmış koşulara ayrılır.",
+        "Her test saati için Open-Meteo'dan 10 m rüzgâr hızı-yönü ve hamle, Open-Meteo Marine'dan dalga yüksekliği-periyodu ve yüzey akıntısı çekilir; yeni testlerde sahada el anemometresiyle rüzgâr ölçülür.",
+        "Gidiş-dönüş ortalamasıyla akıntı etkisi giderilir; rüzgârın teknenin rotasına göre karşıdan ve arkadan gelen bileşeni hesaplanır.",
+        "Düzeltilmiş hız ile koşullar arasında basit bir regresyon kurulur (hız = gövde etkisi + rüzgâr bileşeni + dalga etkisi); her prototip aynı ‘sakin koşul’ değerine indirgenir.",
+        "Sonuç prototip başına ‘sakin suda beklenen hız ± belirsizlik’ tablosu olarak verilir; kıç akış iyileştirmesinden sonraki test de aynı yöntemle değerlendirilir."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Takım ilk prototipte yaklaşık 5, ikincide yaklaşık 8 knot gördü ve farkı kademeli gövdeye bağladı; kıç bölgesindeki akış bozulmasını sonraki prototipte çözmeyi planlıyor. Tasarım kararının doğru olması için hız farkının ne kadarının gövdeden, ne kadarının o günkü rüzgâr, dalga ve akıntıdan geldiği bilinmeli. Gemi hız denemelerinde akıntı etkisini aynı hatta gidiş-dönüş koşularla ayırmak standart bir yöntemdir."
+      },
+      {
+       "baslik": "Sakin deniz penceresi: hız testi günü seçimi",
+       "ne": "Test yeri için rüzgâr ve dalga tahmininden ‘sakin pencere’ bulan, 72/24/3 saat önce uyaran yeşil-sarı-kırmızı test günü paneli.",
+       "nasil": [
+        "Takımın test yerleri ve sınırları alınır: azami rüzgâr, hamle ve dalga yüksekliği; tercih edilen saat aralığı.",
+        "Her test yeri için Open-Meteo Forecast (rüzgâr, hamle, yağış) ve Open-Meteo Marine (dalga yüksekliği, periyodu) ile 3 günlük saatlik tahmin çekilir.",
+        "Birden çok modelin (ECMWF, GFS, ICON) aynı saat için verdiği değerlerin farkı belirsizlik olarak hesaplanır; modeller ayrışıyorsa saat sarıya çekilir.",
+        "Her saat yeşil-sarı-kırmızı işaretlenir ve en uzun yeşil pencere önerilir.",
+        "Test günü sahada ölçülen rüzgâr ve gözlenen dalga panele girilir; hangi modelin bu sahada daha iyi olduğu karnede izlenir."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Prototipler arası karşılaştırma ancak benzer ve sakin koşulda adil olur. Takım yeni gövde tasarımları üzerinde çalışıyor (Ekim 2026'da yeni gövde görseli paylaştı) ve iki gövdenin testlerde yıprandığını söylüyor; test günü önceden doğru seçilirse tekne gereksiz yıpranmaz, sonuçlar kıyaslanabilir olur."
+      },
+      {
+       "baslik": "Yenilenebilir enerji bütçesi",
+       "ne": "Teknedeki yenilenebilir kaynak (ör.",
+       "nasil": [
+        "Takımdan enerji sistemi bilgisi alınır: kaynak türü, panel gücü ve alanı, eğimi, batarya kapasitesi, seyirde tüketilen güç.",
+        "Test bölgesi için PVGIS'ten tipik saatlik ışınım serisi, Open-Meteo'dan geçmiş ve tahmin GHI, bulutluluk ve hava sıcaklığı çekilir.",
+        "pvlib ile panel düzlemine gelen ışınım ve panel sıcaklığından üretim hesaplanır; teknenin yalpasıyla değişen panel açısı için bir kayıp payı eklenir.",
+        "Saat saat ‘üretim − tüketim = batarya durumu’ hesaplanır; görev süresi ve menzil çıkarılır.",
+        "Testlerde ölçülen panel çıkışı (varsa) hesapla karşılaştırılır; fark tahmin karnesine işlenir ve model düzeltilir."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "Takımın tanımı yenilenebilir enerji kaynaklarını gemi inşaatıyla birleştirmek. Güneş ya da rüzgâr kaynaklı üretim tamamen havaya bağlıdır; ‘bugün ne kadar enerji üretilir, batarya ne kadar dayanır’ sorusunun cevabı hem tasarım (panel alanı, batarya kapasitesi) hem görev ve test planı için gerekir. Teknede hangi kaynağın kullanıldığı takımdan öğrenilmeli."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "hexajet",
+     "ad": "Hexajet Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant D 5",
+     "ozet": "2025 güzünde kurulan, jet motoru üzerine çalışarak insansız hava aracı tasarlamayı hedefleyen yeni takım; tasarım çalışmalarını sürdürüyor ve sosyal medyada yeni açıldı.",
+     "kanal": {
+      "instagram": "@itu.hexajet"
+     },
+     "ortak": [
+      {
+       "baslik": "Jet motoru testleri için hava düzeltmesi ve test günlüğü",
+       "ne": "Motor testlerinde ölçülen itkiyi sıcaklık, basınç ve neme göre standart güne düzelten ve her testi havasıyla saklayan bir sistem kurarız.",
+       "nasil": [
+        "Test düzeneğine ucuz bir sıcaklık-basınç-nem sensörü (ör. BME280) eklenir; yoksa en yakın METAR istasyonu (ör. LTFM) ve Open-Meteo verisi kullanılır.",
+        "Her test için ortam sıcaklığı, basıncı, nemi ve rüzgârı ile itki, devir, egzoz sıcaklığı ve yakıt debisi aynı zaman damgasıyla saklanır.",
+        "Standart gün düzeltmesi uygulanır: θ = T / 288,15 K ve δ = p / 101,325 kPa oranlarıyla düzeltilmiş itki (F/δ), düzeltilmiş devir (N/√θ) ve düzeltilmiş egzoz sıcaklığı (T/θ) hesaplanır.",
+        "Düzeltilmiş değerlerle motor performans haritası çıkarılır; testler arası fark 'tasarım etkisi' ve 'hava etkisi' olarak ayrılır.",
+        "Açık havada test için rüzgâr (özellikle emiş ağzına yan rüzgâr), yağış ve nem eşikleriyle 'test yapılabilir mi' kontrolü eklenir."
+       ],
+       "sure": "2 hafta, haftada ~3 saat (ilk motor testiyle başlar)",
+       "neden": "Takım jet motoru üzerinde somut adımlarla ilerlediğini söylüyor. Küçük bir jet motorunun itkisi emdiği havanın yoğunluğuna bağlı: aynı motor sıcak ve alçak basınçlı bir günde serin bir güne göre daha az itki verir. Düzeltme yapılmazsa farklı günlerin test sonuçları karşılaştırılamaz, bir tasarım değişikliğinin etkisi havanın etkisinden ayrılamaz."
+      },
+      {
+       "baslik": "Jet İHA tasarımı için sıcak gün itki payı tablosu",
+       "ne": "Olası uçuş sahalarının sıcaklık-basınç iklimini motor haritasıyla birleştirip 'sıcak günde itki ve kalkış payı' tablosu hazırlarız.",
+       "nasil": [
+        "Takımla olası test ve uçuş sahaları belirlenir (İstanbul ve ileride hedeflenen yarışma alanları).",
+        "Her saha için 2006-2025 ERA5 saatlik 2 m sıcaklık ve yüzey basıncından aylık %50/%90/%99'luk değerler ve yoğunluk irtifası hesaplanır.",
+        "işteki düzeltilmiş motor haritasıyla her koşulda beklenen itki bulunur; standart atmosferden sapma (ISA+10, ISA+20 °C) için itki kaybı tablosu yapılır.",
+        "Kanat kaldırması için yoğunluk oranı da eklenerek kalkış ve tırmanma payında 'zor gün' senaryoları yazılır.",
+        "Tasarım raporuna girecek tek sayfalık tablo ve grafik hazırlanır."
+       ],
+       "sure": "1-2 hafta, haftada ~3 saat",
+       "neden": "Takımın hedefi jet motorlu İHA tasarlamak. Tasarım aşamasında itki fazlası, kalkış mesafesi ve faydalı yük en zor hava gününe göre seçilmeli; sıcak bir yaz öğleden sonrası ve yüksek rakımlı bir saha itkiyi ve kanat kaldırmasını birlikte düşürür."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "kalkan",
+     "ad": "İTÜ Kalkan Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant D 6",
+     "ozet": "Instagram profiline göre hava savunma ve otonom takip sistemleri üzerine kurulmuş bir İTÜ öğrenci topluluğu. Henüz gönderisi yok; ürünü ve hedef yarışması standda öğrenilecek.",
+     "kanal": {
+      "instagram": "@itukalkan"
+     },
+     "ortak": [
+      {
+       "baslik": "Otonom takip testleri için görüş-güneş-rüzgâr koşul kartı (koşullu)",
+       "ne": "Açık alanda hedef takip testleri için görüş, güneş açısı, bulut ve rüzgârı tahmin edip her denemeye hava etiketi eklemek.",
+       "nasil": [
+        "Takımdan sensör türünü (kamera, termal kamera vb.), test alanının koordinatını ve hedef türünü al; iş bu bilgilere göre daraltılır.",
+        "Test saatleri için pvlib ile güneşin yüksekliğini ve yönünü hesapla; kameranın baktığı yönle karşılaştırıp parlama ve ters ışık riski olan saatleri işaretle.",
+        "Open-Meteo'dan görüş mesafesi, bulutluluk, yağış ve 10 m rüzgâr-hamle tahminini, en yakın METAR'dan gözlenen görüşü ve hava olayını çek.",
+        "Her test denemesine bu koşulları etiket olarak ekleyen bir test günlüğü şablonu kur; algılama başarısını koşullara göre grupla (hangi koşulda düşüyor?).",
+        "Eksik kalan koşullar (pus, alçak güneş, kapalı gök) için veri toplama günü önerisi çıkar."
+       ],
+       "sure": "2 hafta, haftada ~2-3 saat",
+       "neden": "Profil 'Hava Savunma ve Otonom Takip Sistemleri' diyor; böyle sistemler genellikle açık alanda kamera ya da başka sensörlerle hedef algılar ve izler. Sistemin hangi hava ve ışık koşulunda başarısız olduğunu bilmek, algılama modelini eğitirken eksik koşulları tamamlamayı ve test gününü doğru seçmeyi sağlar. TEKNOFEST'te ASELSAN yürütücülüğünde senaryoya dayalı bir Hava Savunma Sistemleri Yarışması var; takımın buna katılıp katılmadığı standda teyit edilmeli."
+      }
+     ],
+     "ortakSayisi": 1,
+     "kaynaklar": []
+    },
+    {
+     "id": "marge-minetech",
+     "ad": "Marge Minetech Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 5",
+     "ozet": "2023'te İTÜ Maden Fakültesi'nde kurulan, fakültenin ilk proje takımı; maden teknolojileri ve otomasyon alanında çalışıyor. Beylikova bastnazitinden nadir toprak elementi kazanımı projesiyle TEKNOFEST 2026 Maden Teknolojileri Yarışması finaline kaldı ve sonuç listesinde 5.",
+     "kanal": {
+      "instagram": "@itumarge"
+     },
+     "ortak": [
+      {
+       "baslik": "Açık ocak patlatma penceresi: inversiyon, rüzgâr ve toz",
+       "ne": "Patlatmada toz yayılımını ve hava şokunu artıran inversiyon ve rüzgâr koşullarını saatlik tahminle işaretleyen karar paneli.",
+       "nasil": [
+        "Takımla örnek bir açık ocak sahası seçilir: koordinat, en yakın yerleşimlerin yönü ve uzaklığı, olağan patlatma saatleri.",
+        "ERA5'ten 10 yıllık saatlik 10 m rüzgâr yönü ve hızı, sınır tabaka yüksekliği ve 2 m sıcaklığı ile yüzeyin birkaç yüz metre üstündeki seviyenin sıcaklık farkı (inversiyon göstergesi) indirilir; saat ve aya göre uygunsuz koşul sıklığı hesaplanır.",
+        "Eşikler literatür ve takımla belirlenir: yerleşime doğru rüzgâr sektörü, inversiyon varlığı, çok düşük karışım yüksekliği, kuvvetli rüzgâr kesmesi.",
+        "Open-Meteo saatlik tahmininden (2 m ve 80/120/180 m sıcaklık, rüzgâr) 3 günlük patlatma paneli üretilir: yeşil (karışım iyi, rüzgâr yerleşimden uzağa), sarı, kırmızı.",
+        "Varsa saha toz ölçümleri ya da yakın SİM hava kalitesi istasyonu verisiyle panel geriye dönük sınanır; isabet karnesi tutulur."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "TEKNOFEST Maden Teknolojileri Yarışması'nın beklenen proje alanları arasında iş güvenliği çözümleri, izleme ve ölçme sistemleri ile çevreye duyarlı üretim var; takım 2027 için yeni bir proje ararsa saha işletmesine dönük, veriye dayalı bir araç bu başlıklara doğrudan oturur. Açık ocakta patlatma sonrası toz bulutu ve hava şoku (patlatmanın yarattığı basınç dalgası) sıcaklık inversiyonu ve rüzgâr kesmesinde belirgin biçimde artabilir; yerleşime doğru esen rüzgâr şikâyet ve çevre riski doğurur."
+      },
+      {
+       "baslik": "Liç ve atık sahasında su dengesi: aşırı yağış uyarısı",
+       "ne": "Yığın liçi ya da atık tesisi için aşırı yağış dönüş sürelerini çıkarıp 72 saatlik yağış tahminiyle havuz taşma riski uyarısı vermek.",
+       "nasil": [
+        "Takımla örnek saha ve tesis tipi seçilir (yığın liçi alanı, çözelti havuzu, atık barajı); havuz hacmi ve toplama alanı gibi temel değerler varsayımla yazılır.",
+        "ERA5-Land ve GPM IMERG'den 2001-2025 günlük yağış, ERA5-Land'den buharlaşma indirilir; aylık su dengesi (yağış eksi buharlaşma) çıkarılır.",
+        "Yıllık en büyük 24 ve 72 saatlik yağışlara genelleştirilmiş uç değer dağılımı (GEV) uydurularak 10, 25 ve 100 yıllık dönüş değerleri hesaplanır; bulunabilirse yakın MGM istasyonu değerleriyle kıyaslanır.",
+        "Havuzun güvenle karşılayabileceği yağış eşiği hesaplanır; Open-Meteo 72 saatlik yağış tahmini ve topluluk olasılığıyla günlük uyarı kuralı yazılır.",
+        "Geçmiş aşırı yağış olaylarında uyarının ne zaman verilmiş olacağı geriye dönük sınanır (isabet ve yanlış alarm oranı)."
+       ],
+       "sure": "3-4 hafta, haftada ~3 saat",
+       "neden": "Takımın finaldeki projesi liç (metali çözeltiyle kazanma) üzerine; liçin saha ölçeğinde uygulandığı yığın liçi alanları ve atık tesislerinde su dengesi yağışa ve buharlaşmaya bağlı. TEKNOFEST Maden Teknolojileri'nin beklenen proje alanları arasında sürdürülebilir su yönetimi ve rehabilitasyon da var. Aşırı yağış, çözelti havuzlarında taşma ve çevre riski demektir."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "matrix",
+     "ad": "Matrix Proje Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 3",
+     "ozet": "İTÜ Malzeme Araştırma Geliştirme ve İnovatif Çözümler Takımı. Sürdürülebilir Malzemeler ekibi, nanokil katkılı geri dönüştürülmüş PET/PP mikrofibril kompozit projesiyle Madrid'deki 4.",
+     "kanal": {
+      "instagram": "@itumatrix"
+     },
+     "ortak": [
+      {
+       "baslik": "Açık hava yaşlandırma iklim dozu kartı",
+       "ne": "İstanbul ve hedef kullanım yerleri için UV ve güneş ışınımı dozu, sıcaklık ve ıslaklık süresi kartıyla yaşlandırma testlerini planlarız.",
+       "nasil": [
+        "Hedef kullanım yerleri belirlenir (İstanbul + takımın seçtiği 2-3 farklı iklim, ör. sıcak-kurak ve nemli kıyı).",
+        "2006-2025 ERA5 saatlik verisinden yüzeye inen kısa dalga ve UV ışınımı, 2 m sıcaklık, bağıl nem ve yağış indirilir; CAMS güneş ışınımı servisiyle karşılaştırılır.",
+        "Yıllık ve aylık toplam ışınım dozu (MJ/m²), UV dozu, ıslaklık süresi (bağıl nem > %80 ve sıcaklık > 0 °C saatleri) ve günlük sıcaklık aralığı hesaplanır.",
+        "Takımın kullandığı ya da planladığı hızlandırılmış test cihazının ışınım ayarıyla karşılaştırılarak 'X saat laboratuvar ≈ Y ay dış ortam UV dozu' tablosu çıkarılır; yöntemin sınırları açıkça yazılır.",
+        "Tek sayfalık iklim dozu kartı ve rapora girecek grafikler hazırlanır."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Takımın kompozitleri geri dönüştürülmüş PET ve PP'den üretiliyor ve projenin adı 'üretim ve performans değerlendirmesi'. Polimerler güneşin UV ışınımı, sıcaklık ve nemle zamanla bozulur; dış ortam dayanımı sürdürülebilir malzeme iddiasının önemli bir parçası. Laboratuvardaki hızlandırılmış yaşlandırma saatlerinin gerçekte ne kadar dış ortam süresine denk geldiği, yerel iklim dozu bilinmeden söylenemez."
+      },
+      {
+       "baslik": "Kampüste dış ortam maruz bırakma deneyi ve doz günlüğü",
+       "ne": "Kompozit numuneleri İTÜ'de bir çatıya yerleştirip ajanın her gün hesapladığı UV ve hava dozuna göre özellik değişimini izleriz.",
+       "nasil": [
+        "Takım numune türlerini (katkısız / nanokil katkılı) ve ölçüm planını belirler (ör. çekme dayanımı, renk, FTIR; 0-1-3-6. aylar).",
+        "Numune rafı güneye bakan, gölgesiz bir çatıya kurulur; konum ve eğim açısı saklanır.",
+        "Ajan her gün raf konumu için ışınım (GHI, UV), sıcaklık, nem ve yağış verisini çekip kümülatif doz tablosunu günceller.",
+        "Her ölçüm noktasında sonuçlar kümülatif UV dozu ve ıslaklık süresine karşı grafiklenir; 1. işteki laboratuvar eşdeğerliğiyle karşılaştırılır.",
+        "ayın sonunda 'dış ortam vs. laboratuvar' kıyas raporu hazırlanır."
+       ],
+       "sure": "Kurulum 1 hafta; deney 6 ay, haftada ~1 saat",
+       "neden": "Hızlandırılmış testler tek başına yeterli kabul edilmez; gerçek dış ortam verisi kompozitin performans değerlendirmesini güçlendirir ve EELISA gibi yarışmalarda sürdürülebilirlik iddiasını somutlaştırır. Bu tür deneylerin en zor kısmı düzenli doz takibi ve ölçüm hatırlatmasıdır; bu kısım ajana devredilebilir."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "mesleki-teknik-anadolu-lisesi",
+     "ad": "Mesleki Teknik Anadolu Lisesi",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant D 13",
+     "ozet": "İTÜ ile MEB işbirliğiyle 2019'da kurulan, Beşiktaş'taki İTÜ Mesleki ve Teknik Anadolu Lisesi; denizcilik, elektrik-elektronik ve bilişim alanlarında proje takımları var. Öğrencileri uluslararası uzay ve çevre projelerinde yer alıyor.",
+     "kanal": {
+      "instagram": "@itumtal"
+     },
+     "ortak": [
+      {
+       "baslik": "Okul bahçesi hava istasyonu ve günlük tahmin karnesi",
+       "ne": "Okul bahçesine öğrencilerle ucuz bir hava istasyonu kurup tahminlerin bu istasyonda ne kadar tuttuğunu her gün ölçen bir karne yapacağız.",
+       "nasil": [
+        "Elektrik-elektronik öğrencileri ESP32 + BME280 (sıcaklık, nem, basınç) ile istasyonu kurar; sensör gölgede, havalandırmalı bir siper içinde (ör. EKİM ile ortak 3B baskı siper) yerden yaklaşık 1,5 m'ye yerleştirilir.",
+        "Veri her 5-10 dakikada okul sunucusuna ya da bulut tablosuna gönderilir; eksik veri ve sensör arızası kontrol edilir.",
+        "Bilişim öğrencileri Open-Meteo'dan aynı nokta için ECMWF, GFS ve ICON tahminlerini (Previous Runs API ile 1-3 gün önce yapılmış tahminler) çeker.",
+        "Her gün hata hesaplanır (ortalama mutlak hata, sapma); istasyonun kendi doğruluğu da en yakın METAR'larla (LTBA, LTFM) sınanır.",
+        "Ay sonunda basit bir düzeltme denenir (ör. doğrusal regresyonla sıcaklık sapması düzeltmesi) ve 'okulumuzda hangi model daha iyi' karnesi yayımlanır."
+       ],
+       "sure": "4 hafta, haftada ~3 saat (ders/kulüp saati)",
+       "neden": "Okulun elektrik-elektronik, bilişim ve yapay zekâ alanları var; istasyonu kurmak, veriyi işlemek ve tahmini düzeltmek bu alanların kazanımlarıyla örtüşür. AURA'nın tahmin karnesi fikri okul düzeyinde elle tutulur bir ürüne dönüşür ve okulun çevre projeleriyle bağ kurar."
+      },
+      {
+       "baslik": "Denizcilik öğrencileri için Boğaz rüzgâr-görüş kartı",
+       "ne": "Denizcilik öğrencileri için Boğaz'da rüzgâr, hamle ve görüşü her sabah Beaufort ölçeğiyle özetleyen tek sayfalık kart hazırlayacağız.",
+       "nasil": [
+        "Boğaz'ın kuzey, orta ve güney ağzı için 3 nokta seçilir; Open-Meteo'dan saatlik 10 m rüzgâr, hamle, görüş ve yağış çekilir.",
+        "En yakın METAR'lar (LTBA, LTFM, LTFJ) eklenir; görüş ve hamle kodları öğrencilerle birlikte çözülür (ör. BR, FG, G).",
+        "Rüzgâr hızı Beaufort ölçeğine çevrilir ve deniz görünümü tanımıyla (köpük, beyaz dalga başlıkları) eşleştirilir.",
+        "Her sabah tek sayfalık kart üretilir ('bugün Boğaz'da kuzeydoğulu 5 bofor, öğlene kadar görüş iyi' gibi); yanında dünkü tahminle gerçekleşenin karşılaştırması durur.",
+        "Dönem sonunda öğrenciler kendi kartlarını ve isabet tablosunu sunar; kart denizcilik derslerinde kullanılır."
+       ],
+       "sure": "2-3 hafta, haftada ~2-3 saat",
+       "neden": "Okulda denizcilik alanı var (makine dalı dahil); gemicilikte hava ve deniz durumunu okumak temel beceridir. Boğaz'da sis görüşü düşürüp gemi trafiğini etkileyebiliyor, kuvvetli poyraz ve lodos deniz durumunu değiştiriyor. Kart, öğrencilerin METAR ve tahmin okumayı okula yakın, gerçek bir su yolu üzerinden öğrenmesini sağlar."
+      },
+      {
+       "baslik": "Afet farkındalığı: 40 satır Python ile tahmin ve uyarı okuma",
+       "ne": "Bilişim öğrencileriyle 'tahmin ne kadar tuttu?' sorusunu 40 satır Python ile yanıtlayan ve yağış uyarısı okumayı öğreten atölye yapacağız.",
+       "nasil": [
+        "Veri hazırlanır: 5-6 Eylül 2023 İstanbul seli günleri için Open-Meteo'nun arşiv tahmini ve gerçekleşen yağış (ERA5 tabanlı geçmiş veri).",
+        "40 satırlık Python defteri (Colab) yazılır: veriyi okur, tahmin ile gerçekleşeni çizer, hatayı hesaplar.",
+        "MGM'nin renkli uyarı sistemi (sarı, turuncu, kırmızı) ve uyarıların nasıl okunacağı anlatılır; tahminin olasılık dili tartışılır.",
+        "Öğrenciler kendi ilçeleri için aynı defteri çalıştırır ve 'uyarı gelirse ne yaparım' kartı hazırlar.",
+        "Atölye defteri ve öğretmen rehberi okulun bilişim dersine bırakılır."
+       ],
+       "sure": "1 hafta hazırlık + 1 gün atölye",
+       "neden": "Okul 13 Ekim Uluslararası Afet Risklerinin Azaltılması Günü kapsamında Afet Farkındalık Haftası düzenledi; bilişim ve yapay zekâ alanları var. Yağış uyarısını okumak ve tahminin belirsizliğini anlamak afet bilincinin parçasıdır; atölye bilişim dersinde tekrar kullanılabilir."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "milli-teknoloji-atolyesi",
+     "ad": "Milli Teknoloji Atölyesi",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 18",
+     "ozet": "TÜBİTAK Bilim ve Toplum programıyla 27 Mart 2026'da Ayazağa'da açılan 670 m²'lik atölye. Teknoloji yarışmalarına hazırlanan takımlara CNC, torna, freze, 3B yazıcı, sarf malzeme, danışmanlık ve eğitim desteği veriyor.",
+     "kanal": {},
+     "ortak": [
+      {
+       "baslik": "Kampüs hava istasyonu: radyasyon siperi ve kasa yapımı",
+       "ne": "Atölyenin 3B yazıcı ve CNC'siyle WMO kurallarına uygun radyasyon siperli ucuz bir kampüs hava istasyonu kurup verisini açık yayımlamak.",
+       "nasil": [
+        "Atölyenin başvuru-randevu usulünü ve malzemenin sarf desteğiyle karşılanıp karşılanamayacağını öğren; sensör (sıcaklık-nem-basınç, rüzgâr) ve kart seçimini atölye danışmanıyla netleştir.",
+        "WMO gözlem rehberine (WMO-No. 8) göre çok katmanlı, havalandırmalı radyasyon siperini 3B yazıcıda UV dayanımlı malzemeyle üret; montaj direğini CNC ve tornayla hazırla.",
+        "İstasyon yerini seç: sıcaklık sensörü yerden 1,25-2 m yükseklikte, açık ve çimli alanda, binalardan uzak; rüzgâr ölçer mümkün olduğunca yüksekte ve engelsiz.",
+        "Bir hafta boyunca istasyonu resmî gözlemlerle (MGM istasyonları ve İstanbul havalimanı METAR'ları) karşılaştırıp sapmayı ölç; siperli ve siperiz ölçümü yan yana koyarak güneş hatasını göster.",
+        "Veriyi dakikalık olarak açık bir CSV/JSON akışına yaz; AURA'nın tahmin karnesine Ayazağa noktası olarak ekle."
+       ],
+       "sure": "3-4 hafta, haftada ~3-4 saat",
+       "neden": "Atölyede 3B yazıcı, CNC ve ölçüm cihazları var ve takımlara üretim desteği veriyor. Ucuz sensörlü istasyonların en büyük hata kaynağı sensörün güneşten korunmamasıdır; doğru tasarlanmış bir radyasyon siperi bu atölyede üretilebilir. Ortaya çıkan istasyon hem AURA'nın tahmin karnesine yerel gözlem sağlar hem de atölyeyi kullanan takımlara örnek bir 'ölç-doğrula' projesi olur."
+      },
+      {
+       "baslik": "Yarışma takımlarına 'test günü havası' eğitimi",
+       "ne": "Atölyeyi kullanan takımlara açık hava verisiyle test günü seçmeyi ve tahmin hatası ölçmeyi öğreten iki oturumluk uygulamalı eğitim.",
+       "nasil": [
+        "Atölye eğitim takvimine iki oturumluk konu öner; katılımcı takımların test türlerini (rüzgâr, yağış, deniz, sıcaklık hassasiyeti) önceden topla.",
+        "1. oturum: Open-Meteo ve METAR'dan veri çekme, birim ve saat dilimi tuzakları, test sahası için geçmiş iklimden 'uygun saat' olasılığı çıkarma.",
+        "2. oturum: tahmini gözlemle karşılaştırıp basit hata ölçüleri (ortalama hata, ortalama mutlak hata) hesaplama ve takımın kendi sınırlarıyla yeşil-sarı-kırmızı kart üretme.",
+        "Her takım kendi sahası için bir Jupyter defteri çıkarsın; AURA iki hafta boyunca sorularını yanıtlasın.",
+        "Defterleri ortak bir depoda topla; sonraki dönem için eğitim materyalini güncelle."
+       ],
+       "sure": "1 ay, haftada ~2-3 saat",
+       "neden": "Atölye yarışmalara hazırlanan takımlara eğitim ve danışmanlık veriyor; bu takımların çoğu (roket, İHA, deniz aracı, elektrikli araç) açık alanda test yapıyor ve test günü havayla bozulabiliyor. 40-50 satırlık Python ile hava verisi çekip karar tablosu üretmek her takımın kendi başına uygulayabileceği bir beceri."
+      },
+      {
+       "baslik": "Atölye takımları için ortak test günü hava paneli",
+       "ne": "Atölyeden destek alan takımların test sahalarını tek panelde toplayıp her sahaya özel günlük hava kartı ve uyarı yollayan ortak hizmet.",
+       "nasil": [
+        "Atölye sorumlusuyla görüş; paneli kullanmak isteyen takımların test sahası koordinatlarını ve hava sınırlarını (rüzgâr, hamle, yağış, dalga, sıcaklık) bir formla topla.",
+        "Her saha için Open-Meteo (gerekirse Marine API) tahminini ve en yakın METAR'ı çeken, sınırlara göre yeşil-sarı-kırmızı kart üreten ortak betiği yaz.",
+        "Kartları tek bir statik web sayfasında ve isteyen takımın kanalına mesajla yayımla.",
+        "Her test sonrası takımdan tek satırlık 'gerçekte hava nasıldı' geri bildirimi al; saha bazında tahmin karnesi çıkar.",
+        "Dönem sonunda hangi sahada hangi modelin daha iyi tuttuğunu atölyeye rapor et."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Aynı çatı altında farklı yarışmalara hazırlanan çok sayıda takım var; her birinin ayrı ayrı hava aracı kurması yerine tek bir panel bakım yükünü azaltır. Atölye bu paneli takımlara sunarak destek kapsamını genişletir; AURA da farklı sahalarda tahmin doğruluğunu ölçme fırsatı bulur."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "nuve-nukleer-teknolojileri",
+     "ad": "Nüve Nükleer Teknolojileri Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 16",
+     "ozet": "İTÜ'de nükleer reaktör tasarımı ve analizi üzerine çalışan öğrenci takımı; kor tasarımı, soğutma, yapısal tasarım, enstrümantasyon ve kontrol ile güç çevrimi ekipleri var. TEKNOFEST Nükleer Enerji Teknolojileri Tasarım Yarışması'nın kavramsal kategorisinde final raporu aşamasını geçip UMAY Mk.I tasarımını sundu.",
+     "kanal": {
+      "instagram": "@nuvenukleer"
+     },
+     "ortak": [
+      {
+       "baslik": "Atmosferik dağılım ve doz modülü (yazılım kategorisine hazırlık)",
+       "ne": "Gerçek hava verisiyle çalışan, varsayımsal bir salımın yayılımını ve dozunu hesaplayan açık kaynak dağılım modülü; eğitim ve yarışma için.",
+       "nasil": [
+        "Takımla varsayımsal senaryo belirlenir: aday saha (ör. kıyıda bir nokta), salım yüksekliği ve süresi, kaynak terim (kor envanterinden, açık literatürdeki salım kesirleriyle).",
+        "Saha için ERA5'ten saatlik 10 m ve 100 m rüzgâr, sınır tabaka yüksekliği, yüzey ısı akısı, bulutluluk ve yağış indirilir; Pasquill-Gifford kararlılık sınıfı ya da Obukhov uzunluğu hesaplanır.",
+        "Python'da Gauss duman (plume) modeli yazılır: konsantrasyon, kuru ve ıslak (yağışla yıkanma) çökelme, Cs-137 ve I-131 için radyoaktif bozunma; doz, dönüşüm katsayılarıyla hesaplanır.",
+        "Model aynı senaryo için NOAA HYSPLIT (READY arayüzü) ya da FLEXPART çıktısıyla karşılaştırılarak doğrulanır; farklar ve nedenleri raporlanır.",
+        "10 yıllık ERA5 ile ‘tipik’ ve ‘olumsuz’ meteorolojik koşulların istatistiği çıkarılır (yön sektörü ve mesafeye göre doz dağılımı).",
+        "Kod, belgeleri ve doğrulama sonuçlarıyla yarışmanın rapor şablonuna uygun biçimde paketlenir."
+       ],
+       "sure": "6-8 hafta, haftada ~4 saat",
+       "neden": "TEKNOFEST 2026 Nükleer Enerji Teknolojileri Tasarım Yarışması şartnamesinde Uygulama Kategorisi altında ‘Yazılım Geliştirme’ başlığı var; seçeneklerden biri, modüler reaktörün yakıt erimesiyle sonuçlanan ciddi kaza senaryosu sonrası atmosferik dağılım ve radyolojik doz hesabı yapan kod (kaynak terim, Cs-137 ve I-131 gibi uzun taşınım menzilli radyonüklidlerin modellenmesi, iç ve dış doz). Takım reaktör tasarımını zaten yapıyor ve kaynak terimi kendi kor çalışmasından türetebilir; AURA meteorolojik girdiyi (rüzgâr, kararlılık, karışım yüksekliği, yağış) ve doğrulamayı getirir. Takımın kendi tasarımına bağlanan, meteorolojinin doğrudan iş gördüğü bir ortak ürün olur."
+      },
+      {
+       "baslik": "Soğutma ve güç çevrimi için tasarım ortam koşulları",
+       "ne": "Aday saha için kuru/yaş termometre sıcaklığı ve deniz suyu sıcaklığı istatistiğiyle soğutma ve çevrim verimi için tasarım koşulu kartı.",
+       "nasil": [
+        "Takımla soğutma türü (deniz suyuyla tek geçişli, ıslak kule ya da kuru/hava soğutmalı) ve 2-3 aday saha belirlenir.",
+        "ERA5 ile 1995-2024 saatlik 2 m sıcaklık, çiy noktası, basınç ve rüzgâr indirilir; yaş termometre sıcaklığı hesaplanır.",
+        "Kıyı sahaları için deniz yüzeyi sıcaklığı (ERA5 SST ya da Copernicus Marine) aylık ve uç değerleriyle çıkarılır.",
+        "Aşılma yüzdelikleri (ör. yılın yüzde 1'inde ve binde 4'ünde aşılan değerler) ve sıcak hava dalgası süreleri hesaplanır; son 10 yıl önceki 20 yılla karşılaştırılarak eğilim gösterilir.",
+        "Güç çevrimi ekibinin modeliyle yoğuşturucu sıcaklığına göre verim değişimi tablo yapılır; rapor için tek sayfalık ‘saha ortam koşulları’ kartı yazılır."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Takımda Soğutma ve Güç Çevrimi ekipleri var. Yoğuşturucunun soğutma suyu ya da havası ne kadar sıcaksa çevrim verimi o kadar düşer; ıslak soğutma kulesinin kapasitesi yaş termometre sıcaklığına bağlıdır. Raporda sahaya ait, kaynağı belli ‘tasarım ortam koşulu’ kullanmak tasarımın inandırıcılığını artırır; şartname de sürdürülebilirlik ve çevresel etkiyi tasarım hedefleri arasında sayıyor."
+      },
+      {
+       "baslik": "Dış tehlike ön çerçevesi: uç rüzgâr, yağış ve sıcaklık",
+       "ne": "Aday saha için ERA5 ile uç rüzgâr hamlesi, aşırı yağış ve uç sıcaklıkların geri dönüş süresi tahmini; yapısal tasarıma girdi.",
+       "nasil": [
+        "Aday saha(lar) için ERA5'ten 1995-2024 saatlik 10 m hamle, yağış ve 2 m sıcaklık indirilir.",
+        "Her yıl için yıllık en büyük değerler çıkarılır (hamle, 24 saatlik yağış, en yüksek ve en düşük sıcaklık).",
+        "Genelleştirilmiş uç değer (GEV) dağılımı uydurulur; 50 ve 100 yıllık geri dönüş değerleri güven aralığıyla hesaplanır.",
+        "ERA5 ızgara ortalaması olduğu için uçları küçümseyebilir; mümkünse yakın havalimanının METAR serisiyle karşılaştırılır.",
+        "Sonuç, ‘nükleer tasarımın istediği çok düşük olasılıklar (ör. on bin yılda bir) bu kısa seriden çıkarılamaz’ uyarısıyla tek sayfalık dış tehlike kartı olarak rapora eklenir."
+       ],
+       "sure": "3 hafta, haftada ~3 saat",
+       "neden": "Yapısal Tasarım ekibi için rüzgâr yükü, aşırı yağış (drenaj, taşkın) ve uç sıcaklıklar tasarım girdisidir; nükleer tesis sahası değerlendirmesinde meteorolojik tehlikeler ayrı bir başlıktır (IAEA SSG-18 kılavuzu). Kavramsal tasarımda kesin değer gerekmez, ama açık veriyle ve doğru yöntemle yapılmış bir ön çerçeve raporun güvenlik bölümünü güçlendirir."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "prestij-teknoloji",
+     "ad": "Prestij Teknoloji Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 6",
+     "ozet": "İHA sistemleri geliştiren İTÜ takımı; GNSS kullanmadan görüntü işleme ve otonom kontrolle hareketli bir hedef dronu takip etmeyi gerektiren TEKNOFEST 2026 FPV Drone İzleme Yarışması'nı (115 başvuru, 20 finalist) birincilikle tamamladı.",
+     "kanal": {
+      "instagram": "@ituprestijteknoloji"
+     },
+     "ortak": [
+      {
+       "baslik": "Deneme günü paneli: rüzgâr, hamle ve güneş konumu",
+       "ne": "Dört günlük denemelerde her slot için rüzgâr, hamle, rüzgâr kesmesi ve güneş-kamera açısını gösteren karar paneli.",
+       "nasil": [
+        "Yarışma ve antrenman sahasının koordinatı ile deneme saatleri alınır (2026 finali: Eskişehir Sivrihisar Havacılık Merkezi).",
+        "Open-Meteo'dan saatlik 10/80/120 m rüzgâr, 10 m hamle, bulutluluk ve görüş tahmini çekilir; pvlib ile her saatin güneş yükseklik ve azimut açısı hesaplanır.",
+        "Takımın dron sınırları (azami rüzgâr ve hamle, hedefin kaybedildiği güneş açısı) belirlenir ve eşik matrisine yazılır.",
+        "Her deneme slotu için yeşil-sarı-kırmızı panel ve güneşi arkaya alacak giriş yönü önerisi üretilir.",
+        "Denemeden sonra video ve telemetriden hedef kaybı anları çıkarılıp o anki rüzgâr ve güneş koşuluyla eşleştirilir; karne birikir."
+       ],
+       "sure": "1-2 hafta, haftada ~3 saat",
+       "neden": "FPV Drone İzleme finalinde her takımın 4 gün boyunca günde bir denemesi vardı; hedef dron 11 manevra yapıyor, görev en fazla 10 dakika sürüyor ve ödül için ilk 4 manevrayı otonom tamamlamak gerekiyordu. Dronda GNSS olmadığı için rüzgârın yarattığı sürüklenme yalnız görüntü ve ataletsel ölçümle düzeltilebiliyor; hamle hem takip döngüsünü hem kamerayı sarsıyor, güneşe karşı bakış hedefi parlamada kaybettiriyor. Panel bir sonraki sezonda deneme stratejisine doğrudan girer."
+      },
+      {
+       "baslik": "Görüntü takibinde gökyüzü arka planı: bulut, pus ve ışık koşullu test seti",
+       "ne": "Takip videolarını bulutluluk, pus (aerosol) ve güneş açısıyla etiketleyip hedef kaybı oranını hava koşuluna göre ölçen test seti.",
+       "nasil": [
+        "Antrenman ve yarışma videoları tarih-saat, konum ve kamera yönüyle birlikte toplanır; kare bazında hedef var / kayıp / yanlış tespit etiketi çıkarılır.",
+        "Her video için Open-Meteo Historical'dan alçak/orta/yüksek bulutluluk, Open-Meteo Air Quality'den (CAMS) aerosol optik derinliği, pvlib ile güneş açısı eklenir; bulut tipi videodan elle de etiketlenir.",
+        "Hedef kaybı ve yanlış tespit oranı koşul sınıflarına göre (açık / parçalı / kapalı; düşük / yüksek AOD; güneşe yakın / uzak bakış) hesaplanır.",
+        "En zayıf koşullar için veri artırma önerisi (pus için Koschmieder tabanlı kontrast azaltma, yapay parlama) ve yeni çekim planı yazılır.",
+        "Yeni model sürümü aynı koşul setinde sınanır; sürümler arası karne tutulur."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Yarışma görüntü tabanlı algılama, kilitlenme, hedefi kadrajda ortalama ve kaybedilen hedefi yeniden bulmayı ölçüyor. Hedef dron gökyüzüne karşı görüldüğünde parçalı bulut, parlak bulut kenarları ve pus kontrastı değiştirir; yanlış tespit ve hedef kaybı bu koşullarda artar. Koşula göre hata bilinirse eğitim verisi doğru yerden büyütülür."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "randiman",
+     "ad": "Randıman Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant D 6",
+     "ozet": "Eylül 2024'te Makina Fakültesi'nde kurulan, kendi 4x4 arazi aracını tasarlayıp üreten ve kendi ifadesiyle Baja SAE'de yarışan ilk Türk takımı. Eylül 2026'da Baja SAE Ohio için ABD'ye gitti.",
+     "kanal": {
+      "instagram": "@iturandiman"
+     },
+     "ortak": [
+      {
+       "baslik": "Yarış haftası zemin-çamur ve yağış kartı",
+       "ne": "Yarıştan önceki günlerin yağışı ve toprak nemiyle pistteki çamur riskini tahmin edip lastik, süspansiyon ve sürüş ayarı için kart üretmek.",
+       "nasil": [
+        "Hedef yarış sahasının koordinatını ve tarihlerini netleştir (2026 için Nashport, Ohio).",
+        "ERA5-Land'den son 10 yılın yarış haftasına ait günlük yağış ve 0-7 cm toprak nemi verisini indir; 'yarıştan önceki 3-7 günün toplam yağışı' ile toprak nemi arasındaki ilişkiyi çıkar.",
+        "Takımın geçmiş yarış ve test notlarından zemin durumunu (kuru, nemli, çamurlu) sınıflandır; basit bir eşik ya da sınıflandırma modeliyle 'çamur riski' tahmini kur.",
+        "Yarıştan 7 gün önce başlayarak NWS (ABD Ulusal Hava Servisi) tahmini ve Open-Meteo/ECMWF yağış tahminiyle günlük çamur riski kartı üret.",
+        "Kartı ayar önerisiyle (lastik basıncı, çamur koruması, CVT kayışı ve hava filtresi kontrolü) birleştir; yarıştan sonra gerçek zemini not edip modeli güncelle."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Baja SAE'de en büyük puan 4 saatlik dayanıklılık yarışındadır (bir üniversite kaynağına göre toplamın %40'ı); arazideki çamur ve su geçişleri aracı ve güç aktarımını zorlar. Takım 2026'da Ohio'daki yarışa (Briarcliff Motorsports Park, Nashport) gitti; yağışın zemini nasıl değiştireceğini önceden bilmek hem ayar kararını hem yedek parça ve temizlik planını kolaylaştırır."
+      },
+      {
+       "baslik": "Motor gücü ve CVT ayarı için hava yoğunluğu düzeltmesi",
+       "ne": "İstanbul testlerinde ölçülen performansı yarış yerinin sıcaklık, basınç ve nemine göre düzeltip CVT ayarını önceden uyarlamak.",
+       "nasil": [
+        "Takımın test günlerine ait ölçümleri (hızlanma süresi, motor devri, varsa dinamometre) ve test saatlerini topla.",
+        "Test saatleri için sıcaklık, basınç ve nemi en yakın METAR'dan (İstanbul havalimanları) ya da sahada ölçümden ekle; her test için hava yoğunluğunu ve yoğunluk irtifasını hesapla.",
+        "SAE J1349 güç düzeltme yaklaşımıyla ölçümleri standart hava koşuluna indir; yarış sahasının rakımı ve ERA5'ten çıkan eylül sıcaklık dağılımına göre beklenen güç farkını hesapla.",
+        "Beklenen güç farkının CVT ayarına (ağırlık ve yay seçimi) nasıl yansıyacağını takımla birlikte tablolaştır.",
+        "Yarış günü sabahı ve öğleden sonrası için ayrı yoğunluk irtifası tahmini ver; yarıştan sonra gerçek etap süreleriyle karşılaştır."
+       ],
+       "sure": "2 hafta, haftada ~3 saat",
+       "neden": "Baja SAE'de tüm takımlar aynı standart motoru (Kohler CH440, yarışma kitiyle) kullanır; fark güç aktarımı ve CVT (sürekli değişken şanzıman) ayarındadır. Motorun verdiği güç hava yoğunluğuna bağlı olduğu için İstanbul'da yapılan ayar farklı sıcaklık ve rakımdaki yarış sahasında aynı sonucu vermeyebilir. Takımın güç aktarım ekibi bu düzeltmeyle hızlanma ve tırmanma etaplarına daha doğru ayarla gider."
+      },
+      {
+       "baslik": "Dayanıklılık yarışında yağış anlık izleme ve pit uyarısı",
+       "ne": "4 saatlik dayanıklılık yarışında radar ve 15 dakikalık tahminle yaklaşan sağanak ve şimşeği izleyip pit ekibine erken uyarı vermek.",
+       "nasil": [
+        "Yarış sahası koordinatını ve pit ekibinin iletişim kanalını belirle; yarış kurallarındaki yakıt ikmali ve sürücü değişimi kısıtlarını takımdan al.",
+        "NOAA NEXRAD radar ürünlerine (IEM radar kompozitleri) ve Open-Meteo'nun ABD için HRRR tabanlı 15 dakikalık yağış tahminine erişen betiği yaz.",
+        "Sahanın çevresindeki yağış hücrelerinin uzaklığını ve hareket yönünü ardışık radar görüntülerinden izleyen basit bir 'yaklaşma süresi' hesabı kur.",
+        "NWS API'den saha için yayımlanan şiddetli hava uyarılarını ekle.",
+        "Yarıştan önceki gün sistemi canlı dene; yarıştan sonra uyarıların ne kadar önce ve ne kadar doğru geldiğini değerlendir."
+       ],
+       "sure": "2-3 hafta, haftada ~3 saat",
+       "neden": "Dayanıklılık yarışı 4 saat sürer ve puanın en büyük bölümünü oluşturur; yarış sırasında başlayan sağanak pisti dakikalar içinde çamura çevirir, görüşü düşürür ve hava filtresi ile CVT için risk yaratır. Pit ekibinin yağmurdan önce haberdar olması sürücü değişimi, yakıt ve temizlik zamanlamasını iyileştirir. Yabancı bir sahada yerel hava bilgisine hızlı erişim de kolay değildir."
+      }
+     ],
+     "ortakSayisi": 3,
+     "kaynaklar": []
+    },
+    {
+     "id": "siper-milcon",
+     "ad": "Siper Milcon Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 12",
+     "ozet": "Doğrulanmış bilgi yok; Instagram profilinde yalnız İTÜ SİPER / MILCON Proje Takımı adı ve bir WhatsApp grup bağlantısı var.",
+     "kanal": {
+      "instagram": "@itusipermilcon"
+     },
+     "ortak": [],
+     "ortakSayisi": 2,
+     "kaynaklar": [],
+     "ortakIsIds": [
+      "oi-12-itu-kampus-hava-istasyonu-agi",
+      "oi-3-ortak-gunluk-arsivleyici-ecmwf"
+     ]
+    },
+    {
+     "id": "turbinli-motor-teknolojileri",
+     "ad": "Türbinli Motor Teknolojileri Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 14",
+     "ozet": "",
+     "kanal": {},
+     "ortak": [],
+     "ortakSayisi": 2,
+     "kaynaklar": [],
+     "ortakIsIds": [
+      "oi-12-itu-kampus-hava-istasyonu-agi",
+      "oi-3-ortak-gunluk-arsivleyici-ecmwf"
+     ]
+    },
+    {
+     "id": "vision",
+     "ad": "Vision Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant D 12",
+     "ozet": "",
+     "kanal": {},
+     "ortak": [],
+     "ortakSayisi": 2,
+     "kaynaklar": [],
+     "ortakIsIds": [
+      "oi-12-itu-kampus-hava-istasyonu-agi",
+      "oi-3-ortak-gunluk-arsivleyici-ecmwf"
+     ]
+    },
+    {
+     "id": "w-tech",
+     "ad": "W-Tech Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant D 8",
+     "ozet": "Sağlık, spor, eğitim, savunma ve eğlence alanlarında giyilebilir teknoloji geliştiren disiplinler arası İTÜ proje takımı. 2026 sezonunda W-Spotter, Bruxstop ve Akıllı Eldiven projeleri üzerinde çalışıyor.",
+     "kanal": {
+      "instagram": "@ituwtech"
+     },
+     "ortak": [
+      {
+       "baslik": "Giyilebilir sensör testlerine ortam koşulu etiketi",
+       "ne": "Giyilebilir cihaz testlerine ortam sıcaklığı, nem ve güneş ışınımını otomatik ekleyip sensör okumalarındaki ortam etkisini ayırmak.",
+       "nasil": [
+        "Takımdan her projenin kullandığı sensörleri ve test protokolünü (iç mekân ya da dış mekân, süre) al.",
+        "Dış mekân testleri için o saatin sıcaklık, nem, rüzgâr ve güneş ışınımını Open-Meteo'dan ve en yakın METAR'dan; iç mekân için ucuz bir sıcaklık-nem sensöründen al.",
+        "Her test dosyasına bu koşulları otomatik ekleyen küçük bir betik yaz.",
+        "Sensör hatasını (referans cihazla fark) ortam koşullarına göre grupla; basit regresyonla ortam etkisini ayır.",
+        "Hangi koşullarda ek kalibrasyon gerektiğini gösteren tek sayfalık özet hazırla."
+       ],
+       "sure": "2 hafta, haftada ~2-3 saat",
+       "neden": "Takım spor ve sağlık için giyilebilir cihazlar (W-Spotter, Bruxstop, Akıllı Eldiven) geliştiriyor; deri üstündeki sensörler ortam sıcaklığı, nem ve terlemeden etkilenebilir. Testler farklı günlerde ve ortamlarda yapıldığında bu etki ayrılmazsa cihazın doğruluğu yanlış değerlendirilir. Ortam koşulu etiketi ürün doğrulamasını ve yarışma sunumunu sayıyla güçlendirir. Hava ile ilişki dolaylıdır; bu iş daha çok AURA'nın veri hattı ve ajan deneyimini paylaşmaya dayanır."
+      },
+      {
+       "baslik": "Açık havada spor için ısı stresi uyarısı (koşullu demo)",
+       "ne": "Hava tahmininden ısı stresi göstergesi (WBGT/UTCI) hesaplayıp giyilebilir cihazın nabız verisiyle birleştiren uyarı demosu kurmak.",
+       "nasil": [
+        "Takımla hangi ürünün dış mekânda ve sporda kullanılacağını netleştir; nabız ya da deri sıcaklığı ölçümü olup olmadığını öğren.",
+        "Open-Meteo'dan sıcaklık, nem, rüzgâr ve güneş ışınımı tahminini çek; ECMWF'nin açık kaynak thermofeel kütüphanesiyle UTCI ve WBGT yaklaşımını hesapla.",
+        "Spor hekimliği kılavuzlarındaki WBGT risk kategorilerini kaynağıyla tabloya koy; tahmini saat saat bu kategorilere yerleştir.",
+        "Cihazdan gelen nabız ve deri sıcaklığını hava kaynaklı riskle birleştiren kural tabanlı bir uyarı demosu yap.",
+        "Takım üyeleriyle kampüste dene; uyarıların zamanlamasını değerlendir."
+       ],
+       "sure": "3-4 hafta, haftada ~3 saat",
+       "neden": "Takım spor ve sağlık alanında ürün geliştiriyor; cihazlardan biri açık havada sporda kullanılırsa sıcak ve nemli günlerde ısı stresi uyarısı ürüne gerçek bir değer katar. Bu iş yalnız ürünlerden biri dış mekânda kullanılıyorsa anlamlıdır; değilse yalnız 1. iş önerilir."
+      }
+     ],
+     "ortakSayisi": 2,
+     "kaynaklar": []
+    },
+    {
+     "id": "yesil-enerji",
+     "ad": "Yeşil Enerji Takımı",
+     "durum": "aktif",
+     "kaynak": "senlik",
+     "birim": "İTÜ Şenlik 2026 · stant C 13",
+     "ozet": "",
+     "kanal": {},
+     "ortak": [],
+     "ortakSayisi": 2,
+     "kaynaklar": [],
+     "ortakIsIds": [
+      "oi-12-itu-kampus-hava-istasyonu-agi",
+      "oi-3-ortak-gunluk-arsivleyici-ecmwf"
      ]
     }
    ]
