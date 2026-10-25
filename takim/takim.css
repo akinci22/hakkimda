@@ -1946,3 +1946,11 @@ section[data-kucuk]:not(.acik)+.gecis,#sunuyoruz+.gecis,#senden+.gecis{display:n
 .gecis svg{opacity:.4!important;transform:none!important;width:48px!important}
 .gecis svg *{stroke-dashoffset:0!important;transition:none!important}
 .gecis .gecis-ip,.gecis .gecis-ad{display:none!important}
+/* 25 Eki (Akın): kartın üzerine gelince açılan odak — hızlı ve sakin: büyüme yok, bulanıklık yok, koyu perde kalmaz (eski 1 sn'lik koyu sönme bug gibi görünüyordu) */
+#perde,body.odak #perde,body.odak-son #perde,.odak-son #perde{background:rgba(248,245,238,.92)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;transition:opacity .15s ease!important}
+.odakli{transform:none!important}
+#odak-yazi{transition:opacity .15s ease!important;transform:none!important}
+#odak-yazi .oy-ust,#odak-yazi .oy-baslik,#odak-yazi .oy-kisa,#odak-yazi .oy-uzun p{transform:none!important;transition:opacity .15s ease!important}
+.detay[open]{animation-duration:.16s!important}
+/* mobil: ayrıntı penceresi açıkken alttaki kısa not şeridi pencerenin üstüne binmesin */
+body:has(dialog[open]) .alt-not{display:none!important}
