@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '59';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '60';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 /* 25 Eki (mobil hız): p3/_index (~740 KB) yalnız karta dokununca gerekir → ilk çizimden sonra arka planda iner */
 function p3IndexYukle() { if (veri['p3/_index'] !== undefined) return; veri['p3/_index'] = null; fetch(`${TABAN}veri/p3/_index.json?v=${VERI_V}`).then(r => r.json()).then(j => { veri['p3/_index'] = j; }).catch(() => { }); }
 async function yukle() {
@@ -162,13 +162,7 @@ function ipucuBagla(e, al) {
 }
 /* sade dil: terimin yanına parantezle kısa karşılık. Sözlükteki "ad (karşılık)" parantezi varsa o; yoksa açıklamanın ilk cümlesi (≤64 harf). */
 function kisaKarsilik(t) { const p = (t.ad || '').match(/\(([^)]+)\)/); if (p) return p[1]; const c = String(t.m || '').split(/(?<=[.!?])\s/)[0].replace(/\.$/, ''); return c.length > 64 ? c.slice(0, 61).replace(/\s\S*$/, '') + '…' : c; }
-function sadeKur() {
-  const ic = $('.ust-ic'); if (!ic) return; const kayit = ls('takim-sade'); let acik = kayit == null ? true : kayit === '1';
-  const b = el('button', { class: 'sade-dugme', type: 'button', 'aria-pressed': String(acik), title: 'Terimlerin yanına kısa Türkçe karşılığını yazar' }, 'Sade dil');
-  const uygula = () => { KOKEL.classList.toggle('sade', acik); b.setAttribute('aria-pressed', String(acik)); };
-  b.addEventListener('click', () => { acik = !acik; ls('takim-sade', acik ? '1' : '0'); uygula(); durum.etkilesim++; });
-  const r = $('#mod-rozet'); ic.insertBefore(b, r || null); uygula();
-}
+function sadeKur() { KOKEL.classList.add('sade'); }   /* 25 Eki (Akın): aç/kapa düğmesi yok; sade anlatım hep açık */
 /* sözlük: metinde geçen terimleri (blok başına ilk geçiş) sarar */
 function terimSar(kok) {
   const T = veri.sozluk?.terimler; if (!T) return;
@@ -1357,8 +1351,10 @@ function fBolumBlok(k, sessiz) {
 /* bölüm kartını (430 hPa · bütün fakülteler) aç: fakülte seçilir, kart ayrıntısı açılır */
 function bolumKartAc(k) {
   const x = fBolumBul(k); if (!x) return; kucukAc($('#fakulteler'));
-  const fk = $('#fak-izgara .fk[data-kod="' + x.f.kod + '"]'); if (fk && fk.getAttribute('aria-pressed') !== 'true') fk.click();
-  setTimeout(() => { const kart = $('#fak-bolumler .fb[data-k="' + k + '"]'); if (!kart) { git('fakulteler'); return; } if (window.yerAtla) window.yerAtla('fakulteler');
+  if (window.yerAtla) window.yerAtla('fakulteler');   /* 25 Eki: basamak ÖNCE (bulunulan yer kaydolur); fakülte açılışı ayrı basamak itmez → geri: kart kapanır, sonra aramaya döner */
+  if (FAK_ACIK !== x.f.kod) { if (FAK_AC) { FAK_GECMIS = true; FAK_AC(x.f.kod); try { history.replaceState(Object.assign({}, history.state, { fkac: x.f.kod }), ''); } catch (e) { } }
+    else { const fk = $('#fak-izgara .fk[data-kod="' + x.f.kod + '"]'); if (fk) fk.click(); } }
+  setTimeout(() => { const kart = $('#fak-bolumler .fb[data-k="' + k + '"]'); if (!kart) { gitEl($('#fakulteler'), ustPay()); return; }
     gitEl(kart, Math.round(innerHeight * .28)); kart.classList.add('isaret'); setTimeout(() => { kart.classList.remove('isaret'); kart.click(); }, 900); }, 260);
 }
 /* geçmiş: fakülte adımı (gfak) ve bütün fakülteler bölümünde açık fakülte (fkac) sonraki her basamağa taşınır;
@@ -1410,7 +1406,7 @@ function bulKur() {
     const satir = (x, i) => { const qr = el('span', { class: 'bul-qr', title: 'Telefonla okut: ' + x.url });
       if (window.qrcode) { const s = qrSvg(x.url); if (s) qr.append(s); } else qrHazir().then(ok => { if (ok && !qr.firstChild) { const s = qrSvg(x.url); if (s) qr.append(s); } });
       return el('li', {}, el('button', { class: 'bul-s', type: 'button', 'data-i': i, onclick: () => bulGit(x) },
-        el('span', { class: 'bul-tur bul-' + katla(x.tur) }, x.tur), el('b', {}, x.ad), el('small', {}, [x.alt, x.oz].filter(Boolean).join(' · ')), el('span', { class: 'bul-ok', 'aria-hidden': 'true' }, 'Git ›')), qr); };
+        el('span', { class: 'bul-tur bul-' + katla(x.tur) }, x.tur), el('b', {}, x.ad), el('small', {}, [x.alt, x.oz].filter(Boolean).join(' · ')), el('span', { class: 'bul-ok', 'aria-hidden': 'true' }, 'Kartı gör ›')), qr); };
     const L = son.slice(0, n).map(satir);
     if (son.length > n) L.push(el('li', { class: 'bul-daha-li' }, el('button', { class: 'bul-daha', type: 'button', onclick: () => { n += 12; ciz(); } }, `+${son.length - n} sonuç daha`)));
     S.replaceChildren(...L);
@@ -1425,9 +1421,9 @@ function bulGit(x) { durum.etkilesim++; const Q = $('#bul-q'); if (Q) Q.blur(); 
 /* bölüm sonucu: 14 bölümde seçim + ortak işler (o bölüme yakın işler önde); diğerlerinde bölüm kartı */
 function bolumYonel(k) {
   const x = fBolumBul(k); if (x && girisFak !== x.f.kod) girisCiz(x.f.kod);
-  if (bolumBul(k)) { ls('takim-gbolum', ''); bolumSec(k, true); $$('.giris-bol').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.k === k))); git('takim-agi');
-    setTimeout(() => { const o = $('#ag-ortak .ag-senin'); if (o) { o.classList.add('isaret'); setTimeout(() => o.classList.remove('isaret'), 2600); } }, 900); return; }
-  ls('takim-gbolum', k); fBolumBlok(k, true); bolumKartAc(k);
+  if (bolumBul(k)) { ls('takim-gbolum', ''); bolumSec(k, true); $$('.giris-bol').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.k === k))); }
+  else { ls('takim-gbolum', k); fBolumBlok(k, true); }
+  bolumKartAc(k);   /* 25 Eki (Akın): her arama sonucu kart açar; 14 bölüm de (ortak işler kartın içinde) */
 }
 /* takım / kulüp kartını aç (arama, QR ?ag=, dergi): doğru sekme, kart görünür, ayrıntı açık */
 function agKartAc(id, adim) {
@@ -1490,7 +1486,18 @@ function kimlerKur() {
   if (!R.length) { const s = $('#kimler'); if (s) s.hidden = true; return; }
   U.replaceChildren(...R.map(r => { const t = document.createElement('template'); t.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${AG_IKON[r.ikon] || IKONLAR[r.ikon] || FAK_IKON[r.ikon] || '<circle cx="12" cy="12" r="8"/>'}</svg>`; return el('li', {}, t.content.firstChild, el('span', {}, r.m)); }));
 }
-function agOdakKur() { kucukKur(); bulKur(); miniKur(); kimlerKur(); const ad = $('.aura-ad'); if (ad) { ad.removeAttribute('title'); ad.tabIndex = -1; } }   /* logo artık durağan (belirme efekti yok) */
+/* ---- ⑥ üst çubuk: sol üstte AURA simgesi = ana menü (açılış: arama + fakülte). Geri tuşu bir önceki konuma döner ---- */
+function logoKur() {
+  const a = $('#ust-logo'); if (!a) return;
+  a.addEventListener('click', e => {
+    e.preventDefault(); durum.etkilesim++; const h = $('#acilis'); if (!h) return;
+    if (window.yerAtla) window.yerAtla('acilis');
+    const Q = $('#bul-q'); if (Q && Q.value) { Q.value = ''; Q.dispatchEvent(new Event('input')); }
+    if (girisFak) { girisCiz(''); try { history.replaceState(Object.assign({}, history.state, { gfak: '' }), ''); } catch (er) { } }
+    if (IC) gitEl(h, ustPay()); else kaydirHedef(0);
+  });
+}
+function agOdakKur() { logoKur(); kucukKur(); bulKur(); miniKur(); kimlerKur(); const ad = $('.aura-ad'); if (ad) { ad.removeAttribute('title'); ad.tabIndex = -1; } }   /* logo artık durağan (belirme efekti yok) */
 
 /* ---------------- BAŞLAT ---------------- */
 (async () => {
@@ -2226,13 +2233,38 @@ const agBaslikEkle = (out, ust, ad, ilk) => { if (ilk) out.push(el('p', { class:
 const agCip = (et, v) => v ? el('span', { class: 'p3-cip' }, el('i', {}, et), v) : null;
 const agTeyitsiz = () => el('i', { class: 'ag-teyitsiz' }, 'teyitsiz');
 function agBlokListe(et, L, cizim, sinif) { L = agDizi(L); return L.length ? el('div', { class: 'p3-blok' }, el('span', { class: 'p3-etiket' }, et), el('ul', { class: sinif || 'ag-akis' }, ...L.map(cizim))) : null; }
+/* 25 Eki (Akın): takım kartında "Ulaş": resmî kanallar (Instagram, e-posta, site, LinkedIn) + hazır ortak iş mesajı (içinde bu kartın linki) */
+const agKisaAd = t => String(t.ad || '').replace(/\s*\([^)]*\)/g, '').replace(/^İTÜ\s+/, '').trim();
+function agMesaj(t) {
+  const L = [...agDizi(t.ortak), ...agDizi(t.ortakIsIds).map(id => AG.O.get(id)).filter(Boolean)], ilk = L[0], url = SITE_TAM + '?ag=' + encodeURIComponent(t.id);
+  return [`Merhaba ${agKisaAd(t)}!`, `Biz AURA'yız: İTÜ'de farklı bölümlerden öğrencilerin birlikte proje yaptığı aday proje takımı; işin agentic yapay zekâ kısmındayız.`,
+    `Sizinle ortak iş yapmak istiyoruz` + (ilk ? `, örneğin "${ilk.baslik}".` : '.'), `Sizin için hazırladığımız ${L.length > 1 ? L.length + ' işin hepsi' : 'iş'} burada: ${url}`,
+    'Uygunsanız 15 dakikalık bir tanışma yapalım mı?'].join('\n');
+}
+function panoya(s, b) {
+  const ok = () => { if (!b) return; const ilk = b.dataset.t || (b.dataset.t = b.textContent); b.textContent = 'Kopyalandı ✓'; clearTimeout(b._z); b._z = setTimeout(() => { b.textContent = ilk; }, 2200); };
+  const yedek = () => { const ta = el('textarea', { readonly: '' }); ta.value = s; ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';
+    (KOK.querySelector('dialog[open]') || (IC ? GOVDE : document.body)).append(ta); ta.select(); let r = false; try { r = document.execCommand('copy'); } catch (e) { } ta.remove(); if (r) ok(); };
+  try { navigator.clipboard.writeText(s).then(ok, yedek); } catch (e) { yedek(); }
+}
+function agUlas(t) {
+  const kn = t.kanal || {}, ig = /^@?[A-Za-z0-9_.]{2,30}$/.test(kn.instagram || '') ? kn.instagram.replace(/^@/, '') : '', ep = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(kn.eposta || '') ? kn.eposta : '';
+  const url = SITE_TAM + '?ag=' + encodeURIComponent(t.id), m = agMesaj(t);
+  const kanal = [ig ? agLink('https://www.instagram.com/' + ig + '/', 'Instagram @' + ig + ' ↗', 'ag-kn') : null, ep ? el('a', { class: 'ag-kn', href: 'mailto:' + ep }, ep) : null,
+    agUrl(kn.site) ? agLink(kn.site, kaynakAlan(kn.site) + ' ↗', 'ag-kn') : null, agUrl(kn.linkedin) ? agLink(kn.linkedin, 'LinkedIn ↗', 'ag-kn') : null].filter(Boolean);
+  const kb = el('button', { type: 'button', class: 'ag-md ag-md-ana', onclick: () => { durum.etkilesim++; panoya(m, kb); } }, 'Mesajı kopyala');
+  const lb = el('button', { type: 'button', class: 'ag-md', onclick: () => { durum.etkilesim++; panoya(url, lb); } }, 'Linki kopyala');
+  const D = [kb, ig ? el('a', { class: 'ag-md', href: 'https://ig.me/m/' + ig, target: '_blank', rel: 'noopener', onclick: () => panoya(m) }, 'Kopyala, Instagram\u2019da aç ↗') : null,
+    ep ? el('a', { class: 'ag-md', href: 'mailto:' + ep + '?subject=' + encodeURIComponent('AURA ile ortak iş') + '&body=' + encodeURIComponent(m) }, 'E-postayla gönder') : null, lb].filter(Boolean);
+  return el('div', { class: 'p3-blok ag-ulas' }, el('span', { class: 'p3-etiket' }, 'Ulaş · ortak iş isteğimiz'),
+    kanal.length ? el('p', { class: 'ag-kanallar' }, ...kanal) : null, el('p', { class: 'ag-mesaj', 'data-md': '1' }, m), el('div', { class: 'ag-md-sar' }, ...D));
+}
 function p3AgTakim(sec, t, grup, ilk) {
   const out = []; agBaslikEkle(out, AG_GRUP_AD[grup] || 'Takım ağı', t.ad, ilk);
   out.push(el('div', { class: 'p3-cipler ag-cipler' }, agRozet(t), agCip('birim', t.birim), agCip('kuruluş', t.kurulus), ...agDizi(t.yarisma).slice(0, 4).map(y => agCip('yarışma', y))));
   if (t.ozet) out.push(el('p', { class: 'p3-amac-b' }, t.ozet));
+  out.push(agUlas(t));   /* 25 Eki (Akın): iletişim + ortak iş isteğimiz + bu kartın linki; aç/kapa yok, özetin hemen altında */
   if (t.anlati) out.push(el('div', { class: 'p3-blok ag-anlati' }, el('span', { class: 'p3-etiket' }, 'AURA ağı sizin için'), el('p', { class: 'p3-amac' }, t.anlati)));   /* 24 Eki: bölüme/takıma özel agentic-AI anlatısı */
-  const kn = t.kanal || {}, kl = [agUrl(kn.site) ? agLink(kn.site, kaynakAlan(kn.site) + ' ↗', 'p3-dis') : null, /^@?[A-Za-z0-9_.]{2,30}$/.test(kn.instagram || '') ? agLink('https://www.instagram.com/' + kn.instagram.replace(/^@/, '') + '/', '@' + kn.instagram.replace(/^@/, '') + ' ↗', 'p3-dis') : null].filter(Boolean);
-  if (kl.length) out.push(el('p', { class: 'p3-ust-satir' }, el('span', { class: 'p3-etiket' }, 'Kanal'), ...kl));
   if (t.senlik) out.push(el('p', { class: 'p3-ust-satir ag-plan' }, el('a', { href: TABAN + 'senlik/?kal#' + encodeURIComponent(t.senlik), class: 'p3-dis ag-plan-a' }, 'Adım adım plan: ajanın rolü, işin meteorolojisi, İTÜ dersleri →')));   /* 25 Eki: şenlik plan sayfası (?kal = yönlenmeden açılır) */
   /* birlikte yapabileceğimiz işler: önce bu takıma özel, sonra çok takımlı ortak işler */
   const L = [...agDizi(t.ortak).map(o => ({ o, ozel: true })), ...agDizi(t.ortakIsIds).map(id => AG.O.get(id)).filter(Boolean).map(o => ({ o, ozel: false }))];
