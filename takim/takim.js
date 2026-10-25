@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '57';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '58';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 async function yukle() {
   await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
@@ -1486,7 +1486,7 @@ function kimlerKur() {
   if (!R.length) { const s = $('#kimler'); if (s) s.hidden = true; return; }
   U.replaceChildren(...R.map(r => { const t = document.createElement('template'); t.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${AG_IKON[r.ikon] || IKONLAR[r.ikon] || FAK_IKON[r.ikon] || '<circle cx="12" cy="12" r="8"/>'}</svg>`; return el('li', {}, t.content.firstChild, el('span', {}, r.m)); }));
 }
-function agOdakKur() { kucukKur(); bulKur(); miniKur(); kimlerKur(); }
+function agOdakKur() { kucukKur(); bulKur(); miniKur(); kimlerKur(); const ad = $('.aura-ad'); if (ad) { ad.removeAttribute('title'); ad.tabIndex = -1; } }   /* logo artık durağan (belirme efekti yok) */
 
 /* ---------------- BAŞLAT ---------------- */
 (async () => {
