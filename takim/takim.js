@@ -61,9 +61,11 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '58';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '59';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+/* 25 Eki (mobil hız): p3/_index (~740 KB) yalnız karta dokununca gerekir → ilk çizimden sonra arka planda iner */
+function p3IndexYukle() { if (veri['p3/_index'] !== undefined) return; veri['p3/_index'] = null; fetch(`${TABAN}veri/p3/_index.json?v=${VERI_V}`).then(r => r.json()).then(j => { veri['p3/_index'] = j; }).catch(() => { }); }
 async function yukle() {
-  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'p3/_index', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
+  await Promise.all(['anket', 'metinler', 'kufur', 'bolumler', 'sayilar', 'takimlar', 'gercekcilik', 'karne', 'sozluk', 'fakulteler', 'dersler', 'dunya', 'kaynaklar', 'mto-plan', 'takim-agi'].map(async a => { try { veri[a] = await (await fetch(`${TABAN}veri/${a}.json?v=${VERI_V}`)).json(); } catch (e) { veri[a] = null; } }));
 }
 const sayiBul = id => (veri.sayilar || []).find(s => s.id === id);
 const yerDoldur = s => String(s || '').replace(/\{\{S:([\w-]+)\}\}/g, (_, id) => { const k = sayiBul(id); return k ? k.sayi : '…'; }).replace(/\s{2,}/g, ' ').trim();
@@ -1475,9 +1477,11 @@ function kucukKur() {
 function miniKur() {
   const V = $$('video.mini'); if (!V.length) return;
   V.forEach(v => { v.controls = false; v.muted = true; v.addEventListener('pause', () => { if (v._gor && !document.hidden && !azalt) v.play().catch(() => { }); }); v.addEventListener('click', e => e.preventDefault()); });
-  if (azalt) { V.forEach(v => { v.removeAttribute('autoplay'); v.loop = false; }); return; }
+  if (azalt) { V.forEach(v => { v.removeAttribute('autoplay'); v.loop = false; if (v.dataset.poster) v.poster = yol(v.dataset.poster); }); return; }
+  /* 25 Eki (mobil hız): video ve kapak görseli sayfa açılışında inmez; kapak ekrana yaklaşınca (600 px), video görünürken iner ve oynar */
+  const yakin = new IntersectionObserver(G => G.forEach(g => { if (!g.isIntersecting) return; const v = g.target; if (v.dataset.poster && !v.poster) v.poster = yol(v.dataset.poster); yakin.unobserve(v); }), { rootMargin: '600px 0px' });
   const io = new IntersectionObserver(G => G.forEach(g => { const v = g.target; v._gor = g.isIntersecting; if (g.isIntersecting) { if (v.preload !== 'auto') { v.preload = 'auto'; } v.play().catch(() => { }); } else v.pause(); }), { rootMargin: '120px 0px' });
-  V.forEach(v => io.observe(v));
+  V.forEach(v => { yakin.observe(v); io.observe(v); });
 }
 
 /* ---- ⑤ ağda kimler var ---- */
@@ -1498,7 +1502,7 @@ function agOdakKur() { kucukKur(); bulKur(); miniKur(); kimlerKur(); const ad = 
   await arkaKur();
   asamaYukle();
   acilis(); resmi(); olay(); sss(); sesYerlestir(); akis(); kapi(); vizyon(); merdiven(); karne(); mumkun(); deste(); test(); bolumler(); fakulteler(); takimAgi(); derslerin(); mezun(); yzSor(); gercek(); neden(); dunya(); coklu(); canli(); anlatilar(); eelisa(); baloncuk(); katilKur(); merak(); sonKart(); panelSen();
-  katliKur(); try { agOdakKur(); } catch (e) { console.error('agOdakKur', e); } maddele(KOK); try { agDerinBag(); } catch (e) { } try { bolumDerinBag(); } catch (e) { } try { bolumKartDerinBag(); } catch (e) { } terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); try { panelOgeKur(); } catch (e) { } yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
+  katliKur(); try { agOdakKur(); } catch (e) { console.error('agOdakKur', e); } setTimeout(p3IndexYukle, 400); maddele(KOK); try { agDerinBag(); } catch (e) { } try { bolumDerinBag(); } catch (e) { } try { bolumKartDerinBag(); } catch (e) { } terimSar(KOK); sadeKur(); detayKur(); kapanisKur(); try { ustHKur(); } catch (e) { } try { kanitSerit(); } catch (e) { } try { if (IC && KIME) { const h = $('#acilis .sar') || $('#acilis'); if (h) h.prepend(el('p', { class: 'bagimsiz-ac' }, el('a', { href: TABAN + '?kime=' + KIME }, 'Bağımsız sayfada aç ›'))); } } catch (e) { }   /* E07: resmî okur ana sayfaya düşerse takım sayfasının kendisine tek adım */ ray(); gorunme(); sonsuzDurdur(); ilerleme(); imlec(); inisKur(); kocKur(); asamaNe(); altNotKur(); try { panelOgeKur(); } catch (e) { } yumusakKaydirma(); donusKur(); gecisler(); baslikCanlandir(); gorselBelir();
   if (dokunmatik) $$('.devam').forEach(d => { d.textContent = d.textContent.replace(/tıkla/g, 'dokun'); });
 })();
 
