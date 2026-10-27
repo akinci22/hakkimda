@@ -1979,3 +1979,8 @@ body:has(dialog[open]) .alt-not{display:none!important}
 /* 27 Eki (tıklama taraması): kapalı kısa kutu ~70 px; content-visibility yer tutucusu (1700/900 px) ekran dışında sayfayı şişiriyor,
    kaydırırken sıçrama ve geri tuşunda yanlış konum yapıyordu → kapalı kutu her zaman gerçek boyunda çizilir */
 main > section[data-kucuk]:not(.acik){content-visibility:visible;contain-intrinsic-size:none}
+/* 27 Eki (Safari/WebKit taraması): tam ekran kart penceresi saydam, arkası ::backdrop bulanıklığıyla örtülüyordu; WebKit'te bulanıklık
+   uygulanmayınca arkadaki sayfanın yazısı kartın yazısıyla üst üste biniyordu → perde neredeyse opak, bulanıklık yok (her tarayıcıda aynı, daha hızlı).
+   Etkin ekran content-visibility ile atlanmasın (WebKit'te pencere boş görünebiliyordu). */
+.detay.metin::backdrop{background:rgba(248,245,238,.985)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.p3-ekr.aktif{content-visibility:visible}
