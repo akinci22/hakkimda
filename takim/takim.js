@@ -61,7 +61,7 @@ async function arkaKur() {
 }
 
 /* ---------------- VERİ ---------------- */
-const VERI_V = '61';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
+const VERI_V = '62';   /* veri damgası: canlıdaki değerden hep BÜYÜK (geriye düşürmek önbellekten eski JSON getirir); _araclar/damga.py --veri ile artar */
 /* 25 Eki (mobil hız): p3/_index (~740 KB) yalnız karta dokununca gerekir → ilk çizimden sonra arka planda iner */
 let P3I_SOZ = null;
 function p3IndexYukle() { if (veri['p3/_index']) return Promise.resolve(); if (!P3I_SOZ) { veri['p3/_index'] = null; P3I_SOZ = fetch(`${TABAN}veri/p3/_index.json?v=${VERI_V}`).then(r => r.json()).then(j => { veri['p3/_index'] = j; }).catch(() => { }); } return P3I_SOZ; }
