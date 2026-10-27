@@ -45,6 +45,29 @@
   window.gecisKur = kur; window.gecisTema = TEMA;
 })();
 
+/* Geçmiş bekçisi (27 Eki 2026, Akın: "mobilde geri en yakın bir geriye gitmeli"): Chrome'un geçmiş müdahalesi, kullanıcı dokunuşu
+   olmadan ya da aynı dokunuşla ikinci kez eklenen basamağı sistem geri tuşunda/kenar kaydırmada ATLAR (siteden bile çıkarır).
+   Kural: her dokunuş (fare basışı, parmak kalkışı, tuş) en çok BİR basamak ekler; dokunuşsuz basamak eklenmez → pushState atar,
+   çağıranların hepsi try/catch içinde (basamak eklenmedi sayar). Geri/ileri gezinti de dokunuşu harcar. */
+(function () {
+  if (window.__adimKur) return; window.__adimKur = 1;
+  let etkin = 0, itildi = 0;
+  const isaret = e => { if (!e.isTrusted) return;
+    if (e.type === 'pointerdown' && e.pointerType !== 'mouse') return;            /* parmak: etkinlik kalkışta (kaydırma dokunuş sayılmaz) */
+    if (e.type === 'pointerup' && e.pointerType === 'mouse') return;
+    if (e.type === 'keydown' && (e.key === 'Escape' || e.repeat)) return;
+    etkin = performance.now(); };
+  ['pointerdown', 'pointerup', 'keydown'].forEach(t => addEventListener(t, isaret, true));
+  ['popstate', 'hashchange'].forEach(t => addEventListener(t, () => { itildi = performance.now(); }, true));
+  const it = history.pushState.bind(history);
+  history.pushState = function (s, t, u) {
+    if (!(etkin > itildi)) { window.__adimRed = (window.__adimRed || 0) + 1; try { window.__adimIz = String(new Error().stack || '').split('\n').slice(2, 5).join(' ← '); } catch (e) { }
+      throw new Error('adim-yok: dokunuşsuz ya da aynı dokunuşla ikinci basamak'); }
+    itildi = performance.now(); return it(s, t, u);
+  };
+  window.adimSerbest = () => etkin > itildi;
+})();
+
 /* Konum geçmişi (18 Eki 2026, Akın): sayfa içi atlamalar (menü, içindekiler, aşama şeridi, iç bağlantılar) tarayıcı geçmişine
    bir basamak olarak yazılır. Telefonun geri tuşu / fare geri tuşu bir önceki konuma döner; açık pencere ya da iç içe ekran
    varsa önce onlar birer birer kapanır (kendi basamakları var), sayfanın başına ya da siteden dışarı atlamaz.

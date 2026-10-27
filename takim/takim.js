@@ -1164,6 +1164,11 @@ function kapanisKur() {
     kilitle(); okSon = performance.now(); okumaBasla(D);
     try { history.pushState({ tkDetay: 1 }, ''); GERI_BASAMAK = true; } catch (e) { GERI_BASAMAK = false; }   /* cihaz geri hareketi kapatsın */
   }
+  /* 27 Eki: dokunuşsuz açılan pencere (QR ?ag= / ?bk=) basamaksız kalır (Chrome dokunuşsuz basamağı atlar); ilk dokunuşta basamağını alır → sonra geri tuşu pencereyi kapatır */
+  const gecBasamak = e => { if (!e.isTrusted || !D.open || GERI_BASAMAK) return;
+    if (e.type === 'pointerdown' && e.pointerType !== 'mouse') return; if (e.type === 'pointerup' && e.pointerType === 'mouse') return; if (e.type === 'keydown' && e.key === 'Escape') return;
+    try { history.pushState(Object.assign({ tkDetay: 1 }, p3Derinlik() > 1 ? { p3: p3Derinlik() } : {}), ''); GERI_BASAMAK = true; } catch (err) { } };
+  ['pointerdown', 'pointerup', 'keydown'].forEach(t => addEventListener(t, gecBasamak, true));
   function kapandi() {
     okumaDur(); kilitAc();
     const n = (GERI_BASAMAK ? 1 : 0) + p3Basamak();   /* kapatma düğmesiyle kapatıldıysa eklenen basamakları (dialog + ekran yığını) birlikte geri al */
@@ -1359,7 +1364,7 @@ const bolumKartDetay = k => { const b = bolumBul(k); if (b) return b14Detay(b); 
 let bkAciliyor = false;
 async function bolumKartAc(k) {
   const d = bolumKartDetay(k); if (!d || bkAciliyor || KOK.querySelector('dialog[open]')) return; bkAciliyor = true;
-  try { await Promise.race([p3IndexYukle(), new Promise(r => setTimeout(r, 5000))]); } catch (e) { }
+  try { await Promise.race([p3IndexYukle(), new Promise(r => setTimeout(r, 3000))]); } catch (e) { }
   bkAciliyor = false; if (KOK.querySelector('dialog[open]')) return; try { kocKapat(); } catch (e) { } detayAc(d);
 }
 /* geçmiş: fakülte adımı (gfak) ve bütün fakülteler bölümünde açık fakülte (fkac) sonraki her basamağa taşınır;
@@ -1431,7 +1436,11 @@ function bolumYonel(k) {
   bolumKartAc(k);   /* 25 Eki (Akın): her arama sonucu kart açar; 14 bölüm de (ortak işler kartın içinde) */
 }
 /* takım / kulüp kartını aç (arama, QR ?ag=, dergi): doğru sekme, kart görünür, ayrıntı açık */
-function agKartAc(id, adim) {
+function agKartAc(id, adim) {   /* 27 Eki: kart YERİNDE açılır (tek basamak: pencere). Eskiden önce takım ağına kaydırma basamağı + sonra pencere = bir dokunuşla 2 basamak → Android'de geri tuşu atlıyordu */
+  if (!AG.T.has(id)) return false; if (KOK.querySelector('dialog[open]')) return false;
+  const T = AG.T.get(id); try { kocKapat(); } catch (e) { } detayAc(agTakimDetay(T.t, T.grup)); return true;
+}
+function agKartAcEski(id, adim) {
   if (!AG.T.has(id)) return false; kucukAc($('#takim-agi'));
   const grup = AG.T.get(id).grup, sek = $('#ag-sek-' + grup);
   if (sek && sek.getAttribute('aria-selected') !== 'true') sek.click();
