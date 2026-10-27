@@ -1161,7 +1161,7 @@ function kapanisKur() {
   D.close = function (v) { if (!D.open) { kp0(v); return; } kapanisIslendi = true; kapandi(); kp0(v); };
   D.addEventListener('close', () => { if (D.open) { kapanisIslendi = false; return; } if (!kapanisIslendi) kapandi(); kapanisIslendi = false; p3Temizle(); D.classList.remove('p3-acik'); const pn = $('#p-not'); if (pn) pn.classList.remove('canli'); notSifirla(); const A = $('#alt-not'); if (A && A.parentNode === D) { A.hidden = true; GOVDE.append(A); } });   /* tur 9: panel notu 6 sn sonra varsayılana döner, alt not gövdeye geri taşınır */   /* close olayı kuyruklu gelir: dialog o arada yeniden açıldıysa (kart→popstate kapanış→hemen kart) yeni açılışı bozma */
   /* Esc: tarayıcı cancel→dahili close ile sarmalı atlar, basamak ölü kalırdı → cancel'ı kesip kendi kapanışımızdan geçiriyoruz. Galeri büyütmesi açıksa yalnız o kapanır. */
-  D.addEventListener('cancel', e => { e.preventDefault(); if (p3BuyukKapat()) return; D.close(); });
+  D.addEventListener('cancel', e => { e.preventDefault(); if (p3BuyukAcik()) { p3BuyukKapatAdim(); return; } D.close(); });
 
   let KILIT_Y = null;   /* A03: pencere açıkken arka plan kaymasın; kapanınca aynı yere dönülür */
   const kilitle = () => { if (KILIT_Y != null) return; KILIT_Y = scrollY; try { window.__lenis && window.__lenis.stop(); } catch (e) { } document.documentElement.style.overflow = 'hidden'; };
@@ -1183,6 +1183,7 @@ function kapanisKur() {
   }
   addEventListener('popstate', e => {
     const st = e.state;
+    if (D.open && p3BuyukAcik() && !(st && st.buyuk)) { if (P3 && P3.buyuk && P3.buyuk.adim) P3.basamak = Math.max(0, P3.basamak - 1); p3BuyukKapat(); return; }   /* 27 Eki: geri önce yalnız büyütmeyi kapatır */
     if (!D.open && st && st.yer) return;   /* 18 Eki: sayfa içi konum basamağı (gecis.js yerAtla) — pencere kapalıyken kart konumuna çekme */
     if (D.open && st && st.tkDetay && p3Derinlik() > 1) {   /* kendi basamağımız: yığında bir (ya da n) ekran geri; dialog açık kalır */
       const h = st.p3 || 1, d = p3Derinlik();
@@ -2104,18 +2105,20 @@ function p3E6(sec, L) {
     el('div', { class: 'p3-kutu-m' }, p3Medya(g, true, true), el('button', { class: 'p3-buyut', type: 'button', 'aria-label': (g.alt || 'görsel') + ' — büyüt', onclick: () => p3Buyuk(L, i) })),
     el('figcaption', {}, g.alt ? el('span', { class: 'p3-alt' }, g.alt) : null, p3Kunye(g)))))];
 }
-function p3Buyuk(L, i) {   /* dialog içinde fixed katman (top layer); history'ye basamak eklemez; ‹ › ile gezinme, Esc / arka plan kapatır */
+function p3BuyukKapatAdim() { if (P3 && P3.buyuk && P3.buyuk.adim && history.state && history.state.buyuk) { try { history.back(); return; } catch (e) { } } p3BuyukKapat(); }   /* kullanıcı kapatışı: basamağı da geri al */
+function p3Buyuk(L, i) {   /* dialog içinde fixed katman (top layer); 27 Eki: kendi geçmiş basamağı var (mobil geri yalnız büyütmeyi kapatır); ‹ › ile gezinme basamak eklemez; Esc / ✕ / arka plan kapatır */
   const S = P3; if (!S) return; p3BuyukKapat();
   const acan = KOK.activeElement ?? document.activeElement;
   const govde = el('div', { class: 'p3-buyuk-ic' }), alt = el('p', { class: 'p3-buyuk-alt' });
-  const kapat = el('button', { class: 'p3-buyuk-kapat', type: 'button', 'aria-label': 'kapat', onclick: () => p3BuyukKapat() }, '✕');
+  const kapat = el('button', { class: 'p3-buyuk-kapat', type: 'button', 'aria-label': 'kapat', onclick: () => p3BuyukKapatAdim() }, '✕');
   const onc = el('button', { class: 'p3-buyuk-gez p3-onceki', type: 'button', 'aria-label': 'önceki', onclick: () => gez(-1) }, '‹'), snr = el('button', { class: 'p3-buyuk-gez p3-sonraki', type: 'button', 'aria-label': 'sonraki', onclick: () => gez(1) }, '›');
   let n = i;
   const ciz = () => { const g = L[n]; const m = p3Medya(g, true, true); govde.replaceChildren(m); alt.replaceChildren(g.alt || '', p3Kunye(g)); const v = m.tagName === 'VIDEO' ? m : (m.querySelector && m.querySelector('video')); if (v) { const p = v.play(); if (p && p.catch) p.catch(() => { }); } onc.hidden = snr.hidden = L.length < 2; };
   const gez = k => { n = (n + k + L.length) % L.length; ciz(); };
   const kap = el('div', { class: 'p3-buyuk', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'görsel büyütme' }, kapat, onc, govde, snr, alt);
-  kap.addEventListener('click', e => { if (e.target === kap || e.target === govde) p3BuyukKapat(); });
-  S.D.append(kap); S.buyuk = { kap, acan, gez }; ciz(); requestAnimationFrame(() => kapat.focus({ preventScroll: true }));
+  kap.addEventListener('click', e => { if (e.target === kap || e.target === govde) p3BuyukKapatAdim(); });
+  let adim = false; try { history.pushState(Object.assign({}, history.state || {}, { tkDetay: 1, buyuk: 1 }), ''); adim = true; S.basamak++; } catch (e) { }
+  S.D.append(kap); S.buyuk = { kap, acan, gez, adim }; ciz(); requestAnimationFrame(() => kapat.focus({ preventScroll: true }));
 }
 function p3BuyukKapat() { if (!P3 || !P3.buyuk) return false; const b = P3.buyuk; P3.buyuk = null; b.kap.querySelectorAll('video').forEach(v => { try { v.pause(); } catch (e) { } }); b.kap.remove(); if (b.acan && b.acan.focus) { try { b.acan.focus({ preventScroll: true }); } catch (e) { } } return true; }
 
