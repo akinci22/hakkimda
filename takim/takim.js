@@ -116,6 +116,12 @@ let notZ; function notSifirla() { clearTimeout(notZ); notZ = setTimeout(() => { 
 /* 19 Eki (Akın): sağ panel HER ZAMAN üzerine gelinen/odaklanılan öğeyi anlatır — tüm kart/satır türleri (bölüm, fakülte, ders satırı E0, p3 satırları, "birlikte yapabileceğimiz işler", takım ağı). etk kartları kendi zengin verisiyle (etkilesim) yazar; geri kalanı DOM'dan türetilir. */
 const PANEL_OGE = '.bk, .kart, .p3-sat, .p3-parca, .plan-giris, .dny-k, .olay-k, .akis-k, .sk, .vaka, .kapi, .p3-nasil';
 let sonOge = null;
+/* 27 Eki (tıklama taraması): bir tıklama sayfayı kaydırınca imleç hareket etmeden yeni bir kartın üstüne düşer; tarayıcının kaydırma sonrası
+   sahte fare olayı kartın odak perdesini açıyordu (kullanıcı dokunmadan perde "kendiliğinden" geliyordu). Kaydırmadan sonra fare gerçekten oynayana dek açılmaz. */
+let sonKaydirma = 0, sonFare = 0;
+addEventListener('scroll', () => { sonKaydirma = performance.now(); }, { passive: true, capture: true });
+addEventListener('pointermove', ev => { if (ev.pointerType === 'mouse' && (ev.movementX || ev.movementY)) sonFare = performance.now(); }, { passive: true, capture: true });
+const kaydirmaHayaleti = () => sonKaydirma > sonFare && performance.now() - sonKaydirma < 1500;
 const panelTemiz = t => String(t || '').replace(/\s+/g, ' ').trim();
 function ogeBilgi(it) {
   const bas = it.querySelector('.p3-ad, .bk-ad, .p3-nasil-b, h3, h4, b, strong');
@@ -244,7 +250,7 @@ function etkilesim(e, al) {
   if (!dokunmatik && !azalt) {
     /* Akın 8 Eki: imleç gelince HEMEN açılır; karttan çıkınca HEMEN kapanır. Az önce (3 sn içinde) bir kart kapandıysa yeni kart 3 sn ısrar ister:
        kartlar arasında gezinirken aç-kapa aç-kapa olmaz, kullanıcı imleci düşünmek zorunda kalmaz. */
-    e.addEventListener('pointerenter', () => { sonOge = e; clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); odakKaydirMuaf = performance.now() + 900; const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true, d.ozet);
+    e.addEventListener('pointerenter', () => { if (kaydirmaHayaleti()) return; sonOge = e; clearTimeout(odakZ); clearTimeout(odakZ2); clearTimeout(odakBirak); clearTimeout(notZ); odakKaydirMuaf = performance.now() + 900; const d = al(); panelNot(d.baslik, d.kisa, d.uzun, true, d.ozet);
       if (d.p3) p3PanelGorselleri(d.p3).then(G => { if (G.length && e.matches(':hover') && !P3) panelGorselYaz(G); });   /* 14 Eki tur 9: bölüm kartında benzerini yapan projelerin görselleri */
       $$('.odakli').forEach(x => { if (x !== e) x.classList.remove('odakli'); });
       e._ic = true; clearTimeout(e._acZ);
