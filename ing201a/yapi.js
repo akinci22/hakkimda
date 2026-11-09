@@ -87,7 +87,9 @@ window.YAPI = [
 
 /* Kanıt → kaynak eşlemesi: yuva (A1…B2) Akın'ın kararıdır; burada boş. "bulgular": kaynakta seçilebilecek veriler (başvuru bilgisi, Akın'ın notu değil). */
 window.KANIT_YUVA = [
-  { yuva: "A1", paragraf: "A" }, { yuva: "A2", paragraf: "A" }, { yuva: "B1", paragraf: "B" }, { yuva: "B2", paragraf: "B" }
+  /* 9 Kas: Akın onayladı (2 Kas notlu outline'daki eşleme) */
+  { yuva: "A1", paragraf: "A", kaynak: "yucel2014", pdf: "Akinci_A1_Yucel_2014.pdf" }, { yuva: "A2", paragraf: "A", kaynak: "rojas2023", pdf: "Akinci_A2_RojasCampos_2023.pdf" },
+  { yuva: "B1", paragraf: "B", kaynak: "hess2022", pdf: "Akinci_B1_Hess_2022.pdf" }, { yuva: "B2", paragraf: "B", kaynak: "patakchi2024", pdf: "Akinci_B2_PatakchiYousefi_2024.pdf" }
 ];
 window.BULGULAR = {
   yucel2014: [{ en: "25 heavy-rainfall events (2000–2011), 34 rain gauges, western Black Sea", tr: "25 şiddetli yağış olayı (2000–2011), 34 yağış ölçer, Batı Karadeniz", s: "1, 10" },

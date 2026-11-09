@@ -205,7 +205,46 @@ window.KAYNAKLAR = [
     ]
    }
   ],
-  "kanit": []
+  "kanit": [
+   {
+    "etiket": "A1",
+    "kaynak": "yucel2014",
+    "alinti": "WRF-derived precipitation showed capabilities in cap",
+    "tur": "",
+    "not": "",
+    "dusunce": "",
+    "yer": {
+     "s": 1,
+     "k": [
+      [
+       0.1133,
+       0.6856,
+       0.4773,
+       0.7025
+      ]
+     ]
+    }
+   },
+   {
+    "etiket": "A1",
+    "kaynak": "yucel2014",
+    "alinti": "Direct impact of data assimilation on WRF precipi",
+    "tur": "",
+    "not": "",
+    "dusunce": "",
+    "yer": {
+     "s": 1,
+     "k": [
+      [
+       0.1369,
+       0.7769,
+       0.4773,
+       0.7939
+      ]
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "rojas2023",
@@ -375,7 +414,52 @@ window.KAYNAKLAR = [
     ]
    }
   ],
-  "kanit": []
+  "kanit": [
+   {
+    "etiket": "A2",
+    "kaynak": "rojas2023",
+    "alinti": "In this case, the ANNs outperform the classical postpro",
+    "tur": "",
+    "not": "",
+    "dusunce": "",
+    "yer": {
+     "s": 7,
+     "k": [
+      [
+       0.1046,
+       0.5028,
+       0.4826,
+       0.514
+      ]
+     ]
+    }
+   },
+   {
+    "etiket": "A2",
+    "kaynak": "rojas2023",
+    "alinti": "improve the quality of precipitation predictions compared to the original model output",
+    "tur": "",
+    "not": "",
+    "dusunce": "",
+    "yer": {
+     "s": 8,
+     "k": [
+      [
+       0.1718,
+       0.5315,
+       0.4876,
+       0.5427
+      ],
+      [
+       0.0896,
+       0.546,
+       0.3379,
+       0.5572
+      ]
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "hess2022",
@@ -531,7 +615,33 @@ window.KAYNAKLAR = [
     ]
    }
   ],
-  "kanit": []
+  "kanit": [
+   {
+    "etiket": "B1",
+    "kaynak": "hess2022",
+    "alinti": "improves the forecast skill of heavy rainfall events by factors ranging from two to above six",
+    "tur": "",
+    "not": "",
+    "dusunce": "",
+    "yer": {
+     "s": 1,
+     "k": [
+      [
+       0.7992,
+       0.3891,
+       0.9305,
+       0.4064
+      ],
+      [
+       0.2781,
+       0.4043,
+       0.693,
+       0.4216
+      ]
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "patakchi2024",
@@ -811,6 +921,38 @@ window.KAYNAKLAR = [
     ]
    }
   ],
-  "kanit": []
+  "kanit": [
+   {
+    "etiket": "B2",
+    "kaynak": "patakchi2024",
+    "alinti": "The DL-based correction reduces the gap between HRES and H-SAF by 49, 33, and 12%",
+    "tur": "",
+    "not": "",
+    "dusunce": "",
+    "yer": {
+     "s": 1,
+     "k": [
+      [
+       0.8905,
+       0.7181,
+       0.9208,
+       0.7298
+      ],
+      [
+       0.3724,
+       0.7324,
+       0.9208,
+       0.7441
+      ],
+      [
+       0.3724,
+       0.7466,
+       0.399,
+       0.7583
+      ]
+     ]
+    }
+   }
+  ]
  }
 ];

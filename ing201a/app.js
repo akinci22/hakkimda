@@ -31,7 +31,7 @@
     bagli: { en: "Related to", tr: "İlişkili" }, adimK: { en: "Steps", tr: "Adımlar" }, benimde: { en: "My part", tr: "Benim kısmım" },
     tHarita: { en: "What relates to what: each level, the instructor's criterion and my part.", tr: "Ne neyle ilgili: her seviye, hocanın ölçütü ve benim kısmım." },
     eleman: { en: "Level", tr: "Seviye" }, olcut: { en: "Instructor's criterion", tr: "Hocanın ölçütü" },
-    tYuva: { en: "Evidence slots and their sources. The source for each slot is my choice in the outline and the note-taking form.", tr: "Kanıt yuvaları ve kaynakları. Her yuvanın kaynağı outline'da ve not alma formunda benim seçimim." },
+    tYuva: { en: "Evidence slots and their sources, as in my graded outline. The highlighted, labelled PDFs are in the “Final Sources” folder.", tr: "Kanıt yuvaları ve kaynakları, notlu outline'ımdaki gibi. Vurgulu ve etiketli PDF'ler “Final Sources” klasöründe." },
     yuva: { en: "Slot", tr: "Yuva" }, paragrafK: { en: "Paragraph", tr: "Paragraf" }, kaynakSec: { en: "Source", tr: "Kaynak" }, pdfAdi: { en: "PDF name", tr: "PDF adı" },
     secilecek: { en: "to be chosen", tr: "seçilecek" },
     tBulgu: { en: "Findings available in each source (reference information for choosing evidence, not my notes).", tr: "Her kaynakta seçilebilecek bulgular (kanıt seçmek için başvuru bilgisi; benim notum değil)." },
@@ -311,7 +311,7 @@
       ]);
     })));
     b.appendChild(tablo(tno(), t(UI.tYuva), [t(UI.yuva), t(UI.paragrafK), t(UI.kaynakSec), t(UI.pdfAdi)], YUVA.map(function (y) {
-      return el("tr", null, [el("th", { scope: "row", text: y.yuva }), el("td", { text: y.paragraf }), el("td", { class: "eksik", text: t(UI.secilecek) }), el("td", { class: "italik", text: "Akinci_" + y.yuva + "_Author_Year.pdf" })]);
+      return el("tr", null, [el("th", { scope: "row", text: y.yuva }), el("td", { text: y.paragraf }), (function () { var kk = y.kaynak && K.find(function (x) { return x.id === y.kaynak; }); return kk ? el("td", null, [el("a", { href: "#k-" + kk.id, text: kk.kisa })]) : el("td", { class: "eksik", text: t(UI.secilecek) }); })(), el("td", { class: "italik", text: y.pdf || ("Akinci_" + y.yuva + "_Author_Year.pdf") })]);
     })));
     var sat = [];
     K.forEach(function (k) { (BUL[k.id] || []).forEach(function (f, i) {
