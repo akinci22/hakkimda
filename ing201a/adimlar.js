@@ -9,6 +9,7 @@ window.DERS = {
   portfoy: "https://akinci22.github.io/hakkimda/",
   yorumDoc: "https://docs.google.com/document/d/10y-ZT50qEaKJoG2HH4ANB6JbemDjF4vk_l0caCbBdy0/edit",
   formDoc: "https://docs.google.com/document/d/1IqKumXV-Uh3PlSqJFKRq39mokPzHMjH_sTRHjLNqcYI/edit",
+  tubitak: "https://claude.ai/artifact/TV6b7csevp6awGLjiZSyy7",
   notlar: [
     { ad: { en: "Thesis + outline", tr: "Tez + outline" }, pay: 15 },
     { ad: { en: "Body paragraph 2 (midterm)", tr: "Gövde paragrafı 2 (ara sınav)" }, pay: 30 },
@@ -113,7 +114,7 @@ window.ADIMLAR = [
             { tur: "bilgi", en: "Sources with the evidence highlighted and labelled A1, A2, B1, B2 are in the “Final Sources” folder (9 Nov): A1 Yucel & Onen (2014), A2 Rojas-Campos et al. (2023), B1 Hess & Boers (2022), B2 Patakchi Yousefi et al. (2024).", tr: "Kanıtı vurgulu ve A1, A2, B1, B2 etiketli kaynaklar “Final Sources” klasöründe (9 Kas): A1 Yucel & Onen (2014), A2 Rojas-Campos et al. (2023), B1 Hess & Boers (2022), B2 Patakchi Yousefi et al. (2024)." }]
   },
   {
-    id: "s07", hafta: "W6–7", tarih: { en: "before 9 Nov", tr: "9 Kas'tan önce" }, durum: "bu-hafta",
+    id: "s07", hafta: "W6–7", tarih: { en: "before 9 Nov", tr: "9 Kas'tan önce" }, durum: "gecti",
     ad: { en: "Note-taking form (A1, A2, B1, B2)", tr: "Not alma formu (A1, A2, B1, B2)" },
     puan: { en: "the only homework", tr: "tek ev ödevi" },
     istenen: {
@@ -126,31 +127,38 @@ window.ADIMLAR = [
     benim: [{ tur: "bag", en: "My note-taking form (Google Doc in my course folder)", tr: "Not alma formum (ders klasörümdeki Google Doc)", url: "formDoc" }]
   },
   {
-    id: "s08", hafta: "W7", tarih: { en: "9 Nov", tr: "9 Kas" }, durum: "bu-hafta",
+    id: "s08", hafta: "W7", tarih: { en: "9 Nov", tr: "9 Kas" }, durum: "gecti",
     ad: { en: "Paragraph A: Part A1 and Part A2", tr: "Paragraf A: A1 ve A2 kısmı" },
     puan: { en: "ungraded", tr: "notsuz" },
     istenen: {
-      en: ["Part A1: topic sentence → my first reason → evidence A1 (paraphrase or summary + citation) → 1–2 sentences of analysis.",
-           "Part A2: my second, different reason → evidence A2 → analysis → concluding sentence.",
-           "Written separately, timed, by hand; written feedback on each part."],
-      tr: ["A1 kısmı: konu cümlesi → ilk nedenim → A1 kanıtı (açımlama ya da özet + atıf) → 1–2 cümle analiz.",
-           "A2 kısmı: ikinci, farklı nedenim → A2 kanıtı → analiz → sonuç cümlesi.",
-           "Ayrı ayrı, süreli, el yazısıyla; her kısma yazılı geri bildirim."]
+      en: ["MEAL plan: Main idea (topic sentence) · Evidence (a specific finding with a citation) · Analysis (1–2 sentences after each piece of evidence) · Link (concluding sentence). Before each piece of evidence comes my own reason.",
+           "Part A1 (20 min): topic sentence → support 1, my first reason → evidence A1 (paraphrase or summary + (Author, year)) → analysis (So what? How? How far?).",
+           "Part A2 (20 min): transition + support 2, my second reason → evidence A2 → analysis starting with old information (“this finding”, “such variation”) → concluding sentence that links back to the main idea.",
+           "By hand, in pencil; on the desk only the note-taking form, the topic outline and the sources; no AI tools. Written feedback on each part.",
+           "After class: a photo of the paper goes to the “6. Body Paragraph 1” folder on Google Drive, and the paper itself comes to the Week 8 class."],
+      tr: ["MEAL planı: Main idea (konu cümlesi) · Evidence (atıflı, belirli bir bulgu) · Analysis (her kanıttan sonra 1–2 cümle) · Link (sonuç cümlesi). Her kanıttan önce benim kendi nedenim gelir.",
+           "A1 kısmı (20 dk): konu cümlesi → destek 1, ilk nedenim → A1 kanıtı (açımlama ya da özet + (Yazar, yıl)) → analiz (So what? How? How far?).",
+           "A2 kısmı (20 dk): geçiş + destek 2, ikinci nedenim → A2 kanıtı → eski bilgiyle başlayan analiz (“this finding”, “such variation”) → ana fikre bağlayan sonuç cümlesi.",
+           "El yazısıyla, kurşun kalemle; masada yalnız not alma formu, outline ve kaynaklar; YZ aracı yok. Her kısma yazılı geri bildirim.",
+           "Ders sonrası: kâğıdın fotoğrafı Google Drive'daki “6. Body Paragraph 1” klasörüne yüklenir, kâğıdın kendisi 8. hafta dersine getirilir."]
     },
-    belge: "Weeks 7–8 guidance · Week 6 slides",
-    benim: [{ tur: "eksik", en: "My paper with feedback — kept in my course folder, not published on the web", tr: "Geri bildirimli kâğıdım — ders klasörümde, web'de yayımlanmaz" }]
+    belge: "Week 7 slides (Writing Part A1 and Part A2) · Weeks 7–8 guidance · Week 6 slides",
+    benim: [{ tur: "bilgi", en: "Parts A1 and A2 written in class on 9 November.", tr: "A1 ve A2 kısımları 9 Kasım'da sınıfta yazıldı." },
+            { tur: "eksik", en: "Photo of my paper with feedback in “6. Body Paragraph 1” (course folder, not on the web)", tr: "Geri bildirimli kâğıdımın fotoğrafı “6. Body Paragraph 1” klasöründe (ders klasörü, web'de değil)" }]
   },
   {
     id: "s09", hafta: "W8", tarih: { en: "23 Nov", tr: "23 Kas" }, durum: "gelecek",
     ad: { en: "Paragraph A rewritten with feedback", tr: "Geri bildirimle Paragraf A" },
     puan: { en: "ungraded", tr: "notsuz" },
     istenen: {
-      en: ["Join Part A1 and Part A2 into one paragraph of about 250 words and improve it with the feedback.",
-           "Bring the printed sources with the evidence highlighted, the note-taking form, the outline and the Week 7 paper."],
-      tr: ["A1 ve A2'yi yaklaşık 250 kelimelik tek paragrafta birleştir, geri bildirimle iyileştir.",
-           "Basılı ve kanıtı vurgulu kaynaklar, not formu, outline ve 7. hafta kâğıdı getirilir."]
+      en: ["Join Part A1 and Part A2 into one paragraph of about 250 words and improve it with the feedback; timed, by hand.",
+           "Bring the printed sources with the evidence highlighted, the note-taking form, the outline and the Week 7 paper with the instructor's feedback.",
+           "Check before handing in: every sentence has a job (topic sentence, reason, evidence, analysis); each piece of evidence has a citation and an analysis after it; no “this” without a noun; transitions between the two supports."],
+      tr: ["A1 ve A2'yi yaklaşık 250 kelimelik tek paragrafta birleştir, geri bildirimle iyileştir; süreli, el yazısıyla.",
+           "Basılı ve kanıtı vurgulu kaynaklar, not formu, outline ve hocanın geri bildirimli 7. hafta kâğıdı getirilir.",
+           "Teslimden önce kontrol: her cümlenin bir işi var (konu cümlesi, neden, kanıt, analiz); her kanıtın atfı ve arkasından analizi var; isimsiz “this” yok; iki destek arasında geçiş var."]
     },
-    belge: "Weeks 7–8 guidance",
+    belge: "Weeks 7–8 guidance · Week 7 slides",
     benim: []
   },
   {
@@ -158,12 +166,16 @@ window.ADIMLAR = [
     ad: { en: "Midterm: Body Paragraph 2", tr: "Ara sınav: Gövde Paragrafı 2" },
     puan: { en: "graded · 30%", tr: "notlu · %30" },
     istenen: {
-      en: ["Paragraph B for my own subtopic, written in class under Testing Office rules.",
-           "Allowed: the outline, the academic sources and permitted research notes; no pre-written text."],
-      tr: ["Kendi alt başlığım için Paragraf B, sınıfta, Testing Office kurallarıyla yazılır.",
-           "Serbest: outline, akademik kaynaklar ve izinli araştırma notları; önceden yazılmış metin yok."]
+      en: ["Paragraph B for my own subtopic, written in the Week 9 class, starting at 14:00, under Testing Office rules.",
+           "Structure: topic sentence → major support → minor support (evidence, paraphrased, not copied) → citation (APA 7, narrative or parenthetical) → analysis (1–2 sentences) → concluding sentence; about 250 words.",
+           "Two major supports, each backed by evidence from an academic source and followed by analysis; one clear idea connected to the thesis; no punctuation, grammar or spelling mistakes.",
+           "Bring: the sources, printed (articles preferred); a printed dictionary and thesaurus if wished. Not allowed: mobile phones, electronic reference tools, pre-written text."],
+      tr: ["Kendi alt başlığım için Paragraf B, 9. hafta dersinde, saat 14:00'te başlar, Testing Office kurallarıyla.",
+           "Yapı: konu cümlesi → ana destek → ikincil destek (kanıt; açımlanır, kopyalanmaz) → atıf (APA 7, anlatı ya da parantez içi) → analiz (1–2 cümle) → sonuç cümlesi; yaklaşık 250 kelime.",
+           "İki ana destek; her biri akademik kaynaktan kanıtla desteklenir ve arkasından analiz gelir; teze bağlı tek bir açık fikir; noktalama, dilbilgisi ve yazım hatası yok.",
+           "Getirilecek: basılı kaynaklar (tercihen makale); istenirse basılı sözlük ve eş anlamlılar sözlüğü. Yasak: cep telefonu, elektronik başvuru aracı, önceden yazılmış metin."]
     },
-    belge: "Course schedule · Week 9",
+    belge: "Course schedule · Week 9 · Midterm announcement · Extended Guidelines for Body Paragraph Writing",
     benim: []
   },
   {
@@ -192,4 +204,26 @@ window.ADIMLAR = [
     belge: "Course schedule · Week 13 · Programme rules",
     benim: []
   }
+];
+
+/* Hocanın istedikleri → sayfadaki yeri → durum (tamam | benim | gelecek). "benim" = Akın'ın yapacağı kısım. */
+window.GEREKLER = [
+  { hedef: "b4", yer: "5", durum: "tamam",
+    en: "Four academic sources for my subtopic, read in full; reliability (CRAAP facts)", tr: "Alt başlığım için dört akademik kaynak, tam okunmuş; güvenilirlik (CRAAP olguları)" },
+  { hedef: "t-yuva", yer: "3", durum: "tamam",
+    en: "Evidence highlighted and labelled A1, A2, B1, B2 in “Final Sources” (Surname_A1_Author_Year.pdf)", tr: "Kanıt vurgulu ve A1, A2, B1, B2 etiketli, “Final Sources” klasöründe (Soyad_A1_Yazar_Yıl.pdf)" },
+  { hedef: "s06", yer: "4.6", durum: "tamam",
+    en: "Revised thesis and full outline, in class (graded, 15%)", tr: "Düzeltilmiş tez ve tam outline, sınıfta (notlu, %15)" },
+  { hedef: "s07", yer: "4.7", durum: "benim",
+    en: "Note-taking form: citation, note and my thoughts for A1, A2, B1, B2", tr: "Not alma formu: A1, A2, B1, B2 için künye, not ve düşüncem" },
+  { hedef: "s08", yer: "4.8", durum: "benim",
+    en: "Parts A1 and A2 (MEAL plan); photo of the paper in “6. Body Paragraph 1”", tr: "A1 ve A2 kısımları (MEAL planı); kâğıdın fotoğrafı “6. Body Paragraph 1” klasöründe" },
+  { hedef: "s09", yer: "4.9", durum: "gelecek",
+    en: "Paragraph A rewritten with feedback (about 250 words); bring the Week 7 paper", tr: "Geri bildirimle Paragraf A (yaklaşık 250 kelime); 7. hafta kâğıdı getirilir" },
+  { hedef: "s10", yer: "4.10", durum: "gelecek",
+    en: "Midterm: Body Paragraph 2, Week 9, 14:00; printed sources, no phones (30%)", tr: "Ara sınav: Gövde Paragrafı 2, 9. hafta, 14:00; basılı kaynak, telefon yok (%30)" },
+  { hedef: "kc", yer: "Ref.", durum: "tamam",
+    en: "APA 7 citations and reference list", tr: "APA 7 atıflar ve kaynakça" },
+  { hedef: "b6", yer: "7", durum: "tamam",
+    en: "Use of AI stated under the course AI policy", tr: "Ders YZ politikasına göre YZ kullanımı beyanı" }
 ];

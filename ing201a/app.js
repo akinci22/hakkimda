@@ -74,12 +74,34 @@
     ders: { en: "Course", tr: "Ders" }, crn: { en: "CRN", tr: "CRN" }, donem: { en: "Term", tr: "Dönem" }, ogrenci: { en: "Student", tr: "Öğrenci" }, guncel: { en: "Comments updated", tr: "Yorumlar güncel" }, kaynakSay: { en: "Sources", tr: "Kaynak" },
     okNot: { en: "Marked in the text:", tr: "Metinde işaretli:" }, okCapa: { en: "parts of the article (Table)", tr: "makalenin kısımları (tablo)" }, okKanit: { en: "evidence I used", tr: "kullandığım kanıt" },
     yukleniyor: { en: "Loading the article…", tr: "Makale açılıyor…" }, pdfHata: { en: "The PDF could not be displayed here.", tr: "PDF burada gösterilemedi." },
+    araYer: { en: "Search this page (e.g. thesis, MEAL, Hess)", tr: "Sayfada ara (ör. tez, MEAL, Hess)" },
+    araSonuc: { en: " found", tr: " sonuç" }, araYok: { en: "no match", tr: "sonuç yok" },
+    hizliBaslik: { en: "Go to", tr: "Hızlı erişim" },
+    hizli: [
+      ["t-gerek", { en: "Requirements checklist", tr: "Gereklilik listesi" }], ["y-tez", { en: "Thesis", tr: "Tez" }],
+      ["y-paragraf", { en: "Body paragraphs", tr: "Gövde paragrafları" }], ["y-ic", { en: "Paragraph plan (MEAL)", tr: "Paragraf planı (MEAL)" }],
+      ["y-kanit", { en: "Evidence", tr: "Kanıt" }], ["b4", { en: "Sources", tr: "Kaynaklar" }], ["s10", { en: "Midterm", tr: "Ara sınav" }],
+      ["b5", { en: "Instructor comments", tr: "Hoca yorumları" }]
+    ],
+    ilgiliBaslik: { en: "Related work", tr: "İlgili çalışma" }, ilgiliAd: { en: "TÜBİTAK 2209-A proposal file ↗", tr: "TÜBİTAK 2209-A öneri dosyası ↗" },
+    ilgiliMetin: { en: "Same research area; a separate text written in Turkish.", tr: "Aynı araştırma alanı; Türkçe yazılan ayrı bir metin." },
+    tubitakKisa: { en: "TÜBİTAK 2209-A ↗", tr: "TÜBİTAK 2209-A ↗" }, tocYuva: { en: "Evidence slots A1–B2", tr: "Kanıt yuvaları A1–B2" },
+    baglamBaslik: { en: "Research context", tr: "Araştırma bağlamı" },
+    baglamMetin: {
+      en: "The four sources in this course are also part of the literature review of my TÜBİTAK 2209-A undergraduate research project proposal, which studies the post-processing of model rainfall forecasts and its effect on flood forecasting in an urban catchment in Istanbul. The essay and the proposal are separate pieces of work: the essay is written by hand in class for this course, the proposal is a Turkish project text, and neither is copied from the other.",
+      tr: "Bu derste kullandığım dört kaynak, TÜBİTAK 2209-A lisans araştırma projesi önerimin literatür taramasının da parçasıdır; öneri, model yağış tahminlerinin son işlemesini ve bunun İstanbul'da kentsel bir havzada taşkın tahminine etkisini inceler. Yazı ve öneri ayrı işlerdir: yazı bu derste sınıfta elle yazılır, öneri Türkçe bir proje metnidir ve biri ötekinden kopyalanmaz."
+    },
+    baglamBag: { en: "Open the proposal file ↗", tr: "Öneri dosyasını aç ↗" },
+    tGerek: { en: "What the instructor asked for, where it is on this page, and its status. Select a row to go there.", tr: "Hocanın istedikleri, sayfadaki yeri ve durumu. Gitmek için satırı seç." },
+    gerekK: { en: "Requirement", tr: "Gereklilik" }, nerede: { en: "Section", tr: "Bölüm" },
+    gerekDurum: { tamam: { en: "Done", tr: "Tamam" }, benim: { en: "My part", tr: "Benim kısmım" }, gelecek: { en: "Upcoming", tr: "Gelecek" } },
     figDugum: {
       en: [["Topic", "W1"], ["Claim", "W2"], ["Sources", "W3"], ["Thesis &", "outline", "W4–6"], ["Note-taking", "form", "W6–7"], ["Paragraph A", "W7–8"], ["Paragraph B", "W9"], ["Intro &", "conclusion", "W10–12"], ["Final", "essay", "W13"]],
       tr: [["Konu", "H1"], ["İddia", "H2"], ["Kaynaklar", "H3"], ["Tez ve", "outline", "H4–6"], ["Not alma", "formu", "H6–7"], ["Paragraf A", "H7–8"], ["Paragraf B", "H9"], ["Giriş ve", "sonuç", "H10–12"], ["Final", "yazısı", "H13"]]
     }
   };
-  var FIG_DURUM = ["gecti", "gecti", "gecti", "gecti", "bu-hafta", "bu-hafta", "gelecek", "gelecek", "gelecek"];
+  var FIG_DURUM = ["gecti", "gecti", "gecti", "gecti", "gecti", "bu-hafta", "gelecek", "gelecek", "gelecek"];
+  var GER = window.GEREKLER || [];
   function t(o) { if (o == null) return ""; if (typeof o === "string") return o; return o[dil] != null ? o[dil] : o.en; }
   function el(tag, attrs, kids) {
     var e = document.createElement(tag);
@@ -139,6 +161,18 @@
     [[UI.ders, D.kod + " — " + t(D.ad)], [UI.crn, D.crn], [UI.donem, t(D.donem)], [UI.ogrenci, D.ogrenci], [UI.kaynakSay, String(K.length)], [UI.guncel, window.YORUM_GUNCEL || "—"]]
       .forEach(function (r) { bl.appendChild(el("dt", { text: t(r[0]) })); bl.appendChild(el("dd", { text: r[1] })); });
     document.getElementById("atifMetin").innerHTML = "Akıncı, Ö. F. (2026). <i>Research process portfolio: ING 201A</i> [Web page]. https://akinci22.github.io/hakkimda/ing201a/";
+    document.getElementById("ara").placeholder = t(UI.araYer);
+    document.getElementById("ara").setAttribute("aria-label", t(UI.araYer));
+    document.getElementById("ara").title = dil === "tr" ? "Enter: sonraki sonuç · Shift+Enter: önceki · Esc: temizle" : "Enter: next match · Shift+Enter: previous · Esc: clear";
+    document.getElementById("ilgiliBag").href = D.tubitak;
+    document.getElementById("ilgiliMetin").textContent = " " + t(UI.ilgiliMetin);
+
+    /* hızlı erişim */
+    var hl = document.getElementById("hizliListe"); hl.innerHTML = "";
+    UI.hizli.forEach(function (h) {
+      hl.appendChild(el("a", { class: "dugme kucuk", href: "#" + h[0], text: t(h[1]), onclick: function (e) { e.preventDefault(); hedefeGit(h[0]); } }));
+    });
+    hl.appendChild(el("a", { class: "dugme kucuk", href: D.tubitak, target: "_blank", rel: "noopener", text: t(UI.tubitakKisa) }));
 
     var g = document.getElementById("govde"); g.innerHTML = "";
     var tn = 0; function tno() { return String(++tn); }
@@ -146,11 +180,23 @@
 
     /* 1 Giriş */
     var b1 = el("section", { class: "bolum", "aria-labelledby": "b1" }, [h2("1", t(UI.b1), "b1"), el("p", { text: t(UI.giris1) }), el("p", { text: t(UI.giris2) })]);
+    b1.appendChild(el("aside", { class: "baglam", "aria-labelledby": "baglamB" }, [
+      el("p", { class: "baglam-baslik", id: "baglamB", text: t(UI.baglamBaslik) }), el("p", { text: t(UI.baglamMetin) }),
+      el("a", { class: "dugme kucuk", href: D.tubitak, target: "_blank", rel: "noopener", text: t(UI.baglamBag) })
+    ]));
     b1.appendChild(tablo(tno(), t(UI.t1), [t(UI.bilesen), t(UI.agirlik), t(UI.hafta)], D.notlar.map(function (n, i) {
       var hf = ["W6", "W9", "W12", "W13", dil === "tr" ? "final dönemi" : "final period"][i];
       return el("tr", null, [el("td", { text: t(n.ad) }), el("td", { class: "sayi", text: dil === "tr" ? "%" + n.pay : n.pay + "%" }), el("td", { text: hf })]);
     })));
-    g.appendChild(b1); ic.push(["b1", "1 " + t(UI.b1)]);
+    var tg = tablo(tno(), t(UI.tGerek), [t(UI.gerekK), t(UI.nerede), t(UI.durum)], GER.map(function (r) {
+      return el("tr", { class: "tikla", tabindex: "0", onclick: function () { hedefeGit(r.hedef); }, onkeydown: function (e) { if (e.key === "Enter") hedefeGit(r.hedef); } }, [
+        el("td", { text: t(r) }), el("td", { class: "sayi" }, [el("a", { href: "#" + r.hedef, text: r.yer, onclick: function (e) { e.preventDefault(); } })]),
+        el("td", null, [el("span", { class: "durum " + r.durum, text: t(UI.gerekDurum[r.durum]) })])
+      ]);
+    }));
+    tg.id = "t-gerek";
+    b1.appendChild(tg);
+    g.appendChild(b1); ic.push(["b1", "1 " + t(UI.b1)]); ic.push(["t-gerek", t(UI.hizli[0][1]), true]);
 
     /* 2 Süreç — Şekil 1 */
     var fig = el("figure", null, [el("div", { class: "sekil", html: sekil() }), el("figcaption", null, [el("b", { text: t(UI.s1) + " " }), document.createTextNode(t(UI.sekilAc))])]);
@@ -158,6 +204,9 @@
 
     /* 3 Yapı — hocanın görmek istedikleri */
     g.appendChild(yapiBolumu(tno)); ic.push(["b3y", "3 " + t(UI.b3y).split(":")[0]]);
+    ["y-tez", "y-paragraf", "y-ic", "y-kanit", "y-kaynak", "t-yuva"].forEach(function (id) {
+      var n = dugumBul(id); ic.push([id, n ? t(n.ad) : t(UI.tocYuva), true]);
+    });
 
     /* 3 Ödevler */
     var b3 = el("section", { class: "bolum", "aria-labelledby": "b3" }, [h2("4", t(UI.b3), "b3")]);
@@ -192,6 +241,7 @@
       ]));
     });
     g.appendChild(b3); ic.push(["b3", "4 " + t(UI.b3)]);
+    A.forEach(function (a, i) { ic.push([a.id, "4." + (i + 1) + " " + t(a.ad), true]); });
 
     /* 4 Kaynaklar */
     var b4 = el("section", { class: "bolum", "aria-labelledby": "b4" }, [h2("5", t(UI.b4), "b4")]);
@@ -252,10 +302,62 @@
       }))]));
     ic.push(["kc", t(UI.kaynakca)]);
 
-    var il = document.getElementById("icListe"); il.innerHTML = "";
-    ic.forEach(function (x) { il.appendChild(el("li", x[2] ? { class: "alt-oge" } : null, [el("a", { href: "#" + x[0], "data-hedef": x[0], text: x[1] })])); });
+    ["icListe", "mobilListe"].forEach(function (lid) {
+      var il = document.getElementById(lid); il.innerHTML = "";
+      ic.forEach(function (x) {
+        il.appendChild(el("li", x[2] ? { class: "alt-oge" } : null, [el("a", { href: "#" + x[0], "data-hedef": x[0], text: x[1], onclick: function (e) { e.preventDefault(); hedefeGit(x[0]); } })]));
+      });
+    });
     izle();
+    if (document.getElementById("ara").value.trim().length > 1) ara(false);
   }
+  function hedefeGit(id) {
+    var m = document.getElementById("mobilIc"); if (m) m.open = false;
+    if (id.slice(0, 2) === "y-") { dugumAc(id); history.replaceState(null, "", "#" + id); } else git(id);
+  }
+
+  /* ---------- sayfa içi arama ---------- */
+  var araK = document.getElementById("ara"), araS = document.getElementById("araSay"), bulunan = [], araI = -1, araZ = null;
+  function katla(s) { return s.replace(/[\s\S]/g, function (c) { if (c === "İ" || c === "I" || c === "ı") return "i"; var l = c.toLowerCase(); return l.length === 1 ? l : c; }); }
+  function araTemizle() {
+    Array.prototype.slice.call(document.querySelectorAll("mark.ara-i")).forEach(function (m) { var p = m.parentNode; p.replaceChild(document.createTextNode(m.textContent), m); p.normalize(); });
+    bulunan = []; araI = -1;
+  }
+  function araGoster(i) {
+    if (!bulunan.length) return;
+    if (araI >= 0 && bulunan[araI]) bulunan[araI].classList.remove("simdi");
+    araI = (i + bulunan.length) % bulunan.length;
+    var m = bulunan[araI], p = m; while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
+    m.classList.add("simdi"); m.scrollIntoView({ block: "center" });
+    araS.textContent = (araI + 1) + " / " + bulunan.length + t(UI.araSonuc);
+  }
+  function ara(kaydir) {
+    araTemizle();
+    var q = katla(araK.value.trim());
+    if (q.length < 2) { araS.textContent = ""; return; }
+    var kok = document.getElementById("makale"), dugler = [];
+    var w = document.createTreeWalker(kok, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
+      var p = n.parentNode; if (!p || /^(SCRIPT|STYLE|BUTTON|SUMMARY)$/.test(p.nodeName) || p.closest("svg,button,.hizli,.mobil-ic")) return NodeFilter.FILTER_REJECT;
+      return katla(n.nodeValue).indexOf(q) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+    } });
+    while (w.nextNode()) dugler.push(w.currentNode);
+    dugler.forEach(function (n) {
+      var s = n.nodeValue, low = katla(s), i = 0, j, frag = document.createDocumentFragment();
+      while ((j = low.indexOf(q, i)) >= 0) {
+        frag.appendChild(document.createTextNode(s.slice(i, j)));
+        var m = el("mark", { class: "ara-i", text: s.slice(j, j + q.length) }); frag.appendChild(m); bulunan.push(m); i = j + q.length;
+      }
+      frag.appendChild(document.createTextNode(s.slice(i))); n.parentNode.replaceChild(frag, n);
+    });
+    if (!bulunan.length) { araS.textContent = t(UI.araYok); return; }
+    araS.textContent = bulunan.length + t(UI.araSonuc);
+    if (kaydir) araGoster(0);
+  }
+  araK.addEventListener("input", function () { clearTimeout(araZ); araZ = setTimeout(function () { ara(true); }, 300); });
+  araK.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); clearTimeout(araZ); if (!bulunan.length) ara(true); else araGoster(araI + (e.shiftKey ? -1 : 1)); }
+    if (e.key === "Escape") { araK.value = ""; araTemizle(); araS.textContent = ""; }
+  });
 
   /* ---------- Bölüm 3: yazıdan kanıta (YAPI, KANIT_YUVA, BULGULAR — yapi.js) ---------- */
   var YP = window.YAPI || [], YUVA = window.KANIT_YUVA || [], BUL = window.BULGULAR || {};
@@ -310,9 +412,11 @@
         el("td", { class: "sayi", text: n.adim.map(function (a) { return "4." + (A.findIndex(function (x) { return x.id === a; }) + 1); }).join(", ") })
       ]);
     })));
-    b.appendChild(tablo(tno(), t(UI.tYuva), [t(UI.yuva), t(UI.paragrafK), t(UI.kaynakSec), t(UI.pdfAdi)], YUVA.map(function (y) {
+    var ty = tablo(tno(), t(UI.tYuva), [t(UI.yuva), t(UI.paragrafK), t(UI.kaynakSec), t(UI.pdfAdi)], YUVA.map(function (y) {
       return el("tr", null, [el("th", { scope: "row", text: y.yuva }), el("td", { text: y.paragraf }), (function () { var kk = y.kaynak && K.find(function (x) { return x.id === y.kaynak; }); return kk ? el("td", null, [el("a", { href: "#k-" + kk.id, text: kk.kisa })]) : el("td", { class: "eksik", text: t(UI.secilecek) }); })(), el("td", { class: "italik", text: y.pdf || ("Akinci_" + y.yuva + "_Author_Year.pdf") })]);
-    })));
+    }));
+    ty.id = "t-yuva";
+    b.appendChild(ty);
     var sat = [];
     K.forEach(function (k) { (BUL[k.id] || []).forEach(function (f, i) {
       sat.push(el("tr", null, [i ? el("td", { text: "" }) : el("th", { scope: "row" }, [el("a", { href: "#k-" + k.id, text: k.kisa })]), el("td", { text: t(f) }), el("td", { class: "sayi", text: (dil === "tr" ? "s. " : "p. ") + f.s })]));
@@ -412,5 +516,5 @@
   });
 
   ciz();
-  if (location.hash) { var h = document.getElementById(location.hash.slice(1)); if (h) setTimeout(function () { h.scrollIntoView({ block: "start" }); }, 50); }
+  if (location.hash) { var h = location.hash.slice(1); if (document.getElementById(h)) setTimeout(function () { hedefeGit(h); }, 50); }
 })();
