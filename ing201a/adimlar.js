@@ -8,7 +8,7 @@ window.DERS = {
   ogrenci: "Ömer Faruk Akıncı", bolum: { en: "Meteorological Engineering, ITU", tr: "Meteoroloji Mühendisliği, İTÜ" },
   portfoy: "https://akinci22.github.io/hakkimda/",
   yorumDoc: "https://docs.google.com/document/d/10y-ZT50qEaKJoG2HH4ANB6JbemDjF4vk_l0caCbBdy0/edit",
-  formDoc: "https://docs.google.com/document/d/1LItje52bOsEHd47x-kU1EVy7hrcfhBM92oOY7rzSBy0/edit",
+  formDoc: "https://docs.google.com/document/d/1IqKumXV-Uh3PlSqJFKRq39mokPzHMjH_sTRHjLNqcYI/edit",
   notlar: [
     { ad: { en: "Thesis + outline", tr: "Tez + outline" }, pay: 15 },
     { ad: { en: "Body paragraph 2 (midterm)", tr: "Gövde paragrafı 2 (ara sınav)" }, pay: 30 },
