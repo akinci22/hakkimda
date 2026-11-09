@@ -21,7 +21,7 @@ window.KAYNAKLAR = [
    {
     "ne_tr": "Amaç",
     "ne_en": "Aim",
-    "bolum": "Abstract; Introduction (son paragraf)",
+    "bolum": "Abstract; Introduction (last paragraph)",
     "sayfa": "1; 2",
     "capalar": [
      {
@@ -111,7 +111,7 @@ window.KAYNAKLAR = [
    {
     "ne_tr": "Yöntem",
     "ne_en": "Method",
-    "bolum": "2 Methodology (WRF kurulumu, 3DVAR veri özümseme, MPE)",
+    "bolum": "2 Methodology (WRF set-up, 3DVAR data assimilation, MPE)",
     "sayfa": "2–5",
     "capalar": [
      {
@@ -139,7 +139,7 @@ window.KAYNAKLAR = [
    {
     "ne_tr": "Ana bulgular",
     "ne_en": "Main findings",
-    "bolum": "3 Results (3.1 General analyses ve devamı)",
+    "bolum": "3 Results (3.1 General analyses onwards)",
     "sayfa": "6–10",
     "capalar": [
      {
@@ -251,7 +251,7 @@ window.KAYNAKLAR = [
    {
     "ne_tr": "Veri",
     "ne_en": "Data",
-    "bolum": "2. Data (a. NWP model output; gözlem verisi; Table 1)",
+    "bolum": "2. Data (a. NWP model output; observations; Table 1)",
     "sayfa": "2–3",
     "capalar": [
      {
@@ -279,7 +279,7 @@ window.KAYNAKLAR = [
    {
     "ne_tr": "Yöntem",
     "ne_en": "Method",
-    "bolum": "3. Methodology (ANN kurulumu, mimari arama, çapraz doğrulama, klasik yöntemler)",
+    "bolum": "3. Methodology (ANN set-up, architecture search, cross-validation, classical methods)",
     "sayfa": "3–6",
     "capalar": [
      {
@@ -485,7 +485,7 @@ window.KAYNAKLAR = [
    {
     "ne_tr": "Ana bulgular",
     "ne_en": "Main findings",
-    "bolum": "3. Results (3.1 sürekli skor; 3.2 şiddetli yağış skoru); Abstract",
+    "bolum": "3. Results (3.1 continuous scores; 3.2 heavy-rainfall scores); Abstract",
     "sayfa": "5–8; 1",
     "capalar": [
      {
@@ -555,7 +555,7 @@ window.KAYNAKLAR = [
    {
     "ne_tr": "Amaç",
     "ne_en": "Aim",
-    "bolum": "2.1 General methodology (ayrıca 1 Introduction sonu)",
+    "bolum": "2.1 General methodology (also the end of 1 Introduction)",
     "sayfa": "3",
     "capalar": [
      {
