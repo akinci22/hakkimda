@@ -19,17 +19,29 @@
     baslik: { en: "Research process portfolio: assignments, sources and evidence in ING 201A", tr: "Araştırma süreci portfolyosu: ING 201A'da ödevler, kaynaklar ve kanıt" },
     kurum: { en: "Department of Meteorological Engineering, Istanbul Technical University, Istanbul, Türkiye", tr: "Meteoroloji Mühendisliği Bölümü, İstanbul Teknik Üniversitesi, İstanbul, Türkiye" },
     ozet: {
-      en: "This page documents my work in ING 201A, Essentials of Research Paper Writing (Fall 2026, CRN 10466). Section 3 lists the assignment sequence with what each step required and what I submitted; Section 4 presents the four peer-reviewed articles I use, with the location of each part of the article and the full text where the licence allows it. Instructor comments are collected in Section 5 and under each step. My paragraph texts are kept in my course folder rather than on the web.",
-      tr: "Bu sayfa ING 201A, Araştırma Yazısının Temelleri (Güz 2026, CRN 10466) dersindeki çalışmamı belgeler. Bölüm 3 ödev sırasını, her adımda isteneni ve teslim ettiğimi verir; Bölüm 4 kullandığım dört hakemli makaleyi, makalenin her kısmının yerini ve lisansın izin verdiği yerde tam metni sunar. Hoca yorumları Bölüm 5'te ve her adımın altında toplanır. Paragraf metinlerim web'de değil, ders klasörümde durur."
+      en: "This page documents my work in ING 201A, Essentials of Research Paper Writing (Fall 2026, CRN 10466). Section 3 explains, from the essay down to each piece of evidence, what the instructor wants to see and how the parts relate; Section 4 lists the assignment sequence with what each step required and what I submitted; Section 5 presents the four peer-reviewed articles I use, with the location of each part of the article and the full text where the licence allows it. Instructor comments are collected in Section 6 and under each step. My paragraph texts are kept in my course folder rather than on the web.",
+      tr: "Bu sayfa ING 201A, Araştırma Yazısının Temelleri (Güz 2026, CRN 10466) dersindeki çalışmamı belgeler. Bölüm 3, yazının bütününden tek tek kanıta kadar hocanın görmek istediklerini ve parçaların birbiriyle ilişkisini açıklar; Bölüm 4 ödev sırasını, her adımda isteneni ve teslim ettiğimi verir; Bölüm 5 kullandığım dört hakemli makaleyi, makalenin her kısmının yerini ve lisansın izin verdiği yerde tam metni sunar. Hoca yorumları Bölüm 6'da ve her adımın altında toplanır. Paragraf metinlerim web'de değil, ders klasörümde durur."
     },
     anahtarMetin: { en: "research process; academic sources; evidence; numerical weather prediction; precipitation post-processing; deep learning; flood forecasting", tr: "araştırma süreci; akademik kaynak; kanıt; sayısal hava tahmini; yağış son işlemesi; derin öğrenme; taşkın tahmini" },
     b1: { en: "Introduction", tr: "Giriş" }, b2: { en: "Research process", tr: "Araştırma süreci" }, b3: { en: "Assignments", tr: "Ödevler" },
+    b3y: { en: "What the instructor wants to see: from the essay to the evidence", tr: "Hocanın görmek istedikleri: yazıdan kanıta" },
+    yapiAc: { en: "The course builds the essay from general to specific: the essay → its thesis → three subtopics → two paragraphs per subtopic → points, evidence and analysis in each paragraph → the source behind each piece of evidence. Open a level to go one step deeper. Each level shows what it is, what the instructor checks, the rubric points, how it relates to the other levels, and my part.", tr: "Ders yazıyı genelden özele kurar: yazı → tezi → üç alt başlık → her alt başlığa iki paragraf → paragrafta nokta, kanıt ve analiz → her kanıtın arkasındaki kaynak. Bir seviye derine inmek için seviyeyi aç. Her seviyede ne olduğu, hocanın neye baktığı, puanı, öteki seviyelerle ilişkisi ve benim kısmım var." },
+    s2: { en: "Figure 2.", tr: "Şekil 2." }, sekil2: { en: "Levels of the synthesis essay, from general to specific, as in the instructor's outline hierarchy (I, A, 1).", tr: "Sentez yazısının seviyeleri, genelden özele; hocanın outline hiyerarşisindeki gibi (I, A, 1)." },
+    seviye: { en: "Level", tr: "Seviye" }, neBu: { en: "What it is", tr: "Nedir" }, kontrolEt: { en: "Instructor checks", tr: "Hoca neye bakar" }, rubrikK: { en: "Rubric", tr: "Puan" },
+    bagli: { en: "Related to", tr: "İlişkili" }, adimK: { en: "Steps", tr: "Adımlar" }, benimde: { en: "My part", tr: "Benim kısmım" },
+    tHarita: { en: "What relates to what: each level, the instructor's criterion and my part.", tr: "Ne neyle ilgili: her seviye, hocanın ölçütü ve benim kısmım." },
+    eleman: { en: "Level", tr: "Seviye" }, olcut: { en: "Instructor's criterion", tr: "Hocanın ölçütü" },
+    tYuva: { en: "Evidence slots and their sources. The source for each slot is my choice in the outline and the note-taking form.", tr: "Kanıt yuvaları ve kaynakları. Her yuvanın kaynağı outline'da ve not alma formunda benim seçimim." },
+    yuva: { en: "Slot", tr: "Yuva" }, paragrafK: { en: "Paragraph", tr: "Paragraf" }, kaynakSec: { en: "Source", tr: "Kaynak" }, pdfAdi: { en: "PDF name", tr: "PDF adı" },
+    secilecek: { en: "to be chosen", tr: "seçilecek" },
+    tBulgu: { en: "Findings available in each source (reference information for choosing evidence, not my notes).", tr: "Her kaynakta seçilebilecek bulgular (kanıt seçmek için başvuru bilgisi; benim notum değil)." },
+    bulguK: { en: "Finding in the article", tr: "Makaledeki bulgu" },
     b4: { en: "Sources", tr: "Kaynaklar" }, b5: { en: "Instructor comments", tr: "Hoca yorumları" }, b6: { en: "Statements", tr: "Beyanlar" }, kaynakca: { en: "References", tr: "Kaynakça" },
     giris1: {
       en: "The course builds one synthesis essay in a group of three: each student researches one subtopic and writes two body paragraphs, and the group writes the introduction and conclusion. All graded writing is done in class, by hand. The steps below follow the course schedule.",
       tr: "Ders üç kişilik grupta tek bir sentez yazısı kurar: her öğrenci bir alt başlığı araştırır ve iki gövde paragrafı yazar, giriş ve sonucu grup yazar. Notlu bütün yazılar sınıfta, elle yazılır. Aşağıdaki adımlar ders planını izler."
     },
-    giris2: { en: "Each step in Section 3 has three parts: the requirement (from the instructor's documents), my submission, and the instructor's comment.", tr: "Bölüm 3'teki her adım üç kısımdan oluşur: gereklilik (hocanın belgelerinden), teslimim ve hocanın yorumu." },
+    giris2: { en: "Each step in Section 4 has three parts: the requirement (from the instructor's documents), my submission, and the instructor's comment.", tr: "Bölüm 4'teki her adım üç kısımdan oluşur: gereklilik (hocanın belgelerinden), teslimim ve hocanın yorumu." },
     t1: { en: "Assessment components.", tr: "Değerlendirme bileşenleri." }, t2: { en: "Assignment sequence. Select a row to go to the step.", tr: "Ödev sırası. Adıma gitmek için satırı seç." },
     t3: { en: "The four sources and their reliability (CRAAP facts).", tr: "Dört kaynak ve güvenilirlikleri (CRAAP olguları)." },
     tYer: { en: "Location of content in", tr: "İçeriğin yeri:" },
@@ -129,11 +141,12 @@
     document.getElementById("atifMetin").innerHTML = "Akıncı, Ö. F. (2026). <i>Research process portfolio: ING 201A</i> [Web page]. https://akinci22.github.io/hakkimda/ing201a/";
 
     var g = document.getElementById("govde"); g.innerHTML = "";
+    var tn = 0; function tno() { return String(++tn); }
     var ic = [];
 
     /* 1 Giriş */
     var b1 = el("section", { class: "bolum", "aria-labelledby": "b1" }, [h2("1", t(UI.b1), "b1"), el("p", { text: t(UI.giris1) }), el("p", { text: t(UI.giris2) })]);
-    b1.appendChild(tablo("1", t(UI.t1), [t(UI.bilesen), t(UI.agirlik), t(UI.hafta)], D.notlar.map(function (n, i) {
+    b1.appendChild(tablo(tno(), t(UI.t1), [t(UI.bilesen), t(UI.agirlik), t(UI.hafta)], D.notlar.map(function (n, i) {
       var hf = ["W6", "W9", "W12", "W13", dil === "tr" ? "final dönemi" : "final period"][i];
       return el("tr", null, [el("td", { text: t(n.ad) }), el("td", { class: "sayi", text: dil === "tr" ? "%" + n.pay : n.pay + "%" }), el("td", { text: hf })]);
     })));
@@ -143,11 +156,14 @@
     var fig = el("figure", null, [el("div", { class: "sekil", html: sekil() }), el("figcaption", null, [el("b", { text: t(UI.s1) + " " }), document.createTextNode(t(UI.sekilAc))])]);
     g.appendChild(el("section", { class: "bolum", "aria-labelledby": "b2" }, [h2("2", t(UI.b2), "b2"), fig])); ic.push(["b2", "2 " + t(UI.b2)]);
 
+    /* 3 Yapı — hocanın görmek istedikleri */
+    g.appendChild(yapiBolumu(tno)); ic.push(["b3y", "3 " + t(UI.b3y).split(":")[0]]);
+
     /* 3 Ödevler */
-    var b3 = el("section", { class: "bolum", "aria-labelledby": "b3" }, [h2("3", t(UI.b3), "b3")]);
-    b3.appendChild(tablo("2", t(UI.t2), [t(UI.adim), t(UI.hafta), t(UI.gorev), t(UI.not), t(UI.durum)], A.map(function (a, i) {
+    var b3 = el("section", { class: "bolum", "aria-labelledby": "b3" }, [h2("4", t(UI.b3), "b3")]);
+    b3.appendChild(tablo(tno(), t(UI.t2), [t(UI.adim), t(UI.hafta), t(UI.gorev), t(UI.not), t(UI.durum)], A.map(function (a, i) {
       return el("tr", { class: "tikla", tabindex: "0", onclick: function () { git(a.id); }, onkeydown: function (e) { if (e.key === "Enter") git(a.id); } }, [
-        el("td", { class: "sayi", text: "3." + (i + 1) }), el("td", { class: "sayi", text: a.hafta }), el("td", { text: t(a.ad) }),
+        el("td", { class: "sayi", text: "4." + (i + 1) }), el("td", { class: "sayi", text: a.hafta }), el("td", { text: t(a.ad) }),
         el("td", { text: a.puan ? t(a.puan) : "—" }), el("td", null, [el("span", { class: "durum " + a.durum, text: t(UI.durumlar[a.durum]) })])
       ]);
     })));
@@ -170,27 +186,27 @@
       dl.appendChild(el("dt", { text: t(UI.teslim) })); dl.appendChild(tes);
       dl.appendChild(el("dt", { text: t(UI.yorum) })); dl.appendChild(yorumDd(a.id));
       b3.appendChild(el("section", { id: a.id, "aria-labelledby": "h-" + a.id }, [
-        el("h3", { id: "h-" + a.id }, [el("span", { class: "no", text: "3." + (i + 1) }), document.createTextNode(t(a.ad)),
+        el("h3", { id: "h-" + a.id }, [el("span", { class: "no", text: "4." + (i + 1) }), document.createTextNode(t(a.ad)),
           el("span", { class: "meta", text: a.hafta + " · " + t(a.tarih) + (a.puan ? " · " + t(a.puan) : "") + " · " + t(UI.durumlar[a.durum]) })]),
         dl
       ]));
     });
-    g.appendChild(b3); ic.push(["b3", "3 " + t(UI.b3)]);
+    g.appendChild(b3); ic.push(["b3", "4 " + t(UI.b3)]);
 
     /* 4 Kaynaklar */
-    var b4 = el("section", { class: "bolum", "aria-labelledby": "b4" }, [h2("4", t(UI.b4), "b4")]);
-    b4.appendChild(tablo("3", t(UI.t3), [t(UI.kaynak), t(UI.yil), t(UI.dergi), t(UI.atifSay), t(UI.erisim)], K.map(function (k) {
+    var b4 = el("section", { class: "bolum", "aria-labelledby": "b4" }, [h2("5", t(UI.b4), "b4")]);
+    b4.appendChild(tablo(tno(), t(UI.t3), [t(UI.kaynak), t(UI.yil), t(UI.dergi), t(UI.atifSay), t(UI.erisim)], K.map(function (k) {
       return el("tr", { class: "tikla", tabindex: "0", onclick: function () { git("k-" + k.id); }, onkeydown: function (e) { if (e.key === "Enter") git("k-" + k.id); } }, [
         el("th", { scope: "row", text: k.kisa }), el("td", { class: "sayi", text: String(k.yil) }), el("td", { class: "italik", text: k.dergi }),
         el("td", { class: "sayi", text: String(k.atif) }), el("td", { text: k.pdf ? t(UI.evet) + " · " + k.lisans.ad : t(UI.hayir) })
       ]);
     }), t(UI.t3not)));
     K.forEach(function (k, i) {
-      var no = "4." + (i + 1), s = el("section", { id: "k-" + k.id, "aria-labelledby": "h-k-" + k.id });
+      var no = "5." + (i + 1), s = el("section", { id: "k-" + k.id, "aria-labelledby": "h-k-" + k.id });
       s.appendChild(el("h3", { id: "h-k-" + k.id }, [el("span", { class: "no", text: no }), document.createTextNode(k.kisa), el("span", { class: "meta", text: k.dergi + " · " + k.yil + " · " + t(UI.lisans) + ": " + k.lisans.ad })]));
       s.appendChild(el("p", { class: "referans", html: k.apa.replace(/(https:\/\/doi\.org\/\S+)/, '<a href="$1" target="_blank" rel="noopener">$1</a>') }));
       s.appendChild(el("dl", { class: "etiketli" }, [el("dt", { text: t(UI.calisma) }), el("dd", { text: t(k.ozet) })]));
-      s.appendChild(tablo(String(4 + i), t(UI.tYer) + " " + k.kisa + ".", [t(UI.kisim), t(UI.bolum), t(UI.sayfa), t(UI.ifade), ""], k.yerler.map(function (y, yi) {
+      s.appendChild(tablo(tno(), t(UI.tYer) + " " + k.kisa + ".", [t(UI.kisim), t(UI.bolum), t(UI.sayfa), t(UI.ifade), ""], k.yerler.map(function (y, yi) {
         var ifade = el("td"), gor = el("td");
         y.capalar.forEach(function (c, ci) {
           ifade.appendChild(el("div", { class: "italik", text: "“" + c.metin + "”" }));
@@ -214,20 +230,20 @@
         : [el("a", { class: "dugme dolu", href: k.doi, target: "_blank", rel: "noopener", text: t(UI.yayinci) }), el("span", { class: "not-dipnot", text: t(UI.telif) })]));
       b4.appendChild(s);
     });
-    g.appendChild(b4); ic.push(["b4", "4 " + t(UI.b4)]);
-    K.forEach(function (k, i) { ic.push(["k-" + k.id, "4." + (i + 1) + " " + k.kisa, true]); });
+    g.appendChild(b4); ic.push(["b4", "5 " + t(UI.b4)]);
+    K.forEach(function (k, i) { ic.push(["k-" + k.id, "5." + (i + 1) + " " + k.kisa, true]); });
 
     /* 5 Yorumlar */
-    g.appendChild(el("section", { class: "bolum", "aria-labelledby": "b5" }, [h2("5", t(UI.b5), "b5"), el("p", { text: t(UI.yorumGenel) }),
+    g.appendChild(el("section", { class: "bolum", "aria-labelledby": "b5" }, [h2("6", t(UI.b5), "b5"), el("p", { text: t(UI.yorumGenel) }),
       el("dl", { class: "etiketli" }, [el("dt", { text: t(UI.genel) }), yorumDd("genel"), el("dt", { text: t(UI.kaynaklarY) }), yorumDd("kaynaklar")])]));
-    ic.push(["b5", "5 " + t(UI.b5)]);
+    ic.push(["b5", "6 " + t(UI.b5)]);
 
     /* 6 Beyanlar */
-    g.appendChild(el("section", { class: "bolum beyan", "aria-labelledby": "b6" }, [h2("6", t(UI.b6), "b6"),
+    g.appendChild(el("section", { class: "bolum beyan", "aria-labelledby": "b6" }, [h2("7", t(UI.b6), "b6"),
       el("h3", { text: t(UI.beyanYZ) }), el("p", { text: t(UI.beyanYZm) }),
       el("h3", { text: t(UI.beyanMetin) }), el("p", { text: t(UI.beyanMetinm) }),
       el("h3", { text: t(UI.beyanLisans) }), el("p", { text: t(UI.beyanLisansm) })]));
-    ic.push(["b6", "6 " + t(UI.b6)]);
+    ic.push(["b6", "7 " + t(UI.b6)]);
 
     /* Kaynakça */
     g.appendChild(el("section", { class: "bolum", "aria-labelledby": "kc" }, [el("h2", { class: "bb", id: "kc", text: t(UI.kaynakca) }),
@@ -239,6 +255,70 @@
     var il = document.getElementById("icListe"); il.innerHTML = "";
     ic.forEach(function (x) { il.appendChild(el("li", x[2] ? { class: "alt-oge" } : null, [el("a", { href: "#" + x[0], "data-hedef": x[0], text: x[1] })])); });
     izle();
+  }
+
+  /* ---------- Bölüm 3: yazıdan kanıta (YAPI, KANIT_YUVA, BULGULAR — yapi.js) ---------- */
+  var YP = window.YAPI || [], YUVA = window.KANIT_YUVA || [], BUL = window.BULGULAR || {};
+  function dugumBul(id) { return YP.find(function (x) { return x.id === id; }); }
+  function sekil2() {
+    var dz = [["y-essay", 0], ["y-tez", 1], ["y-alt", 2], ["y-paragraf", 3], ["y-ic", 4], ["y-kanit", 5]], W = 720, H = 300, s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-labelledby="fig2"><title id="fig2">' + t(UI.sekil2) + '</title>';
+    dz.forEach(function (d, i) {
+      var n = dugumBul(d[0]), x = 20 + d[1] * 70, y = 12 + i * 47, w = 330;
+      if (i) s += '<path d="M' + (x - 50) + ' ' + (y - 24) + ' V' + (y + 18) + ' H' + x + '" fill="none" stroke="var(--metin-3)" stroke-width="1.5"/>';
+      s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="36" rx="3" fill="var(--yuzey)" stroke="' + (i === dz.length - 1 ? "var(--vurgu)" : "var(--metin)") + '" stroke-width="1.5"/>';
+      s += '<text x="' + (x + 12) + '" y="' + (y + 23) + '" font-size="14" font-weight="700" fill="var(--vurgu)">' + d[1] + '</text>';
+      s += '<text x="' + (x + 32) + '" y="' + (y + 23) + '" font-size="14" fill="var(--metin)">' + t(n.ad).replace(/&/g, "&amp;") + '</text>';
+    });
+    return s + "</svg>";
+  }
+  function dugumAc(id) {
+    var d = document.getElementById(id); if (!d) return;
+    var p = d; while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
+    d.scrollIntoView({ block: "start" });
+  }
+  function dugum(n) {
+    var dl = el("dl", { class: "etiketli" });
+    function satir(et, dd) { dl.appendChild(el("dt", { text: t(et) })); dl.appendChild(dd); }
+    satir(UI.neBu, el("dd", { text: t(n.ne) }));
+    satir(UI.kontrolEt, el("dd", null, [el("ul", null, t(n.kontrol).map(function (k) { return el("li", { text: k }); }))]));
+    if (n.rubrik) satir(UI.rubrikK, el("dd", { text: t(n.rubrik) }));
+    satir(UI.belgeler, el("dd", { class: "kaynakbelge", text: n.belge }));
+    satir(UI.bagli, el("dd", null, n.bag.map(function (b, i) { var m = dugumBul(b); return el("span", null, [document.createTextNode(i ? " · " : ""), el("a", { href: "#" + b, text: t(m.ad), onclick: function (e) { e.preventDefault(); dugumAc(b); } })]); })));
+    satir(UI.adimK, el("dd", null, n.adim.map(function (a, i) { var j = A.findIndex(function (x) { return x.id === a; }); return el("span", null, [document.createTextNode(i ? " · " : ""), el("a", { href: "#" + a, text: "4." + (j + 1) + " " + t(A[j].ad) })]); })));
+    var bd = el("dd");
+    if (!n.benim.length) bd.appendChild(el("span", { class: "eksik", text: t(UI.gelmedi) }));
+    n.benim.forEach(function (b) {
+      if (b.tur === "eksik") bd.appendChild(el("div", null, [document.createTextNode(t(b) + " "), el("span", { class: "eksik", text: t(UI.eksik) })]));
+      else bd.appendChild(el("div", { text: t(b) }));
+    });
+    satir(UI.benimde, bd);
+    var cocuk = YP.filter(function (x) { return x.ust === n.id; });
+    return el("details", Object.assign({ class: "dugum sv" + n.seviye, id: n.id }, n.seviye === 0 ? { open: "" } : {}), [
+      el("summary", null, [el("span", { class: "sv-no", text: t(UI.seviye) + " " + n.seviye }), el("span", { class: "sv-ad", text: t(n.ad) }), el("span", { class: "sv-ne", text: t(n.ne) })]),
+      el("div", { class: "dugum-ic" }, [dl].concat(cocuk.map(dugum)))
+    ]);
+  }
+  function yapiBolumu(tno) {
+    var b = el("section", { class: "bolum", "aria-labelledby": "b3y" }, [h2("3", t(UI.b3y), "b3y"), el("p", { text: t(UI.yapiAc) })]);
+    b.appendChild(el("figure", null, [el("div", { class: "sekil yapi-sekil", html: sekil2() }), el("figcaption", null, [el("b", { text: t(UI.s2) + " " }), document.createTextNode(t(UI.sekil2))])]));
+    var kok = YP.filter(function (x) { return !x.ust; });
+    kok.forEach(function (n) { b.appendChild(dugum(n)); });
+    b.appendChild(tablo(tno(), t(UI.tHarita), [t(UI.eleman), t(UI.olcut), t(UI.benimde), t(UI.adimK)], YP.map(function (n) {
+      return el("tr", { class: "tikla", tabindex: "0", onclick: function () { dugumAc(n.id); }, onkeydown: function (e) { if (e.key === "Enter") dugumAc(n.id); } }, [
+        el("th", { scope: "row", text: n.seviye + " · " + t(n.ad) }), el("td", { text: n.rubrik ? t(n.rubrik) : "—" }),
+        el("td", { text: n.benim.length ? n.benim.map(function (x) { return t(x) + (x.tur === "eksik" ? " (" + t(UI.eksik) + ")" : ""); }).join("; ") : "—" }),
+        el("td", { class: "sayi", text: n.adim.map(function (a) { return "4." + (A.findIndex(function (x) { return x.id === a; }) + 1); }).join(", ") })
+      ]);
+    })));
+    b.appendChild(tablo(tno(), t(UI.tYuva), [t(UI.yuva), t(UI.paragrafK), t(UI.kaynakSec), t(UI.pdfAdi)], YUVA.map(function (y) {
+      return el("tr", null, [el("th", { scope: "row", text: y.yuva }), el("td", { text: y.paragraf }), el("td", { class: "eksik", text: t(UI.secilecek) }), el("td", { class: "italik", text: "Akinci_" + y.yuva + "_Author_Year.pdf" })]);
+    })));
+    var sat = [];
+    K.forEach(function (k) { (BUL[k.id] || []).forEach(function (f, i) {
+      sat.push(el("tr", null, [i ? el("td", { text: "" }) : el("th", { scope: "row" }, [el("a", { href: "#k-" + k.id, text: k.kisa })]), el("td", { text: t(f) }), el("td", { class: "sayi", text: (dil === "tr" ? "s. " : "p. ") + f.s })]));
+    }); });
+    b.appendChild(tablo(tno(), t(UI.tBulgu), [t(UI.kaynak), t(UI.bulguK), t(UI.sayfa)], sat));
+    return b;
   }
 
   function yorumDd(anahtar) {
