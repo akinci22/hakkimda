@@ -386,8 +386,8 @@ window.KAYNAKLAR = [
   "yil": 2022,
   "atif": 113,
   "lisans": {
-   "ad": "CC BY 4.0",
-   "url": "https://creativecommons.org/licenses/by/4.0/"
+   "ad": "CC BY-NC (Attribution-NonCommercial)",
+   "url": "https://creativecommons.org/licenses/"
   },
   "pdf": "pdf/Hess_2022_DL_heavy_rainfall.pdf",
   "sayfa": 11,
@@ -542,8 +542,8 @@ window.KAYNAKLAR = [
   "yil": 2024,
   "atif": 9,
   "lisans": {
-   "ad": "CC BY 4.0",
-   "url": "https://creativecommons.org/licenses/by/4.0/"
+   "ad": "CC BY",
+   "url": "https://creativecommons.org/licenses/"
   },
   "pdf": "pdf/PatakchiYousefi_2024_DL_corrected_precip_hydrology.pdf",
   "sayfa": 18,
