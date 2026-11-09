@@ -110,7 +110,7 @@ window.ADIMLAR = [
     },
     belge: "Outline rubric · Example and reminders · Week 6 announcement",
     benim: [{ tur: "eksik", en: "My graded outline (photo taken at the end of the assessment)", tr: "Notlu outline'ım (değerlendirme sonunda çekilen fotoğraf)" },
-            { tur: "eksik", en: "Highlighted PDFs in the “Final Sources” folder", tr: "“Final Sources” klasöründe vurgulu PDF'ler" }]
+            { tur: "bilgi", en: "Marked PDFs of the four sources are in the “Final Sources” folder (uploaded 9 Nov); the A1–B2 evidence labels follow the note-taking form.", tr: "Dört kaynağın işaretli PDF'leri “Final Sources” klasöründe (9 Kas'ta yüklendi); A1–B2 kanıt etiketleri not formundan sonra." }]
   },
   {
     id: "s07", hafta: "W6–7", tarih: { en: "before 9 Nov", tr: "9 Kas'tan önce" }, durum: "bu-hafta",
